@@ -18,14 +18,13 @@ use EuPathSiteCommon::Model::ModelXML;
 use CGI;
 use CGI::Carp qw(fatalsToBrowser set_message);
 use ApiCommonWebsite::View::CgiApp::IsolateClustalw;
-#use ApiCommonWebsite::View::CgiApp::htmlClustalo;
 use Bio::Graphics::Browser2::PadAlignment;
 
 sub run {
     my ($self, $cgi) = @_;
     my %alignmentHash;
     my %originsHash;
-#    my @alignmentsPad;
+
     my $project = $cgi->param('project_id');
     my $contig = $cgi->param('contig');
     my $start= $cgi->param('start');
@@ -50,7 +49,7 @@ sub run {
 
     my $regex = join '|', @$genomes;
 
-    unless($regex) {
+    if (!$regex && $type eq 'clustal') {
       print "Please choose at least one organism which is not the reference";
     }
 
@@ -113,12 +112,6 @@ sub run {
 		    $originsHash{$startPoint} = $orHash{$startPoint};
 		}
 	    }
-	  #  my @alignmentsArray = @alignments;
-	   # foreach my $arrayRef (@alignmentsArray) {
-		
-	#	push  (@alignmentsPad , $arrayRef);
-	 #   }
-	    
 	}
     }
     my $referenceSequence = &getReferenceSequence($project, $contig, $referenceGenome, $start, $stop, $dbh);
@@ -133,22 +126,13 @@ sub run {
     $alignmentHash{$referenceId}=$referenceSequence;
     $originsHash{$referenceId}=$start;
     }
-#    print Dumper "alignments";
- #   print Dumper @alignmentsPad;
+
  #   print Dumper %originsHash;
-#    print Dumper "HASH";
+     print Dumper "HASH";
  #   print Dumper %alignmentHash;
     my $tempfile = &doClustalWalignment(\%alignmentHash, $mercatorOutputDir, $referenceId);
     if ($type eq 'clustal') {
 	ApiCommonWebsite::View::CgiApp::IsolateClustalw::createHTML($tempfile,$cgi,%originsHash);
-#	my $in  = Bio::AlignIO->new(-file   => $tempfile,
-#				    -format =>'clustalo');
-#	my $out = Bio::AlignIO->new(-fh   => \*STDOUT,
- #                           -format => 'clustalo');
-#
- #  while ( my $aln = $in->next_aln() ) {
- #       $out->write_aln($aln);
- #   } 
    }
     elsif($type eq 'fasta_ungapped') {
 	my $seqIO = Bio::SeqIO->new(-fh => \*STDOUT, -format => 'fasta');
@@ -193,16 +177,11 @@ sub run {
 	}
 	$seqIO->close();
     }
-    
-    
-    
-    
-    
+
 }
 
 
 sub createAlignmentHash {
-
     my ($folder, $agpHashRef, $ref, $start, $stop, $contig, $strand, $backArrayRef, $revComp, $coordRef) = @_;
     my $mapfile = $folder."/alignments/map";
     my @pairNames = map { s/\.agp//; basename($_); } glob($folder . "/*.agp");
@@ -269,26 +248,19 @@ sub createAlignmentHash {
 		my $file = $folderToGetMfa."/".$_;
 		
 		if ($file =~ /mavid.mfa.gz$/) {
-		    
 		    open (my $z, '-|', '/usr/bin/gunzip', '-c', $file) or die "can't open $file $!";
-		    $alignmentObj = Bio::AlignIO->new(-fh => \*$z, -format => 'fasta');    
-		    
+		    $alignmentObj = Bio::AlignIO->new(-fh => \*$z, -format => 'fasta');
 		}
 		elsif($file=~ /mavid.mfa$/) {
-		    
-		    
-		    
 		    open (my $z, "$file") or die "cant open $folderToGetMfa$!";
-		    $alignmentObj = Bio::AlignIO->new(-fh => \*$z, -format => 'fasta');    
-		    
+		    $alignmentObj = Bio::AlignIO->new(-fh => \*$z, -format => 'fasta');
 		}
-		else { 
+		else {
 		    next;
 		}
 	    }
-	    
 	    closedir $dh;
-	    
+
 	    my $aln = $alignmentObj->next_aln();
 	    my $length = $aln->length();
 	    my $start_pos = $aln->column_from_residue_number( $ref, $sliceStart);
@@ -585,7 +557,7 @@ sub validateParams {
     my $type         = $cgi->param('type');
     
     my @genomes      = $cgi->param('genomes');
-    if(scalar @genomes < 1) {
+    if(scalar @genomes < 1 && $type eq 'clustal') {
 	&userError("You must select at least one genome to align to");
     }
     
