@@ -18,8 +18,6 @@ public class B32_To_B33_Migration {
   private static final String PRIMARY_DB_CONNECTION_URL = "jdbc:oracle:oci:@rm9972"; // to be apicommDevN
   private static final String REPLICATED_DB_CONNECTION_URL = "jdbc:oracle:oci:@apicommDevS";
 
-  private static final String DB_USER = "wdkmaint";
-
   private static final String ACCOUNT_DB_SCHEMA = "wdkmaint.";
   private static final String USER_DB_SCHEMA = "userlogins5.";
 
@@ -88,20 +86,21 @@ public class B32_To_B33_Migration {
   };
 
   public static void main(String[] args) {
-    if (args.length != 1 || args[0].trim().isEmpty()) {
-      System.err.println("USAGE: fgpJava " + B32_To_B33_Migration.class.getName() + " <" + DB_USER + "_password>");
+    if (args.length != 2 || args[0].trim().isEmpty() || args[1].trim().isEmpty()) {
+      System.err.println("USAGE: fgpJava " + B32_To_B33_Migration.class.getName() + " <db_user> <db_password>");
       System.exit(1);
     }
-    String dbPassword = args[0];
+    String dbUser = args[0];
+    String dbPassword = args[1];
     QueryLogger.setInactive();
-    runSqls(PRIMARY_DB_CONNECTION_URL, PRIMARY_SQLS_TO_RUN, dbPassword);
+    runSqls(PRIMARY_DB_CONNECTION_URL, PRIMARY_SQLS_TO_RUN, dbUser, dbPassword);
     if (REPLICATED_DBS) {
-      runSqls(REPLICATED_DB_CONNECTION_URL, REPLICATED_SQLS_TO_RUN, dbPassword);
+      runSqls(REPLICATED_DB_CONNECTION_URL, REPLICATED_SQLS_TO_RUN, dbUser, dbPassword);
     }
   }
 
-  private static void runSqls(String connectionUrl, SqlGetter[] sqlsToRun, String dbPassword) {
-    SimpleDbConfig dbConfig = SimpleDbConfig.create(SupportedPlatform.ORACLE, connectionUrl, DB_USER, dbPassword);
+  private static void runSqls(String connectionUrl, SqlGetter[] sqlsToRun, String dbUser, String dbPassword) {
+    SimpleDbConfig dbConfig = SimpleDbConfig.create(SupportedPlatform.ORACLE, connectionUrl, dbUser, dbPassword);
     try (DatabaseInstance db = new DatabaseInstance(dbConfig)) {
       DataSource ds = db.getDataSource();
       for (SqlGetter sqlGen : sqlsToRun) {
