@@ -59,10 +59,10 @@ public class B32_To_B33_Migration {
       ")";
 
   private static final String DROP_COLS_FROM_USERS_TABLE =
-      "alter table " + USER_DB_SCHEMA + TABLE_USERS + " drop column" +
+      "alter table " + USER_DB_SCHEMA + TABLE_USERS + " drop (" +
       " EMAIL, PASSWD, SIGNATURE, REGISTER_TIME, LAST_ACTIVE, LAST_NAME," +
       " FIRST_NAME, MIDDLE_NAME, TITLE, ORGANIZATION, DEPARTMENT, ADDRESS," +
-      " CITY, STATE, ZIP_CODE, PHONE_NUMBER, COUNTRY, PREV_USER_ID, MIGRATION_ID";
+      " CITY, STATE, ZIP_CODE, PHONE_NUMBER, COUNTRY, PREV_USER_ID, MIGRATION_ID )";
 
   // Don't have to do this with the latest plan
   //private static final String RENAME_USERS_TABLE =
