@@ -56,7 +56,11 @@ function findFavoritesItem(defaultItems) {
  * @return {Array<Item>}
  */
 export default function mainMenuItems({ siteConfig, preferences }, defaultItems) {
-  return getInitialItems(defaultItems).concat([
+  return [
+    defaultItems.home,
+    defaultItems.search,
+    defaultItems.strategies,
+    defaultItems.basket,
     {
       id: 'tools',
       text: 'Tools',
@@ -347,6 +351,6 @@ export default function mainMenuItems({ siteConfig, preferences }, defaultItems)
       url: !shouldShowGalaxyOrientation(preferences) ? 'https://eupathdb.globusgenomics.org/' : undefined,
       target: !shouldShowGalaxyOrientation(preferences) ? '_blank' : undefined
     },
-    findFavoritesItem(defaultItems)
-  ]);
+    defaultItems.favorites
+  ];
 }
