@@ -26,7 +26,7 @@ my $goWC = ApiCommonWebsite::Model::GoWordCloud->new();
 #my $input = @ARGV;
 my $inputFile = $ARGV[0];
 my $outputFile = $ARGV[6];
-print " input file is $inputFile or is it empty\n";
+print " input file is $inputFile or is it empty\n JUST CHECKING";
 $goWC->usage() unless (-e $inputFile);
 
 $goWC->run($inputFile,$outputFile);
