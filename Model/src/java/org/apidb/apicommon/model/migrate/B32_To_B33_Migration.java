@@ -12,15 +12,13 @@ import org.gusdb.fgputil.db.slowquery.QueryLogger;
 
 public class B32_To_B33_Migration {
 
-  private static final boolean WRITE_TO_DB = false;    // keep off during testing
-  private static final boolean REPLICATED_DBS = false; // keep until testing on apicommDev
+  private static final boolean WRITE_TO_DB = true;     // keep off to check generated SQL
+  private static final boolean REPLICATED_DBS = false; // keep off until testing on apicommDev
 
   private static final String PRIMARY_DB_CONNECTION_URL = "jdbc:oracle:oci:@rm9972"; // to be apicommDevN
   private static final String REPLICATED_DB_CONNECTION_URL = "jdbc:oracle:oci:@apicommDevS";
 
-  private static final String DB_USER = "rdoherty";
-
-  private static final String ACCOUNT_DB_SCHEMA = "rdoherty.";
+  private static final String ACCOUNT_DB_SCHEMA = "wdkmaint.";
   private static final String USER_DB_SCHEMA = "userlogins5.";
 
   private static final String TABLE_USERS = "users";
@@ -45,14 +43,14 @@ public class B32_To_B33_Migration {
       " from " + USER_DB_SCHEMA + TABLE_USERS + " where is_guest = 0 ";
 
   private static final String CREATE_ACCOUNT_PROPS_TABLE_SQL =
-      "create table " + ACCOUNT_DB_SCHEMA + "user_properties as ( " +
+      "create table " + ACCOUNT_DB_SCHEMA + "account_properties as ( " +
       "  select user_id, 'first_name' as key, first_name as value " + SELECT_USER_PROPS_SQL_SUFFIX +
       "  union " +
-      "  select user_id, 'middle_name' as key, middle_name as value from " + SELECT_USER_PROPS_SQL_SUFFIX +
+      "  select user_id, 'middle_name' as key, middle_name as value " + SELECT_USER_PROPS_SQL_SUFFIX +
       "  union " +
-      "  select user_id, 'last_name' as key, last_name as value from " + SELECT_USER_PROPS_SQL_SUFFIX +
+      "  select user_id, 'last_name' as key, last_name as value " + SELECT_USER_PROPS_SQL_SUFFIX +
       "  union " +
-      "  select user_id, 'organization' as key, organization as value from " + SELECT_USER_PROPS_SQL_SUFFIX +
+      "  select user_id, 'organization' as key, organization as value " + SELECT_USER_PROPS_SQL_SUFFIX +
       ")";
 
   private static final String BACK_UP_USERS_TABLE =
@@ -61,10 +59,10 @@ public class B32_To_B33_Migration {
       ")";
 
   private static final String DROP_COLS_FROM_USERS_TABLE =
-      "alter table " + USER_DB_SCHEMA + TABLE_USERS + " drop column" +
+      "alter table " + USER_DB_SCHEMA + TABLE_USERS + " drop (" +
       " EMAIL, PASSWD, SIGNATURE, REGISTER_TIME, LAST_ACTIVE, LAST_NAME," +
       " FIRST_NAME, MIDDLE_NAME, TITLE, ORGANIZATION, DEPARTMENT, ADDRESS," +
-      " CITY, STATE, ZIP_CODE, PHONE_NUMBER, COUNTRY, PREV_USER_ID, MIGRATION_ID";
+      " CITY, STATE, ZIP_CODE, PHONE_NUMBER, COUNTRY, PREV_USER_ID, MIGRATION_ID )";
 
   // Don't have to do this with the latest plan
   //private static final String RENAME_USERS_TABLE =
@@ -88,20 +86,21 @@ public class B32_To_B33_Migration {
   };
 
   public static void main(String[] args) {
-    if (args.length != 1 || args[0].trim().isEmpty()) {
-      System.err.println("USAGE: fgpJava " + B32_To_B33_Migration.class.getName() + " <" + DB_USER + "_password>");
+    if (args.length != 2 || args[0].trim().isEmpty() || args[1].trim().isEmpty()) {
+      System.err.println("USAGE: fgpJava " + B32_To_B33_Migration.class.getName() + " <db_user> <db_password>");
       System.exit(1);
     }
-    String dbPassword = args[0];
+    String dbUser = args[0];
+    String dbPassword = args[1];
     QueryLogger.setInactive();
-    runSqls(PRIMARY_DB_CONNECTION_URL, PRIMARY_SQLS_TO_RUN, dbPassword);
+    runSqls(PRIMARY_DB_CONNECTION_URL, PRIMARY_SQLS_TO_RUN, dbUser, dbPassword);
     if (REPLICATED_DBS) {
-      runSqls(REPLICATED_DB_CONNECTION_URL, REPLICATED_SQLS_TO_RUN, dbPassword);
+      runSqls(REPLICATED_DB_CONNECTION_URL, REPLICATED_SQLS_TO_RUN, dbUser, dbPassword);
     }
   }
 
-  private static void runSqls(String connectionUrl, SqlGetter[] sqlsToRun, String dbPassword) {
-    SimpleDbConfig dbConfig = SimpleDbConfig.create(SupportedPlatform.ORACLE, connectionUrl, DB_USER, dbPassword);
+  private static void runSqls(String connectionUrl, SqlGetter[] sqlsToRun, String dbUser, String dbPassword) {
+    SimpleDbConfig dbConfig = SimpleDbConfig.create(SupportedPlatform.ORACLE, connectionUrl, dbUser, dbPassword);
     try (DatabaseInstance db = new DatabaseInstance(dbConfig)) {
       DataSource ds = db.getDataSource();
       for (SqlGetter sqlGen : sqlsToRun) {

@@ -25,12 +25,12 @@ outputFile <-args[2]
 
 #IF NOT THEN:
 
-#plot(gs, filename ="outputFile");
+#plot(gs, filename =outputFile);
 
 
 
 library(ggplot2);
 up <-read.table(data, header =TRUE, sep ="\t");
-png("outputFile");
+png(outputFile);
 hist(up$Result.count);
 dev.off();
