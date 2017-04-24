@@ -148,6 +148,7 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
       public FormViewModel(List<Option> brcOptions, List<Option> thresholdTypeOptions, List<Option> useOrthologyOptions, String projectId) {
           this.brcOptions = brcOptions;
           this.thresholdTypeOptions = thresholdTypeOptions;
+          this.useOrthologyOptions = useOrthologyOptions;
           this.projectId = projectId;
       }
 
