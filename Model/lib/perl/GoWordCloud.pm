@@ -9,13 +9,14 @@ use File::Temp qw/ tempfile /;
 
 sub new {
   my ($class)  = @_;
-
+  print "getting to new\n";
   my $self = {};
   bless( $self, $class );
   return $self;
 }
 
 sub run {
+    print "getting to run\n";
   my ($self, $inputFile, $outputFile) = @_;
   my ($rfh, $rFile) = tempfile();
 
@@ -26,7 +27,8 @@ sub run {
       my @temps = split "\t", $line;
       print $rfh $temps[1]."\t".$temps[3]."\n";
   }
-#  &runCmd("GoSumWordCloud.r $rFile $outputFile");
+  print "tmp file is $rfh\n";
+  &runCmd("GoSumWordCloud.r $rFile $outputFile");
 }
 
 
