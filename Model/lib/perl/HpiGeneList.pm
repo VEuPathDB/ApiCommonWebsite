@@ -63,13 +63,14 @@ sub run {
     foreach my $d (@{$jsonString}) {
       my $desc = $d->{'description'};
       $desc =~s/[\t|\n]//g;
+      my $significance = sprintf("%0.2f", ($d->{'idLists'}[0])->{significance});
       print OUT $d->{'experimentIdentifier'} . "\t" .
           $d->{'species'}  . "\t" .
           $d->{'displayName'}  . "\t" .
           $desc . "\t" .
           $d->{'type'}  . "\t" .
           $d->{'uri'}  . "\t" .
-          ($d->{'idLists'}[0])->{significance}.   "\n" ;
+	  $significance .  "\n" ;
     }
   } else {
     print "HTTP POST error code: ", $resp->code, "\n";
