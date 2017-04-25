@@ -18,6 +18,8 @@ sub new {
 sub run {
   my ($self, $idSql, $thresholdType, $threshold, $useOrthology, $type, $idSource, $outputFile, $modelName, $server_endpoint) = @_;;
 
+  print STDERR join("\n", @_) . "\n";
+
   my $ua = LWP::UserAgent->new;
 
   open(OUT, ">$outputFile") or die "Cannot open file $outputFile for writing: $!";

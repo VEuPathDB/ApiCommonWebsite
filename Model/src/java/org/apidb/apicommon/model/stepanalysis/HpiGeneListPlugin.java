@@ -2,7 +2,7 @@ package org.apidb.apicommon.model.stepanalysis;
 
 import static org.gusdb.fgputil.FormatUtil.NL;
 import static org.gusdb.fgputil.FormatUtil.TAB;
-
+import org.gusdb.fgputil.FormatUtil;
 import org.apache.log4j.Logger;
 
 import java.io.BufferedReader;
@@ -13,6 +13,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.HashMap;
 
 // import org.gusdb.fgputil.db.runner.BasicResultSetHandler;
 // import org.gusdb.fgputil.db.runner.SQLRunner;
@@ -31,8 +32,8 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
 
   private static final Logger LOG = Logger.getLogger(HpiGeneListPlugin.class);
 
-
-  private static final String EUPATH_SERVER_ENDPOINT_PROP_KEY = "eupathServerEndpoint";
+  private static final String EUPATH_NAME_KEY = "EuPathDB";
+  private static final String EUPATH_SEARCH_SERVER_ENDPOINT_PROP_KEY = "eupathSearchServerEndpoint";
 
   private static final String BRC_PARAM_KEY = "brcParam";
   private static final String THRESHOLD_TYPE_PARAM_KEY = "thresholdTypeParam";
@@ -42,6 +43,19 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
   private static final String TABBED_RESULT_FILE_PATH = "hpiGeneListResult.tab";
 
   private static final String PROJECT_ID_KEY = "@PROJECT_ID@";
+
+
+    private Map<String, String> serverEndpoints = new HashMap<String, String>();
+
+    @Override
+    public void validateProperties() throws WdkModelException {
+        this.serverEndpoints.put(EUPATH_NAME_KEY, getProperty(EUPATH_SEARCH_SERVER_ENDPOINT_PROP_KEY));        
+        // TODO ... Add more for other BRCs
+    }       
+
+    private Map<String, String> getServerEndpoints() {
+        return this.serverEndpoints;
+    }
 
   @Override
   public ValidationErrors validateFormParams(Map<String, String[]> formParams) throws WdkModelException, WdkUserException {
@@ -74,22 +88,20 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
       
       String idSql =  "select distinct gene_source_id from (" + answerValue.getIdSql() + ")";
 
-
       String threshold = params.get(THRESHOLD_PARAM_KEY)[0];
 
-      String brc = params.get(BRC_PARAM_KEY)[0];
+      String brcValue = params.get(BRC_PARAM_KEY)[0];
+      String searchServerEndpoint = this.serverEndpoints.get(brcValue);
+
       String thresholdType = params.get(THRESHOLD_TYPE_PARAM_KEY)[0];
       String useOrthology = params.get(USE_ORTHOLOGY_PARAM_KEY)[0];
 
       // create another path here for the image word cloud JP LOOK HERE name it like imageFilePath
       Path resultFilePath = Paths.get(getStorageDirectory().toString(), TABBED_RESULT_FILE_PATH);
 
-      String eupathServerEndpoint = getProperty(EUPATH_SERVER_ENDPOINT_PROP_KEY);
-
       String qualifiedExe = Paths.get(GusHome.getGusHome(), "bin", "hpiGeneList.pl").toString();
       LOG.info(qualifiedExe + " "
                + idSql + " "
-               +  brc + " "
                +  thresholdType + " "
                +  threshold + " "
                +  useOrthology + " "
@@ -97,11 +109,11 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
                +  idSource + " "
                + resultFilePath.toString() + " "
                + wdkModel.getProjectId() + " "
-               + eupathServerEndpoint
+               + searchServerEndpoint
                );
 
       //TODO:  Add server endpoint
-      return new String[]{ qualifiedExe, idSql, brc, thresholdType, threshold, useOrthology, type, idSource, resultFilePath.toString(), wdkModel.getProjectId(), eupathServerEndpoint};
+      return new String[]{ qualifiedExe, idSql, thresholdType, threshold, useOrthology, type, idSource, resultFilePath.toString(), wdkModel.getProjectId(), searchServerEndpoint};
   }
 
 
@@ -109,7 +121,7 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
   public Object getFormViewModel() throws WdkModelException, WdkUserException {
 
     List<Option> brcOptions = new ArrayList<>();
-    brcOptions.add(new Option("EuPathDB", "EuPathDB"));
+    brcOptions.add(new Option(EUPATH_NAME_KEY, EUPATH_NAME_KEY));
 
     List<Option> thresholdTypeOptions = new ArrayList<>();
     thresholdTypeOptions.add(new Option("PercentMatched", "PercentMatched"));
@@ -125,6 +137,8 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
   public Object getResultViewModel() throws WdkModelException {
     Path inputPath = Paths.get(getStorageDirectory().toString(), TABBED_RESULT_FILE_PATH);
 
+    String brcValue = getFormParams().get(BRC_PARAM_KEY)[0];
+
     List<ResultRow> results = new ArrayList<>();
     try (FileReader fileIn = new FileReader(inputPath.toFile());
          BufferedReader buffer = new BufferedReader(fileIn)) {
@@ -133,7 +147,7 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
       while (buffer.ready()) {
         String line = buffer.readLine();
         String[] columns = line.split(TAB);
-        results.add(new ResultRow(columns[0], columns[1], columns[2], columns[3], columns[4], columns[5], columns[6]));
+        results.add(new ResultRow(columns[0], columns[1], columns[2], columns[3], columns[4], columns[5], columns[6], columns[7]));
       }
       return new ResultViewModel(TABBED_RESULT_FILE_PATH, results, getFormParams());
     }
@@ -183,7 +197,7 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
 
   public static class ResultViewModel {
 
-      private final ResultRow HEADER_ROW = new ResultRow("Experiment Identifier", "Species",  "Experiment Name", "Description", "Type", "URI", "Significance");
+      private final ResultRow HEADER_ROW = new ResultRow("Experiment Identifier", "Species",  "Experiment Name", "Description", "Type", "URI", "Significance", "List_URI");
 
       private final ResultRow COLUMN_HELP = new ResultRow(
                                                                 "Unique ID for this experiment",
@@ -192,7 +206,8 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
                                                                 "Details abou tthis experiment",
                                                                 "What type of experiment was this",
                                                                 "Where can I find more information about this experiment",
-                                                                "Statistic used to identify this experiment"
+                                                                "Statistic used to identify this experiment",
+                                                                "URI for the List"
                                                                 );
       
     private List<ResultRow> resultData;
@@ -234,8 +249,9 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
       private String type;
       private String uri;
       private String significance;
+      private String serverEndpoint;
 
-    public ResultRow(String experimentId, String species, String experimentName, String description, String type, String uri, String significance) {
+      public ResultRow(String experimentId, String species, String experimentName, String description, String type, String uri, String significance, String serverEndpoint) {
         this.experimentId = experimentId;
         this.species = species;
         this.experimentName = experimentName;
@@ -243,6 +259,7 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
         this.type = type;
         this.uri = uri;
         this.significance = significance;
+        this.serverEndpoint = serverEndpoint;
     }
 
       public String getExperimentId() { return this.experimentId; }
@@ -252,5 +269,6 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
       public String getType() { return this.type; }
       public String getUri() { return this.uri; }
       public String getSignificance() { return this.significance; }      
+      public String getServerEndPoint() { return this.serverEndpoint; }      
   }
 }
