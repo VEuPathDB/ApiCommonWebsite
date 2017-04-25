@@ -257,9 +257,9 @@ sub defineGraphs {
    my $pctTitle = $percentile->getPlotTitle();
    $percentile->setPlotTitle("$name - $pctTitle");
 
-   my @fractions = ([$fraction, 'value', '', '', '', 'erythrocytic ring trophozoite stage', $scale],
-                    [$fraction, 'value', '', '', '', 'schizont stage', $scale],
-                    [$fraction, 'value', '', '', '', 'trophozoite stage', $scale],
+   my @fractions = ([$fraction, 'values', '', '', '', 'erythrocytic ring trophozoite stage', $scale],
+                    [$fraction, 'values', '', '', '', 'schizont stage', $scale],
+                    [$fraction, 'values', '', '', '', 'trophozoite stage', $scale],
                    );
 
    my $fractionSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@fractions);
