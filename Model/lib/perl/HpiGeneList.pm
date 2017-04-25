@@ -16,12 +16,9 @@ sub new {
 }
 
 sub run {
-  my ($self, $idSql, $brc, $thresholdType, $threshold, $useOrthology, $type, $idSource, $outputFile, $modelName, $server_endpoint) = @_;;
+  my ($self, $idSql, $thresholdType, $threshold, $useOrthology, $type, $idSource, $outputFile, $modelName, $server_endpoint) = @_;;
 
   my $ua = LWP::UserAgent->new;
-
-   # Valid only for EuPathDB BRC
-  die "$brc : Wrong BRC.\n"  if $brc ne 'EuPathDB';
 
   open(OUT, ">$outputFile") or die "Cannot open file $outputFile for writing: $!";
 
@@ -70,7 +67,8 @@ sub run {
           $desc . "\t" .
           $d->{'type'}  . "\t" .
           $d->{'uri'}  . "\t" .
-	  $significance .  "\n" ;
+	  $significance .  "\t" .
+          ($d->{'idLists'}[0])->{uri}.   "\n";
     }
   } else {
     print "HTTP POST error code: ", $resp->code, "\n";
