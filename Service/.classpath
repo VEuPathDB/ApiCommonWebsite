@@ -9,6 +9,6 @@
 	<classpathentry kind="var" path="M2_REPO/org/json/json/20140107/json-20140107.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ApiCommon Web Model"/>
 	<classpathentry kind="var" path="M2_REPO/log4j/log4j/1.2.17/log4j-1.2.17.jar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/eupath-site-common-model"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ebrc-website-common-model"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>
