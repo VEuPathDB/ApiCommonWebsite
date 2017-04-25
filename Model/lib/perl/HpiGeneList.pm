@@ -48,13 +48,6 @@ sub run {
     }
   }";
 
-
-
-  print STDERR "SERVER_ENDPOINT=$server_endpoint\n";
-  print STDERR "POSTDATA=\n";
-  print STDERR $post_data;
-  print STDERR "\n";
-
   $req->content($post_data);
 
 
