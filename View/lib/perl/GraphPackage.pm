@@ -338,6 +338,8 @@ sub reportErrorsAndBlankGraph {
 
    EmailEnabled && $Self->sendErrorReportEmail($Self, @Errors);
 
+
+   print STDERR @Errors;
    # write R code to file
    # ........................................
 

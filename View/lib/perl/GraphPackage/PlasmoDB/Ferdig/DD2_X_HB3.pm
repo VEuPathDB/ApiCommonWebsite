@@ -101,7 +101,7 @@ sub queryParentalAlleles {
 
   my ($profile, $key);
   if(defined($secondaryId)) {
-    $key = 'VALUE';
+    $key = 'VALUES';
 
     $profile = ApiCommonWebsite::Model::CannedQuery::Profile->new
       ( Name         => "_haploblockprofile",
