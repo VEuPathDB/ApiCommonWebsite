@@ -7,6 +7,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/ApiCommon Shared Model"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/wdk-model"/>
 	<classpathentry kind="var" path="M2_REPO/junit/junit/4.11/junit-4.11.jar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/eupath-site-common-model"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ebrc-website-common-model"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>

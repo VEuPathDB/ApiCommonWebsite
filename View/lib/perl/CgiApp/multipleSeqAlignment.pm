@@ -14,7 +14,7 @@ use Bio::Location::Simple;
 use Bio::Coordinate::Pair;
 use Bio::Coordinate::GeneMapper;
 use WDK::Model::ModelProp;
-use EuPathSiteCommon::Model::ModelXML;
+use EbrcWebsiteCommon::Model::ModelXML;
 use CGI;
 use CGI::Carp qw(fatalsToBrowser set_message);
 use ApiCommonWebsite::View::CgiApp::IsolateClustalw;
@@ -480,7 +480,7 @@ sub validateMacros {
     
     my $project = $cgi->param('project_id');
        my $props =  WDK::Model::ModelProp->new($project);
-       my $model = EuPathSiteCommon::Model::ModelXML->new('apiCommonModel.xml');
+       my $model = EbrcWebsiteCommon::Model::ModelXML->new('apiCommonModel.xml');
     
        my $buildNumber = $model->getBuildNumberByProjectId($project);
        my $wsMirror = $props->{WEBSERVICEMIRROR};
