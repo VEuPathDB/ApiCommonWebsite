@@ -31,6 +31,9 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
 
   private static final Logger LOG = Logger.getLogger(HpiGeneListPlugin.class);
 
+
+  private static final String EUPATH_SERVER_ENDPOINT_PROP_KEY = "eupathServerEndpoint";
+
   private static final String BRC_PARAM_KEY = "brcParam";
   private static final String THRESHOLD_TYPE_PARAM_KEY = "thresholdTypeParam";
   private static final String THRESHOLD_PARAM_KEY = "thresholdParam";
@@ -69,15 +72,19 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
       String type = "gene";
       String idSource = "ensemble";
       
-      String idSql =  answerValue.getIdSql();
+      String idSql =  "select distinct gene_source_id from (" + answerValue.getIdSql() + ")";
+
+
       String threshold = params.get(THRESHOLD_PARAM_KEY)[0];
 
       String brc = params.get(BRC_PARAM_KEY)[0];
       String thresholdType = params.get(THRESHOLD_TYPE_PARAM_KEY)[0];
       String useOrthology = params.get(USE_ORTHOLOGY_PARAM_KEY)[0];
-    
+
       // create another path here for the image word cloud JP LOOK HERE name it like imageFilePath
       Path resultFilePath = Paths.get(getStorageDirectory().toString(), TABBED_RESULT_FILE_PATH);
+
+      String eupathServerEndpoint = getProperty(EUPATH_SERVER_ENDPOINT_PROP_KEY);
 
       String qualifiedExe = Paths.get(GusHome.getGusHome(), "bin", "hpiGeneList.pl").toString();
       LOG.info(qualifiedExe + " "
@@ -89,9 +96,12 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
                +  type + " "
                +  idSource + " "
                + resultFilePath.toString() + " "
-               + wdkModel.getProjectId() 
+               + wdkModel.getProjectId() + " "
+               + eupathServerEndpoint
                );
-      return new String[]{ qualifiedExe, idSql, brc, thresholdType, threshold, useOrthology, type, idSource, resultFilePath.toString(), wdkModel.getProjectId()};
+
+      //TODO:  Add server endpoint
+      return new String[]{ qualifiedExe, idSql, brc, thresholdType, threshold, useOrthology, type, idSource, resultFilePath.toString(), wdkModel.getProjectId(), eupathServerEndpoint};
   }
 
 
@@ -105,8 +115,8 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
     thresholdTypeOptions.add(new Option("PercentMatched", "PercentMatched"));
 
     List<Option> useOrthologyOptions = new ArrayList<>();
-    useOrthologyOptions.add(new Option("Yes", "Yes"));
-    useOrthologyOptions.add(new Option("No", "No"));
+    useOrthologyOptions.add(new Option("false", "No"));
+    useOrthologyOptions.add(new Option("true", "Yes"));
 
     return new FormViewModel(brcOptions, thresholdTypeOptions, useOrthologyOptions, getWdkModel().getProjectId());
   }
