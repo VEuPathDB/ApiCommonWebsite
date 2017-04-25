@@ -58,9 +58,12 @@ if ($resp->is_success) {
   my $jsonString = decode_json($message);
 
   foreach my $d (@{$jsonString}) {
+    my $desc = $d->{'description'};
+    $desc =~s/[\t|\n]//g;
     print $d->{'experimentIdentifier'} . "\t" .
       $d->{'species'}  . "\t" .
       $d->{'displayName'}  . "\t" .
+      $desc . "\t" .
       $d->{'type'}  . "\t" .
       $d->{'uri'}  . "\t" .
       ($d->{'idLists'}[0])->{significance}.   "\n" ;
