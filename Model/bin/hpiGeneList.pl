@@ -9,7 +9,7 @@ use strict;
 my $hpiGeneList = ApiCommonWebsite::Model::HpiGeneList->new();
 
 
-$hpiGeneList->usage() unless scalar(@ARGV) == 10;
+$hpiGeneList->usage() unless scalar(@ARGV) == 9;
 
 $hpiGeneList->run(@ARGV);
 
