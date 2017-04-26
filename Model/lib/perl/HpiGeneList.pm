@@ -19,7 +19,7 @@ sub run {
   my ($self, $idSql, $thresholdType, $threshold, $useOrthology, $type, $idSource, $outputFile, $modelName, $server_endpoint) = @_;;
 
   print STDERR join("\n", @_) . "\n";
-
+  
   my $ua = LWP::UserAgent->new;
 
   open(OUT, ">$outputFile") or die "Cannot open file $outputFile for writing: $!";
@@ -46,6 +46,9 @@ sub run {
     'useOrthology': $useOrthology
     }
   }";
+
+
+  print STDERR "POST=$post_data\n";
 
   $req->content($post_data);
 
@@ -87,14 +90,16 @@ sub getValidGeneList {
   my $stmt = $dbh->prepare("$sql") or die(DBI::errstr);
   $stmt->execute() or die(DBI::errstr);
 
+  my @genes;
+
   my $geneStr;
   while ((my $mygene) = $stmt->fetchrow_array()) {
-    $geneStr .= '"' . $mygene . '",';
+    push @genes, $mygene;
   }
-  $geneStr =~s/^(.+)\,/$1/;
 
-  die "Got no genes\n" unless $geneStr;
-  return $geneStr;
+  die "Got no genes\n" unless scalar @genes > 1;
+
+  return join(",", map { "'" . $_ . "'" } @genes);;
 }
 
 
