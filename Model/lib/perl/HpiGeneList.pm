@@ -21,6 +21,7 @@ sub run {
   print STDERR join("\n", @_) . "\n";
   
   my $ua = LWP::UserAgent->new;
+  push @{ $ua->requests_redirectable }, 'POST';
 
   open(OUT, ">$outputFile") or die "Cannot open file $outputFile for writing: $!";
 
