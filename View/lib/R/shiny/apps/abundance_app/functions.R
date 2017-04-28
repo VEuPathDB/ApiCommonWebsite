@@ -1,3 +1,61 @@
+format_abundant_taxa <- function(n_quantity, abundance_taxa){
+  if(nrow(abundance_taxa)<=n_quantity){
+    return(abundance_taxa)
+  }
+  
+  abundance_taxa<-rbind(abundance_taxa, rep("Remainder", ncol(abundance_taxa)))
+  abundance_taxa
+}
+
+fix_taxonomy_names <- function(taxonomy_df){
+  
+  for(i in 1:nrow(taxonomy_df)){
+    if(!identical(taxonomy_df[i,1], "N/A")){
+      last_defined_taxonomy <- taxonomy_df[i,1]
+      for(j in 2:ncol(taxonomy_df[i,])){
+        if(identical(taxonomy_df[i,j], "N/A")){
+          taxonomy_df[i,j] <- paste("unclassified", last_defined_taxonomy)
+        }else{
+          last_defined_taxonomy <- taxonomy_df[i,j]
+        }
+      }
+    } 
+  }
+  taxonomy_df
+}
+
+get_n_abundant_overall <- function(n_quantity, abundance_data_frame){
+  if(nrow(abundance_data_frame)<=n_quantity){
+    return(abundance_data_frame)
+  }
+  df <- data.frame(row.names = c(rownames(abundance_data_frame)))
+  df<-cbind(df, apply(abundance_data_frame, 1, mean))
+  colnames(df)<-c("mean")
+  setorder(df, -mean)
+  df <- head(df, n_quantity)
+  df
+}
+
+filter_n_abundant <- function(n_quantity, abundance_data_frame){
+  if(nrow(abundance_data_frame)<=n_quantity){
+    return(abundance_data_frame)
+  }
+  
+  df <- data.frame(row.names = c(rownames(abundance_data_frame),nrow(abundance_data_frame)+1))
+  tolerance <- 0.000001
+  for(i in 1:length(abundance_data_frame)){
+    array_column <- abundance_data_frame[[i]]
+    nth_element <- sort(array_column, T)[n_quantity]
+    result_column <- array_column>=nth_element|array_column+tolerance>=nth_element|array_column>=nth_element+tolerance
+    sum_of_remainder <- sum(array_column[!result_column])
+    array_column<-replace(array_column, array_column+tolerance<nth_element, 0)
+    array_column[nrow(df)]<-sum_of_remainder
+    df<-cbind(df, array_column)
+  }
+  colnames(df)<-colnames(abundance_data_frame)
+  df
+}
+
 get_abundance_index <- function(array_search, abundance_hover){
   index_found = 0
   if(abundance_hover < 0)
@@ -27,13 +85,15 @@ get_abundance_index <- function(array_search, abundance_hover){
 get_abundances_from_plot <- function(array_abundance){
   array_real_abundance <- 0
   array_real_abundance[1] <- array_abundance[1]
-  for (i in 2:length(array_abundance)) {
-    diff_abundance <- array_abundance[i]-array_abundance[i-1]
-    if(diff_abundance > 0){
-      array_real_abundance[i] <- array_abundance[i]-array_abundance[i-1]
-    }else{
-      break
-    }
+  if(length(array_abundance) > 1){
+    for (i in 2:length(array_abundance)) {
+      diff_abundance <- array_abundance[i]-array_abundance[i-1]
+      if(diff_abundance > 0){
+        array_real_abundance[i] <- array_abundance[i]-array_abundance[i-1]
+      }else{
+        break
+      }
+    } 
   }
   array_real_abundance
 }
