@@ -4,11 +4,25 @@ use lib "$ENV{GUS_HOME}/lib/perl";
 
 use strict;
 use ApiCommonWebsite::Model::PathwaysEnrichment;
-
+use ApiCommonWebsite::Model::GoWordCloud;
 my $pathwaysEnrich = ApiCommonWebsite::Model::PathwaysEnrichment->new();
 print STDERR join("| ", @ARGV);
-
-$pathwaysEnrich->usage() unless scalar(@ARGV) == 5;
+my $length = scalar(@ARGV);
+print STDERR "argument length is $length\n";
+$pathwaysEnrich->usage() unless scalar(@ARGV) == 7;
 
 
 $pathwaysEnrich->run(@ARGV);
+
+
+my $goWC = ApiCommonWebsite::Model::GoWordCloud->new();
+#need to work out what the input is. so its coming from the plugin i was looking at
+#my $input = @ARGV;
+my $inputFile = $ARGV[6];
+my $outputFile = $ARGV[5];
+print " input file is $inputFile or is it empty\n JUST CHECKING";
+$goWC->usage() unless (-e $inputFile);
+
+$goWC->run($inputFile,$outputFile);
+
+1;

@@ -15,7 +15,7 @@ sub new {
 }
 
 sub run {
-  my ($self, $outputFile, $geneResultSql, $modelName, $pValueCutoff, $subOntology, $evidCodes) = @_;
+  my ($self, $outputFile, $geneResultSql, $modelName, $pValueCutoff, $subOntology, $evidCodes, $wordcloudFile, $secondOutputFile) = @_;
 
   die "Second argument must be an SQL select statement that returns the Gene result\n" unless $geneResultSql =~ m/select/i;
   die "Fourth argument must be a p-value between 0 and 1\n" unless $pValueCutoff > 0 && $pValueCutoff <= 1;
@@ -23,7 +23,7 @@ sub run {
 #  $self->{sources} = $sources;
   $self->{evidCodes} = $evidCodes;
   $self->{subOntology} = $subOntology;
-  $self->SUPER::run($outputFile, $geneResultSql, $modelName, $pValueCutoff);
+  $self->SUPER::run($outputFile, $geneResultSql, $modelName, $pValueCutoff, $secondOutputFile);
 }
 
 sub getAnnotatedGenesCountBgd {
@@ -65,12 +65,64 @@ where gts.gene_source_id = r.source_id
   die "Got null gene count for result annotated genes count\n" unless $geneCount;
   return $geneCount;
 }
+sub getAnnotatedGenesListResult {
+    my ($self, $dbh, $geneResultSql) = @_;
 
-sub getDataSql {
-  my ($self, $taxonId, $geneResultSql) = @_;
+  my $sql = "
+SELECT distinct gts.gene_source_id
+FROM ApidbTuning.GoTermSummary gts,
+     ($geneResultSql) r
+where gts.gene_source_id = r.source_id
+  and gts.is_not is null
+--  and gts.displayable_source in ($self->{sources})
+  AND decode(gts.evidence_code, 'IEA', 'Computed', 'Curated') in ($self->{evidCodes})
+";
 
+    my $stmt = $self->runSql($dbh, $sql);
+    my ($geneList) = $stmt->fetchrow_array();
+    die "Got null gene count for result annotated genes count\n" unless $geneList;
+    return $geneList;
+}
+
+
+#sub getDataSql {
+#  my ($self, $taxonId, $geneResultSql) = @_;
+
+#return "
+#select distinct bgd.go_id, bgdcnt, resultcnt, round(100*resultcnt/bgdcnt, 1) as pct_of_bgd, bgd.name
+#from
+# (SELECT gts.go_id, count(distinct gts.gene_source_id) as bgdcnt, gts.go_term_name as name
+#            FROM apidbtuning.geneattributes gf,
+#                 apidbtuning.gotermsummary gts
+#            WHERE gf.taxon_id = $taxonId
+#              AND gts.gene_source_id = gf.source_id
+#              AND gts.ontology = '$self->{subOntology}'
+#--              AND gts.displayable_source in ($self->{sources})
+#                AND decode(gts.evidence_code, 'IEA', 'Computed', 'Curated') in ($self->{evidCodes})
+
+#              AND gts.is_not is null
+#            group BY gts.go_id, gts.go_term_name
+#   ) bgd,
+#   (SELECT gts.go_id, count(distinct gts.gene_source_id) as resultcnt
+#            FROM ApidbTuning.GoTermSummary gts,
+#                 ($geneResultSql) r
+#            WHERE gts.gene_source_id = r.source_id
+#              AND gts.ontology = '$self->{subOntology}'
+#--              AND gts.displayable_source in ($self->{sources})
+#               AND decode(gts.evidence_code, 'IEA', 'Computed', 'Curated') in ($self->{evidCodes})
+
+#              AND gts.is_not is null
+#            group BY gts.go_id
+#      ) rslt
+#where bgd.go_id = rslt.go_id
+#";
+#}
+sub getDataListSql {
+  my ($self, $taxonId, $geneResultSql, $dbh) = @_;
+  $dbh->{LongReadLen} = 66000;
+  $dbh->{LongTruncOk} = 1;
 return "
-select distinct bgd.go_id, bgdcnt, resultcnt, round(100*resultcnt/bgdcnt, 1) as pct_of_bgd, bgd.name
+select bgd.go_id, bgdcnt, resultcnt, resultlist, round(100*resultcnt/bgdcnt, 1) as pct_of_bgd, bgd.name
 from
  (SELECT gts.go_id, count(distinct gts.gene_source_id) as bgdcnt, gts.go_term_name as name
             FROM apidbtuning.geneattributes gf,
@@ -94,8 +146,23 @@ from
 
               AND gts.is_not is null
             group BY gts.go_id
-      ) rslt
+      ) rslt,
+--CREATE or replace FUNCTION listagg_clob (input varchar2) RETURN clob
+--PARALLEL_ENABLE AGGREGATE USING listagg_clob_t
+ (SELECT gts.go_id, rtrim(xmlagg(xmlelement(e,gts.gene_source_id,',').extract('//text()') order by gts.gene_source_id).GetClobVal(),',') AS resultlist
+            FROM ApidbTuning.GoTermSummary gts,
+                 ($geneResultSql) r
+            WHERE gts.gene_source_id = r.source_id
+              AND gts.ontology = '$self->{subOntology}'
+--              AND gts.displayable_source in ($self->{sources})
+               AND decode(gts.evidence_code, 'IEA', 'Computed', 'Curated') in ($self->{evidCodes})
+
+              AND gts.is_not is null
+            group BY gts.go_id
+      ) rsltl
 where bgd.go_id = rslt.go_id
+and rslt.go_id = rsltl.go_id
+and bgd.go_id = rsltl.go_id
 ";
 }
 
