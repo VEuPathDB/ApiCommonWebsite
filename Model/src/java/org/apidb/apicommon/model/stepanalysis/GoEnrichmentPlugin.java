@@ -34,11 +34,13 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   private static final Logger LOG = Logger.getLogger(GoEnrichmentPlugin.class);
 
   private static final String GO_TERM_BASE_URL_PROP_KEY = "goTermPageUrl";
+    //  private static final String GENE_SEARCH_BASE_URL_PROP_KEY = "geneSearchUrl";
   private static final String GO_EVID_CODE_PARAM_KEY = "goEvidenceCodes";
     //private static final String GO_ASSOC_SRC_PARAM_KEY = "goAssociationsSources";
   private static final String GO_ASSOC_ONTOLOGY_PARAM_KEY = "goAssociationsOntologies";
 
   private static final String TABBED_RESULT_FILE_PATH = "goEnrichmentResult.tab";
+  private static final String HIDDEN_TABBED_RESULT_FILE_PATH = "hiddenGoEnrichmentResult.tab";
   private static final String IMAGE_RESULT_FILE_PATH = "goCloud.png";
     //we would create another one here for the word cloud file 
 
@@ -173,12 +175,13 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     String ontology = params.get(GO_ASSOC_ONTOLOGY_PARAM_KEY)[0];
     // create another path here for the image word cloud JP LOOK HERE name it like imageFilePath
     Path resultFilePath = Paths.get(getStorageDirectory().toString(), TABBED_RESULT_FILE_PATH);
+    Path hiddenResultFilePath = Paths.get(getStorageDirectory().toString(), HIDDEN_TABBED_RESULT_FILE_PATH);
     Path imageResultFilePath = Paths.get(getStorageDirectory().toString(), IMAGE_RESULT_FILE_PATH);
     String qualifiedExe = Paths.get(GusHome.getGusHome(), "bin", "apiGoEnrichment").toString();
     LOG.info(qualifiedExe + " " + resultFilePath.toString() + " " + idSql + " " + 
-	     wdkModel.getProjectId() + " " + pValueCutoff + " " + ontology + " " + evidCodesStr + " " + imageResultFilePath.toString());
+	     wdkModel.getProjectId() + " " + pValueCutoff + " " + ontology + " " + evidCodesStr + " " + imageResultFilePath.toString() + hiddenResultFilePath.toString());
     return new String[]{ qualifiedExe, resultFilePath.toString(), idSql,
-                         wdkModel.getProjectId(), pValueCutoff, ontology, /*sourcesStr */ evidCodesStr, imageResultFilePath.toString() };
+                         wdkModel.getProjectId(), pValueCutoff, ontology, /*sourcesStr */ evidCodesStr, imageResultFilePath.toString(), hiddenResultFilePath.toString() };
   }
 
   /**
@@ -269,7 +272,8 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
   @Override
   public Object getResultViewModel() throws WdkModelException {
-    Path inputPath = Paths.get(getStorageDirectory().toString(), TABBED_RESULT_FILE_PATH);
+    Path inputPath = Paths.get(getStorageDirectory().toString(), HIDDEN_TABBED_RESULT_FILE_PATH);
+    //    Path inputPath = Paths.get(getStorageDirectory().toString(), HIDDEN_TABBED_RESULT_FILE_PATH);
     //    Path imageResultFilePath = Paths.get(getStorageDirectory().toString(), IMAGE_RESULT_FILE_PATH);
     List<ResultRow> results = new ArrayList<>();
     try (FileReader fileIn = new FileReader(inputPath.toFile());
@@ -278,9 +282,13 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
       while (buffer.ready()) {
         String line = buffer.readLine();
         String[] columns = line.split(TAB);
-        results.add(new ResultRow(columns[0], columns[1], columns[2], columns[3], columns[4], columns[5], columns[6], columns[7], columns[8], columns[9]));
+	//	openPage = function() {
+	//	location.href = "/a/showQuestion.do?questionFullName=GeneQuestions.GeneByLocusTag&ds_gene_ids_data="+columns[4];
+        //}
+	String val = "<a href=\"/a/showQuestion.do?questionFullName=GeneQuestions.GeneByLocusTag&ds_gene_ids_data=" + columns[4] + "\">" + columns[3] + "</a>";
+	results.add(new ResultRow(columns[0], columns[1], columns[2], val, columns[5], columns[6], columns[7], columns[8], columns[9], columns[10]));
       }
-      return new ResultViewModel(TABBED_RESULT_FILE_PATH, results, getFormParams(), getProperty(GO_TERM_BASE_URL_PROP_KEY), IMAGE_RESULT_FILE_PATH);
+      return new ResultViewModel(TABBED_RESULT_FILE_PATH, results, getFormParams(), getProperty(GO_TERM_BASE_URL_PROP_KEY), IMAGE_RESULT_FILE_PATH, HIDDEN_TABBED_RESULT_FILE_PATH);
     }
     catch (IOException ioe) {
       throw new WdkModelException("Unable to process result file at: " + inputPath, ioe);
@@ -337,14 +345,18 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     private Map<String, String[]> _formParams;
     private String _goTermBaseUrl;
       private String _imageDownloadPath;
+      private String _hiddenDownloadPath;
+      //      private String _geneSearchBaseUrl;
 
     public ResultViewModel(String downloadPath, List<ResultRow> resultData,
-			   Map<String, String[]> formParams, String goTermBaseUrl, String imageDownloadPath) {
+			   Map<String, String[]> formParams, String goTermBaseUrl, String imageDownloadPath, String hiddenDownloadPath) {
       this._downloadPath = downloadPath;
       this._formParams = formParams;
       this._resultData = resultData;
       this._goTermBaseUrl = goTermBaseUrl;
+      //      this._geneSearchBaseUrl =geneSearchBaseUrl;
       this._imageDownloadPath = imageDownloadPath;
+      this._hiddenDownloadPath = hiddenDownloadPath;
     }
 
     public ResultRow getHeaderRow() { return GoEnrichmentPlugin.HEADER_ROW; }
@@ -352,11 +364,13 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     public List<ResultRow> getResultData() { return _resultData; }
     public String getDownloadPath() { return _downloadPath; }
     public String getImageDownloadPath() { return _imageDownloadPath; }
+    public String gethiddenDownloadPath() { return _hiddenDownloadPath; }
     public String getPvalueCutoff() { return EnrichmentPluginUtil.getPvalueCutoff(_formParams); }
     // public String getGoSources() { return FormatUtil.join(_formParams.get(GoEnrichmentPlugin.GO_ASSOC_SRC_PARAM_KEY), ", "); }
     public String getEvidCodes() { return FormatUtil.join(_formParams.get(GoEnrichmentPlugin.GO_EVID_CODE_PARAM_KEY), ", "); }
     public String getGoOntologies() { return FormatUtil.join(_formParams.get(GoEnrichmentPlugin.GO_ASSOC_ONTOLOGY_PARAM_KEY), ", "); }
     public String getGoTermBaseUrl() { return _goTermBaseUrl; }
+      // public String getGeneSearchBaseUrl() { return _geneSearcBaseUrl; }
   }
 
   public static class ResultRow {

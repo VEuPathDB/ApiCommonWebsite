@@ -15,13 +15,13 @@ sub new {
 }
 
 sub run {
-  my ($self, $outputFile, $geneResultSql, $modelName, $pValueCutoff, $source) = @_;
+  my ($self, $outputFile, $geneResultSql, $modelName, $pValueCutoff, $source, $wordcloudFile, $secondOutputFile) = @_;
 
   die "Second argument must be an SQL select statement that returns the Gene result\n" unless $geneResultSql =~ m/select/i;
   die "Fourth argument must be a p-value between 0 and 1\n" unless $pValueCutoff > 0 && $pValueCutoff <= 1;
 
   $self->{source} = $source;
-  $self->SUPER::run($outputFile, $geneResultSql, $modelName, $pValueCutoff, $source);
+  $self->SUPER::run($outputFile, $geneResultSql, $modelName, $pValueCutoff, $secondOutputFile);
 }
 
 sub getAnnotatedGenesCountBgd {
@@ -58,14 +58,76 @@ SELECT count (distinct tp.gene_source_id)
   die "Got null gene count for result annotated genes count\n" unless $geneCount;
   return $geneCount;
 }
+sub getAnnotatedGenesListResult {
+  my ($self, $dbh, $geneResultSql) = @_;
 
-sub getDataSql {
-  my ($self, $taxonId, $geneResultSql) = @_;
+  my $sql = "
+SELECT distinct tp.gene_source_id
+         from  apidbtuning.transcriptPathway tp,
+               ($geneResultSql) r
+        where  tp.gene_source_id = r.source_id
+          and tp.exact_match = 1
+          and tp.pathway_source in ($self->{source})
+";
 
+  my $stmt = $self->runSql($dbh, $sql);
+  my ($geneList) = $stmt->fetchrow_array();
+  die "Got null gene count for result annotated genes count\n" unless $geneList;
+  return $geneList;
+}
+
+#sub getDataSql {
+#  my ($self, $taxonId, $geneResultSql) = @_;
+
+#return "
+#select distinct bgd.pathway_source_id
+#, bgdcnt
+#, resultcnt 
+#, round(100*resultcnt/bgdcnt, 1) as pct_of_bgd
+#, bgd.pathway_name
+#from
+#    (SELECT  tp.pathway_source_id || '__PK__' || tp.pathway_source as pathway_source_id
+#        , count (distinct tp.gene_source_id) as bgdcnt
+#        , tp.pathway_name
+#        from   apidbtuning.transcriptPathway tp 
+#        , ApidbTuning.GeneAttributes ga
+#        , apidbtuning.pathwaycompounds pc
+#        , apidbtuning.pathwayreactions pr
+#        where  ga.taxon_id = $taxonId
+#        and   tp.gene_source_id = ga.source_id
+#        and pc.pathway_id = tp.pathway_id
+#        and pr.reaction_id = pc.reaction_id
+#        and pr.ext_db_name = pc.ext_db_name
+#        and pr.enzyme = tp.ec_number_gene
+#        and tp.pathway_source in ($self->{source})
+#        group by tp.pathway_source_id, tp.pathway_name, tp.pathway_source
+#   ) bgd,
+#   (SELECT  tp.pathway_source_id || '__PK__' || tp.pathway_source as pathway_source_id
+#        ,  count (distinct tp.gene_source_id) as resultcnt
+#        from   ApidbTuning.TranscriptPathway tp
+#        , ($geneResultSql) r
+#        , apidbtuning.pathwaycompounds pc
+#        , apidbtuning.pathwayreactions pr
+#        where  tp.gene_source_id = r.source_id
+#        and tp.pathway_source in ($self->{source})
+#        and pc.pathway_id = tp.pathway_id
+#        and pr.reaction_id = pc.reaction_id
+#        and pr.ext_db_name = pc.ext_db_name
+#        and pr.enzyme = tp.ec_number_gene
+#        group by tp.pathway_source_id, tp.pathway_source
+# ) rslt
+#where bgd.pathway_source_id = rslt.pathway_source_id
+#";
+#}
+sub getDataListSql {
+  my ($self, $taxonId, $geneResultSql, $dbh) = @_;
+  $dbh->{LongReadLen} = 66000;
+  $dbh->{LongTruncOk} = 1;
 return "
-select distinct bgd.pathway_source_id
+select bgd.pathway_source_id
 , bgdcnt
 , resultcnt 
+, resultlist
 , round(100*resultcnt/bgdcnt, 1) as pct_of_bgd
 , bgd.pathway_name
 from
@@ -98,8 +160,24 @@ from
         and pr.ext_db_name = pc.ext_db_name
         and pr.enzyme = tp.ec_number_gene
         group by tp.pathway_source_id, tp.pathway_source
- ) rslt
+ ) rslt,
+ (SELECT  tp.pathway_source_id || '__PK__' || tp.pathway_source as pathway_source_id
+        ,  rtrim(xmlagg(xmlelement(e,tp.gene_source_id,',').extract('//text()') order by tp.gene_source_id).GetClobVal(),',') as resultlist
+        from   ApidbTuning.TranscriptPathway tp
+        , ($geneResultSql) r
+        , apidbtuning.pathwaycompounds pc
+        , apidbtuning.pathwayreactions pr
+        where  tp.gene_source_id = r.source_id
+        and tp.pathway_source in ($self->{source})
+        and pc.pathway_id = tp.pathway_id
+        and pr.reaction_id = pc.reaction_id
+        and pr.ext_db_name = pc.ext_db_name
+        and pr.enzyme = tp.ec_number_gene
+        group by tp.pathway_source_id, tp.pathway_source
+ ) rsltl
 where bgd.pathway_source_id = rslt.pathway_source_id
+and rslt.pathway_source_id = rsltl.pathway_source_id
+and bgd.pathway_source_id = rsltl.pathway_source_id
 ";
 }
 

@@ -17,14 +17,14 @@ my $goEnrich = ApiCommonWebsite::Model::GoEnrichment->new();
 #} 
 
 
-$goEnrich->usage() unless scalar(@ARGV) == 7;
+$goEnrich->usage() unless scalar(@ARGV) == 8;
 
 $goEnrich->run(@ARGV);
 
 my $goWC = ApiCommonWebsite::Model::GoWordCloud->new();
 #need to work out what the input is. so its coming from the plugin i was looking at 
 #my $input = @ARGV;
-my $inputFile = $ARGV[0];
+my $inputFile = $ARGV[7];
 my $outputFile = $ARGV[6];
 print " input file is $inputFile or is it empty\n JUST CHECKING";
 $goWC->usage() unless (-e $inputFile);
