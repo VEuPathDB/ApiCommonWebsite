@@ -45,7 +45,7 @@ sub run {
 
   my $regex = join '|', @$genomes;
   if (!$regex && $type eq 'clustal') {
-   &userError("Please choose at least one organism which is not the reference");
+   &userError("Please choose at least one organism which is not the reference.");
   }
 
   foreach my $pairs (@$pairwiseDirectories) {
@@ -533,7 +533,7 @@ sub validateParams {
 
     my @genomes      = $cgi->param('genomes');
     if(scalar @genomes < 1 && $type eq 'clustal') {
-	&userError("You must select at least one genome to align to");
+	&userError("You must select at least one genome to align to.");
     }
     
     my $organism = &getOrganismFromContig($contig, $dbh);
@@ -541,7 +541,7 @@ sub validateParams {
     my $referenceGenome;
     
     unless($referenceGenome = $taxonDirHash->{$organism}->{name}) {
-	&userError("Invalid Genome Name [$organism]: does not match an available Organism");
+	&userError("Invalid Genome Name [$organism]: does not match an available Organism.");
     }
     my $strand;
     if($revComp eq 'on') {
@@ -552,22 +552,22 @@ sub validateParams {
     }
     
     unless($type eq 'clustal' || $type eq 'fasta_gapped' || $type eq 'fasta_ungapped') {
-	&userError("Invalid Type [$type]... expected clustal,fasta_gapped,fastaungapped");
+	&userError("Invalid Type [$type]... expected clustal,fasta_gapped,fastaungapped.");
     }
     
     $start =~ s/[,.+\s]//g;
     $stop =~ s/[,.+\s]//g;
     $start = 1 if (!$start || $start !~/\S/);
     $stop = 1000000 if (!$stop || $stop !~ /\S/);
-    &userError("Start '$start' must be a number") unless $start =~ /^\d+$/;
-    &userError("End '$stop' must be a number") unless $stop =~ /^\d+$/;
+    &userError("Start '$start' must be a number.") unless $start =~ /^\d+$/;
+    &userError("End '$stop' must be a number.") unless $stop =~ /^\d+$/;
     if ($start < 1 || $stop < 1 || $stop <= $start) {
-	&userError("Start and End must be positive, and Start must be less than End");
+	&userError("Start and End must be positive, and Start must be less than End.");
     }
     
     my $length = $stop - $start + 1;
     if($length > 100000) {
-	&userError("Values provided exceed the Maximum Allowed Alignemnt of 100KB");
+	&userError("Values provided exceed the Maximum Allowed Alignemnt of 100KB.");
     }
 
     my @filteredGenomes;
@@ -595,7 +595,7 @@ sub getOrganismFromContig {
 	$organism = $a[1];
     }
     else {
-	&userError("Invalid source ID:  $contig\n");
+	&userError("Invalid source ID:  $contig.\n");
     }
     
     $sth->finish();
@@ -662,7 +662,7 @@ where source_id = ?";
 	$sequence = $a[0];
     }
     else {
-	&userError("Invalid source ID:  $contig\n");
+	&userError("Invalid source ID:  $contig.\n");
     }
     
     $sth->finish();
@@ -915,7 +915,9 @@ sub determineSplitSeq {
 sub userError {
   my ($msg) = @_;
 
-  die "$msg\n\nPlease Try again!\n";
+  print "$msg\n";
+  print "Please Try again!\n";
+  exit(1);
 }
 
 1;
