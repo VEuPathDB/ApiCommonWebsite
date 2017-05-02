@@ -25,7 +25,7 @@
   
   <target name="GBrowse-Checkout" unless="GBrowse.present">
     <ant target="defaultProjectCheckout" inheritAll="false">
-      <property name="svnurl" value="https://www.cbil.upenn.edu/svn/apidb/GBrowse"/>
+      <property name="svnurl" value="https://cbilsvn.pmacs.upenn.edu/svn/apidb/GBrowse"/>
       <property name="project" value="GBrowse"/>
       <property name="version" value="??"/>
     </ant>
@@ -33,7 +33,7 @@
 
   <target name="EbrcWebSvcCommon-Checkout" unless="EbrcWebSvcCommon.present">
     <ant target="defaultProjectCheckout" inheritAll="false">
-      <property name="svnurl" value="https://www.cbil.upenn.edu/svn/apidb/EbrcWebSvcCommon"/>
+      <property name="svnurl" value="https://cbilsvn.pmacs.upenn.edu/svn/apidb/EbrcWebSvcCommon"/>
       <property name="project" value="EbrcWebSvcCommon"/>
       <property name="version" value="??"/>
     </ant>
@@ -42,7 +42,7 @@
 
   <target name="ApiCommonModel-Checkout" unless="ApiCommonModel.present">
     <ant target="defaultProjectCheckout" inheritAll="false">
-      <property name="svnurl" value="https://www.cbil.upenn.edu/svn/apidb/ApiCommonModel"/>
+      <property name="svnurl" value="https://cbilsvn.pmacs.upenn.edu/svn/apidb/ApiCommonModel"/>
       <property name="project" value="ApiCommonModel"/>
       <property name="version" value="api-build-9"/>
     </ant>
