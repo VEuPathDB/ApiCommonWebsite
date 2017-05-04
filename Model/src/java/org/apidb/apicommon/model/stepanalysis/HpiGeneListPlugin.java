@@ -32,8 +32,12 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
 
   private static final Logger LOG = Logger.getLogger(HpiGeneListPlugin.class);
 
+    // Servers for the pick list
+    // NOTE: you also need to add new bits to two additional places below
   private static final String EUPATH_NAME_KEY = "EuPathDB";
   private static final String EUPATH_SEARCH_SERVER_ENDPOINT_PROP_KEY = "eupathSearchServerEndpoint";
+  private static final String EUPATH_PORTAL_NAME_KEY = "EuPathDB Portal";
+  private static final String EUPATH_PORTAL_SEARCH_SERVER_ENDPOINT_PROP_KEY = "eupathSearchPortalEndpoint";
 
   private static final String BRC_PARAM_KEY = "brcParam";
   private static final String THRESHOLD_TYPE_PARAM_KEY = "thresholdTypeParam";
@@ -50,6 +54,7 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
     @Override
     public void validateProperties() throws WdkModelException {
         this.serverEndpoints.put(EUPATH_NAME_KEY, getProperty(EUPATH_SEARCH_SERVER_ENDPOINT_PROP_KEY));        
+        this.serverEndpoints.put(EUPATH_PORTAL_NAME_KEY, getProperty(EUPATH_PORTAL_SEARCH_SERVER_ENDPOINT_PROP_KEY));        
         // TODO ... Add more for other BRCs
     }       
 
@@ -122,6 +127,7 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
 
     List<Option> brcOptions = new ArrayList<>();
     brcOptions.add(new Option(EUPATH_NAME_KEY, EUPATH_NAME_KEY));
+    brcOptions.add(new Option(EUPATH_PORTAL_NAME_KEY, EUPATH_PORTAL_NAME_KEY));
 
     List<Option> thresholdTypeOptions = new ArrayList<>();
     thresholdTypeOptions.add(new Option("PercentMatched", "PercentMatched"));
