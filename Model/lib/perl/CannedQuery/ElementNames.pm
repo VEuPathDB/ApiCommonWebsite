@@ -46,11 +46,14 @@ sub init {
   $Self->setProfileType           ( $Args->{ProfileType          } );
 
   $Self->setSql(<<Sql);
-SELECT  rownum as element_order,protocol_app_node_name AS name
+
+select  rownum as element_order, ps.* FROM (
+SELECT protocol_app_node_name AS name
 FROM  apidbtuning.ProfileSamples
 WHERE  study_name            = '<<ProfileSet>>'
 AND profile_type = '<<ProfileType>>'
 ORDER  BY node_order_num
+) ps
 Sql
 
   return $Self;
