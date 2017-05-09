@@ -302,7 +302,7 @@ sub getColors {
     my @rv = split(/;/, $colorsString);
     return \@rv;
   }
-  return ['blue', 'grey'];
+  return ['grey'];
 }
 
 
