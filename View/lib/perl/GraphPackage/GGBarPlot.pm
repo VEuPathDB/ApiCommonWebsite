@@ -256,7 +256,7 @@ if(expandColors) {
 
 gp = gp + scale_colour_discrete(breaks=profile.df.full\$LEGEND, name=NULL);
 
-gp = gp + geom_errorbar(aes(ymin=MIN_ERR, ymax=MAX_ERR));
+gp = gp + geom_errorbar(aes(ymin=MIN_ERR, ymax=MAX_ERR), colour=\"black\", width=.1);
 
 if(is.compact) {
   gp = gp + theme_void() + theme(legend.position=\"none\");
@@ -276,6 +276,8 @@ if($horiz) {
   gp = gp + coord_flip();
 }
 
+
+gp = gp + geom_hline(yintercept = 0, colour=\"grey\")
 
 
 plotlist[[plotlist.i]] = gp;
