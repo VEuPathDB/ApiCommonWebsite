@@ -300,8 +300,15 @@ gp = gp + geom_point();
 if(!$forceNoLines) {
   gp = gp + geom_line();
 
-  if(profile.is.numeric && length(levels(factor(profile.df.full\$PROFILE_FILE))) == 1 && nrow(profile.df.full) > 10) {
-    gp = gp + geom_smooth(method=\"loess\");
+  if($smoothLines) {
+    if(profile.is.numeric && nrow(profile.df.full) > 10) {
+      if(length(levels(factor(profile.df.full\$PROFILE_FILE))) == 1) {
+        gp = gp + geom_smooth(method=\"loess\");
+      }
+      if(length(levels(factor(profile.df.full\$PROFILE_FILE))) > 1) {
+        gp = gp + geom_smooth(method=\"loess\", se=F);
+      }
+    }
   }
 }
 
