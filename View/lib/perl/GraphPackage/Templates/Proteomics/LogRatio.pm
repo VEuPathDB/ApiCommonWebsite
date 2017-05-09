@@ -10,10 +10,6 @@ use ApiCommonWebsite::View::GraphPackage::Util;
 
 #sub restrictProfileSetsBySourceId { return 1;}
 
-# use standard colors for all percentile graphs
-sub getPercentileColors {
-  return ['LightSlateGray', 'DarkSlateGray'];
-}
 
 1;
 
