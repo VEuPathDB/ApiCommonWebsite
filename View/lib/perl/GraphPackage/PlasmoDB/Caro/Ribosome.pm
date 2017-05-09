@@ -6,7 +6,7 @@ use vars qw( @ISA );
 @ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet );
 use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
 use ApiCommonWebsite::View::GraphPackage::LinePlot;
-use ApiCommonWebsite::View::GraphPackage::BarPlot;
+use ApiCommonWebsite::View::GraphPackage::GGBarPlot;
 
 use ApiCommonWebsite::View::GraphPackage::Util;
 
@@ -16,7 +16,7 @@ sub init {
   $self->SUPER::init(@_);
 
   my $pch = [19,24,15,17];
-  my $colors = ['#E57C24','#315B7D','#588EBB','#DDDDDD'];
+#  my $colors = ['#E57C24','#315B7D','#588EBB','#DDDDDD'];
   my $legend = ['Ribosome', 'mRNA - Sense', 'mRNA - Antisense','Translational Effeciency'];
 
   my $sampleLabels = ['R','ET', 'LT', 'S', 'M'];
@@ -26,10 +26,10 @@ sub init {
 
   my $id = $self->getId();
 
-  my $transEff = ApiCommonWebsite::View::GraphPackage::BarPlot->new(@_);
+  my $transEff = ApiCommonWebsite::View::GraphPackage::GGBarPlot->new(@_);
   $transEff->setProfileSets([$translationalEffSets->[0]]);
   $transEff->setYaxisLabel('Translational Effeciency');
-  $transEff->setColors([$colors->[3]]);
+  $transEff->setColors(["#a88b8b"]);
   $transEff->setElementNameMarginSize(6);
   $transEff->setPartName('trans_eff');
   $transEff->setSampleLabels($sampleLabels);

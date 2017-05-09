@@ -79,6 +79,12 @@ and dr.study_id is null
 }
 
 
+sub rStringVectorFromArrayNotNamed {
+  my ($stringArray) = @_;
+
+  return "c(" . join(',', map { defined $_ ? "\"$_\"" : "\"\""} @$stringArray) . ")";
+}
+
 sub rStringVectorFromArray {
   my ($stringArray, $name) = @_;
 

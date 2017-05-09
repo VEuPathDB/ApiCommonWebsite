@@ -183,7 +183,7 @@ sub init {
 #  my $additionalRCode = "lines.df[2,] = lines.df[2,] + lines.df[3,];";
 
 
-  my $stacked = ApiCommonWebsite::View::GraphPackage::LinePlot::PairedEndRNASeq->new(@_);
+  my $stacked = ApiCommonWebsite::View::GraphPackage::GGLinePlot::PairedEndRNASeq->new(@_);
   $stacked->setProfileSets($profileSets);
   $stacked->setColors(\@colors);
 
@@ -230,12 +230,13 @@ sub init {
   my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArray);
   my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([['pfal3D7_Stunnenberg_pi_time_series [htseq-union - unstranded - fpkm]', 'channel1_percentiles']]);
 
-  my $line = ApiCommonWebsite::View::GraphPackage::LinePlot->new(@_);
+  my $line = ApiCommonWebsite::View::GraphPackage::GGLinePlot->new(@_);
   $line->setProfileSets($profileSets);
   $line->setPartName('rpkm_line');
-  $line->setAdjustProfile('lines.df=lines.df + 1; lines.df = log2(lines.df);');
+  $line->setAdjustProfile('profile.df.full$VALUE = log2(profile.df.full$VALUE + 1);');
   $line->setYaxisLabel('RPKM (log2)');
   $line->setPointsPch($pch);
+  $line->setXaxisLabel("Timepoint");
   $line->setColors([$colors->[0], $colors->[1]]);
 
   $line->setHasExtraLegend(1);
@@ -244,9 +245,10 @@ sub init {
   my $id = $self->getId();
   $line->setPlotTitle("RPKM - $id");
 
-  my $percentile = ApiCommonWebsite::View::GraphPackage::LinePlot::Percentile->new(@_);
+  my $percentile = ApiCommonWebsite::View::GraphPackage::GGLinePlot::Percentile->new(@_);
   $percentile->setProfileSets($percentileSets);
   $percentile->setColors([$colors->[0]]);
+  $percentile->setXaxisLabel("Timepoint");
 
   $self->setGraphObjects($line, $percentile);
 

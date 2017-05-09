@@ -11,7 +11,9 @@ use ApiCommonWebsite::View::GraphPackage::Util;
 use ApiCommonWebsite::View::GraphPackage::BarPlot;
 use ApiCommonWebsite::View::GraphPackage::LinePlot;
 use ApiCommonWebsite::View::GraphPackage::ScatterPlot;
-
+use ApiCommonWebsite::View::GraphPackage::GGScatterPlot;
+use ApiCommonWebsite::View::GraphPackage::GGLinePlot;
+use ApiCommonWebsite::View::GraphPackage::GGBarPlot;
 
 use Scalar::Util qw /blessed/;
 use Data::Dumper;
@@ -192,14 +194,19 @@ sub makeAndSetPlots {
     my $plotObj;
     my $plotPartModule = $key=~/percentile/? 'Percentile': $self->getExprPlotPartModuleString();
 
-    if(lc($self->getGraphType()) eq 'bar' || ($key=~/percentile/ && blessed($self) =~/TwoChannel/)  ) {
+    if((lc($self->getGraphType()) eq 'bar' || ($key=~/percentile/ && blessed($self) =~/TwoChannel/)) && $self->useLegacy() ) {
       $plotObj = "ApiCommonWebsite::View::GraphPackage::BarPlot::$plotPartModule";
-    } elsif(lc($self->getGraphType()) eq 'line') {
+    } elsif((lc($self->getGraphType()) eq 'bar' || ($key=~/percentile/ && blessed($self) =~/TwoChannel/)) && !$self->useLegacy() ) {
+      $plotObj = "ApiCommonWebsite::View::GraphPackage::GGBarPlot::$plotPartModule";
+    } elsif(lc($self->getGraphType()) eq 'line' && $self->useLegacy()) {
       $plotObj = "ApiCommonWebsite::View::GraphPackage::LinePlot::$plotPartModule";
+      $xAxisLabel= $self->getXAxisLabel();
+    } elsif(lc($self->getGraphType()) eq 'line' && !$self->useLegacy()) {
+      $plotObj = "ApiCommonWebsite::View::GraphPackage::GGLinePlot::$plotPartModule";
       $xAxisLabel= $self->getXAxisLabel();
     } elsif(lc($self->getGraphType()) eq 'scatter') {
       # TODO: handle two channel graphs in a different module
-      $plotObj = "ApiCommonWebsite::View::GraphPackage::ScatterPlot::LogRatio";
+      $plotObj = "ApiCommonWebsite::View::GraphPackage::GGScatterPlot::LogRatio";
       $xAxisLabel= $self->getXAxisLabel();
     } else {
       die "Graph must define a graph type of bar or line";
@@ -357,6 +364,8 @@ sub isExcludedProfileSet {
 package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_0fa4237b4b;
 
 
+use Data::Dumper;
+
 sub getAllProfileSetNames {
   my ($self) = @_;
   my @profileArray = (
@@ -405,7 +414,7 @@ sub init {
 
   my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArray);
  
-  my $line = ApiCommonWebsite::View::GraphPackage::LinePlot->new(@_);
+  my $line = ApiCommonWebsite::View::GraphPackage::GGLinePlot->new(@_);
   $line->setProfileSets($profileSets);
   $line->setPartName('exprn_val_log_ratio');
   $line->setYaxisLabel('Expression Values (log2 ratio)');
@@ -417,7 +426,7 @@ sub init {
   $line->setHasExtraLegend(1);
   $line->setSmoothLines(1);
   $line->setSmoothWithLoess(1);
-  $line->setLegendLabels(['total', 'loess smoothed']);
+  $line->setLegendLabels(['total']);
   $line->setXaxisLabel('Hours post infection');
   my $id = $self->getId();
   $line->setPlotTitle("Expression Values - $id - Total mRNA Abundance");
@@ -427,7 +436,7 @@ sub init {
   my $dynamics = $graphObjects->[0];
   my $baseTitle = $dynamics->getPlotTitle();
   $dynamics->setPointsPch([ 'NA', 'NA', 'NA']);
-  $dynamics->setColors(['red','black','blue']);
+  $dynamics->setColors(['blue','black','red']);
   $dynamics->setHasExtraLegend(1);
   $dynamics->setPlotTitle($baseTitle. " - mRNA Dynamics");
   $dynamics->setYaxisLabel('Modeled Expression Values');
@@ -454,19 +463,20 @@ sub finalProfileAdjustments {
 
   my $colors = $profile->getColors();
 
-  my @allColors;
+
+  my @allLegend;
   foreach(1..8) {
-    push @allColors, $colors->[0];
+    push @allLegend, "mild disease";
   }
   foreach(1..9) {
-    push @allColors, $colors->[1];
+    push @allLegend, "severe disease";
   }
-  $profile->setColors(\@allColors);
+  $profile->setColors([$colors->[0], $colors->[1]]);
 
-  $profile->setLegendColors([$colors->[0], $colors->[1]]);
-  my $legend = ['mild disease', 'severe disease'];
+#  $profile->setLegendColors([$colors->[0], $colors->[1]]);
+#  my $legend = ['rep("mild disease",8)', 'rep("severe disease", 9)'];
   $profile->setHasExtraLegend(1); 
-  $profile->setLegendLabels($legend);
+  $profile->setLegendLabels(\@allLegend);
 
 }
 
@@ -476,6 +486,7 @@ sub finalProfileAdjustments {
 
 package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_4582562a4b;
 
+sub useLegacy {return 1;}
 
 sub finalProfileAdjustments {
   my ($self, $profile) = @_;
@@ -525,14 +536,29 @@ package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_3ef554e2
 sub finalProfileAdjustments {
   my ($self, $profile) = @_;
 
-  my $colors = ['green', 'green', 'green', 'green', 'blue', 'blue', 'blue', 'red', 'red', 'red', 'red', 'red'];
+  my $colors = ['green', 'blue', 'red'];
 
   $profile->setIsHorizontal(1);
+
   $profile->setColors($colors);
 
-  $profile->setLegendColors(["red", "green", "blue"]);
-  my $legend = ['merozoite invasion', 'SIR KO', 'red cell receptor invasion'];
-  $profile->setHasExtraLegend(1); 
+  my @allLegend;
+
+  foreach(1..4) {
+    push @allLegend, "SIR KO";
+  }
+  foreach(1..3) {
+    push @allLegend, "red cell receptor invasion";
+  }
+  foreach(1..5) {
+    push @allLegend, "merozoite invasion";
+  }
+
+
+
+#  my $legend = ['merozoite invasion', 'SIR KO', 'red cell receptor invasion'];
+  my $legend = \@allLegend;
+#  $profile->setHasExtraLegend(1); 
   $profile->setLegendLabels($legend);
 
 }
@@ -550,6 +576,7 @@ sub init {
   $self->SUPER::init(@_);
 
   my $colors = ['#F08080', '#7CFC00' ];
+
   my $legend = ['untreated', 'chloroquine'];
   my $pch = [22];
 
@@ -568,14 +595,14 @@ sub init {
   my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArray);
   my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@percentileArray);
 
-  my $rma = ApiCommonWebsite::View::GraphPackage::BarPlot::RMA->new(@_);
+  my $rma = ApiCommonWebsite::View::GraphPackage::GGBarPlot::RMA->new(@_);
   $rma->setProfileSets($profileSets);
   $rma->setColors($colors);
   $rma->setForceHorizontalXAxis(1);
   $rma->setHasExtraLegend(1); 
   $rma->setLegendLabels($legend);
 
-  my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
+  my $percentile = ApiCommonWebsite::View::GraphPackage::GGBarPlot::Percentile->new(@_);
   $percentile->setProfileSets($percentileSets);
   $percentile->setColors($colors);
   $percentile->setForceHorizontalXAxis(1);
@@ -619,14 +646,14 @@ sub init {
   my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArray);
   my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@percentileArray);
 
-  my $rma = ApiCommonWebsite::View::GraphPackage::BarPlot::RMA->new(@_);
+  my $rma = ApiCommonWebsite::View::GraphPackage::GGBarPlot::RMA->new(@_);
   $rma->setProfileSets($profileSets);
   $rma->setColors($colors);
   $rma->setForceHorizontalXAxis(1);
   $rma->setHasExtraLegend(1); 
   $rma->setLegendLabels($legend);
 
-  my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
+  my $percentile = ApiCommonWebsite::View::GraphPackage::GGBarPlot::Percentile->new(@_);
   $percentile->setProfileSets($percentileSets);
   $percentile->setColors($colors);
   $percentile->setForceHorizontalXAxis(1);
@@ -679,7 +706,7 @@ sub _init {
   
   my $profileSetsLine = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArrayLine);
 
-  my $line = ApiCommonWebsite::View::GraphPackage::LinePlot->new(@_);
+  my $line = ApiCommonWebsite::View::GraphPackage::GGLinePlot->new(@_);
   $line->setPartName('expr_val');
   $line->setProfileSets($profileSetsLine);
   $line->setColors($colors);
@@ -820,7 +847,7 @@ sub init {
 
   my $profileSetsRoos = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArrayRoos);
 
-  my $rma =  ApiCommonWebsite::View::GraphPackage::LinePlot::LogRatio->new(@_);
+  my $rma =  ApiCommonWebsite::View::GraphPackage::GGLinePlot::LogRatio->new(@_);
   $rma->setProfileSets($profileSetsRoos);
   $rma->setPartName('Roos_RMA');
   $rma->setYaxisLabel('RMA Value (log2)');
@@ -836,7 +863,7 @@ sub init {
 
    my $percentileSetsRoos = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@percentileArrayRoos);
 
-  my $percentileRoos = ApiCommonWebsite::View::GraphPackage::LinePlot->new(@_);
+  my $percentileRoos = ApiCommonWebsite::View::GraphPackage::GGLinePlot->new(@_);
   $percentileRoos->setProfileSets($percentileSetsRoos);
   $percentileRoos->setPartName('Roos_percentile');
   $percentileRoos->setYaxisLabel('Percentile');
@@ -853,7 +880,7 @@ sub init {
 
   my $profileSetsFlo = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArrayFlo);
 
-  my $rmaFlo =  ApiCommonWebsite::View::GraphPackage::LinePlot::LogRatio->new(@_);
+  my $rmaFlo =  ApiCommonWebsite::View::GraphPackage::GGLinePlot::LogRatio->new(@_);
   $rmaFlo->setProfileSets($profileSetsFlo);
   $rmaFlo->setPartName('Dzierszinskis_RMA');
   $rmaFlo->setYaxisLabel('RMA Value (log2)');
@@ -869,7 +896,7 @@ sub init {
 
    my $percentileSetsFlo = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@percentileArrayFlo);
 
-  my $percentileFlo = ApiCommonWebsite::View::GraphPackage::LinePlot->new(@_);
+  my $percentileFlo = ApiCommonWebsite::View::GraphPackage::GGLinePlot->new(@_);
   $percentileFlo->setProfileSets($percentileSetsFlo);
   $percentileFlo->setPartName('Flo_percentile');
   $percentileFlo->setYaxisLabel('Percentile');
@@ -946,7 +973,7 @@ text(13.3, y.max + (y.max - y.min)*0.22, 'C');
 ";
 
   my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSet);
-  my $rma =  ApiCommonWebsite::View::GraphPackage::LinePlot::LogRatio->new(@_);
+  my $rma =  ApiCommonWebsite::View::GraphPackage::GGLinePlot::LogRatio->new(@_);
   $rma->setProfileSets($profileSets);
   $rma->setPartName('rma');
   $rma->setColors($colors);
@@ -962,7 +989,7 @@ text(13.3, y.max + (y.max - y.min)*0.22, 'C');
   $rma->setPlotTitle("RMA Expression Value - $id");
 
   my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@percentileSet);
-  my $percentile =  ApiCommonWebsite::View::GraphPackage::LinePlot->new(@_);
+  my $percentile =  ApiCommonWebsite::View::GraphPackage::GGLinePlot->new(@_);
   $percentile->setProfileSets($percentileSets);
   $percentile->setPartName('percentile');
   $percentile->setColors($colors);

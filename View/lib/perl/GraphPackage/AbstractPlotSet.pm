@@ -173,6 +173,37 @@ sub makeRLegendString {
 
 #--------------------------------------------------------------------------------
 
+sub useLegacy {return 0}
+
+sub getSplitScreenInit {
+  my ($self) = @_;
+  if($self->useLegacy()) {
+
+    return "screens     <- split.screen(screen.dims, erase=T);
+screens;
+screen.i    <- 1;
+";
+  }
+
+  return "plotlist = list();
+plotlist.i = 1;
+";
+}
+
+
+sub getSplitScreenFinish {
+  my ($self) = @_;
+  if($self->useLegacy()) {
+
+    return "close.screen(all.screens=T);";
+  }
+
+  return "multiplot(plotlist = plotlist, cols = 1)";
+
+}
+
+
+
 sub makeR {
   my ($self, $rPlotStringsHash) = @_;
 
@@ -259,6 +290,8 @@ sub makeR {
   my @rStrings = @{$self->makeRPlotStrings()};
   my $rStrings = join("\n", @rStrings);
 
+  my $splitScreenInit = $self->getSplitScreenInit();
+  my $splitScreenFinish = $self->getSplitScreenFinish();
   my $rcode =  <<RCODE;
 
 # ------------------------------- Prepare --------------------------------
@@ -267,18 +300,59 @@ $preamble_R
 
 $open_R;
 
+library(grid);
+library(gridExtra);
+library(ggplot2);
+
 plasmodb.par();
 
+# screen.dimis only used for legacy
 screen.dims <- t(array(c($screens),dim=c(4,$parts_n)));
-screens     <- split.screen(screen.dims, erase=T);
-screens;
-screen.i    <- 1;
+$splitScreenInit
 
 ticks <- function() {
   axis(1, at=seq(x.min, x.max, 1), labels=F, col="gray75");
   axis(1, at=seq(5*floor(x.min/5+0.5), x.max, 5), labels=F, col="gray50");
   axis(1);
 }
+
+# multiplot only used for ggplot
+multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
+
+  # Make a list from the ... arguments and plotlist
+  plots <- c(list(...), plotlist)
+
+  numPlots = length(plots)
+
+  # If layout is NULL, then use 'cols' to determine layout
+  if (is.null(layout)) {
+    # Make the panel
+    # ncol: Number of columns of plots
+    # nrow: Number of rows needed, calculated from # of cols
+    layout <- matrix(seq(1, cols * ceiling(numPlots/cols)),
+                    ncol = cols, nrow = ceiling(numPlots/cols))
+}
+
+  if (numPlots==1) {
+    print(plots[[1]])
+
+  } else {
+    # Set up the page
+    grid.newpage()
+    pushViewport(viewport(layout = grid.layout(nrow(layout), ncol(layout))))
+
+    # Make each plot, in the correct location
+    for (i in 1:numPlots) {
+      # Get the i,j matrix positions of the regions that contain this subplot
+      matchidx <- as.data.frame(which(layout == i, arr.ind = TRUE))
+
+      print(plots[[i]], vp = viewport(layout.pos.row = matchidx\$row,
+                                      layout.pos.col = matchidx\$col))
+    }
+ }
+}
+
+
 
 # --------------------------------- Add Legend-------------------------------
 
@@ -291,7 +365,9 @@ $rStrings
 
 # --------------------------------- Done ---------------------------------
 
-close.screen(all.screens=T);
+
+$splitScreenFinish
+
 dev.off();
 quit(save="no")
 

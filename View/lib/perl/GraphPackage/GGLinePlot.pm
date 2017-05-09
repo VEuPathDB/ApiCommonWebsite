@@ -201,10 +201,9 @@ sub makeRPlotString {
   my $scale = $self->getScalingFactor;
 
   my $legendLabels = $self->getLegendLabels;
-  my $legendLabelsString = ""; 
-  if ($self->getHasExtraLegend ) {
-      $legendLabelsString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray($legendLabels, 'legend.label')
-    }
+
+  my $legendLabelsString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray($legendLabels, 'legend.label');
+
 
   my $hasLegendLabels = $legendLabelsString ? 'TRUE' : 'FALSE';
   my $rcode = "
@@ -236,6 +235,7 @@ x.max = $xMax;
 y.min = $yMin;
 y.max = $yMax;  
 
+
 profile.df.full = data.frame();
 
 for(ii in 1:length(profile.files)) {
@@ -260,6 +260,7 @@ for(ii in 1:length(profile.files)) {
     }
 
     profile.df\$LEGEND = legend.label[ii];
+    profile.df\$PROFILE_FILE = profile.files[ii];
   }
 
   element.names.df = read.table(element.names.files[ii], header=T, sep=\"\\t\");
@@ -284,11 +285,11 @@ $rAdjustProfile
 
 profile.is.numeric = sum(!is.na(profile.df.full\$ELEMENT_NAMES_NUMERIC)) == nrow(profile.df.full);
 
-if(profile.is.numeric) {
-  gp = ggplot(profile.df.full, aes(x=ELEMENT_NAMES_NUMERIC, y=VALUE, group=LEGEND, colour=LEGEND));
+if(profile.is.numeric && !$forceNoLines) {
+  gp = ggplot(profile.df.full, aes(x=ELEMENT_NAMES_NUMERIC, y=VALUE, group=PROFILE_FILE, colour=PROFILE_FILE));
 
 } else {
-  gp = ggplot(profile.df.full, aes(x=ELEMENT_NAMES, y=VALUE, group=LEGEND, colour=LEGEND));
+  gp = ggplot(profile.df.full, aes(x=ELEMENT_NAMES, y=VALUE, group=PROFILE_FILE, colour=PROFILE_FILE));
 }
 
 y.max = max(y.max, max(profile.df.full\$VALUE, na.rm=T), na.rm=TRUE);
@@ -296,22 +297,28 @@ y.min = min(y.min, min(profile.df.full\$VALUE, na.rm=T), na.rm=TRUE);
 
 gp = gp + geom_point();
 
-gp = gp + geom_line();
+if(!$forceNoLines) {
+  gp = gp + geom_line();
 
-gp = gp + scale_colour_manual(values=$colorsStringNotNamed, breaks=legend.label);
+  if(profile.is.numeric && length(levels(factor(profile.df.full\$PROFILE_FILE))) == 1 && nrow(profile.df.full) > 10) {
+    gp = gp + geom_smooth(method=\"loess\");
+  }
+}
+
+gp = gp + scale_colour_manual(values=$colorsStringNotNamed, breaks=profile.df.full\$PROFILE_FILE, labels=profile.df.full\$LEGEND, name=\"Legend\");
+
+if(is.null(profile.df.full\$LEGEND)) {
+  gp = gp + theme(legend.position=\"none\");
+}
 
 if(is.compact) {
   gp = gp + theme_void() + theme(legend.position=\"none\");
 } else {
   gp = gp + labs(title=\"$plotTitle\", y=\"$yAxisLabel\", x=\"$xAxisLabel\");
   gp = gp + ylim(y.min, y.max);
+  gp = gp + theme(plot.title = element_text(colour=\"#b30000\"))
 }
 
-
-
-if(profile.is.numeric && length(levels(factor(profile.df.full\$LEGEND))) == 1 && nrow(profile.df.full) > 10) {
-  gp = gp + geom_smooth(method=\"loess\");
-}
 
 plotlist[[plotlist.i]] = gp;
 plotlist.i = plotlist.i + 1;
