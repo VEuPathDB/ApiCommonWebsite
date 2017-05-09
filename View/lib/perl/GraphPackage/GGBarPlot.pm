@@ -181,10 +181,6 @@ profile.df.full = data.frame();
 for(ii in 1:length(profile.files)) {
   skip.stderr = FALSE;
 
-#  if(skip.profiles[ii]) {
-#    next;
-#  };
-
   profile.df = read.table(profile.files[ii], header=T, sep=\"\\t\");
   profile.df\$Group.1=NULL
 
@@ -202,32 +198,41 @@ for(ii in 1:length(profile.files)) {
     if(length(profile.files) > 1) {
       profile.df\$LEGEND = legend.label[ii];
     }
+
   }
 
   element.names.df = read.table(element.names.files[ii], header=T, sep=\"\\t\");
   profile.df = merge(profile.df, element.names.df[, c(\"ELEMENT_ORDER\", \"NAME\")], by=\"ELEMENT_ORDER\")
 
   if(!skip.stderr && !is.na(stderr.files[ii]) && stderr.files[ii] != '') {
-    stderr.tmp = read.table(stderr.files[ii], header=T, sep=\"\\t\");
-    profile.df\$STDERR = stderr.tmp\$VALUE;
-  }
-  else {
+    stderr.df = read.table(stderr.files[ii], header=T, sep=\"\\t\");
+    colnames(stderr.df) = c(\"ELEMENT_ORDER\", \"STDERR\");
+
+    profile.df = merge(profile.df, stderr.df[, c(\"ELEMENT_ORDER\", \"STDERR\")], by=\"ELEMENT_ORDER\");
+  } else {
     profile.df\$STDERR = NA;
   }
 
   profile.df.full = rbind(profile.df.full, profile.df);
 }
 
-
-profile.df.full\$NAME <- factor(profile.df.full\$NAME, levels = profile.df.full\$NAME[order(profile.df.full\$ELEMENT_ORDER)])
+profile.df.full\$MIN_ERR = profile.df.full\$VALUE - profile.df.full\$STDERR;
+profile.df.full\$MAX_ERR = profile.df.full\$VALUE + profile.df.full\$STDERR;
 
 if(length(profile.files) == 1) {
   profile.df.full\$LEGEND = legend.label;
+  if($overrideXAxisLabels) {
+    profile.df.full\$NAME = x.axis.label;    
+  }
 }
+
+profile.df.full\$NAME <- factor(profile.df.full\$NAME, levels = profile.df.full\$NAME[order(profile.df.full\$ELEMENT_ORDER)])
+
+expandColors = FALSE;
 
 if(is.null(profile.df.full\$LEGEND)) {
   profile.df.full\$LEGEND = profile.df.full\$NAME
-  the.colors = rep($colorsStringNotNamed, length(profile.df.full\$NAME)/length($colorsStringNotNamed));
+  expandColors = TRUE;
 } else {
   profile.df.full\$LEGEND = factor(profile.df.full\$LEGEND, levels=legend.label);
 }
@@ -235,15 +240,23 @@ if(is.null(profile.df.full\$LEGEND)) {
 # allow minor adjustments to profile
 $rAdjustProfile
 
-y.max = max(y.max, max(profile.df.full\$VALUE, na.rm=T), na.rm=TRUE);
-y.min = min(y.min, min(profile.df.full\$VALUE, na.rm=T), na.rm=TRUE);
+y.max = max(c(y.max, profile.df.full\$VALUE, profile.df.full\$MAX_ERR), na.rm=TRUE);
+y.min = min(c(y.min, profile.df.full\$VALUE, profile.df.full\$MIN_ERR), na.rm=TRUE);
 
 gp = ggplot(profile.df.full, aes(x=NAME, y=VALUE, fill=LEGEND, colour=LEGEND));
 
 gp = gp + geom_bar(stat=\"identity\", position=\"dodge\");
 
-gp = gp + scale_fill_manual(values=the.colors, breaks=profile.df.full\$LEGEND, name=NULL);
+
+if(expandColors) {
+  gp = gp + scale_fill_manual(values=rep($colorsStringNotNamed, length(profile.df.full\$NAME)/length($colorsStringNotNamed)), breaks=profile.df.full\$LEGEND, name=NULL);
+} else {
+  gp = gp + scale_fill_manual(values=$colorsStringNotNamed, breaks=profile.df.full\$LEGEND, name=NULL);
+}
+
 gp = gp + scale_colour_discrete(breaks=profile.df.full\$LEGEND, name=NULL);
+
+gp = gp + geom_errorbar(aes(ymin=MIN_ERR, ymax=MAX_ERR));
 
 if(is.compact) {
   gp = gp + theme_void() + theme(legend.position=\"none\");
@@ -256,6 +269,7 @@ if(is.compact) {
   if(length(the.colors) > 13) {
     gp = gp + guides(fill=guide_legend(ncol=2));
   }
+
 }
 
 if($horiz) {

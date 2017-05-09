@@ -83,7 +83,7 @@ sub init {
   my $cgh_profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@cgh_profileSetNames);
 
 
-  my $ratio = ApiCommonWebsite::View::GraphPackage::BarPlot::LogRatio->new(@_);
+  my $ratio = ApiCommonWebsite::View::GraphPackage::GGBarPlot::LogRatio->new(@_);
   $ratio->setProfileSets($cgh_profileSets);
   $ratio->setColors(\@cgh_colors);
   $ratio->setElementNameMarginSize (6);
@@ -114,7 +114,7 @@ sub defineGraphs {
 
 
    my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSetNames);
-   my $line = ApiCommonWebsite::View::GraphPackage::LinePlot::LogRatio->new(@_);
+   my $line = ApiCommonWebsite::View::GraphPackage::GGLinePlot::LogRatio->new(@_);
    $line->setProfileSets($profileSets);
    $line->setColors($color);
    $line->setPointsPch($pointsPch);
@@ -143,6 +143,11 @@ sub defineGraphs {
 #--------------------------------------------------------------------------------
 
 package ApiCommonWebsite::View::GraphPackage::Templates::ExpressionTwoChannel::DS_a8800cfd76;
+
+use Data::Dumper;
+
+# @Override
+sub useLegacy {return 1; }
 
 
 sub init {
@@ -257,9 +262,9 @@ sub defineGraphs {
    my $pctTitle = $percentile->getPlotTitle();
    $percentile->setPlotTitle("$name - $pctTitle");
 
-   my @fractions = ([$fraction, 'values', '', '', '', 'erythrocytic ring trophozoite stage', $scale],
-                    [$fraction, 'values', '', '', '', 'schizont stage', $scale],
-                    [$fraction, 'values', '', '', '', 'trophozoite stage', $scale],
+   my @fractions = ([$fraction, 'value', '', '', '', 'erythrocytic ring trophozoite stage', $scale],
+                    [$fraction, 'value', '', '', '', 'schizont stage', $scale],
+                    [$fraction, 'value', '', '', '', 'trophozoite stage', $scale],
                    );
 
    my $fractionSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@fractions);
@@ -287,7 +292,6 @@ sub defineGraphs {
 
 package ApiCommonWebsite::View::GraphPackage::Templates::ExpressionTwoChannel::DS_b7cf547d33;
 
-use Data::Dumper;
 
 sub init {
   my $self = shift;
@@ -303,7 +307,6 @@ sub init {
 
   my $clnClbProfileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([['Cln/Clb experiments','values']]);
 
-  print STDERR Dumper $clnClbProfileSets;
   my $clnClbPlot = ApiCommonWebsite::View::GraphPackage::BarPlot::LogRatio->new(@_);
   $clnClbPlot->setProfileSets($clnClbProfileSets);
   $clnClbPlot->setPartName('Cln_Clb');
@@ -311,22 +314,22 @@ sub init {
 
 
   my $pheromoneProfileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([['pheromone experiments','values']]);
-  my $pheromonePlot = ApiCommonWebsite::View::GraphPackage::LinePlot::LogRatio->new(@_);
+  my $pheromonePlot = ApiCommonWebsite::View::GraphPackage::GGLinePlot::LogRatio->new(@_);
   $pheromonePlot->setProfileSets($pheromoneProfileSets);
   $pheromonePlot->setPartName('pheromone');
 
   my $elutriationProfileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([['elutriation experiments','values']]);
-  my $elutriationPlot = ApiCommonWebsite::View::GraphPackage::LinePlot::LogRatio->new(@_);
+  my $elutriationPlot = ApiCommonWebsite::View::GraphPackage::GGLinePlot::LogRatio->new(@_);
   $elutriationPlot->setProfileSets($elutriationProfileSets);
   $elutriationPlot->setPartName('elutriation');
   
   my $cdc15ProfileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([['cdc15 experiments','values']]);
-  my $cdc15Plot = ApiCommonWebsite::View::GraphPackage::LinePlot::LogRatio->new(@_);
+  my $cdc15Plot = ApiCommonWebsite::View::GraphPackage::GGLinePlot::LogRatio->new(@_);
   $cdc15Plot->setProfileSets($cdc15ProfileSets);
   $cdc15Plot->setPartName('cdc15');
 
   my $cdc28ProfileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([['Cho et al','values']]);
-  my $cdc28Plot = ApiCommonWebsite::View::GraphPackage::LinePlot::LogRatio->new(@_);
+  my $cdc28Plot = ApiCommonWebsite::View::GraphPackage::GGLinePlot::LogRatio->new(@_);
   $cdc28Plot->setProfileSets($cdc28ProfileSets);
   $cdc28Plot->setPartName('cdc28');
 

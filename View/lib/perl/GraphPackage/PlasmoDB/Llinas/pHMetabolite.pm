@@ -5,7 +5,7 @@ use vars qw( @ISA);
 
 @ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet);
 use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
-use ApiCommonWebsite::View::GraphPackage::BarPlot;
+use ApiCommonWebsite::View::GraphPackage::GGBarPlot;
 use Data::Dumper;
 
 sub init {
@@ -60,7 +60,7 @@ sub init {
     
   my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSetNames);
 
-  my $massSpec = ApiCommonWebsite::View::GraphPackage::BarPlot::MassSpec->new(@_);
+  my $massSpec = ApiCommonWebsite::View::GraphPackage::GGBarPlot::MassSpec->new(@_);
   my $rAdjustString = <<'RADJUST';
     zeros = rep(0, nrow(profile.df));
     zeros_start = rep(c(0:5), time=3);
@@ -84,7 +84,7 @@ sub init {
     stderr.df = as.data.frame(matrix(nrow=nrow(profile.df), ncol=ncol(profile.df)));
     names(stderr.df) = names(profile.df);
 RADJUST
-  $massSpec->setAdjustProfile($rAdjustString);
+#  $massSpec->setAdjustProfile($rAdjustString);
   $massSpec->setProfileSets($profileSets);
   $massSpec->setColors($colors);
   $massSpec->setDefaultYMax(100);
