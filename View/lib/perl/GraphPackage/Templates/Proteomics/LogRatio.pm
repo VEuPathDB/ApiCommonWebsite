@@ -37,16 +37,16 @@ sub finalProfileAdjustments {
 
 1;
 
-package ApiCommonWebsite::View::GraphPackage::Templates::Proteomics::LogRatio::DS_8e133ba94b;
+#package ApiCommonWebsite::View::GraphPackage::Templates::Proteomics::LogRatio::DS_8e133ba94b;
 
-sub finalProfileAdjustments {
-  my ($self, $profile) = @_;
+#sub finalProfileAdjustments {
+#  my ($self, $profile) = @_;
 
-  my $legend = [''];
-  $profile->setSampleLabels($legend);
-}
+#  my $legend = [''];
+ # $profile->setSampleLabels($legend);
+#}
 
-1;
+#1;
 
 #--------------------------------------------------------------------------------
 
