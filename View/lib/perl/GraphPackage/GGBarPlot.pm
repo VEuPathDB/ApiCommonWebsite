@@ -264,7 +264,7 @@ if(is.compact) {
   gp = gp + labs(title=\"$plotTitle\", y=\"$yAxisLabel\", x=NULL);
   gp = gp + ylim(y.min, y.max);
   gp = gp + scale_x_discrete(label=abbreviate);
-  gp = gp + theme(axis.text.x  = element_text(angle=90,vjust=0.5, size=12));
+  gp = gp + theme(axis.text.x  = element_text(angle=90,vjust=0.5, size=12), plot.title = element_text(colour=\"#b30000\"));
 
   if(length(the.colors) > 13) {
     gp = gp + guides(fill=guide_legend(ncol=2));
