@@ -49,6 +49,8 @@ sub init {
    $Self->setDefaultPlotPart    ( $Args->{DefaultPlotPart           } );
 
    $Self->setVisibleParts         ( $Args->{VisibleParts        } );
+
+   $Self->setFacets         ( $Args->{Facets       } );
    $Self->setVisiblePartsAreFuzzy         ( $Args->{VisiblePartsAreFuzzy        } );
    $Self->setSecondaryId          ( $Args->{SecondaryId         } );
    $Self->setDatasetId              ( $Args->{DatasetId             } );
@@ -98,6 +100,9 @@ sub setScalingFactor           { $_[0]->{'ScalingFactor'               } = $_[1]
 
 sub getVisibleParts            { $_[0]->{'VisibleParts'                } }
 sub setVisibleParts            { $_[0]->{'VisibleParts'                } = $_[1]; $_[0] }
+
+sub getFacets            { $_[0]->{'Facets'                } }
+sub setFacets            { $_[0]->{'Facets'                } = $_[1]; $_[0] }
 
 sub getVisiblePartsAreFuzzy            { $_[0]->{'VisiblePartsAreFuzzy'                } }
 sub setVisiblePartsAreFuzzy            { $_[0]->{'VisiblePartsAreFuzzy'                } = $_[1]; $_[0] }
