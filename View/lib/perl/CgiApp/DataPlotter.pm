@@ -79,6 +79,9 @@ sub run {
 
          my $declareParts     = $Cgi->param('declareParts');
 
+         my $facet = $Cgi->param('facet');
+         my @facets   = split(',', $facet || '');
+
          my $default    = $Cgi->param('default');
 
          my $thumbnail_b    = $Cgi->param('thumb');
@@ -148,6 +151,7 @@ sub run {
                         WidthOverride => $widthOverride,
                         HeightOverride => $heightOverride,
                         VisiblePartsAreFuzzy => $visiblePartsAreFuzzy,
+                        Facets => \@facets,
                        });
          };
 
