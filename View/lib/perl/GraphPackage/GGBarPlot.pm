@@ -107,7 +107,7 @@ sub makeRPlotString {
     $isCompactString = "TRUE";
   }
 
-  my $isStack = $self->getIsStacked();
+  my $isStack = $self->getIsStacked() ? 'TRUE' : 'FALSE';
   my $isHorizontal = $self->getIsHorizontal();
 
   my $horizontalXAxisLabels = $self->getForceHorizontalXAxis();
@@ -123,7 +123,6 @@ sub makeRPlotString {
 
   $yAxisFoldInductionFromM = $yAxisFoldInductionFromM ? 'TRUE' : 'FALSE';
 
-  my $beside = $isStack ? 'FALSE' : 'TRUE';
   my $horiz = $isHorizontal && !$self->isCompact() ? 'TRUE' : 'FALSE';
 
   my $titleLine = $self->getTitleLine();
@@ -195,6 +194,8 @@ for(ii in 1:length(profile.files)) {
       skip.stderr = TRUE;
     }
 
+    profile.df\$PROFILE_FILE = profile.files[ii];
+
     if(length(profile.files) > 1) {
       profile.df\$LEGEND = legend.label[ii];
     }
@@ -245,8 +246,12 @@ y.min = min(c(y.min, profile.df.full\$VALUE, profile.df.full\$MIN_ERR), na.rm=TR
 
 gp = ggplot(profile.df.full, aes(x=NAME, y=VALUE, fill=LEGEND, colour=LEGEND));
 
-gp = gp + geom_bar(stat=\"identity\", position=\"dodge\");
 
+if($isStack) {
+  gp = gp + geom_bar(stat=\"identity\", position=\"stack\");
+} else {
+  gp = gp + geom_bar(stat=\"identity\", position=\"dodge\");
+}
 
 if(expandColors) {
   gp = gp + scale_fill_manual(values=rep($colorsStringNotNamed, length(profile.df.full\$NAME)/length($colorsStringNotNamed)), breaks=profile.df.full\$LEGEND, name=NULL);
