@@ -739,12 +739,10 @@ sub finalProfileAdjustments {
   my $colors = $profile->getColors();
   my @elementNames = ("WT:Stressed","WT:Unstressed","KO:Stressed","KO:Unstressed");
 
-  my $legendLabels = ["Wild Type", "GCN5-A Knockout", ];
-  $profile->setLegendColors(["#D87093","#87CEEB"]);
+  my $legendLabels = ["Wild Type","Wild Type", "GCN5-A Knockout","GCN5-A Knockout" ];
+  $profile->setColors(["#D87093","#87CEEB"]);
 
   $profile->setSampleLabels(\@elementNames);
-  $profile->setColors([$colors->[0], $colors->[0],$colors->[1], $colors->[1]]);
-  $profile->setHasExtraLegend(1);
 
   $profile->setLegendLabels($legendLabels);
 }
