@@ -248,9 +248,9 @@ gp = ggplot(profile.df.full, aes(x=NAME, y=VALUE, fill=LEGEND, colour=LEGEND));
 
 
 if($isStack) {
-  gp = gp + geom_bar(stat=\"identity\", position=\"stack\");
+  gp = gp + geom_bar(stat=\"identity\", position=\"stack\", size=1.2);
 } else {
-  gp = gp + geom_bar(stat=\"identity\", position=\"dodge\");
+  gp = gp + geom_bar(stat=\"identity\", position=\"dodge\", size=1.2);
 }
 
 if(expandColors) {
