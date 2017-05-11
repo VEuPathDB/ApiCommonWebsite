@@ -753,6 +753,9 @@ sub finalProfileAdjustments {
 
 package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_2daab8c933;
 # LAST RESORT IS TO OVERRIDE THE INIT METHOD
+
+
+
 sub init {
   my $self = shift;
 
@@ -778,14 +781,14 @@ sub init {
   my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArray);
   my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@percentileArray);
 
-  my $rma = ApiCommonWebsite::View::GraphPackage::BarPlot::RMA->new(@_);
+  my $rma = ApiCommonWebsite::View::GraphPackage::GGBarPlot::RMA->new(@_);
   $rma->setProfileSets($profileSets);
   $rma->setColors($colors);
   $rma->setForceHorizontalXAxis(1);
   $rma->setHasExtraLegend(1); 
   $rma->setLegendLabels($legend);
 
-  my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
+  my $percentile = ApiCommonWebsite::View::GraphPackage::GGBarPlot::Percentile->new(@_);
   $percentile->setProfileSets($percentileSets);
   $percentile->setColors($colors);
   $percentile->setForceHorizontalXAxis(1);
