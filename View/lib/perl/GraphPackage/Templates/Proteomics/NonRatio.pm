@@ -33,7 +33,14 @@ sub setMainLegend {
 1;
 
 # for ToxoDB
+
+
 package ApiCommonWebsite::View::GraphPackage::Templates::Proteomics::NonRatio::DS_3c48f52edb;
+
+sub getRemainderRegex {
+  return qr/T\. ?gondii ?(.+) timecourse/;
+}
+
 sub finalProfileAdjustments {
   my ($self, $profile) = @_;
 
@@ -42,6 +49,7 @@ sub finalProfileAdjustments {
   my @legendLabels = map {s/Quantitative protein expression of Tgondii proteins in infection of human cells - //;$_} @{$profile->getLegendLabels()};
 
   $profile->setLegendLabels(\@legendLabels);
+
   return $self;
 }
 1;
