@@ -946,6 +946,9 @@ sub isExcludedProfileSet {
 
 
 package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_c1a3dbb014;
+
+sub useLegacy {return 1;}
+
 # LAST RESORT IS TO OVERRIDE THE INIT METHOD
 sub init {
   my $self = shift;
@@ -976,7 +979,7 @@ text(13.3, y.max + (y.max - y.min)*0.22, 'C');
 ";
 
   my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSet);
-  my $rma =  ApiCommonWebsite::View::GraphPackage::GGLinePlot::LogRatio->new(@_);
+  my $rma =  ApiCommonWebsite::View::GraphPackage::LinePlot::LogRatio->new(@_);
   $rma->setProfileSets($profileSets);
   $rma->setPartName('rma');
   $rma->setColors($colors);
@@ -992,7 +995,7 @@ text(13.3, y.max + (y.max - y.min)*0.22, 'C');
   $rma->setPlotTitle("RMA Expression Value - $id");
 
   my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@percentileSet);
-  my $percentile =  ApiCommonWebsite::View::GraphPackage::GGLinePlot->new(@_);
+  my $percentile =  ApiCommonWebsite::View::GraphPackage::LinePlot->new(@_);
   $percentile->setProfileSets($percentileSets);
   $percentile->setPartName('percentile');
   $percentile->setColors($colors);
