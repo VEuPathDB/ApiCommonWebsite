@@ -803,16 +803,18 @@ sub init {
 
 
 package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_2750122e82;
+
 sub finalProfileAdjustments {
-
   my ($self, $profile) = @_;
-  my $legend = ['oocyst', 'tachyzoite', 'bradyzoite'];
-  $profile->setLegendColors(["#D87093","#E9967A","#87CEEB"]);
 
-  $profile->setHasExtraLegend(1);
+  my $legend = ['oocyst','oocyst','oocyst', 'tachyzoite','bradyzoite','bradyzoite','bradyzoite'];
+
+  $profile->setColors(["#D87093","#E9967A","#87CEEB"]);
   $profile->setLegendLabels($legend);
+
   return $self;
 }
+
 1;
 
 
