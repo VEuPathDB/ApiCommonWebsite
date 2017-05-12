@@ -41,7 +41,7 @@ shinyServer(function(input, output, session) {
         sep = "\t",
         col.names = c("SampleName", "Source", "Property", "Value", "Type", "Filter", "EmptyColumn"),
         colClasses = c("character", "character", "character", "character", "character", "character", "character")
-      ) 
+      )
     
     df_sample.formatted <<- dcast(data = df_sample,formula = SampleName~Property, value.var = "Value")
     
@@ -98,11 +98,16 @@ shinyServer(function(input, output, session) {
           )+geom_point(size = 4, alpha= 0.5)+coord_fixed()
         }else{
           rich <- estimate_richness(physeqobj, measures = input$measureCheckBox)
-          rich$SampleName <- rownames(rich)
+          rich$SampleName <- gsub("\\.", "\\-", rownames(rich))
+          
           data_melted<-melt(rich, id.vars = c("SampleName"),  measure.vars=input$measureCheckBox)
           abundance_otu <<- data_melted
           chart<-ggplot(data_melted, aes(variable, value))+geom_boxplot()+
             facet_wrap(~ variable, scales="free")+
+            theme(
+              axis.text.x=element_blank(),
+              axis.ticks.x = element_blank()
+            )+
             labs(x="All Samples", y="Alpha Diversity Measure")
           
         }
@@ -113,11 +118,12 @@ shinyServer(function(input, output, session) {
             geom_point(size = 4, alpha= 0.5) 
         }else{
           category<-hash_sample_names[[hash_count_samples[[input$category]]]]
+          
           rich <- estimate_richness(physeqobj, measures = input$measureCheckBox)
+          rich$SampleName <- gsub("\\.", "\\-", rownames(rich))
           
           df_sample_selected <- df_sample.formatted[,c("SampleName", category)]
-          
-          richness_merged <- cbind(df_sample_selected, rich)
+          richness_merged <- merge(df_sample_selected, rich, by.x = "SampleName", by.y = "SampleName")
           
           data_melted<-melt(richness_merged, id.vars = c("SampleName", category),  measure.vars=input$measureCheckBox)
           
@@ -309,4 +315,6 @@ shinyServer(function(input, output, session) {
                                             )
     )
   })
-})
+  shinyjs::hide(id = "loading-content", anim = TRUE, animType = "fade")
+  shinyjs::show("app-content")
+}) # end shinyServer
