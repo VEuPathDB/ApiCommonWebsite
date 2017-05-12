@@ -38,9 +38,11 @@ sub setLas                      { $_[0]->{'_las'                             } =
 sub getSkipStdErr                 { $_[0]->{'_skip_std_err'                      }}
 sub setSkipStdErr                 { $_[0]->{'_skip_std_err'                      } = $_[1]}
 
-sub getThumbnail               { $_[0]->{'Thumbnail'                   } }
-sub setThumbnail               { $_[0]->{'Thumbnail'                   } = $_[1]; $_[0] }
 
+sub blankPlotPart {
+  my ($self) = @_;
+  $self->blankGGPlotPart(@_);
+}
 #--------------------------------------------------------------------------------
 
 sub new {
@@ -76,9 +78,6 @@ sub makeRPlotString {
   }
 
   foreach(@{$self->getProfileSets()}) {
-
-
-
     if(scalar @{$_->errors()} > 0) {
       return $blankGraph;
 

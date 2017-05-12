@@ -60,6 +60,11 @@ sub setForceConnectPoints              { $_[0]->{'_force_connect_points'        
 
 
 
+sub blankPlotPart {
+  my ($self) = @_;
+  $self->blankGGPlotPart(@_);
+}
+
 #--------------------------------------------------------------------------------
 
 sub new {
