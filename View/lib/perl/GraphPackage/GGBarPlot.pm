@@ -279,7 +279,7 @@ if($isStack) {
 }
 
 if(expandColors) {
- # gp = gp + scale_fill_manual(values=rep($colorsStringNotNamed, length(profile.df.full\$NAME)/length($colorsStringNotNamed)), breaks=profile.df.full\$LEGEND, name=NULL);
+  gp = gp + scale_fill_manual(values=rep($colorsStringNotNamed, length(profile.df.full\$NAME)/length($colorsStringNotNamed)), breaks=profile.df.full\$LEGEND, name=NULL);
 } else {
   gp = gp + scale_fill_manual(values=$colorsStringNotNamed, breaks=profile.df.full\$LEGEND, name=NULL);
 }
