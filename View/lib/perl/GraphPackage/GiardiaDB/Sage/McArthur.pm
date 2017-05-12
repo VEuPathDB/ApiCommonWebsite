@@ -5,7 +5,7 @@ use vars qw( @ISA );
 
 @ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet );
 use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
-use ApiCommonWebsite::View::GraphPackage::BarPlot;
+use ApiCommonWebsite::View::GraphPackage::GGBarPlot;
 
 use ApiCommonWebsite::View::GraphPackage::Util;
 use Data::Dumper;
@@ -24,7 +24,7 @@ sub init {
 
   my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSetsArray);
 
-  my $percents = ApiCommonWebsite::View::GraphPackage::BarPlot::SageTag->new(@_);
+  my $percents = ApiCommonWebsite::View::GraphPackage::GGBarPlot::SageTag->new(@_);
   $percents->setProfileSets($profileSets);
   $percents->setColors(\@legendColors);
   $percents->setElementNameMarginSize(8.5);
