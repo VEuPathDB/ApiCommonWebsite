@@ -10,12 +10,26 @@ sub finalProfileAdjustments {
   my ($self, $profile) = @_;
   my $plotPart = $profile->getPartName();
   if ($plotPart =~/percentile/) {
-    $profile->setHasExtraLegend(1); 
-    $profile->setLegendLabels(['channel 1', 'channel 2']);
-    $profile->setColors(['LightSlateGray', 'DarkSlateGray']);
+    my $profileSets = $profile->getProfileSets();
+
+    if(scalar @$profileSets > 2) {
+      $profile->setFacets(["PROFILE_TYPE"]);
+    }
+    else {
+      $profile->setHasExtraLegend(1); 
+      $profile->setLegendLabels(['channel 1', 'channel 2']);
+      $profile->setColors(['LightSlateGray', 'DarkSlateGray']);
+    }
+    
   }
 }
 1;
+
+package ApiCommonWebsite::View::GraphPackage::Templates::ExpressionTwoChannel::DS_88b717761e;
+
+
+1;
+
 
 package ApiCommonWebsite::View::GraphPackage::Templates::ExpressionTwoChannel::DS_84d52f99c7;
 

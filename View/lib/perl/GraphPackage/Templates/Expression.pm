@@ -227,6 +227,9 @@ sub makeAndSetPlots {
     $profile->setPlotTitle("$key - " . $profile->getId() );
 
     my @legendNames = map { $self->getRemainderNameFromProfileSetName($_->[0]) } @profileSetsArray;
+    my @profileTypes = map { $_->[1] } @profileSetsArray;
+
+    $profile->setProfileTypes(\@profileTypes);
 
     # omit the legend when there is just one profile, and it is not a RNASeq dataset
     if  ($#legendNames) {

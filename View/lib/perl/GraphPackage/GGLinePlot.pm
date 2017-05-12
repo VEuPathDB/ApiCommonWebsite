@@ -191,6 +191,20 @@ sub makeRPlotString {
 
   my $bottomMargin = $self->getElementNameMarginSize();
 
+  my $profileTypesString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray($profileTypes, 'profile.types');
+
+  my $facets = $self->getFacets();
+  my $facetString = "DUMMY";
+  my $hasFacets = "FALSE";
+  if($facets && scalar @$facets == 1) {
+    $facetString = ". ~ " . $facets->[0];
+    $hasFacets = "TRUE";
+  }
+  if($facets && scalar @$facets == 2) {
+    $facetString = $facets->[0] . " ~  " . $facets->[1];
+    $hasFacets = "TRUE";
+  }
+
   my $hasExtraLegend = $self->getHasExtraLegend() ? 'TRUE' : 'FALSE';
   my $extraLegendSize = $self->getExtraLegendSize();
 
@@ -218,6 +232,7 @@ $sampleLabelsString
 $stderrFiles
 $legendLabelsString
 $skipProfilesString
+$profileTypesString
 
 is.compact=$isCompactString;
 
@@ -261,6 +276,7 @@ for(ii in 1:length(profile.files)) {
 
     profile.df\$LEGEND = legend.label[ii];
     profile.df\$PROFILE_FILE = profile.files[ii];
+    profile.df\$PROFILE_TYPE = profile.types[ii];
   }
 
   element.names.df = read.table(element.names.files[ii], header=T, sep=\"\\t\");
@@ -324,6 +340,10 @@ if(is.compact) {
   gp = gp + labs(title=\"$plotTitle\", y=\"$yAxisLabel\", x=\"$xAxisLabel\");
   gp = gp + ylim(y.min, y.max);
   gp = gp + theme(plot.title = element_text(colour=\"#b30000\"))
+}
+
+if($hasFacets) {
+  gp = gp + facet_grid($facetString);
 }
 
 
