@@ -288,9 +288,9 @@ gp = gp + scale_colour_discrete(breaks=profile.df.full\$LEGEND, name=NULL);
 
 gp = gp + geom_errorbar(aes(ymin=MIN_ERR, ymax=MAX_ERR), colour=\"black\", width=.1);
 
-if(is.compact){
+if(is.compact) {
   gp = gp + theme_void() + theme(legend.position=\"none\");
-} elsif(is.thumbnail) {
+} else if(is.thumbnail) {
   gp = gp + labs(title=\"$plotTitle\", y=\"$yAxisLabel\", x=NULL);
   gp = gp + ylim(y.min, y.max);
   gp = gp + scale_x_discrete(label=abbreviate);
