@@ -1,0 +1,21 @@
+{  "contextParamValues": {
+     "organism": "Plasmodium falciparum 3D7"
+  },
+  "stableValue": {
+   "filters" : [
+    {
+      "value": {
+        "min": "7",
+        "max": "20"
+      },
+      "field": "age"
+    },
+    {
+      "value": [
+        "green"
+      ],
+      "field": "hair_color"
+    }
+  ]
+  }
+}
