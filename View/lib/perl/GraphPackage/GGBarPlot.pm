@@ -136,6 +136,22 @@ sub makeRPlotString {
   my $legendLabels = $self->getLegendLabels();
 
   my ($legendLabelsString, $legendColors, $legendColorsString);
+
+  my $profileTypes = $self->getProfileTypes();
+  my $profileTypesString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray($profileTypes, 'profile.types');
+
+  my $facets = $self->getFacets();
+  my $facetString = ". ~ DUMMY";
+  my $hasFacets = "FALSE";
+  if($facets && scalar @$facets == 1) {
+    $facetString = ". ~ " . $facets->[0];
+    $hasFacets = "TRUE";
+  }
+  if($facets && scalar @$facets == 2) {
+    $facetString = $facets->[0] . " ~  " . $facets->[1];
+    $hasFacets = "TRUE";
+  }
+
   if ($hasExtraLegend ) {
       $legendLabelsString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray($legendLabels, 'legend.label');
 
@@ -150,9 +166,6 @@ sub makeRPlotString {
 
   my $axisPadding = $self->getAxisPadding();
 
-  print STDERR Dumper $profileFiles;
-  print STDERR Dumper $elementNamesFiles;
-
   my $rv = "
 # ---------------------------- BAR PLOT ----------------------------
 
@@ -163,6 +176,7 @@ $colorsString
 $sampleLabelsString
 $legendLabelsString
 $legendColorsString
+$profileTypesString
 
 is.compact=$isCompactString;
 
@@ -195,6 +209,7 @@ for(ii in 1:length(profile.files)) {
     }
 
     profile.df\$PROFILE_FILE = profile.files[ii];
+    profile.df\$PROFILE_TYPE = profile.types[ii];
 
     if(length(profile.files) > 1) {
       profile.df\$LEGEND = legend.label[ii];
@@ -283,6 +298,11 @@ if($horiz) {
 
 
 gp = gp + geom_hline(yintercept = 0, colour=\"grey\")
+
+
+if($hasFacets) {
+  gp = gp + facet_grid($facetString);
+}
 
 
 plotlist[[plotlist.i]] = gp;

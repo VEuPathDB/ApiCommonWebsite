@@ -91,6 +91,9 @@ sub setIsCompact                 { $_[0]->{'_is_compact'                    } = 
 sub getLegendLabels              { $_[0]->{'_legend_labels'                 }}
 sub setLegendLabels              { $_[0]->{'_legend_labels'                 } = $_[1]}
 
+sub getProfileTypes              { $_[0]->{'_profile_types'                 }}
+sub setProfileTypes              { $_[0]->{'_profile_types'                 } = $_[1]}
+
 
 
 #----------------------------------------------------------------------------------------------
