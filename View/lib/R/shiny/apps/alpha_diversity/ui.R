@@ -1,7 +1,33 @@
 library(shiny)
+library(shinyjs)
+
+appCSS <- "
+#loading-content {
+position: absolute;
+background: #FFFFFF;
+opacity: 0.9;
+z-index: 100;
+left: 0;
+right: 0;
+height: 100%;
+text-align: center;
+color: #858585;
+}
+"
 
 shinyUI(
 	fluidPage(
+	  useShinyjs(),
+	  inlineCSS(appCSS),
+	  # Loading message
+	  div(id = "loading-content",
+	      h5("We are preparing the graphical representation..."),
+	      img(src = "loading.gif")
+	  ),
+	  # The main app code goes here
+	  hidden(
+	    div(
+	      id = "app-content",
 	  fluidRow(
 	    column(5, 
 	           checkboxGroupInput("measureCheckBox", label="Measure(s):",
@@ -10,7 +36,7 @@ shinyUI(
 	                                          "Shannon" = "Shannon",
 	                                          "Simpson" = "Simpson",
 	                                          "Fisher" = "Fisher"),
-	                              selected = c("Chao1", "Shannon"), inline=T),
+	                              selected = c("Shannon", "Simpson"), inline=T),
 	           div(style = "display: none;",
 	               checkboxInput("taxa_are_rows", label = "", value = T) )
 	    ),
@@ -42,5 +68,7 @@ shinyUI(
 	           dataTableOutput("sample_subset")
 	    )
 	  )
-	)
+	    ) # end div id = "app-content",
+	  ) # end hidden
+	) # end fluidPage
 ) # end shinyUI
