@@ -38,6 +38,9 @@ sub setLas                      { $_[0]->{'_las'                             } =
 sub getSkipStdErr                 { $_[0]->{'_skip_std_err'                      }}
 sub setSkipStdErr                 { $_[0]->{'_skip_std_err'                      } = $_[1]}
 
+sub getThumbnail               { $_[0]->{'Thumbnail'                   } }
+sub setThumbnail               { $_[0]->{'Thumbnail'                   } = $_[1]; $_[0] }
+
 #--------------------------------------------------------------------------------
 
 sub new {
@@ -100,6 +103,12 @@ sub makeRPlotString {
   my $las = $self->getLas();
   my $lasString = defined($las) ? 'TRUE' : 'FALSE';
   $las = defined($las) ? $las : 'NULL';
+
+  my $isThumbnail = "FALSE";
+
+  if($self->getThumbnail()) {
+    $isThumbnail = "TRUE";
+  }
 
   my $isCompactString = "FALSE";
 
@@ -179,6 +188,7 @@ $legendColorsString
 $profileTypesString
 
 is.compact=$isCompactString;
+is.thumbnail=$isThumbnail;
 
 #-------------------------------------------------------------------
 
@@ -269,7 +279,7 @@ if($isStack) {
 }
 
 if(expandColors) {
-  gp = gp + scale_fill_manual(values=rep($colorsStringNotNamed, length(profile.df.full\$NAME)/length($colorsStringNotNamed)), breaks=profile.df.full\$LEGEND, name=NULL);
+ # gp = gp + scale_fill_manual(values=rep($colorsStringNotNamed, length(profile.df.full\$NAME)/length($colorsStringNotNamed)), breaks=profile.df.full\$LEGEND, name=NULL);
 } else {
   gp = gp + scale_fill_manual(values=$colorsStringNotNamed, breaks=profile.df.full\$LEGEND, name=NULL);
 }
@@ -278,8 +288,14 @@ gp = gp + scale_colour_discrete(breaks=profile.df.full\$LEGEND, name=NULL);
 
 gp = gp + geom_errorbar(aes(ymin=MIN_ERR, ymax=MAX_ERR), colour=\"black\", width=.1);
 
-if(is.compact) {
+if(is.compact){
   gp = gp + theme_void() + theme(legend.position=\"none\");
+} elsif(is.thumbnail) {
+  gp = gp + labs(title=\"$plotTitle\", y=\"$yAxisLabel\", x=NULL);
+  gp = gp + ylim(y.min, y.max);
+  gp = gp + scale_x_discrete(label=abbreviate);
+  gp = gp + theme(axis.text.x  = element_text(angle=90,vjust=0.5, size=9), plot.title = element_text(colour=\"#b30000\"));
+  gp = gp + theme(legend.position=\"none\");
 } else {
   gp = gp + labs(title=\"$plotTitle\", y=\"$yAxisLabel\", x=NULL);
   gp = gp + ylim(y.min, y.max);
