@@ -191,6 +191,7 @@ sub makeRPlotString {
 
   my $bottomMargin = $self->getElementNameMarginSize();
 
+  my $profileTypes = $self->getProfileTypes();
   my $profileTypesString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray($profileTypes, 'profile.types');
 
   my $facets = $self->getFacets();
