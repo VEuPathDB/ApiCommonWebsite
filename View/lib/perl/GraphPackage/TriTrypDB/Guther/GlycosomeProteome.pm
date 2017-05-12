@@ -5,7 +5,7 @@ use vars qw( @ISA );
 
 @ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet);
 use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
-use ApiCommonWebsite::View::GraphPackage::BarPlot;
+use ApiCommonWebsite::View::GraphPackage::GGBarPlot;
 
 sub init {
   my $self = shift;
@@ -47,7 +47,7 @@ AND ga.gene_source_id = '$geneId'
   my @profileSetsArray = (['Procyclic stage glycosome proteome', 'values', ]);
   my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSetsArray);
 
-  my $quant = ApiCommonWebsite::View::GraphPackage::BarPlot::QuantMassSpec->new(@_);
+  my $quant = ApiCommonWebsite::View::GraphPackage::GGBarPlot::QuantMassSpec->new(@_);
   $quant->setProfileSets($profileSets);
   $quant->setColors( $colors{$colorNum});
   $quant->setForceHorizontalXAxis(0);
