@@ -345,7 +345,7 @@ if(is.null(profile.df.full\$LEGEND)) {
 
 if(is.compact) {
   gp = gp + theme_void() + theme(legend.position=\"none\");
-}if(is.thumbnail) {
+} else if(is.thumbnail) {
   gp = gp + labs(title=\"$plotTitle\", y=\"$yAxisLabel\", x=NULL);
   gp = gp + ylim(y.min, y.max);
   gp = gp + scale_x_discrete(label=abbreviate);
