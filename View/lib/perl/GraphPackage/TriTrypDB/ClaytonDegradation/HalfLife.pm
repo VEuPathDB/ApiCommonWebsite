@@ -6,7 +6,7 @@ use vars qw( @ISA );
 @ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet );
 use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
 use ApiCommonWebsite::View::GraphPackage::LinePlot;
-use ApiCommonWebsite::View::GraphPackage::BarPlot;
+use ApiCommonWebsite::View::GraphPackage::GGBarPlot;
 
 use ApiCommonWebsite::View::GraphPackage::Util;
 
@@ -22,7 +22,7 @@ sub init {
 
   my $id = $self->getId();
 
-  my $halfLife = ApiCommonWebsite::View::GraphPackage::BarPlot->new(@_);
+  my $halfLife = ApiCommonWebsite::View::GraphPackage::GGBarPlot->new(@_);
   $halfLife->setProfileSets([$halfLifeSets->[0]]);
   $halfLife->setYaxisLabel('Half-life (mins)');
   $halfLife->setColors([$colors->[0],$colors->[1]]);
