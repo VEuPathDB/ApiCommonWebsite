@@ -52,13 +52,8 @@ sub setSplineDF                  { $_[0]->{'_spline_degrees_of_freedom'     } = 
 sub getHasMetaData              { $_[0]->{'_has_meta_data'                 }}
 sub setHasMetaData              { $_[0]->{'_has_meta_data'                 } = $_[1]}
 
-sub getThumbnail               { $_[0]->{'Thumbnail'                   } }
-sub setThumbnail               { $_[0]->{'Thumbnail'                   } = $_[1]; $_[0] }
-
 sub getForceConnectPoints              { $_[0]->{'_force_connect_points'                 }}
 sub setForceConnectPoints              { $_[0]->{'_force_connect_points'                 } = $_[1]}
-
-
 
 sub blankPlotPart {
   my ($self) = @_;
