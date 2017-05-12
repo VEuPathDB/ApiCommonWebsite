@@ -40,6 +40,14 @@ STEP SVC
 
 curl -i -X POST -H "Content-Type: application/json"  http://sfischer.plasmodb.org/plasmo.sfischer/service/step -d @$PROJECT_HOME/ApiCommonWebsite/Service/test/stepRequest_Transcripts.json 
 
+Filter param test
+
+curl  -H "Content-Type: application/json"  http://sfischer.plasmodb.org/plasmo.sfischer/service/question/SnpQuestions.NgsSnpByFilterParamTest
+
+curl  -H "Content-Type: application/json"  http://sfischer.plasmodb.org/plasmo.sfischer/service/question/SnpQuestions.NgsSnpByFilterParamTest/filterParamTest/internalValue -d @$PROJECT_HOME/ApiCommonWebsite/Service/test/filterTestInternalValueRequest.json
+
+
+
 
 QUESTION SVC
 curl  -H "Content-Type: application/json"  http://sfischer.toxodb.org/toxo.sfischer/service/question
@@ -60,3 +68,10 @@ curl  -i -X POST -H "Content-Type: application/json" http://sfischer.plasmodb.or
 
 ONTOLOGY SVC
 curl  -H "Content-Type: application/json"  http://sfischer.plasmodb.org/plasmo.sfischer/service/ontology
+
+QUESTION SVC - NEW FILTER PARAM
+
+curl  -H "Content-Type: application/json"  http://sfischer.plasmodb.org/plasmo.sfischer/service/question/SnpQuestions.NgsSnpByFilterParamTest/filterParamTest/internalValue -d @$PROJECT_HOME/ApiCommonWebsite/Service/test/filterTestInternalValueRequest.json
+
+curl  -G -H "Content-Type: application/json"  http://sfischer.plasmodb.org/plasmo.sfischer/service/question/SnpQuestions.NgsSnpByFilterParamTest?expandParams=true
+
