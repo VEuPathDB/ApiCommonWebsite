@@ -201,6 +201,32 @@ DummyR
 
 }
 
+sub blankGGPlotPart {
+my ($self)= @_;
+my $plotTitle = $self->getPlotTitle();
+
+my $text = "None";
+
+if($self->isCompact()) {
+  $text = $self->getId();
+}
+
+return <<DummyR
+
+d=data.frame(VALUE=0.5, LABEL="None")
+
+gp = ggplot() + geom_blank() + geom_text(data=d, mapping=aes(x=VALUE, y=VALUE, label=LABEL), size=10) + theme_void() + theme(legend.position=\"none\");
+
+plotlist[[plotlist.i]] = gp;
+plotlist.i = plotlist.i + 1;
+
+
+
+DummyR
+
+}
+
+
 
 
 1;
