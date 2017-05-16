@@ -8,6 +8,7 @@ import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.jspwrap.StepBean;
 import org.gusdb.wdk.model.user.Step;
 import org.gusdb.wdk.model.user.User;
+import org.gusdb.wdk.model.user.UserPreferences;
 
 public class TranscriptViewHandler extends AbstractTranscriptViewHandler {
 
@@ -16,7 +17,7 @@ public class TranscriptViewHandler extends AbstractTranscriptViewHandler {
   @Override
   protected String getUserPreferenceSuffix() {
     // this view uses the default preference suffix (i.e. the empty string)
-    return User.DEFAULT_SUMMARY_VIEW_PREF_SUFFIX;
+    return UserPreferences.DEFAULT_SUMMARY_VIEW_PREF_SUFFIX;
   }
 
   @Override

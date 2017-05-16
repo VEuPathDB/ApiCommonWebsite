@@ -6,7 +6,7 @@ import java.util.Date;
 public class UserFile {
     
     private String userUID;
-    private int userFileId;
+    private long userFileId;
     private String fileName;
     private byte[] fileData;
     private long fileSize;
@@ -24,10 +24,10 @@ public class UserFile {
         this.userUID = userUID;
     }
 
-    public int getUserFileId() {
+    public long getUserFileId() {
         return userFileId;
     }
-    public void setUserFileId(int userFileId) {
+    public void setUserFileId(long userFileId) {
         this.userFileId = userFileId;
     }
     

@@ -19,6 +19,7 @@ import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.report.StandardConfig;
 import org.gusdb.wdk.model.report.StandardConfig.StreamStrategy;
+import org.gusdb.wdk.model.user.GuestUser;
 import org.gusdb.wdk.service.request.exception.DataValidationException;
 import org.gusdb.wdk.service.service.AnswerService;
 import org.json.JSONException;
@@ -39,7 +40,7 @@ public class ReporterStreamingTest {
       String baseJsonStr = new JSONObject(IoUtil.readAllChars(inputFile)).toString();
       log("Creating answer service");
       AnswerService answerService = new AnswerService();
-      answerService.testSetup(wdkModel, wdkModel.getUserFactory().createGuestUser());
+      answerService.testSetup(wdkModel, new GuestUser(wdkModel));
       Path tmpFileDir = IoUtil.createOpenPermsTempDir("wdk_stream_test_");
       TwoTuple<String,Path> pagedAnswerResults = timeResponse(answerService, baseJsonStr, StreamStrategy.PAGED_ANSWER, tmpFileDir);
       TwoTuple<String,Path> fileBasedResults = timeResponse(answerService, baseJsonStr, StreamStrategy.FILE_BASED, tmpFileDir);

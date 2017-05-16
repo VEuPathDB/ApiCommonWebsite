@@ -129,14 +129,14 @@ public class UserFileFactory implements Manageable<UserFileFactory> {
     PreparedStatement ps = null;
     try {
       DataSource dataSource = _database.getDataSource();
-      int userFileId = _platform.getNextId(dataSource, userFileSchema, "UserFile");
+      long userFileId = _platform.getNextId(dataSource, userFileSchema, "UserFile");
 
       ps = SqlUtils.getPreparedStatement(dataSource, "INSERT INTO " + userFileSchema + "userfile (" +
           "userFileId, filename, " + "checksum, uploadTime, " + "ownerUserId, title, notes, " +
           "projectName, projectVersion, " + "email, format, filesize)" + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
       long currentMillis = System.currentTimeMillis();
 
-      ps.setInt(1, userFileId);
+      ps.setLong(1, userFileId);
       ps.setString(2, userFile.getFileName());
       ps.setString(3, userFile.getChecksum());
       ps.setTimestamp(4, new Timestamp(currentMillis));

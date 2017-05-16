@@ -54,7 +54,7 @@ public class PhenotypeAction extends CommentAction {
         PhenotypeForm cuForm = (PhenotypeForm) form;
 
         String email = user.getEmail().trim().toLowerCase();
-        int userId = user.getUserId();
+        long userId = user.getUserId();
         String projectName = wdkModel.getDisplayName();
         String projectVersion = wdkModel.getVersion();
         String stableId = cuForm.getStableId();
@@ -157,7 +157,7 @@ public class PhenotypeAction extends CommentAction {
 
             UserFileFactoryManager.getUserFileFactory(getServlet().getServletContext()).addUserFile(userFile);
 
-            int fileId = userFile.getUserFileId();
+            long fileId = userFile.getUserFileId();
             String fileStr = fileId + "|" + fileName + "|" + notes;
 
             files.add(fileStr);
@@ -174,7 +174,7 @@ public class PhenotypeAction extends CommentAction {
         CommentFactoryManager.getCommentFactory(context).addComment(comment);
 
         String projectId = getServlet().getServletContext().getInitParameter(Utilities.ARGUMENT_PROJECT_ID);
-        int commentId = comment.getCommentId();
+        long commentId = comment.getCommentId();
         String link = host + "/showComment.do?projectId=" + projectId + "&stableId=" + stableId + "&commentTargetId=" + commentTarget + "#" + commentId; 
 
         Comment c = CommentFactoryManager.getCommentFactory(context).getComment(commentId);

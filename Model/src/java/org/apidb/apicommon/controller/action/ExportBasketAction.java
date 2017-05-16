@@ -74,7 +74,7 @@ public class ExportBasketAction extends Action {
     }
 
     private int exportBasket(WdkModel wdkModel, User user,
-            String targetProject, String rcName) throws SQLException, WdkModelException {
+            String targetProject, String rcName) throws SQLException {
         String schema = wdkModel.getModelConfig().getUserDB().getUserSchema();
         String table = schema + BasketFactory.TABLE_BASKET;
         String userColumn = BasketFactory.COLUMN_USER_ID;
@@ -83,7 +83,7 @@ public class ExportBasketAction extends Action {
         String prefix = Utilities.COLUMN_PK_PREFIX;
         String pkColumns = prefix + "1, " + prefix + "2, " + prefix + "3 ";
         String projectId = wdkModel.getProjectId();
-        int userId = user.getUserId();
+        long userId = user.getUserId();
 
         String selectClause = "SELECT " + userColumn + ", " + rcColumn + ", "
                 + pkColumns + " FROM " + table + " WHERE " + userColumn
@@ -111,12 +111,12 @@ public class ExportBasketAction extends Action {
             psInsert = SqlUtils.getPreparedStatement(dataSource, sql);
             int index = 0;
             psInsert.setString(++index, targetProject);
-            psInsert.setInt(++index, userId);
+            psInsert.setLong(++index, userId);
             psInsert.setString(++index, rcName);
             psInsert.setString(++index, projectId);
             if (projectId.equals(PROJECT_PORTAL))
                 psInsert.setString(++index, targetProject);
-            psInsert.setInt(++index, userId);
+            psInsert.setLong(++index, userId);
             psInsert.setString(++index, rcName);
             psInsert.setString(++index, targetProject);
 

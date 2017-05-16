@@ -132,7 +132,7 @@ public class B32_To_B33_Migration {
   private static SqlGetter createAccountSequenceFromUserSequence() {
     return new SqlGetter() {
       @Override public String getSql(DataSource ds) throws Exception {
-        Integer nextId = new Oracle().getNextId(ds, USER_DB_SCHEMA, TABLE_USERS);
+        Long nextId = new Oracle().getNextId(ds, USER_DB_SCHEMA, TABLE_USERS);
         return CREATE_ACCOUNT_USER_ID_SEQUENCE.replace(SEQUENCE_START_NUM_MACRO, nextId.toString());
       }
     };

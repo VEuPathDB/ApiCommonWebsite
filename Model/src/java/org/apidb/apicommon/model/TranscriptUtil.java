@@ -32,7 +32,7 @@ public class TranscriptUtil {
     return isTranscriptRecordClass(question.getRecordClass());
   }
 
-  public static AnswerValue transformToGeneAnswer(AnswerValue transcriptAnswer, int stepId) throws WdkUserException {
+  public static AnswerValue transformToGeneAnswer(AnswerValue transcriptAnswer, long stepId) throws WdkUserException {
     try {
       Question question = transcriptAnswer.getQuestion().getWdkModel().getQuestion(XFORM_QUESTION_NAME);
       if (question == null) {
