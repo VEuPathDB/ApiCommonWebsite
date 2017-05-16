@@ -57,7 +57,7 @@ public class CustomShowResultSizeAction extends ShowResultSizeAction {
     }
 
     @Override
-    public FilterSizeGroup updateItem(Integer stepId, FilterSizeGroup previousVersion)
+    public FilterSizeGroup updateItem(Long stepId, FilterSizeGroup previousVersion)
         throws UnfetchableItemException {
       try {
         Step step = _wdkModel.getStepFactory().getStepById(stepId);

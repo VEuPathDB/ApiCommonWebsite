@@ -14,8 +14,8 @@ public class Comment {
     public static final String COMMENT_REVIEW_STATUS_UNKNOWN = "unknown";
     public static final String COMMENT_REVIEW_STATUS_COMMUNITY = "community";
 
-    private int commentId;
-    private int userId;
+    private long commentId;
+    private long userId;
     private String sequence;
     /**
      * the internal key of the controlled vocabulary: gene, protein, genome
@@ -90,7 +90,7 @@ public class Comment {
     private String mutantCategoryName;
     private String phenotypeLocName;
 
-    public Comment(int userId) {
+    public Comment(long userId) {
     	this.userId = userId;
         locations = new ArrayList<Location>();
         externalDbs = new ArrayList<ExternalDatabase>();
@@ -110,7 +110,7 @@ public class Comment {
     /**
      * @return Returns the commentId.
      */
-    public int getCommentId() {
+    public long getCommentId() {
         return commentId;
     }
 
@@ -118,7 +118,7 @@ public class Comment {
      * @param commentId
      *          The commentId to set.
      */
-    void setCommentId(int commentId) {
+    void setCommentId(long commentId) {
         this.commentId = commentId;
     }
 
@@ -217,7 +217,7 @@ public class Comment {
         this.accessions = accessions;
     }
 
-    public int getUserId() {
+    public long getUserId() {
         return userId;
     }
 

@@ -64,11 +64,11 @@ public class ShowOrthologStageHandler implements StageHandler {
             throw new WdkUserException("the ortholog transform doesn't have "
                     + "any answerParam:" + questionName);
 
-        int inputStepId = currentStep.getStepId();
+        long inputStepId = currentStep.getStepId();
         // the name here is hard-coded, it will be used by
         // ShowQuestionAction.
         request.setAttribute(ShowQuestionAction.PARAM_INPUT_STEP,
-                Integer.toString(inputStepId));
+                Long.toString(inputStepId));
 
         // prepare question form
         logger.debug("Preparing form for question: " + questionName);

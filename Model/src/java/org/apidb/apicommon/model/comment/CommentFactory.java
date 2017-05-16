@@ -118,7 +118,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
     PreparedStatement ps = null;
     // get a new comment id
     try {
-      int commentId = dbPlatform.getNextId(commentDs, commentSchema, "comments");
+      long commentId = dbPlatform.getNextId(commentDs, commentSchema, "comments");
       int[] targetCategoryIds = comment.getTargetCategoryIds();
       String[] pmIds = comment.getPmIds();
       String[] dois = comment.getDois();
@@ -137,7 +137,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
 
       long currentMillis = System.currentTimeMillis();
 
-      ps.setInt(1, commentId);
+      ps.setLong(1, commentId);
       ps.setTimestamp(2, new Timestamp(currentMillis));
       ps.setString(3, comment.getCommentTarget());
       ps.setString(4, comment.getStableId());
@@ -151,7 +151,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
           ? comment.getReviewStatus() : Comment.COMMENT_REVIEW_STATUS_UNKNOWN;
       ps.setString(11, reviewStatus);
       ps.setString(12, comment.getOrganism());
-      ps.setInt(13, comment.getUserId());
+      ps.setLong(13, comment.getUserId());
 
       int result = ps.executeUpdate();
       LOG.debug("Inserted comment row: " + result);
@@ -237,7 +237,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
     printStatus();
   }
 
-  private void saveLocations(int commentId, Comment comment) throws SQLException {
+  private void saveLocations(long commentId, Comment comment) throws SQLException {
     String commentSchema = config.getCommentSchema();
     // construct sql
     StringBuffer sql = new StringBuffer();
@@ -250,9 +250,9 @@ public class CommentFactory implements Manageable<CommentFactory> {
 
       Location[] locations = comment.getLocations();
       for (Location location : locations) {
-        int locationId = dbPlatform.getNextId(commentDs, commentSchema, "locations");
-        statement.setInt(1, commentId);
-        statement.setInt(2, locationId);
+        long locationId = dbPlatform.getNextId(commentDs, commentSchema, "locations");
+        statement.setLong(1, commentId);
+        statement.setLong(2, locationId);
         statement.setLong(3, location.getLocationStart());
         statement.setLong(4, location.getLocationEnd());
         statement.setBoolean(5, location.isReversed());
@@ -265,7 +265,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
     }
   }
 
-  private void savePhenotype(int commentId, String background, int mutantStatus, int mutationType,
+  private void savePhenotype(long commentId, String background, int mutantStatus, int mutationType,
       int mutationMethod, int mutantExpression, int phenotypeLoc, String phenotypeDescription)
       throws SQLException {
 
@@ -283,8 +283,8 @@ public class CommentFactory implements Manageable<CommentFactory> {
     try {
       statement = SqlUtils.getPreparedStatement(commentDs, sql.toString());
 
-      statement.setInt(1, dbPlatform.getNextId(commentDs, commentSchema, "phenotype"));
-      statement.setInt(2, commentId);
+      statement.setLong(1, dbPlatform.getNextId(commentDs, commentSchema, "phenotype"));
+      statement.setLong(2, commentId);
       statement.setString(3, background);
       statement.setInt(4, mutantStatus);
       statement.setInt(5, mutationType);
@@ -299,7 +299,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
     }
   }
 
-  private void saveMutantMarkers(int commentId, int[] mutantMarkers) throws SQLException {
+  private void saveMutantMarkers(long commentId, int[] mutantMarkers) throws SQLException {
     String commentSchema = config.getCommentSchema();
 
     StringBuffer sql = new StringBuffer();
@@ -312,8 +312,8 @@ public class CommentFactory implements Manageable<CommentFactory> {
       statement = SqlUtils.getPreparedStatement(commentDs, sql.toString());
 
       for (int mutantMarker : mutantMarkers) {
-        statement.setInt(1, dbPlatform.getNextId(commentDs, commentSchema, "commentMutantMarker"));
-        statement.setInt(2, commentId);
+        statement.setLong(1, dbPlatform.getNextId(commentDs, commentSchema, "commentMutantMarker"));
+        statement.setLong(2, commentId);
         statement.setInt(3, mutantMarker);
         statement.execute();
       }
@@ -323,7 +323,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
     }
   }
 
-  private void saveMutantReporters(int commentId, int[] mutantReporters) throws SQLException {
+  private void saveMutantReporters(long commentId, int[] mutantReporters) throws SQLException {
     String commentSchema = config.getCommentSchema();
 
     StringBuffer sql = new StringBuffer();
@@ -336,8 +336,8 @@ public class CommentFactory implements Manageable<CommentFactory> {
       statement = SqlUtils.getPreparedStatement(commentDs, sql.toString());
 
       for (int mutantReporter : mutantReporters) {
-        statement.setInt(1, dbPlatform.getNextId(commentDs, commentSchema, "commentMutantReporter"));
-        statement.setInt(2, commentId);
+        statement.setLong(1, dbPlatform.getNextId(commentDs, commentSchema, "commentMutantReporter"));
+        statement.setLong(2, commentId);
         statement.setInt(3, mutantReporter);
         statement.execute();
       }
@@ -347,7 +347,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
     }
   }
 
-  private void savePhenotypeCategory(int commentId, int[] phenotypeCategory) throws SQLException {
+  private void savePhenotypeCategory(long commentId, int[] phenotypeCategory) throws SQLException {
     String commentSchema = config.getCommentSchema();
 
     StringBuffer sql = new StringBuffer();
@@ -360,8 +360,8 @@ public class CommentFactory implements Manageable<CommentFactory> {
       statement = SqlUtils.getPreparedStatement(commentDs, sql.toString());
 
       for (int cat : phenotypeCategory) {
-        statement.setInt(1, dbPlatform.getNextId(commentDs, commentSchema, "phenotypeMutantCategory"));
-        statement.setInt(2, commentId);
+        statement.setLong(1, dbPlatform.getNextId(commentDs, commentSchema, "phenotypeMutantCategory"));
+        statement.setLong(2, commentId);
         statement.setInt(3, cat);
         statement.execute();
       }
@@ -371,7 +371,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
     }
   }
 
-  private void saveCommentTargetCategory(int commentId, int[] targetCategoryIds) throws SQLException {
+  private void saveCommentTargetCategory(long commentId, int[] targetCategoryIds) throws SQLException {
     String commentSchema = config.getCommentSchema();
 
     // construct sql
@@ -385,8 +385,8 @@ public class CommentFactory implements Manageable<CommentFactory> {
       statement = SqlUtils.getPreparedStatement(commentDs, sql.toString());
 
       for (int targetCategoryId : targetCategoryIds) {
-        statement.setInt(1, dbPlatform.getNextId(commentDs, commentSchema, "commentTargetCategory"));
-        statement.setInt(2, commentId);
+        statement.setLong(1, dbPlatform.getNextId(commentDs, commentSchema, "commentTargetCategory"));
+        statement.setLong(2, commentId);
         statement.setInt(3, targetCategoryId);
         statement.execute();
       }
@@ -396,7 +396,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
     }
   }
 
-  private void savePmIds(int commentId, String[] pmIds) throws SQLException {
+  private void savePmIds(long commentId, String[] pmIds) throws SQLException {
     String commentSchema = config.getCommentSchema();
 
     // construct sql
@@ -411,11 +411,11 @@ public class CommentFactory implements Manageable<CommentFactory> {
 
       for (String pmId : pmIds) {
         if ((pmId != null) && (pmId.trim().length() != 0)) {
-          int commentPmId = dbPlatform.getNextId(commentDs, commentSchema, "commentReference");
-          statement.setInt(1, commentPmId);
+          long commentPmId = dbPlatform.getNextId(commentDs, commentSchema, "commentReference");
+          statement.setLong(1, commentPmId);
           statement.setString(2, pmId);
           statement.setString(3, "pubmed");
-          statement.setInt(4, commentId);
+          statement.setLong(4, commentId);
           statement.execute();
         }
       }
@@ -425,7 +425,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
     }
   }
 
-  private void saveDois(int commentId, String[] dois) throws SQLException {
+  private void saveDois(long commentId, String[] dois) throws SQLException {
     String commentSchema = config.getCommentSchema();
 
     // construct sql
@@ -440,11 +440,11 @@ public class CommentFactory implements Manageable<CommentFactory> {
 
       for (String doi : dois) {
         if ((doi != null) && (doi.trim().length() != 0)) {
-          int commentPmId = dbPlatform.getNextId(commentDs, commentSchema, "commentReference");
-          statement.setInt(1, commentPmId);
+          long commentPmId = dbPlatform.getNextId(commentDs, commentSchema, "commentReference");
+          statement.setLong(1, commentPmId);
           statement.setString(2, doi);
           statement.setString(3, "doi");
-          statement.setInt(4, commentId);
+          statement.setLong(4, commentId);
           statement.execute();
         }
       }
@@ -454,7 +454,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
     }
   }
 
-  private void saveSequence(int commentId, String sequence) throws SQLException {
+  private void saveSequence(long commentId, String sequence) throws SQLException {
     String commentSchema = config.getCommentSchema();
 
     // construct sql
@@ -468,11 +468,11 @@ public class CommentFactory implements Manageable<CommentFactory> {
     PreparedStatement statement = null;
     try {
       statement = SqlUtils.getPreparedStatement(commentDs, sql.toString());
-      int commentSeqId = dbPlatform.getNextId(commentDs, commentSchema, "commentSequence");
+      long commentSeqId = dbPlatform.getNextId(commentDs, commentSchema, "commentSequence");
 
-      statement.setInt(1, commentSeqId);
+      statement.setLong(1, commentSeqId);
       statement.setString(2, sequence);
-      statement.setInt(3, commentId);
+      statement.setLong(3, commentId);
       statement.execute();
     }
     finally {
@@ -480,7 +480,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
     }
   }
 
-  private void saveAccessions(int commentId, String[] accessions) throws SQLException {
+  private void saveAccessions(long commentId, String[] accessions) throws SQLException {
     String commentSchema = config.getCommentSchema();
 
     // construct sql
@@ -495,11 +495,11 @@ public class CommentFactory implements Manageable<CommentFactory> {
 
       for (String accession : accessions) {
         if ((accession != null) && (accession.trim().length() != 0)) {
-          int commentPmId = dbPlatform.getNextId(commentDs, commentSchema, "commentReference");
-          statement.setInt(1, commentPmId);
+          long commentPmId = dbPlatform.getNextId(commentDs, commentSchema, "commentReference");
+          statement.setLong(1, commentPmId);
           statement.setString(2, accession);
           statement.setString(3, "genbank");
-          statement.setInt(4, commentId);
+          statement.setLong(4, commentId);
           statement.execute();
         }
       }
@@ -509,7 +509,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
     }
   }
 
-  private void saveFiles(int commentId, String[] files) throws SQLException {
+  private void saveFiles(long commentId, String[] files) throws SQLException {
     String commentSchema = config.getCommentSchema();
 
     // construct sql
@@ -526,10 +526,10 @@ public class CommentFactory implements Manageable<CommentFactory> {
         if (file == null)
           continue;
         String[] str = file.split("\\|");
-        statement.setInt(1, Integer.parseInt(str[0]));
+        statement.setLong(1, Long.parseLong(str[0]));
         statement.setString(2, str[1]);
         statement.setString(3, str[2]);
-        statement.setInt(4, commentId);
+        statement.setLong(4, commentId);
         statement.execute();
       }
     }
@@ -538,7 +538,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
     }
   }
 
-  private void updateFiles(int newCommentId, String[] files) throws SQLException {
+  private void updateFiles(long newCommentId, String[] files) throws SQLException {
     String commentSchema = config.getCommentSchema();
 
     for (String file : files) {
@@ -546,7 +546,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
         continue;
       String[] str = file.split("\\|");
       String sql = "UPDATE " + commentSchema + "CommentFile " + " SET comment_id = " + newCommentId +
-          " WHERE file_id = " + Integer.parseInt(str[0]);
+          " WHERE file_id = " + Long.parseLong(str[0]);
 
       SqlUtils.executeUpdate(commentDs, sql, "wdk-comment-update-comment-id");
     }
@@ -562,22 +562,22 @@ public class CommentFactory implements Manageable<CommentFactory> {
 
   }
 
-  private void updatePrevCommentId(String previousCommentId, int commentId) throws SQLException {
+  private void updatePrevCommentId(String previousCommentId, long commentId) throws SQLException {
     String commentSchema = config.getCommentSchema();
 
-      String sql = "UPDATE " + commentSchema + "comments " + " SET prev_comment_id = '" + previousCommentId +
-          "'" + " WHERE comment_id = " + commentId;
+      String sql = "UPDATE " + commentSchema + "comments " + " SET prev_comment_id = " + previousCommentId +
+          " WHERE comment_id = " + commentId;
 
       SqlUtils.executeUpdate(commentDs, sql, "wdk-comment-update-previous-comment-id");
 
   }
 
-  private void saveAssociatedStableIds(int commentId, String[] associatedStableIds) throws SQLException {
+  private void saveAssociatedStableIds(long commentId, String[] associatedStableIds) throws SQLException {
     String commentSchema = config.getCommentSchema();
 
-		// removing duplicates 
-		Set<String> stringSet = new HashSet<>(Arrays.asList(associatedStableIds));
-		String[] associatedStableIds_noDup = stringSet.toArray(new String[0]);
+    // removing duplicates 
+    Set<String> stringSet = new HashSet<>(Arrays.asList(associatedStableIds));
+    String[] associatedStableIds_noDup = stringSet.toArray(new String[0]);
 
     // construct sql
     StringBuffer sql = new StringBuffer();
@@ -592,10 +592,10 @@ public class CommentFactory implements Manageable<CommentFactory> {
 
       for (String associatedStableId : associatedStableIds_noDup) {
         if ((associatedStableId != null) && (associatedStableId.trim().length() != 0)) {
-          int stableId = dbPlatform.getNextId(commentDs, commentSchema, "commentStableId");
-          statement.setInt(1, stableId);
+          long stableId = dbPlatform.getNextId(commentDs, commentSchema, "commentStableId");
+          statement.setLong(1, stableId);
           statement.setString(2, associatedStableId);
-          statement.setInt(3, commentId);
+          statement.setLong(3, commentId);
           statement.execute();
         }
       }
@@ -605,7 +605,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
     }
   }
 
-  private void saveAuthors(int commentId, String[] authors) throws SQLException {
+  private void saveAuthors(long commentId, String[] authors) throws SQLException {
     String commentSchema = config.getCommentSchema();
 
     StringBuffer sql = new StringBuffer();
@@ -619,11 +619,11 @@ public class CommentFactory implements Manageable<CommentFactory> {
 
       for (String author : authors) {
         if ((author != null) && (author.trim().length() != 0)) {
-          int commentPmId = dbPlatform.getNextId(commentDs, commentSchema, "commentReference");
-          statement.setInt(1, commentPmId);
+          long commentPmId = dbPlatform.getNextId(commentDs, commentSchema, "commentReference");
+          statement.setLong(1, commentPmId);
           statement.setString(2, author);
           statement.setString(3, "author");
-          statement.setInt(4, commentId);
+          statement.setLong(4, commentId);
           statement.execute();
         }
       }
@@ -644,7 +644,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
    * @param commentId
    * @param comment
    */
-  private void saveExternalDbs(int commentId, Comment comment) throws SQLException {
+  private void saveExternalDbs(long commentId, Comment comment) throws SQLException {
     String commentSchema = config.getCommentSchema();
     // String dblink = config.getProjectDbLink();
     // String stableId = comment.getStableId();
@@ -680,19 +680,19 @@ public class CommentFactory implements Manageable<CommentFactory> {
         psQUeryDb.setString(1, externalDb.getExternalDbName());
         psQUeryDb.setString(2, externalDb.getExternalDbVersion());
         ResultSet rsQueryDb = null;
-        int externalDbId;
+        long externalDbId;
         try {
           rsQueryDb = psQUeryDb.executeQuery();
           if (!rsQueryDb.next()) {
             // external database entry doesn't exist
             externalDbId = dbPlatform.getNextId(commentDs, commentSchema, "external_databases");
-            psInsertDb.setInt(1, externalDbId);
+            psInsertDb.setLong(1, externalDbId);
             psInsertDb.setString(2, externalDb.getExternalDbName());
             psInsertDb.setString(3, externalDb.getExternalDbVersion());
             psInsertDb.execute();
           }
           else { // has entry, get the external_database_id
-            externalDbId = rsQueryDb.getInt("external_database_id");
+            externalDbId = rsQueryDb.getLong("external_database_id");
           }
         }
         finally {
@@ -704,8 +704,8 @@ public class CommentFactory implements Manageable<CommentFactory> {
         }
 
         // add the reference link
-        psInsertLink.setInt(1, externalDbId);
-        psInsertLink.setInt(2, commentId);
+        psInsertLink.setLong(1, externalDbId);
+        psInsertLink.setLong(2, commentId);
         psInsertLink.execute();
       }
     }
@@ -717,7 +717,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
     }
   }
 
-  public Comment getComment(int commentId) throws WdkModelException {
+  public Comment getComment(long commentId) throws WdkModelException {
     StringBuffer sql = new StringBuffer();
     sql.append("SELECT c.user_id, c.comment_date, c.comment_target_id, ");
     sql.append("c.conceptual, c.headline, c.project_name, ");
@@ -735,14 +735,14 @@ public class CommentFactory implements Manageable<CommentFactory> {
     PreparedStatement ps = null;
     try {
       ps = SqlUtils.getPreparedStatement(commentDs, sql.toString());
-      ps.setInt(1, commentId);
+      ps.setLong(1, commentId);
       rs = ps.executeQuery();
 
       if (!rs.next())
         throw new WdkModelException("Comment of the given id '" + commentId + "' cannot be found.");
 
       // construct a comment object
-      Comment comment = new Comment(rs.getInt("user_id"));
+      Comment comment = new Comment(rs.getLong("user_id"));
       comment.setCommentId(commentId);
       comment.setCommentDate(rs.getTimestamp("comment_date"));
       comment.setCommentTarget(rs.getString("comment_target_id"));
@@ -808,7 +808,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
     }
   }
 
-  private void loadReference(int commentId, Comment comment, String databaseName) throws WdkModelException {
+  private void loadReference(long commentId, Comment comment, String databaseName) throws WdkModelException {
     StringBuffer sql = new StringBuffer();
     sql.append("SELECT source_id ");
     sql.append(" FROM ");
@@ -819,7 +819,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
     PreparedStatement ps = null;
     try {
       ps = SqlUtils.getPreparedStatement(commentDs, sql.toString());
-      ps.setInt(1, commentId);
+      ps.setLong(1, commentId);
       ps.setString(2, databaseName);
       rs = ps.executeQuery();
 
@@ -840,7 +840,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
     }
   }
 
-  private void loadAuthor(int commentId, Comment comment, String databaseName) throws WdkModelException {
+  private void loadAuthor(long commentId, Comment comment, String databaseName) throws WdkModelException {
     StringBuffer sql = new StringBuffer();
     sql.append("SELECT source_id ");
     sql.append(" FROM ");
@@ -851,7 +851,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
     PreparedStatement ps = null;
     try {
       ps = SqlUtils.getPreparedStatement(commentDs, sql.toString());
-      ps.setInt(1, commentId);
+      ps.setLong(1, commentId);
       ps.setString(2, databaseName);
       rs = ps.executeQuery();
 
@@ -872,7 +872,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
     }
   }
 
-  private void loadTargetCategoryNames(int commentId, Comment comment) throws WdkModelException {
+  private void loadTargetCategoryNames(long commentId, Comment comment) throws WdkModelException {
     StringBuffer sql = new StringBuffer();
     sql.append("SELECT b.category, b.target_category_id");
     sql.append(" FROM ");
@@ -884,14 +884,14 @@ public class CommentFactory implements Manageable<CommentFactory> {
     PreparedStatement ps = null;
     try {
       ps = SqlUtils.getPreparedStatement(commentDs, sql.toString());
-      ps.setInt(1, commentId);
+      ps.setLong(1, commentId);
       rs = ps.executeQuery();
 
       ArrayList<String> names = new ArrayList<String>();
-      ArrayList<Integer> ids = new ArrayList<Integer>();
+      ArrayList<Long> ids = new ArrayList<>();
       while (rs.next()) {
         String category = rs.getString("category");
-        int categoryId = rs.getInt("target_category_id");
+        long categoryId = rs.getLong("target_category_id");
         names.add(category);
         ids.add(categoryId);
       }
@@ -913,7 +913,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
     }
   }
 
-  private void loadMutantMarkerNames(int commentId, Comment comment) throws WdkModelException {
+  private void loadMutantMarkerNames(long commentId, Comment comment) throws WdkModelException {
     StringBuffer sql = new StringBuffer();
     sql.append("SELECT b.mutant_marker ");
     sql.append(" FROM ");
@@ -925,7 +925,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
     PreparedStatement ps = null;
     try {
       ps = SqlUtils.getPreparedStatement(commentDs, sql.toString());
-      ps.setInt(1, commentId);
+      ps.setLong(1, commentId);
       rs = ps.executeQuery();
 
       ArrayList<String> ids = new ArrayList<String>();
@@ -945,7 +945,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
     }
   }
 
-  private void loadMutantReporterNames(int commentId, Comment comment) throws WdkModelException {
+  private void loadMutantReporterNames(long commentId, Comment comment) throws WdkModelException {
     StringBuffer sql = new StringBuffer();
     sql.append("SELECT b.mutant_reporter ");
     sql.append(" FROM ");
@@ -957,7 +957,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
     PreparedStatement ps = null;
     try {
       ps = SqlUtils.getPreparedStatement(commentDs, sql.toString());
-      ps.setInt(1, commentId);
+      ps.setLong(1, commentId);
       rs = ps.executeQuery();
 
       ArrayList<String> ids = new ArrayList<String>();
@@ -977,7 +977,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
     }
   }
 
-  private void loadPhenotype(int commentId, Comment comment) throws WdkModelException {
+  private void loadPhenotype(long commentId, Comment comment) throws WdkModelException {
     StringBuffer sql = new StringBuffer();
     sql.append("SELECT a.background, a.mutant_description, ");
     sql.append("a.phenotype_description, ");
@@ -1012,7 +1012,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
     PreparedStatement ps = null;
     try {
       ps = SqlUtils.getPreparedStatement(commentDs, sql.toString());
-      ps.setInt(1, commentId);
+      ps.setLong(1, commentId);
       rs = ps.executeQuery();
 
       while (rs.next()) {
@@ -1036,7 +1036,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
     }
   }
 
-  private void loadFiles(int commentId, Comment comment) throws WdkModelException {
+  private void loadFiles(long commentId, Comment comment) throws WdkModelException {
     StringBuffer sql = new StringBuffer();
     sql.append("SELECT file_id, name, notes ");
     sql.append(" FROM ");
@@ -1047,12 +1047,12 @@ public class CommentFactory implements Manageable<CommentFactory> {
     PreparedStatement ps = null;
     try {
       ps = SqlUtils.getPreparedStatement(commentDs, sql.toString());
-      ps.setInt(1, commentId);
+      ps.setLong(1, commentId);
       rs = ps.executeQuery();
 
       ArrayList<String> ids = new ArrayList<String>();
       while (rs.next()) {
-        int file_id = rs.getInt("file_id");
+        long file_id = rs.getLong("file_id");
         String name = rs.getString("name");
         String notes = rs.getString("notes");
         ids.add(file_id + "|" + name + "|" + notes);
@@ -1069,7 +1069,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
     }
   }
 
-  private void loadStableIds(int commentId, Comment comment) throws WdkModelException {
+  private void loadStableIds(long commentId, Comment comment) throws WdkModelException {
     StringBuffer sql = new StringBuffer();
     sql.append("SELECT stable_id ");
     sql.append(" FROM ");
@@ -1080,7 +1080,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
     PreparedStatement ps = null;
     try {
       ps = SqlUtils.getPreparedStatement(commentDs, sql.toString());
-      ps.setInt(1, commentId);
+      ps.setLong(1, commentId);
       rs = ps.executeQuery();
 
       ArrayList<String> ids = new ArrayList<String>();
@@ -1100,7 +1100,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
     }
   }
 
-  private void loadLocations(int commentId, Comment comment) throws WdkModelException {
+  private void loadLocations(long commentId, Comment comment) throws WdkModelException {
     StringBuffer sql = new StringBuffer();
     sql.append("SELECT location_start, location_end, is_reverse, ");
     sql.append("coordinate_type FROM ");
@@ -1111,7 +1111,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
     PreparedStatement ps = null;
     try {
       ps = SqlUtils.getPreparedStatement(commentDs, sql.toString());
-      ps.setInt(1, commentId);
+      ps.setLong(1, commentId);
       rs = ps.executeQuery();
 
       while (rs.next()) {
@@ -1130,7 +1130,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
     }
   }
 
-  private void loadExternalDbs(int commentId, Comment comment) throws WdkModelException {
+  private void loadExternalDbs(long commentId, Comment comment) throws WdkModelException {
     String commentSchema = config.getCommentSchema();
 
     StringBuffer sql = new StringBuffer();
@@ -1144,7 +1144,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
     PreparedStatement ps = null;
     try {
       ps = SqlUtils.getPreparedStatement(commentDs, sql.toString());
-      ps.setInt(1, commentId);
+      ps.setLong(1, commentId);
       rs = ps.executeQuery();
 
       while (rs.next()) {
@@ -1161,7 +1161,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
     }
   }
 
-  public Comment[] queryComments(Integer userId, String projectName, String stableId, String conceptual,
+  public Comment[] queryComments(Long userId, String projectName, String stableId, String conceptual,
       String reviewStatus, String keyword, String commentTargetId) throws WdkModelException {
 
     StringBuffer where = new StringBuffer();
@@ -1228,7 +1228,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
     try {
       rs = SqlUtils.executeQuery(commentDs, sql.toString(), "api-comment-select-comment");
       while (rs.next()) {
-        int commentId = rs.getInt("comment_id");
+        long commentId = rs.getLong("comment_id");
         Comment comment = getComment(commentId);
         comments.add(comment);
       }
@@ -1253,8 +1253,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
 
     try {
       // update comments table set is_visible = 0
-      String sql = "UPDATE " + commentSchema + "comments " + "SET is_visible = 0 " + "WHERE comment_id = '" +
-          commentId + "'";
+      String sql = "UPDATE " + commentSchema + "comments " + "SET is_visible = 0 " + "WHERE comment_id = " + commentId;
       SqlUtils.executeUpdate(commentDs, sql, "wdk-comment-hide-comment");
 
     }

@@ -24,6 +24,7 @@ import org.gusdb.wdk.model.jspwrap.UserBean;
 import org.gusdb.wdk.model.record.attribute.AttributeField;
 import org.gusdb.wdk.model.user.Step;
 import org.gusdb.wdk.model.user.User;
+import org.gusdb.wdk.model.user.UserPreferences;
 
 public abstract class AltSpliceViewHandler implements SummaryViewHandler {
 
@@ -55,8 +56,8 @@ public abstract class AltSpliceViewHandler implements SummaryViewHandler {
     AnswerValue answer = step.getViewAnswerValue();
 
     // override sorting, but only if suffix is not default
-    if (!getUserPreferenceSuffix().equals(User.DEFAULT_SUMMARY_VIEW_PREF_SUFFIX)) {
-      answer.setSortingMap(user.getSortingAttributes(
+    if (!getUserPreferenceSuffix().equals(UserPreferences.DEFAULT_SUMMARY_VIEW_PREF_SUFFIX)) {
+      answer.setSortingMap(user.getPreferences().getSortingAttributes(
           stepBean.getQuestion().getFullName(), getUserPreferenceSuffix()));
     }
 

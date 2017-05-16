@@ -87,7 +87,7 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
   }
 
   private static final Map<UpdateType, AtomicInteger> UPDATE_TYPE_COUNTS =
-      Functions.mapKeys(Arrays.asList(UpdateType.values()), new Function<UpdateType, AtomicInteger>() {
+      Functions.getMapFromKeys(Arrays.asList(UpdateType.values()), new Function<UpdateType, AtomicInteger>() {
         @Override public AtomicInteger apply(UpdateType obj) { return new AtomicInteger(0); }});
 
   private WdkModel _wdkModel;
