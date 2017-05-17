@@ -25,6 +25,22 @@ sub finalProfileAdjustments {
 }
 1;
 
+package ApiCommonWebsite::View::GraphPackage::Templates::ExpressionTwoChannel::DS_0c4be69d67;
+
+sub useLegacy {
+  return 1;
+}
+
+1;
+
+package ApiCommonWebsite::View::GraphPackage::Templates::ExpressionTwoChannel::DS_af87cb785d;
+
+sub useLegacy {
+  return 1;
+}
+
+1;
+
 package ApiCommonWebsite::View::GraphPackage::Templates::ExpressionTwoChannel::DS_88b717761e;
 
 
