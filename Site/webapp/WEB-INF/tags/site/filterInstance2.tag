@@ -229,6 +229,12 @@ ${species}  <!--  Aspergillus      knowlesi     -->
       <div class="display"><i>${family} ${species}</i> Results</div> 
     </c:otherwise>
   </c:choose>
+  <c:if test="${instance.name eq 'all_ortholog_groups'}">
+    <span style="color: steelblue;">
+      <i class="fa fa-info-circle"><jsp:text/></i>
+      <em>This option has been temporarily disabled.</em>
+    </span>
+  </c:if>
 </div>
 
 </div>

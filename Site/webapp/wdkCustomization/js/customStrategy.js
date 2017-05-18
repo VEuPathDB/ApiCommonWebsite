@@ -109,3 +109,17 @@ function customSpanParameters(aParams) {
 
 	return tr;
 }
+
+// Disable ortholog option in organism filter
+$(document).on('filterloaded.wdk', function(event) {
+  $(event.target).find('[data-filter="all_ortholog_groups"]')
+    .on('click', function(event) {
+      event.preventDefault();
+      event.stopPropagation();
+    })
+    .css({
+      cursor: 'default',
+      color: '#9f9f9f',
+      textDecoration: 'none'
+    });
+});
