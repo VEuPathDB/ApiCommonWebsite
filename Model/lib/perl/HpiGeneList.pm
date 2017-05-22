@@ -38,13 +38,13 @@ sub run {
 
 # add POST data to HTTP request body
   my $post_data = "{
-    'type': $type,
-    'idSource': $idSource,
-    'ids': [ $geneList ],
-    'threshold': $threshold,
-    'thresholdType': $thresholdType,
-    'additionalFlags': {
-    'useOrthology': $useOrthology
+    \"type\": \"$type\",
+    \"idSource\": \"$idSource\",
+    \"ids\": [ $geneList ],
+    \"threshold\": \"$threshold\",
+    \"thresholdType\": \"$thresholdType\",
+    \"additionalFlags\": {
+    \"useOrthology\": \"$useOrthology\"
     }
   }";
 
@@ -100,7 +100,7 @@ sub getValidGeneList {
 
   die "Got no genes\n" unless scalar @genes > 1;
 
-  return join(",", map { "'" . $_ . "'" } @genes);;
+  return join(",", map { '"' . $_ . '"' } @genes);;
 }
 
 

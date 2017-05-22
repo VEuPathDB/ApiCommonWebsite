@@ -91,7 +91,7 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
       WdkModel wdkModel = answerValue.getQuestion().getWdkModel();
       Map<String,String[]> params = getFormParams();
 
-      String type = "gene";
+      String type = "gene"; 
       String idSource = "ensemble";
       
       String idSql =  "select distinct gene_source_id from (" + answerValue.getIdSql() + ")";
@@ -134,7 +134,7 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
     brcOptions.add(new Option(EUPATH_PORTAL_NAME_KEY, EUPATH_PORTAL_NAME_KEY));
 
     List<Option> thresholdTypeOptions = new ArrayList<>();
-    thresholdTypeOptions.add(new Option("PercentMatched", "PercentMatched"));
+    thresholdTypeOptions.add(new Option("percent_matched", "Percent Matched"));
 
     List<Option> useOrthologyOptions = new ArrayList<>();
     useOrthologyOptions.add(new Option("false", "No"));
