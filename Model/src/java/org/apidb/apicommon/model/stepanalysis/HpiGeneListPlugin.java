@@ -130,8 +130,8 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
 
     List<Option> brcOptions = new ArrayList<>();
     brcOptions.add(new Option(EUPATH_NAME_KEY, EUPATH_NAME_KEY));
-    brcOptions.add(new Option(PATRIC_NAME_KEY, PATRIC_NAME_KEY));
     brcOptions.add(new Option(EUPATH_PORTAL_NAME_KEY, EUPATH_PORTAL_NAME_KEY));
+    brcOptions.add(new Option(PATRIC_NAME_KEY, PATRIC_NAME_KEY));
 
     List<Option> thresholdTypeOptions = new ArrayList<>();
     thresholdTypeOptions.add(new Option("percent_matched", "Percent Matched"));
