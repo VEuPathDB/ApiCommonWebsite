@@ -29,7 +29,7 @@ sub run {
   my $dbh = DBI->connect($c->getAppDb->getDbiDsn, $c->getAppDb->getLogin, $c->getAppDb->getPassword) or die DBI::errstr;
 
 # get the valid gene IDs from the given input IDs
-  my $geneList = &getValidGeneList($dbh, $idSql);
+  my $geneList = &getValidGeneList($dbh, $idSql,$server_endpoint);
 
 # set custom HTTP request header fields
   my $req = HTTP::Request->new(POST => $server_endpoint);
@@ -86,7 +86,7 @@ sub run {
 }
 
 sub getValidGeneList {
-  my ($dbh, $sql) = @_;
+  my ($dbh, $sql,$server_endpoint) = @_;
 
   my $stmt = $dbh->prepare("$sql") or die(DBI::errstr);
   $stmt->execute() or die(DBI::errstr);
@@ -95,6 +95,7 @@ sub getValidGeneList {
 
   my $geneStr;
   while ((my $mygene) = $stmt->fetchrow_array()) {
+    $mygene =~ s/\.\d+$// if $server_endpoint =~ /patricbrc/;
     push @genes, $mygene;
   }
 
