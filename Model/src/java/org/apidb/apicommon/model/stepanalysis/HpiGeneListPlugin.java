@@ -92,7 +92,7 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
       Map<String,String[]> params = getFormParams();
 
       String type = "gene"; 
-      String idSource = "ensemble";
+      String idSource = "alt_locus_tag";
       
       String idSql =  "select distinct gene_source_id from (" + answerValue.getIdSql() + ")";
 
