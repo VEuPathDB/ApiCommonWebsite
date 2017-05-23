@@ -18,8 +18,8 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionServlet;
+import org.eupathdb.common.controller.action.CommonShowQuestionAction;
 import org.gusdb.wdk.controller.CConstants;
-import org.gusdb.wdk.controller.action.ShowQuestionAction;
 import org.gusdb.wdk.controller.actionutil.ActionUtility;
 import org.gusdb.wdk.model.jspwrap.AnswerValueBean;
 import org.gusdb.wdk.model.jspwrap.CategoryBean;
@@ -30,7 +30,7 @@ import org.gusdb.wdk.model.jspwrap.WdkModelBean;
 import org.gusdb.wdk.model.record.TableValue;
 import org.gusdb.wdk.model.record.attribute.AttributeValue;
 
-public class CustomShowQuestionAction extends ShowQuestionAction {
+public class CustomShowQuestionAction extends CommonShowQuestionAction {
 
     private static final String PARAM_QUESTION = "question_name";
     private static final String PARAM_QUESTION_FULL = "questionFullName";

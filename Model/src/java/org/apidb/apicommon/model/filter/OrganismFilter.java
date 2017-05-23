@@ -16,7 +16,6 @@ import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.answer.AnswerValue;
 import org.gusdb.wdk.model.filter.FilterSummary;
 import org.gusdb.wdk.model.filter.StepFilter;
-import org.gusdb.wdk.model.query.Query;
 import org.gusdb.wdk.model.query.SqlQuery;
 import org.gusdb.wdk.model.user.Step;
 import org.json.JSONArray;
@@ -24,11 +23,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class OrganismFilter extends StepFilter {
-  protected static final String COUNT_COLUMN = "count";
   protected static final String ORGANISM = "organism";
   protected static final String FILTER_NAME = "organismFilter";
-  protected static final String CUSTOM_FILTER_SIZE_QUERY_SET = "GeneSummaries";
-  protected static final String CUSTOM_FILTER_SIZE_QUERY_NAME = "bulkAnswerFilterCounts";
   protected static final String FILTER_NAME_COLUMN = "filter_name";
   protected static final String FILTER_SIZE_COLUMN = "count";
 
@@ -76,7 +72,7 @@ public class OrganismFilter extends StepFilter {
 	String fullIdSql = getFullSql(answer, idSql);
 	StringBuilder sql = new StringBuilder("SELECT * FROM (" + fullIdSql + ") WHERE 1 = 0 ");
     try {
-      JSONArray jsArray = jsValue.getJSONArray("organism");
+      JSONArray jsArray = jsValue.getJSONArray(ORGANISM);
       for (int i = 0; i < jsArray.length(); i++) {
         String value = jsArray.getString(i);
         sql.append(" OR " + ORGANISM + " LIKE '" + value + "'");
@@ -96,12 +92,11 @@ public class OrganismFilter extends StepFilter {
    * @throws WdkModelException
    * @throws WdkUserException
    */
-  protected static Map<String, Integer> getCounts(AnswerValue answer, String idSql) throws WdkModelException, WdkUserException {
+  protected Map<String, Integer> getCounts(AnswerValue answer, String idSql) throws WdkModelException, WdkUserException {
 	WdkModel wdkModel = answer.getQuestion().getWdkModel();
-	Query query = wdkModel.getQuerySet(CUSTOM_FILTER_SIZE_QUERY_SET).getQuery(CUSTOM_FILTER_SIZE_QUERY_NAME);
-	String sql = ((SqlQuery)query).getSql().replace(Utilities.MACRO_ID_SQL, idSql);
+	String sql = ((SqlQuery)getSummaryQuery()).getSql().replace(Utilities.MACRO_ID_SQL, idSql);
     final Map<String, Integer> querySizes = new HashMap<>();
-    new SQLRunner(wdkModel.getAppDb().getDataSource(), sql, CUSTOM_FILTER_SIZE_QUERY_NAME)
+    new SQLRunner(wdkModel.getAppDb().getDataSource(), sql, getSummaryQuery().getName())
      .executeQuery(new ResultSetHandler() {
       @Override
       public void handleResult(ResultSet rs) throws SQLException {
@@ -113,12 +108,22 @@ public class OrganismFilter extends StepFilter {
     return querySizes;
   }
   
+  /**
+   * The sql statement constructed here adds in the organism to the ids so
+   * that the wrapping sql can cull out selected organisms.
+   * @param answer
+   * @param idSql
+   * @return
+   * @throws WdkModelException
+   * @throws WdkUserException
+   */
   protected String getFullSql(AnswerValue answer, String idSql) throws WdkModelException, WdkUserException {
     String originalIdSql = answer.getIdsQueryInstance().getSql();
     return  "SELECT idsql.*, ga.organism AS " + ORGANISM +
 			" FROM (" + originalIdSql + ") idsql, (" + idSql + ") filteredIdSql, " +
 	        "  (SELECT * FROM apidbTuning.GeneAttributes) ga " +
 	        "   WHERE idSql.source_id = filteredIdSql.source_id " +
+            "    AND idSql.gene_source_id = filteredIdSql.gene_source_id " +
 	        "    AND idSql.project_id = filteredIdSql.project_id " +
 	        "    AND ga.source_id = idSql.gene_source_id " +
 	        "    AND ga.project_id = idSql.project_id";
