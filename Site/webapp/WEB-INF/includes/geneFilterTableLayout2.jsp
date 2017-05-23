@@ -68,7 +68,7 @@ Some examples of filter names the injector system generates:
   <c:when test="${fn:length(layout.superFamilyCountMap) == 1 }" >
     <tr>
       <th rowspan=3>All<br>Results</th>
-      <th rowspan=3 class="muted">Ortholog<br>Groups</th>
+      <th rowspan=3>Ortholog<br>Groups</th>
  		<c:forEach items="${layout.sortedFamilyCountMap}" var="family" >
     	<th  class="genus"  colspan="${family.value}"><i>${fn:substringAfter(family.key,'-')}</i></th>
  		</c:forEach>
