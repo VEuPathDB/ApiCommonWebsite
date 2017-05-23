@@ -123,6 +123,7 @@ public class OrganismFilter extends StepFilter {
 			" FROM (" + originalIdSql + ") idsql, (" + idSql + ") filteredIdSql, " +
 	        "  (SELECT * FROM apidbTuning.GeneAttributes) ga " +
 	        "   WHERE idSql.source_id = filteredIdSql.source_id " +
+            "    AND idSql.gene_source_id = filteredIdSql.gene_source_id " +
 	        "    AND idSql.project_id = filteredIdSql.project_id " +
 	        "    AND ga.source_id = idSql.gene_source_id " +
 	        "    AND ga.project_id = idSql.project_id";
