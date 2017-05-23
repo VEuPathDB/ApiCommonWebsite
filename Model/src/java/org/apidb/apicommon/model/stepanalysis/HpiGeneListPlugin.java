@@ -36,6 +36,8 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
     // NOTE: you also need to add new bits to two additional places below
   private static final String EUPATH_NAME_KEY = "EuPathDB";
   private static final String EUPATH_SEARCH_SERVER_ENDPOINT_PROP_KEY = "eupathSearchServerEndpoint";
+  private static final String PATRIC_NAME_KEY = "PATRIC";
+  private static final String PATRIC_SEARCH_SERVER_ENDPOINT_PROP_KEY = "patricSearchServerEndpoint";
   private static final String EUPATH_PORTAL_NAME_KEY = "EuPathDB Portal";
   private static final String EUPATH_PORTAL_SEARCH_SERVER_ENDPOINT_PROP_KEY = "eupathSearchPortalEndpoint";
 
@@ -54,6 +56,7 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
     @Override
     public void validateProperties() throws WdkModelException {
         this.serverEndpoints.put(EUPATH_NAME_KEY, getProperty(EUPATH_SEARCH_SERVER_ENDPOINT_PROP_KEY));        
+        this.serverEndpoints.put(PATRIC_NAME_KEY, getProperty(PATRIC_SEARCH_SERVER_ENDPOINT_PROP_KEY));        
         this.serverEndpoints.put(EUPATH_PORTAL_NAME_KEY, getProperty(EUPATH_PORTAL_SEARCH_SERVER_ENDPOINT_PROP_KEY));        
         // TODO ... Add more for other BRCs
     }       
@@ -88,7 +91,7 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
       WdkModel wdkModel = answerValue.getQuestion().getWdkModel();
       Map<String,String[]> params = getFormParams();
 
-      String type = "gene";
+      String type = "gene"; 
       String idSource = "ensemble";
       
       String idSql =  "select distinct gene_source_id from (" + answerValue.getIdSql() + ")";
@@ -128,9 +131,10 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
     List<Option> brcOptions = new ArrayList<>();
     brcOptions.add(new Option(EUPATH_NAME_KEY, EUPATH_NAME_KEY));
     brcOptions.add(new Option(EUPATH_PORTAL_NAME_KEY, EUPATH_PORTAL_NAME_KEY));
+    brcOptions.add(new Option(PATRIC_NAME_KEY, PATRIC_NAME_KEY));
 
     List<Option> thresholdTypeOptions = new ArrayList<>();
-    thresholdTypeOptions.add(new Option("PercentMatched", "PercentMatched"));
+    thresholdTypeOptions.add(new Option("percent_matched", "Percent Matched"));
 
     List<Option> useOrthologyOptions = new ArrayList<>();
     useOrthologyOptions.add(new Option("false", "No"));
@@ -162,7 +166,7 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
 
   public static class FormViewModel {
 
-      private final String brcParamHelp = "Which Bioinformatics Resource Center(s) to search";
+      private final String brcParamHelp = "Choose which website to search";
       private final String thresholdTypeParamHelp = "Metric used to determine if this gene list matches a study";
       private final String thresholdParamHelp = "This number is used as a cutoff when finding studies from a gene list";
       private final String useOrthologyParamHelp = "Should we extend the search to consider genes orthologous to ones in the input list?";

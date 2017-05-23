@@ -26,6 +26,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/**
+ * 
+ * @author steve
+ * For a combined transcript record result, offer user choices of which transcripts per gene to include, from the two inputs
+ */
 public class GeneBooleanFilter extends StepFilter {
 
   protected static final String COLUMN_COUNT = "count";
@@ -135,7 +140,7 @@ public class GeneBooleanFilter extends StepFilter {
     String originalIdSql = answer.getIdsQueryInstance().getSql();
 
     return "select idsql.* from (" + originalIdSql + ") idsql, (" + idSql + ") filteredIdSql" +
-        " where idSql.source_id = filteredIdSql.source_id and idSql.project_id = filteredIdSql.project_id";
+        " where idSql.source_id = filteredIdSql.source_id and idSql.gene_source_id = filteredIdSql.gene_source_id and idSql.project_id = filteredIdSql.project_id";
   }
 
   @Override
