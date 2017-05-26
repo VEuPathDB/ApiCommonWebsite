@@ -1,11 +1,14 @@
 package org.apidb.apicommon.controller.action;
 
-import static org.apidb.apicommon.model.TranscriptUtil.*;
+import static org.apidb.apicommon.model.TranscriptUtil.TRANSCRIPT_RECORDCLASS;
+import static org.apidb.apicommon.model.TranscriptUtil.isGeneRecordClass;
+import static org.apidb.apicommon.model.TranscriptUtil.isTranscriptRecordClass;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
@@ -13,7 +16,6 @@ import javax.sql.DataSource;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apidb.apicommon.model.TranscriptUtil;
 import org.gusdb.fgputil.db.SqlUtils;
 import org.gusdb.wdk.controller.action.ProcessBasketAction;
 import org.gusdb.wdk.controller.actionutil.ActionUtility;

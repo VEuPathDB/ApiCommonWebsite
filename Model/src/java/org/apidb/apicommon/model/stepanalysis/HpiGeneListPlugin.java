@@ -1,9 +1,6 @@
 package org.apidb.apicommon.model.stepanalysis;
 
-import static org.gusdb.fgputil.FormatUtil.NL;
 import static org.gusdb.fgputil.FormatUtil.TAB;
-import org.gusdb.fgputil.FormatUtil;
-import org.apache.log4j.Logger;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -11,10 +8,12 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
 
+import org.apache.log4j.Logger;
+import org.apidb.apicommon.model.stepanalysis.EnrichmentPluginUtil.Option; // The static class here should be factored
 // import org.gusdb.fgputil.db.runner.BasicResultSetHandler;
 // import org.gusdb.fgputil.db.runner.SQLRunner;
 import org.gusdb.fgputil.runtime.GusHome;
@@ -24,9 +23,6 @@ import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.analysis.AbstractSimpleProcessAnalyzer;
 import org.gusdb.wdk.model.analysis.ValidationErrors;
 import org.gusdb.wdk.model.answer.AnswerValue;
-import org.gusdb.wdk.model.user.analysis.IllegalAnswerValueException;
-
-import org.apidb.apicommon.model.stepanalysis.EnrichmentPluginUtil.Option; // The static class here should be factored
 
 public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
 

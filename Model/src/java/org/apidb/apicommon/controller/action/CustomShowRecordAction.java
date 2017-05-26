@@ -1,7 +1,6 @@
 package org.apidb.apicommon.controller.action;
 
 import static org.apidb.apicommon.model.TranscriptUtil.GENE_RECORDCLASS;
-import static org.apidb.apicommon.model.TranscriptUtil.TRANSCRIPT_RECORDCLASS;
 import static org.apidb.apicommon.model.TranscriptUtil.isTranscriptRecordClass;
 
 import java.util.HashMap;
