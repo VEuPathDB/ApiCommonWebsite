@@ -25,7 +25,7 @@ Program takes these parameters:
 
 =item sid   : string : secondary id for plotting
 
-=item fmt   : string : graphics format to output; [pdf,jpeg,png,gif] defaults to png
+=item fmt   : string : graphics format to output; [pdf,jpeg,png,gif,svg] defaults to png
 
 =item quiet : int : when non-zero the MIME header and file contents are not output
 
@@ -99,7 +99,7 @@ sub run {
 	 if (@errors) {
 			die join("\n", @errors);
 	 }
-
+	
 	 # will declare this content type
 	 my %contentType = ( png  => 'image/png',
                              pdf  => 'application/pdf',
@@ -107,6 +107,7 @@ sub run {
                              jpg  => 'image/jpeg',
                              gif  => 'image/gif',
                              table => 'text/html',
+			     svg  => 'text/xml'
 										 );
 
    # some GDD formats may be different from their formats
