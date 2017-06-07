@@ -103,6 +103,8 @@ sub makeRPlotString {
   my $lasString = defined($las) ? 'TRUE' : 'FALSE';
   $las = defined($las) ? $las : 'NULL';
 
+  my $out_f = $self->getOutputFile();
+
   my $isThumbnail = "FALSE";
 
   if($self->getThumbnail()) {
@@ -270,14 +272,28 @@ y.min = min(c(y.min, profile.df.full\$VALUE, profile.df.full\$MIN_ERR), na.rm=TR
 
 gp = ggplot(profile.df.full, aes(x=NAME, y=VALUE, fill=LEGEND, colour=LEGEND));
 
+if((length(profile.df.full\$LEGEND) > 9) && (grepl(file_ext(\"$out_f\"),\"svg\"))) {
+  useTooltips=TRUE;
+}else{
+  useTooltips=FALSE;
+}
 
-if($isStack) {
-  gp = gp + geom_bar(stat=\"identity\", position=\"stack\", size=1.2);
+if(useTooltips) {
+   if($isStack) {
+     gp = gp + geom_tooltip(aes(tooltip=LEGEND), real.geom=geom_bar, position=\"stack\", size=1.2);
+   } else {
+     gp = gp + geom_tooltip(aes(tooltip=LEGEND), real.geom=geom_bar, position=\"dodge\", size=1.2);
+   } 
 } else {
-  gp = gp + geom_bar(stat=\"identity\", position=\"dodge\", size=1.2);
+   if($isStack) {
+     gp = gp + geom_bar(stat=\"identity\", position=\"stack\", size=1.2);
+   } else {
+     gp = gp + geom_bar(stat=\"identity\", position=\"dodge\", size=1.2);
+   }
 }
 
 if(expandColors) {
+ #!!!!!!!!!!!!!!!!! i believe the below will only work when length(NAME)/length(colorstring) divides evenly
   gp = gp + scale_fill_manual(values=rep($colorsStringNotNamed, length(profile.df.full\$NAME)/length($colorsStringNotNamed)), breaks=profile.df.full\$LEGEND, name=NULL);
 } else {
   gp = gp + scale_fill_manual(values=$colorsStringNotNamed, breaks=profile.df.full\$LEGEND, name=NULL);
@@ -301,8 +317,8 @@ if(is.compact) {
   gp = gp + scale_x_discrete(label=abbreviate);
   gp = gp + theme(axis.text.x  = element_text(angle=90,vjust=0.5, size=12), plot.title = element_text(colour=\"#b30000\"));
 
-  if(length(the.colors) > 13) {
-    gp = gp + guides(fill=guide_legend(ncol=2));
+  if(useTooltips) {
+    gp = gp + theme(legend.position=\"none\");
   }
 
 }
