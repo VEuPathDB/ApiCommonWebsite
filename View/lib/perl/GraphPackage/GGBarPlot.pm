@@ -65,6 +65,8 @@ sub makeRPlotString {
   my $overrideXAxisLabels = scalar @$sampleLabels > 0 ? "TRUE" : "FALSE";
   my $skipStdErr = $self->getSkipStdErr() ? 'TRUE' : 'FALSE';
 
+  my $isSVG = lc($self->getFormat()) eq 'svg' ? 'TRUE' : 'FALSE'; 
+
   my ($profileFiles, $elementNamesFiles, $stderrFiles);
 
   my $blankGraph = $self->blankPlotPart();
@@ -256,10 +258,12 @@ if(length(profile.files) == 1) {
 profile.df.full\$NAME <- factor(profile.df.full\$NAME, levels = profile.df.full\$NAME[order(profile.df.full\$ELEMENT_ORDER)])
 
 expandColors = FALSE;
+hideLegend = FALSE;
 
 if(is.null(profile.df.full\$LEGEND)) {
   profile.df.full\$LEGEND = profile.df.full\$NAME
   expandColors = TRUE;
+  hideLegend = TRUE;
 } else {
   profile.df.full\$LEGEND = factor(profile.df.full\$LEGEND, levels=legend.label);
 }
@@ -272,7 +276,7 @@ y.min = min(c(y.min, profile.df.full\$VALUE, profile.df.full\$MIN_ERR), na.rm=TR
 
 gp = ggplot(profile.df.full, aes(x=NAME, y=VALUE, fill=LEGEND, colour=LEGEND));
 
-if((length(profile.df.full\$LEGEND) > 9) && (grepl(file_ext(\"$out_f\"),\"svg\"))) {
+if($isSVG) {
   useTooltips=TRUE;
 }else{
   useTooltips=FALSE;
@@ -280,26 +284,28 @@ if((length(profile.df.full\$LEGEND) > 9) && (grepl(file_ext(\"$out_f\"),\"svg\")
 
 if(useTooltips) {
    if($isStack) {
-     gp = gp + geom_tooltip(aes(tooltip=LEGEND), real.geom=geom_bar, position=\"stack\", size=1.2);
+     gp = gp + geom_tooltip(aes(tooltip=LEGEND), real.geom=geom_bar, position=\"stack\");
    } else {
-     gp = gp + geom_tooltip(aes(tooltip=LEGEND), real.geom=geom_bar, position=\"dodge\", size=1.2);
+     gp = gp + geom_tooltip(aes(tooltip=LEGEND), real.geom=geom_bar, position=\"dodge\");
    } 
 } else {
    if($isStack) {
-     gp = gp + geom_bar(stat=\"identity\", position=\"stack\", size=1.2);
+     gp = gp + geom_bar(stat=\"identity\", position=\"stack\");
    } else {
-     gp = gp + geom_bar(stat=\"identity\", position=\"dodge\", size=1.2);
+     gp = gp + geom_bar(stat=\"identity\", position=\"dodge\");
    }
 }
 
 if(expandColors) {
  #!!!!!!!!!!!!!!!!! i believe the below will only work when length(NAME)/length(colorstring) divides evenly
   gp = gp + scale_fill_manual(values=rep($colorsStringNotNamed, length(profile.df.full\$NAME)/length($colorsStringNotNamed)), breaks=profile.df.full\$LEGEND, name=NULL);
+  gp = gp + scale_colour_manual(values=rep($colorsStringNotNamed, length(profile.df.full\$NAME)/length($colorsStringNotNamed)), breaks=profile.df.full\$LEGEND, name=NULL);
 } else {
-  gp = gp + scale_fill_manual(values=$colorsStringNotNamed, breaks=profile.df.full\$LEGEND, name=NULL);
+  gp = gp + scale_fill_manual(values=$colorsStringNotNamed, breaks=profile.df.full\$LEGEND, name=NULL);  
+  gp = gp + scale_colour_manual(values=$colorsStringNotNamed, breaks=profile.df.full\$LEGEND, name=NULL);
 }
 
-gp = gp + scale_colour_discrete(breaks=profile.df.full\$LEGEND, name=NULL);
+#gp = gp + scale_colour_discrete(breaks=profile.df.full\$LEGEND, name=NULL);
 
 gp = gp + geom_errorbar(aes(ymin=MIN_ERR, ymax=MAX_ERR), colour=\"black\", width=.1);
 
@@ -317,7 +323,7 @@ if(is.compact) {
   gp = gp + scale_x_discrete(label=abbreviate);
   gp = gp + theme(axis.text.x  = element_text(angle=90,vjust=0.5, size=12), plot.title = element_text(colour=\"#b30000\"));
 
-  if(useTooltips) {
+  if(hideLegend) {
     gp = gp + theme(legend.position=\"none\");
   }
 
