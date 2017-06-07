@@ -232,6 +232,9 @@ sub rOpenFile {
 	 my $w     = int($fmt eq 'pdf' ? $Width  / 72 : $Width);
 	 my $h     = int($fmt eq 'pdf' ? $Height / 72 : $Height);
 
+	 my $w     = int($fmt eq 'svg' ? $Width  / 72 : $Width);
+         my $h     = int($fmt eq 'svg' ? $Height / 72 : $Height);
+
 	 if(lc($fmt) eq 'pdf') {
            $Rv = qq{pdf(file="$out_f", width=$w, height=$h)};
          }
@@ -245,6 +248,9 @@ sub rOpenFile {
          elsif(lc($fmt) eq 'table') {
            # do nothing 
          }
+	 elsif(lc($fmt) eq 'svg') {
+	   $Rv = qq{gridsvg(name="$out_f", width=$w, height=$h)};
+	 }
          else {
            die "Unsupported Format $fmt";
          }
