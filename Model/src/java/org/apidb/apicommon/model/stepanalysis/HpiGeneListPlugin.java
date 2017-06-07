@@ -38,6 +38,8 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
   private static final String EUPATH_SEARCH_SERVER_ENDPOINT_PROP_KEY = "eupathSearchServerEndpoint";
   private static final String PATRIC_NAME_KEY = "PATRIC";
   private static final String PATRIC_SEARCH_SERVER_ENDPOINT_PROP_KEY = "patricSearchServerEndpoint";
+  private static final String VBASE_NAME_KEY = "VectorBase";
+  private static final String VBASE_SEARCH_SERVER_ENDPOINT_PROP_KEY = "vbaseSearchServerEndpoint";
   private static final String EUPATH_PORTAL_NAME_KEY = "EuPathDB Portal";
   private static final String EUPATH_PORTAL_SEARCH_SERVER_ENDPOINT_PROP_KEY = "eupathSearchPortalEndpoint";
 
@@ -57,6 +59,7 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
     public void validateProperties() throws WdkModelException {
         this.serverEndpoints.put(EUPATH_NAME_KEY, getProperty(EUPATH_SEARCH_SERVER_ENDPOINT_PROP_KEY));        
         this.serverEndpoints.put(PATRIC_NAME_KEY, getProperty(PATRIC_SEARCH_SERVER_ENDPOINT_PROP_KEY));        
+        this.serverEndpoints.put(VBASE_NAME_KEY, getProperty(VBASE_SEARCH_SERVER_ENDPOINT_PROP_KEY));        
         this.serverEndpoints.put(EUPATH_PORTAL_NAME_KEY, getProperty(EUPATH_PORTAL_SEARCH_SERVER_ENDPOINT_PROP_KEY));        
         // TODO ... Add more for other BRCs
     }       
@@ -132,6 +135,7 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
     brcOptions.add(new Option(EUPATH_NAME_KEY, EUPATH_NAME_KEY));
     brcOptions.add(new Option(EUPATH_PORTAL_NAME_KEY, EUPATH_PORTAL_NAME_KEY));
     brcOptions.add(new Option(PATRIC_NAME_KEY, PATRIC_NAME_KEY));
+    brcOptions.add(new Option(VBASE_NAME_KEY, VBASE_NAME_KEY));
 
     List<Option> thresholdTypeOptions = new ArrayList<>();
     thresholdTypeOptions.add(new Option("percent_matched", "Percent Matched"));
