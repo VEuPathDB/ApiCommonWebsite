@@ -284,9 +284,9 @@ if($isSVG) {
 
 if(useTooltips) {
    if($isStack) {
-     gp = gp + geom_tooltip(aes(tooltip=LEGEND), real.geom=geom_bar, position=\"stack\");
+     gp = gp + geom_tooltip(aes(tooltip=NAME), real.geom=geom_bar, position=\"stack\");
    } else {
-     gp = gp + geom_tooltip(aes(tooltip=LEGEND), real.geom=geom_bar, position=\"dodge\");
+     gp = gp + geom_tooltip(aes(tooltip=NAME), real.geom=geom_bar, position=\"dodge\");
    } 
 } else {
    if($isStack) {
