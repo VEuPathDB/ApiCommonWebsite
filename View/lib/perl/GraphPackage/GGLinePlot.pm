@@ -84,6 +84,8 @@ sub makeRPlotString {
 
   my $overrideXAxisLabels = scalar @$sampleLabels > 0 ? "TRUE" : "FALSE";
 
+  my $isSVG = lc($self->getFormat()) eq 'svg' ? 'TRUE' : 'FALSE';
+
   my $colors = $self->getColors();
 
   my $defaultPch = [ '15', '16', '17', '18', '7:10', '0:6'];
@@ -320,7 +322,17 @@ if(profile.is.numeric && !$forceNoLines) {
 y.max = max(y.max, max(profile.df.full\$VALUE, na.rm=T), na.rm=TRUE);
 y.min = min(y.min, min(profile.df.full\$VALUE, na.rm=T), na.rm=TRUE);
 
-gp = gp + geom_point();
+if($isSVG) {
+  useTooltips=TRUE;
+}else{
+  useTooltips=FALSE;
+}
+
+if(useTooltips){
+  gp = gp + geom_tooltip(aes(tooltip=ELEMENT_NAMES), real.geom=geom_point);  
+}else{
+  gp = gp + geom_point();
+}
 
 if(!$forceNoLines) {
   gp = gp + geom_line();
