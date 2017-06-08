@@ -191,7 +191,7 @@ sub init {
   $stacked->setXaxisLabel("hours");
   $stacked->setPointsPch([19,'NA','NA']);
 
-  my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
+  my $percentile = ApiCommonWebsite::View::GraphPackage::GGBarPlot::Percentile->new(@_);
   $percentile->setProfileSets($percentileSets);
   $percentile->setColors([$colors[0]]);
   $percentile->setForceHorizontalXAxis(1);
