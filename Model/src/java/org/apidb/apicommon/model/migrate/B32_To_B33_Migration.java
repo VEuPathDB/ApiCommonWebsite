@@ -94,6 +94,10 @@ public class B32_To_B33_Migration {
       "  select user_id, 'organization' as key, organization as value " + SELECT_USER_PROPS_SQL_SUFFIX +
       ")";
 
+  private static final String DELETE_ACCOUNTS_TABLE_SQL = "delete table " + ACCOUNT_DB_SCHEMA + NEW_TABLE_ACCOUNTS;
+  private static final String DELETE_ACCOUNT_PROPS_TABLE_SQL = "delete table " + ACCOUNT_DB_SCHEMA + NEW_TABLE_ACCOUNT_PROPS;
+  private static final String DELETE_ACCOUNT_SEQUENCE_TABLE_SQL = "delete sequence " + ACCOUNT_DB_SCHEMA + NEW_USER_ID_SEQUENCE;
+
   /*============= END SQL TO BE EXECUTED ON ACCOUNT_DB =============*/
 
   /*============= BEGIN SQL TO BE EXECUTED ON USER_DB =============*/
@@ -131,18 +135,31 @@ public class B32_To_B33_Migration {
       createAccountSequenceFromUserSequence()
   };
 
+  private static final SqlGetter[] DROP_ACCOUNT_DB_SQLS = {
+      doSql(DELETE_ACCOUNT_PROPS_TABLE_SQL),
+      doSql(DELETE_ACCOUNTS_TABLE_SQL),
+      doSql(DELETE_ACCOUNT_SEQUENCE_TABLE_SQL)
+  };
+
   public static void main(String[] args) {
-    if (args.length != 2 || args[0].trim().isEmpty() || args[1].trim().isEmpty()) {
-      System.err.println("USAGE: fgpJava " + B32_To_B33_Migration.class.getName() + " <db_user> <db_password>");
+    if (args.length != 3 || (!args[0].equals("create") && !args[0].equals("drop")) ||
+        args[1].trim().isEmpty() || args[2].trim().isEmpty()) {
+      System.err.println("USAGE: fgpJava " + B32_To_B33_Migration.class.getName() + " [create|drop] <db_user> <db_password>");
       System.exit(1);
     }
-    String dbUser = args[0];
-    String dbPassword = args[1];
+    String operation = args[0];
+    String dbUser = args[1];
+    String dbPassword = args[2];
     QueryLogger.setInactive();
-    runSqls(PRIMARY_ACCTDB_CONNECTION_URL, PRIMARY_SQLS_TO_RUN_ACCOUNT_DB, dbUser, dbPassword);
-    runSqls(PRIMARY_USERDB_CONNECTION_URL, PRIMARY_SQLS_TO_RUN_USER_DB, dbUser, dbPassword);
-    if (REPLICATED_DBS) {
-      runSqls(REPLICATED_ACCTDB_CONNECTION_URL, REPLICATED_SQLS_TO_RUN_ACCOUNT_DB, dbUser, dbPassword);
+    if (operation.equals("create")) {
+      runSqls(PRIMARY_ACCTDB_CONNECTION_URL, PRIMARY_SQLS_TO_RUN_ACCOUNT_DB, dbUser, dbPassword);
+      runSqls(PRIMARY_USERDB_CONNECTION_URL, PRIMARY_SQLS_TO_RUN_USER_DB, dbUser, dbPassword);
+      if (REPLICATED_DBS) {
+        runSqls(REPLICATED_ACCTDB_CONNECTION_URL, REPLICATED_SQLS_TO_RUN_ACCOUNT_DB, dbUser, dbPassword);
+      }
+    }
+    else {
+      runSqls(PRIMARY_ACCTDB_CONNECTION_URL, DROP_ACCOUNT_DB_SQLS, dbUser, dbPassword);
     }
   }
 
@@ -168,20 +185,14 @@ public class B32_To_B33_Migration {
     public String getSql(DataSource ds) throws Exception;
   }
 
-  private static SqlGetter doSql(final String sql) {
-    return new SqlGetter() {
-      @Override public String getSql(DataSource ds) {
-        return sql;
-      }
-    };
+  private static SqlGetter doSql(String sql) {
+    return ds -> sql;
   }
 
   private static SqlGetter createAccountSequenceFromUserSequence() {
-    return new SqlGetter() {
-      @Override public String getSql(DataSource ds) throws Exception {
-        Long nextId = new Oracle().getNextId(ds, USER_DB_SCHEMA, SOURCE_USERS_TABLE);
-        return CREATE_ACCOUNT_USER_ID_SEQUENCE.replace(SEQUENCE_START_NUM_MACRO, nextId.toString());
-      }
+    return ds -> {
+      Long nextId = new Oracle().getNextId(ds, USER_DB_SCHEMA, SOURCE_USERS_TABLE);
+      return CREATE_ACCOUNT_USER_ID_SEQUENCE.replace(SEQUENCE_START_NUM_MACRO, nextId.toString());
     };
   }
 }
