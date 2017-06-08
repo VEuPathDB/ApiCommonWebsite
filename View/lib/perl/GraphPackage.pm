@@ -219,6 +219,8 @@ sub pushIds {
 
 # ------------------------------ rOpenFile -------------------------------
 
+sub useLegacy {return 0;}
+
 sub rOpenFile {
 	 my $Self   = shift;
 	 my $Width  = shift;
@@ -249,7 +251,11 @@ sub rOpenFile {
            # do nothing 
          }
 	 elsif(lc($fmt) eq 'svg') {
-	   $Rv = qq{gridsvg(name="$out_f", width=$w, height=$h)};
+	   if($Self->useLegacy()){
+	     $Rv = qq{svg(file="$out_f", width=$w, height=$h)};
+	   }else{
+	     $Rv = qq{gridsvg(name="$out_f", width=$w, height=$h)};
+	   }
 	 }
          else {
            die "Unsupported Format $fmt";
