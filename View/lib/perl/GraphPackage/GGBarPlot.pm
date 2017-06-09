@@ -245,6 +245,14 @@ for(ii in 1:length(profile.files)) {
   profile.df.full = rbind(profile.df.full, profile.df);
 }
 
+if(abs(sum(profile.df.full\$VALUE, na.rm=TRUE)) <= 0){
+
+  d = data.frame(VALUE=0.5, LABEL=\"None\");
+
+  gp = ggplot() + geom_blank() + geom_text(data=d, mapping=aes(x=VALUE, y=VALUE, label=LABEL), size=10) + theme_void() + theme(legend.position=\"none\");
+
+} else {
+
 profile.df.full\$MIN_ERR = profile.df.full\$VALUE - profile.df.full\$STDERR;
 profile.df.full\$MAX_ERR = profile.df.full\$VALUE + profile.df.full\$STDERR;
 
@@ -305,8 +313,6 @@ if(expandColors) {
   gp = gp + scale_colour_manual(values=$colorsStringNotNamed, breaks=profile.df.full\$LEGEND, name=NULL);
 }
 
-#gp = gp + scale_colour_discrete(breaks=profile.df.full\$LEGEND, name=NULL);
-
 gp = gp + geom_errorbar(aes(ymin=MIN_ERR, ymax=MAX_ERR), colour=\"black\", width=.1);
 
 if(is.compact) {
@@ -341,6 +347,7 @@ if($hasFacets) {
   gp = gp + facet_grid($facetString);
 }
 
+}
 
 plotlist[[plotlist.i]] = gp;
 plotlist.i = plotlist.i + 1;
