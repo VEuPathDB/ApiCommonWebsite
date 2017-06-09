@@ -322,8 +322,6 @@ sub defineGraphs {
 
 package ApiCommonWebsite::View::GraphPackage::Templates::ExpressionTwoChannel::DS_b7cf547d33;
 
-sub useLegacy{return 1;}
-
 sub init {
   my $self = shift;
 
@@ -338,7 +336,7 @@ sub init {
 
   my $clnClbProfileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([['Cln/Clb experiments','values']]);
 
-  my $clnClbPlot = ApiCommonWebsite::View::GraphPackage::BarPlot::LogRatio->new(@_);
+  my $clnClbPlot = ApiCommonWebsite::View::GraphPackage::GGBarPlot::LogRatio->new(@_);
   $clnClbPlot->setProfileSets($clnClbProfileSets);
   $clnClbPlot->setPartName('Cln_Clb');
   $clnClbPlot->setForceHorizontalXAxis(1);
