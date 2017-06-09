@@ -322,6 +322,8 @@ sub defineGraphs {
 
 package ApiCommonWebsite::View::GraphPackage::Templates::ExpressionTwoChannel::DS_b7cf547d33;
 
+sub useLegacy {return 1;}
+
 sub init {
   my $self = shift;
 
