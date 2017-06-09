@@ -34,13 +34,13 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
 
     // Servers for the pick list
     // NOTE: you also need to add new bits to two additional places below
-  private static final String EUPATH_NAME_KEY = "EuPathDB";
+    private String EUPATH_NAME_KEY = "This Database";
   private static final String EUPATH_SEARCH_SERVER_ENDPOINT_PROP_KEY = "eupathSearchServerEndpoint";
   private static final String PATRIC_NAME_KEY = "PATRIC";
   private static final String PATRIC_SEARCH_SERVER_ENDPOINT_PROP_KEY = "patricSearchServerEndpoint";
   private static final String VBASE_NAME_KEY = "VectorBase";
   private static final String VBASE_SEARCH_SERVER_ENDPOINT_PROP_KEY = "vbaseSearchServerEndpoint";
-  private static final String EUPATH_PORTAL_NAME_KEY = "EuPathDB Portal";
+  private static final String EUPATH_PORTAL_NAME_KEY = "EuPathDB";
   private static final String EUPATH_PORTAL_SEARCH_SERVER_ENDPOINT_PROP_KEY = "eupathSearchPortalEndpoint";
 
   private static final String BRC_PARAM_KEY = "brcParam";
@@ -50,13 +50,12 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
 
   private static final String TABBED_RESULT_FILE_PATH = "hpiGeneListResult.tab";
 
-  private static final String PROJECT_ID_KEY = "@PROJECT_ID@";
-
 
     private Map<String, String> serverEndpoints = new HashMap<String, String>();
 
     @Override
     public void validateProperties() throws WdkModelException {
+        EUPATH_NAME_KEY = getWdkModel().getProjectId();
         this.serverEndpoints.put(EUPATH_NAME_KEY, getProperty(EUPATH_SEARCH_SERVER_ENDPOINT_PROP_KEY));        
         this.serverEndpoints.put(PATRIC_NAME_KEY, getProperty(PATRIC_SEARCH_SERVER_ENDPOINT_PROP_KEY));        
         this.serverEndpoints.put(VBASE_NAME_KEY, getProperty(VBASE_SEARCH_SERVER_ENDPOINT_PROP_KEY));        
@@ -132,17 +131,25 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
   public Object getFormViewModel() throws WdkModelException, WdkUserException {
 
     List<Option> brcOptions = new ArrayList<>();
-    brcOptions.add(new Option(EUPATH_NAME_KEY, EUPATH_NAME_KEY));
-    brcOptions.add(new Option(EUPATH_PORTAL_NAME_KEY, EUPATH_PORTAL_NAME_KEY));
-    brcOptions.add(new Option(PATRIC_NAME_KEY, PATRIC_NAME_KEY));
-    brcOptions.add(new Option(VBASE_NAME_KEY, VBASE_NAME_KEY));
+    if ( serverEndpoints.get(EUPATH_NAME_KEY) != null ) {
+        brcOptions.add(new Option(EUPATH_NAME_KEY, EUPATH_NAME_KEY));
+    }
+    if ( serverEndpoints.get(EUPATH_PORTAL_NAME_KEY) != null ) {
+        brcOptions.add(new Option(EUPATH_PORTAL_NAME_KEY, EUPATH_PORTAL_NAME_KEY));
+    }
+    if ( serverEndpoints.get(PATRIC_NAME_KEY) != null ) {
+        brcOptions.add(new Option(PATRIC_NAME_KEY, PATRIC_NAME_KEY));
+    }
+    if ( serverEndpoints.get(VBASE_NAME_KEY) != null ) {
+        brcOptions.add(new Option(VBASE_NAME_KEY, VBASE_NAME_KEY));
+    }
 
     List<Option> thresholdTypeOptions = new ArrayList<>();
     thresholdTypeOptions.add(new Option("percent_matched", "Percent Matched"));
 
     List<Option> useOrthologyOptions = new ArrayList<>();
-    useOrthologyOptions.add(new Option("false", "No"));
     useOrthologyOptions.add(new Option("true", "Yes"));
+    useOrthologyOptions.add(new Option("false", "No"));
 
     return new FormViewModel(brcOptions, thresholdTypeOptions, useOrthologyOptions, getWdkModel().getProjectId());
   }
@@ -170,7 +177,7 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
 
   public static class FormViewModel {
 
-      private final String brcParamHelp = "Choose which website to search";
+      private final String brcParamHelp = "Choose which database to search";
       private final String thresholdTypeParamHelp = "Metric used to determine if this gene list matches a study";
       private final String thresholdParamHelp = "This number is used as a cutoff when finding studies from a gene list";
       private final String useOrthologyParamHelp = "Should we extend the search to consider genes orthologous to ones in the input list?";
