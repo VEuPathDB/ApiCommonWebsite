@@ -34,28 +34,27 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
 
     // Servers for the pick list
     // NOTE: you also need to add new bits to two additional places below
-    private String EUPATH_NAME_KEY = "This Database";
-  private static final String EUPATH_SEARCH_SERVER_ENDPOINT_PROP_KEY = "eupathSearchServerEndpoint";
-  private static final String PATRIC_NAME_KEY = "PATRIC";
-  private static final String PATRIC_SEARCH_SERVER_ENDPOINT_PROP_KEY = "patricSearchServerEndpoint";
-  private static final String VBASE_NAME_KEY = "VectorBase";
-  private static final String VBASE_SEARCH_SERVER_ENDPOINT_PROP_KEY = "vbaseSearchServerEndpoint";
-  private static final String EUPATH_PORTAL_NAME_KEY = "EuPathDB";
-  private static final String EUPATH_PORTAL_SEARCH_SERVER_ENDPOINT_PROP_KEY = "eupathSearchPortalEndpoint";
-
-  private static final String BRC_PARAM_KEY = "brcParam";
-  private static final String THRESHOLD_TYPE_PARAM_KEY = "thresholdTypeParam";
-  private static final String THRESHOLD_PARAM_KEY = "thresholdParam";
-  private static final String USE_ORTHOLOGY_PARAM_KEY = "useOrthologyParam";
-
-  private static final String TABBED_RESULT_FILE_PATH = "hpiGeneListResult.tab";
+    private static final String EUPATH_NAME_KEY = "eupathSearchServerName";
+    private static final String EUPATH_SEARCH_SERVER_ENDPOINT_PROP_KEY = "eupathSearchServerEndpoint";
+    private static final String PATRIC_NAME_KEY = "patricSearchServerName";
+    private static final String PATRIC_SEARCH_SERVER_ENDPOINT_PROP_KEY = "patricSearchServerEndpoint";
+    private static final String VBASE_NAME_KEY = "vbaseSearchServerName";
+    private static final String VBASE_SEARCH_SERVER_ENDPOINT_PROP_KEY = "vbaseSearchServerEndpoint";
+    private static final String EUPATH_PORTAL_NAME_KEY = "eupathSearchPortalName";
+    private static final String EUPATH_PORTAL_SEARCH_SERVER_ENDPOINT_PROP_KEY = "eupathSearchPortalEndpoint";
+    
+    private static final String BRC_PARAM_KEY = "brcParam";
+    private static final String THRESHOLD_TYPE_PARAM_KEY = "thresholdTypeParam";
+    private static final String THRESHOLD_PARAM_KEY = "thresholdParam";
+    private static final String USE_ORTHOLOGY_PARAM_KEY = "useOrthologyParam";
+    
+    private static final String TABBED_RESULT_FILE_PATH = "hpiGeneListResult.tab";
 
 
     private Map<String, String> serverEndpoints = new HashMap<String, String>();
 
     @Override
     public void validateProperties() throws WdkModelException {
-        EUPATH_NAME_KEY = getWdkModel().getProjectId();
         this.serverEndpoints.put(EUPATH_NAME_KEY, getProperty(EUPATH_SEARCH_SERVER_ENDPOINT_PROP_KEY));        
         this.serverEndpoints.put(PATRIC_NAME_KEY, getProperty(PATRIC_SEARCH_SERVER_ENDPOINT_PROP_KEY));        
         this.serverEndpoints.put(VBASE_NAME_KEY, getProperty(VBASE_SEARCH_SERVER_ENDPOINT_PROP_KEY));        
@@ -132,16 +131,16 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
 
     List<Option> brcOptions = new ArrayList<>();
     if ( serverEndpoints.get(EUPATH_NAME_KEY) != null ) {
-        brcOptions.add(new Option(EUPATH_NAME_KEY, EUPATH_NAME_KEY));
+        brcOptions.add(new Option(EUPATH_NAME_KEY, getProperty(EUPATH_NAME_KEY)));
     }
     if ( serverEndpoints.get(EUPATH_PORTAL_NAME_KEY) != null ) {
-        brcOptions.add(new Option(EUPATH_PORTAL_NAME_KEY, EUPATH_PORTAL_NAME_KEY));
+        brcOptions.add(new Option(EUPATH_PORTAL_NAME_KEY, getProperty(EUPATH_PORTAL_NAME_KEY)));
     }
     if ( serverEndpoints.get(PATRIC_NAME_KEY) != null ) {
-        brcOptions.add(new Option(PATRIC_NAME_KEY, PATRIC_NAME_KEY));
+        brcOptions.add(new Option(PATRIC_NAME_KEY, getProperty(PATRIC_NAME_KEY)));
     }
     if ( serverEndpoints.get(VBASE_NAME_KEY) != null ) {
-        brcOptions.add(new Option(VBASE_NAME_KEY, VBASE_NAME_KEY));
+        brcOptions.add(new Option(VBASE_NAME_KEY, getProperty(VBASE_NAME_KEY)));
     }
 
     List<Option> thresholdTypeOptions = new ArrayList<>();
@@ -216,7 +215,7 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
 
   public static class ResultViewModel {
 
-      private final ResultRow HEADER_ROW = new ResultRow("Experiment Identifier", "Species",  "Experiment Name", "Description", "Type", "URI", "Significance", "List_URI");
+      private final ResultRow HEADER_ROW = new ResultRow("Experiment Identifier", "Species",  "Experiment Name", "Description", "Type", "URI", "Percent Matched", "List_URI");
 
       private final ResultRow COLUMN_HELP = new ResultRow(
                                                                 "Unique ID for this experiment",
