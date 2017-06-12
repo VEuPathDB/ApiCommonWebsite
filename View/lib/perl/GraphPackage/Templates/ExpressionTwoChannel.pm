@@ -338,7 +338,7 @@ sub init {
 
   my $clnClbProfileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([['Cln/Clb experiments','values']]);
 
-  my $clnClbPlot = ApiCommonWebsite::View::GraphPackage::GGBarPlot::LogRatio->new(@_);
+  my $clnClbPlot = ApiCommonWebsite::View::GraphPackage::BarPlot::LogRatio->new(@_);
   $clnClbPlot->setProfileSets($clnClbProfileSets);
   $clnClbPlot->setPartName('Cln_Clb');
   $clnClbPlot->setForceHorizontalXAxis(1);
