@@ -25,6 +25,14 @@ sub finalProfileAdjustments {
 }
 1;
 
+package ApiCommonWebsite::View::GraphPackage::Templates::ExpressionTwoChannel::DS_a4dae129e9;
+
+sub getRemainderRegex {
+  return qr/ - (.+)/;
+}
+
+1;
+
 package ApiCommonWebsite::View::GraphPackage::Templates::ExpressionTwoChannel::DS_0c4be69d67;
 
 sub useLegacy {
