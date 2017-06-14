@@ -82,7 +82,7 @@ sub makeRPlotString {
   foreach(@{$self->getProfileSets()}) {
     if(scalar @{$_->errors()} > 0) {
       return $blankGraph;
-
+   
     }
   }
   my $colors = $self->getColors();
@@ -245,13 +245,10 @@ for(ii in 1:length(profile.files)) {
   profile.df.full = rbind(profile.df.full, profile.df);
 }
 
-if(abs(sum(profile.df.full\$VALUE, na.rm=TRUE)) <= 0){
-
-  d = data.frame(VALUE=0.5, LABEL=\"None\");
-
-  gp = ggplot() + geom_blank() + geom_text(data=d, mapping=aes(x=VALUE, y=VALUE, label=LABEL), size=10) + theme_void() + theme(legend.position=\"none\");
-
-} else {
+#if(abs(sum(profile.df.full\$VALUE, na.rm=TRUE)) <= 0){
+#  d = data.frame(VALUE=0.5, LABEL=\"None\");
+#  gp = ggplot() + geom_blank() + geom_text(data=d, mapping=aes(x=VALUE, y=VALUE, label=LABEL), size=10) + theme_void() + theme(legend.position=\"none\");
+#} else {
 
 profile.df.full\$MIN_ERR = profile.df.full\$VALUE - profile.df.full\$STDERR;
 profile.df.full\$MAX_ERR = profile.df.full\$VALUE + profile.df.full\$STDERR;
@@ -351,7 +348,7 @@ if($hasFacets) {
   gp = gp + facet_grid($facetString);
 }
 
-}
+#}
 
 plotlist[[plotlist.i]] = gp;
 plotlist.i = plotlist.i + 1;
