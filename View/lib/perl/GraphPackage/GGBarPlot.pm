@@ -323,14 +323,14 @@ if(is.compact) {
   gp = gp + theme_bw();
   gp = gp + labs(title=\"$plotTitle\", y=\"$yAxisLabel\", x=NULL);
   gp = gp + ylim(y.min, y.max);
-  gp = gp + scale_x_discrete(label=function(x) gsub(\"a|e|i|o|u\", \"\", x));
+  gp = gp + scale_x_discrete(label=function(x) customAbbreviate(x));
   gp = gp + theme(axis.text.x  = element_text(angle=90,vjust=0.5, size=9), plot.title = element_text(colour=\"#b30000\"), panel.grid.major.x = element_blank());
   gp = gp + theme(legend.position=\"none\");
 } else {
   gp = gp + theme_bw();
   gp = gp + labs(title=\"$plotTitle\", y=\"$yAxisLabel\", x=NULL);
   gp = gp + ylim(y.min, y.max);
-  gp = gp + scale_x_discrete(label=function(x) gsub(\"a|e|i|o|u\", \"\", x));
+  gp = gp + scale_x_discrete(label=function(x) customAbbreviate(x));
   gp = gp + theme(axis.text.x  = element_text(angle=90,vjust=0.5, size=12), plot.title = element_text(colour=\"#b30000\"), panel.grid.major.x = element_blank());
 
 if($hideXAxisLabels) {
