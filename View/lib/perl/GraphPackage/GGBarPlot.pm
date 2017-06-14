@@ -38,6 +38,9 @@ sub setLas                      { $_[0]->{'_las'                             } =
 sub getSkipStdErr                 { $_[0]->{'_skip_std_err'                      }}
 sub setSkipStdErr                 { $_[0]->{'_skip_std_err'                      } = $_[1]}
 
+sub getHideXAxisLabels          { $_[0]->{'_x_axis_labels'                  }}
+sub setHideXAxisLabels          { $_[0]->{'_x_axis_labels'                  } = $_[1]}
+
 
 sub blankPlotPart {
   my ($self) = @_;
@@ -136,6 +139,8 @@ sub makeRPlotString {
   $yAxisFoldInductionFromM = $yAxisFoldInductionFromM ? 'TRUE' : 'FALSE';
 
   my $horiz = $isHorizontal && !$self->isCompact() ? 'TRUE' : 'FALSE';
+
+  my $hideXAxisLabels = $self->getHideXAxisLabels() ? 'TRUE' : 'FALSE';
 
   my $titleLine = $self->getTitleLine();
 
@@ -260,7 +265,7 @@ if(length(profile.files) == 1) {
   }
 }
 
-profile.df.full\$NAME <- factor(profile.df.full\$NAME, levels = profile.df.full\$NAME[order(profile.df.full\$ELEMENT_ORDER)])
+profile.df.full\$NAME <- factor(profile.df.full\$NAME, levels = unique(profile.df.full\$NAME[order(profile.df.full\$ELEMENT_ORDER)]))
 
 expandColors = FALSE;
 hideLegend = FALSE;
@@ -289,13 +294,13 @@ if($isSVG) {
 
 if(useTooltips) {
    if($isStack) {
-     gp = gp + geom_tooltip(aes(tooltip=NAME), real.geom=geom_bar, position=\"stack\");
+     gp = gp + geom_tooltip(aes(tooltip=NAME), real.geom=geom_bar, position=\"stack\", colour=\"black\");
    } else {
      gp = gp + geom_tooltip(aes(tooltip=NAME), real.geom=geom_bar, position=\"dodge\");
    } 
 } else {
    if($isStack) {
-     gp = gp + geom_bar(stat=\"identity\", position=\"stack\");
+     gp = gp + geom_bar(stat=\"identity\", position=\"stack\", colour=\"black\");
    } else {
      gp = gp + geom_bar(stat=\"identity\", position=\"dodge\");
    }
@@ -328,7 +333,9 @@ if(is.compact) {
   gp = gp + scale_x_discrete(label=function(x) gsub(\"a|e|i|o|u\", \"\", x));
   gp = gp + theme(axis.text.x  = element_text(angle=90,vjust=0.5, size=12), plot.title = element_text(colour=\"#b30000\"), panel.grid.major.x = element_blank());
 
-
+if($hideXAxisLabels) {
+    gp = gp + theme(axis.text.x = element_blank(), axis.ticks.x = element_blank());
+}
 
   if(hideLegend) {
     gp = gp + theme(legend.position=\"none\");
