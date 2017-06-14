@@ -318,6 +318,14 @@ ticks <- function() {
   axis(1);
 }
 
+  customAbbreviate <- function(x) {
+    x.1 = gsub("a|e|i|o|u", "", x);
+    if(sum(duplicated(x.1)) > 0) {
+      return(abbreviate(x));
+    }
+    return(x.1);
+  }
+
 # multiplot only used for ggplot
 multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
 
