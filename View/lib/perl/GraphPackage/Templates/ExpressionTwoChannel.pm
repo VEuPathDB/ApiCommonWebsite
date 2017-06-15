@@ -25,6 +25,14 @@ sub finalProfileAdjustments {
 }
 1;
 
+package ApiCommonWebsite::View::GraphPackage::Templates::ExpressionTwoChannel::DS_a4dae129e9;
+
+sub getRemainderRegex {
+  return qr/ - (.+)/;
+}
+
+1;
+
 package ApiCommonWebsite::View::GraphPackage::Templates::ExpressionTwoChannel::DS_0c4be69d67;
 
 sub useLegacy {
@@ -322,6 +330,7 @@ sub defineGraphs {
 
 package ApiCommonWebsite::View::GraphPackage::Templates::ExpressionTwoChannel::DS_b7cf547d33;
 
+sub useLegacy {return 1;}
 
 sub init {
   my $self = shift;
@@ -344,22 +353,22 @@ sub init {
 
 
   my $pheromoneProfileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([['pheromone experiments','values']]);
-  my $pheromonePlot = ApiCommonWebsite::View::GraphPackage::GGLinePlot::LogRatio->new(@_);
+  my $pheromonePlot = ApiCommonWebsite::View::GraphPackage::LinePlot::LogRatio->new(@_);
   $pheromonePlot->setProfileSets($pheromoneProfileSets);
   $pheromonePlot->setPartName('pheromone');
 
   my $elutriationProfileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([['elutriation experiments','values']]);
-  my $elutriationPlot = ApiCommonWebsite::View::GraphPackage::GGLinePlot::LogRatio->new(@_);
+  my $elutriationPlot = ApiCommonWebsite::View::GraphPackage::LinePlot::LogRatio->new(@_);
   $elutriationPlot->setProfileSets($elutriationProfileSets);
   $elutriationPlot->setPartName('elutriation');
   
   my $cdc15ProfileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([['cdc15 experiments','values']]);
-  my $cdc15Plot = ApiCommonWebsite::View::GraphPackage::GGLinePlot::LogRatio->new(@_);
+  my $cdc15Plot = ApiCommonWebsite::View::GraphPackage::LinePlot::LogRatio->new(@_);
   $cdc15Plot->setProfileSets($cdc15ProfileSets);
   $cdc15Plot->setPartName('cdc15');
 
   my $cdc28ProfileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([['Cho et al','values']]);
-  my $cdc28Plot = ApiCommonWebsite::View::GraphPackage::GGLinePlot::LogRatio->new(@_);
+  my $cdc28Plot = ApiCommonWebsite::View::GraphPackage::LinePlot::LogRatio->new(@_);
   $cdc28Plot->setProfileSets($cdc28ProfileSets);
   $cdc28Plot->setPartName('cdc28');
 

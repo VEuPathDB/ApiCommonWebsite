@@ -22,7 +22,7 @@ sub init {
 
   my $colors = ['dodgerblue', 'slateblue', 'forestgreen', '#2F4F4F', 'salmon', '#E9967A'];
 
-  my $elementNames = ['', 'Percoll pellet|6.4', 'Percoll pellet|7.4', 'Percoll pellet|8.4', 'Uninfected RBC pellet|6.4', 'Uninfected RBC pellet|7.4', 'Uninfected RBC pellet|8.4', 'Saponin pellet|6.4', 'Saponin pellet|7.4', 'Saponin pellet|8.4', '', 'Percoll media|6.4', 'Percoll media|7.4', 'Percoll media|8.4', 'Uninfected RBC media|6.4', 'Uninfected RBC media|7.4', 'Uninfected RBC media|8.4', 'Saponin media|6.4', 'Saponin media|7.4', 'Saponin media|8.4'];
+  my $elementNames = ['', 'Infected RBC pellet|6.4', 'Infected RBC pellet|7.4', 'Infected RBC pellet|8.4', 'Uninfected RBC pellet|6.4', 'Uninfected RBC pellet|7.4', 'Uninfected RBC pellet|8.4', 'Parasites pellet|6.4', 'Parasites pellet|7.4', 'Parasites pellet|8.4', '', 'Infected RBC media|6.4', 'Infected RBC media|7.4', 'Infected RBC media|8.4', 'Uninfected RBC media|6.4', 'Uninfected RBC media|7.4', 'Uninfected RBC media|8.4', 'Parasites media|6.4', 'Parasites media|7.4', 'Parasites media|8.4'];
 
   my $dbh = $self->getQueryHandle();
 
@@ -65,25 +65,26 @@ sub init {
 
   my $massSpec = ApiCommonWebsite::View::GraphPackage::GGBarPlot::MassSpec->new(@_);
   my $rAdjustString = <<'RADJUST';
-profile.df.full$LEGEND=matrix(unlist(strsplit(as.character(profile.df.full$NAME), fixed=T, split=c("|"))), ncol=2, byrow=T)[,1];
-profile.df.full$pH=matrix(unlist(strsplit(as.character(profile.df.full$NAME), fixed=T, split=c("|"))), ncol=2, byrow=T)[,2];
-profile.df.full$NAME = factor(profile.df.full$LEGEND, levels=legend.label); 
+    profile.df.full$LEGEND=matrix(unlist(strsplit(as.character(profile.df.full$NAME), fixed=T, split=c("|"))), ncol=2, byrow=T)[,1];
+    profile.df.full$pH=matrix(unlist(strsplit(as.character(profile.df.full$NAME), fixed=T, split=c("|"))), ncol=2, byrow=T)[,2];
+    profile.df.full$isotopomer=matrix(unlist(strsplit(as.character(profile.df.full$PROFILE_FILE), fixed=T, split=c("|"))), ncol=2, byrow=T) [,2];
+    profile.df.full$isotopomer=gsub("-$", "", matrix(unlist(strsplit(as.character(profile.df.full$isotopomer), fixed=T, split=c("_"))), ncol=4, byrow=T)[,1]);
+    profile.df.full$isotopomer[which(profile.df.full$isotopomer == "C12")] = "C12-0";
+    profile.df.full$order=matrix(unlist(strsplit(as.character(profile.df.full$isotopomer), fixed=T, split=c("-"))), ncol=2, byrow=T)[,2];
+    profile.df.full$isotopomer[which(profile.df.full$isotopomer == "C12-0")] = "C12";
+    profile.df.full$NAME = factor(profile.df.full$LEGEND, levels=legend.label);
+    profile.df.full$LEGEND = factor(profile.df.full$LEGEND, levels=legend.label);
+    profile.df.full <- profile.df.full[order(as.numeric(profile.df.full$order)),]; 
 RADJUST
   $massSpec->setAdjustProfile($rAdjustString);
   $massSpec->setProfileSets($profileSets);
-#  $massSpec->setColors($colors);
+  $massSpec->setColors($colors);
   $massSpec->setDefaultYMax(100);
 
- # $massSpec->setSampleLabels(['','','','6.4','','','','','','7.4','','','','','','8.4','','']);
- # $massSpec->setSpaceBetweenBars("c(0.75, rep(0, time=5))");
- # $massSpec->setAxisLty(0);
- # $massSpec->setLas(0);
- # $massSpec->setHasExtraLegend(1);
-#  $massSpec->setExtraLegendSize(8.0);
-
   $massSpec->setIsStacked(1);
-#  $massSpec->setLegendColors($colors);
-  $massSpec->setLegendLabels(['Percoll pellet', 'Percoll media', 'Saponin pellet', 'Saponin media', 'Uninfected RBC pellet', 'Uninfected RBC media']);
+  $massSpec->setHideXAxisLabels(1);
+  $massSpec->setLegendColors($colors);
+  $massSpec->setLegendLabels(['Infected RBC pellet', 'Uninfected RBC pellet', 'Parasites pellet', 'Infected RBC media', 'Uninfected RBC media', 'Parasites media']);
 
   $self->setGraphObjects($massSpec);
   return $self;

@@ -84,6 +84,8 @@ sub makeRPlotString {
 
   my $overrideXAxisLabels = scalar @$sampleLabels > 0 ? "TRUE" : "FALSE";
 
+  my $isSVG = lc($self->getFormat()) eq 'svg' ? 'TRUE' : 'FALSE';
+
   my $colors = $self->getColors();
 
   my $defaultPch = [ '15', '16', '17', '18', '7:10', '0:6'];
@@ -320,7 +322,17 @@ if(profile.is.numeric && !$forceNoLines) {
 y.max = max(y.max, max(profile.df.full\$VALUE, na.rm=T), na.rm=TRUE);
 y.min = min(y.min, min(profile.df.full\$VALUE, na.rm=T), na.rm=TRUE);
 
-gp = gp + geom_point();
+if($isSVG) {
+  useTooltips=TRUE;
+}else{
+  useTooltips=FALSE;
+}
+
+if(useTooltips){
+  gp = gp + geom_tooltip(aes(tooltip=ELEMENT_NAMES), real.geom=geom_point);  
+}else{
+  gp = gp + geom_point();
+}
 
 if(!$forceNoLines) {
   gp = gp + geom_line();
@@ -346,12 +358,14 @@ if(is.null(profile.df.full\$LEGEND)) {
 if(is.compact) {
   gp = gp + theme_void() + theme(legend.position=\"none\");
 } else if(is.thumbnail) {
+  gp = gp + theme_bw();
   gp = gp + labs(title=\"$plotTitle\", y=\"$yAxisLabel\", x=NULL);
   gp = gp + ylim(y.min, y.max);
   gp = gp + scale_x_discrete(label=abbreviate);
   gp = gp + theme(axis.text.x  = element_text(angle=90,vjust=0.5, size=9), plot.title = element_text(colour=\"#b30000\"));
   gp = gp + theme(legend.position=\"none\");
 } else {
+  gp = gp + theme_bw();
   gp = gp + labs(title=\"$plotTitle\", y=\"$yAxisLabel\", x=\"$xAxisLabel\");
   gp = gp + ylim(y.min, y.max);
   gp = gp + theme(plot.title = element_text(colour=\"#b30000\"))

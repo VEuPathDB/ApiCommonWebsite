@@ -162,7 +162,10 @@ sub finalProfileAdjustments {
 
 package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_af621bdb28;
 
+sub useLegacy {return 1;}
+
 sub init {
+  
   my $self = shift;
   $self->SUPER::init(@_);
 
@@ -183,7 +186,7 @@ sub init {
 #  my $additionalRCode = "lines.df[2,] = lines.df[2,] + lines.df[3,];";
 
 
-  my $stacked = ApiCommonWebsite::View::GraphPackage::GGLinePlot::PairedEndRNASeq->new(@_);
+  my $stacked = ApiCommonWebsite::View::GraphPackage::LinePlot::PairedEndRNASeq->new(@_);
   $stacked->setProfileSets($profileSets);
   $stacked->setColors(\@colors);
 

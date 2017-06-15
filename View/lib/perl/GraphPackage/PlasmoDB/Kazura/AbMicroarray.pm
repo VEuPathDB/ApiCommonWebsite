@@ -5,7 +5,7 @@ use vars qw( @ISA);
 
 @ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet);
 use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
-use ApiCommonWebsite::View::GraphPackage::ScatterPlot;
+use ApiCommonWebsite::View::GraphPackage::GGScatterPlot;
 
 sub init {
   my $self = shift;
@@ -20,7 +20,7 @@ sub init {
   my @profileSetArray = (['Kazura Reinfection Ab Microarray Profiles','values']);
   my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSetArray);
 
-  my $scatter = ApiCommonWebsite::View::GraphPackage::ScatterPlot::LogRatio->new(@_);
+  my $scatter = ApiCommonWebsite::View::GraphPackage::GGScatterPlot::LogRatio->new(@_);
 #  my $scatter = ApiCommonWebsite::View::GraphPackage::ScatterPlot::ClinicalMetaData->new(@_);
   $scatter->setProfileSets($profileSets);
   $scatter->setColors($colors);

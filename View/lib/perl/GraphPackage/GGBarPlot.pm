@@ -38,6 +38,9 @@ sub setLas                      { $_[0]->{'_las'                             } =
 sub getSkipStdErr                 { $_[0]->{'_skip_std_err'                      }}
 sub setSkipStdErr                 { $_[0]->{'_skip_std_err'                      } = $_[1]}
 
+sub getHideXAxisLabels          { $_[0]->{'_x_axis_labels'                  }}
+sub setHideXAxisLabels          { $_[0]->{'_x_axis_labels'                  } = $_[1]}
+
 
 sub blankPlotPart {
   my ($self) = @_;
@@ -65,6 +68,8 @@ sub makeRPlotString {
   my $overrideXAxisLabels = scalar @$sampleLabels > 0 ? "TRUE" : "FALSE";
   my $skipStdErr = $self->getSkipStdErr() ? 'TRUE' : 'FALSE';
 
+  my $isSVG = lc($self->getFormat()) eq 'svg' ? 'TRUE' : 'FALSE'; 
+
   my ($profileFiles, $elementNamesFiles, $stderrFiles);
 
   my $blankGraph = $self->blankPlotPart();
@@ -80,7 +85,7 @@ sub makeRPlotString {
   foreach(@{$self->getProfileSets()}) {
     if(scalar @{$_->errors()} > 0) {
       return $blankGraph;
-
+   
     }
   }
   my $colors = $self->getColors();
@@ -102,6 +107,8 @@ sub makeRPlotString {
   my $las = $self->getLas();
   my $lasString = defined($las) ? 'TRUE' : 'FALSE';
   $las = defined($las) ? $las : 'NULL';
+
+  my $out_f = $self->getOutputFile();
 
   my $isThumbnail = "FALSE";
 
@@ -132,6 +139,8 @@ sub makeRPlotString {
   $yAxisFoldInductionFromM = $yAxisFoldInductionFromM ? 'TRUE' : 'FALSE';
 
   my $horiz = $isHorizontal && !$self->isCompact() ? 'TRUE' : 'FALSE';
+
+  my $hideXAxisLabels = $self->getHideXAxisLabels() ? 'TRUE' : 'FALSE';
 
   my $titleLine = $self->getTitleLine();
 
@@ -241,6 +250,11 @@ for(ii in 1:length(profile.files)) {
   profile.df.full = rbind(profile.df.full, profile.df);
 }
 
+#if(abs(sum(profile.df.full\$VALUE, na.rm=TRUE)) <= 0){
+#  d = data.frame(VALUE=0.5, LABEL=\"None\");
+#  gp = ggplot() + geom_blank() + geom_text(data=d, mapping=aes(x=VALUE, y=VALUE, label=LABEL), size=10) + theme_void() + theme(legend.position=\"none\");
+#} else {
+
 profile.df.full\$MIN_ERR = profile.df.full\$VALUE - profile.df.full\$STDERR;
 profile.df.full\$MAX_ERR = profile.df.full\$VALUE + profile.df.full\$STDERR;
 
@@ -251,13 +265,15 @@ if(length(profile.files) == 1) {
   }
 }
 
-profile.df.full\$NAME <- factor(profile.df.full\$NAME, levels = profile.df.full\$NAME[order(profile.df.full\$ELEMENT_ORDER)])
+profile.df.full\$NAME <- factor(profile.df.full\$NAME, levels = unique(profile.df.full\$NAME[order(profile.df.full\$ELEMENT_ORDER)]))
 
 expandColors = FALSE;
+hideLegend = FALSE;
 
 if(is.null(profile.df.full\$LEGEND)) {
   profile.df.full\$LEGEND = profile.df.full\$NAME
   expandColors = TRUE;
+  hideLegend = TRUE;
 } else {
   profile.df.full\$LEGEND = factor(profile.df.full\$LEGEND, levels=legend.label);
 }
@@ -270,39 +286,76 @@ y.min = min(c(y.min, profile.df.full\$VALUE, profile.df.full\$MIN_ERR), na.rm=TR
 
 gp = ggplot(profile.df.full, aes(x=NAME, y=VALUE, fill=LEGEND, colour=LEGEND));
 
+if($isSVG) {
+  useTooltips=TRUE;
+}else{
+  useTooltips=FALSE;
+}
 
-if($isStack) {
-  gp = gp + geom_bar(stat=\"identity\", position=\"stack\", size=1.2);
+if(useTooltips) {
+   if($isStack) {
+     gp = gp + geom_tooltip(aes(tooltip=NAME), real.geom=geom_bar, position=\"stack\", colour=\"black\");
+   } else {
+     gp = gp + geom_tooltip(aes(tooltip=NAME), real.geom=geom_bar, position=\"dodge\");
+   } 
 } else {
-  gp = gp + geom_bar(stat=\"identity\", position=\"dodge\", size=1.2);
+   if($isStack) {
+     gp = gp + geom_bar(stat=\"identity\", position=\"stack\", colour=\"black\");
+   } else {
+     gp = gp + geom_bar(stat=\"identity\", position=\"dodge\");
+   }
 }
 
 if(expandColors) {
+ #!!!!!!!!!!!!!!!!! i believe the below will only work when length(NAME)/length(colorstring) divides evenly
   gp = gp + scale_fill_manual(values=rep($colorsStringNotNamed, length(profile.df.full\$NAME)/length($colorsStringNotNamed)), breaks=profile.df.full\$LEGEND, name=NULL);
+  gp = gp + scale_colour_manual(values=rep($colorsStringNotNamed, length(profile.df.full\$NAME)/length($colorsStringNotNamed)), breaks=profile.df.full\$LEGEND, name=NULL);
 } else {
-  gp = gp + scale_fill_manual(values=$colorsStringNotNamed, breaks=profile.df.full\$LEGEND, name=NULL);
+  gp = gp + scale_fill_manual(values=$colorsStringNotNamed, breaks=profile.df.full\$LEGEND, name=NULL);  
+  gp = gp + scale_colour_manual(values=$colorsStringNotNamed, breaks=profile.df.full\$LEGEND, name=NULL);
 }
 
-gp = gp + scale_colour_discrete(breaks=profile.df.full\$LEGEND, name=NULL);
-
 gp = gp + geom_errorbar(aes(ymin=MIN_ERR, ymax=MAX_ERR), colour=\"black\", width=.1);
+
+barCount = length(profile.df.full\$NAME);
 
 if(is.compact) {
   gp = gp + theme_void() + theme(legend.position=\"none\");
 } else if(is.thumbnail) {
+  gp = gp + theme_bw();
   gp = gp + labs(title=\"$plotTitle\", y=\"$yAxisLabel\", x=NULL);
   gp = gp + ylim(y.min, y.max);
-  gp = gp + scale_x_discrete(label=abbreviate);
-  gp = gp + theme(axis.text.x  = element_text(angle=90,vjust=0.5, size=9), plot.title = element_text(colour=\"#b30000\"));
+  gp = gp + scale_x_discrete(label=function(x) customAbbreviate(x));
+
+  if(barCount < 3) {
+    gp = gp + theme(axis.text.x  = element_text(size=9), plot.title = element_text(colour=\"#b30000\"), panel.grid.major.x = element_blank());
+  }
+  else {
+    gp = gp + theme(axis.text.x  = element_text(angle=45,vjust=1, hjust=1, size=9), plot.title = element_text(colour=\"#b30000\"), panel.grid.major.x = element_blank());
+  }
   gp = gp + theme(legend.position=\"none\");
 } else {
+  gp = gp + theme_bw();
   gp = gp + labs(title=\"$plotTitle\", y=\"$yAxisLabel\", x=NULL);
   gp = gp + ylim(y.min, y.max);
-  gp = gp + scale_x_discrete(label=abbreviate);
-  gp = gp + theme(axis.text.x  = element_text(angle=90,vjust=0.5, size=12), plot.title = element_text(colour=\"#b30000\"));
+  gp = gp + scale_x_discrete(label=function(x) customAbbreviate(x));
 
-  if(length(the.colors) > 13) {
-    gp = gp + guides(fill=guide_legend(ncol=2));
+  if(barCount < 3) {
+    gp = gp + theme(axis.text.x  = element_text(size=12), plot.title = element_text(colour=\"#b30000\"), panel.grid.major.x = element_blank());
+  }
+  else {
+    gp = gp + theme(axis.text.x  = element_text(angle=45,vjust=1, hjust=1, size=12), plot.title = element_text(colour=\"#b30000\"), panel.grid.major.x = element_blank());
+ #  gp = gp + theme(axis.text.x  = element_text(angle=90,vjust=0.5, size=12), plot.title = element_text(colour=\"#b30000\"), panel.grid.major.x = element_blank());
+  }
+
+
+
+if($hideXAxisLabels) {
+    gp = gp + theme(axis.text.x = element_blank(), axis.ticks.x = element_blank());
+}
+
+  if(hideLegend) {
+    gp = gp + theme(legend.position=\"none\");
   }
 
 }
@@ -319,6 +372,7 @@ if($hasFacets) {
   gp = gp + facet_grid($facetString);
 }
 
+#}
 
 plotlist[[plotlist.i]] = gp;
 plotlist.i = plotlist.i + 1;
