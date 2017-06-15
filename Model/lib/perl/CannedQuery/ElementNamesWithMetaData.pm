@@ -46,9 +46,12 @@ sub init {
 
   $Self->SUPER::init($Args);
 
-  $Self->setMetaDataCategory           ( $Args->{MetaDataCategory          } );
+  $Self->setFacet           ( $Args->{Facet          } );
+  $Self->setContXAxis           ( $Args->{ContXAxis          } );
 
   $Self->setSql(<<Sql);
+
+-- TODO UPDATE THIS TO USE <<Facet>> and <<ContXAxis>> which should be ontology term source ids
 SELECT distinct pen.element_order, Pen.name || ':' || BMC.Value As Name       
 FROM   study.Study                     s
 ,      apidb.ProfileSet                ps
@@ -74,8 +77,12 @@ Sql
 
 # -------------------------------- access --------------------------------
 
-sub getMetaDataCategory           { $_[0]->{'MetaDataCategory'        } }
-sub setMetaDataCategory           { $_[0]->{'MetaDataCategory'        } = $_[1]; $_[0] }
+sub getFacet           { $_[0]->{'Facet'        } }
+sub setFacet           { $_[0]->{'Facet'        } = $_[1]; $_[0] }
+
+sub getContXAxis           { $_[0]->{'ContXAxis'        } }
+sub setContXAxis           { $_[0]->{'ContXAxis'        } = $_[1]; $_[0] }
+
 
 # ========================================================================
 # --------------------------- Support Methods ----------------------------
@@ -86,7 +93,8 @@ sub prepareDictionary {
 	 my $Dict = shift || {};
 
          $Dict->{ProfileSet} = $Self->getProfileSet();
-	 $Dict->{MetaDataCategory} = $Self->getMetaDataCategory();
+	 $Dict->{Facet} = $Self->getFacet();
+	 $Dict->{ContXAxis} = $Self->getContXAxis();
 
          my $Rv = $Dict;
 
