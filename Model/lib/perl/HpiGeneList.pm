@@ -35,6 +35,9 @@ sub run {
   my $req = HTTP::Request->new(POST => $server_endpoint);
   $req->header('content-type' => 'application/json');
 
+  ### vectorbase hack
+  ### we may have to set up specific values for each specific endpoint so this may not in the end be a hack.
+  $idSource = 'vectorbase' if $server_endpoint =~ /vectorbase/;
 
 # add POST data to HTTP request body
   my $post_data = "{
@@ -88,15 +91,20 @@ sub run {
 sub getValidGeneList {
   my ($dbh, $sql,$server_endpoint) = @_;
 
-  my $stmt = $dbh->prepare("$sql") or die(DBI::errstr);
-  $stmt->execute() or die(DBI::errstr);
-
   my @genes;
-
-  my $geneStr;
-  while ((my $mygene) = $stmt->fetchrow_array()) {
-    $mygene =~ s/\.\d+$// if $server_endpoint =~ /patricbrc/;
-    push @genes, $mygene;
+  ##vectorbase hack for demo
+  if($server_endpoint =~ /vectorbase/){
+    @genes = ('AAEL014955','AAEL014932','AAEL014943');
+  }else{
+    my $stmt = $dbh->prepare("$sql") or die(DBI::errstr);
+    $stmt->execute() or die(DBI::errstr);
+    
+    
+    my $geneStr;
+    while ((my $mygene) = $stmt->fetchrow_array()) {
+      $mygene =~ s/\.\d+$// if $server_endpoint =~ /patricbrc/; ##stripping off the version number
+      push @genes, $mygene;
+    }
   }
 
   die "Got no genes\n" unless scalar @genes > 1;

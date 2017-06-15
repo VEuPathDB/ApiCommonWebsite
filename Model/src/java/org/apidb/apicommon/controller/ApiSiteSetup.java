@@ -45,6 +45,7 @@ public class ApiSiteSetup {
           // only modify default filter value if operator changed
           return;
         }
+
         // reset GeneBooleanFilter to default for new value
         FilterOption geneBooleanFilter = revisedStep.getFilterOptions()
             .getFilterOption(GeneBooleanFilter.GENE_BOOLEAN_FILTER_ARRAY_KEY);

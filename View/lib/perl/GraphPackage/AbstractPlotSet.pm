@@ -298,11 +298,13 @@ sub makeR {
 
 $preamble_R
 
-$open_R;
-
 library(grid);
 library(gridExtra);
 library(ggplot2);
+library(gridSVG);
+library(tools);
+
+$open_R
 
 plasmodb.par();
 
@@ -315,6 +317,14 @@ ticks <- function() {
   axis(1, at=seq(5*floor(x.min/5+0.5), x.max, 5), labels=F, col="gray50");
   axis(1);
 }
+
+  customAbbreviate <- function(x) {
+    x.1 = gsub("a|e|i|o|u", "", x);
+    if(sum(duplicated(x.1)) > 0) {
+      return(abbreviate(x));
+    }
+    return(x.1);
+  }
 
 # multiplot only used for ggplot
 multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
@@ -331,7 +341,7 @@ multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
     # nrow: Number of rows needed, calculated from # of cols
     layout <- matrix(seq(1, cols * ceiling(numPlots/cols)),
                     ncol = cols, nrow = ceiling(numPlots/cols))
-}
+  }
 
   if (numPlots==1) {
     print(plots[[1]])
@@ -353,6 +363,40 @@ multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
 }
 
 
+#only used for ggplot in the case where legend has more than 9 entries.
+#overrides an existing geom supplied as 'real.geom' and forces it to 
+#additionally add some text to the grob it creates. this text later becomes a tooltip.
+
+geom_tooltip <- function (mapping = NULL, data = NULL, stat = "identity",
+                          position = "identity", real.geom = NULL, ...) {
+
+    #store the original ggproto object to inherit from as var parent 
+    rg <- real.geom(mapping = mapping, data = data, stat = stat,
+                    position = position, ...)
+    parent=rg\$geom
+
+    #replace ggproto object with one of our own design. overwrite draw_panel and required_aes.
+    rg\$geom <-ggproto(parent, parent,
+       draw_panel = function(self, data, panel_scales, coord, width = NULL,
+                    na.rm = FALSE) {
+           grobs <- list()
+           for (i in 1:nrow(data)) {
+		#call draw_panel of the original ggproto object. then garnish the grob it returns
+		#with svg attributes for tooltips
+                grob <- parent\$draw_panel(data[i,], panel_scales, coord)
+                grobs[[i]] <- garnishGrob(grob, onmousemove=paste("showTooltip(evt, '",
+                        data[i,]\$tooltip , "')"), onmouseout="hideTooltip(evt)",
+                        "pointer-events"="all")
+           }
+           ggplot2:::ggname("geom_tooltip", gTree(children = do.call("gList", grobs)))
+       },
+       #add tooltip to the aesthetics for our ggproto object
+       required_aes = c("tooltip", parent\$required_aes)
+    )
+    rg
+}
+
+
 
 # --------------------------------- Add Legend-------------------------------
 
@@ -365,14 +409,83 @@ $rStrings
 
 # --------------------------------- Done ---------------------------------
 
-
 $splitScreenFinish
 
+#add some javascript to the svg to make the tooltips functional.
+if (grepl(file_ext(\"$out_f\"), \"svg\")) {
+    grid.script('var showTooltip = function(evt, label) {
+	// Getting rid of any existing tooltips
+        hideTooltip();
+        var svgNS = "http://www.w3.org/2000/svg";
+        var target = evt.currentTarget;
+        // Create new text node, rect and text for the tooltip
+        var content = document.createTextNode(label);
+        var text = document.createElementNS(svgNS, "text");
+        text.setAttribute("id", "tooltipText");
+        // Resetting some style attributes
+        text.setAttribute("font-size", "14px");
+        text.setAttribute("font-family", "Helvetica, Arial, FreeSans, Liberation Sans, Nimbus Sans L, sans-serif");
+        text.setAttribute("fill", "black");
+        text.setAttribute("stroke-width", "0");
+        text.appendChild(content);
+        var rect = document.createElementNS(svgNS, "rect");
+        rect.setAttribute("id", "tooltipRect");
+        // Add rect and text to the bottom of the document.
+        // This is because SVG has a rendering order.
+        // We want the tooltip to be on top, therefore inserting last.
+        var wrappingGroup = document.getElementsByTagName("g")[0];
+        wrappingGroup.appendChild(rect);
+        wrappingGroup.appendChild(text);
+        // Transforming the mouse location to the SVG coordinate system
+        // Snippet lifted from: http://tech.groups.yahoo.com/group/svg-developers/message/52701
+        var m = target.getScreenCTM();
+        var p = document.documentElement.createSVGPoint();
+        p.x = evt.clientX;
+        p.y = evt.clientY;
+        p = p.matrixTransform(m.inverse());
+        // Determine position for tooltip based on location of 
+        // element that mouse is over
+        // AND size of text label
+        // Currently the tooltip is offset by (3, 3)
+        var svgWidth = document.getElementById("gridSVG").getBBox().width;
+        var toolWidth = text.getBBox().width;
+        var maxX = svgWidth - toolWidth;
+	var tooltipx = p.x + 3;
+	if (tooltipx > maxX) {
+                tooltipx = maxX - 20;
+        }
+        var tooltiplabx = tooltipx + 5;
+        var tooltipy = p.y + 3;
+        var tooltiplaby = tooltipy + 5;
+        // Position tooltip rect and text
+        text.setAttribute("transform",
+                "translate(" + tooltiplabx + ", " + tooltiplaby + ") " +
+                "scale(1, -1)");
+        rect.setAttribute("x", tooltipx);
+        rect.setAttribute("y", tooltipy);
+        rect.setAttribute("width", text.getBBox().width + 10);
+        rect.setAttribute("height", text.getBBox().height + 5);
+        rect.setAttribute("stroke", "black");
+        rect.setAttribute("fill", "ghostwhite");
+	rect.setAttribute("rx", "5");
+        rect.setAttribute("ry", "5");
+        //rect.setAttribute("fill-opacity", "0.5");
+};
+var hideTooltip = function() {
+        // Remove tooltip text and rect
+        var text = document.getElementById("tooltipText");
+        var rect = document.getElementById("tooltipRect");
+        if (text && rect) {
+                text.parentNode.removeChild(text);
+                rect.parentNode.removeChild(rect);
+        }	
+	};');
+}
+
 dev.off();
-quit(save="no")
+quit(save=\"no\")
 
 RCODE
-
 
   print $r_fh $rcode;
 #  print STDERR $rcode;
