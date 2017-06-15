@@ -38,7 +38,7 @@ import org.gusdb.fgputil.db.slowquery.QueryLogger;
  * 
  * @author rdoherty
  */
-public class B32_To_B33_Migration {
+public class B33_To_B34_Migration {
 
   private static final boolean WRITE_TO_DB = true;     // keep off to check generated SQL
   private static final boolean REPLICATED_DBS = false; // keep off until testing on apicommDev
@@ -144,7 +144,7 @@ public class B32_To_B33_Migration {
   public static void main(String[] args) {
     if (args.length != 3 || (!args[0].equals("create") && !args[0].equals("drop")) ||
         args[1].trim().isEmpty() || args[2].trim().isEmpty()) {
-      System.err.println("USAGE: fgpJava " + B32_To_B33_Migration.class.getName() + " [create|drop] <db_user> <db_password>");
+      System.err.println("USAGE: fgpJava " + B33_To_B34_Migration.class.getName() + " [create|drop] <db_user> <db_password>");
       System.exit(1);
     }
     String operation = args[0];
