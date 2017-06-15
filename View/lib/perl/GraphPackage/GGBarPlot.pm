@@ -294,7 +294,7 @@ if($isSVG) {
 
 if(useTooltips) {
    if($isStack) {
-     gp = gp + geom_tooltip(aes(tooltip=NAME), real.geom=geom_bar, position=\"stack\", colour=\"black\");
+     gp = gp + geom_tooltip(aes(tooltip=STACK), real.geom=geom_bar, position=\"stack\", colour=\"black\");
    } else {
      gp = gp + geom_tooltip(aes(tooltip=NAME), real.geom=geom_bar, position=\"dodge\");
    } 
