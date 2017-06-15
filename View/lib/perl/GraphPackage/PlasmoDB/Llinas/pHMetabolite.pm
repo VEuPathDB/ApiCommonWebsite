@@ -67,14 +67,15 @@ sub init {
   my $rAdjustString = <<'RADJUST';
     profile.df.full$LEGEND=matrix(unlist(strsplit(as.character(profile.df.full$NAME), fixed=T, split=c("|"))), ncol=2, byrow=T)[,1];
     profile.df.full$pH=matrix(unlist(strsplit(as.character(profile.df.full$NAME), fixed=T, split=c("|"))), ncol=2, byrow=T)[,2];
-    profile.df.full$isotopomer=matrix(unlist(strsplit(as.character(profile.df.full$PROFILE_FILE), fixed=T, split=c("|"))), ncol=2, byrow=T) [,2];
-    profile.df.full$isotopomer=gsub("-$", "", matrix(unlist(strsplit(as.character(profile.df.full$isotopomer), fixed=T, split=c("_"))), ncol=4, byrow=T)[,1]);
-    profile.df.full$isotopomer[which(profile.df.full$isotopomer == "C12")] = "C12-0";
-    profile.df.full$order=matrix(unlist(strsplit(as.character(profile.df.full$isotopomer), fixed=T, split=c("-"))), ncol=2, byrow=T)[,2];
-    profile.df.full$isotopomer[which(profile.df.full$isotopomer == "C12-0")] = "C12";
+    profile.df.full$STACK=matrix(unlist(strsplit(as.character(profile.df.full$PROFILE_FILE), fixed=T, split=c("|"))), ncol=2, byrow=T) [,2];
+    profile.df.full$STACK=gsub("-$", "", matrix(unlist(strsplit(as.character(profile.df.full$STACK), fixed=T, split=c("_"))), ncol=4, byrow=T)[,1]);
+    profile.df.full$STACK[which(profile.df.full$STACK == "C12")] = "C12-0";
+    profile.df.full$order=matrix(unlist(strsplit(as.character(profile.df.full$STACK), fixed=T, split=c("-"))), ncol=2, byrow=T)[,2];
+    profile.df.full$STACK[which(profile.df.full$STACK == "C12-0")] = "C12";
     profile.df.full$NAME = factor(profile.df.full$LEGEND, levels=legend.label);
     profile.df.full$LEGEND = factor(profile.df.full$LEGEND, levels=legend.label);
     profile.df.full <- profile.df.full[order(as.numeric(profile.df.full$order)),]; 
+    profile.df.full$STACK = factor(profile.df.full$STACK, levels=rev(unique(profile.df.full$STACK)));
 RADJUST
   $massSpec->setAdjustProfile($rAdjustString);
   $massSpec->setProfileSets($profileSets);
