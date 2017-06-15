@@ -104,6 +104,9 @@ sub setVisibleParts            { $_[0]->{'VisibleParts'                } = $_[1]
 sub getFacets            { $_[0]->{'Facets'                } }
 sub setFacets            { $_[0]->{'Facets'                } = $_[1]; $_[0] }
 
+sub getContXAxis            { $_[0]->{'ContXAxis'                } }
+sub setContXAxis            { $_[0]->{'ContXAxis'                } = $_[1]; $_[0] }
+
 sub getVisiblePartsAreFuzzy            { $_[0]->{'VisiblePartsAreFuzzy'                } }
 sub setVisiblePartsAreFuzzy            { $_[0]->{'VisiblePartsAreFuzzy'                } = $_[1]; $_[0] }
 
@@ -231,11 +234,8 @@ sub rOpenFile {
 	 my $out_f = $Self->getOutputFile();
 	 my $fmt   = $Self->getFormat();
 
-	 my $w     = int($fmt eq 'pdf' ? $Width  / 72 : $Width);
-	 my $h     = int($fmt eq 'pdf' ? $Height / 72 : $Height);
-
-	 my $w     = int($fmt eq 'svg' ? $Width  / 72 : $Width);
-         my $h     = int($fmt eq 'svg' ? $Height / 72 : $Height);
+	 my $w     = int($fmt eq 'pdf' || $fmt eq 'svg' ? $Width  / 72 : $Width);
+	 my $h     = int($fmt eq 'pdf' || $fmt eq 'svg' ? $Height / 72 : $Height);
 
 	 if(lc($fmt) eq 'pdf') {
            $Rv = qq{pdf(file="$out_f", width=$w, height=$h)};
