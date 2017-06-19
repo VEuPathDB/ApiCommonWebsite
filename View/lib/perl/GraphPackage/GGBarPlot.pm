@@ -278,6 +278,10 @@ if(is.null(profile.df.full\$LEGEND)) {
   profile.df.full\$LEGEND = factor(profile.df.full\$LEGEND, levels=legend.label);
 }
 
+if ($isStack) {
+    profile.df.full\$STACK = profile.df.full\$PROFILE_FILE;
+}
+
 # allow minor adjustments to profile
 $rAdjustProfile
 
