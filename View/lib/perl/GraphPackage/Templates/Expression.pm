@@ -1032,6 +1032,12 @@ text(13.3, y.max + (y.max - y.min)*0.22, 'C');
 
 ### TriTrypDB ###
 
+package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_b7dc54ebad;
+
+sub useLegacy {return 1;}
+
+1;
+
 package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_04880972f5;
 sub finalProfileAdjustments {
   my ($self, $profile) = @_;
