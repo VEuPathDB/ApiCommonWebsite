@@ -278,6 +278,10 @@ if(is.null(profile.df.full\$LEGEND)) {
   profile.df.full\$LEGEND = factor(profile.df.full\$LEGEND, levels=legend.label);
 }
 
+if ($isStack) {
+    profile.df.full\$STACK = profile.df.full\$PROFILE_FILE;
+}
+
 # allow minor adjustments to profile
 $rAdjustProfile
 
@@ -294,7 +298,7 @@ if($isSVG) {
 
 if(useTooltips) {
    if($isStack) {
-     gp = gp + geom_tooltip(aes(tooltip=NAME), real.geom=geom_bar, position=\"stack\", colour=\"black\");
+     gp = gp + geom_tooltip(aes(tooltip=STACK), real.geom=geom_bar, position=\"stack\", colour=\"black\");
    } else {
      gp = gp + geom_tooltip(aes(tooltip=NAME), real.geom=geom_bar, position=\"dodge\");
    } 
