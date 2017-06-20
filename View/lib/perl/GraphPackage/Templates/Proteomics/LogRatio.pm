@@ -8,7 +8,7 @@ use ApiCommonWebsite::View::GraphPackage::Templates::Expression;
 
 use ApiCommonWebsite::View::GraphPackage::Util;
 
-#sub restrictProfileSetsBySourceId { return 1;}
+sub restrictProfileSetsBySourceId { return 1;}
 
 
 1;
@@ -32,7 +32,7 @@ sub finalProfileAdjustments {
   my ($self, $profile) = @_;
 
   my $legend = [''];
-  $profile->setSampleLabels($legend);
+#  $profile->setSampleLabels($legend);
 }
 
 1;
