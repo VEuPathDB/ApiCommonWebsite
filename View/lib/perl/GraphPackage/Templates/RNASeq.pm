@@ -235,9 +235,9 @@ sub init {
 
   my $line = ApiCommonWebsite::View::GraphPackage::GGLinePlot->new(@_);
   $line->setProfileSets($profileSets);
-  $line->setPartName('rpkm_line');
+  $line->setPartName('fpkm');
   $line->setAdjustProfile('profile.df.full$VALUE = log2(profile.df.full$VALUE + 1);');
-  $line->setYaxisLabel('RPKM (log2)');
+  $line->setYaxisLabel('FPKM (log2)');
   $line->setPointsPch($pch);
   $line->setXaxisLabel("Timepoint");
   $line->setColors([$colors->[0], $colors->[1]]);
@@ -246,7 +246,7 @@ sub init {
   $line->setLegendLabels(['Normal', 'Scaled']);
 
   my $id = $self->getId();
-  $line->setPlotTitle("RPKM - $id");
+  $line->setPlotTitle("FPKM - $id");
 
   my $percentile = ApiCommonWebsite::View::GraphPackage::GGLinePlot::Percentile->new(@_);
   $percentile->setProfileSets($percentileSets);
