@@ -47,15 +47,18 @@ sub setAlternateSourceId              { $_[0]->{'_alternate_source_id'          
 sub getScale              { $_[0]->{'_scale'               }}
 sub setScale              { $_[0]->{'_scale'               } = $_[1]}
 
-sub getMetaDataCategory         { $_[0]->{'_meta_data_category'               }}
-sub setMetaDataCategory         { $_[0]->{'_meta_data_category'               }  = $_[1]}
+sub getFacet         { $_[0]->{'_facet'               }}
+sub setFacet         { $_[0]->{'_facet'               }  = $_[1]}
+
+sub getContXAxis         { $_[0]->{'_cont_x_axis'               }}
+sub setContXAxis         { $_[0]->{'_cont_x_axis'               }  = $_[1]}
 
 
 sub logError              { push @{$_[0]->{'_errors'}}, $_[1] }
 sub errors                { $_[0]->{'_errors'               }}
 
 sub new {
-  my ($class, $name, $type, $elementNames, $alternateSourceId, $scale, $metaDataCategory, $displayName, $subId) = @_;
+  my ($class, $name, $type, $elementNames, $alternateSourceId, $scale, $facet, $displayName, $subId, $contXAxis) = @_;
 
   unless($name) {
     die "ProfileSet Name missing: $!";
@@ -74,9 +77,14 @@ sub new {
   $self->setElementNames($elementNames);
   $self->setAlternateSourceId($alternateSourceId);
   $self->setScale($scale);
-  if (defined $metaDataCategory) {
-    $self->setMetaDataCategory($metaDataCategory);
+  if (defined $facet) {
+    $self->setFacet($facet);
   }
+
+  if (defined $contXAxis) {
+    $self->setContXAxis($contXAxis);
+  }
+
 
   # initialize errors array;
   $self->{_errors} = [];
@@ -226,16 +234,18 @@ sub makeProfileNamesCannedQuery {
 
   my $profileSetName = $self->getName();
   my $profileSetType = $self->getType();
-  my $metaDataCategory = $self->getMetaDataCategory();
+  my $facet = $self->getFacet();
+  my $contXAxis = $self->getContXAxis();
 
   my $elementNamesProfile;
-   if($metaDataCategory) {
+   if($facet || $contXAxis) {
      $elementNamesProfile = ApiCommonWebsite::Model::CannedQuery::ElementNamesWithMetaData->new
        ( Name         => "_names_$suffix",
          Id           => $id,
          ProfileSet   => $profileSetName,
 	 ProfileType => $profileSetType,
-         MetaDataCategory => $metaDataCategory,
+         Facet => $facet,
+         ContXAxis => $contXAxis,
        );
    }
    else {

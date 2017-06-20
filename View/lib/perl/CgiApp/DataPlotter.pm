@@ -79,6 +79,8 @@ sub run {
 
          my $declareParts     = $Cgi->param('declareParts');
 
+         my $contXAxis = $Cgi->param('contXAxis');
+
          my $facet = $Cgi->param('facet');
          my @facets   = split(',', $facet || '');
 
@@ -153,6 +155,7 @@ sub run {
                         HeightOverride => $heightOverride,
                         VisiblePartsAreFuzzy => $visiblePartsAreFuzzy,
                         Facets => \@facets,
+                        ContXAxis => $contXAxis,
                        });
          };
 
