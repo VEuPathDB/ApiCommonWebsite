@@ -124,7 +124,7 @@ sub makeRPlotStrings {
     }
 
     foreach my $file (@profileFiles, @elementNamesFiles, @stderrFiles) {
-      $self->addTempFile($file);
+      $self->addTempFile($file) if($file);
     }
     if($self->getFormat() eq 'table') {
       $self->addToProfileDataMatrix(\@profileFiles, \@elementNamesFiles, \@profileSetNames);
