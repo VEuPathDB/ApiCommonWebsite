@@ -38,9 +38,6 @@ sub setLas                      { $_[0]->{'_las'                             } =
 sub getSkipStdErr                 { $_[0]->{'_skip_std_err'                      }}
 sub setSkipStdErr                 { $_[0]->{'_skip_std_err'                      } = $_[1]}
 
-sub getHideXAxisLabels          { $_[0]->{'_x_axis_labels'                  }}
-sub setHideXAxisLabels          { $_[0]->{'_x_axis_labels'                  } = $_[1]}
-
 
 sub blankPlotPart {
   my ($self) = @_;
