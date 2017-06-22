@@ -25,6 +25,46 @@ sub finalProfileAdjustments {
 }
 1;
 
+#PlasmoDB eQTL
+package ApiCommonWebsite::View::GraphPackage::Templates::ExpressionTwoChannel::DS_dd1931c47a;
+
+sub finalProfileAdjustments {                                                                                                                                                                               
+  my ($self, $profile) = @_;
+
+  my $rAdjustString = << 'RADJUST';
+    tmp = profile.df.full[which(profile.df.full$ELEMENT_NAMES != 'DD2' & profile.df.full$ELEMENT_NAMES != 'HB3'),]
+    tmp <- tmp[order(tmp$VALUE),]
+    profile.df.full <- rbind(profile.df.full[which(profile.df.full$ELEMENT_NAMES == 'DD2' | profile.df.full$ELEMENT_NAMES == 'HB3'),], tmp)
+    profile.df.full$ELEMENT_NAMES = factor(profile.df.full$ELEMENT_NAMES, levels=profile.df.full$ELEMENT_NAMES)
+    profile.df.full$LEGEND = c('DD2', 'HB3', rep('Progeny', length(profile.df.full$ELEMENT_NAMES)-2))
+    profile.df.full$LEGEND = factor(profile.df.full$LEGEND, levels=legend.label)
+    profile.df.full$PROFILE_FILE = profile.df.full$LEGEND
+RADJUST
+    my $plotPart = $profile->getPartName();                                                                                                                                                                   
+    if ($plotPart =~/percentile/) {
+        my $profileSets = $profile->getProfileSets();
+
+        if(scalar @$profileSets > 2) {
+            $profile->setFacets(["PROFILE_TYPE"]);
+        }
+        else {
+            $profile->setHasExtraLegend(1); 
+            $profile->setLegendLabels(['channel 1', 'channel 2']);
+            $profile->setColors(['LightSlateGray', 'DarkSlateGray']);
+        }
+    
+    }
+    if ($plotPart =~ /scatter/) {
+        $profile->setLegendLabels(['DD2', 'HB3', 'Progeny']);
+        $profile->setColors(["#FF9900","#4682B4", "#FF0000"]);
+        $profile->setHideXAxisLabels(1);
+        $profile->addAdjustProfile($rAdjustString);
+    }
+}
+
+
+1;
+
 package ApiCommonWebsite::View::GraphPackage::Templates::ExpressionTwoChannel::DS_a4dae129e9;
 
 sub getRemainderRegex {

@@ -16,6 +16,89 @@
 -->
 
 <record>
+  <attribute name="headline">FungiDB 33 Released</attribute>
+  <attribute name="date">27 Jun 2017 13:00</attribute>
+  <attribute name="tag">fungidb06_17_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of FungiDB 33</strong></p>
+      
+      <section>
+        <h3>New data in this release</h3>
+        
+        <h4>Genome Sequence and Annotation: these annotated genomes appear for the first time in FungiDB.</h4>
+           <ul>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_b4fe3991fd"><i>Aspergillus brasiliensis</i> CBS 101740</a> &ndash; 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/28196534">de Vries et al.</a>
+             </li>
+           </ul>
+           <ul>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_ad71b3b937"><i>Aspergillus zonatus</i> CBS506.65</a> &ndash; 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/28196534">de Vries et al.</a>
+             </li>
+           </ul>
+          
+      </section>
+ 
+      <section>
+        <h4>Updated Functional Annotation</h4>
+        <div style="margin-left: 3em;">
+        
+        Functional annotations in FungiDB 33 have been updated for the following genomes:
+        
+        <style>
+           #FunctAnnot_Bld33 table, #FunctAnnot_Bld33 td, #FunctAnnot_Bld33 th, #FunctAnnot_Bld33 tr {
+           text-align : center;
+           padding-left: 5px;
+           padding-right: 5px;
+           padding-top: 5px;
+           padding-bottom: 5px;
+           border: 1px solid black;
+           }
+           #FunctAnnot_Bld33 {
+           margin-left : 5 em;
+           }
+         </style> 
+           <table id="FunctAnnot_Bld33"> 
+           <tr>
+             <th>FungiDB Genome Version</th>
+             <th>Genes Updated</th>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on DB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4b35c88aa1"><i>Aspergillus nidulans</i> FGSC A4</a></td>
+             <td>15 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on DB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_071f05cd56"><i>Aspergillus fumigatus</i> Af293</a></td>
+             <td>408 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on DB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_62f0e6170f"><i>Neurospora crassa</i> OR74A </a></td>
+             <td>119 genes</td>
+           </tr>
+           </table>
+           <br>
+           
+        <a href="https://docs.google.com/spreadsheets/d/1BZO6mAllPZ2vP9XQ3wRx4mjTq4_g_btc5YzweMiWY2c/edit?usp=sharing">Summary of annotation updates</a> which include products, GO terms, EC numbers, gene names, synonyms, publications and notes from curators.
+
+        <br><br>
+        
+
+      <section>           
+         <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+
+    ]]>
+  </attribute>
+</record>
+
+<record>
   <attribute name="headline">FungiDB 32 Released</attribute>
   <attribute name="date">19 Apr 2017 13:00</attribute>
   <attribute name="tag">fungidb04_19_release</attribute>

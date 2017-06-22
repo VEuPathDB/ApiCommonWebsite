@@ -3,8 +3,8 @@ package ApiCommonWebsite::View::GraphPackage::SimilarityPlot;
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::LinePlot );
-use ApiCommonWebsite::View::GraphPackage::LinePlot;
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::GGLinePlot );
+use ApiCommonWebsite::View::GraphPackage::GGLinePlot;
 
 #----------------------------------------------------------------------------------------------
 # Overrides from PlotPart:  Always require 2 profileSets the second uses the secondary ID
