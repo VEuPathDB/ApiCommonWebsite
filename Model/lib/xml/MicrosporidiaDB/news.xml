@@ -16,6 +16,43 @@
    </record>
 --> 
 
+<record>
+  <attribute name="headline">MicrosporidiaDB 33 Released</attribute>
+  <attribute name="date">27Jun 2017 13:00</attribute>
+  <attribute name="tag">microsporidiadb06_17_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of MicrosporidiaDB 32</strong></p>
+      
+      <section>
+      <h3>New data in this release</h3>
+        <h4>Organisms renamed</h4>
+           <ul>
+             <li><a href="http://microsporidiadb.org/microsporidiadb/app/record/dataset/DS_06a6bb7fc7"><i>Nematocida ausubeli</i> ERTm2</a>, used to be named as <i>Nematocida sp.1</i> ERTm2.</li>
+             <li><a href="http://microsporidiadb.org/microsporidiadb/app/record/dataset/DS_3432c0080d"><i>Nematocida ausubeli</i> ERTm6</a>, used to be named as <i>Nematocida sp.1</i> ERTm6.</li>
+           </ul>
+        
+        <h4>Proteomics:</h4>
+           <ul>
+             <li><a href="http://microsporidiadb.org/microsporidiadb/app/record/dataset/DS_37cb6c2820"><i>Nematocida</i> host exposed proteins</a> &ndash; 
+                 <i>N. ausubeli</i> ERTm2 and <i>N. parisii</i> ERTm1 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/28067236">Reinke et al.</a>
+             </li>
+           </ul>
+           
+       <h3>No New data in this release</h3> 
+         <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+
+    ]]>
+  </attribute>
+</record>
 
 <record>
   <attribute name="headline">MicrosporidiaDB 32 Released</attribute>

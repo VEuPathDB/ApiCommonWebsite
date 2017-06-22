@@ -139,6 +139,7 @@ sub makeRPlotString {
 
   my $yMax = $self->getDefaultYMax();
   my $yMin = $self->getDefaultYMin();
+  my $hideXAxisLabels = $self->getHideXAxisLabels() ? 'TRUE' : 'FALSE';
 
   my $xMax = $self->getDefaultXMax();
   my $xMin = $self->getDefaultXMin();
@@ -373,6 +374,10 @@ if(is.compact) {
 
 if($hasFacets) {
   gp = gp + facet_grid($facetString);
+}
+
+if($hideXAxisLabels) {                                                                                                                                                                                      
+    gp = gp + theme(axis.text.x = element_blank(), axis.ticks.x = element_blank());
 }
 
 
