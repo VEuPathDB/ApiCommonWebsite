@@ -83,7 +83,47 @@
         <a href="https://docs.google.com/spreadsheets/d/1BZO6mAllPZ2vP9XQ3wRx4mjTq4_g_btc5YzweMiWY2c/edit?usp=sharing">Summary of annotation updates</a> which include products, GO terms, EC numbers, gene names, synonyms, publications and notes from curators.
 
         <br><br>
+       <h4>Curated User Comments:</h4>  
+        Gene page comments that are entered by users are curated at GeneDB and regularly integrated as 
+        functional annotations in TriTrypDB.  We have curated more than 500 user comments since the 
+        Kinetoplastid Molecular Cell Biology Meeting in April 2017.  The curated user comments in 
+        TriTrypDB 33 are current with GeneDB May 2017 GFF versions (see table below). <br><br>
         
+        <div style="margin-left: 3em;">
+        
+        <style>
+           #UComment_Bld33 table, #UComment_Bld33 td, #UComment_Bld33 th, #UComment_Bld33 tr {
+           text-align : center;
+           padding-left: 5px;
+           padding-right: 5px;
+           padding-top: 5px;
+           padding-bottom: 5px;
+           border: 1px solid black;
+           }
+           #UComment_Bld33 {
+           margin-left : 5 em;
+           }
+         </style> 
+           <table id="UComment_Bld33"> 
+           <tr>
+             <th>FungiDB Genome Version</th>
+             <th>Comments Integrated</th>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_071f05cd56"><i>Aspergillus fumigatus</i> Af293 </a></td>
+             <td> 18</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4b35c88aa1"><i>Aspergillus nidulans</i> FGSC A4</a></td>
+             <td> 11</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_62f0e6170f"><i>Neurospora crassa </i> OR74A</a></td>
+             <td> 72</td>
+           </tr>
+          </table>
+          <br>
+          </div> 
 
       <section>           
          <aside>
