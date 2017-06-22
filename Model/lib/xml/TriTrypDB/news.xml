@@ -31,6 +31,164 @@
       <section>
         <h3>New data in TriTrypDB 32</h3> 
         
+        <h4>Curated User Comments:</h4>  
+        Gene page comments that are entered by users are curated at GeneDB and regularly integrated as 
+        functional annotations in TriTrypDB.  We have curated more than 500 user comments since the 
+        Kinetoplastid Molecular Cell Biology Meeting in April 2017.  The curated user comments in 
+        TriTrypDB 33 are current with GeneDB May 2017 GFF versions (see table below). <br><br>
+        
+        <div style="margin-left: 3em;">
+        
+        <style>
+           #UComment_Bld33 table, #UComment_Bld33 td, #UComment_Bld33 th, #UComment_Bld33 tr {
+           text-align : center;
+           padding-left: 5px;
+           padding-right: 5px;
+           padding-top: 5px;
+           padding-bottom: 5px;
+           border: 1px solid black;
+           }
+           #UComment_Bld33 {
+           margin-left : 5 em;
+           }
+         </style> 
+           <table id="UComment_Bld33"> 
+           <tr>
+             <th>TriTrypDB Genome Version</th>
+             <th>Comments Integrated</th>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_e318592c8e"><i>L. mexicana</i> MHOM/GT/2001/U1103 </a></td>
+             <td 14</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_31282613b1"><i>Trypanosoma brucei</i> 927</a></td>
+             <td 125</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_26f6be1159"><i>Trypanosoma congolense </i> IL3000</a></td>
+             <td 2</td>
+           </tr>
+          </table>
+          <br>
+          </div>
+          
+          
+        <h4>Updated Functional Annotation</h4>
+        
+        <div style="margin-left: 3em;">
+        
+        Functional annotations in TriTrypDB 33 are current with GeneDB May 2017 GFF versions. 
+        <a href="https://docs.google.com/spreadsheets/d/1QTN4FTmurcm1lKvouzJcPYrKXXfoBj90NgWKG7qIXww/edit?usp=sharing">Summary of annotation updates</a> which include products, GO terms, EC numbers, gene names, synonyms and PMIDs. 
+        <br><br>
+        <style>
+           #FunctAnnot_Bld33 table, #FunctAnnot_Bld33 td, #FunctAnnot_Bld33 th, #FunctAnnot_Bld33 tr {
+           text-align : center;
+           padding-left: 5px;
+           padding-right: 5px;
+           padding-top: 5px;
+           padding-bottom: 5px;
+           border: 1px solid black;
+           }
+           #FunctAnnot_Bld33 {
+           margin-left : 5 em;
+           }
+         </style> 
+           <table id="FunctAnnot_Bld33"> 
+           <tr>
+             <th>TriTrypDB Genome Version</th>
+             <th>Download GeneDB GFF file</th>
+             <th>Genes Updated</th>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_3b2d78a053"><i>L. braziliensis </i> MHOM/BR/75/M2904 </a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2017-05/Lbraziliensis.noseq.gff3.gz">Lbraziliensis.noseq.gff3.gz</a></td>
+             <td>13 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_21f12513c4"><i>L. donovani </i> BPK282A1 </a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2017-05/Ldonovani_BPK282A1.noseq.gff3.gz">Ldonovani_BPK282A1.noseq.gff3.gz</a></td>
+             <td>13 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_54c31cddc4"><i>L. infantum</i> JPCM5 </a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2017-05/Linfantum.noseq.gff3.gz">Lifantum.noseq.gff3.gz</a></td>
+             <td>13 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_839623217a"><i>L. major</i> strain Friedlin </a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2017-05/Lmajor.noseq.gff3.gz">Lmajor.noseq.gff3.gz</a></td>
+             <td>73 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_e318592c8e"><i>L. mexicana</i> MHOM/GT/2001/U1103 </a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2017-05/Lmexicana.noseq.gff3.gz">Lmexicana.noseq.gff3.gz</a></td>
+             <td>1601 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_31282613b1"><i>Trypanosoma brucei</i> 927</a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2017-05/Tbruceibrucei927.noseq.gff3.gz">Tbruceibrucei927.noseq.gff3.gz</a></td>
+             <td>167 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_34f7091496"><i>Trypanosoma brucei gambiense</i> DAL972</a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2017-05/Tbruceigambiense.noseq.gff3.gz">Tbruceigambiense.noseq.gff3.gz</a></td>
+             <td>1292 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_26f6be1159"><i>Trypanosoma congolense </i> IL3000</a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2017-05/Tcongolense.noseq.gff3.gz">Tcongolense.noseq.gff3.gz</a></td>
+             <td>689 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_1a6c8bdaac"><i>Trypanosoma cruzi </i> CL Brener</a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2017-05/Tcruzi.noseq.gff3.gz">Tcruzi.noseq.gff3.gz</a></td>
+             <td>2237 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_ec7df4510a"><i>Trypanosoma vivax </i> Y486</a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2017-05/Tvivax.noseq.gff3.gz">Tvivax.noseq.gff3.gz</a></td>
+             <td>1131 genes</td>
+           </tr>
+           </table>
+           <br><br>
+           
+        </div>
+      </section>  
+      
+    
+        </div>
+
+   
+      </section>      
+            
+            
+      <section>
+         <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+
+    ]]>
+  </attribute>
+</record>
+
+
+<record>
+  <attribute name="headline">TriTrypDB 32 Released</attribute>
+  <attribute name="date">19 Apr 2017 13:00</attribute>
+  <attribute name="tag">tritrypdb04_17_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of TriTrypDB 32</strong></p>
+      
+      <section>
+        <h3>New data in TriTrypDB 32</h3> 
+        
         <h4>Annotated Genome</h4>
           <ul>
            <li>
