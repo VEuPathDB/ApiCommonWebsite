@@ -20,16 +20,16 @@
 -->
 
 <record>
-  <attribute name="headline">TriTrypDB 32 Released</attribute>
-  <attribute name="date">19 Apr 2017 13:00</attribute>
-  <attribute name="tag">tritrypdb04_17_release</attribute>
+  <attribute name="headline">TriTrypDB 33 Released</attribute>
+  <attribute name="date">27Jun 2017 13:00</attribute>
+  <attribute name="tag">tritrypdb06_17_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
     <p><strong>We are pleased to announce the release of TriTrypDB 32</strong></p>
       
       <section>
-        <h3>New data in TriTrypDB 32</h3> 
+        <h3>New data in TriTrypDB 33</h3> 
         
         <h4>Curated User Comments:</h4>  
         Gene page comments that are entered by users are curated at GeneDB and regularly integrated as 
