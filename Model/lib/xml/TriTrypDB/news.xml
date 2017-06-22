@@ -21,12 +21,12 @@
 
 <record>
   <attribute name="headline">TriTrypDB 33 Released</attribute>
-  <attribute name="date">27Jun 2017 13:00</attribute>
+  <attribute name="date">27 Jun 2017 13:00</attribute>
   <attribute name="tag">tritrypdb06_17_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of TriTrypDB 32</strong></p>
+    <p><strong>We are pleased to announce the release of TriTrypDB 33</strong></p>
       
       <section>
         <h3>New data in TriTrypDB 33</h3> 
