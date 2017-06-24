@@ -89,8 +89,25 @@ sub useLegacy {
 
 1;
 
-package ApiCommonWebsite::View::GraphPackage::Templates::ExpressionTwoChannel::DS_88b717761e;
+package ApiCommonWebsite::View::GraphPackage::Templates::ExpressionTwoChannel::DS_df4f928210;
 
+use Data::Dumper;
+
+sub init {
+  my $self = shift;
+
+  $self->SUPER::init(@_);
+
+  my $bar = ApiCommonWebsite::View::GraphPackage::GGBarPlot::LogRatio->new(@_);
+  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([['T. brucei TbDRBD3-Depleted','values']]);
+
+  $bar->setProfileSets($profileSets);
+
+  $self->setGraphObjects($bar);
+
+  return $self;
+
+}
 
 1;
 
