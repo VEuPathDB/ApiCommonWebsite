@@ -1,7 +1,5 @@
 package org.apidb.apicommon.controller;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,7 +11,6 @@ import org.gusdb.fgputil.FormatUtil;
 import org.gusdb.fgputil.FormatUtil.Style;
 import org.gusdb.fgputil.cache.UnfetchableItemException;
 import org.gusdb.fgputil.db.runner.SQLRunner;
-import org.gusdb.fgputil.db.runner.SQLRunner.ResultSetHandler;
 import org.gusdb.wdk.cache.CacheMgr;
 import org.gusdb.wdk.cache.FilterSizeCache.AllSizesFetcher;
 import org.gusdb.wdk.cache.FilterSizeCache.FilterSizeGroup;
@@ -113,11 +110,9 @@ public class CustomShowResultSizeAction extends ShowResultSizeAction {
     String sql = ((SqlQuery)query).getSql().replace(Utilities.MACRO_ID_SQL, clone.getIdSql());
     LOG.debug("Running query: " + query.getFullName() + " with SQL: " + sql);
     final Map<String, Integer> querySizes = new HashMap<>();
-    new SQLRunner(wdkModel.getAppDb().getDataSource(), sql, CUSTOM_FILTER_SIZE_QUERY_NAME).executeQuery(new ResultSetHandler() {
-      @Override public void handleResult(ResultSet rs) throws SQLException {
-        while (rs.next()) {
-          querySizes.put(rs.getString(FILTER_NAME_COLUMN), rs.getInt(FILTER_SIZE_COLUMN));
-        }
+    new SQLRunner(wdkModel.getAppDb().getDataSource(), sql, CUSTOM_FILTER_SIZE_QUERY_NAME).executeQuery(rs -> {
+      while (rs.next()) {
+        querySizes.put(rs.getString(FILTER_NAME_COLUMN), rs.getInt(FILTER_SIZE_COLUMN));
       }
     });
     LOG.debug("Loaded " + querySizes.size() + " from bulk filter size query: " + FormatUtil.prettyPrint(querySizes, Style.MULTI_LINE));
