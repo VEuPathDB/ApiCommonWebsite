@@ -29,15 +29,18 @@
     <p><strong>We are pleased to announce the release of TriTrypDB 33</strong></p>
       
       <section>
-        <h3>New data in TriTrypDB 33</h3> 
+        <h3><b>New data in TriTrypDB 33</b></h3> 
         
         <h4>Curated User Comments:</h4>  
+        
+        <div style="margin-left: 3em;">
+        
         Gene page comments that are entered by users are curated at GeneDB and regularly integrated as 
         functional annotations in TriTrypDB.  We have curated more than 500 user comments since the 
         Kinetoplastid Molecular Cell Biology Meeting in April 2017.  The curated user comments in 
         TriTrypDB 33 are current with GeneDB May 2017 GFF versions (see table below). <br><br>
         
-        <div style="margin-left: 3em;">
+
         
         <style>
            #UComment_Bld33 table, #UComment_Bld33 td, #UComment_Bld33 th, #UComment_Bld33 tr {

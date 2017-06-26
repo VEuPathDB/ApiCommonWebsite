@@ -25,20 +25,46 @@
     <p><strong>We are pleased to announce the release of FungiDB 33</strong></p>
       
       <section>
-        <h3>New data in this release</h3>
+        <h3><b>New data in this release</b></h3>
         
         <h4>Genome Sequence and Annotation: these annotated genomes appear for the first time in FungiDB.</h4>
            <ul>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_bcfebab028"><i>Aspergillus aculeatus</i> ATCC 16872</a> &ndash; 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/28196534">de Vries et al.</a>
+             </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_b4fe3991fd"><i>Aspergillus brasiliensis</i> CBS 101740</a> &ndash; 
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/28196534">de Vries et al.</a>
              </li>
-           </ul>
-           <ul>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4d6c295589"><i>Aspergillus carbonarius</i> ITEM 5010</a> &ndash; 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/28196534">de Vries et al.</a>
+             </li>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_66bbb7c459"><i>Aspergillus fumigatus</i> A1163</a> &ndash; 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/18404212">Fedorova et al.</a>
+             </li>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_7085bd9e1c"><i>Aspergillus glaucus</i> CBS 516.65</a> &ndash; 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/28196534">de Vries et al.</a>
+             </li>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_24360ca645"><i>Aspergillus luchuensis</i> CBS 106.47</a> &ndash; 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/28196534">de Vries et al.</a>
+             </li>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_9376e6fcd9"><i>Aspergillus sydowii</i> CBS 593.65</a> &ndash; 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/28196534">de Vries et al.</a>
+             </li>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_ed899b78da"><i>Aspergillus tubingensis</i> CBS134.48</a> &ndash; 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/28196534">de Vries et al.</a>
+             </li>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_126622b076"><i>Aspergillus versicolor</i> CBS 583.65</a> &ndash; 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/28196534">de Vries et al.</a>
+             </li>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_792274fe95"><i>Aspergillus wentii</i> DTO 134E9</a> &ndash; 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/28196534">de Vries et al.</a>
+             </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_ad71b3b937"><i>Aspergillus zonatus</i> CBS506.65</a> &ndash; 
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/28196534">de Vries et al.</a>
              </li>
            </ul>
-          
+ 
+        
       </section>
  
       <section>
@@ -81,6 +107,9 @@
            <br>
            
         <a href="https://docs.google.com/spreadsheets/d/1BZO6mAllPZ2vP9XQ3wRx4mjTq4_g_btc5YzweMiWY2c/edit?usp=sharing">Summary of annotation updates</a> which include products, GO terms, EC numbers, gene names, synonyms, publications and notes from curators.
+
+       </div>
+       
 
         <br><br>
        <h4>Curated User Comments:</h4>  
