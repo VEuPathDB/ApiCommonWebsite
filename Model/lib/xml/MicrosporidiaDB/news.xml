@@ -18,15 +18,15 @@
 
 <record>
   <attribute name="headline">MicrosporidiaDB 33 Released</attribute>
-  <attribute name="date">27Jun 2017 13:00</attribute>
+  <attribute name="date">27 Jun 2017 13:00</attribute>
   <attribute name="tag">microsporidiadb06_17_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of MicrosporidiaDB 32</strong></p>
+    <p><strong>We are pleased to announce the release of MicrosporidiaDB 33</strong></p>
       
       <section>
-      <h3>New data in this release</h3>
+      <h3><b>New data in this release</b></h3>
         <h4>Organisms renamed</h4>
            <ul>
              <li><a href="http://microsporidiadb.org/microsporidiadb/app/record/dataset/DS_06a6bb7fc7"><i>Nematocida ausubeli</i> ERTm2</a>, used to be named as <i>Nematocida sp.1</i> ERTm2.</li>
