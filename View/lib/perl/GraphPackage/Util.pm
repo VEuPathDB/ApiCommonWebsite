@@ -21,15 +21,15 @@ sub makeProfileSets {
     my $elementNames = $row->[4];
     my $alternateSourceId = $row->[5];
     my $scale = $row->[6];
-    my $metaDataCategory = $row->[7];
+    my $facet = $row->[7];
     my $mainProfileSetDisplayName = $row->[8];
     my $subId = $row->[9];
     my $contXAxis = $row->[10];
 
-    my $profileSet = ApiCommonWebsite::View::GraphPackage::ProfileSet->new($mainProfileSet, $mainProfileType, $elementNames, $alternateSourceId, $scale, $metaDataCategory, $mainProfileSetDisplayName, $subId, $contXAxis);
+    my $profileSet = ApiCommonWebsite::View::GraphPackage::ProfileSet->new($mainProfileSet, $mainProfileType, $elementNames, $alternateSourceId, $scale, $facet, $mainProfileSetDisplayName, $subId, $contXAxis);
 
     if($relatedProfileSet) {
-      my $relatedSet = ApiCommonWebsite::View::GraphPackage::ProfileSet->new($relatedProfileSet, $relatedProfileType, $elementNames, $alternateSourceId, $scale, $metaDataCategory, '', $subId, $contXAxis);
+      my $relatedSet = ApiCommonWebsite::View::GraphPackage::ProfileSet->new($relatedProfileSet, $relatedProfileType, $elementNames, $alternateSourceId, $scale, $facet, '', $subId, $contXAxis);
       $profileSet->setRelatedProfileSet($relatedSet);
     }
     push @rv, $profileSet;
