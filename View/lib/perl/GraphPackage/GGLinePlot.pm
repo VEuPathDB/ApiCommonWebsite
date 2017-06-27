@@ -208,13 +208,23 @@ sub makeRPlotString {
   my $facets = $self->getFacets();
   my $facetString = "DUMMY";
   my $hasFacets = "FALSE";
-  if($facets && scalar @$facets == 1) {
-    $facetString = ". ~ " . $facets->[0];
-    $hasFacets = "TRUE";
-  }
-  if($facets && scalar @$facets == 2) {
-    $facetString = $facets->[0] . " ~  " . $facets->[1];
-    $hasFacets = "TRUE";
+
+  if ($facets && scalar @$facets != 0) {
+    if(scalar @$facets == 1 && $facets->[0] ne 'none') {
+      $facetString = ". ~ " . $facets->[0];
+      $hasFacets = "TRUE";
+    }elsif(scalar @$facets == 2) {
+      if($facets->[1] ne 'none' && $facets->[0] ne 'none') {
+        $facetString = $facets->[0] . " ~  " . $facets->[1];
+	$hasFacets = "TRUE";
+      }elsif($facets->[0] eq 'none' && $facets->[1] ne 'none') {
+        $facetString = ". ~ " . $facets->[1];
+	$hasFacets = "TRUE";
+      }elsif($facets->[0] ne 'none' && $facets->[1] eq 'none') {
+	$facetString = ". ~ " . $facets->[0];
+        $hasFacets = "TRUE";
+      }
+    }
   }
 
   my $hasExtraLegend = $self->getHasExtraLegend() ? 'TRUE' : 'FALSE';
@@ -297,6 +307,11 @@ for(ii in 1:length(profile.files)) {
   element.names.numeric = as.numeric(gsub(\" *[a-z-A-Z()+-]+ *\", \"\", element.names.df\$NAME, perl=T));
   profile.df\$ELEMENT_NAMES_NUMERIC = element.names.numeric;
 
+  if (ncol(element.names.df) > 2 ){
+    profile.df\$CONTXAXIS = element.names.df\$CONTXAXIS;
+    profile.df\$FACET = as.factor(element.names.df\$FACET);
+  }
+
   if(!skip.stderr && !is.na(stderr.files[ii]) && stderr.files[ii] != '') {
     stderr.tmp = read.table(stderr.files[ii], header=T, sep=\"\\t\");
     profile.df\$STDERR = stderr.tmp\$VALUE;
@@ -311,11 +326,15 @@ for(ii in 1:length(profile.files)) {
 #allow adjustments
 $rAdjustProfile
 
+if(\"FACET\" %in% colnames(profile.df.full)) {
+  profile.df.full\$FACET_ns=factor(profile.df.full\$FACET,levels=mixedsort(levels(profile.df.full\$FACET)));
+}
 profile.is.numeric = sum(!is.na(profile.df.full\$ELEMENT_NAMES_NUMERIC)) == nrow(profile.df.full);
 
-if(profile.is.numeric && !$forceNoLines) {
+if(\"CONTXAXIS\" %in% colnames(profile.df.full) && !all(is.na(profile.df.full\$CONTXAXIS))){
+  gp = ggplot(profile.df.full, aes(x=CONTXAXIS, y=VALUE, group=PROFILE_FILE, colour=PROFILE_FILE));
+}else if(profile.is.numeric && !$forceNoLines) {
   gp = ggplot(profile.df.full, aes(x=ELEMENT_NAMES_NUMERIC, y=VALUE, group=PROFILE_FILE, colour=PROFILE_FILE));
-
 } else {
   gp = ggplot(profile.df.full, aes(x=ELEMENT_NAMES, y=VALUE, group=PROFILE_FILE, colour=PROFILE_FILE));
 }
@@ -352,8 +371,9 @@ if(!$forceNoLines) {
 
 gp = gp + scale_colour_manual(values=$colorsStringNotNamed, breaks=profile.df.full\$PROFILE_FILE, labels=profile.df.full\$LEGEND, name=\"Legend\");
 
+hideLegend=FALSE;
 if(is.null(profile.df.full\$LEGEND)) {
-  gp = gp + theme(legend.position=\"none\");
+  hideLegend=TRUE;
 }
 
 if(is.compact) {
@@ -370,9 +390,23 @@ if(is.compact) {
   gp = gp + labs(title=\"$plotTitle\", y=\"$yAxisLabel\", x=\"$xAxisLabel\");
   gp = gp + ylim(y.min, y.max);
   gp = gp + theme(plot.title = element_text(colour=\"#b30000\"))
+
+  if(hideLegend) {
+    gp = gp + theme(legend.position=\"none\");
+  }
 }
 
-if($hasFacets) {
+if(\"FACET\" %in% colnames(profile.df.full)) {
+  if(!all(is.na(profile.df.full\$FACET_ns))){
+    numLevels=nlevels(profile.df.full\$FACET_ns);
+    numCols=ceiling(numLevels / 2);
+    if (numLevels > 3) {
+      gp = gp + facet_wrap( ~ FACET_ns, ncol=numCols);
+    } else {
+      gp = gp + facet_grid(. ~ FACET_ns);
+    }
+  }
+}else if($hasFacets) {
   gp = gp + facet_grid($facetString);
 }
 
