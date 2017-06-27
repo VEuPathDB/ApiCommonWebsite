@@ -38,7 +38,21 @@
     <p><strong>We are pleased to announce the release of GiardiaDB 33</strong></p>
       
        <section>
-        <h3>No New data in this release</h3> 
+        <h3><b>New data in this release</b></h3> 
+        
+        <h4>Subcellular Localization Images Added</h4>
+        <ul>
+          <li>
+            <a href="http://giardiadb.org/giardiadb/app/record/dataset/DS_5ea853774b">Cellular Localization of Trophozoite or Cytoskeletal GFP-fused proteins</a> &mdash; 
+                 Subcellular localization of selected trophozoite or cytoskeletal proteins from <i>Giardia</i> Assemblage A isolate WB determined 
+                 by live imaging of GFP-fusion strains. New images added, making a total of 
+            <a href="http://giardiadb.org/giardiadb/im.do?s=b7a829f262a1dca4">396 genes analyzed</a>.  (
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/22206034">Hagen et al.</a>)
+          </li>
+        </ul>
+        
+      </section>
+      <section>
          <aside>
            Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
            Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.

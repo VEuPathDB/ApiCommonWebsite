@@ -197,7 +197,7 @@ sub makeProfileCannedQuery {
   }
 
   else {
-    if (defined $subId) {
+    if ($subId) {
         $id = "$id|$subId";
     }
     $profile = ApiCommonWebsite::Model::CannedQuery::Profile->new
