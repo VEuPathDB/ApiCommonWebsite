@@ -6,6 +6,7 @@ use vars qw( @ISA);
 @ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet);
 use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
 use ApiCommonWebsite::View::GraphPackage::GGScatterPlot;
+use Data::Dumper;
 
 sub init {
   my $self = shift;
@@ -16,8 +17,10 @@ sub init {
   $self->setScreenSize(300);
 
   my $colors = ['blue','white'];
+  my $facet = $self->getFacets();
+  my $contXAxis = $self->getContXAxis();
 
-  my @profileSetArray = (['Kazura Reinfection Ab Microarray Profiles','values']);
+  my @profileSetArray = (['Kazura Reinfection Ab Microarray Profiles','values', '', '', '', '', '', $facet, '', '', $contXAxis]);
   my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSetArray);
 
   my $scatter = ApiCommonWebsite::View::GraphPackage::GGScatterPlot::LogRatio->new(@_);
