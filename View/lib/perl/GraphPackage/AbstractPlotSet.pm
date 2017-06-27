@@ -303,6 +303,7 @@ library(gridExtra);
 library(ggplot2);
 library(gridSVG);
 library(tools);
+library(gtools);
 
 $open_R
 
