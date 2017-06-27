@@ -157,13 +157,23 @@ sub makeRPlotString {
   my $facets = $self->getFacets();
   my $facetString = ". ~ DUMMY";
   my $hasFacets = "FALSE";
-  if($facets && scalar @$facets == 1) {
-    $facetString = ". ~ " . $facets->[0];
-    $hasFacets = "TRUE";
-  }
-  if($facets && scalar @$facets == 2) {
-    $facetString = $facets->[0] . " ~  " . $facets->[1];
-    $hasFacets = "TRUE";
+
+  if ($facets && scalar @$facets != 0) {
+    if(scalar @$facets == 1 && $facets->[0] ne 'none') {
+      $facetString = ". ~ " . $facets->[0];
+      $hasFacets = "TRUE";
+    }elsif(scalar @$facets == 2) {
+      if($facets->[1] ne 'none' && $facets->[0] ne 'none') {
+        $facetString = $facets->[0] . " ~  " . $facets->[1];
+        $hasFacets = "TRUE";
+      }elsif($facets->[0] eq 'none' && $facets->[1] ne 'none') {
+        $facetString = ". ~ " . $facets->[1];
+        $hasFacets = "TRUE";
+      }elsif($facets->[0] ne 'none' && $facets->[1] eq 'none') {
+        $facetString = ". ~ " . $facets->[0];
+        $hasFacets = "TRUE";
+      }
+    }
   }
 
   if ($hasExtraLegend ) {
