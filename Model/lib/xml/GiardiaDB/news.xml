@@ -30,7 +30,7 @@
 
 <record>
   <attribute name="headline">GiardiaDB 33 Released</attribute>
-  <attribute name="date">27 Jun 2017 13:00</attribute>
+  <attribute name="date">30 Jun 2017 13:00</attribute>
   <attribute name="tag">giardiadb06_17_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
@@ -50,6 +50,27 @@
             <a href="http://www.ncbi.nlm.nih.gov/pubmed/22206034">Hagen et al.</a>)
           </li>
         </ul>
+        
+        
+       <h3><b>New features in this release</b></h3> 
+
+           <ul>
+            <li>Transcriptomics data are available for display and download from a strategy result.  For any strategy that returns genes, 
+                use the Add Columns tool to display graphs and normalized expression values.  Use the Download tool to obtain expression values as a file.<br><br> 
+            </li>
+            <li>Improved image resolution, legend and axis text, as well as additional mouseover information for graphs on gene pages and in result columns.<br><br> 
+            </li>
+            <li>Gene Ontology and Metabolic Pathway enrichment analysis results now include a word cloud of enriched terms.  
+                The size and color depth of GO terms or metabolic pathway names in the word cloud are based on the p-values of the enriched terms.<br><br> 
+            </li>
+            <li>Gene Ontology and Metabolic Pathway enrichment analysis results now include a column with for viewing the genes that contribute to the enrichment. 
+                Click the number in the column, 'Genes in you result with this term/pathway', to populate the Gene ID search with the IDs of genes contributing to the 
+                enrichment.  Click Get Answer to initiate the search and retrieve the list of genes.<br><br>
+            </li>
+            <li>Galaxy workflows for variant calling are now available from the EuPathDB Galaxy site which can be reached by clicking 'Analyze My Experiment' from the 
+                gray tool bar under the header. 
+            </li>
+           </ul>
         
       </section>
       <section>
