@@ -40,26 +40,27 @@ sub init {
    my $Self = shift;
    my $Args = ref $_[0] ? shift : {@_};
 
-   $Self->setName                 ( $Args->{Name                } );
-   $Self->setQueryHandle          ( $Args->{QueryHandle         } );
-   $Self->setFormat               ( $Args->{Format              } );
-   $Self->setOutputFile           ( $Args->{OutputFile          } );
-   $Self->setId                   ( $Args->{Id                  } );
-   $Self->setThumbnail            ( $Args->{Thumbnail           } );
-   $Self->setDefaultPlotPart    ( $Args->{DefaultPlotPart           } );
+   $Self->setName                 ( $Args->{Name                 } );
+   $Self->setQueryHandle          ( $Args->{QueryHandle          } );
+   $Self->setFormat               ( $Args->{Format               } );
+   $Self->setContXAxis            ( $Args->{ContXAxis            } );
+   $Self->setOutputFile           ( $Args->{OutputFile           } );
+   $Self->setId                   ( $Args->{Id                   } );
+   $Self->setThumbnail            ( $Args->{Thumbnail            } );
+   $Self->setDefaultPlotPart      ( $Args->{DefaultPlotPart      } );
+ 
+   $Self->setVisibleParts         ( $Args->{VisibleParts         } );
 
-   $Self->setVisibleParts         ( $Args->{VisibleParts        } );
+   $Self->setFacets               ( $Args->{Facets               } );
+   $Self->setVisiblePartsAreFuzzy ( $Args->{VisiblePartsAreFuzzy } );
+   $Self->setSecondaryId          ( $Args->{SecondaryId          } );
+   $Self->setDatasetId            ( $Args->{DatasetId            } );
+   $Self->setWantLogged           ( $Args->{WantLogged           } );
 
-   $Self->setFacets         ( $Args->{Facets       } );
-   $Self->setVisiblePartsAreFuzzy         ( $Args->{VisiblePartsAreFuzzy        } );
-   $Self->setSecondaryId          ( $Args->{SecondaryId         } );
-   $Self->setDatasetId              ( $Args->{DatasetId             } );
-   $Self->setWantLogged           ( $Args->{WantLogged          } );
-
-   $Self->setWidthOverride           ( $Args->{WidthOverride          } );
-   $Self->setHeightOverride           ( $Args->{HeightOverride          } );
-   $Self->setCompact           ( $Args->{Compact          } );
-   $Self->setIdType           ( $Args->{IdType          } );
+   $Self->setWidthOverride        ( $Args->{WidthOverride        } );
+   $Self->setHeightOverride       ( $Args->{HeightOverride       } );
+   $Self->setCompact              ( $Args->{Compact              } );
+   $Self->setIdType               ( $Args->{IdType               } );
 
    my $Thumb = $Self->getThumbnail();
 
@@ -91,9 +92,8 @@ sub setId                      { $_[0]->{'Id'                          } = $_[1]
 sub getThumbnail               { $_[0]->{'Thumbnail'                   } }
 sub setThumbnail               { $_[0]->{'Thumbnail'                   } = $_[1]; $_[0] }
 
-sub getDefaultPlotPart               { $_[0]->{'DefaultPlotPart'                   } }
-sub setDefaultPlotPart               { $_[0]->{'DefaultPlotPart'                   } = $_[1]; $_[0] }
-
+sub getDefaultPlotPart         { $_[0]->{'DefaultPlotPart'             } }
+sub setDefaultPlotPart         { $_[0]->{'DefaultPlotPart'             } = $_[1]; $_[0] }
 
 sub getScalingFactor           { $_[0]->{'ScalingFactor'               } }
 sub setScalingFactor           { $_[0]->{'ScalingFactor'               } = $_[1]; $_[0] }
@@ -101,20 +101,20 @@ sub setScalingFactor           { $_[0]->{'ScalingFactor'               } = $_[1]
 sub getVisibleParts            { $_[0]->{'VisibleParts'                } }
 sub setVisibleParts            { $_[0]->{'VisibleParts'                } = $_[1]; $_[0] }
 
-sub getFacets            { $_[0]->{'Facets'                } }
-sub setFacets            { $_[0]->{'Facets'                } = $_[1]; $_[0] }
+sub getFacets                  { $_[0]->{'Facets'                      } }
+sub setFacets                  { $_[0]->{'Facets'                      } = $_[1]; $_[0] }
 
-sub getContXAxis            { $_[0]->{'ContXAxis'                } }
-sub setContXAxis            { $_[0]->{'ContXAxis'                } = $_[1]; $_[0] }
+sub getContXAxis               { $_[0]->{'ContXAxis'                   } }
+sub setContXAxis               { $_[0]->{'ContXAxis'                   } = $_[1]; $_[0] }
 
-sub getVisiblePartsAreFuzzy            { $_[0]->{'VisiblePartsAreFuzzy'                } }
-sub setVisiblePartsAreFuzzy            { $_[0]->{'VisiblePartsAreFuzzy'                } = $_[1]; $_[0] }
+sub getVisiblePartsAreFuzzy    { $_[0]->{'VisiblePartsAreFuzzy'        } }
+sub setVisiblePartsAreFuzzy    { $_[0]->{'VisiblePartsAreFuzzy'        } = $_[1]; $_[0] }
 
 sub getSecondaryId             { $_[0]->{'SecondaryId'                 } }
 sub setSecondaryId             { $_[0]->{'SecondaryId'                 } = $_[1]; $_[0] }
 
-sub getDatasetId                 { $_[0]->{'DatasetId'                     } }
-sub setDatasetId                 { $_[0]->{'DatasetId'                     } = $_[1]; $_[0] }
+sub getDatasetId               { $_[0]->{'DatasetId'                   } }
+sub setDatasetId               { $_[0]->{'DatasetId'                   } = $_[1]; $_[0] }
 
 sub getWantLogged              { $_[0]->{'WantLogged'                  } }
 sub setWantLogged              { $_[0]->{'WantLogged'                  } = $_[1]; $_[0] }
@@ -124,17 +124,17 @@ sub getTypeArg                 { $_[0]->{'dataPlotterArg'              } }
 sub setDataPlotterArg          { $_[0]->{'dataPlotterArg'              } = $_[1]; $_[0] }
 
 
-sub getWidthOverride              { $_[0]->{'WidthOverride'                  } }
-sub setWidthOverride              { $_[0]->{'WidthOverride'                  } = $_[1]; $_[0] }
+sub getWidthOverride           { $_[0]->{'WidthOverride'               } }
+sub setWidthOverride           { $_[0]->{'WidthOverride'               } = $_[1]; $_[0] }
 
-sub getHeightOverride              { $_[0]->{'HeightOverride'                  } }
-sub setHeightOverride              { $_[0]->{'HeightOverride'                  } = $_[1]; $_[0] }
+sub getHeightOverride          { $_[0]->{'HeightOverride'              } }
+sub setHeightOverride          { $_[0]->{'HeightOverride'              } = $_[1]; $_[0] }
 
-sub getCompact              { $_[0]->{'Compact'                  } }
-sub setCompact              { $_[0]->{'Compact'                  } = $_[1]; $_[0] }
+sub getCompact                 { $_[0]->{'Compact'                     } }
+sub setCompact                 { $_[0]->{'Compact'                     } = $_[1]; $_[0] }
 
-sub getIdType              { $_[0]->{'IdType'                  } }
-sub setIdType              { $_[0]->{'IdType'                  } = $_[1]; $_[0] }
+sub getIdType                  { $_[0]->{'IdType'                      } }
+sub setIdType                  { $_[0]->{'IdType'                      } = $_[1]; $_[0] }
 
 
 sub declareParts {
@@ -166,7 +166,6 @@ sub run {
    my @Rv;
 
 	 $Self->pushIds();
-
    #my $prep_t   = time();
 	 @Rv = my ($r_f, @others_f) = $Self->makeR();
    #print STDERR join("\t", 'SQL', time() - $prep_t), "\n";
