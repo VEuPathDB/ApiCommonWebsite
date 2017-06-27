@@ -40,7 +40,7 @@
            
         <h4>Microarray:</h4>
            <ul>
-            <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_d4f8765d13">AP2-G2 knock out and WT expression profiles &ndash; 
+            <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_d4f8765d13">AP2-G2 knock out and WT expression profiles</a> &ndash; 
               Microarray of wild type and AP2-G2 knock out <i> P. berghei</i> ANKA parasites.  
               <a href="http://www.ncbi.nlm.nih.gov/pubmed/26417110">Yuda et al.</a>.
               </li>
@@ -48,7 +48,7 @@
         
         <h4>Proteomics:</h4>
            <ul>
-            <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_7e2bd6d15f">Lysine acetylation proteomics &ndash; 
+            <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_7e2bd6d15f">Lysine acetylation proteomics</a> &ndash; 
               Peptide fractions from <i>P. falciparum</i> synchronous cultures (trophozoite stage) were enriched for acetylated lysine and analyzed by mass spectrometry.  
               <a href="http://www.ncbi.nlm.nih.gov/pubmed/26813983">Cobbold et al.</a>.
               </li>
@@ -56,13 +56,35 @@
            
          <h4>RMGM phenotypes:</h4>
            <ul>
-            <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_3bcc2ee874">Phenotypes from RMgmDB - Rodent Malaria genetically modified Parasites &ndash; 
+            <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_3bcc2ee874">Phenotypes from RMgmDB</a> - Rodent Malaria genetically modified Parasites &ndash; 
               Phenotypes from double mutants were added in this release. The Rodent Malaria genetic modifications (RMgmDB) table on gene pages now contains a 
               'Double Knockout' that displays the ID of the second knock out and links to its gene page. 
             </li>
            </ul>
          
         </section>
+     
+     <section>
+        <h3><b>New features in this release</b></h3> 
+
+           <ul>
+            <li>Transcriptomics data are available for display and download from a strategy result.  For any strategy that returns genes, 
+                use the Add Columns tool to display graphs and normalized expression values.  Use the Download tool to obtain expression values as a file.  
+            </li>
+            <li>Improved image resolution, legend and axis text, as well as additional mouseover information for graphs on gene pages and in result columns.   
+            </li>
+            <li>Gene Ontology and Metabolic Pathway enrichment analysis results now include a word cloud of enriched terms.  
+                The size and color depth of GO terms or metabolic pathway names in the word cloud are based on the p-values of the enriched trems. 
+            </li>
+            <li>Gene Ontology and Metabolic Pathway enrichment analysis results now include a column with for viewing the genes that contribute to the enrichment. 
+                Click the number in the column, 'Genes in you result with this term/pathway', to populate the Gene ID search with the IDs of genes contributing to the 
+                enrichment.  Click Get Answer to initiate the search and retrieve the list of genes.
+            </li>
+            <li>Galaxy workflows for variant calling are now available from the EuPathDB Galaxy site which can be reached by clicking 'Analyze My Experiment' from the 
+                gray tool bar under the header. 
+            </li>
+           </ul>
+     </section>
         
       <section>
          <aside>

@@ -49,27 +49,28 @@ sub init {
   $Self->setFacet           ( $Args->{Facet          } );
   $Self->setContXAxis           ( $Args->{ContXAxis          } );
 
+  my $facets = $Self->getFacet();
+  my $facet1 = $facets->[0];
+  my $facet2 = $facets->[1];
+
   $Self->setSql(<<Sql);
 
--- TODO UPDATE THIS TO USE <<Facet>> and <<ContXAxis>> which should be ontology term source ids
-SELECT distinct pen.element_order, Pen.name || ':' || BMC.Value As Name       
-FROM   study.Study                     s
-,      apidb.ProfileSet                ps
-,      apidb.ProfilEelementName        pen
-,      rad.StudyBioMaterial            sbm
-,      study.BioSample                 bs
-,      study.BioMaterialCharacteristic bmc
-,      study.OntologyEntry oe
-WHERE ps.external_database_release_id = s.external_database_release_id
-AND s.study_id = sbm.study_id 
-AND bs.name = pen.name
-AND pen.profile_set_id = ps.profile_set_id
-AND bs.bio_material_id = sbm.bio_material_id
-AND bs.bio_material_id = bmc.bio_material_id 
-AND bmc.ontology_entry_id = oe.ontology_entry_id
-AND ps.name = '<<ProfileSet>>'
-AND lower(oe.value) = lower('<<MetaDataCategory>>')
-ORDER BY pen.element_order
+select  rownum as element_order, ps.NAME, ps.FACET, ps.CONTXAXIS FROM ( 
+ SELECT distinct s.protocol_app_node_name AS name, s.NODE_ORDER_NUM, m1.string_value as facet, m2.string_value as contXAxis 
+ FROM  apidbtuning.ProfileSamples s
+     , apidbtuning.metadata m1
+     , apidbtuning.metadata m2
+  WHERE  s.study_name = \'<<ProfileSet>>\'
+ AND s.profile_type = \'<<ProfileType>>\'
+ AND m1.study_name(+) = s.study_name
+ and m1.PROTOCOL_APP_NODE_ID(+) = s.PROTOCOL_APP_NODE_ID 
+ and m1.source_id(+) = \'$facet1\' 
+ AND m2.study_name(+) = s.study_name 
+ and m2.PROTOCOL_APP_NODE_ID(+) = s.PROTOCOL_APP_NODE_ID 
+ and m2.source_id(+) = \'<<ContXAxis>>\'
+ ORDER  BY s.node_order_num
+) ps
+
 Sql
 
   return $Self;
@@ -93,6 +94,7 @@ sub prepareDictionary {
 	 my $Dict = shift || {};
 
          $Dict->{ProfileSet} = $Self->getProfileSet();
+	 $Dict->{ProfileType} = $Self->getProfileType();
 	 $Dict->{Facet} = $Self->getFacet();
 	 $Dict->{ContXAxis} = $Self->getContXAxis();
 

@@ -94,9 +94,14 @@ sub setLegendLabels              { $_[0]->{'_legend_labels'                 } = 
 sub getProfileTypes              { $_[0]->{'_profile_types'                 }}
 sub setProfileTypes              { $_[0]->{'_profile_types'                 } = $_[1]}
 
+sub getFacet              { $_[0]->{'_facet'                 }}
+sub setFacet              { $_[0]->{'_facet'                 } = $_[1]}
+
 sub getHideXAxisLabels          { $_[0]->{'_x_axis_labels'                  }}
 sub setHideXAxisLabels          { $_[0]->{'_x_axis_labels'                  } = $_[1]}
 
+sub getContXAxis              { $_[0]->{'_cont_x_axis'                 }}
+sub setContXAxis              { $_[0]->{'_cont_x_axis'                 } = $_[1]}
 
 
 #----------------------------------------------------------------------------------------------
