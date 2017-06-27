@@ -48,15 +48,15 @@
             </li>
            </ul>
         </section>
-        
+       <section> 
          <aside>
            Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
            Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
            When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
            When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
          </aside>
+
       </section>
-      
     ]]>
   </attribute>
 </record>
