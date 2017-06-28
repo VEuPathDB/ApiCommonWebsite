@@ -11,6 +11,10 @@ use Data::Dumper;
 sub init {
   my $self = shift;
 
+  $self->setFacets(["ICEMR_microscopy_result"]);
+  $self->setContXAxis("OBI_0001169");
+
+
   $self->SUPER::init(@_);
 
   $self->setPlotWidth(600);
@@ -27,6 +31,9 @@ sub init {
 #  my $scatter = ApiCommonWebsite::View::GraphPackage::ScatterPlot::ClinicalMetaData->new(@_);
   $scatter->setProfileSets($profileSets);
   $scatter->setColors($colors);
+
+  # TODO: Remove this when we get facet and cont x dynamically
+  $scatter->setXaxisLabel("Age");
 
   $self->setGraphObjects($scatter);
 
