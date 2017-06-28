@@ -15,7 +15,7 @@ data <- args[1]
 outputFile <-args[2]
 
 library(GOsummaries);
-up <-read.table(data, header =TRUE, sep ="\t");
+up <-read.table(data, header =TRUE, sep ="\t", quote="");
 wcd1 = data.frame(Term = up$Name, Score = up$Pvalue);
 gs = gosummaries(wc_data = list(wcd1));
 #DO I NEED TO GIVE IT AN OUTPUT DIR?
