@@ -181,7 +181,7 @@ sub run {
 
 
 			print $Cgi->header(-Content_type => $contentType{$format},
-                         -Expires      => 'Sun, 01 Jan 2006 12:00:01 GMT',
+                         -Cache_Control      => 'max-age=600',
                         );
 			system "cat $outputFile";
 	 }
