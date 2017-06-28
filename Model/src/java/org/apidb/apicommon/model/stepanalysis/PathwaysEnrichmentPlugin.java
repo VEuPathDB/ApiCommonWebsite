@@ -172,9 +172,12 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     String idSql = getAnswerValue().getIdSql();
 
     // find annotation sources used in the result set
-    String sql = "select distinct tp.pathway_source" + NL +
+    String sql = "select distinct pa.pathway_source" + NL +
       "from apidbtuning.transcriptPathway tp, (" + idSql + ") r" + NL +
-      "where tp.gene_source_id = r.gene_source_id";
+      ", apidbtuning.pathwayattributes pa" + NL +
+      "where tp.gene_source_id = r.gene_source_id" + NL +
+      "and pa.pathway_id = tp.pathway_id" + NL +
+      "group by pa.pathway_id, pa.pathway_source";
 
     new SQLRunner(ds, sql, "select-pathway-sources").executeQuery(handler);
     List<Option> sources = new ArrayList<>();
