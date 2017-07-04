@@ -4,7 +4,7 @@
     xmlns:imp="urn:jsptagdir:/WEB-INF/tags/imp">
   <jsp:directive.page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"/>
 
-  <![CDATA[</div></div></div>]]>
+  <![CDATA[</div></div></div></div></div>]]>
   <imp:dialogs/>
   <imp:footer refer="gbrowse"/>
   <![CDATA[</body></html>]]>
