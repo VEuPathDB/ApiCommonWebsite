@@ -12,9 +12,6 @@ use ApiCommonWebsite::View::GraphPackage::GGScatterPlot;
 sub init {
   my $self = shift;
 
-  $self->setFacets(["ICEMR_health_status"]);
-  $self->setContXAxis("PATO_0000011");
-
   $self->SUPER::init(@_);
 
   $self->setPlotWidth(600);

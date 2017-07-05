@@ -11,10 +11,6 @@ use Data::Dumper;
 sub init {
   my $self = shift;
 
-  $self->setFacets(["ICEMR_microscopy_result"]);
-  $self->setContXAxis("OBI_0001169");
-
-
   $self->SUPER::init(@_);
 
   $self->setPlotWidth(600);
