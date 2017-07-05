@@ -20,11 +20,14 @@ public class CommentFactoryManager {
   
   public static final String COMMENT_FACTORY_KEY = "comment-factory";
 
+  public static CommentFactory getCommentFactory(String projectId) {
+    return InstanceManager.getInstance(CommentFactory.class, projectId);
+  }
+
   public static CommentFactory getCommentFactory(ServletContext context) {
     CommentFactory factory = (CommentFactory) context.getAttribute(COMMENT_FACTORY_KEY);
     if (factory == null) {
-      String projectId = context.getInitParameter(Utilities.ARGUMENT_PROJECT_ID);
-      factory = InstanceManager.getInstance(CommentFactory.class, projectId);
+      factory = getCommentFactory(context.getInitParameter(Utilities.ARGUMENT_PROJECT_ID));
       context.setAttribute(COMMENT_FACTORY_KEY, factory);
     }
     return factory;
