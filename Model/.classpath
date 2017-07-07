@@ -18,5 +18,6 @@
 	<classpathentry kind="var" path="M2_REPO/javax/ws/rs/javax.ws.rs-api/2.0/javax.ws.rs-api-2.0.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ebrc-website-common-model"/>
 	<classpathentry kind="var" path="M2_REPO/junit/junit/4.11/junit-4.11.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/fgputil-accountdb"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>

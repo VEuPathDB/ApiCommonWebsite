@@ -107,7 +107,7 @@ public class RepresentativeTranscriptFilter extends StepFilter {
 
   public static boolean shouldEngageFilter(User user) {
     // get user preference
-    String prefValue = user.getProjectPreferences().get(RepresentativeTranscriptFilter.FILTER_NAME);
+    String prefValue = user.getPreferences().getProjectPreference(RepresentativeTranscriptFilter.FILTER_NAME);
     return (prefValue == null ? REPRESENTATIVE_TRANSCRIPT_FILTER_ON_BY_DEFAULT : Boolean.valueOf(prefValue));
   }
 

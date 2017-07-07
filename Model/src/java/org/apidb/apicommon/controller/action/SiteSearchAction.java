@@ -1,7 +1,7 @@
 package org.apidb.apicommon.controller.action;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
+import static org.gusdb.fgputil.FormatUtil.urlEncodeUtf8;
+
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -103,7 +103,7 @@ public class SiteSearchAction extends Action {
     }
 
     private String getQuestionUrl(WdkModelBean wdkModel, String questionName,
-            String keyword) throws UnsupportedEncodingException, WdkModelException {
+            String keyword) throws WdkModelException {
         QuestionBean question = wdkModel.getQuestion(questionName);
         StringBuilder builder = new StringBuilder();
         builder.append("questionFullName=").append(question.getFullName());
@@ -112,8 +112,8 @@ public class SiteSearchAction extends Action {
         for (ParamBean<?> param : params.values()) {
             // use the keyword as the input for text param.
             if (param.getName().equals(TEXT_PARAM)) {
-                String name = encode("value(" + TEXT_PARAM + ")");
-                builder.append("&" + name + "=" + encode(keyword));
+                String name = urlEncodeUtf8("value(" + TEXT_PARAM + ")");
+                builder.append("&" + name + "=" + urlEncodeUtf8(keyword));
                 continue;
             }
 
@@ -121,19 +121,15 @@ public class SiteSearchAction extends Action {
                     && ((EnumParamBean) param).getMultiPick()) {
                 String[] values = param.getDefault().split(",");
                 for (String value : values) {
-                    String name = encode("array(" + param.getName() + ")");
-                    builder.append("&" + name + "=" + encode(value));
+                    String name = urlEncodeUtf8("array(" + param.getName() + ")");
+                    builder.append("&" + name + "=" + urlEncodeUtf8(value));
                 }
             } else {
-                String name = encode("value(" + param.getName() + ")");
-                String value = encode(param.getDefault());
+                String name = urlEncodeUtf8("value(" + param.getName() + ")");
+                String value = urlEncodeUtf8(param.getDefault());
                 builder.append("&" + name + "=" + value);
             }
         }
         return builder.toString();
-    }
-
-    private String encode(String text) throws UnsupportedEncodingException {
-        return URLEncoder.encode(text, "UTF-8");
     }
 }

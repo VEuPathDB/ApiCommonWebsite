@@ -39,7 +39,7 @@ public class CommentFactoryGetTest {
     private static String projectId;
     private static CommentFactory factory;
 
-    private int commentId;
+    private long commentId;
 
     @BeforeClass
     public static void loadFactory() throws WdkModelException {
@@ -78,7 +78,7 @@ public class CommentFactoryGetTest {
 
     @After
     public void removeComment() throws WdkModelException {
-        factory.deleteComment(Integer.toString(commentId));
+        factory.deleteComment(Long.toString(commentId));
     }
 
     @Test

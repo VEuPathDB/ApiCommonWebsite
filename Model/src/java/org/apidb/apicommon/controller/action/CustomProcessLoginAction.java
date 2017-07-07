@@ -1,7 +1,6 @@
 package org.apidb.apicommon.controller.action;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
+import static org.gusdb.fgputil.FormatUtil.urlEncodeUtf8;
 
 import org.gusdb.fgputil.web.RequestData;
 import org.gusdb.wdk.controller.CConstants;
@@ -13,12 +12,12 @@ import org.gusdb.wdk.model.jspwrap.WdkModelBean;
 public class CustomProcessLoginAction extends ProcessLoginAction {
 
   private static final String GBROWSE_SETUP_PAGE = "/gbrowse/gbrowseSetup.html";
-  
+
   @Override
   protected ActionResult getSuccessfulLoginResult(String redirectUrl, int wdkCookieMaxAge) {
     return getGbrowseLoginUrl(getWdkModel(), redirectUrl, wdkCookieMaxAge, getCurrentUserOrNull().getFirstName());
   }
-  
+
   @Override
   protected ActionResult getFailedLoginResult(Exception e) {
     return getFailedLoginUrl(getRequestData(), getOriginalReferrer(getParams(), getRequestData()), e);
@@ -59,14 +58,5 @@ public class CustomProcessLoginAction extends ProcessLoginAction {
         .append("&cookieMaxAge=").append(wdkCookieMaxAge)
         .append("&userDisplayName=").append(urlEncodeUtf8(displayName))
         .toString();
-  }
-  
-  public static String urlEncodeUtf8(String str) {
-    try {
-      return URLEncoder.encode(str, "UTF-8");
-    }
-    catch (UnsupportedEncodingException e) {
-      throw new RuntimeException(e);
-    }
   }
 }
