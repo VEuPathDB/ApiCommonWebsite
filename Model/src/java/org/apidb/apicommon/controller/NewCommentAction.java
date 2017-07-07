@@ -124,7 +124,7 @@ public class NewCommentAction extends CommentAction {
 
         String locations = cuForm.getLocations();
         String email = user.getEmail().trim().toLowerCase();
-        int userId = user.getUserId();
+        long userId = user.getUserId();
         String projectName = wdkModel.getDisplayName();
         String projectVersion = wdkModel.getVersion(); 
 
@@ -229,7 +229,7 @@ public class NewCommentAction extends CommentAction {
 
             UserFileFactoryManager.getUserFileFactory(getServlet().getServletContext()).addUserFile(userFile);
 
-            int fileId = userFile.getUserFileId();
+            long fileId = userFile.getUserFileId();
             String fileStr = fileId + "|" + fileName + "|" + notes;
             files.add(fileStr);
 
