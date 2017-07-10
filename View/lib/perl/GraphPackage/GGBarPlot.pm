@@ -75,6 +75,15 @@ sub makeRPlotString {
    ($profileFiles, $elementNamesFiles, $stderrFiles) = $self->makeFilesForR($idType);
  };
 
+  my ($elemFile) = $elementNamesFiles =~ /"(.*?)"/;
+  my $lines = 0;
+  open(FILE, $elemFile) or die "Can't open `$elemFile': $!";
+  while (sysread FILE, my $buffer, 4096) {
+    $lines += ($buffer =~ tr/\n//);
+  }
+  close FILE;
+  my $numProfiles = $lines - 1;
+
   if($@) {
     return $blankGraph;
   }
@@ -277,6 +286,10 @@ profile.df.full\$NAME <- factor(profile.df.full\$NAME, levels = unique(profile.d
 expandColors = FALSE;
 hideLegend = FALSE;
 
+if($numProfiles) > length($colorsStringNotNamed)) {
+  expandColors=TRUE;
+}
+
 if(is.null(profile.df.full\$LEGEND)) {
   profile.df.full\$LEGEND = profile.df.full\$NAME
   expandColors = TRUE;
@@ -319,8 +332,8 @@ if(useTooltips) {
 
 if(expandColors) {
  #!!!!!!!!!!!!!!!!! i believe the below will only work when length(NAME)/length(colorstring) divides evenly
-  gp = gp + scale_fill_manual(values=rep($colorsStringNotNamed, length(profile.df.full\$NAME)/length($colorsStringNotNamed)), breaks=profile.df.full\$LEGEND, name=NULL);
-  gp = gp + scale_colour_manual(values=rep($colorsStringNotNamed, length(profile.df.full\$NAME)/length($colorsStringNotNamed)), breaks=profile.df.full\$LEGEND, name=NULL);
+  gp = gp + scale_fill_manual(values=rep($colorsStringNotNamed, $numProfiles/length($colorsStringNotNamed)), breaks=profile.df.full\$LEGEND, name=NULL);
+  gp = gp + scale_colour_manual(values=rep($colorsStringNotNamed, $numProfiles/length($colorsStringNotNamed)), breaks=profile.df.full\$LEGEND, name=NULL);
 } else {
   gp = gp + scale_fill_manual(values=$colorsStringNotNamed, breaks=profile.df.full\$LEGEND, name=NULL);  
   gp = gp + scale_colour_manual(values=$colorsStringNotNamed, breaks=profile.df.full\$LEGEND, name=NULL);
