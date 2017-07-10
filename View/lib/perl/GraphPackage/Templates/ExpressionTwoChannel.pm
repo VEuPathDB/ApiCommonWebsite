@@ -242,8 +242,6 @@ package ApiCommonWebsite::View::GraphPackage::Templates::ExpressionTwoChannel::D
 use Data::Dumper;
 
 # @Override
-sub useLegacy {return 1; }
-
 
 sub init {
   my $self = shift;
@@ -314,7 +312,7 @@ sub makeCombinedGraph {
 
   my @colors = ('blue', 'red', 'orange', 'cyan', 'purple' );
 
-  my $derisi = ApiCommonWebsite::View::GraphPackage::LinePlot::LogRatio->new(@_);
+  my $derisi = ApiCommonWebsite::View::GraphPackage::GGLinePlot::LogRatio->new(@_);
   $derisi->setProfileSets($derisiProfileSets);
   $derisi->setColors([@colors[0..2]]);
   $derisi->setPointsPch([15,15,15]);
@@ -323,6 +321,8 @@ sub makeCombinedGraph {
 
   $derisi->setHasExtraLegend(1);
   $derisi->setLegendLabels(['HB3', '3D7', 'DD2']);
+  $derisi->setXaxisLabel('');
+  $derisi->setRemoveNaN('TRUE');
 
 
   return $derisi;
@@ -339,16 +339,18 @@ sub defineGraphs {
 
   my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSetNames);
 
-  my $line = ApiCommonWebsite::View::GraphPackage::LinePlot::LogRatio->new(@_);
+  my $line = ApiCommonWebsite::View::GraphPackage::GGLinePlot::LogRatio->new(@_);
   $line->setProfileSets($profileSets);
   $line->setColors([$color, 'gray']);
   $line->setPointsPch(\@pch);
   $line->setPartName("expr_val_" . $name);
   my $lineTitle = $line->getPlotTitle();
   $line->setPlotTitle("$name - $lineTitle");
+  $line->setXaxisLabel('');
+  $line->setRemoveNaN('TRUE');
 
    my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([[$smoothed, 'channel1_percentiles']]);
-   my $percentile = ApiCommonWebsite::View::GraphPackage::LinePlot::Percentile->new(@_);
+   my $percentile = ApiCommonWebsite::View::GraphPackage::GGLinePlot::Percentile->new(@_);
    $percentile->setProfileSets($percentileSets);
    $percentile->setPointsPch(['NA']);
    $percentile->setIsFilled(1);
@@ -356,6 +358,9 @@ sub defineGraphs {
    $percentile->setPartName("percentile_" . $name);
    my $pctTitle = $percentile->getPlotTitle();
    $percentile->setPlotTitle("$name - $pctTitle");
+   $percentile->setFillBelowLine('TRUE');
+   $percentile->setXaxisLabel('');
+   $percentile->setRemoveNaN('TRUE');
 
    my @fractions = ([$fraction, 'value', '', '', '', 'erythrocytic ring trophozoite stage', $scale],
                     [$fraction, 'value', '', '', '', 'schizont stage', $scale],
@@ -371,7 +376,7 @@ sub defineGraphs {
  ";
 
    my @colors = ('#E9967A', '#4169E1', '#FF69B4');
-   my $lifeStages = ApiCommonWebsite::View::GraphPackage::LinePlot::Filled->new(@_);
+   my $lifeStages = ApiCommonWebsite::View::GraphPackage::GGLinePlot::Filled->new(@_);
    $lifeStages->setProfileSets($fractionSets);
    $lifeStages->setPlotTitle("$name - Life Stage Population Percentages");
    $lifeStages->setYaxisLabel("%");
@@ -379,6 +384,10 @@ sub defineGraphs {
    $lifeStages->setRPostscript($postscript);
    $lifeStages->setPointsPch(['NA', 'NA', 'NA']);
    $lifeStages->setPartName("lifeStages_" . $name);
+   $lifeStages->setFillBelowLine('TRUE');
+   $lifeStages->setLegendLabels(["Ring", "Schizont", "Trophozoite"]);
+   $lifeStages->setXaxisLabel('');
+   $lifeStages->setRemoveNaN('TRUE');
 
   return($line, $percentile, $lifeStages);
 }
