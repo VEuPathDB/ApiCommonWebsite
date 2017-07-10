@@ -227,6 +227,9 @@ sub makeRPlotString {
     }
   }
 
+  my $fillBelowLine = $self->getFillBelowLine() ? 'TRUE' : 'FALSE';
+  my $removeNaN = $self->getRemoveNaN() ? 'TRUE' : 'FALSE';
+
   my $hasExtraLegend = $self->getHasExtraLegend() ? 'TRUE' : 'FALSE';
   my $extraLegendSize = $self->getExtraLegendSize();
 
@@ -302,6 +305,12 @@ for(ii in 1:length(profile.files)) {
   }
 
   element.names.df = read.table(element.names.files[ii], header=T, sep=\"\\t\");
+
+  if($removeNaN) {
+    profile.df = completeDF(profile.df, \"VALUE\"); 
+    element.names.df = completeDF(element.names.df, \"NAME\");
+  }
+
   profile.df\$ELEMENT_NAMES = as.character(element.names.df\$NAME);
 
   element.names.numeric = as.numeric(gsub(\" *[a-z-A-Z()+-]+ *\", \"\", element.names.df\$NAME, perl=T));
@@ -349,13 +358,24 @@ if($isSVG) {
 }
 
 if(useTooltips){
-  gp = gp + geom_tooltip(aes(tooltip=ELEMENT_NAMES), real.geom=geom_point);  
+#  if(\"CONTXAXIS\" %in% colnames(profile.df.full) && !all(is.na(profile.df.full\$CONTXAXIS))){
+#  gp = gp + geom_tooltip(aes(tooltip=paste(\"sample:\",ELEMENT_NAMES,\", x:\",CONTXAXIS)), real.geom=geom_point);
+#  } else {
+    gp = gp + geom_tooltip(aes(tooltip=ELEMENT_NAMES), real.geom=geom_point);  
+#  }
 }else{
   gp = gp + geom_point();
 }
 
 if(!$forceNoLines) {
-  gp = gp + geom_line();
+    gp = gp + geom_line();
+  if($fillBelowLine) {
+    if(length(unique(profile.df.full\$PROFILE_FILE)) > 1) {
+      gp = gp + geom_tooltip(aes(fill=PROFILE_FILE, tooltip=LEGEND, group=PROFILE_FILE), position=\"identity\", real.geom=geom_area) + scale_fill_manual(values=$colorsStringNotNamed);
+    } else {
+      gp =gp + geom_area(aes(fill=PROFILE_FILE, group=PROFILE_FILE), position=\"identity\") + scale_fill_manual(values=$colorsStringNotNamed);
+    }
+  }
 
   if($smoothLines) {
     if(profile.is.numeric && nrow(profile.df.full) > 10) {
@@ -372,7 +392,7 @@ if(!$forceNoLines) {
 gp = gp + scale_colour_manual(values=$colorsStringNotNamed, breaks=profile.df.full\$PROFILE_FILE, labels=profile.df.full\$LEGEND, name=\"Legend\");
 
 hideLegend=FALSE;
-if(is.null(profile.df.full\$LEGEND)) {
+if(is.null(profile.df.full\$LEGEND) || $fillBelowLine) {
   hideLegend=TRUE;
 }
 

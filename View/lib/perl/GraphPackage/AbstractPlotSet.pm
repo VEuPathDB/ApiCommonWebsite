@@ -301,7 +301,7 @@ $preamble_R
 library(grid);
 library(gridExtra);
 library(ggplot2);
-library(gridSVG);
+suppressPackageStartupMessages(library(gridSVG));
 library(tools);
 library(gtools);
 
@@ -376,27 +376,50 @@ geom_tooltip <- function (mapping = NULL, data = NULL, stat = "identity",
                     position = position, ...)
     parent=rg\$geom
 
-    #replace ggproto object with one of our own design. overwrite draw_panel and required_aes.
-    rg\$geom <-ggproto(parent, parent,
-       draw_panel = function(self, data, panel_scales, coord, width = NULL,
-                    na.rm = FALSE) {
-           grobs <- list()
-           for (i in 1:nrow(data)) {
-		#call draw_panel of the original ggproto object. then garnish the grob it returns
-		#with svg attributes for tooltips
+    if(is.ggproto(parent)){
+      #geom_area is handled differently because it relies on draw_group rather than draw panel to 
+      #create the grobs that need to be garnished
+      if(class(parent)[1]=="GeomArea"){
+        rg\$geom <-ggproto(parent, parent,
+           draw_group = function(data, panel_scales, coord, na.rm = FALSE) {
+             grob <- parent\$draw_group(data, panel_scales, coord, na.rm = FALSE)
+             grob <- garnishGrob(grob, onmousemove=paste("showTooltip(evt, '",
+                     data[1,]\$tooltip , "')"), onmouseout="hideTooltip(evt)",
+                     "pointer-events"="all")
+           },
+           required_aes = c("tooltip", parent\$required_aes)
+         )
+      } else {
+        #replace ggproto object with one of our own design. overwrite draw_panel and required_aes.
+        rg\$geom <-ggproto(parent, parent,
+          draw_panel = function(self, data, panel_scales, coord, width = NULL,
+                       na.rm = FALSE) {
+            grobs <- list()
+            for (i in 1:nrow(data)) {
+	      #call draw_panel of the original ggproto object. then garnish the grob it returns
+	      #with svg attributes for tooltips
                 grob <- parent\$draw_panel(data[i,], panel_scales, coord)
                 grobs[[i]] <- garnishGrob(grob, onmousemove=paste("showTooltip(evt, '",
-                        data[i,]\$tooltip , "')"), onmouseout="hideTooltip(evt)",
-                        "pointer-events"="all")
-           }
-           ggplot2:::ggname("geom_tooltip", gTree(children = do.call("gList", grobs)))
-       },
-       #add tooltip to the aesthetics for our ggproto object
-       required_aes = c("tooltip", parent\$required_aes)
-    )
-    rg
+                              data[i,]\$tooltip , "')"), onmouseout="hideTooltip(evt)",
+                              "pointer-events"="all")
+            }
+            ggplot2:::ggname("geom_tooltip", gTree(children = do.call("gList", grobs)))
+          },
+          #add tooltip to the aesthetics for our ggproto object
+          required_aes = c("tooltip", parent\$required_aes)
+        )
+      }
+      rg
+    } else {
+      stop("Geom layer specified by real.geom is not a known ggplot layer.");
+    }
 }
 
+#remove rows from a dataframe where a specific column has NA
+completeDF <- function(data, desiredCols) {
+  completeVec <- complete.cases(data[, desiredCols])
+  return(data[completeVec, ])
+}
 
 
 # --------------------------------- Add Legend-------------------------------

@@ -63,6 +63,12 @@ sub setSampleLabels               { $_[0]->{'_sample_labels'                } = 
 sub getRPostscript               { $_[0]->{'_r_postscript'                  }}
 sub setRPostscript               { $_[0]->{'_r_postscript'                  } = $_[1]}
 
+sub getFillBelowLine	 	 { $_[0]->{'_fill_below_line'		    }}
+sub setFillBelowLine		 { $_[0]->{'_fill_below_line'		    } = $_[1]}
+
+sub getRemoveNaN                 { $_[0]->{'_remove_nan'                    }}
+sub setRemoveNaN                 { $_[0]->{'_remove_nan'                    } = $_[1]}
+
 #----------------------------------------------------------------------------------------------
 
 sub getScreenSize                { $_[0]->{'_screen_size'                   }}
