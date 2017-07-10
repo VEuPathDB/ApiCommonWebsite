@@ -368,7 +368,12 @@ if(useTooltips){
 }
 
 if(!$forceNoLines) {
+  #override earlier group setting if group column exists
+  if (\"GROUP\" %in% colnames(profile.df.full)) {
+    gp = gp + geom_line(aes(group=GROUP));
+  } else {
     gp = gp + geom_line();
+  }
   if($fillBelowLine) {
     if(length(unique(profile.df.full\$PROFILE_FILE)) > 1) {
       gp = gp + geom_tooltip(aes(fill=PROFILE_FILE, tooltip=LEGEND, group=PROFILE_FILE), position=\"identity\", real.geom=geom_area) + scale_fill_manual(values=$colorsStringNotNamed);
