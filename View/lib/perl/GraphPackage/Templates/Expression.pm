@@ -102,6 +102,7 @@ sub init {
   $self->SUPER::init(@_);
 
   my $allProfileSets = $self->getAllProfileSetNames();
+  #print STDERR Dumper($allProfileSets);
   my %plotParts;
   my %hasStdError;
 
@@ -1048,7 +1049,18 @@ text(13.3, y.max + (y.max - y.min)*0.22, 'C');
 
 package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_b7dc54ebad;
 
-sub useLegacy {return 1;}
+sub finalProfileAdjustments {                                                                                
+  my ($self, $profile) = @_;
+
+  my $rAdjustString = << 'RADJUST';    
+    profile.df.full$ELEMENT_NAMES = factor(profile.df.full$ELEMENT_NAMES, levels=c("Slender","0 hr","1 hr","6 hr","18 hr","24 hr"));
+    profile.df.full$GROUP = c("A","C","C","C","C","C");
+RADJUST
+
+  $profile->addAdjustProfile($rAdjustString);
+
+  $profile->setXaxisLabel('');
+}
 
 1;
 
