@@ -489,16 +489,24 @@ sub finalProfileAdjustments {
 
 package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_4582562a4b;
 
-sub useLegacy {return 1;}
+#this from legacy
+#sub finalProfileAdjustments {
+#  my ($self, $profile) = @_;
+#  $profile->addAdjustProfile('profile.df = cbind(profile.df[,1], profile.df[,3:9], profile.df[,2]);');
 
-sub finalProfileAdjustments {
+#  my @winzelerNames = ("S", "ER","LR", "ET", "LT","ES", "LS", "M", "G"); 
+#  $profile->setSampleLabels(\@winzelerNames);
+#}
+
+sub finalProfileAdjustments {                                                                                
   my ($self, $profile) = @_;
-  $profile->addAdjustProfile('profile.df = cbind(profile.df[,1], profile.df[,3:9], profile.df[,2]);');
+  my $rAdjustString = << 'RADJUST';    
+     profile.df.full$NAME = factor(profile.df.full$NAME, levels = c("Sporozoite","Early Ring","Late Ring","Early Trophozoite","Late Trophozoite","Early Schizogony","Late Schizogony","Merozoite","Gametocyte"));
+RADJUST
 
-  my @winzelerNames = ("S", "ER","LR", "ET", "LT","ES", "LS", "M", "G"); 
-  $profile->setSampleLabels(\@winzelerNames);
+  $profile->addAdjustProfile($rAdjustString);
+
 }
-
 
 sub init {
   my $self = shift;
@@ -517,14 +525,20 @@ sub init {
 
   my $winzelerProfileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@winzelerProfileArray);
 
-  my $winzeler = ApiCommonWebsite::View::GraphPackage::LinePlot::LogRatio->new(@_);
+  my $winzeler = ApiCommonWebsite::View::GraphPackage::GGLinePlot::LogRatio->new(@_);
   $winzeler->setProfileSets($winzelerProfileSets);
   $winzeler->setColors(\@colors);
   $winzeler->setPartName('line');
   $winzeler->setPointsPch([15,15,15]);
-  $winzeler->setAdjustProfile('points.df = points.df - mean(points.df[points.df > 0], na.rm=T);lines.df = lines.df - mean(lines.df[lines.df > 0], na.rm=T)');
+#this from legacy
+ # $winzeler->setAdjustProfile('points.df = points.df - mean(points.df[points.df > 0], na.rm=T);lines.df = lines.df - mean(lines.df[lines.df > 0], na.rm=T)');
   $winzeler->setArePointsLast(1);
   $winzeler->setSampleLabels(\@winzelerNames);
+  $winzeler->setAdjustProfile('
+     profile.df.full$ELEMENT_NAMES = c("Early Ring","Late Ring","Early Trophozoite","Late Trophozoite","Early Schizogony","Late Schizogony","Merozoite","Early Ring","Late Ring","Early Trophozoite","Late Trophozoite","Early Schizogony","Late Schizogony","Merozoite","Sporozoite","Gametocyte");
+     profile.df.full$ELEMENT_NAMES = factor(profile.df.full$ELEMENT_NAMES, levels = c("Sporozoite","Early Ring","Late Ring","Early Trophozoite","Late Trophozoite","Early Schizogony","Late Schizogony","Merozoite","Gametocyte"));
+     profile.df.full$GROUP = c("C","C","C","C","C","C","D","E","E","E","E","E","E","F","A","B"); ');
+  $winzeler->setXaxisLabel('');
 
   my $graphObjects = $self->getGraphObjects();
   push @$graphObjects, $winzeler;

@@ -401,20 +401,35 @@ if(is.null(profile.df.full\$LEGEND) || $fillBelowLine) {
   hideLegend=TRUE;
 }
 
+xAxisCount = length(profile.df.full\$ELEMENT_NAMES);
+
 if(is.compact) {
   gp = gp + theme_void() + theme(legend.position=\"none\");
 } else if(is.thumbnail) {
   gp = gp + theme_bw();
   gp = gp + labs(title=\"$plotTitle\", y=\"$yAxisLabel\", x=NULL);
   gp = gp + ylim(y.min, y.max);
-  gp = gp + scale_x_discrete(label=abbreviate);
-  gp = gp + theme(axis.text.x  = element_text(angle=90,vjust=0.5, size=9), plot.title = element_text(colour=\"#b30000\"));
+  gp = gp + scale_x_discrete(label=function(x) customAbbreviate(x));
+
+  if(xAxisCount > 3) {
+    gp = gp + theme(axis.text.x  = element_text(angle=45, vjust=1, hjust=1, size=9), plot.title = element_text(colour=\"#b30000\"));
+  } else {
+    gp = gp + theme(axis.text.x  = element_text(angle=90,vjust=0.5, size=9), plot.title = element_text(colour=\"#b30000\"));
+  }
+
   gp = gp + theme(legend.position=\"none\");
 } else {
   gp = gp + theme_bw();
   gp = gp + labs(title=\"$plotTitle\", y=\"$yAxisLabel\", x=\"$xAxisLabel\");
   gp = gp + ylim(y.min, y.max);
-  gp = gp + theme(plot.title = element_text(colour=\"#b30000\"))
+  gp = gp + theme(plot.title = element_text(colour=\"#b30000\"));
+  gp = gp + scale_x_discrete(label=function(x) customAbbreviate(x));
+
+  if(xAxisCount > 3) {
+    gp = gp + theme(axis.text.x  = element_text(angle=45, vjust=1, hjust=1, size=12), plot.title = element_text(colour=\"#b30000\"));
+  } else {
+    gp = gp + theme(axis.text.x  = element_text(angle=90,vjust=0.5, size=12), plot.title = element_text(colour=\"#b30000\"));
+  }
 
   if(hideLegend) {
     gp = gp + theme(legend.position=\"none\");
