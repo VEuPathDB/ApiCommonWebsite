@@ -286,7 +286,7 @@ profile.df.full\$NAME <- factor(profile.df.full\$NAME, levels = unique(profile.d
 expandColors = FALSE;
 hideLegend = FALSE;
 
-if($numProfiles) > length($colorsStringNotNamed)) {
+if($numProfiles > length($colorsStringNotNamed)) {
   expandColors=TRUE;
 }
 
