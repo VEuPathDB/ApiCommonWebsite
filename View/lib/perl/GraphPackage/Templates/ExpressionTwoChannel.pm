@@ -77,7 +77,7 @@ package ApiCommonWebsite::View::GraphPackage::Templates::ExpressionTwoChannel::D
 
 sub finalProfileAdjustments {                                                                                                                                                        
   my ($self, $profile) = @_;
-#TODO cange r string to fix order of xaxis elements.
+
   my $rAdjustString = << 'RADJUST';    
     profile.df.full$ELEMENT_NAMES = factor(profile.df.full$ELEMENT_NAMES, levels=c("bf-ld","bf-hd","0.5hr","1hr","12hr","24hr","48hr","72hr"));
     profile.df.full$GROUP = c("A","B","C","C","C","C","C","C");
@@ -92,8 +92,32 @@ RADJUST
 
 package ApiCommonWebsite::View::GraphPackage::Templates::ExpressionTwoChannel::DS_af87cb785d;
 
-sub useLegacy {
-  return 1;
+sub finalProfileAdjustments {                                                                                
+  my ($self, $profile) = @_;
+
+  my $rAdjustString = << 'RADJUST';    
+    if(length(profile.df.full$NAME) == 2 ){
+      profile.df.full = completeDF(profile.df.full, "STDERR");
+    }
+RADJUST
+
+  $profile->addAdjustProfile($rAdjustString);
+
+  my $plotPart = $profile->getPartName();
+  if ($plotPart =~/percentile/) {
+    my $profileSets = $profile->getProfileSets();
+
+    if(scalar @$profileSets > 2) {
+      $profile->setFacets(["PROFILE_TYPE"]);
+    }
+    else {
+      $profile->setHasExtraLegend(1);
+      $profile->setLegendLabels(['channel 1', 'channel 2']);
+      $profile->setColors(['LightSlateGray', 'DarkSlateGray']);
+    }
+
+  }
+
 }
 
 1;

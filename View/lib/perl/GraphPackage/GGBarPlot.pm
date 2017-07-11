@@ -99,6 +99,8 @@ sub makeRPlotString {
   my $colorsString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray($colors, 'the.colors');
   my $colorsStringNotNamed = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArrayNotNamed($colors);
 
+  print STDERR Dumper($colorsStringNotNamed);
+
   my $rAdjustProfile = $self->getAdjustProfile();
   my $yAxisLabel = $self->getYaxisLabel();
   my $plotTitle = $self->getPlotTitle();
