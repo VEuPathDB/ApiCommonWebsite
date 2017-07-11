@@ -106,9 +106,9 @@ public class ProcessAddCommentAction extends CommentAction {
         comment.setReviewStatus(reviewStatus);
 
         if ((targetCategoryIds != null) && (targetCategoryIds.length > 0)) {
-            int[] targetCategoryIdArray = new int[targetCategoryIds.length];
+            long[] targetCategoryIdArray = new long[targetCategoryIds.length];
             for (int i = 0; i < targetCategoryIds.length; i++) {
-                targetCategoryIdArray[i] = Integer.valueOf(targetCategoryIds[i]).intValue();
+                targetCategoryIdArray[i] = Long.valueOf(targetCategoryIds[i]).longValue();
             }
             comment.setTargetCategoryIds(targetCategoryIdArray);
         }

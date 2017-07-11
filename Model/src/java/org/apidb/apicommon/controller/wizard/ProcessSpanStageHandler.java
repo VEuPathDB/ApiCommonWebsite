@@ -53,7 +53,7 @@ public class ProcessSpanStageHandler implements StageHandler {
         String span = output.equals(PARAM_VALUE_OUTPUT_A) ? PARAM_SPAN_A
                 : PARAM_SPAN_B;
         String strStepId = (String) wizardForm.getValueOrArray(span);
-        int stepId = Integer.valueOf(strStepId);
+        long stepId = Long.valueOf(strStepId);
 
         UserBean user = ActionUtility.getUser(servlet, request);
         StepBean step = user.getStep(stepId);

@@ -27,7 +27,7 @@ public class EditCommentAction extends CommentAction {
 
         // get the comments for the (project_id, stable_id) tuple
         EditCommentForm editForm = (EditCommentForm) form;
-        Comment comment = factory.getComment(Integer.valueOf(editForm.getCommentId()).intValue());
+        Comment comment = factory.getComment(Long.valueOf(editForm.getCommentId()).longValue());
 
         // set for the forwarding page
         String stableId  = editForm.getStableId();
@@ -50,9 +50,9 @@ public class EditCommentAction extends CommentAction {
         ExternalDatabase[] edbs =  comment.getExternalDbs();
         ExternalDatabase edb = edbs[0];
 
-        int[] categoryIds = comment.getTargetCategoryIds();
+        long[] categoryIds = comment.getTargetCategoryIds();
         String categoryString = "";
-        if(categoryIds != null && categoryIds.length > 0) {
+        if (categoryIds != null && categoryIds.length > 0) {
           for(int i = 0; i < categoryIds.length; i++) {
            categoryString += "&targetCategory=" + categoryIds[i]; 
           }
