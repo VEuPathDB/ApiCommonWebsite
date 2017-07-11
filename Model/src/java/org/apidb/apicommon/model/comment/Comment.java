@@ -62,7 +62,7 @@ public class Comment {
     private String userName;
     private String organization;
 
-    private int[] targetCategoryIds;
+    private long[] targetCategoryIds;
     private String[] targetCategoryNames;
     private String[] pmIds;
     private String[] dois;
@@ -125,7 +125,7 @@ public class Comment {
     /**
      * @return Returns the int[] targetCategoryIds.
      */
-    public int[] getTargetCategoryIds() {
+    public long[] getTargetCategoryIds() {
         return targetCategoryIds;
     }
 
@@ -133,7 +133,7 @@ public class Comment {
      * @param int[] targetCategoryIds
      *          The targetCategoryIds to set.
      */
-    public void setTargetCategoryIds(int[] targetCategoryIds) {
+    public void setTargetCategoryIds(long[] targetCategoryIds) {
         this.targetCategoryIds = targetCategoryIds;
     }
 

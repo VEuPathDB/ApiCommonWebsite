@@ -119,7 +119,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
     // get a new comment id
     try {
       long commentId = dbPlatform.getNextId(commentDs, commentSchema, "comments");
-      int[] targetCategoryIds = comment.getTargetCategoryIds();
+      long[] targetCategoryIds = comment.getTargetCategoryIds();
       String[] pmIds = comment.getPmIds();
       String[] dois = comment.getDois();
       String[] accessions = comment.getAccessions();
@@ -371,7 +371,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
     }
   }
 
-  private void saveCommentTargetCategory(long commentId, int[] targetCategoryIds) throws SQLException {
+  private void saveCommentTargetCategory(long commentId, long[] targetCategoryIds) throws SQLException {
     String commentSchema = config.getCommentSchema();
 
     // construct sql
@@ -384,10 +384,10 @@ public class CommentFactory implements Manageable<CommentFactory> {
     try {
       statement = SqlUtils.getPreparedStatement(commentDs, sql.toString());
 
-      for (int targetCategoryId : targetCategoryIds) {
+      for (long targetCategoryId : targetCategoryIds) {
         statement.setLong(1, dbPlatform.getNextId(commentDs, commentSchema, "commentTargetCategory"));
         statement.setLong(2, commentId);
-        statement.setInt(3, targetCategoryId);
+        statement.setLong(3, targetCategoryId);
         statement.execute();
       }
     }
@@ -898,9 +898,9 @@ public class CommentFactory implements Manageable<CommentFactory> {
       if (names.size() > 0) {
         comment.addTargetCategoryNames(names.toArray(new String[names.size()]));
 
-        int[] tid = new int[ids.size()];
+        long[] tid = new long[ids.size()];
         for (int i = 0; i < ids.size(); i++) {
-          tid[i] = ids.get(i).intValue();
+          tid[i] = ids.get(i).longValue();
         }
         comment.setTargetCategoryIds(tid);
       }

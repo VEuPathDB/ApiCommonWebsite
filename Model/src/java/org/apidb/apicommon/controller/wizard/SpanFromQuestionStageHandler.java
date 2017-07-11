@@ -72,8 +72,8 @@ public class SpanFromQuestionStageHandler extends ShowSpanStageHandler {
 
         // create a step from the input
         String filterName = request.getParameter(PARAM_FILTER);
-        int stepId = Integer.valueOf(request.getParameter(CConstants.WDK_STEP_ID_KEY));
-        int strategyId = Integer.valueOf(request.getParameter(CConstants.WDK_STRATEGY_ID_KEY));
+        long stepId = Long.valueOf(request.getParameter(CConstants.WDK_STEP_ID_KEY));
+        long strategyId = Long.valueOf(request.getParameter(CConstants.WDK_STRATEGY_ID_KEY));
         
         StrategyBean strategy = user.getStrategy(strategyId);
 
@@ -95,7 +95,7 @@ public class SpanFromQuestionStageHandler extends ShowSpanStageHandler {
           // a step specified, it must come from an insert strategy. make a
           // copy of it, and mark it as collapsable.
           childStep = ProcessBooleanStageHandler.createStepFromStrategy(
-              user, strategy, Integer.valueOf(importStrategyId));
+              user, strategy, Long.valueOf(importStrategyId));
         }
 
         String customName = request.getParameter(PARAM_CUSTOM_NAME);

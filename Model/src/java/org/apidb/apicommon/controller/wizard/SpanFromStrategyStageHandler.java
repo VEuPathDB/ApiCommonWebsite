@@ -33,7 +33,7 @@ public class SpanFromStrategyStageHandler extends ShowSpanStageHandler {
 
     UserBean user = ActionUtility.getUser(servlet, request);
 
-    int importStrategyId = Integer.valueOf(strImportStrategyId);
+    long importStrategyId = Long.valueOf(strImportStrategyId);
     StrategyBean importStrategy = user.getStrategy(importStrategyId);
     StepBean step = importStrategy.getLatestStep();
     StepBean childStep = step.deepClone(null, new HashMap<Long, Long>());
