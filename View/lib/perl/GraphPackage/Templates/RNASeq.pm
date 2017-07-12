@@ -162,8 +162,6 @@ sub finalProfileAdjustments {
 
 package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_af621bdb28;
 
-sub useLegacy {return 1;}
-
 sub init {
   
   my $self = shift;
@@ -186,7 +184,7 @@ sub init {
 #  my $additionalRCode = "lines.df[2,] = lines.df[2,] + lines.df[3,];";
 
 
-  my $stacked = ApiCommonWebsite::View::GraphPackage::LinePlot::PairedEndRNASeq->new(@_);
+  my $stacked = ApiCommonWebsite::View::GraphPackage::GGLinePlot::PairedEndRNASeq->new(@_);
   $stacked->setProfileSets($profileSets);
   $stacked->setColors(\@colors);
 
@@ -194,7 +192,7 @@ sub init {
   $stacked->setXaxisLabel("hours");
   $stacked->setPointsPch([19,'NA','NA']);
 
-  my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
+  my $percentile = ApiCommonWebsite::View::GraphPackage::GGBarPlot::Percentile->new(@_);
   $percentile->setProfileSets($percentileSets);
   $percentile->setColors([$colors[0]]);
   $percentile->setForceHorizontalXAxis(1);

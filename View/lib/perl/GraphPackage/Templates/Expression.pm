@@ -965,8 +965,6 @@ sub isExcludedProfileSet {
 
 package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_c1a3dbb014;
 
-sub useLegacy {return 1;}
-
 # LAST RESORT IS TO OVERRIDE THE INIT METHOD
 sub init {
   my $self = shift;
@@ -997,7 +995,7 @@ text(13.3, y.max + (y.max - y.min)*0.22, 'C');
 ";
 
   my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSet);
-  my $rma =  ApiCommonWebsite::View::GraphPackage::LinePlot::LogRatio->new(@_);
+  my $rma =  ApiCommonWebsite::View::GraphPackage::GGLinePlot::LogRatio->new(@_);
   $rma->setProfileSets($profileSets);
   $rma->setPartName('rma');
   $rma->setColors($colors);
@@ -1011,9 +1009,11 @@ text(13.3, y.max + (y.max - y.min)*0.22, 'C');
   $rma->setXaxisLabel('Time point (hours)');
   $rma->setYaxisLabel('RMA Value (log2)');
   $rma->setPlotTitle("RMA Expression Value - $id");
+  $rma->addAdjustProfile('profile.df.full$ELEMENT_NAMES = factor(profile.df.full$ELEMENT_NAMES, levels=c("asynchronous","0 HR","1 HR","2 HR","3 HR","4 HR","5 HR","6 HR","7 HR","8 HR","9 HR","10 HR","11 HR","12 HR"));
+      profile.df.full$GROUP = c("A","C","C","C","C","C","C","C","C","C","C","C","C","C");');
 
   my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@percentileSet);
-  my $percentile =  ApiCommonWebsite::View::GraphPackage::LinePlot->new(@_);
+  my $percentile =  ApiCommonWebsite::View::GraphPackage::GGLinePlot->new(@_);
   $percentile->setProfileSets($percentileSets);
   $percentile->setPartName('percentile');
   $percentile->setColors($colors);
@@ -1025,8 +1025,12 @@ text(13.3, y.max + (y.max - y.min)*0.22, 'C');
   $percentile->setXaxisLabel('Time point (hours)');
   $percentile->setYaxisLabel('Percentile');
   $percentile->setPlotTitle("Percentile - $id");
+  $percentile->addAdjustProfile('profile.df.full$ELEMENT_NAMES = factor(profile.df.full$ELEMENT_NAMES, levels=c("asynchronous","0 HR","1 HR","2 HR","3 HR","4 HR","5 HR","6 HR","7 HR","8 HR","9 HR","10 HR","11 HR","12 HR"));
+      profile.df.full$GROUP = c("A","C","C","C","C","C","C","C","C","C","C","C","C","C");');
+
 
   $self->SUPER::setGraphObjects($rma, $percentile);
+
 }
 
 # sub isExcludedProfileSet {
