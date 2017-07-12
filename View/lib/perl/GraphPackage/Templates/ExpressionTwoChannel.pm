@@ -464,12 +464,16 @@ sub init {
   $cdc15Plot->setProfileSets($cdc15ProfileSets);
   $cdc15Plot->setPartName('cdc15');
   $cdc15Plot->setXaxisLabel('');
+  $cdc15Plot->setRemoveNaN('TRUE');
+  $cdc15Plot->setDefaultXMax('290');
+  $cdc15Plot->setDefaultXMin('10');
 
   my $cdc28ProfileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([['Cho et al','values']]);
   my $cdc28Plot = ApiCommonWebsite::View::GraphPackage::GGLinePlot::LogRatio->new(@_);
   $cdc28Plot->setProfileSets($cdc28ProfileSets);
   $cdc28Plot->setPartName('cdc28');
   $cdc28Plot->setXaxisLabel('');
+  $cdc28Plot->setRemoveNaN('TRUE');
 
   $self->setGraphObjects($clnClbPlot, $pheromonePlot, $elutriationPlot, $cdc15Plot, $cdc28Plot);
 

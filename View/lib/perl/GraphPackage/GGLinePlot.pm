@@ -173,8 +173,19 @@ sub makeRPlotString {
     $isCompactString = "TRUE";
   }
 
-  $xMax = $xMax ? $xMax : "-Inf";
-  $xMin = defined($xMin) ? $xMin : "Inf";
+  my $coordCartesian = 'FALSE';
+  if(defined($xMax) || defined($xMin)) {
+    $coordCartesian = 'TRUE';
+    if(!defined($xMax)) {
+      $xMax = "-Inf";
+    }
+    if(!defined($xMin)){
+      $xMin = "Inf";
+    }
+  } else {
+    $xMax = "-Inf";
+    $xMin = "Inf";
+  }
 
   $pointsLast = $pointsLast ? 'TRUE' : 'FALSE';
 
@@ -308,7 +319,7 @@ for(ii in 1:length(profile.files)) {
 
   if($removeNaN) {
     profile.df = completeDF(profile.df, \"VALUE\"); 
-    element.names.df = completeDF(element.names.df, \"NAME\");
+    element.names.df = element.names.df[which(element.names.df\$ELEMENT_ORDER %in% profile.df\$ELEMENT_ORDER),];
   }
 
   profile.df\$ELEMENT_NAMES = as.character(element.names.df\$NAME);
@@ -392,6 +403,10 @@ if(!$forceNoLines) {
       }
     }
   }
+}
+
+if($coordCartesian) {
+  gp = gp + coord_cartesian(xlim=c(x.min,x.max))
 }
 
 gp = gp + scale_colour_manual(values=$colorsStringNotNamed, breaks=profile.df.full\$PROFILE_FILE, labels=profile.df.full\$LEGEND, name=\"Legend\");
