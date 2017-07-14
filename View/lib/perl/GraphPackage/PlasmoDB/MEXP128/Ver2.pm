@@ -15,7 +15,7 @@ sub init {
 
   $self->setScreenSize(200);
 
-  my $colors = ['#A52A2A', '#B0C4DE','#483D8B'],
+  my $colors = ['#A52A2A', '#B0C4DE','#483D8B'];
   my $xAxisLabels = ['ring', 'trophozoite', 'schizont'];
 
   $self->setMainLegend({colors => $colors, short_names => $xAxisLabels, cols=>3});
