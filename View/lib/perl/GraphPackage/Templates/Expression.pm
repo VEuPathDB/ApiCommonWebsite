@@ -1057,7 +1057,7 @@ sub finalProfileAdjustments {
   my ($self, $profile) = @_;
 
   my $rAdjustString = << 'RADJUST';    
-    profile.df.full$ELEMENT_NAMES = factor(profile.df.full$ELEMENT_NAMES, levels=c("Slender","0 hr","1 hr","6 hr","18 hr","24 hr"));
+    profile.df.full$ELEMENT_NAMES = factor(profile.df.full$ELEMENT_NAMES, levels=c("Slender","0 hr","1 hr","6 hr","18 hr","48 hr"));
     profile.df.full$GROUP = c("A","C","C","C","C","C");
 RADJUST
 
