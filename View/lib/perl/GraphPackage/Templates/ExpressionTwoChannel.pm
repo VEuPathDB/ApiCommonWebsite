@@ -25,6 +25,12 @@ sub finalProfileAdjustments {
 }
 1;
 
+package ApiCommonWebsite::View::GraphPackage::Templates::ExpressionTwoChannel::DS_708520717e;
+
+#sub useLegacy {return 1;}
+
+1;
+
 #PlasmoDB eQTL
 package ApiCommonWebsite::View::GraphPackage::Templates::ExpressionTwoChannel::DS_dd1931c47a;
 
@@ -355,7 +361,6 @@ sub makeCombinedGraph {
   $derisi->setHasExtraLegend(1);
   $derisi->setLegendLabels(['HB3', '3D7', 'DD2']);
   $derisi->setXaxisLabel('');
-  $derisi->setRemoveNaN('TRUE');
 
 
   return $derisi;
@@ -380,7 +385,6 @@ sub defineGraphs {
   my $lineTitle = $line->getPlotTitle();
   $line->setPlotTitle("$name - $lineTitle");
   $line->setXaxisLabel('');
-  $line->setRemoveNaN('TRUE');
 
    my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([[$smoothed, 'channel1_percentiles']]);
    my $percentile = ApiCommonWebsite::View::GraphPackage::GGLinePlot::Percentile->new(@_);
@@ -393,7 +397,6 @@ sub defineGraphs {
    $percentile->setPlotTitle("$name - $pctTitle");
    $percentile->setFillBelowLine('TRUE');
    $percentile->setXaxisLabel('');
-   $percentile->setRemoveNaN('TRUE');
 
    my @fractions = ([$fraction, 'value', '', '', '', 'erythrocytic ring trophozoite stage', $scale],
                     [$fraction, 'value', '', '', '', 'schizont stage', $scale],
@@ -420,7 +423,6 @@ sub defineGraphs {
    $lifeStages->setFillBelowLine('TRUE');
    $lifeStages->setLegendLabels(["Ring", "Schizont", "Trophozoite"]);
    $lifeStages->setXaxisLabel('');
-   $lifeStages->setRemoveNaN('TRUE');
 
   return($line, $percentile, $lifeStages);
 }
@@ -465,8 +467,6 @@ sub init {
   $cdc15Plot->setPartName('cdc15');
   $cdc15Plot->setXaxisLabel('');
   $cdc15Plot->setRemoveNaN('TRUE');
-  $cdc15Plot->setDefaultXMax('290');
-  $cdc15Plot->setDefaultXMin('10');
 
   my $cdc28ProfileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([['Cho et al','values']]);
   my $cdc28Plot = ApiCommonWebsite::View::GraphPackage::GGLinePlot::LogRatio->new(@_);
