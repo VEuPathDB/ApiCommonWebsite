@@ -317,19 +317,29 @@ for(ii in 1:length(profile.files)) {
 
   element.names.df = read.table(element.names.files[ii], header=T, sep=\"\\t\");
 
-  if($removeNaN) {
-    profile.df = completeDF(profile.df, \"VALUE\"); 
-    element.names.df = element.names.df[which(element.names.df\$ELEMENT_ORDER %in% profile.df\$ELEMENT_ORDER),];
+  if(length(profile.df\$ELEMENT_ORDER) > length(element.names.df\$ELEMENT_ORDER)) {
+    message(paste(\"Warning: profile file \", profile.files[ii], \" contains more rows than element names file\", element.names.files[ii], \". Additional entries will be ignored.\"));
+  } else if(length(element.names.df\$ELEMENT_ORDER) > length(profile.df\$ELEMENT_ORDER)) {
+    message(paste(\"Warning: element names file \", element.names.files[ii], \" contains more rows than profile file\", profile.files[ii], \". Additional entries will be ignored.\"));
   }
 
-  profile.df\$ELEMENT_NAMES = as.character(element.names.df\$NAME);
+  #if($removeNaN) {
+  #  profile.df = completeDF(profile.df, \"VALUE\"); 
+  #  element.names.df = element.names.df[which(element.names.df\$ELEMENT_ORDER %in% profile.df\$ELEMENT_ORDER),];
+  #}
+  profile.df =  merge(profile.df, element.names.df, by = \"ELEMENT_ORDER\");
 
-  element.names.numeric = as.numeric(gsub(\" *[a-z-A-Z()+-]+ *\", \"\", element.names.df\$NAME, perl=T));
+  #profile.df\$ELEMENT_NAMES = as.character(element.names.df\$NAME);
+  profile.df\$ELEMENT_NAMES = as.character(profile.df\$NAME);
+
+  #element.names.numeric = as.numeric(gsub(\" *[a-z-A-Z()+-]+ *\", \"\", element.names.df\$NAME, perl=T));
+  element.names.numeric = as.numeric(gsub(\" *[a-z-A-Z()+-]+ *\", \"\", profile.df\$NAME, perl=T));
   profile.df\$ELEMENT_NAMES_NUMERIC = element.names.numeric;
 
   if (ncol(element.names.df) > 2 ){
-    profile.df\$CONTXAXIS = element.names.df\$CONTXAXIS;
-    profile.df\$FACET = as.factor(element.names.df\$FACET);
+  #  profile.df\$CONTXAXIS = element.names.df\$CONTXAXIS;
+  #  profile.df\$FACET = as.factor(element.names.df\$FACET);
+     profile.df\$FACET = as.factor(profile.df\$FACET)
   }
 
   if(!skip.stderr && !is.na(stderr.files[ii]) && stderr.files[ii] != '') {
@@ -339,6 +349,8 @@ for(ii in 1:length(profile.files)) {
   else {
     profile.df\$STDERR = NA;
   }
+
+  profile.df = profile.df[, !(names(profile.df) %in% \"NAME\")];
 
   profile.df.full = rbind(profile.df.full, profile.df);
 }
@@ -350,6 +362,18 @@ if(\"FACET\" %in% colnames(profile.df.full)) {
   profile.df.full\$FACET_ns=factor(profile.df.full\$FACET,levels=mixedsort(levels(profile.df.full\$FACET)));
 }
 profile.is.numeric = sum(!is.na(profile.df.full\$ELEMENT_NAMES_NUMERIC)) == nrow(profile.df.full);
+
+coord.cartesian = $coordCartesian
+if($removeNaN){
+  if(profile.is.numeric) {
+    x.max = max(profile.df.full\$ELEMENT_NAMES_NUMERIC);
+    x.min = min(profile.df.full\$ELEMENT_NAMES_NUMERIC);
+    profile.df.full = completeDF(profile.df.full, \"VALUE\");
+    coord.cartesian = TRUE;
+  } else {
+    profile.df.full = completeDF(profile.df.full, \"VALUE\");
+  }
+}
 
 if(\"CONTXAXIS\" %in% colnames(profile.df.full) && !all(is.na(profile.df.full\$CONTXAXIS))){
   gp = ggplot(profile.df.full, aes(x=CONTXAXIS, y=VALUE, group=PROFILE_FILE, colour=PROFILE_FILE));
@@ -389,7 +413,7 @@ if(!$forceNoLines) {
     if(length(unique(profile.df.full\$PROFILE_FILE)) > 1) {
       gp = gp + geom_tooltip(aes(fill=PROFILE_FILE, tooltip=LEGEND, group=PROFILE_FILE), position=\"identity\", real.geom=geom_area) + scale_fill_manual(values=$colorsStringNotNamed);
     } else {
-      gp =gp + geom_area(aes(fill=PROFILE_FILE, group=PROFILE_FILE), position=\"identity\") + scale_fill_manual(values=$colorsStringNotNamed);
+      gp = gp + geom_area(aes(fill=PROFILE_FILE, group=PROFILE_FILE), position=\"identity\") + scale_fill_manual(values=$colorsStringNotNamed);
     }
   }
 
@@ -405,7 +429,7 @@ if(!$forceNoLines) {
   }
 }
 
-if($coordCartesian) {
+if(coord.cartesian) {
   gp = gp + coord_cartesian(xlim=c(x.min,x.max))
 }
 
@@ -424,12 +448,15 @@ if(is.compact) {
   gp = gp + theme_bw();
   gp = gp + labs(title=\"$plotTitle\", y=\"$yAxisLabel\", x=NULL);
   gp = gp + ylim(y.min, y.max);
-  gp = gp + scale_x_discrete(label=function(x) customAbbreviate(x));
 
-  if(xAxisCount > 3) {
-    gp = gp + theme(axis.text.x  = element_text(angle=45, vjust=1, hjust=1, size=9), plot.title = element_text(colour=\"#b30000\"));
+  if(!profile.is.numeric) {
+    gp = gp + scale_x_discrete(label=function(x) customAbbreviate(x));
+    if(xAxisCount > 3) {
+      gp = gp + theme(axis.text.x  = element_text(angle=45, vjust=1, hjust=1, size=12), plot.title = element_text(colour=\"#b30000\"));
+    }
+    gp = gp + theme(axis.text.x  = element_text(angle=90,vjust=0.5, size=12), plot.title = element_text(colour=\"#b30000\"));
   } else {
-    gp = gp + theme(axis.text.x  = element_text(angle=90,vjust=0.5, size=9), plot.title = element_text(colour=\"#b30000\"));
+    gp = gp + theme(axis.text.x  = element_text(angle=90,vjust=0.5, size=12), plot.title = element_text(colour=\"#b30000\"));
   }
 
   gp = gp + theme(legend.position=\"none\");
@@ -438,11 +465,12 @@ if(is.compact) {
   gp = gp + labs(title=\"$plotTitle\", y=\"$yAxisLabel\", x=\"$xAxisLabel\");
   gp = gp + ylim(y.min, y.max);
   gp = gp + theme(plot.title = element_text(colour=\"#b30000\"));
-  gp = gp + scale_x_discrete(label=function(x) customAbbreviate(x));
 
-  if(xAxisCount > 3) {
-    gp = gp + theme(axis.text.x  = element_text(angle=45, vjust=1, hjust=1, size=12), plot.title = element_text(colour=\"#b30000\"));
-  } else {
+  if(!profile.is.numeric) {
+    gp = gp + scale_x_discrete(label=function(x) customAbbreviate(x));
+    if(xAxisCount > 3) {
+      gp = gp + theme(axis.text.x  = element_text(angle=45, vjust=1, hjust=1, size=12), plot.title = element_text(colour=\"#b30000\"));
+    }
     gp = gp + theme(axis.text.x  = element_text(angle=90,vjust=0.5, size=12), plot.title = element_text(colour=\"#b30000\"));
   }
 
