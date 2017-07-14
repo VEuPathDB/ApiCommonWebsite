@@ -73,16 +73,7 @@ sub makeRPlotString {
 
   eval{
    ($profileFiles, $elementNamesFiles, $stderrFiles) = $self->makeFilesForR($idType);
- };
-
-  my ($elemFile) = $elementNamesFiles =~ /"(.*?)"/;
-  my $lines = 0;
-  open(FILE, $elemFile) or die "Can't open `$elemFile': $!";
-  while (sysread FILE, my $buffer, 4096) {
-    $lines += ($buffer =~ tr/\n//);
-  }
-  close FILE;
-  my $numProfiles = $lines - 1;
+  };
 
   if($@) {
     return $blankGraph;
@@ -94,6 +85,21 @@ sub makeRPlotString {
    
     }
   }
+
+  #count number of profiles for current plot part
+  my @elemFileStrings = split(/,/, $elementNamesFiles);
+  my $lines = 0;
+  foreach my $i (@elemFileStrings) {
+    my ($elemFile) = $i =~ /"(.*?)"/;
+    open(FILE, $elemFile) or die "Can't open `$elemFile`: $!";
+    while (sysread FILE, my $buffer, 4096) {
+      $lines += ($buffer =~ tr/\n//);
+    }
+    close FILE;
+    $lines = $lines - 1;
+  }
+  my $numProfiles = $lines;
+
   my $colors = $self->getColors();
 
   my $colorsString = ApiCommonWebsite::View::GraphPackage::Util::rStringVectorFromArray($colors, 'the.colors');
@@ -252,6 +258,12 @@ for(ii in 1:length(profile.files)) {
   }
 
   element.names.df = read.table(element.names.files[ii], header=T, sep=\"\\t\");
+
+  #this assumes that the manual override has the right number of entries and in the right order
+  if(length(x.axis.label) == length(element.names.df\$NAME) && $overrideXAxisLabels){
+    element.names.df\$NAME = x.axis.label
+  }
+
   profile.df = merge(profile.df, element.names.df[, c(\"ELEMENT_ORDER\", \"NAME\")], by=\"ELEMENT_ORDER\")
 
   if(!skip.stderr && !is.na(stderr.files[ii]) && stderr.files[ii] != '') {
