@@ -453,8 +453,9 @@ if(is.compact) {
     gp = gp + scale_x_discrete(label=function(x) customAbbreviate(x));
     if(xAxisCount > 3) {
       gp = gp + theme(axis.text.x  = element_text(angle=45, vjust=1, hjust=1, size=12), plot.title = element_text(colour=\"#b30000\"));
+    } else {
+      gp = gp + theme(axis.text.x  = element_text(angle=90,vjust=0.5, size=12), plot.title = element_text(colour=\"#b30000\"));
     }
-    gp = gp + theme(axis.text.x  = element_text(angle=90,vjust=0.5, size=12), plot.title = element_text(colour=\"#b30000\"));
   } else {
     gp = gp + theme(axis.text.x  = element_text(angle=90,vjust=0.5, size=12), plot.title = element_text(colour=\"#b30000\"));
   }
@@ -470,8 +471,9 @@ if(is.compact) {
     gp = gp + scale_x_discrete(label=function(x) customAbbreviate(x));
     if(xAxisCount > 3) {
       gp = gp + theme(axis.text.x  = element_text(angle=45, vjust=1, hjust=1, size=12), plot.title = element_text(colour=\"#b30000\"));
+    } else {
+      gp = gp + theme(axis.text.x  = element_text(angle=90,vjust=0.5, size=12), plot.title = element_text(colour=\"#b30000\"));
     }
-    gp = gp + theme(axis.text.x  = element_text(angle=90,vjust=0.5, size=12), plot.title = element_text(colour=\"#b30000\"));
   }
 
   if(hideLegend) {
