@@ -1,26 +1,32 @@
 package org.apidb.apicommon.model.comment;
 
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
+import org.gusdb.fgputil.accountdb.UserProfile;
 import org.gusdb.fgputil.db.SqlUtils;
 import org.gusdb.fgputil.db.platform.DBPlatform;
 import org.gusdb.fgputil.db.pool.DatabaseInstance;
+import org.gusdb.fgputil.db.runner.SQLRunner;
+import org.gusdb.fgputil.db.runner.SingleLongResultSetHandler;
+import org.gusdb.fgputil.runtime.InstanceManager;
 import org.gusdb.fgputil.runtime.Manageable;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.config.ModelConfigUserDB;
+import org.gusdb.wdk.model.user.UserFactory;
 
 /**
  * Manages user comments on WDK records
@@ -36,6 +42,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
   private DataSource commentDs;
   private CommentConfig config;
   private boolean isReusingUserDb;
+  private UserFactory userFactory;
 
   @Override
   public CommentFactory getInstance(String projectId, String gusHome) throws Exception {
@@ -62,7 +69,9 @@ public class CommentFactory implements Manageable<CommentFactory> {
 
       // create a factory instance
       CommentFactory factory = new CommentFactory();
-      factory.initialize(db, config, isReusingUserDb);
+      // find user factory to use to get users
+      WdkModel wdkModel = InstanceManager.getInstance(WdkModel.class, projectId, gusHome);
+      factory.initialize(db, config, isReusingUserDb, wdkModel.getUserFactory());
       return factory;
     }
     catch (CommentModelException ex) {
@@ -70,12 +79,13 @@ public class CommentFactory implements Manageable<CommentFactory> {
     }
   }
 
-  private void initialize(DatabaseInstance commentDb, CommentConfig config, boolean isReusingUserDb) {
+  private void initialize(DatabaseInstance commentDb, CommentConfig config, boolean isReusingUserDb, UserFactory userFactory) {
     this.commentDb = commentDb;
     this.dbPlatform = commentDb.getPlatform();
     this.commentDs = commentDb.getDataSource();
     this.config = config;
     this.isReusingUserDb = isReusingUserDb;
+    this.userFactory = userFactory;
   }
 
   public CommentTarget getCommentTarget(String internalValue) throws WdkModelException {
@@ -118,6 +128,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
     PreparedStatement ps = null;
     // get a new comment id
     try {
+      long userId = comment.getUserId();
       long commentId = dbPlatform.getNextId(commentDs, commentSchema, "comments");
       long[] targetCategoryIds = comment.getTargetCategoryIds();
       String[] pmIds = comment.getPmIds();
@@ -151,7 +162,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
           ? comment.getReviewStatus() : Comment.COMMENT_REVIEW_STATUS_UNKNOWN;
       ps.setString(11, reviewStatus);
       ps.setString(12, comment.getOrganism());
-      ps.setLong(13, comment.getUserId());
+      ps.setLong(13, userId);
 
       int result = ps.executeUpdate();
       LOG.debug("Inserted comment row: " + result);
@@ -213,6 +224,11 @@ public class CommentFactory implements Manageable<CommentFactory> {
         savePhenotypeCategory(commentId, comment.getPhenotypeCategory());
       }
 
+      // need to add user to the DB if not already present
+      if (!userPresentInCommentUsersTable(userId)) {
+        insertCommentUser(userId);
+      }
+
       // get a new comment in order to fetch the user info
       Comment newComment = getComment(commentId);
 
@@ -235,6 +251,32 @@ public class CommentFactory implements Manageable<CommentFactory> {
 
     // print connection status
     printStatus();
+  }
+
+  private boolean userPresentInCommentUsersTable(long userId) {
+    String sql = "select count(*) from " + config.getCommentSchema() + "comment_users where user_id = ?";
+    SingleLongResultSetHandler result = new SQLRunner(commentDs, sql).executeQuery(
+        new Object[]{ userId }, new Integer[]{ Types.BIGINT }, new SingleLongResultSetHandler());
+    return result.getRetrievedValue() > 0;
+  }
+
+  private void insertCommentUser(long userId) throws WdkModelException {
+    Map<String,String> props = userFactory.getUserById(userId).getProfileProperties();
+    String sql = "insert into " + config.getCommentSchema() + "comment_users " +
+        "(user_id, first_name, last_name, organization) values (?, ?, ?, ?)";
+    new SQLRunner(commentDs, sql).executeStatement(
+        new Object[] { userId, props.get("firstName"), props.get("lastName"), props.get("organization") },
+        new Integer[] { Types.BIGINT, Types.VARCHAR, Types.VARCHAR, Types.VARCHAR });
+  }
+
+  public void updateCommentUser(UserProfile userProfile) {
+    Map<String,String> props = userProfile.getProperties();
+    String sql = "update " + config.getCommentSchema() + "comment_users set " +
+        "first_name = ?, last_name = ?, organization = ? where user_id = ?";
+    new SQLRunner(commentDs, sql).executeUpdate(
+        new Object[] { props.get("firstName"), props.get("lastName"), props.get("organization"), userProfile.getUserId() },
+        new Integer[] { Types.VARCHAR, Types.VARCHAR, Types.VARCHAR, Types.BIGINT });
+    
   }
 
   private void saveLocations(long commentId, Comment comment) throws SQLException {
@@ -666,10 +708,10 @@ public class CommentFactory implements Manageable<CommentFactory> {
     sqlInsertLink.append("(external_database_id, comment_id) ");
     sqlInsertLink.append("VALUES (?, ?)");
 
-    PreparedStatement psQUeryDb = null, psInsertDb = null, psInsertLink = null;
+    PreparedStatement psQueryDb = null, psInsertDb = null, psInsertLink = null;
     try {
       // construct prepared statements
-      psQUeryDb = SqlUtils.getPreparedStatement(commentDs, sqlQueryDb.toString());
+      psQueryDb = SqlUtils.getPreparedStatement(commentDs, sqlQueryDb.toString());
 
       psInsertDb = SqlUtils.getPreparedStatement(commentDs, sqlInsertDb.toString());
 
@@ -677,12 +719,12 @@ public class CommentFactory implements Manageable<CommentFactory> {
 
       // add every external database record into the database
       for (ExternalDatabase externalDb : comment.getExternalDbs()) {
-        psQUeryDb.setString(1, externalDb.getExternalDbName());
-        psQUeryDb.setString(2, externalDb.getExternalDbVersion());
+        psQueryDb.setString(1, externalDb.getExternalDbName());
+        psQueryDb.setString(2, externalDb.getExternalDbVersion());
         ResultSet rsQueryDb = null;
         long externalDbId;
         try {
-          rsQueryDb = psQUeryDb.executeQuery();
+          rsQueryDb = psQueryDb.executeQuery();
           if (!rsQueryDb.next()) {
             // external database entry doesn't exist
             externalDbId = dbPlatform.getNextId(commentDs, commentSchema, "external_databases");
@@ -711,7 +753,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
     }
     finally {
       // close statements and result set
-      SqlUtils.closeStatement(psQUeryDb);
+      SqlUtils.closeStatement(psQueryDb);
       SqlUtils.closeStatement(psInsertDb);
       SqlUtils.closeStatement(psInsertLink);
     }
@@ -724,10 +766,10 @@ public class CommentFactory implements Manageable<CommentFactory> {
     sql.append("c.project_version, c.review_status_id, c.stable_id, ");
     sql.append("c.content, ");
     sql.append("substr(c.organism, 1, instr(c.organism || '  ', ' ', 1, 2)-1) as organism, ");
-    sql.append("u.first_name || ' ' || u.last_name || ', ' || u.title  as user_name, ");
+    sql.append("u.first_name || ' ' || u.last_name || as user_name, ");
     sql.append("u.organization, c.content, c.review_status_id FROM ");
     sql.append(config.getCommentSchema() + "comments c, ");
-    sql.append(config.getUserLoginSchema() + "users u ");
+    sql.append(config.getUserLoginSchema() + "comment_users u ");
     sql.append("WHERE c.user_id = u.user_id ");
     sql.append("AND c.comment_id = ? ");
 
