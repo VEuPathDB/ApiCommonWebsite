@@ -67,7 +67,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
       // create a factory instance
       CommentFactory factory = new CommentFactory();
       // find user factory to use to get users
-      WdkModel wdkModel = InstanceManager.getInstance(WdkModel.class, projectId, gusHome);
+      WdkModel wdkModel = InstanceManager.getInstance(WdkModel.class, gusHome, projectId);
       factory.initialize(db, config, isReusingUserDb, wdkModel.getUserFactory());
       return factory;
     }
