@@ -1,6 +1,3 @@
-/**
- * 
- */
 package org.apidb.apicommon.model.comment;
 
 import org.gusdb.wdk.model.config.ModelConfigDB;
@@ -13,7 +10,6 @@ public class CommentConfig extends ModelConfigDB {
 
     private String commentSchema = "";
     private String commentTextFileDir;
-    private String userLoginSchema = "";
     private String userLoginDbLink = "";
     private String userFileSchema = "";
     private String userFileUploadDir = "";
@@ -42,17 +38,6 @@ public class CommentConfig extends ModelConfigDB {
 
     public void setCommentTextFileDir(String commentTextFile) {
         this.commentTextFileDir = commentTextFile;
-    }
-
-    public String getUserLoginSchema() {
-        return userLoginSchema;
-    }
-
-    public void setUserLoginSchema(String userLoginSchema) {
-        if (userLoginSchema != null && userLoginSchema.length() > 0) {
-            this.userLoginSchema = (userLoginSchema.endsWith(".")) ? userLoginSchema
-                    : userLoginSchema + ".";
-        }
     }
 
     /**
