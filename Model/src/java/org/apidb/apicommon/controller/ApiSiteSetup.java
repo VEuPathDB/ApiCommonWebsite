@@ -101,6 +101,7 @@ public class ApiSiteSetup {
           commentSearchTextUpdateRequired = true;
         }
       }
+
       // if none changed, no update needed
       if (!commentSearchTextUpdateRequired) return;
 
