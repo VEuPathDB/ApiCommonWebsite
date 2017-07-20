@@ -128,6 +128,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
     PreparedStatement ps = null;
     // get a new comment id
     try {
+
       long userId = comment.getUserId();
       long commentId = getNextId("comments");
       long[] targetCategoryIds = comment.getTargetCategoryIds();
@@ -138,8 +139,12 @@ public class CommentFactory implements Manageable<CommentFactory> {
       String[] existingFiles = comment.getExistingFiles();
       String[] associatedStableIds = comment.getAssociatedStableIds();
       String[] authors = comment.getAuthors();
-
       String sequence = comment.getSequence();
+
+      // first need to add user to comments DB if not already present
+      if (!userPresentInCommentUsersTable(userId)) {
+        insertCommentUser(userId);
+      }
 
       ps = SqlUtils.getPreparedStatement(_commentDs, "INSERT INTO " + commentSchema +
           "comments (comment_id, " + "comment_date, comment_target_id, " +
@@ -222,11 +227,6 @@ public class CommentFactory implements Manageable<CommentFactory> {
         saveMutantMarkers(commentId, comment.getMutantMarkers());
         saveMutantReporters(commentId, comment.getMutantReporters());
         savePhenotypeCategory(commentId, comment.getPhenotypeCategory());
-      }
-
-      // need to add user to the DB if not already present
-      if (!userPresentInCommentUsersTable(userId)) {
-        insertCommentUser(userId);
       }
 
       // get a new comment in order to fetch the user info
