@@ -759,7 +759,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
     sql.append("c.project_version, c.review_status_id, c.stable_id, ");
     sql.append("c.content, ");
     sql.append("substr(c.organism, 1, instr(c.organism || '  ', ' ', 1, 2)-1) as organism, ");
-    sql.append("u.first_name || ' ' || u.last_name || as user_name, ");
+    sql.append("u.first_name || ' ' || u.last_name as user_name, ");
     sql.append("u.organization, c.content, c.review_status_id FROM ");
     sql.append(_config.getCommentSchema() + "comments c, ");
     sql.append(_config.getCommentSchema() + "comment_users u ");
