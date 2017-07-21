@@ -588,7 +588,7 @@
            </tr>
            <tr>
              <td><img src="images/MaHPIC_Malaria_Core.jpg" height="13px" width="13px"> <b>Clinical Malaria</b></td>
-             <td><b>Coming Soon</b></td>  <!--<br><a href="http://plasmodb.org/common/downloads/">PlasmoDB Downloads</a>-->
+             <td><a href="http://plasmodb.org/common/downloads/MaHPIC/Experiment_13/"><b>E13 Clinical Data in PlasmoDB Downloads</b></a></td>
              <td>N/A</td>
            </tr>
            <tr>
@@ -1015,8 +1015,7 @@
            </tr>
            <tr>
              <td><img src="images/MaHPIC_Malaria_Core.jpg" height="13px" width="13px"> <b>Clinical Malaria</b></td>
-             <td><b>Coming soon<b>
-             <!--<a href="http://plasmodb.org/common/downloads/MaHPIC/Experiment_25/">E30 Clinical Data in PlasmoDB Downloads</a></td>  -->
+             <td><a href="http://plasmodb.org/common/downloads/MaHPIC/Experiment_30/"><b>E30 Clinical Data in PlasmoDB Downloads</b></a></td>
              <td>N/A</td>
            </tr>
            <tr>
