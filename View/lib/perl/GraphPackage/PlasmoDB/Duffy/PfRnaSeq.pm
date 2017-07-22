@@ -4,12 +4,12 @@ package ApiCommonWebsite::View::GraphPackage::PlasmoDB::Duffy::PfRnaSeq;
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet );
-use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
-use ApiCommonWebsite::View::GraphPackage::LinePlot;
-use ApiCommonWebsite::View::GraphPackage::BarPlot;
+@ISA = qw( EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet );
+use EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet;
+use EbrcWebsiteCommon::View::GraphPackage::LinePlot;
+use EbrcWebsiteCommon::View::GraphPackage::BarPlot;
 
-use ApiCommonWebsite::View::GraphPackage::Util;
+use EbrcWebsiteCommon::View::GraphPackage::Util;
 
 sub init {
   my $self = shift;
@@ -27,15 +27,15 @@ sub init {
                       ['P.falciparum duffy mRNA Seq data-diff', '', $elementNames],
                      );
 
-  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArray);
-  my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([['percentile - P.falciparum duffy mRNA Seq data', '', $elementNames]]);
+  my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileArray);
+  my $percentileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets([['percentile - P.falciparum duffy mRNA Seq data', '', $elementNames]]);
 
-  my $stacked = ApiCommonWebsite::View::GraphPackage::BarPlot::RNASeqStacked->new(@_);
+  my $stacked = EbrcWebsiteCommon::View::GraphPackage::BarPlot::RNASeqStacked->new(@_);
   $stacked->setProfileSets($profileSets);
   $stacked->setColors(\@colors);
   $stacked->setForceHorizontalXAxis(1);
 
-  my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
+  my $percentile = EbrcWebsiteCommon::View::GraphPackage::BarPlot::Percentile->new(@_);
   $percentile->setProfileSets($percentileSets);
   $percentile->setColors([$colors[0]]);
   $percentile->setForceHorizontalXAxis(1);

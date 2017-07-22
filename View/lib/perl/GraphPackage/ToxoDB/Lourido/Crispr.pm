@@ -5,8 +5,8 @@ use vars qw( @ISA );
 
 use Data::Dumper;
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage );
-use ApiCommonWebsite::View::GraphPackage;
+@ISA = qw( EbrcWebsiteCommon::View::GraphPackage );
+use EbrcWebsiteCommon::View::GraphPackage;
 
 
 sub run {

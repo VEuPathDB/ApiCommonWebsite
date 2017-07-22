@@ -15,9 +15,9 @@ apidb.ProfileSet "Sage count in Giardia lamblia"
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::BasicBarPlot );
+@ISA = qw( EbrcWebsiteCommon::View::GraphPackage::BasicBarPlot );
 
-use ApiCommonWebsite::View::GraphPackage::BasicBarPlot;
+use EbrcWebsiteCommon::View::GraphPackage::BasicBarPlot;
 
 #use Time::HiRes qw ( time );
 

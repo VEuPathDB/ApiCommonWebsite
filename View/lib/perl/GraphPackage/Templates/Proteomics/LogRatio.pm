@@ -6,7 +6,7 @@ use vars qw( @ISA );
 @ISA = qw( ApiCommonWebsite::View::GraphPackage::Templates::Expression );
 use ApiCommonWebsite::View::GraphPackage::Templates::Expression;
 
-use ApiCommonWebsite::View::GraphPackage::Util;
+use EbrcWebsiteCommon::View::GraphPackage::Util;
 
 sub restrictProfileSetsBySourceId { return 1;}
 

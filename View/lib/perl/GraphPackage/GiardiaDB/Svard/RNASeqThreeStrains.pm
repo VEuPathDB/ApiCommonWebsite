@@ -3,8 +3,8 @@ package ApiCommonWebsite::View::GraphPackage::GiardiaDB::Svard::RNASeqThreeStrai
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::SimpleStrandSpecificRNASeq );
-use ApiCommonWebsite::View::GraphPackage::SimpleStrandSpecificRNASeq;
+@ISA = qw( EbrcWebsiteCommon::View::GraphPackage::SimpleStrandSpecificRNASeq );
+use EbrcWebsiteCommon::View::GraphPackage::SimpleStrandSpecificRNASeq;
 
 sub init {
   my $self = shift;

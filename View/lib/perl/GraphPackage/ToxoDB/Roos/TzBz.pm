@@ -3,9 +3,9 @@ package ApiCommonWebsite::View::GraphPackage::ToxoDB::Roos::TzBz;
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet );
-use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
-use ApiCommonWebsite::View::GraphPackage::LinePlot;
+@ISA = qw( EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet );
+use EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet;
+use EbrcWebsiteCommon::View::GraphPackage::LinePlot;
 
 sub init {
   my $self = shift;
@@ -30,10 +30,10 @@ sub init {
                              ['percentile - expression profiles of Pru dHXGPRT strain CO2-starvation bradyzoite-inducing conditions','',''],
                             );
 
-  my $roos_profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@roos_profileSetsArray);
-  my $roos_percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@roos_percentileSetsArray);
+  my $roos_profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@roos_profileSetsArray);
+  my $roos_percentileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@roos_percentileSetsArray);
 
-  my $roos_rma = ApiCommonWebsite::View::GraphPackage::LinePlot::RMA->new(@_);
+  my $roos_rma = EbrcWebsiteCommon::View::GraphPackage::LinePlot::RMA->new(@_);
   my $id = $roos_rma->getId();  
   $roos_rma->setProfileSets($roos_profileSets);
   $roos_rma->setColors($roos_colors);
@@ -42,7 +42,7 @@ sub init {
   $roos_rma->setPlotTitle("Percentile - $id");
   $roos_rma->setPlotTitle("0 - 72 hours : RMA Expression Value - $id");
 
-  my $roos_percentile = ApiCommonWebsite::View::GraphPackage::LinePlot::Percentile->new(@_);
+  my $roos_percentile = EbrcWebsiteCommon::View::GraphPackage::LinePlot::Percentile->new(@_);
   $id = $roos_percentile->getId(); 
   $roos_percentile->setProfileSets($roos_percentileSets);
   $roos_percentile->setColors($roos_colors);
@@ -63,10 +63,10 @@ sub init {
    my @dzierszinski_percentileSetsArray = (['percentile - expression profiles of VEG strain CO2-starvation bradyzoite inducing conditions : 2-6 days (by Florence Dzierszinski)', '',''],
                               ['percentile - expression profiles of Pru dHXGPRT strain CO2-starvation bradyzoite inducing conditions : 2-14 days (by Florence Dzierszinski)','','']);
 
-   my $dzierszinski_profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@dzierszinski_profileSetsArray);
-   my $dzierszinski_percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@dzierszinski_percentileSetsArray);
+   my $dzierszinski_profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@dzierszinski_profileSetsArray);
+   my $dzierszinski_percentileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@dzierszinski_percentileSetsArray);
 
-   my $dzierszinski_rma = ApiCommonWebsite::View::GraphPackage::LinePlot::RMA->new(@_);
+   my $dzierszinski_rma = EbrcWebsiteCommon::View::GraphPackage::LinePlot::RMA->new(@_);
    $id = $dzierszinski_rma->getId(); 
    $dzierszinski_rma->setProfileSets($dzierszinski_profileSets);
    $dzierszinski_rma->setColors($dzierszinski_colors);
@@ -74,7 +74,7 @@ sub init {
    $dzierszinski_rma->setPartName('dzierszinski_rma');
    $dzierszinski_rma->setPlotTitle("2 - 14 days : RMA Expression Value - $id");
 
-   my $dzierszinski_percentile = ApiCommonWebsite::View::GraphPackage::LinePlot::Percentile->new(@_);
+   my $dzierszinski_percentile = EbrcWebsiteCommon::View::GraphPackage::LinePlot::Percentile->new(@_);
    $id = $dzierszinski_percentile->getId(); 		 
    $dzierszinski_percentile->setProfileSets($dzierszinski_percentileSets);
    $dzierszinski_percentile->setColors($dzierszinski_colors);

@@ -7,10 +7,10 @@ package ApiCommonWebsite::View::GraphPackage::PlasmoDB::Daily;
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage );
+@ISA = qw( EbrcWebsiteCommon::View::GraphPackage );
 
-use ApiCommonWebsite::View::GraphPackage;
-use ApiCommonWebsite::View::MultiScreen;
+use EbrcWebsiteCommon::View::GraphPackage;
+use EbrcWebsiteCommon::View::MultiScreen;
 use ApiCommonWebsite::Model::CannedQuery::Profile;
 use Time::HiRes qw ( time );
 
@@ -156,7 +156,7 @@ sub makeR {
       my $pctColors = join(', ', map { $_ =~ /\(/ ? $_ : "'$_'" } @correlationColors);
 
 
-      my $_mS = ApiCommonWebsite::View::MultiScreen->new
+      my $_mS = EbrcWebsiteCommon::View::MultiScreen->new
       ( Parts => [ #{ Name => 'hist',   Size => 275 },
                    { Name => 'pct',   Size => 200 },
                    #{ Name => 'cor',   Size => 200 },

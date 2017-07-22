@@ -1,12 +1,11 @@
-
 package ApiCommonWebsite::View::GraphPackage::PlasmoDB::Su::PfStrandSpecific;
 
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::SimpleStrandSpecificRNASeq );
-use ApiCommonWebsite::View::GraphPackage::SimpleStrandSpecificRNASeq;
-#use ApiCommonWebsite::View::GraphPackage::SimpleRNASeq;
+@ISA = qw( EbrcWebsiteCommon::View::GraphPackage::SimpleStrandSpecificRNASeq );
+use EbrcWebsiteCommon::View::GraphPackage::SimpleStrandSpecificRNASeq;
+#use EbrcWebsiteCommon::View::GraphPackage::SimpleRNASeq;
 
 
 sub init {

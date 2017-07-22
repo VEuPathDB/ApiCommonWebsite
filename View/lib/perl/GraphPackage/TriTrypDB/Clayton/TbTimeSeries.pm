@@ -3,8 +3,8 @@ package ApiCommonWebsite::View::GraphPackage::TriTrypDB::Clayton::TbTimeSeries;
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::LinePlotSet );
-use ApiCommonWebsite::View::GraphPackage::LinePlotSet;
+@ISA = qw( EbrcWebsiteCommon::View::GraphPackage::LinePlotSet );
+use EbrcWebsiteCommon::View::GraphPackage::LinePlotSet;
 
 
 sub init {
