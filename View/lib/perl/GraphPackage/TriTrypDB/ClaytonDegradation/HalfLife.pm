@@ -3,12 +3,12 @@ package ApiCommonWebsite::View::GraphPackage::TriTrypDB::ClaytonDegradation::Hal
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet );
-use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
-use ApiCommonWebsite::View::GraphPackage::LinePlot;
-use ApiCommonWebsite::View::GraphPackage::GGBarPlot;
+@ISA = qw( EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet );
+use EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet;
+use EbrcWebsiteCommon::View::GraphPackage::LinePlot;
+use EbrcWebsiteCommon::View::GraphPackage::GGBarPlot;
 
-use ApiCommonWebsite::View::GraphPackage::Util;
+use EbrcWebsiteCommon::View::GraphPackage::Util;
 
 sub init {
   my $self = shift;
@@ -18,11 +18,11 @@ sub init {
   my $pch = [19,24,15,17];
   my $colors =['#996622','#0049A8',];
 
-  my $halfLifeSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([['mRNA decay in bloodstream and procyclic form - half_life','values', 'mRNA decay in bloodstream and procyclic form - half_life_error','values', undef,undef,undef,undef,'half-life']]);
+  my $halfLifeSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets([['mRNA decay in bloodstream and procyclic form - half_life','values', 'mRNA decay in bloodstream and procyclic form - half_life_error','values', undef,undef,undef,undef,'half-life']]);
 
   my $id = $self->getId();
 
-  my $halfLife = ApiCommonWebsite::View::GraphPackage::GGBarPlot->new(@_);
+  my $halfLife = EbrcWebsiteCommon::View::GraphPackage::GGBarPlot->new(@_);
   $halfLife->setProfileSets([$halfLifeSets->[0]]);
   $halfLife->setYaxisLabel('Half-life (mins)');
   $halfLife->setColors([$colors->[0],$colors->[1]]);

@@ -4,12 +4,12 @@ use strict;
 
 use vars qw( @ISA );
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet );
-use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
+@ISA = qw( EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet );
+use EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet;
 
-use ApiCommonWebsite::View::GraphPackage::Util;
-use ApiCommonWebsite::View::GraphPackage::SimpleRNASeqLinePlot;
-use ApiCommonWebsite::View::GraphPackage::BarPlot;
+use EbrcWebsiteCommon::View::GraphPackage::Util;
+use EbrcWebsiteCommon::View::GraphPackage::SimpleRNASeqLinePlot;
+use EbrcWebsiteCommon::View::GraphPackage::BarPlot;
 
 use Data::Dumper;
 
@@ -36,7 +36,7 @@ sub init {
 
   my $dbh = $self->getQueryHandle();
 
-  my $sql = ApiCommonWebsite::View::GraphPackage::Util::getProfileSetsSql();
+  my $sql = EbrcWebsiteCommon::View::GraphPackage::Util::getProfileSetsSql();
 
   my $sh = $dbh->prepare($sql);
   $sh->execute($datasetName);
@@ -70,7 +70,7 @@ sub init {
 
     die "Expected 3 rows in profileset for $datasetName and profile $key" if($count != 3);
 
-    my $rnaseq = ApiCommonWebsite::View::GraphPackage::SimpleRNASeq->new(@_);
+    my $rnaseq = EbrcWebsiteCommon::View::GraphPackage::SimpleRNASeq->new(@_);
 
     $rnaseq->setMinRpkmProfileSet($hash{$key}->{main});
     $rnaseq->setDiffRpkmProfileSet($hash{$key}->{diff});

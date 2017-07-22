@@ -15,9 +15,9 @@ Provides initialization parameters for the stress data.
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::GiardiaDB::Sage );
+@ISA = qw( EbrcWebsiteCommon::View::GraphPackage::GiardiaDB::Sage );
 
-use ApiCommonWebsite::View::GraphPackage::GiardiaDB::Sage;
+use EbrcWebsiteCommon::View::GraphPackage::GiardiaDB::Sage;
 
 use ApiCommonWebsite::Model::CannedQuery::Profile;
 use ApiCommonWebsite::Model::CannedQuery::ProfileSet;

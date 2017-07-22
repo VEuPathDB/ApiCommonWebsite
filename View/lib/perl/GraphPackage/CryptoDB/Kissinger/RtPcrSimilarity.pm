@@ -4,11 +4,11 @@ package ApiCommonWebsite::View::GraphPackage::CryptoDB::Kissinger::RtPcrSimilari
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet );
-use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
-use ApiCommonWebsite::View::GraphPackage::SimilarityPlot;
+@ISA = qw( EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet );
+use EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet;
+use EbrcWebsiteCommon::View::GraphPackage::SimilarityPlot;
 
-use ApiCommonWebsite::View::GraphPackage::Util;
+use EbrcWebsiteCommon::View::GraphPackage::Util;
 
 sub init {
   my $self = shift;
@@ -26,9 +26,9 @@ sub init {
                       ['Cparvum_RT_PCR_Kissinger','values'],
                      );
 
-  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArray);
+  my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileArray);
 
-  my $similarity = ApiCommonWebsite::View::GraphPackage::SimilarityPlot::LogRatio->new(@_);
+  my $similarity = EbrcWebsiteCommon::View::GraphPackage::SimilarityPlot::LogRatio->new(@_);
   $similarity->setProfileSets($profileSets);
   $similarity->setColors(\@colors);
   $similarity->setPointsPch([15,15]);

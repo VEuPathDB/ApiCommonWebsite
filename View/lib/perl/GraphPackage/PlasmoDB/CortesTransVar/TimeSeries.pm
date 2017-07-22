@@ -4,12 +4,12 @@ package ApiCommonWebsite::View::GraphPackage::PlasmoDB::CortesTransVar::TimeSeri
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet );
-use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
-use ApiCommonWebsite::View::GraphPackage::LinePlot;
-use ApiCommonWebsite::View::GraphPackage::BarPlot;
+@ISA = qw( EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet );
+use EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet;
+use EbrcWebsiteCommon::View::GraphPackage::LinePlot;
+use EbrcWebsiteCommon::View::GraphPackage::BarPlot;
 
-use ApiCommonWebsite::View::GraphPackage::Util;
+use EbrcWebsiteCommon::View::GraphPackage::Util;
 
 use Data::Dumper;
 sub init {
@@ -47,10 +47,10 @@ sub init {
  #          my @profileSetNames = ([$name, '' ,$timePoint]);
  #          my @pctProfileSetNames = ([$percentileName, '' ,$timePoint]);
  #          $strain=~s/ - //;
- #          my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSetNames);
- #          my $pctProfileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@pctProfileSetNames);
+ #          my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileSetNames);
+ #          my $pctProfileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@pctProfileSetNames);
  #          $timePoint =~s/ /_/;
- #          my $ratio = ApiCommonWebsite::View::GraphPackage::BarPlot::LogRatio->new(@_);
+ #          my $ratio = EbrcWebsiteCommon::View::GraphPackage::BarPlot::LogRatio->new(@_);
  #          $ratio->setProfileSets($profileSets);
  #          $ratio->setColors(\@colorSet);
  #          $ratio->setElementNameMarginSize (6);
@@ -60,7 +60,7 @@ sub init {
  #          $ratio->setPartName("exprn_val_$strain"."_Derived_$timePoint");
 
 
- #          my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
+ #          my $percentile = EbrcWebsiteCommon::View::GraphPackage::BarPlot::Percentile->new(@_);
  #          $percentile->setProfileSets($pctProfileSets);
  #          $percentile->setColors(\@colorSet);
  #          $percentile->setElementNameMarginSize (6);
@@ -122,10 +122,10 @@ sub init {
 
   my @cgh_profileSetNames = (['Cortes CGH Profiles', '' ,$cgh_strainNames]);
 
-  my $cgh_profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@cgh_profileSetNames);
+  my $cgh_profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@cgh_profileSetNames);
 
 
-  my $ratio = ApiCommonWebsite::View::GraphPackage::BarPlot::LogRatio->new(@_);
+  my $ratio = EbrcWebsiteCommon::View::GraphPackage::BarPlot::LogRatio->new(@_);
   $ratio->setProfileSets($cgh_profileSets);
   $ratio->setColors(\@cgh_colors);
   $ratio->setElementNameMarginSize (6);
@@ -155,8 +155,8 @@ sub defineGraphs {
   }
 
 
-   my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSetNames);
-   my $line = ApiCommonWebsite::View::GraphPackage::LinePlot::LogRatio->new(@_);
+   my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileSetNames);
+   my $line = EbrcWebsiteCommon::View::GraphPackage::LinePlot::LogRatio->new(@_);
    $line->setProfileSets($profileSets);
    $line->setColors($color);
    $line->setPointsPch($pointsPch);

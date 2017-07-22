@@ -26,8 +26,8 @@ The following macros must be available to execute this query.
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( ApiCommonWebsite::Model::CannedQuery );
-use ApiCommonWebsite::Model::CannedQuery;
+@ISA = qw( EbrcWebsiteCommon::Model::CannedQuery );
+use EbrcWebsiteCommon::Model::CannedQuery;
 
 # ========================================================================
 # ----------------------- Create, Init, and Access -----------------------

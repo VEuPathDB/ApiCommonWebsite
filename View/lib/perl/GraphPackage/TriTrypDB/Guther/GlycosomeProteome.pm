@@ -3,9 +3,9 @@ package ApiCommonWebsite::View::GraphPackage::TriTrypDB::Guther::GlycosomeProteo
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet);
-use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
-use ApiCommonWebsite::View::GraphPackage::GGBarPlot;
+@ISA = qw( EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet);
+use EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet;
+use EbrcWebsiteCommon::View::GraphPackage::GGBarPlot;
 
 sub init {
   my $self = shift;
@@ -45,9 +45,9 @@ AND ga.gene_source_id = '$geneId'
 
 
   my @profileSetsArray = (['Procyclic stage glycosome proteome', 'values', ]);
-  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSetsArray);
+  my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileSetsArray);
 
-  my $quant = ApiCommonWebsite::View::GraphPackage::GGBarPlot::QuantMassSpec->new(@_);
+  my $quant = EbrcWebsiteCommon::View::GraphPackage::GGBarPlot::QuantMassSpec->new(@_);
   $quant->setProfileSets($profileSets);
   $quant->setColors( $colors{$colorNum});
   $quant->setForceHorizontalXAxis(0);

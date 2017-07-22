@@ -3,14 +3,14 @@ package ApiCommonWebsite::View::GraphPackage::FungiDB::SaccharomycesCerevisiae::
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet );
-use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
+@ISA = qw( EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet );
+use EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet;
 
 
-use ApiCommonWebsite::View::GraphPackage::LinePlot;
-use ApiCommonWebsite::View::GraphPackage::BarPlot;
+use EbrcWebsiteCommon::View::GraphPackage::LinePlot;
+use EbrcWebsiteCommon::View::GraphPackage::BarPlot;
 
-use ApiCommonWebsite::View::GraphPackage::Util;
+use EbrcWebsiteCommon::View::GraphPackage::Util;
 
 sub init {
   my $self = shift;
@@ -25,31 +25,31 @@ sub init {
   $self->setMainLegend({colors => $colors, short_names => $legend, points_pch=> $pch, , cols => 3});
 
 
-  my $clnClbProfileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([['Expression profiling of saccharomyces cerevisiae s288c Cln/Clb experiments']]);
+  my $clnClbProfileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets([['Expression profiling of saccharomyces cerevisiae s288c Cln/Clb experiments']]);
 
-  my $clnClbPlot = ApiCommonWebsite::View::GraphPackage::BarPlot::LogRatio->new(@_);
+  my $clnClbPlot = EbrcWebsiteCommon::View::GraphPackage::BarPlot::LogRatio->new(@_);
   $clnClbPlot->setProfileSets($clnClbProfileSets);
   $clnClbPlot->setPartName('Cln_Clb');
   $clnClbPlot->setForceHorizontalXAxis(1);
 
 
-  my $pheromoneProfileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([['Expression profiling of saccharomyces cerevisiae s288c pheromone experiments']]);
-  my $pheromonePlot = ApiCommonWebsite::View::GraphPackage::LinePlot::LogRatio->new(@_);
+  my $pheromoneProfileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets([['Expression profiling of saccharomyces cerevisiae s288c pheromone experiments']]);
+  my $pheromonePlot = EbrcWebsiteCommon::View::GraphPackage::LinePlot::LogRatio->new(@_);
   $pheromonePlot->setProfileSets($pheromoneProfileSets);
   $pheromonePlot->setPartName('pheromone');
 
-  my $elutriationProfileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([['Expression profiling of saccharomyces cerevisiae s288c elutriation experiments']]);
-  my $elutriationPlot = ApiCommonWebsite::View::GraphPackage::LinePlot::LogRatio->new(@_);
+  my $elutriationProfileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets([['Expression profiling of saccharomyces cerevisiae s288c elutriation experiments']]);
+  my $elutriationPlot = EbrcWebsiteCommon::View::GraphPackage::LinePlot::LogRatio->new(@_);
   $elutriationPlot->setProfileSets($elutriationProfileSets);
   $elutriationPlot->setPartName('elutriation');
 
-  my $cdc15ProfileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([['Expression profiling of saccharomyces cerevisiae s288c cdc15 Experiments']]);
-  my $cdc15Plot = ApiCommonWebsite::View::GraphPackage::LinePlot::LogRatio->new(@_);
+  my $cdc15ProfileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets([['Expression profiling of saccharomyces cerevisiae s288c cdc15 Experiments']]);
+  my $cdc15Plot = EbrcWebsiteCommon::View::GraphPackage::LinePlot::LogRatio->new(@_);
   $cdc15Plot->setProfileSets($cdc15ProfileSets);
   $cdc15Plot->setPartName('cdc15');
 
-  my $cdc28ProfileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([['Expression profiling of saccharomyces cerevisiae s288c microarray from Cho et al.']]);
-  my $cdc28Plot = ApiCommonWebsite::View::GraphPackage::LinePlot::LogRatio->new(@_);
+  my $cdc28ProfileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets([['Expression profiling of saccharomyces cerevisiae s288c microarray from Cho et al.']]);
+  my $cdc28Plot = EbrcWebsiteCommon::View::GraphPackage::LinePlot::LogRatio->new(@_);
   $cdc28Plot->setProfileSets($cdc28ProfileSets);
   $cdc28Plot->setPartName('cdc28');
 

@@ -1,6 +1,6 @@
 
 package ApiCommonWebsite::Model::CannedQuery::MultiProfile;
-@ISA = qw( ApiCommonWebsite::Model::CannedQuery );
+@ISA = qw( EbrcWebsiteCommon::Model::CannedQuery );
 
 =pod
 
@@ -32,7 +32,7 @@ The following macros must be available to execute this query.
 
 use strict;
 
-use ApiCommonWebsite::Model::CannedQuery;
+use EbrcWebsiteCommon::Model::CannedQuery;
 
 # ========================================================================
 # ----------------------- Create, Init, and Access -----------------------

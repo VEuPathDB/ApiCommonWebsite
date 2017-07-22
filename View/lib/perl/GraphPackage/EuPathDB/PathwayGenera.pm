@@ -6,9 +6,9 @@ use vars qw( @ISA );
 use ApiCommonWebsite::Model::CannedQuery::PathwayGeneraNames;
 use ApiCommonWebsite::Model::CannedQuery::PathwayGeneraData;
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet );
-use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
-use ApiCommonWebsite::View::GraphPackage::BarPlot;
+@ISA = qw( EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet );
+use EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet;
+use EbrcWebsiteCommon::View::GraphPackage::BarPlot;
 
 
 sub init {
@@ -33,13 +33,13 @@ sub init {
           Id => $self->getId(),
         );
 
-  my $profileSet = ApiCommonWebsite::View::GraphPackage::ProfileSet->new("INTERNAL", [], undef, undef, undef, "Display Name");
+  my $profileSet = EbrcWebsiteCommon::View::GraphPackage::ProfileSet->new("INTERNAL", [], undef, undef, undef, "Display Name");
   $profileSet->setProfileCannedQuery($data);
   $profileSet->setProfileNamesCannedQuery($names);
 
   my $profileSets = [$profileSet];
 
-  my $genera = ApiCommonWebsite::View::GraphPackage::BarPlot::Genera->new(@_);
+  my $genera = EbrcWebsiteCommon::View::GraphPackage::BarPlot::Genera->new(@_);
   $genera->setProfileSets($profileSets);
   $genera->setElementNameMarginSize(7.5);
 

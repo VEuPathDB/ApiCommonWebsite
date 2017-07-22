@@ -3,10 +3,10 @@ package ApiCommonWebsite::View::GraphPackage::PlasmoDB::DeRisiHalfLife::Combined
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet );
-use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
-use ApiCommonWebsite::View::GraphPackage::LinePlot;
-use ApiCommonWebsite::View::GraphPackage::BarPlot;
+@ISA = qw( EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet );
+use EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet;
+use EbrcWebsiteCommon::View::GraphPackage::LinePlot;
+use EbrcWebsiteCommon::View::GraphPackage::BarPlot;
 
 
 
@@ -27,9 +27,9 @@ sub init {
 
   my $id = $self->getId();
 
-  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArray);
+  my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileArray);
 
-  my $hl = ApiCommonWebsite::View::GraphPackage::BarPlot->new(@_);
+  my $hl = EbrcWebsiteCommon::View::GraphPackage::BarPlot->new(@_);
   $hl->setProfileSets($profileSets);
   $hl->setColors($colors);
   $hl->setForceHorizontalXAxis(1);
@@ -45,9 +45,9 @@ sub init {
                           ['Profiles of Derisi HalfLife-Late_Schizont', '', '']
                          );
   
-  my $profileSetsLine = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArrayLine);
+  my $profileSetsLine = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileArrayLine);
 
-  my $line = ApiCommonWebsite::View::GraphPackage::LinePlot->new(@_);
+  my $line = EbrcWebsiteCommon::View::GraphPackage::LinePlot->new(@_);
   $line->setPartName('expr_val');
   $line->setProfileSets($profileSetsLine);
   $line->setColors($colors);

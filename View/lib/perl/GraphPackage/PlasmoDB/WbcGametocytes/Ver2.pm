@@ -4,11 +4,11 @@ package ApiCommonWebsite::View::GraphPackage::PlasmoDB::WbcGametocytes::Ver2;
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet );
-use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
-use ApiCommonWebsite::View::GraphPackage::LinePlot;
+@ISA = qw( EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet );
+use EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet;
+use EbrcWebsiteCommon::View::GraphPackage::LinePlot;
 
-use ApiCommonWebsite::View::GraphPackage::Util;
+use EbrcWebsiteCommon::View::GraphPackage::Util;
 
 sub init {
   my $self = shift;
@@ -32,15 +32,15 @@ sub init {
                          ['percentile -  winzeler_NF54_gametocyte']
                         );
 
-  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArray);
-  my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@percentileArray);
+  my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileArray);
+  my $percentileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@percentileArray);
 
-  my $absolute = ApiCommonWebsite::View::GraphPackage::LinePlot::RMA->new(@_);
+  my $absolute = EbrcWebsiteCommon::View::GraphPackage::LinePlot::RMA->new(@_);
   $absolute->setProfileSets($profileSets);
   $absolute->setColors(\@colors);
   $absolute->setPointsPch([19,19,19]);
 
-  my $percentile = ApiCommonWebsite::View::GraphPackage::LinePlot::Percentile->new(@_);
+  my $percentile = EbrcWebsiteCommon::View::GraphPackage::LinePlot::Percentile->new(@_);
   $percentile->setProfileSets($percentileSets);
   $percentile->setColors(\@colors);
   $percentile->setPointsPch([19,19,19]);

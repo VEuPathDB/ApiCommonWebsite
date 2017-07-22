@@ -29,7 +29,7 @@ use strict;
 
 use FileHandle;
 
-use ApiCommonWebsite::Model::CannedQuery;
+use EbrcWebsiteCommon::Model::CannedQuery;
 
 use ApiCommonWebsite::Model::CannedQuery::ElementNames;
 

@@ -1,12 +1,12 @@
-package ApiCommonWebsite::View::GraphPackage::PlasmoDB::Newbold::Patients;
+package EbrcWebsiteCommon::View::GraphPackage::PlasmoDB::Newbold::Patients;
 
 use strict;
 use vars qw( @ISA );
 
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet );
-use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
-use ApiCommonWebsite::View::GraphPackage::BarPlot;
+@ISA = qw( EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet );
+use EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet;
+use EbrcWebsiteCommon::View::GraphPackage::BarPlot;
 
 sub init {
   my $self = shift;
@@ -28,14 +28,14 @@ sub init {
     push @allColors, $colors->[1];
   }
 
-  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([['newbold gene profiles sorted mild-severe']]);
-  my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([['percentile - newbold gene profiles sorted mild-severe']]);
+  my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets([['newbold gene profiles sorted mild-severe']]);
+  my $percentileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets([['percentile - newbold gene profiles sorted mild-severe']]);
 
-  my $rma = ApiCommonWebsite::View::GraphPackage::BarPlot::RMA->new(@_);
+  my $rma = EbrcWebsiteCommon::View::GraphPackage::BarPlot::RMA->new(@_);
   $rma->setProfileSets($profileSets);
   $rma->setColors(\@allColors);
 
-  my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
+  my $percentile = EbrcWebsiteCommon::View::GraphPackage::BarPlot::Percentile->new(@_);
   $percentile->setProfileSets($percentileSets);
   $percentile->setColors(\@allColors);
 

@@ -4,10 +4,10 @@ use vars qw( @ISA );
 
 use strict;
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet );
-use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
-use ApiCommonWebsite::View::GraphPackage::BarPlot;
-use ApiCommonWebsite::View::GraphPackage::LinePlot;
+@ISA = qw( EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet );
+use EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet;
+use EbrcWebsiteCommon::View::GraphPackage::BarPlot;
+use EbrcWebsiteCommon::View::GraphPackage::LinePlot;
 
 sub init {
   my $self = shift;
@@ -34,10 +34,10 @@ sub init {
                                  ['percentile - winzeler_cc_sexExp']
                                 );
 
-  my $winzelerProfileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@winzelerProfileArray);
-  my $winzelerPercentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@winzelerPercentileArray);
+  my $winzelerProfileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@winzelerProfileArray);
+  my $winzelerPercentileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@winzelerPercentileArray);
 
-  my $winzeler = ApiCommonWebsite::View::GraphPackage::LinePlot::LogRatio->new(@_);
+  my $winzeler = EbrcWebsiteCommon::View::GraphPackage::LinePlot::LogRatio->new(@_);
   $winzeler->setProfileSets($winzelerProfileSets);
   $winzeler->setColors(\@colors);
   $winzeler->setPartName('winzeler');
@@ -47,14 +47,14 @@ sub init {
   $winzeler->setSampleLabels(\@winzelerNames);
 
 
-   my $rma = ApiCommonWebsite::View::GraphPackage::BarPlot::RMA->new(@_);
+   my $rma = EbrcWebsiteCommon::View::GraphPackage::BarPlot::RMA->new(@_);
    $rma->setProfileSets($winzelerProfileSets);
    $rma->setColors(\@colors);
    $rma->addAdjustProfile('profile.df = cbind(profile.df[,8], profile.df[,1:7], profile.df[,9]);');
    $rma->setSampleLabels(\@winzelerNames);
    $rma->setSpaceBetweenBars(1);
 
-   my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
+   my $percentile = EbrcWebsiteCommon::View::GraphPackage::BarPlot::Percentile->new(@_);
    $percentile->setProfileSets($winzelerPercentileSets);
    $percentile->setColors(\@colors);
    $percentile->addAdjustProfile('profile.df = cbind(profile.df[,8], profile.df[,1:7], profile.df[,9]);');

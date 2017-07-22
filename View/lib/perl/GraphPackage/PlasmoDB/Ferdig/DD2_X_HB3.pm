@@ -3,10 +3,10 @@ package ApiCommonWebsite::View::GraphPackage::PlasmoDB::Ferdig::DD2_X_HB3;
 use strict;
 use vars qw( @ISA);
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet);
-use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
-use ApiCommonWebsite::View::GraphPackage::ScatterPlot;
-use ApiCommonWebsite::View::GraphPackage::BarPlot;
+@ISA = qw( EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet);
+use EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet;
+use EbrcWebsiteCommon::View::GraphPackage::ScatterPlot;
+use EbrcWebsiteCommon::View::GraphPackage::BarPlot;
 use ApiCommonWebsite::Model::CannedQuery::Profile;
 
 sub init {
@@ -28,19 +28,19 @@ sub init {
                        });
 
   my @profileSetNames = (['Profiles of DD2-HB3 expression from Ferdig']);
-  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSetNames);
+  my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileSetNames);
 
-  my $scatter = ApiCommonWebsite::View::GraphPackage::ScatterPlot::LogRatio->new(@_);
+  my $scatter = EbrcWebsiteCommon::View::GraphPackage::ScatterPlot::LogRatio->new(@_);
   $scatter->setProfileSets($profileSets);
   $scatter->setPlotTitle("Expression Values for the progeny of HB3 X DD2");
   $scatter->setDefaultYMax(1);
   $scatter->setDefaultYMin(-1);
   $scatter->setElementNameMarginSize(4);
 
-  my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([['red percentile - Profiles of DD2-HB3 expression from Ferdig'],
+  my $percentileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets([['red percentile - Profiles of DD2-HB3 expression from Ferdig'],
                                                                                     ['green percentile - Profiles of DD2-HB3 expression from Ferdig']]);
 
-  my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
+  my $percentile = EbrcWebsiteCommon::View::GraphPackage::BarPlot::Percentile->new(@_);
   $percentile->setProfileSets($percentileSets);
   $percentile->setColors(['#CCCCCC','dark blue']);
 

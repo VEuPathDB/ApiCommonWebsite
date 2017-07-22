@@ -1,11 +1,11 @@
 package ApiCommonWebsite::Model::CannedQuery::PathwayGeneraData;
-@ISA = qw( ApiCommonWebsite::Model::CannedQuery );
+@ISA = qw( EbrcWebsiteCommon::Model::CannedQuery );
 
 use strict;
 
 use Data::Dumper;
 
-use ApiCommonWebsite::Model::CannedQuery;
+use EbrcWebsiteCommon::Model::CannedQuery;
 
 sub init {
   my $Self = shift;
