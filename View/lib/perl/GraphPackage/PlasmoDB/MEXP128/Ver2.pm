@@ -1,4 +1,4 @@
-package EbrcWebsiteCommon::View::GraphPackage::PlasmoDB::MEXP128::Ver2;
+package ApiCommonWebsite::View::GraphPackage::PlasmoDB::MEXP128::Ver2;
 
 use strict;
 use vars qw( @ISA );
@@ -20,11 +20,11 @@ sub init {
 
   $self->setMainLegend({colors => $colors, short_names => $xAxisLabels, cols=>3});
 
-  my @profileArray = (['Expression profile of 3D7 clones 3D7AH1S2 and 3D7S8.4', 'standard error - Expression profile of 3D7 clones 3D7AH1S2 and 3D7S8.4', ''],
+  my @profileArray = (['Expression profile of 3D7 clones 3D7AH1S2 and 3D7S8.4', 'values', 'Expression profile of 3D7 clones 3D7AH1S2 and 3D7S8.4', 'standard_error'],
                      );
 
-  my @percentileArray = (['red percentile - Expression profile of 3D7 clones 3D7AH1S2 and 3D7S8.4'],
-                         ['green percentile - Expression profile of 3D7 clones 3D7AH1S2 and 3D7S8.4'],
+  my @percentileArray = (['Expression profile of 3D7 clones 3D7AH1S2 and 3D7S8.4', 'channel1_percentiles'],
+                         ['Expression profile of 3D7 clones 3D7AH1S2 and 3D7S8.4', 'channel2_percentiles'],
                         );
 
   my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileArray);
