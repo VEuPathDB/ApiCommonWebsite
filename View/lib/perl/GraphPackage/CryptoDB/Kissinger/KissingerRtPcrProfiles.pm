@@ -6,7 +6,7 @@ use vars qw( @ISA );
 
 @ISA = qw( EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet );
 use EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet;
-use EbrcWebsiteCommon::View::GraphPackage::BarPlot;
+use EbrcWebsiteCommon::View::GraphPackage::GGBarPlot;
 
 
 sub init {
@@ -22,7 +22,7 @@ sub init {
 
   my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileArray);
 
-  my $standardized = EbrcWebsiteCommon::View::GraphPackage::BarPlot::Standardized->new(@_);
+  my $standardized = EbrcWebsiteCommon::View::GraphPackage::GGBarPlot::Standardized->new(@_);
   $standardized->setProfileSets($profileSets);
   $standardized->setColors($colors);
   $standardized->setForceHorizontalXAxis(1);
