@@ -3,17 +3,17 @@ package ApiCommonWebsite::View::GraphPackage::Templates::Expression;
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet );
-use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
+@ISA = qw( EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet );
+use EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet;
 
-use ApiCommonWebsite::View::GraphPackage::Util;
+use EbrcWebsiteCommon::View::GraphPackage::Util;
 
-use ApiCommonWebsite::View::GraphPackage::BarPlot;
-use ApiCommonWebsite::View::GraphPackage::LinePlot;
-use ApiCommonWebsite::View::GraphPackage::ScatterPlot;
-use ApiCommonWebsite::View::GraphPackage::GGScatterPlot;
-use ApiCommonWebsite::View::GraphPackage::GGLinePlot;
-use ApiCommonWebsite::View::GraphPackage::GGBarPlot;
+use EbrcWebsiteCommon::View::GraphPackage::BarPlot;
+use EbrcWebsiteCommon::View::GraphPackage::LinePlot;
+use EbrcWebsiteCommon::View::GraphPackage::ScatterPlot;
+use EbrcWebsiteCommon::View::GraphPackage::GGScatterPlot;
+use EbrcWebsiteCommon::View::GraphPackage::GGLinePlot;
+use EbrcWebsiteCommon::View::GraphPackage::GGBarPlot;
 
 use Scalar::Util qw /blessed/;
 use Data::Dumper;
@@ -136,7 +136,7 @@ sub getAllProfileSetNames {
   my $dbh = $self->getQueryHandle();
 
   my $restrictProfileSetsBySourceId = $self->restrictProfileSetsBySourceId();
-  my $sql = ApiCommonWebsite::View::GraphPackage::Util::getProfileSetsSql($restrictProfileSetsBySourceId, $self->getId());
+  my $sql = EbrcWebsiteCommon::View::GraphPackage::Util::getProfileSetsSql($restrictProfileSetsBySourceId, $self->getId());
 
   my $sh = $dbh->prepare($sql);
   $sh->execute($datasetId);
@@ -189,25 +189,25 @@ sub makeAndSetPlots {
     }
 #print STDERR Dumper   \@profileSetsArray;
 
-    my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSetsArray);
+    my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileSetsArray);
 
     my $xAxisLabel;
     my $plotObj;
     my $plotPartModule = $key=~/percentile/? 'Percentile': $self->getExprPlotPartModuleString();
 
     if((lc($self->getGraphType()) eq 'bar' || ($key=~/percentile/ && blessed($self) =~/TwoChannel/)) && $self->useLegacy() ) {
-      $plotObj = "ApiCommonWebsite::View::GraphPackage::BarPlot::$plotPartModule";
+      $plotObj = "EbrcWebsiteCommon::View::GraphPackage::BarPlot::$plotPartModule";
     } elsif((lc($self->getGraphType()) eq 'bar' || ($key=~/percentile/ && blessed($self) =~/TwoChannel/)) && !$self->useLegacy() ) {
-      $plotObj = "ApiCommonWebsite::View::GraphPackage::GGBarPlot::$plotPartModule";
+      $plotObj = "EbrcWebsiteCommon::View::GraphPackage::GGBarPlot::$plotPartModule";
     } elsif(lc($self->getGraphType()) eq 'line' && $self->useLegacy()) {
-      $plotObj = "ApiCommonWebsite::View::GraphPackage::LinePlot::$plotPartModule";
+      $plotObj = "EbrcWebsiteCommon::View::GraphPackage::LinePlot::$plotPartModule";
       $xAxisLabel= $self->getXAxisLabel();
     } elsif(lc($self->getGraphType()) eq 'line' && !$self->useLegacy()) {
-      $plotObj = "ApiCommonWebsite::View::GraphPackage::GGLinePlot::$plotPartModule";
+      $plotObj = "EbrcWebsiteCommon::View::GraphPackage::GGLinePlot::$plotPartModule";
       $xAxisLabel= $self->getXAxisLabel();
     } elsif(lc($self->getGraphType()) eq 'scatter') {
       # TODO: handle two channel graphs in a different module
-      $plotObj = "ApiCommonWebsite::View::GraphPackage::GGScatterPlot::LogRatio";
+      $plotObj = "EbrcWebsiteCommon::View::GraphPackage::GGScatterPlot::LogRatio";
       $xAxisLabel= $self->getXAxisLabel();
     } else {
       die "Graph must define a graph type of bar or line";
@@ -416,9 +416,9 @@ sub init {
 #                      ['Llinas RT transcription and decay total Profiles - smoothed', 'values']
       );
 
-  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArray);
+  my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileArray);
  
-  my $line = ApiCommonWebsite::View::GraphPackage::GGLinePlot->new(@_);
+  my $line = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot->new(@_);
   $line->setProfileSets($profileSets);
   $line->setPartName('exprn_val_log_ratio');
   $line->setYaxisLabel('Expression Values (log2 ratio)');
@@ -524,9 +524,9 @@ sub init {
 
   my @colors = ('cyan', 'purple', 'brown' );
 
-  my $winzelerProfileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@winzelerProfileArray);
+  my $winzelerProfileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@winzelerProfileArray);
 
-  my $winzeler = ApiCommonWebsite::View::GraphPackage::GGLinePlot::LogRatio->new(@_);
+  my $winzeler = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot::LogRatio->new(@_);
   $winzeler->setProfileSets($winzelerProfileSets);
   $winzeler->setColors(\@colors);
   $winzeler->setPartName('line');
@@ -610,17 +610,17 @@ sub init {
                          ['E-GEOD-10022 array from Su', 'channel1_percentiles', '', '', $treated],
                         );
 
-  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArray);
-  my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@percentileArray);
+  my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileArray);
+  my $percentileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@percentileArray);
 
-  my $rma = ApiCommonWebsite::View::GraphPackage::GGBarPlot::RMA->new(@_);
+  my $rma = EbrcWebsiteCommon::View::GraphPackage::GGBarPlot::RMA->new(@_);
   $rma->setProfileSets($profileSets);
   $rma->setColors($colors);
   $rma->setForceHorizontalXAxis(1);
   $rma->setHasExtraLegend(1); 
   $rma->setLegendLabels($legend);
 
-  my $percentile = ApiCommonWebsite::View::GraphPackage::GGBarPlot::Percentile->new(@_);
+  my $percentile = EbrcWebsiteCommon::View::GraphPackage::GGBarPlot::Percentile->new(@_);
   $percentile->setProfileSets($percentileSets);
   $percentile->setColors($colors);
   $percentile->setForceHorizontalXAxis(1);
@@ -661,17 +661,17 @@ sub init {
                          ['Profiles of E-TABM-438 from Cowman', 'channel1_percentiles', '', '', $sir2BSamples],
                         );
 
-  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArray);
-  my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@percentileArray);
+  my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileArray);
+  my $percentileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@percentileArray);
 
-  my $rma = ApiCommonWebsite::View::GraphPackage::GGBarPlot::RMA->new(@_);
+  my $rma = EbrcWebsiteCommon::View::GraphPackage::GGBarPlot::RMA->new(@_);
   $rma->setProfileSets($profileSets);
   $rma->setColors($colors);
   $rma->setForceHorizontalXAxis(1);
   $rma->setHasExtraLegend(1); 
   $rma->setLegendLabels($legend);
 
-  my $percentile = ApiCommonWebsite::View::GraphPackage::GGBarPlot::Percentile->new(@_);
+  my $percentile = EbrcWebsiteCommon::View::GraphPackage::GGBarPlot::Percentile->new(@_);
   $percentile->setProfileSets($percentileSets);
   $percentile->setColors($colors);
   $percentile->setForceHorizontalXAxis(1);
@@ -704,9 +704,9 @@ sub _init {
 
   my $id = $self->getId();
 
-  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArray);
+  my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileArray);
 
-  my $hl = ApiCommonWebsite::View::GraphPackage::BarPlot->new(@_);
+  my $hl = EbrcWebsiteCommon::View::GraphPackage::BarPlot->new(@_);
   $hl->setProfileSets($profileSets);
   $hl->setColors($colors);
   $hl->setForceHorizontalXAxis(1);
@@ -722,9 +722,9 @@ sub _init {
                           ['Profiles of Derisi HalfLife-Late_Schizont', 'values', '', '']
                          );
   
-  my $profileSetsLine = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArrayLine);
+  my $profileSetsLine = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileArrayLine);
 
-  my $line = ApiCommonWebsite::View::GraphPackage::GGLinePlot->new(@_);
+  my $line = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot->new(@_);
   $line->setPartName('expr_val');
   $line->setProfileSets($profileSetsLine);
   $line->setColors($colors);
@@ -794,17 +794,17 @@ sub init {
                          ["$profileName", "channel1_percentiles", "", "", $ctgSamples],
                         );
 
-  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArray);
-  my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@percentileArray);
+  my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileArray);
+  my $percentileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@percentileArray);
 
-  my $rma = ApiCommonWebsite::View::GraphPackage::GGBarPlot::RMA->new(@_);
+  my $rma = EbrcWebsiteCommon::View::GraphPackage::GGBarPlot::RMA->new(@_);
   $rma->setProfileSets($profileSets);
   $rma->setColors($colors);
   $rma->setForceHorizontalXAxis(1);
   $rma->setHasExtraLegend(1); 
   $rma->setLegendLabels($legend);
 
-  my $percentile = ApiCommonWebsite::View::GraphPackage::GGBarPlot::Percentile->new(@_);
+  my $percentile = EbrcWebsiteCommon::View::GraphPackage::GGBarPlot::Percentile->new(@_);
   $percentile->setProfileSets($percentileSets);
   $percentile->setColors($colors);
   $percentile->setForceHorizontalXAxis(1);
@@ -866,9 +866,9 @@ sub init {
 
   my $id = $self->getId();
 
-  my $profileSetsRoos = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArrayRoos);
+  my $profileSetsRoos = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileArrayRoos);
 
-  my $rma =  ApiCommonWebsite::View::GraphPackage::GGLinePlot::LogRatio->new(@_);
+  my $rma =  EbrcWebsiteCommon::View::GraphPackage::GGLinePlot::LogRatio->new(@_);
   $rma->setProfileSets($profileSetsRoos);
   $rma->setPartName('Roos_RMA');
   $rma->setYaxisLabel('RMA Value (log2)');
@@ -882,9 +882,9 @@ sub init {
   push (@{$graphs},$rma);
   $self->SUPER::setGraphObjects(@{$graphs});
 
-   my $percentileSetsRoos = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@percentileArrayRoos);
+   my $percentileSetsRoos = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@percentileArrayRoos);
 
-  my $percentileRoos = ApiCommonWebsite::View::GraphPackage::GGLinePlot->new(@_);
+  my $percentileRoos = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot->new(@_);
   $percentileRoos->setProfileSets($percentileSetsRoos);
   $percentileRoos->setPartName('Roos_percentile');
   $percentileRoos->setYaxisLabel('Percentile');
@@ -899,9 +899,9 @@ sub init {
   $self->SUPER::setGraphObjects(@{$graphs});
 
 
-  my $profileSetsFlo = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArrayFlo);
+  my $profileSetsFlo = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileArrayFlo);
 
-  my $rmaFlo =  ApiCommonWebsite::View::GraphPackage::GGLinePlot::LogRatio->new(@_);
+  my $rmaFlo =  EbrcWebsiteCommon::View::GraphPackage::GGLinePlot::LogRatio->new(@_);
   $rmaFlo->setProfileSets($profileSetsFlo);
   $rmaFlo->setPartName('Dzierszinskis_RMA');
   $rmaFlo->setYaxisLabel('RMA Value (log2)');
@@ -915,9 +915,9 @@ sub init {
   push (@{$graphs},$rmaFlo);
   $self->SUPER::setGraphObjects(@{$graphs});
 
-   my $percentileSetsFlo = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@percentileArrayFlo);
+   my $percentileSetsFlo = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@percentileArrayFlo);
 
-  my $percentileFlo = ApiCommonWebsite::View::GraphPackage::GGLinePlot->new(@_);
+  my $percentileFlo = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot->new(@_);
   $percentileFlo->setProfileSets($percentileSetsFlo);
   $percentileFlo->setPartName('Flo_percentile');
   $percentileFlo->setYaxisLabel('Percentile');
@@ -965,8 +965,6 @@ sub isExcludedProfileSet {
 
 package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_c1a3dbb014;
 
-sub useLegacy {return 1;}
-
 # LAST RESORT IS TO OVERRIDE THE INIT METHOD
 sub init {
   my $self = shift;
@@ -977,6 +975,7 @@ sub init {
   my $colors = ['#CD853F'];
   my $graphs;
   my $id = $self->getId();
+  #this below for useLegacy
   my $cellCycleTopMargin = "
 lines(c(2,5.75), c(y.max + (y.max - y.min)*0.1, y.max + (y.max - y.min)*0.1)); 
 text(4, y.max + (y.max - y.min)*0.16, 'S(1)');
@@ -995,9 +994,44 @@ lines(c(12,14), c(y.max + (y.max - y.min)*0.15, y.max + (y.max - y.min)*0.15));
 text(12.3, y.max + (y.max - y.min)*0.22, 'M');
 text(13.3, y.max + (y.max - y.min)*0.22, 'C');
 ";
-
-  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSet);
-  my $rma =  ApiCommonWebsite::View::GraphPackage::LinePlot::LogRatio->new(@_);
+#this to use ggplot with colors
+  my $colorCellCycle = "
+gp = gp + geom_line(aes(colour=STAGE, group = GROUP));
+gp = gp + geom_tooltip(aes(colour=STAGE, tooltip=STAGE), real.geom=geom_point);
+gp = gp + scale_colour_manual(values=c(\"black\",\"orange\",\"blue\",\"red\",\"green\",\"darkgreen\",\"black\"));
+"; 
+ #this for ggplot with straight lines
+  my $cellCycleAnnotation = "
+gp = gp + annotate(\"segment\", x = 2, xend = 5.75, y = min(profile.df.full\$VALUE) - 1, yend = min(profile.df.full\$VALUE) - 1 , colour = '#d3883f');
+gp = gp + annotate(\"text\", x = 4, y = min(profile.df.full\$VALUE) - 1.75, label = \"S(1)\", colour = '#d3883f');
+gp = gp + annotate(\"segment\", x = 5, xend = 6.9, y = min(profile.df.full\$VALUE) - 1.35, yend = min(profile.df.full\$VALUE) - 1.35, colour = '#d3883f');
+gp = gp + annotate(\"text\", x = 5.5, y = min(profile.df.full\$VALUE) - 2.1, label = \"M\", colour = '#d3883f');
+gp = gp + annotate(\"text\", x = 6.5, y = min(profile.df.full\$VALUE) - 2.1, label = \"C\", colour = '#d3883f');
+gp = gp + annotate(\"segment\", x = 6.1, xend = 10.4, y = min(profile.df.full\$VALUE) - 1, yend = min(profile.df.full\$VALUE) - 1, colour = '#d3883f');
+gp = gp + annotate(\"text\", x = 8.375, y = min(profile.df.full\$VALUE) - 1.75, label = \"G1\", colour = '#d3883f');
+gp = gp + annotate(\"segment\", x = 10, xend = 13.2, y = min(profile.df.full\$VALUE) - 1.35, yend = min(profile.df.full\$VALUE) - 1.35, colour = '#d3883f');
+gp = gp + annotate(\"text\", x = 11.5, y = min(profile.df.full\$VALUE) - 2.1, label = \"S(2)\", colour = '#d3883f');
+gp = gp + annotate(\"segment\", x = 12, xend = 14, y = min(profile.df.full\$VALUE) - 1, yend = min(profile.df.full\$VALUE) - 1, colour = '#d3883f');
+gp = gp + annotate(\"text\", x = 12.5, y = min(profile.df.full\$VALUE) - 1.75, label = \"M\", colour = '#d3883f');
+gp = gp + annotate(\"text\", x = 13.5, y = min(profile.df.full\$VALUE) - 1.75, label = \"C\", colour = '#d3883f');
+";
+  #this below for ggplot2
+  my $RMACellCycleAnnotation = "
+gp = gp + annotate(\"curve\", x = 2, xend = 5.75, y = 13, yend = 13);
+gp = gp + annotate(\"text\", x = 4, y = 10, label = \"S(1)\");
+gp = gp + annotate(\"curve\", x = 5, xend = 6.9, y = 13, yend = 13);
+gp = gp + annotate(\"text\", x = 5.5, y = 11.25, label = \"M\");
+gp = gp + annotate(\"text\", x = 6.5, y = 11.25, label = \"C\");
+gp = gp + annotate(\"curve\", x = 6.1, xend = 10.4, y = 13, yend = 13);
+gp = gp + annotate(\"text\", x = 8.375, y = 9.75, label = \"G1\");
+gp = gp + annotate(\"curve\", x = 10, xend = 13.2, y = 13, yend = 13);
+gp = gp + annotate(\"text\", x = 11.5, y = 10.5, label = \"S(2)\");
+gp = gp + annotate(\"curve\", x = 12, xend = 14, y = 13, yend = 13);
+gp = gp + annotate(\"text\", x = 12.5, y = 11.25, label = \"M\");
+gp = gp + annotate(\"text\", x = 13.5, y = 11.25, label = \"C\");
+";
+  my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileSet);
+  my $rma =  EbrcWebsiteCommon::View::GraphPackage::GGLinePlot::LogRatio->new(@_);
   $rma->setProfileSets($profileSets);
   $rma->setPartName('rma');
   $rma->setColors($colors);
@@ -1007,13 +1041,32 @@ text(13.3, y.max + (y.max - y.min)*0.22, 'C');
   $rma->setDefaultYMin(4);
   $rma->setElementNameMarginSize(6.4);
   $rma->setTitleLine(2.25);
-  $rma->setRPostscript($cellCycleTopMargin);
+  $rma->setRPostscript($cellCycleAnnotation);
   $rma->setXaxisLabel('Time point (hours)');
   $rma->setYaxisLabel('RMA Value (log2)');
   $rma->setPlotTitle("RMA Expression Value - $id");
+  $rma->addAdjustProfile('profile.df.full$ELEMENT_NAMES = factor(profile.df.full$ELEMENT_NAMES, levels=c("asynchronous","0 HR","1 HR","2 HR","3 HR","4 HR","5 HR","6 HR","7 HR","8 HR","9 HR","10 HR","11 HR","12 HR"));
+      profile.df.full$GROUP = c("A","C","C","C","C","C","C","C","C","C","C","C","C","C");
+      profile.df.full$STAGE = as.factor(c("none","S(1)","S(1)","S(1)","M","C","G1","G1","G1","S(2)","S(2)","M","C","C"));');
 
-  my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@percentileSet);
-  my $percentile =  ApiCommonWebsite::View::GraphPackage::LinePlot->new(@_);
+#this below for ggplot2
+  my $PercentileCellCycleAnnotation = "
+gp = gp + annotate(\"curve\", x = 2, xend = 5.75, y = min(profile.df.full\$VALUE) - 6, yend = min(profile.df.full\$VALUE) - 6);
+gp = gp + annotate(\"text\", x = 4, y = min(profile.df.full\$VALUE) - 32, label = \"S(1)\");
+gp = gp + annotate(\"curve\", x = 5, xend = 7, y = min(profile.df.full\$VALUE) - 6, yend = min(profile.df.full\$VALUE) - 6);
+gp = gp + annotate(\"text\", x = 5.5, y = min(profile.df.full\$VALUE) - 22, label = \"M\");
+gp = gp + annotate(\"text\", x = 6.5, y = min(profile.df.full\$VALUE) - 22, label = \"C\");
+gp = gp + annotate(\"curve\", x = 6.25, xend = 10.5, y = min(profile.df.full\$VALUE) - 6, yend = min(profile.df.full\$VALUE) - 6);
+gp = gp + annotate(\"text\", x = 8.375, y = min(profile.df.full\$VALUE) - 35, label = \"G1\");
+gp = gp + annotate(\"curve\", x = 10, xend = 13, y = min(profile.df.full\$VALUE) - 6, yend = min(profile.df.full\$VALUE) - 6);
+gp = gp + annotate(\"text\", x = 11.5, y = min(profile.df.full\$VALUE) - 27, label = \"S(2)\");
+gp = gp + annotate(\"curve\", x = 12, xend = 14, y = min(profile.df.full\$VALUE) - 6, yend = min(profile.df.full\$VALUE) - 6);
+gp = gp + annotate(\"text\", x = 12.5, y = min(profile.df.full\$VALUE) - 22, label = \"M\");
+gp = gp + annotate(\"text\", x = 13.5, y = min(profile.df.full\$VALUE) - 22, label = \"C\");
+";
+
+  my $percentileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@percentileSet);
+  my $percentile =  EbrcWebsiteCommon::View::GraphPackage::GGLinePlot->new(@_);
   $percentile->setProfileSets($percentileSets);
   $percentile->setPartName('percentile');
   $percentile->setColors($colors);
@@ -1021,12 +1074,16 @@ text(13.3, y.max + (y.max - y.min)*0.22, 'C');
   $percentile->setSplineApproxN(61);
   $percentile->setElementNameMarginSize(6.4);
   $percentile->setTitleLine(2.25);
-  $percentile->setRPostscript($cellCycleTopMargin);
+  $percentile->setRPostscript($PercentileCellCycleAnnotation);
   $percentile->setXaxisLabel('Time point (hours)');
   $percentile->setYaxisLabel('Percentile');
   $percentile->setPlotTitle("Percentile - $id");
+  $percentile->addAdjustProfile('profile.df.full$ELEMENT_NAMES = factor(profile.df.full$ELEMENT_NAMES, levels=c("asynchronous","0 HR","1 HR","2 HR","3 HR","4 HR","5 HR","6 HR","7 HR","8 HR","9 HR","10 HR","11 HR","12 HR"));
+      profile.df.full$GROUP = c("A","C","C","C","C","C","C","C","C","C","C","C","C","C");');
+
 
   $self->SUPER::setGraphObjects($rma, $percentile);
+
 }
 
 # sub isExcludedProfileSet {
@@ -1053,7 +1110,7 @@ sub finalProfileAdjustments {
   my ($self, $profile) = @_;
 
   my $rAdjustString = << 'RADJUST';    
-    profile.df.full$ELEMENT_NAMES = factor(profile.df.full$ELEMENT_NAMES, levels=c("Slender","0 hr","1 hr","6 hr","18 hr","24 hr"));
+    profile.df.full$ELEMENT_NAMES = factor(profile.df.full$ELEMENT_NAMES, levels=c("Slender","0 hr","1 hr","6 hr","18 hr","48 hr"));
     profile.df.full$GROUP = c("A","C","C","C","C","C");
 RADJUST
 
@@ -1096,9 +1153,9 @@ sub init {
 
   my @profileArray = (['Cparvum_RT_PCR_Kissinger', 'values', '', '', $xAxisLabels ]);
 
-  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArray);
+  my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileArray);
 
-  my $standardized = ApiCommonWebsite::View::GraphPackage::BarPlot::Standardized->new(@_);
+  my $standardized = EbrcWebsiteCommon::View::GraphPackage::BarPlot::Standardized->new(@_);
   $standardized->setProfileSets($profileSets);
   $standardized->setColors($colors);
   $standardized->setForceHorizontalXAxis(1);

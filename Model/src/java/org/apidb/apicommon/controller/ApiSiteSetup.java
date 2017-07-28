@@ -7,7 +7,6 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 import org.apidb.apicommon.model.comment.CommentFactory;
 import org.apidb.apicommon.model.filter.GeneBooleanFilter;
-import org.gusdb.fgputil.accountdb.UserProfile;
 import org.gusdb.fgputil.events.Event;
 import org.gusdb.fgputil.events.EventListener;
 import org.gusdb.fgputil.events.Events;
@@ -102,35 +101,13 @@ public class ApiSiteSetup {
           commentSearchTextUpdateRequired = true;
         }
       }
+
       // if none changed, no update needed
       if (!commentSearchTextUpdateRequired) return;
 
       // need to write updated text to comment search field
       CommentFactory commentFactory = CommentFactoryManager.getCommentFactory(updateEvent.getWdkModel().getProjectId());
-      String userInfo = userProps.get("firstName") + " " + userProps.get("lastName") + "(" + userProps.get("organization") + ")";
-
-      LOG.warn("Comment search index is out of date for user " + updateEvent.getNewProfile().getUserId() + ", new values: " + userInfo);
-
-      /* FIXME
-      userinfo := :new.first_name || ' ' || :new.last_name || '(' || :new.organization || ')';
-
-      update apidb.TextSearchableComment
-      set content = (select headline || '|' || content || '|' || userinfo || apidb.author_list(comment_id)
-                     from userlogins5.Comments
-                     where comment_id = TextSearchableComment.comment_id)
-      where comment_id in (select comment_id from userlogins5.comments where user_id = :new.user_id);
-      */
-      /*
-      select apidb.tab_to_string(set(CAST(COLLECT(source_id) AS apidb.varchartab)), ', ')
-      into authors
-      from (select source_id
-            from userlogins5.CommentReference
-            where database_name = 'author'
-              and comment_id = p_comment_id
-            order by source_id);
-
-      return authors;
-      */
+      commentFactory.updateCommentUser(updateEvent.getNewProfile());
     }
   };
 }

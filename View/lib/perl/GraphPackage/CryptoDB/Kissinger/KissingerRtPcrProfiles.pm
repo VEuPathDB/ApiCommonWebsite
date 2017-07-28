@@ -4,9 +4,9 @@ use strict;
 use vars qw( @ISA );
 
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet );
-use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
-use ApiCommonWebsite::View::GraphPackage::BarPlot;
+@ISA = qw( EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet );
+use EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet;
+use EbrcWebsiteCommon::View::GraphPackage::GGBarPlot;
 
 
 sub init {
@@ -20,9 +20,9 @@ sub init {
 
   my @profileArray = (['Cparvum_RT_PCR_Kissinger', 'values', '', '', $xAxisLabels ]);
 
-  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArray);
+  my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileArray);
 
-  my $standardized = ApiCommonWebsite::View::GraphPackage::BarPlot::Standardized->new(@_);
+  my $standardized = EbrcWebsiteCommon::View::GraphPackage::GGBarPlot::Standardized->new(@_);
   $standardized->setProfileSets($profileSets);
   $standardized->setColors($colors);
   $standardized->setForceHorizontalXAxis(1);

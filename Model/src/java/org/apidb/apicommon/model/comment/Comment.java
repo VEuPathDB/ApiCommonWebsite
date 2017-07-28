@@ -501,7 +501,7 @@ public class Comment {
         return array;
     }
 
-    private String qualify(String content) {
+    private static String qualify(String content) {
         // replace all single quotes with two single quotes
         if (content == null) content = "";
         // content = content.replaceAll("'", "''");

@@ -5,9 +5,9 @@ use vars qw( @ISA);
 
 use Data::Dumper;
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet);
-use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
-use ApiCommonWebsite::View::GraphPackage::GGScatterPlot;
+@ISA = qw( EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet);
+use EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet;
+use EbrcWebsiteCommon::View::GraphPackage::GGScatterPlot;
 
 sub init {
   my $self = shift;
@@ -21,18 +21,15 @@ sub init {
 
   my $facet = $self->getFacets();
   my $contXAxis = $self->getContXAxis();
-
+  
   my @profileSetArray = (['Crompton Ab Microarray Profiles','values', '', '', '', '', '', $facet, '', '', $contXAxis]);
-  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSetArray);
+  my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileSetArray);
 
-  my $scatter = ApiCommonWebsite::View::GraphPackage::GGScatterPlot::LogRatio->new(@_);
-#  my $scatter = ApiCommonWebsite::View::GraphPackage::ScatterPlot::ClinicalMetaData->new(@_);
+  my $scatter = EbrcWebsiteCommon::View::GraphPackage::GGScatterPlot::LogRatio->new(@_);
+#  my $scatter = EbrcWebsiteCommon::View::GraphPackage::ScatterPlot::ClinicalMetaData->new(@_);
   $scatter->setProfileSets($profileSets);
   $scatter->setColors($colors);
 
-
-  # TODO: Remove this when we get facet and cont x dynamically
-  $scatter->setXaxisLabel("Age");
 
   $self->setGraphObjects($scatter);
 

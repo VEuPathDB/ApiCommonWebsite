@@ -3,9 +3,9 @@ package ApiCommonWebsite::View::GraphPackage::ToxoDB::Boothroyd::TgME49M4;
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet );
-use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
-use ApiCommonWebsite::View::GraphPackage::BarPlot;
+@ISA = qw( EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet );
+use EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet;
+use EbrcWebsiteCommon::View::GraphPackage::BarPlot;
 
 sub init {
   my $self = shift;
@@ -22,15 +22,15 @@ sub init {
    my @profileSetsArray = (['Expression profiles of Tgondii ME49 Boothroyd experiments', 'standard error - Expression profiles of Tgondii ME49 Boothroyd experiments', '']);
   my @percentileSetsArray = (['percentile - Expression profiles of Tgondii ME49 Boothroyd experiments', '',''],);
 
-  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSetsArray);
-  my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@percentileSetsArray);
+  my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileSetsArray);
+  my $percentileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@percentileSetsArray);
 
-  my $rma = ApiCommonWebsite::View::GraphPackage::BarPlot::RMA->new(@_);
+  my $rma = EbrcWebsiteCommon::View::GraphPackage::BarPlot::RMA->new(@_);
   $rma->setProfileSets($profileSets);
   $rma->setColors($colors);
   $rma->setElementNameMarginSize (10);
 
-  my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
+  my $percentile = EbrcWebsiteCommon::View::GraphPackage::BarPlot::Percentile->new(@_);
   $percentile->setProfileSets($percentileSets);
   $percentile->setColors($colors);
   $percentile->setElementNameMarginSize (10);

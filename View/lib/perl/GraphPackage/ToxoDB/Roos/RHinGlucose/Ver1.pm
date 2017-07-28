@@ -16,9 +16,9 @@ Provides initialization parameters for the Cowman data.
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::BasicBarPlot );
+@ISA = qw( EbrcWebsiteCommon::View::GraphPackage::BasicBarPlot );
 
-use ApiCommonWebsite::View::GraphPackage::BasicBarPlot;
+use EbrcWebsiteCommon::View::GraphPackage::BasicBarPlot;
 use ApiCommonWebsite::Model::CannedQuery::Profile;
 use ApiCommonWebsite::Model::CannedQuery::ProfileSet;
 use ApiCommonWebsite::Model::CannedQuery::ElementNames;

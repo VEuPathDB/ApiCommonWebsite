@@ -3,12 +3,12 @@ package ApiCommonWebsite::View::GraphPackage::MicrosporidiaDB::Troemel::Celegans
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet );
-use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
+@ISA = qw( EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet );
+use EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet;
 
-use ApiCommonWebsite::View::GraphPackage::SimpleRNASeqLinePlot;
-use ApiCommonWebsite::View::GraphPackage::BarPlot;
-use ApiCommonWebsite::View::GraphPackage::Util;
+use EbrcWebsiteCommon::View::GraphPackage::SimpleRNASeqLinePlot;
+use EbrcWebsiteCommon::View::GraphPackage::BarPlot;
+use EbrcWebsiteCommon::View::GraphPackage::Util;
 
 
 sub init {
@@ -30,8 +30,8 @@ sub init {
 
                      );
 
-  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArray);
-  my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([['percentile - Nematocida parisii ERTm1 Spores', '', ''],
+  my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileArray);
+  my $percentileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets([['percentile - Nematocida parisii ERTm1 Spores', '', ''],
                                                                                     ['percentile - C. elegans Time Series - Infected', '', '']
                                                                                    ]);
 
@@ -39,7 +39,7 @@ sub init {
   my $additionalRCode = "lines.df[2,] = lines.df[2,] + lines.df[3,];";
 
 
-  my $stacked = ApiCommonWebsite::View::GraphPackage::LinePlot::PairedEndRNASeq->new(@_);
+  my $stacked = EbrcWebsiteCommon::View::GraphPackage::LinePlot::PairedEndRNASeq->new(@_);
   $stacked->setProfileSets($profileSets);
   $stacked->setColors(\@colors);
 
@@ -47,7 +47,7 @@ sub init {
   $stacked->setXaxisLabel("hours");
   $stacked->setPointsPch([19,'NA','NA']);
 
-  my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
+  my $percentile = EbrcWebsiteCommon::View::GraphPackage::BarPlot::Percentile->new(@_);
   $percentile->setProfileSets($percentileSets);
   $percentile->setColors([$colors[0]]);
 

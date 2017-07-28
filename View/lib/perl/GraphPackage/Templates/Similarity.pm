@@ -3,11 +3,11 @@ package ApiCommonWebsite::View::GraphPackage::Templates::Similarity;
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet );
-use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
-use ApiCommonWebsite::View::GraphPackage::SimilarityPlot;
+@ISA = qw( EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet );
+use EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet;
+use EbrcWebsiteCommon::View::GraphPackage::SimilarityPlot;
 
-use ApiCommonWebsite::View::GraphPackage::Util;
+use EbrcWebsiteCommon::View::GraphPackage::Util;
 #use Data::Dumper;
 
 
@@ -26,8 +26,8 @@ sub init {
                       ["$profile","values"],
                      );
 
-  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileArray);
-  my $similarity = ApiCommonWebsite::View::GraphPackage::SimilarityPlot::LogRatio->new(@_);
+  my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileArray);
+  my $similarity = EbrcWebsiteCommon::View::GraphPackage::SimilarityPlot::LogRatio->new(@_);
   $similarity->setProfileSets($profileSets);
   $similarity->setColors(\@colors);
   $similarity->setPointsPch([15,15]);

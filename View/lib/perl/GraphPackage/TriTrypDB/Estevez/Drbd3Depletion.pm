@@ -3,8 +3,8 @@ package ApiCommonWebsite::View::GraphPackage::TriTrypDB::Estevez::Drbd3Depletion
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::BarPlotSet );
-use ApiCommonWebsite::View::GraphPackage::BarPlotSet;
+@ISA = qw( EbrcWebsiteCommon::View::GraphPackage::BarPlotSet );
+use EbrcWebsiteCommon::View::GraphPackage::BarPlotSet;
 
 sub init {
   my $self = shift;

@@ -4,10 +4,10 @@ use strict;
 use vars qw( @ISA );
 
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet );
-use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
-use ApiCommonWebsite::View::GraphPackage::PercentilePlot;
-use ApiCommonWebsite::View::GraphPackage::LinePlot;
+@ISA = qw( EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet );
+use EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet;
+use EbrcWebsiteCommon::View::GraphPackage::PercentilePlot;
+use EbrcWebsiteCommon::View::GraphPackage::LinePlot;
 
 sub init {
   my $self = shift;
@@ -19,19 +19,19 @@ sub init {
 
   $self->setMainLegend({colors => $colors, short_names => $legend, cols => 3});
 
-  my $graphObject = ApiCommonWebsite::View::GraphPackage::PercentilePlot->new();
+  my $graphObject = EbrcWebsiteCommon::View::GraphPackage::PercentilePlot->new();
 
   $graphObject->setProfileSetNames(['Percentiles of of E-TABM-438 from Cowman']);
   $graphObject->setPartName('bar');
   $graphObject->setColors($colors);
   $graphObject->setPlotTitle('This is a test of the emergency graph generation system');
   
-  my $GO1 = ApiCommonWebsite::View::GraphPackage::PercentilePlot->new();
+  my $GO1 = EbrcWebsiteCommon::View::GraphPackage::PercentilePlot->new();
   $GO1->setProfileSetNames(['Percentiles of of E-TABM-438 from Cowman']);
   $GO1->setColors($colors);
   $GO1->setPlotTitle('This is a test of the emergency graph generation system');
 
-  my $GO2 = ApiCommonWebsite::View::GraphPackage::LinePlot->new();
+  my $GO2 = EbrcWebsiteCommon::View::GraphPackage::LinePlot->new();
   $GO2->setProfileSetNames(['Profiles of P.falciparum Newbold mRNA Seq data']);
   $GO2->setColors(['#000080']);
   $GO2->setPartName('line');

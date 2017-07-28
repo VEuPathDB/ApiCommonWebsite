@@ -3,12 +3,12 @@ package ApiCommonWebsite::View::GraphPackage::PlasmoDB::Caro::Ribosome;
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet );
-use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
-use ApiCommonWebsite::View::GraphPackage::LinePlot;
-use ApiCommonWebsite::View::GraphPackage::GGBarPlot;
+@ISA = qw( EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet );
+use EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet;
+use EbrcWebsiteCommon::View::GraphPackage::LinePlot;
+use EbrcWebsiteCommon::View::GraphPackage::GGBarPlot;
 
-use ApiCommonWebsite::View::GraphPackage::Util;
+use EbrcWebsiteCommon::View::GraphPackage::Util;
 
 sub init {
   my $self = shift;
@@ -22,11 +22,11 @@ sub init {
   my $sampleLabels = ['R','ET', 'LT', 'S', 'M'];
 
 
-  my $translationalEffSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([['Ribosome profile and mRNA transcriptome of asexual stages - translational efficiency - sense_strand', 'values', undef,undef, $sampleLabels,undef,undef,undef,'translational efficiency']]);
+  my $translationalEffSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets([['Ribosome profile and mRNA transcriptome of asexual stages - translational efficiency - sense_strand', 'values', undef,undef, $sampleLabels,undef,undef,undef,'translational efficiency']]);
 
   my $id = $self->getId();
 
-  my $transEff = ApiCommonWebsite::View::GraphPackage::GGBarPlot->new(@_);
+  my $transEff = EbrcWebsiteCommon::View::GraphPackage::GGBarPlot->new(@_);
   $transEff->setProfileSets([$translationalEffSets->[0]]);
   $transEff->setYaxisLabel('Translational Effeciency');
   $transEff->setColors(["#a88b8b"]);

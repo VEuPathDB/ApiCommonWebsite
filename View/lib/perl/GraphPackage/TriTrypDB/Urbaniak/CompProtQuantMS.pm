@@ -4,9 +4,9 @@ package ApiCommonWebsite::View::GraphPackage::TriTrypDB::Urbaniak::CompProtQuant
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet);
-use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
-use ApiCommonWebsite::View::GraphPackage::BarPlot;
+@ISA = qw( EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet);
+use EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet;
+use EbrcWebsiteCommon::View::GraphPackage::BarPlot;
 
 sub init {
   my $self = shift;
@@ -18,9 +18,9 @@ sub init {
 
   my @profileSetsArray = (['Profiles of tbruTREU927 comparative proteomics from Urbankiak', '', ]);
 
-  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSetsArray);
+  my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileSetsArray);
 
-  my $quant = ApiCommonWebsite::View::GraphPackage::BarPlot::QuantMassSpec->new(@_);
+  my $quant = EbrcWebsiteCommon::View::GraphPackage::BarPlot::QuantMassSpec->new(@_);
   $quant->setProfileSets($profileSets);
   $quant->setColors($colors);
   $quant->setForceHorizontalXAxis(1);

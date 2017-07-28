@@ -1,6 +1,6 @@
 
 package ApiCommonWebsite::Model::CannedQuery::ElementNames;
-@ISA = qw( ApiCommonWebsite::Model::CannedQuery );
+@ISA = qw( EbrcWebsiteCommon::Model::CannedQuery );
 
 =pod
 
@@ -29,7 +29,7 @@ use strict;
 
 use FileHandle;
 
-use ApiCommonWebsite::Model::CannedQuery;
+use EbrcWebsiteCommon::Model::CannedQuery;
 
 # ========================================================================
 # ----------------------- Create, Init, and Access -----------------------
