@@ -3,9 +3,9 @@ package ApiCommonWebsite::View::GraphPackage::PlasmoDB::CortesTransVar::CrossStr
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet );
-use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
-use ApiCommonWebsite::View::GraphPackage::BarPlot;
+@ISA = qw( EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet );
+use EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet;
+use EbrcWebsiteCommon::View::GraphPackage::BarPlot;
 
 use Data::Dumper;
 
@@ -29,10 +29,10 @@ sub init {
 
   my @profileSetNames = (['Cortes CGH Profiles', '' ,$strainNames]);
 
-  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSetNames);
+  my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileSetNames);
 
 
-  my $ratio = ApiCommonWebsite::View::GraphPackage::BarPlot::LogRatio->new(@_);
+  my $ratio = EbrcWebsiteCommon::View::GraphPackage::BarPlot::LogRatio->new(@_);
   $ratio->setProfileSets($profileSets);
   $ratio->setColors(\@colors);
   $ratio->setElementNameMarginSize (6);

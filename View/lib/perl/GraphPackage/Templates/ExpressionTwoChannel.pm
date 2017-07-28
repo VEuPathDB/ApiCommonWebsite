@@ -25,6 +25,12 @@ sub finalProfileAdjustments {
 }
 1;
 
+package ApiCommonWebsite::View::GraphPackage::Templates::ExpressionTwoChannel::DS_708520717e;
+
+#sub useLegacy {return 1;}
+
+1;
+
 #PlasmoDB eQTL
 package ApiCommonWebsite::View::GraphPackage::Templates::ExpressionTwoChannel::DS_dd1931c47a;
 
@@ -131,8 +137,8 @@ sub init {
 
   $self->SUPER::init(@_);
 
-  my $bar = ApiCommonWebsite::View::GraphPackage::GGBarPlot::LogRatio->new(@_);
-  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([['T. brucei TbDRBD3-Depleted','values']]);
+  my $bar = EbrcWebsiteCommon::View::GraphPackage::GGBarPlot::LogRatio->new(@_);
+  my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets([['T. brucei TbDRBD3-Depleted','values']]);
 
   $bar->setProfileSets($profileSets);
 
@@ -208,10 +214,10 @@ sub init {
 
   my @cgh_profileSetNames = (['Cortes CGH Profiles', 'values', '', '', $cgh_strainNames]);
 
-  my $cgh_profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@cgh_profileSetNames);
+  my $cgh_profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@cgh_profileSetNames);
 
 
-  my $ratio = ApiCommonWebsite::View::GraphPackage::GGBarPlot::LogRatio->new(@_);
+  my $ratio = EbrcWebsiteCommon::View::GraphPackage::GGBarPlot::LogRatio->new(@_);
   $ratio->setProfileSets($cgh_profileSets);
   $ratio->setColors(\@cgh_colors);
   $ratio->setElementNameMarginSize (6);
@@ -241,8 +247,8 @@ sub defineGraphs {
   }
 
 
-   my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSetNames);
-   my $line = ApiCommonWebsite::View::GraphPackage::GGLinePlot::LogRatio->new(@_);
+   my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileSetNames);
+   my $line = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot::LogRatio->new(@_);
    $line->setProfileSets($profileSets);
    $line->setColors($color);
    $line->setPointsPch($pointsPch);
@@ -341,11 +347,11 @@ sub makeCombinedGraph {
                             [$dd2ProfileSet, 'values', '', '', $times_dd2],
                            );
 
-  my $derisiProfileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@derisiProfileArray);
+  my $derisiProfileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@derisiProfileArray);
 
   my @colors = ('blue', 'red', 'orange', 'cyan', 'purple' );
 
-  my $derisi = ApiCommonWebsite::View::GraphPackage::GGLinePlot::LogRatio->new(@_);
+  my $derisi = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot::LogRatio->new(@_);
   $derisi->setProfileSets($derisiProfileSets);
   $derisi->setColors([@colors[0..2]]);
   $derisi->setPointsPch([15,15,15]);
@@ -355,7 +361,6 @@ sub makeCombinedGraph {
   $derisi->setHasExtraLegend(1);
   $derisi->setLegendLabels(['HB3', '3D7', 'DD2']);
   $derisi->setXaxisLabel('');
-  $derisi->setRemoveNaN('TRUE');
 
 
   return $derisi;
@@ -370,9 +375,9 @@ sub defineGraphs {
                          [$nonSmoothed, 'values']
                         );
 
-  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSetNames);
+  my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileSetNames);
 
-  my $line = ApiCommonWebsite::View::GraphPackage::GGLinePlot::LogRatio->new(@_);
+  my $line = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot::LogRatio->new(@_);
   $line->setProfileSets($profileSets);
   $line->setColors([$color, 'gray']);
   $line->setPointsPch(\@pch);
@@ -380,10 +385,9 @@ sub defineGraphs {
   my $lineTitle = $line->getPlotTitle();
   $line->setPlotTitle("$name - $lineTitle");
   $line->setXaxisLabel('');
-  $line->setRemoveNaN('TRUE');
 
-   my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([[$smoothed, 'channel1_percentiles']]);
-   my $percentile = ApiCommonWebsite::View::GraphPackage::GGLinePlot::Percentile->new(@_);
+   my $percentileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets([[$smoothed, 'channel1_percentiles']]);
+   my $percentile = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot::Percentile->new(@_);
    $percentile->setProfileSets($percentileSets);
    $percentile->setPointsPch(['NA']);
    $percentile->setIsFilled(1);
@@ -393,34 +397,32 @@ sub defineGraphs {
    $percentile->setPlotTitle("$name - $pctTitle");
    $percentile->setFillBelowLine('TRUE');
    $percentile->setXaxisLabel('');
-   $percentile->setRemoveNaN('TRUE');
 
    my @fractions = ([$fraction, 'value', '', '', '', 'erythrocytic ring trophozoite stage', $scale],
                     [$fraction, 'value', '', '', '', 'schizont stage', $scale],
                     [$fraction, 'value', '', '', '', 'trophozoite stage', $scale],
                    );
 
-   my $fractionSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@fractions);
+   my $fractionSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@fractions);
 
-   my $postscript = "
- text(8,  50, col=\"white\", labels=c(\"Ring\"));
- text(23, 50, col=\"white\", labels=c(\"Trophozoite\"));
- text(40, 50, col=\"white\", labels=c(\"Schizont\"));
- ";
+  # my $postscript = "
+ #text(8,  50, col=\"white\", labels=c(\"Ring\"));
+ #text(23, 50, col=\"white\", labels=c(\"Trophozoite\"));
+ #text(40, 50, col=\"white\", labels=c(\"Schizont\"));
+ #";
 
    my @colors = ('#E9967A', '#4169E1', '#FF69B4');
-   my $lifeStages = ApiCommonWebsite::View::GraphPackage::GGLinePlot::Filled->new(@_);
+   my $lifeStages = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot::Filled->new(@_);
    $lifeStages->setProfileSets($fractionSets);
    $lifeStages->setPlotTitle("$name - Life Stage Population Percentages");
    $lifeStages->setYaxisLabel("%");
    $lifeStages->setColors(\@colors);
-   $lifeStages->setRPostscript($postscript);
+  # $lifeStages->setRPostscript($postscript);
    $lifeStages->setPointsPch(['NA', 'NA', 'NA']);
    $lifeStages->setPartName("lifeStages_" . $name);
    $lifeStages->setFillBelowLine('TRUE');
    $lifeStages->setLegendLabels(["Ring", "Schizont", "Trophozoite"]);
    $lifeStages->setXaxisLabel('');
-   $lifeStages->setRemoveNaN('TRUE');
 
   return($line, $percentile, $lifeStages);
 }
@@ -441,35 +443,37 @@ sub init {
   $self->setMainLegend({colors => $colors, short_names => $legend, points_pch=> $pch, , cols => 3});
 
 
-  my $clnClbProfileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([['Cln/Clb experiments','values']]);
+  my $clnClbProfileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets([['Cln/Clb experiments','values']]);
 
-  my $clnClbPlot = ApiCommonWebsite::View::GraphPackage::GGBarPlot::LogRatio->new(@_);
+  my $clnClbPlot = EbrcWebsiteCommon::View::GraphPackage::GGBarPlot::LogRatio->new(@_);
   $clnClbPlot->setProfileSets($clnClbProfileSets);
   $clnClbPlot->setPartName('Cln_Clb');
   $clnClbPlot->setForceHorizontalXAxis(1);
 
 
-  my $pheromoneProfileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([['pheromone experiments','values']]);
-  my $pheromonePlot = ApiCommonWebsite::View::GraphPackage::GGLinePlot::LogRatio->new(@_);
+  my $pheromoneProfileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets([['pheromone experiments','values']]);
+  my $pheromonePlot = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot::LogRatio->new(@_);
   $pheromonePlot->setProfileSets($pheromoneProfileSets);
   $pheromonePlot->setPartName('pheromone');
 
-  my $elutriationProfileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([['elutriation experiments','values']]);
-  my $elutriationPlot = ApiCommonWebsite::View::GraphPackage::GGLinePlot::LogRatio->new(@_);
+  my $elutriationProfileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets([['elutriation experiments','values']]);
+  my $elutriationPlot = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot::LogRatio->new(@_);
   $elutriationPlot->setProfileSets($elutriationProfileSets);
   $elutriationPlot->setPartName('elutriation');
   
-  my $cdc15ProfileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([['cdc15 experiments','values']]);
-  my $cdc15Plot = ApiCommonWebsite::View::GraphPackage::GGLinePlot::LogRatio->new(@_);
+  my $cdc15ProfileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets([['cdc15 experiments','values']]);
+  my $cdc15Plot = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot::LogRatio->new(@_);
   $cdc15Plot->setProfileSets($cdc15ProfileSets);
   $cdc15Plot->setPartName('cdc15');
   $cdc15Plot->setXaxisLabel('');
+  $cdc15Plot->setRemoveNaN('TRUE');
 
-  my $cdc28ProfileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([['Cho et al','values']]);
-  my $cdc28Plot = ApiCommonWebsite::View::GraphPackage::GGLinePlot::LogRatio->new(@_);
+  my $cdc28ProfileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets([['Cho et al','values']]);
+  my $cdc28Plot = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot::LogRatio->new(@_);
   $cdc28Plot->setProfileSets($cdc28ProfileSets);
   $cdc28Plot->setPartName('cdc28');
   $cdc28Plot->setXaxisLabel('');
+  $cdc28Plot->setRemoveNaN('TRUE');
 
   $self->setGraphObjects($clnClbPlot, $pheromonePlot, $elutriationPlot, $cdc15Plot, $cdc28Plot);
 

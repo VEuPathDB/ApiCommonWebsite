@@ -3,9 +3,9 @@ package ApiCommonWebsite::View::GraphPackage::ToxoDB::White::CellCycle;
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet );
-use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
-use ApiCommonWebsite::View::GraphPackage::LinePlot;
+@ISA = qw( EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet );
+use EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet;
+use EbrcWebsiteCommon::View::GraphPackage::LinePlot;
 
 sub init {
   my $self = shift;
@@ -44,10 +44,10 @@ text(13.3, y.max + (y.max - y.min)*0.22, 'C');
                             );
 
 
-  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSetsArray);
-  my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@percentileSetsArray);
+  my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileSetsArray);
+  my $percentileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@percentileSetsArray);
 
-  my $rma = ApiCommonWebsite::View::GraphPackage::LinePlot::RMA->new(@_);
+  my $rma = EbrcWebsiteCommon::View::GraphPackage::LinePlot::RMA->new(@_);
   $rma->setProfileSets($profileSets);
   $rma->setColors($colors);
   $rma->setPointsPch($pch);
@@ -60,7 +60,7 @@ text(13.3, y.max + (y.max - y.min)*0.22, 'C');
   $rma->setElementNameMarginSize(6.3);
   $rma->setXaxisLabel("Time Point");
 
-  my $percentile = ApiCommonWebsite::View::GraphPackage::LinePlot::Percentile->new(@_);
+  my $percentile = EbrcWebsiteCommon::View::GraphPackage::LinePlot::Percentile->new(@_);
   $percentile->setProfileSets($percentileSets);
   $percentile->setColors($colors);
   $percentile->setPointsPch($pch);

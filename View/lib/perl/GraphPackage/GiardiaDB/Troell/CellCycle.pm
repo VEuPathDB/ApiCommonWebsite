@@ -3,9 +3,9 @@ package ApiCommonWebsite::View::GraphPackage::GiardiaDB::Troell::CellCycle;
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet );
-use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
-use ApiCommonWebsite::View::GraphPackage::LinePlot;
+@ISA = qw( EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet );
+use EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet;
+use EbrcWebsiteCommon::View::GraphPackage::LinePlot;
 
 
 sub init {
@@ -18,10 +18,10 @@ sub init {
   my @profileSetsArray = (['Troell Cell Cycle', 'standard error - Troell Cell Cycle', ]);
   my @percentileSetsArray = (['percentile - Troell Cell Cycle', '',]);
 
-  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSetsArray);
-  my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@percentileSetsArray);
+  my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileSetsArray);
+  my $percentileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@percentileSetsArray);
 
-  my $expression = ApiCommonWebsite::View::GraphPackage::LinePlot::QuantileNormalized->new(@_);
+  my $expression = EbrcWebsiteCommon::View::GraphPackage::LinePlot::QuantileNormalized->new(@_);
   $expression->setProfileSets($profileSets);
   $expression->setColors([$colors->[0]]);
   $expression->setElementNameMarginSize (5);
@@ -30,7 +30,7 @@ sub init {
   $expression->setDefaultYMin(-1);
   $expression->setDefaultYMax(1);
 
-  my $percentile = ApiCommonWebsite::View::GraphPackage::LinePlot::Percentile->new(@_);
+  my $percentile = EbrcWebsiteCommon::View::GraphPackage::LinePlot::Percentile->new(@_);
   $percentile->setProfileSets($percentileSets);
   $percentile->setColors($colors);
   $percentile->setElementNameMarginSize (5);

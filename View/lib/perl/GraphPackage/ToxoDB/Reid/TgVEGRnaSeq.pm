@@ -3,8 +3,8 @@ package ApiCommonWebsite::View::GraphPackage::ToxoDB::Reid::TgVEGRnaSeq;
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::SimpleRNASeq );
-use ApiCommonWebsite::View::GraphPackage::SimpleRNASeq;
+@ISA = qw( EbrcWebsiteCommon::View::GraphPackage::SimpleRNASeq );
+use EbrcWebsiteCommon::View::GraphPackage::SimpleRNASeq;
 
 sub init {
   my $self = shift;

@@ -3,9 +3,9 @@ package ApiCommonWebsite::View::GraphPackage::ToxoDB::Carruthers::IntraExtraDiff
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet );
-use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
-use ApiCommonWebsite::View::GraphPackage::BarPlot;
+@ISA = qw( EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet );
+use EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet;
+use EbrcWebsiteCommon::View::GraphPackage::BarPlot;
 
 sub init {
   my $self = shift;
@@ -23,18 +23,18 @@ sub init {
   my @profileSetsArray = (['Expression profiles of Tgondii ME49 Carruthers experiments', 'standard error - Expression profiles of Tgondii ME49 Carruthers experiments', '']);
   my @percentileSetsArray = (['percentile - Expression profiles of Tgondii ME49 Carruthers experiments', '',''],);
 
-  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSetsArray);
-  my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@percentileSetsArray);
+  my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileSetsArray);
+  my $percentileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@percentileSetsArray);
 
   $self->setMainLegend({colors => $colors, short_names => $legend, cols=> 3});
 
-  my $rma = ApiCommonWebsite::View::GraphPackage::BarPlot::RMA->new(@_);
+  my $rma = EbrcWebsiteCommon::View::GraphPackage::BarPlot::RMA->new(@_);
   $rma->setProfileSets($profileSets);
   $rma->setColors($colors);
   $rma->setSampleLabels($legend);
   $rma->setElementNameMarginSize(7.5);
 
-  my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
+  my $percentile = EbrcWebsiteCommon::View::GraphPackage::BarPlot::Percentile->new(@_);
   $percentile->setProfileSets($percentileSets);
   $percentile->setColors($colors);
   $percentile->setSampleLabels($legend);

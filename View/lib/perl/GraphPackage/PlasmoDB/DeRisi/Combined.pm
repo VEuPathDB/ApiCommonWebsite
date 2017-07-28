@@ -4,9 +4,9 @@ use strict;
 use vars qw( @ISA );
 
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet );
-use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
-use ApiCommonWebsite::View::GraphPackage::LinePlot;
+@ISA = qw( EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet );
+use EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet;
+use EbrcWebsiteCommon::View::GraphPackage::LinePlot;
 
 sub init {
   my $self = shift;
@@ -39,9 +39,9 @@ sub defineGraphs {
                          [$nonSmoothed]
                         );
 
-  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSetNames);
+  my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileSetNames);
 
-  my $line = ApiCommonWebsite::View::GraphPackage::LinePlot::LogRatio->new(@_);
+  my $line = EbrcWebsiteCommon::View::GraphPackage::LinePlot::LogRatio->new(@_);
   $line->setProfileSets($profileSets);
   $line->setColors([$color, 'gray']);
   $line->setPointsPch(\@pch);
@@ -49,8 +49,8 @@ sub defineGraphs {
   my $lineTitle = $line->getPlotTitle();
   $line->setPlotTitle("$name - $lineTitle");
 
-  my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([[$percentile]]);
-  my $percentile = ApiCommonWebsite::View::GraphPackage::LinePlot::Percentile->new(@_);
+  my $percentileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets([[$percentile]]);
+  my $percentile = EbrcWebsiteCommon::View::GraphPackage::LinePlot::Percentile->new(@_);
   $percentile->setProfileSets($percentileSets);
   $percentile->setPointsPch(['NA']);
   $percentile->setIsFilled(1);
@@ -64,7 +64,7 @@ sub defineGraphs {
                    [$fraction, '', '', 'Trophozoite', $scale],
                   );
 
-  my $fractionSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@fractions);
+  my $fractionSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@fractions);
 
   my $postscript = "
 text(8,  50, col=\"white\", labels=c(\"Ring\"));
@@ -73,12 +73,12 @@ text(40, 50, col=\"white\", labels=c(\"Schizont\"));
 ";
 
   my @colors = ('#E9967A', '#4169E1', '#FF69B4');
-  my $lifeStages = ApiCommonWebsite::View::GraphPackage::LinePlot::Filled->new(@_);
+  my $lifeStages = EbrcWebsiteCommon::View::GraphPackage::LinePlot::Filled->new(@_);
   $lifeStages->setProfileSets($fractionSets);
   $lifeStages->setPlotTitle("$name - Life Stage Population Percentages");
   $lifeStages->setYaxisLabel("%");
   $lifeStages->setColors(\@colors);
-  $lifeStages->setRPostscript($postscript);
+#  $lifeStages->setRPostscript($postscript);
   $lifeStages->setPointsPch(['NA', 'NA', 'NA']);
   $lifeStages->setPartName("lifeStages_" . $name);
 

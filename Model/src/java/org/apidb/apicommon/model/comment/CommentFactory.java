@@ -1,26 +1,31 @@
 package org.apidb.apicommon.model.comment;
 
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
+import org.gusdb.fgputil.accountdb.UserProfile;
 import org.gusdb.fgputil.db.SqlUtils;
-import org.gusdb.fgputil.db.platform.DBPlatform;
 import org.gusdb.fgputil.db.pool.DatabaseInstance;
+import org.gusdb.fgputil.db.runner.SQLRunner;
+import org.gusdb.fgputil.db.runner.SingleLongResultSetHandler;
+import org.gusdb.fgputil.runtime.InstanceManager;
 import org.gusdb.fgputil.runtime.Manageable;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.config.ModelConfigUserDB;
+import org.gusdb.wdk.model.user.UserFactory;
 
 /**
  * Manages user comments on WDK records
@@ -31,20 +36,19 @@ public class CommentFactory implements Manageable<CommentFactory> {
 
   private static final Logger LOG = Logger.getLogger(CommentFactory.class);
 
-  private DatabaseInstance commentDb;
-  private DBPlatform dbPlatform;
-  private DataSource commentDs;
-  private CommentConfig config;
-  private boolean isReusingUserDb;
+  private DatabaseInstance _commentDb;
+  private DataSource _commentDs;
+  private CommentConfig _config;
+  private boolean _isReusingUserDb;
+  private UserFactory _userFactory;
 
   @Override
   public CommentFactory getInstance(String projectId, String gusHome) throws Exception {
     // parse and load the configuration
     CommentConfigParser parser = new CommentConfigParser(gusHome);
-    CommentConfig config;
     boolean isReusingUserDb;
     try {
-      config = parser.parseConfig(projectId);
+      CommentConfig config = parser.parseConfig(projectId);
 
       // create a platform object
       ModelConfigUserDB userDbConfig = WdkModel.getModelConfig(projectId, gusHome).getUserDB();
@@ -62,7 +66,9 @@ public class CommentFactory implements Manageable<CommentFactory> {
 
       // create a factory instance
       CommentFactory factory = new CommentFactory();
-      factory.initialize(db, config, isReusingUserDb);
+      // find user factory to use to get users
+      WdkModel wdkModel = InstanceManager.getInstance(WdkModel.class, gusHome, projectId);
+      factory.initialize(db, config, isReusingUserDb, wdkModel.getUserFactory());
       return factory;
     }
     catch (CommentModelException ex) {
@@ -70,12 +76,12 @@ public class CommentFactory implements Manageable<CommentFactory> {
     }
   }
 
-  private void initialize(DatabaseInstance commentDb, CommentConfig config, boolean isReusingUserDb) {
-    this.commentDb = commentDb;
-    this.dbPlatform = commentDb.getPlatform();
-    this.commentDs = commentDb.getDataSource();
-    this.config = config;
-    this.isReusingUserDb = isReusingUserDb;
+  private void initialize(DatabaseInstance commentDb, CommentConfig config, boolean isReusingUserDb, UserFactory userFactory) {
+    this._commentDb = commentDb;
+    this._commentDs = commentDb.getDataSource();
+    this._config = config;
+    this._isReusingUserDb = isReusingUserDb;
+    this._userFactory = userFactory;
   }
 
   public CommentTarget getCommentTarget(String internalValue) throws WdkModelException {
@@ -87,8 +93,8 @@ public class CommentFactory implements Manageable<CommentFactory> {
     String query = null;
     PreparedStatement ps = null;
     try {
-      query = "SELECT * FROM " + config.getCommentSchema() + "comment_target WHERE comment_target_id=?";
-      ps = SqlUtils.getPreparedStatement(commentDs, query);
+      query = "SELECT * FROM " + _config.getCommentSchema() + "comment_target WHERE comment_target_id=?";
+      ps = SqlUtils.getPreparedStatement(_commentDs, query);
       ps.setString(1, internalValue);
       rs = ps.executeQuery();
       if (!rs.next())
@@ -109,16 +115,22 @@ public class CommentFactory implements Manageable<CommentFactory> {
     return target;
   }
 
+  private long getNextId(String tableName) throws SQLException {
+    return _commentDb.getPlatform().getNextId(_commentDs, _config.getCommentSchema(), tableName);
+  }
+
   public void addComment(Comment comment) throws WdkModelException {
     addComment(comment, null);
   }
 
   public void addComment(Comment comment, String previousCommentId) throws WdkModelException {
-    String commentSchema = config.getCommentSchema();
+    String commentSchema = _config.getCommentSchema();
     PreparedStatement ps = null;
     // get a new comment id
     try {
-      long commentId = dbPlatform.getNextId(commentDs, commentSchema, "comments");
+
+      long userId = comment.getUserId();
+      long commentId = getNextId("comments");
       long[] targetCategoryIds = comment.getTargetCategoryIds();
       String[] pmIds = comment.getPmIds();
       String[] dois = comment.getDois();
@@ -127,10 +139,14 @@ public class CommentFactory implements Manageable<CommentFactory> {
       String[] existingFiles = comment.getExistingFiles();
       String[] associatedStableIds = comment.getAssociatedStableIds();
       String[] authors = comment.getAuthors();
-
       String sequence = comment.getSequence();
 
-      ps = SqlUtils.getPreparedStatement(commentDs, "INSERT INTO " + commentSchema +
+      // first need to add user to comments DB if not already present
+      if (!userPresentInCommentUsersTable(userId)) {
+        insertCommentUser(userId);
+      }
+
+      ps = SqlUtils.getPreparedStatement(_commentDs, "INSERT INTO " + commentSchema +
           "comments (comment_id, " + "comment_date, comment_target_id, " +
           "stable_id, conceptual, project_name, " + "project_version, headline, content, " +
           "location_string, review_status_id, organism, user_id) " + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
@@ -145,13 +161,13 @@ public class CommentFactory implements Manageable<CommentFactory> {
       ps.setString(6, comment.getProjectName());
       ps.setString(7, comment.getProjectVersion());
       ps.setString(8, comment.getHeadline());
-      dbPlatform.setClobData(ps, 9, comment.getContent(), false);
+      _commentDb.getPlatform().setClobData(ps, 9, comment.getContent(), false);
       ps.setString(10, comment.getLocationString());
       String reviewStatus = (comment.getReviewStatus() != null && comment.getReviewStatus().length() > 0)
           ? comment.getReviewStatus() : Comment.COMMENT_REVIEW_STATUS_UNKNOWN;
       ps.setString(11, reviewStatus);
       ps.setString(12, comment.getOrganism());
-      ps.setLong(13, comment.getUserId());
+      ps.setLong(13, userId);
 
       int result = ps.executeUpdate();
       LOG.debug("Inserted comment row: " + result);
@@ -237,8 +253,34 @@ public class CommentFactory implements Manageable<CommentFactory> {
     printStatus();
   }
 
+  private boolean userPresentInCommentUsersTable(long userId) {
+    String sql = "select count(*) from " + _config.getCommentSchema() + "comment_users where user_id = ?";
+    SingleLongResultSetHandler result = new SQLRunner(_commentDs, sql).executeQuery(
+        new Object[]{ userId }, new Integer[]{ Types.BIGINT }, new SingleLongResultSetHandler());
+    return result.getRetrievedValue() > 0;
+  }
+
+  private void insertCommentUser(long userId) throws WdkModelException {
+    Map<String,String> props = _userFactory.getUserById(userId).getProfileProperties();
+    String sql = "insert into " + _config.getCommentSchema() + "comment_users " +
+        "(user_id, first_name, last_name, organization) values (?, ?, ?, ?)";
+    new SQLRunner(_commentDs, sql).executeStatement(
+        new Object[] { userId, props.get("firstName"), props.get("lastName"), props.get("organization") },
+        new Integer[] { Types.BIGINT, Types.VARCHAR, Types.VARCHAR, Types.VARCHAR });
+  }
+
+  public void updateCommentUser(UserProfile userProfile) {
+    Map<String,String> props = userProfile.getProperties();
+    String sql = "update " + _config.getCommentSchema() + "comment_users set " +
+        "first_name = ?, last_name = ?, organization = ? where user_id = ?";
+    new SQLRunner(_commentDs, sql).executeUpdate(
+        new Object[] { props.get("firstName"), props.get("lastName"), props.get("organization"), userProfile.getUserId() },
+        new Integer[] { Types.VARCHAR, Types.VARCHAR, Types.VARCHAR, Types.BIGINT });
+    
+  }
+
   private void saveLocations(long commentId, Comment comment) throws SQLException {
-    String commentSchema = config.getCommentSchema();
+    String commentSchema = _config.getCommentSchema();
     // construct sql
     StringBuffer sql = new StringBuffer();
     sql.append("INSERT INTO " + commentSchema + "locations (comment_id, ");
@@ -246,11 +288,11 @@ public class CommentFactory implements Manageable<CommentFactory> {
     sql.append("coordinate_type) VALUES (?, ?, ?, ?, ?, ?)");
     PreparedStatement statement = null;
     try {
-      statement = SqlUtils.getPreparedStatement(commentDs, sql.toString());
+      statement = SqlUtils.getPreparedStatement(_commentDs, sql.toString());
 
       Location[] locations = comment.getLocations();
       for (Location location : locations) {
-        long locationId = dbPlatform.getNextId(commentDs, commentSchema, "locations");
+        long locationId = getNextId("locations");
         statement.setLong(1, commentId);
         statement.setLong(2, locationId);
         statement.setLong(3, location.getLocationStart());
@@ -269,7 +311,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
       int mutationMethod, int mutantExpression, int phenotypeLoc, String phenotypeDescription)
       throws SQLException {
 
-    String commentSchema = config.getCommentSchema();
+    String commentSchema = _config.getCommentSchema();
 
     // construct sql
     StringBuffer sql = new StringBuffer();
@@ -281,9 +323,9 @@ public class CommentFactory implements Manageable<CommentFactory> {
     sql.append(") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
     PreparedStatement statement = null;
     try {
-      statement = SqlUtils.getPreparedStatement(commentDs, sql.toString());
+      statement = SqlUtils.getPreparedStatement(_commentDs, sql.toString());
 
-      statement.setLong(1, dbPlatform.getNextId(commentDs, commentSchema, "phenotype"));
+      statement.setLong(1, getNextId("phenotype"));
       statement.setLong(2, commentId);
       statement.setString(3, background);
       statement.setInt(4, mutantStatus);
@@ -300,7 +342,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
   }
 
   private void saveMutantMarkers(long commentId, int[] mutantMarkers) throws SQLException {
-    String commentSchema = config.getCommentSchema();
+    String commentSchema = _config.getCommentSchema();
 
     StringBuffer sql = new StringBuffer();
     sql.append("INSERT INTO " + commentSchema + "PhenotypeMutantMarker ");
@@ -309,10 +351,10 @@ public class CommentFactory implements Manageable<CommentFactory> {
     sql.append(") VALUES (?, ?, ?)");
     PreparedStatement statement = null;
     try {
-      statement = SqlUtils.getPreparedStatement(commentDs, sql.toString());
+      statement = SqlUtils.getPreparedStatement(_commentDs, sql.toString());
 
       for (int mutantMarker : mutantMarkers) {
-        statement.setLong(1, dbPlatform.getNextId(commentDs, commentSchema, "commentMutantMarker"));
+        statement.setLong(1, getNextId("commentMutantMarker"));
         statement.setLong(2, commentId);
         statement.setInt(3, mutantMarker);
         statement.execute();
@@ -324,7 +366,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
   }
 
   private void saveMutantReporters(long commentId, int[] mutantReporters) throws SQLException {
-    String commentSchema = config.getCommentSchema();
+    String commentSchema = _config.getCommentSchema();
 
     StringBuffer sql = new StringBuffer();
     sql.append("INSERT INTO " + commentSchema + "PhenotypeMutantReporter ");
@@ -333,10 +375,10 @@ public class CommentFactory implements Manageable<CommentFactory> {
     sql.append(") VALUES (?, ?, ?)");
     PreparedStatement statement = null;
     try {
-      statement = SqlUtils.getPreparedStatement(commentDs, sql.toString());
+      statement = SqlUtils.getPreparedStatement(_commentDs, sql.toString());
 
       for (int mutantReporter : mutantReporters) {
-        statement.setLong(1, dbPlatform.getNextId(commentDs, commentSchema, "commentMutantReporter"));
+        statement.setLong(1, getNextId("commentMutantReporter"));
         statement.setLong(2, commentId);
         statement.setInt(3, mutantReporter);
         statement.execute();
@@ -348,7 +390,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
   }
 
   private void savePhenotypeCategory(long commentId, int[] phenotypeCategory) throws SQLException {
-    String commentSchema = config.getCommentSchema();
+    String commentSchema = _config.getCommentSchema();
 
     StringBuffer sql = new StringBuffer();
     sql.append("INSERT INTO " + commentSchema + "PhenotypeMutantCategory ");
@@ -357,10 +399,10 @@ public class CommentFactory implements Manageable<CommentFactory> {
     sql.append(") VALUES (?, ?, ?)");
     PreparedStatement statement = null;
     try {
-      statement = SqlUtils.getPreparedStatement(commentDs, sql.toString());
+      statement = SqlUtils.getPreparedStatement(_commentDs, sql.toString());
 
       for (int cat : phenotypeCategory) {
-        statement.setLong(1, dbPlatform.getNextId(commentDs, commentSchema, "phenotypeMutantCategory"));
+        statement.setLong(1, getNextId("phenotypeMutantCategory"));
         statement.setLong(2, commentId);
         statement.setInt(3, cat);
         statement.execute();
@@ -372,7 +414,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
   }
 
   private void saveCommentTargetCategory(long commentId, long[] targetCategoryIds) throws SQLException {
-    String commentSchema = config.getCommentSchema();
+    String commentSchema = _config.getCommentSchema();
 
     // construct sql
     StringBuffer sql = new StringBuffer();
@@ -382,10 +424,10 @@ public class CommentFactory implements Manageable<CommentFactory> {
     sql.append(") VALUES (?, ?, ?)");
     PreparedStatement statement = null;
     try {
-      statement = SqlUtils.getPreparedStatement(commentDs, sql.toString());
+      statement = SqlUtils.getPreparedStatement(_commentDs, sql.toString());
 
       for (long targetCategoryId : targetCategoryIds) {
-        statement.setLong(1, dbPlatform.getNextId(commentDs, commentSchema, "commentTargetCategory"));
+        statement.setLong(1, getNextId("commentTargetCategory"));
         statement.setLong(2, commentId);
         statement.setLong(3, targetCategoryId);
         statement.execute();
@@ -397,7 +439,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
   }
 
   private void savePmIds(long commentId, String[] pmIds) throws SQLException {
-    String commentSchema = config.getCommentSchema();
+    String commentSchema = _config.getCommentSchema();
 
     // construct sql
     StringBuffer sql = new StringBuffer();
@@ -407,12 +449,11 @@ public class CommentFactory implements Manageable<CommentFactory> {
     sql.append(") VALUES (?, ?, ?, ?)");
     PreparedStatement statement = null;
     try {
-      statement = SqlUtils.getPreparedStatement(commentDs, sql.toString());
+      statement = SqlUtils.getPreparedStatement(_commentDs, sql.toString());
 
       for (String pmId : pmIds) {
         if ((pmId != null) && (pmId.trim().length() != 0)) {
-          long commentPmId = dbPlatform.getNextId(commentDs, commentSchema, "commentReference");
-          statement.setLong(1, commentPmId);
+          statement.setLong(1, getNextId("commentReference"));
           statement.setString(2, pmId);
           statement.setString(3, "pubmed");
           statement.setLong(4, commentId);
@@ -426,7 +467,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
   }
 
   private void saveDois(long commentId, String[] dois) throws SQLException {
-    String commentSchema = config.getCommentSchema();
+    String commentSchema = _config.getCommentSchema();
 
     // construct sql
     StringBuffer sql = new StringBuffer();
@@ -436,12 +477,11 @@ public class CommentFactory implements Manageable<CommentFactory> {
     sql.append(") VALUES (?, ?, ?, ?)");
     PreparedStatement statement = null;
     try {
-      statement = SqlUtils.getPreparedStatement(commentDs, sql.toString());
+      statement = SqlUtils.getPreparedStatement(_commentDs, sql.toString());
 
       for (String doi : dois) {
         if ((doi != null) && (doi.trim().length() != 0)) {
-          long commentPmId = dbPlatform.getNextId(commentDs, commentSchema, "commentReference");
-          statement.setLong(1, commentPmId);
+          statement.setLong(1, getNextId("commentReference"));
           statement.setString(2, doi);
           statement.setString(3, "doi");
           statement.setLong(4, commentId);
@@ -455,7 +495,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
   }
 
   private void saveSequence(long commentId, String sequence) throws SQLException {
-    String commentSchema = config.getCommentSchema();
+    String commentSchema = _config.getCommentSchema();
 
     // construct sql
     StringBuffer sql = new StringBuffer();
@@ -467,10 +507,8 @@ public class CommentFactory implements Manageable<CommentFactory> {
     LOG.debug(">>>>>>>> " + sql.toString());
     PreparedStatement statement = null;
     try {
-      statement = SqlUtils.getPreparedStatement(commentDs, sql.toString());
-      long commentSeqId = dbPlatform.getNextId(commentDs, commentSchema, "commentSequence");
-
-      statement.setLong(1, commentSeqId);
+      statement = SqlUtils.getPreparedStatement(_commentDs, sql.toString());
+      statement.setLong(1, getNextId("commentSequence"));
       statement.setString(2, sequence);
       statement.setLong(3, commentId);
       statement.execute();
@@ -481,7 +519,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
   }
 
   private void saveAccessions(long commentId, String[] accessions) throws SQLException {
-    String commentSchema = config.getCommentSchema();
+    String commentSchema = _config.getCommentSchema();
 
     // construct sql
     StringBuffer sql = new StringBuffer();
@@ -491,12 +529,11 @@ public class CommentFactory implements Manageable<CommentFactory> {
     sql.append(") VALUES (?, ?, ?, ?)");
     PreparedStatement statement = null;
     try {
-      statement = SqlUtils.getPreparedStatement(commentDs, sql.toString());
+      statement = SqlUtils.getPreparedStatement(_commentDs, sql.toString());
 
       for (String accession : accessions) {
         if ((accession != null) && (accession.trim().length() != 0)) {
-          long commentPmId = dbPlatform.getNextId(commentDs, commentSchema, "commentReference");
-          statement.setLong(1, commentPmId);
+          statement.setLong(1, getNextId("commentReference"));
           statement.setString(2, accession);
           statement.setString(3, "genbank");
           statement.setLong(4, commentId);
@@ -510,7 +547,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
   }
 
   private void saveFiles(long commentId, String[] files) throws SQLException {
-    String commentSchema = config.getCommentSchema();
+    String commentSchema = _config.getCommentSchema();
 
     // construct sql
     StringBuffer sql = new StringBuffer();
@@ -520,7 +557,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
     sql.append(") VALUES (?, ?, ?, ?)");
     PreparedStatement statement = null;
     try {
-      statement = SqlUtils.getPreparedStatement(commentDs, sql.toString());
+      statement = SqlUtils.getPreparedStatement(_commentDs, sql.toString());
 
       for (String file : files) {
         if (file == null)
@@ -539,7 +576,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
   }
 
   private void updateFiles(long newCommentId, String[] files) throws SQLException {
-    String commentSchema = config.getCommentSchema();
+    String commentSchema = _config.getCommentSchema();
 
     for (String file : files) {
       if (file == null)
@@ -548,32 +585,32 @@ public class CommentFactory implements Manageable<CommentFactory> {
       String sql = "UPDATE " + commentSchema + "CommentFile " + " SET comment_id = " + newCommentId +
           " WHERE file_id = " + Long.parseLong(str[0]);
 
-      SqlUtils.executeUpdate(commentDs, sql, "wdk-comment-update-comment-id");
+      SqlUtils.executeUpdate(_commentDs, sql, "wdk-comment-update-comment-id");
     }
   }
 
   private void setInvisibleComment(String previousCommentId) throws SQLException {
-    String commentSchema = config.getCommentSchema();
+    String commentSchema = _config.getCommentSchema();
 
     String sql = "UPDATE " + commentSchema + "comments " + " SET is_visible = 0" + " WHERE comment_id = '" +
         previousCommentId + "'";
 
-    SqlUtils.executeUpdate(commentDs, sql, "wdk-comment-update-visible");
+    SqlUtils.executeUpdate(_commentDs, sql, "wdk-comment-update-visible");
 
   }
 
   private void updatePrevCommentId(String previousCommentId, long commentId) throws SQLException {
-    String commentSchema = config.getCommentSchema();
+    String commentSchema = _config.getCommentSchema();
 
       String sql = "UPDATE " + commentSchema + "comments " + " SET prev_comment_id = " + previousCommentId +
           " WHERE comment_id = " + commentId;
 
-      SqlUtils.executeUpdate(commentDs, sql, "wdk-comment-update-previous-comment-id");
+      SqlUtils.executeUpdate(_commentDs, sql, "wdk-comment-update-previous-comment-id");
 
   }
 
   private void saveAssociatedStableIds(long commentId, String[] associatedStableIds) throws SQLException {
-    String commentSchema = config.getCommentSchema();
+    String commentSchema = _config.getCommentSchema();
 
     // removing duplicates 
     Set<String> stringSet = new HashSet<>(Arrays.asList(associatedStableIds));
@@ -588,12 +625,11 @@ public class CommentFactory implements Manageable<CommentFactory> {
     PreparedStatement statement = null;
 
     try {
-      statement = SqlUtils.getPreparedStatement(commentDs, sql.toString());
+      statement = SqlUtils.getPreparedStatement(_commentDs, sql.toString());
 
       for (String associatedStableId : associatedStableIds_noDup) {
         if ((associatedStableId != null) && (associatedStableId.trim().length() != 0)) {
-          long stableId = dbPlatform.getNextId(commentDs, commentSchema, "commentStableId");
-          statement.setLong(1, stableId);
+          statement.setLong(1, getNextId("commentStableId"));
           statement.setString(2, associatedStableId);
           statement.setLong(3, commentId);
           statement.execute();
@@ -606,7 +642,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
   }
 
   private void saveAuthors(long commentId, String[] authors) throws SQLException {
-    String commentSchema = config.getCommentSchema();
+    String commentSchema = _config.getCommentSchema();
 
     StringBuffer sql = new StringBuffer();
     sql.append("INSERT INTO " + commentSchema + "CommentReference ");
@@ -615,12 +651,11 @@ public class CommentFactory implements Manageable<CommentFactory> {
     sql.append(") VALUES (?, ?, ?, ?)");
     PreparedStatement statement = null;
     try {
-      statement = SqlUtils.getPreparedStatement(commentDs, sql.toString());
+      statement = SqlUtils.getPreparedStatement(_commentDs, sql.toString());
 
       for (String author : authors) {
         if ((author != null) && (author.trim().length() != 0)) {
-          long commentPmId = dbPlatform.getNextId(commentDs, commentSchema, "commentReference");
-          statement.setLong(1, commentPmId);
+          statement.setLong(1, getNextId("commentReference"));
           statement.setString(2, author);
           statement.setString(3, "author");
           statement.setLong(4, commentId);
@@ -645,7 +680,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
    * @param comment
    */
   private void saveExternalDbs(long commentId, Comment comment) throws SQLException {
-    String commentSchema = config.getCommentSchema();
+    String commentSchema = _config.getCommentSchema();
     // String dblink = config.getProjectDbLink();
     // String stableId = comment.getStableId();
 
@@ -666,26 +701,26 @@ public class CommentFactory implements Manageable<CommentFactory> {
     sqlInsertLink.append("(external_database_id, comment_id) ");
     sqlInsertLink.append("VALUES (?, ?)");
 
-    PreparedStatement psQUeryDb = null, psInsertDb = null, psInsertLink = null;
+    PreparedStatement psQueryDb = null, psInsertDb = null, psInsertLink = null;
     try {
       // construct prepared statements
-      psQUeryDb = SqlUtils.getPreparedStatement(commentDs, sqlQueryDb.toString());
+      psQueryDb = SqlUtils.getPreparedStatement(_commentDs, sqlQueryDb.toString());
 
-      psInsertDb = SqlUtils.getPreparedStatement(commentDs, sqlInsertDb.toString());
+      psInsertDb = SqlUtils.getPreparedStatement(_commentDs, sqlInsertDb.toString());
 
-      psInsertLink = SqlUtils.getPreparedStatement(commentDs, sqlInsertLink.toString());
+      psInsertLink = SqlUtils.getPreparedStatement(_commentDs, sqlInsertLink.toString());
 
       // add every external database record into the database
       for (ExternalDatabase externalDb : comment.getExternalDbs()) {
-        psQUeryDb.setString(1, externalDb.getExternalDbName());
-        psQUeryDb.setString(2, externalDb.getExternalDbVersion());
+        psQueryDb.setString(1, externalDb.getExternalDbName());
+        psQueryDb.setString(2, externalDb.getExternalDbVersion());
         ResultSet rsQueryDb = null;
         long externalDbId;
         try {
-          rsQueryDb = psQUeryDb.executeQuery();
+          rsQueryDb = psQueryDb.executeQuery();
           if (!rsQueryDb.next()) {
             // external database entry doesn't exist
-            externalDbId = dbPlatform.getNextId(commentDs, commentSchema, "external_databases");
+            externalDbId = getNextId("external_databases");
             psInsertDb.setLong(1, externalDbId);
             psInsertDb.setString(2, externalDb.getExternalDbName());
             psInsertDb.setString(3, externalDb.getExternalDbVersion());
@@ -711,7 +746,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
     }
     finally {
       // close statements and result set
-      SqlUtils.closeStatement(psQUeryDb);
+      SqlUtils.closeStatement(psQueryDb);
       SqlUtils.closeStatement(psInsertDb);
       SqlUtils.closeStatement(psInsertLink);
     }
@@ -724,17 +759,17 @@ public class CommentFactory implements Manageable<CommentFactory> {
     sql.append("c.project_version, c.review_status_id, c.stable_id, ");
     sql.append("c.content, ");
     sql.append("substr(c.organism, 1, instr(c.organism || '  ', ' ', 1, 2)-1) as organism, ");
-    sql.append("u.first_name || ' ' || u.last_name || ', ' || u.title  as user_name, ");
+    sql.append("u.first_name || ' ' || u.last_name as user_name, ");
     sql.append("u.organization, c.content, c.review_status_id FROM ");
-    sql.append(config.getCommentSchema() + "comments c, ");
-    sql.append(config.getUserLoginSchema() + "users u ");
+    sql.append(_config.getCommentSchema() + "comments c, ");
+    sql.append(_config.getCommentSchema() + "comment_users u ");
     sql.append("WHERE c.user_id = u.user_id ");
     sql.append("AND c.comment_id = ? ");
 
     ResultSet rs = null;
     PreparedStatement ps = null;
     try {
-      ps = SqlUtils.getPreparedStatement(commentDs, sql.toString());
+      ps = SqlUtils.getPreparedStatement(_commentDs, sql.toString());
       ps.setLong(1, commentId);
       rs = ps.executeQuery();
 
@@ -758,7 +793,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
       comment.setOrganization(rs.getString("organization"));
 
       // get clob content
-      comment.setContent(dbPlatform.getClobData(rs, "content"));
+      comment.setContent(_commentDb.getPlatform().getClobData(rs, "content"));
 
       // load locations
       loadLocations(commentId, comment);
@@ -812,13 +847,13 @@ public class CommentFactory implements Manageable<CommentFactory> {
     StringBuffer sql = new StringBuffer();
     sql.append("SELECT source_id ");
     sql.append(" FROM ");
-    sql.append(config.getCommentSchema() + "commentReference ");
+    sql.append(_config.getCommentSchema() + "commentReference ");
     sql.append("WHERE comment_id = ? and database_name = ?");
 
     ResultSet rs = null;
     PreparedStatement ps = null;
     try {
-      ps = SqlUtils.getPreparedStatement(commentDs, sql.toString());
+      ps = SqlUtils.getPreparedStatement(_commentDs, sql.toString());
       ps.setLong(1, commentId);
       ps.setString(2, databaseName);
       rs = ps.executeQuery();
@@ -844,13 +879,13 @@ public class CommentFactory implements Manageable<CommentFactory> {
     StringBuffer sql = new StringBuffer();
     sql.append("SELECT source_id ");
     sql.append(" FROM ");
-    sql.append(config.getCommentSchema() + "commentReference ");
+    sql.append(_config.getCommentSchema() + "commentReference ");
     sql.append("WHERE comment_id = ? and database_name = ?");
 
     ResultSet rs = null;
     PreparedStatement ps = null;
     try {
-      ps = SqlUtils.getPreparedStatement(commentDs, sql.toString());
+      ps = SqlUtils.getPreparedStatement(_commentDs, sql.toString());
       ps.setLong(1, commentId);
       ps.setString(2, databaseName);
       rs = ps.executeQuery();
@@ -876,14 +911,14 @@ public class CommentFactory implements Manageable<CommentFactory> {
     StringBuffer sql = new StringBuffer();
     sql.append("SELECT b.category, b.target_category_id");
     sql.append(" FROM ");
-    sql.append(config.getCommentSchema() + "commentTargetCategory a, ");
-    sql.append(config.getCommentSchema() + "targetCategory b ");
+    sql.append(_config.getCommentSchema() + "commentTargetCategory a, ");
+    sql.append(_config.getCommentSchema() + "targetCategory b ");
     sql.append("WHERE a.target_category_id = b.target_category_id AND a.comment_id = ?");
 
     ResultSet rs = null;
     PreparedStatement ps = null;
     try {
-      ps = SqlUtils.getPreparedStatement(commentDs, sql.toString());
+      ps = SqlUtils.getPreparedStatement(_commentDs, sql.toString());
       ps.setLong(1, commentId);
       rs = ps.executeQuery();
 
@@ -917,14 +952,14 @@ public class CommentFactory implements Manageable<CommentFactory> {
     StringBuffer sql = new StringBuffer();
     sql.append("SELECT b.mutant_marker ");
     sql.append(" FROM ");
-    sql.append(config.getCommentSchema() + "PhenotypeMutantMarker a, ");
-    sql.append(config.getCommentSchema() + "MutantMarker b ");
+    sql.append(_config.getCommentSchema() + "PhenotypeMutantMarker a, ");
+    sql.append(_config.getCommentSchema() + "MutantMarker b ");
     sql.append("WHERE a.mutant_marker_id = b.mutant_marker_id AND a.comment_id = ?");
 
     ResultSet rs = null;
     PreparedStatement ps = null;
     try {
-      ps = SqlUtils.getPreparedStatement(commentDs, sql.toString());
+      ps = SqlUtils.getPreparedStatement(_commentDs, sql.toString());
       ps.setLong(1, commentId);
       rs = ps.executeQuery();
 
@@ -949,14 +984,14 @@ public class CommentFactory implements Manageable<CommentFactory> {
     StringBuffer sql = new StringBuffer();
     sql.append("SELECT b.mutant_reporter ");
     sql.append(" FROM ");
-    sql.append(config.getCommentSchema() + "PhenotypeMutantReporter a, ");
-    sql.append(config.getCommentSchema() + "MutantReporter b ");
+    sql.append(_config.getCommentSchema() + "PhenotypeMutantReporter a, ");
+    sql.append(_config.getCommentSchema() + "MutantReporter b ");
     sql.append("WHERE a.mutant_reporter_id = b.mutant_reporter_id AND a.comment_id = ?");
 
     ResultSet rs = null;
     PreparedStatement ps = null;
     try {
-      ps = SqlUtils.getPreparedStatement(commentDs, sql.toString());
+      ps = SqlUtils.getPreparedStatement(_commentDs, sql.toString());
       ps.setLong(1, commentId);
       rs = ps.executeQuery();
 
@@ -988,19 +1023,19 @@ public class CommentFactory implements Manageable<CommentFactory> {
     sql.append("g.phenotype_loc, ");
     sql.append("b.mutant_type ");
     sql.append(" FROM ");
-    sql.append(config.getCommentSchema() + "Phenotype a, ");
-    sql.append(config.getCommentSchema() + "MutantType b, ");
-    sql.append(config.getCommentSchema() + "MutantMethod c, ");
-    sql.append(config.getCommentSchema() + "MutantStatus d, ");
-    sql.append(config.getCommentSchema() + "MutantExpression e, ");
+    sql.append(_config.getCommentSchema() + "Phenotype a, ");
+    sql.append(_config.getCommentSchema() + "MutantType b, ");
+    sql.append(_config.getCommentSchema() + "MutantMethod c, ");
+    sql.append(_config.getCommentSchema() + "MutantStatus d, ");
+    sql.append(_config.getCommentSchema() + "MutantExpression e, ");
     sql.append("(SELECT pmc.comment_id, ");
     sql.append("apidb.tab_to_string(set(cast(collect(mc.mutant_category) as apidb.varchartab)),'; ') as mutant_category_name ");
     sql.append(" FROM ");
-    sql.append(config.getCommentSchema() + "MutantCategory mc, ");
-    sql.append(config.getCommentSchema() + "PhenotypeMutantCategory pmc ");
+    sql.append(_config.getCommentSchema() + "MutantCategory mc, ");
+    sql.append(_config.getCommentSchema() + "PhenotypeMutantCategory pmc ");
     sql.append("WHERE mc.mutant_category_id = pmc.mutant_category_id ");
     sql.append("GROUP BY pmc.comment_id) f, ");
-    sql.append(config.getCommentSchema() + "PhenotypeLoc g ");
+    sql.append(_config.getCommentSchema() + "PhenotypeLoc g ");
     sql.append("WHERE a.mutant_type_id = b.mutant_type_id ");
     sql.append("AND a.mutant_method_id = c.mutant_method_id(+) ");
     sql.append("AND a.mutant_status_id = d.mutant_status_id(+) ");
@@ -1011,7 +1046,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
     ResultSet rs = null;
     PreparedStatement ps = null;
     try {
-      ps = SqlUtils.getPreparedStatement(commentDs, sql.toString());
+      ps = SqlUtils.getPreparedStatement(_commentDs, sql.toString());
       ps.setLong(1, commentId);
       rs = ps.executeQuery();
 
@@ -1040,13 +1075,13 @@ public class CommentFactory implements Manageable<CommentFactory> {
     StringBuffer sql = new StringBuffer();
     sql.append("SELECT file_id, name, notes ");
     sql.append(" FROM ");
-    sql.append(config.getCommentSchema() + "commentFile ");
+    sql.append(_config.getCommentSchema() + "commentFile ");
     sql.append("WHERE comment_id = ?");
 
     ResultSet rs = null;
     PreparedStatement ps = null;
     try {
-      ps = SqlUtils.getPreparedStatement(commentDs, sql.toString());
+      ps = SqlUtils.getPreparedStatement(_commentDs, sql.toString());
       ps.setLong(1, commentId);
       rs = ps.executeQuery();
 
@@ -1073,13 +1108,13 @@ public class CommentFactory implements Manageable<CommentFactory> {
     StringBuffer sql = new StringBuffer();
     sql.append("SELECT stable_id ");
     sql.append(" FROM ");
-    sql.append(config.getCommentSchema() + "CommentStableId ");
+    sql.append(_config.getCommentSchema() + "CommentStableId ");
     sql.append("WHERE comment_id = ?");
 
     ResultSet rs = null;
     PreparedStatement ps = null;
     try {
-      ps = SqlUtils.getPreparedStatement(commentDs, sql.toString());
+      ps = SqlUtils.getPreparedStatement(_commentDs, sql.toString());
       ps.setLong(1, commentId);
       rs = ps.executeQuery();
 
@@ -1104,13 +1139,13 @@ public class CommentFactory implements Manageable<CommentFactory> {
     StringBuffer sql = new StringBuffer();
     sql.append("SELECT location_start, location_end, is_reverse, ");
     sql.append("coordinate_type FROM ");
-    sql.append(config.getCommentSchema() + "locations ");
+    sql.append(_config.getCommentSchema() + "locations ");
     sql.append("WHERE comment_id = ?");
 
     ResultSet rs = null;
     PreparedStatement ps = null;
     try {
-      ps = SqlUtils.getPreparedStatement(commentDs, sql.toString());
+      ps = SqlUtils.getPreparedStatement(_commentDs, sql.toString());
       ps.setLong(1, commentId);
       rs = ps.executeQuery();
 
@@ -1131,7 +1166,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
   }
 
   private void loadExternalDbs(long commentId, Comment comment) throws WdkModelException {
-    String commentSchema = config.getCommentSchema();
+    String commentSchema = _config.getCommentSchema();
 
     StringBuffer sql = new StringBuffer();
     sql.append("SELECT ed.external_database_name, ed.external_database_version ");
@@ -1143,7 +1178,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
     ResultSet rs = null;
     PreparedStatement ps = null;
     try {
-      ps = SqlUtils.getPreparedStatement(commentDs, sql.toString());
+      ps = SqlUtils.getPreparedStatement(_commentDs, sql.toString());
       ps.setLong(1, commentId);
       rs = ps.executeQuery();
 
@@ -1213,9 +1248,9 @@ public class CommentFactory implements Manageable<CommentFactory> {
     StringBuffer sql = new StringBuffer();
     sql.append("SELECT distinct * FROM ( ");
     sql.append("SELECT c.comment_id FROM ");
-    sql.append(config.getCommentSchema() + "comments c, ");
-    sql.append(config.getCommentSchema() + "commentStableId d, ");
-    sql.append(config.getUserLoginSchema() + "users u ");
+    sql.append(_config.getCommentSchema() + "comments c, ");
+    sql.append(_config.getCommentSchema() + "commentStableId d, ");
+    sql.append(_config.getCommentSchema() + "comment_users u ");
     sql.append("WHERE c.user_id = u.user_id ");
     sql.append("AND c.is_visible = 1 ");
     sql.append("AND c.comment_id = d.comment_id(+) ");
@@ -1226,7 +1261,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
     List<Comment> comments = new ArrayList<Comment>();
     ResultSet rs = null;
     try {
-      rs = SqlUtils.executeQuery(commentDs, sql.toString(), "api-comment-select-comment");
+      rs = SqlUtils.executeQuery(_commentDs, sql.toString(), "api-comment-select-comment");
       while (rs.next()) {
         long commentId = rs.getLong("comment_id");
         Comment comment = getComment(commentId);
@@ -1249,12 +1284,12 @@ public class CommentFactory implements Manageable<CommentFactory> {
   }
 
   public void deleteComment(String commentId) throws WdkModelException {
-    String commentSchema = config.getCommentSchema();
+    String commentSchema = _config.getCommentSchema();
 
     try {
       // update comments table set is_visible = 0
       String sql = "UPDATE " + commentSchema + "comments " + "SET is_visible = 0 " + "WHERE comment_id = " + commentId;
-      SqlUtils.executeUpdate(commentDs, sql, "wdk-comment-hide-comment");
+      SqlUtils.executeUpdate(_commentDs, sql, "wdk-comment-hide-comment");
 
     }
     catch (SQLException e) {
@@ -1271,7 +1306,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
     
     StringBuffer sql = new StringBuffer();
     sql.append("SELECT " + nameCol + "," + valueCol);
-    sql.append(" FROM  " + config.getCommentSchema() + table);
+    sql.append(" FROM  " + _config.getCommentSchema() + table);
     if (condition != null) {
       sql.append(" WHERE " + condition);
     }
@@ -1279,7 +1314,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
     MultiBox multiBox = null;
 
     try {
-      ps = SqlUtils.getPreparedStatement(commentDs, sql.toString());
+      ps = SqlUtils.getPreparedStatement(_commentDs, sql.toString());
       rs = ps.executeQuery();
 
       while (rs.next()) {
@@ -1301,22 +1336,22 @@ public class CommentFactory implements Manageable<CommentFactory> {
   }
 
   public CommentConfig getCommentConfig() {
-    return config;
+    return _config;
   }
 
   private void printStatus() {
-    int active = commentDb.getActiveCount();
-    int idle = commentDb.getIdleCount();
+    int active = _commentDb.getActiveCount();
+    int idle = _commentDb.getIdleCount();
     LOG.info("Comment connections: active=" + active + ", idle=" + idle);
   }
 
   public DataSource getCommentDataSource() {
-    return commentDs;
+    return _commentDs;
   }
 
   public void close() throws Exception {
-    if (!isReusingUserDb) {
-      commentDb.close();
+    if (!_isReusingUserDb) {
+      _commentDb.close();
     }
   }
 }

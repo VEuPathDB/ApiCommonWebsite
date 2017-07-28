@@ -3,11 +3,11 @@ package ApiCommonWebsite::View::GraphPackage::TriTrypDB::Horn::TbRNAiRNASeq;
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet );
-use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
+@ISA = qw( EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet );
+use EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet;
 
-use ApiCommonWebsite::View::GraphPackage::SimpleRNASeq;
-use ApiCommonWebsite::View::GraphPackage::Util;
+use EbrcWebsiteCommon::View::GraphPackage::SimpleRNASeq;
+use EbrcWebsiteCommon::View::GraphPackage::Util;
 
 sub init {
   my $self = shift;
@@ -29,7 +29,7 @@ sub init {
   $self->setMainLegend({colors => $legendColors, short_names => $legend});
 
 
-  my $transcript = ApiCommonWebsite::View::GraphPackage::SimpleRNASeq->new(@_);
+  my $transcript = EbrcWebsiteCommon::View::GraphPackage::SimpleRNASeq->new(@_);
 
 
 
@@ -50,7 +50,7 @@ sub init {
   $transcriptStacked->setPlotTitle($transcriptStacked->getPlotTitle() . " - full gene model");
   $transcriptPct->setPlotTitle($transcriptPct->getPlotTitle() . " - full gene model");
 
-  my $cds = ApiCommonWebsite::View::GraphPackage::SimpleRNASeq->new(@_);
+  my $cds = EbrcWebsiteCommon::View::GraphPackage::SimpleRNASeq->new(@_);
 
   $cds->setMinRpkmProfileSet('T.brucei paired end RNA Seq data from Horn aligned with cds coordinates');
   $cds->setDiffRpkmProfileSet('T.brucei paired end RNA Seq data from Horn aligned with cds coordinates - diff');

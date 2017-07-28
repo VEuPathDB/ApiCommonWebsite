@@ -4,9 +4,9 @@ use strict;
 use vars qw( @ISA );
 
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet );
-use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
-use ApiCommonWebsite::View::GraphPackage::BarPlot;
+@ISA = qw( EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet );
+use EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet;
+use EbrcWebsiteCommon::View::GraphPackage::BarPlot;
 
 sub init {
   my $self = shift;
@@ -27,22 +27,22 @@ sub init {
 
 
 
-  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSetsArray);
-  my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@percentileSetsArray);
-  my $avgPercentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets([['percentile - kappe_profiles_averaged_over_all_channels']]);
+  my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileSetsArray);
+  my $percentileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@percentileSetsArray);
+  my $avgPercentileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets([['percentile - kappe_profiles_averaged_over_all_channels']]);
 
-  my $ratio = ApiCommonWebsite::View::GraphPackage::BarPlot::LogRatio->new(@_);
+  my $ratio = EbrcWebsiteCommon::View::GraphPackage::BarPlot::LogRatio->new(@_);
   $ratio->setProfileSets($profileSets);
   $ratio->setColors([$colors->[0]]);
   $ratio->setElementNameMarginSize(7);
 
-  my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
+  my $percentile = EbrcWebsiteCommon::View::GraphPackage::BarPlot::Percentile->new(@_);
   $percentile->setProfileSets($percentileSets);
   $percentile->setColors($colors);
   $percentile->setSpaceBetweenBars(0.5);
   $percentile->setElementNameMarginSize(7);
 
-  my $avgPercentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
+  my $avgPercentile = EbrcWebsiteCommon::View::GraphPackage::BarPlot::Percentile->new(@_);
   $avgPercentile->setProfileSets($avgPercentileSets);
   $avgPercentile->setColors($avgColors);
   $avgPercentile->setPartName("percentile_combined");

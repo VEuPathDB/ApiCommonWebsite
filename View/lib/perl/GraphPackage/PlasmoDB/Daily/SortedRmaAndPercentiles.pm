@@ -3,9 +3,9 @@ package ApiCommonWebsite::View::GraphPackage::PlasmoDB::Daily::SortedRmaAndPerce
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::PlasmoDB::Daily );
+@ISA = qw( EbrcWebsiteCommon::View::GraphPackage::PlasmoDB::Daily );
 
-use ApiCommonWebsite::View::GraphPackage::PlasmoDB::Daily;
+use EbrcWebsiteCommon::View::GraphPackage::PlasmoDB::Daily;
 
 use ApiCommonWebsite::Model::CannedQuery::Profile;
 use ApiCommonWebsite::Model::CannedQuery::ProfileSet;

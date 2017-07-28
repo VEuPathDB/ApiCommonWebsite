@@ -4,12 +4,12 @@ use vars qw( @ISA );
 
 use strict;
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet );
-use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
-use ApiCommonWebsite::View::GraphPackage::BarPlot;
-use ApiCommonWebsite::View::GraphPackage::LinePlot;
+@ISA = qw( EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet );
+use EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet;
+use EbrcWebsiteCommon::View::GraphPackage::BarPlot;
+use EbrcWebsiteCommon::View::GraphPackage::LinePlot;
 
-use ApiCommonWebsite::View::GraphPackage::PlasmoDB::Winzeler::Mapping;
+use EbrcWebsiteCommon::View::GraphPackage::PlasmoDB::Winzeler::Mapping;
 
 sub init {
   my $self = shift;
@@ -36,15 +36,15 @@ sub init {
 #                             ['green percentile - ZB Pvivax time series 3', '', $sampleNames],
                             );
 
-  my $profileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@profileSetsArray);
-  my $percentileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@percentileSetsArray);
+  my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileSetsArray);
+  my $percentileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@percentileSetsArray);
 
-  my $line = ApiCommonWebsite::View::GraphPackage::LinePlot::LogRatio->new(@_);
+  my $line = EbrcWebsiteCommon::View::GraphPackage::LinePlot::LogRatio->new(@_);
   $line->setProfileSets($profileSets);
   $line->setColors(\@colors);
   $line->setPointsPch([15,15,15]);
 
-  my $percentile = ApiCommonWebsite::View::GraphPackage::BarPlot::Percentile->new(@_);
+  my $percentile = EbrcWebsiteCommon::View::GraphPackage::BarPlot::Percentile->new(@_);
   $percentile->setProfileSets($percentileSets);
   $percentile->setColors(\@colors);
   $percentile->setSpaceBetweenBars(.8);

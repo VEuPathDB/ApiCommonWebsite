@@ -5,10 +5,10 @@ use vars qw( @ISA );
 
 # TODO: Update so we can create multiple rnaseq profile sets (See StransNonSpecific module)
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::SimpleStrandSpecificRNASeq );
-use ApiCommonWebsite::View::GraphPackage::SimpleStrandSpecificRNASeq;
+@ISA = qw( EbrcWebsiteCommon::View::GraphPackage::SimpleStrandSpecificRNASeq );
+use EbrcWebsiteCommon::View::GraphPackage::SimpleStrandSpecificRNASeq;
 
-use ApiCommonWebsite::View::GraphPackage::Util;
+use EbrcWebsiteCommon::View::GraphPackage::Util;
 
 sub init {
   my $self = shift;
@@ -20,7 +20,7 @@ sub init {
 
   my $dbh = $self->getQueryHandle();
 
-  my $sql = ApiCommonWebsite::View::GraphPackage::Util::getProfileSetsSql();
+  my $sql = EbrcWebsiteCommon::View::GraphPackage::Util::getProfileSetsSql();
 
   my $sh = $dbh->prepare($sql);
   $sh->execute($datasetName);

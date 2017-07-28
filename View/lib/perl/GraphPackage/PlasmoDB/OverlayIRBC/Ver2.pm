@@ -1,15 +1,15 @@
-package ApiCommonWebsite::View::GraphPackage::PlasmoDB::OverlayIRBC::Ver2;
+package EbrcWebsiteCommon::View::GraphPackage::PlasmoDB::OverlayIRBC::Ver2;
 
 use strict;
 use vars qw( @ISA );
 
 
-@ISA = qw( ApiCommonWebsite::View::GraphPackage::MixedPlotSet );
-use ApiCommonWebsite::View::GraphPackage::MixedPlotSet;
-use ApiCommonWebsite::View::GraphPackage::LinePlot;
+@ISA = qw( EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet );
+use EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet;
+use EbrcWebsiteCommon::View::GraphPackage::LinePlot;
 
-use ApiCommonWebsite::View::GraphPackage::PlasmoDB::Winzeler::Mapping;
-use ApiCommonWebsite::View::GraphPackage::Util;
+use EbrcWebsiteCommon::View::GraphPackage::PlasmoDB::Winzeler::Mapping;
+use EbrcWebsiteCommon::View::GraphPackage::Util;
 
 sub init {
   my $self = shift;
@@ -30,8 +30,8 @@ sub init {
   my $times_hb3 = $self->getTimePointMapping($hb3ProfileSet, '48 Hour Cycle Timepoint Map for HB3');
   my $times_dd2 = $self->getTimePointMapping($dd2ProfileSet, '48 Hour Cycle Timepoint Map for Dd2');
 
-  my @temp_times = ApiCommonWebsite::View::GraphPackage::PlasmoDB::Winzeler::Mapping::TemperatureTimes();
-  my @sorb_times = ApiCommonWebsite::View::GraphPackage::PlasmoDB::Winzeler::Mapping::SorbitolTimes();
+  my @temp_times = EbrcWebsiteCommon::View::GraphPackage::PlasmoDB::Winzeler::Mapping::TemperatureTimes();
+  my @sorb_times = EbrcWebsiteCommon::View::GraphPackage::PlasmoDB::Winzeler::Mapping::SorbitolTimes();
 
 
   my @derisiProfileArray = ([$hb3ProfileSet, '', $times_hb3],
@@ -39,9 +39,9 @@ sub init {
                             [$dd2ProfileSet, '', $times_dd2],
                            );
 
-  my $derisiProfileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@derisiProfileArray);
+  my $derisiProfileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@derisiProfileArray);
 
-  my $derisi = ApiCommonWebsite::View::GraphPackage::LinePlot::LogRatio->new(@_);
+  my $derisi = EbrcWebsiteCommon::View::GraphPackage::LinePlot::LogRatio->new(@_);
   $derisi->setProfileSets($derisiProfileSets);
   $derisi->setColors([@colors[0..2]]);
   $derisi->setPointsPch([15,15,15]);
@@ -52,9 +52,9 @@ sub init {
                               ['winzeler_cc_tempExp', '', \@temp_times]
                              );
 
-  my $winzelerProfileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets(\@winzelerProfileArray);
+  my $winzelerProfileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@winzelerProfileArray);
 
-  my $winzeler = ApiCommonWebsite::View::GraphPackage::LinePlot::LogRatio->new(@_);
+  my $winzeler = EbrcWebsiteCommon::View::GraphPackage::LinePlot::LogRatio->new(@_);
   $winzeler->setProfileSets($winzelerProfileSets);
   $winzeler->setColors([@colors[3..4]]);
   $winzeler->setPartName('winzeler');
@@ -69,9 +69,9 @@ sub init {
                                 ['percentile - winzeler_cc_tempExp', '', \@temp_times]
                                 ];
 
-  my $percentileProfileSets = ApiCommonWebsite::View::GraphPackage::Util::makeProfileSets($percentileProfileArray);
+  my $percentileProfileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets($percentileProfileArray);
 
-   my $percentile = ApiCommonWebsite::View::GraphPackage::LinePlot::Percentile->new(@_);
+   my $percentile = EbrcWebsiteCommon::View::GraphPackage::LinePlot::Percentile->new(@_);
    $percentile->setProfileSets($percentileProfileSets);
    $percentile->setColors(\@colors);
    $percentile->setPointsPch(['NA','NA','NA','NA','NA']);
