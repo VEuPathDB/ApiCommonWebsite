@@ -480,6 +480,26 @@ sub init {
   return $self;
 }
 
+
+package ApiCommonWebsite::View::GraphPackage::Templates::ExpressionTwoChannel::DS_9ec3204249;
+
+sub finalProfileAdjustments {
+  my ($self, $profile) = @_;
+
+  my $rAdjustString = << 'RADJUST';
+#    profile.df.full$ELEMENT_NAMES = factor(profile.df.full$ELEMENT_NAMES,   levels=c('Ex-vivo','Ex-vivo','Ex-vivo','Ex-vivo','Ex-vivo','Ex-vivo',   'In-vitro I','In-vitro I','In-vitro I','In-vitro I','In-vitro I','In-vitro I','In-vitro I','In-vitro I',   'In-vitro II','In-vitro II','In-vitro II','In-vitro II','In-vitro II','In-vitro II','In-vitro II'));
+
+    profile.df.full$GROUP = c("A","A","A","A","A","A","B","B","B","B","B","B","B","B","C","C","C","C","C","C","C");
+    profile.df.full$ELEMENT_NAMES_NUMERIC = profile.df.full$ELEMENT_NAMES;
+RADJUST
+
+  $profile->addAdjustProfile($rAdjustString);
+  $profile->setHideXAxisLabels(1);
+}
+
+1;
+
+
 #--------------------------------------------------------------------------------
 # TEMPLATE_ANCHOR microarraySimpleTwoChannelGraph
 
