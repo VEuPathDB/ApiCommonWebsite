@@ -492,11 +492,17 @@ sub finalProfileAdjustments {
     profile.df.full$GROUP = c("A","A","A","A","A","A","B","B","B","B","B","B","B","B","C","C","C","C","C","C","C");
     profile.df.full$ELEMENT_NAMES_NUMERIC = profile.df.full$ELEMENT_NAMES;
 RADJUST
-
-  $profile->addAdjustProfile($rAdjustString);
-  $profile->setHideXAxisLabels(1);
+    my $plotPart = $profile->getPartName();
+    if ($plotPart =~/percentile/) {
+        my $profileSets = $profile->getProfileSets();
+	$profile->setHasExtraLegend(1); 
+	$profile->setLegendLabels(['channel 1', 'channel 2']);
+	$profile->setColors(['LightSlateGray', 'DarkSlateGray']);
+    } else {
+      $profile->addAdjustProfile($rAdjustString);
+    }
+ $profile->setHideXAxisLabels(1);
 }
-
 1;
 
 
