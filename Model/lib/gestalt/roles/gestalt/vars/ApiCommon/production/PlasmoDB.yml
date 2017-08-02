@@ -1,0 +1,5 @@
+
+modelconfig_appDb_maxIdle: 10000
+modelconfig_appDb_maxActive: 400000
+modelconfig_userDb_maxIdle: 50000
+modelconfig_commentdb.maxIdle: 500000

@@ -1,0 +1,45 @@
+---
+# src is relative to gestalt/templates unless full path is given
+
+default: &default
+  model-config.xml:
+    src: 'FgpUtil/model-config.xml.j2'
+    dest: '{{ gus_home }}/config/{{ project }}/model-config.xml'
+  model.prop:
+    src: 'FgpUtil/model.prop.j2'
+    dest: '{{ gus_home }}/config/{{ project }}/model.prop'
+  comment-config.xml:
+    src: 'ApiCommonWebsite/comment-config.xml.j2'
+    dest: '{{ gus_home }}/config/{{ project }}/comment-config.xml'
+  profileSimilarity-config:
+    src: 'ApiCommonWebsite/profileSimilarity-config.xml.j2'
+    dest: '{{ gus_home }}/config//profileSimilarity-config.xml'
+  blast-config.xml:
+    src: 'EbrcWebSvcCommon/blast-config.xml.j2'
+    dest: '{{ gus_home }}/config/blast-config.xml'
+  highSpeedSnpSearch-config.xml:
+    src: 'ApiCommonWebService/highSpeedSnpSearch-config.xml.j2'
+    dest: '{{ gus_home }}/config/highSpeedSnpSearch-config.xml'
+  highSpeedChipSnpSearch-config.xml:
+    src: 'ApiCommonWebService/highSpeedChipSnpSearch-config.xml.j2'
+    dest: '{{ gus_home }}/config/highSpeedChipSnpSearch-config.xml'
+  motifSearch-config.xml:
+    src: 'ApiCommonWebService/motifSearch-config.xml.j2'
+    dest: '{{ gus_home }}/config/motifSearch-config.xml'
+  projects.xml:
+    src: 'EbrcWebsiteCommon/projects.xml.j2'
+    dest: '{{ gus_home }}/config/projects.xml'
+
+AmoebaDB: *default
+CryptoDB: *default
+EuPathDB: *default
+FungiDB: *default
+GiardiaDB: *default
+HostDB: *default
+MicrosporidiaDB: *default
+PiroplasmaDB: *default
+PlasmoDB: *default
+SchistoDB: *default
+ToxoDB: *default
+TrichDB: *default
+TriTrypDB: *default

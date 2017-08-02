@@ -1,0 +1,12 @@
+modelconfig_adminEmail:
+  - aurreco@uga.edu
+  - crisl@upenn.edu
+  - dfalke@uga.edu
+  - mheiges@uga.edu
+  - rdoherty@upenn.edu
+  - sfischer@pcbi.upenn.edu
+
+modelconfig_appDb_maxIdle: 10
+modelconfig_appDb_maxActive: 40
+modelconfig_userDb_maxIdle: 10
+modelconfig_commentdb.maxIdle: 10
