@@ -1,0 +1,68 @@
+---
+modelconfig_modelName: apiCommonModel
+modelconfig_authenticationMethod: oauth2
+modelconfig_oauthClientId: apiComponentSite
+modelconfig_oauthClientSecret: "{{ lookup('csvfile',
+    'apicomponentsite
+    file=/usr/local/tomcat_instances/shared/.apidb_oauth_creds
+    col=1
+    delimiter=:') | trim
+  }}"
+modelconfig_changePasswordUrl: "{{ modelconfig_oauthUrl }}/assets/eupathdb-changePassword.html?returnUrl={{ '{{' }}returnUrl}}&amp;suggestedUsername={{ '{{' }}suggestedUsername}}"
+modelconfig_userDatasetStoreConfig: >
+  <userDatasetStore implementation="org.gusdb.wdk.model.user.dataset.filesys.FilesysUserDatasetStore">
+    <property name="rootPath">/var/www/Common/workspaces/users</property>
+    <typeHandler type="example" version="1.0"
+      implementation="org.gusdb.wdk.model.user.dataset.ExampleTypeHandler"/>
+    <typeHandler type="GeneList" version="1.0"
+      implementation="org.apidb.apicommon.model.userdataset.GeneListTypeHandler"/>
+  </userDatasetStore>
+
+modelprop:
+  CNDSRC_BIN: /opt/cndsrc/bin
+  COMMENT_DBLINK: '@{{ modelconfig_appDb_userDbLink }}'
+  COMMENT_SCHEMA: '{{ commentconfig_commentSchema }}.'
+  FACEBOOK_URL: https://facebook.com/pages/EuPathDB/133123003429972
+  GOOGLE_ANALYTICS_ID: none
+  LEGACY_WEBAPP_BASE_URL: "{{ modelconfig_webAppUrl|regex_replace('/+$', '') }}"
+  PROJECT_ID: '{{ project }}'
+  STEP_ANALYSIS_JOB_DIR: '{{ _wdkStepAnalysisJobsDir }}'
+  TWITTER_URL: https://twitter.com/EuPathDB
+  TWITTER_WIDGET_ID: 344817818073714691
+  USE_LEGACY_RECORD_PAGE: 'false'
+  WEBAPP_BASE_URL: "{{ modelconfig_webAppUrl|regex_replace('/+$', '') }}/app"
+  WEBSERVICEMIRROR: /var/www/Common/apiSiteFilesMirror/webServices/
+  YOUTUBE_URL: https://youtube.com/user/EuPathDB/videos?sort=dd&flow=list&view=1
+
+commentconfig_login: '{{ modelconfig_userDb_login }}'
+commentconfig_password: '{{ modelconfig_userDb_password }}'
+commentconfig_connectionUrl: '{{ modelconfig_userDb_connectionUrl }}'
+commentconfig_platform: Oracle
+commentconfig_maxActive: 20
+commentconfig_maxIdle: 1
+commentconfig_minIdle: 1
+commentconfig_maxWait: 50
+commentconfig_commentSchema: userlogins5
+commentconfig_userLoginSchema: userlogins5
+commentconfig_userLoginDbLink: '{{ modelconfig_appDb_userDbLink }}'
+commentconfig_userFileSchema: uploads
+commentconfig_userFileUploadDir: /var/www/Common/communityFilesMirror
+
+
+blastconfig_blastPath: '/opt/ncbi-blast+/bin/'
+blastconfig_idBlastRegex: '<![CDATA[^*(?:>)*(?:\s)*(?:[^\|]*\|)?(\S+)]]>'
+blastconfig_tempBlastPath: /var/www/Common/tmp/blast
+
+motifsearchconfig_motifCntxtLen: 20
+
+highspeedsnpsearchconfig_jobsDir: /var/www/Common/tmp/highSpeedSnpSearch
+highspeedsnpsearchconfig_idPrefix: NGS_SNP.
+
+highspeedchipsnpsearchconfig_jobsDir: /var/www/Common/tmp/highSpeedChipSnpSearch
+highspeedchipsnpsearchconfig_idPrefix: 'NULL'
+
+profilesimilarityconfig_dbLogin: '{{ modelconfig_appDb_login }}'
+profilesimilarityconfig_dbPassword: '{{ modelconfig_appDb_password }}'
+profilesimilarityconfig_perlExec: /usr/bin/perl
+profilesimilarityconfig_connectionUrl: "{{ '' if modelconfig_userDb_connectionUrl.startswith('=g=') else modelconfig_appDb_connectionUrl|jdbc2Dbi }}"
+
