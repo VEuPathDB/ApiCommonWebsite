@@ -119,6 +119,51 @@ return $self;
 
 1;
 
+# TriTryp - tbruTREU927_Rijo_Circadian_Regulation_rnaSeq_RSRC
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_1cc46f3acb;
+
+sub isExcludedProfileSet {
+  my ($self, $psName) = @_;
+
+  foreach(@{$self->excludedProfileSetsArray()}) {
+    return 1 if($_ eq $psName);
+  }
+  if ($psName =~ /Circadian Control of Bloodstream and Procyclic Form Transcriptomes - /){
+    return 1;
+  }
+  return 0;
+}
+
+sub finalProfileAdjustments {
+  my ($self, $profile) = @_;
+
+  my $rAdjustString = << 'RADJUST';
+    profile.df.full$ELEMENT_NAMES = factor(profile.df.full$ELEMENT_NAMES,   levels=c('BSF 0hr Alt Temp', 'BSF 4hr Alt Temp', 'BSF 8hr Alt Temp', 'BSF 12hr Alt Temp', 'BSF 16hr Alt Temp', 'BSF 20hr Alt Temp', 'BSF 24hr Alt Temp', 'BSF 28hr Alt Temp', 'BSF 32hr Alt Temp', 'BSF 36hr Alt Temp', 'BSF 40hr Alt Temp', 'BSF 44hr Alt Temp', 'BSF 48hr Alt Temp',   
+   'BSF 0hr Const Temp', 'BSF 4hr Const Temp', 'BSF 8hr Const Temp', 'BSF 12hr Const Temp', 'BSF 16hr Const Temp', 'BSF 20hr Const Temp', 'BSF 24hr Const Temp', 'BSF 28hr Const Temp', 'BSF 32hr Const Temp', 'BSF 36hr Const Temp', 'BSF 40hr Const Temp', 'BSF 44hr Const Temp', 'BSF 48hr Const Temp',
+   'PF 0hr Alt Temp', 'PF 4hr Alt Temp', 'PF 8hr Alt Temp', 'PF 12hr Alt Temp', 'PF 16hr Alt Temp', 'PF 20hr Alt Temp', 'PF 24hr Alt Temp', 'PF 28hr Alt Temp', 'PF 32hr Alt Temp', 'PF 36hr Alt Temp', 'PF 40hr Alt Temp', 'PF 44hr Alt Temp', 'PF 48hr Alt Temp',
+   'PF 0hr Const Temp', 'PF 4hr Const Temp', 'PF 8hr Const Temp', 'PF 12hr Const Temp', 'PF 16hr Const Temp', 'PF 20hr Const Temp', 'PF 24hr Const Temp', 'PF 28hr Const Temp', 'PF 32hr Const Temp', 'PF 36hr Const Temp', 'PF 40hr Const Temp', 'PF 44hr Const Temp', 'PF 48hr Const Temp' ));
+
+   profile.df.full$GROUP = c( 
+    "BSF Alt Temp","BSF Alt Temp","BSF Alt Temp","BSF Alt Temp","BSF Alt Temp","BSF Alt Temp","BSF Alt Temp","BSF Alt Temp","BSF Alt Temp","BSF Alt Temp","BSF Alt Temp","BSF Alt Temp","BSF Alt Temp",
+    "BSF Const Temp","BSF Const Temp","BSF Const Temp","BSF Const Temp","BSF Const Temp","BSF Const Temp","BSF Const Temp","BSF Const Temp","BSF Const Temp","BSF Const Temp","BSF Const Temp","BSF Const Temp","BSF Const Temp",
+    "PF Alt Temp","PF Alt Temp","PF Alt Temp","PF Alt Temp","PF Alt Temp","PF Alt Temp","PF Alt Temp","PF Alt Temp","PF Alt Temp","PF Alt Temp","PF Alt Temp","PF Alt Temp","PF Alt Temp",
+    "PF Const Temp","PF Const Temp","PF Const Temp","PF Const Temp","PF Const Temp","PF Const Temp","PF Const Temp","PF Const Temp","PF Const Temp","PF Const Temp","PF Const Temp","PF Const Temp","PF Const Temp"
+  );
+
+  profile.df.full$PROFILE_FILE = profile.df.full$GROUP
+  profile.df.full$LEGEND = profile.df.full$GROUP
+RADJUST
+
+  my $legend = ['BSF Alt Temp', 'BSF Const Temp', 'PF Alt Temp', 'BPF Const Temp'];
+  $profile->setSmoothLines(0);
+
+  $profile->setXaxisLabel('Hours');
+  $profile->setLegendLabels($legend);
+  $profile->addAdjustProfile($rAdjustString);
+}
+
+1;
+
 
 package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_b0427cd47b;
 use base qw( ApiCommonWebsite::View::GraphPackage::Templates::RNASeq );
