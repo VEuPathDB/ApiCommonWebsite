@@ -1,5 +1,5 @@
 ---
-# src is relative to gestalt/templates unless full path is given
+# src is relative to conifer/templates unless full path is given
 
 default: &default
   model-config.xml:
