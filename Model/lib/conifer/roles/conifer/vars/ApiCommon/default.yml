@@ -64,5 +64,5 @@ highspeedchipsnpsearchconfig_idPrefix: 'NULL'
 profilesimilarityconfig_dbLogin: '{{ modelconfig_appDb_login }}'
 profilesimilarityconfig_dbPassword: '{{ modelconfig_appDb_password }}'
 profilesimilarityconfig_perlExec: /usr/bin/perl
-profilesimilarityconfig_connectionUrl: "{{ '' if modelconfig_userDb_connectionUrl.startswith('=g=') else modelconfig_appDb_connectionUrl|jdbc2Dbi }}"
+profilesimilarityconfig_connectionUrl: "{{ '' if modelconfig_userDb_connectionUrl.startswith('=c=') else modelconfig_appDb_connectionUrl|jdbc2Dbi }}"
 
