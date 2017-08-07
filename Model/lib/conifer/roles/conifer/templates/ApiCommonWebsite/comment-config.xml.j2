@@ -1,46 +1,49 @@
 <?xml version="1.0"?>
-<!-- 
+<!--
+$SourceFileURL$
+
 Templated by Conifer using
 {{ template_path }}
-
+with vars from
 Cohort: {{ cohort }}
 Project: {{ project }}
 Environment: {{ env|default() }}
 site_vars file: {{ site_vars }}
 -->
-<commentConfig 
+<commentConfig
     login="{{ commentconfig_login }}"
     password="{{ commentconfig_password }}"
     connectionUrl="{{ commentconfig_connectionUrl }}"
     platform="{{ commentconfig_platform }}"
     commentSchema="{{ commentconfig_commentSchema }}"
     userLoginSchema="{{ commentconfig_userLoginSchema }}"
-    userLoginDbLink="@{{ commentconfig_userLoginDbLink }}"
-   {% if commentconfig_maxActive is defined -%}
+    userLoginDbLink="{{ commentconfig_userLoginDbLink }}"
+    {% if commentconfig_maxActive is defined -%}
     maxActive="{{ commentconfig_maxActive }}"
-   {% endif -%}
-   {% if commentconfig_maxIdle is defined -%}
+    {% endif -%}
+    {% if commentconfig_maxIdle is defined -%}
     maxIdle="{{ commentconfig_maxIdle }}"
-   {% endif -%}
-   {% if commentconfig_minIdle is defined -%}
+    {% endif -%}
+    {% if commentconfig_minIdle is defined -%}
     minIdle="{{ commentconfig_minIdle }}"
-   {% endif -%}
-   {% if commentconfig_maxWait is defined -%}
+    {% endif -%}
+    {% if commentconfig_maxWait is defined -%}
     maxWait="{{ commentconfig_maxWait }}"
-   {% endif -%}
-   {% if commentconfig_showConnections is defined -%}
-   showConnections="{{ commentconfig_showConnections }}"
-   {% endif -%}
-   {% if commentconfig_showConnectionsInterval is defined -%}
-   showConnectionsInterval="{{ commentconfig_showConnectionsInterval }}"
-   {% endif -%}
-   {% if commentconfig_showConnectionsDuration is defined -%}
-   showConnectionsDuration="{{ commentconfig_showConnectionsDuration }}"
-   {% endif -%}
-   {% if commentconfig_userFileSchema is defined -%}
+    {% endif -%}
+    {% if commentconfig_showConnections is defined -%}
+    showConnections="{{ commentconfig_showConnections }}"
+    {% endif -%}
+    {% if commentconfig_showConnectionsInterval is defined -%}
+    showConnectionsInterval="{{ commentconfig_showConnectionsInterval }}"
+    {% endif -%}
+    {% if commentconfig_showConnectionsDuration is defined -%}
+    showConnectionsDuration="{{ commentconfig_showConnectionsDuration }}"
+    {% endif -%}
+    {% if commentconfig_userFileSchema is defined -%}
     userFileSchema="{{ commentconfig_userFileSchema }}"
-   {% endif -%}
-   {% if commentconfig_userFileUploadDir is defined -%}
+    {% endif -%}
+    {% if commentconfig_userFileUploadDir is defined -%}
     userFileUploadDir="{{ commentconfig_userFileUploadDir }}"
-   {% endif -%}
+    {%- endif %}
+
 />
