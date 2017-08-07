@@ -1,3 +1,6 @@
+# $SourceFileURL$
+---
+
 _host_frontends:
   a1: alpha
   a2: alpha
@@ -8,6 +11,9 @@ _host_frontends:
   w1: ''
   w2: ''
 
+# Given hostname == a1.eupathdb.org, swap_sld('amoebadb.org')
+# returns 'a1.amoebadb.org'. swap_hostname(_host_frontends) returns
+# 'alpha.amoebadb.org'.
 projectsxml:
   AmoebaDB: "{{ hostname|swap_sld('amoebadb.org')|swap_hostname(_host_frontends) }}/amoeba/"
   CryptoDB: "{{ hostname|swap_sld('cryptodb.org')|swap_hostname(_host_frontends) }}/cryptodb/"
