@@ -1,16 +1,6 @@
 # $SourceFileURL$
 ---
 
-_host_frontends:
-  a1: alpha
-  a2: alpha
-  b1: beta
-  b2: beta
-  q1: qa
-  q2: qa
-  w1: ''
-  w2: ''
-
 # Given hostname == a1.eupathdb.org, swap_sld('amoebadb.org')
 # returns 'a1.amoebadb.org'. swap_hostname(_host_frontends) returns
 # 'alpha.amoebadb.org'.
