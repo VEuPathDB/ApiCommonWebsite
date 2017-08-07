@@ -480,6 +480,32 @@ sub init {
   return $self;
 }
 
+
+package ApiCommonWebsite::View::GraphPackage::Templates::ExpressionTwoChannel::DS_9ec3204249;
+
+sub finalProfileAdjustments {
+  my ($self, $profile) = @_;
+
+  my $rAdjustString = << 'RADJUST';
+    profile.df.full$ELEMENT_NAMES = factor(profile.df.full$ELEMENT_NAMES,   levels=c('Ex-vivo ring - 4hr','Ex-vivo late ring - 8hr','Ex-vivo mid trophozoite - 12hr','Ex-vivo mid trophozoite - 16hr','Ex-vivo schizont - 20hr','Ex-vivo schizont - 24hr','In-vitro I - 0hr','In-vitro I - 4hr','In-vitro I - 8hr','In-vitro I - 12hr','In-vitro I - 16hr','In-vitro I - 20hr','In-vitro I - 24hr','In-vitro I - 28hr','In-vitro II - 0hr','In-vitro II - 4hr','In-vitro II - 8hr','In-vitro II - 12hr','In-vitro II - 16hr','In-vitro II - 20hr','In-vitro II - 24hr'));
+
+    profile.df.full$GROUP = c("A","A","A","A","A","A","B","B","B","B","B","B","B","B","C","C","C","C","C","C","C");
+    profile.df.full$ELEMENT_NAMES_NUMERIC = profile.df.full$ELEMENT_NAMES;
+RADJUST
+    my $plotPart = $profile->getPartName();
+    if ($plotPart =~/percentile/) {
+        my $profileSets = $profile->getProfileSets();
+	$profile->setHasExtraLegend(1); 
+	$profile->setLegendLabels(['channel 1', 'channel 2']);
+	$profile->setColors(['LightSlateGray', 'DarkSlateGray']);
+    } else {
+      $profile->addAdjustProfile($rAdjustString);
+    }
+ $profile->setHideXAxisLabels(1);
+}
+1;
+
+
 #--------------------------------------------------------------------------------
 # TEMPLATE_ANCHOR microarraySimpleTwoChannelGraph
 

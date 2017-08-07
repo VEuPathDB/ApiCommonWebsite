@@ -279,16 +279,20 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     try (FileReader fileIn = new FileReader(inputPath.toFile());
          BufferedReader buffer = new BufferedReader(fileIn)) {
       if (buffer.ready()) buffer.readLine();  // throw away header line	
+      StringBuilder revigoInputLists = new StringBuilder();
       while (buffer.ready()) {
         String line = buffer.readLine();
         String[] columns = line.split(TAB);
+	String revigo = columns[0] + " " + columns[8] + "\n";
 	//	openPage = function() {
 	//	location.href = "/a/showQuestion.do?questionFullName=GeneQuestions.GeneByLocusTag&ds_gene_ids_data="+columns[4];
         //}
 	String val = "<a href=\"/a/showQuestion.do?questionFullName=GeneQuestions.GeneByLocusTag&ds_gene_ids_data=" + columns[4] + "\">" + columns[3] + "</a>";
 	results.add(new ResultRow(columns[0], columns[1], columns[2], val, columns[5], columns[6], columns[7], columns[8], columns[9], columns[10]));
-      }
-      return new ResultViewModel(TABBED_RESULT_FILE_PATH, results, getFormParams(), getProperty(GO_TERM_BASE_URL_PROP_KEY), IMAGE_RESULT_FILE_PATH, HIDDEN_TABBED_RESULT_FILE_PATH);
+	      revigoInputLists.append(revigo);
+     }
+      String revigoInputList = String.valueOf(revigoInputLists);
+      return new ResultViewModel(TABBED_RESULT_FILE_PATH, results, getFormParams(), getProperty(GO_TERM_BASE_URL_PROP_KEY), IMAGE_RESULT_FILE_PATH, HIDDEN_TABBED_RESULT_FILE_PATH, revigoInputList);
     }
     catch (IOException ioe) {
       throw new WdkModelException("Unable to process result file at: " + inputPath, ioe);
@@ -346,10 +350,11 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     private String _goTermBaseUrl;
       private String _imageDownloadPath;
       private String _hiddenDownloadPath;
+      private String _revigoInputList;
       //      private String _geneSearchBaseUrl;
 
     public ResultViewModel(String downloadPath, List<ResultRow> resultData,
-			   Map<String, String[]> formParams, String goTermBaseUrl, String imageDownloadPath, String hiddenDownloadPath) {
+			   Map<String, String[]> formParams, String goTermBaseUrl, String imageDownloadPath, String hiddenDownloadPath, String revigoInputList) {
       this._downloadPath = downloadPath;
       this._formParams = formParams;
       this._resultData = resultData;
@@ -357,6 +362,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
       //      this._geneSearchBaseUrl =geneSearchBaseUrl;
       this._imageDownloadPath = imageDownloadPath;
       this._hiddenDownloadPath = hiddenDownloadPath;
+      this._revigoInputList= revigoInputList;
     }
 
     public ResultRow getHeaderRow() { return GoEnrichmentPlugin.HEADER_ROW; }
@@ -371,6 +377,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     public String getGoOntologies() { return FormatUtil.join(_formParams.get(GoEnrichmentPlugin.GO_ASSOC_ONTOLOGY_PARAM_KEY), ", "); }
     public String getGoTermBaseUrl() { return _goTermBaseUrl; }
       // public String getGeneSearchBaseUrl() { return _geneSearcBaseUrl; }
+      public String getRevigoInputList() {return _revigoInputList; }
   }
 
   public static class ResultRow {
