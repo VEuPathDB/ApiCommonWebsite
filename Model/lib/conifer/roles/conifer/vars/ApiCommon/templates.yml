@@ -4,10 +4,10 @@
 
 default: &default
   model-config.xml:
-    src: 'FgpUtil/model-config.xml.j2'
+    src: 'WDK/model-config.xml.j2'
     dest: '{{ gus_home }}/config/{{ project }}/model-config.xml'
   model.prop:
-    src: 'FgpUtil/model.prop.j2'
+    src: 'WDK/model.prop.j2'
     dest: '{{ gus_home }}/config/{{ project }}/model.prop'
   comment-config.xml:
     src: 'ApiCommonWebsite/comment-config.xml.j2'
