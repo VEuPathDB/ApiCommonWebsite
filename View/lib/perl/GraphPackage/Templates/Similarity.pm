@@ -69,3 +69,14 @@ sub getProfile {
 }
 1;
 
+# ncraOR74A_Clock_Regulated_Genes_rnaSeq_RSRC
+package ApiCommonWebsite::View::GraphPackage::Templates::Similarity::DS_7835aa4647;
+sub getProfile {
+  my ($self) = @_;
+  my $pset = 'N. crassa analysis of clock-regulated genes [htseq-union - firststrand - fpkm]';
+
+  return $pset;
+}
+1;
+
+
