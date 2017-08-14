@@ -74,6 +74,7 @@
                                                        ApiCommonModel-Installation,
                                                        ApiCommonModel/Datasources-Installation,
                                                        GBrowse-Installation,
+ 	                                                     ApiCommonWebsite-MavenInstallation,
                                                        ApiCommonWebsite/Model-Installation,
                                                        ApiCommonWebsite/View-Installation,
                                                        ApiCommonWebsite/Site-Installation,
@@ -100,6 +101,12 @@
     </apply>
   </target>
 
+	<target name="ApiCommonWebsite-MavenInstallation">
+	  <ant target="mavenBuildProject">
+	    <property name="project" value="ApiCommonWebsite"/>
+	  </ant>
+	  <property name="alreadyBuilt" value="true"/>
+	</target>
 
  <!-- ooooooooooooooooooooooo  Install Components  ooooooooooooooooooooooo -->
   <target name="ApiCommonWebsite/Model-Installation">
