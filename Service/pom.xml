@@ -1,0 +1,59 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  
+  <parent>
+    <groupId>org.eupathdb</groupId>
+    <artifactId>api-common-website</artifactId>
+    <version>1.0.0</version>
+  </parent>
+  
+  <name>Api Common Website - Service</name>
+  <artifactId>api-common-website-service</artifactId>
+  <packaging>jar</packaging>
+
+  <dependencies>
+
+    <dependency>
+      <groupId>org.gusdb</groupId>
+      <artifactId>fgputil-util</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.gusdb</groupId>
+      <artifactId>wdk-model</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.gusdb</groupId>
+      <artifactId>wdk-service</artifactId>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.eupathdb</groupId>
+      <artifactId>ebrc-website-common-model</artifactId>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.eupathdb</groupId>
+      <artifactId>api-common-website-model</artifactId>
+    </dependency>
+    
+    <dependency>
+      <groupId>javax.ws.rs</groupId>
+      <artifactId>javax.ws.rs-api</artifactId>
+    </dependency>
+    
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.json</groupId>
+      <artifactId>json</artifactId>
+    </dependency>
+   
+  </dependencies>
+
+</project>
