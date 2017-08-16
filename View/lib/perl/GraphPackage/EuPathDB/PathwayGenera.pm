@@ -8,7 +8,7 @@ use ApiCommonWebsite::Model::CannedQuery::PathwayGeneraData;
 
 @ISA = qw( EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet );
 use EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet;
-use EbrcWebsiteCommon::View::GraphPackage::BarPlot;
+use EbrcWebsiteCommon::View::GraphPackage::GGBarPlot;
 
 
 sub init {
@@ -39,7 +39,7 @@ sub init {
 
   my $profileSets = [$profileSet];
 
-  my $genera = EbrcWebsiteCommon::View::GraphPackage::BarPlot::Genera->new(@_);
+  my $genera = EbrcWebsiteCommon::View::GraphPackage::GGBarPlot::Genera->new(@_);
   $genera->setProfileSets($profileSets);
   $genera->setElementNameMarginSize(7.5);
 
@@ -112,6 +112,7 @@ sub makeListOfLists {
                   ['Trichomonas', 'TrichDB', '#78866B'],
 
                   ['Homo', 'HostDB', '#00FFFF'],
+                  ['Macaca', 'HostDB', '#00FFFF'],
                   ['Mus', 'HostDB', '#00FFFF']
 
 
