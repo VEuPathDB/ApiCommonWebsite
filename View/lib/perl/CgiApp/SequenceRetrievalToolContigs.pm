@@ -1,9 +1,9 @@
 package ApiCommonWebsite::View::CgiApp::SequenceRetrievalToolContigs;
 
-@ISA = qw( ApiCommonWebsite::View::CgiApp );
+@ISA = qw( EbrcWebsiteCommon::View::CgiApp );
 
 use strict;
-use ApiCommonWebsite::View::CgiApp;
+use EbrcWebsiteCommon::View::CgiApp;
 
 use Bio::SeqIO;
 use Bio::Seq;
@@ -48,7 +48,7 @@ EOSQL
 } elsif ($self->{type} eq 'Isolate') {
     $sql = <<EOSQL;
 SELECT ia.source_id, substr(s.sequence, ?, ?), ' | ' || ia.organism as description
-FROM ApidbTuning.IsolateAttributes ia,  ApidbTuning.IsolateSequence s
+FROM ApidbTuning.PopsetAttributes ia,  ApidbTuning.PopsetSequence s
 WHERE ia.source_id = s.source_id
 and lower(ia.source_id) = lower (?)
 EOSQL
@@ -168,7 +168,7 @@ EOSQL
 } elsif ($type eq 'Isolate') {
   $sql = <<EOSQL;
 SELECT s.sequence, ia.length
-FROM ApidbTuning.IsolateSequence s,  ApidbTuning.IsolateAttributes ia
+FROM ApidbTuning.PopsetSequence s,  ApidbTuning.PopsetAttributes ia
 WHERE lower(s.source_id) = lower(?)
 AND ia.source_id = s.source_id
 EOSQL

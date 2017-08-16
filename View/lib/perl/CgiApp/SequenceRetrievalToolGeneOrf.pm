@@ -1,9 +1,9 @@
 package ApiCommonWebsite::View::CgiApp::SequenceRetrievalToolGeneOrf;
 
-@ISA = qw( ApiCommonWebsite::View::CgiApp );
+@ISA = qw( EbrcWebsiteCommon::View::CgiApp );
 
 use strict;
-use ApiCommonWebsite::View::CgiApp;
+use EbrcWebsiteCommon::View::CgiApp;
 
 use Bio::SeqIO;
 use Bio::Seq;
