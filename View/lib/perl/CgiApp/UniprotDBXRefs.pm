@@ -1,8 +1,8 @@
 package ApiCommonWebsite::View::CgiApp::UniprotDBXRefs;
-@ISA = qw( ApiCommonWebsite::View::CgiApp );
+@ISA = qw( EbrcWebsiteCommon::View::CgiApp );
 
 use strict;
-use ApiCommonWebsite::View::CgiApp;
+use EbrcWebsiteCommon::View::CgiApp;
 
 sub run {
   my ($self, $cgi) = @_;

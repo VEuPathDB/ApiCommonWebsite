@@ -1,10 +1,10 @@
 package ApiCommonWebsite::View::CgiApp::IsolateClustalw;
 
-@ISA = qw( ApiCommonWebsite::View::CgiApp );
+@ISA = qw( EbrcWebsiteCommon::View::CgiApp );
 
 use strict;
 use Tie::IxHash;
-use ApiCommonWebsite::View::CgiApp;
+use EbrcWebsiteCommon::View::CgiApp;
 use Data::Dumper;
 
 use Bio::Graphics::Browser2::PadAlignment;

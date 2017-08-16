@@ -1,9 +1,7 @@
 package ApiCommonWebsite::View::CgiApp::HtsSNPAlignment;
 
-@ISA = qw( ApiCommonWebsite::View::CgiApp );
-
 use strict;
-use ApiCommonWebsite::View::CgiApp;
+use EbrcWebsiteCommon::View::CgiApp;
 
 use CGI::Session;
 use Bio::Graphics::Browser2::PadAlignment;

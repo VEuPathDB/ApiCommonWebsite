@@ -3,10 +3,10 @@
 # running in  cgi or Apache::Registry environment
 
 package ApiCommonWebsite::View::CgiApp::SimpleDbQuery;
-@ISA = qw( ApiCommonWebsite::View::CgiApp );
+@ISA = qw( EbrcWebsiteCommon::View::CgiApp );
 
 use strict;
-use ApiCommonWebsite::View::CgiApp;
+use EbrcWebsiteCommon::View::CgiApp;
 
 sub run {
   my ($self, $cgi) = @_;
