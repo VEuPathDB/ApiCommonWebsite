@@ -1,0 +1,17 @@
+# $SourceFileURL$
+---
+
+# Given hostname == a1.eupathdb.org, swap_sld('amoebadb.org')
+# returns 'a1.amoebadb.org'. swap_hostname(_host_frontends) returns
+# 'alpha.amoebadb.org'.
+projectsxml:
+  AmoebaDB: "{{ hostname|swap_sld('amoebadb.org')|swap_hostname(_host_frontends) }}/amoeba/"
+  CryptoDB: "{{ hostname|swap_sld('cryptodb.org')|swap_hostname(_host_frontends) }}/cryptodb/"
+  FungiDB: "{{ hostname|swap_sld('fungidb.org')|swap_hostname(_host_frontends) }}/fungidb/"
+  GiardiaDB: "{{ hostname|swap_sld('giaridadb.org')|swap_hostname(_host_frontends) }}/giardiadb/"
+  MicrosporidiaDB: "{{ hostname|swap_sld('microsporidiadb.org')|swap_hostname(_host_frontends) }}/micro/"
+  PiroplasmaDB: "{{ hostname|swap_sld('piroplasmadb.org')|swap_hostname(_host_frontends) }}/piro/"
+  PlasmoDB: "{{ hostname|swap_sld('plasmodb.org')|swap_hostname(_host_frontends) }}/plasmo/"
+  ToxoDB: "{{ hostname|swap_sld('toxodb.org')|swap_hostname(_host_frontends) }}/toxo/"
+  TrichDB: "{{ hostname|swap_sld('trichdb.org')|swap_hostname(_host_frontends) }}/trichdb/"
+  TriTrypDB: "{{ hostname|swap_sld('tritrypdb.org')|swap_hostname(_host_frontends) }}/tritrypdb/"
