@@ -1,0 +1,6 @@
+# $SourceFileURL$
+---
+modelconfig_appDb_maxIdle: 20
+modelconfig_appDb_maxActive: 80
+modelconfig_userDb_maxIdle: 20
+modelconfig_commentdb.maxIdle: 10
