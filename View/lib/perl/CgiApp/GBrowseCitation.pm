@@ -1,7 +1,7 @@
 package ApiCommonWebsite::View::CgiApp::GBrowseCitation;
-@ISA = qw( ApiCommonWebsite::View::CgiApp);
+@ISA = qw( EbrcWebsiteCommon::View::CgiApp );
 
-use ApiCommonWebsite::View::CgiApp;
+use EbrcWebsiteCommon::View::CgiApp;
 
 use strict;
 
