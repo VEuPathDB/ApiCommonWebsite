@@ -22,6 +22,7 @@ sub init {
 
   $Self->setSql(<<Sql);
 select case when ec.genus is null then 0 else 1 end as value
+, orgs.o as element_order
 from (select distinct genus
       from apidb.ecnumbergenus
       where ec_number LIKE REPLACE(REPLACE(REPLACE(REPLACE(lower('<<Id>>'),' ',''),'-', '%'),'*','%'),'any','%')
