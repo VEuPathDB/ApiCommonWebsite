@@ -4,7 +4,10 @@ use ApiCommonWebsite::Model::AbstractEnrichment;
 @ISA = (ApiCommonWebsite::Model::AbstractEnrichment);
 
 use strict;
+use DBI;
 use File::Basename;
+use WDK::Model::ModelConfig;
+use IPC::Open2;
 
 sub new {
   my ($class)  = @_;
@@ -20,7 +23,25 @@ sub run {
   die "Second argument must be an SQL select statement that returns the Gene result\n" unless $geneResultSql =~ m/select/i;
   die "Fourth argument must be a p-value between 0 and 1\n" unless $pValueCutoff > 0 && $pValueCutoff <= 1;
 
-  $self->SUPER::run($outputFile, $geneResultSql, $modelName, $pValueCutoff);
+
+  my $c = new WDK::Model::ModelConfig($modelName);
+
+  my $dbh = DBI->connect($c->getAppDb->getDbiDsn, $c->getAppDb->getLogin, $c->getAppDb->getPassword) or die DBI::errstr;
+
+  my $taxonId = $self->SUPER::getTaxonId($dbh, $geneResultSql);
+
+  my $annotatedGenesBgd = $self->getAnnotatedGenesCountBgd($dbh, $taxonId);
+  my $annotatedGenesResult = $self->getAnnotatedGenesCountResult($dbh, $geneResultSql);
+
+  # get query to get back table to feed to python.
+  # the columns are:  goId, bgdGeneCount, resultSetGeneCount
+  my $dataSql = $self->getDataSql($taxonId, $geneResultSql);
+
+  $self->getEnrichment($dbh, $outputFile, $annotatedGenesBgd, $annotatedGenesResult, $dataSql, $pValueCutoff);
+
+  $dbh->disconnect or warn "Disconnection failed: $DBI::errstr\n";
+
+
 }
 
 sub getAnnotatedGenesCountBgd {
@@ -106,5 +127,37 @@ The output file is tab-delimited, with these columns (sorted by e-value)
 ";
 
 }
+
+sub getEnrichment {
+  my ($self, $dbh, $outputFile, $annotatedGenesBgd, $annotatedGenesResult, $dataSql, $pValueCutoff) = @_;
+
+  my $cmd = "enrichmentAnalysis $pValueCutoff $annotatedGenesBgd $annotatedGenesResult";
+
+  local (*Reader, *Writer);
+  my $pid = open2(\*Reader, \*Writer, $cmd);
+
+  my $stmt = $self->runSql($dbh, $dataSql);
+
+  while ( my($annotationId, $geneCountBgd, $geneCountResult, $pctOfBgd, $annotationName) = $stmt->fetchrow_array()) {
+#    print STDERR "$annotationId\t$geneCountBgd\t$geneCountResult\t$pctOfBgd\t$annotationName\n";
+    print Writer "$annotationId\t$geneCountBgd\t$geneCountResult\t$pctOfBgd\t$annotationName\n";
+  }
+
+  close Writer;
+
+  open(OUT, ">$outputFile") || die "Can't open '$outputFile' for writing\n";
+
+  print OUT join("\t", "ID", "Name", "Bgd count", "Result count", "Pct of bgd", "Fold enrichment", "Odds ratio", "P-value", "Benjamini", "Bonferroni") . "\n";
+  while(<Reader>) {
+    chomp;
+    my ($foldEnrichment, $oddsRatio, $percentOfResult, $pValue, $benjamini, $bonferroni, $termId, $bgdCount, $resultCount, $pctOfBgd, $annotationName) = split(/\t/);
+    print OUT join("\t", $termId, $annotationName, $bgdCount, $resultCount, $pctOfBgd, $foldEnrichment, $oddsRatio, $pValue, $benjamini, $bonferroni) . "\n";
+  }
+  close Reader;
+  waitpid($pid, 0);
+  my $s = $? >> 8;
+  die "Failed running command '$cmd'" if $s;
+}
+
 
 1;
