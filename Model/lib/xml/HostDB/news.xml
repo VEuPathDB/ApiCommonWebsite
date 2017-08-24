@@ -22,6 +22,53 @@
 
 
 <record>
+  <attribute name="headline">HostDB 34 Released</attribute>
+  <attribute name="date">31 Apr 2017 13:00</attribute>
+  <attribute name="tag">hostdb08_17_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of HostDB 34</strong></p>
+    
+    <h4>Genome Sequence and Annotation</h4>
+       <ul>
+           <li>
+            <a href="http://hostdb.org/hostdb/app/record/dataset/DS_35227af971"><i>Macaca mulatta</i> 17573</a> &mdash; 
+            This annotated genome appears for the first time in HostDB. The data were provided by pre-publication
+            Dr. Robert Norgren, University of Nebraska Medical Center, although a previous version of the genome is published.  
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/25319552">Zimin et al.</a>.  
+           </li>  
+       </ul><br>
+       
+     <h4>RNA Sequencing</h4>
+       <ul>
+           <li>
+            <a href="http://hostdb.org/hostdb/app/record/dataset/DS_368d6dc0ff"><i>H sapiens</i> Transcriptome during Infection with <i>T cruzi</i></a> &mdash; 
+            Transcriptome of human foreskin fibroblasts during infection (time course) with T. cruzi Y strain.
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/27046031">Li et al.</a>.  
+           </li>  
+       </ul><br>
+       
+      <section>
+
+         <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+
+    ]]>
+  </attribute>
+</record>
+
+
+
+
+
+
+<record>
   <attribute name="headline">HostDB 33 Released</attribute>
   <attribute name="date">30 Jun 2017 13:00</attribute>
   <attribute name="tag">hostdb06_17_release</attribute>
