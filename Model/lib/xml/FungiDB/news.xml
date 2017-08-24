@@ -16,6 +16,144 @@
 -->
 
 <record>
+  <attribute name="headline">FungiDB 34 Released</attribute>
+  <attribute name="date">31 Aug 2017 13:00</attribute>
+  <attribute name="tag">fungidb08_17_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of FungiDB 34</strong></p>
+      
+      <section>
+        <h3><b>New data in this release</b></h3>
+        
+        <h4>Genome Sequence and Annotation: these annotated genomes appear for the first time in FungiDB.</h4>
+           <ul>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_783046b845"><i>Clavispora lusitaniae</i> ATCC 42720</a> &ndash; 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/19465905">Butler G et al.</a>
+             </li>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_783046b845"><i>Magnaporthe oryzae</i> BR32</a> &ndash; 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26454013">Chiapello et al.</a>
+             </li>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_73c2f3a1d4"><i>Uncinocarpus reesii</i> 1704</a> &ndash; 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/19717792">Sharpton et al.</a>
+             </li>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_36dcafc6dd"><i>Zymoseptoria tritici</i> IPO323</a> &ndash; 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/25917918">Grandaubert et al.</a> and 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/21695235 ">Goodwin et al.</a>
+             </li>
+           </ul>
+ 
+        
+      </section>
+ <!--
+      <section>
+        <h4>Updated Functional Annotation</h4>
+        <div style="margin-left: 3em;">
+        
+        Functional annotations in FungiDB 33 have been updated for the following genomes:
+        
+        <style>
+           #FunctAnnot_Bld33 table, #FunctAnnot_Bld33 td, #FunctAnnot_Bld33 th, #FunctAnnot_Bld33 tr {
+           text-align : center;
+           padding-left: 5px;
+           padding-right: 5px;
+           padding-top: 5px;
+           padding-bottom: 5px;
+           border: 1px solid black;
+           }
+           #FunctAnnot_Bld33 {
+           margin-left : 5 em;
+           }
+         </style> 
+           <table id="FunctAnnot_Bld33"> 
+           <tr>
+             <th>FungiDB Genome Version</th>
+             <th>Genes Updated</th>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on DB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4b35c88aa1"><i>Aspergillus nidulans</i> FGSC A4</a></td>
+             <td>15 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on DB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_071f05cd56"><i>Aspergillus fumigatus</i> Af293</a></td>
+             <td>408 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on DB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_62f0e6170f"><i>Neurospora crassa</i> OR74A </a></td>
+             <td>119 genes</td>
+           </tr>
+           </table>
+           <br>
+           
+        <a href="https://docs.google.com/spreadsheets/d/1BZO6mAllPZ2vP9XQ3wRx4mjTq4_g_btc5YzweMiWY2c/edit?usp=sharing">Summary of annotation updates</a> which include products, GO terms, EC numbers, gene names, synonyms, publications and notes from curators.
+
+       </div>
+       
+
+        <br><br>
+       <h4>Curated User Comments:</h4>  
+        Gene page comments that are entered by users are curated at GeneDB and regularly integrated as 
+        functional annotations in FungiDB.  101 user comments have been reviewed and updated in FungiDB 33.
+       <br><br>
+        
+        <div style="margin-left: 3em;">
+        
+        <style>
+           #UComment_Bld33 table, #UComment_Bld33 td, #UComment_Bld33 th, #UComment_Bld33 tr {
+           text-align : center;
+           padding-left: 5px;
+           padding-right: 5px;
+           padding-top: 5px;
+           padding-bottom: 5px;
+           border: 1px solid black;
+           }
+           #UComment_Bld33 {
+           margin-left : 5 em;
+           }
+         </style> 
+           <table id="UComment_Bld33"> 
+           <tr>
+             <th>FungiDB Genome Version</th>
+             <th>Comments Integrated</th>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_071f05cd56"><i>Aspergillus fumigatus</i> Af293 </a></td>
+             <td> 18</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4b35c88aa1"><i>Aspergillus nidulans</i> FGSC A4</a></td>
+             <td> 11</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_62f0e6170f"><i>Neurospora crassa </i> OR74A</a></td>
+             <td> 72</td>
+           </tr>
+          </table>
+          <br>
+          </div> 
+
+     -->
+
+        <h3><b>No new features in this release</b></h3> 
+
+           
+            
+         <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+
+    ]]>
+  </attribute>
+</record>
+
+
+
+<record>
   <attribute name="headline">FungiDB 33 Released</attribute>
   <attribute name="date">30 Jun 2017 13:00</attribute>
   <attribute name="tag">fungidb06_17_release</attribute>
