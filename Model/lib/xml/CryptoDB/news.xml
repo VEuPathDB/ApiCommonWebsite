@@ -24,6 +24,51 @@
 -->
 
 <record>
+  <attribute name="headline">CryptoDB 34 Released</attribute>
+  <attribute name="date">31 Aug 2017 13:00</attribute>
+  <attribute name="tag">cryptodb08_19_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of CryptoDB 34</strong></p>
+      
+      <section>
+        <h3>New Data in Release 32</h3>
+        
+        <h4>Isolate Whole genome re-sequencing</h4>
+         <ul>  
+           <li> <a href="http://cryptodb.org/cryptodb/app/record/dataset/DS_58470a7950">Comparative genomics of Cryptosporidium isolate 31727</a> &mdash; 
+            Comparative genomic analysis of the IId subtype family of <i>Cryptosporidium parvum</i> isolate 31727 
+            <a href="https://www.ncbi.nlm.nih.gov/bioproject/PRJNA320419">NCBI Bioproject</a>.
+            <a href="https://www.ncbi.nlm.nih.gov/pubmed/28192123">Feng et al.</a><br>
+           </li>
+
+           <li>
+            <a href="http://cryptodb.org/cryptodb/app/record/dataset/DS_d05d77c803">Comparative genomics of Cryptosporidium isolates 34902 and 35090</a> &mdash; 
+            Comparative genomic analysis of the IId subtype family of <i>Cryptosporidium parvum</i> isolates 34902 and 35090
+            <a href="https://www.ncbi.nlm.nih.gov/bioproject/PRJNA320419">NCBI Bioproject</a>.
+            <a href="https://www.ncbi.nlm.nih.gov/pubmed/28192123">Feng et al.</a><br>
+           </li>
+         </ul>
+          
+      </section>
+      
+      <section>
+        <h3>No New features in this release</h3> 
+         <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+
+    ]]>
+  </attribute>
+</record>
+
+
+<record>
   <attribute name="headline">CryptoDB 33 Released</attribute>
   <attribute name="date">30 Jun 2017 13:00</attribute>
   <attribute name="tag">cryptodb06_17_release</attribute>
@@ -89,7 +134,7 @@
             <a href="https://www.ncbi.nlm.nih.gov/pubmed/27931183">Liu et al.</a><br>
            </li>
            <li>
-            <a href="http://cryptodb.org/cryptodb/app/record/dataset/DS_9ef8fb5462"><i>Cryptosporidium hminis</i> TU502_2012</a> &mdash; 
+            <a href="http://cryptodb.org/cryptodb/app/record/dataset/DS_9ef8fb5462"><i>Cryptosporidium hominis</i> TU502_2012</a> &mdash; 
             <i>Cryptosporidium hominis</i> isolate TU502_2012, isolated in 2012 at Tufts University (USA) was a result of multiple 
             (approximately 20) passages of the original TU502 isolate (2004) in gnotobiotic pigs. 
             <a href="http://www.ncbi.nlm.nih.gov/bioproject/222836">NCBI Bioproject home page</a>.  
