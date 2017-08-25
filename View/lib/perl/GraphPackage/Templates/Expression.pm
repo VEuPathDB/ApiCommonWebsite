@@ -994,12 +994,6 @@ lines(c(12,14), c(y.max + (y.max - y.min)*0.15, y.max + (y.max - y.min)*0.15));
 text(12.3, y.max + (y.max - y.min)*0.22, 'M');
 text(13.3, y.max + (y.max - y.min)*0.22, 'C');
 ";
-#this to use ggplot with colors
-  my $colorCellCycle = "
-gp = gp + geom_line(aes(colour=STAGE, group = GROUP));
-gp = gp + geom_tooltip(aes(colour=STAGE, tooltip=STAGE), real.geom=geom_point);
-gp = gp + scale_colour_manual(values=c(\"black\",\"orange\",\"blue\",\"red\",\"green\",\"darkgreen\",\"black\"));
-"; 
  #this for ggplot with straight lines
   my $cellCycleAnnotation = "
 gp = gp + annotate(\"segment\", x = 2, xend = 5.75, y = min(profile.df.full\$VALUE) - 1, yend = min(profile.df.full\$VALUE) - 1 , colour = '#d3883f');
@@ -1014,21 +1008,6 @@ gp = gp + annotate(\"text\", x = 11.5, y = min(profile.df.full\$VALUE) - 2.1, la
 gp = gp + annotate(\"segment\", x = 12, xend = 14, y = min(profile.df.full\$VALUE) - 1, yend = min(profile.df.full\$VALUE) - 1, colour = '#d3883f');
 gp = gp + annotate(\"text\", x = 12.5, y = min(profile.df.full\$VALUE) - 1.75, label = \"M\", colour = '#d3883f');
 gp = gp + annotate(\"text\", x = 13.5, y = min(profile.df.full\$VALUE) - 1.75, label = \"C\", colour = '#d3883f');
-";
-  #this below for ggplot2
-  my $RMACellCycleAnnotation = "
-gp = gp + annotate(\"curve\", x = 2, xend = 5.75, y = 13, yend = 13);
-gp = gp + annotate(\"text\", x = 4, y = 10, label = \"S(1)\");
-gp = gp + annotate(\"curve\", x = 5, xend = 6.9, y = 13, yend = 13);
-gp = gp + annotate(\"text\", x = 5.5, y = 11.25, label = \"M\");
-gp = gp + annotate(\"text\", x = 6.5, y = 11.25, label = \"C\");
-gp = gp + annotate(\"curve\", x = 6.1, xend = 10.4, y = 13, yend = 13);
-gp = gp + annotate(\"text\", x = 8.375, y = 9.75, label = \"G1\");
-gp = gp + annotate(\"curve\", x = 10, xend = 13.2, y = 13, yend = 13);
-gp = gp + annotate(\"text\", x = 11.5, y = 10.5, label = \"S(2)\");
-gp = gp + annotate(\"curve\", x = 12, xend = 14, y = 13, yend = 13);
-gp = gp + annotate(\"text\", x = 12.5, y = 11.25, label = \"M\");
-gp = gp + annotate(\"text\", x = 13.5, y = 11.25, label = \"C\");
 ";
   my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileSet);
   my $rma =  EbrcWebsiteCommon::View::GraphPackage::GGLinePlot::LogRatio->new(@_);
@@ -1051,18 +1030,18 @@ gp = gp + annotate(\"text\", x = 13.5, y = 11.25, label = \"C\");
 
 #this below for ggplot2
   my $PercentileCellCycleAnnotation = "
-gp = gp + annotate(\"curve\", x = 2, xend = 5.75, y = min(profile.df.full\$VALUE) - 6, yend = min(profile.df.full\$VALUE) - 6);
-gp = gp + annotate(\"text\", x = 4, y = min(profile.df.full\$VALUE) - 32, label = \"S(1)\");
-gp = gp + annotate(\"curve\", x = 5, xend = 7, y = min(profile.df.full\$VALUE) - 6, yend = min(profile.df.full\$VALUE) - 6);
-gp = gp + annotate(\"text\", x = 5.5, y = min(profile.df.full\$VALUE) - 22, label = \"M\");
-gp = gp + annotate(\"text\", x = 6.5, y = min(profile.df.full\$VALUE) - 22, label = \"C\");
-gp = gp + annotate(\"curve\", x = 6.25, xend = 10.5, y = min(profile.df.full\$VALUE) - 6, yend = min(profile.df.full\$VALUE) - 6);
-gp = gp + annotate(\"text\", x = 8.375, y = min(profile.df.full\$VALUE) - 35, label = \"G1\");
-gp = gp + annotate(\"curve\", x = 10, xend = 13, y = min(profile.df.full\$VALUE) - 6, yend = min(profile.df.full\$VALUE) - 6);
-gp = gp + annotate(\"text\", x = 11.5, y = min(profile.df.full\$VALUE) - 27, label = \"S(2)\");
-gp = gp + annotate(\"curve\", x = 12, xend = 14, y = min(profile.df.full\$VALUE) - 6, yend = min(profile.df.full\$VALUE) - 6);
-gp = gp + annotate(\"text\", x = 12.5, y = min(profile.df.full\$VALUE) - 22, label = \"M\");
-gp = gp + annotate(\"text\", x = 13.5, y = min(profile.df.full\$VALUE) - 22, label = \"C\");
+gp = gp + annotate(\"segment\", x = 2, xend = 5.75, y = min(profile.df.full\$VALUE) - 10, yend = min(profile.df.full\$VALUE) - 10 , colour = '#d3883f');
+gp = gp + annotate(\"text\", x = 4, y = min(profile.df.full\$VALUE) - 17.5, label = \"S(1)\", colour = '#d3883f');
+gp = gp + annotate(\"segment\", x = 5, xend = 6.9, y = min(profile.df.full\$VALUE) - 13.5, yend = min(profile.df.full\$VALUE) - 13.5, colour = '#d3883f');
+gp = gp + annotate(\"text\", x = 5.5, y = min(profile.df.full\$VALUE) - 21, label = \"M\", colour = '#d3883f');
+gp = gp + annotate(\"text\", x = 6.5, y = min(profile.df.full\$VALUE) - 21, label = \"C\", colour = '#d3883f');
+gp = gp + annotate(\"segment\", x = 6.1, xend = 10.4, y = min(profile.df.full\$VALUE) - 10, yend = min(profile.df.full\$VALUE) - 10, colour = '#d3883f');
+gp = gp + annotate(\"text\", x = 8.375, y = min(profile.df.full\$VALUE) - 17.5, label = \"G1\", colour = '#d3883f');
+gp = gp + annotate(\"segment\", x = 10, xend = 13.2, y = min(profile.df.full\$VALUE) - 13.5, yend = min(profile.df.full\$VALUE) - 13.5, colour = '#d3883f');
+gp = gp + annotate(\"text\", x = 11.5, y = min(profile.df.full\$VALUE) - 21, label = \"S(2)\", colour = '#d3883f');
+gp = gp + annotate(\"segment\", x = 12, xend = 14, y = min(profile.df.full\$VALUE) - 10, yend = min(profile.df.full\$VALUE) - 10, colour = '#d3883f');
+gp = gp + annotate(\"text\", x = 12.5, y = min(profile.df.full\$VALUE) - 17.5, label = \"M\", colour = '#d3883f');
+gp = gp + annotate(\"text\", x = 13.5, y = min(profile.df.full\$VALUE) - 17.5, label = \"C\", colour = '#d3883f');
 ";
 
   my $percentileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@percentileSet);
