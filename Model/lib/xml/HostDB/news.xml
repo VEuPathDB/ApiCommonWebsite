@@ -23,13 +23,14 @@
 
 <record>
   <attribute name="headline">HostDB 34 Released</attribute>
-  <attribute name="date">31 Apr 2017 13:00</attribute>
+  <attribute name="date">31 Aug 2017 13:00</attribute>
   <attribute name="tag">hostdb08_17_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
     <p><strong>We are pleased to announce the release of HostDB 34</strong></p>
     
+    <h3><b>New data in this release</b></h3>
     <h4>Genome Sequence and Annotation</h4>
        <ul>
            <li>

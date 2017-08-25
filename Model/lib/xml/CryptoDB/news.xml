@@ -33,7 +33,7 @@
     <p><strong>We are pleased to announce the release of CryptoDB 34</strong></p>
       
       <section>
-        <h3>New Data in Release 32</h3>
+        <h3>New data in this release</h3>
         
         <h4>Isolate Whole genome re-sequencing</h4>
          <ul>  
@@ -54,7 +54,7 @@
       </section>
       
       <section>
-        <h3>No New features in this release</h3> 
+        <h3>No new features in this release</h3> 
          <aside>
            Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
            Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
