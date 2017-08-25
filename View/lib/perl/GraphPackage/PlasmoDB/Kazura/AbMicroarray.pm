@@ -17,8 +17,12 @@ sub init {
   $self->setScreenSize(300);
 
   my $colors = ['blue','white'];
-  my $facet = $self->getFacets();
-  my $contXAxis = $self->getContXAxis();
+#  my $facet = $self->getFacets();
+#  my $contXAxis = $self->getContXAxis();
+
+   #need to figure out what the source ids are .. 
+   my $facet = 'ICEMR_microscopy_result';
+   my $contXAxis = 'OBI_0001169';
 
   my @profileSetArray = (['Kazura Reinfection Ab Microarray Profiles','values', '', '', '', '', '', $facet, '', '', $contXAxis]);
   my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileSetArray);
