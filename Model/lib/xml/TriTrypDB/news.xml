@@ -21,25 +21,24 @@
 
 <record>
   <attribute name="headline">TriTrypDB 33 Released</attribute>
-  <attribute name="date">30 Jun 2017 13:00</attribute>
-  <attribute name="tag">tritrypdb06_17_release</attribute>
+  <attribute name="date">31 Aug 2017 13:00</attribute>
+  <attribute name="tag">tritrypdb08_17_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of TriTrypDB 33</strong></p>
+    <p><strong>We are pleased to announce the release of TriTrypDB 34</strong></p>
       
       <section>
-        <h3><b>New data in TriTrypDB 33</b></h3> 
+        <h3><b>New data in TriTrypDB 34</b></h3> 
         
         <h4>RNA Sequencing</h4>
          <ul>
-           
            <li>
             <a href="http://qa.tritrypdb.org/tritrypdb/app/record/dataset/DS_77b2dc5fe2">Transcriptome and Translatome of epimastigote and metacyclic stages</a> &mdash; 
             Transcriptome and Translatome of <i>T. cruzi</i> Dm28c strain mapped against <i>T. cruzi</i> SylvioX10-1.
             <a href="http://www.ncbi.nlm.nih.gov/pubmed/26054634">Smircich et al.</a>. 
            </li>
-       
+         </ul>
        
   <!--      
         <h4>Curated User Comments:</h4>  
