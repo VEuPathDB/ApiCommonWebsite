@@ -44,7 +44,20 @@
              </li>
            </ul>
       </section>
- <!--
+     
+      <section>
+      
+      <h4><b>Neurospora crassa e-compendium</b><h4>
+      
+      PubMed IDs from 
+      <a href="http://www.bioinf.leeds.ac.uk/~gen6ar/newgenelist/genes/gene_list.htm"><i>Neurospora crassa</i> e-compendium</a> by Allan Radford and Matt Sachs
+       have been loaded for <i>Neurospora crassa</i> OR74A. The  
+       <a href="https://docs.google.com/spreadsheets/d/1kHpXNGFGAHxbeecfZ7SX9x8GmSwre5WYUURMfdTQCzU/edit?usp=sharing">list of loaded publications</a>
+       is available.
+      
+      </section>
+      
+  <!--     
       <section>
         <h4>Updated Functional Annotation</h4>
         <div style="margin-left: 3em;">
