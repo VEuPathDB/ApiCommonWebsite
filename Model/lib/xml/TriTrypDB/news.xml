@@ -20,7 +20,7 @@
 -->
 
 <record>
-  <attribute name="headline">TriTrypDB 33 Released</attribute>
+  <attribute name="headline">TriTrypDB 34 Released</attribute>
   <attribute name="date">31 Aug 2017 13:00</attribute>
   <attribute name="tag">tritrypdb08_17_release</attribute>
   <attribute name="category">release</attribute>
@@ -38,6 +38,16 @@
             Transcriptome and Translatome of <i>T. cruzi</i> Dm28c strain mapped against <i>T. cruzi</i> SylvioX10-1.
             <a href="http://www.ncbi.nlm.nih.gov/pubmed/26054634">Smircich et al.</a>. 
            </li>
+           <li>
+            Transcriptome during Infection in Human Fibroblasts.  
+            RNA sequence analysis of mixed host and parasite samples of human fibroblast cells infected with Toxoplasma. 
+            The data were aligned to three genomes: <br>
+            <a href="http://qa.tritrypdb.org/tritrypdb/app/record/dataset/DS_749e483378">Transcriptome during Infection in Human Fibroblasts (NonEsmo aligned)</a><br>
+            <a href="http://qa.tritrypdb.org/tritrypdb/app/record/dataset/DS_8245debbb8">Transcriptome during Infection in Human Fibroblasts (Esmo aligned)</a><br>
+            <a href="http://qa.tritrypdb.org/tritrypdb/app/record/dataset/DS_a94641eb9c">Transcriptome during Infection in Human Fibroblasts (CLBrener aligned)</a><br> 
+
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/27046031">Li et al.</a>. 
+           </li>
          </ul>
 
           
@@ -50,7 +60,7 @@
            which include products, GO terms, EC numbers, gene names, synonyms and PMIDs. 
         <br><br>
         <style>
-           #FunctAnnot_Bld33 table, #FunctAnnot_Bld33 td, #FunctAnnot_Bld33 th, #FunctAnnot_Bld33 tr {
+           #FunctAnnot_Bld34 table, #FunctAnnot_Bld34 td, #FunctAnnot_Bld34 th, #FunctAnnot_Bld34 tr {
            text-align : center;
            padding-left: 5px;
            padding-right: 5px;
@@ -58,11 +68,11 @@
            padding-bottom: 5px;
            border: 1px solid black;
            }
-           #FunctAnnot_Bld33 {
+           #FunctAnnot_Bld34 {
            margin-left : 5 em;
            }
          </style> 
-           <table id="FunctAnnot_Bld33"> 
+           <table id="FunctAnnot_Bld34"> 
            <tr>
              <th>TriTrypDB Genome Version</th>
              <th>Download GeneDB GFF file</th>
