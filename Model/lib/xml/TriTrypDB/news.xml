@@ -86,7 +86,7 @@
         annotations in TriTrypDB. 732 user comments have been integrated in this release: <br><br>
         
         <style>
-           #UComment_Bld33 table, #UComment_Bld33 td, #UComment_Bld33 th, #UComment_Bld33 tr {
+           #UComment_Bld34 table, #UComment_Bld34 td, #UComment_Bld34 th, #UComment_Bld34 tr {
            text-align : center;
            padding-left: 5px;
            padding-right: 5px;
@@ -94,11 +94,11 @@
            padding-bottom: 5px;
            border: 1px solid black;
            }
-           #UComment_Bld33 {
+           #UComment_Bld34 {
            margin-left : 5 em;
            }
          </style> 
-           <table id="UComment_Bld33"> 
+           <table id="UComment_Bld34"> 
            <tr>
              <th>TriTrypDB Genome Version</th>
              <th>Comments Integrated</th>
