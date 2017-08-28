@@ -39,14 +39,14 @@
             <a href="http://www.ncbi.nlm.nih.gov/pubmed/26054634">Smircich et al.</a>. 
            </li>
            <li>
-            Transcriptome during Infection in Human Fibroblasts.  
+            Transcriptome during Infection in Human Fibroblasts.  <a href="http://www.ncbi.nlm.nih.gov/pubmed/27046031">Li et al.</a>. 
             RNA sequence analysis of mixed host and parasite samples of human fibroblast cells infected with Toxoplasma. 
             The data were aligned to three genomes: <br>
             <a href="http://qa.tritrypdb.org/tritrypdb/app/record/dataset/DS_749e483378">Transcriptome during Infection in Human Fibroblasts (NonEsmo aligned)</a><br>
             <a href="http://qa.tritrypdb.org/tritrypdb/app/record/dataset/DS_8245debbb8">Transcriptome during Infection in Human Fibroblasts (Esmo aligned)</a><br>
             <a href="http://qa.tritrypdb.org/tritrypdb/app/record/dataset/DS_a94641eb9c">Transcriptome during Infection in Human Fibroblasts (CLBrener aligned)</a><br> 
 
-            <a href="http://www.ncbi.nlm.nih.gov/pubmed/27046031">Li et al.</a>. 
+             
            </li>
          </ul>
 
@@ -80,7 +80,7 @@
            </tr>
            <tr>
              <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_31282613b1"><i>Trypanosoma brucei</i> 927</a></td>
-             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2017-07/Tbruceibrucei927.noseq.gff3.gz</a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2017-07/Tbruceibrucei927.noseq.gff3.gz"> Tbruceibrucei927.noseq.gff3.gz</a></td> 
              <td>1255 genes</td>
            </tr>
            </table>
