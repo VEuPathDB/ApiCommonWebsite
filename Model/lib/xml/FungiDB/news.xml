@@ -43,6 +43,41 @@
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/21695235 ">Goodwin et al.</a>
              </li>
            </ul>
+           
+        <h4>RNA Sequencing data</h4>
+           <ul>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_fe2408ea96">Characterization of light regulated genes</a> &ndash; 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/25053707" target="_blank">Wu et al.</a>
+             </li>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_95f5806799">Transcriptome of Magnaporthe oryzae isolates collected from Bangladeshi fields</a> &ndash; 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/27716181" target="_blank">Islam et al.</a>
+             </li>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_aa38cfed1f">Transcriptome of Magnaporthe oryzae isolates collected from Bangladeshi fields (aligned to BR32)</a> &ndash; 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/27716181" target="_blank">Islam et al.</a>
+             </li>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_f660889f03">The Cryptococcus neoformans transcriptome at the site of human meningitis (paired-end data)</a> &ndash; 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/24496797">Chen et al.</a> 
+             </li>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_2612dbc3df">The Cryptococcus neoformans transcriptome at the site of human meningitis (single-read data)</a> &ndash; 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/24496797">Chen et al.</a> 
+             </li>
+           </ul>
+           
+        <h4>Proteomics data</h4>
+           <ul>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_8fde6fa47c">phosphoproteome in non-limiting conditions</a> &ndash; 
+                 <i>Fusarium graminearum</i> phosphoproteome in non-limiting conditions.
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/22522806" target="_blank">Rampitsch et al.</a>
+             </li>
+           </ul>
+
+         <h4>Chip-seq data</h4>
+           <ul>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_df6d18e20e">ADV-1 gene targets ChIP-seq</a> &ndash;
+             ADV-1 functions to generate distinct temporal dynamics of target genes in <i>Neurospora crassa</i>. 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/27856696" target="_blank">Dekhang et al.</a>
+             </li>
+           </ul>  
       </section>
      
       <section>
