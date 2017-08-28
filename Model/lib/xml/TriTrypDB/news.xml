@@ -46,7 +46,6 @@
             <a href="http://qa.tritrypdb.org/tritrypdb/app/record/dataset/DS_8245debbb8">Transcriptome during Infection in Human Fibroblasts (Esmo aligned)</a><br>
             <a href="http://qa.tritrypdb.org/tritrypdb/app/record/dataset/DS_a94641eb9c">Transcriptome during Infection in Human Fibroblasts (CLBrener aligned)</a><br> 
 
-             
            </li>
          </ul>
 
@@ -127,10 +126,15 @@
           
           <img src="/tritrypdb/images/usercomments_unique_bld34.png"  height="230px" width="280px" 
           alt="Unique user comments entered and curated since 2009.">
+          
+          <br><br>
+          
+          <img src="/tritrypdb/images/UserCommentsBoth.png"  height="230px" width="5300px" 
+          alt="Unique user comments entered and curated since 2009.">
           </div>
     
         </div>
--->        
+      
       </section>      
             
       <section>
