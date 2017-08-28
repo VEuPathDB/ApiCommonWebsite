@@ -91,6 +91,20 @@ sub isExcludedProfileSet {
 
 1;
 
+#fungi 
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_a2d28b5866;
+sub init {
+my $self = shift;
+$self->SUPER::init(@_);
+
+$self->setPlotWidth(800);
+
+return $self;
+}
+
+1;
+
+
 # ToxoDB tgonME49_Saeij_Jeroen_strains_rnaSeq_RSRC
 package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_485e6e94e3;
 

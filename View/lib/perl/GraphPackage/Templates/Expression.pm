@@ -943,6 +943,9 @@ sub finalProfileAdjustments {
 
   $profile->setHasExtraLegend(1);
   $profile->setLegendLabels($legend);
+  
+  $self->setPlotWidth(600); 
+
   return $self;
 }
 1;

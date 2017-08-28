@@ -34,6 +34,15 @@ package ApiCommonWebsite::View::GraphPackage::Templates::ExpressionTwoChannel::D
 #PlasmoDB eQTL
 package ApiCommonWebsite::View::GraphPackage::Templates::ExpressionTwoChannel::DS_dd1931c47a;
 
+sub init {
+  my $self = shift;
+
+  $self->SUPER::init(@_);
+
+  $self->setPlotWidth(700);
+
+}
+
 sub finalProfileAdjustments {                                                                                                                                                                               
   my ($self, $profile) = @_;
 
@@ -67,7 +76,6 @@ RADJUST
         $profile->addAdjustProfile($rAdjustString);
     }
 }
-
 
 1;
 
