@@ -39,13 +39,14 @@
             <a href="http://www.ncbi.nlm.nih.gov/pubmed/26054634">Smircich et al.</a>. 
            </li>
            <li>
-            Transcriptome during Infection in Human Fibroblasts.  <a href="http://www.ncbi.nlm.nih.gov/pubmed/27046031">Li et al.</a>. 
-            RNA sequence analysis of mixed host and parasite samples of human fibroblast cells infected with Toxoplasma. 
-            The data were aligned to three genomes: <br>
-            <a href="http://qa.tritrypdb.org/tritrypdb/app/record/dataset/DS_749e483378">Transcriptome during Infection in Human Fibroblasts (NonEsmo aligned)</a><br>
-            <a href="http://qa.tritrypdb.org/tritrypdb/app/record/dataset/DS_8245debbb8">Transcriptome during Infection in Human Fibroblasts (Esmo aligned)</a><br>
-            <a href="http://qa.tritrypdb.org/tritrypdb/app/record/dataset/DS_a94641eb9c">Transcriptome during Infection in Human Fibroblasts (CLBrener aligned)</a><br> 
-
+            Transcriptome during Infection in Human Fibroblasts.  <a href="http://www.ncbi.nlm.nih.gov/pubmed/27046031">Li et al.</a>. <br>
+            <div style="margin-left: 3em;">
+              RNA sequence analysis of mixed host and parasite samples of human fibroblast cells infected with Toxoplasma. 
+              The data were aligned to three genomes: <br>
+              <a href="http://qa.tritrypdb.org/tritrypdb/app/record/dataset/DS_749e483378">Transcriptome during Infection in Human Fibroblasts (NonEsmo aligned)</a><br>
+              <a href="http://qa.tritrypdb.org/tritrypdb/app/record/dataset/DS_8245debbb8">Transcriptome during Infection in Human Fibroblasts (Esmo aligned)</a><br>
+              <a href="http://qa.tritrypdb.org/tritrypdb/app/record/dataset/DS_a94641eb9c">Transcriptome during Infection in Human Fibroblasts (CLBrener aligned)</a><br> 
+            </div>
            </li>
          </ul>
 
@@ -129,7 +130,7 @@
           
           <br><br>
           
-          <img src="/tritrypdb/images/UserCommentsBoth.png"  height="230px" width="5300px" 
+          <img src="/tritrypdb/images/UserCommentsBoth.png"  height="230px" width="530px" 
           alt="Unique user comments entered and curated since 2009.">
           </div>
     
