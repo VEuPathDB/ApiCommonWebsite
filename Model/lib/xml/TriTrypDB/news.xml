@@ -138,12 +138,12 @@
         This may underrepresent abundance for genes that are duplicated, such as paralogs. Non-unique reads are only available 
         as GBrowse subtracks. To view non-unique reads from a gene page, open the Coverage section and click 'View in 
         genome browser' above the coverage plots. 
-        (<a href="/images/FromCoverageNonuniqueReads.png">Tutorial document for viewing non-unique reads from a gene page</a>)
+        (<a href="/tritrypdb/images/FromCoverageNonuniqueReads.png">Tutorial document for viewing non-unique reads from a gene page</a>)
         
         <br><br>
         To view non-unique reads without navigating to the gene page, open GBrowse from the home page.  Use the Select Tracks 
         tab to turn on the data track of interest and the subtracks configuration tool to turn on the non-unique reads subtracks. 
-        (<a href="/images/FromHomeNonuniqueReads.png">Tutorial document for viewing non-unique reads from the home page</a>)
+        (<a href="/tritrypdb/images/FromHomeNonuniqueReads.png">Tutorial document for viewing non-unique reads from the home page</a>)
         
         <br><br>
         In release 34, gene pages contain a message about non-unique reads, an accurate description of the y-axis and links to 
