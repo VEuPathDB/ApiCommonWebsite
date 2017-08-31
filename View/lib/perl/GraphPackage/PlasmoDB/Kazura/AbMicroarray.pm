@@ -16,12 +16,12 @@ sub init {
   $self->setPlotWidth(600);
   $self->setScreenSize(300);
 
-  my $colors = ['blue','white'];
+#  my $colors = ['blue','white'];
 #  my $facet = $self->getFacets();
 #  my $contXAxis = $self->getContXAxis();
 
-   #need to figure out what the source ids are .. 
-   my $facet = 'ICEMR_microscopy_result';
+   my $colors = ['blue'];
+   my $facet = ['ICEMR_microscopy_result'];
    my $contXAxis = 'OBI_0001169';
 
   my @profileSetArray = (['Kazura Reinfection Ab Microarray Profiles','values', '', '', '', '', '', $facet, '', '', $contXAxis]);
