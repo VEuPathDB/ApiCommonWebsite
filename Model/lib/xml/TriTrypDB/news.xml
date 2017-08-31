@@ -134,11 +134,11 @@
         <div style="margin-left: 3em;">
         
         In the transcriptomics section of gene pages, expression graphs display FPKM or RPKM values determined from unique 
-        reads (those that align to onelocation only). The coverage section shows plots of unique reads aligned to the genome.  
+        reads (those that align to one location only). The coverage section shows plots of unique reads aligned to the genome.  
         This may underrepresent abundance for genes that are duplicated, such as paralogs. Non-unique reads are only available 
         as GBrowse subtracks. To view non-unique reads from a gene page, open the Coverage section and click 'View in 
         genome browser' above the coverage plots. 
-        (<a href="/tritrypdb/images/FromCoverageNonuniqueReads.png">Tutorial document for viewing non-unique reads from a gene page</a>)
+        (<a href="/tritrypdb/images/FromCoverageNonuniqueReads.pdf">Tutorial document about viewing non-unique reads from a gene page</a>)
         
         <br><br>
         To view non-unique reads without navigating to the gene page, open GBrowse from the home page.  Use the Select Tracks 
