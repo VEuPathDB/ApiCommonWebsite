@@ -17,11 +17,11 @@ sub init {
   $self->setPlotWidth(600);
   $self->setScreenSize(300);
 
-  my $colors = ['blue','white'];
-
+#  my $colors = ['blue','white'];
+  my $colors = ['blue'];
 #  my $facet = $self->getFacets();
 #  my $contXAxis = $self->getContXAxis();
-   my $facet = 'ICEMR_health_status';
+   my $facet = ['ICEMR_health_status'];
    my $contXAxis = 'PATO_0000011';
  
   my @profileSetArray = (['Crompton Ab Microarray Profiles','values', '', '', '', '', '', $facet, '', '', $contXAxis]);
