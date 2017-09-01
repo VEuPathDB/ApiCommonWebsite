@@ -128,12 +128,34 @@
     
         </div>
       </section>      
-      
+      <section>
+         <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+
+    ]]>
+  </attribute>
+</record>
+
+<record>
+  <attribute name="headline">Interpreting RNA Seq expression values</attribute>
+  <attribute name="date">20 Aug 2017 13:00</attribute>
+  <attribute name="tag">info08_17_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    
+    
+    
     <section>
-        <h3><b>Interpreting RNA Seq expression values </b></h3> 
+        
         <div style="margin-left: 3em;">
         
-        In the transcriptomics section of gene pages, expression graphs display FPKM or RPKM values determined from unique 
+        In the transcriptomics section of gene pages, expression graphs display FPKM or RPKM values determined from uniquely aligned 
         reads (those that align to one location only). The coverage section shows plots of unique reads aligned to the genome.  
         This may underrepresent abundance for genes that are duplicated, such as paralogs. Non-unique reads are only available 
         as GBrowse subtracks. To view non-unique reads from a gene page, open the Coverage section and click 'View in 
@@ -149,23 +171,14 @@
         In release 34, gene pages contain a message about non-unique reads, an accurate description of the y-axis and links to 
         tutorials on how to display non-unique reads.  Future releases will offer searches based on the non-unique reads and 
         their contribution to expression. 
-         
-     </section> 
         
-              
-      <section>
-         <aside>
-           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
-           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
-           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
-           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
-         </aside>
-      </section>
+        <br><br>
+        For future releases, we are working to implement a graphic visualization that provides information about both unique and a non-unique reads. 
+     </section> 
 
     ]]>
   </attribute>
 </record>
-
 
 <record>
   <attribute name="headline">TriTrypDB 33 Released</attribute>
