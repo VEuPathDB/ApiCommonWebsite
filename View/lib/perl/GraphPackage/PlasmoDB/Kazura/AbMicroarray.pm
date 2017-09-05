@@ -31,6 +31,7 @@ sub init {
 #  my $scatter = EbrcWebsiteCommon::View::GraphPackage::ScatterPlot::ClinicalMetaData->new(@_);
   $scatter->setProfileSets($profileSets);
   $scatter->setColors($colors);
+  $scatter->setXaxisLabel("Age");
 
   $self->setGraphObjects($scatter);
 
