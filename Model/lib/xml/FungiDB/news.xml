@@ -82,11 +82,11 @@
      
       <section>
       
-      <h4>Neurospora crassa e-compendium<h4>
+      <h4><i>Neurospora crassa</i> e-Compendium<h4>
       <div style="margin-left: 3em;">
       
       PubMed IDs from 
-      <a href="http://www.bioinf.leeds.ac.uk/~gen6ar/newgenelist/genes/gene_list.htm"><i>Neurospora crassa</i> e-compendium</a> by Allan Radford and Matt Sachs
+      <a href="http://www.bioinf.leeds.ac.uk/~gen6ar/newgenelist/genes/gene_list.htm"><i>Neurospora crassa</i> e-Compendium</a> by Alan Radford and Matt Sachs
        have been loaded for <i>Neurospora crassa</i> OR74A. The  
        <a href="https://docs.google.com/spreadsheets/d/1kHpXNGFGAHxbeecfZ7SX9x8GmSwre5WYUURMfdTQCzU/edit?usp=sharing">list of loaded publications</a>
        is available.
@@ -100,9 +100,10 @@
       <h4>External database links<h4>
 
            <ul>
-             <li>In a collaborative effort between FungiDB and PHI-Base, FungiDB gene pages now contain links to PHI-Base for 47 fungal pathogens. 
+             <li>In a collaborative effort between FungiDB and PHI-Base, FungiDB gene pages now contain links to PHI-Base for
+                 <a href="http://fungidb.org/fungidb/app/record/dataset/DS_109a8b00fd"> 47 fungal organisms</a>. 
              </li>
-             <li>In a collaborative effort between FungiDB and JGI, FungiDB gene pages now contain links to JGI record pages. 
+             <li>In a collaborative effort between FungiDB and JGI, FungiDB <i>Aspergillus nidulans</i> gene pages now contain links to JGI record pages. 
              </li>
            </ul>
        
