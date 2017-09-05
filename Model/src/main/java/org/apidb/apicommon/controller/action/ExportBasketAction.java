@@ -39,7 +39,7 @@ public class ExportBasketAction extends Action {
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         WdkModelBean wdkModelBean = ActionUtility.getWdkModel(servlet);
-        UserBean userBean = ActionUtility.getUser(servlet, request);
+        UserBean userBean = ActionUtility.getUser(request);
 
         String targetProject = request.getParameter(PARAM_TARGET_PROJECT);
         String rcName = request.getParameter(PARAM_RECORD_CLASS);

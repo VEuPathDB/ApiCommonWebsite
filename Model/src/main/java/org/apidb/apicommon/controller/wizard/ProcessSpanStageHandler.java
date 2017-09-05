@@ -55,22 +55,22 @@ public class ProcessSpanStageHandler implements StageHandler {
         String strStepId = (String) wizardForm.getValueOrArray(span);
         long stepId = Long.valueOf(strStepId);
 
-        UserBean user = ActionUtility.getUser(servlet, request);
+        UserBean user = ActionUtility.getUser(request);
         StepBean step = user.getStep(stepId);
         String questionName = ProcessSpanStageHandler.getSpanQuestion(step.getRecordClass().getFullName());
 
         Map<String, Object> results = new HashMap<String, Object>();
         results.put(ATTR_QUESTION_NAME, questionName);
 
-        computeRegion(request, wizardForm, results, "a");
-        computeRegion(request, wizardForm, results, "b");
+        computeRegion(request, wizardForm, "a");
+        computeRegion(request, wizardForm, "b");
 
         logger.debug("Leaving ProcessSpanStageHandler....");
         return results;
     }
 
     private void computeRegion(HttpServletRequest request,
-            WizardForm wizardForm, Map<String, Object> attributes, String region) {
+            WizardForm wizardForm, String region) {
         String option = wizardForm.getValue("region_" + region).toString();
         if (option.equals("exact")) {
             // use exact region of the feature

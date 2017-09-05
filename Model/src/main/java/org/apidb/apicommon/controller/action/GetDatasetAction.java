@@ -64,7 +64,7 @@ public class GetDatasetAction extends Action {
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         WdkModelBean wdkModel = ActionUtility.getWdkModel(servlet);
-        UserBean user = ActionUtility.getUser(servlet, request);
+        UserBean user = ActionUtility.getUser(request);
 
         String questionName = request.getParameter(PARAM_QUESTION);
         String reference = request.getParameter(PARAM_REFERENCE);

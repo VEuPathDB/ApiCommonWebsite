@@ -28,7 +28,7 @@ public class DeleteCommentAction extends CommentAction {
         Comment commentToDelete = factory.getComment(commentId);
         
         // ensure user has permission to delete comment (only owner has permission)
-        if (ActionUtility.getUser(servlet, request).getUserId() == commentToDelete.getUserId()) {
+        if (ActionUtility.getUser(request).getUserId() == commentToDelete.getUserId()) {
         	factory.deleteComment(commentForm.getCommentId());
         }
         

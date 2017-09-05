@@ -54,7 +54,7 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
         if (!GetDatasetAction.hasXmlDataset(wdkModel)) {
 
             // load the recordClass based data sources
-            UserBean user = ActionUtility.getUser(servlet, request);
+            UserBean user = ActionUtility.getUser(request);
             String questionName = request.getParameter(PARAM_QUESTION_FULL);
             QuestionBean question;
             if (questionName == null) {
@@ -93,7 +93,7 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
     public static void loadQuestionsByDataset(ActionServlet servlet,
             HttpServletRequest request) throws Exception {
         WdkModelBean wdkModel = ActionUtility.getWdkModel(servlet);
-        UserBean user = ActionUtility.getUser(servlet, request);
+        UserBean user = ActionUtility.getUser(request);
 
         //eg:  InternalGeneDatasetQuestions.GenesByRNASeqEvidence
         String questionName = request.getParameter(PARAM_QUESTION_FULL);

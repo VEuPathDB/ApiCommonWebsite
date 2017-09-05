@@ -56,10 +56,6 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
         this.serverEndpoints.put(VBASE_NAME_KEY, getProperty(VBASE_SEARCH_SERVER_ENDPOINT_PROP_KEY));        
         this.serverEndpoints.put(EUPATH_PORTAL_NAME_KEY, getProperty(EUPATH_PORTAL_SEARCH_SERVER_ENDPOINT_PROP_KEY));        
         // TODO ... Add more for other BRCs
-    }       
-
-    private Map<String, String> getServerEndpoints() {
-        return this.serverEndpoints;
     }
 
   @Override
@@ -153,7 +149,7 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
   public Object getResultViewModel() throws WdkModelException {
     Path inputPath = Paths.get(getStorageDirectory().toString(), TABBED_RESULT_FILE_PATH);
 
-    String brcValue = getFormParams().get(BRC_PARAM_KEY)[0];
+    //String brcValue = getFormParams().get(BRC_PARAM_KEY)[0];
 
     List<ResultRow> results = new ArrayList<>();
     try (FileReader fileIn = new FileReader(inputPath.toFile());
@@ -206,7 +202,7 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
       public String getThresholdTypeParamHelp() { return this.thresholdTypeParamHelp; }
       public String getThresholdParamHelp() { return this.thresholdParamHelp; }
       public String getUseOrthologyParamHelp() { return this.useOrthologyParamHelp; }
-      
+      public String getProjectId() { return projectId; }
   }
 
   public static class ResultViewModel {

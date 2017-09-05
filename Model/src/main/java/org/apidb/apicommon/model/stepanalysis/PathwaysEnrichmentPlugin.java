@@ -69,18 +69,17 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     EnrichmentPluginUtil.validateOrganism(formParams, getAnswerValue(), getWdkModel(), errors);
 
     // validate annotation sources 
-    String sourcesStr = EnrichmentPluginUtil.getArrayParamValueAsString(
-        PATHWAYS_SRC_PARAM_KEY, formParams, errors);
+    EnrichmentPluginUtil.getArrayParamValueAsString(PATHWAYS_SRC_PARAM_KEY, formParams, errors);
 
     // only validate further if the above pass
     if (errors.isEmpty()) {
-      validateFilteredPathways(sourcesStr, errors);
+      validateFilteredPathways(errors);
     }
 
     return errors;
   }
 
-  private void validateFilteredPathways(String sourcesStr, ValidationErrors errors)
+  private void validateFilteredPathways(ValidationErrors errors)
         throws WdkModelException, WdkUserException {
 
     String countColumn = "CNT";

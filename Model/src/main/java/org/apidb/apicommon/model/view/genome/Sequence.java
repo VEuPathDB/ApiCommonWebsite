@@ -47,7 +47,7 @@ public class Sequence implements Comparable<Sequence> {
     return regions;
   }
 
-  public List<Region> getRegions(long start, long end, boolean forward) {
+  public List<Region> getRegions(long start, long end) {
     List<Region> list = new ArrayList<>();
     for (Region region : regions) {
       if (start <= region.getEnd() && end >= region.getStart())

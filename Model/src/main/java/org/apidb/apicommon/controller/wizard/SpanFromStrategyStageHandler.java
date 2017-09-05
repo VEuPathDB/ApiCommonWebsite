@@ -31,7 +31,7 @@ public class SpanFromStrategyStageHandler extends ShowSpanStageHandler {
     if (strImportStrategyId == null || strImportStrategyId.length() == 0)
       throw new WdkUserException("required " + PARAM_IMPORT_STRATEGY + " is missing.");
 
-    UserBean user = ActionUtility.getUser(servlet, request);
+    UserBean user = ActionUtility.getUser(request);
 
     long importStrategyId = Long.valueOf(strImportStrategyId);
     StrategyBean importStrategy = user.getStrategy(importStrategyId);
