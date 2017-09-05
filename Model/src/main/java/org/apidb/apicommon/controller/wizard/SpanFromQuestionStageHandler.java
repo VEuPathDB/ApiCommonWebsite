@@ -36,7 +36,7 @@ public class SpanFromQuestionStageHandler extends ShowSpanStageHandler {
             WizardForm wizardForm) throws Exception {
         logger.debug("Entering SpanFromQuestionStageHandler....");
 
-        UserBean user = ActionUtility.getUser(servlet, request);
+        UserBean user = ActionUtility.getUser(request);
 
         // create a new step from question
         String questionName = request.getParameter(CConstants.QUESTION_FULLNAME_PARAM);
@@ -79,12 +79,12 @@ public class SpanFromQuestionStageHandler extends ShowSpanStageHandler {
 
         StepBean childStep = null;
         String importStrategyId = request.getParameter("importStrategy");
-        if (questionName != null && questionName.length() > 0) {
+        if (questionName.length() > 0) {
           // a question name specified, either create a step from it, or revise a current step
           String action = request.getParameter(ProcessBooleanAction.PARAM_ACTION);
           if (action.equals(WizardForm.ACTION_REVISE)) {
             childStep = ProcessBooleanStageHandler.updateStepWithQuestion(
-                servlet, request, wizardForm, strategy, questionName, user, wdkModel, stepId);
+                servlet, request, wizardForm, strategy, questionName, user, stepId);
           }
           else {
             childStep = user.createStep(null, question, params, filterName,

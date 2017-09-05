@@ -67,11 +67,11 @@ public abstract class ShowSpanStageHandler implements StageHandler {
         // determine the previous step
         String action = wizardForm.getAction();
         if (action.equals(WizardForm.ACTION_ADD)) {
-            prepareAdd(servlet, request, wizardForm, childStep, attributes);
+            prepareAdd(request, wizardForm, childStep, attributes);
         } else if (action.equals(WizardForm.ACTION_INSERT)) {
-            prepareInsert(servlet, request, wizardForm, childStep, attributes);
+            prepareInsert(request, wizardForm, childStep, attributes);
         } else if (action.equals(WizardForm.ACTION_REVISE)) {
-            prepareRevise(servlet, request, wizardForm, childStep, attributes);
+            prepareRevise(request, wizardForm, childStep, attributes);
         } else {
             throw new WdkUserException("Unknown wizard action: " + action);
         }
@@ -80,16 +80,14 @@ public abstract class ShowSpanStageHandler implements StageHandler {
         return attributes;
     }
 
-    private void prepareInsert(ActionServlet servlet,
-            HttpServletRequest request, WizardForm wizardForm,
-            StepBean childStep, Map<String, Object> attributes)
+    private void prepareInsert(HttpServletRequest request, WizardForm wizardForm,
+                StepBean childStep, Map<String, Object> attributes)
             throws NumberFormatException, WdkModelException, WdkUserException {
         StepBean currentStep = StageHandlerUtility.getCurrentStep(request);
         StepBean previousStep, nextStep;
         String nextParam = null;
         if (currentStep.isCombined()) { // insert before a combined step
-            previousStep = StageHandlerUtility.getPreviousStep(servlet,
-                    request, wizardForm);
+            previousStep = StageHandlerUtility.getPreviousStep(request, wizardForm);
             nextStep = currentStep;
             nextParam = currentStep.getPreviousStepParam();
         } else { // insert before the first step
@@ -113,7 +111,7 @@ public abstract class ShowSpanStageHandler implements StageHandler {
         wizardForm.setValue("span_b", childStep.getStepId());
     }
 
-    private void prepareRevise(ActionServlet servlet,
+    private void prepareRevise(
             HttpServletRequest request, WizardForm wizardForm,
             StepBean childStep, Map<String, Object> attributes)
             throws WdkModelException {
@@ -138,12 +136,11 @@ public abstract class ShowSpanStageHandler implements StageHandler {
         wizardForm.setValue("span_b", childStep.getStepId());
     }
 
-    private void prepareAdd(ActionServlet servlet, HttpServletRequest request,
+    private void prepareAdd(HttpServletRequest request,
             WizardForm wizardForm, StepBean childStep,
             Map<String, Object> attributes) throws NumberFormatException,
             WdkUserException, WdkModelException {
-        StepBean rootStep = StageHandlerUtility.getRootStep(servlet, request,
-                wizardForm);
+        StepBean rootStep = StageHandlerUtility.getRootStep(request, wizardForm);
         StepBean previousStep = rootStep;
         StepBean nextStep = rootStep.getNextStep();
         String nextParam = null;

@@ -132,7 +132,7 @@ public class CustomShowRecordAction extends ShowRecordAction {
     private boolean hasMultipleRecords(HttpServletRequest request,
 				       WdkModelBean wdkModel, String rcName, String sourceId, String geneSourceId)
             throws WdkModelException, WdkUserException {
-        UserBean user = ActionUtility.getUser(servlet, request);
+        UserBean user = ActionUtility.getUser(request);
         RecordClassBean recordClass = wdkModel.getRecordClass(rcName);
         Map<String, Object> pkValues = new LinkedHashMap<String, Object>();
         pkValues.put("source_id", sourceId);
@@ -148,7 +148,7 @@ public class CustomShowRecordAction extends ShowRecordAction {
         Map<String, String> tableRefs = new LinkedHashMap<String, String>();
 
         // load the recordClass based data sources
-        UserBean user = ActionUtility.getUser(servlet, request);
+        UserBean user = ActionUtility.getUser(request);
 
         // get the data source question
         QuestionBean question = wdkModel.getQuestion(GetDatasetAction.DATA_SOURCE_BY_RECORD_CLASS);
