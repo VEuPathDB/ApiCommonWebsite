@@ -94,7 +94,19 @@
       </div>
       </section>
       
+      <section>
       
+      <h4>REVIGO direct link <h4>
+      <div style="margin-left: 3em;">
+      
+          EuPathDB gene ontology enrichment analysis results now offer a direct link to 
+          <a href="http://revigo.irb.hr/">Revigo</a> for further analysis of the GO terms returned by the 
+          EuPathDB GO enrichment analysis tool.   Click the '
+          <a href="/fungidb/images/Revigo.png">Start Revigo Analysis</a>' link to post the GO terms in your EuPathDB GO enrichment analysis 
+          directly to the Revigo tool. Then finish your Revigo Analysis on the Revigo site. 
+       
+      </div>
+      </section>
       <section>
       
       <h4>External database links<h4>
