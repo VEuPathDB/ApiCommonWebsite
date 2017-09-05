@@ -95,16 +95,17 @@
       </section>
       
       <section>
-      
+      <h3>New features in this release</h3>
       <h4>REVIGO direct link <h4>
       <div style="margin-left: 3em;">
-      
-          EuPathDB gene ontology enrichment analysis results now offer a direct link to 
-          <a href="http://revigo.irb.hr/">Revigo</a> for further analysis of the GO terms returned by the 
-          EuPathDB GO enrichment analysis tool.   Click the '
-          <a href="/fungidb/images/Revigo.png">Start Revigo Analysis</a>' link to post the GO terms in your EuPathDB GO enrichment analysis 
-          directly to the Revigo tool. Then finish your Revigo Analysis on the Revigo site. 
-       
+          
+          EuPathDB now offers a direct link from gene ontology (GO) enrichment results to 
+          <a href="http://revigo.irb.hr/">REVIGO</a>, a tool that provides GO term summarization and visualization.  
+          To access this feature first run a GO term enrichment using the ‘Analyze Results’ option from any gene search result. Then click on 
+          the 'Start Revigo Analysis' link (<a href="/fungidb/images/Revigo.png">upper right hand side of enrichment results</a>) 
+          to populate the REVIGO submission page with your GO enrichment results from EuPathDB.  Follow instructions 
+          on the REVIGO page to complete your analysis.
+          
       </div>
       </section>
       <section>
