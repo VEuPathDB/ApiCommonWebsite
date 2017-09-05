@@ -62,10 +62,10 @@ select  rownum as element_order, ps.NAME, ps.FACET, ps.CONTXAXIS FROM (
      , apidbtuning.metadata m2
   WHERE  s.study_name = \'<<ProfileSet>>\'
  AND s.profile_type = \'<<ProfileType>>\'
- AND m1.study_name(+) = s.study_name
+ --AND m1.study_name(+) = s.study_name
  and m1.PROTOCOL_APP_NODE_ID(+) = s.PROTOCOL_APP_NODE_ID 
  and m1.source_id(+) = \'$facet1\' 
- AND m2.study_name(+) = s.study_name 
+ --AND m2.study_name(+) = s.study_name 
  and m2.PROTOCOL_APP_NODE_ID(+) = s.PROTOCOL_APP_NODE_ID 
  and m2.source_id(+) = \'<<ContXAxis>>\'
  ORDER  BY s.node_order_num
