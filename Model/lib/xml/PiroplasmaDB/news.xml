@@ -25,7 +25,22 @@
     <p><strong>We are pleased to announce the release of PiroplasmaDB 34</strong></p>
       
       <section>
-        <h3>No New data in this release</h3> 
+      <h3><b>New features in this release</b></h3>
+      <h4>REVIGO direct link <h4>
+      <div style="margin-left: 3em;">
+          
+          EuPathDB now offers a direct link from gene ontology (GO) enrichment results to 
+          <a href="http://revigo.irb.hr/">REVIGO</a>, a tool that provides GO term summarization and visualization.  
+          To access this feature first run a GO term enrichment using the 'Analyze Results' option from any gene search result. Then click on 
+          the 'Start Revigo Analysis' link (<a href="/piroplasmadb/images/Revigo.png">upper right hand side of enrichment results</a>) 
+          to populate the REVIGO submission page with your GO enrichment results from EuPathDB.  Follow instructions 
+          on the REVIGO page to complete your analysis.
+          
+      </div>
+      </section>
+      
+      <section>
+        <h3><b>No New data in this release</b></h3> 
          <aside>
            Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
            Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
