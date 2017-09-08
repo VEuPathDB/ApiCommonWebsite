@@ -1,5 +1,6 @@
 package ApiCommonWebsite::View::CgiApp::multipleSeqAlignment;
-use base qw( ApiCommonWebsite::View::CgiApp );
+
+@ISA = qw( EbrcWebsiteCommon::View::CgiApp );
 
 use strict;
 use File::Basename;
@@ -14,6 +15,7 @@ use Bio::Location::Simple;
 use Bio::Coordinate::Pair;
 use Bio::Coordinate::GeneMapper;
 use WDK::Model::ModelProp;
+use EbrcWebsiteCommon::View::CgiApp;
 use EbrcWebsiteCommon::Model::ModelXML;
 use CGI;
 use CGI::Carp qw(fatalsToBrowser set_message);
