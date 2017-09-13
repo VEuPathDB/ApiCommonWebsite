@@ -1,5 +1,7 @@
 package ApiCommonWebsite::View::CgiApp::HtsSNPAlignment;
 
+@ISA = qw( EbrcWebsiteCommon::View::CgiApp );
+
 use strict;
 use EbrcWebsiteCommon::View::CgiApp;
 
