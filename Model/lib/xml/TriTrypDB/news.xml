@@ -39,9 +39,10 @@
             <div style="margin-left: 3em;">
              
               The data were aligned to three genomes: <br> 
-              <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_3c3e69e1d7"><i>T. cruzi</i> CLBrener</a>, <br>
-              <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_b1996b85cc"><i>T. cruzi</i> CLBrener Esmeraldo-like</a>, <br>
-              <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_5b5562e0b2"><i>T. cruzi</i> CLBrener Non-Esmeraldo-like</a>.<br>
+              <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_5b5562e0b2">Transcriptome and Translatome of epimastigote and metacyclic stages (NonEsmo aligned)</a>,<br>
+              <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_b1996b85cc">Transcriptome and Translatome of epimastigote and metacyclic stages (Esmo aligned)</a>, <br>
+              <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_3c3e69e1d7">Transcriptome and Translatome of epimastigote and metacyclic stages (CLBrener aligned)</a>. <br>
+              
              </div>
            </li>
            <li>
