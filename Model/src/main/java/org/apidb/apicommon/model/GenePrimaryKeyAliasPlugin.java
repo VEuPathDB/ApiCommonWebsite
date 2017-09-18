@@ -46,14 +46,11 @@ public class GenePrimaryKeyAliasPlugin implements org.gusdb.wdk.model.record.Pri
     result.add(getPkMap(inputGeneId, user.getWdkModel().getProjectId()));
 
     // get the mapped genes, keyed by their transcripts (sorted alphabetically)
-    //    SortedMap<String, String> transcriptToGene = findCurrentIds(inputGeneId, user.getWdkModel().getAppDb().getDataSource());
-
-
-
-    // if asking for a default transcript
-    // then, for each gene found, return it, along with its alphabetically first transcript
+    //SortedMap<String, String> transcriptToGene = findCurrentIds(inputGeneId, user.getWdkModel().getAppDb().getDataSource());
 
     /*
+    // if asking for a default transcript
+    // then, for each gene found, return it, along with its alphabetically first transcript
     if (inputTranscriptId.equals("_DEFAULT_TRANSCRIPT_")) {
       String prevGene = "";
       for (String transcript : transcriptToGene.keySet()) {
@@ -64,7 +61,6 @@ public class GenePrimaryKeyAliasPlugin implements org.gusdb.wdk.model.record.Pri
         }
       }
     }
-
 
     // otherwise, map the gene to new gene id, and go w/ the input transcript id (if it is old, it will cause user err)
     else {
@@ -87,6 +83,7 @@ public class GenePrimaryKeyAliasPlugin implements org.gusdb.wdk.model.record.Pri
    * @return map of each new transcript id to its new gene id
    * @throws WdkModelException 
    */
+  @SuppressWarnings("unused")
   private SortedMap<String,String> findCurrentIds(String inputGeneId, DataSource appDbDataSource) throws WdkModelException {
     String sql = "SELECT ta.source_id, ta.gene_source_id "
         + "FROM ApidbTuning.GeneId a, ApidbTuning.TranscriptAttributes ta "
