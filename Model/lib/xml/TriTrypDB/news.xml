@@ -34,9 +34,16 @@
         <h4>RNA Sequencing</h4>
          <ul>
            <li>
-            <a href="http://qa.tritrypdb.org/tritrypdb/app/record/dataset/DS_77b2dc5fe2">Transcriptome and Translatome of epimastigote and metacyclic stages</a> &mdash; 
-            Transcriptome and Translatome of <i>T. cruzi</i> Dm28c strain mapped against <i>T. cruzi</i> SylvioX10-1.
-            <a href="http://www.ncbi.nlm.nih.gov/pubmed/26054634">Smircich et al.</a>. 
+            Transcriptome and Translatome of epimastigote and metacyclic stages in <i>T. cruzi</i> Dm28c strain &mdash; 
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/26054634">Smircich et al.</a><br>
+            <div style="margin-left: 3em;">
+             
+              The data were aligned to three genomes: <br> 
+              <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_5b5562e0b2">Transcriptome and Translatome of epimastigote and metacyclic stages (NonEsmo aligned)</a>,<br>
+              <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_b1996b85cc">Transcriptome and Translatome of epimastigote and metacyclic stages (Esmo aligned)</a>, <br>
+              <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_3c3e69e1d7">Transcriptome and Translatome of epimastigote and metacyclic stages (CLBrener aligned)</a>. <br>
+              
+             </div>
            </li>
            <li>
             Transcriptome during Infection in Human Fibroblasts  &mdash;  RNA sequence analysis of mixed host and parasite samples of human fibroblast 
