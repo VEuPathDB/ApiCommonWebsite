@@ -8,7 +8,7 @@ use ApiCommonWebsite::View::GraphPackage::Templates::Expression;
 
 use EbrcWebsiteCommon::View::GraphPackage::Util;
 
-sub restrictProfileSetsBySourceId { return 1;}
+sub restrictProfileSetsBySourceId { return 0;}
 
 
 1;

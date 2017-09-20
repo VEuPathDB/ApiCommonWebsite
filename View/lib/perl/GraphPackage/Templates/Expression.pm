@@ -102,7 +102,7 @@ sub init {
   $self->SUPER::init(@_);
 
   my $allProfileSets = $self->getAllProfileSetNames();
-  #print STDERR Dumper($allProfileSets);
+  print STDERR Dumper($allProfileSets);
   my %plotParts;
   my %hasStdError;
 
@@ -137,6 +137,7 @@ sub getAllProfileSetNames {
 
   my $restrictProfileSetsBySourceId = $self->restrictProfileSetsBySourceId();
   my $sql = EbrcWebsiteCommon::View::GraphPackage::Util::getProfileSetsSql($restrictProfileSetsBySourceId, $self->getId());
+  print STDERR Dumper $sql;
 
   my $sh = $dbh->prepare($sql);
   $sh->execute($datasetId);
