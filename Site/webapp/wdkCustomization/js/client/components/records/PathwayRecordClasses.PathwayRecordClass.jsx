@@ -1,4 +1,5 @@
 /* global ChemDoodle */
+import { parse } from 'querystring';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { flow, uniqueId } from 'lodash';
@@ -516,7 +517,7 @@ const enhance = flow(
   withStore(state => ({
     pathwayRecord: state.pathwayRecord,
     config: state.globalData.config,
-    nodeList: state.globalData.location.query && state.globalData.location.query.node_list,
+    nodeList: parse(state.globalData.location.search.slice(1)).node_list,
     experimentCategoryTree: getExperimentCategoryTree(state),
     generaCategoryTree: getGeneraCategoryTree(state)
   })),

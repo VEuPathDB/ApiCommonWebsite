@@ -124,11 +124,7 @@ export function RecordTableSection(DefaultComponent) {
               onClick={stopPropagation}
               to={{
                 pathname: `/search/dataset/DatasetsByReferenceName:${customName}/result`,
-                query: {
-                  record_class: props.record.recordClassName,
-                  reference_name: props.table.name,
-                  taxon: props.record.attributes.organism_full
-                }
+                search: `?record_class=${props.record.recordClassName}&reference_name=${props.table.name}&taxon=${props.record.attributes.organism_full}`
               }}
             ><i className="fa fa-database"/> Data sets</Link>
           </span>
