@@ -11,7 +11,7 @@ function toggleRepresentativeTranscripts(checkboxElem) {
     url: wdk.webappUrl(url),
     method: 'PATCH',
     contentType: 'application/json',
-    data: JSON.stringify({"representativeTranscriptOnly": (checked ? "true" : "false")}),
+    data: JSON.stringify({"project":{"representativeTranscriptOnly": (checked ? "true" : "false")}}),
 
     // properties defining data expected
     success: function(data) {
