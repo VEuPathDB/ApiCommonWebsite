@@ -80,10 +80,12 @@ sub processParams {
   # ToxoDB does have automated models anymore. so no special case needed for it
   #  $self->{ignore_gene_alias}= 1 if ($projectId eq 'ToxoDB' || $projectId eq 'EuPathDB');
 
-
-  my @inputIds;
+  my @allIds;
+  my @inputIds; # unique IDs
   foreach(split(/[,\s]+/, $cgi->param('ids'))) {
-    push(@inputIds, $_) unless($_ eq $projectId);
+    push(@allIds, $_) unless($_ eq $projectId);
+    my %hash   = map { $_ => 1 } @allIds;
+    @inputIds = keys %hash;
   }
 
 
@@ -150,7 +152,7 @@ sub setSqls {
   my ($self) = @_;
 
   my $sourceIdAndClause = "(bfmv.gene_source_id = ? OR bfmv.source_id = ?)";
-  $sourceIdAndClause = "bfmv.gene_source_id = ?" if $self->{sourceIdFilter} eq 'genesOnly';
+  $sourceIdAndClause = "bfmv.representative_transcript =  bfmv.source_id and bfmv.gene_source_id = ?" if $self->{sourceIdFilter} eq 'genesOnly';
   $sourceIdAndClause = "bfmv.source_id = ?" if $self->{sourceIdFilter} eq 'transcriptsOnly';
   my $sourceId = $self->{sourceIdFilter} eq 'genesOnly'? "bfmv.gene_source_id" : "bfmv.source_id";
 
@@ -235,7 +237,7 @@ sub handleNonGenomic {
     }
 
     my $sourceIdAndClause = "(bfmv.gene_source_id = ? OR bfmv.source_id = ?)";
-    $sourceIdAndClause = "bfmv.gene_source_id = ?" if $self->{sourceIdFilter} eq 'genesOnly';
+    $sourceIdAndClause = "bfmv.representative_transcript =  bfmv.source_id and bfmv.gene_source_id = ?" if $self->{sourceIdFilter} eq 'genesOnly';
     $sourceIdAndClause = "bfmv.source_id = ?" if $self->{sourceIdFilter} eq 'transcriptsOnly';
     my $sourceId = $self->{sourceIdFilter} eq 'genesOnly'? "bfmv.gene_source_id" : "bfmv.source_id";
 
