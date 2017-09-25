@@ -80,7 +80,7 @@ sub processParams {
   # ToxoDB does have automated models anymore. so no special case needed for it
   #  $self->{ignore_gene_alias}= 1 if ($projectId eq 'ToxoDB' || $projectId eq 'EuPathDB');
 
-  print STDERR "IN processParams : ". $cgi->param('ids') ."\n";
+#  print STDERR "IN processParams : ". $cgi->param('ids') ."\n";
   my @allIds;
   my @inputIds; # unique IDs
   foreach(split(/[,\s]+/, $cgi->param('ids'))) {
