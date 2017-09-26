@@ -91,6 +91,38 @@ sub isExcludedProfileSet {
 
 1;
 
+
+
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_40a06f276b;
+
+sub finalProfileAdjustments {                                                                                
+  my ($self, $profile) = @_;
+
+  my $rAdjustString = << 'RADJUST';
+
+  namesSplit = strsplit(as.character(profile.df.full$NAME), " ");
+
+  profile.df.full$LEGEND = as.factor(unlist(lapply(namesSplit, "[", 3)));
+  profile.df.full$SAMPLE_TYPE = as.factor(unlist(lapply(lapply(namesSplit, "[", 1:2), paste, collapse=" ")));
+
+  newNames = unlist(lapply(lapply(namesSplit, "[", -c(1,2,3)), paste, collapse=" "));
+  newNames = gsub(" infection", " ", gsub(" of ", " ", newNames, ignore.case=T), ignore.case=T)
+  profile.df.full$NAME = factor(newNames, levels=unique(newNames));
+
+  hideLegend=FALSE;
+  expandColors=FALSE;
+
+RADJUST
+
+  $profile->addAdjustProfile($rAdjustString);
+
+  $profile->setFacets(["SAMPLE_TYPE"]);
+  $profile->forceAutoColors(1);
+#  $profile->setColors(["red","purple", "green","blue", "yellow"]);
+}
+
+1;
+
 #fungi 
 package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_a2d28b5866;
 sub init {
