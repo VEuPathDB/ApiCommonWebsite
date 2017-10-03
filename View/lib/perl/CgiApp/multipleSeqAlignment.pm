@@ -44,8 +44,10 @@ sub run {
 
   my ($contig, $start, $stop, $strand, $type, $referenceGenome, $genomes) = &validateParams($cgi, $dbh, $taxonToDirNameMap);
   my ($mercatorOutputDir, $pairwiseDirectories, $availableGenomes) = &validateMacros($cgi);
-
+#  print Dumper "availableGenomes is";
+#  print Dumper @$availableGenomes;
   my $regex = join '|', @$genomes;
+#  print Dumper "regex is $regex";
   if (!$regex && $type eq 'clustal') {
    &userError("Please choose at least one organism which is not the reference.");
   }
@@ -55,11 +57,12 @@ sub run {
     my @agpArraybackwards;
     my @fullCoordCheck;
     my $pair = basename($pairs);
-
+#    print Dumper "pair is $pair";
     if ($regex && ($pair =~ /$referenceGenome/) && ($pair=~ /$regex/)) {
       #	    my @org_names = split "-", $pair;
       my @org_names = map { s/\.agp//; basename($_); } glob($pairs . "/*.agp");
-
+ #     print Dumper "org names";
+ #     print Dumper @org_names;
       foreach my $elements (@org_names) {
 	my ($agpHashRef, $backwardAgpArrayRef, $coordRef) = &makeAgpMap($pairs, $pair, $elements);
 	my %agp = %{$agpHashRef};
@@ -164,6 +167,8 @@ sub createAlignmentHash {
 
     my $first = $pairNames[0];
     my $second = $pairNames[1];
+
+#    print Dumper "first is $first and second is $second, ref is $ref folder is $folder";
     my $other;
     if ($first eq $ref) {
 	$other = $second;
@@ -172,7 +177,9 @@ sub createAlignmentHash {
 	$other = $first;
     }
     else {
-	print Dumper "cant determine comparator\n ";
+#	print Dumper "skipping";
+	next;
+#	print Dumper "cant determine comparator\n ";
     }
 
     my %sequenceHash;
@@ -180,7 +187,7 @@ sub createAlignmentHash {
     my @alignments;
     my $regionFound=0;
     open (IN, "$mapfile") or die "can't open the map file for $folder to determine alignment folders\n";
-#    print Dumper "map file $mapfile";
+ #   print Dumper "map file $mapfile";
     while (my $line = <IN>) {
 	chomp $line;
 	
@@ -493,20 +500,21 @@ sub validateMacros {
     opendir(DIR, $mercatorOutputDir) || die "Can't open $mercatorOutputDir for reading:$!";
     my @pairwiseDirs = grep { -d "$mercatorOutputDir/$_" &&  /[a-zA-Z0-9_-]/ } readdir(DIR);
     closedir DIR;
-    
+ #   print Dumper "pairwise Dirs ";
+ #   print Dumper @pairwiseDirs;
     my @pairwiseDirectories;
     
     
     my %genomesHash;
     foreach my $dir (@pairwiseDirs) {
       my @genomes = map { s/\.agp//; basename($_); } glob($dir . "/*.agp");
-	
+#      print Dumper "genomes are";
+#      print Dumper @genomes;
 #	my (@genomes) = split("-", $dir);
 	if(scalar @genomes == 2) {
 	    $genomesHash{$genomes[0]} = 1;
 	    $genomesHash{$genomes[1]} = 1;
 	}
-	
 	push @pairwiseDirectories, "$mercatorOutputDir/$dir";
 	
 	my $alignmentsDir = "$mercatorOutputDir/$dir/alignments";
@@ -516,6 +524,9 @@ sub validateMacros {
 	    error("alignments directory not found");
 	}
     }
+#    print Dumper "genomes hash";
+ #   print Dumper %genomesHash;
+
     
     my @availableGenomes = keys %genomesHash;
     
