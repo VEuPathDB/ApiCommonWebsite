@@ -131,6 +131,7 @@ sub validateIds {
   # else split on any whitespace
 
   my @inputInfo;
+  $inputIdsString =~s/^(\s+)//;
   if ($inputIdsString =~ /,/) {
       @inputInfo = split(/\n/, $inputIdsString);
       foreach my $input (@inputInfo) {
