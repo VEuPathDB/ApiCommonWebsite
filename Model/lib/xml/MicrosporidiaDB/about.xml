@@ -89,6 +89,21 @@ Please see Citing MicrosporidiaDB below.
    </record>
 
 
+   <record>
+       <attribute name="title">Website Privacy Policy</attribute>
+       <attribute name="tag">privacy</attribute>
+       <attribute name="text">
+       <![CDATA[
+       We do not use or share any of your personal information for any
+       purpose unrelated to the functionality of the websites; however,
+       we do collect some information to help us understand how our
+       sites are being used and to improve community support. See the <a
+       href="/documents/EuPathDB_Website_Privacy_Policy.shtml">
+       Website Privacy Policy</a> for details.
+       ]]>
+       </attribute>
+   </record>
+
 <record>
        <attribute name="title">Citing MicrosporidiaDB</attribute>
        <attribute name="tag">citing</attribute>
