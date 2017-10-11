@@ -40,6 +40,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   private static final String GO_EVID_CODE_PARAM_KEY = "goEvidenceCodes";
     //private static final String GO_ASSOC_SRC_PARAM_KEY = "goAssociationsSources";
   private static final String GO_ASSOC_ONTOLOGY_PARAM_KEY = "goAssociationsOntologies";
+  private static final String GO_SUBSET_PARAM_KEY = "goSubset";
 
   private static final String TABBED_RESULT_FILE_PATH = "goEnrichmentResult.tab";
   private static final String HIDDEN_TABBED_RESULT_FILE_PATH = "hiddenGoEnrichmentResult.tab";
@@ -65,6 +66,11 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
       "measure of the likelihood that a certain GO term appears among the " +
       "genes in your results more often than it appears in the set of all " +
       "genes for that organism (background).</p>";
+
+ private static final String GO_SUBSET_PARAM_HELP =
+     "<p> Choose GOSlim_generic_only to limit enrichment analysis " +
+     "based on terms that are in the GO Slim generic subset" +
+     "This will limit both the background and the gene list of interest.</p>";
 
   public static final ResultRow HEADER_ROW = new ResultRow(
       "GO ID", "GO Term", "Genes in the bkgd with this term", "Genes in your result with this term", "Percent of bkgd Genes in your result", "Fold enrichment", "Odds ratio", "P-value", "Benjamini", "Bonferroni");
@@ -105,15 +111,19 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     String ontology = EnrichmentPluginUtil.getSingleAllowableValueParam(
         GO_ASSOC_ONTOLOGY_PARAM_KEY, formParams, errors);
 
+    //validate GOSubset  
+    String goSubset = EnrichmentPluginUtil.getArrayParamValueAsString(
+    	GO_SUBSET_PARAM_KEY, formParams, errors);
+
     // only validate further if the above pass
     if (errors.isEmpty()) {
-        validateFilteredGoTerms(/*sourcesStr,*/  evidCodesStr, ontology, errors);
+        validateFilteredGoTerms(/*sourcesStr,*/  evidCodesStr, ontology, goSubset, errors);
     }
 
     return errors;
   }
 
-  private void validateFilteredGoTerms(/*String sourcesStr,*/ String evidCodesStr, String ontology, ValidationErrors errors)
+    private void validateFilteredGoTerms(/*String sourcesStr,*/ String evidCodesStr, String ontology, String goSubset, ValidationErrors errors)
       throws WdkModelException, WdkUserException {
 
     String idSql =  EnrichmentPluginUtil.getOrgSpecificIdSql(getAnswerValue(), getFormParams());
@@ -123,7 +133,12 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
         "  (" + idSql + ") r"  + NL +
         "  where gts.gene_source_id = r.source_id" + NL +
         "    and gts.ontology = '" + ontology + "'" + NL +
-        "    AND decode(gts.evidence_code, 'IEA', 'Computed', 'Curated') in (" + evidCodesStr + ")" + NL;
+        "    AND decode(gts.evidence_code, 'IEA', 'Computed', 'Curated') in (" + evidCodesStr + ")" + NL +
+	" and case when "+ goSubset +" = 'Yes' and gts.is_go_slim = '1' then 1" + NL +
+        "     when (" + goSubset + " = 'No' and (gts.is_go_slim = '1' or gts.is_go_slim = '0')) then 1" + NL +
+        "     else 0" + NL +
+        "     end = 1" + NL ;
+
 
     DataSource ds = getWdkModel().getAppDb().getDataSource();
     SingleLongResultSetHandler result =
@@ -151,15 +166,17 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     String evidCodesStr = EnrichmentPluginUtil.getArrayParamValueAsString(
         GO_EVID_CODE_PARAM_KEY, params, null); // in sql format
     String ontology = params.get(GO_ASSOC_ONTOLOGY_PARAM_KEY)[0];
+    String goSubset = EnrichmentPluginUtil.getArrayParamValueAsString(
+        GO_SUBSET_PARAM_KEY, params, null); // in sql format
     // create another path here for the image word cloud JP LOOK HERE name it like imageFilePath
     Path resultFilePath = Paths.get(getStorageDirectory().toString(), TABBED_RESULT_FILE_PATH);
     Path hiddenResultFilePath = Paths.get(getStorageDirectory().toString(), HIDDEN_TABBED_RESULT_FILE_PATH);
     Path imageResultFilePath = Paths.get(getStorageDirectory().toString(), IMAGE_RESULT_FILE_PATH);
     String qualifiedExe = Paths.get(GusHome.getGusHome(), "bin", "apiGoEnrichment").toString();
     LOG.info(qualifiedExe + " " + resultFilePath.toString() + " " + idSql + " " + 
-	     wdkModel.getProjectId() + " " + pValueCutoff + " " + ontology + " " + evidCodesStr + " " + imageResultFilePath.toString() + hiddenResultFilePath.toString());
+	     wdkModel.getProjectId() + " " + pValueCutoff + " " + ontology + " " + evidCodesStr + " " + goSubset + " " + imageResultFilePath.toString() + hiddenResultFilePath.toString());
     return new String[]{ qualifiedExe, resultFilePath.toString(), idSql,
-                         wdkModel.getProjectId(), pValueCutoff, ontology, /*sourcesStr */ evidCodesStr, imageResultFilePath.toString(), hiddenResultFilePath.toString() };
+                         wdkModel.getProjectId(), pValueCutoff, ontology, /*sourcesStr */ evidCodesStr, goSubset,  imageResultFilePath.toString(), hiddenResultFilePath.toString() };
   }
 
   /**
@@ -201,6 +218,8 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   @Override
   public Object getFormViewModel() throws WdkModelException, WdkUserException {
 
+      // JP I THINK I NEED TO ADD SOMETHING HERE 
+
     DataSource ds = getWdkModel().getAppDb().getDataSource();
     BasicResultSetHandler handler = new BasicResultSetHandler();
     String idSql = getAnswerValue().getIdSql();
@@ -224,12 +243,21 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
         evidCodes.add(new Option(evidString, evidString));
     }
 
+    // find goSubset used in the result set
+    sql = "select 'Yes' as gosubset from dual union select 'No' from dual";
+    new SQLRunner(ds, sql).executeQuery(handler);
+    List<Option> goSubsets = new ArrayList<>();
+    for (Map<String,Object> cols : handler.getResults()) {
+        String goSubset = cols.get("GOSUBSET").toString();
+        goSubsets.add(new Option(goSubset, goSubset));
+    }
+
 
     // get orgs to display in select
     List<Option> orgOptionList = EnrichmentPluginUtil
         .getOrgOptionList(getAnswerValue(), getWdkModel());
 
-    return new FormViewModel(orgOptionList, /*sources,*/ ontologies , evidCodes);
+    return new FormViewModel(orgOptionList, /*sources,*/ ontologies , evidCodes , goSubsets);
   }
 
   @Override
@@ -262,11 +290,12 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     private List<Option> _orgOptions;
     private List<Option> _ontologyOptions;
     private List<Option> _evidCodeOptions;
-
-    public FormViewModel(List<Option> orgOptions, List<Option> ontologyOptions, List<Option> evidCodeOptions) {
+    private List<Option> _goSubsetOptions;   
+      public FormViewModel(List<Option> orgOptions, List<Option> ontologyOptions, List<Option> evidCodeOptions, List<Option> goSubsetOptions) {
       _orgOptions = orgOptions;
       _ontologyOptions = ontologyOptions;
       _evidCodeOptions = evidCodeOptions;
+      _goSubsetOptions = goSubsetOptions;
     }
 
     public List<Option> getOrganismOptions() {
@@ -281,10 +310,15 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
       return _ontologyOptions;
     }
 
+    public List<Option> getGoSubsetOptions() {
+      return _goSubsetOptions;
+    }
+
     public String getOrganismParamHelp() { return EnrichmentPluginUtil.ORGANISM_PARAM_HELP; }
     public String getOntologyParamHelp() { return ONTOLOGY_PARAM_HELP; }
     public String getEvidenceParamHelp() { return EVIDENCE_PARAM_HELP; }
     public String getPvalueParamHelp() { return PVALUE_PARAM_HELP; }
+    public String getGoSubsetParamHelp() { return GO_SUBSET_PARAM_HELP; }
   }
 
   public static class ResultViewModel {
@@ -318,6 +352,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     public String getPvalueCutoff() { return EnrichmentPluginUtil.getPvalueCutoff(_formParams); }
     public String getEvidCodes() { return FormatUtil.join(_formParams.get(GoEnrichmentPlugin.GO_EVID_CODE_PARAM_KEY), ", "); }
     public String getGoOntologies() { return FormatUtil.join(_formParams.get(GoEnrichmentPlugin.GO_ASSOC_ONTOLOGY_PARAM_KEY), ", "); }
+    public String getGoSubset() { return FormatUtil.join(_formParams.get(GoEnrichmentPlugin.GO_SUBSET_PARAM_KEY), ", "); }
     public String getGoTermBaseUrl() { return _goTermBaseUrl; }
     public String getRevigoInputList() {return _revigoInputList; }
   }
