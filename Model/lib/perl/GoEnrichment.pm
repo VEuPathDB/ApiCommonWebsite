@@ -15,7 +15,7 @@ sub new {
 }
 
 sub run {
-  my ($self, $outputFile, $geneResultSql, $modelName, $pValueCutoff, $subOntology, $evidCodes, $wordcloudFile, $secondOutputFile) = @_;
+  my ($self, $outputFile, $geneResultSql, $modelName, $pValueCutoff, $subOntology, $evidCodes, $goSubset, $wordcloudFile, $secondOutputFile) = @_;
 
   die "Second argument must be an SQL select statement that returns the Gene result\n" unless $geneResultSql =~ m/select/i;
   die "Fourth argument must be a p-value between 0 and 1\n" unless $pValueCutoff > 0 && $pValueCutoff <= 1;
@@ -23,6 +23,7 @@ sub run {
 #  $self->{sources} = $sources;
   $self->{evidCodes} = $evidCodes;
   $self->{subOntology} = $subOntology;
+  $self->{goSubset} = $goSubset;
   $self->SUPER::run($outputFile, $geneResultSql, $modelName, $pValueCutoff, $secondOutputFile);
 }
 
@@ -37,6 +38,10 @@ where ga.taxon_id = $taxonId
   and gts.is_not is null
 --  and gts.displayable_source in ($self->{sources})
   AND decode(gts.evidence_code, 'IEA', 'Computed', 'Curated') in ($self->{evidCodes})
+ and case when $self->{goSubset} = 'Yes' and gts.is_go_slim = '1' then 1 
+        when ($self->{goSubset} = 'No' and (gts.is_go_slim = '1' or gts.is_go_slim = '0')) then 1
+        else 0
+        end = 1
 ";
 
   print STDERR "SQL=$sql\n";
@@ -58,6 +63,10 @@ where gts.gene_source_id = r.source_id
   and gts.is_not is null
 --  and gts.displayable_source in ($self->{sources})
   AND decode(gts.evidence_code, 'IEA', 'Computed', 'Curated') in ($self->{evidCodes})
+ and case when $self->{goSubset} = 'Yes' and gts.is_go_slim = '1' then 1 
+        when ($self->{goSubset} = 'No' and (gts.is_go_slim = '1' or gts.is_go_slim = '0')) then 1
+        else 0
+        end = 1
 ";
 
   my $stmt = $self->runSql($dbh, $sql);
@@ -76,6 +85,10 @@ where gts.gene_source_id = r.source_id
   and gts.is_not is null
 --  and gts.displayable_source in ($self->{sources})
   AND decode(gts.evidence_code, 'IEA', 'Computed', 'Curated') in ($self->{evidCodes})
+ and case when $self->{goSubset} = 'Yes' and gts.is_go_slim = '1' then 1 
+        when ($self->{goSubset} = 'No' and (gts.is_go_slim = '1' or gts.is_go_slim = '0')) then 1
+        else 0
+        end = 1
 ";
 
     my $stmt = $self->runSql($dbh, $sql);
@@ -132,6 +145,10 @@ from
               AND gts.ontology = '$self->{subOntology}'
 --              AND gts.displayable_source in ($self->{sources})
                 AND decode(gts.evidence_code, 'IEA', 'Computed', 'Curated') in ($self->{evidCodes})
+                and case when $self->{goSubset} = 'Yes' and gts.is_go_slim = '1' then 1 
+                when ($self->{goSubset} = 'No' and (gts.is_go_slim = '1' or gts.is_go_slim = '0')) then 1
+                else 0
+                end = 1
 
               AND gts.is_not is null
             group BY gts.go_id, gts.go_term_name
@@ -143,6 +160,10 @@ from
               AND gts.ontology = '$self->{subOntology}'
 --              AND gts.displayable_source in ($self->{sources})
                AND decode(gts.evidence_code, 'IEA', 'Computed', 'Curated') in ($self->{evidCodes})
+               and case when $self->{goSubset} = 'Yes' and gts.is_go_slim = '1' then 1 
+                   when ($self->{goSubset} = 'No' and (gts.is_go_slim = '1' or gts.is_go_slim = '0')) then 1
+                   else 0
+                   end = 1
 
               AND gts.is_not is null
             group BY gts.go_id
@@ -156,6 +177,10 @@ from
               AND gts.ontology = '$self->{subOntology}'
 --              AND gts.displayable_source in ($self->{sources})
                AND decode(gts.evidence_code, 'IEA', 'Computed', 'Curated') in ($self->{evidCodes})
+               and case when $self->{goSubset} = 'Yes' and gts.is_go_slim = '1' then 1 
+                   when ($self->{goSubset} = 'No' and (gts.is_go_slim = '1' or gts.is_go_slim = '0')) then 1
+                   else 0
+                   end = 1
 
               AND gts.is_not is null
             group BY gts.go_id
