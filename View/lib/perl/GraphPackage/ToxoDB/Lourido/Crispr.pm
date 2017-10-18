@@ -16,7 +16,7 @@ sub run {
     $self->setOutputFile("$ENV{GUS_HOME}/../webapp/images/CrisprPhenotype_compact.png");
   }
   else {
-    $self->setOutputFile("$ENV{GUS_HOME}/../webapp/images/CrisprPhenotype.png");
+    $self->setOutputFile("$ENV{GUS_HOME}/../webapp/images/CrisprPhenotype.svg");
   }
 }
 
