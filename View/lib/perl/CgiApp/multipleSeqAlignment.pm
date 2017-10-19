@@ -172,7 +172,8 @@ sub createAlignmentHash {
 	$other = $first;
     }
     else {
-	print Dumper "cant determine comparator\n ";
+	next;
+	#print Dumper "cant determine comparator\n ";
     }
 
     my %sequenceHash;
