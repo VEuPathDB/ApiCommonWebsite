@@ -17,6 +17,7 @@ import org.apache.struts.upload.FormFile;
 import org.apidb.apicommon.model.comment.Comment;
 import org.apidb.apicommon.model.userfile.UserFile;
 import org.gusdb.wdk.controller.CConstants;
+import org.gusdb.wdk.controller.actionutil.ActionUtility;
 import org.gusdb.wdk.model.Utilities;
 import org.gusdb.wdk.model.jspwrap.UserBean;
 import org.gusdb.wdk.model.jspwrap.WdkModelBean;
@@ -57,11 +58,9 @@ public class NewCommentAction extends CommentAction {
         // forward.setRedirect(true);
         LOG.debug("actionforward generated: " + forward.getPath()); // /addComment.do
 
-        WdkModelBean wdkModel = (WdkModelBean) getServlet().getServletContext().getAttribute(
-                CConstants.WDK_MODEL_KEY);
+        WdkModelBean wdkModel = ActionUtility.getWdkModel(servlet);
         // get the current user
-        UserBean user = (UserBean) request.getSession().getAttribute(
-                CConstants.WDK_USER_KEY);
+        UserBean user = ActionUtility.getUser(request);
         // if the user is null or is a guest, fail
         if (user == null || user.isGuest()) {
             // This is the case where the session times out while the user is on

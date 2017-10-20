@@ -27,9 +27,9 @@ sub new {
 
 # context params
 sub getGusHome { $_[0]->{'context-param'}->{'GUS_HOME'}->{'param-value'} }
+sub getWdkServiceEndpoint { $_[0]->{'context-param'}->{'WDK_SERVICE_ENDPOINT'}->{'param-value'} }
+
+# attributes? RRD- this looks invalid but no time to explore
 sub getModel { $_[0]->{'context-param'}->{'model'}->{'param-value'} }
-sub getWdkAlwaysGoToSummary { $_[0]->{'context-param'}->{'wdkAlwaysGoToSummary_param'}->{'param-value'} }
-sub getWdkCustomViewDir { $_[0]->{'context-param'}->{'wdkCustomViewDir_param'}->{'param-value'} }
-sub getWsfConfigDir { $_[0]->{'context-param'}->{'wsfConfigDir_param'}->{'param-value'} }
 
 1;
