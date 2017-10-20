@@ -14,6 +14,7 @@ import org.apache.struts.upload.FormFile;
 import org.apidb.apicommon.model.comment.Comment;
 import org.apidb.apicommon.model.userfile.UserFile;
 import org.gusdb.wdk.controller.CConstants;
+import org.gusdb.wdk.controller.actionutil.ActionUtility;
 import org.gusdb.wdk.model.Utilities;
 import org.gusdb.wdk.model.jspwrap.UserBean;
 import org.gusdb.wdk.model.jspwrap.WdkModelBean;
@@ -35,10 +36,8 @@ public class PhenotypeAction extends CommentAction {
         ActionForward forward = new ActionForward(referer, false);
         // forward.setRedirect(true);
 
-        WdkModelBean wdkModel = (WdkModelBean) getServlet().getServletContext().getAttribute(
-                CConstants.WDK_MODEL_KEY);
-        UserBean user = (UserBean) request.getSession().getAttribute(
-                CConstants.WDK_USER_KEY);
+        WdkModelBean wdkModel = ActionUtility.getWdkModel(servlet);
+        UserBean user = ActionUtility.getUser(request);
 
         // if the user is null or is a guest, fail
         if (user == null || user.isGuest()) {

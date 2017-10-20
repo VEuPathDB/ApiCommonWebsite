@@ -14,6 +14,7 @@ import org.apache.struts.upload.FormFile;
 import org.apidb.apicommon.model.userfile.UserFile;
 import org.apidb.apicommon.model.userfile.UserFileFactory;
 import org.gusdb.wdk.controller.CConstants;
+import org.gusdb.wdk.controller.actionutil.ActionUtility;
 import org.gusdb.wdk.model.jspwrap.UserBean;
 import org.gusdb.wdk.model.jspwrap.WdkModelBean;
 
@@ -49,13 +50,11 @@ public class UserFileUploadAction extends Action {
       String fileName    = formFile.getFileName();
       byte[] fileData    = formFile.getFileData();
 
-      UserBean user = (UserBean) request.getSession().getAttribute(
-              CConstants.WDK_USER_KEY);
+      WdkModelBean wdkModel = ActionUtility.getWdkModel(servlet);
+      UserBean user = ActionUtility.getUser(request);
       if (user == null || user.isGuest()) {
           return forward;
       }
-      WdkModelBean wdkModel = (WdkModelBean) getServlet().getServletContext().getAttribute(
-              CConstants.WDK_MODEL_KEY);
 
 
       String email = user.getEmail().trim().toLowerCase();
