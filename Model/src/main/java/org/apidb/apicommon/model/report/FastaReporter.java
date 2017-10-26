@@ -16,6 +16,7 @@ import javax.ws.rs.core.Response;
 
 import org.apache.log4j.Logger;
 import org.gusdb.fgputil.IoUtil;
+import org.gusdb.fgputil.json.JsonUtil;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.answer.AnswerValue;
@@ -113,7 +114,7 @@ public abstract class FastaReporter extends AbstractReporter {
       throws WdkModelException, WdkUserException {
     Map<String,String> formInputs = new HashMap<>();
     formInputs.put("project_id", projectId);
-    for (String key : JSONObject.getNames(configuration)) {
+    for (String key : JsonUtil.getKeys(configuration)) {
       formInputs.put(key, configuration.get(key).toString());
     }
     formInputs.put("ids", new AnswerValueBean(answer).getAllIdList());
