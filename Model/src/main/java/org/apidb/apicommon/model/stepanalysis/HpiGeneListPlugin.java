@@ -213,7 +213,7 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
                                                                 "Unique ID for this experiment",
                                                                 "Species this experimental data applies to",
                                                                 "Name for the experient",
-                                                                "Details abou tthis experiment",
+                                                                "Details about this experiment",
                                                                 "What type of experiment was this",
                                                                 "Where can I find more information about this experiment",
                                                                 "Statistic used to identify this experiment",
