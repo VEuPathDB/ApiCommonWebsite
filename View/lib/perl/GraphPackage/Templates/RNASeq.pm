@@ -12,7 +12,9 @@ sub getKey{
   my ($self, $profileSetName, $profileType) = @_;
 
   my ($groupName) = $self->getGroupNameFromProfileSetName($profileSetName);
-  my ($strand) = $profileSetName =~ /\[.+ \- (.+) \- /;
+  $groupName =~s/Non Unique// if ($groupName);
+
+  my ($strand) = $profileSetName =~ /\[.+ \- (.+) \- .+ \- /;
   $groupName = '' if (!$groupName);
   $profileType = 'percentile' if ($profileType eq 'channel1_percentiles');
 
@@ -31,8 +33,9 @@ sub getGroupRegex {
 }
 
 # @Override
+# return: htseq unique OR htseq nonunique
 sub getRemainderRegex {
-  return qr/\[(\S+) /;
+  return qr/\[.* \- (\S+)\]$/;
 }
 
 
@@ -86,6 +89,19 @@ sub isExcludedProfileSet {
 #print STDERR "$psName - return 0\n";
     return 0;
   }
+}
+
+sub finalProfileAdjustments {
+  my ($self, $profile) = @_;
+
+  my $rAdjustString = << 'RADJUST';
+
+ newVals <- aggregate(VALUE ~ NAME, with(profile.df.full, data.frame(NAME=NAME, VALUE=ifelse(LEGEND=="nonunique", 1, -1)*VALUE)), sum);
+ profile.df.full$VALUE[profile.df.full$LEGEND == "nonunique" & profile.df.full$NAME == newVals$NAME] <- newVals$VALUE;
+ profile.df.full$VALUE[profile.df.full$VALUE < 0] <- 0;
+RADJUST
+
+  $profile->addAdjustProfile($rAdjustString);
 
 }
 
