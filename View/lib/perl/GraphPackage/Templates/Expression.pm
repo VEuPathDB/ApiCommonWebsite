@@ -822,14 +822,18 @@ package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_2750122e
 sub finalProfileAdjustments {
   my ($self, $profile) = @_;
 
-  my $legend = ['oocyst','oocyst','oocyst', 'tachyzoite','bradyzoite','bradyzoite','bradyzoite'];
+  #my $legend = ['oocyst','oocyst','oocyst', 'tachyzoite','bradyzoite','bradyzoite','bradyzoite'];
+  my $rAdjustString = << 'RADJUST';
+  profile.df.full$LEGEND <- c("oocyst", "oocyst", "oocyst", "tachyzoite", "bradyzoite", "bradyzoite", "bradyzoite");
+  hideLegend = FALSE;
+RADJUST
 
+  $profile->addAdjustProfile($rAdjustString);
   $profile->setColors(["#D87093","#E9967A","#87CEEB"]);
-  $profile->setLegendLabels($legend);
+#  $profile->setLegendLabels($legend);
 
   return $self;
 }
-
 1;
 
 
