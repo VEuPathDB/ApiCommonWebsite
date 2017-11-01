@@ -1023,7 +1023,7 @@ gp = gp + annotate(\"text\", x = 13.5, y = min(profile.df.full\$VALUE) - 1.75, l
   $rma->setSmoothLines(1);
   $rma->setSplineApproxN(61);
   $rma->setDefaultYMax(10);
-  $rma->setDefaultYMin(4);
+  $rma->setDefaultYMin(0);
   $rma->setElementNameMarginSize(6.4);
   $rma->setTitleLine(2.25);
   $rma->setRPostscript($cellCycleAnnotation);
