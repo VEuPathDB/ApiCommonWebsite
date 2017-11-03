@@ -13,10 +13,9 @@ public class ApiSessionService extends SessionService {
 	
   private static final String GBROWSE_SETUP_PAGE = "/gbrowse/gbrowseSetup.html";
 
-  protected Response createSuccessResponse(String redirectUrl, NewCookie cookie) throws WdkModelException {
-	UserBean userBean = this.getSessionUserBean();  
+  protected Response createSuccessResponse(String redirectUrl, UserBean userBean, NewCookie cookie) throws WdkModelException {
 	String gbrowseLoginUrl = getGbrowsePathWithParams(redirectUrl, getWdkModel().getProjectId(), cookie.getMaxAge(), userBean.getFirstName());
-	return super.createSuccessResponse(gbrowseLoginUrl, cookie);
+	return super.createSuccessResponse(gbrowseLoginUrl, userBean, cookie);
   }
   
   private static String getGbrowsePathWithParams(String redirectUrl, String project, int wdkCookieMaxAge, String displayName) {
