@@ -168,7 +168,7 @@ sub makeAndSetPlots {
   my @rv;
 
   my $bottomMarginSize = $self->getBottomMarginSize();
-  my $colors= $self->getColors();
+  my $colors= $self->getProfileColors();
   my $pctColors= $self->getPercentileColors();
   my $sampleLabels = $self->getSampleLabels();
 
@@ -306,6 +306,13 @@ sub getColors {
     return \@rv;
   }
   return ['grey'];
+}
+
+
+sub getProfileColors {
+  my ($self) = @_;
+
+  return $self->getColors();
 }
 
 

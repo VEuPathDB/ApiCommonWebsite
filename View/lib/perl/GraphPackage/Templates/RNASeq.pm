@@ -91,6 +91,18 @@ sub isExcludedProfileSet {
   }
 }
 
+# @Override
+sub getProfileColors {
+  my ($self) = @_;
+
+  my @colors =  @{$self->getColors()};
+  unshift ( @colors, 'gray');
+  return \@colors;
+}
+
+
+
+# @Override
 sub finalProfileAdjustments {
   my ($self, $profile) = @_;
 
