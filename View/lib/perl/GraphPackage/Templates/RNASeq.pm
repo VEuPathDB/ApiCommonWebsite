@@ -106,11 +106,16 @@ sub finalProfileAdjustments {
   my ($self, $profile) = @_;
 
   my $rAdjustString = << 'RADJUST';
-  newVals <- aggregate(VALUE ~ NAME, with(profile.df.full, data.frame(NAME=NAME, VALUE=ifelse(LEGEND=="nonunique", 1, -1)*VALUE)), sum);
-  profile.df.full$VALUE[profile.df.full$LEGEND == "nonunique" & profile.df.full$NAME == newVals$NAME] <- newVals$VALUE;
-  profile.df.full$VALUE[profile.df.full$VALUE < 0] <- 0;
-  profile.df.full$STACK <- paste0(profile.df.full$NAME, "- ", profile.df.full$LEGEND, " reads");
-  profile.df.full$LEGEND <- factor(profile.df.full$LEGEND, levels = rev(levels(as.factor(profile.df.full$LEGEND))));
+  if ('NAME' %in% colnames(profile.df.full) & 'LEGEND' %in% colnames(profile.df.full)) {
+    newVals <- aggregate(VALUE ~ NAME, with(profile.df.full, data.frame(NAME=NAME, VALUE=ifelse(LEGEND=="nonunique", 1, -1)*VALUE)), sum);
+    profile.df.full$VALUE[profile.df.full$LEGEND == "nonunique" & profile.df.full$NAME == newVals$NAME] <- newVals$VALUE;
+    profile.df.full$VALUE[profile.df.full$VALUE < 0] <- 0;
+    profile.df.full$STACK <- paste0(profile.df.full$NAME, "- ", profile.df.full$LEGEND, " reads");
+    #profile.df.full$LEGEND <- factor(profile.df.full$LEGEND, levels = rev(levels(as.factor(profile.df.full$LEGEND))));
+    profile.df.full$STDERR[profile.df.full$LEGEND == 'nonunique'] <- NA
+    profile.df.full$MAX_ERR[profile.df.full$LEGEND == 'nonunique'] <- NA
+    profile.df.full$MIN_ERR[profile.df.full$LEGEND == 'nonunique'] <- NA
+  }
 RADJUST
 
   $profile->addAdjustProfile($rAdjustString);
