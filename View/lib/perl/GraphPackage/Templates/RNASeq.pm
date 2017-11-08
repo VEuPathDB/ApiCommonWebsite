@@ -14,6 +14,8 @@ sub getKey{
   my ($groupName) = $self->getGroupNameFromProfileSetName($profileSetName);
 
   my ($strand) = $profileSetName =~ /\[.+ \- (.+) \- .+ \- /;
+  ($strand) = $profileSetName =~ /\[.+ \- (.+) \- / if  (!$strand);
+
   $groupName = '' if (!$groupName);
   $profileType = 'percentile' if ($profileType eq 'channel1_percentiles');
 
@@ -348,7 +350,7 @@ sub init {
   my $colors = ['#E9967A', '#4682B4', '#DDDDDD'];
 
   my @profileArray = (['pfal3D7_Stunnenberg_pi_time_series [htseq-union - unstranded - fpkm - unique]', 'values'],
-                      ['pfal3D7_Stunnenberg_pi_time_series - scaled [htseq-union - unstranded - fpkm - nonunique]', 'values'],
+                      ['pfal3D7_Stunnenberg_pi_time_series - scaled [htseq-union - unstranded - fpkm]', 'values'],
                      );
 
 
@@ -357,7 +359,7 @@ sub init {
 
   my $line = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot->new(@_);
   $line->setProfileSets($profileSets);
-  $line->setPartName('fpkm');
+  $line->setPartName('fpkm_line');
   $line->setAdjustProfile('profile.df.full$VALUE = log2(profile.df.full$VALUE + 1);');
   $line->setYaxisLabel('FPKM (log2)');
   $line->setPointsPch($pch);
@@ -376,9 +378,15 @@ sub init {
   # $percentile->setXaxisLabel("Timepoint");
   # $percentile->setAdjustProfile(undef);
 
-  my @existingGraphObjects = $self->getGraphObjects();
+  my $graphObjects = $self->getGraphObjects();
+  my $barProfile = $graphObjects->[0];
+  $barProfile->setPartName('fpkm');
 
-  $self->setGraphObjects($line, @existingGraphObjects);
+  my $scaledProfile = $graphObjects->[1];
+  $scaledProfile->setColors([$colors->[1]]);
+
+  unshift (@$graphObjects, $line);
+  $self->setGraphObjects(@$graphObjects);
 
   return $self;
 }
