@@ -12,7 +12,6 @@ sub getKey{
   my ($self, $profileSetName, $profileType) = @_;
 
   my ($groupName) = $self->getGroupNameFromProfileSetName($profileSetName);
-  $groupName =~s/Non Unique// if ($groupName);
 
   my ($strand) = $profileSetName =~ /\[.+ \- (.+) \- .+ \- /;
   $groupName = '' if (!$groupName);
@@ -343,13 +342,13 @@ sub init {
   my $pch = [19,24];
   my $colors = ['#E9967A', '#4682B4', '#DDDDDD'];
 
-  my @profileArray = (['pfal3D7_Stunnenberg_pi_time_series [htseq-union - unstranded - fpkm]', 'values'],
-                      ['pfal3D7_Stunnenberg_pi_time_series - scaled [htseq-union - unstranded - fpkm]', 'values'],
+  my @profileArray = (['pfal3D7_Stunnenberg_pi_time_series [htseq-union - unstranded - fpkm - unique]', 'values'],
+                      ['pfal3D7_Stunnenberg_pi_time_series - scaled [htseq-union - unstranded - fpkm - nonunique]', 'values'],
                      );
 
 
   my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileArray);
-  my $percentileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets([['pfal3D7_Stunnenberg_pi_time_series [htseq-union - unstranded - fpkm]', 'channel1_percentiles']]);
+#  my $percentileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets([['pfal3D7_Stunnenberg_pi_time_series [htseq-union - unstranded - fpkm - unique]', 'channel1_percentiles']]);
 
   my $line = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot->new(@_);
   $line->setProfileSets($profileSets);
@@ -366,12 +365,15 @@ sub init {
   my $id = $self->getId();
   $line->setPlotTitle("FPKM - $id");
 
-  my $percentile = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot::Percentile->new(@_);
-  $percentile->setProfileSets($percentileSets);
-  $percentile->setColors([$colors->[0]]);
-  $percentile->setXaxisLabel("Timepoint");
+  # my $percentile = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot::Percentile->new(@_);
+  # $percentile->setProfileSets($percentileSets);
+  # $percentile->setColors([$colors->[0]]);
+  # $percentile->setXaxisLabel("Timepoint");
+  # $percentile->setAdjustProfile(undef);
 
-  $self->setGraphObjects($line, $percentile);
+  my @existingGraphObjects = $self->getGraphObjects();
+
+  $self->setGraphObjects($line, @existingGraphObjects);
 
   return $self;
 }
