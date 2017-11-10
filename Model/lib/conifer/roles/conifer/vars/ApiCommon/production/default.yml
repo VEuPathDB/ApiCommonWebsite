@@ -15,6 +15,7 @@ modelconfig_commentdb.maxIdle: 10
 
 modelprop:
   GOOGLE_ANALYTICS_ID:  "{{ lookup('euparc',
-  'attr=google_analytics_id xpath=sites/site[@hostname=\"' + hostname + '\"] default='
+  'attr=google_analytics_id xpath=sites/site[@hostname=\"{}\"] default='.format( hostname|swap_hostname(_host_frontends) )
   )
 }}"
+
