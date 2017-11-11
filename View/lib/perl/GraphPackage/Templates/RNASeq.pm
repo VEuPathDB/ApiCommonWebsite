@@ -10,7 +10,7 @@ use Data::Dumper;
 # @Override
 sub getKey{
   my ($self, $profileSetName, $profileType) = @_;
-
+#print STDERR Dumper($profileSetName);
   my ($groupName) = $self->getGroupNameFromProfileSetName($profileSetName);
 
   my ($strand) = $profileSetName =~ /\[.+ \- (.+) \- .+ \- /;
@@ -127,6 +127,45 @@ RADJUST
 1;
 
 
+
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_f101fb2669;
+
+sub isExcludedProfileSet {
+  my ($self, $psName) = @_;
+
+  foreach(@{$self->excludedProfileSetsArray()}) {
+    return 1 if($_ eq $psName);
+  }
+  if ($psName =~ /nonunique/){
+    return 1;
+  }
+  return 0;
+}
+
+sub getProfileColors {
+  return ['#8F006B'];
+}
+1;
+
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_4b0e1b490a;
+
+sub isExcludedProfileSet {
+  my ($self, $psName) = @_;
+
+  foreach(@{$self->excludedProfileSetsArray()}) {
+    return 1 if($_ eq $psName);
+  }
+  if ($psName =~ /nonunique/){
+    print STDERR "found one to exclue";
+    return 1;
+  }
+  return 0;
+}
+
+sub getProfileColors {
+  return ['#8F006B'];
+}
+1;
 
 package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_40a06f276b;
 
@@ -254,6 +293,22 @@ sub finalProfileAdjustments {
 
   my $legend = ['acute infection ', 'chronic infection '];
   $profile->setSampleLabels($legend);
+ 
+  my $rAdjustString = << 'RADJUST';
+  if ('NAME' %in% colnames(profile.df.full) & 'LEGEND' %in% colnames(profile.df.full)) {
+    newVals <- aggregate(VALUE ~ NAME, with(profile.df.full, data.frame(NAME=NAME, VALUE=ifelse(LEGEND=="nonunique", 1, -1)*VALUE)), sum);
+    profile.df.full$VALUE[profile.df.full$LEGEND == "nonunique" & profile.df.full$NAME == newVals$NAME] <- newVals$VALUE;
+    profile.df.full$VALUE[profile.df.full$VALUE < 0] <- 0;
+    profile.df.full$STACK <- paste0(profile.df.full$NAME, "- ", profile.df.full$LEGEND, " reads");
+    #profile.df.full$LEGEND <- factor(profile.df.full$LEGEND, levels = rev(levels(as.factor(profile.df.full$LEGEND))));
+    profile.df.full$STDERR[profile.df.full$LEGEND == 'nonunique'] <- NA
+    profile.df.full$MAX_ERR[profile.df.full$LEGEND == 'nonunique'] <- NA
+    profile.df.full$MIN_ERR[profile.df.full$LEGEND == 'nonunique'] <- NA
+  }
+RADJUST
+
+  $profile->addAdjustProfile($rAdjustString);
+
 }
 1;
 
@@ -282,6 +337,21 @@ sub finalProfileAdjustments {
 
   my @labels = map {"fpkm" . $_} @{$profile->getLegendLabels()};
   $profile->setLegendLabels(\@labels);
+
+  my $rAdjustString = << 'RADJUST';
+  if ('NAME' %in% colnames(profile.df.full) & 'LEGEND' %in% colnames(profile.df.full)) {
+    newVals <- aggregate(VALUE ~ NAME, with(profile.df.full, data.frame(NAME=NAME, VALUE=ifelse(LEGEND=="nonunique", 1, -1)*VALUE)), sum);
+    profile.df.full$VALUE[profile.df.full$LEGEND == "nonunique" & profile.df.full$NAME == newVals$NAME] <- newVals$VALUE;
+    profile.df.full$VALUE[profile.df.full$VALUE < 0] <- 0;
+    profile.df.full$STACK <- paste0(profile.df.full$NAME, "- ", profile.df.full$LEGEND, " reads");
+    #profile.df.full$LEGEND <- factor(profile.df.full$LEGEND, levels = rev(levels(as.factor(profile.df.full$LEGEND))));
+    profile.df.full$STDERR[profile.df.full$LEGEND == 'nonunique'] <- NA
+    profile.df.full$MAX_ERR[profile.df.full$LEGEND == 'nonunique'] <- NA
+    profile.df.full$MIN_ERR[profile.df.full$LEGEND == 'nonunique'] <- NA
+  }
+RADJUST
+  
+  $profile->addAdjustProfile($rAdjustString);
 }
 
 1;
