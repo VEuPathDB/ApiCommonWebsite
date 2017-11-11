@@ -294,17 +294,19 @@ sub init {
   $self->SUPER::init(@_);
 
 #  $self->setXAxisLabel("hours");
-  my @colors = ('#D87093','#D87093');
+  my @colors = ('gray','gray','#D87093','#D87093');
 
   # Draw the diff first in light grey ... then the min rpkm will go on top
-  my @profileArray = (['Nematocida parisii ERTm1 Spores [htseq-union - unstranded - fpkm]', 'values', ''],
-                      ['C. elegans Time Series - Infected [htseq-union - unstranded - fpkm]', 'values', ''],
+  my @profileArray = (['Nematocida parisii ERTm1 Spores [htseq-union - unstranded - fpkm - unique]', 'values', ''],
+                      ['C. elegans Time Series - Infected [htseq-union - unstranded - fpkm - unique]', 'values', ''],
+                      ['Nematocida parisii ERTm1 Spores [htseq-union - unstranded - fpkm - nonunique]', 'values', ''],
+                      ['C. elegans Time Series - Infected [htseq-union - unstranded - fpkm - nonunique]', 'values', ''],
                      );
 
   my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileArray);
   my $percentileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets
- ([['Nematocida parisii ERTm1 Spores [htseq-union - unstranded - fpkm]', 'channel1_percentiles', ''],
-  ['C. elegans Time Series - Infected [htseq-union - unstranded - fpkm]', 'channel1_percentiles', '']]
+ ([['Nematocida parisii ERTm1 Spores [htseq-union - unstranded - fpkm - unique]', 'channel1_percentiles', ''],
+  ['C. elegans Time Series - Infected [htseq-union - unstranded - fpkm - unique]', 'channel1_percentiles', '']]
                      );
 
 #  my $additionalRCode = "lines.df[2,] = lines.df[2,] + lines.df[3,];";
@@ -320,7 +322,7 @@ sub init {
 
   my $percentile = EbrcWebsiteCommon::View::GraphPackage::GGBarPlot::Percentile->new(@_);
   $percentile->setProfileSets($percentileSets);
-  $percentile->setColors([$colors[0]]);
+  $percentile->setColors([$colors[2]]);
   $percentile->setForceHorizontalXAxis(1);
 
   my $legend = ['Spores', '8 hrs', '16 hrs', '30 hrs', '40 hrs', '64 hrs'];
