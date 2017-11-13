@@ -422,7 +422,7 @@ sub init {
   my $colors = ['#E9967A', '#4682B4', '#DDDDDD'];
 
   my @profileArray = (['pfal3D7_Stunnenberg_pi_time_series [htseq-union - unstranded - fpkm - unique]', 'values'],
-                      ['pfal3D7_Stunnenberg_pi_time_series - scaled [htseq-union - unstranded - fpkm]', 'values'],
+                      ['pfal3D7_Stunnenberg_pi_time_series - scaled [htseq-union - unstranded - fpkm - unique]', 'values'],
                      );
 
 
