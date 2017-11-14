@@ -312,7 +312,7 @@ RADJUST
 }
 1;
 
-
+# tbruTREU927_RNAi_Horn_*rnaSeq_RSRC
 package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_3f5188c7a8;
 use base qw( ApiCommonWebsite::View::GraphPackage::Templates::RNASeq );
 use strict;
@@ -332,11 +332,19 @@ sub getRemainderRegex {
   return qr/Horn(.*) \[/;
 }
 
+sub getProfileColors {
+  my ($self) = @_;
+
+  my @colors =  @{$self->getColors()};
+  return \@colors;
+}
+
 sub finalProfileAdjustments {
   my ($self, $profile) = @_;
 
   my @labels = map {"fpkm" . $_} @{$profile->getLegendLabels()};
   $profile->setLegendLabels(\@labels);
+  $profile->setIsStacked(0);
 
   my $rAdjustString = << 'RADJUST';
   if ('NAME' %in% colnames(profile.df.full) & 'LEGEND' %in% colnames(profile.df.full)) {
