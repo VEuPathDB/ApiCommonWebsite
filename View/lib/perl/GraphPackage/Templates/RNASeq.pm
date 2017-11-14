@@ -169,7 +169,7 @@ sub getProfileColors {
 
 package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_40a06f276b;
 
-sub finalProfileAdjustments {                                                                                
+sub finalProfileAdjustments {
   my ($self, $profile) = @_;
 
   my $rAdjustString = << 'RADJUST';
@@ -200,12 +200,12 @@ RADJUST
 #fungi 
 package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_a2d28b5866;
 sub init {
-my $self = shift;
-$self->SUPER::init(@_);
+  my $self = shift;
+  $self->SUPER::init(@_);
 
-$self->setPlotWidth(800);
+  $self->setPlotWidth(800);
 
-return $self;
+  return $self;
 }
 
 1;
@@ -215,12 +215,12 @@ return $self;
 package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_485e6e94e3;
 
 sub init {
-my $self = shift;
-$self->SUPER::init(@_);
+  my $self = shift;
+  $self->SUPER::init(@_);
 
-$self->setPlotWidth(700);
+  $self->setPlotWidth(700);
 
-return $self;
+  return $self;
 }
 
 1;
@@ -229,12 +229,12 @@ return $self;
 package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_b8755b3393;
 
 sub init {
-my $self = shift;
-$self->SUPER::init(@_);
+  my $self = shift;
+  $self->SUPER::init(@_);
 
-$self->setPlotWidth(700);
+  $self->setPlotWidth(700);
 
-return $self;
+  return $self;
 }
 
 1;
@@ -411,6 +411,7 @@ sub init {
 1;
 
 
+# pfal3D7_Stunnenberg_rnaSeq_RSRC
 package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_d57671ced8;
 
 sub init {
@@ -425,9 +426,7 @@ sub init {
                       ['pfal3D7_Stunnenberg_pi_time_series - scaled [htseq-union - unstranded - fpkm - unique]', 'values'],
                      );
 
-
   my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileArray);
-#  my $percentileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets([['pfal3D7_Stunnenberg_pi_time_series [htseq-union - unstranded - fpkm - unique]', 'channel1_percentiles']]);
 
   my $line = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot->new(@_);
   $line->setProfileSets($profileSets);
@@ -437,18 +436,11 @@ sub init {
   $line->setPointsPch($pch);
   $line->setXaxisLabel("Timepoint");
   $line->setColors([$colors->[0], $colors->[1]]);
-
   $line->setHasExtraLegend(1);
   $line->setLegendLabels(['Normal', 'Scaled']);
 
   my $id = $self->getId();
   $line->setPlotTitle("FPKM - $id");
-
-  # my $percentile = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot::Percentile->new(@_);
-  # $percentile->setProfileSets($percentileSets);
-  # $percentile->setColors([$colors->[0]]);
-  # $percentile->setXaxisLabel("Timepoint");
-  # $percentile->setAdjustProfile(undef);
 
   my $graphObjects = $self->getGraphObjects();
   my $barProfile = $graphObjects->[0];
@@ -462,8 +454,29 @@ sub init {
 
   return $self;
 }
-
 1;
+
+# pfal3D7_Bartfai_time_series_rnaSeq_RSRC
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_715bf2deda;
+
+sub init {
+  my $self = shift;
+
+  $self->SUPER::init(@_);
+
+  my $graphObjects = $self->getGraphObjects();
+
+  my $scaledSenseProfile = $graphObjects->[2];
+  $scaledSenseProfile->setColors(['#8F006B']);
+
+  my $scaledAntiSenseProfile = $graphObjects->[3];
+  $scaledAntiSenseProfile->setColors(['#8F006B']);
+
+  return $self;
+
+}
+1;
+
 
 
 #--------------------------------------------------------------------------------
