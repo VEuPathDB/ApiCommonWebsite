@@ -242,13 +242,20 @@ sub init {
 # TriTryp - tbruTREU927_Rijo_Circadian_Regulation_rnaSeq_RSRC
 package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_1cc46f3acb;
 
+sub getProfileColors {
+  my ($self) = @_;
+
+  my @colors =  @{$self->getColors()};
+  return \@colors;
+}
+
 sub isExcludedProfileSet {
   my ($self, $psName) = @_;
 
   foreach(@{$self->excludedProfileSetsArray()}) {
     return 1 if($_ eq $psName);
   }
-  if ($psName =~ /Circadian Control of Bloodstream and Procyclic Form Transcriptomes - /){
+  if ($psName =~ /Circadian Control of Bloodstream and Procyclic Form Transcriptomes - / || $psName =~ /nonunique/){
     return 1;
   }
   return 0;
