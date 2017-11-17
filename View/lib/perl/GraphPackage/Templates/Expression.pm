@@ -125,6 +125,15 @@ sub init {
   return $self;
 }
 
+sub mapSampleLabels {
+  my ($self, $profile, $hash) = @_;
+
+  my $sampleLabels = $profile->getSampleLabels();
+  my @adjustedSampleLabels = map { $hash->{$_} } @$sampleLabels;
+  $profile->setSampleLabels(\@adjustedSampleLabels);
+}
+
+
 sub getAllProfileSetNames {
   my ($self) = @_;
 
