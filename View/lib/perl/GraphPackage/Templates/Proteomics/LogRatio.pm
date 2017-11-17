@@ -37,6 +37,25 @@ sub finalProfileAdjustments {
 
 1;
 
+
+
+package ApiCommonWebsite::View::GraphPackage::Templates::Proteomics::LogRatio::DS_65941738a5;
+
+sub finalProfileAdjustments {
+  my ($self, $profile) = @_;
+
+  my %hash = ("PGAL7::PKA1 + glucose" => "PGAL7::PKA1 + GLU",
+              "PGAL7::PKA1 + galactose" => "PGAL7::PKA1 + GAL"
+      );
+
+  $self->mapSampleLabels($profile, \%hash);
+}
+
+1;
+
+
+
+
 #package ApiCommonWebsite::View::GraphPackage::Templates::Proteomics::LogRatio::DS_8e133ba94b;
 
 #sub finalProfileAdjustments {
