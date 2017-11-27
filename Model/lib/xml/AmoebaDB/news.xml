@@ -45,6 +45,14 @@
                 the background and the gene list of interest in the Fisher's exact test that determines enrichment. 
                 </li>
           </ul>
+       
+       <h4>Revigo and Word Cloud access from GO Enrichment results</h4>
+       <div style="margin-left: 3em;">
+       
+          AmoebaDB offers a link between our GO Enrichment results and a Word Cloud visualization as well as 
+          Revigo, a tool that provides GO term summarization and visualization. The links to Revigo and the 
+          Word Cloud now appear as buttons that are right justified above the GO enrichment result table. 
+       
       </div>
       </section>
       
