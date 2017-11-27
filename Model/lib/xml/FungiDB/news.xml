@@ -60,13 +60,13 @@
           
           GO Slim terms are now indicated in EuPathDB sites in the following ways:<br>
           <ul>
-            <li>The search to 
+            <li>The search, 
                 <a href="http://fungidb.org/fungidb/showQuestion.do?questionFullName=GeneQuestions.GenesByGoTerm">Identify Genes based on GO Terms</a>, 
-                now includes an option, GO Subset, for limiting the search to only GO Slim generic terms.
+                now includes an GO Subset option for limiting the search to only GO Slim generic terms.
                 </li>
-            <li>The GO Terms table on gene pages now contain only the bottom leaf term, not the entire tree.
+            <li>GO Term tables on gene pages now contain only the bottom leaf term, not the entire tree.
                 </li>
-            <li>The GO Terms table on gene pages now contain a 'GO Subset' column which identifies GO Slim generic terms.
+            <li>GO Terms tables on gene pages now contain a 'GO Subset' column which identifies GO Slim generic terms.
                 </li>
             <li>The GO enrichment analysis has an option for limiting the analysis to GO Slim terms. This will limit both 
                 the background and the gene list of interest in the Fisher's exact test that determines enrichment. 
