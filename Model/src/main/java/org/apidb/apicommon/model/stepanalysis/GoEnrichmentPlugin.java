@@ -68,8 +68,8 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
       "genes for that organism (background).</p>";
 
  private static final String GO_SUBSET_PARAM_HELP =
-     "<p> Choose GOSlim_generic_only to limit enrichment analysis " +
-     "based on terms that are in the GO Slim generic subset" +
+     "<p> Choose Yes to limit enrichment analysis " +
+     "based on terms that are in the GO Slim generic subset. " +
      "This will limit both the background and the gene list of interest.</p>";
 
   public static final ResultRow HEADER_ROW = new ResultRow(
