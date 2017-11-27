@@ -25,7 +25,7 @@
 
 <record>
   <attribute name="headline">CryptoDB 35 Released</attribute>
-  <attribute name="date">04 Dec 2017 13:00</attribute>
+  <attribute name="date">30 Nov 2017 13:00</attribute>
   <attribute name="tag">cryptodb11_17_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
@@ -58,7 +58,7 @@
           GO Slim terms are now indicated in EuPathDB sites in the following ways:<br>
           <ul>
             <li>The search to 
-                <a href="http://amoebadb.org/amoeba/showQuestion.do?questionFullName=GeneQuestions.GenesByGoTerm">Identify Genes based on GO Terms</a>, 
+                <a href="http://cryptodb.org/cryptodb/showQuestion.do?questionFullName=GeneQuestions.GenesByGoTerm">Identify Genes based on GO Terms</a>, 
                 now includes an option, GO Subset, for limiting the search to only GO Slim generic terms.
                 </li>
             <li>The GO Terms table on gene pages now contain only the bottom leaf term, not the entire tree.
@@ -73,7 +73,7 @@
        <h4>Revigo and Word Cloud access from GO Enrichment results</h4>
        <div style="margin-left: 3em;">
        
-          AmoebaDB offers a link between our GO Enrichment results and a Word Cloud visualization as well as 
+          CryptoDB offers a link between our GO Enrichment results and a Word Cloud visualization as well as 
           Revigo, a tool that provides GO term summarization and visualization. The links to Revigo and the 
           Word Cloud now appear as buttons that are right justified above the GO enrichment result table. 
           
