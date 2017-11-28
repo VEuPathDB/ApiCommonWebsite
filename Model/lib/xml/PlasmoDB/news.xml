@@ -34,7 +34,7 @@
            <ul>
             <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_3f2eadf75b"><i>Plasmodium knowlesi</i> strain Malayan Strain Pk1 A </a> &ndash; 
               PacBio assembly of a <i>Plasmodium knowlesi</i> genome sequence with Hi-C correction and some manual annotation. First release of this genome in PlasmoDB.  
-              <a href="https://www.ncbi.nlm.nih.gov/pubmed/28720171">Lapp et al.</a>.
+              <a href="https://www.ncbi.nlm.nih.gov/pubmed/28720171">Lapp et al.</a>
               </li>
            </ul>
        
@@ -43,7 +43,7 @@
             <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_6301d619de">Female and male gametocyte transcriptomes</a> &ndash; 
               RNAseq data comparing transcript abundance for FACS sorted male and female <i>P. berghei</i> gametocytes 
               compared these to a mixed asexual population.
-              <a href="https://www.ncbi.nlm.nih.gov/pubmed/28923023">Yeoh et al.</a>.
+              <a href="https://www.ncbi.nlm.nih.gov/pubmed/28923023">Yeoh et al.</a>
               </li>
            </ul>
        
@@ -51,7 +51,7 @@
            <ul>
             <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_c351e9a043">Salivary gland sporozoite total and surface proteome (VK210, VK247)</a> &ndash; 
               Proteins identified from <i>P. vivax</i> salivary gland sporozoites, including putatively surface-exposed proteins identified by surface labeling with a membrane-impermeable biotin tag.  
-              <a href="https://www.ncbi.nlm.nih.gov/pubmed/28759593">Swearingen et al.</a>.
+              <a href="https://www.ncbi.nlm.nih.gov/pubmed/28759593">Swearingen et al.</a>
               </li>
            </ul>
            
@@ -64,7 +64,7 @@
               collected at three field sites in Raurkela, Nadiad, and Chennai. Indian samples showed significant 
               seroreactivity to 265 <i>P. vivax</i> and 373 <i>P. falciparum</i> antigens, but overall seroreactivity 
               to <i>P. vivax</i> antigens was lower compared to <i>P. falciparum</i> antigens.  
-              <a href="https://www.ncbi.nlm.nih.gov/pubmed/28118367">Uplekar et al.</a>.
+              <a href="https://www.ncbi.nlm.nih.gov/pubmed/28118367">Uplekar et al.</a>
               </li>
            </ul>
            
@@ -135,7 +135,7 @@
            </tr>
            <tr>
              <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on PlasmoDB."><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_c3f289d21a"><i>P. relictum</i> SGS1 </a></td>
-             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2017-09/Preichenowi.noseq.gff3.gz">GeneDB version September, 2017</a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="http://www.genedb.org/Homepage/Prelictum">GeneDB version September, 2017</a></td>
              <td>246 genes</td>
            </tr>
            <tr>
@@ -145,10 +145,9 @@
            </tr>
            <tr>
              <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on PlasmoDB."><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_b5a76b5939"><i>P. yoelii yoelii</i> 17X </a></td>
-             <td title="Click here to download GeneDB's GFF file for this genome."><a href="http://www.genedb.org/Homepage/Prelictum">GeneDB version September, 2017</a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2017-09/Pyoelii.gff3.gz">GeneDB version September, 2017</a></td>
              <td>141 genes</td>
            </tr>
-           
            </table>
            <br><br>
         </div>
@@ -160,7 +159,7 @@
       <h4>Dedicated search for Genes with protein products that have post-translational modifications</h4>
        <div style="margin-left: 3em;">
        
-          @PROJECT_ID@ offers a new search 
+          PlasmoDB offers a new search 
           <a href="/a/showQuestion.do?questionFullName=GeneQuestions.GenesByPTM">'Identify Genes based on Post-Translational Modifications</a>, 
           which returns genes whose protein products were experimentally determined to be post-translationally modified. This search is categorized under Search for Genes, Proteomics, Post-Translational Modification.
        </div>
@@ -176,7 +175,7 @@
                 </li>
             <li>GO Term tables on gene pages now contain only the bottom leaf term, not the entire tree. Full lists of GO terms are available at
                 <a href="http://www.genedb.org/Homepage">GeneDB</a> for <i>Plasmodium chabaudi</i> chabaudi, <i>Plasmodium falciparum</i> 3D7, 
-                <i>Plasmodium gallinaceum</i> 8A, <i>Plasmodium knowlesi</i> strain H, <i>Plasmodium malariae</i> UG01, <i>Plasmodium ovale</i> curtisi GH01, <i>Plasmodium relictum SGS1-like, 
+                <i>Plasmodium gallinaceum</i> 8A, <i>Plasmodium knowlesi</i> strain H, <i>Plasmodium malariae</i> UG01, <i>Plasmodium ovale</i> curtisi GH01, <i>Plasmodium relictum</i> SGS1-like, 
                 <i>Plasmodium reichenowi</i> CDC, <i>Plasmodium vivax</i> P01, and <i>Plasmodium yoelii</i> yoelii 17X. 
                 </li>
             <li>GO Terms tables on gene pages now contain a 'GO Subset' column which identifies GO Slim generic terms.
@@ -199,7 +198,6 @@
       
       
       <section>
-        <h3><b>No New data in this release</b></h3> 
          <aside>
            Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
            Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
