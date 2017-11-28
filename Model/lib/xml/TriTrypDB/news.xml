@@ -29,7 +29,7 @@
     <p><strong>We are pleased to announce the release of TriTrypDB 35</strong></p>
       
       <section>
-        <h3>New data in TriTrypDB 35</h3> 
+        <h3><b>New data in TriTrypDB 35</b></h3> 
         
         <h4>RNA Sequence</h4>
           <ul>
@@ -65,8 +65,8 @@
        <h4>Dedicated search for Genes with protein products that have post-translational modifications</h4>
        <div style="margin-left: 3em;">
        
-          @PROJECT_ID@ offers a new search 
-          <a href="/a/showQuestion.do?questionFullName=GeneQuestions.GenesByPTM">'Identify Genes based on Post-Translational Modifications</a>, 
+          TriTrypDB offers a new search, 
+          <a href="/a/showQuestion.do?questionFullName=GeneQuestions.GenesByPTM">Identify Genes based on Post-Translational Modifications</a>, 
           which returns genes whose protein products were experimentally determined to be post-translationally modified. This search is categorized under Search for Genes, Proteomics, Post-Translational Modification.
        </div>
       
