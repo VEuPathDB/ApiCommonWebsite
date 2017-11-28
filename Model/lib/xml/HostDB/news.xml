@@ -31,12 +31,13 @@
       
       
       <section>
+       <h3><b>New data in this release</b></h3>
        <h4>RNA Sequencing</h4>
        <ul>
            <li>
             <a href="http://hostdb.org/hostdb/app/record/dataset/DS_92a3bc8cb7">Transcriptomes of 4 <i>M. musculus</i> cell types during infection with <i>T. gondii</i></a> &mdash; 
             <i>M. musculus</i> cortical neurons, astrocytes, skeletal muscle cells and fibroblast transcriptomes during infection with <i>T. gondii</i> strain NTE.
-            <a href="https://www.ncbi.nlm.nih.gov/pubmed/28775382">Swierzy et al.</a>.  
+            <a href="https://www.ncbi.nlm.nih.gov/pubmed/28775382">Swierzy et al.</a>
            </li>  
        </ul><br>
       </section>
