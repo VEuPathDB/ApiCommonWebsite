@@ -67,6 +67,91 @@
               <a href="https://www.ncbi.nlm.nih.gov/pubmed/28118367">Uplekar et al.</a>.
               </li>
            </ul>
+           
+            <h4>Updated Functional Annotation</h4>
+          <div style="margin-left: 3em;">
+        
+        <a href="https://docs.google.com/spreadsheets/d/1Ti3G-OfdTOcwsfbx5ep6-QUkKFvaS7wTm-Kg_ll1xJI/edit?usp=sharing">Summary of annotation updates</a>
+          which include products, GO terms, gene names, synonyms and PMID. <br><br>
+        
+        <style>
+           #FunctAnnot_Bld35 table, #FunctAnnot_Bld35 td, #FunctAnnot_Bld35 th, #FunctAnnot_Bld35 tr {
+           text-align : center;
+           padding-left: 5px;
+           padding-right: 5px;
+           padding-top: 5px;
+           padding-bottom: 5px;
+           border: 1px solid black;
+           }
+           #FunctAnnot_Bld35 {
+           margin-left : 5 em;
+           }
+         </style> 
+           <table id="FunctAnnot_Bld35"> 
+           <tr>
+             <th>PlasmoDB Genome Version</th>
+             <th>Download GeneDB GFF file</th>
+             <th>Genes Updated</th>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on PlasmoDB."><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_f2d80510c7"><i>P. berghei</i> ANKA </a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2017-09/Pberghei.gff3.gz">GeneDB version September, 2017</a></td>
+             <td>264 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on PlasmoDB."><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_5dab6e4a9f"><i>P. chabaudi</i> AS </a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2017-09/Pchabaudi.gff3.gz">GeneDB version September, 2017</a></td>
+             <td>237 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on PlasmoDB."><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_1d17c1883c"><i>P. falciparum</i> 3D7 </a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2017-09/Pfalciparum.gff3.gz">GeneDB version September, 2017</a></td>
+             <td>412 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on PlasmoDB."><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_22b4dadc51"><i>P. gallinaceum</i> 8A </a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="http://www.genedb.org/Homepage/Pgallinaceum">GeneDB version September, 2017</a></td>
+             <td>248 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on PlasmoDB."><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_8793a259f4"><i>P. knowlesi</i> H </a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2017-09/Pknowlesi.noseq.gff3.gz">GeneDB version September, 2017</a></td>
+             <td>236 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on PlasmoDB."><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_3986a0b578"><i>P. malariae</i> UG01 </a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2017-09/Pmalariae.noseq.gff3.gz">GeneDB version September, 2017</a></td>
+             <td>242 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on PlasmoDB."><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_a4928ff670"><i>P. ovale curtisi</i> GH01 </a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2017-09/Povale.noseq.gff3.gz">GeneDB version September, 2017</a></td>
+             <td>243 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on PlasmoDB."><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_91fa338f8f"><i>P. reichenowi</i> CDC </a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2017-09/Preichenowi.noseq.gff3.gz">GeneDB version September, 2017</a></td>
+             <td>235 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on PlasmoDB."><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_c3f289d21a"><i>P. relictum</i> SGS1 </a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2017-09/Preichenowi.noseq.gff3.gz">GeneDB version September, 2017</a></td>
+             <td>246 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on PlasmoDB."><a href="http://alpha.plasmodb.org/plasmo.alpha/app/record/dataset/DS_ad07e73d42"><i>P. vivax</i> P01 </a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2017-09/PvivaxP01.noseq.gff3.gz">GeneDB version September, 2017</a></td>
+             <td>249 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on PlasmoDB."><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_b5a76b5939"><i>P. yoelii yoelii</i> 17X </a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="http://www.genedb.org/Homepage/Prelictum">GeneDB version September, 2017</a></td>
+             <td>141 genes</td>
+           </tr>
+           
+           </table>
+           <br><br>
+        </div>
       </section>
       
       <section>
