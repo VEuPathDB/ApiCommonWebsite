@@ -54,10 +54,32 @@
               <a href="https://www.ncbi.nlm.nih.gov/pubmed/28759593">Swearingen et al.</a>.
               </li>
            </ul>
+           
+       <h4>Protein Array</h4>
+           <ul>
+            <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_4267c95a1c">India ICEMR Antibody Array</a> &ndash; 
+              Serological profiling of immune responses at three sites in India by probing protein microarrays consisting of 
+              515 <i>Plasmodium vivax</i> and 500 <i>Plasmodium falciparum</i> proteins with 353 plasma samples. A total of 
+              236 malaria-positive (symptomatic and asymptomatic) plasma samples and 117 malaria-negative samples were 
+              collected at three field sites in Raurkela, Nadiad, and Chennai. Indian samples showed significant 
+              seroreactivity to 265 <i>P. vivax</i> and 373 <i>P. falciparum</i> antigens, but overall seroreactivity 
+              to <i>P. vivax</i> antigens was lower compared to <i>P. falciparum</i> antigens.  
+              <a href="https://www.ncbi.nlm.nih.gov/pubmed/28118367">Uplekar et al.</a>.
+              </li>
+           </ul>
       </section>
       
       <section>
       <h3><b>New features in this release</b></h3>
+      
+      <h4>Dedicated search for Genes with protein products that have post-translational modifications</h4>
+       <div style="margin-left: 3em;">
+       
+          PlasmoDB offers a new search 
+          <a href="http://plasmodb.org/plasmo./showQuestion.do?questionFullName=GeneQuestions.GenesByPTM">'Identify Genes based on Post-Translational Modifications</a>, 
+          which returns genes whose protein products were experimentally determined to be post-translationally modified. This search is categorized under Search for Genes, Proteomics, Post-Translational Modification.
+      </div>
+      
       <h4>GO Slim Implementation<h4>
       <div style="margin-left: 3em;">
           
@@ -67,7 +89,10 @@
                 <a href="http://plasmodb.org/plasmo/showQuestion.do?questionFullName=GeneQuestions.GenesByGoTerm">Identify Genes based on GO Terms</a>, 
                 now includes an GO Subset option for limiting the search to only GO Slim generic terms.
                 </li>
-            <li>GO Term tables on gene pages now contain only the bottom leaf term, not the entire tree.
+            <li>GO Term tables on gene pages now contain only the bottom leaf term, not the entire tree. Full lists of GO terms are available at
+                <a href="http://www.genedb.org/Homepage">GeneDB</a> for <i>Plasmodium chabaudi</i> chabaudi, <i>Plasmodium falciparum</i> 3D7, 
+                <i>Plasmodium gallinaceum</i> 8A, <i>Plasmodium knowlesi</i> strain H, <i>Plasmodium malariae</i> UG01, <i>Plasmodium ovale</i> curtisi GH01, <i>Plasmodium relictum SGS1-like, 
+                <i>Plasmodium reichenowi</i> CDC, <i>Plasmodium vivax</i> P01, and <i>Plasmodium yoelii</i> yoelii 17X. 
                 </li>
             <li>GO Terms tables on gene pages now contain a 'GO Subset' column which identifies GO Slim generic terms.
                 </li>
