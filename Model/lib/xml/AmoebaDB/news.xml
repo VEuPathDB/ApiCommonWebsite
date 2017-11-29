@@ -37,8 +37,6 @@
                 <a href="http://amoebadb.org/amoeba/showQuestion.do?questionFullName=GeneQuestions.GenesByGoTerm">Identify Genes based on GO Terms</a>, 
                 now includes an GO Subset option for limiting the search to only GO Slim generic terms.
                 </li>
-            <li>GO Term tables on gene pages now contain only the bottom leaf term, not the entire tree.
-                </li>
             <li>GO Terms tables on gene pages now contain a 'GO Subset' column which identifies GO Slim generic terms.
                 </li>
             <li>The GO enrichment analysis has an option for limiting the analysis to GO Slim terms. This will limit both 
