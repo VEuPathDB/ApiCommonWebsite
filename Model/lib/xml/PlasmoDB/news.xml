@@ -173,11 +173,6 @@
                 <a href="http://plasmodb.org/plasmo/showQuestion.do?questionFullName=GeneQuestions.GenesByGoTerm">Identify Genes based on GO Terms</a>, 
                 now includes an GO Subset option for limiting the search to only GO Slim generic terms.
                 </li>
-            <li>GO Term tables on gene pages now contain only the bottom leaf term, not the entire tree. Full lists of GO terms are available at
-                <a href="http://www.genedb.org/Homepage">GeneDB</a> for <i>Plasmodium chabaudi</i> chabaudi, <i>Plasmodium falciparum</i> 3D7, 
-                <i>Plasmodium gallinaceum</i> 8A, <i>Plasmodium knowlesi</i> strain H, <i>Plasmodium malariae</i> UG01, <i>Plasmodium ovale</i> curtisi GH01, <i>Plasmodium relictum</i> SGS1-like, 
-                <i>Plasmodium reichenowi</i> CDC, <i>Plasmodium vivax</i> P01, and <i>Plasmodium yoelii</i> yoelii 17X. 
-                </li>
             <li>GO Terms tables on gene pages now contain a 'GO Subset' column which identifies GO Slim generic terms.
                 </li>
             <li>The GO enrichment analysis has an option for limiting the analysis to GO Slim terms. This will limit both 
