@@ -16,6 +16,96 @@
 -->
 
 <record>
+  <attribute name="headline">FungiDB 35 Released</attribute>
+  <attribute name="date">30 Nov 2017 13:00</attribute>
+  <attribute name="tag">fungidb11_17_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of FungiDB 35</strong></p>
+      
+      <section>
+        <h3><b>New data in this release</b></h3>
+        
+        <h4>Genome Sequence and Annotation: these annotated genomes appear for the first time in FungiDB.</h4>
+           <ul>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_9716f5c551"><i>Cryptococcus gattii</i> VGIV IND107 (Cryptococcus tetragattii IND107)</a> &ndash; 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26330512">Farrer RA et al.</a>
+             </li>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_2120d05c90"><i>Cryptococcus gattii</i> VGIII CA1873 (Cryptococcus bacillisporus CA1873)</a> &ndash; 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26330512">Farrer RA et al.</a>
+             </li>
+           </ul>
+           
+        <h4>Microarray data</h4>
+           <ul>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4a1d8e1905">Transcriptome of <i>Fusarium graminearum</i> during the infection of wheat</a> &ndash; 
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/21585270" target="_blank">Lysoe et al.</a>
+             </li>
+           </ul>
+           
+        <h4>Proteomics data</h4>
+           <ul>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_65941738a5">Analysis of the Protein Kinase A-Regulated Proteome of <i>Cryptococcus neoformans</i></a> &ndash; 
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/26758180" target="_blank">Geddes et al.</a>
+             </li>
+           </ul>
+
+      </section>
+      
+       <section>
+      <h3><b>New features in this release</b></h3>
+      
+      <h4>Dedicated search for Genes with protein products that have post-translational modifications</h4>
+       <div style="margin-left: 3em;">
+       
+          FungiDB offers a new search 
+          <a href="/a/showQuestion.do?questionFullName=GeneQuestions.GenesByPTM">Identify Genes based on Post-Translational Modifications</a>, 
+          which returns genes whose protein products were experimentally determined to be post-translationally modified. This search is categorized under Search for Genes, Proteomics, Post-Translational Modification.
+       </div>
+      
+      <h4>GO Slim Implementation<h4>
+      <div style="margin-left: 3em;">
+          
+          GO Slim terms are now indicated in EuPathDB sites in the following ways:<br>
+          <ul>
+            <li>The search, 
+                <a href="http://fungidb.org/fungidb/showQuestion.do?questionFullName=GeneQuestions.GenesByGoTerm">Identify Genes based on GO Terms</a>, 
+                now includes an GO Subset option for limiting the search to only GO Slim generic terms.
+                </li>
+            <li>GO Terms tables on gene pages now contain a 'GO Subset' column which identifies GO Slim generic terms.
+                </li>
+            <li>The GO enrichment analysis has an option for limiting the analysis to GO Slim terms. This will limit both 
+                the background and the gene list of interest in the Fisher's exact test that determines enrichment. 
+                </li>
+          </ul>
+       
+       <h4>Revigo and Word Cloud access from GO Enrichment results</h4>
+       <div style="margin-left: 3em;">
+       
+          FungiDB offers a link between our GO Enrichment results and a Word Cloud visualization as well as 
+          Revigo, a tool that provides GO term summarization and visualization. The links to Revigo and the 
+          Word Cloud now appear as buttons that are right justified above the GO enrichment result table. 
+       
+      </div>
+      </section>
+      
+     <section>
+     <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+
+    ]]>
+  </attribute>
+</record>
+
+
+
+<record>
   <attribute name="headline">FungiDB 34 Released</attribute>
   <attribute name="date">07 Sep 2017 13:00</attribute>
   <attribute name="tag">fungidb08_17_release</attribute>
