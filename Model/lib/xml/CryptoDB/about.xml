@@ -129,13 +129,14 @@ Please see Citing CryptoDB below.
 When citing CryptoDB itself, please use:
 <br><br>
 <b>CryptoDB: a Cryptosporidium bioinformatics resource update.</b><br>
-2006 Nucleic Acids Res. Jan 1;34(Database issue):D419-422 doi: 10.1093/nar/gkj078
+2006 Nucleic Acids Res. Jan 1;34(Database issue):D419-422 doi: 10.1093/nar/gkj078<br>
 [ <a href="https://academic.oup.com/nar/article/34/suppl_1/D419/1133199#20215161">Full text</a> ]
 <br><br>
+
 When citing EuPathDB itself, please use:
 <br>
 <b>EuPathDB: the eukaryotic pathogen genomics database resource.</b><br>
-2017 Nucleic Acids Res. Jan 4;45(D1):D581-D591. doi: 10.1093/nar/gkw1105
+2017 Nucleic Acids Res. Jan 4;45(D1):D581-D591. doi: 10.1093/nar/gkw1105<br>
 [ <a href="https://academic.oup.com/nar/article/45/D1/D581/2605823#51201154">Full text</a> ]
 
 <br><br>Much of the data in CryptoDB is provided by independent researchers.  Please cite them if you use their data.  For a list of the data integrated into CryptoDB and the related publications please see <a href="app/search/dataset/AllDatasets/result" class="blue"> Data Sets</a>.

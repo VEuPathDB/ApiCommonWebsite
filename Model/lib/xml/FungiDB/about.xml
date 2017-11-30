@@ -243,12 +243,12 @@ Currently the database is supported by the NIAID grant and a grant from
 <a href=" https://wellcome.ac.uk">The Wellcome Trust</a> grant to Christiane Hertz-Fowler 
 (University of Liverpool) and David Roos (University of Pennsylvania). The Wellcome Trust grant funds 7FTEs within the EuPathDB project overall.
 
-The EuPathDB team is mainly distributed between in the 
-<a href="https://www.upenn.edu">University of Pennsylvania</a> Philadelphia, Pennsylvania, 
-the <a href="http://www.uga.edu">University of Georgia</a>, Georgia, US, 
-and with several members of the team located at the <a href="https://www.liverpool.ac.uk">University of Liverpool</a>, 
-<a href="https://www.gla.ac.uk">University of Glasgow</a>, 
-and <a href="http://www.sanger.ac.uk">The Wellcome Trust Sanger Institute</a>.
+The EuPathDB team is mainly distributed between the 
+<a href="https://www.upenn.edu">University of Pennsylvania</a> Philadelphia, USA  
+the <a href="http://www.uga.edu">University of Georgia</a>, Georgia, USA, and several members of the team are located at 
+the <a href="https://www.liverpool.ac.uk">University of Liverpool</a>, United Kingdom, 
+<a href="https://www.gla.ac.uk">University of Glasgow</a>, United Kingdom 
+and <a href="http://www.sanger.ac.uk">The Wellcome Trust Sanger Institute</a>, United Kingdom.
 
        ]]>
        </attribute>
@@ -300,9 +300,8 @@ Please see Citing FungiDB below.
 When citing FungiDB itself, please use:
 <br><br>
 <b>FungiDB: an integrated functional genomics database for fungi.</b><br>
-2012 Nucleic Acids Res. Jan 4;40(D1):D675-D681. doi: 10.1093/nar/gkr918
-[ <a href="https://academic.oup.com/nar/article/40/D1/D675/2903526#55506806">Abstract</a> | <a href="https://academic.oup.com/nar/article/40/D1/D675/2903526#55506807">Full text</a> | <a href="https://watermark.silverchair.com/gkr918.pdf?token=AQECAHi208BE49Ooan9kkhW_Ercy7Dm3ZL_9Cf3qfKAc485ysgAAAaMwggGfBgkqhkiG9w0BBwagggGQMIIBjAIBADCCAYUGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQM0nVu72z-uytdn07VAgEQgIIBVmLNF9JxBWWw4bVKNlnT87Usp7FEctA4-XiAtwBOQfpE9ambCVrQb9xEogKwyJP20VPjdtX3uvivNBdCUyrnB_Jnuu-rp5qXNYSVwuNL_YYhqbLCTdWPA5ScSFNxkbyj25EPNN3a1Wu7f_2UWOFjysomqD41i7fhnWbwVcbQAvcDd1hZtRdP56UkkpeUkWoejJI9SEd9EArqwGpgq_KbnkDiY5Oipd-EHEM84QoTW9d1XIz-hTqduhGxQ6PnOmqkZ6YlT5FdqXsMJhr4L0eweFW73zmViW5VC9RPuGpZegpxNomWe0jpWVDe6GPijEffFqtC-sh6MlskxmP_i5JQ9wRXOPmiAYCis09bVDGslruw6bZL9A4-cZI2j395z8nycISbCBYCbQAt5LefE5IsFzvwDgXBW-yIw-_vtKorbhXwi45P2akpY1PTJGvtibEN6M728sevsw">PDF</a> ]
-
+2012 Nucleic Acids Res. Jan 4;40(D1):D675-D681. doi: 10.1093/nar/gkr918<br>
+[ <a href="https://academic.oup.com/nar/article/40/D1/D675/2903526#55506807">Full text</a> ]
 
 <br><br>
 When citing EuPathDB itself, please use:
@@ -310,6 +309,7 @@ When citing EuPathDB itself, please use:
 <b>EuPathDB: the eukaryotic pathogen genomics database resource.</b><br>
 2017 Nucleic Acids Res. Jan 4;45(D1):D581-D591. doi: 10.1093/nar/gkw1105<br>
 [ <a href="https://academic.oup.com/nar/article/45/D1/D581/2605823#51201154">Full text</a> ]
+
 <br><br>Much of the data in FungiDB is provided by independent researchers.  Please cite them if you use their data.  For a list of the data integrated into FungiDB and the related publications please see <a href="app/search/dataset/AllDatasets/result" class="blue"> Data Sets</a>.
 
 
