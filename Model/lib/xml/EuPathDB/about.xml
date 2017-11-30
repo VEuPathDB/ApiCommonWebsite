@@ -89,14 +89,18 @@ consensus transcripts are themselves aligned to the genome.
        <attribute name="text">
        <![CDATA[
 
-The Eukaryotic Pathogen Database (EuPathDB) has been developed as a Bioinformatics Resource Center (BRC), with support from the US National Institutes of Health (NIH). Additional funding for a kinetoplastid component (TriTrypDB) was recently provided by the <a href="https://www.gatesfoundation.org">Bill and Melinda Gates Foundation</a> in coordination with independent support for kinetoplastid annotation from <a href=" https://wellcome.ac.uk">The Wellcome Trust</a>, with the latter entity funding 7FTEs within the EuPathDB project overall. 
+The <a href="http://www.eupathdb.org">Eukaryotic Pathogen Database (EuPathDB)</a> has been developed as a Bioinformatics 
+Resource Center (BRC), with support from the US National Institutes of Health (NIH). 
+Additional funding for a kinetoplastid component (TriTrypDB) was 
+originally provided by the <a href="https://www.gatesfoundation.org">Bill and Melinda Gates Foundation</a> 
+and has since been funded via successive awards from <a href=" https://wellcome.ac.uk">The Wellcome Trust</a>.<br>
 
-The EuPathDB team is mainly distributed between the 
-<a href="https://www.upenn.edu">University of Pennsylvania</a> Philadelphia, USA  
-the <a href="http://www.uga.edu">University of Georgia</a>, Georgia, USA, and several members of the team are located at 
+The EuPathDB team is mainly distributed between the <a href="https://www.upenn.edu">University of Pennsylvania</a> Philadelphia, USA  
+the <a href="http://www.uga.edu">University of Georgia</a>, Georgia, USA, and with several members of the team located at 
 the <a href="https://www.liverpool.ac.uk">University of Liverpool</a>, United Kingdom, 
 <a href="https://www.gla.ac.uk">University of Glasgow</a>, United Kingdom 
-and <a href="http://www.sanger.ac.uk">The Wellcome Trust Sanger Institute</a>, United Kingdom.
+and <a href="http://www.sanger.ac.uk">The Wellcome Trust Sanger Institute</a>, United Kingdom. 
+
 
 
        ]]>
