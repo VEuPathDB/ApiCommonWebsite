@@ -30,8 +30,8 @@
 
 <record>
   <attribute name="headline">GiardiaDB 35 Released</attribute>
-  <attribute name="date">30 Nov 2017 13:00</attribute>
-  <attribute name="tag">giardiadb11_17_release</attribute>
+  <attribute name="date">01 Dec 2017 13:00</attribute>
+  <attribute name="tag">giardiadb12_17_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
