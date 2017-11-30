@@ -172,16 +172,16 @@ SchistoDB. Please see Citing SchistoDB below.
        <![CDATA[
 When citing SchistoDB itself, please use:
 <br><br>
-<b>SchistoDB: a Schistosoma mansoni genome resource.<b><br> 
-2009 Jan;37(Database issue):D579-82. doi: 10.1093/nar/gkn681
-[ <a href="https://academic.oup.com/nar/article/37/suppl_1/D579/1004937">Abstract</a> | <a href="https://academic.oup.com/nar/article/37/suppl_1/D579/1004937">Full text</a> | <a href="https://watermark.silverchair.com/gkn681.pdf?token=AQECAHi208BE49Ooan9kkhW_Ercy7Dm3ZL_9Cf3qfKAc485ysgAAAa4wggGqBgkqhkiG9w0BBwagggGbMIIBlwIBADCCAZAGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMr9A0GqaY_S0_DaLxAgEQgIIBYaQhxhsxIXodkrrvJC4Xu28Zzli9RinAEz4fqhhO8dOak5G3f_dFNLOAlYrpgA1xJ71Rqse4HKD70Fv133Ch0TWirN_4sArikBlWIuQIf8OXFm9DqUEx43ngo0VbdyIh7XH7YrV8Tpj3n_p_JEqMc0dMaa6yAcNBIsWGQn_VkW0ALTlOfVyNW6qhvHohSoPRSKlDftkIewnz3OT7Z7Ywv1XGBycSWQQ2QCvh66GsrjdyAMKJtOsdpQZ-4v1yl3cXsr6fURPUhNqIhT9Ftjl15veb1uPSl8Yq9ugzKUD46xY38Dv3MZ_d3dYN4EKB3mrCgpEEx9hHnk3lO_W_hPw5In3hsASg2bDfjJneMwBfK_0qKev0v7VqCysQt2LJkI6CRQPDfIoDbUBvV0vX_fT_zLDBBnT8rK7EVTjqKzHG3hSlr0MP6aVHIJIs8CdarIn7NpKpp4YVvVtfBk9vhhBmKDmk">PDF</a> ]
+<b>SchistoDB: a Schistosoma mansoni genome resource.</b><br> 
+2009 Jan;37(Database issue):D579-82. doi: 10.1093/nar/gkn681<br>
+[ <a href="https://academic.oup.com/nar/article/37/suppl_1/D579/1004937">Full text</a> ]
 
 <br><br>
 When citing EuPathDB itself, please use:
 <br>
-<b>EuPathDB: the eukaryotic pathogen genomics database resource.<b><br>
-2017 Nucleic Acids Res. Jan 4;45(D1):D581-D591. doi: 10.1093/nar/gkw1105
-[ <a href="https://academic.oup.com/nar/article/45/D1/D581/2605823#51201153">Abstract</a> | <a href="https://academic.oup.com/nar/article/45/D1/D581/2605823#51201154">Full text</a> | <a href="https://watermark.silverchair.com/gkw1105.pdf?token=AQECAHi208BE49Ooan9kkhW_Ercy7Dm3ZL_9Cf3qfKAc485ysgAAAaYwggGiBgkqhkiG9w0BBwagggGTMIIBjwIBADCCAYgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMoizxuR1OA42XhY-QAgEQgIIBWXFSPQxX8ojqHSwuMlEbbdHdyfWAK5kQdZ-CFi3RUqBxtrlV1x8OZ9QTVrIR1IGg9ViRBhE4lbDi8qjaDzaXWJvAIb2WDz98xMT9qDK7DVm1Oh_bfOFT-qb1r9oNcPBVJUO64cRlKoEPURZctLW4o-IVcQiB5w-5i19XuYZu3RHFaTUNlCh0wOfKSUNP9dZQnWkl_c3LjWUC9nS9Dv15vRc2Bba2YKAoUDcEH4fH7l-5sYrNj7cqHPOLyY8k8ePtdcGlMTMlFZwEBNS6TiQpfae4pBmDbUKMgnGRm0dwVUbCBOP7qYhQnUOami1_KIS3c3MtM5nlgZCye-L6IYEAwR7pJerWw_0HHcGqt7K97R9BGOKiGGrAnpkBzn2EV8B1lOw57p946qYWAIw0qUtb2ZEQ-B_jqrVwDr_opusuQpVLej2yWLQxYU7q7--YUQgko2IctQYJBm6uSA">PDF</a> ]
+<b>EuPathDB: the eukaryotic pathogen genomics database resource.</b><br>
+2017 Nucleic Acids Res. Jan 4;45(D1):D581-D591. doi: 10.1093/nar/gkw1105<br>
+[ <a href="https://academic.oup.com/nar/article/45/D1/D581/2605823#51201154">Full text</a> ]
 
 <br><br>Much of the data in SchistoDB is provided by independent
 researchers.  Please cite them if you use their data.  For a list

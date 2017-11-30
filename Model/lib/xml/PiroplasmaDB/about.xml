@@ -58,12 +58,12 @@ a specific scientific advisory team as not yet been assembled.-->
        <![CDATA[
 PiroplasmaDB is a member of pathogen-databases that are housed under 
 the NIAID-funded <a href="http://www.eupathdb.org">EuPathDB</a> 
-Bioinformatics Resource Center (BRC) umbrella. The EuPathDB team is mainly distributed between in the 
-<a href="https://www.upenn.edu">University of Pennsylvania</a> Philadelphia, Pennsylvania, 
-the <a href="http://www.uga.edu">University of Georgia</a>, Georgia, US, 
-and with several members of the team located at the <a href="https://www.liverpool.ac.uk">University of Liverpool</a>, 
-<a href="https://www.gla.ac.uk">University of Glasgow</a>, 
-and <a href="http://www.sanger.ac.uk">The Wellcome Trust Sanger Institute</a>.
+Bioinformatics Resource Center (BRC) umbrella. The EuPathDB team is mainly distributed between the 
+<a href="https://www.upenn.edu">University of Pennsylvania</a> Philadelphia, USA  
+the <a href="http://www.uga.edu">University of Georgia</a>, Georgia, USA, and several members of the team are located at 
+the <a href="https://www.liverpool.ac.uk">University of Liverpool</a>, United Kingdom, 
+<a href="https://www.gla.ac.uk">University of Glasgow</a>, United Kingdom 
+and <a href="http://www.sanger.ac.uk">The Wellcome Trust Sanger Institute</a>, United Kingdom.
        ]]>
        </attribute>
    </record>
@@ -99,16 +99,14 @@ and <a href="http://www.sanger.ac.uk">The Wellcome Trust Sanger Institute</a>.
 When citing PiroplasmaDB itself, please use:
 <br><br>
 <b>EuPathDB: a portal to eukaryotic pathogen databases.</b><br>
- 2010 Nucleic Acids Res. 2010 Jan;38(Database issue):D415-9. doi: 10.1093/nar/gkp941
- [ <a href="https://academic.oup.com/nar/article/38/suppl_1/D415/3112291">Abstract</a> | <a href="https://academic.oup.com/nar/article/38/suppl_1/D415/3112291">Full text</a> | <a href="https://watermark.silverchair.com/gkp941.pdf?token=AQECAHi208BE49Ooan9kkhW_Ercy7Dm3ZL_9Cf3qfKAc485ysgAAAa4wggGqBgkqhkiG9w0BBwagggGbMIIBlwIBADCCAZAGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMRe04kgejVtqdVQStAgEQgIIBYXX5cguDU4zFTv2Nn2WrWXwXVyFC-VD8fqpuFbCJMEI_wt1HMwM38hsLG-N0xBvVJggLu0YYAzlAFF6aP6SPNUKJB1Pkv4b2Rfq1gsZvi_DMZtCElli3JoszuK9GSDBDCjjJJYi9bRBQiLlANB21LpcB9FYHa5cHBmE8GFKf7gT9gDhfKWXlTDQSMn2HqPBBIfT0etuo6Byqxgcy_0dYqaidUU3W_lQTF0pu9z5AfrkZiqC4KeXkJyJL7Mq8bXmjaq9AmV36w4TWTovX787trdN0L3vYtq_Zv6q5B1kCgEaimd0YVCr7H_NTKULGqZw3bLQMQ5oEybgxj2oPM-48b_dnQzlc65POryaFk9x1_VmRYy15ESHlRVVLaWSldZUYSivbOfTFPwnFq-jyW-9KecIGU3ZkRk2daUEzHAtwL62OrG6kbhxElWyBN6Hf22yZ62K0Urr92nNOyPpnVPgR9cNL">PDF</a> ]
-
-
+ 2010 Nucleic Acids Res. 2010 Jan;38(Database issue):D415-9. doi: 10.1093/nar/gkp941<br>
+ [ <a href="https://academic.oup.com/nar/article/38/suppl_1/D415/3112291">Full text</a> ]
 <br><br>
 When citing EuPathDB itself, please use:
 <br>
-<b>EuPathDB: the eukaryotic pathogen genomics database resource.<b><br>
-2017 Nucleic Acids Res. Jan 4;45(D1):D581-D591. doi: 10.1093/nar/gkw1105
-[ <a href="https://academic.oup.com/nar/article/45/D1/D581/2605823#51201153">Abstract</a> | <a href="https://academic.oup.com/nar/article/45/D1/D581/2605823#51201154">Full text</a> | <a href="https://watermark.silverchair.com/gkw1105.pdf?token=AQECAHi208BE49Ooan9kkhW_Ercy7Dm3ZL_9Cf3qfKAc485ysgAAAaYwggGiBgkqhkiG9w0BBwagggGTMIIBjwIBADCCAYgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMoizxuR1OA42XhY-QAgEQgIIBWXFSPQxX8ojqHSwuMlEbbdHdyfWAK5kQdZ-CFi3RUqBxtrlV1x8OZ9QTVrIR1IGg9ViRBhE4lbDi8qjaDzaXWJvAIb2WDz98xMT9qDK7DVm1Oh_bfOFT-qb1r9oNcPBVJUO64cRlKoEPURZctLW4o-IVcQiB5w-5i19XuYZu3RHFaTUNlCh0wOfKSUNP9dZQnWkl_c3LjWUC9nS9Dv15vRc2Bba2YKAoUDcEH4fH7l-5sYrNj7cqHPOLyY8k8ePtdcGlMTMlFZwEBNS6TiQpfae4pBmDbUKMgnGRm0dwVUbCBOP7qYhQnUOami1_KIS3c3MtM5nlgZCye-L6IYEAwR7pJerWw_0HHcGqt7K97R9BGOKiGGrAnpkBzn2EV8B1lOw57p946qYWAIw0qUtb2ZEQ-B_jqrVwDr_opusuQpVLej2yWLQxYU7q7--YUQgko2IctQYJBm6uSA">PDF</a> ]
+<b>EuPathDB: the eukaryotic pathogen genomics database resource.</b><br>
+2017 Nucleic Acids Res. Jan 4;45(D1):D581-D591. doi: 10.1093/nar/gkw1105<br>
+[ <a href="https://academic.oup.com/nar/article/45/D1/D581/2605823#51201154">Full text</a> ]
 
 <br><br>Much of the data in PiroplasmaDB is provided by independent researchers.  Please cite them if you use their data.  For a list of the data integrated into PiroplasmaDB and the related publications please see <a href="app/search/dataset/AllDatasets/result" class="blue"> Data Sources</a>.
 

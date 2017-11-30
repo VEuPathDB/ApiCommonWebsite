@@ -76,11 +76,11 @@ Each project in EuPathDB benefits from the advice and mentoring of people from e
        <![CDATA[
 PlasmoDB is a member of pathogen-databases that are housed under 
 the NIAID-funded <a href="http://www.eupathdb.org">EuPathDB</a> 
-Bioinformatics Resource Center (BRC) umbrella. The EuPathDB team is mainly distributed between in the 
-<a href="https://www.upenn.edu">University of Pennsylvania</a> Philadelphia, Pennsylvania, 
-the <a href="http://www.uga.edu">University of Georgia</a>, Georgia, US, 
-and with several members of the team located at the <a href="https://www.liverpool.ac.uk">University of Liverpool</a>, 
-<a href="https://www.gla.ac.uk">University of Glasgow</a>.
+Bioinformatics Resource Center (BRC) umbrella. The EuPathDB team is mainly distributed between the 
+<a href="https://www.upenn.edu">University of Pennsylvania</a> Philadelphia, USA, 
+the <a href="http://www.uga.edu">University of Georgia</a>, Georgia, USA, 
+with several members of the team located at the <a href="https://www.liverpool.ac.uk">University of Liverpool</a>, United Kingdom and the
+<a href="https://www.gla.ac.uk">University of Glasgow</a>, United Kingdom.
        ]]>
        </attribute>
    </record>
@@ -118,17 +118,15 @@ and with several members of the team located at the <a href="https://www.liverpo
        <![CDATA[
 When citing PlasmoDB itself, please use:
 <br><br>
-<b>PlasmoDB: a functional genomic database for malaria parasites.<b><br>
-2009 Nucleic Acids Res. Jan;37(Database issue):D539-43. doi: 10.1093/nar/gkn814
-[ <a href="https://academic.oup.com/nar/article/37/suppl_1/D539/1012097">Abstract</a> | <a href="https://academic.oup.com/nar/article/37/suppl_1/D539/1012097">Full text</a> | <a href="https://watermark.silverchair.com/gkn814.pdf?token=AQECAHi208BE49Ooan9kkhW_Ercy7Dm3ZL_9Cf3qfKAc485ysgAAAa0wggGpBgkqhkiG9w0BBwagggGaMIIBlgIBADCCAY8GCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMetxPHLrCtMTpYdP8AgEQgIIBYBxFPJP2nqoH3wgHnGqwVARaCDZALEe3gi2hs6BWVMQCzEkDkDf0hGKO_tNpUt9yoo-z3Y_-8FdENAQcdyXTrUoHtwvXLNc8IJpv6Y8H6N2DgqZ12SidfrUdxG-RDhzBLsdZoRy9ezcIT4zatZtOy9eLgtjxSFx1Ci_US5YZpeb1-lNuZft0VuOIJJSFhfXj-6Pe7RJb6lS04gEXKN4ZqFpk25sAC_ZlytVBt8jjkMxVbuNoqVUhnwYISMtkIa4eHa6Esl1QJiIpzpZiLwzS2eXH6G6nqPRXmi68gkm9at_kNWpR4PToJDS_NypBy_rsouuAkuQ0HT0A62FC1sdF9lmQLXNb0ew49PMdYBdf1Xep-SRRkQpj8IdFQEMACSsRO46qy_TFsiBb3qptZE9KBKfS4sDaoWLO6N4v7PoSZFF0oRMaQNn_Ht0UzXo7pztdyKpIIbI8Rq9p4fBMwRg1Kt0">PDF</a> ]
-
+<b>PlasmoDB: a functional genomic database for malaria parasites.</b><br>
+2009 Nucleic Acids Res. Jan;37(Database issue):D539-43. doi: 10.1093/nar/gkn814<br>
+[ <a href="https://academic.oup.com/nar/article/37/suppl_1/D539/1012097">Full text</a> ]
 <br><br>
 When citing EuPathDB itself, please use:
 <br>
-<b>EuPathDB: the eukaryotic pathogen genomics database resource.<b><br>
-2017 Nucleic Acids Res. Jan 4;45(D1):D581-D591. doi: 10.1093/nar/gkw1105
-[ <a href="https://academic.oup.com/nar/article/45/D1/D581/2605823#51201153">Abstract</a> | <a href="https://academic.oup.com/nar/article/45/D1/D581/2605823#51201154">Full text</a> | <a href="https://watermark.silverchair.com/gkw1105.pdf?token=AQECAHi208BE49Ooan9kkhW_Ercy7Dm3ZL_9Cf3qfKAc485ysgAAAaYwggGiBgkqhkiG9w0BBwagggGTMIIBjwIBADCCAYgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMoizxuR1OA42XhY-QAgEQgIIBWXFSPQxX8ojqHSwuMlEbbdHdyfWAK5kQdZ-CFi3RUqBxtrlV1x8OZ9QTVrIR1IGg9ViRBhE4lbDi8qjaDzaXWJvAIb2WDz98xMT9qDK7DVm1Oh_bfOFT-qb1r9oNcPBVJUO64cRlKoEPURZctLW4o-IVcQiB5w-5i19XuYZu3RHFaTUNlCh0wOfKSUNP9dZQnWkl_c3LjWUC9nS9Dv15vRc2Bba2YKAoUDcEH4fH7l-5sYrNj7cqHPOLyY8k8ePtdcGlMTMlFZwEBNS6TiQpfae4pBmDbUKMgnGRm0dwVUbCBOP7qYhQnUOami1_KIS3c3MtM5nlgZCye-L6IYEAwR7pJerWw_0HHcGqt7K97R9BGOKiGGrAnpkBzn2EV8B1lOw57p946qYWAIw0qUtb2ZEQ-B_jqrVwDr_opusuQpVLej2yWLQxYU7q7--YUQgko2IctQYJBm6uSA">PDF</a> ]
-
+<b>EuPathDB: the eukaryotic pathogen genomics database resource.</b><br>
+2017 Nucleic Acids Res. Jan 4;45(D1):D581-D591. doi: 10.1093/nar/gkw1105<br>
+[ <a href="https://academic.oup.com/nar/article/45/D1/D581/2605823#51201154">Full text</a> ]
 
 <br><br>Much of the data in PlasmoDB is provided by independent researchers.  Please cite them if you use their data.  For a list of the data integrated into PlasmoDB and the related publications please see <a href="app/search/dataset/AllDatasets/result" class="blue"> Data Sets</a>.
        

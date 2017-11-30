@@ -75,12 +75,12 @@ Each project in EuPathDB benefits from the advice and mentoring of people from e
        <![CDATA[
 CryptoDB is a member of pathogen-databases that are housed under 
 the NIAID-funded <a href="http://www.eupathdb.org">EuPathDB</a> 
-Bioinformatics Resource Center (BRC) umbrella. The EuPathDB team is mainly distributed between in the 
-<a href="https://www.upenn.edu">University of Pennsylvania</a> Philadelphia, Pennsylvania, 
-the <a href="http://www.uga.edu">University of Georgia</a>, Georgia, US, 
-and with several members of the team located at the <a href="https://www.liverpool.ac.uk">University of Liverpool</a>, 
-<a href="https://www.gla.ac.uk">University of Glasgow</a>, 
-and <a href="http://www.sanger.ac.uk">The Wellcome Trust Sanger Institute</a>.
+Bioinformatics Resource Center (BRC) umbrella. The EuPathDB team is mainly distributed between the 
+<a href="https://www.upenn.edu">University of Pennsylvania</a> Philadelphia, USA  
+the <a href="http://www.uga.edu">University of Georgia</a>, Georgia, USA, and several members of the team are located at 
+the <a href="https://www.liverpool.ac.uk">University of Liverpool</a>, United Kingdom, 
+<a href="https://www.gla.ac.uk">University of Glasgow</a>, United Kingdom 
+and <a href="http://www.sanger.ac.uk">The Wellcome Trust Sanger Institute</a>, United Kingdom.
        ]]>
        </attribute>
    </record>
@@ -128,16 +128,15 @@ Please see Citing CryptoDB below.
        <![CDATA[
 When citing CryptoDB itself, please use:
 <br><br>
-<b>CryptoDB: a Cryptosporidium bioinformatics resource update.<b><br>
+<b>CryptoDB: a Cryptosporidium bioinformatics resource update.</b><br>
 2006 Nucleic Acids Res. Jan 1;34(Database issue):D419-422 doi: 10.1093/nar/gkj078
-[ <a href="https://academic.oup.com/nar/article/34/suppl_1/D419/1133199#20215160">Abstract</a> | <a href="https://academic.oup.com/nar/article/34/suppl_1/D419/1133199#20215161">Full text</a> | <a href="https://watermark.silverchair.com/gkj078.pdf?token=AQECAHi208BE49Ooan9kkhW_Ercy7Dm3ZL_9Cf3qfKAc485ysgAAAa4wggGqBgkqhkiG9w0BBwagggGbMIIBlwIBADCCAZAGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMapm63zAjeK3hxjxbAgEQgIIBYWK03SUeKtWErnafu_F5hpOgT65i9Lwc2EF2UymGBmepY86htmFfnsk0l6pU2PlFISBCV0Za30egj0jqhPgwQLTDjJk1l2hLhSSi4LTtu7Q_1cC03tronK5XOFr9Y3iqOPu1eWUPBKEOJBqIe4qSPfxy08x-R-mQceVnRhAYjPWpP_buVRyVndjtORbLbnuItRHoW8mU9NKxD9kNf58yQtx2y65-kI4URzGTgIMhbZoqkxgki06J_BNw8UZQeXbrJCFbTH6Wgrsx6255yW14CGYxNt1pGyUths72HP_X-T4we4qM9dYZtHybimJCdtI7PINCJ1vPPEtfDQpf-0oR51_2FjxtmOjoJbxkCmc8ZTjhfe9-lZFxViGyIvPXLHdJi_3kWBs4tuH7ejIWtsFxRCgAzh-NamATMdr_MrQzyQ8hw5R77vEzfyPCtRIvw5auLV9_MCGhX8S-6jNQbcbvJBQj">PDF</a> ]
-
+[ <a href="https://academic.oup.com/nar/article/34/suppl_1/D419/1133199#20215161">Full text</a> ]
 <br><br>
 When citing EuPathDB itself, please use:
 <br>
-<b>EuPathDB: the eukaryotic pathogen genomics database resource.<b><br>
+<b>EuPathDB: the eukaryotic pathogen genomics database resource.</b><br>
 2017 Nucleic Acids Res. Jan 4;45(D1):D581-D591. doi: 10.1093/nar/gkw1105
-[ <a href="https://academic.oup.com/nar/article/45/D1/D581/2605823#51201153">Abstract</a> | <a href="https://academic.oup.com/nar/article/45/D1/D581/2605823#51201154">Full text</a> | <a href="https://watermark.silverchair.com/gkw1105.pdf?token=AQECAHi208BE49Ooan9kkhW_Ercy7Dm3ZL_9Cf3qfKAc485ysgAAAaYwggGiBgkqhkiG9w0BBwagggGTMIIBjwIBADCCAYgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMoizxuR1OA42XhY-QAgEQgIIBWXFSPQxX8ojqHSwuMlEbbdHdyfWAK5kQdZ-CFi3RUqBxtrlV1x8OZ9QTVrIR1IGg9ViRBhE4lbDi8qjaDzaXWJvAIb2WDz98xMT9qDK7DVm1Oh_bfOFT-qb1r9oNcPBVJUO64cRlKoEPURZctLW4o-IVcQiB5w-5i19XuYZu3RHFaTUNlCh0wOfKSUNP9dZQnWkl_c3LjWUC9nS9Dv15vRc2Bba2YKAoUDcEH4fH7l-5sYrNj7cqHPOLyY8k8ePtdcGlMTMlFZwEBNS6TiQpfae4pBmDbUKMgnGRm0dwVUbCBOP7qYhQnUOami1_KIS3c3MtM5nlgZCye-L6IYEAwR7pJerWw_0HHcGqt7K97R9BGOKiGGrAnpkBzn2EV8B1lOw57p946qYWAIw0qUtb2ZEQ-B_jqrVwDr_opusuQpVLej2yWLQxYU7q7--YUQgko2IctQYJBm6uSA">PDF</a> ]
+[ <a href="https://academic.oup.com/nar/article/45/D1/D581/2605823#51201154">Full text</a> ]
 
 <br><br>Much of the data in CryptoDB is provided by independent researchers.  Please cite them if you use their data.  For a list of the data integrated into CryptoDB and the related publications please see <a href="app/search/dataset/AllDatasets/result" class="blue"> Data Sets</a>.
 
