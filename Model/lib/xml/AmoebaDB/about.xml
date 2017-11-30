@@ -61,10 +61,12 @@ a specific scientific advisory team as not yet been assembled. -->
        <![CDATA[
 AmoebaDB is a member of pathogen-databases that are housed under 
 the NIAID-funded <a href="http://www.eupathdb.org">EuPathDB</a> 
-Bioinformatics Resource Center (BRC) umbrella. The EuPathDB team is 
-mainly distributed between the University of Pennsylvania in 
-Philadelphia, Pennsylvania and the University of Georgia in Athens, 
-Georgia.
+Bioinformatics Resource Center (BRC) umbrella. The EuPathDB team is mainly distributed between in the 
+<a href="https://www.upenn.edu">University of Pennsylvania</a> Philadelphia, Pennsylvania, 
+the <a href="http://www.uga.edu">University of Georgia</a>, Georgia, US, 
+and with several members of the team located at the <a href="https://www.liverpool.ac.uk">University of Liverpool</a>, 
+<a href="https://www.gla.ac.uk">University of Glasgow</a>, 
+and <a href="http://www.sanger.ac.uk">The Wellcome Trust Sanger Institute</a>.
        ]]>
        </attribute>
    </record>
@@ -111,13 +113,17 @@ Please see Citing AmoebaDB below.
        <attribute name="text">
        <![CDATA[
 When citing AmoebaDB itself, please use:
-<br><br>
-<b><a href="http://www.ncbi.nlm.nih.gov/pubmed/20974635">AmoebaDB and MicrosporidiaDB: functional genomic resources for Amoebozoa and Microsporidia species.</a>
+<br>
+<b>AmoebaDB and MicrosporidiaDB: functional genomic resources for Amoebozoa and Microsporidia species.<b><br>
+<br>
+2011 Nucleic Acids Res. Jan;39(Database issue):D612-9. doi: 10.1093/nar/gkq1006. 
+[ <a href="https://academic.oup.com/nar/article/39/suppl_1/D612/2505803#42637745">Abstract</a> | <a href="https://academic.oup.com/nar/article/39/suppl_1/D612/2505803#42637746">Full text</a> | <a href="https://watermark.silverchair.com/gkq1006.pdf?token=AQECAHi208BE49Ooan9kkhW_Ercy7Dm3ZL_9Cf3qfKAc485ysgAAAbAwggGsBgkqhkiG9w0BBwagggGdMIIBmQIBADCCAZIGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMcyXvBBKzW2_ubm1IAgEQgIIBY3sXMLhZ7RQ-UikpLw8OL-ciywkd0ZWU0LdXP5cTYW0Z0HGrZNkslIAijGnNTaz_X6ntMJjYPS7e7Wc9wb67OSpyliWH4Yq5H4Td67JEfK8Zym2Xi8tuMaF-2xwqa7Zp62DUvUd2-q4lia_polHNT50xNBeo3KzIGCH0ra2T3cP3zVdEgvBaRMRYiMTguXCu0uxP2ecCaR9hpqfP2paIL7_Zoq9Ae9pZaRxAWnVvpBg-hFwtBl1MWzIBlyyopCxtMJLnGxhqF_FYj0ZHR-0z6oUQNYBLEKb3zeONRoM6e_HzgO3mbUvFT53juKE7vvQ7r5zq6aUL7uloCW_apUspmUS4QLlafHO7uWRMTQrZFMjaYjN3EEji1u2LkN0k3ZoxfNx-Y6w6iU1tlivtYzUiUCgamsOkXZS4FaByJXiAE5kPMYgnuIM5y_C4nuqCVbrW0A23yRaDdosWa22ECZeAgm6hmt0">PDF</a> ]
 
-<br><br>When citing EuPathDB itself, please use: <br>
-<a href="http://www.ncbi.nlm.nih.gov/pubmed/27903906">
-EuPathDB: the eukaryotic pathogen genomics database resource.</a>
-2016 Nov 29. pii: gkw1105. [Epub ahead of print] Aurrecoechea C, et al.
+<br><br>When citing EuPathDB itself, please use: 
+<br>
+<b>EuPathDB: the eukaryotic pathogen genomics database resource.<b><br>
+2017 Nucleic Acids Res. Jan 4;45(D1):D581-D591. doi: 10.1093/nar/gkw1105
+[ <a href="https://academic.oup.com/nar/article/45/D1/D581/2605823#51201153">Abstract</a> | <a href="https://academic.oup.com/nar/article/45/D1/D581/2605823#51201154">Full text</a> | <a href="https://watermark.silverchair.com/gkw1105.pdf?token=AQECAHi208BE49Ooan9kkhW_Ercy7Dm3ZL_9Cf3qfKAc485ysgAAAaYwggGiBgkqhkiG9w0BBwagggGTMIIBjwIBADCCAYgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMoizxuR1OA42XhY-QAgEQgIIBWXFSPQxX8ojqHSwuMlEbbdHdyfWAK5kQdZ-CFi3RUqBxtrlV1x8OZ9QTVrIR1IGg9ViRBhE4lbDi8qjaDzaXWJvAIb2WDz98xMT9qDK7DVm1Oh_bfOFT-qb1r9oNcPBVJUO64cRlKoEPURZctLW4o-IVcQiB5w-5i19XuYZu3RHFaTUNlCh0wOfKSUNP9dZQnWkl_c3LjWUC9nS9Dv15vRc2Bba2YKAoUDcEH4fH7l-5sYrNj7cqHPOLyY8k8ePtdcGlMTMlFZwEBNS6TiQpfae4pBmDbUKMgnGRm0dwVUbCBOP7qYhQnUOami1_KIS3c3MtM5nlgZCye-L6IYEAwR7pJerWw_0HHcGqt7K97R9BGOKiGGrAnpkBzn2EV8B1lOw57p946qYWAIw0qUtb2ZEQ-B_jqrVwDr_opusuQpVLej2yWLQxYU7q7--YUQgko2IctQYJBm6uSA">PDF</a> ]
 
 <br><br>Much of the data in AmoebaDB is provided by independent researchers.  Please cite them if you use their data.  For a list of the data integrated into AmoebaDB and the related publications please see <a href="app/search/dataset/AllDatasets/result" class="blue"> Data Sets</a>.
 
