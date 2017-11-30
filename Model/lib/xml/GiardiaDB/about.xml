@@ -216,10 +216,12 @@ Additional data include Serial Analysis of Gene Expression (SAGE) tags (NCBI/GEO
        <![CDATA[
 GiardiaDB is a member of pathogen-databases that are housed under 
 the NIAID-funded <a href="http://www.eupathdb.org">EuPathDB</a> 
-Bioinformatics Resource Center (BRC) umbrella. The EuPathDB team is 
-mainly distributed between the University of Pennsylvania in 
-Philadelphia, Pennsylvania and the University of Georgia in Athens, 
-Georgia.
+Bioinformatics Resource Center (BRC) umbrella. The EuPathDB team is mainly distributed between in the 
+<a href="https://www.upenn.edu">University of Pennsylvania</a> Philadelphia, Pennsylvania, 
+the <a href="http://www.uga.edu">University of Georgia</a>, Georgia, US, 
+and with several members of the team located at the <a href="https://www.liverpool.ac.uk">University of Liverpool</a>, 
+<a href="https://www.gla.ac.uk">University of Glasgow</a>, 
+and <a href="http://www.sanger.ac.uk">The Wellcome Trust Sanger Institute</a>.
        ]]>
        </attribute>
    </record>
@@ -264,15 +266,17 @@ GiardiaDB. Please see Citing GiardiaDB below.
        <![CDATA[
 When citing GiardiaDB itself, please use:
 <br><br>
-<a href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=pubmed&cmd=search&term=18824479">
-GiardiaDB and TrichDB: integrated genomic resources for the eukaryotic protist pathogens Giardia lamblia and Trichomonas vaginalis.</a> 2009 Jan;37(Database issue):D526-30. Aurrecoechea C, et al.
+<b>GiardiaDB and TrichDB: integrated genomic resources for the eukaryotic protist pathogens Giardia lamblia and Trichomonas vaginalis.<b><br> 
+2009 Jan;37(Database issue):D526-530. doi: 10.1093/nar/gkn631
+[ <a href="https://academic.oup.com/nar/article/37/suppl_1/D526/1001134">Abstract</a> | <a href="https://academic.oup.com/nar/article/37/suppl_1/D526/1001134">Full text</a> | <a href="https://watermark.silverchair.com/gkn631.pdf?token=AQECAHi208BE49Ooan9kkhW_Ercy7Dm3ZL_9Cf3qfKAc485ysgAAAa0wggGpBgkqhkiG9w0BBwagggGaMIIBlgIBADCCAY8GCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMH__civcTrkptYcSRAgEQgIIBYJVu0jfc4AHvu63w9Hw-cr7AYct_gCYtIq4HxMftWSlqX8gWnI1rz6p187SKfl0GvxG5Rc_oufEdQyFWuC0WWdHqSuws90b0ACOVepxOWe0gVCLqMA4Z3hlEOwy1Jz63ASrkm7g4ZEDYeiRk65jshrqGG2_xsOxWL9slWqR8yBbLLtQr0azkQT1_TmNo8-d6WZxuso7n0WXwPoCV8OAtmyjHHJ13SDXzLHAi2ts9PAHIxw8RZUXuweQJ-9ahuhNAB3HS4D8fjbPssw3lspME9Ed12ae8kYHT6lGP-m7kGgNzx3Ll_xhEIdqNLQ2SfPh0PxDHUgwzOV24ScJ2AQF8y7RPkAf1d1hYQIIEBbJLE6Jwvro7zxiAWeH8a304BQsmE1P63_CTediwUIS3ACM15QGCbfHpvubXYqqjMW6T5WkLqUp4w3_60UYmRbEX-eV1bHULdGgTG-hNweWBIO7-X_4">PDF</a> ]
+
 
 <br><br>
 When citing EuPathDB itself, please use:
 <br>
-<a href="http://www.ncbi.nlm.nih.gov/pubmed/27903906">
-EuPathDB: the eukaryotic pathogen genomics database resource.</a>
-2016 Nov 29. pii: gkw1105. [Epub ahead of print] Aurrecoechea C, et al.
+<b>EuPathDB: the eukaryotic pathogen genomics database resource.<b><br>
+2017 Nucleic Acids Res. Jan 4;45(D1):D581-D591. doi: 10.1093/nar/gkw1105
+[ <a href="https://academic.oup.com/nar/article/45/D1/D581/2605823#51201153">Abstract</a> | <a href="https://academic.oup.com/nar/article/45/D1/D581/2605823#51201154">Full text</a> | <a href="https://watermark.silverchair.com/gkw1105.pdf?token=AQECAHi208BE49Ooan9kkhW_Ercy7Dm3ZL_9Cf3qfKAc485ysgAAAaYwggGiBgkqhkiG9w0BBwagggGTMIIBjwIBADCCAYgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMoizxuR1OA42XhY-QAgEQgIIBWXFSPQxX8ojqHSwuMlEbbdHdyfWAK5kQdZ-CFi3RUqBxtrlV1x8OZ9QTVrIR1IGg9ViRBhE4lbDi8qjaDzaXWJvAIb2WDz98xMT9qDK7DVm1Oh_bfOFT-qb1r9oNcPBVJUO64cRlKoEPURZctLW4o-IVcQiB5w-5i19XuYZu3RHFaTUNlCh0wOfKSUNP9dZQnWkl_c3LjWUC9nS9Dv15vRc2Bba2YKAoUDcEH4fH7l-5sYrNj7cqHPOLyY8k8ePtdcGlMTMlFZwEBNS6TiQpfae4pBmDbUKMgnGRm0dwVUbCBOP7qYhQnUOami1_KIS3c3MtM5nlgZCye-L6IYEAwR7pJerWw_0HHcGqt7K97R9BGOKiGGrAnpkBzn2EV8B1lOw57p946qYWAIw0qUtb2ZEQ-B_jqrVwDr_opusuQpVLej2yWLQxYU7q7--YUQgko2IctQYJBm6uSA">PDF</a> ]
 
 <br><br>Much of the data in GiardiaDB is provided by independent researchers.  Please cite them if you use their data.  For a list of the data integrated into GiardiaDB and the related publications please see <a href="app/search/dataset/AllDatasets/result" class="blue"> Data Sets</a>.
 

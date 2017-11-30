@@ -49,48 +49,48 @@ Currently we have the following teams:<br><br>
 
 <b>The Aspregillus scientific advisory group:</b><br><br>
 <ul>
-<li>Mikael R&#248;rdam Andersen (Technical University of Denmark)</li>
-<li>Elaine Bignell (The University of Manchester)</li>
-<li>Michelle Momany (University of Georgia)</li>
-<li>Antonis Rokas (Vanderbilt University)</li>
+<li>Mikael R&#248;rdam Andersen (Technical University of Denmark, Denmark)</li>
+<li>Elaine Bignell (The University of Manchester, UK)</li>
+<li>Michelle Momany (University of Georgia, USA)</li>
+<li>Antonis Rokas (Vanderbilt University, USA)</li>
 </ul>
 <br><br>
 
 <b>The Neurospora scientific advisory group:</b><br><br>
 <ul>
 <li>Jay Dunlap (Darmouth)</li>
-<li>Louise Glass (University of California, Berkley)</li>
-<li>Katherine Borkovich (University of California, Riverside)</li>
-<li>Jason Stajich (University of California, Riverside)</li>
+<li>Louise Glass (University of California, Berkley, USA)</li>
+<li>Katherine Borkovich (University of California, Riverside, USA)</li>
+<li>Jason Stajich (University of California, Riverside, USA)</li>
 </ul>
 <br><br>
 
 <b>The Fusarium scientific advisory group:</b><br><br>
 <ul>
-<li>Michael Freitag (Oregon State University)</li>
-<li>Corby Kistler (University of Minnesota)</li>
-<li>Nadya Ponts (INRA)</li>
-<li>Kim Hammond-Kosack (Rothamsted)</li>
-<li>Seogchan Kang (The Pennsylvania State University)</li>
-<li>Christina Cuomo (The Broad Institute)</li>
+<li>Michael Freitag (Oregon State University, USA)</li>
+<li>Corby Kistler (University of Minnesota, USA)</li>
+<li>Nadya Ponts (INRA, France)</li>
+<li>Kim Hammond-Kosack (Rothamsted, UK)</li>
+<li>Seogchan Kang (The Pennsylvania State University, USA)</li>
+<li>Christina Cuomo (The Broad Institute, USA)</li>
 </ul>
 <br><br>
 
 <b>The Coccidioides scientific advisory group:</b><br><br>
 <ul>
-<li>Bridget Barker (North Arizona University)</li>
-<li>Theo Kirkland (University of California, San Diego)</li>
-<li>Marc Orbach (University of Arizona)</li>
+<li>Bridget Barker (North Arizona University, USA)</li>
+<li>Theo Kirkland (University of California, San Diego, USA)</li>
+<li>Marc Orbach (University of Arizona, USA)</li>
 </ul>
 <br><br>
 
 <b>The Cryptococcus scientific advisory group:</b><br><br>
 <ul>
-<li>Tamara Doering (Washington University in St. Louis)</li>
-<li>Jennifer Lodge (Washington University in St. Louis)</li>
-<li>Robin May (University of Birmingham)</li>
-<li>Guilhem Janbon (Institut Pasteur)</li>
-<li>Christina Cuomo (The Broad Institute)</li>
+<li>Tamara Doering (Washington University in St. Louis, USA)</li>
+<li>Jennifer Lodge (Washington University in St. Louis, USA)</li>
+<li>Robin May (University of Birmingham, UK)</li>
+<li>Guilhem Janbon (Institut Pasteur, France)</li>
+<li>Christina Cuomo (The Broad Institute, USA)</li>
 </ul>
 <br><br>
 
@@ -235,17 +235,20 @@ Charles Treatman<SUP>2,7</SUP>, Haiming Wang<SUP>1</SUP>
        <attribute name="tag">funding</attribute>
        <attribute name="text">
        <![CDATA[
-FungiDB is a member of pathogen-databases that are housed under 
-the NIAID-funded <a href="http://www.eupathdb.org">EuPathDB</a> 
-Bioinformatics Resource Center (BRC) umbrella. The EuPathDB team is 
-mainly distributed between the University of Pennsylvania in 
-Philadelphia, Pennsylvania and the University of Georgia in Athens, 
-Georgia.
+FungiDB is a member of pathogen-databases 
+that are housed under the NIAID-funded EuPathDB Bioinformatics Resource Center (BRC) umbrella. 
+FungiDB was initially funded through a grant from the <a href="https://www.bwfund.org">Burroughs Wellcome Fund</a> grant 
+to Jason Stajich (UC Riverside) and David Roos (University of Pennsylvania and EuPathDB). 
+Currently the database is supported by the NIAID grant and a grant from 
+<a href=" https://wellcome.ac.uk">The Wellcome Trust</a> grant to Christiane Hertz-Fowler 
+(University of Liverpool) and David Roos (University of Pennsylvania). The Wellcome Trust grant funds 7FTEs within the EuPathDB project overall.
 
-FungiDB was initially funded through a grant from the <a
-href="http://bwfund.org/">Burroughs Wellcome Fund</a> to Jason Stajich
-(UC Riverside) and David Roos (University of Pennsylvania and
-EuPathDB). <br>
+The EuPathDB team is mainly distributed between in the 
+<a href="https://www.upenn.edu">University of Pennsylvania</a> Philadelphia, Pennsylvania, 
+the <a href="http://www.uga.edu">University of Georgia</a>, Georgia, US, 
+and with several members of the team located at the <a href="https://www.liverpool.ac.uk">University of Liverpool</a>, 
+<a href="https://www.gla.ac.uk">University of Glasgow</a>, 
+and <a href="http://www.sanger.ac.uk">The Wellcome Trust Sanger Institute</a>.
 
        ]]>
        </attribute>
@@ -296,15 +299,17 @@ Please see Citing FungiDB below.
        <![CDATA[
 When citing FungiDB itself, please use:
 <br><br>
-<b><a href="http://www.ncbi.nlm.nih.gov/pubmed/22064857">FungiDB: an integrated functional genomics database for fungi</a></b>.
-Stajich JE, Harris T, Brunk BP, Brestelli J, Fischer S, Harb OS, Kissinger JC, Li W, Nayak V, Pinney DF, Stoeckert CJ Jr, Roos DS. Nucleic Acids Res. 2012 Jan 1;40(D1):D675-D681.
+<b>FungiDB: an integrated functional genomics database for fungi.</b><br>
+2012 Nucleic Acids Res. Jan 4;40(D1):D675-D681. doi: 10.1093/nar/gkr918
+[ <a href="https://academic.oup.com/nar/article/40/D1/D675/2903526#55506806">Abstract</a> | <a href="https://academic.oup.com/nar/article/40/D1/D675/2903526#55506807">Full text</a> | <a href="https://watermark.silverchair.com/gkr918.pdf?token=AQECAHi208BE49Ooan9kkhW_Ercy7Dm3ZL_9Cf3qfKAc485ysgAAAaMwggGfBgkqhkiG9w0BBwagggGQMIIBjAIBADCCAYUGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQM0nVu72z-uytdn07VAgEQgIIBVmLNF9JxBWWw4bVKNlnT87Usp7FEctA4-XiAtwBOQfpE9ambCVrQb9xEogKwyJP20VPjdtX3uvivNBdCUyrnB_Jnuu-rp5qXNYSVwuNL_YYhqbLCTdWPA5ScSFNxkbyj25EPNN3a1Wu7f_2UWOFjysomqD41i7fhnWbwVcbQAvcDd1hZtRdP56UkkpeUkWoejJI9SEd9EArqwGpgq_KbnkDiY5Oipd-EHEM84QoTW9d1XIz-hTqduhGxQ6PnOmqkZ6YlT5FdqXsMJhr4L0eweFW73zmViW5VC9RPuGpZegpxNomWe0jpWVDe6GPijEffFqtC-sh6MlskxmP_i5JQ9wRXOPmiAYCis09bVDGslruw6bZL9A4-cZI2j395z8nycISbCBYCbQAt5LefE5IsFzvwDgXBW-yIw-_vtKorbhXwi45P2akpY1PTJGvtibEN6M728sevsw">PDF</a> ]
+
 
 <br><br>
 When citing EuPathDB itself, please use:
 <br>
-<a href="http://www.ncbi.nlm.nih.gov/pubmed/27903906">
-EuPathDB: the eukaryotic pathogen genomics database resource.</a>
-2016 Nov 29. pii: gkw1105. [Epub ahead of print] Aurrecoechea C, et al.
+<b>EuPathDB: the eukaryotic pathogen genomics database resource.<b><br>
+2017 Nucleic Acids Res. Jan 4;45(D1):D581-D591. doi: 10.1093/nar/gkw1105
+[ <a href="https://academic.oup.com/nar/article/45/D1/D581/2605823#51201153">Abstract</a> | <a href="https://academic.oup.com/nar/article/45/D1/D581/2605823#51201154">Full text</a> | <a href="https://watermark.silverchair.com/gkw1105.pdf?token=AQECAHi208BE49Ooan9kkhW_Ercy7Dm3ZL_9Cf3qfKAc485ysgAAAaYwggGiBgkqhkiG9w0BBwagggGTMIIBjwIBADCCAYgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMoizxuR1OA42XhY-QAgEQgIIBWXFSPQxX8ojqHSwuMlEbbdHdyfWAK5kQdZ-CFi3RUqBxtrlV1x8OZ9QTVrIR1IGg9ViRBhE4lbDi8qjaDzaXWJvAIb2WDz98xMT9qDK7DVm1Oh_bfOFT-qb1r9oNcPBVJUO64cRlKoEPURZctLW4o-IVcQiB5w-5i19XuYZu3RHFaTUNlCh0wOfKSUNP9dZQnWkl_c3LjWUC9nS9Dv15vRc2Bba2YKAoUDcEH4fH7l-5sYrNj7cqHPOLyY8k8ePtdcGlMTMlFZwEBNS6TiQpfae4pBmDbUKMgnGRm0dwVUbCBOP7qYhQnUOami1_KIS3c3MtM5nlgZCye-L6IYEAwR7pJerWw_0HHcGqt7K97R9BGOKiGGrAnpkBzn2EV8B1lOw57p946qYWAIw0qUtb2ZEQ-B_jqrVwDr_opusuQpVLej2yWLQxYU7q7--YUQgko2IctQYJBm6uSA">PDF</a> ]
 
 <br><br>Much of the data in FungiDB is provided by independent researchers.  Please cite them if you use their data.  For a list of the data integrated into FungiDB and the related publications please see <a href="app/search/dataset/AllDatasets/result" class="blue"> Data Sets</a>.
 
