@@ -20,8 +20,8 @@
 
 <record>
   <attribute name="headline">PlasmoDB 35 Released</attribute>
-  <attribute name="date">30 Nov 2017 13:00</attribute>
-  <attribute name="tag">plasmodb11_17_release</attribute>
+  <attribute name="date">01 Dec 2017 13:00</attribute>
+  <attribute name="tag">plasmodb12_17_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
