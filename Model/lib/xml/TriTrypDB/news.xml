@@ -97,6 +97,68 @@
       </div>
       </section>
       
+      <section>
+      <h3><b>New functional annotation in this release</b></h3>
+      
+       <h4>News on functional annotation</h4>
+       <div style="margin-left: 3em;">
+       
+          We are pleased to inform that David Starns has recently joined the EuPathDB team as an annotator/curator 
+          to replace Fatima Silva on her departure from the project. Achchuthan Shanmugasundram (achchu@liverpool.ac.uk) 
+          and David Starns (D.E.Starns@liverpool.ac.uk) are currently working on the curation of TriTrypDB genomes 
+          and can be contacted for queries regarding functional annotation.
+          <br><br>
+          There are no functional annotation updates in TriTrypDB 35. However, gene page comments that are entered 
+          by users are actively curated at GeneDB by our curators. We have spent substantial effort since the 
+          Kinetoplastid Molecular Cell Biology Meeting 2017 in reviewing the user comments submitted for <i>Trypanosoma 
+          brucei</i> 927 genome and updating the functional annotations (see table below). The user comments that 
+          are updated in GeneDB will be integrated as functional annotations in TriTrypDB 36.
+       </div>
+      
+      <style>
+           #UComment_Bld35 table, #UComment_Bld35 td, #UComment_Bld35 th, #UComment_Bld35 tr {
+           text-align : center;
+           padding-left: 5px;
+           padding-right: 5px;
+           padding-top: 5px;
+           padding-bottom: 5px;
+           border: 1px solid black;
+           }
+           #UComment_Bld35 {
+           margin-left : 5 em;
+           }
+         </style> 
+           <table id="UComment_Bld35"> 
+           <tr>
+             <th>  </th>
+             <th>User Comments</th>
+             <th>Unique User Comments</th>
+           </tr>
+           <tr>
+             <td>Curated and updated in TriTrypDB until Build 34</td>
+             <td>5004</td>
+             <td>2348</td>
+           </tr>
+           <tr>
+             <td>Curated and updated in GeneDB only (will appear in TriTrypDB 36)</td>
+             <td>1157</td>
+             <td>317</td>
+           </tr>
+           <tr>
+             <td>Pending user comments</td>
+             <td>566</td>
+             <td>151</td>
+           </tr>
+           <tr>
+             <td>Total user comments</td>
+             <td>6727</td>
+             <td>2816</td>
+           </tr>
+          </table>
+          <br>
+          <br>
+      
+      </section>
       
       <section>
          <aside>
