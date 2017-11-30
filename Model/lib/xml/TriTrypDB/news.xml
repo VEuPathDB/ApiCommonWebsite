@@ -98,21 +98,23 @@
       </section>
       
       <section>
-      <h3><b>New functional annotation in this release</b></h3>
+      <h3><b>News on annotation</b></h3>
       
-       <h4>News on functional annotation</h4>
+       <h4>Personnel and gene page comments</h4>
        <div style="margin-left: 3em;">
        
-          We are pleased to inform that David Starns has recently joined the EuPathDB team as an annotator/curator 
+          We are pleased to inform that David Starns recently joined the EuPathDB team as an annotator/curator 
           to replace Fatima Silva on her departure from the project. Achchuthan Shanmugasundram (achchu@liverpool.ac.uk) 
-          and David Starns (D.E.Starns@liverpool.ac.uk) are currently working on the curation of TriTrypDB genomes 
-          and can be contacted for queries regarding functional annotation.
+          and David Starns (D.E.Starns@liverpool.ac.uk) are curating TriTrypDB genomes 
+          and can be contacted regarding functional annotation.
           <br><br>
-          There are no functional annotation updates in TriTrypDB 35. However, gene page comments that are entered 
-          by users are actively curated at GeneDB by our curators. We have spent substantial effort since the 
-          Kinetoplastid Molecular Cell Biology Meeting 2017 in reviewing the user comments submitted for <i>Trypanosoma 
-          brucei</i> 927 genome and updating the functional annotations (see table below). The user comments that 
-          are updated in GeneDB will be integrated as functional annotations in TriTrypDB 36.
+          Gene page comments that are entered 
+          by users are actively curated at GeneDB. Since the Kinetoplastid Molecular Cell Biology Meeting 2017, 
+          we devoted substantial effort to curating gene page comments submitted for <i>Trypanosoma 
+          brucei</i> 927 genome and updating functional annotations (see table below). These annotations are 
+          currently available in 
+          <a href="http://www.genedb.org/Homepage/Tbruceibrucei927">GeneDB</a> 
+          and will be integrated as functional annotations in TriTrypDB 36.
        </div>
       
       <style>
