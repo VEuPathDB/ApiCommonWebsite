@@ -27,7 +27,7 @@ public class GeneIdValidator {
         sql.append("SELECT source_id FROM ApidbTuning.GeneAttributes ");
         sql.append("WHERE source_id = ? ");
         sql.append("UNION ");
-        sql.append("SELECT name FROM ApidbTuning.SampleAttributes ");
+        sql.append("SELECT name FROM apidbtuning.samples ");
         sql.append("WHERE name = ? ");
         sql.append("UNION ");
         sql.append("SELECT source_id FROM DoTS.ExternalNASequence ");
