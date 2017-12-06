@@ -6,6 +6,7 @@ import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.query.BooleanQuery;
 import org.gusdb.wdk.model.query.BooleanQueryInstance;
+import org.gusdb.wdk.model.query.param.ValidatedParamStableValues;
 import org.gusdb.wdk.model.user.User;
 
 public class TranscriptBooleanQueryInstance extends BooleanQueryInstance {
@@ -15,7 +16,7 @@ public class TranscriptBooleanQueryInstance extends BooleanQueryInstance {
     GeneBooleanQueryInstance genebqi;
 	  
     public TranscriptBooleanQueryInstance(User user, BooleanQuery query,
-					  Map<String, String> values, boolean validate, int assignedWeight,
+					  ValidatedParamStableValues values, boolean validate, int assignedWeight,
 					  Map<String, String> context) throws WdkModelException,
 									      WdkUserException {
 	super(user, query, values, validate, assignedWeight, context);

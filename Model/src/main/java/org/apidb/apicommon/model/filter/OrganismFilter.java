@@ -52,7 +52,7 @@ public class OrganismFilter extends StepFilter {
   @Override
   public JSONObject getSummaryJson(AnswerValue answer, String idSql) throws WdkModelException, WdkUserException {
 	String sql = "(" + getFullSql(answer, idSql) + ")";	
-    String organismList = answer.getIdsQueryInstance().getParamStableValues().get(ORGANISM);
+    String organismList = answer.getIdsQueryInstance().getValidatedParamStableValues().get(ORGANISM);
     List<String> selectedOrganisms = Arrays.asList(organismList.split(","));
     Map<String, Integer> counts = getCounts(answer, sql);
     JSONArray jsonArray = new JSONArray();
