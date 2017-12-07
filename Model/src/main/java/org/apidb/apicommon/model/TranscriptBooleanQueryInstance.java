@@ -14,7 +14,8 @@ public class TranscriptBooleanQueryInstance extends BooleanQueryInstance {
   // private static final Logger logger = Logger.getLogger(BooleanQueryInstance.class);
 
     GeneBooleanQueryInstance genebqi;
-	  
+	
+	//TODO - CWL Verify  
     public TranscriptBooleanQueryInstance(User user, BooleanQuery query,
 					  ValidatedParamStableValues values, boolean validate, int assignedWeight,
 					  Map<String, String> context) throws WdkModelException,

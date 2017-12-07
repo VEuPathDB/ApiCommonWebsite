@@ -16,6 +16,7 @@ import org.gusdb.wdk.model.user.User;
  */
 public class GeneBooleanQueryInstance extends BooleanQueryInstance {
 
+  //TODO - CWL Verify
   public GeneBooleanQueryInstance(User user, BooleanQuery query, ValidatedParamStableValues values, boolean validate,
       int assignedWeight, Map<String, String> context) throws WdkModelException, WdkUserException {
     super(user, query, values, validate, assignedWeight, context);
