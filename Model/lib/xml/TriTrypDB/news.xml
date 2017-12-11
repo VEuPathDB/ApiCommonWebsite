@@ -21,8 +21,8 @@
 
 <record>
   <attribute name="headline">TriTrypDB 35 Released</attribute>
-  <attribute name="date">30 Nov 2017 13:00</attribute>
-  <attribute name="tag">tritrypdb11_17_release</attribute>
+  <attribute name="date">01 Dec 2017 13:00</attribute>
+  <attribute name="tag">tritrypdb12_17_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
@@ -79,8 +79,6 @@
                 <a href="http://tritrypdb.org/tritrypdb/showQuestion.do?questionFullName=GeneQuestions.GenesByGoTerm">Identify Genes based on GO Terms</a>, 
                 now includes an GO Subset option for limiting the search to only GO Slim generic terms.
                 </li>
-            <li>GO Term tables on gene pages now contain only the bottom leaf term, not the entire tree.
-                </li>
             <li>GO Terms tables on gene pages now contain a 'GO Subset' column which identifies GO Slim generic terms.
                 </li>
             <li>The GO enrichment analysis has an option for limiting the analysis to GO Slim terms. This will limit both 
@@ -99,6 +97,71 @@
       </div>
       </section>
       
+      <section>
+      <h3><b>News on annotation</b></h3>
+      
+       <h4>Personnel and gene page comments</h4>
+       <div style="margin-left: 3em;">
+       
+          We are pleased to inform that David Starns recently joined the EuPathDB team as an annotator/curator 
+          to replace Fatima Silva on her departure from the project. Achchuthan Shanmugasundram (achchu@liverpool.ac.uk) 
+          and David Starns (D.E.Starns@liverpool.ac.uk) are curating TriTrypDB genomes 
+          and can be contacted regarding functional annotation.
+          <br><br>
+          Gene page comments that are entered 
+          by users are actively curated at GeneDB. Since the Kinetoplastid Molecular Cell Biology Meeting 2017, 
+          we devoted substantial effort to curating gene page comments submitted for <i>Trypanosoma 
+          brucei</i> 927 genome and updating functional annotations (see table below). These annotations are 
+          currently available in 
+          <a href="http://www.genedb.org/Homepage/Tbruceibrucei927">GeneDB</a> 
+          and will be integrated as functional annotations in TriTrypDB 36.<br><br>
+          
+       </div>
+      
+      <style>
+           #UComment_Bld35 table, #UComment_Bld35 td, #UComment_Bld35 th, #UComment_Bld35 tr {
+           text-align : center;
+           padding-left: 5px;
+           padding-right: 5px;
+           padding-top: 5px;
+           padding-bottom: 5px;
+           border: 1px solid black;
+           }
+           #UComment_Bld35 {
+           margin-left : 5 em;
+           }
+         </style> 
+           <table id="UComment_Bld35"> 
+           <tr>
+             <th>  </th>
+             <th>User Comments</th>
+             <th>Unique User Comments</th>
+           </tr>
+           <tr>
+             <td>Curated and updated in TriTrypDB until Build 34</td>
+             <td>5004</td>
+             <td>2348</td>
+           </tr>
+           <tr>
+             <td>Curated and updated in GeneDB only (will appear in TriTrypDB 36)</td>
+             <td>1157</td>
+             <td>317</td>
+           </tr>
+           <tr>
+             <td>Pending user comments</td>
+             <td>566</td>
+             <td>151</td>
+           </tr>
+           <tr>
+             <td>Total user comments</td>
+             <td>6727</td>
+             <td>2816</td>
+           </tr>
+          </table>
+          <br>
+          <br>
+      
+      </section>
       
       <section>
          <aside>

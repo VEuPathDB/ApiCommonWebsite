@@ -22,8 +22,8 @@
 
 <record>
   <attribute name="headline">HostDB 35 Released</attribute>
-  <attribute name="date">30 Nov 2017 13:00</attribute>
-  <attribute name="tag">hostdb11_17_release</attribute>
+  <attribute name="date">01 Dec 2017 13:00</attribute>
+  <attribute name="tag">hostdb12_17_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
@@ -52,8 +52,6 @@
             <li>The search,
                 <a href="http://hostdb.org/hostdb/showQuestion.do?questionFullName=GeneQuestions.GenesByGoTerm">Identify Genes based on GO Terms</a>, 
                 now includes an GO Subset option for limiting the search to only GO Slim generic terms.
-                </li>
-            <li>GO Term tables on gene pages now contain only the bottom leaf term, not the entire tree.
                 </li>
             <li>GO Terms tables on gene pages now contain a 'GO Subset' column which identifies GO Slim generic terms.
                 </li>

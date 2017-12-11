@@ -73,9 +73,9 @@ sub handleIsolates {
     $pan_names =~ s/'(\w*)'/'$1 (Sequence Variation)'/g;
 
     $sql = <<EOSQL;
-SELECT REPLACE(pan_name,' (Sequence Variation)',''), term, value
-FROM apidbtuning.pancharacteristicmetadata
-WHERE subtype = 'HTS_SNP'
+SELECT REPLACE(pan_name,' (Sequence Variation)',''), property, value
+FROM apidbtuning.InferredChars
+WHERE dataset_subtype = 'HTS_SNP'
 AND pan_name in ($pan_names)
 AND organism = '$organism'
 EOSQL
