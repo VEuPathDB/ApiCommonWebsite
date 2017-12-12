@@ -38,10 +38,8 @@ where ga.taxon_id = $taxonId
   and gts.is_not is null
 --  and gts.displayable_source in ($self->{sources})
   AND decode(gts.evidence_code, 'IEA', 'Computed', 'Curated') in ($self->{evidCodes})
- and case when $self->{goSubset} = 'Yes' and gts.is_go_slim = '1' then 1 
-        when ($self->{goSubset} = 'No' and (gts.is_go_slim = '1' or gts.is_go_slim = '0')) then 1
-        else 0
-        end = 1
+  -- include a row only if either it's a GO Slim term or we aren't restricting to GO Slim terms
+  and ($self->{goSubset} = 'No' or gts.is_go_slim = '1')
 ";
 
   print STDERR "SQL=$sql\n";
@@ -63,10 +61,8 @@ where gts.gene_source_id = r.source_id
   and gts.is_not is null
 --  and gts.displayable_source in ($self->{sources})
   AND decode(gts.evidence_code, 'IEA', 'Computed', 'Curated') in ($self->{evidCodes})
- and case when $self->{goSubset} = 'Yes' and gts.is_go_slim = '1' then 1 
-        when ($self->{goSubset} = 'No' and (gts.is_go_slim = '1' or gts.is_go_slim = '0')) then 1
-        else 0
-        end = 1
+  -- include a row only if either it's a GO Slim term or we aren't restricting to GO Slim terms
+  and ($self->{goSubset} = 'No' or gts.is_go_slim = '1')
 ";
 
   my $stmt = $self->runSql($dbh, $sql);
@@ -85,10 +81,8 @@ where gts.gene_source_id = r.source_id
   and gts.is_not is null
 --  and gts.displayable_source in ($self->{sources})
   AND decode(gts.evidence_code, 'IEA', 'Computed', 'Curated') in ($self->{evidCodes})
- and case when $self->{goSubset} = 'Yes' and gts.is_go_slim = '1' then 1 
-        when ($self->{goSubset} = 'No' and (gts.is_go_slim = '1' or gts.is_go_slim = '0')) then 1
-        else 0
-        end = 1
+  -- include a row only if either it's a GO Slim term or we aren't restricting to GO Slim terms
+  and ($self->{goSubset} = 'No' or gts.is_go_slim = '1')
 ";
 
     my $stmt = $self->runSql($dbh, $sql);
@@ -137,7 +131,7 @@ sub getDataListSql {
 return "
 select bgd.go_id, bgdcnt, resultcnt, resultlist, round(100*resultcnt/bgdcnt, 1) as pct_of_bgd, bgd.name
 from
- (SELECT gts.go_id, count(distinct gts.gene_source_id) as bgdcnt, gts.go_term_name as name
+ (SELECT gts.go_id, count(distinct gts.gene_source_id) as bgdcnt, max(gts.go_term_name) as name
             FROM apidbtuning.geneattributes gf,
                  apidbtuning.gotermsummary gts
             WHERE gf.taxon_id = $taxonId
@@ -151,7 +145,7 @@ from
                 end = 1
 
               AND gts.is_not is null
-            group BY gts.go_id, gts.go_term_name
+            group BY gts.go_id
    ) bgd,
    (SELECT gts.go_id, count(distinct gts.gene_source_id) as resultcnt
             FROM ApidbTuning.GoTermSummary gts,
