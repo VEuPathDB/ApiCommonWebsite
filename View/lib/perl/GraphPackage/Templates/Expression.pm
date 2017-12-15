@@ -14,6 +14,7 @@ use EbrcWebsiteCommon::View::GraphPackage::ScatterPlot;
 use EbrcWebsiteCommon::View::GraphPackage::GGScatterPlot;
 use EbrcWebsiteCommon::View::GraphPackage::GGLinePlot;
 use EbrcWebsiteCommon::View::GraphPackage::GGBarPlot;
+use EbrcWebsiteCommon::View::GraphPackage::GGPiePlot;
 
 use Scalar::Util qw /blessed/;
 use Data::Dumper;
