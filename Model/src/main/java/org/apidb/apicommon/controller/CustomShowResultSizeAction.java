@@ -24,6 +24,7 @@ import org.gusdb.wdk.model.answer.AnswerFilterInstance;
 import org.gusdb.wdk.model.answer.AnswerValue;
 import org.gusdb.wdk.model.query.Query;
 import org.gusdb.wdk.model.query.SqlQuery;
+import org.gusdb.wdk.model.query.param.values.StableValues;
 import org.gusdb.wdk.model.user.Step;
 
 /**
@@ -81,8 +82,8 @@ public class CustomShowResultSizeAction extends ShowResultSizeAction {
     // build list of actual results from query results and get list of filters not provided by query
     for (AnswerFilterInstance filterInstance : answerValue.getQuestion().getRecordClass().getFilterInstances()) {
       String filterName = filterInstance.getName();
-      Map<String, Object> answerFilterParams = filterInstance.getParamValueMap();
-      Object firstParamValue = answerFilterParams.isEmpty() ? null : answerFilterParams.values().iterator().next();
+      StableValues answerFilterParams = filterInstance.getParamValueMap();
+      String firstParamValue = answerFilterParams.isEmpty() ? null : answerFilterParams.values().iterator().next();
       if (queryResults.containsKey(filterName)) {
         finalResults.put(filterName, queryResults.get(filterName));
       }
