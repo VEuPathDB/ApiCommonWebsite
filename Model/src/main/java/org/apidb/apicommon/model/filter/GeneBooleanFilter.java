@@ -21,6 +21,7 @@ import org.gusdb.wdk.model.filter.ListColumnFilterSummary;
 import org.gusdb.wdk.model.filter.StepFilter;
 import org.gusdb.wdk.model.query.BooleanOperator;
 import org.gusdb.wdk.model.query.BooleanQuery;
+import org.gusdb.wdk.model.query.param.values.ValidStableValuesFactory.CompleteValidStableValues;
 import org.gusdb.wdk.model.user.Step;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -177,7 +178,7 @@ public class GeneBooleanFilter extends StepFilter {
   @Override
   public JSONObject getDefaultValue(Step step) throws WdkModelException {
     // TODO: check whether intersection or union and apply
-    Map<String,String> paramValues = step.getParamValues();
+    CompleteValidStableValues paramValues = step.getParamValues();
     boolean isWdkSetOperation = paramValues.containsKey(BooleanQuery.OPERATOR_PARAM);
     if (isWdkSetOperation) {
       return getDefaultValue(paramValues.get(BooleanQuery.OPERATOR_PARAM));

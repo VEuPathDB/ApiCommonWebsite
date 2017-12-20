@@ -1,7 +1,5 @@
 package org.apidb.apicommon.controller.wizard;
 
-import java.util.HashMap;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -36,7 +34,7 @@ public class SpanFromStrategyStageHandler extends ShowSpanStageHandler {
     long importStrategyId = Long.valueOf(strImportStrategyId);
     StrategyBean importStrategy = user.getStrategy(importStrategyId);
     StepBean step = importStrategy.getLatestStep();
-    StepBean childStep = step.deepClone(null, new HashMap<Long, Long>());
+    StepBean childStep = step.deepClone(null);
     childStep.setIsCollapsible(true);
     childStep.setCollapsedName("Copy of " + importStrategy.getName());
     childStep.update(false);

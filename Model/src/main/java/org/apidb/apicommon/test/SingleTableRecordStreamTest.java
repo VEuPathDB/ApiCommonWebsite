@@ -96,7 +96,7 @@ public class SingleTableRecordStreamTest {
 
   private static Step createStep(WdkModel model) throws WdkModelException, WdkUserException {
     return model.getStepFactory().createStep(new GuestUser(model), -1L,
-        model.getQuestion(QUESTION_NAME), PARAMETERS, null, 0, -1, false, true, 0, FILTERS(model));
+        model.getQuestion(QUESTION_NAME), PARAMETERS, null, 0, -1, false, 0, FILTERS(model));
   }
 
   private static Function<AttributeField, String> getFieldValue(final Map<String, AttributeValue> row) {
