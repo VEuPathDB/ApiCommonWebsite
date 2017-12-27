@@ -1,6 +1,5 @@
 package org.apidb.apicommon.model.view;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import org.gusdb.wdk.controller.summary.SummaryTableUpdateProcessor;
@@ -8,6 +7,8 @@ import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.jspwrap.StepBean;
+import org.gusdb.wdk.model.query.param.values.ValidStableValuesFactory;
+import org.gusdb.wdk.model.query.param.values.WriteableStableValues;
 import org.gusdb.wdk.model.user.Step;
 import org.gusdb.wdk.model.user.User;
 
@@ -30,15 +31,20 @@ public class MissingTranscriptsViewHandler extends AbstractTranscriptViewHandler
    */
   @Override
   protected Step customizeStep(Step step, User user, WdkModel wdkModel) throws WdkModelException {
-    // get new step, to make result view from
-    // use original step id, so that state in this view is associated with it
-    Step newStep = new Step(wdkModel.getStepFactory(), user, step.getStepId());
-    newStep.setInMemoryOnly(true);
-    newStep.setQuestionName("InternalQuestions.GenesByMissingTranscriptsTransform");
-    Map<String, String> paramValues = new HashMap<String, String>();
-    paramValues.put("gene_result", String.valueOf(step.getStepId()));
-    newStep.setParamValues(paramValues);
-    return newStep;
+    try {
+      // get new step, to make result view from it
+      // use original step id, so that state in this view is associated with it
+      Step newStep = new Step(wdkModel.getStepFactory(), user, step.getStepId());
+      newStep.setInMemoryOnly(true);
+      newStep.setQuestionName("InternalQuestions.GenesByMissingTranscriptsTransform");
+      WriteableStableValues paramValues = new WriteableStableValues(newStep.getQuestion().getQuery());
+      paramValues.put("gene_result", String.valueOf(step.getStepId()));
+      newStep.setParamValues(ValidStableValuesFactory.createFromCompleteValues(user, paramValues));
+      return newStep;
+    }
+    catch (WdkUserException e) {
+      throw new WdkModelException("Unable to create customized step", e);
+    }
   }
 
   @Override

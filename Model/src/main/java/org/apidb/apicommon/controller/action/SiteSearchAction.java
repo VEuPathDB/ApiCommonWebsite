@@ -2,8 +2,6 @@ package org.apidb.apicommon.controller.action;
 
 import static org.gusdb.fgputil.FormatUtil.urlEncodeUtf8;
 
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -13,12 +11,15 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.gusdb.wdk.controller.actionutil.ActionUtility;
+import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
-import org.gusdb.wdk.model.jspwrap.EnumParamBean;
-import org.gusdb.wdk.model.jspwrap.ParamBean;
-import org.gusdb.wdk.model.jspwrap.QuestionBean;
-import org.gusdb.wdk.model.jspwrap.WdkModelBean;
+import org.gusdb.wdk.model.query.param.AbstractEnumParam;
+import org.gusdb.wdk.model.query.param.Param;
+import org.gusdb.wdk.model.query.param.values.ValidStableValuesFactory;
+import org.gusdb.wdk.model.query.param.values.WriteableStableValues;
+import org.gusdb.wdk.model.question.Question;
+import org.gusdb.wdk.model.user.User;
 
 public class SiteSearchAction extends Action {
 
@@ -52,7 +53,8 @@ public class SiteSearchAction extends Action {
         logger.info("Entering site search...");
 
         // need to check if the old record is mapped to more than one records
-        WdkModelBean wdkModel = ActionUtility.getWdkModel(servlet);
+        WdkModel wdkModel = ActionUtility.getWdkModel(servlet).getModel();
+        User user = ActionUtility.getUser(request).getUser();
         String type = request.getParameter(PARAM_TYPE);
         String keyword = request.getParameter(PARAM_KEYWORD);
         logger.debug("type=" + type + ", keyword=" + keyword);
@@ -60,41 +62,45 @@ public class SiteSearchAction extends Action {
         // determine if isolate question exists
         boolean hasIsolate = true;
         try { wdkModel.getQuestion(QUESTION_ISOLATE); }
-        catch (Exception ex) { hasIsolate = false; }
+        catch (WdkModelException ex) { hasIsolate = false; }
 
         ActionForward forward;
         if (type.equals(TYPE_ALL)) { // go to summary page
             forward = mapping.findForward(FORWARD_SUMMARY);
             request.setAttribute(ATTR_KEYWORD, keyword);
 
-            String geneUrl = getQuestionUrl(wdkModel, QUESTION_GENE, keyword);
+            String geneUrl = getQuestionUrl(user, wdkModel, QUESTION_GENE, keyword);
             request.setAttribute(ATTR_GENE_URL, geneUrl);
 
             if (hasIsolate) {
-                String isoUrl = getQuestionUrl(wdkModel, QUESTION_ISOLATE, keyword);
+                String isoUrl = getQuestionUrl(user, wdkModel, QUESTION_ISOLATE, keyword);
                 request.setAttribute(ATTR_ISOLATE_URL, isoUrl);
             }
-        } else if (type.equals(TYPE_HTML)) {
+        }
+        else if (type.equals(TYPE_HTML)) {
             forward = mapping.findForward(FORWARD_HTML);
             request.setAttribute(ATTR_KEYWORD, keyword);
             String url = forward.getPath();
             url += (url.indexOf('?') < 0) ? '?' : '&';
             url += "keyword" + keyword;
             forward = new ActionForward(url, false);
-        } else { // go to search result page
+        }
+        else { // go to search result page
             String questionName;
             if (type.equals(TYPE_GENE)) {
                 questionName = QUESTION_GENE;
-            } else if (hasIsolate && type.equals(TYPE_ISOLATE)) {
+            }
+            else if (hasIsolate && type.equals(TYPE_ISOLATE)) {
                 questionName = QUESTION_ISOLATE;
-            } else {
+            }
+            else {
                 throw new WdkUserException("Unknown site search type: " + type);
             }
 
             forward = mapping.findForward(FORWARD_QUESTION);
             String url = forward.getPath();
             url += (url.indexOf('?') < 0) ? '?' : '&';
-            url += getQuestionUrl(wdkModel, questionName, keyword);
+            url += getQuestionUrl(user, wdkModel, questionName, keyword);
             forward = new ActionForward(url, false);
         }
 
@@ -102,32 +108,29 @@ public class SiteSearchAction extends Action {
         return forward;
     }
 
-    private String getQuestionUrl(WdkModelBean wdkModel, String questionName,
+    private String getQuestionUrl(User user, WdkModel wdkModel, String questionName,
             String keyword) throws WdkModelException {
-        QuestionBean question = wdkModel.getQuestion(questionName);
+        Question question = wdkModel.getQuestion(questionName);
         StringBuilder builder = new StringBuilder();
         builder.append("questionFullName=").append(question.getFullName());
 
-        Map<String, ParamBean<?>> params = question.getParamsMap();
-        for (ParamBean<?> param : params.values()) {
-            // use the keyword as the input for text param.
-            if (param.getName().equals(TEXT_PARAM)) {
-                String name = urlEncodeUtf8("value(" + TEXT_PARAM + ")");
-                builder.append("&" + name + "=" + urlEncodeUtf8(keyword));
-                continue;
-            }
+        WriteableStableValues defaultValues = new WriteableStableValues(
+            ValidStableValuesFactory.createDefault(user, question.getQuery()));
+        defaultValues.put(TEXT_PARAM, keyword); // override default only for this param
 
-            if (param instanceof EnumParamBean
-                    && ((EnumParamBean) param).getMultiPick()) {
-                String[] values = param.getDefault().split(",");
+        for (Param param : question.getParamMap().values()) {
+            String defaultValue = defaultValues.get(param.getName());
+            if (param instanceof AbstractEnumParam
+                    && ((AbstractEnumParam) param).getMultiPick()) {
+                String[] values = defaultValue.split(",");
                 for (String value : values) {
                     String name = urlEncodeUtf8("array(" + param.getName() + ")");
                     builder.append("&" + name + "=" + urlEncodeUtf8(value));
                 }
-            } else {
+            }
+            else {
                 String name = urlEncodeUtf8("value(" + param.getName() + ")");
-                String value = urlEncodeUtf8(param.getDefault());
-                builder.append("&" + name + "=" + value);
+                builder.append("&" + name + "=" + urlEncodeUtf8(defaultValue));
             }
         }
         return builder.toString();

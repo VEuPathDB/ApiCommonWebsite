@@ -1,13 +1,14 @@
 package org.apidb.apicommon.model;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.answer.AnswerValue;
+import org.gusdb.wdk.model.query.param.values.ValidStableValuesFactory;
+import org.gusdb.wdk.model.query.param.values.ValidStableValuesFactory.CompleteValidStableValues;
+import org.gusdb.wdk.model.query.param.values.WriteableStableValues;
 import org.gusdb.wdk.model.question.Question;
 import org.gusdb.wdk.model.record.RecordClass;
+import org.gusdb.wdk.model.user.User;
 
 public class TranscriptUtil {
 
@@ -38,14 +39,16 @@ public class TranscriptUtil {
       if (question == null) {
         throw new WdkModelException("Can't find xform with name: " + XFORM_QUESTION_NAME);
       }
-      Map<String, String> params = new HashMap<String, String>();
+      WriteableStableValues params = new WriteableStableValues(question.getQuery());
       String paramName = "gene_result";
       if (question.getParamMap().size() != 1 || !question.getParamMap().containsKey(paramName)) {
         throw new WdkModelException("Expected question " + XFORM_QUESTION_NAME +
             " to have exactly one parameter named " + paramName);
       }
       params.put(paramName, String.valueOf(stepId));
-      AnswerValue geneAnswer = question.makeAnswerValue(transcriptAnswer.getUser(), params, true, 10);
+      User user = transcriptAnswer.getUser();
+      CompleteValidStableValues validParams = ValidStableValuesFactory.createFromCompleteValues(user, params);
+      AnswerValue geneAnswer = question.makeAnswerValue(user, validParams, 10);
       // make sure gene answer uses same page size as transcript answer
       return geneAnswer.cloneWithNewPaging(transcriptAnswer.getStartIndex(), transcriptAnswer.getEndIndex());
     }

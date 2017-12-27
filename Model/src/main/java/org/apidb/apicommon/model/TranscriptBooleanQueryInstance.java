@@ -6,6 +6,7 @@ import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.query.BooleanQuery;
 import org.gusdb.wdk.model.query.BooleanQueryInstance;
+import org.gusdb.wdk.model.query.param.values.ValidStableValuesFactory.CompleteValidStableValues;
 import org.gusdb.wdk.model.user.User;
 
 public class TranscriptBooleanQueryInstance extends BooleanQueryInstance {
@@ -13,21 +14,13 @@ public class TranscriptBooleanQueryInstance extends BooleanQueryInstance {
   // private static final Logger logger = Logger.getLogger(BooleanQueryInstance.class);
 
     GeneBooleanQueryInstance genebqi;
-	
-	//TODO - CWL Verify  
-    public TranscriptBooleanQueryInstance(User user, BooleanQuery query,
-					  ValidStableValueSet values, boolean validate, int assignedWeight,
-					  Map<String, String> context) throws WdkModelException,
-									      WdkUserException {
-	super(user, query, values, validate, assignedWeight, context);
-	genebqi = new GeneBooleanQueryInstance(user, query, values, false, assignedWeight, context);
+
+    public TranscriptBooleanQueryInstance(User user, BooleanQuery query, CompleteValidStableValues values,
+        int assignedWeight, Map<String, String> context) throws WdkModelException, WdkUserException {
+      super(user, query, values, assignedWeight, context);
+      genebqi = new GeneBooleanQueryInstance(user, query, values, assignedWeight, context);
     }
-	
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.gusdb.wdk.model.query.SqlQueryInstance#getUncachedSql()
-     */
+
     @Override
 	public String getUncachedSql() throws WdkModelException, WdkUserException {
 

@@ -23,6 +23,9 @@ import org.gusdb.wdk.model.jspwrap.RecordBean;
 import org.gusdb.wdk.model.jspwrap.UserBean;
 import org.gusdb.wdk.model.jspwrap.WdkModelBean;
 import org.gusdb.wdk.model.jspwrap.XmlQuestionSetBean;
+import org.gusdb.wdk.model.query.param.values.ValidStableValuesFactory;
+import org.gusdb.wdk.model.query.param.values.ValidStableValuesFactory.CompleteValidStableValues;
+import org.gusdb.wdk.model.query.param.values.WriteableStableValues;
 import org.gusdb.wdk.model.record.attribute.AttributeValue;
 
 public class GetDatasetAction extends Action {
@@ -102,8 +105,10 @@ public class GetDatasetAction extends Action {
                 logger.debug("Getting all data sources: ");
                 question = wdkModel.getQuestion(DATA_SOURCE_ALL);
             }
-            AnswerValueBean answerValue = question.makeAnswerValue(user,
-                    params, true, 0);
+            CompleteValidStableValues validParams = ValidStableValuesFactory.createFromCompleteValues(
+                user.getUser(), new WriteableStableValues(question.getQuestion().getQuery(), params));
+                
+            AnswerValueBean answerValue = question.makeAnswerValue(user, validParams, 0);
 
             Map<String, List<RecordBean>> categories = formatAnswer(answerValue);
             request.setAttribute(ATTR_DATA_SOURCES, categories);

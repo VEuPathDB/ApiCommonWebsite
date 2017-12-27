@@ -1,7 +1,5 @@
 package org.apidb.apicommon.controller.wizard;
 
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -21,6 +19,9 @@ import org.gusdb.wdk.model.jspwrap.StepBean;
 import org.gusdb.wdk.model.jspwrap.StrategyBean;
 import org.gusdb.wdk.model.jspwrap.UserBean;
 import org.gusdb.wdk.model.jspwrap.WdkModelBean;
+import org.gusdb.wdk.model.query.param.values.StableValues;
+import org.gusdb.wdk.model.query.param.values.ValidStableValuesFactory;
+import org.gusdb.wdk.model.query.param.values.ValidStableValuesFactory.CompleteValidStableValues;
 
 public class SpanFromQuestionStageHandler extends ShowSpanStageHandler {
 
@@ -53,8 +54,7 @@ public class SpanFromQuestionStageHandler extends ShowSpanStageHandler {
         questionForm.setServlet(servlet);
         questionForm.setQuestion(question);
 
-        Map<String, String> params = ProcessQuestionAction.prepareParams(user,
-                request, questionForm);
+        StableValues params = ProcessQuestionAction.prepareParams(user, request, questionForm);
 
         // get the assigned weight
         String strWeight = request.getParameter(CConstants.WDK_ASSIGNED_WEIGHT_KEY);
@@ -87,7 +87,8 @@ public class SpanFromQuestionStageHandler extends ShowSpanStageHandler {
                 servlet, request, wizardForm, strategy, questionName, user, stepId);
           }
           else {
-            childStep = user.createStep(null, question, params, filterName, false, weight);
+            CompleteValidStableValues validParams = ValidStableValuesFactory.createFromCompleteValues(user.getUser(), params);
+            childStep = user.createStep(null, question, validParams, filterName, false, weight);
           }
         }
         else if (importStrategyId != null && importStrategyId.length() > 0) {

@@ -6,6 +6,7 @@ import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.query.BooleanQuery;
 import org.gusdb.wdk.model.query.BooleanQueryInstance;
+import org.gusdb.wdk.model.query.param.values.ValidStableValuesFactory.CompleteValidStableValues;
 import org.gusdb.wdk.model.user.User;
 
 /**
@@ -15,10 +16,9 @@ import org.gusdb.wdk.model.user.User;
  */
 public class GeneBooleanQueryInstance extends BooleanQueryInstance {
 
-  //TODO - CWL Verify
-  public GeneBooleanQueryInstance(User user, BooleanQuery query, ValidStableValueSet values, boolean validate,
+  public GeneBooleanQueryInstance(User user, BooleanQuery query, CompleteValidStableValues values,
       int assignedWeight, Map<String, String> context) throws WdkModelException, WdkUserException {
-    super(user, query, values, validate, assignedWeight, context);
+    super(user, query, values, assignedWeight, context);
   }
 
   /**

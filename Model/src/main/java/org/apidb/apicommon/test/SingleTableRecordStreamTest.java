@@ -21,12 +21,17 @@ import org.gusdb.wdk.model.answer.AnswerValue;
 import org.gusdb.wdk.model.answer.stream.RecordStream;
 import org.gusdb.wdk.model.answer.stream.SingleTableRecordStream;
 import org.gusdb.wdk.model.filter.FilterOptionList;
+import org.gusdb.wdk.model.query.param.values.ValidStableValuesFactory;
+import org.gusdb.wdk.model.query.param.values.ValidStableValuesFactory.CompleteValidStableValues;
+import org.gusdb.wdk.model.query.param.values.WriteableStableValues;
+import org.gusdb.wdk.model.question.Question;
 import org.gusdb.wdk.model.record.RecordInstance;
 import org.gusdb.wdk.model.record.TableField;
 import org.gusdb.wdk.model.record.attribute.AttributeField;
 import org.gusdb.wdk.model.record.attribute.AttributeValue;
 import org.gusdb.wdk.model.user.GuestUser;
 import org.gusdb.wdk.model.user.Step;
+import org.gusdb.wdk.model.user.User;
 import org.json.JSONObject;
 
 /** Testing "GeneTranscripts" table using the following step:
@@ -82,7 +87,7 @@ public class SingleTableRecordStreamTest {
       TableField tableField = answer.getQuestion().getRecordClass().getTableFieldMap().get(TABLE_NAME);
 
       try (RecordStream recordStream = new SingleTableRecordStream(answer, tableField)) {
-        writeFields(out, tableField, getFieldHeader);
+        writeFields(out, tableField, field -> field.getName());
         for (RecordInstance record : recordStream) {
           for (Map<String, AttributeValue> row : record.getTableValue(TABLE_NAME)) {
             writeFields(out, tableField, getFieldValue(row));
@@ -95,24 +100,19 @@ public class SingleTableRecordStreamTest {
   /*%%%%%%%%%%%%%%%%%%%%%%%%%%% helper functions %%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
   private static Step createStep(WdkModel model) throws WdkModelException, WdkUserException {
-    return model.getStepFactory().createStep(new GuestUser(model), -1L,
-        model.getQuestion(QUESTION_NAME), PARAMETERS, null, 0, -1, false, 0, FILTERS(model));
+    User user = new GuestUser(model);
+    Question question = model.getQuestion(QUESTION_NAME);
+    CompleteValidStableValues params = ValidStableValuesFactory.createFromCompleteValues(user,
+        new WriteableStableValues(question.getQuery(), PARAMETERS));
+    return model.getStepFactory().createStep(user, -1L, question, params, null, 0, -1, false, 0, FILTERS(model));
   }
 
   private static Function<AttributeField, String> getFieldValue(final Map<String, AttributeValue> row) {
-    return new Function<AttributeField,String>() {
-      @Override public String apply(AttributeField field) {
-        try { return (String)row.get(field.getName()).getValue(); }
-        catch (Exception e) { return "ERR"; }
-      }
+    return field -> {
+      try { return (String)row.get(field.getName()).getValue(); }
+      catch (Exception e) { return "ERR"; }
     };
   }
-
-  private static Function<AttributeField,String> getFieldHeader = new Function<AttributeField,String>(){
-    @Override public String apply(AttributeField field) {
-      return field.getName();
-    }
-  };
 
   private static void writeFields(PrintStream out, TableField tableField, Function<AttributeField, String> function) {
     out.println(join(mapToList(asList(tableField.getAttributeFields()), function).toArray(), TAB));

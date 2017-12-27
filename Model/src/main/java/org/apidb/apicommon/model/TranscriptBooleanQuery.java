@@ -11,6 +11,7 @@ import org.gusdb.wdk.model.query.BooleanQuery;
 import org.gusdb.wdk.model.query.BooleanQueryInstance;
 import org.gusdb.wdk.model.query.Column;
 import org.gusdb.wdk.model.query.Query;
+import org.gusdb.wdk.model.query.param.values.ValidStableValuesFactory.CompleteValidStableValues;
 import org.gusdb.wdk.model.question.DynamicAttributeSet;
 import org.gusdb.wdk.model.question.Question;
 import org.gusdb.wdk.model.record.RecordClass;
@@ -57,17 +58,10 @@ public class TranscriptBooleanQuery extends BooleanQuery {
     das.addAttributeField(right_af);
   }
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see org.gusdb.wdk.model.query.Query#makeInstance()
-   */
   @Override
-  public BooleanQueryInstance makeInstance(User user, ValidStableValueSet values,
-    boolean validate, int assignedWeight, Map<String, String> context)
-    throws WdkModelException, WdkUserException {
-      return new TranscriptBooleanQueryInstance(user, this, values, validate,
-        assignedWeight, context);
+  public BooleanQueryInstance makeInstance(User user, CompleteValidStableValues values,
+      int assignedWeight, Map<String, String> context) throws WdkModelException, WdkUserException {
+    return new TranscriptBooleanQueryInstance(user, this, values, assignedWeight, context);
   } 
 
   @Override

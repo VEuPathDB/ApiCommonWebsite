@@ -27,6 +27,9 @@ import org.gusdb.wdk.model.jspwrap.RecordBean;
 import org.gusdb.wdk.model.jspwrap.RecordClassBean;
 import org.gusdb.wdk.model.jspwrap.UserBean;
 import org.gusdb.wdk.model.jspwrap.WdkModelBean;
+import org.gusdb.wdk.model.query.param.values.ValidStableValuesFactory;
+import org.gusdb.wdk.model.query.param.values.WriteableStableValues;
+import org.gusdb.wdk.model.query.param.values.ValidStableValuesFactory.CompleteValidStableValues;
 import org.gusdb.wdk.model.record.TableValue;
 import org.gusdb.wdk.model.record.attribute.AttributeValue;
 
@@ -152,9 +155,10 @@ public class CustomShowRecordAction extends ShowRecordAction {
 
         // get the data source question
         QuestionBean question = wdkModel.getQuestion(GetDatasetAction.DATA_SOURCE_BY_RECORD_CLASS);
-        Map<String, String> params = new LinkedHashMap<String, String>();
+        WriteableStableValues params = new WriteableStableValues(question.getQuestion().getQuery());
         params.put(PARAM_RECORD_CLASS, rcName);
-        AnswerValueBean answerValue = question.makeAnswerValue(user, params, true, 0);
+        CompleteValidStableValues validParams = ValidStableValuesFactory.createFromCompleteValues(user.getUser(), params);
+        AnswerValueBean answerValue = question.makeAnswerValue(user, validParams, 0);
 
         // find all referenced attributes and tables;
         Iterator<RecordBean> dsRecords = answerValue.getRecords();

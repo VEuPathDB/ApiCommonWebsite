@@ -27,6 +27,9 @@ import org.gusdb.wdk.model.jspwrap.QuestionBean;
 import org.gusdb.wdk.model.jspwrap.RecordBean;
 import org.gusdb.wdk.model.jspwrap.UserBean;
 import org.gusdb.wdk.model.jspwrap.WdkModelBean;
+import org.gusdb.wdk.model.query.param.values.ValidStableValuesFactory;
+import org.gusdb.wdk.model.query.param.values.ValidStableValuesFactory.CompleteValidStableValues;
+import org.gusdb.wdk.model.query.param.values.WriteableStableValues;
 import org.gusdb.wdk.model.record.TableValue;
 import org.gusdb.wdk.model.record.attribute.AttributeValue;
 
@@ -66,9 +69,10 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
 
             // get the data source question
             QuestionBean dsQuestion = wdkModel.getQuestion(GetDatasetAction.DATA_SOURCE_BY_QUESTION);
-            Map<String, String> params = new LinkedHashMap<String, String>();
+            WriteableStableValues params = new WriteableStableValues(dsQuestion.getQuestion().getQuery());
             params.put(PARAM_QUESTION, questionName);
-            AnswerValueBean answerValue = dsQuestion.makeAnswerValue(user, params, true, 0);
+            CompleteValidStableValues validParams = ValidStableValuesFactory.createFromCompleteValues(user.getUser(), params);
+            AnswerValueBean answerValue = dsQuestion.makeAnswerValue(user, validParams, 0);
 
             // find all referenced attributes and tables;
             Iterator<RecordBean> dsRecords = answerValue.getRecords();
@@ -138,13 +142,13 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
 
         // 1- Obtain "datasets by category/subtype"
         String dsQuestionName = "DatasetQuestions.DatasetsByCategoryAndSubtype";
-        Map<String, String> params = new LinkedHashMap<String, String>();
+        QuestionBean dsQuestion = wdkModel.getQuestion(dsQuestionName);
+        WriteableStableValues params = new WriteableStableValues(dsQuestion.getQuestion().getQuery());
         params.put("dataset_category", datasetCategories[0]);
         params.put("dataset_subtype", datasetSubtypes[0]);
 
-        QuestionBean dsQuestion = wdkModel.getQuestion(dsQuestionName);
-        AnswerValueBean answerValue = dsQuestion.makeAnswerValue(user,
-                params, true, 0);
+        CompleteValidStableValues validParams = ValidStableValuesFactory.createFromCompleteValues(user.getUser(), params);
+        AnswerValueBean answerValue = dsQuestion.makeAnswerValue(user, validParams, 0);
 
         Iterator<RecordBean> dsRecords = answerValue.getRecords();
         //int i=0;
