@@ -171,6 +171,8 @@ public class GeneBooleanFilter extends StepFilter {
       case INTERSECT: return getFilterValueArray("YY");
       case LEFT_MINUS: return getFilterValueArray("YN");
       case RIGHT_MINUS: return getFilterValueArray("NY");
+      case RIGHT_ONLY: return getFilterValueArray("YY", "NY");
+      case LEFT_ONLY: return getFilterValueArray("YY", "YN");
       default: return getFilterValueArray("YY", "YN", "NY");
     }
   }
