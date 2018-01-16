@@ -32,7 +32,6 @@ SELECT count (distinct tp.gene_source_id)
          from    apidbtuning.transcriptPathway tp, ApidbTuning.GeneAttributes ga
         where  ga.taxon_id = $taxonId
         AND    tp.gene_source_id = ga.source_id
-        AND    tp.pathway_source in ($self->{source})
 ";
 
   my $stmt = $self->runSql($dbh, $sql);
@@ -49,8 +48,6 @@ SELECT count (distinct tp.gene_source_id)
          from  apidbtuning.transcriptPathway tp,
                ($geneResultSql) r
         where  tp.gene_source_id = r.source_id
-          and tp.exact_match = 1
-          and tp.pathway_source in ($self->{source})
 ";
 
   my $stmt = $self->runSql($dbh, $sql);
