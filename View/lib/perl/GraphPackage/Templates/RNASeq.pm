@@ -195,6 +195,19 @@ RADJUST
 #  $profile->setColors(["red","purple", "green","blue", "yellow"]);
 }
 
+sub isExcludedProfileSet {
+  my ($self, $psName) = @_;
+
+  foreach(@{$self->excludedProfileSetsArray()}) {
+    return 1 if($_ eq $psName);
+  }
+  if ($psName =~ /nonunique/){
+    print STDERR "found one to exclude";
+    return 1;
+  }
+  return 0;
+}
+
 1;
 
 #fungi 
