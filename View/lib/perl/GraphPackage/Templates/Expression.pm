@@ -609,6 +609,7 @@ sub init {
 
   $self->SUPER::init(@_);
 
+#  my $colors = ['#F08080', '#7CFC00' ];
   my $colors = ['#F08080', '#7CFC00' ];
 
   my $legend = ['untreated', 'chloroquine'];
