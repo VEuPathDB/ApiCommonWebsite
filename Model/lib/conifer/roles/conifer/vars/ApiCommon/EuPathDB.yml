@@ -5,13 +5,13 @@
 # returns 'a1.amoebadb.org'. swap_hostname(_host_frontends) returns
 # 'alpha.amoebadb.org'.
 projectsxml:
-  AmoebaDB: "http://{{ hostname|swap_sld('amoebadb.org')|swap_hostname(_host_frontends) }}/amoeba/"
-  CryptoDB: "http://{{ hostname|swap_sld('cryptodb.org')|swap_hostname(_host_frontends) }}/cryptodb/"
-  FungiDB: "http://{{ hostname|swap_sld('fungidb.org')|swap_hostname(_host_frontends) }}/fungidb/"
-  GiardiaDB: "http://{{ hostname|swap_sld('giardiadb.org')|swap_hostname(_host_frontends) }}/giardiadb/"
-  MicrosporidiaDB: "http://{{ hostname|swap_sld('microsporidiadb.org')|swap_hostname(_host_frontends) }}/micro/"
-  PiroplasmaDB: "http://{{ hostname|swap_sld('piroplasmadb.org')|swap_hostname(_host_frontends) }}/piro/"
-  PlasmoDB: "http://{{ hostname|swap_sld('plasmodb.org')|swap_hostname(_host_frontends) }}/plasmo/"
-  ToxoDB: "http://{{ hostname|swap_sld('toxodb.org')|swap_hostname(_host_frontends) }}/toxo/"
-  TrichDB: "http://{{ hostname|swap_sld('trichdb.org')|swap_hostname(_host_frontends) }}/trichdb/"
-  TriTrypDB: "http://{{ hostname|swap_sld('tritrypdb.org')|swap_hostname(_host_frontends) }}/tritrypdb/"
+  AmoebaDB: "{{ _self_url_scheme }}://{{ hostname|swap_sld('amoebadb.org')|swap_hostname(_host_frontends) }}/amoeba/"
+  CryptoDB: "{{ _self_url_scheme }}://{{ hostname|swap_sld('cryptodb.org')|swap_hostname(_host_frontends) }}/cryptodb/"
+  FungiDB: "{{ _self_url_scheme }}://{{ hostname|swap_sld('fungidb.org')|swap_hostname(_host_frontends) }}/fungidb/"
+  GiardiaDB: "{{ _self_url_scheme }}://{{ hostname|swap_sld('giardiadb.org')|swap_hostname(_host_frontends) }}/giardiadb/"
+  MicrosporidiaDB: "{{ _self_url_scheme }}://{{ hostname|swap_sld('microsporidiadb.org')|swap_hostname(_host_frontends) }}/micro/"
+  PiroplasmaDB: "{{ _self_url_scheme }}://{{ hostname|swap_sld('piroplasmadb.org')|swap_hostname(_host_frontends) }}/piro/"
+  PlasmoDB: "{{ _self_url_scheme }}://{{ hostname|swap_sld('plasmodb.org')|swap_hostname(_host_frontends) }}/plasmo/"
+  ToxoDB: "{{ _self_url_scheme }}://{{ hostname|swap_sld('toxodb.org')|swap_hostname(_host_frontends) }}/toxo/"
+  TrichDB: "{{ _self_url_scheme }}://{{ hostname|swap_sld('trichdb.org')|swap_hostname(_host_frontends) }}/trichdb/"
+  TriTrypDB: "{{ _self_url_scheme }}://{{ hostname|swap_sld('tritrypdb.org')|swap_hostname(_host_frontends) }}/tritrypdb/"
