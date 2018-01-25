@@ -274,7 +274,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
         String line = buffer.readLine();
         String[] columns = line.split(TAB);
         String revigo = columns[0] + " " + columns[8] + "\n";
-        String val = "<a href=\"/a/showQuestion.do?questionFullName=GeneQuestions.GeneByLocusTag&ds_gene_ids_data=" + columns[4] + "\">" + columns[3] + "</a>";
+        String val = "<a href=\"/a/processQuestion.do?questionFullName=GeneQuestions.GeneByLocusTag&questionSubmit=Get+Answer&ds_gene_ids_data=" + columns[4] + "\">" + columns[3] + "</a>";
         results.add(new ResultRow(columns[0], columns[1], columns[2], val, columns[5], columns[6], columns[7], columns[8], columns[9], columns[10]));
         revigoInputLists.append(revigo);
      }
