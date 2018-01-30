@@ -71,7 +71,13 @@ sub makePhenotypeGraphObject {
   $go->setPlotTitle("$id - $name");
   $go->setXaxisLabel("");
 
-  $go->setRPostscript($postscript) if($postscript);
+  $go->setRPostscript($postscript) if($postscript && !$self->getCompact());
+
+  my $legend = ["All Genes", $id];
+
+  $go->setHasExtraLegend(1);
+  $go->setLegendLabels($legend);
+
 
   return $go;
 }
@@ -90,7 +96,10 @@ sub getPhenotypeSpecs {
             query => "select ga.source_id, r.score as value
                       from apidb.phenotypescore r, apidbtuning.geneattributes ga 
                       where ga.na_feature_id = r.na_feature_id
-                      and r.score_type = 'mutagenesis index score'"
+                      and r.score_type = 'mutagenesis index score'",
+            postscript => "gp = gp + annotate(\"text\", x = 500, y = 0.05, label = \"Essential\", colour = 'red');
+gp = gp + annotate(\"text\", x = 5000, y = 0.9, label = \"Dispensable\", colour = '#d3883f');"
+
            },
            {abbrev => "MFS",
             name => "Mutant Fitness Score",
