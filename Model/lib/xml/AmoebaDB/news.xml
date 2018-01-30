@@ -18,6 +18,77 @@
 --> 
 
 <record>
+  <attribute name="headline">AmoebaDB 36 Released</attribute>
+  <attribute name="date">15 Feb 2018 13:00</attribute>
+  <attribute name="tag">amoebadb02_18_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of AmoebaDB 36</strong></p>
+      
+      <section>
+      <h3><b>New features in this release</b></h3>
+      
+      <h4>Search Page Improvements:</h4>
+      <div style="margin-left: 3em;">
+          
+          <ul>
+            <li>Search parameters are now left justified. The Get Answer button remains center justified below the parameters. Parameter help 
+                icons, which offer information concerning the parameters when hovered over, now appear before the parameter name instead of after.
+                </li>
+            <li>The Organism Parameter, the first parameter on search pages, has a new look and now contains a filter box for quickly finding 
+                your organism of interest.  Type any portion of an organism name (at leaset two letters of the genus, species, or strain) 
+                in the filter box and the tree collapses to show 
+                only those organisms containing your entry.  To return to the full tree, click the X in the filter box.  
+                </li>
+          </ul>
+       </div>
+       
+       <h4>Gene Record Page Improvements:</h4>
+       <div style="margin-left: 3em;">
+       
+          <ul>
+            <li>A new GO Slim table now appears above the GO Term table on the record pages of genes with GO associated data. 
+                The GO Slim table maps GO Terms form the GO Term table to their GO Slim terms based on the 
+                <a href="http://www.geneontology.org/page/go-slim-and-subset-guide">Generic GO slim Developed by GO Consortium</a>.
+                </li>
+            <li>Column headers in gene page tables now show a help icon (
+                <img src="/a/images/HelpIcon.png"  height="13px" width="13px">
+                when additional information or definitions are available 
+                for the column. Hover over the help icons to reveal additional information.  
+                </li>
+          </ul>
+        <div>
+        
+        <h4>Search Strategy Improvement:</h4>
+        <div style="margin-left: 3em;">
+       
+          <ul>
+            <li>BLAH
+                </li>
+            <li>BLAH
+                </li>
+          </ul>
+        <div>
+      </section>
+      
+      
+      <section>
+        <h3><b>No New data in this release</b></h3> 
+         <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+
+    ]]>
+  </attribute>
+</record>
+
+
+<record>
   <attribute name="headline">AmoebaDB 35 Released</attribute>
   <attribute name="date">01 Dec 2017 13:00</attribute>
   <attribute name="tag">amoebadb12_17_release</attribute>
