@@ -29,7 +29,7 @@
       <section>
       <h3><b>New features in this release</b></h3>
       
-      <h4>Search Page Improvements:</h4>
+      <h4>Search Page Improvements: search pages were redesigned for a cleaner look and better accessibility to help information.</h4>
       <div style="margin-left: 3em;">
           
           <ul>
@@ -53,23 +53,23 @@
                 <a href="http://www.geneontology.org/page/go-slim-and-subset-guide">Generic GO slim Developed by GO Consortium</a>.
                 </li>
             <li>Column headers in gene page tables now show a help icon (
-                <img src="/a/images/HelpIcon.png"  height="13px" width="13px">
+                <img src="/a/images/HelpIcon.png"  height="15px" width="16px">)
                 when additional information or definitions are available 
                 for the column. Hover over the help icons to reveal additional information.  
                 </li>
           </ul>
         <div>
         
-        <h4>Search Strategy Improvement:</h4>
+        <h4>Search Strategy Improvement: new option for combining steps in a search strategy </h4>
         <div style="margin-left: 3em;">
        
           <ul>
-            <li>BLAH
+            <li>Search strategies now offer an option to ignore a step when editing a multi-step strategy. 
                 </li>
             <li>BLAH
                 </li>
           </ul>
-        <div>
+        </div>
       </section>
       
       
