@@ -60,13 +60,14 @@
           </ul>
         <div>
         
-        <h4>Search Strategy Improvement: new option for combining steps in a search strategy </h4>
+        <h4>Search Strategy Improvement: new option for combining steps in a search strategy. </h4>
         <div style="margin-left: 3em;">
        
           <ul>
-            <li>Search strategies now offer an option to ignore a step when editing a multi-step strategy. 
-                </li>
-            <li>BLAH
+            <li>Search strategies now offer an option to ignore a step when editing a multi-step strategy. To remove a search 
+                from the strategy without deleting the step, click Edit for the combine step graphic you are interested in. 
+                Then choose IGNORE step # from the Revise Operation popup. For more information see this 
+                <a href="/a/images/ignoreStep.png">Ignore Step help document</a>.
                 </li>
           </ul>
         </div>
@@ -157,7 +158,7 @@
           EuPathDB now offers a direct link from gene ontology (GO) enrichment results to 
           <a href="http://revigo.irb.hr/">REVIGO</a>, a tool that provides GO term summarization and visualization.  
           To access this feature first run a GO term enrichment using the 'Analyze Results' option from any gene search result. Then click on 
-          the 'Start Revigo Analysis' link (<a href="/amoebadb/images/Revigo.png">upper right hand side of enrichment results</a>) 
+          the 'Start Revigo Analysis' link (<a href="/a/images/Revigo.png">upper right hand side of enrichment results</a>) 
           to populate the REVIGO submission page with your GO enrichment results from EuPathDB.  Follow instructions 
           on the REVIGO page to complete your analysis.
           
