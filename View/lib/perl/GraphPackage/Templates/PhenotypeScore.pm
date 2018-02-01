@@ -148,7 +148,7 @@ sub getPhenotypeSpecs {
                       from APIDB.CRISPRPHENOTYPE r,
                            apidbtuning.geneattributes ga
                       where ga.na_feature_id = r.na_feature_id",
-            postscript => "gp = gp + annotate(\"text\", x = 1000, y = -6, label = \"Essential\", colour = 'red');
+            postscript => "gp = gp + annotate(\"text\", x = 1500, y = -6, label = \"Fitness Conferring\", colour = 'red');
 gp = gp + annotate(\"text\", x = 7000, y = 2.5, label = \"Dispensable\", colour = '#d3883f');"
            },
       ];
