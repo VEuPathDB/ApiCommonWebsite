@@ -433,7 +433,7 @@ class MercatorTable extends React.Component {
     let exceededMaxOrganisms = this.state.selectedLeaves.length > 15;
     return (
       <div className="eupathdb-MercatorTable">
-        <form action="/cgi-bin/pairwiseMercator">
+        <form action="/cgi-bin/pairwiseMercator" target="_blank" method="post">
           <input type="hidden" name="project_id" value={projectId}/>
 
           <div className="form-group">
@@ -497,11 +497,13 @@ class MercatorTable extends React.Component {
           <div className="form-radio"><label><input name="type" type="radio" value="fasta_ungapped"/> Multi-FASTA</label></div>
         </div>
 
-        <input
+        <button
+          style={{ display: 'block', margin: '2rem auto' }}
+          className="btn"
           disabled={exceededMaxOrganisms}
           title={exceededMaxOrganisms ? 'Please fix errors listed above.' : 'Run alignment'}
           type="submit"
-        />
+        >Run alignment</button>
       </form>
     </div>
     );

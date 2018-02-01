@@ -28,10 +28,10 @@
       
       <section>
       <h3><b>New features in this release</b></h3>
+      <div style="margin-left: 3em;">
       
       <h4>Search Page Improvements: search pages were redesigned for a cleaner look and better accessibility to help information.</h4>
-      <div style="margin-left: 3em;">
-          
+      
           <ul>
             <li>Search parameters are now left justified. The Get Answer button remains center justified below the parameters. Parameter help 
                 icons, which offer information concerning the parameters when hovered over, now appear before the parameter name instead of after.
@@ -42,11 +42,23 @@
                 only those organisms containing your entry.  To return to the full tree, click the X in the filter box.  
                 </li>
           </ul>
-       </div>
+          
+          <h4>New Paralog Count search</h4>
+      
+          <ul>
+            <li>The new 
+                <a href="http://qa.amoebadb.org/amoeba.b36/showQuestion.do?questionFullName=GeneQuestions.GenesByParalogCount">Paralog Count search</a>
+                returns genes based on the number of assigned paralogs. Find genes that have a number of paralogs within the specified range. 
+                Paralogs are defined as genes from the same species that belong to the same OrthoMCL group.
+                </li>
+            <li>The search is categorized under Orthology and synteny.
+                </li>
+          </ul>
+
+    
        
        <h4>Gene Record Page Improvements:</h4>
-       <div style="margin-left: 3em;">
-       
+ 
           <ul>
             <li>A new GO Slim table now appears above the GO Term table on the record pages of genes with GO associated data. 
                 The GO Slim table maps GO Terms form the GO Term table to their GO Slim terms based on the 
@@ -58,10 +70,9 @@
                 for the column. Hover over the help icons to reveal additional information.  
                 </li>
           </ul>
-        <div>
+
         
         <h4>Search Strategy Improvement: new option for combining steps in a search strategy. </h4>
-        <div style="margin-left: 3em;">
        
           <ul>
             <li>Search strategies now offer an option to ignore a step when editing a multi-step strategy. To remove a search 
@@ -199,12 +210,12 @@
         This may underrepresent abundance for genes that are duplicated, such as paralogs. Non-unique reads are only available 
         as GBrowse subtracks. To view non-unique reads from a gene page, open the Coverage section and click 'View in 
         genome browser' above the coverage plots. 
-        (<a href="/amoebadb/images/FromCoverageNonuniqueReads.pdf">Tutorial document about viewing non-unique reads from a gene page</a>)
+        (<a href="/a/images/FromCoverageNonuniqueReads.pdf">Tutorial document about viewing non-unique reads from a gene page</a>)
         
         <br><br>
         To view non-unique reads without navigating to the gene page, open GBrowse from the home page.  Use the Select Tracks 
         tab to turn on the data track of interest and the subtracks configuration tool to turn on the non-unique reads subtracks. 
-        (<a href="/amoebadb/images/FromHomeNonuniqueReads.pdf">Tutorial document for viewing non-unique reads from the home page</a>)
+        (<a href="/a/images/FromHomeNonuniqueReads.pdf">Tutorial document for viewing non-unique reads from the home page</a>)
         
         <br><br>
         In release 34, gene pages contain a message about non-unique reads, an accurate description of the y-axis and links to 
