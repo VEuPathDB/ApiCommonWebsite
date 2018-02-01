@@ -75,9 +75,9 @@
         <h4>Search Strategy Improvement: new option for combining steps in a search strategy. </h4>
        
           <ul>
-            <li>Search strategies now offer an option to ignore a step when editing a multi-step strategy. To remove a search 
-                from the strategy without deleting the step, click Edit for the combine step graphic you are interested in. 
-                Then choose IGNORE step # from the Revise Operation popup. For more information see this 
+            <li>Search strategies now offer an option to 'ignore' a step when editing a multi-step strategy. To remove a search 
+                from the strategy without deleting the step, click Edit for the combine graphic of the step you are interested in ignoring. 
+                Then choose 'IGNORE step #' from the Revise Operation popup. For more information see this 
                 <a href="/a/images/ignoreStep.jpg">Ignore Step help document</a>.
                 </li>
           </ul>
