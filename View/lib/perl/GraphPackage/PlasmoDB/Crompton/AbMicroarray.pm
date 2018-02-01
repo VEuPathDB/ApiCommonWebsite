@@ -19,10 +19,10 @@ sub init {
 
 #  my $colors = ['blue','white'];
   my $colors = ['blue'];
-#  my $facet = $self->getFacets();
-#  my $contXAxis = $self->getContXAxis();
-   my $facet = ['ICEMR_health_status'];
-   my $contXAxis = 'PATO_0000011';
+  my $facet = $self->getFacets();
+  my $contXAxis = $self->getContXAxis();
+#  my $facet = ['ICEMR_health_status'];
+#  my $contXAxis = 'PATO_0000011';
  
   my @profileSetArray = (['Crompton Ab Microarray Profiles','values', '', '', '', '', '', $facet, '', '', $contXAxis]);
   my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileSetArray);
@@ -31,7 +31,7 @@ sub init {
 #  my $scatter = EbrcWebsiteCommon::View::GraphPackage::ScatterPlot::ClinicalMetaData->new(@_);
   $scatter->setProfileSets($profileSets);
   $scatter->setColors($colors);
-  $scatter->setXaxisLabel("Age");
+#  $scatter->setXaxisLabel("Age");
 
   $self->setGraphObjects($scatter);
 
