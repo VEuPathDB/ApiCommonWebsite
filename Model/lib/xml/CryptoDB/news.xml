@@ -39,20 +39,20 @@
          <ul>  
            <li> <a href="http://cryptodb.org/cryptodb/app/record/dataset/DS_d190ae02e1">Genome sequence and annotation for <i>Cryptosporidium tyzzeri</i> isolate UGA55 </a> &mdash; 
             Intestinal parasite isolated from naturally infected <i>Mus domesticus</i>. Appearing for the first time in CryptoDB. 
-            <a href="https://www.ncbi.nlm.nih.gov/bioproject/PRJNA388495">NCBI Bioproject</a>. From Boris Striepen and collaborators. <br>
+            <a href="https://www.ncbi.nlm.nih.gov/bioproject/PRJNA388495" target="_blank">NCBI Bioproject</a>. From Boris Striepen and collaborators. <br>
                </li>
            <li> <a href="http://cryptodb.org/cryptodb/app/record/dataset/DS_25a96f8412">Genome sequence and annotation for <i>Cryptosporidium hominis</i> isolate 30976 </a> &mdash; 
             Specimen 30976 was collected from a patient in a cryptosporidiosis outbreak in July 2010 in the St. Louis area in Illinois and Missouri associated with swimming pools and a water park. 
             Appearing for the first time in CryptoDB. Sequence from 
-            <a href="http://www.ncbi.nlm.nih.gov/pubmed/25903370">Guo et al.</a> Annotation from the Kissinger Research Group, UGA.<br>
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/25903370" target="_blank">Guo et al.</a> Annotation from the Kissinger Research Group, UGA.<br>
                </li>
            <li> <a href="http://cryptodb.org/cryptodb/app/record/dataset/DS_3ef9c215b7">Whole genome sequences of <i>Cryptosporidium parvum</i> isolates from stool samples</a> &mdash; 
             Whole genome sequence of seven <i>Cryptosporidium parvum</i> isolates directly from stool samples without the intermediate step of generating oocysts.
-            <a href="http://www.ncbi.nlm.nih.gov/pubmed/26318339">Hadfield et al.</a> <br>
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/26318339" target="_blank">Hadfield et al.</a> <br>
                </li>
                <li> <a href="http://cryptodb.org/cryptodb/app/record/dataset/DS_d45f4a2849">Whole genome sequences of <i>Cryptosporidium hominis</i> isolates from stool samples</a> &mdash; 
             Whole genome sequence of seven <i>Cryptosporidium hominis</i> isolates directly from stool samples without the intermediate step of generating oocysts.
-            <a href="http://www.ncbi.nlm.nih.gov/pubmed/26318339">Hadfield et al.</a> <br>
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/26318339" target="_blank">Hadfield et al.</a> <br>
                </li>
          </ul>
       </section>

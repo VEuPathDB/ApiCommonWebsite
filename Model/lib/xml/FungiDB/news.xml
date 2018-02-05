@@ -125,7 +125,7 @@
            </table>
            <br>
            
-        <a href="https://docs.google.com/spreadsheets/d/19V1EBijs67XCTgBW7UBvY5vEMHR1DAGVWVHIOC578ws/edit?usp=sharing">Summary of annotation updates</a> which include products, GO terms, EC numbers, gene names, synonyms, publications and notes from curators.
+        <a href="https://docs.google.com/spreadsheets/d/19V1EBijs67XCTgBW7UBvY5vEMHR1DAGVWVHIOC578ws/edit?usp=sharing" target="_blank">Summary of annotation updates</a> which include products, GO terms, EC numbers, gene names, synonyms, publications and notes from curators.
 
        </div>
        
@@ -175,7 +175,7 @@
           
         <h4>Updated Phenotype data for <i>Aspergillus</i> species:</h4>  
             <ul> 
-             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_7cdba4f78a">•	Manually curated <i>Aspergillus Phenotypes</i> </a> &ndash; 
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_7cdba4f78a">Manually curated <i>Aspergillus</i> Phenotypes </a> &ndash; 
                  The literature-curated phenotype data from AspGD have now been completely loaded onto FungiDB. 
                  The data have been reformatted in-line with EuPathDB’s approach for phenotype annotation, where 
                  we follow an “entity + quality” approach. We have converted the phenotypes from AspGD-curated 

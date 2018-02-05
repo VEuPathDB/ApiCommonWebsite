@@ -62,7 +62,7 @@
           <ul>
             <li>A new GO Slim table now appears above the GO Term table on the record pages of genes with GO associated data. 
                 The GO Slim table maps GO Terms form the GO Term table to their GO Slim terms based on the 
-                <a href="http://www.geneontology.org/page/go-slim-and-subset-guide">Generic GO slim Developed by GO Consortium</a>.
+                <a href="http://www.geneontology.org/page/go-slim-and-subset-guide" target="_blank">Generic GO slim Developed by GO Consortium</a>.
                 </li>
             <li>Column headers in gene page tables now show a help icon (
                 <img src="/a/images/HelpIcon.png"  height="15px" width="16px">)
