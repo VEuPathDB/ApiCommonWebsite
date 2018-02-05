@@ -19,6 +19,93 @@
 -->
 
 <record>
+  <attribute name="headline">PlasmoDB 36 Released</attribute>
+  <attribute name="date">02 Feb 2018 13:00</attribute>
+  <attribute name="tag">plasmodb02_18_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of PlasmoDB 36</strong></p>
+       
+       <section>
+       <h3><b>New data in this release</b></h3>
+       
+       <h4>Genome Sequence and Annotation</h4> 
+       These annotated genomes appear for the first time in PlasmoDB.
+           <ul>
+            <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_9f2c561c52"><i>Plasmodium adleri </i> strain G01 </a> &ndash; 
+              <a href="https://www.biorxiv.org/content/early/2017/08/04/095679" target="_blank">Otto et al.</a>
+              </li>
+            <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_7bd8ffb906"><i>Plasmodium billcollinsi </i> strain G01 </a> &ndash; 
+              <a href="https://www.biorxiv.org/content/early/2017/08/04/095679" target="_blank">Otto et al.</a>
+              </li>
+            <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_e8c5132b16"><i>Plasmodium blacklocki </i> strain G01 </a> &ndash; 
+              <a href="https://www.biorxiv.org/content/early/2017/08/04/095679" target="_blank">Otto et al.</a>
+              </li>
+            <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_68b476f200"><i>Plasmodium cynomolgi </i> strain M </a> &ndash; 
+              <a href="http://www.ncbi.nlm.nih.gov/pubmed/28748222" target="_blank">Pasini et al.</a>
+              </li>
+            <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_d786be5502"><i>Plasmodium gaboni</i> strain G01 </a> &ndash; 
+              <a href="https://www.biorxiv.org/content/early/2017/08/04/095679" target="_blank">Otto et al.</a>
+              </li>
+            <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_8b3f023c86"><i>Plasmodium praefalciparum</i> strain G01 </a> &ndash; 
+              <a href="https://www.biorxiv.org/content/early/2017/08/04/095679" target="_blank">Otto et al.</a>
+              </li>
+            <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_022384d18a"><i>Plasmodium reichenowi </i> strain G01 </a> &ndash; 
+              <a href="https://www.biorxiv.org/content/early/2017/08/04/095679" target="_blank">Otto et al.</a>
+              </li>
+           </ul>
+       
+       <h4>Proteomics</h4>
+           <ul>
+            <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_5cf309fb6e">Salivary gland sporozoite total, N-acetyl-, phospho- and surface proteomes (NF54)</a> &ndash; 
+              Data for N-acetylated and phosphorylated total proteome were added to this data set. 
+              <a href="http://www.ncbi.nlm.nih.gov/pubmed/28759593">Swearingen et al.</a>
+              </li>
+           </ul>
+           
+       <h4>Phenotypes:</h4>
+           <ul>
+            <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_4fdf06195a">piggyBac Insertion Mutants</a> &ndash; 
+              <i>P. falciparum</i> NF54 mutants were generated via random piggyBac transposon mutagenesis. 
+              Mutants are genetically identical except for a single randomly inserted transposon at TTAA tetranucleotide sites. 
+              Phenotype scores are available on the gene pages and insertion sites are available as a track in GBrowse. Data
+              provided by the Adams lab, University of South Florida.
+              </li>
+            <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_90eea17ef6">Growth Rate Phenotype</a> &ndash; 
+              PlasmoGEM knockout vectors were used to measure growth rate phenotypes in mice for 2,578 <i>P. berghei</i> genes, 
+              representing more than half of the protein-coding genome.
+              <a href="http://www.ncbi.nlm.nih.gov/pubmed/28708996" target="_blank">Bushell et al.</a>
+              </li>
+           </ul>
+           
+
+      </section>
+      
+      <section>
+      <h3><b>New features in this release</b></h3>
+
+      </section>
+      
+      
+      <section>
+         <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+
+    ]]>
+  </attribute>
+</record>
+
+
+
+
+
+<record>
   <attribute name="headline">PlasmoDB 35 Released</attribute>
   <attribute name="date">01 Dec 2017 13:00</attribute>
   <attribute name="tag">plasmodb12_17_release</attribute>
