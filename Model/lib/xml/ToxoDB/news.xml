@@ -16,6 +16,77 @@
 --> 
 
 <record>
+  <attribute name="headline">ToxoDB 36 Released</attribute>
+  <attribute name="date">02 Feb 2018 13:00</attribute>
+  <attribute name="tag">toxodb02_18_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of ToxoDB 36</strong></p>
+      
+      <section>
+      <h3><b>New Data in Release 36</b></h3>
+        
+        
+        <h4>Genome Sequence and Annotation</h4>
+          <ul>
+             <li>
+               <a href="http://toxodb.org/toxo/app/record/dataset/DS_203eef37dd"><i>Cystoisospora suis</i> strain Wien I</a> &mdash; 
+               This data appears for the first time in ToxoDB.  
+               <a href="http://www.ncbi.nlm.nih.gov/pubmed/28161402" target="_blank">Palmieri et al.</a>
+               <br>
+            </li>
+          </ul> 
+          
+        <h4>RNA Sequence/ Ribosomal Profiling</h4>
+          <ul>
+             <li>
+               <a href="http://toxodb.org/toxo/app/record/dataset/DS_66c644dff7"><i>T. gondii</i> Comparative ribosome profiling of intracellular and extracellular parasites</a> &mdash; 
+               Genome-wide ribosome and mRNA sequence of intracellular and extracellular <i>Toxoplasma gondii</i>.  
+               <a href="http://www.ncbi.nlm.nih.gov/pubmed/29228904" target="_blank">Hassan et al.</a>  
+            </li>
+          </ul>   
+      
+        <h4>Proteomics</h4>
+          <ul>
+             <li>
+               <a href="http://toxodb.org/toxo/app/record/dataset/DS_34ad7e87eb">TAILS peptides</a> &mdash; 
+               N-terminal Met peptides mapped to annotated coding genes in <i>Toxoplasma gondii</i>.  
+               This data is provided by the Tonkin lab at The Walter and Eliza Hall Institute of Medical Research, Australia 
+               <br>
+            </li>
+            <li>
+               <a href="http://toxodb.org/toxo/app/record/dataset/DS_243bc178f0">Monomethylarginine Proteomics (RH)</a> &mdash; 
+               Toxoplasm gondii RH monomethylarginine proteomics of the tachyzoite stage aligned to <i>T gondii</i> ME49. 
+               <a href="http://www.ncbi.nlm.nih.gov/pubmed/28143887" target="_blank">Yakubu et al.</a>  
+               <br>
+            </li>
+          </ul>   
+      </section>
+      
+      <section>
+      <h3><b>New features in this release</b></h3>
+      
+      
+      </section>
+      
+      
+      <section>
+         <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+
+    ]]>
+  </attribute>
+</record>
+
+
+
+<record>
   <attribute name="headline">ToxoDB 35 Released</attribute>
   <attribute name="date">01 Dec 2017 13:00</attribute>
   <attribute name="tag">toxodb12_17_release</attribute>
