@@ -16,6 +16,246 @@
 -->
 
 <record>
+  <attribute name="headline">FungiDB 36 Released</attribute>
+  <attribute name="date">15 Feb 2017 13:00</attribute>
+  <attribute name="tag">fungidb02_18_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of FungiDB 36</strong></p>
+      
+      <section>
+        <h3><b>New data in this release</b></h3>
+        
+        <h4>Genome Sequence and Annotation: these annotated genomes appear for the first time in FungiDB.</h4>
+           <ul>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_0c8f7592b7"><i>Fusarium oxysporum</i> f. sp. cubense tropical race 4 54006</a> &ndash; 
+                 From the lab of Li-Jun Ma. 
+                 <a href="http://www.ncbi.nlm.nih.gov/bioproject/PRJNA73539">NCBI Bioproject home page</a>
+             </li>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_7f555aad50"><i>Fusarium oxysporum</i> Fo47</a> &ndash; 
+                 From the lab of Li-Jun Ma. 
+                 <a href="https://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA67069">NCBI Bioproject home page</a>.
+             </li>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_385db6b935"><i>Histoplasma capsulatum</i> G217B</a> &ndash; 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/21958208">Voorhies et al.</a>
+             </li>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_76ede52023"><i>Histoplasma capsulatum</i> H88 (<i>Ajellomyces capsulatus</i> H88)</a> &ndash; 
+                 From The Broad Institute of MIT and Harvard. 
+                 <a href="http://www.ncbi.nlm.nih.gov/bioproject/PRJNA29163">NCBI Bioproject home page</a>.
+             </li>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_9a46569d2f"><i>Penicillium rubens</i> Wisconsin 54-1255</a> &ndash; 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/18820685">van den Berg et al.</a>.
+             </li>
+           </ul>
+           
+        <h4>RNA Sequence</h4>
+           <ul>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4ffc3f21b9">Transcriptome profiling of <i>Coccidioides posadasii</i> WT and CPS1 deletion mutant</a> &ndash; 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/27481239" target="_blank">Narra et al.</a>
+             </li>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4bd3a11499">Transcriptome analysis of the filamentous fungus <i>Aspergillus nidulans</i> directed to the global identification of promoters</a> &ndash; 
+                 <i>A. nidulans</i> transcriptome was accessed at 5 different growth conditions: nitrate, complete, ammonia, -N (4hr), -N (72hr) media.
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/24299161" target="_blank">Sibthorp et al.</a>
+             </li>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_f5b8d4ff37"><i>Fusarium graminearum</i> transcriptome during symptomless and symptomatic wheat infection</a> &ndash; 
+                 A genome‐wide transcriptomic investigation is used to examine the early phases of the <i>F. graminearum</i> – wheat head interaction, exploring both symptomless and symptomatic infections of wheat.
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/28466509" target="_blank">Brown et al.</a>
+             </li>
+           </ul>
+           
+       <h4>Phenotype data</h4>
+           <ul>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_c334877c42">Phenotypic analysis of <i>Neurospora crassa</i> knockout mutants</a> &ndash; 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/17352902" target="_blank">Dunlap et al.</a>
+             </li>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_f10e32c6b8"><i>Neurospora</i> Genome Project Phenotype Image Collection</a> &ndash; 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/17352902" target="_blank">Dunlap et al.</a>
+             </li>
+           </ul>
+           
+        <h4>Proteomics data</h4>
+           <ul>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_12b70afbf9">Proteogenomic Re-Annotation of <i>Coccidioides posadasii</i> str. Silveira</a> &ndash; 
+                 <i>Coccidioides posadasii</i> is a dimorphic fungal pathogen that causes coccidioidomycosis in a wide range of mammalian hosts, including humans. Proteomic analysis 
+                 of strain Silveira was performed to provide empirical evidence of the proteins produced in both the mycelial (CDN) and parasitic (SPH) phases.
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/29130603" target="_blank">Mitchell et al.</a>
+             </li>
+           </ul>
+           
+        <h4>Updated Functional Annotation</h4>
+        <div style="margin-left: 3em;">
+        
+        Functional annotations in FungiDB 36 have been updated for the following genomes:
+        
+        <style>
+           #FunctAnnot_Bld36 table, #FunctAnnot_Bld36 td, #FunctAnnot_Bld36 th, #FunctAnnot_Bld36 tr {
+           text-align : center;
+           padding-left: 5px;
+           padding-right: 5px;
+           padding-top: 5px;
+           padding-bottom: 5px;
+           border: 1px solid black;
+           }
+           #FunctAnnot_Bld36 {
+           margin-left : 5 em;
+           }
+         </style> 
+           <table id="FunctAnnot_Bld36"> 
+           <tr>
+             <th>FungiDB Genome Version</th>
+             <th>Genes Updated</th>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on DB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_071f05cd56"><i>Aspergillus fumigatus</i> Af293</a></td>
+             <td>210 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on DB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_8f0322af73"><i>Cryptococcus neoformans</i> H99</a></td>
+             <td>220 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on DB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4d171eb9ea"><i>Cryptococcus neoformans</i> JEC21</a></td>
+             <td>632 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on DB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_62f0e6170f"><i>Neurospora crassa</i> OR74A </a></td>
+             <td>2890 genes</td>
+           </tr>
+           </table>
+           <br>
+           
+        <a href="https://docs.google.com/spreadsheets/d/19V1EBijs67XCTgBW7UBvY5vEMHR1DAGVWVHIOC578ws/edit?usp=sharing">Summary of annotation updates</a> which include products, GO terms, EC numbers, gene names, synonyms, publications and notes from curators.
+
+       </div>
+       
+
+        <br><br>
+       <h4>Curated User Comments:</h4>  
+        Gene page comments that are entered by users are curated at GeneDB and regularly integrated as 
+        functional annotations in FungiDB.  22 user comments have been reviewed and updated in FungiDB 36.
+       <br><br>
+        
+        <div style="margin-left: 3em;">
+        
+        <style>
+           #UComment_Bld36 table, #UComment_Bld36 td, #UComment_Bld36 th, #UComment_Bld36 tr {
+           text-align : center;
+           padding-left: 5px;
+           padding-right: 5px;
+           padding-top: 5px;
+           padding-bottom: 5px;
+           border: 1px solid black;
+           }
+           #UComment_Bld36 {
+           margin-left : 5 em;
+           }
+         </style> 
+           <table id="UComment_Bld36"> 
+           <tr>
+             <th>FungiDB Genome Version</th>
+             <th>Comments Integrated</th>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_071f05cd56"><i>Aspergillus fumigatus</i> Af293 </a></td>
+             <td> 2</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4d171eb9ea"><i>Cryptococcus neoformans</i> JEC21</a></td>
+             <td> 15</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_62f0e6170f"><i>Neurospora crassa </i> OR74A</a></td>
+             <td> 5</td>
+           </tr>
+          </table>
+          <br>
+          </div> 
+          
+          
+        <h4>Updated Phenotype data for <i>Aspergillus</i> species:</h4>  
+            <ul> 
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_7cdba4f78a">•	Manually curated <i>Aspergillus Phenotypes</i> </a> &ndash; 
+                 The literature-curated phenotype data from AspGD have now been completely loaded onto FungiDB. 
+                 The data have been reformatted in-line with EuPathDB’s approach for phenotype annotation, where 
+                 we follow an “entity + quality” approach. We have converted the phenotypes from AspGD-curated 
+                 Ascomycete Phenotype Ontology (APO) to multiple ontologies: Phenotypic Quality Ontology (PATO) 
+                 for “quality” terms and Gene Ontology (GO), Fungal Gross Anatomy Ontology (FAO), Chemical Entities 
+                 of Biological Interest (ChEBI) and Ascomycete Phenotype Ontology (APO) for “entity” terms. We also 
+                 plan to improve the phenotype table (in gene pages) and the query structure in the coming releases. 
+                 See table below for details.
+             </li>
+           </ul>  
+       <br><br>
+        
+        <div style="margin-left: 3em;">
+        
+        <style>
+           #AspPheno_Bld36 table, #AspPheno_Bld36 td, #AspPheno_Bld36 th, #AspPheno_Bld36 tr {
+           text-align : center;
+           padding-left: 5px;
+           padding-right: 5px;
+           padding-top: 5px;
+           padding-bottom: 5px;
+           border: 1px solid black;
+           }
+           #AspPheno_Bld36 {
+           margin-left : 5 em;
+           }
+         </style> 
+           <table id="AspPheno_Bld36"> 
+           <tr>
+             <th>Species</th>
+             <th>Phenotype mappings</th>
+             <th>Genes with phenotypes</th>
+           </tr>
+           <tr>
+             <td><i>Aspergillus fumigatus</i> Af293 </a></td>
+             <td>1205</td>
+             <td>282</td>
+           </tr>
+           <tr>
+             <td><i>Aspergillus nidulans</i> FGSC A4</a></td>
+             <td> 4881</td>
+             <td> 1064</td>
+           </tr>
+           <tr>
+             <td<i>Aspergillus niger</i> CBS 513.88</a></td>
+             <td> 262</td>
+             <td> 92</td>
+           </tr>
+           <tr>
+             <td<i>Aspergillus oryzae</i> RIB40</a></td>
+             <td> 219</td>
+             <td> 73</td>
+           </tr>
+          </table>
+          <br>
+          </div> 
+      </section>
+      
+       <section>
+      <h3><b>New features in this release</b></h3>
+      
+     
+      </section>
+      
+     <section>
+     <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+
+    ]]>
+  </attribute>
+</record>
+
+
+
+<record>
   <attribute name="headline">FungiDB 35 Released</attribute>
   <attribute name="date">01 Dec 2017 13:00</attribute>
   <attribute name="tag">fungidb12_17_release</attribute>
