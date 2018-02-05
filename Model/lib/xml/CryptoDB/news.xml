@@ -24,6 +24,59 @@
 -->
 
 <record>
+  <attribute name="headline">CryptoDB 36 Released</attribute>
+  <attribute name="date">15 Feb 2018 13:00</attribute>
+  <attribute name="tag">cryptodb02_18_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of CryptoDB 36</strong></p>
+      
+       <section>
+      <h3><b>New data in this release</b></h3>
+        
+        <h4>New Genomes and Annotation</h4>
+         <ul>  
+           <li> <a href="http://cryptodb.org/cryptodb/app/record/dataset/DS_d190ae02e1">Genome sequence and annotation for <i>Cryptosporidium tyzzeri</i> isolate UGA55 </a> &mdash; 
+            Intestinal parasite isolated from naturally infected <i>Mus domesticus</i>. Appearing for the first time in CryptoDB. 
+            <a href="https://www.ncbi.nlm.nih.gov/bioproject/PRJNA388495">NCBI Bioproject</a>. From Boris Striepen and collaborators. <br>
+               </li>
+           <li> <a href="http://cryptodb.org/cryptodb/app/record/dataset/DS_25a96f8412">Genome sequence and annotation for <i>Cryptosporidium hominis</i> isolate 30976 </a> &mdash; 
+            Specimen 30976 was collected from a patient in a cryptosporidiosis outbreak in July 2010 in the St. Louis area in Illinois and Missouri associated with swimming pools and a water park. 
+            Appearing for the first time in CryptoDB. Sequence from 
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/25903370">Guo et al.</a> Annotation from the Kissinger Research Group, UGA.<br>
+               </li>
+           <li> <a href="http://cryptodb.org/cryptodb/app/record/dataset/DS_3ef9c215b7">Whole genome sequences of <i>Cryptosporidium parvum</i> isolates from stool samples</a> &mdash; 
+            Whole genome sequence of seven <i>Cryptosporidium parvum</i> isolates directly from stool samples without the intermediate step of generating oocysts.
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/26318339">Hadfield et al.</a> <br>
+               </li>
+               <li> <a href="http://cryptodb.org/cryptodb/app/record/dataset/DS_d45f4a2849">Whole genome sequences of <i>Cryptosporidium hominis</i> isolates from stool samples</a> &mdash; 
+            Whole genome sequence of seven <i>Cryptosporidium hominis</i> isolates directly from stool samples without the intermediate step of generating oocysts.
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/26318339">Hadfield et al.</a> <br>
+               </li>
+         </ul>
+      </section>
+      
+      <section>
+      <h3><b>New features in this release</b></h3>
+      
+      </section>
+      
+      <section>
+         <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+
+    ]]>
+  </attribute>
+</record>
+
+
+<record>
   <attribute name="headline">CryptoDB 35 Released</attribute>
   <attribute name="date">01 Dec 2017 13:00</attribute>
   <attribute name="tag">cryptodb12_17_release</attribute>
