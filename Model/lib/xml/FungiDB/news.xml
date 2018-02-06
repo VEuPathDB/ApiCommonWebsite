@@ -86,8 +86,11 @@
         <h4>Updated Functional Annotation</h4>
         <div style="margin-left: 3em;">
         
+            
+        <a href="https://docs.google.com/spreadsheets/d/19V1EBijs67XCTgBW7UBvY5vEMHR1DAGVWVHIOC578ws/edit?usp=sharing" target="_blank">Summary of annotation updates</a> which include products, GO terms, EC numbers, gene names, synonyms, publications and notes from curators.
+        <br><br>
         Functional annotations in FungiDB 36 have been updated for the following genomes:
-        
+
         <style>
            #FunctAnnot_Bld36 table, #FunctAnnot_Bld36 td, #FunctAnnot_Bld36 th, #FunctAnnot_Bld36 tr {
            text-align : center;
@@ -124,9 +127,7 @@
            </tr>
            </table>
            <br>
-           
-        <a href="https://docs.google.com/spreadsheets/d/19V1EBijs67XCTgBW7UBvY5vEMHR1DAGVWVHIOC578ws/edit?usp=sharing" target="_blank">Summary of annotation updates</a> which include products, GO terms, EC numbers, gene names, synonyms, publications and notes from curators.
-
+       
        </div>
        
 
