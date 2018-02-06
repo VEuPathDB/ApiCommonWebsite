@@ -180,10 +180,10 @@
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_7cdba4f78a">Manually curated <i>Aspergillus</i> Phenotypes </a> &ndash; 
                  The literature-curated phenotype data from AspGD have now been completely loaded onto FungiDB. 
                  The data have been reformatted in-line with EuPathDB’s approach for phenotype annotation, where 
-                 we follow an “entity + quality” approach. We have converted the phenotypes from AspGD-curated 
+                 we follow an "entity + quality" approach. We have converted the phenotypes from AspGD-curated 
                  Ascomycete Phenotype Ontology (APO) to multiple ontologies: Phenotypic Quality Ontology (PATO) 
-                 for “quality” terms and Gene Ontology (GO), Fungal Gross Anatomy Ontology (FAO), Chemical Entities 
-                 of Biological Interest (ChEBI) and Ascomycete Phenotype Ontology (APO) for “entity” terms. We also 
+                 for "quality" terms and Gene Ontology (GO), Fungal Gross Anatomy Ontology (FAO), Chemical Entities 
+                 of Biological Interest (ChEBI) and Ascomycete Phenotype Ontology (APO) for "entity" terms. We also 
                  plan to improve the phenotype table (in gene pages) and the query structure in the coming releases. 
                  See table below for details.
              </li>
@@ -227,7 +227,7 @@
              <td> 92</td>
            </tr>
            <tr>
-             <td<i>Aspergillus oryzae</i> RIB40</td>
+             <td><i>Aspergillus oryzae</i> RIB40</td>
              <td> 219</td>
              <td> 73</td>
            </tr>
@@ -258,7 +258,7 @@
       
           <ul>
             <li>The new 
-                <a href="http://qa.amoebadb.org/amoeba.b36/showQuestion.do?questionFullName=GeneQuestions.GenesByParalogCount">Paralog Count search</a>
+                <a href="/a/amoeba.b36/showQuestion.do?questionFullName=GeneQuestions.GenesByParalogCount">Paralog Count search</a>
                 returns genes based on the number of assigned paralogs. Find genes that have a number of paralogs within the specified range. 
                 Paralogs are defined as genes from the same species that belong to the same OrthoMCL group.
                 </li>
