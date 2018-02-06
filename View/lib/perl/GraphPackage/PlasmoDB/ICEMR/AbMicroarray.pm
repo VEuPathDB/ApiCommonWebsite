@@ -18,6 +18,7 @@ sub init {
   $self->setScreenSize(300);
 
   my $colors = ["#440154FF", "#482173FF", "#433E85FF", "#38598CFF", "#2D708EFF", "#25858EFF", "#1E9B8AFF", "#2BB07FFF", "#51C56AFF", "#85D54AFF", "#C2DF23FF", "#FDE725FF"];
+  
   my $facet = $self->getFacets();
   my $contXAxis = $self->getContXAxis();
  
@@ -38,6 +39,18 @@ sub init {
   my $scatter = EbrcWebsiteCommon::View::GraphPackage::GGScatterPlot::LogRatio->new(@_);
   $scatter->setProfileSets($profileSets);
   $scatter->setColors($colors);
+  $scatter->setLegendLabels(['Uganda East Africa ICEMR Profiles',
+                             'Amazonia Peru ICEMR Profiles',
+                             'South Pacific ICEMR Profiles',
+                             'Amazonia Brazil ICEMR Profiles',
+                             'India ICEMR Profiles',
+                             'Malawi ICEMR Profiles',
+                             'South Africa Zambia Dec ICEMR Profiles',
+                             'South Africa Zambia Jun ICEMR Profiles',
+                             'South Pacific PNG ICEMR Profiles',
+                             'Amazonia ICEMR Profiles',
+                             'Southern African ICEMR Profiles',
+                             'Southeast Asia ICEMR Profiles']);
 
   $self->setGraphObjects($scatter);
 
