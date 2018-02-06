@@ -29,6 +29,7 @@
        
        <section>
        <h3><b>New data in this release</b></h3>
+       <div style="margin-left: 3em;">
        
        <h4>Genome Sequence and Annotation</h4> 
        These annotated genomes appear for the first time in PlasmoDB.
@@ -79,12 +80,65 @@
               </li>
            </ul>
            
-
+      </div>
       </section>
       
       <section>
       <h3><b>New features in this release</b></h3>
+        <div style="margin-left: 3em;">
+      
+      <h4>Search Page Improvements: search pages were redesigned to include an organism filter and provide better accessibility to help information.</h4>
+      
+          <ul>
+            <li>Search parameters are now left justified. The Get Answer button remains center justified below the parameters. Parameter help 
+                icons, which offer information concerning the parameters when hovered over, now appear before the parameter name instead of after.
+                </li>
+            <li>The Organism Parameter, the first parameter on search pages, has a new look and now contains a filter box for quickly finding 
+                your organism of interest.  Type any portion of an organism name (at leaset two letters of the genus, species, or strain) 
+                in the filter box and the tree collapses to show 
+                only those organisms containing your entry.  To return to the full tree, click the X in the filter box.  
+                </li>
+          </ul>
+          
+          <h4>New Paralog Count search</h4>
+      
+          <ul>
+            <li>The new 
+                <a href="http://qa.amoebadb.org/amoeba.b36/showQuestion.do?questionFullName=GeneQuestions.GenesByParalogCount">Paralog Count search</a>
+                returns genes based on the number of assigned paralogs. Find genes that have a number of paralogs within the specified range. 
+                Paralogs are defined as genes from the same species that belong to the same OrthoMCL group.
+                </li>
+            <li>Find the search under the Orthology and Synteny category.
+                </li>
+          </ul>
 
+    
+       
+       <h4>Gene Record Page Improvements:</h4>
+ 
+          <ul>
+            <li>A new GO Slim table now appears above the GO Term table on the record pages of genes with GO associated data. 
+                The GO Slim table maps GO Terms form the GO Term table to their GO Slim terms based on the 
+                <a href="http://www.geneontology.org/page/go-slim-and-subset-guide" target="_blank">Generic GO slim developed by GO Consortium</a>.
+                </li>
+            <li>Column headers in gene page tables now show a help icon (
+                <img src="/a/images/HelpIcon.png"  height="15px" width="16px">)
+                when additional information or definitions are available 
+                for the column. Hover over the help icons to reveal additional information.  
+                </li>
+          </ul>
+
+        
+        <h4>Search Strategy Improvement: new option for combining steps in a search strategy. </h4>
+       
+          <ul>
+            <li>Search strategies now offer an option to 'ignore' a step when editing a multi-step strategy. To remove a search 
+                from the strategy without deleting the step, click Edit for the combine graphic of the step you are interested in ignoring. 
+                Then choose 'IGNORE step #' from the Revise Operation popup. For more information see this 
+                <a href="/a/images/ignoreStep.jpg">Ignore Step help document</a>.
+                </li>
+          </ul>
+        </div>
       </section>
       
       
