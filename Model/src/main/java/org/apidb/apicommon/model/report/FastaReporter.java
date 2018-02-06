@@ -82,7 +82,7 @@ public abstract class FastaReporter extends AbstractReporter {
 
     Response response = null;
     try {
-      String baseUrl = trimWebapp(_wdkModel.getModelConfig().getWebAppUrl());
+      String baseUrl = _wdkModel.getModelConfig().getApplicationBaseUrl();
       String srtToolUri = getSrtToolUri();
       String srtUrl = baseUrl + (srtToolUri.startsWith("/") ? srtToolUri : "/" + srtToolUri);
       LOG.info("Submitting form to " + srtUrl);
@@ -99,15 +99,6 @@ public abstract class FastaReporter extends AbstractReporter {
     finally {
       if (response != null) response.close();
     }
-  }
-
-  private static String trimWebapp(String webAppUrl) {
-    // trim trailing slash
-    if (webAppUrl.endsWith("/"))
-      webAppUrl = webAppUrl.substring(0, webAppUrl.length() - 1);
-    int baseUrlEnd = webAppUrl.length() - 1;
-    while (webAppUrl.charAt(baseUrlEnd) != '/') baseUrlEnd--;
-    return webAppUrl.substring(0, baseUrlEnd);
   }
 
   private static Map<String, String> buildFormData(JSONObject configuration, String projectId, AnswerValue answer)
