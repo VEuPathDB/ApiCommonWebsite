@@ -17,7 +17,7 @@
 
 <record>
   <attribute name="headline">FungiDB 36 Released</attribute>
-  <attribute name="date">15 Feb 2017 13:00</attribute>
+  <attribute name="date">15 Feb 2018 13:00</attribute>
   <attribute name="tag">fungidb02_18_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
@@ -59,7 +59,7 @@
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/24299161" target="_blank">Sibthorp et al.</a>
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_f5b8d4ff37"><i>Fusarium graminearum</i> transcriptome during symptomless and symptomatic wheat infection</a> &ndash; 
-                 A genome‐wide transcriptomic investigation is used to examine the early phases of the <i>F. graminearum</i> – wheat head interaction, exploring both symptomless and symptomatic infections of wheat.
+                 A genome-wide transcriptomic investigation is used to examine the early phases of the <i>F. graminearum</i> &ndash; wheat head interaction, exploring both symptomless and symptomatic infections of wheat.
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/28466509" target="_blank">Brown et al.</a>
              </li>
            </ul>
@@ -210,22 +210,22 @@
              <th>Genes with phenotypes</th>
            </tr>
            <tr>
-             <td><i>Aspergillus fumigatus</i> Af293 </a></td>
+             <td><i>Aspergillus fumigatus</i> Af293</td>
              <td>1205</td>
              <td>282</td>
            </tr>
            <tr>
-             <td><i>Aspergillus nidulans</i> FGSC A4</a></td>
+             <td><i>Aspergillus nidulans</i> FGSC A4</td>
              <td> 4881</td>
              <td> 1064</td>
            </tr>
            <tr>
-             <td<i>Aspergillus niger</i> CBS 513.88</a></td>
+             <td<i>Aspergillus niger</i> CBS 513.88</td>
              <td> 262</td>
              <td> 92</td>
            </tr>
            <tr>
-             <td<i>Aspergillus oryzae</i> RIB40</a></td>
+             <td<i>Aspergillus oryzae</i> RIB40</td>
              <td> 219</td>
              <td> 73</td>
            </tr>
