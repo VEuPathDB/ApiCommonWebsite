@@ -30,7 +30,7 @@
       <h3><b>New features in this release</b></h3>
       <div style="margin-left: 3em;">
       
-      <h4>Search Page Improvements: search pages were redesigned for a cleaner look and better accessibility to help information.</h4>
+      <h4>Search Page Improvements: search pages were redesigned to include an organism filter and provide better accessibility to help information.</h4>
       
           <ul>
             <li>Search parameters are now left justified. The Get Answer button remains center justified below the parameters. Parameter help 
@@ -51,7 +51,7 @@
                 returns genes based on the number of assigned paralogs. Find genes that have a number of paralogs within the specified range. 
                 Paralogs are defined as genes from the same species that belong to the same OrthoMCL group.
                 </li>
-            <li>The search is categorized under Orthology and synteny.
+            <li>Find the search under the Orthology and Synteny category.
                 </li>
           </ul>
 
@@ -62,7 +62,7 @@
           <ul>
             <li>A new GO Slim table now appears above the GO Term table on the record pages of genes with GO associated data. 
                 The GO Slim table maps GO Terms form the GO Term table to their GO Slim terms based on the 
-                <a href="http://www.geneontology.org/page/go-slim-and-subset-guide" target="_blank">Generic GO slim Developed by GO Consortium</a>.
+                <a href="http://www.geneontology.org/page/go-slim-and-subset-guide" target="_blank">Generic GO slim developed by GO Consortium</a>.
                 </li>
             <li>Column headers in gene page tables now show a help icon (
                 <img src="/a/images/HelpIcon.png"  height="15px" width="16px">)
