@@ -176,7 +176,7 @@
       
           <ul>
             <li>The new 
-                <a href="http://qa.amoebadb.org/amoeba.b36/showQuestion.do?questionFullName=GeneQuestions.GenesByParalogCount">Paralog Count search</a>
+                <a href="/a/showQuestion.do?questionFullName=GeneQuestions.GenesByParalogCount">Paralog Count search</a>
                 returns genes based on the number of assigned paralogs. Find genes that have a number of paralogs within the specified range. 
                 Paralogs are defined as genes from the same species that belong to the same OrthoMCL group.
                 </li>
