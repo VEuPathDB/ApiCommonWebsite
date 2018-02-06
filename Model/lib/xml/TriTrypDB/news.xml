@@ -21,7 +21,7 @@
 
 <record>
   <attribute name="headline">TriTrypDB 36 Released</attribute>
-  <attribute name="date">02 Feb 2018 13:00</attribute>
+  <attribute name="date">15 Feb 2018 13:00</attribute>
   <attribute name="tag">tritrypdb02_18_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
@@ -55,9 +55,8 @@
          <h4>Quantitative Proteomics</h4>
           <ul>
            <li>
-            THIS NEEDS TO BE UPDATED
-            <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_69232ff593">BSF and PCF Surface Proteomics (Tb427)</a> &mdash; 
-            Trypanosoma brucei proteomics of the cell surface from both PCF and BSF stages
+            <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_41f3775146">BSF and PCF Surface Proteomics</a> &mdash; 
+            <i>Trypanosoma brucei</i> proteomics of the cell surface from both PCF and BSF stages
             <a href="https://www.ncbi.nlm.nih.gov/pubmed/25963835">Shimogawa et al.</a>
            </li>
           </ul>
