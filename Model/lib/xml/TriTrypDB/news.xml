@@ -46,8 +46,11 @@
               <a href="https://www.ncbi.nlm.nih.gov/bioproject/PRJNA330977" target="_blank">NCBI Bioproject page</a>.
            </li>
            <li>
-              <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_45e8b704c2"><i>Trypanosoma cruzi</i> X10/1-2012</a> &mdash; 
-              As requested by the TriTrypDB community, this annotation replaces the Release 35 version.  
+              <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_45e8b704c2"><i>Trypanosoma cruzi</i> Sylvio X10/1-2012</a> &mdash; 
+              As requested by the TriTrypDB community, the 2012 version of <i>T. cruzi</i> Sylvio is added back to TriTrypDB and 
+              was downloaded from Genbank. An updated version of <i>T. cruzi</i> Sylvio that was downloaded directly from the 
+              Andersson lab in 2017 also appears in TriTrypDB. This record is: 
+              <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_107bdce9bb"><i>Trypanosoma cruzi</i> Sylvio X10/1</a> &mdash;
               <a href="http://www.ncbi.nlm.nih.gov/pubmed/21408126" target="_blank">Franzen et al.</a>
            </li>
           </ul>
