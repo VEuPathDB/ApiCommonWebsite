@@ -179,7 +179,7 @@
             <ul> 
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_7cdba4f78a">Manually curated <i>Aspergillus</i> Phenotypes </a> &ndash; 
                  The literature-curated phenotype data from AspGD have now been completely loaded onto FungiDB. 
-                 The data have been reformatted in-line with EuPathDB’s approach for phenotype annotation, where 
+                 The data have been reformatted in-line with EuPathDB's approach for phenotype annotation, where 
                  we follow an "entity + quality" approach. We have converted the phenotypes from AspGD-curated 
                  Ascomycete Phenotype Ontology (APO) to multiple ontologies: Phenotypic Quality Ontology (PATO) 
                  for "quality" terms and Gene Ontology (GO), Fungal Gross Anatomy Ontology (FAO), Chemical Entities 
