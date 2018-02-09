@@ -1,12 +1,12 @@
 # $SourceFileURL$
 ---
 modelconfig_adminEmail:
-  - aurreco@uga.edu
-  - crisl@upenn.edu
-  - dfalke@uga.edu
-  - mheiges@uga.edu
-  - rdoherty@upenn.edu
-  - sfischer@pcbi.upenn.edu
+  - "{{ 'aurreco$uga.edu'|replace('$', '@') }}"
+  - "{{ 'crisl$upenn.edu'|replace('$', '@') }}"
+  - "{{ 'dfalke$uga.edu'|replace('$', '@') }}"
+  - "{{ 'mheiges$uga.edu'|replace('$', '@') }}"
+  - "{{ 'rdoherty$upenn.edu'|replace('$', '@') }}"
+  - "{{ 'sfischer$pcbi.upenn.edu'|replace('$', '@') }}"
 
 modelconfig_appDb_maxIdle: 10
 modelconfig_appDb_maxActive: 40
