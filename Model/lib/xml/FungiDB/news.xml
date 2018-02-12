@@ -50,16 +50,16 @@
              </li>
            </ul>
            
-        <h4>RNA Sequence</h4>
+        <h4>Transcriptomics data</h4>
            <ul>
-             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4ffc3f21b9">Transcriptome profiling of <i>Coccidioides posadasii<i/> spherules collected from WT and &#x394;<i>cps1</i> mutant. Paired&#45;end RNA&#45;Seq analysis was performed in duplicates; 
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4ffc3f21b9">Transcriptome profiling of <i>Coccidioides posadasii</i> WT and &#x394;<i>cps1</i> mutant</a> &ndash; Spherules were collected from both strains. Paired&#45;end RNA&#45;Seq analysis was performed in duplicates. 
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/27481239" target="_blank">Narra <i>et al.</i></a>
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4bd3a11499">Transcriptome analysis of the filamentous fungus <i>Aspergillus nidulans</i> directed to the global identification of promoters</a> &ndash; 
-                 <i>A. nidulans</i> transcriptome was accessed at 5 different growth conditions: nitrate, complete, ammonia, -N (4hr), -N (72hr) media.
+                 <i>A. nidulans</i> transcriptome was accessed at 5 different growth conditions: nitrate, complete, ammonia, -N (4hr), and -N (72hr) media.
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/24299161" target="_blank">Sibthorp <i>et al.</i></a>
              </li>
-             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_f5b8d4ff37">Microarray of <i>Fusarium graminearum</i> transcriptome during symptomless, symptomatic, and intermediate wheat disease symptoms. Three replicates were collected from rachis internodes and compared to spikelet samples.
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_f5b8d4ff37">Microarray of <i>Fusarium graminearum</i> transcriptome during symptomless, symptomatic, and intermediate wheat disease symptoms</a> &ndash; Three replicates were collected from rachis internodes and compared to spikelet samples.
 
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/28466509" target="_blank">Brown <i>et al.</i></a>
              </li>
@@ -67,10 +67,10 @@
            
        <h4>Phenotype data</h4>
            <ul>
-             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_c334877c42">Phenotypic analysis of <i>Neurospora crassa</i> knockout mutants</a> &ndash;. A phenotypic pipeline was designed for high&#45;throughput analysis of 10 different traits during hyphal growth, asexual sporulation (macroconidiation) and the sexual cycle in knockout mutants from <i>Neurospora crassa</i>. &#45; 
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/17352902" target="_blank">Dunlap <i>et al.</i</a>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_c334877c42">Phenotypic analysis of <i>Neurospora crassa</i> knockout mutants</a> &ndash; A phenotypic pipeline was designed for high&#45;throughput analysis of 10 different traits during hyphal growth, asexual sporulation (macroconidiation), and the sexual cycle in knockout mutants from <i>Neurospora crassa</i>. 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/17352902" target="_blank">Dunlap <i>et al.</i></a>
              </li>
-             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_f10e32c6b8"><i>Neurospora</i> Genome Project Phenotype Image Collection</a> &ndash;. Neurospora Genome Project Phenotype Image Collection - Analysis of colony growth and morphology was performed on solid Vogel’s minimal (MIN) medium. Petri dishes inoculated at their centres and then incubated at both 25°C and 37°C for 24h. For each strain, the hyphae at the edge of the colony and plate growth were photographed. Plate images were taken at 24h to document growth and morphology 
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_f10e32c6b8"><i>Neurospora</i> Genome Project Phenotype Image Collection</a> &ndash; Analysis of colony growth and morphology was performed on solid Vogel&#39;s minimal (MIN) medium. For each strain, the hyphae at the edge of the colony and plate growth were photographed. 
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/17352902" target="_blank">Dunlap <i>et al.</i></a>
              </li>
            </ul>
@@ -78,7 +78,7 @@
         <h4>Proteomics data</h4>
            <ul>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_12b70afbf9">Proteogenomic Re-Annotation of <i>Coccidioides posadasii</i> str. Silveira</a> &ndash; 
-                 Protein fractions of <i>in vitro</i> grown mycelia and parasitic phase spherules from <i>C. posadasii </i>strain Silveira were analyzed using GeLC-MS/MS.Proteomic analysis was performed to provide empirical evidence of the proteins produced in both the mycelial (CDN) and parasitic (SPH) phases.
+                 Protein fractions of <i>in vitro</i> grown mycelia and parasitic phase spherules from <i>C. posadasii </i>str. Silveira were analysed using GeLC-MS/MS. Proteomic analysis was performed to provide empirical evidence of the proteins produced in both the mycelial (CDN) and parasitic (SPH) phases.
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/29130603" target="_blank">Mitchell <i>et al.</i></a>
              </li>
            </ul>
