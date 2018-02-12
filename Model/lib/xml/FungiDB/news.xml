@@ -31,11 +31,11 @@
         <h4>Genome Sequence and Annotation: these annotated genomes appear for the first time in FungiDB.</h4>
            <ul>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_0c8f7592b7"><i>Fusarium oxysporum</i> f. sp. cubense tropical race 4 54006</a> &ndash; 
-                 Provider: Li-Jun Ma, prior to publication.  
+                 Provider: Li-Jun Ma; genome provided prior to publication.  
                  <a href="http://www.ncbi.nlm.nih.gov/bioproject/PRJNA73539">NCBI BioProject PRJNA73539</a>
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_7f555aad50"><i>Fusarium oxysporum</i> Fo47</a> &ndash; 
-                 Provider: Li-Jun Ma, prior to publication. 
+                 Provider: Li-Jun Ma; genome provided prior to publication. 
                  <a href="https://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA67069">NCBI BioProject PRJNA67069</a>.
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_385db6b935"><i>Histoplasma capsulatum</i> G217B</a> &ndash; 
@@ -43,10 +43,10 @@
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_76ede52023"><i>Histoplasma capsulatum</i> H88 (<i>Ajellomyces capsulatus</i> H88)</a> &ndash; 
                  The Broad Institute. 
-                 <a href="http://www.ncbi.nlm.nih.gov/bioproject/PRJNA29163">NCBI Bioproject PRJNA29163</a>.
+                 <a href="http://www.ncbi.nlm.nih.gov/bioproject/PRJNA29163">NCBI Bioproject PRJNA29163</a>
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_9a46569d2f"><i>Penicillium rubens</i> Wisconsin 54-1255</a> &ndash; 
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/18820685">van den Berg M. A. <i>et al.</i></a>.
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/18820685">van den Berg M. A. <i>et al.</i></a>
              </li>
            </ul>
            
@@ -67,8 +67,8 @@
            
        <h4>Phenotype data</h4>
            <ul>
-             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_c334877c42">Phenotypic analysis of <i>Neurospora crassa</i> knockout mutants</a> &ndash; A phenotypic pipeline was designed for high&#45;throughput analysis of 10 different traits during hyphal growth, asexual sporulation (macroconidiation), and the sexual cycle in knockout mutants from <i>Neurospora crassa</i>. 
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/17352902" target="_blank">Dunlap <i>et al.</i></a>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_c334877c42">Phenotypic analysis of <i>Neurospora crassa</i> knockout mutants</a> &ndash; A phenotypic pipeline was designed for high&#45;throughput analysis of 10 different traits during hyphal growth, asexual sporulation (macroconidiation), and the sexual cycle in knockout mutants from <i>Neurospora crassa</i>. Provider: Katherine Borkovich; dataset provided prior to publication.
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/17352902" target="_blank">Borkovich <i>et al.</i></a>
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_f10e32c6b8"><i>Neurospora</i> Genome Project Phenotype Image Collection</a> &ndash; Analysis of colony growth and morphology was performed on solid Vogel&#39;s minimal (MIN) medium. For each strain, the hyphae at the edge of the colony and plate growth were photographed. 
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/17352902" target="_blank">Dunlap <i>et al.</i></a>
