@@ -47,7 +47,7 @@
       <h3><b>New features in this release</b></h3>
             <div style="margin-left: 3em;">
       
-      <h4>Search Page Improvements: search pages were redesigned to include an organism filter and provide better accessibility to help information.</h4>
+      <h4>Search Page Improvements: search pages were redesigned to include an organism filter and provide better access to help information.</h4>
       
           <ul>
             <li>Search parameters are now left justified. The Get Answer button remains center justified below the parameters. Parameter help 
@@ -84,6 +84,9 @@
                 when additional information or definitions are available 
                 for the column. Hover over the help icons to reveal additional information.  
                 </li>
+            <li>Metabolic pathway and reaction tables on gene pages now include reaction compound names, with CHEBI IDs on mouse over, 
+                and a column that indicates if the EC number associated with a gene is an exact match to the EC number in metabolic pathway.   
+                </li>    
           </ul>
 
         
