@@ -69,6 +69,9 @@
                 when additional information or definitions are available 
                 for the column. Hover over the help icons to reveal additional information.  
                 </li>
+            <li>Metabolic pathway and reaction tables on gene pages now include reaction compound names, with CHEBI IDs on mouse over, 
+                and a column that indicates if the EC number associated with a gene is an exact match to the EC number in metabolic pathway.   
+                </li>
           </ul>
 
         
@@ -81,6 +84,7 @@
                 <a href="/a/images/ignoreStep.jpg">Ignore Step help document</a>.
                 </li>
           </ul>
+          
         </div>
       </section>
       
