@@ -295,6 +295,24 @@
         </div>
       </section>
      
+      <section>
+      <h3><b>Introducing ClinEpiDB, a new member of the EuPathDB family of databases:</b></h3>
+      <div style="margin-left: 3em;">
+      
+          <ul>
+            <li>We are excited to announce the launch of 
+                <a href="http://www.clinepidb.org/" target="_blank">ClinEpiDB</a>, 
+                which hosts clinical and epidemiological data for the infectious disease research community. The current release contains data from the 
+                <a href="https://www.niaid.nih.gov/research/east-africa-icemr" target="_blank">PRISM</a> 
+                study on malaria in Uganda. Check out this 
+                <a href="https://www.youtube.com/watch?v=535PcFrBH8M&feature=youtu.be" target="_blank">video</a> 
+                to learn more about our newest EuPathDB resource!
+                </li>
+          </ul>
+       </div>
+      </section>  
+     
+     
       </section>
       
      <section>
