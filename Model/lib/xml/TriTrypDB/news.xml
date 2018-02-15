@@ -20,6 +20,236 @@
 -->
 
 <record>
+  <attribute name="headline">TriTrypDB 36 Released</attribute>
+  <attribute name="date">15 Feb 2018 13:00</attribute>
+  <attribute name="tag">tritrypdb02_18_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of TriTrypDB 36</strong></p>
+      
+      <section>
+        <h3><b>New data in TriTrypDB 36</b></h3> 
+        <div style="margin-left: 3em;">
+        <h4>Genomes</h4>
+          <ul>
+           <li>
+              <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_1cc46f3acb"><i>Trypanosoma theileri</i> isolate Edinburgh</a> &mdash; 
+              This genome sequence and annotation appears for the first time in TriTrypDB. 
+              <a href="http://www.ncbi.nlm.nih.gov/pubmed/28903536" target="_blank">Kelly et al.</a>
+           </li>
+           <li>
+              <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_07f328851b"><i>Trypanosoma cruzi</i> cruzi strain Dm28c</a> &mdash; 
+              This genome sequence and annotation appears for the first time in TriTrypDB and is distinct from 
+              <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_0ec6ad43ce"><i>Trypanosoma cruzi</i> Dm28c</a>. 
+              The genome sequence and annotation for <i>Trypanosoma cruzi</i> cruzi strain Dm28c is provided by the Probst lab, Instituto Carlos Chagas - ICC/Fiocruz-PR.
+              <a href="https://www.ncbi.nlm.nih.gov/bioproject/PRJNA330977" target="_blank">NCBI Bioproject page</a>.
+           </li>
+           <li>
+              <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_45e8b704c2"><i>Trypanosoma cruzi</i> Sylvio X10/1-2012</a> &mdash; 
+              As requested by the TriTrypDB community, the 2012 version of <i>T. cruzi</i> Sylvio is added back to TriTrypDB and 
+              was downloaded from Genbank. An updated version of <i>T. cruzi</i> Sylvio that was downloaded directly from the 
+              Andersson lab in 2017 also appears in TriTrypDB. This record is: 
+              <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_107bdce9bb"><i>Trypanosoma cruzi</i> Sylvio X10/1</a> &mdash;
+              <a href="http://www.ncbi.nlm.nih.gov/pubmed/21408126" target="_blank">Franzen et al.</a>
+           </li>
+          </ul>
+         
+         <h4>Quantitative Proteomics</h4>
+          <ul>
+           <li>
+            <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_41f3775146">BSF and PCF Surface Proteomics</a> &mdash; 
+            <i>Trypanosoma brucei</i> proteomics of the cell surface from both PCF and BSF stages
+            <a href="https://www.ncbi.nlm.nih.gov/pubmed/25963835">Shimogawa et al.</a>
+           </li>
+          </ul>
+      </div>
+      </section>
+      
+      
+      
+      <section>
+      <h3><b>Annotation News</b></h3>
+      <div style="margin-left: 3em;">
+       <h4>Updated Functional Annotation</h4>
+        
+        <div style="margin-left: 3em;">
+        
+        
+        <a href="https://docs.google.com/spreadsheets/d/122fFqJMWJo6GMubdZlFg2CozxSwLLa4py5iDzmRcuik/edit?usp=sharing" target="_blank">Summary of annotation updates</a> 
+           which include products, GO terms, EC numbers, gene names, synonyms, publications and notes from curators. 
+        <br><br>
+        <style>
+           #FunctAnnot_Bld36 table, #FunctAnnot_Bld36 td, #FunctAnnot_Bld36 th, #FunctAnnot_Bld36 tr {
+           text-align : center;
+           padding-left: 5px;
+           padding-right: 5px;
+           padding-top: 5px;
+           padding-bottom: 5px;
+           border: 1px solid black;
+           }
+           #FunctAnnot_Bld36 {
+           margin-left : 5 em;
+           }
+         </style> 
+           <table id="FunctAnnot_Bld36"> 
+           <tr>
+             <th>TriTrypDB Genome Version</th>
+             <th>Download GeneDB GFF file</th>
+             <th>Genes Updated</th>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_31282613b1"><i>Trypanosoma brucei</i> 927</a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2017-12/Tbruceibrucei927.noseq.gff3.gz" target="_blank"> Tbruceibrucei927.noseq.gff3.gz</a></td> 
+             <td>3160 genes</td>
+           </tr>
+           </table>
+           <br><br>
+           
+        </div>
+      
+       <h4>Curated User Comments</h4>
+       <div style="margin-left: 3em;">
+       
+          Gene page comments that are entered by users are curated at GeneDB and regularly integrated as 
+          functional annotations in TriTrypDB. Since the Kinetoplastid Molecular Cell Biology Meeting 2017, 
+          we devoted substantial effort to curating gene page comments submitted for Trypanosoma brucei 927 
+          genome and updating functional annotations. 228 user comments (unique) have been integrated in 
+          this release.<br><br>
+          
+       
+      
+      <style>
+           #UComment_Bld36 table, #UComment_Bld36 td, #UComment_Bld36 th, #UComment_Bld36 tr {
+           text-align : center;
+           padding-left: 5px;
+           padding-right: 5px;
+           padding-top: 5px;
+           padding-bottom: 5px;
+           border: 1px solid black;
+           }
+           #UComment_Bld36 {
+           margin-left : 5 em;
+           }
+         </style> 
+           <table id="UComment_Bld36"> 
+           <tr>
+             <th>TriTrypDB Genome Version</th>
+             <th>Comments Integrated</th>
+           </tr>
+           <tr>
+             <td><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_31282613b1"><i>Trypanosoma brucei</i> 927</a></td>
+             <td>228</td>
+           </tr>
+          </table>
+          <br>
+          <br>
+          
+           <img src="/a/images/tritryp36news.png"  height="260px" width="420px" 
+          alt="  ">
+          
+          <br><br>
+          
+          <img src="/a/images/tritryp36news_unique.png"  height="260px" width="420px" 
+          alt="  ">
+          
+      </div>
+      </div>
+      </section>
+      
+      <section>
+      <h3><b>New features in this release</b></h3>
+      <div style="margin-left: 3em;">
+      
+      <h4>Search Page Improvements: search pages were redesigned to include an organism filter and provide better access to help information.</h4>
+      
+          <ul>
+            <li>Search parameters are now left justified. The Get Answer button remains center justified below the parameters. Parameter help 
+                icons, which offer information concerning the parameters when hovered over, now appear before the parameter name instead of after.
+                </li>
+            <li>The Organism Parameter, the first parameter on search pages, has a new look and now contains a filter box for quickly finding 
+                your organism of interest.  Type any portion of an organism name (at leaset two letters of the genus, species, or strain) 
+                in the filter box and the tree collapses to show 
+                only those organisms containing your entry.  To return to the full tree, click the X in the filter box.  
+                </li>
+          </ul>
+          
+          <h4>New Paralog Count search</h4>
+      
+          <ul>
+            <li>The new 
+                <a href="/a/showQuestion.do?questionFullName=GeneQuestions.GenesByParalogCount">Paralog Count search</a>
+                returns genes based on the number of assigned paralogs. Find genes that have a number of paralogs within the specified range. 
+                Paralogs are defined as genes from the same species that belong to the same OrthoMCL group.
+                </li>
+            <li>Find the search under the Orthology and Synteny category.
+                </li>
+          </ul>
+
+    
+       
+       <h4>Gene Record Page Improvements:</h4>
+ 
+          <ul>
+            <li>A new GO Slim table now appears above the GO Term table on the record pages of genes with GO associated data. 
+                The GO Slim table maps GO Terms form the GO Term table to their GO Slim terms based on the 
+                <a href="http://www.geneontology.org/page/go-slim-and-subset-guide" target="_blank">Generic GO slim developed by GO Consortium</a>.
+                </li>
+            <li>Column headers in gene page tables now show a help icon (
+                <img src="/a/images/HelpIcon.png"  height="15px" width="16px">)
+                when additional information or definitions are available 
+                for the column. Hover over the help icons to reveal additional information.  
+                </li>
+            <li>Metabolic pathway and reaction tables on gene pages now include reaction compound names, with CHEBI IDs on mouse over, 
+                and a column that indicates if the EC number associated with a gene is an exact match to the EC number in metabolic pathway.   
+                </li>
+          </ul>
+
+        
+        <h4>Search Strategy Improvement: new option for combining steps in a search strategy. </h4>
+       
+          <ul>
+            <li>Search strategies now offer an option to 'ignore' a step when editing a multi-step strategy. To remove a search 
+                from the strategy without deleting the step, click Edit for the combine graphic of the step you are interested in ignoring. 
+                Then choose 'IGNORE step #' from the Revise Operation popup. For more information see this 
+                <a href="/a/images/ignoreStep.jpg">Ignore Step help document</a>.
+                </li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+      <h3><b>Introducing ClinEpiDB, a new member of the EuPathDB family of databases:</b></h3>
+      <div style="margin-left: 3em;">
+      
+          <ul>
+            <li>We are excited to announce the launch of 
+                <a href="http://www.clinepidb.org/" target="_blank">ClinEpiDB</a>, 
+                which hosts clinical and epidemiological data for the infectious disease research community. The current release contains data from the 
+                <a href="https://www.niaid.nih.gov/research/east-africa-icemr" target="_blank">PRISM</a> 
+                study on malaria in Uganda. Check out this 
+                <a href="https://www.youtube.com/watch?v=535PcFrBH8M&feature=youtu.be" target="_blank">video</a> 
+                to learn more about our newest EuPathDB resource!
+                </li>
+          </ul>
+       </div>
+      </section>  
+      
+      <section>
+         <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+
+    ]]>
+  </attribute>
+</record>
+
+
+<record>
   <attribute name="headline">TriTrypDB 35 Released</attribute>
   <attribute name="date">01 Dec 2017 13:00</attribute>
   <attribute name="tag">tritrypdb12_17_release</attribute>

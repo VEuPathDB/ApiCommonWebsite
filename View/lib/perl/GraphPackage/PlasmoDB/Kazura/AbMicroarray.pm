@@ -17,12 +17,12 @@ sub init {
   $self->setScreenSize(300);
 
 #  my $colors = ['blue','white'];
-#  my $facet = $self->getFacets();
-#  my $contXAxis = $self->getContXAxis();
+  my $facet = $self->getFacets();
+  my $contXAxis = $self->getContXAxis();
 
    my $colors = ['blue'];
-   my $facet = ['ICEMR_microscopy_result'];
-   my $contXAxis = 'OBI_0001169';
+#   my $facet = ['ICEMR_microscopy_result'];
+#   my $contXAxis = 'OBI_0001169';
 
   my @profileSetArray = (['Kazura Reinfection Ab Microarray Profiles','values', '', '', '', '', '', $facet, '', '', $contXAxis]);
   my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileSetArray);
@@ -31,7 +31,7 @@ sub init {
 #  my $scatter = EbrcWebsiteCommon::View::GraphPackage::ScatterPlot::ClinicalMetaData->new(@_);
   $scatter->setProfileSets($profileSets);
   $scatter->setColors($colors);
-  $scatter->setXaxisLabel("Age");
+#  $scatter->setXaxisLabel("Age");
 
   $self->setGraphObjects($scatter);
 

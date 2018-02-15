@@ -27,10 +27,28 @@
     <p><strong>We are pleased to announce the release of AmoebaDB 36</strong></p>
       
       <section>
+      <h3><b>Introducing ClinEpiDB, a new member of the EuPathDB family of databases:</b></h3>
+      <div style="margin-left: 3em;">
+      
+          <ul>
+            <li>We are excited to announce the launch of 
+                <a href="http://www.clinepidb.org/" target="_blank">ClinEpiDB</a>, 
+                which hosts clinical and epidemiological data for the infectious disease research community. The current release contains data from the 
+                <a href="https://www.niaid.nih.gov/research/east-africa-icemr" target="_blank">PRISM</a> 
+                study on malaria in Uganda. Check out this 
+                <a href="https://www.youtube.com/watch?v=535PcFrBH8M&feature=youtu.be" target="_blank">video</a> 
+                to learn more about our newest EuPathDB resource!
+                </li>
+          </ul>
+       </div>
+      </section>    
+      
+      
+      <section>
       <h3><b>New features in this release</b></h3>
       <div style="margin-left: 3em;">
       
-      <h4>Search Page Improvements: search pages were redesigned for a cleaner look and better accessibility to help information.</h4>
+      <h4>Search Page Improvements: search pages were redesigned to include an organism filter and provide better access to help information.</h4>
       
           <ul>
             <li>Search parameters are now left justified. The Get Answer button remains center justified below the parameters. Parameter help 
@@ -47,11 +65,11 @@
       
           <ul>
             <li>The new 
-                <a href="http://qa.amoebadb.org/amoeba.b36/showQuestion.do?questionFullName=GeneQuestions.GenesByParalogCount">Paralog Count search</a>
+                <a href="/a/showQuestion.do?questionFullName=GeneQuestions.GenesByParalogCount">Paralog Count search</a>
                 returns genes based on the number of assigned paralogs. Find genes that have a number of paralogs within the specified range. 
                 Paralogs are defined as genes from the same species that belong to the same OrthoMCL group.
                 </li>
-            <li>The search is categorized under Orthology and synteny.
+            <li>Find the search under the Orthology and Synteny category.
                 </li>
           </ul>
 
@@ -62,12 +80,15 @@
           <ul>
             <li>A new GO Slim table now appears above the GO Term table on the record pages of genes with GO associated data. 
                 The GO Slim table maps GO Terms form the GO Term table to their GO Slim terms based on the 
-                <a href="http://www.geneontology.org/page/go-slim-and-subset-guide">Generic GO slim Developed by GO Consortium</a>.
+                <a href="http://www.geneontology.org/page/go-slim-and-subset-guide" target="_blank">Generic GO slim developed by GO Consortium</a>.
                 </li>
             <li>Column headers in gene page tables now show a help icon (
                 <img src="/a/images/HelpIcon.png"  height="15px" width="16px">)
                 when additional information or definitions are available 
                 for the column. Hover over the help icons to reveal additional information.  
+                </li>
+            <li>Metabolic pathway and reaction tables on gene pages now include reaction compound names, with CHEBI IDs on mouse over, 
+                and a column that indicates if the EC number associated with a gene is an exact match to the EC number in metabolic pathway.   
                 </li>
           </ul>
 
@@ -75,12 +96,13 @@
         <h4>Search Strategy Improvement: new option for combining steps in a search strategy. </h4>
        
           <ul>
-            <li>Search strategies now offer an option to ignore a step when editing a multi-step strategy. To remove a search 
-                from the strategy without deleting the step, click Edit for the combine step graphic you are interested in. 
-                Then choose IGNORE step # from the Revise Operation popup. For more information see this 
-                <a href="/a/images/ignoreStep.png">Ignore Step help document</a>.
+            <li>Search strategies now offer an option to 'ignore' a step when editing a multi-step strategy. To remove a search 
+                from the strategy without deleting the step, click Edit for the combine graphic of the step you are interested in ignoring. 
+                Then choose 'IGNORE step #' from the Revise Operation popup. For more information see this 
+                <a href="/a/images/ignoreStep.jpg">Ignore Step help document</a>.
                 </li>
           </ul>
+          
         </div>
       </section>
       

@@ -24,6 +24,133 @@
 -->
 
 <record>
+  <attribute name="headline">CryptoDB 36 Released</attribute>
+  <attribute name="date">15 Feb 2018 13:00</attribute>
+  <attribute name="tag">cryptodb02_18_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of CryptoDB 36</strong></p>
+      
+       <section>
+      <h3><b>New data in this release</b></h3>
+        <div style="margin-left: 3em;">
+        <h4>New Genomes and Annotation</h4>
+         <ul>  
+           <li> <a href="http://cryptodb.org/cryptodb/app/record/dataset/DS_d190ae02e1"><i>Cryptosporidium tyzzeri</i> isolate UGA55 </a> &mdash; 
+            Intestinal parasite isolated from naturally infected <i>Mus domesticus</i>. Genome sequence and annotation appears for the first time in CryptoDB. 
+            <a href="https://www.ncbi.nlm.nih.gov/bioproject/PRJNA388495" target="_blank">NCBI Bioproject</a>. From Boris Striepen and collaborators. <br>
+               </li>
+           <li> <a href="http://cryptodb.org/cryptodb/app/record/dataset/DS_25a96f8412"><i>Cryptosporidium hominis</i> isolate 30976 </a> &mdash; 
+            Specimen 30976 was collected from a patient in a cryptosporidiosis outbreak in July 2010 in the St. Louis area in Illinois and Missouri associated with swimming pools and a water park. 
+            Genome sequence and annotation appears for the first time in CryptoDB. Sequence from 
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/25903370" target="_blank">Guo et al.</a> Annotation from the Kissinger Research Group, UGA.<br>
+               </li>
+           <li> <a href="http://cryptodb.org/cryptodb/app/record/dataset/DS_3ef9c215b7">Whole genome sequences of <i>Cryptosporidium parvum</i> isolates from stool samples</a> &mdash; 
+            Whole genome sequence of seven <i>Cryptosporidium parvum</i> isolates directly from stool samples without the intermediate step of generating oocysts.
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/26318339" target="_blank">Hadfield et al.</a> <br>
+               </li>
+               <li> <a href="http://cryptodb.org/cryptodb/app/record/dataset/DS_d45f4a2849">Whole genome sequences of <i>Cryptosporidium hominis</i> isolates from stool samples</a> &mdash; 
+            Whole genome sequence of seven <i>Cryptosporidium hominis</i> isolates directly from stool samples without the intermediate step of generating oocysts.
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/26318339" target="_blank">Hadfield et al.</a> <br>
+               </li>
+         </ul>
+        <div>
+      </section>
+      
+
+      
+      <section>
+      <h3><b>New features in this release</b></h3>
+       <div style="margin-left: 3em;">
+      
+      <h4>Search Page Improvements: search pages were redesigned to include an organism filter and provide better access to help information.</h4>
+      
+          <ul>
+            <li>Search parameters are now left justified. The Get Answer button remains center justified below the parameters. Parameter help 
+                icons, which offer information concerning the parameters when hovered over, now appear before the parameter name instead of after.
+                </li>
+            <li>The Organism Parameter, the first parameter on search pages, has a new look and now contains a filter box for quickly finding 
+                your organism of interest.  Type any portion of an organism name (at leaset two letters of the genus, species, or strain) 
+                in the filter box and the tree collapses to show 
+                only those organisms containing your entry.  To return to the full tree, click the X in the filter box.  
+                </li>
+          </ul>
+          
+          <h4>New Paralog Count search</h4>
+      
+          <ul>
+            <li>The new 
+                <a href="/a/showQuestion.do?questionFullName=GeneQuestions.GenesByParalogCount">Paralog Count search</a>
+                returns genes based on the number of assigned paralogs. Find genes that have a number of paralogs within the specified range. 
+                Paralogs are defined as genes from the same species that belong to the same OrthoMCL group.
+                </li>
+            <li>Find the search under the Orthology and Synteny category.
+                </li>
+          </ul>
+          
+       <h4>Gene Record Page Improvements:</h4>
+ 
+          <ul>
+            <li>A new GO Slim table now appears above the GO Term table on the record pages of genes with GO associated data. 
+                The GO Slim table maps GO Terms form the GO Term table to their GO Slim terms based on the 
+                <a href="http://www.geneontology.org/page/go-slim-and-subset-guide" target="_blank">Generic GO slim developed by GO Consortium</a>.
+                </li>
+            <li>Column headers in gene page tables now show a help icon (
+                <img src="/a/images/HelpIcon.png"  height="15px" width="16px">)
+                when additional information or definitions are available 
+                for the column. Hover over the help icons to reveal additional information.  
+                </li>
+            <li>Metabolic pathway and reaction tables on gene pages now include reaction compound names, with CHEBI IDs on mouse over, 
+                and a column that indicates if the EC number associated with a gene is an exact match to the EC number in metabolic pathway.   
+                </li>    
+          </ul>
+
+        
+        <h4>Search Strategy Improvement: new option for combining steps in a search strategy. </h4>
+       
+          <ul>
+            <li>Search strategies now offer an option to 'ignore' a step when editing a multi-step strategy. To remove a search 
+                from the strategy without deleting the step, click Edit for the combine graphic of the step you are interested in ignoring. 
+                Then choose 'IGNORE step #' from the Revise Operation popup. For more information see this 
+                <a href="/a/images/ignoreStep.jpg">Ignore Step help document</a>.
+                </li>
+          </ul>
+        </div>
+      </section>
+      
+      <section>
+      <h3><b>Introducing ClinEpiDB, a new member of the EuPathDB family of databases:</b></h3>
+      <div style="margin-left: 3em;">
+      
+          <ul>
+            <li>We are excited to announce the launch of 
+                <a href="http://www.clinepidb.org/" target="_blank">ClinEpiDB</a>, 
+                which hosts clinical and epidemiological data for the infectious disease research community. The current release contains data from the 
+                <a href="https://www.niaid.nih.gov/research/east-africa-icemr" target="_blank">PRISM</a> 
+                study on malaria in Uganda. Check out this 
+                <a href="https://www.youtube.com/watch?v=535PcFrBH8M&feature=youtu.be" target="_blank">video</a> 
+                to learn more about our newest EuPathDB resource!
+                </li>
+          </ul>
+       </div>
+      </section>  
+      
+      <section>
+         <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+
+    ]]>
+  </attribute>
+</record>
+
+
+<record>
   <attribute name="headline">CryptoDB 35 Released</attribute>
   <attribute name="date">01 Dec 2017 13:00</attribute>
   <attribute name="tag">cryptodb12_17_release</attribute>

@@ -1051,6 +1051,24 @@ sub gsnapUnifiedIntronJunctionTitle {
   hover($f, \@data,1); 
 }
 
+sub massSpecTitle_new {  
+  my ($f, $replaceString,$replaceString2,$val2, $link) = @_;
+  my @data;
+
+  print STDERR Dumper $f;
+
+  push @data, [ 'Experiment:' => "test" ];
+#  push @data, [ 'Sample:' => $sample ];
+#  push @data, [ 'Sequence:' => "$seq" ];
+#  push @data, [ 'Description:' => "$desc" ] if($desc);
+#  push @data, [ 'Spectrum Count:' => "$count" ] if($count);
+#  push @data, [ 'Info:' => "$tb" ] if($phospho_site);
+#  push @data, [ 'Note:'=> "* stands for phosphorylation<br/># stands for modified_L_methionine<br/>^ stands for modified_L_cysteine<br/>+ denotes other modified residues" ] if($ontology_names);
+#  push @data, [ "Link to ProtoMap", "$link" ] unless !$link;
+#  hover($f, \@data); 
+
+}
+
 sub massSpecTitle {  
   my ($f, $replaceString,$replaceString2,$val2, $link) = @_;
   my ($desc) = $f->get_tag_values('Description');
@@ -1065,12 +1083,12 @@ sub massSpecTitle {
 
   $desc =~ s/[\r\n]/<br>/g;
 
-  my ($phospho_site) = $f->get_tag_values('PhosphoSite');
+  my ($phospho_site) = $f->get_tag_values('ModSite');
   my ($ontology_names) = $f->get_tag_values('Ontology');
   my $tb = "<table><tr><th>Location</th><th>Modified Residue</th><th>Modification Type</th></tr>";
 
   my $start = $f->start;
-  if($phospho_site) {
+  if($phospho_site && $phospho_site ne 'NA') {
     my ($residue) = $f->get_tag_values('Residue');
     my @locs =  split /;/, $phospho_site; 
     my @term = split /;/, $ontology_names; 
@@ -1083,9 +1101,14 @@ sub massSpecTitle {
     $tb .= "</table>"; 
   } 
 
-  if($phospho_site) {
+
+  if($phospho_site && $phospho_site ne 'NA') {
     my @locs = map {$_ - $start + 1} split /;/, $phospho_site; 
-    for my $loc (sort { $b <=> $a }  @locs) {
+    my $offset = 0;
+
+    for my $loc (sort @locs) {
+      $loc = $loc + $offset;
+
         if ($ontology_names =~ /phosphorylation/i) {
           substr($seq, $loc, 0) = '*';
         } elsif ($ontology_names =~ /methionine/i) {
@@ -1095,16 +1118,18 @@ sub massSpecTitle {
         } else {
           substr($seq, $loc, 0) = '+';
         }
+      $offset++;
     }
   }
 
   my @data;
+
   push @data, [ 'Experiment:' => $experiment ];
   push @data, [ 'Sample:' => $sample ];
   push @data, [ 'Sequence:' => "$seq" ];
   push @data, [ 'Description:' => "$desc" ] if($desc);
   push @data, [ 'Spectrum Count:' => "$count" ] if($count);
-  push @data, [ 'Info:' => "$tb" ] if($phospho_site);
+  push @data, [ 'Info:' => "$tb" ] if($phospho_site && $phospho_site ne 'NA');
   push @data, [ 'Note:'=> "* stands for phosphorylation<br/># stands for modified_L_methionine<br/>^ stands for modified_L_cysteine<br/>+ denotes other modified residues" ] if($ontology_names);
   push @data, [ "Link to ProtoMap", "$link" ] unless !$link;
   hover($f, \@data); 
@@ -1158,46 +1183,123 @@ sub massSpecUnifiedTitle {
 
 sub unifiedPostTranslationalMod {
   my $f = shift;
-  my ($count) = $f->get_tag_values('SCount');
-  my ($seq) =  $f->get_tag_values('PepSeq');
-  my ($experiment) = $f->get_tag_values('Experiment');
-  my ($sample) = $f->get_tag_values('Sample');
+
+  my ($experiments) = $f->get_tag_values('Experiments');
+  my ($samples) = $f->get_tag_values('Samples');
+
+  my ($pepSeqs) =  $f->get_tag_values('PepSeqs');
+  my ($pepNaFeatIds) =  $f->get_tag_values('PepAAFeatIds');
+  my ($mscounts) = $f->get_tag_values('MSCounts');
+
+  my ($residueLocations) = $f->get_tag_values('ResidueLocs');
+  my ($ontologys) = $f->get_tag_values('Ontologys');
+
+  my ($aaStartMins) = $f->get_tag_values('AAStartMins');
+
   my ($location) = $f->start;
-  my ($start) = $f->get_tag_values('PeptideStart');
-  my ($residue) = $f->get_tag_values('Residue');
-  my ($ontology) = $f->get_tag_values('Ontology');
-  my ($mscount) = $f->get_tag_values('MSCount');
+  my ($featureName) = $f->name;
+
   my @data;
 
-  my @exps = split /;/, $experiment;
-  my @samples = split /;/, $sample;
-  my @seqs = split /;/, $seq;
-  my @starts = split /;/, $start;
-  my @mscounts = split /;/, $mscount;
+  my %hash;
+  my @exps = split /\|/, $experiments;
+  my @smpls = split /\|/, $samples;
+  my @pepseqs = split /\|/, $pepSeqs;
+  my @pepNaFeatIds = split /\|/, $pepNaFeatIds;
 
-  $residue  =~ s/;.*$//g;
 
-  push @data, [ 'Modification Type' => $ontology ];
-  push @data, [ 'Modification Site' => $location ];
-  push @data, [ 'Modified Residue'  => $residue ];
+  my @mscts = split /\|/, $mscounts;
+  my @onts = split /\|/, $ontologys;
+  my @resLocs = split /\|/, $residueLocations;
+  my @aaStartMins = split /\|/, $aaStartMins;
 
-  for(0..$count-1) {
-    push @data, [ '==========='   => "=======================" ];
-    push @data, [ 'Experiment' => $exps[$_] ];
-    push @data, [ 'Sample'     => $samples[$_] ];
 
-    my $pseq = $seqs[$_];
+  for(my $i = 0; $i < scalar @exps; $i++) {
+    my $expt = $exps[$i];
+    my $sample = $smpls[$i];
+    my $pepSeq = $pepseqs[$i];
+    my $pepNaFeatId = $pepNaFeatIds[$i];
 
-    if($pseq && $location) {
-      my $loc = $location - $starts[$_] + 1; 
-      substr($pseq, $loc, 0) = '*' if $ontology =~ /phosphorylation/i; 
-      substr($pseq, $loc, 0) = '#' if $ontology =~ /methionine/i; 
-      substr($pseq, $loc, 0) = '^' if $ontology =~ /cysteine/i; 
-      push @data, [ 'Spectrum Count' => $mscounts[$_] ];
-    }    
-    push @data, [ 'Sequence'   => "$pseq" ];
+    my $msct = $mscts[$i];
+
+    my $allAaMin = $aaStartMins[$i];
+    my $allOnt = $onts[$i];
+    my $allResidueLoc = $resLocs[$i];
+    
+    my @resLocsArr = split(',', $allResidueLoc);
+    my @ontArr = split(',', $allOnt);
+    my @aaMinArr = split(',', $allAaMin);
+
+    my $match;
+    foreach(@resLocsArr) {
+      $match = 1 if($_ eq $location);
+    }
+
+    if($match) {
+      push @{$hash{$expt}->{$sample}->{$pepNaFeatId}}, {pepSeq => $pepSeq, mscount => $msct, residue_locations => \@resLocsArr, ontology => \@ontArr, aa_start => \@aaMinArr};
+    }
 
   }
+
+  push @data, [ 'Residue'   => $featureName ];
+
+  foreach my $e (keys %hash) {
+     push @data, [ '==========='   => "=======================" ];
+     push @data, [ 'Experiment' => $e ];
+
+     foreach my $s (keys %{$hash{$e}}) {
+       push @data, [ 'Sample'     => $s ];
+
+       foreach my $pi (keys %{$hash{$e}->{$s}}) {
+         foreach my $peps (@{$hash{$e}->{$s}->{$pi}}) {
+           my $pepSequence = $peps->{pepSeq};
+           my $msCount = $peps->{mscount};
+
+           my $residueLocations = $peps->{residue_locations};
+           my $ontology = $peps->{ontology};
+           my $aaStarts = $peps->{aa_start};
+
+           if($residueLocations) {
+
+             my $offset = 1;
+
+             # residue locations are sorted in sql
+             for(my $i = 0; $i < scalar @$residueLocations; $i++) {
+               my $rl = $residueLocations->[$i];
+               my $type = $ontology->[$i];
+               my $aaStart = $aaStarts->[$i];
+
+               my $loc = $rl - $aaStart + 1 + $offset;
+
+               substr($pepSequence, $loc, 0) = '*' if $type =~ /phosphorylation/i; 
+               substr($pepSequence, $loc, 0) = '#' if $type =~ /methionine/i; 
+               substr($pepSequence, $loc, 0) = '^' if $type =~ /cysteine/i; 
+
+               $offset++;
+             }
+             push @data, [ 'Sequence'   => "$pepSequence ($msCount)" ];
+           }
+
+
+         }
+       }
+
+     }
+  }
+  
+
+
+
+  #   if($pseq && $location) {
+  #     my $loc = $location - $starts[$_] + 1; 
+  #     substr($pseq, $loc, 0) = '*' if $ontology =~ /phosphorylation/i; 
+  #     substr($pseq, $loc, 0) = '#' if $ontology =~ /methionine/i; 
+  #     substr($pseq, $loc, 0) = '^' if $ontology =~ /cysteine/i; 
+  #     push @data, [ 'Spectrum Count' => $mscounts[$_] ];
+  #   }    
+  #   push @data, [ 'Sequence'   => "$pseq" ];
+
+  # }
   hover($f, \@data);
 }
 
