@@ -148,18 +148,20 @@ export function RecordTableSection(DefaultComponent) {
         displayName: (
           <span>
             {table.displayName}
-            <span
-              style={{
-                fontSize: '.8em',
-                fontWeight: 'normal',
-                marginLeft: '1em'
-              }}>
-              <button type="button"
-                className="wdk-Link"
-                onClick={callDownloadTable}>
-                <i className="fa fa-download"/> Download
-              </button>
-            </span>
+            {table.name !== 'Sequences' &&
+              <span
+                style={{
+                  fontSize: '.8em',
+                  fontWeight: 'normal',
+                  marginLeft: '1em'
+                }}>
+                <button type="button"
+                  className="wdk-Link"
+                  onClick={callDownloadTable}>
+                  <i className="fa fa-download"/> Download
+                </button>
+              </span>
+            }
             <Link
               style={{
                 fontSize: '.8em',
