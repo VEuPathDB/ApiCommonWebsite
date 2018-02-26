@@ -10,6 +10,7 @@ import * as Gbrowse from './components/common/Gbrowse';
 import Sequence from './components/common/Sequence';
 import ApiApplicationSpecificProperties from './components/ApiApplicationSpecificProperties';
 import RecordTableContainer from './components/common/RecordTableContainer';
+import { loadPathwayGeneDynamicCols } from './actioncreators/RecordViewActionCreators';
 
 const stopPropagation = event => event.stopPropagation();
 
@@ -91,8 +92,25 @@ export function RecordController(WdkRecordController) {
         updateBasketStatus: (...args) => (dispatch) => {
           dispatch(wdkActionCreators.updateBasketStatus(...args))
             .then(() => dispatch(loadBasketCounts()));
-        }
-      })
+        },
+        loadPathwayGeneDynamicCols: (geneStepId, pathwaySource, pathwayId) =>
+          (dispatch, { wdkService }) => {
+            dispatch(loadPathwayGeneDynamicCols(geneStepId, pathwaySource, pathwayId, wdkService));
+          }
+      });
+    }
+    loadData(prevProps) {
+       super.loadData(prevProps);
+       // special loading for Pathways- if gene step ID (i.e. the step passed to
+       // a genes->pathways transform that produced a result that contained this
+       // record) is present, load dynamic attributes of that step for all genes
+       // relevant to this pathway that were also in that result
+       let { recordClass, primaryKey } = this.props.match.params;
+       if (recordClass == 'pathway') {
+         let [ pathwaySource, pathwayId ] = primaryKey.split('/');
+         let geneStepId = QueryString.parse(this.state.globalData.location.search.slice(1)).geneStepId;
+         this.eventHandlers.loadPathwayGeneDynamicCols(geneStepId, pathwaySource, pathwayId);
+       }
     }
   }
   return addProjectIdPkValueWrapper(ApiRecordController);
@@ -137,29 +155,38 @@ export function RecordTableSection(DefaultComponent) {
       );
     }
 
-    let { table, record, recordClass, downloadRecordTable } = props;
+    let { table, record, downloadRecordTable, ontologyProperties } = props;
     let customName = `Data sets used by ${String.fromCharCode(8220)}${table.displayName.replace('/','-')}${String.fromCharCode(8221)}`
     let callDownloadTable = event => {
       event.stopPropagation();
       downloadRecordTable(record, table.name);
     };
+
+    let showDownload = (
+      record.tables[table.name] &&
+      record.tables[table.name].length > 0 &&
+      ontologyProperties.scope.includes('download')
+    );
+
     return (
       <DefaultComponent {...props} table={Object.assign({}, table, {
         displayName: (
           <span>
             {table.displayName}
-            <span
-              style={{
-                fontSize: '.8em',
-                fontWeight: 'normal',
-                marginLeft: '1em'
-              }}>
-              <button type="button"
-                className="wdk-Link"
-                onClick={callDownloadTable}>
-                <i className="fa fa-download"/> Download
-              </button>
-            </span>
+            {showDownload &&
+              <span
+                style={{
+                  fontSize: '.8em',
+                  fontWeight: 'normal',
+                  marginLeft: '1em'
+                }}>
+                <button type="button"
+                  className="wdk-Link"
+                  onClick={callDownloadTable}>
+                  <i className="fa fa-download"/> Download
+                </button>
+              </span>
+            }
             <Link
               style={{
                 fontSize: '.8em',
