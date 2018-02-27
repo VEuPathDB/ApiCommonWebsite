@@ -67,12 +67,6 @@
            
        <h4>Phenotypes:</h4>
            <ul>
-            <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_4fdf06195a">piggyBac Insertion Mutants</a> &ndash; 
-              <i>P. falciparum</i> NF54 mutants were generated via random piggyBac transposon mutagenesis. 
-              Mutants are genetically identical except for a single randomly inserted transposon at TTAA tetranucleotide sites. 
-              Phenotype scores are available on the gene pages and insertion sites are available as a track in GBrowse. Data
-              provided by the Adams lab, University of South Florida.
-              </li>
             <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_90eea17ef6">Growth Rate Phenotype</a> &ndash; 
               PlasmoGEM knockout vectors were used to measure growth rate phenotypes in mice for 2,578 <i>P. berghei</i> genes, 
               representing more than half of the protein-coding genome.
