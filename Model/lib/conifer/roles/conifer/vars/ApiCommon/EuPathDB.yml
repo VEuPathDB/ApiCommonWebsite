@@ -1,5 +1,6 @@
 # $SourceFileURL$
 ---
+_self_url_scheme: https
 
 # Given hostname == a1.eupathdb.org, swap_sld('amoebadb.org')
 # returns 'a1.amoebadb.org'. swap_hostname(_host_frontends) returns
