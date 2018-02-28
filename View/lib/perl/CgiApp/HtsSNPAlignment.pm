@@ -10,6 +10,10 @@ use Bio::Graphics::Browser2::PadAlignment;
 use Bio::SeqIO;
 use Bio::Seq;
 
+use JSON;
+
+use Data::Dumper;
+
 sub run {
   my ($self, $cgi) = @_;
 
@@ -21,6 +25,8 @@ sub run {
   } else {
     print $cgi->header('text/html');
   }
+
+
   $self->processParams($cgi, $dbh);
   $self->handleIsolates($dbh, $cgi, $type);
 
@@ -29,25 +35,63 @@ sub run {
 
 sub processParams {
   my ($self, $cgi, $dbh) = @_;
-  my $p = $cgi->param('isolate_ids');
-  $p =~ s/,$//;
-  my @ids = split /,/, $p;
-  my $list;
-  foreach my $id (@ids){
-    $id =~ s/ \(.+\)$//;
-    $list = $list.  "'" . $id. "',";
-  }
-  $list =~ s/\,$//;
 
-  $self->{ids} = $list;
+  my $fpv = $cgi->param('filter_param_value');
+
+  my $fpvArray = decode_json $fpv;
+
+
+  my @predicates;
+  foreach my $filter (@{$fpvArray->{filters}}) {
+    my $filterType = $filter->{type};
+    my $isRange = $filter->{isRange};
+    my $field = $filter->{field};
+    my $values = $filter->{value};
+
+    if($filterType ne 'string' && $isRange) {
+      my $min = $values->{min};
+      my $max = $values->{max};
+      push @predicates, "(property = '$field' and ${filterType}_value >= $min and ${filterType}_value <= $max)";
+    }
+    else {
+      my $valuesString = join(',', map { "'$_'" } @$values);
+      push @predicates, "(property = '$field' and string_value in ($valuesString))";
+    }
+  }
+
+  # $p =~ s/,$//;
+  # my @ids = split /,/, $p;
+  # my $list;
+  # foreach my $id (@ids){
+  #   $id =~ s/ \(.+\)$//;
+  #   $list = $list.  "'" . $id. "',";
+  # }
+  # $list =~ s/\,$//;
+
+#  $self->{ids} = $list;
+
+ $self->{filter_predicates} = \@predicates;
 
 }
+
+
+
+
+
+
+
 
 sub handleIsolates {
   my ($self, $dbh, $cgi, $type) = @_;
 
-  my $ids = $self->{ids};
-  my $pan_names = $ids;
+#  my $ids = $self->{ids};
+#  my $pan_names = $ids;
+
+  my $filterPredicates = $self->{filter_predicates};
+  my $filterPredicatesCount = scalar @$filterPredicates;
+
+  my $filterPredicatesString = $filterPredicatesCount ? "AND (" . join(" OR ", @$filterPredicates) . ")" : "";
+  my $filterPredicatesCountString = $filterPredicatesCount ? "and ct.n = $filterPredicatesCount" : "";
 
   my $start = $cgi->param('start');
   my $end   = $cgi->param('end');
@@ -68,17 +112,24 @@ sub handleIsolates {
   my $sth;
 
   # FOR displaying metadata
-  if ($metadata) {
-    my %data;
-    $pan_names =~ s/'(\w*)'/'$1 (Sequence Variation)'/g;
+
+  my %data;
+#    $pan_names =~ s/'(\w*)'/'$1 (Sequence Variation)'/g;
 
     $sql = <<EOSQL;
-SELECT REPLACE(pan_name,' (Sequence Variation)',''), property, value
-FROM apidbtuning.InferredChars
+with m as
+(SELECT pan_id, REPLACE(pan_name,' (Sequence Variation)','') pan_name, property, string_value
+FROM apidbtuning.metadata
 WHERE dataset_subtype = 'HTS_SNP'
-AND pan_name in ($pan_names)
 AND organism = '$organism'
+$filterPredicatesString
+)
+select m.*
+from m, (select pan_id, count(*) n from m group by pan_id) ct
+where ct.pan_id = m.pan_id 
+$filterPredicatesCountString
 EOSQL
+
     $sth = $dbh->prepare($sql);
     $sth->execute();
 
@@ -87,9 +138,11 @@ EOSQL
       ($tab,$newline)=("\t","\n");
     }
 
-    while(my ($node, $term, $value) = $sth->fetchrow_array()) {
+    while(my ($panId, $node, $term, $value) = $sth->fetchrow_array()) {
       $data{$node}->{$term} = $value;
     }
+
+  if ($metadata) {
 
     print "### Metadata for the Strains: ### $tab $tab (Sequences are below)$newline";
     foreach my $key (sort keys %data) {
@@ -103,7 +156,7 @@ EOSQL
     print "$newline$newline";
   }
 
-
+  my $ids = join(",", map { "'$_'" } keys %data);
 
 # FOR Alignment/Fasta
   $ids =~ s/'(\w)/'$sid\.$1/g;
