@@ -5,6 +5,7 @@ import static org.gusdb.fgputil.functional.Functions.filter;
 import java.util.Set;
 
 import org.apidb.apicommon.service.services.ApiSessionService;
+import org.apidb.apicommon.service.services.BigWigTrackService;
 import org.apidb.apicommon.service.services.TranscriptToggleService;
 import org.eupathdb.common.service.EuPathServiceApplication;
 import org.gusdb.fgputil.SetBuilder;
@@ -22,6 +23,7 @@ public class ApiWebServiceApplication extends EuPathServiceApplication {
       // add ApiCommon-specific services
       .add(TranscriptToggleService.class)
       .add(ApiSessionService.class)
+      .add(BigWigTrackService.class)
 
       .toSet();
   }

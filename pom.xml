@@ -52,6 +52,12 @@
 		  <artifactId>ebrc-website-common-model</artifactId>
 		  <version>${project.version}</version>
 		</dependency>
+		
+		<dependency>
+      <groupId>org.eupathdb</groupId>
+      <artifactId>api-common-model-model</artifactId>
+      <version>${project.version}</version>
+    </dependency>
       
 		<dependency>
 		  <groupId>org.eupathdb</groupId>
