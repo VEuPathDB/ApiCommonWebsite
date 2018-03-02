@@ -38,6 +38,11 @@
       <groupId>org.eupathdb</groupId>
       <artifactId>api-common-website-model</artifactId>
     </dependency>
+    
+    <dependency>
+      <groupId>org.eupathdb</groupId>
+      <artifactId>api-common-model-model</artifactId>
+    </dependency>
 
     <dependency>
       <groupId>javax.ws.rs</groupId>
