@@ -8,6 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.List;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -65,7 +66,7 @@ public class BigWigTrackService extends UserService {
 	long userId = getPrivateRegisteredUser().getUserId();
 	java.nio.file.Path userTracksDir = GBrowseUtils.getUserTracksDirectory(getWdkModel(), userId);
 	if(userTracksDir != null) {
-    	  List<String> persistedTracks = GBrowseUtils.getPersistedTracks(userTracksDir);
+    	  Set<String> persistedTracks = GBrowseUtils.getPersistedTracks(userTracksDir).keySet();
     	  // If track already exists, do nothing.
     	  if(!persistedTracks.contains(trackName)) {
     		String trackPath = Paths.get(userTracksDir.toString(), trackName).toString();

@@ -14,6 +14,10 @@
           ]]>
        </attribute>
    </record>
+   
+   example link 
+   http://microsporidiadb.org/micro/app/record/dataset/DS_c034c0027d
+   
 -->
 
 <record>
@@ -30,7 +34,7 @@
       <div style="margin-left: 3em;">
       <h4>Genome sequence and annotation</h4>
            <ul>
-             <li><a href="http://microsporidiadb.org/microsporidiadb/app/record/dataset/DS_c034c0027d"><i>Nematocida displodere</i> strain JUm2807</a> &ndash; 
+             <li><a href="http://microsporidiadb.org/micro/app/record/dataset/DS_c034c0027d"><i>Nematocida displodere</i> strain JUm2807</a> &ndash; 
                  Appearing for the first time in MicrosporidiaDB. 
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/27362540" target="_blank">Luallen et al.</a>
              </li>
@@ -271,13 +275,13 @@
       <h3><b>New data in this release</b></h3>
         <h4>Organisms renamed</h4>
            <ul>
-             <li><a href="http://microsporidiadb.org/microsporidiadb/app/record/dataset/DS_06a6bb7fc7"><i>Nematocida ausubeli</i> ERTm2</a>, used to be named as <i>Nematocida sp.1</i> ERTm2.</li>
-             <li><a href="http://microsporidiadb.org/microsporidiadb/app/record/dataset/DS_3432c0080d"><i>Nematocida ausubeli</i> ERTm6</a>, used to be named as <i>Nematocida sp.1</i> ERTm6.</li>
+             <li><a href="http://microsporidiadb.org/micro/app/record/dataset/DS_06a6bb7fc7"><i>Nematocida ausubeli</i> ERTm2</a>, used to be named as <i>Nematocida sp.1</i> ERTm2.</li>
+             <li><a href="http://microsporidiadb.org/micro/app/record/dataset/DS_3432c0080d"><i>Nematocida ausubeli</i> ERTm6</a>, used to be named as <i>Nematocida sp.1</i> ERTm6.</li>
            </ul>
         
         <h4>Proteomics:</h4>
            <ul>
-             <li><a href="http://microsporidiadb.org/microsporidiadb/app/record/dataset/DS_37cb6c2820"><i>Nematocida</i> host exposed proteins</a> &ndash; 
+             <li><a href="http://microsporidiadb.org/micro/app/record/dataset/DS_37cb6c2820"><i>Nematocida</i> host exposed proteins</a> &ndash; 
                  <i>N. ausubeli</i> ERTm2 and <i>N. parisii</i> ERTm1 
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/28067236">Reinke et al.</a>
              </li>
