@@ -2,15 +2,10 @@ package org.apidb.apicommon.service.services;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.util.List;
 import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.ws.rs.CookieParam;
 import javax.ws.rs.GET;
@@ -61,8 +56,8 @@ public class BigWigTrackService extends UserService {
 		  @CookieParam("JSESSIONID") NewCookie sessionCookie,
 		  @QueryParam("eurl") String eurl) throws WdkModelException {
 	String irodsUrl = FormatUtil.urlDecodeUtf8(eurl);
-	String trackName = GBrowseUtils.composeTrackName(irodsUrl,".bigwig");
-	
+	String trackName = GBrowseUtils.composeTrackName(irodsUrl);
+
 	long userId = getPrivateRegisteredUser().getUserId();
 	java.nio.file.Path userTracksDir = GBrowseUtils.getUserTracksDirectory(getWdkModel(), userId);
 	if(userTracksDir != null) {
