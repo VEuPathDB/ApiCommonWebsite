@@ -82,7 +82,7 @@ public abstract class FastaReporter extends AbstractReporter {
 
     Response response = null;
     try {
-      String baseUrl = _wdkModel.getModelConfig().getApplicationBaseUrl();
+      String baseUrl = _wdkModel.getProperties().get("LOCALHOST");
       String srtToolUri = getSrtToolUri();
       String srtUrl = baseUrl + (srtToolUri.startsWith("/") ? srtToolUri : "/" + srtToolUri);
       LOG.info("Submitting form to " + srtUrl);
