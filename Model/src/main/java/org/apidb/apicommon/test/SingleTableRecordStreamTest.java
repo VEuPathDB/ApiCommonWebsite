@@ -16,7 +16,6 @@ import org.gusdb.fgputil.MapBuilder;
 import org.gusdb.fgputil.functional.FunctionalInterfaces.Function;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
-import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.answer.AnswerValue;
 import org.gusdb.wdk.model.answer.stream.RecordStream;
 import org.gusdb.wdk.model.answer.stream.SingleTableRecordStream;
@@ -94,9 +93,9 @@ public class SingleTableRecordStreamTest {
 
   /*%%%%%%%%%%%%%%%%%%%%%%%%%%% helper functions %%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
-  private static Step createStep(WdkModel model) throws WdkModelException, WdkUserException {
+  private static Step createStep(WdkModel model) throws WdkModelException {
     return model.getStepFactory().createStep(new GuestUser(model), -1L,
-        model.getQuestion(QUESTION_NAME), PARAMETERS, null, 0, -1, false, true, 0, FILTERS(model));
+        model.getQuestion(QUESTION_NAME), PARAMETERS, null, false, true, 0, FILTERS(model));
   }
 
   private static Function<AttributeField, String> getFieldValue(final Map<String, AttributeValue> row) {
