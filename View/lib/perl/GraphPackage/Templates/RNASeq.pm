@@ -21,6 +21,9 @@ sub getKey{
 
   die if (!$strand);
   $strand = $strand eq 'unstranded'? ''  :  '_' . $self->getStrandDictionary()->{$strand};
+  if ($groupName eq 'Non Unique') {
+    $groupName = '';
+  } 
   return "${groupName}_${profileType}${strand}";
 }
 
@@ -100,8 +103,6 @@ sub getProfileColors {
   unshift ( @colors, 'gray');
   return \@colors;
 }
-
-
 
 # @Override
 sub finalProfileAdjustments {
