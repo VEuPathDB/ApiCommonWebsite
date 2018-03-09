@@ -29,7 +29,7 @@ public class TranscriptTableReporter extends TableTabularReporter {
   public TranscriptTableReporter configure(JSONObject config) throws WdkUserException {
     try {
       _originalQuestionName = _baseAnswer.getQuestion().getName();
-      Step baseStep = StepUtilities.createStep(_baseAnswer.getUser(), null, _baseAnswer, false, 0);
+      Step baseStep = createBaseStep(_baseAnswer);
       _baseAnswer = TranscriptUtil.transformToGeneAnswer(_baseAnswer, baseStep.getStepId());
       // now that base answer is a Gene answer, check and assign selected table field name
       super.configure(config);
@@ -38,6 +38,15 @@ public class TranscriptTableReporter extends TableTabularReporter {
     catch (WdkModelException e) {
       throw new WdkRuntimeException("Could not create in-memory step from incoming answer spec", e);
     }
+  }
+
+  private static Step createBaseStep(AnswerValue baseAnswer) throws WdkModelException {
+    Map<String, String> paramValues = baseAnswer.getIdsQueryInstance().getParamStableValues();
+    return StepUtilities.createStep(
+        baseAnswer.getUser(), null,
+        baseAnswer.getQuestion(), paramValues,
+        baseAnswer.getFilter(), false, false, 0,
+        baseAnswer.getFilterOptions());
   }
 
   @Override
