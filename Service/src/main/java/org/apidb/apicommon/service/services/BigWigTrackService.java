@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.nio.file.StandardOpenOption;
 import java.util.Set;
 
 import javax.ws.rs.CookieParam;
@@ -25,9 +26,13 @@ import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.service.service.user.UserService;
 
 public class BigWigTrackService extends UserService {
+ 
+  public enum UploadStatus { IN_PROGRESS, COMPLETED, ERROR }
+	
   private static final String TRACK_SOURCE_PATH_MACRO = "$$TRACK_SOURCE_PATH_MACROS$$";
   private static final String TRACK_NAME_MACRO = "$$TRACK_NAME_MACROS$$";
   private static final String GLOBAL_READ_WRITE_PERMS = "rw-rw-rw-";
+  private static final String TRACK_STATUS_FILE_NAME = "track_status.txt";
   
   private static String CONFIGURATION_TEMPLATE = 
 		  "[track_" + TRACK_NAME_MACRO + ":database]\n" +
@@ -68,6 +73,7 @@ public class BigWigTrackService extends UserService {
     		java.nio.file.Path trackSourcePath = Paths.get(trackPath, "SOURCES", trackName );
     		try {
     		  IoUtil.createOpenPermsDirectory(Paths.get(trackPath));
+    		  manageStatusFile(trackPath,UploadStatus.IN_PROGRESS, "");
     		  IoUtil.createOpenPermsDirectory(Paths.get(trackPath, "SOURCES"));
           String configurationFileData = CONFIGURATION_TEMPLATE
         		.replace(TRACK_SOURCE_PATH_MACRO, trackSourcePath.toString())
@@ -77,9 +83,17 @@ public class BigWigTrackService extends UserService {
           GBrowseUtils.setPosixPermissions(configurationFilePath, GLOBAL_READ_WRITE_PERMS);
         }
         catch(IOException ioe) {
+        	  manageStatusFile(trackPath, UploadStatus.ERROR, "Unable to create the custom track: " + trackName);
         	  throw new WdkModelException("Unable to create the custom track: " + trackName, ioe);
         }
-        callUserDatasetBinaryDownloadService(eurl, trackSourcePath, authCookie, sessionCookie);
+    		try {
+          callUserDatasetBinaryDownloadService(eurl, trackSourcePath, authCookie, sessionCookie);
+    		}
+    		catch(WdkModelException wme) {
+          manageStatusFile(trackPath, UploadStatus.ERROR, wme.getMessage());
+          throw new WdkModelException(wme);
+    		}
+        manageStatusFile(trackPath, UploadStatus.COMPLETED, "");
     	  }
 	}
     return Response.noContent().build();
@@ -101,7 +115,7 @@ public class BigWigTrackService extends UserService {
         GBrowseUtils.setPosixPermissions(trackSourcePath, GLOBAL_READ_WRITE_PERMS);
       }
       else {
-        throw new WdkModelException("Bad status - " + response.getStatus());
+        throw new WdkModelException("Bad http status code - " + response.getStatus());
       }
     }
     catch (IOException ioe) {
@@ -110,6 +124,17 @@ public class BigWigTrackService extends UserService {
     finally {
       response.close();
       client.close();
+    }
+  }
+
+  protected void manageStatusFile(String trackPath, UploadStatus status, String msg) throws WdkModelException {
+    java.nio.file.Path trackStatusFilePath = Paths.get(trackPath, TRACK_STATUS_FILE_NAME);
+    try {
+    	  Files.write(trackStatusFilePath, (status + " : " + msg).getBytes(), StandardOpenOption.CREATE);
+      GBrowseUtils.setPosixPermissions(trackStatusFilePath, GLOBAL_READ_WRITE_PERMS);
+    }  
+    catch (IOException ioe) {
+      throw new WdkModelException(ioe);
     }
   }
 
