@@ -2,6 +2,7 @@ package org.apidb.apicommon.service.services;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
@@ -14,6 +15,7 @@ import javax.ws.rs.CookieParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -27,6 +29,8 @@ import org.apidb.apicommon.model.gbrowse.UploadStatus;
 import org.gusdb.fgputil.IoUtil;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.service.service.user.UserService;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class BigWigTrackService extends UserService {
  
@@ -150,6 +154,29 @@ public class BigWigTrackService extends UserService {
     	  }
 	}
     return Response.noContent().build();
+  }
+  
+  @GET
+  @Path("user-datasets/{datasetId}/monitor-bigwig-tracks")
+  @Produces(MediaType.APPLICATION_JSON)
+  public Response monitorTracks(@PathParam("datasetId") String datasetId) throws WdkModelException {
+    long userId = getPrivateRegisteredUser().getUserId();
+    java.nio.file.Path userTracksDir = GBrowseUtils.getUserTracksDirectory(getWdkModel(), userId);
+    if(userTracksDir == null) {
+    	  throw new WdkModelException("The user does not have a gbrowse upload tracks directory.");
+    }
+    JSONArray jsonStatusList = new JSONArray();
+    Map<String, GBrowseTrackStatus> tracksStatus = GBrowseUtils.getTracksStatus(userTracksDir);
+    for(String trackName : tracksStatus.keySet()) {
+    	  GBrowseTrackStatus trackStatus = tracksStatus.get(trackName);
+    	  String status = 
+    			  trackStatus.getStatusIndicator() +
+    			  (UploadStatus.ERROR.name().equals(trackStatus.getStatusIndicator()) ? ": " + trackStatus.getErrorMessage() : "");
+    	  jsonStatusList.put(new JSONObject()	  
+    			  .put("dataFileName", GBrowseUtils.composeDatafileName(trackName))
+    			  .put("status", status));
+    }
+    return Response.ok(new JSONObject().put("results", jsonStatusList).toString()).build();
   }
   
   /**
