@@ -2,7 +2,6 @@ package org.apidb.apicommon.service.services;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
@@ -19,6 +18,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.core.Cookie;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.NewCookie;
 import javax.ws.rs.core.Response;
@@ -33,6 +33,9 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class BigWigTrackService extends UserService {
+	
+  private static final String AUTH_COOKIE_NAME = "wdk_check_auth";
+  private static final String SESSION_COOKIE_NAME = "JSESSIONID";
  
   private static final String TRACK_SOURCE_PATH_MACRO = "$$TRACK_SOURCE_PATH_MACROS$$";
   private static final String TRACK_NAME_MACRO = "$$TRACK_NAME_MACROS$$";
@@ -84,8 +87,8 @@ public class BigWigTrackService extends UserService {
   @GET
   @Path("user-datasets/{datasetId}/upload-bigwig-track")
   public Response loadTrack(@PathParam("datasetId") String datasetId,
-		  @CookieParam("wdk_check_auth") NewCookie authCookie,
-		  @CookieParam("JSESSIONID") NewCookie sessionCookie,
+		  @CookieParam(AUTH_COOKIE_NAME) Cookie authCookie,
+		  @CookieParam(SESSION_COOKIE_NAME) Cookie sessionCookie,
 		  @QueryParam("datafileName") String datafileName) throws WdkModelException {
 	  
 	//TODO - will the datafileName come URLEncoded?
@@ -178,7 +181,7 @@ public class BigWigTrackService extends UserService {
     }
     return Response.ok(new JSONObject().put("results", jsonStatusList).toString()).build();
   }
-  
+
   /**
    * Call the binary download service in the user dataset services inventory
    * @param eurl
@@ -187,14 +190,14 @@ public class BigWigTrackService extends UserService {
    * @param sessionCookie
    * @throws WdkModelException
    */
-  protected void callUserDatasetBinaryDownloadService(String eurl, java.nio.file.Path trackSourcePath, NewCookie authCookie, NewCookie sessionCookie) throws WdkModelException {
+  protected void callUserDatasetBinaryDownloadService(String eurl, java.nio.file.Path trackSourcePath, Cookie authCookie, Cookie sessionCookie) throws WdkModelException {
     Client client = ClientBuilder.newBuilder().build();
     Response response = client
         .target(eurl)
         .property("Content-Type", MediaType.APPLICATION_OCTET_STREAM)
         .request()
-        .cookie(authCookie)
-        .cookie(sessionCookie)
+        .cookie(new NewCookie(AUTH_COOKIE_NAME,authCookie.getValue()))
+        .cookie(new NewCookie(SESSION_COOKIE_NAME,sessionCookie.getValue()))
         .get();
     try {
       if (response.getStatus() == 200) {
@@ -203,7 +206,7 @@ public class BigWigTrackService extends UserService {
         GBrowseUtils.setPosixPermissions(trackSourcePath, GLOBAL_READ_WRITE_PERMS);
       }
       else {
-        throw new WdkModelException("Bad http status code - " + response.getStatus());
+        throw new WdkModelException("Bad http status - " + response.getStatus() + " : " + response.getStatusInfo());
       }
     }
     catch (IOException ioe) {
