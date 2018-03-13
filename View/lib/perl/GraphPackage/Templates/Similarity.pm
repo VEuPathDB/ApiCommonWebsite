@@ -52,7 +52,7 @@ sub getProfile {
 package ApiCommonWebsite::View::GraphPackage::Templates::Similarity::DS_4b0e1b490a;
 sub getProfile {
   my ($self) = @_;
-  my $pset = 'C. neoformans cell-cycle RNAseq [htseq-union - firststrand - fpkm]';
+  my $pset = 'C. neoformans cell-cycle RNAseq [htseq-union - firststrand - fpkm - unique]';
 
   return $pset;
 }
@@ -63,7 +63,7 @@ sub getProfile {
 package ApiCommonWebsite::View::GraphPackage::Templates::Similarity::DS_f101fb2669;
 sub getProfile {
   my ($self) = @_;
-  my $pset = 'S. cerevisiae cell-cycle RNAseq [htseq-union - firststrand - fpkm]';
+  my $pset = 'S. cerevisiae cell-cycle RNAseq [htseq-union - firststrand - fpkm - unique]';
 
   return $pset;
 }
@@ -73,7 +73,7 @@ sub getProfile {
 package ApiCommonWebsite::View::GraphPackage::Templates::Similarity::DS_7835aa4647;
 sub getProfile {
   my ($self) = @_;
-  my $pset = 'N. crassa analysis of clock-regulated genes [htseq-union - firststrand - fpkm]';
+  my $pset = 'N. crassa analysis of clock-regulated genes [htseq-union - firststrand - fpkm - unique]';
 
   return $pset;
 }
