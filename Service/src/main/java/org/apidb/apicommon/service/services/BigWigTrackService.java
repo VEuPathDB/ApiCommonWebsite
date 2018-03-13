@@ -146,13 +146,15 @@ public class BigWigTrackService extends UserService {
     JSONArray jsonStatusList = new JSONArray();
     Map<String, GBrowseTrackStatus> tracksStatus = GBrowseUtils.getTracksStatus(Paths.get(userTracksDir));
     for(String trackName : tracksStatus.keySet()) {
-    	  GBrowseTrackStatus trackStatus = tracksStatus.get(trackName);
-    	  String status = 
+    	  if(trackName.contains(datasetId)) {
+    	    GBrowseTrackStatus trackStatus = tracksStatus.get(trackName);
+    	    String status = 
     			  trackStatus.getStatusIndicator() +
     			  (UploadStatus.ERROR.name().equals(trackStatus.getStatusIndicator()) ? ": " + trackStatus.getErrorMessage() : "");
-    	  jsonStatusList.put(new JSONObject()	  
+    	    jsonStatusList.put(new JSONObject()	  
     			  .put("dataFileName", GBrowseUtils.composeDatafileName(trackName))
     			  .put("status", status));
+    	  }
     }
     return Response.ok(new JSONObject().put("results", jsonStatusList).toString()).build();
   }
