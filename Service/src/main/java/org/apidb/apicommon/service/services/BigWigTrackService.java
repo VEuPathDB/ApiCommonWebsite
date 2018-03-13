@@ -5,7 +5,6 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.nio.file.StandardOpenOption;
 import java.util.List;
 import java.util.Map;
 
@@ -48,6 +47,9 @@ public class BigWigTrackService extends UserService {
 		  "/user-datasets/" + USER_DATASET_ID_MACRO +
 		  "/user-datafiles/" + DATAFILE_NAME_MACRO;
   
+  /**
+   * This configuration file template is intended for bigwig tracks only.
+   */
   private static String CONFIGURATION_TEMPLATE = 
 		  "[track_" + TRACK_NAME_MACRO + ":database]\n" +
 		  "db_adaptor    = Bio::DB::BigWig\n" +
@@ -128,6 +130,13 @@ public class BigWigTrackService extends UserService {
     return Response.noContent().build();
   }
   
+  /**
+   * For a the provided dataset id, list the gbrowse upload status of each of the included bigwig tracks.
+   * Ultimately, this service may apply to more than just bigwig tracks.
+   * @param datasetId
+   * @return
+   * @throws WdkModelException
+   */
   @GET
   @Path("user-datasets/{datasetId}/monitor-bigwig-tracks")
   @Produces(MediaType.APPLICATION_JSON)
@@ -175,7 +184,7 @@ public class BigWigTrackService extends UserService {
         GBrowseUtils.setPosixPermissions(trackSourcePath, GLOBAL_READ_WRITE_PERMS);
       }
       else {
-        throw new WdkModelException("Bad http status - " + response.getStatus() + " : " + response.getStatusInfo());
+        throw new WdkModelException("Failed to upload the track - " + response.getStatus() + " : " + response.getStatusInfo());
       }
     }
     catch (IOException ioe) {
@@ -184,24 +193,6 @@ public class BigWigTrackService extends UserService {
     finally {
       response.close();
       client.close();
-    }
-  }
-
-  /**
-   * Create the track status file as needed and populate it with the current status and any error msg.
-   * @param trackPath
-   * @param status
-   * @param msg
-   * @throws WdkModelException
-   */
-  protected void manageStatusFile(String trackPath, UploadStatus status, String msg) throws WdkModelException {
-    java.nio.file.Path trackStatusFilePath = Paths.get(trackPath, GBrowseTrackStatus.TRACK_STATUS_FILE_NAME);
-    try {
-    	  Files.write(trackStatusFilePath, (status + " : " + msg).getBytes(), StandardOpenOption.CREATE);
-      GBrowseUtils.setPosixPermissions(trackStatusFilePath, GLOBAL_READ_WRITE_PERMS);
-    }  
-    catch (IOException ioe) {
-      throw new WdkModelException(ioe);
     }
   }
   
