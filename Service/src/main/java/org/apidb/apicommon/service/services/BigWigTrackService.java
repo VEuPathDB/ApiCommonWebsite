@@ -142,12 +142,9 @@ public class BigWigTrackService extends UserService {
   @Produces(MediaType.APPLICATION_JSON)
   public Response monitorTracks(@PathParam("datasetId") String datasetId) throws WdkModelException {
     long userId = getPrivateRegisteredUser().getUserId();
-    java.nio.file.Path userTracksDir = GBrowseUtils.getUserTracksDirectory(getWdkModel(), userId);
-    if(userTracksDir == null) {
-    	  throw new WdkModelException("The user does not have a gbrowse upload tracks directory.");
-    }
+    String userTracksDir = GBrowseUtils.getUserTracksDirectory(getWdkModel(), userId).toString();
     JSONArray jsonStatusList = new JSONArray();
-    Map<String, GBrowseTrackStatus> tracksStatus = GBrowseUtils.getTracksStatus(userTracksDir);
+    Map<String, GBrowseTrackStatus> tracksStatus = GBrowseUtils.getTracksStatus(Paths.get(userTracksDir));
     for(String trackName : tracksStatus.keySet()) {
     	  GBrowseTrackStatus trackStatus = tracksStatus.get(trackName);
     	  String status = 
