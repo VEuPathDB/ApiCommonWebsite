@@ -80,3 +80,14 @@ sub getProfile {
 1;
 
 
+# HostDB mmusC57BL6J_Saeij_Jeroen_strains_rnaSeq_RSRC
+package ApiCommonWebsite::View::GraphPackage::Templates::Similarity::DS_b8755b3393;
+
+sub getProfile {
+  my ($self) = @_;
+  my $pset = 'Murine macrophages infected by 29 different strains of T. gondii [htseq-union - unstranded - fpkm - unique]';
+
+  return $pset;
+}
+1;
+
