@@ -8,7 +8,6 @@ import java.nio.file.StandardCopyOption;
 import java.nio.file.StandardOpenOption;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import javax.ws.rs.CookieParam;
 import javax.ws.rs.GET;
@@ -26,7 +25,6 @@ import javax.ws.rs.core.Response;
 import org.apidb.apicommon.model.gbrowse.GBrowseTrackStatus;
 import org.apidb.apicommon.model.gbrowse.GBrowseUtils;
 import org.apidb.apicommon.model.gbrowse.UploadStatus;
-import org.gusdb.fgputil.IoUtil;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.service.service.user.UserService;
 import org.json.JSONArray;
@@ -97,64 +95,35 @@ public class BigWigTrackService extends UserService {
 	String trackName = GBrowseUtils.composeTrackName(datasetId, datafileName);
 
 	long userId = getPrivateRegisteredUser().getUserId();
-	java.nio.file.Path userTracksDir = GBrowseUtils.getUserTracksDirectory(getWdkModel(), userId);
+	String userTracksDir = GBrowseUtils.getUserTracksDirectory(getWdkModel(), userId).toString();
 	
-	// Build out the user upload id directory if necessary
-	if(userTracksDir != null) {
-	  Map<String, GBrowseTrackStatus> tracksStatus = GBrowseUtils.getTracksStatus(userTracksDir);
-	  
-    	  List<String> successfullyUploadedTracks = tracksStatus.values().stream()
-        .filter(ts -> UploadStatus.COMPLETED.name().equals(ts.getStatusIndicator()))
-    	    .map(ts -> ts.getName()).collect(Collectors.toList());
+	List<String> trackNamesIneligibleForUpload = GBrowseUtils.identifyTrackNamesIneligibleForUpload(userTracksDir);
     	  
-    	  // If the track was successfully uploaded to the GBrowse uploaded track file system, do nothing
-    	  if(!successfullyUploadedTracks.contains(trackName)) {
-    		String trackPath = Paths.get(userTracksDir.toString(), trackName).toString();
-    		java.nio.file.Path trackSourcePath = Paths.get(trackPath, "SOURCES", trackName);
-    		try {
-    			
-    		  // This directory likely already exists for error'd/in progress tracks
-    		  IoUtil.createOpenPermsDirectory(Paths.get(trackPath));
-    		  
-    		  // Create status file is necessary and set it to in progress.
-    		  manageStatusFile(trackPath,UploadStatus.IN_PROGRESS, "");
-    		  
-    		  // This directory likely already exists for error'd/in progress tracks
-    		  IoUtil.createOpenPermsDirectory(Paths.get(trackPath, "SOURCES"));
-    		  
-    		  // This is a vanilla configuration file that assumes the datafile type to
-    		  // be that of a bigwig file.
-          String configurationFileData = CONFIGURATION_TEMPLATE
-        		.replace(TRACK_SOURCE_PATH_MACRO, trackSourcePath.toString())
-        		.replace(TRACK_NAME_MACRO, trackName);
-          java.nio.file.Path configurationFilePath = Paths.get(trackPath, trackName + ".conf");
-          
-          // Truncates and re-writes the file for error'd/in progress tracks
-          Files.write(configurationFilePath, configurationFileData.getBytes());
-          GBrowseUtils.setPosixPermissions(configurationFilePath, GLOBAL_READ_WRITE_PERMS);
-        }
-        catch(IOException ioe) {
-        	  // Report any error in the status file.
-        	  manageStatusFile(trackPath, UploadStatus.ERROR, "Unable to create the custom track: " + trackName);
-        	  throw new WdkModelException("Unable to create the custom track: " + trackName, ioe);
-        }
-    		try {
-    		  // Calling the user dataset binary datafile download service to drop in the bigwig file.	
-    		  String downloadUrl = BINARY_DATAFILE_DOWNLOAD_URL
-    			.replace(BASE_URI_MACRO, getBaseUri())
-    			.replace(USER_ID_MACRO, String.valueOf(userId))
-    			.replace(USER_DATASET_ID_MACRO, datasetId)
-    			.replace(DATAFILE_NAME_MACRO, datafileName);
-          callUserDatasetBinaryDownloadService(downloadUrl, trackSourcePath, authCookie, sessionCookie);
-    		}
-    		catch(WdkModelException wme) {
-    		  // Report any error returned by the dataset binary datafile service in the status file.
-          manageStatusFile(trackPath, UploadStatus.ERROR, wme.getMessage());
-          throw new WdkModelException(wme);
-    		}
-    		// Set status to completed
-        manageStatusFile(trackPath, UploadStatus.COMPLETED, "");
+    	// If the track is eligible for upload (not uploaded or uploaded attempt ended in error) continue
+    	// with upload.  Otherwise, do nothing.
+    	if(!trackNamesIneligibleForUpload.contains(trackName)) {
+
+    	  // Build out as much of the user upload track scaffold as necessary.  Return the location where the
+    	  // output of binary datafile download service is to be placed.
+      String trackSourcePath = GBrowseUtils.assembleGBrowseTrackUploadScaffold(userTracksDir,
+    		  trackName, CONFIGURATION_TEMPLATE);
+
+      try {
+    		// Call the user dataset binary datafile download service to drop in the bigwig file.	
+    		String downloadUrl = BINARY_DATAFILE_DOWNLOAD_URL
+    		 .replace(BASE_URI_MACRO, getBaseUri())
+    		 .replace(USER_ID_MACRO, String.valueOf(userId))
+    		 .replace(USER_DATASET_ID_MACRO, datasetId)
+    		 .replace(DATAFILE_NAME_MACRO, datafileName);
+          callUserDatasetBinaryDownloadService(downloadUrl, Paths.get(trackSourcePath), authCookie, sessionCookie);
     	  }
+    	  catch(WdkModelException wme) {
+    	    // Report any error returned by the dataset binary datafile service in the status file.
+        GBrowseUtils.manageStatusFile(userTracksDir, trackName, UploadStatus.ERROR, wme.getMessage());
+        throw new WdkModelException(wme);
+      }
+    	  // Set status to completed
+      GBrowseUtils.manageStatusFile(userTracksDir, trackName, UploadStatus.COMPLETED, "");
 	}
     return Response.noContent().build();
   }
