@@ -7,6 +7,14 @@
 
   <table name="communityLinks">
          <row>
+	          <attribute name="title"><![CDATA[Fungal Secretome Database]]></attribute>
+            <attribute name="url"><![CDATA[http://fsd.snu.ac.kr/blast.php]]></attribute>
+        </row>
+         <row>
+	          <attribute name="title"><![CDATA[FunSecKB2]]></attribute>
+            <attribute name="url"><![CDATA[http://bioinformatics.ysu.edu/secretomes/fungi2/index.php]]></attribute>
+        </row>
+         <row>
 	          <attribute name="title"><![CDATA[PhytoPathDB]]></attribute>
             <attribute name="url"><![CDATA[http://www.phytopathdb.org]]></attribute>
         </row>
