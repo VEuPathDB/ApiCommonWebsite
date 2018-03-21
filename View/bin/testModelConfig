@@ -5,38 +5,82 @@ use lib $ENV{GUS_HOME};
 use WDK::Model::ModelConfig;
 use Data::Dumper;
 
+chomp(my $this = `basename $0`);
+
+usage() unless $ARGV[0];
+
 my $c = new WDK::Model::ModelConfig($ARGV[0]);
 
+########################################################################
+
+print '=' x 30, "\n";
+print "Test property name syntax\n";
 print '=' x 30, "\n";
 
-print 'AppDb dbiDsn '   . $c->getAppDbDbiDsn . "\n";
-print 'AppDb login '    . $c->getAppDbLogin . "\n";
-print 'AppDb password ' . $c->getAppDbPassword . "\n";
-
-print 'UserDb dbiDsn '   . $c->getUserDbDbiDsn . "\n";
-print 'UserDb login '    . $c->getUserDbLogin . "\n";
-print 'UserDb password ' . $c->getUserDbPassword . "\n";
-
-print 'modelName ' . $c->getModelName . "\n";
-
-
-
-print "email subject: " . $c->getEmailSubject() . "\n";
-print "email subject: " . $c->emailSubject . "\n";
 print "webserviceUrl: " . $c->webServiceUrl . "\n";
 
-print 'login  ' . $c->getAppDb->getLogin . "\n";
-print 'login(back.compat.)  ' . $c->getLogin . "\n";
-print 'password  ' . $c->getAppDb->getPassword . "\n";
-print 'password(back.compat.)  ' . $c->getPassword . "\n";
-print 'app dbiDsn  ' . $c->getAppDb->getDbiDsn . "\n";
-print 'user dbiDsn  ' . $c->getUserDb->getDbiDsn . "\n";
-print 'dbiDsn(back.compat.)  ' . $c->getDbiDsn . "\n";
-print 'dbiDsn(via hash)  ' . $c->{appDb}->{dbiDsn} . "\n";;
-print 'connectstring(via hash)  ' . $c->{appDb}->{connectString} . "\n";;
+print 'appDb connectstring  '      . $c->appDb->connectString . "\n";;
+print 'appDb login  '              . $c->appDb->login         . "\n";;
+print 'appDb password  '           . $c->appDb->password      . "\n";;
+print 'appDb dbiDsn '              . $c->appDb->dbiDsn        . "\n";;
 
-print 'showConnectionsDuration(via hash)  ' . $c->{appDb}->{showConnectionsDuration} . "\n";;
+print 'userDb connectstring  '     . $c->userDb->connectString . "\n";;
+print 'userDb login  '             . $c->userDb->login         . "\n";;
+print 'userDb password  '          . $c->userDb->password      . "\n";;
+print 'userDb dbiDsn '             . $c->userDb->dbiDsn        . "\n";;
 
-print "c->userDb->login " . $c->appDb->login . "\n";
+print 'accountDb connectstring  '  . $c->accountDb->connectString . "\n";;
+print 'accountDb login  '          . $c->accountDb->login         . "\n";;
+print 'accountDb password  '       . $c->accountDb->password      . "\n";;
+print 'accountDb dbiDsn '          . $c->accountDb->dbiDsn        . "\n";;
 
-print "c->appDb->dbiDsn: " . $c->appDb->dbiDsn . "\n";
+print 'showConnectionsDuration ' . $c->appDb->showConnectionsDuration . "\n";;
+
+print "email subject: " . trim($c->emailSubject) . "\n";
+
+########################################################################
+
+print '=' x 30, "\n";
+print "Test getter syntax\n";
+print '=' x 30, "\n";
+
+print 'AppDb connectstring '     . $c->getAppDb->getConnectString  . "\n";
+print 'AppDb login '             . $c->getAppDb->getLogin          . "\n";
+print 'AppDb password '          . $c->getAppDb->getPassword       . "\n";
+print 'AppDb dbiDsn '            . $c->getAppDb->getDbiDsn         . "\n";
+
+print 'UserDb connectstring '    . $c->getUserDb->getConnectString . "\n";
+print 'UserDb login '            . $c->getUserDb->getLogin         . "\n";
+print 'UserDb password '         . $c->getUserDb->getPassword      . "\n";
+print 'UserDb dbiDsn '           . $c->getUserDb->getDbiDsn        . "\n";
+
+print 'AccountDb connectstring ' . $c->getAccountDb->getConnectString . "\n";
+print 'AccountDb login '         . $c->getAccountDb->getLogin    . "\n";
+print 'AccountDb password '      . $c->getAccountDb->getPassword . "\n";
+print 'AccountDb dbiDsn '        . $c->getAccountDb->getDbiDsn   . "\n";
+
+print 'modelName ' . $c->getModelName . "\n";
+print "email subject: " . trim($c->getEmailSubject()) . "\n";
+
+########################################################################
+
+
+sub trim {
+  my $s = shift;
+  $s =~ s/^\s+//;
+  $s =~ s/\s+$//;
+  return $s;
+}
+
+sub usage {
+  print <<EOF;
+Test and examples of WDK::Model::ModelConfig, a Perl module
+for parsing WDK model-config.xml.
+
+Usage:
+  $this <model_name>
+e.g.
+  $this AmoebaDB
+EOF
+  exit;
+}
