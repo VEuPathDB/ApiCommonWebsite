@@ -10,6 +10,7 @@ import org.apidb.apicommon.service.services.TranscriptToggleService;
 import org.eupathdb.common.service.EuPathServiceApplication;
 import org.gusdb.fgputil.SetBuilder;
 import org.gusdb.wdk.service.service.SessionService;
+import org.apidb.apicommon.service.services.JBrowseService;
 
 public class ApiWebServiceApplication extends EuPathServiceApplication {
  
@@ -24,6 +25,7 @@ public class ApiWebServiceApplication extends EuPathServiceApplication {
       .add(TranscriptToggleService.class)
       .add(ApiSessionService.class)
       .add(BigWigTrackService.class)
+              .add(JBrowseService.class)
 
       .toSet();
   }
