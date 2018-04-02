@@ -19,6 +19,8 @@ import java.io.InputStreamReader;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.service.service.WdkService;
 
+import org.apache.log4j.Logger;
+
 //InterruptedException
 
 //import org.json.JSONArray;
@@ -27,12 +29,13 @@ import org.json.JSONObject;
 @Path("/jbrowse")
 public class JBrowseService extends WdkService {
 
+    private static final Logger LOG = Logger.getLogger(JBrowseService.class);
 
     @GET
     @Path("stats/global")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getJbrowseFeatures(@QueryParam("feature") String feature) throws WdkModelException {
-        return Response.ok(new JSONObject().toString()).build();
+        return Response.ok(new JSONObject().put("featureDensity", 0.0002).toString()).build();
     }
 
 
@@ -46,6 +49,7 @@ public class JBrowseService extends WdkService {
 
         String gusHome = getWdkModel().getGusHome();
 
+
         List<String> command = new ArrayList<String>();
         command.add(gusHome + "/bin/jbrowseFeatures");
         command.add(gusHome);
@@ -54,25 +58,16 @@ public class JBrowseService extends WdkService {
         command.add(end);
         command.add(feature);
 
-
         ProcessBuilder pb = new ProcessBuilder(command);
-
         Map<String, String> env = pb.environment();
         env.put("GUS_HOME", gusHome);
 
+        pb.redirectErrorStream(true);
+
         Process p = pb.start();
-        p.waitFor();
 
-        InputStreamReader isr; 
-        if(p.exitValue() != 0) {
-            isr = new InputStreamReader(p.getErrorStream());
-        }
-        else {
-            isr = new InputStreamReader(p.getInputStream());
-        }
+        BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
 
-
-        BufferedReader br = new BufferedReader(isr);
 
         String result = "";
         String line;
@@ -80,6 +75,7 @@ public class JBrowseService extends WdkService {
             result += line;
         }
 
+        p.waitFor();
 
         if(p.exitValue() != 0) {
             throw new RuntimeException(result);
