@@ -392,7 +392,6 @@ sub init {
   my $self = shift;
   $self->SUPER::init(@_);
 
-#  $self->setXAxisLabel("hours");
   my @colors = ('gray','gray','#D87093','#D87093');
 
   # Draw the diff first in light grey ... then the min rpkm will go on top
@@ -506,7 +505,61 @@ sub init {
 }
 1;
 
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_d2ff7c7826;
+use base qw( ApiCommonWebsite::View::GraphPackage::Templates::RNASeq );
+use strict;
 
+sub getGraphType { 'line' }
+sub excludedProfileSetsString { '' }
+sub getSampleLabelsString { '' }
+sub getColorsString { '#8F006B'  }
+sub getForceXLabelsHorizontalString { 'false' }
+sub getBottomMarginSize { 8 }
+sub getExprPlotPartModuleString { 'RNASeq' }
+sub getXAxisLabel { '${linePlotXAxisLabel}' }
+sub switchStrands {
+   if ('false' eq 'true') {
+     return 1;
+   } else {
+     return 0;
+   }
+
+}
+
+sub finalProfileAdjustments {
+  my ($self, $profile) = @_;
+
+  $profile->setSmoothLines(0);
+  $profile->setXaxisLabel("Hour");
+}
+
+1;
+
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_f595797fd2;
+use base qw( ApiCommonWebsite::View::GraphPackage::Templates::RNASeq );
+use strict;
+
+sub finalProfileAdjustments {
+  my ($self, $profile) = @_;
+
+  $profile->setSmoothLines(0);
+  $profile->setXaxisLabel("Hour");
+}
+
+1;
+
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_d9ee583dcc;
+use base qw( ApiCommonWebsite::View::GraphPackage::Templates::RNASeq );
+use strict;
+
+sub finalProfileAdjustments {
+  my ($self, $profile) = @_;
+
+  $profile->setSmoothLines(0);
+  $profile->setXaxisLabel("Hour");
+}
+
+1;
 
 #--------------------------------------------------------------------------------
 # TEMPLATE_ANCHOR rnaSeqGraph
