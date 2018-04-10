@@ -28,46 +28,38 @@
     <p><strong>We are pleased to announce the release of AmoebaDB 37</strong></p>
       
       <section>
-      <h3><b>Introducing ClinEpiDB, a new member of the EuPathDB family of databases:</b></h3>
+      <h3><b>New data in AmoebaDB 37</b></h3>
       <div style="margin-left: 3em;">
       
-          <ul>
-            <li>We are excited to announce the launch of 
-                <a href="http://www.clinepidb.org/" target="_blank">ClinEpiDB</a>, 
-                which hosts clinical and epidemiological data for the infectious disease research community. The current release contains data from the 
-                <a href="https://www.niaid.nih.gov/research/east-africa-icemr" target="_blank">PRISM</a> 
-                study on malaria in Uganda. Check out this 
-                <a href="https://www.youtube.com/watch?v=535PcFrBH8M&feature=youtu.be" target="_blank">video</a> 
-                to learn more about our newest EuPathDB resource!
-                </li>
-          </ul>
-       </div>
-      </section>    
-      
+      <h4>Transcriptomics data</h4>
+           <ul>
+             <li><a href="http://amoebadb.org/amoeba/app/record/dataset/DS_5deaeee3cd">Trophozoite transcriptome of <i>A. castellani</i> &ndash; 
+             Transcriptome for <i>Acanthamoeba castellanii</i> strain Neff determined by Illumina sequencing of axenic culture collected after 48 hours.  
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/29559848" target="_blank">Shabardina <i>et al.</i></a><br>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/29284403" target="_blank">Wojciech <i>et al.</i></a><br>
+             </li>
+             <li><a href="http://amoebadb.org/amoeba/app/record/dataset/DS_4cee5cc717">Trophozoite transcriptome of <i>E. histolytica</i> &ndash; 
+             Transcriptome for <i>Entamoeba histolytica</i> strain HM-1:IMSS determined by Illumina sequencing of axenic culture collected after 48 hours.  
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/29559848" target="_blank">Shabardina <i>et al.</i></a><br>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/29284403" target="_blank">Wojciech <i>et al.</i></a><br>
+             </li>
+           </ul>   
       
       <section>
-      <h3><b>New features in this release</b></h3>
+      <h3><b>New features in AmoebaDB 37</b></h3>
       <div style="margin-left: 3em;">
       
-      <h4>New Workspace </h4>
+      <h4>New Data Sharing between EuPathDB Galaxy and AmoebaDB</h4>
       
           <ul>
-            <li>Search parameters are now left justified. The Get Answer button remains center justified below the parameters. Parameter help 
-                icons, which offer information concerning the parameters when hovered over, now appear before the parameter name instead of after.
+            <li>EuPathDB Galaxy site now has a EuPathDB Export Tools section which contains a tool for exporting Bigwig Files to EuPathDB.  To use this tool, 
+                use the Analyze My Experiment tab to reach EuPathDB Galaxy.  Open the EuPathDB Export tools Bigwig Files to  and locate the EuPathDB Export Tools in the left panel
                 </li>
-            <li>The Organism Parameter, the first parameter on search pages, has a new look and now contains a filter box for quickly finding 
-                your organism of interest.  Type any portion of an organism name (at leaset two letters of the genus, species, or strain) 
-                in the filter box and the tree collapses to show 
-                only those organisms containing your entry.  To return to the full tree, click the X in the filter box.  
+            <li>My Data Sets page is available 
                 </li>
           </ul>
-          
-   
-
-          
         </div>
       </section>
-      
       
       <section>
         <h3><b>No New data in this release</b></h3> 

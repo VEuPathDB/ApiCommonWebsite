@@ -24,6 +24,63 @@
 -->
 
 <record>
+  <attribute name="headline">CryptoDB 37 Released</attribute>
+  <attribute name="date">15 Apr 2018 13:00</attribute>
+  <attribute name="tag">cryptodb04_18_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of CryptoDB 37</strong></p>
+      
+       <section>
+      <h3><b>New data in CryptoDB 37</b></h3>
+        <div style="margin-left: 3em;">
+        <h4>New Annotation</h4>
+         <ul>  
+           <li> <a href="http://cryptodb.org/cryptodb/app/record/dataset/DS_1ef76fc0ef"><i>Cryptosporidium parvum</i> IowaII</a> &mdash; 
+            A new annotation was produced by the Kissinger lab at the University of Georgia and integrated into CryptoDB.  The new annotation can be downloaded from 
+            <a href="http://cryptodb.org/common/downloads/Current_Release/CparvumIowaII/">CryptoDB Downloads</a>.
+               </li>
+           <li> <a href="http://cryptodb.org/cryptodb/app/record/dataset/DS_f96bc6ca59"><i>Cryptosporidium meleagridis</i> strain UKMEL1</a> &mdash; 
+            The annotation for this genome appears for the first time in CryptoDB.  Annotation provided by the Kissinger lab at the University of Georgia and 
+            can be downloaded from 
+            <a href="http://cryptodb.org/common/downloads/Current_Release/CmeleagridisUKMEL1/">CryptoDB Downloads</a>.  
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/27519257" target="_blank">Ifeono et al.</a><br>
+               </li>
+         </ul>
+        <div>
+      </section>
+      
+
+      
+      <section>
+      <h3><b>New features in this release</b></h3>
+       <div style="margin-left: 3em;">
+      
+       
+        </div>
+      </section>
+      
+
+      
+      <section>
+         <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+
+    ]]>
+  </attribute>
+</record>
+
+
+
+
+
+<record>
   <attribute name="headline">CryptoDB 36 Released</attribute>
   <attribute name="date">19 Feb 2018 13:00</attribute>
   <attribute name="tag">cryptodb02_18_release</attribute>
