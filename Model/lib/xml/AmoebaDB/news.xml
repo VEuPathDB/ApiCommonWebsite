@@ -17,6 +17,73 @@
     </record>
 --> 
 
+
+<record>
+  <attribute name="headline">AmoebaDB 37 Released</attribute>
+  <attribute name="date">15 Apr 2018 13:00</attribute>
+  <attribute name="tag">amoebadb04_18_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of AmoebaDB 37</strong></p>
+      
+      <section>
+      <h3><b>Introducing ClinEpiDB, a new member of the EuPathDB family of databases:</b></h3>
+      <div style="margin-left: 3em;">
+      
+          <ul>
+            <li>We are excited to announce the launch of 
+                <a href="http://www.clinepidb.org/" target="_blank">ClinEpiDB</a>, 
+                which hosts clinical and epidemiological data for the infectious disease research community. The current release contains data from the 
+                <a href="https://www.niaid.nih.gov/research/east-africa-icemr" target="_blank">PRISM</a> 
+                study on malaria in Uganda. Check out this 
+                <a href="https://www.youtube.com/watch?v=535PcFrBH8M&feature=youtu.be" target="_blank">video</a> 
+                to learn more about our newest EuPathDB resource!
+                </li>
+          </ul>
+       </div>
+      </section>    
+      
+      
+      <section>
+      <h3><b>New features in this release</b></h3>
+      <div style="margin-left: 3em;">
+      
+      <h4>New Workspace </h4>
+      
+          <ul>
+            <li>Search parameters are now left justified. The Get Answer button remains center justified below the parameters. Parameter help 
+                icons, which offer information concerning the parameters when hovered over, now appear before the parameter name instead of after.
+                </li>
+            <li>The Organism Parameter, the first parameter on search pages, has a new look and now contains a filter box for quickly finding 
+                your organism of interest.  Type any portion of an organism name (at leaset two letters of the genus, species, or strain) 
+                in the filter box and the tree collapses to show 
+                only those organisms containing your entry.  To return to the full tree, click the X in the filter box.  
+                </li>
+          </ul>
+          
+   
+
+          
+        </div>
+      </section>
+      
+      
+      <section>
+        <h3><b>No New data in this release</b></h3> 
+         <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+
+    ]]>
+  </attribute>
+</record>
+
+
 <record>
   <attribute name="headline">AmoebaDB 36 Released</attribute>
   <attribute name="date">19 Feb 2018 13:00</attribute>
