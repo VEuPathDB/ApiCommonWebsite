@@ -456,7 +456,7 @@ sub init {
   my $dynamics = $graphObjects->[0];
   my $baseTitle = $dynamics->getPlotTitle();
   $dynamics->setPointsPch([ 'NA', 'NA', 'NA']);
-  $dynamics->setColors(['blue','black','red']);
+  $dynamics->setColors(['red','black','blue']);
   $dynamics->setHasExtraLegend(1);
   $dynamics->setPlotTitle($baseTitle. " - mRNA Dynamics");
   $dynamics->setYaxisLabel('Modeled Expression Values');
