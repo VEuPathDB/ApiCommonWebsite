@@ -82,16 +82,16 @@
            </ul>
 
            
-        <h4>TODO Updated Functional Annotation</h4>
+        <h4>Updated Functional Annotation</h4>
         <div style="margin-left: 3em;">
         
             
-        <a href="https://docs.google.com/spreadsheets/d/19V1EBijs67XCTgBW7UBvY5vEMHR1DAGVWVHIOC578ws/edit?usp=sharing" target="_blank">Summary of annotation updates</a> which include products, GO terms, EC numbers, gene names, synonyms, publications and notes from curators.
+        <a href="hhttps://docs.google.com/spreadsheets/d/1c_CFbU94QclOLVXS6kZOncOrzDNJIagrW8mwioO67JA/edit?usp=sharing" target="_blank">Summary of annotation updates</a> which include products, GO terms, EC numbers, gene names, synonyms, publications and notes from curators.
         <br><br>
-        Functional annotations in FungiDB 36 have been updated for the following genomes:
+        Functional annotations in FungiDB 37 have been updated for the following genomes:
 
         <style>
-           #FunctAnnot_Bld36 table, #FunctAnnot_Bld36 td, #FunctAnnot_Bld36 th, #FunctAnnot_Bld36 tr {
+           #FunctAnnot_Bld37 table, #FunctAnnot_Bld37 td, #FunctAnnot_Bld37 th, #FunctAnnot_Bld37 tr {
            text-align : center;
            padding-left: 5px;
            padding-right: 5px;
@@ -99,30 +99,22 @@
            padding-bottom: 5px;
            border: 1px solid black;
            }
-           #FunctAnnot_Bld36 {
+           #FunctAnnot_Bld37 {
            margin-left : 5 em;
            }
          </style> 
-           <table id="FunctAnnot_Bld36"> 
+           <table id="FunctAnnot_Bld37"> 
            <tr>
              <th>FungiDB Genome Version</th>
              <th>Genes Updated</th>
            </tr>
            <tr>
-             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on DB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_071f05cd56"><i>Aspergillus fumigatus</i> Af293</a></td>
-             <td>210 genes</td>
-           </tr>
-           <tr>
              <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on DB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_8f0322af73"><i>Cryptococcus neoformans</i> H99</a></td>
-             <td>220 genes</td>
+             <td>452 genes</td>
            </tr>
            <tr>
-             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on DB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4d171eb9ea"><i>Cryptococcus neoformans</i> JEC21</a></td>
-             <td>632 genes</td>
-           </tr>
-           <tr>
-             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on DB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_62f0e6170f"><i>Neurospora crassa</i> OR74A </a></td>
-             <td>2890 genes</td>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on DB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_cd90ec7602"><i>Fusarium graminearum</i> PH-1</a></td>
+             <td>4243 genes</td>
            </tr>
            </table>
            <br>
@@ -131,15 +123,15 @@
        
 
         <br><br>
-       <h4>TODO  Curated User Comments:</h4>  
+       <h4>Curated User Comments:</h4>  
         Gene page comments that are entered by users are curated at GeneDB and regularly integrated as 
-        functional annotations in FungiDB.  22 user comments have been reviewed and updated in FungiDB 36.
+        functional annotations in FungiDB.  59 user comments (unique) have been reviewed and updated in FungiDB 37.
        <br><br>
         
         <div style="margin-left: 3em;">
         
         <style>
-           #UComment_Bld36 table, #UComment_Bld36 td, #UComment_Bld36 th, #UComment_Bld36 tr {
+           #UComment_Bld37 table, #UComment_Bld37 td, #UComment_Bld37 th, #UComment_Bld37 tr {
            text-align : center;
            padding-left: 5px;
            padding-right: 5px;
@@ -147,91 +139,31 @@
            padding-bottom: 5px;
            border: 1px solid black;
            }
-           #UComment_Bld36 {
+           #UComment_Bld37 {
            margin-left : 5 em;
            }
          </style> 
-           <table id="UComment_Bld36"> 
+           <table id="UComment_Bld37"> 
            <tr>
              <th>FungiDB Genome Version</th>
              <th>Comments Integrated</th>
            </tr>
            <tr>
-             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_071f05cd56"><i>Aspergillus fumigatus</i> Af293 </a></td>
-             <td> 2</td>
-           </tr>
-           <tr>
-             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4d171eb9ea"><i>Cryptococcus neoformans</i> JEC21</a></td>
-             <td> 15</td>
-           </tr>
-           <tr>
-             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_62f0e6170f"><i>Neurospora crassa </i> OR74A</a></td>
-             <td> 5</td>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_8f0322af73"><i>Cryptococcus neoformans</i> H99</a></td>
+             <td> 59</td>
            </tr>
           </table>
           <br>
           </div> 
           
           
-        <h4>TODO Updated Phenotype data for <i>Aspergillus</i> species:</h4>  
+        <h4>Annotations from MIPS Functional Catalogue Database:</h4>  
             <ul> 
-             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_7cdba4f78a">Manually curated <i>Aspergillus</i> Phenotypes </a> &ndash; 
-                 The literature-curated phenotype data from AspGD have now been completely loaded onto FungiDB. 
-                 The data have been reformatted in-line with EuPathDB's approach for phenotype annotation, where 
-                 we follow an "entity + quality" approach. We have converted the phenotypes from AspGD-curated 
-                 Ascomycete Phenotype Ontology (APO) to multiple ontologies: Phenotypic Quality Ontology (PATO) 
-                 for "quality" terms and Gene Ontology (GO), Fungal Gross Anatomy Ontology (FAO), Chemical Entities 
-                 of Biological Interest (ChEBI) and Ascomycete Phenotype Ontology (APO) for "entity" terms. We also 
-                 plan to improve the phenotype table (in gene pages) and the query structure in the coming releases. 
-                 See table below for details.
+             <li>Gene ontology (GO) annotations for <i>Fusarium graminearum</i> PH-1 from 
+             MIPS database were integrated as functional annotations in FungiDB 37.
              </li>
            </ul>  
        <br><br>
-        
-        <div style="margin-left: 3em;">
-        
-        <style>
-           #AspPheno_Bld36 table, #AspPheno_Bld36 td, #AspPheno_Bld36 th, #AspPheno_Bld36 tr {
-           text-align : center;
-           padding-left: 5px;
-           padding-right: 5px;
-           padding-top: 5px;
-           padding-bottom: 5px;
-           border: 1px solid black;
-           }
-           #AspPheno_Bld36 {
-           margin-left : 5 em;
-           }
-         </style> 
-           <table id="AspPheno_Bld36"> 
-           <tr>
-             <th>Species</th>
-             <th>Phenotype mappings</th>
-             <th>Genes with phenotypes</th>
-           </tr>
-           <tr>
-             <td><i>Aspergillus fumigatus</i> Af293</td>
-             <td>1205</td>
-             <td>282</td>
-           </tr>
-           <tr>
-             <td><i>Aspergillus nidulans</i> FGSC A4</td>
-             <td> 4881</td>
-             <td> 1064</td>
-           </tr>
-           <tr>
-             <td><i>Aspergillus niger</i> CBS 513.88</td>
-             <td> 262</td>
-             <td> 92</td>
-           </tr>
-           <tr>
-             <td><i>Aspergillus oryzae</i> RIB40</td>
-             <td> 219</td>
-             <td> 73</td>
-           </tr>
-          </table>
-          <br>
-          </div> 
       </div>    
       </section>
       
