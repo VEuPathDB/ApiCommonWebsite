@@ -51,27 +51,32 @@
              
            </ul>
            
-        <h4>TODO Transcriptomics data</h4>
+        <h4>Transcriptomics</h4>
            <ul>
-             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4ffc3f21b9">Transcriptome profiling of <i>Coccidioides posadasii</i> WT and &#x394;<i>cps1</i> mutant</a> &ndash; Spherules were collected from both strains. Paired&#45;end RNA&#45;Seq analysis was performed in duplicates. 
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/27481239" target="_blank">Narra <i>et al.</i></a>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_31af39c3b7">Comparative transcriptomes of yeast and hyphal forms in <i>Histoplasma capsulatum</i> G217B</a> &ndash; Spherules were collected from both strains. Paired&#45;end RNA&#45;Seq analysis was performed in duplicates. 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26177267" target="_blank">Gilmore <i>et al.</i></a>
              </li>
-             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4bd3a11499">Transcriptome analysis of the filamentous fungus <i>Aspergillus nidulans</i> directed to the global identification of promoters</a> &ndash; 
-                 <i>A. nidulans</i> transcriptome was accessed at 5 different growth conditions: nitrate, complete, ammonia, -N (4hr), and -N (72hr) media.
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/24299161" target="_blank">Sibthorp <i>et al.</i></a>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_be15e27935">Comparative transcriptomes of yeast and hyphal forms in <i>Histoplasma capsulatum</i> G186AR</a> &ndash; 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26177267" target="_blank">Gilmore <i>et al.</i></a>
              </li>
-             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_f5b8d4ff37">Microarray of <i>Fusarium graminearum</i> transcriptome during symptomless, symptomatic, and intermediate wheat disease symptoms</a> &ndash; Three replicates were collected from rachis internodes and compared to spikelet samples.
-
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/28466509" target="_blank">Brown <i>et al.</i></a>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_0a6c43682e">Comparative transcriptomes of yeast and hyphal forms in <i>Histoplasma capsulatum</i> H88</a> &ndash; 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26177267" target="_blank">Gilmore <i>et al.</i></a>
+             </li>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_d2ff7c7826">Multidimensional regulation in transcriptome during sexual development in <i>Neurospora crassa</i></a> &ndash; 
+                 Genome-wide analysis of <i>N. crassa</i> gene expression during sexual development. Transcriptomic sequencing was primed by random and multitargeted primers and accessed across eight time points encompassing the morphological changes and tissue and cellular development of maturing perithecia. 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/24243796" target="_blank">Gilmore <i>et al.</i></a>, 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/22626843" target="_blank">Gilmore <i>et al.</i></a>, 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/25329823" target="_blank">Gilmore <i>et al.</i></a>
+             </li>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_1b1cb2f10a">Small RNA sequence profiles during sexual development in <i>Neurospora crassa</i></a> &ndash; 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26109355" target="_blank">Wang <i>et al.</i></a>
              </li>
            </ul>
            
-       <h4>TODO Phenotype data</h4>
+       <h4>Phenotype data</h4>
            <ul>
-             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_c334877c42">Phenotypic analysis of <i>Neurospora crassa</i> knockout mutants</a> &ndash; A phenotypic pipeline was designed for high&#45;throughput analysis of 10 different traits during hyphal growth, asexual sporulation (macroconidiation), and the sexual cycle in knockout mutants from <i>Neurospora crassa</i>. Provider: Katherine Borkovich; dataset provided prior to publication.
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/17352902" target="_blank">Borkovich <i>et al.</i></a>
-             </li>
-             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_f10e32c6b8"><i>Neurospora</i> Genome Project Phenotype Image Collection</a> &ndash; Analysis of colony growth and morphology was performed on solid Vogel&#39;s minimal (MIN) medium. For each strain, the hyphae at the edge of the colony and plate growth were photographed. 
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_f10e32c6b8">Neurospora Genome Project Phenotype Image Collection</a> &ndash; 
+                 New images were added to this data set describing the systematic characterisation of colony growth and morphology of <i>Neurospora crassa</i> knock out mutants. 
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/17352902" target="_blank">Dunlap <i>et al.</i></a>
              </li>
            </ul>
