@@ -73,12 +73,14 @@
       <h3><b>Annotation News</b></h3>
       <div style="margin-left: 3em;">
        <h4>Updated Functional Annotation</h4>
-           Functional annotations in TriTrypDB 37 are current with GeneDB March 2018 GFF versions. 
+           
         <div style="margin-left: 3em;">
         
         
         <a href="https://docs.google.com/spreadsheets/d/1nYSTjjfV1JBf3ljDqiwdxgk9JlAEOJ-WMiTptnD0GLc/edit?usp=sharing" target="_blank">Summary of annotation updates</a> 
            which include products, GO terms, EC numbers, gene names, synonyms, publications and notes from curators. 
+        <br>
+        Functional annotations in TriTrypDB 37 are current with GeneDB March 2018 GFF versions. 
         <br><br>
         <style>
            #FunctAnnot_Bld37 table, #FunctAnnot_Bld37 td, #FunctAnnot_Bld37 th, #FunctAnnot_Bld37 tr {
