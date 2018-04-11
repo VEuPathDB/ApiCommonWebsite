@@ -53,23 +53,26 @@
            
         <h4>Transcriptomics</h4>
            <ul>
-             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_31af39c3b7">Comparative transcriptomes of yeast and hyphal forms in <i>Histoplasma capsulatum</i> G217B</a> &ndash; Spherules were collected from both strains. Paired&#45;end RNA&#45;Seq analysis was performed in duplicates. 
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_31af39c3b7">Comparative transcriptomes of yeast and hyphal forms in <i>Histoplasma capsulatum</i> G217B</a> &ndash; 
+                 To compare yeast and hyphal transcript expression patterns cultures were grown at 37C for yeast-phase growth and at room temperature (RT) for hyphal phase growth. Total RNA was then isolated from biological duplicates of yeast or hyphal cultures and strand specific cDNA libraries were created from poly(A)-enriched RNA and sequenced using paired-end deep-sequencing. 
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/26177267" target="_blank">Gilmore <i>et al.</i></a>
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_be15e27935">Comparative transcriptomes of yeast and hyphal forms in <i>Histoplasma capsulatum</i> G186AR</a> &ndash; 
+                 To compare yeast and hyphal transcript expression patterns cultures were grown at 37C for yeast-phase growth and at room temperature (RT) for hyphal phase growth. Total RNA was then isolated from biological duplicates of yeast or hyphal cultures and strand specific cDNA libraries were created from poly(A)-enriched RNA and sequenced using paired-end deep-sequencing.
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/26177267" target="_blank">Gilmore <i>et al.</i></a>
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_0a6c43682e">Comparative transcriptomes of yeast and hyphal forms in <i>Histoplasma capsulatum</i> H88</a> &ndash; 
+                 To compare yeast and hyphal transcript expression patterns cultures were grown at 37C for yeast-phase growth and at room temperature (RT) for hyphal phase growth. Total RNA was then isolated from biological duplicates of yeast or hyphal cultures and strand specific cDNA libraries were created from poly(A)-enriched RNA and sequenced using paired-end deep-sequencing.
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/26177267" target="_blank">Gilmore <i>et al.</i></a>
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_d2ff7c7826">Multidimensional regulation in transcriptome during sexual development in <i>Neurospora crassa</i></a> &ndash; 
                  Genome-wide analysis of <i>N. crassa</i> gene expression during sexual development. Transcriptomic sequencing was primed by random and multitargeted primers and accessed across eight time points encompassing the morphological changes and tissue and cellular development of maturing perithecia. 
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/24243796" target="_blank">Gilmore <i>et al.</i></a>, 
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/22626843" target="_blank">Gilmore <i>et al.</i></a>, 
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/25329823" target="_blank">Gilmore <i>et al.</i></a>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/24243796" target="_blank">Wang <i>et al. 2014</i></a>, 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/22626843" target="_blank">Wang <i>et al. 2012</i></a>, 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/25329823" target="_blank">Lehr <i>et al. 2014</i></a>
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_1b1cb2f10a">Small RNA sequence profiles during sexual development in <i>Neurospora crassa</i></a> &ndash; 
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26109355" target="_blank">Wang <i>et al.</i></a>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26109355" target="_blank">Wang <i>et al. 2015</i></a>
              </li>
            </ul>
            
