@@ -16,6 +16,67 @@
 --> 
 
 <record>
+  <attribute name="headline">ToxoDB 37 Released</attribute>
+  <attribute name="date">15 Apr 2018 13:00</attribute>
+  <attribute name="tag">toxodb04_18_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of ToxoDB 37</strong></p>
+      
+      <section>
+      <h3><b>New Data in ToxoDB 37</b></h3>
+      <div style="margin-left: 3em;">  
+
+      
+        <h4>Proteomics</h4>
+          <ul>
+             <li>
+               <a href="http://toxodb.org/toxo/app/record/dataset/DS_7cf16df1a2">Mitochondrial Matrix Quantitative Proteome</a> &mdash; 
+               Toxoplasma mitochondrial matrix proteome determined using two independent, biotin-labelling approaches: ascorbate peroxidase (APEX) approach and the BirA*/BioID approach. 
+               This data was provided pre-publication by Giel van Dooren, Australian National University.
+               <br>
+            </li>
+            <li>
+               <a href="http://toxodb.org/toxo/app/record/dataset/DS_7021f0d67f">Mitochondrial Matrix Proteome</a> &mdash; 
+               Toxoplasma mitochondrial matrix proteome determined using two independent, biotin-labelling approaches: ascorbate peroxidase (APEX) approach and the BirA*/BioID approach. Peptides are aligned to <i>T gondii</i> ME49. 
+               This data was provided pre-publication by Giel van Dooren, Australian National University.
+               <br>
+            </li>
+            <li>
+               <i>Toxoplasma gondii</i> RH N-terminal peptides from the Soldati-Favre lab, University of Zurich. 
+               <a href="http://www.ncbi.nlm.nih.gov/pubmed/28898199">Dogga et al.</a> &mdash; <br>
+               <div style="margin-left: 3em;">
+               <a href="http://toxodb.org/toxo/app/record/dataset/DS_f2a3eb5df6" target="_blank">Aligned to <i>Toxoplasma gondii</i> ME49. </a><br>
+               <a href="http://toxodb.org/toxo/app/record/dataset/DS_69ab031ad9" target="_blank">Aligned to <i>Toxoplasma gondii</i> GT1. </a>
+               </div>
+               <br>
+            </li>
+          </ul>  
+      </div>     
+      </section>
+      
+      <section>
+      <h3><b>New features in this release</b></h3>
+      <div style="margin-left: 3em;">
+      
+      </section>
+      
+      <section>
+         <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+
+    ]]>
+  </attribute>
+</record>
+
+
+<record>
   <attribute name="headline">ToxoDB 36 Released</attribute>
   <attribute name="date">19 Feb 2018 13:00</attribute>
   <attribute name="tag">toxodb02_18_release</attribute>
