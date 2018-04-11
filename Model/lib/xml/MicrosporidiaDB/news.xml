@@ -39,33 +39,8 @@
       <h3><b>New features in this release</b></h3>
             <div style="margin-left: 3em;">
       
-      <h4>XX</h4>
-      
-          <ul>
-            <li>Search parameters are now left justified. The Get Answer button remains center justified below the parameters. Parameter help 
-                icons, which offer information concerning the parameters when hovered over, now appear before the parameter name instead of after.
-                </li>
-            <li>The Organism Parameter, the first parameter on search pages, has a new look and now contains a filter box for quickly finding 
-                your organism of interest.  Type any portion of an organism name (at leaset two letters of the genus, species, or strain) 
-                in the filter box and the tree collapses to show 
-                only those organisms containing your entry.  To return to the full tree, click the X in the filter box.  
-                </li>
-          </ul>
-          
-          <h4>XX/h4>
-      
-          <ul>
-            <li>The new 
-                <a href="/a/showQuestion.do?questionFullName=GeneQuestions.GenesByParalogCount">Paralog Count search</a>
-                returns genes based on the number of assigned paralogs. Find genes that have a number of paralogs within the specified range. 
-                Paralogs are defined as genes from the same species that belong to the same OrthoMCL group.
-                </li>
-            <li>Find the search under the Orthology and Synteny category.
-                </li>
-          </ul>
-       
 
-        </div>
+            </div>
       </section>
 
       <section> 
