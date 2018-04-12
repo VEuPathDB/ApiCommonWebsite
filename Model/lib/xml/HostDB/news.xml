@@ -39,14 +39,14 @@
            <li>
             <a href="http://hostdb.org/hostdb/app/record/dataset/DS_4585d065bf"><i>M mulatta</i> infected with <i>P cynomolgi</i> over 100 days</a> &mdash; 
             Transcriptome of whole blood and bone marrow from <i>Macaca mulatta</i> infected with <i>Plasmodium cynomolgi</i> over 100 days
-            <a href="http://www.ncbi.nlm.nih.gov/pubmed/27590312">Joyner et al.</a><br>
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/27590312">Joyner et al.</a>  
             This data set has a Plasmodium component available in PlasmoDB as:
             <a href="http://plasmodb.org/plasmo/app/record/dataset/DS_40a06f276b">Transcriptome of <i>P cynomolgi</i> during 100-day infection in <i>M mulatta</i></a>.
            </li>  
            <li>
             <a href="http://hostdb.org/hostdb/app/record/dataset/DS_2202e54a9e"><i>Leishmania major</i> and <i>Leishmania amazonensis</i> RNAseq during human macrophage infection</a> &mdash; 
             RNAseq analysis of transcriptomes of human macrophage and parasite during an infection time course. 
-            <a href="http://www.ncbi.nlm.nih.gov/pubmed/27165796">Fernandes et al.</a><br>
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/27165796">Fernandes et al.</a>  
             This data set has a Leishmania component available in TriTrypDB as:
             <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_d18599afa8"><i>Leishmania major</i> RNAseq during human macrophage infection</a>.
            </li> 
