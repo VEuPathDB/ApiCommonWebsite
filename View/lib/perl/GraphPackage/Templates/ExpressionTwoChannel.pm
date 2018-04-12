@@ -462,11 +462,13 @@ sub init {
   my $pheromoneProfileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets([['pheromone experiments','values']]);
   my $pheromonePlot = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot::LogRatio->new(@_);
   $pheromonePlot->setProfileSets($pheromoneProfileSets);
+  $pheromonePlot->setXaxisLabel('');
   $pheromonePlot->setPartName('pheromone');
 
   my $elutriationProfileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets([['elutriation experiments','values']]);
   my $elutriationPlot = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot::LogRatio->new(@_);
   $elutriationPlot->setProfileSets($elutriationProfileSets);
+  $elutriationPlot->setXaxisLabel('');
   $elutriationPlot->setPartName('elutriation');
   
   my $cdc15ProfileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets([['cdc15 experiments','values']]);
