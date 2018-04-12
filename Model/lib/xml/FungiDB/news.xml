@@ -50,6 +50,7 @@
              </li>
              
            </ul>
+           <br>
            
         <h4>Transcriptomics</h4>
            <ul>
@@ -75,6 +76,7 @@
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/26109355" target="_blank">Wang <i>et al. 2015</i></a>
              </li>
            </ul>
+           <br>
            
        <h4>Phenotype data</h4>
            <ul>
@@ -83,7 +85,7 @@
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/17352902" target="_blank">Dunlap <i>et al.</i></a>
              </li>
            </ul>
-
+           <br>
            
         <h4>Updated Functional Annotation</h4>
         <div style="margin-left: 3em;">
@@ -125,7 +127,7 @@
        </div>
        
 
-        <br><br>
+        <br>
        <h4>Curated User Comments:</h4>  
         Gene page comments that are entered by users are curated at GeneDB and regularly integrated as 
         functional annotations in FungiDB.  59 user comments (unique) have been reviewed and updated in FungiDB 37.
@@ -166,7 +168,6 @@
              MIPS database were integrated as functional annotations in FungiDB 37.
              </li>
            </ul>  
-       <br><br>
       </div>    
       </section>
       
