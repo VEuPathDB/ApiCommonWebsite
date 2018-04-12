@@ -50,6 +50,10 @@ sub finalProfileAdjustments {
 
   $profile->setLegendLabels(\@legendLabels);
 
+ my $colorMap = "c(\"GT1 0 to 16 hour\" = \"#144BE5\", \"ME49 0 to 16 hour\" = \"#70598F\", \"ME49 0 to 44 hour\" = \"#5B984D\", \"RH 0 to 36 hour\" = \"#FA9B83\", \"VEG 0 to 16 hour\" = \"#EF724E\", \"VEG 0 to 44 hour\" = \"#E1451A\")";
+
+ $profile->setColorVals($colorMap); 
+
   return $self;
 }
 1;
