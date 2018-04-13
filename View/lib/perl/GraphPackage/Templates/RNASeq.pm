@@ -196,8 +196,6 @@ sub init {
   #print STDERR Dumper($line);
   $line->setPartName('parasitemia');
   $line->setProfileSets($profileSet);
-  #need to remember to make sure the colors are consistent for each monkey across all plot parts
-  #$line->setColors(["#440154FF", "#3B528BFF", "#21908CFF", "#5DC863FF", "#FDE725FF"]);
   $line->setYaxisLabel("Log 10 Parasites / uL");
   $line->setXaxisLabel("Day");
   $line->setPlotTitle("Parasitemia Summary - 100 Days");
@@ -211,20 +209,20 @@ sub init {
   profile.df.full$PROFILE_FILE <- profile.df.full$FACET
   profile.df.full$trash <- NULL
   profile.df.full$trash2 <- NULL
-  profile.df.full$LEGEND <- "  FPKM\n Not Loaded\n"
-  profile.df.full$LEGEND[profile.df.full$FACET == 'RIc14' & profile.df.full$ELEMENT_NAMES == 'Day 21'] <- "FPKM Loaded\n"
-  profile.df.full$LEGEND[profile.df.full$FACET == 'RSb14' & profile.df.full$ELEMENT_NAMES == 'Day 21'] <- "FPKM Loaded\n"
-  profile.df.full$LEGEND[profile.df.full$FACET == 'RMe14' & profile.df.full$ELEMENT_NAMES == 'Day 20'] <- "FPKM Loaded\n"
-  profile.df.full$LEGEND[profile.df.full$FACET == 'RFa14' & profile.df.full$ELEMENT_NAMES == 'Day 18'] <- "FPKM Loaded\n"
-  profile.df.full$LEGEND[profile.df.full$FACET == 'RFv13' & profile.df.full$ELEMENT_NAMES == 'Day 18'] <- "FPKM Loaded\n"
-  profile.df.full$LEGEND[profile.df.full$FACET == 'RIc14' & profile.df.full$ELEMENT_NAMES == 'Day 26'] <- "FPKM Loaded\n"
-  profile.df.full$LEGEND[profile.df.full$FACET == 'RSb14' & profile.df.full$ELEMENT_NAMES == 'Day 26'] <- "FPKM Loaded\n"
-  profile.df.full$LEGEND[profile.df.full$FACET == 'RFa14' & profile.df.full$ELEMENT_NAMES == 'Day 26'] <- "FPKM Loaded\n"
-  profile.df.full$LEGEND[profile.df.full$FACET == 'RSb14' & profile.df.full$ELEMENT_NAMES == 'Day 63'] <- "FPKM Loaded\n"
-  profile.df.full$LEGEND[profile.df.full$FACET == 'RFa14' & profile.df.full$ELEMENT_NAMES == 'Day 63'] <- "FPKM Loaded\n"
-  profile.df.full$LEGEND[profile.df.full$FACET == 'RSb14' & profile.df.full$ELEMENT_NAMES == 'Day 91'] <- "FPKM Loaded\n"
-  profile.df.full$LEGEND[profile.df.full$FACET == 'RFa14' & profile.df.full$ELEMENT_NAMES == 'Day 97'] <- "FPKM Loaded\n"
-  profile.df.full$LEGEND[profile.df.full$FACET == 'RMe14' & profile.df.full$ELEMENT_NAMES == 'Day 26'] <- "FPKM Loaded\n"
+  profile.df.full$LEGEND <- "Sample\nResults\nNot Loaded"
+  profile.df.full$LEGEND[profile.df.full$FACET == 'RIc14' & profile.df.full$ELEMENT_NAMES == 'Day 21'] <- "Sample\nResults\nLoaded"
+  profile.df.full$LEGEND[profile.df.full$FACET == 'RSb14' & profile.df.full$ELEMENT_NAMES == 'Day 21'] <- "Sample\nResults\nLoaded"
+  profile.df.full$LEGEND[profile.df.full$FACET == 'RMe14' & profile.df.full$ELEMENT_NAMES == 'Day 20'] <- "Sample\nResults\nLoaded"
+  profile.df.full$LEGEND[profile.df.full$FACET == 'RFa14' & profile.df.full$ELEMENT_NAMES == 'Day 18'] <- "Sample\nResults\nLoaded"
+  profile.df.full$LEGEND[profile.df.full$FACET == 'RFv13' & profile.df.full$ELEMENT_NAMES == 'Day 18'] <- "Sample\nResults\nLoaded"
+  profile.df.full$LEGEND[profile.df.full$FACET == 'RIc14' & profile.df.full$ELEMENT_NAMES == 'Day 26'] <- "Sample\nResults\nLoaded"
+  profile.df.full$LEGEND[profile.df.full$FACET == 'RSb14' & profile.df.full$ELEMENT_NAMES == 'Day 26'] <- "Sample\nResults\nLoaded"
+  profile.df.full$LEGEND[profile.df.full$FACET == 'RFa14' & profile.df.full$ELEMENT_NAMES == 'Day 26'] <- "Sample\nResults\nLoaded"
+  profile.df.full$LEGEND[profile.df.full$FACET == 'RSb14' & profile.df.full$ELEMENT_NAMES == 'Day 63'] <- "Sample\nResults\nLoaded"
+  profile.df.full$LEGEND[profile.df.full$FACET == 'RFa14' & profile.df.full$ELEMENT_NAMES == 'Day 63'] <- "Sample\nResults\nLoaded"
+  profile.df.full$LEGEND[profile.df.full$FACET == 'RSb14' & profile.df.full$ELEMENT_NAMES == 'Day 91'] <- "Sample\nResults\nLoaded"
+  profile.df.full$LEGEND[profile.df.full$FACET == 'RFa14' & profile.df.full$ELEMENT_NAMES == 'Day 97'] <- "Sample\nResults\nLoaded"
+  profile.df.full$LEGEND[profile.df.full$FACET == 'RMe14' & profile.df.full$ELEMENT_NAMES == 'Day 26'] <- "Sample\nResults\nLoaded"
   profile.df.full$LEGEND <- as.factor(profile.df.full$LEGEND)
   profile.df.full$TOOLTIP <- NA
   profile.df.full$TOOLTIP[profile.df.full$FACET == 'RIc14' & profile.df.full$ELEMENT_NAMES == 'Day 21'] <- "TP2"
@@ -260,21 +258,22 @@ sub init {
 
 RADJUST
 
-  my $post = "
-gp = gp + guides(color = FALSE)
-";  
+my $post = "
+gp = gp + theme(legend.key = element_rect(fill = \"white\"),
+                legend.key.height = unit(3, \"cm\"))
+";
 
   $line->addAdjustProfile($rAdjustString);
- # $line->setRPostscript($post);
   $line->setFacetNumCols(1);
   $line->setDefaultXMin(0);
   $line->setDefaultXMax(100);
-  $line->setColors(["#3B528BFF", "red"]);
+  $line->setColors(["red", "black"]);
+  $line->setRPostscript($post);
+  $line->setColorPointsOnly(1);
+  #$line->setLineColors(["black"]);
 
   my $graphObjects = $self->getGraphObjects();
-
   push @$graphObjects, $line;
-
   $self->setGraphObjects(@$graphObjects);
 
 }
