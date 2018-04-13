@@ -36,10 +36,6 @@ public class GeneBooleanFilter extends StepFilter {
   protected static final String COLUMN_COUNT = "count";
   public static final String GENE_BOOLEAN_FILTER_ARRAY_KEY = "gene_boolean_filter_array";
 
-  public GeneBooleanFilter() {
-    super("geneBooleanFilter");
-  }
-
   @Override
   public String getKey() {
     return GENE_BOOLEAN_FILTER_ARRAY_KEY;

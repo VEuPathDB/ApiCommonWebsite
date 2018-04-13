@@ -23,15 +23,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class OrganismFilter extends StepFilter {
+
   protected static final String ORGANISM = "organism";
   protected static final String FILTER_NAME = "organismFilter";
   protected static final String FILTER_NAME_COLUMN = "filter_name";
   protected static final String FILTER_SIZE_COLUMN = "count";
 
-  public OrganismFilter() {
-	super(FILTER_NAME);
-  }
-  
   /**
    * This value is used in the JSON AnswerService as the filter 'name'
    */
