@@ -75,8 +75,9 @@ public class RepresentativeTranscriptFilter extends StepFilter {
       "  WHERE is22.gene_source_id IS NULL ";
 	*/
 
-  public RepresentativeTranscriptFilter() {
-    super(FILTER_NAME);
+  @Override
+  public String getKey() {
+    return FILTER_NAME;
   }
 
   @Override

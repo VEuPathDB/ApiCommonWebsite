@@ -23,30 +23,6 @@ public class GenesByPathwayFilter extends StepFilter {
 
   public static final String GENES_BY_PATHWAY_FILTER_ARRAY_KEY = "genesByPathway";
 
-    private static class Config {
-        private String pathwaySource;
-        private String pathwayId;
-        private String excludeIncompleteEc;
-        private String exactMatchOnly;
-
-        public Config(String pathwaySource, String pathwayId, String excludeIncompleteEc, String exactMatchOnly) { 
-            this.pathwaySource = pathwaySource;
-            this.pathwayId = pathwayId;
-            this.excludeIncompleteEc = excludeIncompleteEc;
-            this.exactMatchOnly = exactMatchOnly;
-        }
-        public String getPathwaySource() { return this.pathwaySource; }
-        public String getPathwayId() { return this.pathwayId; }
-        public String getExcludeIncomplateEc() { return this.excludeIncompleteEc; }
-        public String getExactMatchOnly() { return this.exactMatchOnly; }
-    }
-
-
-    @Override
-    public String getKey() {
-        return GENES_BY_PATHWAY_FILTER_ARRAY_KEY;
-    }
-
   private static final String FILTER_SQL = 
       "SELECT DISTINCT idq.*" +
       " FROM apidbtuning.transcriptpathway tp, ($$id_sql$$) idq" +
@@ -56,8 +32,9 @@ public class GenesByPathwayFilter extends StepFilter {
       "   AND tp.complete_ec >= $$exclude_incomplete_ec$$" + 
       "   AND tp.exact_match >= $$exact_match_only$$";
 
-  public GenesByPathwayFilter() {
-    super(GENES_BY_PATHWAY_FILTER_ARRAY_KEY);
+  @Override
+  public String getKey() {
+      return GENES_BY_PATHWAY_FILTER_ARRAY_KEY;
   }
 
   @Override
@@ -113,6 +90,27 @@ public class GenesByPathwayFilter extends StepFilter {
   public boolean defaultValueEquals(Step step, JSONObject value) throws WdkModelException {
     // there is no default value for this filter
     return false;
+  }
+
+  private static class Config {
+
+    private final String _pathwaySource;
+    private final String _pathwayId;
+    private final String _excludeIncompleteEc;
+    private final String _exactMatchOnly;
+
+    public Config(String pathwaySource, String pathwayId, String excludeIncompleteEc, String exactMatchOnly) { 
+      _pathwaySource = pathwaySource;
+      _pathwayId = pathwayId;
+      _excludeIncompleteEc = excludeIncompleteEc;
+      _exactMatchOnly = exactMatchOnly;
+    }
+
+    public String getPathwaySource() { return _pathwaySource; }
+    public String getPathwayId() { return _pathwayId; }
+    public String getExcludeIncomplateEc() { return _excludeIncompleteEc; }
+    public String getExactMatchOnly() { return _exactMatchOnly; }
+
   }
 
 }
