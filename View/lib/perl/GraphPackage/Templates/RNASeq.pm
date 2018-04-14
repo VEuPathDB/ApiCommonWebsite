@@ -270,6 +270,7 @@ gp = gp + theme(legend.key = element_rect(fill = \"white\"),
   $line->setColors(["red", "black"]);
   $line->setRPostscript($post);
   $line->setColorPointsOnly(1);
+  $line->setScreenSize(500);
   #$line->setLineColors(["black"]);
 
   my $graphObjects = $self->getGraphObjects();
