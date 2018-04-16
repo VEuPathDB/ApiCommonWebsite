@@ -64,6 +64,20 @@
             <a href="http://www.ncbi.nlm.nih.gov/pubmed/28344657">Maree et al.</a><br>
            </li>
           </ul>
+          
+          <h4>Cellular Localization Imaging</h4>
+          <ul>
+           <li>
+            <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_c357287e29">Cellular Localization of tagged <i>T. brucei</i> proteins</a> &mdash; 
+            Additional images and localization information associated with GO terms were obtained from the 
+            <a href="http://tryptag.org/?pageType=landing">TryTag Project</a>, bringing the total number of genes with 
+            TrypTag images to 4,404 genes.  Access the data on gene pages 
+            (<a href="http://tritrypdb.org/tritrypdb/app/record/gene/Tb927.11.760#protein-targeting-and-localization">example</a>) 
+            and through a dedicated search based on GO terms: 
+            <a href="http://tritrypdb.org/tritrypdb/showQuestion.do?questionFullName=GeneQuestions.GenesByGoTermCL">Identify Genes based on Cellular Localization Imaging</a>.
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/27863903 ">Dean et al.</a><br>
+           </li>
+          </ul>
       </div>
       </section>
       
