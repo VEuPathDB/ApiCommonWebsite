@@ -71,17 +71,18 @@
                <u>EuPathDB Export Tool: Bigwig Files to EuPathDB</u><br>
                The EuPathDB Galaxy instance now offers a 'Bigwig Files to EuPathDB' tool that can be used to export one
                or more bigwig files to EuPathDB to be viewed privately in the genome browser. The tool 
-               creates a EuPathDB Data Set which is managed from the My Data Sets page.  Each data set also receives 
-               a data set record  with the following pages and records
+               creates a EuPathDB Data Set which is managed, along with your other private data sets, from the My Data Sets page.  
+               Each data set also receives a data set record  with the following pages and records
             </li>
             <li>
                <u>My Data Sets page</u><br>
                Data sets that are transferred using the EuPathDB Export tools will appear in your private My Data Sets page. 
-               The page tabulates your private data sets with other pertinent information about the data set (summary, status, 
+               The page tabulates your private data sets with other pertinent information (summary, status, quota, etc.). 
+               
                
             </li>
             <li>
-               <u>
+               <u>My Data Set Record</u><br>
             </li>
           </ul>  
          
