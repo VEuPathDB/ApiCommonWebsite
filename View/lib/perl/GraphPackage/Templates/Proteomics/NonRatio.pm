@@ -46,9 +46,10 @@ sub finalProfileAdjustments {
 
   $profile->setHasExtraLegend(1);
 
-  my @legendLabels = map {s/Quantitative protein expression of Tgondii proteins in infection of human cells - //;$_} @{$profile->getLegendLabels()};
-
-  $profile->setLegendLabels(\@legendLabels);
+  if($profile->getLegendLabels()) {
+    my @legendLabels = map {s/Quantitative protein expression of Tgondii proteins in infection of human cells - //;$_} @{$profile->getLegendLabels()};
+    $profile->setLegendLabels(\@legendLabels);
+  }
 
  my $colorMap = "c(\"GT1 0 to 16 hour\" = \"#144BE5\", \"ME49 0 to 16 hour\" = \"#70598F\", \"ME49 0 to 44 hour\" = \"#5B984D\", \"RH 0 to 36 hour\" = \"#FA9B83\", \"VEG 0 to 16 hour\" = \"#EF724E\", \"VEG 0 to 44 hour\" = \"#E1451A\")";
 
