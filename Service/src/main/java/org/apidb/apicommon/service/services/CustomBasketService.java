@@ -68,7 +68,7 @@ public class CustomBasketService extends BasketService {
         factory.addToBasket(user, getWdkModel().getRecordClass(TRANSCRIPT_RECORDCLASS), transcriptRecords);  
         pkValues = actions.getRecordsToRemove();
         transcriptRecords = getRecords(pkValues, recordClass);
-        factory.removeFromBasket(user, recordClass, transcriptRecords);   
+        factory.removeFromBasket(user, getWdkModel().getRecordClass(TRANSCRIPT_RECORDCLASS), transcriptRecords);   
       }
       return Response.noContent().build();
     }
