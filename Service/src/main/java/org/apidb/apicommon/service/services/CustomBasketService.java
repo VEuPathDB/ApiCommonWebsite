@@ -2,6 +2,7 @@ package org.apidb.apicommon.service.services;
 
 import javax.sql.DataSource;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -9,6 +10,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.gusdb.fgputil.db.SqlUtils;
+import org.gusdb.fgputil.json.JsonIterators;
+import org.gusdb.fgputil.json.JsonType;
 import org.gusdb.wdk.controller.actionutil.ActionUtility;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
@@ -19,6 +22,7 @@ import org.gusdb.wdk.model.record.RecordClass;
 import org.gusdb.wdk.model.user.BasketFactory;
 import org.gusdb.wdk.model.user.User;
 import org.gusdb.wdk.service.annotation.PATCH;
+import org.gusdb.wdk.service.request.RecordRequest;
 import org.gusdb.wdk.service.request.exception.DataValidationException;
 import org.gusdb.wdk.service.request.exception.RequestMisformatException;
 import org.gusdb.wdk.service.request.user.BasketRequests.BasketActions;
@@ -71,6 +75,40 @@ public class CustomBasketService extends BasketService {
         factory.removeFromBasket(user, getWdkModel().getRecordClass(TRANSCRIPT_RECORDCLASS), transcriptRecords);   
       }
       return Response.noContent().build();
+    }
+    catch (JSONException e) {
+      throw new RequestMisformatException(e.getMessage());
+    }
+    catch(WdkUserException wue) {
+      throw new DataValidationException(wue.getMessage());
+    }
+  }
+  
+  
+  @POST
+  @Path(NAMED_BASKET_PATH + "/query")
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  public Response queryBasket(@PathParam(BASKET_NAME_PARAM) String basketName, String body)
+      throws WdkModelException, RequestMisformatException, DataValidationException {
+    try {
+      User user = getPrivateRegisteredUser();
+      RecordClass recordClass = RecordService.getRecordClassOrNotFound(basketName, getWdkModel());
+      if(!isGeneRecordClass(recordClass.getFullName())) {
+        super.queryBasket(basketName, body);
+      }
+      JSONArray inputArray = new JSONArray(body);
+      List<PrimaryKeyValue> genePksToQuery = new ArrayList<>();
+      for (JsonType pkArray : JsonIterators.arrayIterable(inputArray)) {
+        if (!pkArray.getType().equals(JsonType.ValueType.ARRAY)) {
+          throw new RequestMisformatException("All input array elements must be arrays.");
+        }
+        genePksToQuery.add(RecordRequest.parsePrimaryKey(pkArray.getJSONArray(), recordClass));
+      }
+      List<String[]> transcriptRecords = getRecords(genePksToQuery, recordClass);
+      
+      List<Boolean> result = getWdkModel().getBasketFactory().queryBasketStatus(user, transcriptRecords, getWdkModel().getRecordClass(TRANSCRIPT_RECORDCLASS));
+      return Response.ok(new JSONArray(result).toString()).build();
     }
     catch (JSONException e) {
       throw new RequestMisformatException(e.getMessage());
