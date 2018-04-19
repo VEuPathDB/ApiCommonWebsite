@@ -20,6 +20,10 @@ public class TranscriptUtil {
     return GENE_RECORDCLASS.equals(name);
   }
 
+  public static final boolean isGeneRecordClass(RecordClass recordClass) {
+    return isGeneRecordClass(recordClass.getFullName());
+  }
+
   public static final boolean isTranscriptRecordClass(String name) {
     return TRANSCRIPT_RECORDCLASS.equals(name);
   }
