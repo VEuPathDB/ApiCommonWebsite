@@ -168,6 +168,175 @@ sub getProfileColors {
 }
 1;
 
+#host
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_4585d065bf;
+
+sub init {
+  my $self = shift;
+  use Data::Dumper; 
+
+  $self->SUPER::init(@_);
+
+  #bit hackish but it was a quick solution and i dont suspect ill have to do this more than this once.
+  my @elementNames_RMe14 = ['Day 0', 'Day 1', 'Day 100', 'Day 2', 'Day 23', 'Day 24', 'Day 27', 'Day 28', 'Day 29', 'Day 3', 'Day 30', 'Day 31', 'Day 32', 'Day 33', 'Day 34', 'Day 35', 'Day 36', 'Day 37', 'Day 38', 'Day 39', 'Day 4', 'Day 40', 'Day 41', 'Day 42', 'Day 43', 'Day 44', 'Day 45', 'Day 46', 'Day 47', 'Day 48', 'Day 49', 'Day 5', 'Day 50', 'Day 51', 'Day 52', 'Day 53', 'Day 54', 'Day 55', 'Day 56', 'Day 57', 'Day 58', 'Day 59', 'Day 6', 'Day 60', 'Day 61', 'Day 62', 'Day 63', 'Day 64', 'Day 65', 'Day 66', 'Day 67', 'Day 68', 'Day 69', 'Day 7', 'Day 70', 'Day 71', 'Day 72', 'Day 73', 'Day 74', 'Day 75', 'Day 76', 'Day 77', 'Day 78', 'Day 79', 'Day 8', 'Day 9', 'Day 90', 'Day 93', 'Day 94', 'Day 95', 'Day 96', 'Day 97', 'Day 98', 'Day 99', 'Day 91', 'Day 11', 'Day 82', 'Day 17', 'Day 85', 'Day 80', 'Day 83', 'Day 22', 'Day 15', 'Day 18', 'Day 88', 'Day 92', 'Day 20', 'Day 26', 'Day 12', 'Day 19', 'Day 13', 'Day 21', 'Day 25', 'Day 10', 'Day 87', 'Day 89', 'Day 16', 'Day 14', 'Day 86', 'Day 84', 'Day 81'];
+  my @elementNames_RFv13 = ['Day 0', 'Day 1', 'Day 10', 'Day 11', 'Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6', 'Day 7', 'Day 8', 'Day 9', 'Day 19', 'Day 12', 'Day 22', 'Day 13', 'Day 16', 'Day 14', 'Day 15', 'Day 17', 'Day 21', 'Day 20', 'Day 18'];
+  my @elementNames_RIc14 = ['Day 0', 'Day 1', 'Day 10', 'Day 100', 'Day 2', 'Day 27', 'Day 28', 'Day 29', 'Day 3', 'Day 30', 'Day 31', 'Day 32', 'Day 33', 'Day 34', 'Day 35', 'Day 36', 'Day 37', 'Day 38', 'Day 39', 'Day 4', 'Day 40', 'Day 41', 'Day 42', 'Day 43', 'Day 44', 'Day 45', 'Day 46', 'Day 47', 'Day 48', 'Day 49', 'Day 5', 'Day 50', 'Day 51', 'Day 52', 'Day 6', 'Day 61', 'Day 62', 'Day 63', 'Day 64', 'Day 65', 'Day 66', 'Day 67', 'Day 68', 'Day 69', 'Day 7', 'Day 70', 'Day 71', 'Day 72', 'Day 73', 'Day 74', 'Day 75', 'Day 76', 'Day 77', 'Day 78', 'Day 79', 'Day 8', 'Day 80', 'Day 81', 'Day 82', 'Day 89', 'Day 9', 'Day 90', 'Day 91', 'Day 92', 'Day 93', 'Day 94', 'Day 95', 'Day 96', 'Day 97', 'Day 98', 'Day 99', 'Day 54', 'Day 83', 'Day 24', 'Day 25', 'Day 23', 'Day 87', 'Day 26', 'Day 20', 'Day 88', 'Day 17', 'Day 16', 'Day 84', 'Day 55', 'Day 60', 'Day 12', 'Day 19', 'Day 53', 'Day 11', 'Day 13', 'Day 18', 'Day 58', 'Day 21', 'Day 59', 'Day 15', 'Day 57', 'Day 85', 'Day 86', 'Day 14', 'Day 22', 'Day 56'];
+  my @elementNames_RSb14 = ['Day 0', 'Day 1', 'Day 10', 'Day 100', 'Day 2', 'Day 27', 'Day 28', 'Day 29', 'Day 3', 'Day 30', 'Day 31', 'Day 32', 'Day 33', 'Day 34', 'Day 35', 'Day 36', 'Day 37', 'Day 38', 'Day 39', 'Day 4', 'Day 40', 'Day 41', 'Day 42', 'Day 43', 'Day 44', 'Day 45', 'Day 46', 'Day 47', 'Day 48', 'Day 49', 'Day 5', 'Day 50', 'Day 51', 'Day 52', 'Day 53', 'Day 54', 'Day 55', 'Day 56', 'Day 57', 'Day 58', 'Day 59', 'Day 6', 'Day 64', 'Day 65', 'Day 66', 'Day 67', 'Day 68', 'Day 69', 'Day 7', 'Day 70', 'Day 71', 'Day 72', 'Day 73', 'Day 74', 'Day 75', 'Day 76', 'Day 77', 'Day 78', 'Day 79', 'Day 8', 'Day 80', 'Day 81', 'Day 82', 'Day 83', 'Day 84', 'Day 85', 'Day 86', 'Day 87', 'Day 9', 'Day 94', 'Day 95', 'Day 96', 'Day 97', 'Day 98', 'Day 99', 'Day 16', 'Day 18', 'Day 25', 'Day 63', 'Day 60', 'Day 89', 'Day 61', 'Day 20', 'Day 62', 'Day 12', 'Day 24', 'Day 19', 'Day 93', 'Day 92', 'Day 88', 'Day 11', 'Day 23', 'Day 14', 'Day 15', 'Day 13', 'Day 90', 'Day 91', 'Day 26', 'Day 21', 'Day 17', 'Day 22'];
+  my @elementNames_RFa14 = ['Day 0', 'Day 1', 'Day 10', 'Day 11', 'Day 2', 'Day 21', 'Day 22', 'Day 23', 'Day 28', 'Day 29', 'Day 3', 'Day 30', 'Day 31', 'Day 32', 'Day 33', 'Day 34', 'Day 35', 'Day 36', 'Day 37', 'Day 38', 'Day 39', 'Day 4', 'Day 40', 'Day 41', 'Day 42', 'Day 43', 'Day 44', 'Day 45', 'Day 46', 'Day 47', 'Day 48', 'Day 49', 'Day 5', 'Day 50', 'Day 51', 'Day 52', 'Day 53', 'Day 54', 'Day 55', 'Day 56', 'Day 57', 'Day 58', 'Day 59', 'Day 6', 'Day 60', 'Day 61', 'Day 62', 'Day 63', 'Day 64', 'Day 65', 'Day 66', 'Day 67', 'Day 68', 'Day 69', 'Day 7', 'Day 70', 'Day 71', 'Day 72', 'Day 73', 'Day 74', 'Day 75', 'Day 76', 'Day 77', 'Day 78', 'Day 79', 'Day 8', 'Day 80', 'Day 81', 'Day 82', 'Day 83', 'Day 84', 'Day 85', 'Day 86', 'Day 87', 'Day 88', 'Day 89', 'Day 9', 'Day 90', 'Day 91', 'Day 92', 'Day 93', 'Day 94', 'Day 19', 'Day 99', 'Day 27', 'Day 24', 'Day 16', 'Day 97', 'Day 96', 'Day 12', 'Day 98', 'Day 17', 'Day 18', 'Day 15', 'Day 95', 'Day 13', 'Day 14', 'Day 26', 'Day 20', 'Day 25', 'Day 100'];
+
+  my @profileArray = (['Parasitemia over 100 days in five monkeys', 'values', '', '', @elementNames_RMe14, '', '', '', '', '', '', 'RMe14'],
+                      ['Parasitemia over 100 days in five monkeys', 'values', '', '', @elementNames_RFv13, '', '', '', '', '', '', 'RFv13'],
+                      ['Parasitemia over 100 days in five monkeys', 'values', '', '', @elementNames_RIc14, '', '', '', '', '', '', 'RIc14'],
+                      ['Parasitemia over 100 days in five monkeys', 'values', '', '', @elementNames_RSb14, '', '', '', '', '', '', 'RSb14'],
+                      ['Parasitemia over 100 days in five monkeys', 'values', '', '', @elementNames_RFa14, '', '', '', '', '', '', 'RFa14'],  
+                   );
+
+  my $profileSet = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileArray);
+
+  my $line = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot->new(@_);
+  #print STDERR Dumper($line);
+  $line->setPartName('parasitemia');
+  $line->setProfileSets($profileSet);
+  $line->setYaxisLabel("Log 10 Parasites / uL");
+  $line->setXaxisLabel("Day");
+  $line->setPlotTitle("Parasitemia Summary - 100 Days");
+  
+  my $rAdjustString = << 'RADJUST';
+
+  profile.df.full$VALUE <- log10(profile.df.full$VALUE)
+  profile.df.full$VALUE[is.infinite(profile.df.full$VALUE)] <- 0
+  profile.df.full <- separate(profile.df.full, PROFILE_FILE, c("trash", "FACET", "trash2"), "-")
+  profile.df.full$FACET <- as.factor(profile.df.full$FACET) 
+  profile.df.full$PROFILE_FILE <- profile.df.full$FACET
+  profile.df.full$trash <- NULL
+  profile.df.full$trash2 <- NULL
+  profile.df.full$TOOLTIP <- NA
+  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RIc14' & profile.df.full$ELEMENT_NAMES == 'Day 1'] <- "TP1"
+  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RSb14' & profile.df.full$ELEMENT_NAMES == 'Day 1'] <- "TP1"
+  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RMe14' & profile.df.full$ELEMENT_NAMES == 'Day 1'] <- "TP1"
+  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RFa14' & profile.df.full$ELEMENT_NAMES == 'Day 1'] <- "TP1"
+  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RFv13' & profile.df.full$ELEMENT_NAMES == 'Day 1'] <- "TP1"
+  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RIc14' & profile.df.full$ELEMENT_NAMES == 'Day 21'] <- "TP2"
+  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RSb14' & profile.df.full$ELEMENT_NAMES == 'Day 21'] <- "TP2"
+  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RMe14' & profile.df.full$ELEMENT_NAMES == 'Day 20'] <- "TP2"
+  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RFa14' & profile.df.full$ELEMENT_NAMES == 'Day 18'] <- "TP2"
+  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RFv13' & profile.df.full$ELEMENT_NAMES == 'Day 18'] <- "TP2"
+  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RIc14' & profile.df.full$ELEMENT_NAMES == 'Day 26'] <- "TP3"
+  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RSb14' & profile.df.full$ELEMENT_NAMES == 'Day 26'] <- "TP3"
+  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RMe14' & profile.df.full$ELEMENT_NAMES == 'Day 26'] <- "TP3"
+  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RFa14' & profile.df.full$ELEMENT_NAMES == 'Day 26'] <- "TP3"
+  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RFv13' & profile.df.full$ELEMENT_NAMES == 'Day 22'] <- "TP3 - Euathanasia"
+  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RIc14' & profile.df.full$ELEMENT_NAMES == 'Day 63'] <- "TP4"
+  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RSb14' & profile.df.full$ELEMENT_NAMES == 'Day 63'] <- "TP4"
+  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RMe14' & profile.df.full$ELEMENT_NAMES == 'Day 63'] <- "TP4"
+  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RFa14' & profile.df.full$ELEMENT_NAMES == 'Day 63'] <- "TP4"
+  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RIc14' & profile.df.full$ELEMENT_NAMES == 'Day 76'] <- "TP5"
+  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RSb14' & profile.df.full$ELEMENT_NAMES == 'Day 76'] <- "TP5"
+  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RMe14' & profile.df.full$ELEMENT_NAMES == 'Day 76'] <- "TP5"
+  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RFa14' & profile.df.full$ELEMENT_NAMES == 'Day 76'] <- "TP5"
+  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RIc14' & profile.df.full$ELEMENT_NAMES == 'Day 89'] <- "TP6"
+  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RSb14' & profile.df.full$ELEMENT_NAMES == 'Day 91'] <- "TP6"
+  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RMe14' & profile.df.full$ELEMENT_NAMES == 'Day 89'] <- "TP6"
+  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RFa14' & profile.df.full$ELEMENT_NAMES == 'Day 91'] <- "TP6"
+  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RIc14' & profile.df.full$ELEMENT_NAMES == 'Day 97'] <- "TP7"
+  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RSb14' & profile.df.full$ELEMENT_NAMES == 'Day 97'] <- "TP7"
+  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RMe14' & profile.df.full$ELEMENT_NAMES == 'Day 97'] <- "TP7"
+  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RFa14' & profile.df.full$ELEMENT_NAMES == 'Day 97'] <- "TP7"
+  profile.df.full$hold <- profile.df.full$TOOLTIP
+  profile.df.full$TOOLTIP <- paste0("x: " , profile.df.full$ELEMENT_NAMES_NUMERIC, ", y: ", profile.df.full$VALUE, "|Time point: ", profile.df.full$TOOLTIP)
+  profile.df.full$TOOLTIP[is.na(profile.df.full$hold)] <- NA
+  profile.df.full$hold <- NULL
+  profile.df.full$LEGEND <- "Sample\nResults\nNot Loaded"
+  profile.df.full$LEGEND[!is.na(profile.df.full$TOOLTIP)] <- "Sample\nResults\nLoaded"
+  profile.df.full$LEGEND <- as.factor(profile.df.full$LEGEND)
+
+RADJUST
+
+my $post = "
+gp = gp + theme(legend.key = element_rect(fill = \"white\"),
+                legend.key.height = unit(3, \"cm\"))
+";
+
+  $line->addAdjustProfile($rAdjustString);
+  $line->setFacetNumCols(1);
+  $line->setDefaultXMin(0);
+  $line->setDefaultXMax(100);
+  $line->setColors(["red", "black"]);
+  $line->setRPostscript($post);
+  $line->setColorPointsOnly(1);
+  $line->setScreenSize(500);
+  #$line->setLineColors(["black"]);
+
+  my $graphObjects = $self->getGraphObjects();
+  push @$graphObjects, $line;
+  $self->setGraphObjects(@$graphObjects);
+
+}
+
+sub finalProfileAdjustments {
+  my ($self, $profile) = @_;
+
+  my $rAdjustString = << 'RADJUST';
+
+  profile.df.full <- separate(profile.df.full, ELEMENT_NAMES, c("GROUP", "ELEMENT_NAMES", "TP"), " ")   
+  profile.df.full <- separate(profile.df.full, GROUP, c("GROUP", "FACET"), "_")
+  profile.df.full$ELEMENT_NAMES <- gsub("Day", "", profile.df.full$ELEMENT_NAMES)
+  profile.df.full$FACET <- as.factor(profile.df.full$FACET)
+  profile.df.full <- profile.df.full[profile.df.full$GROUP != 'CF97',]
+  profile.df.full$GROUP <- as.factor(profile.df.full$GROUP)
+  levels(profile.df.full$GROUP) <- c("Bone Marrow", "Whole Blood")
+  profile.df.full$LEGEND <- as.factor(profile.df.full$GROUP)
+  profile.df.full$ELEMENT_NAMES_NUMERIC <- as.numeric(profile.df.full$ELEMENT_NAMES)
+  profile.df.full$TP[profile.df.full$FACET == 'RFv13' & profile.df.full$ELEMENT_NAMES_NUMERIC == 23] <- "TP3 - Euathanasia"
+  profile.df.full$TOOLTIP <- paste0("x: ", profile.df.full$ELEMENT_NAMES_NUMERIC, ", y: ", profile.df.full$VALUE, "|Time point: ", profile.df.full$TP)
+  profile.is.numeric <- TRUE
+
+  hideLegend=FALSE;
+  expandColors=FALSE;
+
+RADJUST
+
+  $profile->addAdjustProfile($rAdjustString);
+
+  $profile->setColors(["#5DC863FF", "#3B528BFF"]);
+  $profile->setXaxisLabel("Day");
+  $profile->setFacetNumCols(1);
+  $profile->setSmoothLines(0);
+  $profile->setForceNoLines(1);
+  $profile->setScreenSize(500);
+  $profile->setDefaultXMin(0);
+  $profile->setDefaultXMax(100);
+}
+
+sub isExcludedProfileSet {
+  my ($self, $psName) = @_;
+
+  foreach(@{$self->excludedProfileSetsArray()}) {
+    return 1 if($_ eq $psName);
+  }
+  if ($psName =~ /nonunique/){
+    return 1;
+  }
+  return 0;
+}
+
+sub declareParts {
+  my ($self) = @_;
+
+  my $arrayRef = $self->SUPER::declareParts();
+  foreach my $plotPart (@{$arrayRef}) {
+    if ($plotPart->{visible_part} ne 'parasitemia') {
+      $plotPart->{visible_part} = $plotPart->{visible_part} . ",parasitemia";
+      $plotPart->{height} = $plotPart->{height} + 500;
+    }
+  }
+  print STDERR Dumper($arrayRef);
+  return $arrayRef;
+}
+
+1;
+
+#plasmo
 package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_40a06f276b;
 
 sub init {
@@ -225,6 +394,11 @@ sub init {
   profile.df.full$LEGEND[profile.df.full$FACET == 'RMe14' & profile.df.full$ELEMENT_NAMES == 'Day 26'] <- "Sample\nResults\nLoaded"
   profile.df.full$LEGEND <- as.factor(profile.df.full$LEGEND)
   profile.df.full$TOOLTIP <- NA
+  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RIc14' & profile.df.full$ELEMENT_NAMES == 'Day 1'] <- "TP1"
+  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RSb14' & profile.df.full$ELEMENT_NAMES == 'Day 1'] <- "TP1"
+  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RMe14' & profile.df.full$ELEMENT_NAMES == 'Day 1'] <- "TP1"
+  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RFa14' & profile.df.full$ELEMENT_NAMES == 'Day 1'] <- "TP1"
+  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RFv13' & profile.df.full$ELEMENT_NAMES == 'Day 1'] <- "TP1"
   profile.df.full$TOOLTIP[profile.df.full$FACET == 'RIc14' & profile.df.full$ELEMENT_NAMES == 'Day 21'] <- "TP2"
   profile.df.full$TOOLTIP[profile.df.full$FACET == 'RSb14' & profile.df.full$ELEMENT_NAMES == 'Day 21'] <- "TP2"
   profile.df.full$TOOLTIP[profile.df.full$FACET == 'RMe14' & profile.df.full$ELEMENT_NAMES == 'Day 20'] <- "TP2"
@@ -234,7 +408,7 @@ sub init {
   profile.df.full$TOOLTIP[profile.df.full$FACET == 'RSb14' & profile.df.full$ELEMENT_NAMES == 'Day 26'] <- "TP3"
   profile.df.full$TOOLTIP[profile.df.full$FACET == 'RMe14' & profile.df.full$ELEMENT_NAMES == 'Day 26'] <- "TP3"
   profile.df.full$TOOLTIP[profile.df.full$FACET == 'RFa14' & profile.df.full$ELEMENT_NAMES == 'Day 26'] <- "TP3"
-  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RFv13' & profile.df.full$ELEMENT_NAMES == 'Day 23'] <- "TP3 - Euathanasia"
+  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RFv13' & profile.df.full$ELEMENT_NAMES == 'Day 22'] <- "TP3 - Euathanasia"
   profile.df.full$TOOLTIP[profile.df.full$FACET == 'RIc14' & profile.df.full$ELEMENT_NAMES == 'Day 63'] <- "TP4"
   profile.df.full$TOOLTIP[profile.df.full$FACET == 'RSb14' & profile.df.full$ELEMENT_NAMES == 'Day 63'] <- "TP4"
   profile.df.full$TOOLTIP[profile.df.full$FACET == 'RMe14' & profile.df.full$ELEMENT_NAMES == 'Day 63'] <- "TP4"
@@ -286,7 +460,6 @@ sub finalProfileAdjustments {
 
   profile.df.full <- separate(profile.df.full, ELEMENT_NAMES, c("GROUP", "ELEMENT_NAMES", "TP"), " ")   
   profile.df.full <- separate(profile.df.full, GROUP, c("GROUP", "trash2", "FACET"), "_")
-  #profile.df.full$trash <- NULL
   profile.df.full$trash2 <- NULL
   profile.df.full$ELEMENT_NAMES <- gsub("Day", "", profile.df.full$ELEMENT_NAMES)
   profile.df.full$FACET <- as.factor(profile.df.full$FACET)
@@ -324,6 +497,20 @@ sub isExcludedProfileSet {
     return 1;
   }
   return 0;
+}
+
+sub declareParts {
+  my ($self) = @_;
+
+  my $arrayRef = $self->SUPER::declareParts();
+  foreach my $plotPart (@{$arrayRef}) {
+    if ($plotPart->{visible_part} ne 'parasitemia') {
+      $plotPart->{visible_part} = $plotPart->{visible_part} . ",parasitemia";
+      $plotPart->{height} = $plotPart->{height} + 500;
+    }
+  }
+  print STDERR Dumper($arrayRef);
+  return $arrayRef;
 }
 
 1;
