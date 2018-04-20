@@ -54,6 +54,7 @@ sub finalProfileAdjustments {
     profile.df.full$LEGEND = c('DD2', 'HB3', rep('Progeny', length(profile.df.full$ELEMENT_NAMES)-2))
     profile.df.full$LEGEND = factor(profile.df.full$LEGEND, levels=legend.label)
     profile.df.full$PROFILE_FILE = profile.df.full$LEGEND
+    profile.is.numeric <- FALSE
 RADJUST
     my $plotPart = $profile->getPartName();                                                                                                                                                                   
     if ($plotPart =~/percentile/) {
