@@ -79,12 +79,11 @@
                node, regardless of zoom level.
             </li>
             <li>
-               Cellular Location - When available, Metacyc pathways now include cellular location information. Highlighted portions 
+               Cellular Location - When available, MetaCyc pathways now include cellular location information. Highlighted portions 
                of the pathway indicate the cytosolic, membrane, etc. locations of the compounds involved.  
             </li>
           </ul>  
          <br><br>
-           
       </section>
       
       <section>
