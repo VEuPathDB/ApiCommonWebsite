@@ -69,6 +69,21 @@
          Each data set also receives a record page which lists all files that the data set contains, offers file management 
          functions and ports files to the genome browser for viewing.
          <br><br>
+         
+         <h4>Pathway Improvements</h4>
+         <ul>
+             <li>
+               Semantic zooming of Pathway drawings on Pathway record pages - At low zoom levels, pathway nodes appear as 
+               glyphs.  At mid zoom levels, the main compound nodes appear as molecular formulas.  At high zoom levels, enzymes and 
+               side nodes appear as formulas, terms or Enzyme commission numbers. Clicking on a node will retrieve details about the 
+               node, regardless of zoom level.
+            </li>
+            <li>
+               Cellular Location - When available, Metacyc pathways now include cellular location information. Highlighted portions 
+               of the pathway indicate the cytosolic, membrane, etc. locations of the compounds involved.  
+            </li>
+          </ul>  
+         <br><br>
            
       </section>
       
