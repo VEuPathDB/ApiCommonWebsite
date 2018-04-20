@@ -61,7 +61,7 @@ public class BigWigTrackService extends UserService {
 		  "feature  = summary\n" +
 		  "key      = " + TRACK_NAME_MACRO + "\n" +
 		  "glyph = wiggle_whiskers\n" +
-		  "autoscale = chromosome\n" +
+		  "autoscale = local\n" +
 		  "height  = 50\n"+
 		  "description =\n";
 
