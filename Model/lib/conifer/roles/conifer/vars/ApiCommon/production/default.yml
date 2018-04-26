@@ -19,18 +19,51 @@ modelprop:
   )
 }}"
 
-irods_pass: "{{ lookup('euparc',
-      'attr=password xpath=workspaces/irods[@user=\"{}\"]'.format(modelconfig_userDatasetStoreConfig_irods_login)
+# this mapping allow different configs based on hostname.  Mainly used to give
+# different configs to qN.sitedb.org sites, it could be extended to others
+#
+# NOTE: the login needs to be specified twice, once as the login, and once in
+# the lookup.  I can't see a way to cleanly resolve the recursive loop issue.
+# (it can't be flat and still be a map)
+
+workspace_env_map:
+  w_prefix:
+    host: irods.eupathdb.org
+    login: wrkspuser
+    password: "{{ lookup('euparc',
+      'attr=password xpath=workspaces/irods[@user=\"{}\"]'.format('wrkspuser')
       )
     }}"
+    resource: ebrcResc
+    rootPath: /ebrc/workspaces/users
+    zone: ebrc
+    port: 1247
+  default:
+    host: irods.qa.eupathdb.org
+    login: qawrkspuser
+    password: "{{ lookup('euparc',
+      'attr=password xpath=workspaces/irods[@user=\"{}\"]'.format('qawrkspuser')
+      )
+    }}"
+    resource: ebrcResc
+    rootPath: /ebrc/workspaces/users
+    zone: ebrc
+    port: 1247
 
-modelconfig_userDatasetStoreConfig_irods_host: irods.eupathdb.org
-modelconfig_userDatasetStoreConfig_irods_login: wrkspuser
-modelconfig_userDatasetStoreConfig_irods_password: "{{ irods_pass }}"
-modelconfig_userDatasetStoreConfig_irods_resource: ebrcResc
-modelconfig_userDatasetStoreConfig_irods_rootPath: /ebrc/workspaces/users
-modelconfig_userDatasetStoreConfig_irods_zone: ebrc
-modelconfig_userDatasetStoreConfig_irods_port: 1247
+# construct a prefix from hostname, like w_prefix, q_prefix
+prefix: "{{ hostname | regex_replace('^([a-z])[0-9].*','\\1_prefix') }}"
+
+# use that prefix to reference the workspace_env_map above, if there is no key
+# available, default to the 'default' map
+workspace_env: "{{ workspace_env_map[prefix]|default(workspace_env_map['default']) }}"
+
+modelconfig_userDatasetStoreConfig_irods_host: "{{ workspace_env['host'] }}"
+modelconfig_userDatasetStoreConfig_irods_login: "{{ workspace_env['login'] }}"
+modelconfig_userDatasetStoreConfig_irods_password: "{{ workspace_env['password'] }}"
+modelconfig_userDatasetStoreConfig_irods_resource: "{{ workspace_env['resource'] }}"
+modelconfig_userDatasetStoreConfig_irods_rootPath: "{{ workspace_env['rootPath'] }}"
+modelconfig_userDatasetStoreConfig_irods_zone: "{{ workspace_env['zone'] }}"
+modelconfig_userDatasetStoreConfig_irods_port: "{{ workspace_env['port'] }}"
 
 modelconfig_userDatasetStoreConfig: >
  <userDatasetStore implementation="org.gusdb.wdk.model.user.dataset.irods.IrodsUserDatasetStore">
