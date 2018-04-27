@@ -36,24 +36,26 @@ sub setMainLegend {
 
 
 package ApiCommonWebsite::View::GraphPackage::Templates::Proteomics::NonRatio::DS_3c48f52edb;
+use Data::Dumper;
 
 sub getRemainderRegex {
   return qr/T\. ?gondii ?(.+) timecourse/;
 }
 
+sub keepSingleLegend {1}
+
 sub finalProfileAdjustments {
   my ($self, $profile) = @_;
 
   $profile->setHasExtraLegend(1);
-
+print STDERR Dumper($profile->getLegendLabels());
   if($profile->getLegendLabels()) {
     my @legendLabels = map {s/Quantitative protein expression of Tgondii proteins in infection of human cells - //;$_} @{$profile->getLegendLabels()};
     $profile->setLegendLabels(\@legendLabels);
+    my $colorMap = "c(\"GT1 0 to 16 hour\" = \"#144BE5\", \"ME49 0 to 16 hour\" = \"#70598F\", \"ME49 0 to 44 hour\" = \"#5B984D\", \"RH 0 to 36 hour\" = \"#FA9B83\", \"VEG 0 to 16 hour\" = \"#EF724E\", \"VEG 0 to 44 hour\" = \"#E1451A\")";
+
+    $profile->setColorVals($colorMap);
   }
-
- my $colorMap = "c(\"GT1 0 to 16 hour\" = \"#144BE5\", \"ME49 0 to 16 hour\" = \"#70598F\", \"ME49 0 to 44 hour\" = \"#5B984D\", \"RH 0 to 36 hour\" = \"#FA9B83\", \"VEG 0 to 16 hour\" = \"#EF724E\", \"VEG 0 to 44 hour\" = \"#E1451A\")";
-
- $profile->setColorVals($colorMap); 
 
   return $self;
 }
