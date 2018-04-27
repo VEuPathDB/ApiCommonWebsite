@@ -28,6 +28,8 @@ sub finalProfileAdjustments {}
 # Template subclasses need to implement this....should return 'bar' or 'line'
 sub getGraphType {}
 
+#default is to not keep legend entries if there is only one value in the array
+sub keepSingleLegend{0}
 
 sub restrictProfileSetsBySourceId {}
 
@@ -242,7 +244,9 @@ sub makeAndSetPlots {
     $profile->setProfileTypes(\@profileTypes);
 
     # omit the legend when there is just one profile, and it is not a RNASeq dataset
-    if  ($#legendNames) {
+    my $keepSingleLegend = $self->keepSingleLegend();
+
+    if  ($#legendNames || $keepSingleLegend) {
       $profile->setHasExtraLegend(1); 
       $profile->setLegendLabels(\@legendNames);
     }
