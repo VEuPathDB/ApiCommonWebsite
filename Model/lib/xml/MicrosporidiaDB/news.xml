@@ -28,11 +28,7 @@
   <attribute name="item">
     <![CDATA[
     <p><strong>We are pleased to announce the release of MicrosporidiaDB 37</strong></p>
-      
-      <section>
-        <h3><b>No new data in this release</b></h3> 
 
-      </section>
       
       <section>
       <h3><b>New features in this release</b></h3>
@@ -61,6 +57,10 @@
             </li>
           </ul>  
       </div>
+      </section>
+            
+      <section>
+        <h3><b>No new data in this release</b></h3> 
       </section>
       
       <section> 
