@@ -22,7 +22,7 @@
 
 <record>
   <attribute name="headline">TrichDB 37 Released</attribute>
-  <attribute name="date">15 Apr 2018 13:00</attribute>
+  <attribute name="date">25 Apr 2018 13:00</attribute>
   <attribute name="tag">trichdb04_18_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
@@ -39,14 +39,17 @@
       <div style="margin-left: 3em;">
       
          <h4>Beta EuPathDB Workspace</h4>
-         Announcing the Beta release of EuPathDB Workspace, a private workspace that interfaces 
+         <ul>
+             <li>Announcing the Beta release of EuPathDB Workspace, a private workspace that can interface 
          with EuPathDB Galaxy and allows for viewing and interrogating private data against data that is already 
          integrated into EuPathDB (public data). The first EuPathDB workspace tool, 'Bigwig files to EuPathDB' 
          exports bigwig files from EuPathDB Galaxy to EuPathDB. 
          The tool creates a EuPathDB Data Set which is managed from the My Data Sets page along with your other private data sets. 
          Each data set also receives a record page which lists all files that the data set contains, offers file management 
-         functions and ports files to the genome browser for viewing.
-         <br><br>
+         functions and ports files to the genome browser for viewing.<br><br>
+         <a href="https://youtu.be/igQZHjRBqV0" target="_blank">Video tutorial: Export Bigwig files to EuPathDB</a>
+             </li>
+         </ul>
          
          <h4>Pathway Improvements</h4>
          <ul>
@@ -56,20 +59,8 @@
                side nodes appear as formulas, terms or Enzyme commission numbers. Clicking on a node will retrieve details about the 
                node, regardless of zoom level.
             </li>
-            <li>
-               Cellular Location - When available, MetaCyc pathways now include cellular location information. Highlighted portions 
-               of the pathway indicate the cytosolic, membrane, etc. locations of the compounds involved.  
-            </li>
           </ul>  
-         <br><br>
-      </section>
-      <section> 
-         <aside>
-           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
-           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
-           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
-           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
-         </aside>
+      </div>
       </section>
 
     ]]>
