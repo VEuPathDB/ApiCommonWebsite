@@ -45,8 +45,8 @@
              </li>
            </ul>   
       </div>
-      <section>
       
+      <section>
       <h3><b>New features in this release</b></h3>
       <div style="margin-left: 3em;">
       
@@ -61,7 +61,7 @@
          functions and ports files to the genome browser for viewing.<br><br>
          <a href="https://youtu.be/igQZHjRBqV0" target="_blank">Video tutorial: Export Bigwig files to EuPathDB</a>
              </li>
-         <br><br>
+         </ul>
          
          <h4>Pathway Improvements</h4>
          <ul>
