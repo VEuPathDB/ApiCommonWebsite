@@ -58,7 +58,7 @@
          exports bigwig files from EuPathDB Galaxy to EuPathDB. 
          The tool creates a EuPathDB Data Set which is managed from the My Data Sets page along with your other private data sets. 
          Each data set also receives a record page which lists all files that the data set contains, offers file management 
-         functions and ports files to the genome browser for viewing.<br>
+         functions and ports files to the genome browser for viewing.<br><br>
          <a href="https://youtu.be/igQZHjRBqV0" target="_blank">Video tutorial: Export Bigwig files to EuPathDB</a>
              </li>
          <br><br>
