@@ -225,6 +225,23 @@
        </table>
    </record>
 
+<record>
+       <attribute name="title">EuPathDB Workspace: Export Bigwig files to EuPathDB</attribute>
+       <attribute name="description">This tutorial demonstrates the tool for exporting Bigwig files from EuPathDB Galaxy to any EuPathDB site.</attribute>
+       <attribute name="uid">30Apr2018</attribute>
+       <table name="files">
+        <row>
+           <attribute name="projects">AmoebaDB,EuPathDB,CryptoDB,GiardiaDB,FungiDB,MicrosporidiaDB,PiroplasmaDB,PlasmoDB,SchistoDB,ToxoDB,TrichDB,TriTrypDB</attribute>
+           <attribute name="fileName.mov">watch?v=igQZHjRBqV0</attribute>
+           <attribute name="fileName.avi">unavailable</attribute>
+           <attribute name="fileName.flv">BigWigExport/bigwigrelease_viewlet_swf.html</attribute>
+           <attribute name="fileName.pdf">unavailable</attribute>
+           <attribute name="duration">5.1 min</attribute>
+           <attribute name="size">4 mb</attribute>
+         </row>
+       </table>
+   </record>
+
   
    <record>
        <attribute name="title">Exploring expression distributions with our Percentile Ranking searches</attribute>
