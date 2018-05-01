@@ -1,40 +1,34 @@
 package org.apidb.apicommon.service.services;
 
-import java.util.Map;
-import java.util.List;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.PathParam;
-
-import java.io.IOException;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-
-import org.gusdb.wdk.model.WdkModelException;
-import org.gusdb.wdk.service.service.WdkService;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import org.apache.log4j.Logger;
-
-//InterruptedException
-
-//import org.json.JSONArray;
+import org.gusdb.wdk.service.service.WdkService;
 import org.json.JSONObject;
 
 @Path("/jbrowse")
 public class JBrowseService extends WdkService {
 
+    @SuppressWarnings("unused")
     private static final Logger LOG = Logger.getLogger(JBrowseService.class);
 
     @GET
     @Path("stats/global")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getJbrowseFeatures(@QueryParam("feature") String feature) throws WdkModelException {
+    public Response getJbrowseFeatures(@SuppressWarnings("unused") @QueryParam("feature") String feature) {
         return Response.ok(new JSONObject().put("featureDensity", 0.0002).toString()).build();
     }
 
@@ -45,7 +39,7 @@ public class JBrowseService extends WdkService {
     public Response getJbrowseFeatures(@PathParam("refseq_name") String refseqName, 
                                        @QueryParam("feature") String feature,
                                        @QueryParam("start") String start,
-                                       @QueryParam("end") String end) throws WdkModelException, IOException, InterruptedException {
+                                       @QueryParam("end") String end) throws IOException, InterruptedException {
 
         String gusHome = getWdkModel().getGusHome();
 
