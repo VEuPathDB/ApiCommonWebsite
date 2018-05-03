@@ -27,7 +27,7 @@ import org.gusdb.wdk.model.user.Step;
 import org.gusdb.wdk.model.user.User;
 import org.gusdb.wdk.model.user.UserPreferences;
 
-public abstract class TranscriptViewHandler implements SummaryViewHandler {
+public class TranscriptViewHandler implements SummaryViewHandler {
 
   private static final Logger LOG = Logger.getLogger(TranscriptViewHandler.class);
 
