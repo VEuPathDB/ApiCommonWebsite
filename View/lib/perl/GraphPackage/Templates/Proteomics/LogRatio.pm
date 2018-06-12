@@ -31,12 +31,25 @@ package ApiCommonWebsite::View::GraphPackage::Templates::Proteomics::LogRatio::D
 sub finalProfileAdjustments {
   my ($self, $profile) = @_;
 
-  my $legend = [''];
-#  $profile->setSampleLabels($legend);
+  my $legend = ['Esmeraldo-like', 'Non-Esmeraldo-like', ''];
+  my $colors = ['gray', 'blue', 'green'];
+  $profile->setLegendLabels($legend);
+  $profile->setColors($colors);
 }
 
 1;
 
+
+package ApiCommonWebsite::View::GraphPackage::Templates::Proteomics::LogRatio::DS_d254e99026;
+
+sub finalProfileAdjustments {
+  my ($self, $profile) = @_;
+
+  my $legend = ['Esmeraldo-like', 'Non-Esmeraldo-like', ''];
+  $profile->setLegendLabels($legend);
+}
+
+1;
 
 
 package ApiCommonWebsite::View::GraphPackage::Templates::Proteomics::LogRatio::DS_65941738a5;
