@@ -9,7 +9,7 @@ import org.apache.log4j.Logger;
 import org.apidb.apicommon.model.TranscriptUtil;
 import org.gusdb.fgputil.FormatUtil;
 import org.gusdb.fgputil.FormatUtil.Style;
-import org.gusdb.fgputil.cache.UnfetchableItemException;
+import org.gusdb.fgputil.cache.ValueProductionException;
 import org.gusdb.fgputil.db.runner.SQLRunner;
 import org.gusdb.wdk.cache.CacheMgr;
 import org.gusdb.wdk.cache.FilterSizeCache.AllSizesFetcher;
@@ -54,20 +54,20 @@ public class CustomShowResultSizeAction extends ShowResultSizeAction {
     }
 
     @Override
-    public FilterSizeGroup updateItem(Long stepId, FilterSizeGroup previousVersion)
-        throws UnfetchableItemException {
+    public FilterSizeGroup getUpdatedValue(Long stepId, FilterSizeGroup previousVersion)
+        throws ValueProductionException {
       try {
         Step step = _wdkModel.getStepFactory().getStepById(stepId);
         AnswerValue answerValue = step.getAnswerValue(false);
         if (!TranscriptUtil.isTranscriptQuestion(answerValue.getQuestion())) {
-          return super.updateItem(stepId, previousVersion);
+          return super.getUpdatedValue(stepId, previousVersion);
         }
         previousVersion.sizeMap = getAllFilterDisplaySizes(answerValue, _wdkModel);
         previousVersion.allFiltersLoaded = true;
         return previousVersion;
       }
       catch (WdkUserException | WdkModelException e) {
-        throw new UnfetchableItemException(e);
+        throw new ValueProductionException(e);
       }
     }
   }
