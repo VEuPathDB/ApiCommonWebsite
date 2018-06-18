@@ -16,7 +16,7 @@
 <![CDATA[
 FungiDB belongs to the <a href="http://www.eupathdb.org">EuPathDB</a> family of databases and is an integrated genomic and functional genomic 
 database for the kingdom Fungi.  FungiDB was first released in early 2011 as a collaborative project between EuPathDB and the group of Jason Stajich (University of California, Riverside). At the end of 2015, 
-FungiDB was integrated into the EuPathDB bioinformatic resource center - see this <a href="http://fungidb.org/fungidb/showXmlDataContent.do?name=XmlQuestions.News#comm_lett">news item</a> for additional information.  For a list of the data integrated into FungiDB today and the related publications please see <a href="app/search/dataset/AllDatasets/result" class="blue"> Data Sets</a>.
+FungiDB was integrated into the EuPathDB bioinformatic resource center - see this <a href="http://fungidb.org/fungidb/showXmlDataContent.do?name=XmlQuestions.News#comm_lett">news item</a> for additional information.  For a full list of the data integrated into FungiDB today and the related publications please see <a href="app/search/dataset/AllDatasets/result" class="blue"> Data Sets</a>.
 <br><br>
 FungiDB integrates whole genome sequence and annotation and also includes experimental and environmental isolate sequence data. The database includes comparative genomics, analysis of gene expression, and supplemental bioinformatics analyses and a web interface for data-mining.
 <br><br>
@@ -45,52 +45,55 @@ Much of the data in FungiDB is provided by independent researchers.  For a list 
 FungiDB scientific advisory groups (list will be updated as additional groups are formed and advisors added):<br>
 EuPathDB has been working closely with AspGD to ensure a smooth transition of data to FungiDB - see this <a href="http://fungidb.org/fungidb/showXmlDataContent.do?name=XmlQuestions.News#open_letter">letter to the Aspergillus community</a> for additional details.<br> 
 <br><br>
-Currently we have the following teams:<br><br>
+Currently we have the following teams:<br>
 
 <b>The Aspergillus scientific advisory group:</b><br><br>
 <ul>
-<li>Mikael R&#248;rdam Andersen (Technical University of Denmark)</li>
-<li>Elaine Bignell (The University of Manchester)</li>
-<li>Michelle Momany (University of Georgia)</li>
-<li>Antonis Rokas (Vanderbilt University)</li>
+<li>Mikael R&#248;rdam Andersen (Technical University of Denmark, Denmark)</li>
+<li>Elaine Bignell (The University of Manchester, UK)</li>
+<li>Antonis Rokas (Vanderbilt University, USA)</li>
+<li>Michael Bromley (University of Manchester, UK)</li>
 </ul>
 <br><br>
 
 <b>The Neurospora scientific advisory group:</b><br><br>
 <ul>
-<li>Jay Dunlap (Darmouth)</li>
-<li>Louise Glass (University of California, Berkley)</li>
-<li>Katherine Borkovich (University of California, Riverside)</li>
-<li>Jason Stajich (University of California, Riverside)</li>
+<li>Jay Dunlap (Darmouth, USA)</li>
+<li>Louise Glass (University of California, Berkley, USA)</li>
+<li>Katherine Borkovich (University of California, Riverside, USA)</li>
+<li>Jason Stajich (University of California, Riverside, USA)</li>
 </ul>
 <br><br>
 
 <b>The Fusarium scientific advisory group:</b><br><br>
 <ul>
-<li>Michael Freitag (Oregon State University)</li>
-<li>Corby Kistler (University of Minnesota)</li>
-<li>Nadya Ponts (INRA)</li>
-<li>Kim Hammond-Kosack (Rothamsted)</li>
-<li>Seogchan Kang (The Pennsylvania State University)</li>
-<li>Christina Cuomo (The Broad Institute)</li>
+<li>Michael Freitag (Oregon State University, USA)</li>
+<li>Corby Kistler (University of Minnesota, USA)</li>
+<li>Nadia Ponts (INRA, France)</li>
+<li>Kim Hammond-Kosack (Rothamsted, UK)</li>
+<li>Martin Urban (Rothamsted, UK)</li>
+<li>Seogchan Kang (The Pennsylvania State University, USA)</li>
+<li>Christina Cuomo (The Broad Institute, USA)</li>
 </ul>
 <br><br>
 
 <b>The Coccidioides scientific advisory group:</b><br><br>
 <ul>
-<li>Bridget Barker (North Arizona University)</li>
-<li>Theo Kirkland (University of California, San Diego)</li>
-<li>Marc Orbach (University of Arizona)</li>
+<li>Bridget Barker (North Arizona University, USA)</li>
+<li>Theo Kirkland (University of California, San Diego, USA)</li>
+<li>Marc Orbach (University of Arizona, USA)</li>
+<li>Nathan P. Wiederhold (UT Health, San Antonio Long School of Medicine, USA)</li>
+<li>Georgia R. Thompson(UC Davis School of Medicine, USA)</li>
 </ul>
 <br><br>
 
 <b>The Cryptococcus scientific advisory group:</b><br><br>
 <ul>
-<li>Tamara Doering (Washington University in St. Louis)</li>
-<li>Jennifer Lodge (Washington University in St. Louis)</li>
-<li>Robin May (University of Birmingham)</li>
-<li>Guilhem Janbon (Institut Pasteur)</li>
-<li>Christina Cuomo (The Broad Institute)</li>
+<li>Tamara Doering (Washington University in St. Louis, USA)</li>
+<li>Jennifer Lodge (Washington University in St. Louis, USA)</li>
+<li>Robin May (University of Birmingham, UK)</li>
+<li>Guilhem Janbon (Institut Pasteur, France)</li>
+<li>Christina Cuomo (The Broad Institute, USA)</li>
 </ul>
 <br><br>
 
@@ -98,6 +101,59 @@ Currently we have the following teams:<br><br>
        </attribute>
    </record>
 
+<record>
+       <attribute name="title">Funding</attribute>
+       <attribute name="tag">funding</attribute>
+       <attribute name="text">
+       <![CDATA[
+FungiDB advisory groups meet approximately every 3-4 months. Advisory groups are open to the members of the research community. If you would like to join an advisory call please <b><a href="http://fungidb.org/fungidb/contact.do">Contact Us</a></b> for more information.
+
+<br>Note: The dates/times of FungiDB advisory calls are subject to change. Please check back frequently or <b><a href="http://fungidb.org/fungidb/contact.do">Contact Us</a></b> in advance to be added to the scientific advisory group email list.
+
+<br>Functional analysis of the Fusarium graminearum phosphatome by Yun et al (http&#58;//onlinelibrary.wiley.com/doi/10.1111/nph.13374/full)
+
+<br>Meeting Schedule<br>
+<br>The Aspergillus scientific advisory group&#58;
+
+
+<br>February 19, 2018 9&#58;00am EDT; 2&#58;00pm UK; 3&#58;00pm Denmark
+June 20, 2018 10&#58;00am EDT; 3&#58;00pm UK; 4&#58;00pm Denmark (to be determined)
+September 19, 2018 10&#58;00am EDT; 3&#58;00pm UK; 4&#58;00pm Denmark
+November 14, 2018 10&#58;00am EDT; 3pm UK; 4&#58;00pm Denmark
+
+<br>The Neurospora scientific advisory group&#58;
+
+
+<br>March 7, 2018 9&#58;00am PDT; 12&#58;00am EDT; 5&#58;00pm UK
+June 26, 2018 8&#58;00am PDT; 11&#58;00am EDT; 4&#58;00pm UK (confirmed)
+September 5, 2018  9&#58;00am PDT; 12&#58;00am EDT; 5&#58;00pm UK
+December 5, 2018 9&#58;00am PDT; 12&#58;00am EDT; 5&#58;00pm UK
+
+<br>The Fusarium scientific advisory group&#58;
+
+
+<br>March 14, 2018 11&#58;00am EDT; 3&#58;00pm UK; 4&#58;00pm France (*time change)
+June 19, 2018 10&#58;00am EDT; 3&#58;00pm UK; 4&#58;00pm France (confirmed)
+September 12, 2018  10&#58;00am EDT; 3&#58;00pm UK; 4&#58;00pm France
+December 12, 2018 10&#58;00am EDT; 3&#58;00pm UK; 4&#58;00pm France
+
+<br>The Coccidioides scientific advisory group&#58;
+
+<br>March 9 , 2018 12pm EDT; 5&#58;00pm UK
+June 22, 2018 12pm EDT; 5&#58;00pm UK (confirmed)
+September 7, 2018  12pm EDT; 5&#58;00pm UK
+December 7, 2018 12pm EDT; 5&#58;00pm UK
+
+<br>The Cryptococcus scientific advisory group&#58;
+
+<br>March 16, 2018 11am EDT; 3&#58;00pm UK; 4pm France (* time change)
+June 25, 2018 8am CST, 9 am EDT; 2&#58;00pm UK; 3pm France (confirmed)
+September 14, 2018  10am EDT; 3&#58;00pm UK; 4pm France
+December 14, 2018 10am EDT; 3&#58;00pm UK; 4pm France
+
+       ]]>
+       </attribute>
+   </record>
 <!--
 
 <record>
