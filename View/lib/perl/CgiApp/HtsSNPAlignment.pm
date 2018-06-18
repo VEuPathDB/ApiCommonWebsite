@@ -39,14 +39,15 @@ sub processParams {
   my $fpv = $cgi->param('filter_param_value');
 
   my $fpvArray = decode_json $fpv;
-
-
+  
   my @predicates;
   foreach my $filter (@{$fpvArray->{filters}}) {
     my $filterType = $filter->{type};
     my $isRange = $filter->{isRange};
     my $field = $filter->{field};
     my $values = $filter->{value};
+    
+    next unless $values;
 
     if($filterType ne 'string' && $isRange) {
       my $min = $values->{min};
