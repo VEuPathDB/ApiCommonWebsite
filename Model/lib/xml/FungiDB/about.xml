@@ -102,8 +102,8 @@ Currently we have the following teams:<br>
    </record>
 
 <record>
-       <attribute name="title">Funding</attribute>
-       <attribute name="tag">funding</attribute>
+       <attribute name="title">Advisory calls</attribute>
+       <attribute name="tag">Advisory Calls</attribute>
        <attribute name="text">
        <![CDATA[
 FungiDB advisory groups meet approximately every 3-4 months. Advisory groups are open to the members of the research community. If you would like to join an advisory call please <b><a href="http://fungidb.org/fungidb/contact.do">Contact Us</a></b> for more information.
