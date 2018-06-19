@@ -358,6 +358,11 @@ Please see Citing FungiDB below.
        <![CDATA[
 When citing FungiDB itself, please use:
 <br><br>
+<b><a href="http://www.mdpi.com/2309-608X/4/1/39">
+FungiDB: An Integrated Bioinformatic Resource for Fungi and Oomycetes.</a><b>
+Evelina Y. Basenko et al. J. Fungi. 2018 Jan 4(1), 39, doi: 10.3390/jof4010039.
+
+<br><br>
 <b><a href="http://www.ncbi.nlm.nih.gov/pubmed/22064857">FungiDB: an integrated functional genomics database for fungi</a></b>.
 Stajich JE et al. Nucleic Acids Res. 2012 Jan 1;40(D1):D675-D681.
 
@@ -366,7 +371,9 @@ When citing EuPathDB itself, please use:
 <br>
 <b><a href="http://www.ncbi.nlm.nih.gov/pubmed/27903906">
 EuPathDB: the eukaryotic pathogen genomics database resource.</a><b>
-Aurrecoechea C, et al. Nucleic Acids Res. 2017 Jan 4;45(D1):D581-D591
+Aurrecoechea C, et al. Nucleic Acids Res. 2017 Jan 4;45(D1):D581-D591.
+
+
 
 <br><br>Much of the data in FungiDB is provided by independent researchers.  Please cite them if you use their data.  For a list of the data integrated into FungiDB and the related publications please see <a href="app/search/dataset/AllDatasets/result" class="blue"> Data Sets</a>.
 
