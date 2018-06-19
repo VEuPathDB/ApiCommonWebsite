@@ -4,7 +4,6 @@ modelconfig_adminEmail:
   - "{{ 'aurreco$uga.edu'|replace('$', '@') }}"
   - "{{ 'crisl$upenn.edu'|replace('$', '@') }}"
   - "{{ 'dfalke$uga.edu'|replace('$', '@') }}"
-  - "{{ 'mheiges$uga.edu'|replace('$', '@') }}"
   - "{{ 'rdoherty$upenn.edu'|replace('$', '@') }}"
   - "{{ 'sfischer$pcbi.upenn.edu'|replace('$', '@') }}"
 
