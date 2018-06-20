@@ -30,26 +30,17 @@
         
         <h4>Genome Sequence and Annotation: these annotated genomes appear for the first time in FungiDB.</h4>
            <ul>
-             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_339f68fa2f"><i>Aspergillus campestris</i> IBT 28561</a> &ndash; Aspergillus campestris IBT 28561
-                 <a href="http://www.ncbi.nlm.nih.gov/bioproject/PRJNA217206">NCBI BioProject PRJNA217206</a>.
-             </li>
-             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_ed02a8e11b"><i>Aspergillus novofumigatus</i> IBT 16806</a> &ndash; 
-                 <a href="http://www.ncbi.nlm.nih.gov/bioproject/PRJNA217212">NCBI BioProject PRJNA217212</a>.
-             </li>
-             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_93f3ae0e82"><i>Aspergillus steynii</i> IBT 23096</a> &ndash; 
-                 <a href="http://www.ncbi.nlm.nih.gov/bioproject/PRJNA217208">NCBI BioProject PRJNA217208</a>.
-             </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_41e884fe46"><i>Cryptococcus gattii</i> EJB2</a> &ndash;  
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26330512">Farrer et al.</a>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26330512">Farrer <i>et al.</i></a>
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_54fda600a6"><i>Fusarium oxysporum</i> f. sp. melonis 26406</a> &ndash; 
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/25081257">Ma et al.</a>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/25081257">Ma <i>et al.</i></a>
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_95bd58312f"><i>Fusarium oxysporum</i> f. sp. cubense race 1</a> &ndash; 
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/24743270">Guo et al.</a>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/24743270">Guo <i>et al.</i></a>
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_8671b6f798"><i>Fusarium oxysporum</i> f. sp. cubense race 4</a> &ndash; 
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/24743270">Guo et al.</a>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/24743270">Guo <i>et al.</i></a>
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_6dfb70288f"><i>Histoplasma capsulatum</i> H143</a> &ndash; 
                  <a href="http://www.ncbi.nlm.nih.gov/bioproject/PRJNA29161">NCBI BioProject PRJNA29161</a>
@@ -57,19 +48,31 @@
            </ul>
            <br>
            
+        <h4>Genome Sequence and Annotation: updated genomes</h4>
+           <ul>   
+           <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_339f68fa2f"><i>Aspergillus campestris</i> IBT 28561</a> &ndash; Aspergillus campestris IBT 28561
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/29317534">Kj&aelig;rb&oslash;lling <i>et al.</i></a>.
+             </li>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_ed02a8e11b"><i>Aspergillus novofumigatus</i> IBT 16806</a> &ndash; 
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/29317534">Kj&aelig;rb&oslash;lling <i>et al.</i></a>.
+             </li>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_93f3ae0e82"><i>Aspergillus steynii</i> IBT 23096</a> &ndash; 
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/29317534">Kj&aelig;rb&oslash;lling <i>et al.</i></a>.
+             </li>
+           
         <h4>Transcriptomics</h4>
            <ul>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_74596a0bd0">Comparative transcriptomics of <i>C. neoformans</i> mutants defective in heterochromatin regulation</a> &ndash; 
                  Stranded RNA-Seq profiles of WT, knockout strains of ezh2, msl1, ccc1, clr4, and ccc1-W52A aromatic cage mutant.
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/25533783" target="_blank">Dumesic et al.</a>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/25533783" target="_blank">Dumesic <i>et al.</i></a>
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_b9760320fa">Transcriptomic analysis during vegetative and infectious growth of <i>Fusarium graminearum</i> PH-1</a> &ndash; 
-                 RNA-Seq of F. graminearum mycelia and 6dpi infection samples assessed by paired-end deep Illumina sequencing.
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/28261228" target="_blank">Wang et al.</a>
+                 RNA-Seq of <i>F. graminearum</i> mycelia and 6dpi infection samples assessed by paired-end deep Illumina sequencing.
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/28261228" target="_blank">Wang <i>et al.</i></a>
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_92336123f0">Gene expression changes during mycelia differentiation in <i>Coccidioides immitis</i></a> &ndash; 
-                 A custom open reading frame oligonucleotide microarray to compare the transcriptome of C. immitis mycelia with two spherule samples grown in vitro.
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/23714098" target="_blank">Viriyakosol et al.</a>
+                 A custom open reading frame oligonucleotide microarray to compare the transcriptome of <i>C. immitis</i> mycelia with two spherule samples grown <i>in vitro</i>.
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/23714098" target="_blank">Viriyakosol <i>et al.</i></a>
              </li>
            </ul>
            <br>
@@ -101,23 +104,23 @@
              <th>Genes Updated</th>
            </tr>
            <tr>
-             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on DB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_071f05cd56"><i>Aspergillus fumigatus</i> Af293</a></td>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_071f05cd56"><i>Aspergillus fumigatus</i> Af293</a></td>
              <td>1 </td>
            </tr>
            <tr>
-             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on DB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4b35c88aa1"><i>Aspergillus nidulans </i> FGSC A4</a></td>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4b35c88aa1"><i>Aspergillus nidulans </i> FGSC A4</a></td>
              <td>17</td>
            </tr>
            <tr>
-             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on DB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_60b6b264d3"><i>Coccidioides immitis </i> RS</a></td>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_60b6b264d3"><i>Coccidioides immitis </i> RS</a></td>
              <td>1166</td>
            </tr>
            <tr>
-             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on DB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_62f0e6170f"><i>Neurospora crassa  </i> OR74A</a></td>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_62f0e6170f"><i>Neurospora crassa  </i> OR74A</a></td>
              <td>405</td>
            </tr>
            <tr>
-             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on DB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_cbbce274f6"><i>Ustilago maydis </i> 521</a></td>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_cbbce274f6"><i>Ustilago maydis </i> 521</a></td>
              <td>3843</td>
            </tr>
            </table>
@@ -156,15 +159,15 @@
              <th>Comments Integrated</th>
            </tr>
            <tr>
-             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_071f05cd56"><i>Aspergillus fumigatus</i> Af293</a></td>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_071f05cd56"><i>Aspergillus fumigatus</i> Af293</a></td>
              <td> 1</td>
            </tr>
            <tr>
-             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4b35c88aa1"><i>Aspergillus nidulans</i> FGSC A4</a></td>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4b35c88aa1"><i>Aspergillus nidulans</i> FGSC A4</a></td>
              <td> 1</td>
            </tr>
            <tr>
-             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_62f0e6170f"><i>Neurospora crassa </i> OR74A</a></td>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_62f0e6170f"><i>Neurospora crassa </i> OR74A</a></td>
              <td> 1</td>
            </tr>
           </table>    
@@ -203,6 +206,7 @@
         <h3><b>New data in FungiDB 37</b></h3>
         <div style="margin-left: 3em;">
         
+                
         <h4>Genome Sequence and Annotation: these annotated genomes appear for the first time in FungiDB.</h4>
            <ul>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_339f68fa2f"><i>Aspergillus campestris</i> IBT 28561</a> &ndash; 
@@ -221,6 +225,15 @@
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/29305388">Friedman <i>et al.</i></a>
              </li>
              
+           </ul>
+           <br>
+           
+           <h4>GBrowse tracks</h4>
+           <ul>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_1b1cb2f10a">Small RNA sequence profiles during sexual development in <i>Neurospora crassa</i>  
+            
+             </li>
+                          
            </ul>
            <br>
            
@@ -288,11 +301,11 @@
              <th>Genes Updated</th>
            </tr>
            <tr>
-             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on DB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_8f0322af73"><i>Cryptococcus neoformans</i> H99</a></td>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_8f0322af73"><i>Cryptococcus neoformans</i> H99</a></td>
              <td>452 genes</td>
            </tr>
            <tr>
-             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on DB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_cd90ec7602"><i>Fusarium graminearum</i> PH-1</a></td>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_cd90ec7602"><i>Fusarium graminearum</i> PH-1</a></td>
              <td>4243 genes</td>
            </tr>
            </table>
@@ -487,19 +500,19 @@
              <th>Genes Updated</th>
            </tr>
            <tr>
-             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on DB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_071f05cd56"><i>Aspergillus fumigatus</i> Af293</a></td>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_071f05cd56"><i>Aspergillus fumigatus</i> Af293</a></td>
              <td>210 genes</td>
            </tr>
            <tr>
-             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on DB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_8f0322af73"><i>Cryptococcus neoformans</i> H99</a></td>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_8f0322af73"><i>Cryptococcus neoformans</i> H99</a></td>
              <td>220 genes</td>
            </tr>
            <tr>
-             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on DB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4d171eb9ea"><i>Cryptococcus neoformans</i> JEC21</a></td>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4d171eb9ea"><i>Cryptococcus neoformans</i> JEC21</a></td>
              <td>632 genes</td>
            </tr>
            <tr>
-             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on DB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_62f0e6170f"><i>Neurospora crassa</i> OR74A </a></td>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_62f0e6170f"><i>Neurospora crassa</i> OR74A </a></td>
              <td>2890 genes</td>
            </tr>
            </table>
@@ -535,15 +548,15 @@
              <th>Comments Integrated</th>
            </tr>
            <tr>
-             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_071f05cd56"><i>Aspergillus fumigatus</i> Af293 </a></td>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_071f05cd56"><i>Aspergillus fumigatus</i> Af293 </a></td>
              <td> 2</td>
            </tr>
            <tr>
-             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4d171eb9ea"><i>Cryptococcus neoformans</i> JEC21</a></td>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4d171eb9ea"><i>Cryptococcus neoformans</i> JEC21</a></td>
              <td> 15</td>
            </tr>
            <tr>
-             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_62f0e6170f"><i>Neurospora crassa </i> OR74A</a></td>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_62f0e6170f"><i>Neurospora crassa </i> OR74A</a></td>
              <td> 5</td>
            </tr>
           </table>
@@ -936,15 +949,15 @@
              <th>Genes Updated</th>
            </tr>
            <tr>
-             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on DB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4b35c88aa1"><i>Aspergillus nidulans</i> FGSC A4</a></td>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4b35c88aa1"><i>Aspergillus nidulans</i> FGSC A4</a></td>
              <td>15 genes</td>
            </tr>
            <tr>
-             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on DB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_071f05cd56"><i>Aspergillus fumigatus</i> Af293</a></td>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_071f05cd56"><i>Aspergillus fumigatus</i> Af293</a></td>
              <td>408 genes</td>
            </tr>
            <tr>
-             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on DB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_62f0e6170f"><i>Neurospora crassa</i> OR74A </a></td>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_62f0e6170f"><i>Neurospora crassa</i> OR74A </a></td>
              <td>119 genes</td>
            </tr>
            </table>
@@ -982,15 +995,15 @@
              <th>Comments Integrated</th>
            </tr>
            <tr>
-             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_071f05cd56"><i>Aspergillus fumigatus</i> Af293 </a></td>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_071f05cd56"><i>Aspergillus fumigatus</i> Af293 </a></td>
              <td> 18</td>
            </tr>
            <tr>
-             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4b35c88aa1"><i>Aspergillus nidulans</i> FGSC A4</a></td>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4b35c88aa1"><i>Aspergillus nidulans</i> FGSC A4</a></td>
              <td> 11</td>
            </tr>
            <tr>
-             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_62f0e6170f"><i>Neurospora crassa </i> OR74A</a></td>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_62f0e6170f"><i>Neurospora crassa </i> OR74A</a></td>
              <td> 72</td>
            </tr>
           </table>
@@ -1129,15 +1142,15 @@
              <th>Genes Updated</th>
            </tr>
            <tr>
-             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on DB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4b35c88aa1"><i>Aspergillus nidulans</i> FGSC A4</a></td>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4b35c88aa1"><i>Aspergillus nidulans</i> FGSC A4</a></td>
              <td>15 genes</td>
            </tr>
            <tr>
-             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on DB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_071f05cd56"><i>Aspergillus fumigatus</i> Af293</a></td>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_071f05cd56"><i>Aspergillus fumigatus</i> Af293</a></td>
              <td>408 genes</td>
            </tr>
            <tr>
-             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on DB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_62f0e6170f"><i>Neurospora crassa</i> OR74A </a></td>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_62f0e6170f"><i>Neurospora crassa</i> OR74A </a></td>
              <td>119 genes</td>
            </tr>
            </table>
@@ -1175,15 +1188,15 @@
              <th>Comments Integrated</th>
            </tr>
            <tr>
-             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_071f05cd56"><i>Aspergillus fumigatus</i> Af293 </a></td>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_071f05cd56"><i>Aspergillus fumigatus</i> Af293 </a></td>
              <td> 18</td>
            </tr>
            <tr>
-             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4b35c88aa1"><i>Aspergillus nidulans</i> FGSC A4</a></td>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4b35c88aa1"><i>Aspergillus nidulans</i> FGSC A4</a></td>
              <td> 11</td>
            </tr>
            <tr>
-             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_62f0e6170f"><i>Neurospora crassa </i> OR74A</a></td>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_62f0e6170f"><i>Neurospora crassa </i> OR74A</a></td>
              <td> 72</td>
            </tr>
           </table>
@@ -1271,15 +1284,15 @@
              <th>Genes Updated</th>
            </tr>
            <tr>
-             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on DB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4b35c88aa1"><i>Aspergillus nidulans</i> FGSC A4</a></td>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4b35c88aa1"><i>Aspergillus nidulans</i> FGSC A4</a></td>
              <td>22 genes</td>
            </tr>
            <tr>
-             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on DB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_071f05cd56"><i>Aspergillus fumigatus</i> Af293</a></td>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_071f05cd56"><i>Aspergillus fumigatus</i> Af293</a></td>
              <td>24 genes</td>
            </tr>
            <tr>
-             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on DB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_62f0e6170f"><i>Neurospora crassa</i> OR74A </a></td>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_62f0e6170f"><i>Neurospora crassa</i> OR74A </a></td>
              <td>6928 genes</td>
            </tr>
            </table>
@@ -1411,15 +1424,15 @@
              <th>Genes Updated</th>
            </tr>
            <tr>
-             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on DB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4b35c88aa1"><i>Aspergillus nidulans</i> FGSC A4</a></td>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4b35c88aa1"><i>Aspergillus nidulans</i> FGSC A4</a></td>
              <td>22 genes</td>
            </tr>
            <tr>
-             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on DB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_071f05cd56"><i>Aspergillus fumigatus</i> Af293</a></td>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_071f05cd56"><i>Aspergillus fumigatus</i> Af293</a></td>
              <td>24 genes</td>
            </tr>
            <tr>
-             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on DB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_62f0e6170f"><i>Neurospora crassa</i> OR74A </a></td>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_62f0e6170f"><i>Neurospora crassa</i> OR74A </a></td>
              <td>6928 genes</td>
            </tr>
            </table>
