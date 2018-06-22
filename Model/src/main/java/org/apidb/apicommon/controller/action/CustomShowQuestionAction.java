@@ -1,8 +1,9 @@
 package org.apidb.apicommon.controller.action;
 
+import static org.gusdb.fgputil.functional.Functions.mapToList;
+
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -18,7 +19,6 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionServlet;
-import org.gusdb.fgputil.ListBuilder;
 import org.gusdb.wdk.controller.CConstants;
 import org.gusdb.wdk.controller.action.ShowQuestionAction;
 import org.gusdb.wdk.controller.actionutil.ActionUtility;
@@ -34,6 +34,7 @@ import org.gusdb.wdk.model.jspwrap.WdkModelBean;
 import org.gusdb.wdk.model.record.RecordInstance;
 import org.gusdb.wdk.model.record.TableField;
 import org.gusdb.wdk.model.record.TableValue;
+import org.gusdb.wdk.model.record.attribute.AttributeField;
 import org.gusdb.wdk.model.record.attribute.AttributeValue;
 
 public class CustomShowQuestionAction extends ShowQuestionAction {
@@ -140,13 +141,21 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
         params.put("dataset_subtype", datasetSubtypes[0]);
 
         QuestionBean dsQuestion = wdkModel.getQuestion(dsQuestionName);
-        TableField tableField = dsQuestion.getQuestion().getRecordClass().getTableFieldMap().get(TABLE_REFERENCE);
         AnswerValue answerValue = dsQuestion.getQuestion().makeAnswerValue(user.getUser(), params, true, 0);
         answerValue.setPageToEntireResult();
 
+        // make a list of attribute fields we need to expose
+        String[] attributeNames = { "dataset_name", "display_name", "organism_prefix",
+            "short_attribution", "dataset_id", "summary", "description", "build_number_introduced" };
+        String[] tableNames = { TABLE_REFERENCE, "Publications" };
+
+        List<AttributeField> attributes = mapToList(Arrays.asList(attributeNames), name ->
+            dsQuestion.getQuestion().getRecordClass().getAttributeFieldMap().get(name));
+        List<TableField> tables = mapToList(Arrays.asList(tableNames), name ->
+            dsQuestion.getQuestion().getRecordClass().getTableFieldMap().get(name));
+
         // get file based stream since fetching tables
-        try (RecordStream dsRecords = new FileBasedRecordStream(answerValue,
-            Collections.EMPTY_SET, new ListBuilder<TableField>(tableField).toList())) {
+        try (RecordStream dsRecords = new FileBasedRecordStream(answerValue, attributes, tables)) {
 
           // iterate through records
           for (RecordInstance record : dsRecords) {
@@ -213,6 +222,11 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
                 }
               }
             } // end loop through table rows
+
+            // purge the table from the dataset record to free memory; not used in JSP
+            dsRecord.removeTableValue(TABLE_REFERENCE);
+
+            // add record and associated data to model objects made available to JSP
             if (internalQuestionsMap.size() > 0) {
               questionsByDataset.put(dsRecord, internalQuestionsMap);
             }
