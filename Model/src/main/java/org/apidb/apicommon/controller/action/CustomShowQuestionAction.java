@@ -1,14 +1,14 @@
 package org.apidb.apicommon.controller.action;
 
 import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
-import java.util.Arrays;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,15 +18,21 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionServlet;
+import org.gusdb.fgputil.ListBuilder;
 import org.gusdb.wdk.controller.CConstants;
-import org.gusdb.wdk.controller.actionutil.ActionUtility;
 import org.gusdb.wdk.controller.action.ShowQuestionAction;
+import org.gusdb.wdk.controller.actionutil.ActionUtility;
+import org.gusdb.wdk.model.answer.AnswerValue;
+import org.gusdb.wdk.model.answer.stream.FileBasedRecordStream;
+import org.gusdb.wdk.model.answer.stream.RecordStream;
 import org.gusdb.wdk.model.jspwrap.AnswerValueBean;
 import org.gusdb.wdk.model.jspwrap.CategoryBean;
 import org.gusdb.wdk.model.jspwrap.QuestionBean;
 import org.gusdb.wdk.model.jspwrap.RecordBean;
 import org.gusdb.wdk.model.jspwrap.UserBean;
 import org.gusdb.wdk.model.jspwrap.WdkModelBean;
+import org.gusdb.wdk.model.record.RecordInstance;
+import org.gusdb.wdk.model.record.TableField;
 import org.gusdb.wdk.model.record.TableValue;
 import org.gusdb.wdk.model.record.attribute.AttributeValue;
 
@@ -122,19 +128,10 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
 
         // set 3 data structures that will be passed to jsp in request
         // { dataset => { type => question, ... }, ... }
-        Map<RecordBean, Map<String, List<QuestionBean>>> questionsByDataset =
-                new LinkedHashMap<RecordBean, Map<String, List<QuestionBean>>>();
-        Set<CategoryBean> displayCategorySet = new TreeSet<CategoryBean>(
-                new Comparator<CategoryBean>() {
-                    @Override
-                    public int compare(CategoryBean c1, CategoryBean c2) {
-                        return c1.getName().compareTo(c2.getName());
-                    }
-                });
-        Map<RecordBean, List<QuestionBean>> uncatQuestionsMap =
-          new LinkedHashMap<RecordBean, List<QuestionBean>>();
-        Map<RecordBean, List<String>> missQuestionsMap =
-          new LinkedHashMap<RecordBean, List<String>>();
+        Map<RecordBean, Map<String, List<QuestionBean>>> questionsByDataset = new LinkedHashMap<>();
+        Map<RecordBean, List<QuestionBean>> uncatQuestionsMap = new LinkedHashMap<>();
+        Map<RecordBean, List<String>> missQuestionsMap = new LinkedHashMap<>();
+        Set<CategoryBean> displayCategorySet = new TreeSet<>((c1,c2) -> c1.getName().compareTo(c2.getName()));
 
         // 1- Obtain "datasets by category/subtype"
         String dsQuestionName = "DatasetQuestions.DatasetsByCategoryAndSubtype";
@@ -143,79 +140,79 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
         params.put("dataset_subtype", datasetSubtypes[0]);
 
         QuestionBean dsQuestion = wdkModel.getQuestion(dsQuestionName);
-        AnswerValueBean answerValue = dsQuestion.makeAnswerValue(user,
-                params, true, 0);
+        TableField tableField = dsQuestion.getQuestion().getRecordClass().getTableFieldMap().get(TABLE_REFERENCE);
+        AnswerValue answerValue = dsQuestion.getQuestion().makeAnswerValue(user.getUser(), params, true, 0);
+        answerValue.setPageToEntireResult();
 
-        Iterator<RecordBean> dsRecords = answerValue.getRecords();
-        //int i=0;
-        while (dsRecords.hasNext()) {
-            //i++;logger.debug("\n\nLOOP in WHILE:" + i + "\n\n");
-            RecordBean dsRecord = dsRecords.next();
+        // get file based stream since fetching tables
+        try (RecordStream dsRecords = new FileBasedRecordStream(answerValue,
+            Collections.EMPTY_SET, new ListBuilder<TableField>(tableField).toList())) {
+
+          // iterate through records
+          for (RecordInstance record : dsRecords) {
+            RecordBean dsRecord = new RecordBean(user.getUser(), record);
 
             // checking on a dataset record table that provides wdk references... 
             // we need the references for this dataset, with correct record_class and target_type "question"
-            TableValue tableValue = dsRecord.getTables().get(TABLE_REFERENCE);
-            Map<String, List<QuestionBean>> internalQuestionsMap =
-                    new LinkedHashMap<String, List<QuestionBean>>();
+            TableValue tableValue = record.getTableValue(TABLE_REFERENCE);
+            Map<String, List<QuestionBean>> internalQuestionsMap = new LinkedHashMap<>();
             List<QuestionBean> uncatQuestions = new ArrayList<QuestionBean>();
             List<String> missQuestions = new ArrayList<String>();
 
+            // iterate through table rows
             for (Map<String, AttributeValue> row : tableValue) {
-                String targetType = row.get("target_type").toString();
-                String targetName = row.get("target_name").toString();
-                logger.debug("targetType is: " + targetType + " and targetName is: " + targetName);
 
-                if (targetType.equals(TYPE_QUESTION)) {
-    
-                  try {
+              String targetType = row.get("target_type").toString();
+              String targetName = row.get("target_name").toString();
+              logger.debug("targetType is: " + targetType + " and targetName is: " + targetName);
+
+              if (targetType.equals(TYPE_QUESTION)) {
+                try {
                   // internalQuestion is the expression search
-                    QuestionBean internalQuestion = wdkModel.getQuestion(
-                            targetName);
+                  QuestionBean internalQuestion = wdkModel.getQuestion(targetName);
 
-                    if (!internalQuestion.getRecordClass().getFullName().equals(
-                            question.getRecordClass().getFullName())) {
-                        // filter questions to match recordType
-                        continue;
-                    }
+                  if (!internalQuestion.getRecordClass().getFullName().equals(question.getRecordClass().getFullName())) {
+                    // filter questions to match recordType
+                    continue;
+                  }
 
-                    logger.debug("Adding question bean for " + targetName +
-                        " referenced by data set " + dsRecord.getAttributes().get("dataset_name"));
+                  logger.debug("Adding question bean for " + targetName +
+                      " referenced by data set " + dsRecord.getAttributes().get("dataset_name"));
 
-                    // String[] displayCategories =
-                    //         internalQuestion.getPropertyList("displayCategory");
+                  // String[] displayCategories =
+                  //         internalQuestion.getPropertyList("displayCategory");
 
-                    List<CategoryBean> displayCategories =
+                  List<CategoryBean> displayCategories =
                       //  internalQuestion.getDatasetCategories();
                       //in the ontology these searches appear under webservices scope
                       internalQuestion. getWebServiceCategories(); 
-                      logger.debug("Dataset categories: " + displayCategories.size());
+                  logger.debug("Dataset categories: " + displayCategories.size());
 
+                  if (displayCategories.size() == 1) {
+                    displayCategorySet.add(displayCategories.get(0));
+                    String catName = displayCategories.get(0).getName();
+                    logger.debug("**** category:" + catName);
 
-                    if (displayCategories.size() == 1) {
-                      displayCategorySet.add(displayCategories.get(0));
-                      String catName = displayCategories.get(0).getName();
-                      logger.debug("**** category:" + catName);
-
-                      List<QuestionBean> internalQuestions = internalQuestionsMap.get(catName);
-                      if (internalQuestions == null) {
-                        internalQuestions = new ArrayList<QuestionBean>();
-                        internalQuestionsMap.put(catName, internalQuestions);
-                      }
-                      internalQuestions.add(internalQuestion);
+                    List<QuestionBean> internalQuestions = internalQuestionsMap.get(catName);
+                    if (internalQuestions == null) {
+                      internalQuestions = new ArrayList<QuestionBean>();
+                      internalQuestionsMap.put(catName, internalQuestions);
                     }
-                    else {
-                      // Track uncategorized questions
-                      uncatQuestions.add(internalQuestion);
-                      logger.debug("Found an uncategorized question: " + internalQuestion.getFullName());
-                    }
+                    internalQuestions.add(internalQuestion);
                   }
-                  catch  (Exception ex)  {
-                    logger.debug("****** FOUND MISSING QUESTION SKIPPING: " + targetName);
-                    missQuestions.add(targetName);
-                    continue;
+                  else {
+                    // Track uncategorized questions
+                    uncatQuestions.add(internalQuestion);
+                    logger.debug("Found an uncategorized question: " + internalQuestion.getFullName());
                   }
-                }//if question
-            }//for
+                }
+                catch  (Exception ex)  {
+                  logger.debug("****** FOUND MISSING QUESTION SKIPPING: " + targetName);
+                  missQuestions.add(targetName);
+                  continue;
+                }
+              }
+            } // end loop through table rows
             if (internalQuestionsMap.size() > 0) {
               questionsByDataset.put(dsRecord, internalQuestionsMap);
             }
@@ -225,7 +222,8 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
             if (missQuestions.size() > 0) {
               missQuestionsMap.put(dsRecord, missQuestions);
             }
-        }//while
+          } // end loop through dataset records
+        } // close dataset record stream
 
         // logger.debug("\n**********\n" + questionsByDataset + "\n**********\n");
         request.setAttribute(ATTR_QUESTIONS_BY_DATASET, questionsByDataset);
