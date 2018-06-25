@@ -31,16 +31,16 @@
         <h4>Genome Sequence and Annotation: these annotated genomes appear for the first time in FungiDB.</h4>
            <ul>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_41e884fe46"><i>Cryptococcus gattii</i> EJB2</a> &ndash;  
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26330512">Farrer <i>et al.</i></a>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26330512">Farrer et al.</a>
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_54fda600a6"><i>Fusarium oxysporum</i> f. sp. melonis 26406</a> &ndash; 
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/25081257">Ma <i>et al.</i></a>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/25081257">Ma et al.</a>
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_95bd58312f"><i>Fusarium oxysporum</i> f. sp. cubense race 1</a> &ndash; 
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/24743270">Guo <i>et al.</i></a>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/24743270">Guo et al.</a>
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_8671b6f798"><i>Fusarium oxysporum</i> f. sp. cubense race 4</a> &ndash; 
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/24743270">Guo <i>et al.</i></a>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/24743270">Guo et al.</a>
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_6dfb70288f"><i>Histoplasma capsulatum</i> H143</a> &ndash; 
                  <a href="http://www.ncbi.nlm.nih.gov/bioproject/PRJNA29161">NCBI BioProject PRJNA29161</a>
@@ -51,13 +51,13 @@
         <h4>Genome Sequence and Annotation: updated genomes</h4>
            <ul>   
            <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_339f68fa2f"><i>Aspergillus campestris</i> IBT 28561</a> &ndash;
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/29317534">Kj&aelig;rb&oslash;lling <i>et al.</i></a>.
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/29317534">Kj&aelig;rb&oslash;lling et al.</a>.
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_ed02a8e11b"><i>Aspergillus novofumigatus</i> IBT 16806</a> &ndash; 
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/29317534">Kj&aelig;rb&oslash;lling <i>et al.</i></a>.
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/29317534">Kj&aelig;rb&oslash;lling et al.</a>.
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_93f3ae0e82"><i>Aspergillus steynii</i> IBT 23096</a> &ndash; 
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/29317534">Kj&aelig;rb&oslash;lling <i>et al.</i></a>.
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/29317534">Kj&aelig;rb&oslash;lling et al.</a>.
              </li>
            </ul>
            
@@ -65,23 +65,23 @@
            <ul>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_92336123f0">Gene expression changes during mycelia differentiation in <i>Coccidioides immitis</i></a> &ndash; 
                  A custom open reading frame oligonucleotide microarray to compare the transcriptome of <i>C. immitis</i> mycelia with two spherule samples grown <i>in vitro</i>.
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/23714098" target="_blank">Viriyakosol <i>et al.</i></a>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/23714098" target="_blank">Viriyakosol et al.</a>
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_74596a0bd0">Comparative transcriptomics of <i>C. neoformans</i> mutants defective in heterochromatin regulation</a> &ndash; 
                  Stranded RNA-Seq profiles of WT, knockout strains of ezh2, msl1, ccc1, clr4, and ccc1-W52A aromatic cage mutant.
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/25533783" target="_blank">Dumesic <i>et al.</i></a>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/25533783" target="_blank">Dumesic et al.</a>
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_20c29db32d">Stage-specific and genome-wide gene expression during the different developmental stages of <i>Fusarium graminearum</i></a> &ndash; 
                  Stand specific RNA-Seq of <i>F. graminerum</i> growth stages (conidia, vegetative hyphae, and perithecia at 6dpi)
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26934920" target="_blank">Liu <i>et al.</i></a>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26934920" target="_blank">Liu et al.</a>
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_b9760320fa">Transcriptomic analysis during vegetative and infectious growth of <i>Fusarium graminearum</i> PH-1</a> &ndash; 
                  RNA-Seq of <i>F. graminearum</i> mycelia and 6dpi infection samples assessed by paired-end deep Illumina sequencing.
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/28261228" target="_blank">Wang <i>et al.</i></a>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/28261228" target="_blank">Wang et al.</a>
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_36272f1e89"><i>N. crassa</i> transcriptomes during vegetative and sexual development stage</a> &ndash; 
                  Strand-specific RNA-Seq of <i>Neurospora</i> crassa growth stages
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/28847945" target="_blank">Liu <i>et al.</i></a>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/28847945" target="_blank">Liu et al.</a>
              </li>
            </ul>
            
@@ -89,7 +89,7 @@
            <ul>   
            <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_5ca22e8fc8"><i>Coccidioides immitis</i> RS TE GBrowse track</a> &ndash;
                Annotation of transposable elements (TE) in Coccidioides immitis RS using RepeatMasker which identified TEs based on the RepBase reference library and REPET to support de novo TE identification.
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/29371508">Kirkland <i>et al.</i></a>.
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/29371508">Kirkland et al.</a>.
              </li>
            </ul>
            <br>
@@ -237,10 +237,10 @@
                  <a href="http://www.ncbi.nlm.nih.gov/bioproject/PRJNA217208">NCBI BioProject PRJNA217208</a>.
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_077dbc942e"><i> Candida auris</i> strain B8441</a> &ndash;  
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/27988485">Lockhart <i>et al.</i></a>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/27988485">Lockhart et al.</a>
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_f670f03393"><i>Cryptococcus neoformans</i> var. grubii KN99</a> &ndash; 
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/29305388">Friedman <i>et al.</i></a>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/29305388">Friedman et al.</a>
              </li>
              
            </ul>
@@ -249,7 +249,7 @@
            <h4>GBrowse tracks</h4>
            <ul>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_1b1cb2f10a">Small RNA sequence profiles during sexual development in <i>Neurospora crassa</i></a> &ndash; Endogenous small RNA profiles from <i>N. crassa</i> protoperithecia and perithecia at 2 and 4 days postfertilization. 
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26109355" target="_blank">Wang <i>et al.</i>2015</a>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26109355" target="_blank">Wang et al. 2015</a>
              </li>
                           
            </ul>
@@ -259,21 +259,21 @@
            <ul>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_31af39c3b7">Comparative transcriptomes of yeast and hyphal forms in <i>Histoplasma capsulatum</i> G217B</a> &ndash; 
                  To compare yeast and hyphal transcript expression patterns cultures were grown at 37C for yeast-phase growth and at room temperature (RT) for hyphal phase growth. Total RNA was then isolated from biological duplicates of yeast or hyphal cultures and strand specific cDNA libraries were created from poly(A)-enriched RNA and sequenced using paired-end deep-sequencing. 
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26177267" target="_blank">Gilmore <i>et al.</i>2015</a>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26177267" target="_blank">Gilmore et al. 2015</a>
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_be15e27935">Comparative transcriptomes of yeast and hyphal forms in <i>Histoplasma capsulatum</i> G186AR</a> &ndash; 
                  To compare yeast and hyphal transcript expression patterns cultures were grown at 37C for yeast-phase growth and at room temperature (RT) for hyphal phase growth. Total RNA was then isolated from biological duplicates of yeast or hyphal cultures and strand specific cDNA libraries were created from poly(A)-enriched RNA and sequenced using paired-end deep-sequencing.
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26177267" target="_blank">Gilmore <i>et al.</i>2015</a>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26177267" target="_blank">Gilmore et al. 2015</a>
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_0a6c43682e">Comparative transcriptomes of yeast and hyphal forms in <i>Histoplasma capsulatum</i> H88</a> &ndash; 
                  To compare yeast and hyphal transcript expression patterns cultures were grown at 37C for yeast-phase growth and at room temperature (RT) for hyphal phase growth. Total RNA was then isolated from biological duplicates of yeast or hyphal cultures and strand specific cDNA libraries were created from poly(A)-enriched RNA and sequenced using paired-end deep-sequencing.
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26177267" target="_blank">Gilmore <i>et al.</i>2015</a>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26177267" target="_blank">Gilmore et al. 2015</a>
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_d2ff7c7826">Multidimensional regulation in transcriptome during sexual development in <i>Neurospora crassa</i></a> &ndash; 
                  Genome-wide analysis of <i>N. crassa</i> gene expression during sexual development. Transcriptomic sequencing was primed by random and multitargeted primers and accessed across eight time points encompassing the morphological changes and tissue and cellular development of maturing perithecia. 
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/24243796" target="_blank">Wang <i>et al.</i>2014</a>, 
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/22626843" target="_blank">Wang <i>et al.</i>2012</a>, 
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/25329823" target="_blank">Lehr <i>et al.</i>2014</a>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/24243796" target="_blank">Wang et al. 2014</a>, 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/22626843" target="_blank">Wang et al. 2012</a>, 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/25329823" target="_blank">Lehr et al. 2014</a>
              </li>
              
            </ul>
@@ -283,8 +283,8 @@
            <ul>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_f10e32c6b8">Neurospora Genome Project Phenotype Image Collection</a> &ndash; 
                  New images were added to this data set describing the systematic characterisation of colony growth and morphology of <i>Neurospora crassa</i> knockout mutants. 
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/17352902" target="_blank">Dunlap <i>et al.</i>2007</a>
-		 <a href="http://www.ncbi.nlm.nih.gov/pubmed/16801547" target="_blank">Colot <i>et al.</i>2006</a>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/17352902" target="_blank">Dunlap et al. 2007</a>
+		 <a href="http://www.ncbi.nlm.nih.gov/pubmed/16801547" target="_blank">Colot et al. 2006</a>
 		 <a href="http://www.ncbi.nlm.nih.gov/pubmed/21590422" target="_blank">Turner G.E. 2011</a>
              </li>
            </ul>
@@ -443,40 +443,40 @@
                  <a href="https://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA67069">NCBI BioProject PRJNA67069</a>.
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_385db6b935"><i>Histoplasma capsulatum</i> G217B</a> &ndash; 
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/21958208">Voorhies <i>et al.</i>2015</a>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/21958208">Voorhies et al. 2015</a>
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_76ede52023"><i>Histoplasma capsulatum</i> H88 (<i>Ajellomyces capsulatus</i> H88)</a> &ndash; 
                  The Broad Institute. 
                  <a href="http://www.ncbi.nlm.nih.gov/bioproject/PRJNA29163">NCBI Bioproject PRJNA29163</a>
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_9a46569d2f"><i>Penicillium rubens</i> Wisconsin 54-1255</a> &ndash; 
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/18820685">van den Berg M. A. <i>et al.</i>2011</a>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/18820685">van den Berg M. A. et al. 2011</a>
              </li>
            </ul>
            
         <h4>Transcriptomics data</h4>
            <ul>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4ffc3f21b9">Transcriptome profiling of <i>Coccidioides posadasii</i> WT and &#x394;<i>cps1</i> mutant</a> &ndash; Spherules were collected from both strains. Paired&#45;end RNA&#45;Seq analysis was performed in duplicates. 
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/27481239" target="_blank">Narra <i>et al.</i>2008</a>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/27481239" target="_blank">Narra et al. 2008</a>
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4bd3a11499">Transcriptome analysis of the filamentous fungus <i>Aspergillus nidulans</i> directed to the global identification of promoters</a> &ndash; 
                  <i>A. nidulans</i> transcriptome was accessed at 5 different growth conditions: nitrate, complete, ammonia, -N (4hr), and -N (72hr) media.
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/24299161" target="_blank">Sibthorp <i>et al.</i>2013</a>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/24299161" target="_blank">Sibthorp et al. 2013</a>
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_f5b8d4ff37">Microarray of <i>Fusarium graminearum</i> transcriptome during symptomless, symptomatic, and intermediate wheat disease symptoms</a> &ndash; Three replicates were collected from rachis internodes and compared to spikelet samples.
 
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/28466509" target="_blank">Brown <i>et al.</i>2017</a>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/28466509" target="_blank">Brown et al. 2017</a>
              </li>
            </ul>
            
        <h4>Phenotype data</h4>
            <ul>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_c334877c42">Phenotypic analysis of <i>Neurospora crassa</i> knockout mutants</a> &ndash; A phenotypic pipeline was designed for high&#45;throughput analysis of 10 different traits during hyphal growth, asexual sporulation (macroconidiation), and the sexual cycle in knockout mutants from <i>Neurospora crassa</i>. Provider: Katherine Borkovich; dataset provided prior to publication.
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/17352902" target="_blank">Borkovich <i>et al.</i></a>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/17352902" target="_blank">Borkovich et al.</a>
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_f10e32c6b8"><i>Neurospora</i> Genome Project Phenotype Image Collection</a> &ndash; Analysis of colony growth and morphology was performed on solid Vogel&#39;s minimal (MIN) medium. For each strain, the hyphae at the edge of the colony and plate growth were photographed. 
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/17352902" target="_blank">Dunlap <i>et al.</i>2007</a>
-		 <a href="http://www.ncbi.nlm.nih.gov/pubmed/16801547" target="_blank">Colot <i>et al.</i>2006</a>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/17352902" target="_blank">Dunlap et al. 2007</a>
+		 <a href="http://www.ncbi.nlm.nih.gov/pubmed/16801547" target="_blank">Colot et al. 2006</a>
 		 <a href="http://www.ncbi.nlm.nih.gov/pubmed/21590422" target="_blank">Turner G.E. 2011</a>
              </li>
            </ul>
@@ -485,7 +485,7 @@
            <ul>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_12b70afbf9">Proteogenomic Re-Annotation of <i>Coccidioides posadasii</i> str. Silveira</a> &ndash; 
                  Protein fractions of <i>in vitro</i> grown mycelia and parasitic phase spherules from <i>C. posadasii </i>str. Silveira were analysed using GeLC-MS/MS. Proteomic analysis was performed to provide empirical evidence of the proteins produced in both the mycelial (CDN) and parasitic (SPH) phases.
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/29130603" target="_blank">Mitchell <i>et al.</i></a>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/29130603" target="_blank">Mitchell et al.</a>
              </li>
            </ul>
            
