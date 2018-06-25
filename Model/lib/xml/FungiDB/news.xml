@@ -128,8 +128,7 @@
        
        <h4>Annotations from MIPS Functional Catalogue Database:</h4>  
             <ul> 
-             <li>Gene ontology (GO) annotations for <i>Fusarium graminearum</i> PH-1 from 
-             MIPS database were integrated as functional annotations in FungiDB 38.
+             <li>Functional catalogue annotations for <i>Ustilago maydis</i> 521 from MIPS database were converted to GO terms and integrated as functional annotations in FungiDB 38.
              </li>
            </ul>  
            
@@ -168,7 +167,7 @@
            </tr>
            <tr>
              <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_62f0e6170f"><i>Neurospora crassa </i> OR74A</a></td>
-             <td> 1</td>
+             <td> 16</td>
            </tr>
           </table>    
        </div>    
@@ -339,7 +338,7 @@
              <th>Comments Integrated</th>
            </tr>
            <tr>
-             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_8f0322af73"><i>Cryptococcus neoformans</i> H99</a></td>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_8f0322af73"><i>Cryptococcus neoformans</i> H99</a></td>
              <td> 59</td>
            </tr>
           </table>
