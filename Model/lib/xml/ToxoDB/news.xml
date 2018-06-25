@@ -16,6 +16,49 @@
 --> 
 
 <record>
+  <attribute name="headline">ToxoDB 38 Released</attribute>
+  <attribute name="date">21 Jun 2018 13:00</attribute>
+  <attribute name="tag">toxodb06_18_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of ToxoDB 38</strong></p>
+      
+      <section>
+      <h3><b>New Data in ToxoDB 37</b></h3>
+      <div style="margin-left: 3em;">  
+        <h4>RNA Sequence</h4>
+          <ul>
+             <li>
+               <a href="http://toxodb.org/toxo/app/record/dataset/DS_5d9cde720e">Feline enterocyte stage transcriptome</a> &mdash; 
+               Tanscriptomes of <i>Toxoplasma gondii</i> strain CZ clone H3 in feline enteroepithelial stages. This data set provided pre-publication by the 
+               <a href="https://www.paras.uzh.ch/de/research/microbiology.html">Hehl group, University of Zurich</a>
+             </li>  
+               <br>
+          </ul>  
+      </div>     
+      </section>
+      
+      <section>
+      <h3><b>No new features in this release</b></h3>
+      </section>
+      
+      <section>
+         <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+
+    ]]>
+  </attribute>
+</record>
+
+
+
+<record>
   <attribute name="headline">ToxoDB 37 Released</attribute>
   <attribute name="date">25 Apr 2018 13:00</attribute>
   <attribute name="tag">toxodb04_18_release</attribute>
