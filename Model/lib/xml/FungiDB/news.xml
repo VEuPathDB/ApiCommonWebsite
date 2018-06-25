@@ -126,12 +126,14 @@
            </tr>
            </table>
            <br>
+       </div>
        
        <h4>Annotations from MIPS Functional Catalogue Database:</h4>  
             <ul> 
              <li>Functional catalogue annotations for <i>Ustilago maydis</i> 521 from MIPS database were converted to GO terms and integrated as functional annotations in FungiDB 38.
              </li>
            </ul>  
+           <br>
            
        <h4>Curated User Comments:</h4>  
         Gene page comments that are entered by users are curated at GeneDB and regularly integrated as 
@@ -168,7 +170,7 @@
            </tr>
            <tr>
              <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_62f0e6170f"><i>Neurospora crassa </i> OR74A</a></td>
-             <td> 16</td>
+             <td>16</td>
            </tr>
           </table>    
        </div>    
