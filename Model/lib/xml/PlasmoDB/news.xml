@@ -19,6 +19,67 @@
 -->
 
 <record>
+  <attribute name="headline">PlasmoDB 38 Released</attribute>
+  <attribute name="date">21 Jun 2018 13:00</attribute>
+  <attribute name="tag">plasmodb06_18_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of PlasmoDB 38</strong></p>
+       
+       <section>
+       <h3><b>Announcement:</b></h3>
+        Starting with PlasmoDB 38, <i>P. vivax</i> P01 replaces <i>P. vivax</i> Sal-1 as reference for all <i>P. vivax</i> data in PlasmoDB.  All sequence based data 
+        is now aligned to <i>P. vivax</i> P01. PlasmoDB 37, which uses <i>P. vivax</i> Sal-1 as reference is available here:  
+        <a href="http://r37.plasmodb.org/plasmo.b37/">http://r37.plasmodb.org/plasmo.b37/</a>
+       </section>
+       
+       <section>
+       <h3><b>New data in PlasmoDB 38</b></h3>
+       <div style="margin-left: 3em;">
+       
+       <h4>RNA Sequence</h4>
+           <ul>
+            <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_e764c70e8e">Hypnozoite RNAseq</a> &ndash; 
+              <i>P. vivax</i> hypnozoite RNAseq
+              <a href="http://www.ncbi.nlm.nih.gov/pubmed/29478773">Gural et al.</a> 
+              </li>
+            <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_8eeacbc46e">Ring, Oocyst and Sporozoite Transcriptomes</a> &ndash; 
+              Transcriptomes of oocyst, ring and sporozoite stages in <i>P. falciparum</i> determined by RNA sequence.
+              <a href="http://www.ncbi.nlm.nih.gov/pubmed/29539423">Zanghi et al.</a> 
+              </li>
+           </ul>
+           
+        <h4>ChIP Sequencing data</h4>
+           <ul>
+            <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_c930c27891">Epigenome of sporozoites (HP-1, H3K9me3, H3K9ac) and rings (HP-1, H3K9me3)</a> &ndash; 
+              Genome-wide distribution of HP-1 and H3K9me3 in <i>P. falciparum</i> rings and sporozoites, as well as H3K9ac in sporozoites.
+              <a href="http://www.ncbi.nlm.nih.gov/pubmed/29539423">Zanghi et al.</a> 
+              </li>
+           </ul>
+        </section>
+        <div>
+      <section>
+       <h3><b>No new features in PlasmoDB 38</b></h3>
+      </section>
+       
+      <section>
+         <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+
+    ]]>
+  </attribute>
+</record>
+
+
+
+
+<record>
   <attribute name="headline">PlasmoDB 37 Released</attribute>
   <attribute name="date">25 Apr 2018 13:00</attribute>
   <attribute name="tag">plasmodb04_18_release</attribute>
