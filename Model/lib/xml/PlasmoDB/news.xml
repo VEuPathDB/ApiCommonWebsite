@@ -31,7 +31,7 @@
        <h3><b>Announcement:</b></h3>
         Starting with PlasmoDB 38, <i>P. vivax</i> P01 replaces <i>P. vivax</i> Sal-1 as reference for all <i>P. vivax</i> data in PlasmoDB. 
         Functional genomics data for all strains of <i>P. vivax</i> are now aligned to <i>P. vivax</i> P01.  PlasmoDB 37, which uses 
-        <i>P. vivax</i> Sal-1 as reference is available here:  
+        <i>P. vivax</i> Sal-1 as reference is temporarily available here:  
         <a href="http://r37.plasmodb.org/plasmo.b37/">http://r37.plasmodb.org/plasmo.b37/</a>
        </section>
        
