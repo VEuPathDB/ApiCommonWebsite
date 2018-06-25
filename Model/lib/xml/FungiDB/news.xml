@@ -63,19 +63,35 @@
            
         <h4>Transcriptomics</h4>
            <ul>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_92336123f0">Gene expression changes during mycelia differentiation in <i>Coccidioides immitis</i></a> &ndash; 
+                 A custom open reading frame oligonucleotide microarray to compare the transcriptome of <i>C. immitis</i> mycelia with two spherule samples grown <i>in vitro</i>.
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/23714098" target="_blank">Viriyakosol <i>et al.</i></a>
+             </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_74596a0bd0">Comparative transcriptomics of <i>C. neoformans</i> mutants defective in heterochromatin regulation</a> &ndash; 
                  Stranded RNA-Seq profiles of WT, knockout strains of ezh2, msl1, ccc1, clr4, and ccc1-W52A aromatic cage mutant.
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/25533783" target="_blank">Dumesic <i>et al.</i></a>
+             </li>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_20c29db32d">Stage-specific and genome-wide gene expression during the different developmental stages of <i>Fusarium graminearum</i></a> &ndash; 
+                 Stand specific RNA-Seq of <i>F. graminerum</i> growth stages (conidia, vegetative hyphae, and perithecia at 6dpi)
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26934920" target="_blank">Liu <i>et al.</i></a>
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_b9760320fa">Transcriptomic analysis during vegetative and infectious growth of <i>Fusarium graminearum</i> PH-1</a> &ndash; 
                  RNA-Seq of <i>F. graminearum</i> mycelia and 6dpi infection samples assessed by paired-end deep Illumina sequencing.
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/28261228" target="_blank">Wang <i>et al.</i></a>
              </li>
-             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_92336123f0">Gene expression changes during mycelia differentiation in <i>Coccidioides immitis</i></a> &ndash; 
-                 A custom open reading frame oligonucleotide microarray to compare the transcriptome of <i>C. immitis</i> mycelia with two spherule samples grown <i>in vitro</i>.
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/23714098" target="_blank">Viriyakosol <i>et al.</i></a>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_36272f1e89"><i>N. crassa</i> transcriptomes during vegetative and sexual development stage</a> &ndash; 
+                 Strand-specific RNA-Seq of <i>Neurospora</i> crassa growth stages
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/28847945" target="_blank">Liu <i>et al.</i></a>
              </li>
            </ul>
+           
+           <h4>Sequence sites, features and motifs</h4>
+           <ul>   
+           <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_5ca22e8fc8"><i>Coccidioides immitis</i> RS TE GBrowse track</a> &ndash;
+               Annotation of transposable elements (TE) in Coccidioides immitis RS using RepeatMasker which identified TEs based on the RepBase reference library and REPET to support de novo TE identification.
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/29371508">Kiekland <i>et al.</i></a>.
+             </li>
+           </u>
            <br>
            
         <h4>Updated Functional Annotation</h4>
