@@ -33,20 +33,22 @@
         <div style="margin-left: 3em;">
         <h4>Proteomics and post-translational modifications</h4>
           <ul>
-          <i>T. cruzi</i> and <i>T. brucei</i> lysine and N-terminal acetylation proteomes. 
+          Acetylation proteomes of <i>T. cruzi</i> and <i>T. brucei</i> lysine and N-terminal amino acids. 
           <a href="http://www.ncbi.nlm.nih.gov/pubmed/29168382" target="_blank">Moretti et al.</a>
+          <div style="margin-left: 3em;">
            <li>
-              <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_2db3d0872d"><i>T. brucei </i> TREU927</a> 
+              <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_2db3d0872d"><i>T. brucei</i> TREU927</a> bloodstream and procyclic form data
            </li>
            <li>
-              <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_c87b905ece"><i>T. cruzi </i> CL Brener Non-Esmeraldo-like/a> 
+              <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_c87b905ece"><i>T. cruzi</i> CL Brener Non-Esmeraldo-like</a> epimatigote data
            </li>
            <li>
-              <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_2a7b5a1ada"><i>T. cruzi </i> CL Brener Esmeraldo-like/a> 
+              <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_2a7b5a1ada"><i>T. cruzi</i> CL Brener Esmeraldo-like</a> epimatigote data
            </li>
            <li>
-              <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_d630a9d906"><i>T. cruzi </i> strain CL Brener/a> 
+              <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_d630a9d906"><i>T. cruzi</i> strain CL Brener</a> epimatigote data
            </li>
+           </div>
           </ul>
          
          <h4>ChIP Sequencing</h4>
