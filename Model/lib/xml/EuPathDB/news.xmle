@@ -1,0 +1,857 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmlAnswer>
+
+
+<!--
+   <record>
+       <attribute name="headline"></attribute>
+       <attribute name="date"></attribute>
+       <attribute name="tag"></attribute>
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+          ]]>
+       </attribute>
+    </record>
+--> 
+<record>
+       <attribute name="headline">EuPathDB Outreach Position</attribute>
+       <attribute name="date">18 November 2015 12:00</attribute>
+       <attribute name="tag">outreach_job</attribute>
+       <attribute name="category">job</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<p><h4>Community Outreach Specialist</h4></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;The Eukaryotic Pathogen Database resource (EuPathDB.org) seeks to hire a community outreach specialist with a focus on fungal biology. The outreach team (three plus members) works collaboratively within a larger ~30-member team of biologists, annotators, user-interface and software developers to provide effective data representation and online resources to scientists and clinicians worldwide who utilize the highly-visible EuPathDB websites.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;These sites include those for malaria-causing parasites (PlasmoDB.org), trypanosomes (TriTrypDB.org), fungi (FungiDB.org) and other pathogenic eukaryotic organisms. The overall project goal is to present our global user base with an intuitive and informative Web interface for accessing and interrogating omic-scale datasets. The successful applicant must be able to effectively communicate with scientists conducting various types of research on pathogenic eukaryotes and their close relatives in order to respond to the communities' needs and identify/acquire omic-scale datasets. Thus, effective communication and an understanding of the challenges posed by large-scale data are required. The position requires travel with active participation in scientific meetings including internationally, instruction at workshops and webinars, participation in scientific writing of abstracts, manuscripts and other material (ie. Posters, flyers and educational material), and keeping up-to-date with the pertinent scientific literature.<br><br>
+One position is open in three possible locations: <br><br><a href="https://jobs.hr.upenn.edu/postings/14170">Philadelphia, Pennsylvania, USA</a><br><br><a href="https://www.ugajobsearch.com/applicants/Central?quickFind=67650">Athens, Georgia, USA</a><br><br>The United Kingdom (position to be announced soon)</p>
+
+]]>
+       </attribute>
+    </record>
+
+<record>
+       <attribute name="headline">EuPathDB 24 Released</attribute>
+       <attribute name="date">13 April 2015 13:00</attribute>
+       <attribute name="tag">eupathdb4_15_release</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252" http-equiv="content-type">
+    <title>eupathdb_4_15_news</title>
+  </head>
+  <body>
+    <p> </p>
+    <p> </p>
+    <p> </p>
+    <p> </p>
+    <p> </p>
+    <p> </p>
+    <p> </p>
+    <p><span style="font-family: Helvetica,Arial,sans-serif;"> </span> </p>
+    <div style="margin-left: 40px;"><span style="font-family: Helvetica,Arial,sans-serif;"><strong>We
+          are pleased to announce the release of EuPathDB 24</strong><span style="font-weight: bold;"></span><br>
+      </span> <span style="font-style: italic;"><span style="font-family: Helvetica,Arial,sans-serif;"><br>
+          All EuPathDB release numbers have been synchronized to help us more
+          efficiently manage our expanding number of databases.&nbsp; As of this
+          release all EuPathDB resource release numbers have been set to release
+          24.&nbsp; Subsequent version numbers will increase by one with each
+          release.&nbsp; For information about individual dataset version
+          numbers see the Data Sets page. </span></span><br>
+      <div style="text-align: center;"> </div>
+      <table style="width: 365px; height: 96px; text-align: left; margin-left: auto; margin-right: auto;"
+        border="0">
+        <tbody>
+          <tr>
+            <td style="margin-left: 185px; width: 188px; height: 23px; background-color: #cccccc; text-align: left;"><span
+                style="font-size:11.0pt;line-height:107%;font-family:Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">EuPathDB<br>
+                Resource</span></td>
+            <td style="width: 188px; height: 23px; background-color: #cccccc; text-align: center;"><span
+                style="font-size:11.0pt;line-height:107%;font-family:Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA"><span
+                  style="font-size:11.0pt;line-height:107%;font-family:Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">Jan
+                  2015<br>
+                </span>Version #<br>
+              </span></td>
+            <td style="width: 188px; height: 23px; background-color: #cccccc; text-align: center;">
+              <span style="font-size:11.0pt;line-height:107%;font-family:
+Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA"><span
+                  style="font-size:11.0pt;line-height:107%;font-family:Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">April
+                  2015<br>
+                </span>Version #</span> </td>
+          </tr>
+          <tr>
+            <td style="width: 188px; height: 24px; background-color: #cccccc; text-align: left;">EuPathDB</td>
+            <td style="width: 188px; height: 24px; background-color: #cccccc; text-align: center;">23</td>
+            <td style="width: 188px; height: 24px; background-color: #cccccc; text-align: center;">24</td>
+          </tr>
+          <tr>
+            <td style="background-color: #cccccc; text-align: left;">AmoebaDB</td>
+            <td style="background-color: #cccccc; text-align: center;">4.2</td>
+            <td style="background-color: #cccccc; text-align: center;">24</td>
+          </tr>
+          <tr>
+            <td style="background-color: #cccccc; text-align: left;">CryptoDB</td>
+            <td style="background-color: #cccccc; text-align: center;">8.0</td>
+            <td style="background-color: #cccccc; text-align: center;">24</td>
+          </tr>
+          <tr>
+            <td style="background-color: #cccccc; text-align: left;">FungiDB</td>
+            <td style="background-color: #cccccc; text-align: center;">3.2</td>
+            <td style="background-color: #cccccc; text-align: center;">24</td>
+          </tr>
+          <tr>
+            <td style="background-color: #cccccc; text-align: left;">GiardiaDB</td>
+            <td style="background-color: #cccccc; text-align: center;">5.0</td>
+            <td style="background-color: #cccccc; text-align: center;">24</td>
+          </tr>
+          <tr>
+            <td style="background-color: #cccccc; text-align: left;">HostDB</td>
+            <td style="background-color: #cccccc; text-align: center;">2.2</td>
+            <td style="background-color: #cccccc; text-align: center;">24</td>
+          </tr>
+          <tr>
+            <td style="background-color: #cccccc; text-align: left;">MicrosporidiaDB</td>
+            <td style="background-color: #cccccc; text-align: center;">8.0</td>
+            <td style="background-color: #cccccc; text-align: center;">24</td>
+          </tr>
+          <tr>
+            <td style="background-color: #cccccc; text-align: left;">PiroplasmaDB
+            </td>
+            <td style="background-color: #cccccc; text-align: center;">5.1 </td>
+            <td style="background-color: #cccccc; text-align: center;">24</td>
+          </tr>
+          <tr>
+            <td style="background-color: #cccccc; text-align: left;">PlasmoDB </td>
+            <td style="background-color: #cccccc; text-align: center;">13.0 </td>
+            <td style="background-color: #cccccc; text-align: center;">24</td>
+          </tr>
+          <tr>
+            <td style="background-color: #cccccc; text-align: left;">ToxoDB<br>
+            </td>
+            <td style="background-color: #cccccc; text-align: center;">13.0 </td>
+            <td style="background-color: #cccccc; text-align: center;">24</td>
+          </tr>
+          <tr>
+            <td style="background-color: #cccccc; text-align: left;">TrichDB</td>
+            <td style="background-color: #cccccc; text-align: center;">3.2</td>
+            <td style="background-color: #cccccc; text-align: center;">24</td>
+          </tr>
+          <tr>
+            <td style="background-color: #cccccc; text-align: left;">TriTrypDB<br>
+            </td>
+            <td style="background-color: #cccccc; text-align: center;">9.0<br>
+            </td>
+            <td style="background-color: #cccccc; text-align: center;">24<br>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <o:p><strong><br>
+          New component:<br>
+          <br>
+        </strong>We are happy to announce the full integration of FungiDB into
+        the EuPathDB family of resources. Please see the <a style="font-weight: bold;"
+          href="http://eupathdb.org/eupathdb/showXmlDataContent.do?name=XmlQuestions.News&amp;tag=comm_lett">community
+          letter</a> for additional details.<br>
+        <strong><br>
+          <br>
+          New Features:</strong></o:p><strong> </strong><span style="font-family: Helvetica,Arial,sans-serif;"></span><span
+        style="font-family: Helvetica,Arial,sans-serif;"><em></em></span>
+      <p class="MsoNoSpacing"><span style="font-family: Helvetica,Arial,sans-serif;">
+          <em style="text-decoration: underline;">Help us improve our Data Set
+            page</em>: The dataset page includes information about all datasets
+          loaded into our resources including, release and date loaded, name of
+          the provider, links to searches and data visualization, etc... Take a
+          look at the beta version of our dataset page (access it from the data
+          summary menu item at the top of our web pages) and let us know what
+          you think.<br>
+        </span> </p>
+    </div>
+    <div style="text-align: justify;"> </div>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-style: italic;"><span
+            style="font-style: italic;"><span
+              style="text-decoration: underline;">Note:</span>
+            Our bimonthly database releases incorporate new data and correct old
+            data when necessary.&nbsp; Changes in annotation and new
+            experimental data may slightly alter your search results by
+            increasing or decreasing the number of hits. When search parameters
+            change with a new release, we invalidate (<span style="color: red;">Ø</span>)
+            the search and ask you to rerun it. When IDs are updated or removed,
+            we map the old IDs to the new ones, remove the old IDs from your
+            Basket, and leave your Favorites page alone.</span></span><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold;"><span
+            style="font-style: italic;"></span></span></span>
+      <p><span style="font-family: Helvetica,Arial,sans-serif;"><em><strong>Follow</strong></em>
+          <span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
+              on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+            style="font-weight: bold; font-style: italic;">,
+            <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="http://www.youtube.com/user/EuPathDB">YouTube</a></span></span></p>
+    </div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold; font-style: italic;"></span></span>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    <div style="text-align: justify;"> </div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><span
+          style="font-weight: bold; font-style: italic;"></span><span
+          style="font-weight: bold; font-style: italic;"></span></span></div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+  </body>
+</html>
+
+          ]]>
+       </attribute>
+    </record>
+<record>
+       <attribute name="headline">Letter to the EuPathDB Community</attribute>
+       <attribute name="date">19 February 2015 13:00</attribute>
+       <attribute name="tag">comm_lett</attribute>
+       <attribute name="category">letter</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body>
+    <p>Dear colleagues -<br>
+      <br>
+      We are writing to provide an update on the Eukaryotic Pathogen Genomics
+      Resource (<a href="http://EuPathDB.org">EuPathDB.org</a>), which many
+      hundreds of laboratories wrote to support in connection with our
+      application for renewal as an NIH Bioinformatics Resource Center for
+      Infectious Diseases.&nbsp; We are pleased to report that the EuPathDB
+      contract has now been renewed.<br>
+      <br>
+      In addition to continuing to integrate the ever-increasing volume of
+      Omic-scale datasets available for microbial eukaryotes, new
+      functionalities anticipated over the coming months include:</p>
+    <ul>
+      <li>full integration of FungiDB into the EuPathDB family of databases</li>
+      <li>reorganization of EuPathDB record pages, so as to improve
+        navigability, better accommodate curated annotation (when available),
+        represent alternative transcripts, summarize functional genomic results,
+        etc</li>
+      <li>better representation of experimental metadata, including phenotyping
+        and clinical/field results</li>
+      <li>enhanced functionality of the host response database (<a href="http://HostDB.org">HostDB.org</a>)</li>
+      <li>improved handling of metabolic pathways, including incorporation of
+        metabolomic datasets</li>
+      <li>better support for orthology-based queries and cross-species inference</li>
+      <li>implementation of workspaces enabling users to upload and analyze
+        their own data (e.g. RNA-seq results)</li>
+    </ul>
+    <p><br>
+      The scope of this renewal extends beyond our previous mandate, which
+      officially covered only biosecurity threats (Cryptosporidium, Entamoeba,
+      Giardia, Toxoplasma, etc) and reemerging pathogens (e.g.
+      Plasmodium).&nbsp; This makes it easier for us to leverage EuPathDB
+      infrastructure in support of the kinetoplastida, oomycetes, fungi, and
+      other microbial eukaryotes, including both pathogenic and non-pathogenic
+      species.<br>
+      <br>
+      The scale of the EuPathDB award from NIH does not provide adequate funding
+      for full support of the TriTrypDB or FungiDB projects (unfortunately) ...
+      but the Wellcome Trust has agreed to consider an application covering
+      these initiatives, augmenting our existing award for kinetoplastid
+      resources.&nbsp; We will be contacting users of these databases shortly
+      for their support.<br>
+      <br>
+      As always, we look forward to feedback from database users, via the
+      'Contact Us' link on all EuPathDB web sites, face-to-face discussions at
+      major meetings, etc.<br>
+      <br>
+      Brian P. Brunk -- EuPathDB Senior Project Manager<br>
+      Christiane Hertz-Fowler -- Kinetoplastid Resources PI (on behalf of UK
+      co-PIs)<br>
+      Omar S. Harb -- EuPathDB Scientific Outreach Manager<br>
+      Jessica C. Kissinger -- EuPathDB joint-PI<br>
+      David S. Roos -- EuPathDB joint-PI, Kinetoplastid Resources co-PI, FungiDB
+      co-PI<br>
+      Jason E. Stajich -- FungiDB co-PI<br>
+      Christian J. Stoeckert -- EuPathDB co-PI</p>
+  </body>
+          ]]>
+       </attribute>
+    </record>
+
+<record>
+       <attribute name="headline">
+         <![CDATA[
+Driving Biological Projects awarded
+         ]]>
+         </attribute>
+       <attribute name="date">20 October 2010 13:00</attribute>
+       <attribute name="tag">dbp_award_10202010</attribute>
+       <attribute name="category">dbp</attribute>
+       <attribute name="item">
+         <![CDATA[
+<b>We are pleased to report that the following Driving Biological Projects (DBPs) have been awarded in connection with the EuPathDB Bioinformatics Resource Center (BRC):</b><br><br>
+<ul>
+<li><b>The Toxoplasma oocyst transcriptome and proteome</b><br>
+   John Boothroyd, Matt Bogyo (Stanford) & Pat Conrad (UC Davis)<br>
+   This project is expected to yield expression data from an important, but inaccessible, life cycle stage (1 yr). <br><br></li>
+<li><b>A comprehensive catalog of the T. gondii & N. caninum parasite & infected host cell transcriptome & proteome</b><br>
+   Brian Gregory (Univ. Pennsylvania) & Jonathan Wastling (Univ. Liverpool)<br>
+   This project will produce an immense volume of sequence data, driving database improvements for handling 'next-gen' sequencing, non-coding RNAs, and interrogating host & pathogen datasets in parallel (2 yr).<br><br></li>
+
+<li><b>Dissection of Plasmodium falciparum genetic crosses by mass spectrometry-based metabolite QTL</b><br>
+   Manuel Llin&aacute;s (Princeton) & Michael Ferdig (Notre Dame)<br>
+   This project is expected to improve handling of genetic mapping data, incorporation of metabolomics results (integrated with pathway maps), and linking of specific genetic loci with metabolite abundance (2 yr).<br><br></li>
+</ul>
+
+A biennial competition for DBP awards is mandated by the BRC contract from NIH/NIAID, and supported by a total of $1.2M in total costs per award cycle.  The goal of this program is to produce high value genomic-scale datasets for the EuPathDB user community, and drive the further development of bioinformatics resources for data analysis and mining.<br><br>
+
+Letters of intent (LOI) were solicited in February (see Feb 4 News item), and reviewed by the EuPathDB Scientific Working Group (SWG; see News, March 31).  12 full applications were solicited from among the ~50 LOIs received, and awards were based on further scientific review by the SWG, and in consultation with NIAID program staff.  Cost negotiations and 'in kind' contributions from other sources made it possible to support 3 applications, from 6 investigators (in some cases, more than one LOI was merged into a single award).<br><br>
+
+We received far more high quality proposals than could be supported, testifying to the need for such mechanisms for data production bioinformatics analysis.  The EuPathDB team looks forward to working with members of our user community who are seeking funding for such projects from external sources.  Inquiries, including requests for support letters, should be directed to the EuPathDB staff (click on the 'Contact Us' link).<br><br>
+
+<b>A new solicitation for DBPs is anticipated in 2011, and will be announced on the EuPathDB web site.</b>
+          ]]>
+       </attribute>
+</record>
+
+
+<record>
+       <attribute name="headline">EuPathDB Scientific Working Group</attribute>
+       <attribute name="date">31 March 2010 15:00</attribute>
+       <attribute name="tag">swg_announce_2010</attribute>
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+EuPathDB is pleased to announce the members of the scientific working group
+(SWG). The SWG provides EuPathDB with scientific oversight and 
+guidance.  Members of the SWG also review the driving biological projects initiative.<br><br>
+
+<table>
+<tr>
+<td><a href="http://www.fnih.org/about">Michael Gottlieb</a>, Chair<br>
+Foundation for National Institutes of Health (FNIH)<br>
+Broad expertise in parasitology, large integrative projects (chair)<br>
+</td>
+<td>
+<a href="http://www.sanger.ac.uk/research/faculty/mberriman/">Matt Berriman</a><br>
+Wellcome Trust Sanger Institute<br>
+Pathogen genomics & functional annotation<br>
+</td>
+</tr><tr>
+<td>
+<a href="http://med.stanford.edu/profiles/John_Boothroyd/">John Boothroyd</a><br>
+Stanford University<br>
+Toxoplasma biology & host-pathogen interactions<br>
+</td>
+<td>
+<a href="http://www.vcu.edu/lifesci/research/res_fac_int_buck.html">Greg Buck</a><br>
+Virginia Commonwealth University<br>
+Pathogenomics of apicomplexan and kinetoplastid parasites<br>
+</td>
+</tr><tr>
+<td>
+<a href="http://www3.niaid.nih.gov/labs/aboutlabs/lmiv/default.htm">Patrick Duffy</a><br>
+National Institutes of Health (NIAID)<br>
+Laboratory & clinical aspects of malaria biology<br>
+</td>
+<td>
+<a href="http://www.cgm.northwestern.edu/">Pascale Gaudet</a><br>
+Northwestern University<br>
+Biocuration, ontologies, DIctyostelium<br>
+</td>
+</tr><tr>
+<td>
+<a href="http://www.paras.uzh.ch/research/microbiology.html">Adrian Hehl</a><br>
+University of  Zurich<br>
+Cellular and molecular biology of Giardia<br>
+</td>
+<td>
+<a href="http://www.botany.ubc.ca/keeling/">Patrick Keeling</a><br>
+University of British Columbia<br>
+Comparative genomics<br>
+</td>
+</tr><tr>
+<td>
+<a href="http://www.medicine.virginia.edu/clinical/departments/pathology/faculty/petri-page">Bill Petri</a><br>
+University of Virginia<br>
+Laboratory & clinical aspects of Entamoeba and diarrheal diseases<br>
+</td>
+<td>
+<a href="http://www.oicr.on.ca/Research/stein.htm">Lincoln Stein</a><br>
+Ontario Cancer Center<br>
+Bioinformatics tools & analysis<br>
+</td>
+</tr><tr>
+<td>
+<a href="http://www.genome.gov/26525388">Lu Wang</a><br>
+National Institutes of Health (NHGRI)<br>
+Large-scale sequencing<br>
+</td>
+<td>
+<a href="http://www.liv.ac.uk/infection-and-global-health/staff/jonathan-wastling/">Jonathan Wastling</a><br>
+University of Liverpool<br>
+Proteomics of apicomplexan parasites<br>
+</td>
+</tr><tr>
+<td>
+<a href="http://www.einstein.yu.edu/home/faculty/profile.asp?id=4218">Louis Weiss</a><br>
+Albert Einstein College of Medicine<br>
+Microsporidia, Toxoplasma, and clinical microbiology<br>
+</td>
+<td>
+<a href="http://www.hsph.harvard.edu/faculty/dyann-wirth/">Dyann Wirth</a><br>
+Harvard School of Public Health<br>
+Plasmodium population biology, drug discovery<br>
+</td></table>
+          ]]>
+       </attribute>
+    </record>
+
+<record>
+       <attribute name="headline">EuPathDB Driving Biological Projects</attribute>
+       <attribute name="date">04 February 2010 15:00</attribute>
+       <attribute name="tag">eupath_dbp_2010</attribute>
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+The NIAID-funded Eukaryotic Pathogen Genome Database
+(<a href="http://eupathdb.org">EuPathDB.org</a>) invites proposals for Driving Biological
+Projects (DBPs) focused on one or more of the eukaryotic
+pathogens supported by this Bioinformatics Resource Center
+(BRC). We anticipate making two awards of up to $600K each
+by July 1, 2010 (a second round of solicitations is expected
+in 2012).<i> A two page Letter of Intent (LOI) is due Feb 28,
+following which full applications will be solicited by
+invitation only, with a deadline of March 31.</i>  
+<a href="http://eupathdb.org/common/EuPathDB_DBP_announcement.pdf">
+Click here to
+download the RFP</a>.
+          ]]>
+       </attribute>
+</record>
+
+<record>
+       <attribute name="headline">
+         <![CDATA[
+            <b>Working with Parasite Database Resources Workshop (April 17-21, 2010)</b>
+         ]]>
+       </attribute>
+       <attribute name="date">
+         20 November 2009 15:00
+       </attribute>
+       <attribute name="tag">
+         HinxtonWorkShop
+       </attribute>
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
+         <![CDATA[<big><br>
+We are pleased to announce a workshop taught as part of a collaboration between the Pathogen Genomics Group 
+(Wellcome Trust Sanger Institute, UK), the Eukaryotic Pathogen Bioinformatics Resource Center 
+(University of Georgia and University of Pennsylvania, US), and the Seattle Biomedical Research Institute (US). 
+This residential workshop aims to provide experimental biologists with hands-on experience in 
+genomic-scale data analysis, including genome browsers and comparison tools, methods for 
+data integration, and resources for sophisticated data mining.
+Many examples and exercises will be drawn from the kinetoplastida, including <i>Leishmania spp.</i>, 
+<i>Trypanosoma brucei</i>, and <i>Trypanosoma cruzi</i>, although applicants working on other protozoan 
+parasites will also benefit.<br><br>
+
+<span style="font-weight: bold;"><span
+ style="color: red;">!!!!!</span>Application Deadline
+is December 18th 2009<span style="color: red;">!!!!!!</span></span>
+<br><br>
+
+<b>For registration and additional information (including scholarships) please click <a href="http://www.wellcome.ac.uk/Education-resources/Courses-and-conferences/Advanced-Courses/Courses/WTX057366.htm">here</a> (Note: you will be diverted to and external site).
+</b><br><br>
+As usual, if you have any questions please send us an <a href="mailto:help@eupathdb.org">Email</a>. 
+
+          ]]>
+       </attribute>
+    </record>
+
+ <record>
+       <attribute name="headline">EuPathDB published in
+Nucleic Acid Research
+</attribute>
+       <attribute name="date">16 November 2009 15:00</attribute>
+       <attribute name="tag">eupathpub</attribute>
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<span style="font-weight: bold;">EuPathDB published in
+Nucleic Acid Research<br>
+</span><big><br>
+We are pleased to announce the publication of a paper providing an
+update on the EuPathDB genomic resource. &nbsp;The paper entitled
+"EuPathDB: a portal to eukaryotic pathogen databases" is
+available <a
+ href="http://nar.oxfordjournals.org/cgi/content/abstract/gkp941">here</a>
+as an advance access publication.</big><span
+ style="font-weight: bold;"><br>
+<br>
+</span><span style="font-style: italic;">This
+article may be used to cite the TriTrypDB resource in your
+publications.
+&nbsp;To download this reference to your citation manager please
+click </span><a style="font-style: italic;"
+ href="http://nar.oxfordjournals.org/cgi/citmgr?gca=nar;gkp941v1">here</a><span
+ style="font-style: italic;">.</span>
+          ]]>
+       </attribute>
+    </record>
+<record>
+       <attribute name="headline">
+         <![CDATA[
+         EuPathDB 2.1 Released
+         ]]>
+       </attribute>
+       <attribute name="date">
+       25 September 2009 15:00
+       </attribute>
+       <attribute name="tag">
+       eupath909news
+       </attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+
+         <![CDATA[
+<b>We are pleased to
+announce the release of EuPathDB 2.1</b><br>
+<br>
+This is a major release of the EuPathDB resource and includes the
+strategy builder, which allows the construction of complex searches
+using a graphical interface. <br>
+<br>
+<u>Strategy builder
+highlights:</u><br>
+<br>
+<ul>
+  <li>Transform a search into its orthologs from other species in
+the EuPathDB family of databases.</li>
+  <li>Edit any step in a strategy and see results change
+dynamically.</li>
+  <li>Share strategies with your colleagues via email.</li>
+  <li>Login to store your history of strategies and browse them
+at any time in the future.</li>
+</ul>
+A tutorial describing how to build a strategy can be viewed <a
+ href="http://eupathdb.org/tutorials/New_Strat/New_Strat_viewlet_swf.html">here</a>.
+&nbsp;And an example sample strategy can be accessed <a
+ href="http://eupathdb.org/eupathdb/im.do?s=4961f7629e7950c9">here</a>.<br>
+<br>
+Sincerely,<br>
+<br>
+The EuPathDB team.<br>
+]]>
+       </attribute>
+    </record>
+ <record>
+       <attribute name="headline">
+         <![CDATA[
+         ApiDB 3.2 is released with Cryptosporidium Isolates and new Plasmo 5.4 annotation
+         ]]>
+       </attribute>
+       <attribute name="date">
+       19 February 2008 15:00
+       </attribute>
+       <attribute name="tag">
+       19February2008Release32
+       </attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+
+         <![CDATA[
+
+The ApiDB team is pleased to announce the release of ApiDB 3.2
+<p>
+This release accesses the latest releases of <a href="http://cryptodb.org">CryptoDB</a> and <a href="http://plasmodb.org">PlasmoDB</a>, offering the new Isolate queries in CryptoDB and updates after the <a href="http://plasmodb.org/plasmo/showXmlDataContent.do?name=XmlQuestions.News#reannotation">on-going re-annotation</a> of Plasmodium falciparum.
+ ]]>
+       </attribute>
+    </record>
+
+
+<record>
+       <attribute name="headline"> <![CDATA[ EST Assemblies generated for C.parvum and T.gondii  ]]> 
+         </attribute>
+       <attribute name="date">12 December 2007 00:00</attribute>
+       <attribute name="tag">12Dec2007</attribute>
+       <attribute name="category"></attribute>
+       <attribute name="item">
+
+         <![CDATA[
+BLAST in ApiDB allows you to blast against: not only any Crypto, Plasmo and Toxo data set available in their websites, but also against the Theileria Genomes, all available apicomplexan ESTs (from NCBI dbEST) and the <a href="http://eupathdb.org/eupathdb/showQuestion.do?questionFullName=UniversalQuestions.UnifiedBlast&target=EST">available EST assemblies</a> that include Cryptosporidium parvum and Toxoplasma gondii.
+          ]]>
+       </attribute>
+    </record>
+
+
+ <record>
+       <attribute name="headline">ApiDB.org 3.1 released</attribute>
+       <attribute name="date">12 December 2007 00:00</attribute>
+       <attribute name="tag">12Dec2007Release31</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+
+         <![CDATA[
+We are pleased to announce this new release of the ApiDB.org Website and Database, Version 3.1. 
+<br>
+
+<p>
+<b> New Features/Data</b> 
+<ul>
+<li> All our queries offer the same functionality as our component sites: <a href="http://cryptodb.org/cryptodb/showXmlDataContent.do?name=XmlQuestions.News">Crypto 3.6</a>, <a href="http://plasmodb.org/plasmo/showXmlDataContent.do?name=XmlQuestions.News">Plasmo 5.4</a> and <a href="http://toxodb.org/toxo/showXmlDataContent.do?name=XmlQuestions.News">Toxo 4.3</a> recently released with new data.
+<li> All BLAST queries have been consolidated to a single interface, the same as in the component sites.
+  <li> More convenient access to help ... please click the  <a href="http://eupathdb.org/eupathdb/contact.do" class="new-window" data-name="contact_us">"Ask us a Question"</a> link on the front page sidebar, or the  <a href="http://eupathdb.org/eupathdb/contact.do" class="new-window" data-name="contact_us">"Contact Us"</a> at the top and bottom of every page to report problems or suggest improvements to the database.
+</ul>
+
+Please notice that our BLAST tool has been consolidated to a single interface. We provide the same (updated) datasets as in the previous release: all Crypto, Plasmo and Toxo datasets plus the Theileria annulata and Theileria parva genomes, all ESTs from all apicomplexa, and the available clustered ESTs from apidots4.0 and the most recent Crypto and Toxo assemblies. Please provide your <a href="http://eupathdb.org/eupathdb/contact.do" class="new-window" data-name="contact_us">feedback</a> so we can continue improving ApiDB.
+
+<br>
+<br>
+ApiDB release 3.1 keeps improving its current web services architecture that allows us to offer <b>all queries</b> available at the component sites (<a href="http://cryptodb.org">CryptoDB.org</a>, <a href="http://plasmodb.org">PlasmoDB.org</a> and <a href="http://toxodb.org">ToxoDB.org</a>). Our front page includes our updated Genome Statistics Table, Gene Metrics table and all available queries; thus, your favorite query is only one click away.
+
+
+<br>
+
+<br>
+<p>
+<b> What is ApiDB?</b> 
+<br>
+ApiDB is a portal that allows you to query simultaneously different apicomplexan organisms in the <i>Cryptosporidium</i>, <i>Plasmodium</i> and <i>Toxoplasma</i> genera. ApiDB's added value is:
+<ul>
+<li> The ability to blast all ApiDB organisms, plus Theileria annulata and parva genomes, all apicomplexan ESTs and their available clustered ESTs
+<li> The ability to combine query results from different ApiDB organisms
+<li> The ability to search for orthologous/paralogous genes across all ApiDB organisms
+</ul>
+
+
+<p>
+
+          ]]>
+       </attribute>
+    </record>
+
+
+
+<record>
+       <attribute name="headline">Tutorials offered also for Windows</attribute>
+       <attribute name="date">7 October 2007 00:00</attribute>
+       <attribute name="tag">7Oct2007</attribute>
+       <attribute name="category"></attribute>
+       <attribute name="item">
+
+         <![CDATA[
+Please check the ApiDB <a href="http://apidbdb.org/apidb/showXmlDataContent.do?name=XmlQuestions.Tutorials">tutorials</a> offered now in three formats: QuickTime (.mov), Microsoft Windows (.avi) and Flash Player (.flv). In ApiDB.org the link to these Website Tutorials appears in the home page, at the bottom of the sidebar, under "Information and Help".
+          ]]>
+       </attribute>
+    </record>
+
+
+<record>
+       <attribute name="headline">
+<![CDATA[
+GiardiaDB
+and TrichDB
+have been released
+   ]]>
+</attribute>
+       <attribute name="date">14 September 2007 00:00</attribute>
+       <attribute name="tag">14Sep2007</attribute>
+       <attribute name="category"></attribute>
+       <attribute name="item">
+
+         <![CDATA[
+Please check the new  <a href="http://trichdb.org">TrichDB.org <img src='http://eupathdb.org/images/trichdb.jpg' border='0' alt='trichdb' height='20' width='35'/>
+</a>
+and <a href="http://giardiadb.org">GiardiaDB.org <img src='http://eupathdb.org/images/giardiadb.gif' border='0' alt='giardiadb' height='20' width='20'/>
+</a>
+websites. These soon will be integrated into our portal.
+          ]]>
+       </attribute>
+    </record>
+
+
+ 
+
+ <record>
+       <attribute name="headline">ApiDB Gene Metrics table</attribute>
+       <attribute name="date">18 July 2007 00:00</attribute>
+       <attribute name="tag">18Jul2007</attribute>
+       <attribute name="category"></attribute>
+       <attribute name="item">
+
+         <![CDATA[
+Please check the new  <a href="http://apidb.org/apidb/apidbGeneMetrics.jsp" >Gene Metrics table</a> with all the organisms with gene information available in ApiDB.
+A link to it has been added in the home pages of all ApiDB sites.
+In ApiDB.org the Gene Metrics link appears in the home page, at the bottom of the sidebar, under "Information and Help".
+          ]]>
+       </attribute>
+    </record>
+
+
+
+ <record>
+       <attribute name="headline">ApiDB.org 3.0 released</attribute>
+       <attribute name="date">1 June 2007 00:00</attribute>
+       <attribute name="tag">1Jun2007</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+
+         <![CDATA[
+We are pleased to announce this new release of the ApiDB.org Website and Database, Version 3.0. 
+<br>
+ApiDB is a portal that allows you to query simultaneously different apicomplexan organisms in the <i>Cryptosporidium</i>, <i>Plasmodium</i> and <i>Toxoplasma</i> genera. ApiDB's added value is:
+<ul>
+<li> The ability to blast all ApiDB organisms
+<li> The ability to combine query results from different ApiDB organisms
+<li> The ability to search for orthologous/paralogous genes across all ApiDB organisms
+</ul>
+
+ApiDB release 3.0 uses a new architecture based on web services that allows us to offer <b>all queries</b> available at the component sites (cryptodb.org, plasmodb.org and toxodb.org). Our new front page, with our updated Genome Statistics Table, now includes all available queries; thus, your favorite query is only one click away.
+
+
+<br><br>
+ApiDB 3.0 also includes improvements in the following areas:
+
+<p>
+<b> New Query Features</b> 
+<ul>
+<li> Question Page: Advanced Parameters are hidden to the novice user
+<li> Question Page: New dataset parameter for uploading a set of IDs for ID based queries
+<li> Summary Page: Users can add / remove columns and sort by any column
+<li> Download Report: New report type: FASTA file
+<li> Summary Page and Download Report: All attributes available in the component sites are now available in ApiDB now (in the previous release we were only providing organism name, product description and sequence.)
+</ul>
+<p>
+<b> New/Updated Tools</b>
+<ul>
+<li> ApiCyc: another tool to search metabolic pathways for all ApiDB organisms (<i>P. berghei</i> and <i>P chabauldi</i> are not available for the time being). 
+<li> SRT Sequence Retrieval Tool is now an integrated component when downloading reports in FASTA format
+<li> BLAST adds new data sets: <i>T. gondii</i> ESTs, <i>C. parvum</i> proteins, <i>C. muris</i> genomic sequence and orfs, and <i>P. knowlesi</i> gene models. 
+</ul>
+
+<p>
+<b>Community Resources</b>
+<ul>
+<li> New links to the Tetrahymena Genome and The Arabidopsis Information Resource
+</ul>
+<p>
+
+          ]]>
+       </attribute>
+    </record>
+
+
+   <record>
+       <attribute name="headline">
+         <![CDATA[
+         ApiDB New Front Page
+         ]]>
+       </attribute>
+       <attribute name="date">31 January 2007 00:00</attribute>
+       <attribute name="tag">
+       ApiDBNewFrontPage
+       </attribute>
+       <attribute name="category"></attribute>
+       <attribute name="item">
+
+         <![CDATA[
+
+This updated home page for ApiDB.org provides the same functionality (queries and tools) but it adds a new Genomes table with key information. &nbsp;&nbsp;Also a new link to <a href="http://apidb.org/static/documentation.shtml" >Data Documentation</a> has been added on the sidebar under "Help and Information". &nbsp;&nbsp;Please send any comments and questions to <a href="http://apidb.org/apidb/help.jsp">ApiDB.</a>
+
+         ]]>
+       </attribute>
+    </record>
+
+
+  <record>
+       <attribute name="headline">
+         <![CDATA[
+         ApiDB Workshop June 3-6, 2007
+         ]]>
+       </attribute>
+       <attribute name="date">4 December 2006 00:00</attribute>
+       <attribute name="tag">
+       4Dec2006Workshop
+       </attribute>
+       <attribute name="category"></attribute>
+       <attribute name="item">
+
+         <![CDATA[
+The second annual <a href="http://apidb.org/workshop/2007/">ApiDB Workshop</a> will be held June 3-6, 2007
+at the University of Georgia, Athens, GA, USA.
+<p />
+The workshop will be a 3.5 day
+introduction to apicomplexan database resources that are part of the <a
+href="http://www.brc-central.org/cgi-bin/brc-central/brc_central.cgi">ApiDB Bioinformatics Resource Center</a> (<a
+href="http://apidb.org">ApiDB.org</a>, <a
+href="http://plasmodb.org">PlasmoDB.org</a>, <a
+href="http://toxodb.org">ToxoDB.org</a>, <a
+href="http://cryptodb.org">CryptoDB.org</a>)
+<p />
+The application deadline is January 19, 2007 (<a href="http://apidb.org/workshop/2007/register.php">Application</a>).
+Please
+<a href="http://apidb.org/workshop/2007/">click here</a> for further
+information and to register.
+         ]]>
+       </attribute>
+    </record>
+
+
+   <record>
+       <attribute name="headline">ApiDB.org 2.1 released</attribute>
+       <attribute name="date">17 November 2006 00:00</attribute>
+       <attribute name="tag">oldRelease</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+
+         <![CDATA[
+We are pleased to announce this new release of the ApiDB.org Website and Database, Version 2.1. <br>It includes improvements in different areas:
+
+
+<p>
+<b> New Features, as in Crypto.org, Plasmo.org and Toxo.org</b> 
+<ul>
+<li> <a class="plain" href="http://apidb.org/apidb/help.jsp">User support page</a> for you to send us feedback.
+<li> User registration/login. This will allow you two things: to receive emails from us with announcements and to keep a persistent query history that stays between sessions. 
+</ul>
+
+<p>
+<b>New/updated Queries</b>
+<ul>
+<li> New Query&Tools page with the "Query Grid". It summarizes at once which queries are avilable in each site.
+<li> Consistent query and parameter names across sites.
+<li> Genes by Pfam Domain: easier selecting a pfam term with Ajax.
+<li> Ortholog relationships spanning all supported organisms.
+<li> ApiDB site is catching up with Crypto, Plasmo and Toxo sites; ten new gene queries are offered in this release.
+<li> New queries that return Genomic Sequences, ESTs and ORFs.
+</ul>
+
+<p>
+<b> New/updated Data</b>
+<ul>
+<li> All apicomplexan ESTs from NCBI dbEST
+<li> Crypto, Plasmo and Toxo have added Transcripts information, plus ESTs and ORFs that ApiDB uses in its BLASTs.
+</ul>
+
+<p>
+<b>Community Resources</b>
+<ul>
+<li> New links to GeneDB and ModBase/UCSF.
+</ul>
+<p>
+
+          ]]>
+       </attribute>
+    </record>
+
+  
+
+</xmlAnswer>
+

@@ -3,35 +3,52 @@
 
 <!--
    <record>
-       <attribute name="headline"></attribute>
-       <attribute name="date"></attribute>
-       <attribute name="tag"></attribute>
+       <attribute name="headline">
+         <![CDATA[
+         ]]>
+       </attribute>
+       <attribute name="date">
+       </attribute>
+       <attribute name="tag">
+       </attribute>
        <attribute name="category"></attribute>
        <attribute name="item">
            
          <![CDATA[
+
           ]]>
        </attribute>
     </record>
---> 
+    
+    
+-->
 
 <record>
-  <attribute name="headline">PiroplasmaDB 38 Released</attribute>
+  <attribute name="headline">CryptoDB 38 Released</attribute>
   <attribute name="date">02 Jul 2018 13:00</attribute>
-  <attribute name="tag">PiroplasmaDB07_18_release</attribute>
+  <attribute name="tag">CryptoDB11_18_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of PiroplasmaDB 38</strong></p>
+    <p><strong>We are pleased to announce the release of CryptoDB 38</strong></p>
       
-      <section>
-      <h3><b>No new data in PiroplasmaDB 38</b></h3>
+       <section>
+      <h3><b>New data in CryptoDB 38</b></h3>
+        <div style="margin-left: 3em;">
+        <h4>Whole Genome Sequencing of Isolates</h4>
+          <ul>  
+            <li> <a href="http://cryptodb.org/cryptodb/app/record/dataset/DS_18d27de505"><i>Cryptosporidium hominis</i> genetic diversity in isolates from Bangladesh</a> &mdash; 
+            Genome sequencing of Cryptosporidium hominis from infants in slum dwelling from Dhaka Bangladesh.
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/26318339">Hadfield et al.</a>.
+            </li>
+          </ul>
+        <div>
       </section>
       
       <section>
-      <h3><b>No new features in PiroplasmaDB 38</b></h3>
+      <h3><b>No new features in this release</b></h3>
       </section>
-            
+      
       <section>
          <aside>
            Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
@@ -48,26 +65,31 @@
 
 
 <record>
-  <attribute name="headline">PiroplasmaDB 37 Released</attribute>
+  <attribute name="headline">CryptoDB 37 Released</attribute>
   <attribute name="date">25 Apr 2018 13:00</attribute>
-  <attribute name="tag">piroplasmadb04_18_release</attribute>
+  <attribute name="tag">cryptodb04_18_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of PiroplasmaDB 37</strong></p>
+    <p><strong>We are pleased to announce the release of CryptoDB 37</strong></p>
       
-      <section>
-      <h3><b>New data in PiroplasmaDB 37</b></h3>
-      <div style="margin-left: 3em;"> 
-      <h4>Genome sequence and annotation</h4>
-           <ul>
-             <li><a href="http://piroplasmadb.org/piro/app/record/dataset/DS_1d1738f4e1"><i>Babesia ovata</i> strain Miyake</a> &ndash; 
-                 This genome appears for the first time in PiroplasmaDB and was downloaded from 
-                 <a href="https://www.ncbi.nlm.nih.gov/bioproject/PRJDB5725" target="_blank">NCBI Bioproject PRJDB5725</a>. 
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/29078748" target="_blank">Yamagishi et al.</a>
-             </li>
-           </ul> 
-      </div>
+       <section>
+      <h3><b>New data in CryptoDB 37</b></h3>
+        <div style="margin-left: 3em;">
+        <h4>New Annotation</h4>
+         <ul>  
+           <li> <a href="http://cryptodb.org/cryptodb/app/record/dataset/DS_1ef76fc0ef"><i>Cryptosporidium parvum</i> IowaII</a> &mdash; 
+            A new annotation was produced by the Kissinger lab at the University of Georgia and integrated into CryptoDB.  The new annotation can be downloaded from 
+            <a href="http://cryptodb.org/common/downloads/Current_Release/CparvumIowaII/">CryptoDB Downloads</a>.
+               </li>
+           <li> <a href="http://cryptodb.org/cryptodb/app/record/dataset/DS_f96bc6ca59"><i>Cryptosporidium meleagridis</i> strain UKMEL1</a> &mdash; 
+            The annotation for this genome appears for the first time in CryptoDB.  Annotation provided by the Silva lab at the 
+            University of Maryland School of Medicine and can be downloaded from 
+            <a href="http://cryptodb.org/common/downloads/Current_Release/CmeleagridisUKMEL1/">CryptoDB Downloads</a>.  
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/27519257" target="_blank">Ifeono et al.</a><br>
+               </li>
+         </ul>
+        <div>
       </section>
       
       <section>
@@ -97,10 +119,10 @@
             </li>
           </ul>  
       </div>
-      </section>
-            
+      </section>    
+
+      
       <section>
-        
          <aside>
            Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
            Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
@@ -114,32 +136,49 @@
 </record>
 
 
+
+
+
 <record>
-  <attribute name="headline">PiroplasmaDB 36 Released</attribute>
+  <attribute name="headline">CryptoDB 36 Released</attribute>
   <attribute name="date">19 Feb 2018 13:00</attribute>
-  <attribute name="tag">piroplasmadb02_18_release</attribute>
+  <attribute name="tag">cryptodb02_18_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of PiroplasmaDB 36</strong></p>
+    <p><strong>We are pleased to announce the release of CryptoDB 36</strong></p>
       
-      <section>
+       <section>
       <h3><b>New data in this release</b></h3>
-      <div style="margin-left: 3em;"> 
-      <h4>Genome sequence and annotation</h4>
-           <ul>
-             <li><a href="http://piroplasmadb.org/piro/app/record/dataset/DS_4c30ca0b3a"><i> Babesia microti</i> strain RI</a> &ndash; 
-                 This genome was updated to the 
-                 <a href="https://www.ncbi.nlm.nih.gov/assembly/GCF_000691945.2" target="_blank">current Genbank version</a>.  
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/22833609" target="_blank">Cornillot et al.</a>
-             </li>
-           </ul> 
-      </div>
+        <div style="margin-left: 3em;">
+        <h4>New Genomes and Annotation</h4>
+         <ul>  
+           <li> <a href="http://cryptodb.org/cryptodb/app/record/dataset/DS_d190ae02e1"><i>Cryptosporidium tyzzeri</i> isolate UGA55 </a> &mdash; 
+            Intestinal parasite isolated from naturally infected <i>Mus domesticus</i>. Genome sequence and annotation appears for the first time in CryptoDB. 
+            <a href="https://www.ncbi.nlm.nih.gov/bioproject/PRJNA388495" target="_blank">NCBI Bioproject</a>. From Boris Striepen and collaborators. <br>
+               </li>
+           <li> <a href="http://cryptodb.org/cryptodb/app/record/dataset/DS_25a96f8412"><i>Cryptosporidium hominis</i> isolate 30976 </a> &mdash; 
+            Specimen 30976 was collected from a patient in a cryptosporidiosis outbreak in July 2010 in the St. Louis area in Illinois and Missouri associated with swimming pools and a water park. 
+            Genome sequence and annotation appears for the first time in CryptoDB. Sequence from 
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/25903370" target="_blank">Guo et al.</a> Annotation from the Kissinger Research Group, UGA.<br>
+               </li>
+           <li> <a href="http://cryptodb.org/cryptodb/app/record/dataset/DS_3ef9c215b7">Whole genome sequences of <i>Cryptosporidium parvum</i> isolates from stool samples</a> &mdash; 
+            Whole genome sequence of seven <i>Cryptosporidium parvum</i> isolates directly from stool samples without the intermediate step of generating oocysts.
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/26318339" target="_blank">Hadfield et al.</a> <br>
+               </li>
+               <li> <a href="http://cryptodb.org/cryptodb/app/record/dataset/DS_d45f4a2849">Whole genome sequences of <i>Cryptosporidium hominis</i> isolates from stool samples</a> &mdash; 
+            Whole genome sequence of seven <i>Cryptosporidium hominis</i> isolates directly from stool samples without the intermediate step of generating oocysts.
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/26318339" target="_blank">Hadfield et al.</a> <br>
+               </li>
+         </ul>
+        <div>
       </section>
+      
+
       
       <section>
       <h3><b>New features in this release</b></h3>
-      <div style="margin-left: 3em;">
+       <div style="margin-left: 3em;">
       
       <h4>Search Page Improvements: search pages were redesigned to include an organism filter and provide better access to help information.</h4>
       
@@ -165,9 +204,7 @@
             <li>Find the search under the Orthology and Synteny category.
                 </li>
           </ul>
-
-    
-       
+          
        <h4>Gene Record Page Improvements:</h4>
  
           <ul>
@@ -182,7 +219,7 @@
                 </li>
             <li>Metabolic pathway and reaction tables on gene pages now include reaction compound names, with CHEBI IDs on mouse over, 
                 and a column that indicates if the EC number associated with a gene is an exact match to the EC number in metabolic pathway.   
-                </li>
+                </li>    
           </ul>
 
         
@@ -214,9 +251,8 @@
           </ul>
        </div>
       </section>  
-            
+      
       <section>
-        
          <aside>
            Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
            Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
@@ -230,15 +266,26 @@
 </record>
 
 
-
 <record>
-  <attribute name="headline">PiroplasmaDB 35 Released</attribute>
+  <attribute name="headline">CryptoDB 35 Released</attribute>
   <attribute name="date">01 Dec 2017 13:00</attribute>
-  <attribute name="tag">piroplasmadb12_17_release</attribute>
+  <attribute name="tag">cryptodb12_17_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of PiroplasmaDB 35</strong></p>
+    <p><strong>We are pleased to announce the release of CryptoDB 35</strong></p>
+      
+       <section>
+      <h3><b>New data in this release</b></h3>
+        
+        <h4>Isolate Whole genome re-sequencing</h4>
+         <ul>  
+           <li> <a href="http://cryptodb.org/cryptodb/app/record/dataset/DS_8711baff19">Whole genome sequencing and comparative genomic analysis</a> &mdash; 
+            Whole genome sequencing of <i>Cryptosporidium hominis</i> 33537, 30974, 30976, 37999. 
+            <a href="https://www.ncbi.nlm.nih.gov/bioproject/252787">NCBI Bioproject</a>.<br>
+               </li>
+         </ul>
+      </section>
       
       <section>
       <h3><b>New features in this release</b></h3>
@@ -247,8 +294,8 @@
           
           GO Slim terms are now indicated in EuPathDB sites in the following ways:<br>
           <ul>
-            <li>The search,
-                <a href="http://piroplasmadb.org/piro/showQuestion.do?questionFullName=GeneQuestions.GenesByGoTerm">Identify Genes based on GO Terms</a>, 
+            <li>The search, 
+                <a href="http://cryptodb.org/cryptodb/showQuestion.do?questionFullName=GeneQuestions.GenesByGoTerm">Identify Genes based on GO Terms</a>, 
                 now includes an GO Subset option for limiting the search to only GO Slim generic terms.
                 </li>
             <li>GO Terms tables on gene pages now contain a 'GO Subset' column which identifies GO Slim generic terms.
@@ -257,21 +304,18 @@
                 the background and the gene list of interest in the Fisher's exact test that determines enrichment. 
                 </li>
           </ul>
-       </div>
-       
+          
        <h4>Revigo and Word Cloud access from GO Enrichment results</h4>
        <div style="margin-left: 3em;">
        
-          PiroplasmaDB offers a link between our GO Enrichment results and a Word Cloud visualization as well as 
+          CryptoDB offers a link between our GO Enrichment results and a Word Cloud visualization as well as 
           Revigo, a tool that provides GO term summarization and visualization. The links to Revigo and the 
           Word Cloud now appear as buttons that are right justified above the GO enrichment result table. 
-       
+          
       </div>
       </section>
       
-      
       <section>
-        <h3><b>No New data in this release</b></h3> 
          <aside>
            Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
            Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
@@ -285,15 +329,35 @@
 </record>
 
 
-
 <record>
-  <attribute name="headline">PiroplasmaDB 34 Released</attribute>
+  <attribute name="headline">CryptoDB 34 Released</attribute>
   <attribute name="date">07 Sep 2017 13:00</attribute>
-  <attribute name="tag">piroplasmadb08_17_release</attribute>
+  <attribute name="tag">cryptodb08_19_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of PiroplasmaDB 34</strong></p>
+    <p><strong>We are pleased to announce the release of CryptoDB 34</strong></p>
+      
+      <section>
+        <h3><b>New data in this release</b></h3>
+        
+        <h4>Isolate Whole genome re-sequencing</h4>
+         <ul>  
+           <li> <a href="http://cryptodb.org/cryptodb/app/record/dataset/DS_58470a7950">Comparative genomics of Cryptosporidium isolate 31727</a> &mdash; 
+            Comparative genomic analysis of the IId subtype family of <i>Cryptosporidium parvum</i> isolate 31727 
+            <a href="https://www.ncbi.nlm.nih.gov/bioproject/PRJNA320419">NCBI Bioproject</a>.
+            <a href="https://www.ncbi.nlm.nih.gov/pubmed/28192123">Feng et al.</a><br>
+           </li>
+
+           <li>
+            <a href="http://cryptodb.org/cryptodb/app/record/dataset/DS_d05d77c803">Comparative genomics of Cryptosporidium isolates 34902 and 35090</a> &mdash; 
+            Comparative genomic analysis of the IId subtype family of <i>Cryptosporidium parvum</i> isolates 34902 and 35090
+            <a href="https://www.ncbi.nlm.nih.gov/bioproject/PRJNA320419">NCBI Bioproject</a>.
+            <a href="https://www.ncbi.nlm.nih.gov/pubmed/28192123">Feng et al.</a><br>
+           </li>
+         </ul>
+          
+      </section>
       
       <section>
       <h3><b>New features in this release</b></h3>
@@ -303,15 +367,16 @@
           EuPathDB now offers a direct link from gene ontology (GO) enrichment results to 
           <a href="http://revigo.irb.hr/">REVIGO</a>, a tool that provides GO term summarization and visualization.  
           To access this feature first run a GO term enrichment using the 'Analyze Results' option from any gene search result. Then click on 
-          the 'Start Revigo Analysis' link (<a href="/piroplasmadb/images/Revigo.png">upper right hand side of enrichment results</a>) 
+          the 'Start Revigo Analysis' link (<a href="/cryptodb/images/Revigo.png">upper right hand side of enrichment results</a>) 
           to populate the REVIGO submission page with your GO enrichment results from EuPathDB.  Follow instructions 
           on the REVIGO page to complete your analysis.
           
       </div>
       </section>
       
+      
       <section>
-        <h3><b>No New data in this release</b></h3> 
+        <h3>No new features in this release</h3> 
          <aside>
            Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
            Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
@@ -331,6 +396,9 @@
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
+    
+    
+    
     <section>
         
         <div style="margin-left: 3em;">
@@ -340,12 +408,12 @@
         This may underrepresent abundance for genes that are duplicated, such as paralogs. Non-unique reads are only available 
         as GBrowse subtracks. To view non-unique reads from a gene page, open the Coverage section and click 'View in 
         genome browser' above the coverage plots. 
-        (<a href="/piroplasmadb/images/FromCoverageNonuniqueReads.pdf">Tutorial document about viewing non-unique reads from a gene page</a>)
+        (<a href="/cryptodb/images/FromCoverageNonuniqueReads.pdf">Tutorial document about viewing non-unique reads from a gene page</a>)
         
         <br><br>
         To view non-unique reads without navigating to the gene page, open GBrowse from the home page.  Use the Select Tracks 
         tab to turn on the data track of interest and the subtracks configuration tool to turn on the non-unique reads subtracks. 
-        (<a href="/piroplasmadb/images/FromHomeNonuniqueReads.pdf">Tutorial document for viewing non-unique reads from the home page</a>)
+        (<a href="/cryptodb/images/FromHomeNonuniqueReads.pdf">Tutorial document for viewing non-unique reads from the home page</a>)
         
         <br><br>
         In release 34, gene pages contain a message about non-unique reads, an accurate description of the y-axis and links to 
@@ -361,26 +429,17 @@
 </record>
 
 <record>
-  <attribute name="headline">PiroplasmaDB 33 Released</attribute>
+  <attribute name="headline">CryptoDB 33 Released</attribute>
   <attribute name="date">30 Jun 2017 13:00</attribute>
-  <attribute name="tag">piroplasmadb06_17_release</attribute>
+  <attribute name="tag">cryptodb06_17_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of PiroplasmaDB 33</strong></p>
+    <p><strong>We are pleased to announce the release of CryptoDB 33</strong></p>
       
       <section>
-        <h3><b>New Data in Release 33</b></h3>
+        <h3><b>No New data in this release</b></h3> 
         
-        <h4>Whole genome sequencing of isolates:</h4>
-        Data were used to determine single nucleotide polymorphisms.
-         <ul>  
-           <li> <a href="http://piroplasmadb.org/piro/app/record/dataset/DS_66e2695658">Aligned Genomic Sequence Reads- 42 global isolates from human, tick and rodent</a> &mdash; 
-            Whole genome re-sequencing of <i>B. microti</i> isolates from human, rodent and tick. Data were used to determine SNPs against the <i>B. microti</i> RI reference.
-            <a href="http://www.ncbi.nlm.nih.gov/pubmed/27572973">Lemieux et al.</a><br>
-           </li>
-         </ul>
-  
         <h3><b>New features in this release</b></h3> 
 
            <ul>
@@ -400,8 +459,7 @@
                 gray tool bar under the header. 
             </li>
            </ul>
-  
-  
+        
          <aside>
            Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
            Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
@@ -415,27 +473,50 @@
 </record>
 
 
+
 <record>
-  <attribute name="headline">PiroplasmaDB 32 Released</attribute>
+  <attribute name="headline">CryptoDB 32 Released</attribute>
   <attribute name="date">19 Apr 2017 13:00</attribute>
-  <attribute name="tag">piroplasmadb04_17_release</attribute>
+  <attribute name="tag">cryptodb04_19_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of PiroplasmaDB 32</strong></p>
+    <p><strong>We are pleased to announce the release of CryptoDB 32</strong></p>
       
       <section>
         <h3>New Data in Release 32</h3>
         
         <h4>Annotated Genomes</h4>
          <ul>  
-           <li> <a href="http://piroplasmadb.org/piro/app/record/dataset/DS_4c30ca0b3a"><i>Babesia microti </i> R1</a> &mdash; 
-            This genome was reannotated.  
-            <a href="http://www.ncbi.nlm.nih.gov/bioproject?term=PRJEA72411">Bioproject home page at NCBI/GenBank</a>.
-            <a href="https://www.ncbi.nlm.nih.gov/pubmed/27752055">Silva et al.</a><br>
+           <li> <a href="http://cryptodb.org/cryptodb/app/record/dataset/DS_bd2ba20f68"><i>Cryptosporidium andersoni</i> isolate 30847</a> &mdash; 
+            <i>Cryptosporidium andersoni</i> 30847 was isolated from beef cattle in Alberta Canada in 2009. This organism's annotated genome appears for the first time in CryptoDB. 
+            <a href="https://www.ncbi.nlm.nih.gov/nuccore/LRBS00000000">Genome home page at NCBI/GenBank</a>.
+            <a href="https://www.ncbi.nlm.nih.gov/pubmed/27931183">Liu et al.</a><br>
            </li>
+           <li>
+            <a href="http://cryptodb.org/cryptodb/app/record/dataset/DS_9ef8fb5462"><i>Cryptosporidium hominis</i> TU502_2012</a> &mdash; 
+            <i>Cryptosporidium hominis</i> isolate TU502_2012, isolated in 2012 at Tufts University (USA) was a result of multiple 
+            (approximately 20) passages of the original TU502 isolate (2004) in gnotobiotic pigs. 
+            <a href="http://www.ncbi.nlm.nih.gov/bioproject/222836">NCBI Bioproject home page</a>.  
+            <a href="https://www.ncbi.nlm.nih.gov/pubmed/27519257">Ifeonu et al.</a><br>
+           </li>
+         </ul>
+         
+        <h4>Transcriptomics</h4>
+         <ul>
+           <li><a href="http://cryptodb.org/cryptodb/app/record/dataset/DS_5787bf263d">Transcriptome of 48 hours in vitro infection</a> &mdash; 
+             Transcriptome (RNA sequence) from <i>Cryptosporidium parvum</i> Iowa isolated from an in vitro infection of cultured HCT-8 cells.  
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/26549794">Isaza et al.</a><br>
+           </li>
+           <li><a href="http://cryptodb.org/cryptodb/app/record/dataset/DS_8b537f7e54">Transcriptome of oocyst and intracellular stages</a> &mdash; 
+             <i>Cryptosporidium parvum</i> transcriptome from intracellular (24 h post-infection) and oocysts Stages. Data provided pre-publication by 
+             Giovanni Widmer, Tufts University<br>
+           </li>
+          
+      </section>
       
       <section>
+        <h3>No New features in this release</h3> 
          <aside>
            Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
            Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
@@ -449,17 +530,30 @@
 </record>
 
 
+
 <record>
-  <attribute name="headline">PiroplasmaDB 31 Released</attribute>
+  <attribute name="headline">CryptoDB 31 Released</attribute>
   <attribute name="date">08 Mar 2017 13:00</attribute>
-  <attribute name="tag">piroplasmadb03_17_release</attribute>
+  <attribute name="tag">cryptodb03_17_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of PiroplasmaDB 31</strong></p>
+    <p><strong>We are pleased to announce the release of CryptoDB 31</strong></p>
       
       <section>
-        <h3>No New data in this release</h3> 
+        <h3>New Data in Release 31</h3>
+        
+        <h4>Annotated Genome</h4>
+
+            <a href="http://cryptodb.org/cryptodb/app/record/dataset/DS_ee6b7f175a"><i>Cryptosporidium ubiquitum</i> isolate 39726</a> &mdash; 
+            isolated in 2013 from an 12-year-old female patient in the USA, this organism's annotated genome appears for the first time in CryptoDB.<br>
+            <a href="https://www.ncbi.nlm.nih.gov/bioproject/PRJNA246478">Genbank Bioproject PRJNA246478</a>.
+            This data is provided pre-publication by Lihua Xiao of the CDC, Atlanta GA.<br>
+                 
+      </section>
+      
+      <section>
+        <h3>No New features in this release</h3> 
          <aside>
            Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
            Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
@@ -917,16 +1011,28 @@ Arial">Join our international team of 30+ software developers and biologists,
        </attribute>
     </record>
 <record>
-  <attribute name="headline">PiroplasmaDB 30 Released</attribute>
+  <attribute name="headline">CryptoDB 30 Released</attribute>
   <attribute name="date">03 Feb 2017 13:00</attribute>
-  <attribute name="tag">piroplasmadb02_17_release</attribute>
+  <attribute name="tag">cryptodb02_17_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of PiroplasmaDB 30</strong></p>
+    <p><strong>We are pleased to announce the release of CryptoDB 30</strong></p>
       
       <section>
-        <h3>No New data in this release</h3> 
+        <h3>New Data in Release 30</h3>
+        
+        <h4>Genome Sequence</h4>
+
+            <a href="http://cryptodb.org/cryptodb/app/record/dataset/DS_7f6973790e"><i>Cryptosporidium hominis</i> UdeA01 </a> &mdash; 
+            Whole genome sequence and annotation for C. hominis UdeA01, that was directly isolated from an infected human. 
+            <a href="https://www.ncbi.nlm.nih.gov/bioproject/PRJEB10000">Genbank Bioproject PRJEB1000</a>. 
+            <a href="https://www.ncbi.nlm.nih.gov/pubmed/26549794">Isaza et al.</a>
+                 
+      </section>
+      
+      <section>
+        <h3>No New features in this release</h3> 
          <aside>
            Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
            Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
@@ -941,32 +1047,31 @@ Arial">Join our international team of 30+ software developers and biologists,
 
 
 <record>
-  <attribute name="headline">PiroplasmaDB 29 Released</attribute>
+  <attribute name="headline">CryptoDB 29 Released</attribute>
   <attribute name="date">13 Oct 2016 13:00</attribute>
-  <attribute name="tag">piroplasmadb10_16_release</attribute>
+  <attribute name="tag">cryptodb10_16_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of PiroplasmaDB 29</strong></p>
-    
-    <section>
-    <h3>PiroplasmaDB 29</h3>
-           PiroplasmaDB 29 represents extensive efforts to improve navigation and data accessibility 
+    <p><strong>We are pleased to announce the release of CryptoDB 29</strong></p>
+
+<section>
+    <h3>CryptoDB 29</h3>
+           CryptoDB 29 represents extensive efforts to improve navigation and data accessibility 
            on record pages, provide consistent verbiage and data categories, and improve presentation of alternative transcripts. 
            All data were refreshed to the latest version and genome analyses were rerun.
            <ul>
-             <li>Here is some help information to get you started with our new features.<br>
-                 <a href="http://piroplasmadb.org/documents/genePageTutorialGUS4.pdf">Gene Page Improvements</a> <br>
-                 <a href="http://piroplasmadb.org/documents/SearchCatsTutorial_3.pdf">Search Category Improvements</a> <br>
-                 <a href="http://piroplasmadb.org/documents/ExploreTranscripts.pdf">Explore Transcripts in Search Results</a><br>
+            <li>Here is some help information to get you started with our new features.<br>
+                 <a href="http://cryptodb.org/documents/genePageTutorialGUS4.pdf">Gene Page Improvements</a> <br>
+                 <a href="http://cryptodb.org/documents/SearchCatsTutorial_3.pdf">Search Category Improvements</a> <br>
+                 <a href="http://cryptodb.org/documents/ExploreTranscripts.pdf">Explore Transcripts in Search Results</a><br>
                  <!--Workspaces<br>-->
              </li><br>
              <li>Send Us Your Feedback!<br>We can polish our new features based on your valuable feedback. Please use the site 
-             and <a href="http://piroplasmadb.org/piro/contact.do">Contact Us</a> to tell us about your experience. 
+             and <a href="http://cryptodb.org/cryptodb/contact.do">Contact Us</a> to tell us about your experience. 
               </li><br>
-             <li>Release 28 is Still Available - <br><a href="http://r28.piroplasmadb.org/piro/">PiroplasmaDB 28</a> is available until we finalize our new features.
-             </li><br>
-           </ul>  
+             <li>CryptoDB 28 is Still Available - <br><a href="http://r28.cryptodb.org/cryptodb//">CryptoDB 28</a> is available until we finalize our new features.</li><br>
+           </ul>
      </section>
       
      <section> 
@@ -1003,18 +1108,16 @@ Arial">Join our international team of 30+ software developers and biologists,
              </li>
            </ul>
         </section>   
-    
-    
+
     <section>
       <h3>New data in this release</h3>
-      <h4>Annotation is updated for the following genomes:</h4>
+      <h4>Annotation is updated for the following genome:</h4>
          <ul>
-          <li><i>Theileria annulata</i> strain ANKA</li>
-          <li><i>Babesia microti</i> strain RI</li>
-          <li><i>Babesia bigemina</i> strain BOND</li>
+          <li><i> Cryptosporidium muris</i> RN66</li>
          </ul>
-      </section>
-    
+     </section>
+
+
     <section>
       <aside>
         Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
@@ -1029,14 +1132,15 @@ Arial">Join our international team of 30+ software developers and biologists,
 </record>
 
 
+
 <record>
-  <attribute name="headline">PiroplasmaDB 28 Released</attribute>
+  <attribute name="headline">CryptoDB 28 Released</attribute>
   <attribute name="date">30 Mar 2016 13:00</attribute>
-  <attribute name="tag">piroplasmadb03_16_release</attribute>
+  <attribute name="tag">cryptodb03_16_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of PiroplasmaDB 28</strong></p>
+    <p><strong>We are pleased to announce the release of CryptoDB 28</strong></p>
 
     <section>
       <h3>No new data or functionalities in this release</h3>
@@ -1053,14 +1157,16 @@ Arial">Join our international team of 30+ software developers and biologists,
   </attribute>
 </record>
 
+
+
 <record>
-  <attribute name="headline">PiroplasmaDB 27 Released</attribute>
+  <attribute name="headline">CryptoDB 27 Released</attribute>
   <attribute name="date">19 Feb 2016 13:00</attribute>
-  <attribute name="tag">piroplasmadb02_16_release</attribute>
+  <attribute name="tag">cryptodb02_16_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of PiroplasmaDB 27</strong></p>
+    <p><strong>We are pleased to announce the release of CryptoDB 27</strong></p>
 
     <section>
      <h3>New Features</h3>
@@ -1082,7 +1188,7 @@ Arial">Join our international team of 30+ software developers and biologists,
          </ul>
       </section>
       
- 
+
       <aside>
         Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
         Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
@@ -1098,16 +1204,17 @@ Arial">Join our international team of 30+ software developers and biologists,
 
 
 <record>
-  <attribute name="headline">PiroplasmaDB 26 Released</attribute>
+  <attribute name="headline">CryptoDB 26 Released</attribute>
   <attribute name="date">15 Oct 2015 13:00</attribute>
-  <attribute name="tag">piroplasmadb10_15_release</attribute>
+  <attribute name="tag">cryptodb10_15_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of PiroplasmaDB 26</strong></p>
+    <p><strong>We are pleased to announce the release of CryptoDB 26</strong></p>
 
     <section>
-      <h3>New Features</h3>
+    
+    <h3>New Features</h3>
       
       <section>
        <h4>GBrowse Track Search </h4>
@@ -1150,6 +1257,7 @@ Arial">Join our international team of 30+ software developers and biologists,
         </ul>
       </section>
       
+
       <aside>
         Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
         Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
@@ -1164,16 +1272,31 @@ Arial">Join our international team of 30+ software developers and biologists,
 
 
 <record>
-  <attribute name="headline">PiroplasmaDB 25 Released</attribute>
+  <attribute name="headline">CryptoDB 25 Released</attribute>
   <attribute name="date">23 July 2015 13:00</attribute>
-  <attribute name="tag">piroplasma7_15_release</attribute>
+  <attribute name="tag">cryptodb7_15_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of PiroplasmaDB 25</strong></p>
+    <p><strong>We are pleased to announce the release of CryptoDB 25</strong></p>
 
     <section>
-      <h3>No new data or functionalities in this release</h3>
+      <h3>New data in this release</h3>
+
+      <aside>
+        The data set title below links to a full description as well as a list of associated searches and GBrowse tracks.
+      </aside>
+
+      <section>
+        <h4>Genome Sequence</h4>
+        <ul>
+          <li>
+            <a href="http://CryptoDB.org/a/getDataset.do?datasets=chom37999_primary_genome_RSRC"><i>Cryptosporidium hominis</i> 37999</a> &mdash;
+            <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000804495.1">Genbank version 18 Dec 2014</a>. This genome sequence is provided pre-publication by 
+            Lihua Xiao, Centers for Disease Control USA.
+          </li>
+        </ul>
+      </section>
 
       <aside>
         Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
@@ -1189,9 +1312,9 @@ Arial">Join our international team of 30+ software developers and biologists,
 
 
 <record>
-       <attribute name="headline">PiroplasmaDB 24 Released</attribute>
+       <attribute name="headline">CryptoDB 24 Released</attribute>
        <attribute name="date">13 April 2015 13:00</attribute>
-       <attribute name="tag">pirodb4_15_release</attribute>
+       <attribute name="tag">cryptodb4_15_release</attribute>
        <attribute name="category">release</attribute>
        <attribute name="item">
            
@@ -1200,17 +1323,16 @@ Arial">Join our international team of 30+ software developers and biologists,
 <html>
   <head>
     <meta content="text/html; charset=windows-1252" http-equiv="content-type">
-    <title>pirodb_4_15</title>
+    <title>cryptodb_4_15_news</title>
   </head>
   <body>
     <p> </p>
     <p> </p>
     <p><span style="font-family: Helvetica,Arial,sans-serif;"> </span> </p>
     <div style="margin-left: 40px;"><span style="font-family: Helvetica,Arial,sans-serif;"><strong>We
-          are pleased to announce the release of PiroplasmaDB 24</strong><span style="font-weight: bold;"></span><br>
-      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-style: italic;"><br>
-          <em></em></span></span><span style="font-style: italic;"><span style="font-family: Helvetica,Arial,sans-serif;">All
-          EuPathDB release numbers have been synchronized to help us more
+          are pleased to announce the release of CryptoDB 24</strong><span style="font-weight: bold;"></span><br>
+      </span> <span style="font-style: italic;"><span style="font-family: Helvetica,Arial,sans-serif;"><br>
+          All EuPathDB release numbers have been synchronized to help us more
           efficiently manage our expanding number of databases.&nbsp; As of this
           release all EuPathDB resource release numbers have been set to release
           24.&nbsp; Subsequent version numbers will increase by one with each
@@ -1222,12 +1344,10 @@ Arial">Join our international team of 30+ software developers and biologists,
         <tbody>
           <tr>
             <td style="margin-left: 185px; width: 188px; height: 23px; background-color: #cccccc; text-align: center;"><span
-                style="font-size:11.0pt;line-height:107%;font-family:Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:
-&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">EuPathDB<br>
+                style="font-size:11.0pt;line-height:107%;font-family:Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">EuPathDB<br>
                 Resource</span></td>
             <td style="width: 188px; height: 23px; background-color: #cccccc; text-align: center;"><span
-                style="font-size:11.0pt;line-height:107%;font-family:Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:
-&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA"><span
+                style="font-size:11.0pt;line-height:107%;font-family:Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA"><span
                   style="font-size:11.0pt;line-height:107%;font-family:Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">Jan
                   2015<br>
                 </span>Version #<br>
@@ -1235,57 +1355,28 @@ Arial">Join our international team of 30+ software developers and biologists,
             <td style="width: 188px; height: 23px; background-color: #cccccc; text-align: center;">
               <span style="font-size:11.0pt;line-height:107%;font-family:
 Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA"><span
-                  style="font-size:11.0pt;line-height:107%;font-family:Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:
-&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">April
+                  style="font-size:11.0pt;line-height:107%;font-family:Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">April
                   2015<br>
                 </span>Version #</span> </td>
           </tr>
           <tr>
-            <td style="width: 188px; height: 24px; background-color: #cccccc; text-align: center;">PiroplasmaDB</td>
-            <td style="width: 188px; height: 24px; background-color: #cccccc; text-align: center;">5.1</td>
+            <td style="width: 188px; height: 24px; background-color: #cccccc; text-align: center;">CryptoDB</td>
+            <td style="width: 188px; height: 24px; background-color: #cccccc; text-align: center;">8.0</td>
             <td style="width: 188px; height: 24px; background-color: #cccccc; text-align: center;">24</td>
           </tr>
         </tbody>
       </table>
-      <div style="text-align: left;"><b style="mso-bidi-font-weight:normal">New
-          data in this release:</b></div>
-      <b style="mso-bidi-font-weight:normal"><o:p></o:p></b>
-      <p class="MsoNoSpacing"><em>The data set title below links to a full
-          description and list of associated searches and genome browser tracks.</em><o:p></o:p></p>
-      <p class="MsoNoSpacing"><o:p>&nbsp;</o:p></p>
-      <b style="mso-bidi-font-weight:
-normal">Annotated Genomes: <o:p></o:p></b><br>
-      <br>
-      <a href="http://piroplasmadb.org/a/getDataset.do?datasets=bbigBOND_primary_genome_RSRC"><i>Babesia
-          bigemina</i> BOND</a> - <span style="mso-spacerun:yes">first release
-        in PiroplasmaDB </span><a href="http://www.ncbi.nlm.nih.gov/bioproject/PRJEB5046">GenBank
-        version<span style="mso-spacerun:yes">&nbsp; </span>(13 June 2014)</a>,<span
-        style="mso-spacerun:yes">&nbsp;
-        </span><span style="mso-spacerun:yes">&nbsp;&nbsp;</span><span style="mso-spacerun:yes">&nbsp;</span><a
-        href="http://www.ncbi.nlm.nih.gov/pubmed/24799432">Jackson
-        <em>et al. </em></a><o:p></o:p><br>
-      <br>
-      <a href="http://piroplasmadb.org/a/getDataset.do?datasets=cfelWinnie_primary_genome_RSRC"><i
-          style="mso-bidi-font-style:normal">Cytauxzoon
-          felis</i> Winnie</a> - first release in <span style="mso-spacerun:yes">PiroplasmaDB</span><span
-        style="mso-spacerun:yes">
-      </span><a href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA196611">GenBank
-        version (1 Jan 2015)</a>,<span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;
-        </span><span style="mso-spacerun:yes">&nbsp;</span><a href="http://www.ncbi.nlm.nih.gov/pubmed/23977000">Tarigo
-        <em>et al.</em></a><o:p></o:p>
-      <p class="MsoNoSpacing"><o:p>&nbsp;</o:p></p>
-      <!--EndFragment--><a href="http://www.ncbi.nlm.nih.gov/pubmed/25313038"><em></em></a><o:p></o:p>
-      <br>
-      <o:p> <strong>New Features:</strong></o:p><strong> </strong><span style="font-family: Helvetica,Arial,sans-serif;"></span><span
+      <o:p><strong>New Features:</strong></o:p><strong> </strong><span
+        style="font-family: Helvetica,Arial,sans-serif;"></span><span
         style="font-family: Helvetica,Arial,sans-serif;"><em></em></span>
-      <p class="MsoNoSpacing"><span style="font-family: Helvetica,Arial,sans-serif;"><em
-            style="text-decoration: underline;">Help
-            us improve our Data Set page</em>: The dataset page includes
-          information about all datasets loaded into our resources including,
-          release and date loaded, name of the provider, links to searches and
-          data visualization, etc... Take a look at the beta version of our
-          dataset page (access it from the data summary menu item at the top of
-          our web pages) and let us know what you think.<br>
+      <p class="MsoNoSpacing"><span style="font-family: Helvetica,Arial,sans-serif;">
+          <em style="text-decoration: underline;">Help us improve our Data Set
+            page</em>: The dataset page includes information about all datasets
+          loaded into our resources including, release and date loaded, name of
+          the provider, links to searches and data visualization, etc... Take a
+          look at the beta version of our dataset page (access it from the data
+          summary menu item at the top of our web pages) and let us know what
+          you think.<br>
         </span> </p>
     </div>
     <div style="text-align: justify;"> </div>
@@ -1319,6 +1410,7 @@ normal">Annotated Genomes: <o:p></o:p></b><br>
     <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
   </body>
 </html>
+
           ]]>
        </attribute>
     </record>
@@ -1392,29 +1484,86 @@ normal">Annotated Genomes: <o:p></o:p></b><br>
        </attribute>
     </record>
 <record>
-      <attribute name="headline">PiroplasmaDB 5.2 Released</attribute>
-       <attribute name="date">14 January 2015 12:00</attribute>
-       <attribute name="tag">piro12_14news</attribute>
+       <attribute name="headline">CryptoDB 8.0 News</attribute>
+       <attribute name="date">22 December 2014 13:00</attribute>
+       <attribute name="tag">crypto012_14_news</attribute>
        <attribute name="category">release</attribute>
        <attribute name="item">
-<![CDATA[
+         <![CDATA[
 <body><span style="font-family: Helvetica,Arial,sans-serif;"> </span>
     <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><strong>We
-          are pleased to announce the release of PiroplasmaDB 5.2</strong><br>
-      </span> <span style="font-family: Helvetica,Arial,sans-serif;"></span><span
-        style="font-family: Helvetica,Arial,sans-serif;"></span></div>
-    <p class="MsoPlainText"><b style="mso-bidi-font-weight:normal"><br>
-        Improvements and updates:<br>
-      </b></p>
-    <p class="MsoPlainText"><br>
-      <b style="mso-bidi-font-weight:normal"><o:p></o:p></b></p>
+          are pleased to announce the release of CryptoDB 8.0</strong><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><strong>New
+          data in this release</strong>:<br>
+        <br>
+      </span></div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"></span>
+    <p class="MsoNoSpacing">The data set title below links to a full description
+      and list of associated searches and GBrowse tracks.</p>
+    <p class="MsoNoSpacing"><o:p>&nbsp;</o:p></p>
+    <p class="MsoNoSpacing" style="margin-left:.25in"><b style="mso-bidi-font-weight:
+normal">Annotated Genomes:<o:p></o:p></b></p>
+    <p class="MsoNoSpacing" style="margin-left:.5in;text-indent:-.25in"><a href="/a/getDataset.do?datasets=cvelCCMP2878_primary_genome_RSRC"><span
+          class="SpellE"><i
+            style="mso-bidi-font-style:normal">Chromera</i></span><i
+          style="mso-bidi-font-style:normal">
+          <span class="SpellE"><span class="GramE">velia</span></span></i>
+        CCMP2878</a><i style="mso-bidi-font-style:normal"> </i><span style="mso-spacerun:yes">&nbsp;</span> - 
+      first release in <span class="SpellE">CryptoDB</span> (produced by a
+      consortium led by King Abdullah University of Science and Technology;
+      version May 15, 2014)</p>
+    <p class="MsoNoSpacing" style="margin-left:.5in;text-indent:-.25in"><a href="/a/getDataset.do?datasets=gnipUnknown_primary_genome_RSRC"><span
+          class="SpellE"><i
+            style="mso-bidi-font-style:normal">Gregarina</i></span><i
+          style="mso-bidi-font-style:normal">
+          <span class="SpellE">niphandrodes</span></i> Unknown strain</a> - 
+      first release in <span class="SpellE">CryptoDB</span>.<span style="mso-spacerun:yes">&nbsp;
+        </span>This genome has been moved from <span class="SpellE">ToxoDB</span>
+      to <span class="SpellE">CryptoDB</span>. (<a href="https://sites.google.com/site/toxoplasmagondiigscidproject/home">Toxoplasma
+Genome
+        Project</a>; <span class="SpellE">Genbank</span> version Apr 9, 2014)</p>
+    <p class="MsoNoSpacing" style="margin-left:.5in;text-indent:-.25in"><a href="/a/getDataset.do?datasets=vbraCCMP3155_primary_genome_RSRC"><span
+          class="SpellE"><i
+            style="mso-bidi-font-style:normal">Vitrella</i></span><i
+          style="mso-bidi-font-style:normal">
+          <span class="SpellE">brassicaformis</span></i> CCMP3155</a> - first
+      release in <span class="SpellE">CryptoDB</span> (produced by a consortium
+      led by King Abdullah University of Science and Technology; version May 15,
+      2014)</p>
+    <p class="MsoNoSpacing"><o:p>&nbsp;</o:p></p>
+    <p class="MsoNoSpacing" style="margin-left:.25in"><b style="mso-bidi-font-weight:
+normal">RNA Sequencing:<o:p></o:p></b></p>
+    <p class="MsoNoSpacing" style="margin-left:.5in;text-indent:-.25in"><a href="/a/getDataset.do?datasets=cvelCCMP2878_Otto_rnaSeq_RSRC"><em><span
+            class="SpellE">Chromera</span>
+          <span class="SpellE"><span class="GramE">velia</span></span></em>
+        CCMP2878 <span class="SpellE">transcriptome</span> in normal culture
+        conditions (Woo et al.)</a> - <span class="SpellE">Illumina</span>-based
+      RNA-<span class="SpellE">seq</span> to generate <span class="SpellE">transcriptome</span>
+      map of <i style="mso-bidi-font-style:normal">C. <span class="SpellE"><span
+            class="GramE">velia</span></span></i>
+      under a normal culturing condition.</p>
+    <p class="MsoNoSpacing" style="margin-left:.5in;text-indent:-.25in"><a href="/a/getDataset.do?datasets=vbraCCMP3155_Otto_rnaSeq_RSRC"><em><span
+            class="SpellE">Vitrella</span>
+          <span class="SpellE">brassicaformis</span></em> CCMP3155 <span
+          class="SpellE">transcriptome</span>
+        in normal culture conditions (Woo et al.)</a> - <span class="SpellE">Illumina</span>-<span
+        class="GramE">based
+        <span style="mso-spacerun:yes">&nbsp;</span>RNA</span>-<span class="SpellE">seq</span>
+      to generate <span class="SpellE">transcriptome</span> map of <i style="mso-bidi-font-style:
+normal">V. <span class="SpellE">brassicaformis</span></i> under a normal
+      culturing condition.</p>
+    <p class="MsoNoSpacing"><o:p>&nbsp;</o:p></p>
+    <p class="MsoPlainText"><b style="mso-bidi-font-weight:normal">Improvements
+        and updates:<o:p></o:p></b></p>
     <p class="MsoPlainText" style="margin-left:.5in;text-indent:-.25in">BLAST
       was updated to the latest NCBI version 2.2.30. </p>
     <p class="MsoPlainText" style="margin-left:.5in;text-indent:-.25in">GBrowse
       performance is improved following EuPathDB infrastructure changes.</p>
     <div style="text-align: justify;">
-      <div style="margin-left: 40px;"> <span style="font-family: Helvetica,Arial,sans-serif;"></span><span
-          style="font-family: Helvetica,Arial,sans-serif;"><br>
+      <div style="margin-left: 40px;"> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+        </span> <span style="font-family: Helvetica,Arial,sans-serif;"><em></em><br>
         </span> </div>
       <div style="text-align: justify;"> </div>
       <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><br>
@@ -1443,31 +1592,77 @@ normal">Annotated Genomes: <o:p></o:p></b><br>
     <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><span
           style="font-weight: bold; font-style: italic;"></span></span></div>
     <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
-    
   </body>
           ]]>
        </attribute>
-    </record>
+</record>
 <record>
-      <attribute name="headline">PiroplasmaDB 5.1 Released</attribute>
-       <attribute name="date">10 September 2014 12:00</attribute>
-       <attribute name="tag">piro8_14news</attribute>
+       <attribute name="headline">CryptoDB 7.0 News</attribute>
+       <attribute name="date">10 September 2014 13:00</attribute>
+       <attribute name="tag">crypto08_14_news</attribute>
        <attribute name="category">release</attribute>
        <attribute name="item">
-<![CDATA[
-<body>
-    <div style="text-align: justify;"><strong>We are pleased to announce the
-        release of PiroplasmaDB 5.1</strong><br>
-      <br>
+         <![CDATA[
+<body><span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><strong>We
+          are pleased to announce the release of CryptoDB 7.0</strong><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><strong>New
+          data in this release</strong>:</span></div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    <ul style="text-align: justify;">
+      <li><span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold; color: #666666;">Genome
+            sequence from the</span><em><span style="font-weight: bold; color: #666666;"><em>
+                Cryptosporidium </em></span></em><span style="font-weight: bold; color: #666666;">sequencing
+            white paper project</span><em><span style="font-weight: bold; color: #666666;"><em>.&nbsp;
+                </em></span></em><span style="font-weight: bold; color: #666666;">The
+            following new genome sequences are available:</span></span></li>
+    </ul>
+    <ul>
+      <ul>
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><em>Cryptosporidium
+              hominis</em> TU502</span></li>
+        <li><span style="font-family: Helvetica,Arial,sans-serif;">Cryptosporidium
+            hominis UKH1</span></li>
+        <li><span style="font-family: Helvetica,Arial,sans-serif;">Cryptosporidium
+            baileyi TAMU-09Q1</span></li>
+        <li><span style="font-family: Helvetica,Arial,sans-serif;">Cryptosporidium
+            meleagridis UKMEL1</span></li>
+      </ul>
+    </ul>
+    <div style="margin-left: 80px;"><span style="font-family: Helvetica,Arial,sans-serif;"><em>For
+          full attribution and available searches please see the <strong><a href="/a/getDataset.do?datasets=cbaiTAMU-09Q1_primary_genome_RSRC,chomUKH1_primary_genome_RSRC,chomTU502_new_primary_genome_RSRC,cmelUKMEL1_primary_genome_RSRC">dataset
+              section for details</a></strong>.</em></span></div>
+    <ul style="text-align: justify;">
+      <ul>
+      </ul>
+    </ul>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> <br>
+    </span>
+    <ul style="text-align: justify;">
+      <li><span style="font-family: Helvetica,Arial,sans-serif;"><span class="tracktitle"></span><em><span
+              style="font-weight: bold; color: #666666;"><em>Cryptosporidium
+                parvum</em></span></em><span style="font-weight: bold; color: #666666;">
+            transcriptome data: </span>RNA was isolated from sporozoites,
+          infected calf intestine and HCT-8 cells.&nbsp; This data has been
+          graciously provided prepublication by Adrian Hehl and his group.&nbsp;
+          View experimental details and available searches in the in the <strong><a
+              href="/a/getDataset.do?datasets=cparIowaII_Lippuner_rnaSeq_RSRC">dataset
+              section</a></strong>.</span></li>
+    </ul>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span>
       <ul style="text-align: justify;">
         <li><span style="font-family: Helvetica,Arial,sans-serif;"><strong style="color: #666666;">Two
               new data types with searches have been added in this release:</strong>
             Compounds and Metabolic Pathways.&nbsp; This beta-release of
-            Compound and Metabolic Pathways data sets incorporates
-            KEGG pathways and a subset of PubChem records. Future
-            releases will include compounds for additional metabolites and small
-            molecules, and pathways from other sources such as MPMP, MetaCyc,
-            etc. Please explore the site and contact us with your feedback. </span></li>
+            Compound and Metabolic Pathways data sets incorporates KEGG pathways
+            and a subset of PubChem records. Future releases will include
+            compounds for additional metabolites and small molecules, and
+            pathways from other sources such as MPMP, MetaCyc, etc. Please
+            explore the site and contact us with your feedback. </span></li>
       </ul>
       <span style="font-family: Helvetica,Arial,sans-serif;"><br>
       </span>
@@ -1519,7 +1714,6 @@ normal">Annotated Genomes: <o:p></o:p></b><br>
           features:</strong><br>
       </span> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
       </span>
-      <blockquote> </blockquote>
       
       <ul>
         <li><span style="font-family: Helvetica,Arial,sans-serif;"><strong style="color: #666666;">Results
@@ -1567,23 +1761,57 @@ normal">Annotated Genomes: <o:p></o:p></b><br>
               style="font-weight: bold; font-style: italic;">,
               <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="http://www.youtube.com/user/EuPathDB">YouTube</a></span></span></p>
       </div>
-      <span style="font-weight: bold; font-style: italic;"></span></div>
-    <div style="text-align: justify;"><span style="font-weight: bold; font-style: italic;"></span></div>
+      <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold; font-style: italic;"></span><span
+          style="font-weight: bold; font-style: italic;"></span></span></div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><span
+          style="font-weight: bold; font-style: italic;"></span></span></div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
   </body>
           ]]>
        </attribute>
-    </record>
+</record>
 <record>
-      <attribute name="headline">New Tutorials</attribute>
-       <attribute name="date">08 May 2014 12:00</attribute>
-       <attribute name="tag">piro5_14news</attribute>
+       <attribute name="headline">New Features and Tutorials</attribute>
+       <attribute name="date">05 May 2014 12:00</attribute>
+       <attribute name="tag">crypto05_14_news</attribute>
        <attribute name="category">release</attribute>
        <attribute name="item">
-           
          <![CDATA[
- <body><span style="font-family: Helvetica,Arial,sans-serif;"></span><br>
-    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"></span>
+<body><span style="font-family: Helvetica,Arial,sans-serif;"></span><br>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;">
+        <br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><strong>New
+          features:</strong><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><span style=" font-weight: normal;"><br>
+        </span></span>
+      <ul>
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><strong style="color: #666666;">Search
+              genes based on polymorphism data:</strong> <span style="font-weight: normal;">The
+              high throughput sequencing SNP searches have been upgraded to
+              increase their speed and provide additional search functionality.
+              Meta data associated with samples is now&nbsp; more intuitively
+              organized. Search for genes based on <a href="http://cryptodb.org/cryptodb/showQuestion.do?questionFullName=GeneQuestions.GenesByNgsSnps">SNP
+                characteristics</a> or identify SNPs based on multiple criteria
+              including within <a href="http://cryptodb.org/cryptodb/showQuestion.do?questionFullName=SnpQuestions.NgsSnpsByIsolateGroup">one
+                group of isolates</a> or between <a href="http://cryptodb.org/cryptodb/showQuestion.do?questionFullName=SnpQuestions.NgsSnpsByTwoIsolateGroups">two
+                groups of isolates</a>.</span></span></li>
+      </ul>
+      <span style="font-family: Helvetica,Arial,sans-serif;"><span style=" font-weight: normal;"><br>
+        </span></span>
+      <ul>
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><strong style="color: #666666;">Filter
+              samples based on metadata:</strong> <span style="font-weight: normal;">It
+              is</span> <span style="font-weight: normal;">easier now to tailor
+              your searches (such as SNP searches) by defining samples based on
+              their metadata characteristics</span>.</span></li>
+      </ul>
+      <blockquote> </blockquote>
       <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold;">New
+          Tutorials:</span><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
       </span>
       <div style="margin-left: 40px;"><span style="font-family: Helvetica,Arial,sans-serif;"><a
             href="http://eupathdb.org/tutorials/GBrowse-UploadTrack-Help.pdf">Learn
@@ -1625,8 +1853,6 @@ normal">Annotated Genomes: <o:p></o:p></b><br>
       <span style="font-family: Helvetica,Arial,sans-serif;"><br>
       </span> </div>
     <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
-    <div style="text-align: justify;"> </div>
-    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
     <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><br>
       </span> <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-style: italic;"><span
             style="font-style: italic;"><span
@@ -1648,8 +1874,6 @@ normal">Annotated Genomes: <o:p></o:p></b><br>
             <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="http://www.youtube.com/user/EuPathDB">YouTube</a></span></span></p>
       <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold; font-style: italic;"></span></span></div>
     <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
-    <div style="text-align: justify;"> </div>
-    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
     <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><span
           style="font-weight: bold; font-style: italic;"></span><span
           style="font-weight: bold; font-style: italic;"></span></span></div>
@@ -1657,28 +1881,43 @@ normal">Annotated Genomes: <o:p></o:p></b><br>
   </body>
           ]]>
        </attribute>
-    </record>
+</record>
 <record>
-      <attribute name="headline">PiroplasmaDB 5.0 Released</attribute>
-       <attribute name="date">30 January 2014 15:00</attribute>
-       <attribute name="tag">piro114news</attribute>
+       <attribute name="headline">CryptoDB 6.0 News</attribute>
+       <attribute name="date">30 January 2014 13:00</attribute>
+       <attribute name="tag">crypto01_14_news</attribute>
        <attribute name="category">release</attribute>
        <attribute name="item">
-           
          <![CDATA[
- <body>
+<body>
     <div style="text-align: justify;"><strong>We are pleased to announce the
-        release of PiroplasmaDB 5.0</strong><strong></strong><br>
+        release of CryptoDB 6.0</strong><br>
       <br>
       <br>
-      <span class="tracktitle">This release of PiroplasmaDB constitutes a
-        complete rebuild of the database and includes a number of new features
-        (see below). The latest versions of genome sequence and annotation were
-        loaded and all analyses were rerun and updated (InterProSCan, SignalP,
-        functional data mapping, etc.).<br>
-      <br>
+      <strong>New data in this release</strong>:</div><br><br>
+    <ul style="text-align: justify;">
+      <li><em>Cryptosporidium parvum </em>Iowa II Oocyst Transcriptome: Control
+        vs. UV treatment (<a href="http://www.ncbi.nlm.nih.gov/pubmed/23171372"><span
+            style="color: #0000ee;"><span
+              style="text-decoration: underline;"><span
+                style="font-weight: bold;">Zhang
+                <em>et al.</em></span></span></span></a>).&nbsp; For full
+        attribution and available searches please see the <strong><a
+            href="http://CryptoDB.org/cryptodb/getDataset.do?datasets=cparIowaII_microarrayExpression_Zhu_GSE34307_RSRC,cparIowaII_microarrayExpression_Zhu_GSE34307_RSRC">dataset
+            details</a></strong>.</li>
+    </ul>
+    <br>
+    <ul style="text-align: justify;">
+      <li><span class="tracktitle">This release of CryptoDB constitutes a
+          complete rebuild of the database and includes a number of new features
+          (see below). The latest versions of genome sequence and annotation
+          were loaded and all analyses were rerun and updated (InterProSCan,
+          SignalP, functional data mapping, etc.).</span></li>
+    </ul>
+    <div style="text-align: justify;"><br>
       <br>
       <strong>New features:</strong><br>
+      <br>
       <br>
       <span style="text-decoration: underline;">Public Strategies</span>:&nbsp;
       Share your search strategies with the community by making them
@@ -1709,19 +1948,18 @@ normal">Annotated Genomes: <o:p></o:p></b><br>
       phyletic pattern search now remembers your selected parameters making it
       easier to revise searches.<br>
       <br>
-      <strong></strong><br>
-      <strong></strong><br>
+      <br>
       <strong>New database:&nbsp; </strong></div><br>
     <ul style="text-align: justify;">
-     <li>EuPathDB is pleased to announce the release of a beta version of
-        <a href="http://hostdb.org"><strong>HostDB</strong></a> - a resource
-        dedicated to integrating functional host response data.&nbsp; The beta
-        release includes the human and mouse genomes and two datasets (RNA-Seq
-        and quantitative proteomics) examining the host response to Toxoplasma
-        infection.&nbsp; We look forward to expanding this database in data
-        content and functionality.&nbsp; We encourage you to explore <strong><a
-            href="http://hostdb.org">HostDB</a></strong>
-        and provide us with your <a href="mailto:help@hostdb.org"><strong>feedback</strong></a>.&nbsp;</li>
+      <li>EuPathDB is pleased to announce the release of a beta version of <a
+            href="http://hostdb.org"><strong>HostDB</strong></a>
+          - a resource dedicated to integrating functional host response
+          data.&nbsp; The beta release includes the human and mouse genomes and
+          two datasets (RNA-Seq and quantitative proteomics) examining the host
+          response to Toxoplasma infection.&nbsp; We look forward to expanding
+          this database in data content and functionality.&nbsp; We encourage
+          you to explore <strong><a href="http://hostdb.org">HostDB</a></strong>
+          and provide us with your <a href="mailto:help@hostdb.org"><strong>feedback</strong></a>.&nbsp;</li>
     </ul>
     <div style="text-align: justify;"><br>
     </div>
@@ -1739,12 +1977,13 @@ normal">Annotated Genomes: <o:p></o:p></b><br>
       <span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
       <span style="font-weight: bold;"><span style="font-style: italic;">Follow EuPathDB on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
         style="font-weight: bold; font-style: italic;">,
-        <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="http://www.youtube.com/user/EuPathDB">YouTube</a></span></div>
+        <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="http://www.youtube.com/user/EuPathDB">YouTube</a></span><span
+        style="font-weight: bold; font-style: italic;"></span></div>
     <div style="text-align: justify;"><span style="font-weight: bold; font-style: italic;"></span></div>
   </body>
           ]]>
        </attribute>
-    </record>
+</record>
 <record>
        <attribute name="headline">EuPathDB Annual Workshop</attribute>
        <attribute name="date">14 January 2014 15:00</attribute>
@@ -1814,70 +2053,14 @@ normal">Annotated Genomes: <o:p></o:p></b><br>
        </attribute>
     </record>
 <record>
-      <attribute name="headline">PiroplasmaDB 4.0 Released</attribute>
-       <attribute name="date">25 September 2013 15:00</attribute>
-       <attribute name="tag">piro913news</attribute>
+       <attribute name="headline">CryptoDB 5.0 New Features</attribute>
+       <attribute name="date">25 September 2013 13:00</attribute>
+       <attribute name="tag">crypto09_13_news</attribute>
        <attribute name="category">release</attribute>
        <attribute name="item">
-           
          <![CDATA[
-<body> <strong>We are pleased to announce the release of PiroplasmaDB 4.0</strong><strong></strong><br>
+<body> <strong>We are pleased to announce new features in CryptoDB:</strong><strong></strong><br>
     <br>
-    <br>
-    <strong>New data in this release</strong>:<br>
-    <br>
-    <ul>
-      <li><span class="tracktitle">The following annotated genomes were
-          integrated into the PiroplasmaDB. </span><span class="tracktitle"><span
-            class="tracktitle">The
-            <a href="http://piroplasmadb.org/piro/getDataset.do?display=detail#Genomes%20and%20Annotation"><strong>data
-                set section</strong></a> includes detailed information about the
-            genomes and available searches:</span></span></li>
-    </ul>
-    <span class="tracktitle"><span class="tracktitle"></span></span>&nbsp;<o:p></o:p><br>
-    <ul>
-      <ul>
-        <li><span class="tracktitle"><span style="font-family:&quot;Courier New&quot;;mso-fareast-font-family:
-&quot;Courier New&quot;"><span style="mso-list:Ignore"><span style="font:7.0pt &quot;Times New Roman&quot;"></span></span></span></span><span
-            class="tracktitle"><a
-              href="http://piroplasmadb.org/piro/getDataset.do?question=GeneQuestions.GenesByTaxon&amp;display=detail#24"><strong>Theileria
-orentalis
-                Shintoku</strong></a> (GenBank version 9-6-2013) (</span><span class="tracktitle"><strong><a
-                href="http://www.ncbi.nlm.nih.gov/pubmed/22951932">Hayashida
-                <em>et al.</em></a></strong>)<br>
-          </span></li>
-      </ul>
-    </ul>
-    <span class="tracktitle"></span><br>
-    <ul>
-      <ul>
-        <li><span class="tracktitle"><strong><a href="http://piroplasmadb.org/piro/getDataset.do?question=GeneQuestions.GenesByTaxon&amp;display=detail#25">Theileria
-                equi WA</a></strong> (GenBank version 12-11-2013) (</span><strong><a
-              href="http://www.ncbi.nlm.nih.gov/pubmed/23137308">Kappmeyer
-              <em>et al.</em></a></strong>)<pubmedarticleset><pubmedarticle></pubmedarticle></pubmedarticleset></li>
-      </ul>
-    </ul>
-    <span class="tracktitle"></span><br>
-    <ul>
-      <li><span class="tracktitle"><span style="mso-bidi-font-style:normal">Proteomics
-            mass spec data from</span><i style="mso-bidi-font-style:normal">
-            Theileria annulata</i> schizonts (</span><span class="tracktitle"><strong><a
-              href="http://www.ncbi.nlm.nih.gov/pubmed/23178997"><span
-                class="tracktitle">Witschi
-                <em>et al.</em></span></a></strong>). Search for genes whose
-          protein products were present in extracts of whole cell lysates <i style="mso-bidi-font-style:normal">T.
-            annulata</i> schizonts from the </span><strong><a href="http://piroplasmadb.org/piro/showQuestion.do?questionFullName=GeneQuestions.GenesByMassSpec">PiroplasmaDB
-Mass
-            spec evidence search page</a></strong><span class="tracktitle">. In
-          addition, peptide evidence is displayed on </span><strong><a href="http://piroplasmadb.org/piro/app/record/gene/TA12105">gene
-pages
-            in the Protein Section</a></strong><span class="tracktitle"> and in
-          the genome browser by turning on the track - <strong><a href="http://piroplasmadb.org/cgi-bin/gbrowse/piroplasmadb/?start=850517;stop=950516;ref=tannA_chr01;width=800;version=100;flip=0;grid=1;id=8c6b1b09fb0b79acf52f9b5871db2398;l=Gene%1EMassSpecPeptides_tannAnkara_massSpec_dobbelaere_RSRC;h_feat=ta20770%40yellow">T.a.
-              MS/MS Peptides Schizont Proteome (Witschi et al.)</a></strong>.</span></li>
-    </ul>
-    <span class="tracktitle"></span><br>
-    <br>
-    <strong>New features:</strong><br>
     <br>
     <p class="MsoNoSpacing"><u>GBrowse tracks remain open between sessions:</u></p>
     <p class="MsoNoSpacing"><br>
@@ -1954,125 +2137,7 @@ pages
   </body>
           ]]>
        </attribute>
-    </record>
-<record>
-      <attribute name="headline">PiroplasmaDB 3.0 Released</attribute>
-       <attribute name="date">11 March 2013 15:00</attribute>
-       <attribute name="tag">piro0313news</attribute>
-       <attribute name="category">release</attribute>
-       <attribute name="item">
-           
-         <![CDATA[
-<body><span style="font-family: Arial;"> </span>
-    <p style="text-align: justify;">
-      <!--StartFragment--> </p>
-    <p style="text-align: justify;" class="MsoNormal"><span style="font-family: Arial;"><a
-          name="piro0812news"><b
-            style="mso-bidi-font-weight:normal"><o:p></o:p></b></a></span></p>
-    <span style="font-family: Arial;"> </span>
-    <p style="text-align: justify;" class="MsoNormal"><span style="font-family: Arial;"><span
-          style="mso-bookmark:piro0812news"><b
-            style="mso-bidi-font-weight:
-normal">We are pleased to announce the release of PiropasmaDB 3.0<o:p></o:p></b></span></span></p>
-    <span style="font-family: Arial;"> </span>
-    <p style="text-align: justify;" class="MsoNormal"><span style="font-family: Arial;"><span
-          style="mso-bookmark:piro0812news"><b
-            style="mso-bidi-font-weight:
-normal">New data in this release:<br>
-          </b></span></span></p>
-    <p style="text-align: justify;" class="MsoNormal"><br>
-      <span style="font-family: Arial;"><span style="mso-bookmark:piro0812news"><b
-            style="mso-bidi-font-weight:
-normal"><o:p></o:p></b></span></span></p>
-    <span style="font-family: Arial;"> </span>
-    <p style="text-align: justify;" class="MsoNoSpacing"><span style="font-family: Arial;"><span
-          style="mso-bookmark:piro0812news"><u>Genomic
-sequence
-            and annotation for <i style="mso-bidi-font-style:normal">Babesia
-              microti</i> R1<br>
-          </u></span></span></p>
-    <p style="text-align: justify;" class="MsoNoSpacing"><br>
-      <span style="font-family: Arial;"><span style="mso-bookmark:piro0812news"><u><o:p></o:p></u></span></span></p>
-    <span style="font-family: Arial;"> </span>
-    <p style="text-align: justify;" class="MsoNormal"><span style="font-family: Arial;"><span
-          style="mso-bookmark:piro0812news">The
-          <i style="mso-bidi-font-style:normal">Babesia microti</i> R1 genome
-          and annotation (</span><strong><a href="http://www.ncbi.nlm.nih.gov/bioproject?term=PRJEA72411"><span
-              style="mso-bookmark:piro0812news">Genbank</span></a></strong><span
-          style="mso-bookmark:piro0812news">)
-          is fully integrated into PiroplasmaDB (<a href="http://www.ncbi.nlm.nih.gov/pubmed/22833609"><strong>Cornillot
-              </strong><strong><em>et al.</em></strong></a>). <span style="mso-spacerun:yes">&nbsp;</span>Use
-          the </span><span style="mso-bookmark:piro0812news">searches available
-          in PiroplasmaDB</span><span style="mso-bookmark:piro0812news"> to find
-        </span><strong><a href="http://piroplasmadb.org/piro/im.do?s=c0867e0adfea68c9"><span
-              style="mso-bookmark:piro0812news"><i
-                style="mso-bidi-font-style:normal">B.
-                microti</i> genes</span></a></strong><span style="mso-bookmark:piro0812news">
-          or </span><strong><a href="http://piroplasmadb.org/piro/im.do?s=b435e285f75ae48f"><span
-              style="mso-bookmark:piro0812news">genomic
-              sequences</span></a></strong><span style="mso-bookmark:piro0812news">
-          <span style="mso-spacerun:yes">&nbsp;</span>based on a variety of
-          parameters and combine searches to identify genes with specific
-          characteristics.<span style="mso-spacerun:yes">&nbsp; </span>For
-          example, the following strategy combines several searches to find
-          signal peptide and/or transmembrane domain containing genes that are
-          conserved in Piroplasma but not in Haemosporidia. <br>
-        </span></span></p>
-    <p style="text-align: justify;" class="MsoNormal"><br>
-      <span style="font-family: Arial;"><span style="mso-bookmark:piro0812news"><o:p></o:p></span></span></p>
-    <span style="font-family: Arial;"> </span>
-    <p style="text-align: justify;" class="MsoPlainText"><span style="font-family: Arial;"><strong><span
-            style="mso-bookmark:piro0812news"><span
-              style="mso-spacerun:yes">&nbsp;</span></span></strong><strong><a
-            href="http://piroplasmadb.org/piro/im.do?s=7c44f6999344e543"><span
-              style="mso-bookmark:piro0812news">http://piroplasmadb.org/piro/im.do?s=7c44f6999344e543</span></a></strong><span
-          style="mso-bookmark:piro0812news"><o:p></o:p></span></span></p>
-    <span style="font-family: Arial;"> </span> <br>
-    <p style="text-align: justify;" class="MsoNormal"><span style="font-family: Arial;"><b
-          style="mso-bidi-font-weight:normal">New
-          Functionality:<o:p></o:p></b></span><br>
-      <span style="font-family: Arial;"><u><br>
-          PCR Primer Design tool added to GBrowse. <o:p></o:p></u></span><span
-        style="font-family: Arial;"><br>
-        <br>
-      </span>
-    </p>
-    <div style="margin-left: 40px;"><span style="font-family: Arial;">Design PCR
-        primers to any region of the genome using this interactive, graphic
-        interface. To reach this tool, </span><span style="font-family: Arial;"><span
-          style="font-family: Arial;"><strong><a
-              href="http://piroplasmadb.org/cgi-bin/gbrowse/piroplasmadb/?name=FO082874:1554539..1586300;h_feat=bbm_iii04375@yellow">open
-the
-              PiroplasmaDB Genome Browser</a></strong> </span>at your genomic
-        region of interest, choose "Design PCR primers" from the dropdown menu
-        and click "GO".<span style="mso-spacerun:yes">&nbsp; </span>To design
-        primers, focus on a PCR product size range by highlighting the area on
-        the scale, then enter your preferred PCR parameters in the text boxes
-        and click Design Primer.<o:p></o:p></span></div>
-    <span style="font-family: Arial;"> </span> <br>
-    <span style="font-style: italic;"><span style="font-style: italic;"><span style="text-decoration: underline;">Note:</span>
-        Our bimonthly database releases incorporate new data and correct old
-        data when necessary.&nbsp; Changes in annotation and new experimental
-        data may slightly alter your search results by increasing or decreasing
-        the number of hits. When search parameters change with a new release, we
-        invalidate (<span style="color: red;">Ø</span>) the search and ask you
-        to rerun it. When IDs are updated or removed, we map the old IDs to the
-        new ones, remove the old IDs from your Basket, and leave your Favorites
-        page alone.</span></span><br>
-    <span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
-    <span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
-        is now on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
-      style="font-weight: bold; font-style: italic;">
-      and <a href="http://twitter.com/eupathdb">Twitter</a></span> <br style="font-family: Arial;">
-    <p style="text-align: justify;" class="MsoNormal"><br>
-      <span style="font-family: Arial;"><o:p></o:p></span></p>
-    <span style="font-family: Arial;"> </span>
-    <p style="text-align: justify;"><!--EndFragment--> </p>
-    <span style="font-family: Arial;"> </span>
-  </body>
-          ]]>
-       </attribute>
-    </record>
+</record>
 <record>
        <attribute name="headline">EuPathDB Annual Workshop</attribute>
        <attribute name="date">20 January 2013 15:00</attribute>
@@ -2135,156 +2200,218 @@ the
        </attribute>
     </record>
 <record>
-       <attribute name="headline">PiroplasmaDB 2.0 Released</attribute>
-       <attribute name="date">31 August 2012 15:00</attribute>
-       <attribute name="tag">piro0812news</attribute>
+       <attribute name="headline">CryptoDB 5.0 Released</attribute>
+       <attribute name="date">31 August 2012 13:00</attribute>
+       <attribute name="tag">crypto08_12_news</attribute>
        <attribute name="category">release</attribute>
        <attribute name="item">
-           
          <![CDATA[
 <html>
-  <head>
-    <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
-    <title>piro08_12</title>
-  </head>
-  <body>
-    <div style="text-align: justify; font-family: Arial;"> <span style="font-weight: bold;">We
-        are pleased to announce the release of
-        PiroplasmaDB 2.0</span><br style="font-weight: bold;">
-      <span style="font-weight: bold;"> </span><br>
-      <font face="Arial">This release of </font>PiroplasmaDB<font face="Arial">
-        constitutes a complete
-        rebuild of the database.&nbsp; This means that all genomes and
-        data were reloaded and reanalyzed.&nbsp; </font><font face="Arial">It
-        is possible that many of your stored search strategies will need to be
-        rerun to accommodate the new analyses (please see note at the bottom of
-        this news item).&nbsp; </font><font face="Arial">We encourage you to
-        explore this release and, as usual,
-        we look forward to hearing from you with suggestions for further
-        improvement and any problems you may encounter. </font><br>
-      <br>
-      <span style="font-weight: bold;"> New data in this release:</span><br>
-      <span style="font-weight: bold;"> </span><br>
-    </div>
-    <ul style="text-align: justify; font-family: Arial;">
-      <li><span style="font-style: italic;">Babesia bovis</span> microarray
-        data from <a style="font-weight: bold;" href="http://www.ncbi.nlm.nih.gov/pubmed/21838895">Lau
-          <span style="font-style: italic;">et. al.</span></a> Incorporation of
-        this
-        data enables you to search for genes that are differentially regulated
-        between virulent and attenuated strains of <span style="font-style: italic;">B.
-          bovis</span>.&nbsp; Searches against
-        this data are available by selection "<a style="font-weight: bold;" href="http://piroplasmadb.org/piro/showQuestion.do?questionFullName=InternalQuestions.GenesByMicroarrayEvidence">Microarray</a>"
-        in the "Transcript Expression" section under the heading "Identify
-        Genes by" on the home page.</li>
-    </ul>
-    <div style="margin-left: 40px;"><span style="font-family: Arial;"><br>
-        Searches for gens based on their expression profile may be combined
-        with other available searches in PiroplasmaDB.&nbsp; For example, the
-        following shared search strategy identifies predicted secreted genes
-        that are differentially regulated between virulent and attenuated
-        strains:</span><br>
-    </div>
-    <div style="text-align: justify; font-family: Arial;"> </div>
-    <div style="text-align: justify; font-family: Arial;"> <a href="http://piroplasmadb.org/piro/im.do?s=eb3dc45918c75c68"><br>
-      </a></div>
-    <div style="margin-left: 80px; text-align: justify; font-family: Arial;"><a
-        href="http://piroplasmadb.org/piro/im.do?s=eb3dc45918c75c68"><span
-          style="font-weight: bold;">http://piroplasmadb.org/piro/im.do?s=eb3dc45918c75c68</span></a><br>
-    </div>
-    <div style="text-align: justify; font-family: Arial;"> <br>
-    </div>
-    <div style="margin-left: 40px; text-align: justify; font-family: Arial;">In
-      addition, graphical representations of expression profiles are
-      available on all <span style="font-style: italic;">B. bovis</span>
-      gene pages.&nbsp; As an example, you can visit the gene page for one of
-      the <a style="font-weight: bold;" href="http://piroplasmadb.org/gene/BBOV_IV001490">variant
-        erythrocyte
-        surface antigens</a> and scroll down to the expression section.<br>
-      <br>
-    </div>
-    <div style="text-align: justify; font-family: Arial;"> </div>
-    <ul style="text-align: justify; font-family: Arial;">
-      <li>Isolate data from environmental samples, <span style="font-style: italic;">Theileriidae</span>
-        and <span style="font-style: italic;">Babesiidae</span> obtained from
-        Genbank
-        are now available.&nbsp; These data may be searched based on multiple
-        criteria including geographic location, isolation source, host, strain,
-        etc.&nbsp; Searches against isolate data are available under the
-        "Isolates" section under the heading "Identify other data types" on the
-        home page.&nbsp; Isolate searches may be combined such as the following
-        strategy that identifies all Theileria isolates from Africa:<br>
-      </li>
-    </ul>
-    <div style="text-align: justify; font-family: Arial;"> <a href="http://piroplasmadb.org/piro/im.do?s=2c545c1d461d5df3"><br>
-        <span style="font-weight: bold;"></span></a> </div>
-    <div style="margin-left: 80px; text-align: justify; font-family: Arial;"><a
-        href="http://piroplasmadb.org/piro/im.do?s=2c545c1d461d5df3">
-        ht<span style="font-weight: bold;">tp://piroplasmadb.org/piro/im.do?s=2c545c1d461d5df3</span></a><br>
-    </div>
-    <div style="text-align: justify; font-family: Arial;"> <br>
-      <span style="font-weight: bold;"></span><br>
-      <span style="font-weight: bold;"> </span><br>
-      <span style="font-weight: bold;"> New functionality:</span><br>
-      <br>
-      Graphical representation of your gene results mapped to genomic
-      sequences.&nbsp; To use this feature, run any gene search then click on
-      the "Genome View" tab.&nbsp; This view allows you to interactively
-      visualize the genomic distribution of your results -- you can zoom
-      in/out, sort results or visit specific gene pages.&nbsp; <br>
-      <br>
-      <br>
-      <span style="font-style: italic;"><span style="font-style: italic;"><span
-            style="text-decoration: underline;">Note:</span>
-          Our bimonthly
-          database releases incorporate new data and correct old data when
-          necessary.&nbsp; Changes in annotation and new experimental data may
-          slightly alter your search results by increasing or decreasing the
-          number of hits. When search parameters change with a new release, we
-          invalidate (<span style="color: red;">Ø</span>) the search and ask you
-          to rerun it. When IDs are updated or removed, we map the old IDs to
-          the
-          new ones, remove the old IDs from your Basket, and leave your
-          Favorites
-          page alone.</span></span><br>
-      <span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
-      <span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
-is
-          now on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
-        style="font-weight: bold; font-style: italic;">
-        and <a href="http://twitter.com/eupathdb">Twitter</a></span><br>
-    </div>
-  </body>
+<head>
+<meta content="text/html; charset=ISO-8859-1"
+http-equiv="content-type">
+<title>crypto_0812_news</title>
+</head>
+<body>
+<div style="text-align: justify; font-family: Arial;"><font face="Arial"><span
+style="font-weight: bold;">We are pleased to announce the release of
+CryptoDB 5.0</span><br>
+<span style="font-weight: bold;"> </span><br>
+This release of CryptoDB constitutes a complete rebuild of the
+database.&nbsp; This means that all genomes and data were reloaded and
+reanalyzed. As a result of community feedback, we have included strain
+names with all <em>Cryptosporidium</em> species, and removed the
+independently sequenced and annotated <em>C. parvum</em> chromosome 6
+from CryptoDB searches. The <em>C. parvum</em> chromosome 6 sequence
+and annotation is still available as a Genome Browser track.&nbsp; It
+is possible that many of your stored search strategies will need to be
+rerun to accommodate the new analyses (please see note at the bottom of
+this news item).&nbsp; We encourage you to explore this release and, as
+usual, we look forward to hearing from you with suggestions for further
+improvement and any problems you may encounter.&nbsp; <br>
+<br style="font-weight: bold;">
+<span style="font-weight: bold;">New Data in this release:</span> <br>
+<span style="font-weight: bold;"></span> <br>
+<span style="font-weight: bold;"></span></font> </div>
+<ul style="text-align: justify; font-family: Arial;">
+<li><font face="Arial">Single nucleotide polymorphism (SNP) calls
+based on high throughput (HTS) sequencing of <span
+style="font-style: italic;">C. parvum<span style="font-style: italic;">
+</span></span>Iowa II and TU114 strains (<a
+style="font-weight: bold;"
+href="http://www.ncbi.nlm.nih.gov/pubmed/22522000">Widmer <span
+style="font-style: italic;">et. al.</span></a>).&nbsp; To identify
+genes based on their SNP characteristics, click on "<a
+style="font-weight: bold;"
+href="http://cryptodb.org/cryptodb/showQuestion.do?questionFullName=InternalQuestions.GenesBySnps">SNP
+Characteristics</a>" under the "Population Biology" heading in the
+"Identify Genes By" section of the home page. &nbsp;&nbsp; The Widmer <span
+style="font-style: italic;">et. al.</span> data can be queried by
+clicking on "HTS SNP Characteristics".</font></li>
+</ul>
+<font face="Arial"><br style="font-family: Arial;">
+</font>
+<ul style="text-align: justify; font-family: Arial;">
+<ul>
+<li><font face="Arial">SNP searches may be combined with other
+searches, for example, <a style="font-weight: bold;"
+href="http://cryptodb.org/cryptodb/im.do?s=0a2f79d9abbcfe07">this
+search strategy</a> identifies secreted (predicted by SignalP) <span
+style="font-style: italic;">C. parvum</span> genes that contain at
+least 10 non-synonymous SNPs.</font></li>
+</ul>
+</ul>
+<div style="text-align: justify; font-family: Arial;"><font face="Arial"><br>
+</font> </div>
+<ul style="text-align: justify; font-family: Arial;">
+<ul>
+<li><font face="Arial">SNPs may also be visualized in tabular
+format on gene pages or as a <a style="font-weight: bold;"
+href="http://cryptodb.org/cgi-bin/gbrowse/cryptodb/?start=12983;stop=44278;ref=CM000429;width=800;version=100;flip=0;grid=1;id=1402408ecb15b2235061f0d26d2db2e4;l=HtsAlignmentSNPsByClass%1EGene;h_feat=cgd1_120%40yellow">Genome
+Browser track</a>. In the Genome Browser select the track called "HTS
+SNPs by coding potential".&nbsp; Individual diamonds in the genome
+browser track represent SNPs.&nbsp; Mousing over these graphics reveals
+additional information such as the type of SNP, the position of the SNP
+and the nucleotide and amino acid changes.</font></li>
+</ul>
+</ul>
+<div style="text-align: justify; font-family: Arial;"><font face="Arial"><br>
+</font> </div>
+<ul style="text-align: justify; font-family: Arial;">
+<ul>
+<li><font face="Arial"><span style="font-weight: bold;"><a
+href="http://cryptodb.org/cgi-bin/gbrowse/cryptodb/?start=27631;stop=29630;ref=CM000429;width=800;version=100;flip=0;grid=1;id=1402408ecb15b2235061f0d26d2db2e4;l=Widmer_HTS_TU114_Alignment%1EHtsAlignmentSNPsByClass%1EGene;h_feat=cgd1_120%40yellow">Alignment
+of high throughput sequence reads</a> </span>are also available via
+the Genome Browser.<br>
+</font> </li>
+</ul>
+</ul>
+<div style="text-align: justify; font-family: Arial;"><font face="Arial"><br>
+</font> </div>
+<ul style="text-align: justify; font-family: Arial;">
+<ul>
+<li><font face="Arial"><a style="font-weight: bold;"
+href="http://cryptodb.org/a/showRecord.do?name=SnpRecordClasses.SnpRecordClass&amp;primary_key=NGS_SNP.AAEE01000006.29235">Individual
+SNP records may also be visualized</a>.&nbsp; <br>
+</font> </li>
+</ul>
+</ul>
+<div style="text-align: justify; font-family: Arial;"><font face="Arial"><br>
+<span style="font-weight: bold;"></span> <br>
+<span style="font-weight: bold;">New functionality:</span> <br>
+<br>
+Graphical representation of your gene results mapped to genomic
+sequences.&nbsp; To use this feature, run any gene search then click on
+the "Genome View" tab.&nbsp; This view allows you to interactively
+visualize the genomic distribution of your results -- you can zoom
+in/out, sort results or visit specific gene pages. <br>
+<br>
+<span style="font-style: italic;"><span style="font-weight: bold;">Cryptosporidium
+Sequencing White Paper Approved!</span><br>
+<br>
+</span>We are delighted that the <a style="font-weight: bold;"
+href="http://cryptodb.org/cryptodb/communityDownload.do?fname=WhitePaper_Crypto.pdf"><span
+style="font-style: italic;">Cryptosporidium</span>
+sequencing white paper</a> has been approved.&nbsp; This means that
+additional <span style="font-style: italic;">Cryptosporidium</span>
+genomes will be sequenced and made
+available to the research community via Genbank and CryptoDB.&nbsp;
+The research team is currently looking for a source of <span
+style="font-style: italic;">Cryptosporidium bovis</span> oocysts.
+Please email questions or comments to Giovanni Widmer
+(giovanni.widmer@tufts.edu) or Jessie Kissinger (jkissing@uga.edu).<span
+style="font-style: italic;"><br>
+<br>
+</span> <br>
+</font> </div>
+<div style="text-align: justify; font-family: Arial;"><font face="Arial"><span
+style="font-style: italic;"><span style="font-style: italic;"><span
+style="text-decoration: underline;">Note:</span> Our bimonthly
+database releases incorporate new data and correct old data when
+necessary.&nbsp; Changes in annotation and new experimental data may
+slightly alter your search results by increasing or decreasing the
+number of hits. When search parameters change with a new release, we
+invalidate (<span style="color: red;">Ø</span>) the search and ask you
+to rerun it. When IDs are updated or removed, we map the old IDs to the
+new ones, remove the old IDs from your Basket, and leave your Favorites
+page alone.</span></span><br>
+<span style="font-weight: bold;"><span style="font-style: italic;"></span></span>
+<br>
+<span style="font-weight: bold;"><span style="font-style: italic;"></span></span>
+<br>
+<span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
+is now on <a
+href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span>
+<span style="font-weight: bold; font-style: italic;"> and <a
+href="http://twitter.com/eupathdb">Twitter</a></span></font> </div>
+</body>
 </html>
           ]]>
        </attribute>
-    </record>
+</record>
 <record>
-       <attribute name="headline">New features in PiroplasmaDB</attribute>
-       <attribute name="date">11 January 2012 15:00</attribute>
-       <attribute name="tag">piro1211news</attribute>
+       <attribute name="headline">CryptoDB 4.6 Released</attribute>
+       <attribute name="date">11 January 2012 13:00</attribute>
+       <attribute name="tag">crypto12_11_news</attribute>
        <attribute name="category">release</attribute>
        <attribute name="item">
-           
          <![CDATA[
 <body>
-<span style="font-weight: bold; font-family: Arial;">We are pleased to
-announce new features in&nbsp; PiroplasmaDB<br>
-</span><br style="font-family: Arial;">
-<span style="font-weight: bold; font-family: Arial;">New
-functionality:</span><br style="font-family: Arial;">
-<br style="font-family: Arial;">
-<span style="font-weight: bold; font-family: Arial;">
-</span>
-<ul style="font-family: Arial;">
+<div style="text-align: justify; font-family: Arial;"><span
+style="font-weight: bold;">We are pleased to
+announce new features in CryptoDB 4.6</span><br>
+<span style="font-weight: bold;"></span><br>
+<span style="font-weight: bold;"></span><span style="font-weight: bold;">
+New Data:</span><span style="font-weight: bold;"> </span><br>
+<span style="font-weight: bold;"></span><br>
+<span style="font-style: italic;">C. parvum</span> post-infection
+semi-quantitative Real Time PCR graciously provided prepublication by
+the Mark Rutherford (University of Minnesota) and Jessica C. Kissinger
+(University of Georgia) labs. <br>
+<br>
+<ul>
+<li>You can find differentially expressed genes based on this data by
+clicking on <a
+href="/cryptodb/showQuestion.do?questionFullName=InternalQuestions.GenesByRTPCREvidence"><span
+style="font-weight: bold;">RT PCR Evidence</span></a>
+under the "Transcript Expression" heading. Clicking on "Identify Genes
+based on C.p. post-infection semi-quantitative Real Time PCR (fold
+change)" reveals search options that allow you to identify genes with a
+desired change in expression.<br>
+</li>
+<li>Clicking on "C.p. post-infection semi-quantitative Real Time PCR
+(similarity)"
+allows you to find genes that have a similar expression profile to an
+input gene.&nbsp; For example, if you were interested in finding genes
+with a similar profile to a "kinesin-related protein K2", you can enter
+the gene ID "cgd3_2590" in the similarity search and return <a
+style="font-weight: bold;"
+href="/cryptodb/im.do?s=8b0ec647dc350658">genes
+with a similar expression profile</a>.</li>
+<li>In addition, a graph of the expression profiles is made available
+in the expression section of <a
+href="http://cryptodb.org/gene/cgd3_2590"><span
+style="font-weight: bold;">each </span><span
+style="font-style: italic; font-weight: bold;">C. parvum</span><span
+style="font-weight: bold;"> gene page</span></a>. <br>
+</li>
+</ul>
+<span style="font-weight: bold;"></span><br>
+<span style="font-weight: bold;"></span><span style="font-weight: bold;">New
+functionality:</span><br>
+<br>
+<span style="font-weight: bold;">
+</span></div>
+<ul style="text-align: justify; font-family: Arial;">
 <li>The genome browser has been updated.&nbsp; This newer version
 includes several improvements and functionalities.&nbsp; <a
 href="http://www.youtube.com/watch?v=jxA6VMN97Y8"><span
 style="font-weight: bold;">A tutorial </span></a>highlighting some of
 the new features is also available.&nbsp;&nbsp;</li>
 </ul>
-<br style="font-family: Arial;">
-<ul style="font-family: Arial;">
+<div style="text-align: justify; font-family: Arial;"><br>
+</div>
+<ul style="text-align: justify; font-family: Arial;">
 <li>A new column analysis tool is now available that allows you to
 generate a word cloud or histogram based on the data in result
 columns.&nbsp; To access this feature, run any search that returns a
@@ -2293,11 +2420,12 @@ column name.&nbsp; This will reveal a popup with the option to select
 "Word Cloud".&nbsp; Look for this analysis feature to be activated on
 additional columns in future releases.</li>
 </ul>
-<br style="font-family: Arial;">
-<ul style="font-family: Arial;">
+<div style="text-align: justify; font-family: Arial;"><br>
+</div>
+<ul style="text-align: justify; font-family: Arial;">
 <li>Several new tutorials have been generated:</li>
 </ul>
-<ul style="font-family: Arial;">
+<ul style="text-align: justify; font-family: Arial;">
 <ul style="font-weight: bold;">
 <li><a href="http://www.youtube.com/watch?v=jxA6VMN97Y8">The genome
 browser.</a></li>
@@ -2314,7 +2442,8 @@ the orthology phylogenetic profile search.</a></li>
 </ul>
 </ul>
 <br style="font-family: Arial;">
-<span style="font-style: italic; font-family: Arial;"><span
+<div style="text-align: justify; font-family: Arial;"><span
+style="font-style: italic;"></span><span style="font-style: italic;"><span
 style="font-style: italic;"><span style="text-decoration: underline;">Note:</span>
 Our bimonthly database releases incorporate new data and correct old
 data when necessary.&nbsp; Changes in annotation and new experimental
@@ -2324,49 +2453,1138 @@ number of hits. When search parameters change with a new release, we
 invalidate (<span style="color: red;">Ø</span>) the search and ask you
 to rerun it. When IDs are updated or removed, we map the old IDs to the
 new ones, remove the old IDs from your Basket, and leave your Favorites
-page alone.</span></span><br style="font-family: Arial;">
-<span style="font-weight: bold; font-family: Arial;"><span
-style="font-style: italic;"></span></span><br
-style="font-family: Arial;">
-<br style="font-family: Arial;">
-<span style="font-weight: bold; font-family: Arial;"><span
-style="font-style: italic;"></span></span><br
-style="font-family: Arial;">
-<span style="font-weight: bold; font-family: Arial;"><span
-style="font-style: italic;">EuPathDB
+page alone.</span></span><br>
+<span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
+<br>
+<span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
+<span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
 is now on <a
 href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
-style="font-weight: bold; font-style: italic; font-family: Arial;">
-and <a href="http://twitter.com/eupathdb">Twitter</a></span>
-<span style="font-weight: bold; font-family: Arial;"></span>
+style="font-weight: bold; font-style: italic;"> and <a
+href="http://twitter.com/eupathdb">Twitter</a></span><br>
+<span style="font-weight: bold;"></span>
+</div>
 </body>
+          ]]>
+       </attribute>
+</record>
+<record>
+       <attribute name="headline">CryptoDB 4.4 Released
+         </attribute>
+       <attribute name="date">03 May 2011 13:00</attribute>
+       <attribute name="tag">crypto5_11_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+         <![CDATA[
+<body>
+<div style="text-align: justify;">
+<div style="text-align: justify;"><span style="font-weight: bold;">We
+are pleased to announce the release
+of CryptoDB 4.4</span><br>
+<span style="font-weight: bold;">
+</span><br>
+<span style="font-weight: bold;">
+New Data:</span><span style="font-weight: bold;"> </span><br>
+<br>
+</div>
+<ul style="text-align: justify;">
+<li>The pooled <a style="font-weight: bold;"
+href="http://www.ncbi.nlm.nih.gov/portal/utils/pageresolver.fcgi?recordid=1304530483822814"><span
+style="font-style: italic;">Cryptosporidium parvum</span> KSU-1</a>
+enriched 24-48hr post-infection expressed sequence tag sequences (ESTs)
+have been updated. EST data in CryptoDB can be searched based on <a
+style="font-weight: bold;"
+href="http://cryptodb.org/cryptodb/showQuestion.do?questionFullName=EstQuestions.EstsBySimilarity">BLAST</a>,<span
+style="font-weight: bold;"> </span><a style="font-weight: bold;"
+href="http://cryptodb.org/cryptodb/showQuestion.do?questionFullName=EstQuestions.EstBySourceId">accession
+numbers</a>,<span style="font-weight: bold;"> </span><a
+style="font-weight: bold;"
+href="http://cryptodb.org/cryptodb/showQuestion.do?questionFullName=EstQuestions.EstsByLibrary">library</a>,<span
+style="font-weight: bold;"> </span><a style="font-weight: bold;"
+href="http://cryptodb.org/cryptodb/showQuestion.do?questionFullName=EstQuestions.EstsWithGeneOverlap">extent
+of gene overlap</a>, etc... Find EST searches under the EST heading in
+the "Identify other Data Types" section of the home page.<br>
+</li>
+</ul>
+<div style="text-align: justify;"><br>
+<span style="font-weight: bold;">New functionality:</span><br>
+<br>
+<span style="font-weight: bold;">
+</span></div>
+<ul style="text-align: justify;">
+<li>You can now search for DNA segments defined by their chromosomal
+location or their nucleotide sequence (DNA motif pattern).&nbsp; This
+new search is available under "Identify Other Data Types"; click on
+"Genomic Segments (DNA motif)" then select either <a
+style="font-weight: bold;"
+href="http://cryptodb.org/cryptodb/showQuestion.do?questionFullName=SpanQuestions.DynSpansByMotifSearch">DNA
+motif pattern</a> or <a style="font-weight: bold;"
+href="http://cryptodb.org/cryptodb/showQuestion.do?questionFullName=SpanQuestions.DynSpansBySourceId">Genomic
+Location</a>.</li>
+</ul>
+<div style="text-align: justify;">
+<br>
+</div>
+<ul style="text-align: justify;">
+<li>We introduced a new combine operation that allows users to
+combine
+steps based on relative locations on the genome.&nbsp; This enables
+you, for
+example, to return all genes that contain a specific DNA motif within
+1000 nucleotides upstream of the annotated start site. Or you could
+return all genes that have a SNP between two strains within 500
+nucleotides of the start of the gene (or return all SNPs that are
+located in this region relative to genes).&nbsp;&nbsp;</li>
+</ul>
+<br>
+<ul style="text-align: justify;">
+<ul>
+<li>Here is an <a style="font-weight: bold;"
+href="http://cryptodb.org/cryptodb/im.do?s=db57d627778a4b16">example
+search strategy</a> that identifies protein coding genes with an AP-2
+like motif within 1000 bp of their 5' end.</li>
+</ul>
+</ul>
+<br>
+<ul style="text-align: justify;">
+<ul>
+<li>Tutorials highlighting the <a style="font-weight: bold;"
+href="http://eupathdb.org/tutorials/DNA_motif/dna_motif_viewlet_swf.html">DNA
+motif</a> search and the <a style="font-weight: bold;"
+href="http://eupathdb.org/tutorials/colocate/colocate_viewlet_swf.html">locational
+relationship functionality</a> are available.</li>
+</ul>
+</ul>
+<br>
+<div style="text-align: justify;">
+In addition, several new tutorials have been developed:<br>
+<br>
+</div>
+<ul style="text-align: justify;">
+<li><a style="font-weight: bold;"
+href="http://eupathdb.org/tutorials/Registration/register_final_viewlet_swf.html">How
+and why should you register for an account</a><br>
+</li>
+<li style="font-weight: bold;"><a
+href="http://eupathdb.org/tutorials/TextSearch/Text_Search_viewlet_swf.html">How
+to run a text search</a></li>
+<li><a style="font-weight: bold;"
+href="http://eupathdb.org/tutorials/Favorites/favorites_viewlet_swf.html">How
+to use Favorites</a></li>
+<li style="font-weight: bold;"><a
+href="http://eupathdb.org/tutorials/DNA_motif/dna_motif_viewlet_swf.html">How
+to find a DNA motif</a></li>
+<li><a style="font-weight: bold;"
+href="http://eupathdb.org/tutorials/colocate/colocate_viewlet_swf.html">How
+to use genomic co-location</a><br>
+</li>
+</ul>
+<div style="text-align: justify;"><br>
+<small><a href="http://twitter.com/eupathdb"><span
+style="font-weight: bold; font-style: italic;">Follow EuPathDB on
+Twitter</span></a></small>
+</div>
+</div>
+</body>
+          ]]>
+       </attribute>
+</record>
+<record>
+       <attribute name="headline">
+         <![CDATA[
+Cryptosporidium Genomic and RNA Sequencing Project
+         ]]>
+         </attribute>
+       <attribute name="date">15 March 2011 13:00</attribute>
+       <attribute name="tag">seq_proj</attribute>
+       <attribute name="category">seq</attribute>
+       <attribute name="item">
+         <![CDATA[
+Dear Cryptosporidium Researcher,<br><br>
+
+We would like to inform you of a proposal being prepared on behalf of the research community to generate genomic and RNA-seq data for a number of Cryptosporidium species, including laboratory propagated and geographic/clinical isolates.  The proposal will be submitted for funding to the National Institutes of Allergy and Infectious Diseases (NIAID) for consideration by the Eukaryotic Pathogen and Disease Vector Sequencing Project working group and coordinating committee.<br><br>
+http://www.niaid.nih.gov/labsandresources/resources/gsc/pathogen/Pages/default.aspx
+<br><br>
+The species we are suggesting include <i>C. parvum</i>, <i>C. hominis</i>, <i>C. meleagridis</i>, <i>C. bovis</i>, <i>C. bailey</i>, <i>C. cuniculus</i> and <i>C. ubiquitum</i>. This sequencing effort will facilitate comparative analyses to identify genes which control host specificity and other clinically and biologically important traits, as well as to extend our understanding of Cryptosporidium populations. All data will be available to the public through the National Center for Biotechnology Information (NCBI) and CryptoDB.org websites.<br><br>
+
+We would like to solicit your input and request your support.  At this time an e-mail expressing your interest in this project or proposing changes would be much appreciated. Please indicate whether you may have access to Cryptosporidium positive clinical or animal samples which could be made available for this project.<br><br>
+
+Please send emails of inquiry and/or support to Giovanni Widmer (giovanni.widmer@tufts.edu)  or Jessie Kissinger (jkissing@uga.edu)
+          ]]>
+       </attribute>
+</record>
+<record>
+       <attribute name="headline">
+         <![CDATA[
+Driving Biological Projects awarded
+         ]]>
+         </attribute>
+       <attribute name="date">20 October 2010 13:00</attribute>
+       <attribute name="tag">dbp_award_10202010</attribute>
+       <attribute name="category">dbp</attribute>
+       <attribute name="item">
+         <![CDATA[
+<b>We are pleased to report that the following Driving Biological Projects (DBPs) have been awarded in connection with the EuPathDB Bioinformatics Resource Center (BRC):</b><br><br>
+<ul>
+<li><b>The Toxoplasma oocyst transcriptome and proteome</b><br>
+   John Boothroyd, Matt Bogyo (Stanford) & Pat Conrad (UC Davis)<br>
+   This project is expected to yield expression data from an important, but inaccessible, life cycle stage (1 yr). <br><br></li>
+<li><b>A comprehensive catalog of the T. gondii & N. caninum parasite & infected host cell transcriptome & proteome</b><br>
+   Brian Gregory (Univ. Pennsylvania) & Jonathan Wastling (Univ. Liverpool)<br>
+   This project will produce an immense volume of sequence data, driving database improvements for handling 'next-gen' sequencing, non-coding RNAs, and interrogating host & pathogen datasets in parallel (2 yr).<br><br></li>
+
+<li><b>Dissection of Plasmodium falciparum genetic crosses by mass spectrometry-based metabolite QTL</b><br>
+   Manuel Llin&aacute;s (Princeton) & Michael Ferdig (Notre Dame)<br>
+   This project is expected to improve handling of genetic mapping data, incorporation of metabolomics results (integrated with pathway maps), and linking of specific genetic loci with metabolite abundance (2 yr).<br><br></li>
+</ul>
+
+A biennial competition for DBP awards is mandated by the BRC contract from NIH/NIAID, and supported by a total of $1.2M in total costs per award cycle.  The goal of this program is to produce high value genomic-scale datasets for the EuPathDB user community, and drive the further development of bioinformatics resources for data analysis and mining.<br><br>
+
+Letters of intent (LOI) were solicited in February (see Feb 4 News item), and reviewed by the EuPathDB Scientific Working Group (SWG; see News, March 31).  12 full applications were solicited from among the ~50 LOIs received, and awards were based on further scientific review by the SWG, and in consultation with NIAID program staff.  Cost negotiations and 'in kind' contributions from other sources made it possible to support 3 applications, from 6 investigators (in some cases, more than one LOI was merged into a single award).<br><br>
+
+We received far more high quality proposals than could be supported, testifying to the need for such mechanisms for data production bioinformatics analysis.  The EuPathDB team looks forward to working with members of our user community who are seeking funding for such projects from external sources.  Inquiries, including requests for support letters, should be directed to the EuPathDB staff (click on the 'Contact Us' link).<br><br>
+
+<b>A new solicitation for DBPs is anticipated in 2011, and will be announced on the EuPathDB web site.</b>
+          ]]>
+       </attribute>
+</record>
+
+<record>
+       <attribute name="headline">New Release of CryptoDB</attribute>
+       <attribute name="date">15 July 2010 15:00</attribute>
+       <attribute name="tag">crypto07_15_10_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<b>We are pleased to announce a new release of CryptoDB. </b> While this release does not include new data, there are some new features and improvements.<br><br>
+<ul>
+<li>The Basket and Favorites functionality has been extended to include all record classes.</li>
+<li>Queries have been optimized to increase site performance.</li>
+<li>A number of bugs have been fixed.</li>
+</ul>
+
+          ]]>
+       </attribute>
+</record>
+
+
+<record>
+       <attribute name="headline">New Features in CryptoDB</attribute>
+       <attribute name="date">13 May 2010 15:00</attribute>
+       <attribute name="tag">crypto05_10_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body>
+<span style="font-weight: bold;">We are pleased to
+announce new features in CryptoDB 4.3<br>
+<br>
+<br>
+In an effort to continue improving the utility of CryptoDB, we have
+implemented several new features in recent releases. &nbsp;<br>
+<br>
+</span>
+<ol>
+  <li><span style="font-weight: bold; font-style: italic;">"My
+Basket"</span> allows one to cherry pick genes and add them to
+the basket for subsequent conversion into a step in a strategy.
+&nbsp;The basket is accessible from the gray menu bar and the
+number of items in your basket is indicated.</li>
+  <br>
+  <li><span style="font-weight: bold; font-style: italic;">Weighted
+searches</span>&nbsp;allows you to assign an arbitrary weight
+to the searches (steps) in
+your search strategy making it possible for you to view a ranked list
+of your results. &nbsp;</li>
+</ol>
+<div style="margin-left: 40px;">Here is an example of the
+same strategy looking for putative secreted enzymes in <span
+ style="font-style: italic;">C. parvum</span>
+sporozoites, once
+without weighting and then with weighting. &nbsp;Notice that you
+have a larger number of results with weighting and those can be sorted
+based on the sum of the weights, giving a ranked list of results.<br>
+<br>
+<a href="http://cryptodb.org/cryptodb/im.do?s=cc6f953ad316300c">Putative
+secreted enzymes (unweighted)</a><br>
+<br>
+<a href="http://cryptodb.org/cryptodb/im.do?s=a00564ffb60fe09b">Putative
+secreted enzymes (Weighted)</a><br>
+</div>
+<ol>
+  <li><span style="font-weight: bold; font-style: italic;">"My
+Favorites"</span> allows you to bookmark and organize genes you
+access frequently. &nbsp;A tutorial on how to use this feature is
+available <a
+ href="http://eupathdb.org/tutorials/Favorites/favorites_viewlet_swf.html">here</a>.&nbsp;</li>
+</ol>
+<span style="font-weight: bold;"></span><span
+ style="font-weight: bold;">Feature evaluators still needed:<br>
+<br>
+</span>
+<div style="margin-left: 40px;">We welcome you to *sign
+up* to be an early evaluator of new features on the EuPathDB sites.
+This will be an opportunity for you to help us refine and improve
+features early in the development process.&nbsp;In fact, the "My
+Favorites" feature was the subject of our first survey and feature
+evaluator's comments and suggestions contributed to enhancing this
+feature. <br>
+<br>
+Signing on is easy and will
+require minimal effort on your part in the form of answering questions
+or rendering your opinion. &nbsp;<br>
+<br>
+To become a feature evaluator, <a
+ href="https://mail.pcbi.upenn.edu/mailman/listinfo/eupathdb_testers">click
+here</a>.</div>
+<br>
+<br>
+<span style="font-weight: bold;"></span>
+</body>
+          ]]>
+       </attribute>
+    </record>
+<record>
+       <attribute name="headline">EuPathDB Scientific Working Group</attribute>
+       <attribute name="date">31 March 2010 15:00</attribute>
+       <attribute name="tag">swg_announce_2010</attribute>
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+EuPathDB is pleased to announce the members of the scientific working group
+(SWG). The SWG provides EuPathDB with scientific oversight and 
+guidance.  Members of the SWG also review the driving biological projects initiative.<br><br>
+
+<table>
+<tr>
+<td><a href="http://www.fnih.org/about">Michael Gottlieb</a>, Chair<br>
+Foundation for National Institutes of Health (FNIH)<br>
+Broad expertise in parasitology, large integrative projects (chair)<br>
+</td>
+<td>
+<a href="http://www.sanger.ac.uk/research/faculty/mberriman/">Matt Berriman</a><br>
+Wellcome Trust Sanger Institute<br>
+Pathogen genomics & functional annotation<br>
+</td>
+</tr><tr>
+<td>
+<a href="http://med.stanford.edu/profiles/John_Boothroyd/">John Boothroyd</a><br>
+Stanford University<br>
+Toxoplasma biology & host-pathogen interactions<br>
+</td>
+<td>
+<a href="http://www.vcu.edu/lifesci/research/res_fac_int_buck.html">Greg Buck</a><br>
+Virginia Commonwealth University<br>
+Pathogenomics of apicomplexan and kinetoplastid parasites<br>
+</td>
+</tr><tr>
+<td>
+<a href="http://www3.niaid.nih.gov/labs/aboutlabs/lmiv/default.htm">Patrick Duffy</a><br>
+National Institutes of Health (NIAID)<br>
+Laboratory & clinical aspects of malaria biology<br>
+</td>
+<td>
+<a href="http://www.cgm.northwestern.edu/">Pascale Gaudet</a><br>
+Northwestern University<br>
+Biocuration, ontologies, DIctyostelium<br>
+</td>
+</tr><tr>
+<td>
+<a href="http://www.paras.uzh.ch/research/microbiology.html">Adrian Hehl</a><br>
+University of  Zurich<br>
+Cellular and molecular biology of Giardia<br>
+</td>
+<td>
+<a href="http://www.botany.ubc.ca/keeling/">Patrick Keeling</a><br>
+University of British Columbia<br>
+Comparative genomics<br>
+</td>
+</tr><tr>
+<td>
+<a href="http://www.medicine.virginia.edu/clinical/departments/pathology/faculty/petri-page">Bill Petri</a><br>
+University of Virginia<br>
+Laboratory & clinical aspects of Entamoeba and diarrheal diseases<br>
+</td>
+<td>
+<a href="http://www.oicr.on.ca/Research/stein.htm">Lincoln Stein</a><br>
+Ontario Cancer Center<br>
+Bioinformatics tools & analysis<br>
+</td>
+</tr><tr>
+<td>
+<a href="http://www.genome.gov/26525388">Lu Wang</a><br>
+National Institutes of Health (NHGRI)<br>
+Large-scale sequencing<br>
+</td>
+<td>
+<a href="http://www.liv.ac.uk/infection-and-global-health/staff/jonathan-wastling/">Jonathan Wastling</a><br>
+University of Liverpool<br>
+Proteomics of apicomplexan parasites<br>
+</td>
+</tr><tr>
+<td>
+<a href="http://www.einstein.yu.edu/home/faculty/profile.asp?id=4218">Louis Weiss</a><br>
+Albert Einstein College of Medicine<br>
+Microsporidia, Toxoplasma, and clinical microbiology<br>
+</td>
+<td>
+<a href="http://www.hsph.harvard.edu/faculty/dyann-wirth/">Dyann Wirth</a><br>
+Harvard School of Public Health<br>
+Plasmodium population biology, drug discovery<br>
+</td></table>
+          ]]>
+       </attribute>
+    </record>
+
+<record>
+       <attribute name="headline">
+         <![CDATA[
+            CryptoDB 4.3 released
+         ]]>
+       </attribute>
+       <attribute name="date">
+         15 March 2010 15:00
+       </attribute>
+       <attribute name="tag">
+         crypto0310_news
+       </attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+
+<span style="font-weight: bold;">We are pleased to 
+announce the release of CryptoDB 4.3</span><br> 
+<br> 
+This release contains the following new datasets and features:<br> 
+<br> 
+<span style="font-weight: bold;">New Data:</span><br> 
+<br> 
+This release of CryptoDB contains new expressed sequence tag (EST) data 
+for Cryptosporidium parvum KSU-1, normalized sporozoite and pooled 
+normalized enriched 24-48hr post-infection. &nbsp;EST data can be 
+searched in many ways, such as by <a href="http://cryptodb.org/cryptodb/showQuestion.do?questionFullName=EstQuestions.EstsBySimilarity">BLAST</a>,
+<a href="http://cryptodb.org/cryptodb/showQuestion.do?questionFullName=EstQuestions.EstsByLibrary">library</a>, <a href="http://cryptodb.org/cryptodb/showQuestion.do?questionFullName=EstQuestions.EstsWithGeneOverlap">extent of gene overlap</a>, etc.
+&nbsp;Additionally, genes can be searched <a href="http://cryptodb.org/cryptodb/showQuestion.do?questionFullName=GeneQuestions.GenesByESTOverlap">based on EST evidence</a>.<span style="font-weight: bold;"><br> 
+<br> 
+New Features:</span><br><br>
+<ul> 
+ <li>The gray tool bar at the top of all CryptoDB web pages has 
+been enhanced to include a link to the "My Basket" feature including an 
+indication of how may items are in the basket.</li> 
+ <li>The genome browser has been updated to version 1.7, which 
+offers enhanced features and stability.&nbsp;Now you can select a span and send the sequence to ncbi for blasting!</li> 
+ <li>Weighted searches are now available. &nbsp;This feature 
+allows you to assign an arbitrary weight to the searches (steps) in 
+your search strategy making it possible for you to view a ranked list 
+of your results.&nbsp;</li> 
+</ul> 
+<br><br>
+<span style="font-weight: bold;">***<a href="https://mail.pcbi.upenn.edu/mailman/listinfo/eupathdb_testers">Sign up to be a EuPathDB feature evaluator:
+</a
+>***<br><br>
+</span> 
+<div style="margin-left: 20px;">
+We welcome you to <a href="https://mail.pcbi.upenn.edu/mailman/listinfo/eupathdb_testers">*sign up* to be an early evaluator</a>
+ of new features on the EuPathDB sites.  This will be an opportunity for you to help us refine and improve features early in the development process.  
+Signing up is easy.  Evaluating will require minimal effort on your part, 
+typically in the form of answering specific questions, using the feature(s) and rendering your opinion.
+</div>
+ ]]>
+       </attribute>
+
+</record>
+
+
+
+
+<record>
+       <attribute name="headline">EuPathDB Driving Biological Projects</attribute>
+       <attribute name="date">04 February 2010 15:00</attribute>
+       <attribute name="tag">eupath_dbp_2010</attribute>
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+The NIAID-funded Eukaryotic Pathogen Genome Database
+(<a href="http://eupathdb.org">EuPathDB.org</a>) invites proposals for Driving Biological
+Projects (DBPs) focused on one or more of the eukaryotic
+pathogens supported by this Bioinformatics Resource Center
+(BRC). We anticipate making two awards of up to $600K each
+by July 1, 2010 (a second round of solicitations is expected
+in 2012).<i> A two page Letter of Intent (LOI) is due Feb 28,
+following which full applications will be solicited by
+invitation only, with a deadline of March 31.</i>  
+<a href="http://eupathdb.org/common/EuPathDB_DBP_announcement.pdf">
+Click here to
+download the RFP</a>.
+          ]]>
+       </attribute>
+</record>
+
+<record>
+       <attribute name="headline">"My Basket", A New Feature in CryptoDB</attribute>
+       <attribute name="date">22 December 2009 15:00</attribute>
+       <attribute name="tag">crypto1209news</attribute>
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+We are pleased to announce the implementation&nbsp;a new tool in
+CryptoDBDB. &nbsp;The "My
+Basket" tool allows you to select various genes from
+your searches and add them to your basket (much like a shopping cart).
+&nbsp;To add genes to your basket simply click on the basket icon
+in a
+result list or on a gene page. &nbsp;A green basket icon indicates
+that a
+genes is already in your basket. &nbsp;You can easily convert your
+basket to
+a strategy to save it and perform additional searches or combine it
+with one of your already existing strategies.
+&nbsp;Please note that using the basket feature requires you to
+login first.
           ]]>
        </attribute>
     </record>
 <record>
        <attribute name="headline">
          <![CDATA[
-          PiroplasmaDB 1.0 Released
+            <b>Working with Parasite Database Resources Workshop (April 17-21, 2010)</b>
          ]]>
        </attribute>
-       <attribute name="date">15 April 2011 00:00</attribute>
-       <attribute name="tag">piro4_11_news</attribute>
+       <attribute name="date">
+         20 November 2009 15:00
+       </attribute>
+       <attribute name="tag">
+         HinxtonWorkShop
+       </attribute>
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
+         <![CDATA[<big><br>
+We are pleased to announce a workshop taught as part of a collaboration between the Pathogen Genomics Group 
+(Wellcome Trust Sanger Institute, UK), the Eukaryotic Pathogen Bioinformatics Resource Center 
+(University of Georgia and University of Pennsylvania, US), and the Seattle Biomedical Research Institute (US). 
+This residential workshop aims to provide experimental biologists with hands-on experience in 
+genomic-scale data analysis, including genome browsers and comparison tools, methods for 
+data integration, and resources for sophisticated data mining.
+Many examples and exercises will be drawn from the kinetoplastida, including <i>Leishmania spp.</i>, 
+<i>Trypanosoma brucei</i>, and <i>Trypanosoma cruzi</i>, although applicants working on other protozoan 
+parasites will also benefit.<br><br>
+
+<span style="font-weight: bold;"><span
+ style="color: red;">!!!!!</span>Application Deadline
+is December 18th 2009<span style="color: red;">!!!!!!</span></span>
+<br><br>
+
+<b>For registration and additional information (including scholarships) please click <a href="http://www.wellcome.ac.uk/Education-resources/Courses-and-conferences/Advanced-Courses/Courses/WTX057366.htm">here</a> (Note: you will be diverted to and external site).
+</b><br><br>
+As usual, if you have any questions please send us an <a href="mailto:help@eupathdb.org">Email</a>. 
+
+          ]]>
+       </attribute>
+    </record>
+
+<record>
+       <attribute name="headline">
+         <![CDATA[
+					CryptoDB 4.2 released
+         ]]>
+       </attribute>
+       <attribute name="date">
+				25 September 2009 15:00
+       </attribute>
+       <attribute name="tag">
+				Crypto909news
+       </attribute>
        <attribute name="category">release</attribute>
        <attribute name="item">
            
          <![CDATA[
-<body>
-<span style="font-weight: bold;">We are pleased to announce the release
-of PiroplasmaDB 1.0<br>
-</span><br>
-<span style="font-weight: bold;">This first release of PiroplasmaDB contains the
-following datasets:</span><span style="font-weight: bold;"> </span><br>
+				<b>We are pleased to
+announce the release of CryptoDB 4.2</b><br>
 <br>
+<u>New Data:</u><br>
+<ul>
+  <li><i>C. parvum</i>
+mitochondrial fraction proteomics provided prepublication by Lorenza
+putignani.</li>
+</ul>
+<u>New/Updated
+Features:</u><br>
+<ul>
+  <li>Now after you perform a BlastN against genomic sequence you
+can
+link from the blast output to the correct coordinates in the genome
+browser.&nbsp; This allows you to explore annotation and other
+functional
+data in relation to your BLAST hits.</li>
+  <li>The type ahead feature has been implemented for GO term, EC
+number and Interpro domain searches.</li>
+  <li>You can now edit or delete your user comments.</li>
+  <li>You can now modify your user profile, change your password
+or your email address.</li>
+</ul>
+Please also note that the parent portal site <a
+ href="http://eupathdb.org">EuPathDB</a> has just been
+updated, offering you the ability to explore results across organisms.<br>
+<br>
+Sincerely,<br>
+<br>
+The EuPathDB team.
+          ]]>
+       </attribute>
+    </record>
+<record>
+       <attribute name="headline">
+         <![CDATA[
+					CryptoDB 4.1 released
+         ]]>
+       </attribute>
+       <attribute name="date">
+				15 July 2009 15:00
+       </attribute>
+       <attribute name="tag">
+				crypto41
+       </attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+				We are please to announce the release of CryptoDB 4.1
+				<p>
+This release includes new and updated data sets, a new user interface with added functionality and a graphical strategy system for building complex searches.
+<p>
+The new user interface contains many new features including:
+<ul>
+<li>  A new search strategy interface that enables users to more easily construct complex searches.
+<li>  'User Comments' have been updated to enable submission of supporting evidence including pubmed identifiers and images (or other files). Comments may be added to any gene or sequence page, enhancing available annotation. 
+<li>  Files can now be uploaded and provided to the community via the file repository section.
+</ul>
+<p>
+New and updated Data:
+<ul>
+<li> <i>C. parvum</i> KSU-1 normalized sporozoite EST sequences (provided prepublication by Jessica Kissinger).
+</ul>	
+          ]]>
+       </attribute>
+    </record>
+ <record>
+       <attribute name="headline">
+         <![CDATA[
+         CryptoDB 4.0 released
+         ]]>
+       </attribute>
+       <attribute name="date">
+       06 February 2009 15:00
+       </attribute>
+       <attribute name="tag">
+       06February2009release40
+       </attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+       We are please to announce the release of CryptoDB 4.0, which features 
+       several new data sets (including many that were graciously provided 
+       prepublication to CryptoDB) and enhancements.
 
-]]>
+       New data data sets:
+       <ul>
+         <li> The fully sequenced and annotated genome of <i>Cryptosporidium muris</i>.</li>
+         <li> More Isolate data -- CryptoDB now includes 2290 isolate records.</li>
+         <li> New proteomics data for <i>C. parvum</i>.</li>
+       </ul>
+       New features and enhancements:
+       <ul>
+        <li> Improved text search capability providing scored results.</li>
+        <li> Improved result summary pages that also include results filtered against all <i>Cryptosporidium</i> in CryptoDB.</li>
+        <li> A dramatically revamped isolate query section.  In particular, this includes a vastly improved organization of isolates to allow more useful queries.  Our Geographic location query now includes a map to allow visualization of isolate location by country or continent.</li>
+        <li> Blast can now be performed against reference isolates only which should facilitate typing.</li>
+        <li>  Reference RFLP gel images are now made available via CryptoDB (a link from the isolate section).</li>
+        <li>  We now provide a phylogenetic tree view of multiple sequence alignments from isolate sequence that you choose.</li>
+        <li>  Several additional queries have been implemented including queries for secondary structure (based on sequences in the Protein Data Bank or PSIPRED), isoelectric point and available antibodies (in the reagents section). </li>
+        </ul>
+        *We are grateful to several investigators who have provided data and advice for this release of CryptoDB including:
+        <ul>
+        <li>Belinda Ferrari and Quach Truong at the Department of Biological Sciences, Macquarie University, Sydney, Australia.</li>
+        <li>Joseph M. Dybas, Carlos J. Madrid-Aliste, Fa-Yun Che, Edward Nieves, Louis M. Weiss, Kami Kim, András Fiser and Ruth Hogue Angeletti 
+        at the <a href='http://toro.aecom.yu.edu/biodefense/'>Einstein Biodefense Proteomics Research Center</a>, Albert Einstein College of Medicine, Bronx, NY, USA
+        <li>Lihua Xiao at the Centers for Disease Control in Atlanta, Georgia, USA</li>
+        <li>Lis Caler and Hernan A. Lorenzi at the J. Craig Venter Institute, Rockville, MD, USA</li>
+        <li>Guy Robinson at the UK Cryptosporidium Reference Unit, Swansea, UK</li>
+        </ul>
+         ]]>
+               </attribute>
+</record>
+        
+
+ <record>
+       <attribute name="headline">
+         <![CDATA[
+         CryptoDB 3.7 is released with isolates and <i>C. muris</i> ESTs
+         ]]>
+       </attribute>
+       <attribute name="date">
+       19 February 2008 15:00
+       </attribute>
+       <attribute name="tag">
+       19February2008Release37
+       </attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+
+The ApiDB team is pleased to announce the release of CryptoDB 3.7
+<p>
+New features include:
+    <ul>
+	<li>records for 756 <i>Cryptosporidium</i> isolates. Queries are available for searching isolate records by ID,  
+host of origin, isolate species, and several other characteristics.  
+For the full set of search options, see the "Identify Isolates by:"  
+category on the web site's front page. Multiple isolate sequences can  
+be readily aligned with ClustalW from the query result page.
+<li>also included are 27,498 <i>C. muris</i> oocyst ESTs aligned to the <i>C. muris</i> 
+draft genome.
+<li>alignments of contigs of <i>C. parvum</i>, <i>C. muris</i> and <i>C. hominis</i> have been  
+remade using the Mercator orthology mapping program and the MAVID  
+multiple global alignment program. These alignments are available in  
+the Genome Browser.
+    </ul>
+ ]]>
+       </attribute>
+    </record>
+
+
+ <record>
+       <attribute name="headline">
+         <![CDATA[
+         CryptoDB 3.6 is released
+         ]]>
+       </attribute>
+       <attribute name="date">
+       6 December 2007 00:00
+       </attribute>
+       <attribute name="tag">
+       5December2007Release36
+       </attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+The ApiDB team is pleased to announce the release of CryptoDB 3.6
+<p>
+New features include:
+    <ul>
+	<li>SNP data from <i>C. parvum</i> IOWA, MD, TU114 strains</li>
+	<li>View and download multiple sequence alignments between <i>parvum</i>, <i>hominis</i> and <i>muris</i> with polymorphisms highlighted.</li>
+	<li>More than 10,000 ESTs from the <a href="http://fullmal.hgc.jp/cp/index.html">Full-Cryptosporidium cDNA Database</a> have been added</li>
+	<li>Additional Mass Spec data has been loaded (will have better descriptions of samples before release).</li>
+	<li>All BLAST queries consolidated to a single interface.</li>
+	<li>Querying with a single identifier goes directly to the gene page rather than the summary results page.</li>
+    </ul>
+
+   ]]>
+       </attribute>
+    </record>
+
+ <record>
+       <attribute name="headline">
+         <![CDATA[
+         Status of the <i>C. muris</i> Genome Sequencing Project
+         ]]>
+       </attribute>
+       <attribute name="date">
+       18 June 2007 00:00
+       </attribute>
+       <attribute name="tag">
+       18June2007CmurisStatus
+       </attribute>
+ <!--  announcement verbiage by Joana C. Silva, TIGR (with slight edits by CryptoDB) -->
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+         A preliminary assembly of <i>C. muris</i> was obtained at approximately 
+         4.5 X coverage, and
+reveals a ~9Mb genome with average cytosine-guanine content (%GC) of ~28.5
+%. This assembly is based on ~50,000 reads obtained mostly from a
+small-insert library and a fosmid library. This assembly is estimated to
+contain ~ 92% of the ~9Mb genome, and consists of 927 contigs arranged into
+595 scaffolds.
+<p>
+Final assembly, to be released in late summer, will include an additional 2X
+coverage obtained from a medium insert library and possibly >5X additional
+coverage obtained with 454 pyrosequencing technology. The final assembly is
+expected to contain > 99% of the genome.
+<p>
+Sequencing from the cDNA library provided by Giovanni Widmer is underway.
+Average insert length is 1,600 bp. If the library is shown to be random, an
+expected >30,000 EST reads will be obtained.
+<p>
+More information is 
+available on the project's website
+(<a href="http://msc.tigr.org/c_muris/index.shtml">http://msc.tigr.org/c_muris/index.shtml</a>).
+          ]]>
+       </attribute>
+    </record>
+
+
+   <record>
+       <attribute name="headline">
+         <![CDATA[
+         CryptoDB 3.5 is released
+         ]]>
+       </attribute>
+       <attribute name="date">
+       18 June 2007 00:00
+       </attribute>
+       <attribute name="tag">
+       18June2007Release35
+       </attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+         New data and queries in CryptoDB 3.5:
+<ul>
+<li>Proteomics data provided by two labs (Wastling, et al. (updated from CryptoDB 3.4) and Snelling, et al. (new data)) have been loaded, and 
+these are visible on the Genome Sequence Browser. Queries to find genes, or ORFs, that show evidence of protein expression based on Mass Spec analyses are also available.</li>
+<li><i>C. muris</i> contigs from first draft assembly and translated open reading frames.</li>
+<li>Interproscan analysis of <i>Cryptosporidium</i> proteins.</li>
+</ul>
+<p>
+New features in CryptoDB 3.5:
+<ul>
+<li>We have added <a href="http://cryptodb.org/cryptodb/showXmlDataContent.do?name=XmlQuestions.Tutorials">tutorial movies</a> to help you learn about the functionality of our site. 
+If there are additional tutorials you would like to see added please submit a request via our <a href="http://cryptodb.org/cryptodb/contact.do" class="new-window" data-name="contact_us">support page</a>.</li>
+<li>Most of the queries have been reorganized to make them more intuitive. Some include a new "Advanced Parameters" section. See for example "Identify Genes based on EST evidence."
+<li>The columns displayed in query result pages are improved.  The result pages also offer options for sorting, adding new columns, and moving columns around.
+<li>Downloading results is improved. A choice of formats is provided including tab-delimited, text, GFF, and FASTA to meet different needs.
+  <ul>
+  <li>Tab delimited provides an expanded list of annotations that can be directly exported as an Excel spreadsheet.
+  <li>Text provides a detailed summary for each gene including protein structures, notes, sequence, and many other choices.
+  <li> GFF is a format recognized by many applications such as the genome browser, gbrowse.
+  <li> FASTA also provides a common format used for BLAST and other applications. The FASTA option provides the functionality of the SRT (sequence retrieval tool).
+  </ul>
+</ul>
+
+          ]]>
+       </attribute>
+    </record>
+
+  
+   <record>
+       <attribute name="headline">
+         <![CDATA[
+         ApiDB Workshop, June 3-6, 2007
+         ]]>
+       </attribute>
+       <attribute name="date">
+       4 December 2006 00:00
+       </attribute>
+       <attribute name="tag">
+       4Dec2006Workshop
+       </attribute>
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+The second annual <a href="http://apidb.org/workshop/2007/">ApiDB Workshop</a> will be held June 3-6, 2007
+at the University of Georgia, Athens, GA, USA.
+<p />
+The workshop will be a 3.5 day 
+introduction to apicomplexan database resources that are part of the <a
+href="http://www.brc-central.org/cgi-bin/brc-central/brc_central.cgi">ApiDB Bioinformatics Resource Center</a> (
+<a href="http://apidb.org">ApiDB.org</a>, 
+<a href="http://plasmodb.org">PlasmoDB.org</a>, 
+<a href="http://toxodb.org">ToxoDB.org</a>, 
+<a href="http://cryptodb.org">CryptoDB.org</a>)
+<p />
+The application deadline is January 19, 2007 (<a href="http://apidb.org/workshop/2007/register.php">Application</a>).
+Please
+<a href="http://apidb.org/workshop/2007/">click here</a> for further
+information and to register.
+         ]]>
+       </attribute>
+    </record>
+
+   <record>
+       <attribute name="headline">
+         <![CDATA[
+       NIAID funds <i>Cryptosporidium muris</i> genome sequencing project
+    ]]>
+       </attribute>
+       <attribute name="date">
+       21 November 2006 00:00
+       </attribute>
+       <attribute name="tag">
+       21Nov2006muris
+       </attribute>
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+The <b><i>Cryptosporidium muris</i> genome sequencing project</b> has been funded by the
+National Institute of Allergy and Infections Diseases (NIAID), through the
+Microbial Sequencing Center program at the Institute for Genomic Research
+(TIGR). This project aims at obtaining a high-quality assembly of <i>C. muris</i>
+genome based on 8X sequence coverage, as well as the comparative automated
+and manual curation of gene structure predictions of all three
+<i>Cryptosporidium</i> genomes sequenced to date. More information is 
+available on the project's website
+(<a href="http://msc.tigr.org/c_muris/index.shtml">http://msc.tigr.org/c_muris/index.shtml</a>).
+All sequence reads and traces will be deposited with GenBank and the genome
+assemblies and annotations will be deposited with GenBank and CryptoDB.
+    ]]>
+       </attribute>
+    </record>
+
+   <record>
+       <attribute name="headline">
+       CryptoDB 3.4 is released
+       </attribute>
+       <attribute name="date">
+       17 November 2006 00:00
+       </attribute>
+       <attribute name="tag">
+       17Nov2006release34
+       </attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+         New data and queries in CryptoDB 3.4:
+<ul>
+<li> Preview release of <i>Cryptosporidium</i> sporozoite <b>proteomic data</b> from MS/MS analysis. 
+A significantly more comprehensive study is in preparation.</li>
+<li>BLAST and protein motif searches are now saved in your query history, 
+permitting the results to be combined with other queries.</li>
+<li> A new User Login process. This will allow for:
+  <ul>
+  <li> making use of the new <b>Persistent Query History</b> functionality, i.e. retrieve your past searches for 
+       current use, as well as save further searches for the future.</li>
+  <li> using the "<b>Add a Comment</b>" facility, for commenting on genes and contigs.</li>
+  <li> adding yourself to mailing list of CryptoDB, and other ApiDB member sites.</li>
+  </ul>
+</ul>
+<li>RNA transcripts are now available on gene record pages for non-protein-coding genes</li>
+          ]]>
+       </attribute>
+    </record>
+
+
+   <record>
+       <attribute name="headline">
+       WU-BLAST updated for CryptoDB BLAST Tool
+       </attribute>
+       <attribute name="date">06 July 2006 00:00</attribute>
+       <attribute name="tag">06Jul2006blastupdate</attribute>
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+The WU-BLAST programs supporting the CryptoDB BLAST tool were upgraded on 6 July 2006.
+<p>
+The current version is:<br>
+<b>2.0MP-WashU [04-May-2006] [linux26-i786-ILP32F64 2006-05-09T12:19:58]</b>
+<p>
+(The former version was 
+2.0MP-WashU [16-Mar-2005] [linux26-i686-ILP32F64 2005-03-16T08:14:50] )
+          ]]>
+       </attribute>
+    </record>
+
+   <record>
+       <attribute name="headline">CryptoDB will be closed for maintenance Tuesday, April 25, 2006</attribute>
+       <attribute name="date">20 April 2006 00:00</attribute>
+       <attribute name="tag">20Apr2006closed</attribute>
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+The offices and datacenter of CryptoDB.org are moving to new facilities and 
+will need to temporarily suspend services. We apologize for the inconvenience.
+          ]]>
+       </attribute>
+    </record>
+
+   <record>
+       <attribute name="headline">We are happy to announce CryptoDB Release 3.3</attribute>
+       <attribute name="date">
+       16 April 2006 00:00
+       </attribute>
+       <attribute name="tag">
+       16Apr2006release33
+       </attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+New in this release:
+<ul>
+<li><b>New Gene Annotations</b>
+    <ul><li>
+411 additional gene annotations have been made by CryptoDB for the <i>C. parvum</i> genome. These correspond to the genes annotated in the Genbank record simply as "introns and exons likely".
+    </li>
+    </ul>
+</li>
+<li><b>PFam Predictions</b>
+    <ul><li>
+    interproscan was used to query <i>C. parvum</i> and <i>C. hominis</i> annotated proteins against the PFam component of <a href="http://www.ebi.ac.uk/interpro/index.html">InterPro</a>. A query to find genes by PFam family name has been added and predicted domains are documented on the gene record pages.
+    </li>
+    </ul>
+</li>
+<li><b>Gene Ontology Terms</b>
+    <ul><li>
+<a href="http://www.geneontology.org/">GO terms</a> were collected from the interproscan analysis and are available for gene searches and are documented on the gene record pages.
+    </li>
+    </ul>
+</li>
+<li><b>EC Numbers</b>
+    <ul><li>
+EC number annotations have been added. Sources of EC numbers include Genbank, KEGG and the metabolic pathway database CryptoCyc. Genes may be searched by EC number.
+    </li>
+    </ul>
+</li>
+<li><b>Gene Orthologs</b>
+  <ul>
+  <li>
+    <i>C. parvum</i> and <i>C. hominis</i> orthologs computed at <a     href="http://orthomcl.cbil.upenn.edu/">OrthoMCL DB</a> have been added to our database. </li>
+    <li>We have added <a href="http://cryptodb.org/cryptodb/showQuestion.do?questionFullName=GeneQuestions.GenesByOrthologPattern&amp;go.x=12&amp;go.y=4&amp;go=go">query</a> to find <i>Cryptosporidium</i> genes that have a specified phyletic pattern, based on ortholog groups. </li>
+    </ul>
+</li>
+<li><b>Analysis for MRC-LMB's chromosome 6</b>
+    <ul><li>
+    <i>C. parvum</i> chromosome 6 completed by Bankier, et al., MRC Laboratory of Molecular Biology has undergone our in-house analysis. This includes DNA and protein sequences searched against NCBI's non-redundant protein database and protein queries against the PFam database.
+    </li>
+    </ul>
+</li>
+          ]]>
        </attribute>
     </record>
 
 
 
+   <record>
+       <attribute name="headline">CryptoDB Release 3.2 is out</attribute>
+       <attribute name="date">25 January 2006 00:00</attribute>
+       <attribute name="tag">25Jan2006release32</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+
+         <![CDATA[
+New in this release:
+<ul>
+<li>
+Our graphical <a href="http://cryptodb.org/cgi-bin/gbrowse/cryptodb">genome viewer</a> 
+can now highlight syntenic gene comparisons. Check the box for 'Syntenic Genes (<i>C. hominis</i> vs. <i>C. parvum</i>)',
+then 'Update Image'
+</li>
+         ]]>
+       </attribute>
+    </record>
+
+
+   <record>
+       <attribute name="headline">
+       We are pleased to announce Release 3.1 of CryptoDB
+       </attribute>
+       <attribute name="date">07 November 2005 00:00</attribute>
+       <attribute name="tag">09Dec2005release31</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+
+         <![CDATA[
+Highlights of Release 3.1 include:
+
+<ul>
+<li>
+The addition of <i>C. parvum</i> chromosome 6 completed by Bankier, et al., MRC Laboratory of Molecular Biology. 
+<br>
+<font size="-1">Bankier AT, Spriggs HF, Fartmann B, Konfortov BA, Madera M, Vogel C, Teichmann SA, Ivens A, Dear PH. Integrated mapping, chromosomal sequencing and sequence analysis of <i>Cryptosporidium parvum</i>. Genome Res. 2004 Feb;14(2):327. [<a href="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=pubmed&amp;dopt=Abstract&amp;list_uids=12869580&amp;query_hl=5">PubMed</a>]</font>
+</li>
+<li>
+The site now offers a query history (accessible via the link in the toolbar) through which you may build on simple queries to create more complex combinations. There is also an option to download query results as plain text. This option is available on the search results and query history pages.
+</li>
+<li>
+New queries for ESTs and genes by protein molecular weight have been added.
+</li>
+<li>
+<a href="http://cryptodb.org:1555">CryptoCyc</a>, a database of computationally predicted metabolic pathways for <i>Cryptosporidium</i>, is available online and is cross-referenced on the gene and contig pages of CryptoDB.
+</ul>
+         ]]>
+       </attribute>
+    </record>
+
+
+   <record>
+       <attribute name="headline">
+       Erratum: Chro.rrn021 missing from exon query
+       </attribute>
+       <attribute name="date">30 September 2005 00:00</attribute>
+       <attribute name="tag">30Sep2005Erratum</attribute>
+       <attribute name="category"></attribute>
+       <attribute name="item">
+
+         <![CDATA[
+<i>C. hominis</i> gene Chro.rrn021 is annotated as having two exons but in CryptoDB release 3.0 this gene is not returned in the query 'Genes With Exon Count'. This error will be fixed in the next release.
+         ]]>
+       </attribute>
+    </record>
+
+
+   <record>
+       <attribute name="headline">
+         <![CDATA[
+          GFF3 Files of <i>Cryptosporidium</i> Genome Features are Available
+         ]]>
+       </attribute>
+       <attribute name="date">16 August 2005 00:00</attribute>
+       <attribute name="tag">16Aug2005gff3</attribute>
+       <attribute name="category"></attribute>
+       <attribute name="item">
+
+         <![CDATA[
+CryptoDB is one of NIAID's Bioinformatics Resource Centers (<a href="http://www.niaid.nih.gov/dmid/genomes/brc/default.htm">BRC</a>)  for Biodefense and Emerging or Re-Emerging Infectious Diseases. As part of our efforts for interoperability among the other BRCs and the research community in general we have released the published <i>Cryptosporidium</i> genome features in standardized GFF3 format. The files may be downloaded via FTP from <a href="ftp://ftp.tigr.org/pub/brc/ApiDB/Cryptosporidium/">ftp://ftp.tigr.org/pub/brc/ApiDB/Cryptosporidium/</a>.
+         ]]>
+       </attribute>
+    </record>
+
+
+   <record>
+       <attribute name="headline">
+       Welcome
+       </attribute>
+       <attribute name="date">
+       01 August 2005 00:00
+       </attribute>
+       <attribute name="tag">
+       welcome
+       </attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+
+         <![CDATA[
+        CryptoDB is now part of an NIH/NIAID funded Bioinformatics Resource Center 
+        to provide Apicomplexan Database Resources. This release represents a major 
+        upgrade of the database software and as a result we can provide greater 
+        search power. We now offer searches by gene and contig name in addition 
+        to key word and protein features. Results are displayed graphically and 
+        provide additional useful information for each gene or contig. We have 
+        added a GBrowse display that allows you to zoom in to the nucleotide level 
+        and we have added a comparative GBrowse view comparing <i>C. parvum</i> 
+        and <i>C. hominis</i> contigs. Please explore the site and provide feedback 
+        and suggestions to <a href="mailto:help@cryptodb.org">help@cryptodb.org</a>.
+         ]]>
+       </attribute>
+    </record>
+
+
 </xmlAnswer>
+
