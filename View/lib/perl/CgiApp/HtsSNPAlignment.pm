@@ -104,11 +104,6 @@ sub handleIsolates {
   $start =~ s/,//g;
   $end =~ s/,//g;
 
-  if($end !~  /\d/) {
-    $end   = $start + 50;
-    $start = $start - 50;
-  }
-
   my $sql;
   my $sth;
 
