@@ -1,44 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmlAnswer>
 
+
+<!-- NOTE:  the date attribute must be of the form:  22 April 2009 15:00 -->
 <!--
    <record>
        <attribute name="headline">
          <![CDATA[
          ]]>
        </attribute>
-       <attribute name="date">
-       </attribute>
-       <attribute name="tag">
-       </attribute>
+       <attribute name="date"></attribute>
+       <attribute name="tag"></attribute>
        <attribute name="category"></attribute>
-       <attribute name="item">
-           
+       <attribute name="item">           
          <![CDATA[
+
           ]]>
        </attribute>
     </record>
 -->
 
 <record>
-  <attribute name="headline">HostDB 38 Released</attribute>
-  <attribute name="date">02 Jul 2018 13:00</attribute>
-  <attribute name="tag">HostDB07_18_release</attribute>
+  <attribute name="headline">SchistoDB 38 Released</attribute>
+  <attribute name="date">21 Jun 2018 13:00</attribute>
+  <attribute name="tag">schistodb06_18_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of HostDB 38</strong></p>
-      
-      
-      <section>
-       <h3><b>No new data in HostDB 38</b></h3>
-      </section>
+    <p><strong>We are pleased to announce the release of SchistoDB 38</strong></p>
       
       <section>
-      <h3><b>No new features in this release</b></h3>
-      </section>
-      
-      <section>
+        <h3><b>No New data in SchistoDB 38</b></h3> 
          <aside>
            Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
            Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
@@ -54,39 +46,13 @@
 
 
 <record>
-  <attribute name="headline">HostDB 37 Released</attribute>
+  <attribute name="headline">TrichDB 37 Released</attribute>
   <attribute name="date">25 Apr 2018 13:00</attribute>
-  <attribute name="tag">hostdb04_18_release</attribute>
+  <attribute name="tag">trichdb04_18_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of HostDB 37</strong></p>
-      
-      
-      <section>
-       <h3><b>New data in HostDB 37</b></h3>
-         <div style="margin-left: 3em;">
-      
-     <h4>RNA Sequencing</h4>
-       <ul>
-           <li>
-            <a href="http://hostdb.org/hostdb/app/record/dataset/DS_4585d065bf"><i>M mulatta</i> infected with <i>P cynomolgi</i> over 100 days</a> &mdash; 
-            Transcriptome of whole blood and bone marrow from <i>Macaca mulatta</i> infected with <i>Plasmodium cynomolgi</i> over 100 days
-            <a href="http://www.ncbi.nlm.nih.gov/pubmed/27590312">Joyner et al.</a>  
-            This data set has a Plasmodium component available in PlasmoDB as:
-            <a href="http://plasmodb.org/plasmo/app/record/dataset/DS_40a06f276b">Transcriptome of <i>P cynomolgi</i> during 100-day infection in <i>M mulatta</i></a>.
-           </li>  
-           <li>
-            <a href="http://hostdb.org/hostdb/app/record/dataset/DS_2202e54a9e"><i>Leishmania major</i> and <i>Leishmania amazonensis</i> RNAseq during human macrophage infection</a> &mdash; 
-            RNAseq analysis of transcriptomes of human macrophage and parasite during an infection time course. 
-            <a href="http://www.ncbi.nlm.nih.gov/pubmed/27165796">Fernandes et al.</a>  
-            This data set has a Leishmania component available in TriTrypDB as:
-            <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_d18599afa8"><i>Leishmania major</i> RNAseq during human macrophage infection</a>.
-           </li> 
-       </ul><br>
-         </div>
-      </section>
-      
+    <p><strong>We are pleased to announce the release of TrichDB 37</strong></p>
       <section>
       <h3><b>New features in this release</b></h3>
       <div style="margin-left: 3em;">
@@ -115,8 +81,9 @@
           </ul>  
       </div>
       </section>
-      
+            
       <section>
+        <h3><b>No new data in TrichDB 37</b></h3> 
          <aside>
            Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
            Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
@@ -133,23 +100,17 @@
 
 
 <record>
-  <attribute name="headline">HostDB 36 Released</attribute>
+  <attribute name="headline">TrichDB 36 Released</attribute>
   <attribute name="date">19 Feb 2018 13:00</attribute>
-  <attribute name="tag">hostdb02_18_release</attribute>
+  <attribute name="tag">trichdb02_18_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of HostDB 36</strong></p>
-      
-      
-      <section>
-       <h3><b>No new data in this release</b></h3>
-
-      </section>
+    <p><strong>We are pleased to announce the release of TrichDB 36</strong></p>
       
       <section>
       <h3><b>New features in this release</b></h3>
-            <div style="margin-left: 3em;">
+      <div style="margin-left: 3em;">
       
       <h4>Search Page Improvements: search pages were redesigned to include an organism filter and provide better access to help information.</h4>
       
@@ -175,6 +136,8 @@
             <li>Find the search under the Orthology and Synteny category.
                 </li>
           </ul>
+
+    
        
        <h4>Gene Record Page Improvements:</h4>
  
@@ -205,7 +168,7 @@
           </ul>
         </div>
       </section>
-      
+
       <section>
       <h3><b>Introducing ClinEpiDB, a new member of the EuPathDB family of databases:</b></h3>
       <div style="margin-left: 3em;">
@@ -221,9 +184,10 @@
                 </li>
           </ul>
        </div>
-      </section>  
+      </section>        
       
       <section>
+        <h3><b>No New data in this release</b></h3> 
          <aside>
            Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
            Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
@@ -239,26 +203,13 @@
 
 
 <record>
-  <attribute name="headline">HostDB 35 Released</attribute>
+  <attribute name="headline">TrichDB 35 Released</attribute>
   <attribute name="date">01 Dec 2017 13:00</attribute>
-  <attribute name="tag">hostdb12_17_release</attribute>
+  <attribute name="tag">trichdb12_17_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of HostDB 35</strong></p>
-      
-      
-      <section>
-       <h3><b>New data in this release</b></h3>
-       <h4>RNA Sequencing</h4>
-       <ul>
-           <li>
-            <a href="http://hostdb.org/hostdb/app/record/dataset/DS_92a3bc8cb7">Transcriptomes of 4 <i>M. musculus</i> cell types during infection with <i>T. gondii</i></a> &mdash; 
-            <i>M. musculus</i> cortical neurons, astrocytes, skeletal muscle cells and fibroblast transcriptomes during infection with <i>T. gondii</i> strain NTE.
-            <a href="https://www.ncbi.nlm.nih.gov/pubmed/28775382">Swierzy et al.</a>
-           </li>  
-       </ul><br>
-      </section>
+    <p><strong>We are pleased to announce the release of TrichDB 35</strong></p>
       
       <section>
       <h3><b>New features in this release</b></h3>
@@ -268,7 +219,7 @@
           GO Slim terms are now indicated in EuPathDB sites in the following ways:<br>
           <ul>
             <li>The search,
-                <a href="http://hostdb.org/hostdb/showQuestion.do?questionFullName=GeneQuestions.GenesByGoTerm">Identify Genes based on GO Terms</a>, 
+                <a href="http://trichdb.org/trich/showQuestion.do?questionFullName=GeneQuestions.GenesByGoTerm">Identify Genes based on GO Terms</a>, 
                 now includes an GO Subset option for limiting the search to only GO Slim generic terms.
                 </li>
             <li>GO Terms tables on gene pages now contain a 'GO Subset' column which identifies GO Slim generic terms.
@@ -277,11 +228,12 @@
                 the background and the gene list of interest in the Fisher's exact test that determines enrichment. 
                 </li>
           </ul>
+       </div>
        
        <h4>Revigo and Word Cloud access from GO Enrichment results</h4>
        <div style="margin-left: 3em;">
        
-          HostDB offers a link between our GO Enrichment results and a Word Cloud visualization as well as 
+          TrichDB offers a link between our GO Enrichment results and a Word Cloud visualization as well as 
           Revigo, a tool that provides GO term summarization and visualization. The links to Revigo and the 
           Word Cloud now appear as buttons that are right justified above the GO enrichment result table. 
        
@@ -290,6 +242,7 @@
       
       
       <section>
+        <h3><b>No New data in this release</b></h3> 
          <aside>
            Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
            Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
@@ -303,34 +256,15 @@
 </record>
 
 
+
 <record>
-  <attribute name="headline">HostDB 34 Released</attribute>
+  <attribute name="headline">TrichDB 34 Released</attribute>
   <attribute name="date">07 Sep 2017 13:00</attribute>
-  <attribute name="tag">hostdb08_17_release</attribute>
+  <attribute name="tag">trichdb08_17_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of HostDB 34</strong></p>
-    
-    <h3><b>New data in this release</b></h3>
-    <h4>Genome Sequence and Annotation</h4>
-       <ul>
-           <li>
-            <a href="http://hostdb.org/hostdb/app/record/dataset/DS_35227af971"><i>Macaca mulatta</i> 17573</a> &mdash; 
-            This annotated genome appears for the first time in HostDB. The data were provided by pre-publication
-            Dr. Robert Norgren, University of Nebraska Medical Center, although a previous version of the genome is published.  
-            <a href="http://www.ncbi.nlm.nih.gov/pubmed/25319552">Zimin et al.</a>.  
-           </li>  
-       </ul><br>
-       
-     <h4>RNA Sequencing</h4>
-       <ul>
-           <li>
-            <a href="http://hostdb.org/hostdb/app/record/dataset/DS_368d6dc0ff"><i>H sapiens</i> Transcriptome during Infection with <i>T cruzi</i></a> &mdash; 
-            Transcriptome of human foreskin fibroblasts during infection (time course) with T. cruzi Y strain.
-            <a href="http://www.ncbi.nlm.nih.gov/pubmed/27046031">Li et al.</a>.  
-           </li>  
-       </ul><br>
+    <p><strong>We are pleased to announce the release of TrichDB 34</strong></p>
       
       <section>
       <h3><b>New features in this release</b></h3>
@@ -340,15 +274,15 @@
           EuPathDB now offers a direct link from gene ontology (GO) enrichment results to 
           <a href="http://revigo.irb.hr/">REVIGO</a>, a tool that provides GO term summarization and visualization.  
           To access this feature first run a GO term enrichment using the 'Analyze Results' option from any gene search result. Then click on 
-          the 'Start Revigo Analysis' link (<a href="/hostdb/images/Revigo.png">upper right hand side of enrichment results</a>) 
+          the 'Start Revigo Analysis' link (<a href="/trichdb/images/Revigo.png">upper right hand side of enrichment results</a>) 
           to populate the REVIGO submission page with your GO enrichment results from EuPathDB.  Follow instructions 
           on the REVIGO page to complete your analysis.
           
       </div>
       </section>
-       
+      
       <section>
-
+        <h3><b>No New data in this release</b></h3> 
          <aside>
            Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
            Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
@@ -368,9 +302,6 @@
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    
-    
-    
     <section>
         
         <div style="margin-left: 3em;">
@@ -380,12 +311,12 @@
         This may underrepresent abundance for genes that are duplicated, such as paralogs. Non-unique reads are only available 
         as GBrowse subtracks. To view non-unique reads from a gene page, open the Coverage section and click 'View in 
         genome browser' above the coverage plots. 
-        (<a href="/hostdb/images/FromCoverageNonuniqueReads.pdf">Tutorial document about viewing non-unique reads from a gene page</a>)
+        (<a href="/trichdb/images/FromCoverageNonuniqueReads.pdf">Tutorial document about viewing non-unique reads from a gene page</a>)
         
         <br><br>
         To view non-unique reads without navigating to the gene page, open GBrowse from the home page.  Use the Select Tracks 
         tab to turn on the data track of interest and the subtracks configuration tool to turn on the non-unique reads subtracks. 
-        (<a href="/hostdb/images/FromHomeNonuniqueReads.pdf">Tutorial document for viewing non-unique reads from the home page</a>)
+        (<a href="/trichdb/images/FromHomeNonuniqueReads.pdf">Tutorial document for viewing non-unique reads from the home page</a>)
         
         <br><br>
         In release 34, gene pages contain a message about non-unique reads, an accurate description of the y-axis and links to 
@@ -400,17 +331,14 @@
   </attribute>
 </record>
 
-
-
-
 <record>
-  <attribute name="headline">HostDB 33 Released</attribute>
+  <attribute name="headline">TrichDB 33 Released</attribute>
   <attribute name="date">30 Jun 2017 13:00</attribute>
-  <attribute name="tag">hostdb06_17_release</attribute>
+  <attribute name="tag">trichdb06_17_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of HostDB 33</strong></p>
+    <p><strong>We are pleased to announce the release of TrichDB 33</strong></p>
       
       <section>
         <h3><b>No New data in this release</b></h3>
@@ -448,26 +376,16 @@
 </record>
 
 <record>
-  <attribute name="headline">HostDB 32 Released</attribute>
+  <attribute name="headline">TrichDB 32 Released</attribute>
   <attribute name="date">19 Apr 2017 13:00</attribute>
-  <attribute name="tag">hostdb04_17_release</attribute>
+  <attribute name="tag">trichdb04_17_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of HostDB 32</strong></p>
-    
-    <h4>RNA Sequencing</h4>
-       <ul>
-           <li>
-            <a href="http://hostdb.org/hostdb/app/record/dataset/DS_13ae56d949">Transcriptomes of mouse macrophages infected with Leishmania mexicana</a> &mdash; 
-            Transcriptomes of uninfected Mus musculus bone marrow macrophages (BMDM) and 24h post-infection with Leishmania mexicana. 
-            <a href="http://www.ncbi.nlm.nih.gov/pubmed/26452044">Fiebig et al.</a>.  A corresponding <i>L. mexicana</i> data set is in TriTryDB &mdash; 
-            <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_10d28f3e4f">Promastigote, Axenic Amastigote and Intracellular Amastigote Transcriptomes</a>
-           </li>  
-       </ul><br>
-       
+    <p><strong>We are pleased to announce the release of TrichDB 32</strong></p>
+      
       <section>
-
+        <h3>No New data in this release</h3> 
          <aside>
            Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
            Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
@@ -480,15 +398,14 @@
   </attribute>
 </record>
 
-
 <record>
-  <attribute name="headline">HostDB 31 Released</attribute>
+  <attribute name="headline">TrichDB 31 Released</attribute>
   <attribute name="date">08 Mar 2017 13:00</attribute>
-  <attribute name="tag">hostdb03_17_release</attribute>
+  <attribute name="tag">trichdb03_17_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of HostDB 31</strong></p>
+    <p><strong>We are pleased to announce the release of TrichDB 31</strong></p>
       
       <section>
         <h3>No New data in this release</h3> 
@@ -948,13 +865,13 @@ Arial">Join our international team of 30+ software developers and biologists,
        </attribute>
     </record>
 <record>
-  <attribute name="headline">HostDB 30 Released</attribute>
+  <attribute name="headline">TrichDB 30 Released</attribute>
   <attribute name="date">03 Feb 2017 13:00</attribute>
-  <attribute name="tag">hostdb02_17_release</attribute>
+  <attribute name="tag">trichdb02_17_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of HostDB 30</strong></p>
+    <p><strong>We are pleased to announce the release of TrichDB 30</strong></p>
       
       <section>
         <h3>No New data in this release</h3> 
@@ -970,32 +887,32 @@ Arial">Join our international team of 30+ software developers and biologists,
   </attribute>
 </record>
 
+
 <record>
-  <attribute name="headline">HostDB 29 Released</attribute>
+  <attribute name="headline">TrichDB 29 Released</attribute>
   <attribute name="date">13 Oct 2016 13:00</attribute>
-  <attribute name="tag">hostdb10_16_release</attribute>
+  <attribute name="tag">trichdb10_16_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of HostDB 29</strong></p>
 
     <section>
-    <h3>HostDB 29</h3>
-           HostDB 29 represents extensive efforts to improve navigation and data accessibility 
+    <h3>TrichDB 29</h3>
+           TrichDB 29 represents extensive efforts to improve navigation and data accessibility 
            on record pages, provide consistent verbiage and data categories, and improve presentation of alternative transcripts. 
            All data were refreshed to the latest version and genome analyses were rerun.
            <ul>
              <li>Here is some help information to get you started with our new features.<br>
-                 <a href="http://hostdb.org/documents/genePageTutorialGUS4.pdf">Gene Page Improvements</a> <br>
-                 <a href="http://hostdb.org/documents/SearchCatsTutorial_3.pdf">Search Category Improvements</a> <br>
-                 <a href="http://hostdb.org/documents/ExploreTranscripts.pdf">Explore Transcripts in Search Results</a><br>
+                 <a href="http://trichdb.org/documents/genePageTutorialGUS4.pdf">Gene Page Improvements</a> <br>
+                 <a href="http://trichdb.org/documents/SearchCatsTutorial_3.pdf">Search Category Improvements</a> <br>
+                 <a href="http://trichdb.org/documents/ExploreTranscripts.pdf">Explore Transcripts in Search Results</a><br>
                  <!--Workspaces<br>-->
              </li><br>
              <li>Send Us Your Feedback!<br>We can polish our new features based on your valuable feedback. Please use the site 
-             and <a href="http://beta.hostdb.org/hostdb.b28/contact.do">Contact Us</a> to tell us about your experience. 
+             and <a href="http://trichdb.org/trichdb/contact.do">Contact Us</a> to tell us about your experience. 
               </li><br>
-             <li>Release 28 is Still Available - <br><a href="http://beta.hostdb.org/hostdb.b28/">HostDB 28</a> is available until we finalize our new features.</li><br>
-           </ul>
+             <li>Release 28 is Still Available - <br><a href="http://r28.trichdb.org/trichdb/">TrichDB 28</a> is available until we finalize our new features.</li><br>
+          </ul>
      </section>
       
      <section> 
@@ -1032,28 +949,6 @@ Arial">Join our international team of 30+ software developers and biologists,
              </li>
            </ul>
         </section>   
-
-     <section>
-      <h3>New Data</h3>
-      <h4>Genome sequence and annotation is updated for the following genomes:</h4>
-         <ul>
-          <li><i>Homo sapiens</i> REF</li>
-          <li><i>Mus musculus</i> C57CL6J</li>
-         </ul>
-     </section>
-     <section>  
-      <h4>Transcriptomics</h4>
-        <ul>
-          <li>
-            <a href="http://hostdb.org/hostdb/app/record/dataset/DS_fcdd4f7a49">Transcriptome during infection with 29 strains of T. gondii</a> &mdash; 
-            Four transcriptomes were added to this data set for a total of 29 strains in this 
-            comparative transcriptome analysis of <i>Toxoplasma gondii</i> and the murine macrophages infected with them.
-            <a href="http://www.ncbi.nlm.nih.gov/pubmed/22847430">Minot et al.</a>.
-          </li>
-        </ul>
-      </section>
-      
- 
       <aside>
         Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
         Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
@@ -1061,47 +956,23 @@ Arial">Join our international team of 30+ software developers and biologists,
         When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
       </aside>
 
+    </section>
     ]]>
   </attribute>
 </record>
 
-
 <record>
-  <attribute name="headline">HostDB 28 Released</attribute>
+  <attribute name="headline">TrichDB 28 Released</attribute>
   <attribute name="date">30 Mar 2016 13:00</attribute>
-  <attribute name="tag">hostdb03_16_release</attribute>
+  <attribute name="tag">trichdb03_16_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of HostDB 28</strong></p>
+    <p><strong>We are pleased to announce the release of TrichDB 28</strong></p>
 
     <section>
-     <h3>Updated Data sets</h3>
-      
-      <section>
-      <h4>Proteomics</h4>
-          <aside>
-          The following data sets were reloaded at the request of the data provider (J. Wastling) because the data analysis was significantly improved 
-          by applying multiple search engines. The new analysis produced more peptide/protein identifications and more reliable quantitation.
-          </aside>
-          
-          <ul>
-          <li>
-            <a href="http://hostdb.org/hostdb/app/record/dataset/DS_08fe07cd15">
-             Quantitative Proteome During an Infection with 4 strains of T. gondii and one strain of <i>N. caninum</i></a> &mdash; 
-                   <i>H. sapiens</i> peptide sequences from a proteomic analysis of mixed parasite/host samples
-                   collected during time course infections with 4 different strains of <i>T. gondii</i>. Wastling and Xia, unpublished
-          </li>
-          <li>
-            <a href="http://hostdb.org/hostdb/app/record/dataset/DS_70b01a66ee">
-             Proteome During Infection with 4 strains of <i>T. gondii</i> and one strain of <i>N. caninum</i> </a> &mdash; 
-                   <i>H. sapiens</i> peptide sequences from a proteomic analysis of a mixed parasite/host sample
-      collected during <i>T. gondii</i> infections in human foreskin fibroblasts. Wastling and Xia, unpublished
-          </li>
-      </section>
-     
-      
- 
+      <h3>No new data or functionalities in this release</h3>
+
       <aside>
         Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
         Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
@@ -1116,13 +987,13 @@ Arial">Join our international team of 30+ software developers and biologists,
 
 
 <record>
-  <attribute name="headline">HostDB 27 Released</attribute>
+  <attribute name="headline">TrichDB 27 Released</attribute>
   <attribute name="date">19 Feb 2016 13:00</attribute>
-  <attribute name="tag">hostdb02_16_release</attribute>
+  <attribute name="tag">trichdb02_16_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of HostDB 27</strong></p>
+    <p><strong>We are pleased to announce the release of TrichDB 27</strong></p>
 
     <section>
      <h3>New Features</h3>
@@ -1160,16 +1031,16 @@ Arial">Join our international team of 30+ software developers and biologists,
 
 
 <record>
-  <attribute name="headline">HostDB 26 Released</attribute>
+  <attribute name="headline">TrichDB 26 Released</attribute>
   <attribute name="date">15 Oct 2015 13:00</attribute>
-  <attribute name="tag">hostdb10_15_release</attribute>
+  <attribute name="tag">trichdb10_15_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of HostDB 26</strong></p>
+    <p><strong>We are pleased to announce the release of TrichDB 26</strong></p>
 
     <section>
-            <h3>New Features</h3>
+      <h3>New Features</h3>
       
       <section>
        <h4>GBrowse Track Search </h4>
@@ -1224,14 +1095,15 @@ Arial">Join our international team of 30+ software developers and biologists,
   </attribute>
 </record>
 
+
 <record>
-  <attribute name="headline">HostDB 25 Released</attribute>
+  <attribute name="headline">TrichDB 25 Released</attribute>
   <attribute name="date">23 July 2015 13:00</attribute>
-  <attribute name="tag">hostdb7_15_release</attribute>
+  <attribute name="tag">trichdb7_15_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of HostDB 25</strong></p>
+    <p><strong>We are pleased to announce the release of TrichDB 25</strong></p>
 
     <section>
       <h3>No new data or functionalities in this release</h3>
@@ -1248,13 +1120,10 @@ Arial">Join our international team of 30+ software developers and biologists,
   </attribute>
 </record>
 
-
-
-
 <record>
-       <attribute name="headline">HostDB 24 Released</attribute>
+       <attribute name="headline">TrichDB 24 Released</attribute>
        <attribute name="date">13 April 2015 13:00</attribute>
-       <attribute name="tag">hostdb4_15_release</attribute>
+       <attribute name="tag">trichdb4_15_release</attribute>
        <attribute name="category">release</attribute>
        <attribute name="item">
            
@@ -1263,16 +1132,17 @@ Arial">Join our international team of 30+ software developers and biologists,
 <html>
   <head>
     <meta content="text/html; charset=windows-1252" http-equiv="content-type">
-    <title>hostdb_4_15_news</title>
+    <title>trichdb_4_5_news</title>
   </head>
   <body>
     <p> </p>
     <p> </p>
     <p> </p>
     <p> </p>
+    <p> </p>
     <p><span style="font-family: Helvetica,Arial,sans-serif;"> </span> </p>
     <div style="margin-left: 40px;"><span style="font-family: Helvetica,Arial,sans-serif;"><strong>We
-          are pleased to announce the release of HostDB 24</strong><span style="font-weight: bold;"></span><br>
+          are pleased to announce the release of TrichDB 24</strong><span style="font-weight: bold;"></span><br>
       </span> <span style="font-style: italic;"><span style="font-family: Helvetica,Arial,sans-serif;"><br>
           All EuPathDB release numbers have been synchronized to help us more
           efficiently manage our expanding number of databases.&nbsp; As of this
@@ -1302,8 +1172,8 @@ Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-far
                 </span>Version #</span> </td>
           </tr>
           <tr>
-            <td style="width: 188px; height: 24px; background-color: #cccccc; text-align: center;">HostDB</td>
-            <td style="width: 188px; height: 24px; background-color: #cccccc; text-align: center;">2.2</td>
+            <td style="width: 188px; height: 24px; background-color: #cccccc; text-align: center;">TrichDB</td>
+            <td style="width: 188px; height: 24px; background-color: #cccccc; text-align: center;">2.0</td>
             <td style="width: 188px; height: 24px; background-color: #cccccc; text-align: center;">24</td>
           </tr>
         </tbody>
@@ -1425,245 +1295,228 @@ Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-far
        </attribute>
     </record>
 <record>
-       <attribute name="headline">HostDB 2.2 Released</attribute>
-       <attribute name="date">22 December 2014 13:00</attribute>
-       <attribute name="tag">host12_14_news</attribute>
+      <attribute name="headline">TrichDB 2.0 Released</attribute>
+       <attribute name="date">22 December 2014 12:00</attribute>
+       <attribute name="tag">trich12_14news</attribute>
        <attribute name="category">release</attribute>
        <attribute name="item">
-         <![CDATA[
+ <![CDATA[
  <body>
-    <div style="text-align: justify;"><strong>We are pleased to announce the
-        release of HostDB 2.3</strong><br>
+    <div style="text-align: justify;"><b style="mso-bidi-font-weight:normal">We
+        are pleased to announce the release of <span class="SpellE">TrichDB</span>
+        2.0<o:p></o:p></b>
+      <p class="MsoNoSpacing"><b style="mso-bidi-font-weight:normal"><o:p>&nbsp;</o:p></b></p>
+      <p class="MsoNoSpacing"><b style="mso-bidi-font-weight:normal">This is a
+          major release of <span class="SpellE">TrichDB</span> and constitutes
+          a complete rebuild of the database.<span style="mso-spacerun:yes">&nbsp;
+            </span>This means that the genome was reloaded (along with new
+          annotation, see below) and genome analyses were rerun and improved.<o:p></o:p></b></p>
+      <p class="MsoNoSpacing"><b style="mso-bidi-font-weight:normal"><o:p>&nbsp;</o:p></b></p>
       <p class="MsoNoSpacing"><b style="mso-bidi-font-weight:normal">New data in
           this release:<o:p></o:p></b></p>
       <p class="MsoNoSpacing">The data set title below links to a full
         description and list of associated searches and GBrowse tracks.</p>
       <p class="MsoNoSpacing"><o:p>&nbsp;</o:p></p>
       <p class="MsoNoSpacing" style="margin-left:.25in"><b style="mso-bidi-font-weight:
-normal">Proteomics:<o:p></o:p></b></p>
-      <p class="MsoNoSpacing" style="margin-left:.5in;text-indent:-.25in"><a href="/a/getDataset.do?datasets=hsapREF_massSpec_Lasonder_Schizont_Phosphoproteome_RSRC">Erythrocyte
-          <span class="SpellE">Phosphoproteome</span> during infection with P. <span
-            class="SpellE">fal</span>
-          3D7 <span class="SpellE">schizonts</span> (2012) (Lasonder et al.)</a>
-        - <span class="SpellE">Phosphoproteomic</span> analysis of <i style="mso-bidi-font-style:normal">Homo
-          sapiens</i> <span class="SpellE">erythocytes</span> harvested during
-        the schizont stage of a <i style="mso-bidi-font-style:normal">Plasmodium
-falciparum
-          3D7</i> infection.</p>
-      <p class="MsoNoSpacing"><o:p>&nbsp;</o:p></p>
-      <p class="MsoPlainText"><b style="mso-bidi-font-weight:normal">Improvements
-          and updates:<o:p></o:p></b></p>
-      <p class="MsoPlainText" style="margin-left:.5in;text-indent:-.25in">BLAST
-        was updated to the latest NCBI version 2.2.30. </p>
-      <p class="MsoPlainText" style="margin-left:.5in;text-indent:-.25in">GBrowse
-performance
-        is improved following EuPathDB infrastructure changes.</p>
-      <div style="margin-left: 40px;"><span style="font-family: Helvetica,Arial,sans-serif;">
-        </span> <span style="font-family: Helvetica,Arial,sans-serif;"><em></em><br>
-        </span> </div>
-      <div style="text-align: justify;"> </div>
-      <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><br>
-        </span> <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-style: italic;"><span
-              style="font-style: italic;"><span
-                style="text-decoration: underline;">Note:</span>
-              Our bimonthly database releases incorporate new data and correct
-              old data when necessary.&nbsp; Changes in annotation and new
-              experimental data may slightly alter your search results by
-              increasing or decreasing the number of hits. When search
-              parameters change with a new release, we invalidate (<span style="color: red;">Ø</span>)
-              the search and ask you to rerun it. When IDs are updated or
-              removed, we map the old IDs to the new ones, remove the old IDs
-              from your Basket, and leave your Favorites page alone.</span></span><br>
-        </span> <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold;"><span
-              style="font-style: italic;"></span></span></span>
-        <p><span style="font-family: Helvetica,Arial,sans-serif;"><em><strong>Follow</strong></em>
-            <span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
-                on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
-              style="font-weight: bold; font-style: italic;">,
-              <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="http://www.youtube.com/user/EuPathDB">YouTube</a></span></span></p>
-      </div>
-      <span style="font-weight: bold; font-style: italic;"></span></div>
+normal">Genome:<o:p></o:p></b></p>
+      <p class="MsoNoSpacing" style="margin-left:.5in;text-indent:-.25in"><a href="/a/getDataset.do?datasets=tvagG3_primary_genome_RSRC"><em><span
+              class="SpellE">Trichomonas</span>
+            <span class="SpellE">vaginalis</span> </em>G3</a> - <span class="SpellE">reannotated</span>
+        (Carlton Lab version Sept 12, 2014)</p>
+    </div>
+    <div style="text-align: justify;"><br>
+    </div>
+    <div style="text-align: justify;"><br>
+      <span style="font-style: italic;"><span style="font-style: italic;"><span
+            style="text-decoration: underline;">Note:</span>
+          Our bimonthly database releases incorporate new data and correct old
+          data when necessary.&nbsp; Changes in annotation and new experimental
+          data may slightly alter your search results by increasing or
+          decreasing the number of hits. When search parameters change with a
+          new release, we invalidate (<span style="color: red;">Ø</span>) the
+          search and ask you to rerun it. When IDs are updated or removed, we
+          map the old IDs to the new ones, remove the old IDs from your Basket,
+          and leave your Favorites page alone.</span></span><br>
+      <span style="font-weight: bold;"><span style="font-style: italic;"></span></span>
+      <p><em><strong>Follow</strong></em> <span style="font-weight: bold;"><span
+            style="font-style: italic;">EuPathDB
+            on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+          style="font-weight: bold; font-style: italic;">,
+          <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="http://www.youtube.com/user/EuPathDB">YouTube</a></span></p>
+      <span style="font-weight: bold; font-style: italic;"></span><span style="font-weight: bold; font-style: italic;"></span></div>
     <div style="text-align: justify;"><span style="font-weight: bold; font-style: italic;"></span></div>
     
   </body>
           ]]>
        </attribute>
-</record>
+    </record>
 <record>
-       <attribute name="headline">HostDB 2.1 Released</attribute>
-       <attribute name="date">10 September 2014 13:00</attribute>
-       <attribute name="tag">host9_14_news</attribute>
+      <attribute name="headline">New Tutorials</attribute>
+       <attribute name="date">08 May 2014 12:00</attribute>
+       <attribute name="tag">trich5_14news</attribute>
        <attribute name="category">release</attribute>
        <attribute name="item">
+           
+         <![CDATA[
+ <body><span style="font-family: Helvetica,Arial,sans-serif;"></span><br>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"></span>
+      <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span>
+      <div style="margin-left: 40px;"><span style="font-family: Helvetica,Arial,sans-serif;"><a
+            href="http://eupathdb.org/tutorials/GBrowse-UploadTrack-Help.pdf">Learn
+            how to upload custom tracks in the genome browser</a>.&nbsp; </span></div>
+      <div style="margin-left: 40px;"> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+        </span> <span style="font-family: Helvetica,Arial,sans-serif;"><em>Our
+            YouTube channel is updated regularly with new tutorials.&nbsp; The
+            latest tutorials include:</em></span></div>
+      <span style="font-family: Helvetica,Arial,sans-serif;"><em> </em><br>
+      </span>
+      <ul style="margin-left: 40px;">
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><a href="http://youtu.be/SzRu9XBe_VM">Transform
+              by Orthology Across Taxon Groups</a>&nbsp;</span></li>
+      </ul>
+      <div style="margin-left: 40px;"> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+        </span> </div>
+      <ul style="margin-left: 40px;">
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><a href="https://www.youtube.com/watch?v=nYGS8LbbZ1w">Transform
+              by Orthology within a Taxon Group</a></span></li>
+      </ul>
+      <div style="margin-left: 40px;"> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+        </span> </div>
+      <ul style="margin-left: 40px;">
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><a href="https://www.youtube.com/watch?v=Q3wiUvqA82o">Orthology
+              information on gene pages</a></span></li>
+      </ul>
+      <div style="margin-left: 40px;"> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+        </span> </div>
+      <ul style="margin-left: 40px;">
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><a href="http://youtu.be/yKIKD8LEU-M">Inferring
+              UTR length using RNA sequencing data</a></span></li>
+      </ul>
+      <div style="margin-left: 40px;"><span style="font-family: Helvetica,Arial,sans-serif;"><br>
+        </span> </div>
+      <ul style="margin-left: 40px;">
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><a href="https://www.youtube.com/watch?v=dKhRaYINX9M">Decreasing
+              Gene Page Load Time</a></span></li>
+      </ul>
+      <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span> </div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    <div style="text-align: justify;"> </div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-style: italic;"><span
+            style="font-style: italic;"><span
+              style="text-decoration: underline;">Note:</span>
+            Our bimonthly database releases incorporate new data and correct old
+            data when necessary.&nbsp; Changes in annotation and new
+            experimental data may slightly alter your search results by
+            increasing or decreasing the number of hits. When search parameters
+            change with a new release, we invalidate (<span style="color: red;">Ø</span>)
+            the search and ask you to rerun it. When IDs are updated or removed,
+            we map the old IDs to the new ones, remove the old IDs from your
+            Basket, and leave your Favorites page alone.</span></span><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold;"><span
+            style="font-style: italic;"></span></span></span>
+      <p><span style="font-family: Helvetica,Arial,sans-serif;"><em><strong>Follow</strong></em>
+          <span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
+              on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+            style="font-weight: bold; font-style: italic;">,
+            <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="http://www.youtube.com/user/EuPathDB">YouTube</a></span></span></p>
+      <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold; font-style: italic;"></span></span></div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    <div style="text-align: justify;"> </div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><span
+          style="font-weight: bold; font-style: italic;"></span><span
+          style="font-weight: bold; font-style: italic;"></span></span></div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+  </body>
+          ]]>
+       </attribute>
+    </record>
+<record>
+       <attribute name="headline">New Features in TrichDB</attribute>
+       <attribute name="date">30 January 2014 15:00</attribute>
+       <attribute name="tag">trich01_14_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
          <![CDATA[
  <body>
-    <div style="text-align: justify;"><strong>We are pleased to announce the
-        release of HostDB 2.1</strong><br>
+    <div style="text-align: justify;"><strong>We are pleased to announce new
+        features in TrichDB:</strong><strong></strong><br>
       <br>
-      <ul style="text-align: justify;">
-        <li><span style="font-family: Helvetica,Arial,sans-serif;"><strong style="color: #666666;">Two
-              new data types with searches have been added in this release:</strong>
-            compounds and metabolic pathways.&nbsp; This beta-release of
-            Compound and Metabolic Pathways data sets incorporates KEGG pathways
-            and a subset of PubChem records. Future releases will include
-            compounds for additional metabolites and small molecules, and
-            pathways from other sources such as MPMP, MetaCyc, etc. Please
-            explore the site and contact us with your feedback. </span></li>
-      </ul>
-      <span style="font-family: Helvetica,Arial,sans-serif;"><br>
-      </span>
-      <ul style="text-align: justify;">
-        <ul>
-          <li><span style="font-family: Helvetica,Arial,sans-serif;"><span style=" mso-bidi-font-weight:normal">Metabolic
-                Pathways may be searched based on </span><b style=" mso-bidi-font-weight:normal"><a
-                  href="/a/showQuestion.do?questionFullName=PathwayQuestions.PathwaysByPathwayID">pathway
-                  Name/ID</a></b><span style=" mso-bidi-font-weight:normal">, </span><b
-                style=" mso-bidi-font-weight:normal"><a
-                  href="/a/showQuestion.do?questionFullName=PathwayQuestions.PathwaysByGeneList">genes</a></b><span
-                style=" mso-bidi-font-weight:normal">,
-                or</span><b style=" mso-bidi-font-weight:normal"> <a href="/a/showQuestion.do?questionFullName=PathwayQuestions.PathwaysByCompounds">compounds</a></b><span
-                style=" mso-bidi-font-weight:normal">.</span></span></li>
-        </ul>
-      </ul>
-      <span style="font-family: Helvetica,Arial,sans-serif;"><span style="  mso-bidi-font-weight:normal"><br>
-        </span></span> <span style="font-family: Helvetica,Arial,sans-serif;"><span
-          style="  mso-bidi-font-weight:normal"></span></span>
-      <ul style="text-align: justify;">
-        <ul>
-          <li><span style="font-family: Helvetica,Arial,sans-serif;"><span style="  mso-bidi-font-weight:normal">Compounds
-                may be searched based on </span><a href="/a/showQuestion.do?questionFullName=CompoundQuestions.CompoundsByCompoundID"><b
-                  style="  mso-bidi-font-weight:normal">compound
-                  ID</b></a><span style="  mso-bidi-font-weight:normal">, </span><a
-                href="/a/showQuestion.do?questionFullName=CompoundQuestions.CompoundsByTextSearch"><b
-                  style="  mso-bidi-font-weight:normal">text
-                  (synonym, InChI, etc.)</b></a><span style="  mso-bidi-font-weight:normal">,</span><b
-                style="  mso-bidi-font-weight:normal">
-                <a href="/a/showQuestion.do?questionFullName=CompoundQuestions.CompoundsByEcReaction">enzymes</a></b><span
-                style="  mso-bidi-font-weight:normal">,</span><b
-                style="  mso-bidi-font-weight:normal">
-                <a href="/a/showQuestion.do?questionFullName=CompoundQuestions.CompoundsByPathway">metabolic
-                  pathway</a></b><span style="  mso-bidi-font-weight:normal">,</span><b
-                style="  mso-bidi-font-weight:normal">
-                <a href="/a/showQuestion.do?questionFullName=CompoundQuestions.CompoundsByMolecularFormula">molecular
-                  formula</a></b><span style="  mso-bidi-font-weight:normal"><span
-                  style="font-weight: bold;">
-                </span>or<span style="font-weight: bold;"> </span></span><b style="  mso-bidi-font-weight:normal"><a
-                  href="/a/showQuestion.do?questionFullName=CompoundQuestions.CompoundsByMolecularWeight">molecular
-                  weight</a>.</b><span style="  mso-bidi-font-weight:normal"></span></span></li>
-        </ul>
-      </ul>
-      <p style="text-align: justify;" class="MsoNormal"><span style="font-family: Helvetica,Arial,sans-serif;"><b
-            style="mso-bidi-font-weight:normal"><br>
-          </b></span></p>
-      <span style="font-family: Helvetica,Arial,sans-serif;"><br>
-      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><strong>New
-          features:</strong><br>
-      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
-      </span>
-      <ul>
-        <li><span style="font-family: Helvetica,Arial,sans-serif;"><strong style="color: #666666;">Results
-              analysis tools:&nbsp; </strong><span style="color: #020302;">results
-              of any searches can now be analyzed for statistical enrichment or
-              Gene Ontology (GO) terms, metabolic pathways or gene product text
-              terms. <strong><a href="/a/analysisTools.jsp">A detailed
-                  description of this new functionality and a video tutorial are
-                  also available</a></strong>.</span></span></li>
-      </ul>
-      <span style="font-family: Helvetica,Arial,sans-serif;"><span style=" color: #020302;">
-        </span></span>
-      <blockquote> </blockquote>
-      <span style="font-family: Helvetica,Arial,sans-serif;"><br>
-      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold;">New
-          Tutorials:</span><br>
-      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
-      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><a href="http://youtube.com/eupathdb"><br>
-        </a></span>
-      <div style="margin-left: 40px;"><span style="font-family: Helvetica,Arial,sans-serif;"><strong><a
-              href="http://youtu.be/npgkkychkrI">Learn how
-                  to use the Results Analysis tool</span></span></a>.&nbsp; </strong><br>
-        </span> </div>
-      <div style="margin-left: 40px;"> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
-        </span> <span style="font-family: Helvetica,Arial,sans-serif;"><em></em><br>
-        </span> </div>
-      <div style="text-align: justify;"> </div>
-      <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><br>
-        </span> <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-style: italic;"><span
-              style="font-style: italic;"><span
-                style="text-decoration: underline;">Note:</span>
-              Our bimonthly database releases incorporate new data and correct
-              old data when necessary.&nbsp; Changes in annotation and new
-              experimental data may slightly alter your search results by
-              increasing or decreasing the number of hits. When search
-              parameters change with a new release, we invalidate (<span style="color: red;">Ø</span>)
-              the search and ask you to rerun it. When IDs are updated or
-              removed, we map the old IDs to the new ones, remove the old IDs
-              from your Basket, and leave your Favorites page alone.</span></span><br>
-        </span> <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold;"><span
-              style="font-style: italic;"></span></span></span>
-        <p><span style="font-family: Helvetica,Arial,sans-serif;"><em><strong>Follow</strong></em>
-            <span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
-                on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
-              style="font-weight: bold; font-style: italic;">,
-              <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="http://www.youtube.com/user/EuPathDB">YouTube</a></span></span></p>
-      </div>
-      <span style="font-weight: bold; font-style: italic;"></span></div>
+      <br>
+      <strong>New features:</strong><br>
+      <strong></strong><br>
+      <strong></strong><br>
+      <span style="text-decoration: underline;">Public Strategies</span>:&nbsp;
+      Share your search strategies with the community by making them
+      public.&nbsp; Making one of your strategies public is simple; go to the
+      "All" tab in your "My Strategies" section and click on a strategy's public
+      checkbox.&nbsp; <br>
+      <br>
+      <span style="text-decoration: underline;">Enhanced BLAST results</span>:&nbsp;
+      The gene results now include a column for score and percent identity
+      enabling sorting of results.<br>
+      <br>
+      <span style="text-decoration: underline;">Enhanced GO Term and InterPro
+        Domain searches</span>:&nbsp; Now this search includes an advanced
+      type-ahead function that allows searching for multiple GO Terms or domains
+      simultaneously.&nbsp; <br>
+      <br>
+      <span style="text-decoration: underline;">Email address update</span>:&nbsp;
+      Registered users can now update their email addresses from their profiles.<br>
+      <br>
+      <span style="text-decoration: underline;">Updated organism filter tables</span>:&nbsp;
+      The organism filter table has been unified across EuPathDB sites.<br>
+      <br>
+      <span style="text-decoration: underline;">Improved histogram</span>:&nbsp;
+      Numerical columns in a result can now be analyzed with a dynamic histogram
+      that enables binning and plotting values in normal or log scales.<br>
+      <br>
+      <span style="text-decoration: underline;">Fixed</span>: The orthology
+      phyletic pattern search now remembers your selected parameters making it
+      easier to revise searches.<br>
+      <br>
+      <br>
+      <br>
+      <strong>New database:&nbsp; </strong></div><br>
+    <ul style="text-align: justify;">
+     <li>EuPathDB is pleased to announce the release of a beta version of
+        <a href="http://hostdb.org"><strong>HostDB</strong></a> - a resource
+        dedicated to integrating functional host response data.&nbsp; The beta
+        release includes the human and mouse genomes and two datasets (RNA-Seq
+        and quantitative proteomics) examining the host response to Toxoplasma
+        infection.&nbsp; We look forward to expanding this database in data
+        content and functionality.&nbsp; We encourage you to explore <strong><a
+            href="http://hostdb.org">HostDB</a></strong>
+        and provide us with your <a href="mailto:help@hostdb.org"><strong>feedback</strong></a>.&nbsp;</li>
+    </ul>
+    <div style="text-align: justify;"><br>
+    </div>
+    <div style="text-align: justify;"><br>
+      <span style="font-style: italic;"><span style="font-style: italic;"><span
+            style="text-decoration: underline;">Note:</span>
+          Our bimonthly database releases incorporate new data and correct old
+          data when necessary.&nbsp; Changes in annotation and new experimental
+          data may slightly alter your search results by increasing or
+          decreasing the number of hits. When search parameters change with a
+          new release, we invalidate (<span style="color: red;">Ø</span>) the
+          search and ask you to rerun it. When IDs are updated or removed, we
+          map the old IDs to the new ones, remove the old IDs from your Basket,
+          and leave your Favorites page alone.</span></span><br>
+      <span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
+      <span style="font-weight: bold;"><span style="font-style: italic;">Follow EuPathDB on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+        style="font-weight: bold; font-style: italic;">,
+        <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="http://www.youtube.com/user/EuPathDB">YouTube</a></span><span
+        style="font-weight: bold; font-style: italic;"></span></div>
     <div style="text-align: justify;"><span style="font-weight: bold; font-style: italic;"></span></div>
   </body>
           ]]>
        </attribute>
-</record>
-
-<record>
-       <attribute name="headline">HostDB in Beta Released</attribute>
-       <attribute name="date">30 September 2013 13:00</attribute>
-       <attribute name="tag">host1_14_news</attribute>
-       <attribute name="category">release</attribute>
-       <attribute name="item">
-         <![CDATA[
- <body>
-    <p><strong>We are pleased to announce a beta release of HostDB</strong></p>
-    <p><br>
-      <strong></strong></p>
-    <p>HostDB is the newest addition to the Eukaryotic Pathogen databases (<strong><a
-          href="http://eupathdb.org">EuPathDB</a></strong>).&nbsp;
-      Apply the powerful search strategy system to query functional data from host organisms during infection with parasites.&nbsp; The beta release includes the
-      following datasets:</p>
-    <p><br>
-    </p>
-    <ul>
-      <li>The transcriptomes of primary murine macrophages (<em>M. musculus</em>
-        C57BL6J) during infection with 25 strains of <em>Toxoplasma gondii</em>
-        (<strong><a href="http://www.ncbi.nlm.nih.gov/pubmed/22847430">Minot <em>et
-              al.</em></a></strong>).&nbsp; For full attribution and available
-        searches please visit the <strong><a href="http://hostdb.org/hostdb/getDataset.do?question=GeneQuestions.GenesByRNASeqmmusC57BL6J_Saeij_Jeroen_25_strains_rnaSeq_RSRC&amp;display=detail#3">Dataset
-            details</a></strong>.&nbsp; </li>
-    </ul>
-    <br>
-    <ul>
-      <li>Proteomic analysis of Homo Sapiens during infection with 4 <em>Toxoplasma
-          gondii </em>(GT1, ME49, RH and VEG) strains graciously provided prepublication by
-        the Johnathan Wastling group (University of Liverpool).&nbsp; For full
-        attribution and available searches please visit the <strong><a href="http://hostdb.org/hostdb/getDataset.do?question=GeneQuestions.GenesByProteomicshsapREF_quantitativeMassSpec_Wastling_Tgondii_Infection_timecourse_RSRC&amp;display=detail#5">Dataset
-            details</a></strong>. This data was generated as part of one of the
-        EuPathDB-funded driving biological projects.</li>
-    </ul>
-    <br>
-    <p>We look forward to expanding this database in data content and
-      functionality.&nbsp; We encourage you to explore <strong><a href="http://hostdb.org">HostDB</a></strong>
-      and provide us with your <a href="mailto:help@hostdb.org"><strong>feedback</strong></a>.&nbsp;
-      </p>
-    <p><br>
-    </p>
-    <p><em><strong>Follow</strong></em> <span style="font-weight: bold;"><span
-          style="font-style: italic;">EuPathDB
-          on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
-        style="font-weight: bold; font-style: italic;">,
-        <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="http://www.youtube.com/user/EuPathDB">YouTube</a></span></p>
-  </body>
-          ]]>
-       </attribute>
-</record>
-
+    </record>
 <record>
        <attribute name="headline">EuPathDB Annual Workshop</attribute>
        <attribute name="date">14 January 2014 15:00</attribute>
@@ -1732,7 +1585,93 @@ performance
           ]]>
        </attribute>
     </record>
-
+<record>
+       <attribute name="headline">New Features in TrichDB</attribute>
+       <attribute name="date">25 September 2013 15:00</attribute>
+       <attribute name="tag">trich09_13_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body> <strong>We are pleased to announce new features in TrichDB:</strong><strong></strong><br>
+    <br>
+    <br>
+    <p class="MsoNoSpacing"><u>GBrowse tracks remain open between sessions:</u></p>
+    <p class="MsoNoSpacing"><br>
+      <u><o:p></o:p></u></p>
+    <ul>
+      <li>EuPathDB now stores GBrowse track configurations between sessions for
+        registered users who log into any EuPathDB site. The EuPathDB login is
+        now integrated with the GBrowse login so that your previous session's
+        GBrowse tracks are displayed each time you return to a EuPathDB site. </li>
+    </ul>
+    <br>
+    <p class="MsoNoSpacing"><u>New streamlined look for choosing expression data
+        sets (microarray, RNA-Seq):</u></p>
+    <p class="MsoNoSpacing"><br>
+      <u><o:p></o:p></u></p>
+    <ul>
+      <li>A new interactive table for choosing expression data sets lists
+        datasets, searches for each dataset and the organism that the data is
+        aligned to. Use the table's filter function to limit the data set list
+        based on author name, parasite life stages, etc. Click on an icon under
+        "Choose a search" to collapse the table and display the data set's
+        search page with its parameter list below the collapsed table. </li>
+    </ul>
+    <br>
+    <p class="MsoNoSpacing"><u>On-page help for expression search pages:</u></p>
+    <p class="MsoNoSpacing"><br>
+      <u><o:p></o:p></u></p>
+    <ul>
+      <li>Search parameters appear on the left and are arranged in a sentence
+        that helps you choose parameter values. </li>
+    </ul>
+    <br>
+    <ul>
+      <li>A help graphic and text appear on the right. To help you interpret
+        your parameters choices, the graphic changes to reflect your parameter
+        settings.</li>
+    </ul>
+    <br>
+    <ul>
+      <li>A <a href="http://www.youtube.com/watch?v=jMuVB-ZIdH0"><strong>YouTube
+            tutorial</strong></a> that describes this new feature is also
+        available.</li>
+    </ul>
+    <ul>
+    </ul>
+    <br>
+    <p class="MsoNoSpacing"><u>Improved Strategy Panel for viewing and editing
+        steps:</u></p>
+    <p class="MsoNoSpacing"><br>
+      <u><o:p></o:p></u></p>
+    <ul>
+      <li>The graphic interface of the strategy panel has been updated.<span style="mso-spacerun:yes">&nbsp;
+          </span>View the results of a strategy step by clicking anywhere inside
+        the box representing that step. To edit the parameter values for that
+        step, click on the EDIT icon that appears in the corner of each strategy
+        step box when hovering over the strategy panel.<o:p></o:p></li>
+    </ul>
+    <br>
+    <br>
+    <span style="font-style: italic;"><span style="font-style: italic;"><span style="text-decoration: underline;">Note:</span>
+        Our bimonthly database releases incorporate new data and correct old
+        data when necessary.&nbsp; Changes in annotation and new experimental
+        data may slightly alter your search results by increasing or decreasing
+        the number of hits. When search parameters change with a new release, we
+        invalidate (<span style="color: red;">Ø</span>) the search and ask you
+        to rerun it. When IDs are updated or removed, we map the old IDs to the
+        new ones, remove the old IDs from your Basket, and leave your Favorites
+        page alone.</span></span><br>
+    <span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
+    <span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
+        is now on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+      style="font-weight: bold; font-style: italic;">,
+      <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="www.youtube.com/user/EuPathDB/">YouTube</a></span>
+  </body>
+          ]]>
+       </attribute>
+    </record>
 <record>
        <attribute name="headline">EuPathDB Annual Workshop</attribute>
        <attribute name="date">20 January 2013 15:00</attribute>
@@ -1794,12 +1733,682 @@ performance
           ]]>
        </attribute>
     </record>
+<record>
+       <attribute name="headline">New Features in TrichDB</attribute>
+       <attribute name="date">11 January 2012 15:00</attribute>
+       <attribute name="tag">trich12_11_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body>
+<span style="font-weight: bold;">We are pleased to
+announce new features in TrichDB<br>
+<br>
+</span><span style="font-weight: bold;">New
+functionality:</span><br>
+<br>
+<span style="font-weight: bold;">
+</span>
+<ul>
+<li>The genome browser has been updated.&nbsp; This newer version
+includes several improvements and functionalities.&nbsp; <a
+href="http://www.youtube.com/watch?v=jxA6VMN97Y8"><span
+style="font-weight: bold;">A tutorial </span></a>highlighting some of
+the new features is also available.&nbsp;&nbsp;</li>
+</ul>
+<br>
+<ul>
+<li>A new column analysis tool is now available that allows you to
+generate a word cloud or histogram based on the data in result
+columns.&nbsp; To access this feature, run any search that returns a
+list of results then click on the icon next to the product description
+column name.&nbsp; This will reveal a popup with the option to select
+"Word Cloud".&nbsp; Look for this analysis feature to be activated on
+additional columns in future releases.</li>
+</ul>
+<br>
+<ul>
+<li>Several new tutorials have been generated:</li>
+</ul>
+<ul>
+<ul style="font-weight: bold;">
+<li><a href="http://www.youtube.com/watch?v=jxA6VMN97Y8">The genome
+browser.</a></li>
+</ul>
+<ul>
+<li style="font-weight: bold;"><a href="http://youtu.be/0IP1d9raiMs">Customizing
+restriction sites in the genome browser.</a></li>
+<li style="font-weight: bold;"><a href="http://youtu.be/_It1Nghu-NI">Identifying
+isolates based on geographic location.</a></li>
+<li style="font-weight: bold;"><a href="http://youtu.be/8pP1rhSrjqo">Dealing
+with invalid IDs and search strategies.</a></li>
+<li style="font-weight: bold;"><a href="http://youtu.be/P7ptqGnECJ4">Using
+the orthology phylogenetic profile search.</a></li>
+</ul>
+</ul>
+<br>
+<span style="font-style: italic;"></span><span
+style="font-style: italic;"><span style="font-style: italic;"><span
+style="text-decoration: underline;">Note:</span>
+Our bimonthly database releases incorporate new data and correct old
+data when necessary.&nbsp; Changes in annotation and new experimental
+data
+may slightly alter your search results by increasing or decreasing the
+number of hits. When search parameters change with a new release, we
+invalidate (<span style="color: red;">Ø</span>) the search and ask you
+to rerun it. When IDs are updated or removed, we map the old IDs to the
+new ones, remove the old IDs from your Basket, and leave your Favorites
+page alone.</span></span><br>
+<span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
+<br>
+<span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
+<span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
+is now on <a
+href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+style="font-weight: bold; font-style: italic;"> and <a
+href="http://twitter.com/eupathdb">Twitter</a></span><br>
+<span style="font-weight: bold;"></span>
+</body>
+          ]]>
+       </attribute>
+    </record>
+<record>
+       <attribute name="headline">New Features in TrichDB</attribute>
+       <attribute name="date">03 May 2011 15:00</attribute>
+       <attribute name="tag">trich5_11_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body>
+<span style="font-weight: bold;">New Features in TrichDB</span><br>
+<br>
+<ul>
+<li>You can now search for DNA segments defined by their chromosomal
+location or their nucleotide sequence (DNA motif pattern).&nbsp; This
+new search is available under "Identify Other Data Types"; click on
+"Genomic Segments (DNA motif)" then select either <a
+style="font-weight: bold;"
+href="http://trichdb.org/trichdb/showQuestion.do?questionFullName=SpanQuestions.DynSpansByMotifSearch">DNA
+motif pattern</a> or <a style="font-weight: bold;"
+href="http://trichdb.org/trichdb/showQuestion.do?questionFullName=SpanQuestions.DynSpansBySourceId">Genomic
+Location</a>.</li>
+</ul>
+<div style="text-align: justify;"><br>
+</div>
+<ul style="text-align: justify;">
+<li>We introduced a new combine operation that allows users to
+combine
+steps based on relative locations on the genome.&nbsp; This enables
+you, for
+example, to return all genes that contain a specific DNA motif within
+1000 nucleotides upstream of the annotated start site. Or you could
+return all genes that have a SNP between two strains within 500
+nucleotides of the start of the gene (or return all SNPs that are
+located in this region relative to genes).&nbsp;&nbsp;</li>
+</ul>
+<br>
+<ul style="text-align: justify;">
+<ul>
+<li>Here is an <a style="font-weight: bold;"
+href="http://trichdb.org/trichdb/im.do?s=e892ef6112576c45">example
+search strategy</a> that identifies protein coding genes with an AP-2
+like motif within 1000 bp of their 5' end.</li>
+</ul>
+</ul>
+<br>
+<ul style="text-align: justify;">
+<ul>
+<li>Tutorials highlighting the <a style="font-weight: bold;"
+href="http://eupathdb.org/tutorials/DNA_motif/dna_motif_viewlet_swf.html">DNA
+motif</a> search and the <a style="font-weight: bold;"
+href="http://eupathdb.org/tutorials/colocate/colocate_viewlet_swf.html">locational
+relationship functionality</a> are available.</li>
+</ul>
+</ul>
+<br>
+<div style="text-align: justify;">
+In addition, several new tutorials have been developed:<br>
+<br>
+</div>
+<ul style="text-align: justify;">
+<li><a style="font-weight: bold;"
+href="http://eupathdb.org/tutorials/Registration/register_final_viewlet_swf.html">How
+and why should you register for an account</a><br>
+</li>
+<li style="font-weight: bold;"><a
+href="http://eupathdb.org/tutorials/TextSearch/Text_Search_viewlet_swf.html">How
+to run a text search</a></li>
+<li><a style="font-weight: bold;"
+href="http://eupathdb.org/tutorials/Favorites/favorites_viewlet_swf.html">How
+to use Favorites</a></li>
+<li style="font-weight: bold;"><a
+href="http://eupathdb.org/tutorials/DNA_motif/dna_motif_viewlet_swf.html">How
+to find a DNA motif</a></li>
+<li><a style="font-weight: bold;"
+href="http://eupathdb.org/tutorials/colocate/colocate_viewlet_swf.html">How
+to use genomic co-location</a></li>
+</ul>
+<small><a href="http://twitter.com/eupathdb"><span
+style="font-weight: bold; font-style: italic;">Follow EuPathDB on
+Twitter</span></a></small>
+</body>
+          ]]>
+       </attribute>
+    </record>
+<record>
+       <attribute name="headline">
+         <![CDATA[
+Driving Biological Projects awarded
+         ]]>
+         </attribute>
+       <attribute name="date">20 October 2010 13:00</attribute>
+       <attribute name="tag">dbp_award_10202010</attribute>
+       <attribute name="category">dbp</attribute>
+       <attribute name="item">
+         <![CDATA[
+<b>We are pleased to report that the following Driving Biological Projects (DBPs) have been awarded in connection with the EuPathDB Bioinformatics Resource Center (BRC):</b><br><br>
+<ul>
+<li><b>The Toxoplasma oocyst transcriptome and proteome</b><br>
+   John Boothroyd, Matt Bogyo (Stanford) & Pat Conrad (UC Davis)<br>
+   This project is expected to yield expression data from an important, but inaccessible, life cycle stage (1 yr). <br><br></li>
+<li><b>A comprehensive catalog of the T. gondii & N. caninum parasite & infected host cell transcriptome & proteome</b><br>
+   Brian Gregory (Univ. Pennsylvania) & Jonathan Wastling (Univ. Liverpool)<br>
+   This project will produce an immense volume of sequence data, driving database improvements for handling 'next-gen' sequencing, non-coding RNAs, and interrogating host & pathogen datasets in parallel (2 yr).<br><br></li>
+
+<li><b>Dissection of Plasmodium falciparum genetic crosses by mass spectrometry-based metabolite QTL</b><br>
+   Manuel Llin&aacute;s (Princeton) & Michael Ferdig (Notre Dame)<br>
+   This project is expected to improve handling of genetic mapping data, incorporation of metabolomics results (integrated with pathway maps), and linking of specific genetic loci with metabolite abundance (2 yr).<br><br></li>
+</ul>
+
+A biennial competition for DBP awards is mandated by the BRC contract from NIH/NIAID, and supported by a total of $1.2M in total costs per award cycle.  The goal of this program is to produce high value genomic-scale datasets for the EuPathDB user community, and drive the further development of bioinformatics resources for data analysis and mining.<br><br>
+
+Letters of intent (LOI) were solicited in February (see Feb 4 News item), and reviewed by the EuPathDB Scientific Working Group (SWG; see News, March 31).  12 full applications were solicited from among the ~50 LOIs received, and awards were based on further scientific review by the SWG, and in consultation with NIAID program staff.  Cost negotiations and 'in kind' contributions from other sources made it possible to support 3 applications, from 6 investigators (in some cases, more than one LOI was merged into a single award).<br><br>
+
+We received far more high quality proposals than could be supported, testifying to the need for such mechanisms for data production bioinformatics analysis.  The EuPathDB team looks forward to working with members of our user community who are seeking funding for such projects from external sources.  Inquiries, including requests for support letters, should be directed to the EuPathDB staff (click on the 'Contact Us' link).<br><br>
+
+<b>A new solicitation for DBPs is anticipated in 2011, and will be announced on the EuPathDB web site.</b>
+          ]]>
+       </attribute>
+</record>
+
+<record>
+       <attribute name="headline">New Release of TrichDB</attribute>
+       <attribute name="date">15 July 2010 15:00</attribute>
+       <attribute name="tag">trich07_15_10_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<b>We are pleased to announce a new release of TrichDB. </b> While this release does not include new data, there are some new features and improvements.<br><br>
+<ul>
+<li>The Basket and Favorites functionality has been extended to include all record classes.</li>
+<li>Queries have been optimized to increase site performance.</li>
+<li>A number of bugs have been fixed.</li>
+</ul>
+
+          ]]>
+       </attribute>
+</record>
+
+
+ <record>
+       <attribute name="headline">
+         <![CDATA[
+TrichDB 1.2 released
+         ]]>
+       </attribute>
+       <attribute name="date">13 May 2010 15:00</attribute>
+       <attribute name="tag">trich5_10_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">           
+         <![CDATA[
+<body>
+<span style="font-weight: bold;">We are pleased to
+announce the release of TrichDB 1.2<br>
+<br>
+<br>
+This release of TrichDB contains the following new datasets and
+features:</span><span style="font-weight: bold;">&nbsp;<br>
+<br>
+New Data:</span><br>
+<br>
+<div style="margin-left: 40px;"><span
+ style="font-style: italic;">T. vaginalis</span>
+proteomic data&nbsp;graciously provided
+pre-publication by the Patricia Johnson laboratory. &nbsp;Searching
+this data can be performed via the <a
+ href="http://trichdb.org/trichdb/showQuestion.do?questionFullName=GeneQuestions.GenesByMassSpec">Mass
+spec. evidence search page</a> in TrichDB.</div>
+<span style="font-weight: bold;"><br>
+Features introduced this year:<br>
+</span>
+<ol>
+  <li><span style="font-weight: bold; font-style: italic;">"My
+Basket"</span> allows one to cherry pick genes and add them to
+the basket for subsequent conversion into a step in a strategy.
+&nbsp;The basket is accessible from the gray menu bar and the
+number of items in your basket is indicated.</li>
+  <br>
+  <li><span style="font-weight: bold; font-style: italic;">Weighted
+searches</span>&nbsp;allows you to assign an arbitrary weight
+to the searches (steps) in
+your search strategy making it possible for you to view a ranked list
+of your results. &nbsp;</li>
+  <div style="margin-left: 40px;">Here is an example of
+the
+same strategy looking for putative secretory enzymes. &nbsp;Notice
+that you
+have a larger number of results with weighting and those can be sorted
+based on the sum of the weights, giving a ranked list of results.<br>
+  <br>
+  <a href="http://trichdb.org/trichdb/im.do?s=943679804a1cf881">Putative
+secretory enzyme (unweighted)</a><br>
+  <br>
+  <a href="http://trichdb.org/trichdb/im.do?s=abc006f322db8e95">Putative
+  </a><a
+ href="http://trichdb.org/trichdb/im.do?s=abc006f322db8e95">secretory
+enzyme</a><a
+ href="http://trichdb.org/trichdb/im.do?s=abc006f322db8e95">
+(Weighted)</a></div>
+  <br>
+  <li><span style="font-weight: bold; font-style: italic;">"My
+Favorites"</span> (new in this release) allows you to bookmark
+and organize genes you
+access frequently. &nbsp;A tutorial on how to use this feature is
+available <a
+ href="http://eupathdb.org/tutorials/Favorites/favorites_viewlet_swf.html">here</a>.&nbsp;</li>
+</ol>
+<span style="font-weight: bold;"></span><span
+ style="font-weight: bold;"></span><span
+ style="font-weight: bold;">Feature evaluators still needed:<br>
+<br>
+</span>
+<div style="margin-left: 40px;">We welcome you to *sign
+up* to be an early evaluator of new features on the EuPathDB sites.
+This will be an opportunity for you to help us refine and improve
+features early in the development process.&nbsp;In fact, the "My
+Favorites" feature was the subject of our first survey and feature
+evaluator's comments and suggestions contributed to enhancing this
+feature. <br>
+<br>
+Signing on is easy and will
+require minimal effort on your part in the form of answering questions
+or rendering your opinion. &nbsp;<br>
+<br>
+To become a&nbsp;a feature evaluator, <a
+ href="https://mail.pcbi.upenn.edu/mailman/listinfo/eupathdb_testers">click
+here</a>.</div>
+<br>
+<br>
+<span style="font-weight: bold;"></span>
+</body>
+          ]]>
+       </attribute>
+    </record>
+<record>
+       <attribute name="headline">EuPathDB Scientific Working Group</attribute>
+       <attribute name="date">31 March 2010 15:00</attribute>
+       <attribute name="tag">swg_announce_2010</attribute>
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+EuPathDB is pleased to announce the members of the scientific working group
+(SWG). The SWG provides EuPathDB with scientific oversight and 
+guidance.  Members of the SWG also review the driving biological projects initiative.<br><br>
+
+<table>
+<tr>
+<td><a href="http://www.fnih.org/about">Michael Gottlieb</a>, Chair<br>
+Foundation for National Institutes of Health (FNIH)<br>
+Broad expertise in parasitology, large integrative projects (chair)<br>
+</td>
+<td>
+<a href="http://www.sanger.ac.uk/research/faculty/mberriman/">Matt Berriman</a><br>
+Wellcome Trust Sanger Institute<br>
+Pathogen genomics & functional annotation<br>
+</td>
+</tr><tr>
+<td>
+<a href="http://med.stanford.edu/profiles/John_Boothroyd/">John Boothroyd</a><br>
+Stanford University<br>
+Toxoplasma biology & host-pathogen interactions<br>
+</td>
+<td>
+<a href="http://www.vcu.edu/lifesci/research/res_fac_int_buck.html">Greg Buck</a><br>
+Virginia Commonwealth University<br>
+Pathogenomics of apicomplexan and kinetoplastid parasites<br>
+</td>
+</tr><tr>
+<td>
+<a href="http://www3.niaid.nih.gov/labs/aboutlabs/lmiv/default.htm">Patrick Duffy</a><br>
+National Institutes of Health (NIAID)<br>
+Laboratory & clinical aspects of malaria biology<br>
+</td>
+<td>
+<a href="http://www.cgm.northwestern.edu/">Pascale Gaudet</a><br>
+Northwestern University<br>
+Biocuration, ontologies, DIctyostelium<br>
+</td>
+</tr><tr>
+<td>
+<a href="http://www.paras.uzh.ch/research/microbiology.html">Adrian Hehl</a><br>
+University of  Zurich<br>
+Cellular and molecular biology of Giardia<br>
+</td>
+<td>
+<a href="http://www.botany.ubc.ca/keeling/">Patrick Keeling</a><br>
+University of British Columbia<br>
+Comparative genomics<br>
+</td>
+</tr><tr>
+<td>
+<a href="http://www.medicine.virginia.edu/clinical/departments/pathology/faculty/petri-page">Bill Petri</a><br>
+University of Virginia<br>
+Laboratory & clinical aspects of Entamoeba and diarrheal diseases<br>
+</td>
+<td>
+<a href="http://www.oicr.on.ca/Research/stein.htm">Lincoln Stein</a><br>
+Ontario Cancer Center<br>
+Bioinformatics tools & analysis<br>
+</td>
+</tr><tr>
+<td>
+<a href="http://www.genome.gov/26525388">Lu Wang</a><br>
+National Institutes of Health (NHGRI)<br>
+Large-scale sequencing<br>
+</td>
+<td>
+<a href="http://www.liv.ac.uk/infection-and-global-health/staff/jonathan-wastling/">Jonathan Wastling</a><br>
+University of Liverpool<br>
+Proteomics of apicomplexan parasites<br>
+</td>
+</tr><tr>
+<td>
+<a href="http://www.einstein.yu.edu/home/faculty/profile.asp?id=4218">Louis Weiss</a><br>
+Albert Einstein College of Medicine<br>
+Microsporidia, Toxoplasma, and clinical microbiology<br>
+</td>
+<td>
+<a href="http://www.hsph.harvard.edu/faculty/dyann-wirth/">Dyann Wirth</a><br>
+Harvard School of Public Health<br>
+Plasmodium population biology, drug discovery<br>
+</td></table>
+          ]]>
+       </attribute>
+    </record>
+
+<record>
+       <attribute name="headline">TrichDB new features</attribute>
+       <attribute name="date">15 March 2010 15:00</attribute>
+       <attribute name="tag">trich_newFeatures_0310</attribute>
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+
+<span style="font-weight: bold;">We are pleased to 
+announce new features in TrichDB 1.1<br><br> 
+</span><span style="font-weight: bold;">New Features:</span><br><br>
+<ul>
+ <li>The gray tool bar at the top of all TrichDB web pages has 
+been enhanced to include a link to the "My Basket" feature including an 
+indication of how may items are in the basket.</li> 
+ <li>The genome browser has been updated to version 1.7, which 
+offers enhanced features and stability.&nbsp;</li> 
+ <li>Weighted searches are now available. &nbsp;This feature 
+allows you to assign an arbitrary weight to the searches (steps) in 
+your search strategy making it possible for you to view a ranked list 
+of your results.&nbsp;</li> 
+</ul> 
+<br>
+<span style="font-weight: bold;">***<a href="https://mail.pcbi.upenn.edu/mailman/listinfo/eupathdb_testers">Sign up to be a EuPathDB feature evaluator:</a
+>***<br><br>
+</span> 
+<div style="margin-left: 20px;">
+We welcome you to <a href="https://mail.pcbi.upenn.edu/mailman/listinfo/eupathdb_testers">*sign up* to be an early evaluator</a>
+ of new features on the EuPathDB sites.  This will be an opportunity for you to help us refine and improve features early in the development process.  
+Signing up is easy.  Evaluating will require minimal effort on your part, 
+typically in the form of answering specific questions, using the feature(s) and rendering your opinion.
+</div>
 
 
 
+          ]]>
+       </attribute>
+</record>
 
 
+<record>
+       <attribute name="headline">"My Basket", A New Feature in TrichDB</attribute>
+       <attribute name="date">22 December 2009 15:00</attribute>
+       <attribute name="tag">trich1209news</attribute>
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+We are pleased to announce the implementation&nbsp;a new tool in
+TrichDB. &nbsp;The "My
+Basket" tool allows you to select various genes from
+your searches and add them to your basket (much like a shopping cart).
+&nbsp;To add genes to your basket simply click on the basket icon
+in a
+result list or on a gene page. &nbsp;A green basket icon indicates
+that a
+genes is already in your basket. &nbsp;You can easily convert your
+basket to
+a strategy to save it and perform additional searches or combine it
+with one of your already existing strategies.
+&nbsp;Please note that using the basket feature requires you to
+login first.
+          ]]>
+       </attribute>
+    </record>
+<record>
+       <attribute name="headline">
+         <![CDATA[
+            <b>Working with Parasite Database Resources Workshop (April 17-21, 2010)</b>
+         ]]>
+       </attribute>
+       <attribute name="date">
+         20 November 2009 15:00
+       </attribute>
+       <attribute name="tag">
+         HinxtonWorkShop
+       </attribute>
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
+         <![CDATA[<big><br>
+We are pleased to announce a workshop taught as part of a collaboration between the Pathogen Genomics Group 
+(Wellcome Trust Sanger Institute, UK), the Eukaryotic Pathogen Bioinformatics Resource Center 
+(University of Georgia and University of Pennsylvania, US), and the Seattle Biomedical Research Institute (US). 
+This residential workshop aims to provide experimental biologists with hands-on experience in 
+genomic-scale data analysis, including genome browsers and comparison tools, methods for 
+data integration, and resources for sophisticated data mining.
+Many examples and exercises will be drawn from the kinetoplastida, including <i>Leishmania spp.</i>, 
+<i>Trypanosoma brucei</i>, and <i>Trypanosoma cruzi</i>, although applicants working on other protozoan 
+parasites will also benefit.<br><br>
 
+<span style="font-weight: bold;"><span
+ style="color: red;">!!!!!</span>Application Deadline
+is December 18th 2009<span style="color: red;">!!!!!!</span></span>
+<br><br>
+
+<b>For registration and additional information (including scholarships) please click <a href="http://www.wellcome.ac.uk/Education-resources/Courses-and-conferences/Advanced-Courses/Courses/WTX057366.htm">here</a> (Note: you will be diverted to and external site).
+</b><br><br>
+As usual, if you have any questions please send us an <a href="mailto:help@eupathdb.org">Email</a>. 
+
+          ]]>
+       </attribute>
+    </record>
+
+<record>
+       <attribute name="headline"><![CDATA[
+         New Features in TrichDB
+         ]]>
+       </attribute>
+       <attribute name="date">25 September 2009 15:00</attribute>
+       <attribute name="tag">Trich909news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[<b>We are pleased to
+announce the implementation of new features in TrichDB:</b><br>
+<ul>
+  <li>Identify Genes based on Orthology Phylogenetic
+Profile:&nbsp; For example you may ask for genes in <span
+ style="font-style: italic;">T. vaginalis&nbsp;</span>that
+do not have orthologs in mammals.&nbsp; Click here to explore this
+feature.</li>
+  <li>A table of paralogs (if any) is now available on gene pages
+allowing you to view expanded gene families -- See <a
+ href="http://trichdb.org/trichdb/app/record/gene/TVAG_386080">TVAG_386080</a>
+for example (scroll down to the Orthologs and Paralogs Table).</li>
+  <li>Now after you perform a BlastN against genomic sequence you
+can link from the blast output to the correct coordinates in the
+genome browser.&nbsp; This allows you to explore annotation and
+other functional data in relation to your BLAST hits.</li>
+  <li>The type ahead feature has been implemented for GO term, EC
+number and Interpro domain searches.</li>
+  <li>You can now edit or delete your user comments.</li>
+  <li>You can now modify your user profile, change your password
+or your email address.</li>
+</ul>
+<br>
+We are still collecting data sets for an upcoming release of
+TrichDB.&nbsp; This release will include a large expansion in data
+content and we look forward to receiving more data sets from you.<br>
+<br>
+Also, check out the new version of <a href="http://eupathdb.org">EuPathDB</a>.&nbsp;&nbsp;
+EuPathDB permits searches across all organism-specific sites and now
+includes the strategy system.&nbsp;Build multi-step searches using
+a graphical interface that is feature-rich. You can save your
+strategies, modify any step in a strategy or even share your strategy
+with other scientists.<br>
+<br>
+<br>
+Sincerely,<br>
+<br>
+The EuPathDB team.
+
+]]>
+       </attribute>
+    </record>
+<record>
+       <attribute name="headline"><![CDATA[
+         TrichDB 1.1 released
+         ]]>
+       </attribute>
+       <attribute name="date">14 July 2009 15:00</attribute>
+       <attribute name="tag">release11</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+We are pleased to announce the release of TrichDB 1.1
+<p>
+This release features a new user interface with added functionality and a graphical strategy system for building complex searches.
+<p>
+The new user interface contains many new features including:
+<ul>
+<li>  A new search strategy interface that enables users to more easily construct complex searches.
+<li>  'User Comments' have been updated to enable submission of supporting evidence including pubmed identifiers and images (or other files). Comments may be added to any gene or sequence page, enhancing available annotation. 
+<li>  Files can now be uploaded and provided to the community via the file repository section.
+</ul>
+<p>
+The previous version of TrichDB may still be accessed <a href='http://old.trichdb.org'>here</a>.
+]]>
+       </attribute>
+    </record>
+ <record>
+       <attribute name="headline">
+         <![CDATA[
+         EuPathDB to take on the kinetoplastida
+         ]]>
+       </attribute>
+       <attribute name="date">
+       1 December 2008 15:00
+       </attribute>
+       <attribute name="tag">
+       1December2008GatesFoundation
+       </attribute>
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+
+We are pleased to report
+an award from the <a href="http://www.gatesfoundation.org">Bill & Melinda Gates Foundation</a> in support of a
+TrypDB component of the <a href="http://eupathdb.org/">EuPathDB</a> family of databases,
+encompassing <i>Leishmania</i> species, <i>Trypanosoma brucei</i>, and
+<i>Trypanosoma cruzi</i>.  A coordinated award from the<a href="http://www.wellcome.ac.uk/"> Wellcome Trust</a>
+will permit enhanced annotation of kinetoplastid parasites. 
+These projects represent a collaborative effort between the
+GeneDB team (at the Wellcome Trust Sanger Institute), colleagues
+at the <a href="http://www.sbri.org/">Seattle Biomedical Research Institute</a>, and the EuPathDB
+team -- an NIAID-supported Bioinformatics Resource Center. Look
+for the first release of TrypDB in Jan 2009!
+
+ ]]>
+       </attribute>
+    </record>
+
+
+   <record>
+       <attribute name="headline">
+         <![CDATA[
+         GiardiaDB and TrichDB published in Nucleic Acids Research
+         ]]>
+       </attribute>
+       <attribute name="date">1 October 2008 00:00</attribute>
+       <attribute name="tag">1Oct2008NAR</attribute>
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+
+We are pleased to announce the publication of the database paper
+introducing both GiardiaDB and TrichDB in the database issue of Nucleic
+Acid Research.
+<p>
+<a href="http://nar.oxfordjournals.org/cgi/content/full/gkn631">GiardiaDB and TrichDB: integrated genomic resources for the eukaryotic
+protist pathogens Giardia lamblia and Trichomonas vaginalis.</a> Nucleic
+Acids Research Advance Access published on September 29, 2008, DOI
+10.1093/nar/gkn631.
+
+          ]]>
+       </attribute>
+    </record>
+
+   <record>
+       <attribute name="headline"><![CDATA[TrichDB 1.0 is released]]></attribute>
+       <attribute name="date">01 October 2007 00:00</attribute>
+       <attribute name="tag">1October2007Release1.0</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+
+         <![CDATA[
+
+We are pleased to announce the release of TrichDB  (<a href="http://trichdb.org/">http://trichdb.org</a> )  a new Web resource for interrogating the Trichomonas vaginalis genome, which was sequenced and annotated at The Institute for Genomics Research and published in Science magazine in early 2007.
+<br><br>
+TrichDB is modeled after the ApiDB family of apicomplexan genome database query sites (<a href="http://apidb.org">http://www.apidb.org</a>).  Like those sites, TrichDB offers researchers a plethora of  tools for genomic data mining.  In addition to BLAST and pattern/motif similarity searches, users can identify T. vaginalis genes by genomic position; common name or keyword; gene attributes such as gene type and exon number; transcript expression evidence (ESTs including prepublication ESTs kindly provided by Dr. Petrus Tang and collaborators); physical characteristics of predicted proteins such as molecular weight and secondary structure;  predicted function from Gene Ontology and EC enzyme number annotation;  and cellular location.  Along with these tools for gene analysis there are also identification tools for ESTs and ORFs. A special feature of TrichDB is the ability to separately query repeat genes, which constitute a large fraction of the T. vaginalis genome.
+<br><br>
+TrichDB couples a comprehensive set of querying tools with extensively hyperlinked and highly-configurable displays of results. Numerous evidence types and data associated with a gene, including gene context, predicted protein, EST and BLAST alignments, and %GC content, can be displayed in a single graphic.  Users can choose just which elements to show in a display, allowing them to generate purpose-built images for presentation.
+<br><br>
+Finally, TrichDB is also a repository for T. vaginalis genome statistics, data and methods source links, links to other Trichmonas community web sites,  and daily updates of Trichomonas publications and genes deposited in Pubmed/Entrez.  New users can learn to use the TrichDB/ApiDB sites via a set of online tutorials linked from the TrichDB front page.
+<br><br>
+We hope you will take time to explore TrichDB. Please use the link found at the bottom of every TrichDB page to send us feedback  (<a href="http://trichdb.org/trichdb/contact.do" class="new-window" data-name="contact_us">Contact Us!</a>).  We look forward to hearing from you!
+<br><br>
+Best regards,
+<br>
+The TrichDB Team
+
+          ]]>
+       </attribute>
+    </record>
 
 
 </xmlAnswer>

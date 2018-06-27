@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <xmlAnswer>
 
 <!--
@@ -10,28 +11,29 @@
        <attribute name="item">
            
          <![CDATA[
+
           ]]>
        </attribute>
     </record>
 --> 
 
 <record>
-  <attribute name="headline">PiroplasmaDB 38 Released</attribute>
+  <attribute name="headline">AmoebaDB 38 Released</attribute>
   <attribute name="date">02 Jul 2018 13:00</attribute>
-  <attribute name="tag">PiroplasmaDB07_18_release</attribute>
+  <attribute name="tag">AmoebaDB11_18_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of PiroplasmaDB 38</strong></p>
+    <p><strong>We are pleased to announce the release of AmoebaDB 38</strong></p>
       
       <section>
-      <h3><b>No new data in PiroplasmaDB 38</b></h3>
+      <h3><b>No new data in AmoebaDB 38</b></h3>
       </section>
       
       <section>
-      <h3><b>No new features in PiroplasmaDB 38</b></h3>
+      <h3><b>No new features in this release</b></h3>
       </section>
-            
+      
       <section>
          <aside>
            Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
@@ -48,25 +50,31 @@
 
 
 <record>
-  <attribute name="headline">PiroplasmaDB 37 Released</attribute>
+  <attribute name="headline">AmoebaDB 37 Released</attribute>
   <attribute name="date">25 Apr 2018 13:00</attribute>
-  <attribute name="tag">piroplasmadb04_18_release</attribute>
+  <attribute name="tag">amoebadb04_18_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of PiroplasmaDB 37</strong></p>
+    <p><strong>We are pleased to announce the release of AmoebaDB 37</strong></p>
       
       <section>
-      <h3><b>New data in PiroplasmaDB 37</b></h3>
-      <div style="margin-left: 3em;"> 
-      <h4>Genome sequence and annotation</h4>
+      <h3><b>New data in AmoebaDB 37</b></h3>
+      <div style="margin-left: 3em;">
+      
+      <h4>Transcriptomics data</h4>
            <ul>
-             <li><a href="http://piroplasmadb.org/piro/app/record/dataset/DS_1d1738f4e1"><i>Babesia ovata</i> strain Miyake</a> &ndash; 
-                 This genome appears for the first time in PiroplasmaDB and was downloaded from 
-                 <a href="https://www.ncbi.nlm.nih.gov/bioproject/PRJDB5725" target="_blank">NCBI Bioproject PRJDB5725</a>. 
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/29078748" target="_blank">Yamagishi et al.</a>
+             <li><a href="http://amoebadb.org/amoeba/app/record/dataset/DS_5deaeee3cd">Trophozoite transcriptome of <i>A. castellani</i></a> &ndash; 
+             Transcriptome for <i>Acanthamoeba castellanii</i> strain Neff determined by Illumina sequencing of axenic culture collected after 48 hours.  
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/29559848" target="_blank">Shabardina et al.</a>, 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/29284403" target="_blank">Wojciech et al.</a><br>
              </li>
-           </ul> 
+             <li><a href="http://amoebadb.org/amoeba/app/record/dataset/DS_4cee5cc717">Trophozoite transcriptome of <i>E. histolytica</i></a> &ndash; 
+             Transcriptome for <i>Entamoeba histolytica</i> strain HM-1:IMSS determined by Illumina sequencing of axenic culture collected after 48 hours.  
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/29559848" target="_blank">Shabardina et al.</a>, 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/29284403" target="_blank">Wojciech et al.</a><br>
+             </li>
+           </ul>   
       </div>
       </section>
       
@@ -98,9 +106,8 @@
           </ul>  
       </div>
       </section>
-            
+      
       <section>
-        
          <aside>
            Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
            Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
@@ -115,27 +122,31 @@
 
 
 <record>
-  <attribute name="headline">PiroplasmaDB 36 Released</attribute>
+  <attribute name="headline">AmoebaDB 36 Released</attribute>
   <attribute name="date">19 Feb 2018 13:00</attribute>
-  <attribute name="tag">piroplasmadb02_18_release</attribute>
+  <attribute name="tag">amoebadb02_18_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of PiroplasmaDB 36</strong></p>
+    <p><strong>We are pleased to announce the release of AmoebaDB 36</strong></p>
       
       <section>
-      <h3><b>New data in this release</b></h3>
-      <div style="margin-left: 3em;"> 
-      <h4>Genome sequence and annotation</h4>
-           <ul>
-             <li><a href="http://piroplasmadb.org/piro/app/record/dataset/DS_4c30ca0b3a"><i> Babesia microti</i> strain RI</a> &ndash; 
-                 This genome was updated to the 
-                 <a href="https://www.ncbi.nlm.nih.gov/assembly/GCF_000691945.2" target="_blank">current Genbank version</a>.  
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/22833609" target="_blank">Cornillot et al.</a>
-             </li>
-           </ul> 
-      </div>
-      </section>
+      <h3><b>Introducing ClinEpiDB, a new member of the EuPathDB family of databases:</b></h3>
+      <div style="margin-left: 3em;">
+      
+          <ul>
+            <li>We are excited to announce the launch of 
+                <a href="http://www.clinepidb.org/" target="_blank">ClinEpiDB</a>, 
+                which hosts clinical and epidemiological data for the infectious disease research community. The current release contains data from the 
+                <a href="https://www.niaid.nih.gov/research/east-africa-icemr" target="_blank">PRISM</a> 
+                study on malaria in Uganda. Check out this 
+                <a href="https://www.youtube.com/watch?v=535PcFrBH8M&feature=youtu.be" target="_blank">video</a> 
+                to learn more about our newest EuPathDB resource!
+                </li>
+          </ul>
+       </div>
+      </section>    
+      
       
       <section>
       <h3><b>New features in this release</b></h3>
@@ -195,28 +206,13 @@
                 <a href="/a/images/ignoreStep.jpg">Ignore Step help document</a>.
                 </li>
           </ul>
+          
         </div>
       </section>
       
-      <section>
-      <h3><b>Introducing ClinEpiDB, a new member of the EuPathDB family of databases:</b></h3>
-      <div style="margin-left: 3em;">
       
-          <ul>
-            <li>We are excited to announce the launch of 
-                <a href="http://www.clinepidb.org/" target="_blank">ClinEpiDB</a>, 
-                which hosts clinical and epidemiological data for the infectious disease research community. The current release contains data from the 
-                <a href="https://www.niaid.nih.gov/research/east-africa-icemr" target="_blank">PRISM</a> 
-                study on malaria in Uganda. Check out this 
-                <a href="https://www.youtube.com/watch?v=535PcFrBH8M&feature=youtu.be" target="_blank">video</a> 
-                to learn more about our newest EuPathDB resource!
-                </li>
-          </ul>
-       </div>
-      </section>  
-            
       <section>
-        
+        <h3><b>No New data in this release</b></h3> 
          <aside>
            Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
            Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
@@ -230,15 +226,14 @@
 </record>
 
 
-
 <record>
-  <attribute name="headline">PiroplasmaDB 35 Released</attribute>
+  <attribute name="headline">AmoebaDB 35 Released</attribute>
   <attribute name="date">01 Dec 2017 13:00</attribute>
-  <attribute name="tag">piroplasmadb12_17_release</attribute>
+  <attribute name="tag">amoebadb12_17_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of PiroplasmaDB 35</strong></p>
+    <p><strong>We are pleased to announce the release of AmoebaDB 35</strong></p>
       
       <section>
       <h3><b>New features in this release</b></h3>
@@ -248,7 +243,7 @@
           GO Slim terms are now indicated in EuPathDB sites in the following ways:<br>
           <ul>
             <li>The search,
-                <a href="http://piroplasmadb.org/piro/showQuestion.do?questionFullName=GeneQuestions.GenesByGoTerm">Identify Genes based on GO Terms</a>, 
+                <a href="http://amoebadb.org/amoeba/showQuestion.do?questionFullName=GeneQuestions.GenesByGoTerm">Identify Genes based on GO Terms</a>, 
                 now includes an GO Subset option for limiting the search to only GO Slim generic terms.
                 </li>
             <li>GO Terms tables on gene pages now contain a 'GO Subset' column which identifies GO Slim generic terms.
@@ -257,12 +252,11 @@
                 the background and the gene list of interest in the Fisher's exact test that determines enrichment. 
                 </li>
           </ul>
-       </div>
        
        <h4>Revigo and Word Cloud access from GO Enrichment results</h4>
        <div style="margin-left: 3em;">
        
-          PiroplasmaDB offers a link between our GO Enrichment results and a Word Cloud visualization as well as 
+          AmoebaDB offers a link between our GO Enrichment results and a Word Cloud visualization as well as 
           Revigo, a tool that provides GO term summarization and visualization. The links to Revigo and the 
           Word Cloud now appear as buttons that are right justified above the GO enrichment result table. 
        
@@ -284,16 +278,14 @@
   </attribute>
 </record>
 
-
-
 <record>
-  <attribute name="headline">PiroplasmaDB 34 Released</attribute>
+  <attribute name="headline">AmoebaDB 34 Released</attribute>
   <attribute name="date">07 Sep 2017 13:00</attribute>
-  <attribute name="tag">piroplasmadb08_17_release</attribute>
+  <attribute name="tag">amoebadb08_17_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of PiroplasmaDB 34</strong></p>
+    <p><strong>We are pleased to announce the release of AmoebaDB 34</strong></p>
       
       <section>
       <h3><b>New features in this release</b></h3>
@@ -303,12 +295,13 @@
           EuPathDB now offers a direct link from gene ontology (GO) enrichment results to 
           <a href="http://revigo.irb.hr/">REVIGO</a>, a tool that provides GO term summarization and visualization.  
           To access this feature first run a GO term enrichment using the 'Analyze Results' option from any gene search result. Then click on 
-          the 'Start Revigo Analysis' link (<a href="/piroplasmadb/images/Revigo.png">upper right hand side of enrichment results</a>) 
+          the 'Start Revigo Analysis' link (<a href="/a/images/Revigo.png">upper right hand side of enrichment results</a>) 
           to populate the REVIGO submission page with your GO enrichment results from EuPathDB.  Follow instructions 
           on the REVIGO page to complete your analysis.
           
       </div>
       </section>
+      
       
       <section>
         <h3><b>No New data in this release</b></h3> 
@@ -331,6 +324,9 @@
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
+    
+    
+    
     <section>
         
         <div style="margin-left: 3em;">
@@ -340,12 +336,12 @@
         This may underrepresent abundance for genes that are duplicated, such as paralogs. Non-unique reads are only available 
         as GBrowse subtracks. To view non-unique reads from a gene page, open the Coverage section and click 'View in 
         genome browser' above the coverage plots. 
-        (<a href="/piroplasmadb/images/FromCoverageNonuniqueReads.pdf">Tutorial document about viewing non-unique reads from a gene page</a>)
+        (<a href="/a/images/FromCoverageNonuniqueReads.pdf">Tutorial document about viewing non-unique reads from a gene page</a>)
         
         <br><br>
         To view non-unique reads without navigating to the gene page, open GBrowse from the home page.  Use the Select Tracks 
         tab to turn on the data track of interest and the subtracks configuration tool to turn on the non-unique reads subtracks. 
-        (<a href="/piroplasmadb/images/FromHomeNonuniqueReads.pdf">Tutorial document for viewing non-unique reads from the home page</a>)
+        (<a href="/a/images/FromHomeNonuniqueReads.pdf">Tutorial document for viewing non-unique reads from the home page</a>)
         
         <br><br>
         In release 34, gene pages contain a message about non-unique reads, an accurate description of the y-axis and links to 
@@ -361,26 +357,17 @@
 </record>
 
 <record>
-  <attribute name="headline">PiroplasmaDB 33 Released</attribute>
+  <attribute name="headline">AmoebaDB 33 Released</attribute>
   <attribute name="date">30 Jun 2017 13:00</attribute>
-  <attribute name="tag">piroplasmadb06_17_release</attribute>
+  <attribute name="tag">amoebadb06_17_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of PiroplasmaDB 33</strong></p>
+    <p><strong>We are pleased to announce the release of AmoebaDB 33</strong></p>
       
       <section>
-        <h3><b>New Data in Release 33</b></h3>
+        <h3>No New data in this release</h3>
         
-        <h4>Whole genome sequencing of isolates:</h4>
-        Data were used to determine single nucleotide polymorphisms.
-         <ul>  
-           <li> <a href="http://piroplasmadb.org/piro/app/record/dataset/DS_66e2695658">Aligned Genomic Sequence Reads- 42 global isolates from human, tick and rodent</a> &mdash; 
-            Whole genome re-sequencing of <i>B. microti</i> isolates from human, rodent and tick. Data were used to determine SNPs against the <i>B. microti</i> RI reference.
-            <a href="http://www.ncbi.nlm.nih.gov/pubmed/27572973">Lemieux et al.</a><br>
-           </li>
-         </ul>
-  
         <h3><b>New features in this release</b></h3> 
 
            <ul>
@@ -400,8 +387,7 @@
                 gray tool bar under the header. 
             </li>
            </ul>
-  
-  
+         
          <aside>
            Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
            Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
@@ -416,33 +402,32 @@
 
 
 <record>
-  <attribute name="headline">PiroplasmaDB 32 Released</attribute>
+  <attribute name="headline">AmoebaDB 32 Released</attribute>
   <attribute name="date">19 Apr 2017 13:00</attribute>
-  <attribute name="tag">piroplasmadb04_17_release</attribute>
+  <attribute name="tag">amoebadb04_19_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of PiroplasmaDB 32</strong></p>
+    <p><strong>We are pleased to announce the release of AmoebaDB 32</strong></p>
       
-      <section>
-        <h3>New Data in Release 32</h3>
+       <section>
+        <h3>New Data in Release 31</h3>
         
-        <h4>Annotated Genomes</h4>
-         <ul>  
-           <li> <a href="http://piroplasmadb.org/piro/app/record/dataset/DS_4c30ca0b3a"><i>Babesia microti </i> R1</a> &mdash; 
-            This genome was reannotated.  
-            <a href="http://www.ncbi.nlm.nih.gov/bioproject?term=PRJEA72411">Bioproject home page at NCBI/GenBank</a>.
-            <a href="https://www.ncbi.nlm.nih.gov/pubmed/27752055">Silva et al.</a><br>
-           </li>
-      
-      <section>
+        <h4>Proteomics</h4>
+
+            <a href="http://amoebadb.org/amoeba/app/record/dataset/DS_becbb667e4">Excretory-secretory (ES) proteome</a> &mdash; 
+            Phagosome Proteome. 
+            <a href="https://www.ncbi.nlm.nih.gov/pubmed/27895543">Ujang et al.</a>.<br>
+             
          <aside>
            Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
            Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
            When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
            When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
-         </aside>
+         </aside>    
       </section>
+      
+     
 
     ]]>
   </attribute>
@@ -450,13 +435,13 @@
 
 
 <record>
-  <attribute name="headline">PiroplasmaDB 31 Released</attribute>
+  <attribute name="headline">AmoebaDB 31 Released</attribute>
   <attribute name="date">08 Mar 2017 13:00</attribute>
-  <attribute name="tag">piroplasmadb03_17_release</attribute>
+  <attribute name="tag">amoebadb03_17_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of PiroplasmaDB 31</strong></p>
+    <p><strong>We are pleased to announce the release of AmoebaDB 31</strong></p>
       
       <section>
         <h3>No New data in this release</h3> 
@@ -472,8 +457,7 @@
   </attribute>
 </record>
 
-
-<record>
+ <record>
        <attribute name="headline">EuPathDB is Hiring</attribute>
        <attribute name="date">21 Feb 2017 13:00</attribute>
        <attribute name="tag">job_2_2017</attribute>
@@ -917,13 +901,13 @@ Arial">Join our international team of 30+ software developers and biologists,
        </attribute>
     </record>
 <record>
-  <attribute name="headline">PiroplasmaDB 30 Released</attribute>
+  <attribute name="headline">AmoebaDB 30 Released</attribute>
   <attribute name="date">03 Feb 2017 13:00</attribute>
-  <attribute name="tag">piroplasmadb02_17_release</attribute>
+  <attribute name="tag">amoebadb02_17_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of PiroplasmaDB 30</strong></p>
+    <p><strong>We are pleased to announce the release of AmoebaDB 30</strong></p>
       
       <section>
         <h3>No New data in this release</h3> 
@@ -941,32 +925,31 @@ Arial">Join our international team of 30+ software developers and biologists,
 
 
 <record>
-  <attribute name="headline">PiroplasmaDB 29 Released</attribute>
+  <attribute name="headline">AmoebaDB 29 Released</attribute>
   <attribute name="date">13 Oct 2016 13:00</attribute>
-  <attribute name="tag">piroplasmadb10_16_release</attribute>
+  <attribute name="tag">amoebadb10_16_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of PiroplasmaDB 29</strong></p>
+    <p><strong>We are pleased to announce the release of AmoebaDB 29</strong></p>
     
     <section>
-    <h3>PiroplasmaDB 29</h3>
-           PiroplasmaDB 29 represents extensive efforts to improve navigation and data accessibility 
+    <h3>AmoebaDB 29</h3>
+           AmoebaDB 29 represents extensive efforts to improve navigation and data accessibility 
            on record pages, provide consistent verbiage and data categories, and improve presentation of alternative transcripts. 
-           All data were refreshed to the latest version and genome analyses were rerun.
+           All data were refreshed to the latest version and genome analyses were rerun. 
            <ul>
              <li>Here is some help information to get you started with our new features.<br>
-                 <a href="http://piroplasmadb.org/documents/genePageTutorialGUS4.pdf">Gene Page Improvements</a> <br>
-                 <a href="http://piroplasmadb.org/documents/SearchCatsTutorial_3.pdf">Search Category Improvements</a> <br>
-                 <a href="http://piroplasmadb.org/documents/ExploreTranscripts.pdf">Explore Transcripts in Search Results</a><br>
+                 <a href="http://amoebadb.org/documents/genePageTutorialGUS4.pdf">Gene Page Improvements</a> <br>
+                 <a href="http://amoebadb.org/documents/SearchCatsTutorial_3.pdf">Search Category Improvements</a> <br>
+                 <a href="http://amoebadb.org/documents/ExploreTranscripts.pdf">Explore Transcripts in Search Results</a><br>
                  <!--Workspaces<br>-->
              </li><br>
              <li>Send Us Your Feedback!<br>We can polish our new features based on your valuable feedback. Please use the site 
-             and <a href="http://piroplasmadb.org/piro/contact.do">Contact Us</a> to tell us about your experience. 
+             and <a href="http://amoebadb.org/amoeba/contact.do">Contact Us</a> to tell us about your experience. 
               </li><br>
-             <li>Release 28 is Still Available - <br><a href="http://r28.piroplasmadb.org/piro/">PiroplasmaDB 28</a> is available until we finalize our new features.
-             </li><br>
-           </ul>  
+             <li>Release 28 is Still Available - <br><a href="http://r28.amoebadb.org/amoeba/">AmoebaDB 28</a> is available until we finalize our new features.</li><br>
+           </ul>   
      </section>
       
      <section> 
@@ -1003,40 +986,43 @@ Arial">Join our international team of 30+ software developers and biologists,
              </li>
            </ul>
         </section>   
-    
-    
-    <section>
+             
+
+      <section>
       <h3>New data in this release</h3>
       <h4>Annotation is updated for the following genomes:</h4>
          <ul>
-          <li><i>Theileria annulata</i> strain ANKA</li>
-          <li><i>Babesia microti</i> strain RI</li>
-          <li><i>Babesia bigemina</i> strain BOND</li>
+          <li><i>Acanthamoeba castellanii</i> str. Neff</li>
+          <li><i>Entamoeba histolytica</i> HM-1:IMSS-A</li>
+          <li><i>Entamoeba histolytica</i> HM-1:IMSS-B</li>
+          <li><i>Entamoeba histolytica</i> HM-3:IMSS</li>
+          <li><i>Entamoeba histolytica</i> KU27</li>
+          <li><i>Entamoeba nuttalli</i> P19</li>
+          <li><i>Entamoeba invadens</i> IP1</li>
          </ul>
       </section>
-    
-    <section>
+      
+      <section>
       <aside>
         Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
         Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
         When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
         When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
       </aside>
+      </section>
 
-    </section>
     ]]>
   </attribute>
 </record>
 
-
 <record>
-  <attribute name="headline">PiroplasmaDB 28 Released</attribute>
+  <attribute name="headline">AmoebaDB 28 Released</attribute>
   <attribute name="date">30 Mar 2016 13:00</attribute>
-  <attribute name="tag">piroplasmadb03_16_release</attribute>
+  <attribute name="tag">amoebadb03_16_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of PiroplasmaDB 28</strong></p>
+    <p><strong>We are pleased to announce the release of AmoebaDB 28</strong></p>
 
     <section>
       <h3>No new data or functionalities in this release</h3>
@@ -1053,18 +1039,32 @@ Arial">Join our international team of 30+ software developers and biologists,
   </attribute>
 </record>
 
+
 <record>
-  <attribute name="headline">PiroplasmaDB 27 Released</attribute>
+  <attribute name="headline">AmoebaDB 27 Released</attribute>
   <attribute name="date">19 Feb 2016 13:00</attribute>
-  <attribute name="tag">piroplasmadb02_16_release</attribute>
+  <attribute name="tag">amoebadb02_16_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of PiroplasmaDB 27</strong></p>
+    <p><strong>We are pleased to announce the release of AmoebaDB 27</strong></p>
 
     <section>
      <h3>New Features</h3>
       
+   <!--    <section>
+       <h4>New Login Protocol</h4>
+        <ul>
+          <li>Our new protocol transfers your initial login across all EuPathDB sites.  
+              For example, if you log into AmoebaDB and then visit PlasmoDB, clicking 
+              Login at PlasmoDB transfers your credentials and automatically logs you into PlasmoDB.  
+              You will have to log off of each site separately.
+          </li>
+        </ul>
+       </h4>
+      </section>
+    -->
+        
       <section>
        <h4>New Tutorials</h4>
         <ul>
@@ -1098,16 +1098,16 @@ Arial">Join our international team of 30+ software developers and biologists,
 
 
 <record>
-  <attribute name="headline">PiroplasmaDB 26 Released</attribute>
+  <attribute name="headline">AmoebaDB 26 Released</attribute>
   <attribute name="date">15 Oct 2015 13:00</attribute>
-  <attribute name="tag">piroplasmadb10_15_release</attribute>
+  <attribute name="tag">amoebadb10_15_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of PiroplasmaDB 26</strong></p>
+    <p><strong>We are pleased to announce the release of AmoebaDB 26</strong></p>
 
     <section>
-      <h3>New Features</h3>
+     <h3>New Features</h3>
       
       <section>
        <h4>GBrowse Track Search </h4>
@@ -1150,6 +1150,7 @@ Arial">Join our international team of 30+ software developers and biologists,
         </ul>
       </section>
       
+ 
       <aside>
         Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
         Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
@@ -1164,17 +1165,94 @@ Arial">Join our international team of 30+ software developers and biologists,
 
 
 <record>
-  <attribute name="headline">PiroplasmaDB 25 Released</attribute>
+  <attribute name="headline">AmoebaDB 25 Released</attribute>
   <attribute name="date">23 July 2015 13:00</attribute>
-  <attribute name="tag">piroplasma7_15_release</attribute>
+  <attribute name="tag">amoebadb7_15_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of PiroplasmaDB 25</strong></p>
+    <p><strong>We are pleased to announce the release of AmoebaDB Release 25</strong></p>
 
     <section>
-      <h3>No new data or functionalities in this release</h3>
+      <h3>New data in this release</h3>
 
+      <aside>
+        The data set title below links to a full description and list of associated searches and GBrowse tracks.
+      </aside>
+
+      <section>
+        <h4>Genome Sequence</h4>
+        
+        <aside>
+        Genome sequence for the following <i>Acanthamoeba</i> strains is available for the first time in AmoebaDB. The data 
+        is provided pre-publication by Andrew Jackson, University of Liverpool.
+        </aside>
+        
+        <ul>
+          <li>
+            <a href="http://AmoebaDB.org/a/getDataset.do?datasets=aastUnknown_primary_genome_RSRC"><i>Acanthamoeba astronyxis</i> Unknown </a> &mdash;
+            <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000826245.1/">Genbank version 2 Feb 2015</a>.
+          </li>
+          <li>
+            <a href="http://AmoebaDB.org/a/getDataset.do?datasets=acasMa_primary_genome_RSRC"><i>Acanthamoeba castellanii</i> Ma </a> &mdash;
+            <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000826485.1">Genbank version 2 Feb 2015</a>.
+          </li>
+          <li>
+            <a href="http://AmoebaDB.org/a/getDataset.do?datasets=aculA1_primary_genome_RSRC"><i>Acanthamoeba culbertsoni</i> A1</a> &mdash;
+            <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000826265.1/">Genbank version 2 Feb 2015</a>.
+          </li>
+          <li>
+            <a href="http://AmoebaDB.org/a/getDataset.do?datasets=alenPD2S_primary_genome_RSRC"><i>Acanthamoeba lenticulata</i> PD2S</a> &mdash;
+            <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000826285.1/">Genbank version 2 Feb 2015</a>.
+          </li>
+          <li>
+            <a href="http://AmoebaDB.org/a/getDataset.do?datasets=alugL3a_primary_genome_RSRC"><i>Acanthamoeba lugdunensis</i> L3a</a> &mdash;
+            <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000826425.1/">Genbank version 2 Feb 2015</a>.
+          </li>
+          <li>
+            <a href="http://AmoebaDB.org/a/getDataset.do?datasets=amau1652_primary_genome_RSRC"><i>Acanthamoeba mauritaniensis</i> Reich</a> &mdash;
+            <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000826425.1/">Genbank version 2 Feb 2015</a>.
+          </li>
+          <li>
+            <a href="http://AmoebaDB.org/a/getDataset.do?datasets=apalReich_primary_genome_RSRC"><i>Acanthamoeba palestinensis</i> 1652</a> &mdash;
+            <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000826325.1/">Genbank version 2 Feb 2015</a>.
+          </li>
+          <li>
+            <a href="http://AmoebaDB.org/a/getDataset.do?datasets=aquiVil3_primary_genome_RSRC"><i>Acanthamoeba quina</i> vil3</a> &mdash;
+            <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000826445.1/">Genbank version 2 Feb 2015</a>.
+          </li>
+          <li>
+            <a href="http://AmoebaDB.org/a/getDataset.do?datasets=arhySingh_primary_genome_RSRC"><i>Acanthamoeba rhydoses</i> Singh</a> &mdash;
+            <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000826445.1/">Genbank version 2 Feb 2015</a>.
+          </li>
+          <li>
+            <a href="http://AmoebaDB.org/a/getDataset.do?datasets=acspGalka_primary_genome_RSRC"><i>Acanthamoeba sp</i> Galka</a> &mdash;
+            <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000826505.1/">Genbank version 2 Feb 2015</a>. In Genbank as <i>A. pearcei</i>.
+          </li>
+          <li>
+            <a href="http://AmoebaDB.org/a/getDataset.do?datasets=acspIncertae_sedis_primary_genome_RSRC"><i>Acanthamoeba sp</i> Incertae sedis</a> &mdash;
+            <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000826365.1//">Genbank version 2 Feb 2015</a>. In Genbank as <i>A. royreba</i>.
+          </li>
+          <li>
+            <a href="http://AmoebaDB.org/a/getDataset.do?datasets=acspT4B-type_primary_genome_RSRC"><i>Acanthamoeba sp</i> T4b-type</a> &mdash;
+            <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000826345.1/">Genbank version 2 Feb 2015</a>. In Genbank as <i>A. polyphaga</i>
+          </li>
+          <li>
+            <a href="http://AmoebaDB.org/a/getDataset.do?datasets=atriSH621_primary_genome_RSRC"><i>Acanthamoeba triangularis</i> SH621</a> &mdash;
+            <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000826325.1/">Genbank version 2 Feb 2015</a>. In Genbank as <i>A. palestinensis</i>.
+          </li>
+        </ul>
+      </section>
+       <section>
+        <h4>RNA Sequencing</h4>
+        <ul>
+          <li>
+            <a href="http://AmoebaDB.org/a/getDataset.do?datasets=nfowATCC30863_Pathogenic_Trophozoite_Trascriptome_rnaSeq_RSRC">Trophozoite Transcriptome (Nfow)</a> &mdash;
+            Transcriptome of <i> Naegleria fowleri</i> ATCC 30863 trophozoites. 
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/24950717">Zysset-Burri et al.</a>.
+          </li>
+        </ul>
+      </section>
       <aside>
         Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
         Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
@@ -1189,25 +1267,23 @@ Arial">Join our international team of 30+ software developers and biologists,
 
 
 <record>
-       <attribute name="headline">PiroplasmaDB 24 Released</attribute>
+       <attribute name="headline">AmoebaDB 24 Released</attribute>
        <attribute name="date">13 April 2015 13:00</attribute>
-       <attribute name="tag">pirodb4_15_release</attribute>
+       <attribute name="tag">amoebadb4_15_release</attribute>
        <attribute name="category">release</attribute>
        <attribute name="item">
            
          <![CDATA[
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html>
   <head>
     <meta content="text/html; charset=windows-1252" http-equiv="content-type">
-    <title>pirodb_4_15</title>
+    <title>AmoebaDB_4_5_news</title>
   </head>
   <body>
-    <p> </p>
-    <p> </p>
     <p><span style="font-family: Helvetica,Arial,sans-serif;"> </span> </p>
     <div style="margin-left: 40px;"><span style="font-family: Helvetica,Arial,sans-serif;"><strong>We
-          are pleased to announce the release of PiroplasmaDB 24</strong><span style="font-weight: bold;"></span><br>
+          are pleased to announce the release of AmoebaDB 24</strong><span style="font-weight: bold;"></span><br>
       </span> <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-style: italic;"><br>
           <em></em></span></span><span style="font-style: italic;"><span style="font-family: Helvetica,Arial,sans-serif;">All
           EuPathDB release numbers have been synchronized to help us more
@@ -1241,8 +1317,8 @@ Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-far
                 </span>Version #</span> </td>
           </tr>
           <tr>
-            <td style="width: 188px; height: 24px; background-color: #cccccc; text-align: center;">PiroplasmaDB</td>
-            <td style="width: 188px; height: 24px; background-color: #cccccc; text-align: center;">5.1</td>
+            <td style="width: 188px; height: 24px; background-color: #cccccc; text-align: center;">AmoebaDB</td>
+            <td style="width: 188px; height: 24px; background-color: #cccccc; text-align: center;">4.2</td>
             <td style="width: 188px; height: 24px; background-color: #cccccc; text-align: center;">24</td>
           </tr>
         </tbody>
@@ -1252,40 +1328,27 @@ Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-far
       <b style="mso-bidi-font-weight:normal"><o:p></o:p></b>
       <p class="MsoNoSpacing"><em>The data set title below links to a full
           description and list of associated searches and genome browser tracks.</em><o:p></o:p></p>
-      <p class="MsoNoSpacing"><o:p>&nbsp;</o:p></p>
-      <b style="mso-bidi-font-weight:
-normal">Annotated Genomes: <o:p></o:p></b><br>
-      <br>
-      <a href="http://piroplasmadb.org/a/getDataset.do?datasets=bbigBOND_primary_genome_RSRC"><i>Babesia
-          bigemina</i> BOND</a> - <span style="mso-spacerun:yes">first release
-        in PiroplasmaDB </span><a href="http://www.ncbi.nlm.nih.gov/bioproject/PRJEB5046">GenBank
-        version<span style="mso-spacerun:yes">&nbsp; </span>(13 June 2014)</a>,<span
-        style="mso-spacerun:yes">&nbsp;
-        </span><span style="mso-spacerun:yes">&nbsp;&nbsp;</span><span style="mso-spacerun:yes">&nbsp;</span><a
-        href="http://www.ncbi.nlm.nih.gov/pubmed/24799432">Jackson
-        <em>et al. </em></a><o:p></o:p><br>
-      <br>
-      <a href="http://piroplasmadb.org/a/getDataset.do?datasets=cfelWinnie_primary_genome_RSRC"><i
-          style="mso-bidi-font-style:normal">Cytauxzoon
-          felis</i> Winnie</a> - first release in <span style="mso-spacerun:yes">PiroplasmaDB</span><span
-        style="mso-spacerun:yes">
-      </span><a href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA196611">GenBank
-        version (1 Jan 2015)</a>,<span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;
-        </span><span style="mso-spacerun:yes">&nbsp;</span><a href="http://www.ncbi.nlm.nih.gov/pubmed/23977000">Tarigo
-        <em>et al.</em></a><o:p></o:p>
-      <p class="MsoNoSpacing"><o:p>&nbsp;</o:p></p>
-      <!--EndFragment--><a href="http://www.ncbi.nlm.nih.gov/pubmed/25313038"><em></em></a><o:p></o:p>
-      <br>
-      <o:p> <strong>New Features:</strong></o:p><strong> </strong><span style="font-family: Helvetica,Arial,sans-serif;"></span><span
-        style="font-family: Helvetica,Arial,sans-serif;"><em></em></span>
-      <p class="MsoNoSpacing"><span style="font-family: Helvetica,Arial,sans-serif;"><em
-            style="text-decoration: underline;">Help
-            us improve our Data Set page</em>: The dataset page includes
-          information about all datasets loaded into our resources including,
-          release and date loaded, name of the provider, links to searches and
-          data visualization, etc... Take a look at the beta version of our
-          dataset page (access it from the data summary menu item at the top of
-          our web pages) and let us know what you think.<br>
+      <b style="mso-bidi-font-weight:normal">Newly Annotated Genome: <o:p></o:p></b><a
+        href="http://amoebadb.org/a/getDataset.do?datasets=nfowATCC30863_primary_genome_RSRC"><i><br>
+        </i></a>
+      <p><a href="http://amoebadb.org/a/getDataset.do?datasets=nfowATCC30863_primary_genome_RSRC"><i>Naegleria
+            fowleri</i> strain ATCC 30863</a> - Annotation provided by Matthias
+        Wittwer (Spiez Laboratory) is now available for this genome.<span style="mso-spacerun:yes">&nbsp;
+          </span><a href="http://www.ncbi.nlm.nih.gov/pubmed/24950717"><span style="mso-bidi-font-style:
+italic">Zysset-Burri <em>et al.</em></span></a><o:p></o:p> <o:p></o:p><o:p><strong>&nbsp;&nbsp;
+            <br></strong></o:p></p>
+      <p><strong>New Features:</strong><span style="font-family: Helvetica,Arial,sans-serif;"><em
+            style="text-decoration: underline;"><br>
+          </em></span></p>
+      <p><span style="font-family: Helvetica,Arial,sans-serif;"><em style="text-decoration: underline;">Help
+            us improve our Data Set page</em></span><span style="font-family: Helvetica,Arial,sans-serif;">:
+          The dataset page includes information about all datasets loaded into
+          our resources including, release and date loaded, name<span style="text-decoration: underline;"><span
+              style="font-style: italic;">
+            </span></span>of the provider, links to searches and data
+          visualization, etc... Take a look at the beta version of our dataset
+          page (access it from the data summary menu item at the top of our web
+          pages) and let us know what you think.<br>
         </span> </p>
     </div>
     <div style="text-align: justify;"> </div>
@@ -1317,8 +1380,10 @@ normal">Annotated Genomes: <o:p></o:p></b><br>
           style="font-weight: bold; font-style: italic;"></span><span
           style="font-weight: bold; font-style: italic;"></span></span></div>
     <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    
   </body>
 </html>
+
           ]]>
        </attribute>
     </record>
@@ -1392,30 +1457,43 @@ normal">Annotated Genomes: <o:p></o:p></b><br>
        </attribute>
     </record>
 <record>
-      <attribute name="headline">PiroplasmaDB 5.2 Released</attribute>
-       <attribute name="date">14 January 2015 12:00</attribute>
-       <attribute name="tag">piro12_14news</attribute>
+       <attribute name="headline">AmoebaDB 4.2 Released</attribute>
+       <attribute name="date">14 January 2015 13:00</attribute>
+       <attribute name="tag">amoeba12_14_release</attribute>
        <attribute name="category">release</attribute>
        <attribute name="item">
-<![CDATA[
+           
+         <![CDATA[
 <body><span style="font-family: Helvetica,Arial,sans-serif;"> </span>
     <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><strong>We
-          are pleased to announce the release of PiroplasmaDB 5.2</strong><br>
-      </span> <span style="font-family: Helvetica,Arial,sans-serif;"></span><span
-        style="font-family: Helvetica,Arial,sans-serif;"></span></div>
-    <p class="MsoPlainText"><b style="mso-bidi-font-weight:normal"><br>
-        Improvements and updates:<br>
-      </b></p>
-    <p class="MsoPlainText"><br>
-      <b style="mso-bidi-font-weight:normal"><o:p></o:p></b></p>
-    <p class="MsoPlainText" style="margin-left:.5in;text-indent:-.25in">BLAST
-      was updated to the latest NCBI version 2.2.30. </p>
-    <p class="MsoPlainText" style="margin-left:.5in;text-indent:-.25in">GBrowse
-      performance is improved following EuPathDB infrastructure changes.</p>
-    <div style="text-align: justify;">
-      <div style="margin-left: 40px;"> <span style="font-family: Helvetica,Arial,sans-serif;"></span><span
-          style="font-family: Helvetica,Arial,sans-serif;"><br>
-        </span> </div>
+          are pleased to announce the release of AmoebaDB 4.2</strong><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><strong>New
+          data in this release</strong>:</span></div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    <div style="text-align: justify;"> 
+      <p class="MsoNoSpacing">The data set title below links to a full
+        description and list of associated searches and GBrowse tracks.</p>
+      <p class="MsoNoSpacing"><o:p>&nbsp;</o:p></p>
+      <p class="MsoNoSpacing" style="margin-left:.25in"><b style="mso-bidi-font-weight:
+normal">RNA Sequencing<o:p></o:p></b></p>
+      <p class="MsoNoSpacing" style="margin-left:.5in;text-indent:-.25in"><a href="/a/getDataset.do?datasets=ehisHM1IMSS_smallNcRna_Singh_Small_RNA_RSRC"><span
+            class="SpellE">Argonaute</span>
+          2-2 Associated small RNAs (Zhang et al.)</a> <span style="mso-spacerun:yes">&nbsp;</span> - RNA
+        sequencing of small RNAs that co-precipitate with the <span class="SpellE">Argonaute</span>
+        2-2 protein in virulent <span class="SpellE"><i style="mso-bidi-font-style:normal">Entamoeba</i></span><i
+          style="mso-bidi-font-style:normal">
+          <span class="SpellE">histolytica</span></i> strain HM1:IMSS and small
+        RNAs from the <span class="SpellE">avirulent</span> strain Rahman.</p>
+      <p class="MsoNoSpacing"><o:p>&nbsp;</o:p></p>
+      <p class="MsoPlainText"><b style="mso-bidi-font-weight:normal">Improvements
+          and updates:<o:p></o:p></b></p>
+      <p class="MsoPlainText" style="margin-left:.5in;text-indent:-.25in">BLAST
+        was updated to the latest NCBI version 2.2.30. </p>
+      <p class="MsoPlainText" style="margin-left:.5in;text-indent:-.25in">GBrowse
+performance
+        is improved following EuPathDB infrastructure changes.</p>
       <div style="text-align: justify;"> </div>
       <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><br>
         </span> <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-style: italic;"><span
@@ -1437,37 +1515,63 @@ normal">Annotated Genomes: <o:p></o:p></b><br>
               style="font-weight: bold; font-style: italic;">,
               <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="http://www.youtube.com/user/EuPathDB">YouTube</a></span></span></p>
       </div>
-      <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold; font-style: italic;"></span><span
-          style="font-weight: bold; font-style: italic;"></span></span></div>
+      <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold; font-style: italic;"></span></span></div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    <div style="text-align: justify;"> </div>
     <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
     <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><span
+          style="font-weight: bold; font-style: italic;"></span><span
           style="font-weight: bold; font-style: italic;"></span></span></div>
     <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
-    
   </body>
           ]]>
        </attribute>
     </record>
 <record>
-      <attribute name="headline">PiroplasmaDB 5.1 Released</attribute>
+       <attribute name="headline">AmoebaDB 4.1 Released</attribute>
        <attribute name="date">10 September 2014 12:00</attribute>
-       <attribute name="tag">piro8_14news</attribute>
+       <attribute name="tag">amoeba8_14_release</attribute>
        <attribute name="category">release</attribute>
        <attribute name="item">
-<![CDATA[
-<body>
-    <div style="text-align: justify;"><strong>We are pleased to announce the
-        release of PiroplasmaDB 5.1</strong><br>
-      <br>
+           
+         <![CDATA[
+<body><span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><strong>We
+          are pleased to announce the release of AmoebaDB 4.1</strong><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><strong>New
+          data in this release</strong>:</span></div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    <div style="text-align: justify;"> <span style="font-family: Helvetica,Arial,sans-serif;"><span
+          style=" font-weight: normal;"></span><br>
+        <span style=" font-weight: normal;"> </span></span></div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    <ul style="text-align: justify;">
+    
+    <!--
+      <li><span style="font-family: Helvetica,Arial,sans-serif;"><span style=" font-weight: normal;"><span
+              style="font-weight: bold; color: #666666;"><em>E.
+                histolytica</em> HM-1:IMSS Argonaute 2-2 Associated small RNAs (<a
+                href="http://www.ncbi.nlm.nih.gov/pubmed/23347563">Zhang
+                <em>et al.</em></a>).</span> </span></span><span style="font-family: Helvetica,Arial,sans-serif;"><span
+            style="font-weight: normal;">View
+            experimental details and available searches in the <a href="/a/getDataset.do?datasets=ehisHM1IMSS_smallNcRna_Singh_Small_RNA_RSRC"><strong>dataset
+                section</strong></a>.&nbsp; </span></span></li>
+                
+                -->
+    </ul>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><br>
+        <strong></strong></span>
       <ul style="text-align: justify;">
         <li><span style="font-family: Helvetica,Arial,sans-serif;"><strong style="color: #666666;">Two
               new data types with searches have been added in this release:</strong>
             Compounds and Metabolic Pathways.&nbsp; This beta-release of
-            Compound and Metabolic Pathways data sets incorporates
-            KEGG pathways and a subset of PubChem records. Future
-            releases will include compounds for additional metabolites and small
-            molecules, and pathways from other sources such as MPMP, MetaCyc,
-            etc. Please explore the site and contact us with your feedback. </span></li>
+            Compound and Metabolic Pathways data sets incorporates KEGG pathways
+            and a subset of PubChem records. Future releases will include
+            compounds for additional metabolites and small molecules, and
+            pathways from other sources such as MPMP, MetaCyc, etc. Please
+            explore the site and contact us with your feedback. </span></li>
       </ul>
       <span style="font-family: Helvetica,Arial,sans-serif;"><br>
       </span>
@@ -1519,12 +1623,11 @@ normal">Annotated Genomes: <o:p></o:p></b><br>
           features:</strong><br>
       </span> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
       </span>
-      <blockquote> </blockquote>
       
       <ul>
         <li><span style="font-family: Helvetica,Arial,sans-serif;"><strong style="color: #666666;">Results
-              analysis tools:&nbsp; </strong><span style="color: #020302;">results
-              of any searches can now be analyzed for statistical enrichment or
+              analysis tools:&nbsp; </strong><span style="color: #020302;">the results
+              of any gene searches can now be analyzed for statistical enrichment of
               Gene Ontology (GO) terms, metabolic pathways or gene product text
               terms. <strong><a href="/a/analysisTools.jsp">A detailed
                   description of this new functionality and a video tutorial are
@@ -1566,24 +1669,90 @@ normal">Annotated Genomes: <o:p></o:p></b><br>
                 on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
               style="font-weight: bold; font-style: italic;">,
               <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="http://www.youtube.com/user/EuPathDB">YouTube</a></span></span></p>
-      </div>
-      <span style="font-weight: bold; font-style: italic;"></span></div>
-    <div style="text-align: justify;"><span style="font-weight: bold; font-style: italic;"></span></div>
+        </div>
+      <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold; font-style: italic;"></span></span></div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    <div style="text-align: justify;"> </div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><span
+          style="font-weight: bold; font-style: italic;"></span><span
+          style="font-weight: bold; font-style: italic;"></span></span></div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
   </body>
           ]]>
        </attribute>
     </record>
 <record>
-      <attribute name="headline">New Tutorials</attribute>
+       <attribute name="headline">AmoebaDB 4.0 Released</attribute>
        <attribute name="date">08 May 2014 12:00</attribute>
-       <attribute name="tag">piro5_14news</attribute>
+       <attribute name="tag">amoeba5_14_release</attribute>
        <attribute name="category">release</attribute>
        <attribute name="item">
            
          <![CDATA[
- <body><span style="font-family: Helvetica,Arial,sans-serif;"></span><br>
-    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"></span>
+   <body><span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><strong>We
+          are pleased to announce the release of AmoebaDB 4.0</strong><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><strong>New
+          data in this release</strong>:</span></div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    <div style="text-align: justify;"> <span style="font-family: Helvetica,Arial,sans-serif;"><span
+          style=" font-weight: normal;"></span><br>
+        <span style=" font-weight: normal;"> </span></span></div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    <ul style="text-align: justify;">
+      <li><span style="font-family: Helvetica,Arial,sans-serif;"><span style=" font-weight: normal;"><span
+              style="font-weight: bold; color: #666666;">This
+              release of AmoebaDB constitutes a complete rebuild of the database
+              and includes a number of new features (see below).</span> The
+            latest versions of genome sequence and annotation were loaded and
+            all analyses were rerun and updated (InterProSCan,
+            SignalP, functional data mapping, etc.).</span></span></li>
+    </ul>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><br>
+        <strong>New features:</strong><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><span style=" font-weight: normal;"></span><br>
+        <span style=" font-weight: normal;"> </span></span></div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    <ul style="text-align: justify;">
+      <li><span style="font-family: Helvetica,Arial,sans-serif;"><strong style="color: #666666;">Search
+            genes based on polymorphism data:</strong> <span style="font-weight: normal;">The
+            high throughput sequencing SNP searches have been upgraded to
+            increase their speed and provide additional search functionality.
+            Meta data associated with samples is now&nbsp; more intuitively
+            organized. Search for genes based on <a href="http://amoebadb.org/amoeba/showQuestion.do?questionFullName=GeneQuestions.GenesByNgsSnps">SNP
+              characteristics</a> or identify SNPs based on multiple criteria
+            including within <a href="http://amoebadb.org/amoeba/showQuestion.do?questionFullName=SnpQuestions.NgsSnpsByIsolateGroup">one
+              group of isolates</a> or between <a href="http://amoebadb.org/amoeba/showQuestion.do?questionFullName=SnpQuestions.NgsSnpsByTwoIsolateGroups">two
+              groups of isolates</a>.</span></span></li>
+    </ul>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><span
+          style=" font-weight: normal;"></span><br>
+        <span style=" font-weight: normal;"> </span></span></div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    <ul style="text-align: justify;">
+      <li><span style="font-family: Helvetica,Arial,sans-serif;"><strong style="color: #666666;">Filter
+            samples based on metadata:</strong> <span style="font-weight: normal;">It
+            is</span> <span style="font-weight: normal;">easier now to tailor
+            your searches (such as SNP searches) by defining samples based on
+            their metadata characteristics</span>.</span></li>
+    </ul>
+    <ul style="text-align: justify;">
+    </ul>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><span
+          style="color: #666666;"></span></span></div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    <div style="text-align: justify;">
+      <blockquote> </blockquote>
       <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold;">New
+          Tutorials:</span><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
       </span>
       <div style="margin-left: 40px;"><span style="font-family: Helvetica,Arial,sans-serif;"><a
             href="http://eupathdb.org/tutorials/GBrowse-UploadTrack-Help.pdf">Learn
@@ -1659,26 +1828,39 @@ normal">Annotated Genomes: <o:p></o:p></b><br>
        </attribute>
     </record>
 <record>
-      <attribute name="headline">PiroplasmaDB 5.0 Released</attribute>
+       <attribute name="headline">AmoebaDB 3.1 Released</attribute>
        <attribute name="date">30 January 2014 15:00</attribute>
-       <attribute name="tag">piro114news</attribute>
+       <attribute name="tag">amoeba1_14_release</attribute>
        <attribute name="category">release</attribute>
        <attribute name="item">
            
          <![CDATA[
- <body>
+   <body>
     <div style="text-align: justify;"><strong>We are pleased to announce the
-        release of PiroplasmaDB 5.0</strong><strong></strong><br>
+        release of AmoebaDB 3.1</strong><br>
       <br>
       <br>
-      <span class="tracktitle">This release of PiroplasmaDB constitutes a
-        complete rebuild of the database and includes a number of new features
-        (see below). The latest versions of genome sequence and annotation were
-        loaded and all analyses were rerun and updated (InterProSCan, SignalP,
-        functional data mapping, etc.).<br>
-      <br>
+      <strong>New data in this release</strong>:</div><br>
+    <ul style="text-align: justify;">
+      <li><em>E. histolytica</em> HM-1:IMSS trophozoite gene expression during
+        glucose starvation (<a href="http://www.ncbi.nlm.nih.gov/pubmed/23016994"><strong>Baumel-Alterzon
+            <em>et al.</em></strong></a>).&nbsp; For full attribution and
+        available searches please see the <strong><a href="http://amoebadb.org/amoeba/getDataset.do?datasets=ehisHM1IMSS_microarrayExpression_Alterzon_RSRC,ehisHM1IMSS_microarrayExpression_Alterzon_RSRC,ehisHM1IMSS_microarrayExpression_Alterzon_RSRC">dataset
+            details</a></strong>.</li>
+    </ul>
+    <div style="text-align: justify;"><br>
+    </div>
+    <ul style="text-align: justify;">
+      <li>Whole transcriptome sequencing of Entamoeba invadens IP-1 during
+        encystation and excystation (<a href="http://www.ncbi.nlm.nih.gov/pubmed/23889909"><strong>Ehrenkaufer
+            <em>et al.</em></strong></a>).&nbsp; For full attribution and
+        available searches please see the <strong><a href="http://amoebadb.org/amoeba/getDataset.do?datasets=einvIP1_Singh_Encyst_Excyst_rnaSeq_RSRC,einvIP1_Singh_Encyst_Excyst_rnaSeq_RSRC">dataset
+            details</a></strong>.</li>
+    </ul>
+    <div style="text-align: justify;"><br>
       <br>
       <strong>New features:</strong><br>
+      <br>
       <br>
       <span style="text-decoration: underline;">Public Strategies</span>:&nbsp;
       Share your search strategies with the community by making them
@@ -1709,22 +1891,23 @@ normal">Annotated Genomes: <o:p></o:p></b><br>
       phyletic pattern search now remembers your selected parameters making it
       easier to revise searches.<br>
       <br>
-      <strong></strong><br>
-      <strong></strong><br>
-      <strong>New database:&nbsp; </strong></div><br>
-    <ul style="text-align: justify;">
-     <li>EuPathDB is pleased to announce the release of a beta version of
-        <a href="http://hostdb.org"><strong>HostDB</strong></a> - a resource
-        dedicated to integrating functional host response data.&nbsp; The beta
-        release includes the human and mouse genomes and two datasets (RNA-Seq
-        and quantitative proteomics) examining the host response to Toxoplasma
-        infection.&nbsp; We look forward to expanding this database in data
-        content and functionality.&nbsp; We encourage you to explore <strong><a
-            href="http://hostdb.org">HostDB</a></strong>
-        and provide us with your <a href="mailto:help@hostdb.org"><strong>feedback</strong></a>.&nbsp;</li>
-    </ul>
-    <div style="text-align: justify;"><br>
+      <strong><br>
+        New database:&nbsp; </strong><br>
+      <br>
+      <ul>
+        <li>EuPathDB is pleased to announce the release of a beta version of <a
+            href="http://hostdb.org"><strong>HostDB</strong></a>
+          - a resource dedicated to integrating functional host response
+          data.&nbsp; The beta release includes the human and mouse genomes and
+          two datasets (RNA-Seq and quantitative proteomics) examining the host
+          response to Toxoplasma infection.&nbsp; We look forward to expanding
+          this database in data content and functionality.&nbsp; We encourage
+          you to explore <strong><a href="http://hostdb.org">HostDB</a></strong>
+          and provide us with your <a href="mailto:help@hostdb.org"><strong>feedback</strong></a>.&nbsp;</li>
+      </ul>
     </div>
+    <ul style="text-align: justify;">
+    </ul>
     <div style="text-align: justify;"><br>
       <span style="font-style: italic;"><span style="font-style: italic;"><span
             style="text-decoration: underline;">Note:</span>
@@ -1739,8 +1922,9 @@ normal">Annotated Genomes: <o:p></o:p></b><br>
       <span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
       <span style="font-weight: bold;"><span style="font-style: italic;">Follow EuPathDB on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
         style="font-weight: bold; font-style: italic;">,
-        <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="http://www.youtube.com/user/EuPathDB">YouTube</a></span></div>
-    <div style="text-align: justify;"><span style="font-weight: bold; font-style: italic;"></span></div>
+        <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="http://www.youtube.com/user/EuPathDB">YouTube</a></span><span
+        style="font-weight: bold; font-style: italic;"></span><br>
+      <span style="font-weight: bold; font-style: italic;"></span><span style="font-weight: bold; font-style: italic;"></span></div>
   </body>
           ]]>
        </attribute>
@@ -1814,68 +1998,114 @@ normal">Annotated Genomes: <o:p></o:p></b><br>
        </attribute>
     </record>
 <record>
-      <attribute name="headline">PiroplasmaDB 4.0 Released</attribute>
+       <attribute name="headline">AmoebaDB 3.0 Released</attribute>
        <attribute name="date">25 September 2013 15:00</attribute>
-       <attribute name="tag">piro913news</attribute>
+       <attribute name="tag">amoeba9_13_release</attribute>
        <attribute name="category">release</attribute>
        <attribute name="item">
            
          <![CDATA[
-<body> <strong>We are pleased to announce the release of PiroplasmaDB 4.0</strong><strong></strong><br>
+   <body> <strong>We are pleased to announce the release of AmoebaDB 3.0</strong><strong></strong><br>
     <br>
     <br>
     <strong>New data in this release</strong>:<br>
     <br>
+    <br>
     <ul>
-      <li><span class="tracktitle">The following annotated genomes were
-          integrated into the PiroplasmaDB. </span><span class="tracktitle"><span
-            class="tracktitle">The
-            <a href="http://piroplasmadb.org/piro/getDataset.do?display=detail#Genomes%20and%20Annotation"><strong>data
-                set section</strong></a> includes detailed information about the
-            genomes and available searches:</span></span></li>
+      <li>The following annotated genomes from the were integrated into the
+        database.&nbsp; These sequences were generated and annotated at <strong><a
+            href="http://gsc.jcvi.org/projects/gsc/e_histolytica/">JCVI</a></strong>
+        as part of the <strong><a href="http://amoebadb.org/amoeba/communityDownload.do?fname=E_histolytica_wp.pdf"><em>Entamoeba</em>
+            strain sequencing white paper</a></strong>: </li>
     </ul>
-    <span class="tracktitle"><span class="tracktitle"></span></span>&nbsp;<o:p></o:p><br>
-    <ul>
-      <ul>
-        <li><span class="tracktitle"><span style="font-family:&quot;Courier New&quot;;mso-fareast-font-family:
-&quot;Courier New&quot;"><span style="mso-list:Ignore"><span style="font:7.0pt &quot;Times New Roman&quot;"></span></span></span></span><span
-            class="tracktitle"><a
-              href="http://piroplasmadb.org/piro/getDataset.do?question=GeneQuestions.GenesByTaxon&amp;display=detail#24"><strong>Theileria
-orentalis
-                Shintoku</strong></a> (GenBank version 9-6-2013) (</span><span class="tracktitle"><strong><a
-                href="http://www.ncbi.nlm.nih.gov/pubmed/22951932">Hayashida
-                <em>et al.</em></a></strong>)<br>
-          </span></li>
-      </ul>
-    </ul>
-    <span class="tracktitle"></span><br>
+    <br>
     <ul>
       <ul>
-        <li><span class="tracktitle"><strong><a href="http://piroplasmadb.org/piro/getDataset.do?question=GeneQuestions.GenesByTaxon&amp;display=detail#25">Theileria
-                equi WA</a></strong> (GenBank version 12-11-2013) (</span><strong><a
-              href="http://www.ncbi.nlm.nih.gov/pubmed/23137308">Kappmeyer
-              <em>et al.</em></a></strong>)<pubmedarticleset><pubmedarticle></pubmedarticle></pubmedarticleset></li>
+        <li><i style="mso-bidi-font-style:normal"><span style="mso-ansi-language:ES-AR"
+              lang="ES-AR">Entamoeba
+              histolytica</span></i><span style="mso-ansi-language:ES-AR" lang="ES-AR">
+            HM-1:IMSS-A (GenBank version 4-18-2013)</span><o:p></o:p></li>
       </ul>
     </ul>
-    <span class="tracktitle"></span><br>
     <ul>
-      <li><span class="tracktitle"><span style="mso-bidi-font-style:normal">Proteomics
-            mass spec data from</span><i style="mso-bidi-font-style:normal">
-            Theileria annulata</i> schizonts (</span><span class="tracktitle"><strong><a
-              href="http://www.ncbi.nlm.nih.gov/pubmed/23178997"><span
-                class="tracktitle">Witschi
-                <em>et al.</em></span></a></strong>). Search for genes whose
-          protein products were present in extracts of whole cell lysates <i style="mso-bidi-font-style:normal">T.
-            annulata</i> schizonts from the </span><strong><a href="http://piroplasmadb.org/piro/showQuestion.do?questionFullName=GeneQuestions.GenesByMassSpec">PiroplasmaDB
-Mass
-            spec evidence search page</a></strong><span class="tracktitle">. In
-          addition, peptide evidence is displayed on </span><strong><a href="http://piroplasmadb.org/piro/app/record/gene/TA12105">gene
-pages
-            in the Protein Section</a></strong><span class="tracktitle"> and in
-          the genome browser by turning on the track - <strong><a href="http://piroplasmadb.org/cgi-bin/gbrowse/piroplasmadb/?start=850517;stop=950516;ref=tannA_chr01;width=800;version=100;flip=0;grid=1;id=8c6b1b09fb0b79acf52f9b5871db2398;l=Gene%1EMassSpecPeptides_tannAnkara_massSpec_dobbelaere_RSRC;h_feat=ta20770%40yellow">T.a.
-              MS/MS Peptides Schizont Proteome (Witschi et al.)</a></strong>.</span></li>
+      <ul>
+        <li><i style="mso-bidi-font-style:normal"><span style="mso-ansi-language:ES-AR"
+              lang="ES-AR">Entamoeba
+              histolytica</span></i><span style="mso-ansi-language:ES-AR" lang="ES-AR">
+            HM-1:IMSS-B (GenBank version 3-08-2013)</span><o:p></o:p></li>
+      </ul>
     </ul>
-    <span class="tracktitle"></span><br>
+    <ul>
+      <ul>
+        <li><i style="mso-bidi-font-style:normal"><span style="mso-ansi-language:ES-AR"
+              lang="ES-AR">Entamoeba
+              histolytica</span></i><span style="mso-ansi-language:ES-AR" lang="ES-AR">
+            KU27 (GenBank version 2-12-2013)</span><o:p></o:p></li>
+      </ul>
+    </ul>
+    <ul>
+      <ul>
+        <li><i style="mso-bidi-font-style:normal"><span style="mso-ansi-language:ES-AR"
+              lang="ES-AR">Entamoeba
+              invadens</span></i><span style="mso-ansi-language:ES-AR" lang="ES-AR">
+            IP1 (GenBank version 1-03-2013)</span><o:p></o:p></li>
+      </ul>
+    </ul>
+    <ul>
+      <ul>
+        <li><i style="mso-bidi-font-style:normal"><span style="mso-ansi-language:ES-AR"
+              lang="ES-AR">Entamoeba
+              histolytica</span></i><span style="mso-ansi-language:ES-AR" lang="ES-AR">
+            HM-3:IMSS (GenBank version 4-01-2013)</span></li>
+      </ul>
+    </ul>
+    <span style=" mso-ansi-language:ES-AR" lang="ES-AR"></span><br>
+    <ul>
+      <li>Genome sequence of <i style="mso-bidi-font-style:
+normal">Naegleria fowleri</i> ATCC 30863 (Mueller version 6-27-2013) was added
+        to the database.&nbsp; This data was graciously provided prepublication
+        (Wittwer <em>et al.</em>)&nbsp; For full attribution and available
+        searches please see the <strong><a href="http://amoebadb.org/amoeba/getDataset.do?question=GenomicSequenceQuestions.SequencesByTaxon&amp;display=detail#4">dataset
+            details</a></strong>.</li>
+    </ul>
+    <br>
+    <ul>
+      <li>Genome annotation of <i style="mso-bidi-font-style:normal">Acanthamoeba
+          castellanii</i> str Neff was updated (GenBank version 3-18-2013).</li>
+    </ul>
+    <br>
+    <ul>
+      <li><span style="mso-bidi-font-style:italic">RNA sequencing of <i>E.
+            histolytica</i></span> HM-1:IMSS and Rahman strain trophozoites <span
+          class="tracktitle">(Hon
+          <em>et al</em>.)</span>.&nbsp;<a href="http://amoebadb.org/amoeba/showQuestion.do?questionFullName=InternalGeneDatasetQuestions.GenesByRNASeqEvidence"><strong></strong></a></li>
+    </ul>
+    <br>
+    <ul>
+    </ul>
+    <ul>
+      <ul>
+        <li><a href="http://amoebadb.org/amoeba/showQuestion.do?questionFullName=InternalGeneDatasetQuestions.GenesByRNASeqEvidence"><strong>Search
+              for genes that are differentially expressed between the
+              transcriptomes of virulent (HM1:IMSS) and non-virulent (Rahman)</strong>.</a><span
+            style="mso-spacerun:yes">&nbsp;
+            <br></span></li>
+      </ul>
+    </ul>
+    <span style=" mso-spacerun:yes"><br>
+    </span>
+    <ul>
+      <ul>
+        <li>Sequence read coverage mapped to <em>E. histolytica</em> HM1:IMSS
+          is available in<span style="mso-spacerun:yes"> </span>GBrowse under
+          the track name: <span class="tracktitle">E.h. mRNAseq Transcriptomes
+            of HM1:IMSS and Rahman strain trophozoites Coverage (Hon et
+            al.).&nbsp; <strong><a href="http://amoebadb.org/cgi-bin/gbrowse/amoebadb/?start=15300&amp;stop=17899&amp;ref=DS571224&amp;width=800&amp;version=100&amp;flip=0&amp;grid=1&amp;id=08f1e7838a581a52963ebbe8f51fbfe5&amp;l=ehisHM1IMSS_Guillen_rnaSeq_RSRCCoverage%1EehisHM1IMSS_Guillen_rnaSeq_RSRCJunctions%1EGene&amp;h_feat=ehi_040280%40yellow&amp;auth_tkt=ZTZmZmU4YTMyZjQ0ZjQ3OTAyZmNmNGNkNjcwNjBlMGU1MjM4NjQ1ZGFwaWRiIWFwaWRiITEzNzk0Mjc0MjE6MC4wLjAuMA==">This
+                example region with read coverage and Splice junction tracks
+                turned on</a> </strong>shows possible alternative gene models
+            and a region of likely missing gene model annotation.<o:p></o:p></span></li>
+      </ul>
+    </ul>
     <br>
     <strong>New features:</strong><br>
     <br>
@@ -1889,8 +2119,7 @@ pages
         GBrowse tracks are displayed each time you return to a EuPathDB site. </li>
     </ul>
     <br>
-    <p class="MsoNoSpacing"><u>New streamlined look for choosing expression data
-        sets (microarray, RNA-Seq):</u></p>
+    <p class="MsoNoSpacing"><u>New streamlined look for choosing expression datasets (microarray, RNA-Seq):</u></p>
     <p class="MsoNoSpacing"><br>
       <u><o:p></o:p></u></p>
     <ul>
@@ -1916,14 +2145,6 @@ pages
         settings.</li>
     </ul>
     <br>
-    <ul>
-      <li>A <a href="http://www.youtube.com/watch?v=jMuVB-ZIdH0"><strong>YouTube
-            tutorial</strong></a> that describes this new feature is also
-        available.</li>
-    </ul>
-    <ul>
-    </ul>
-    <br>
     <p class="MsoNoSpacing"><u>Improved Strategy Panel for viewing and editing
         steps:</u></p>
     <p class="MsoNoSpacing"><br>
@@ -1935,7 +2156,6 @@ pages
         step, click on the EDIT icon that appears in the corner of each strategy
         step box when hovering over the strategy panel.<o:p></o:p></li>
     </ul>
-    <br>
     <br>
     <span style="font-style: italic;"><span style="font-style: italic;"><span style="text-decoration: underline;">Note:</span>
         Our bimonthly database releases incorporate new data and correct old
@@ -1950,105 +2170,114 @@ pages
     <span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
         is now on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
       style="font-weight: bold; font-style: italic;">,
-      <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="www.youtube.com/user/EuPathDB/">YouTube</a></span>
+      <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="file:///Users/oharb/Documents/EuPathDB/News/www.youtube.com/user/EuPathDB/">YouTube</a></span><span
+      style="font-weight: bold; font-style: italic;"><a
+        href="http://twitter.com/eupathdb"></a></span>
   </body>
           ]]>
        </attribute>
     </record>
 <record>
-      <attribute name="headline">PiroplasmaDB 3.0 Released</attribute>
+       <attribute name="headline">AmoebaDB 2.0 Released</attribute>
        <attribute name="date">11 March 2013 15:00</attribute>
-       <attribute name="tag">piro0313news</attribute>
+       <attribute name="tag">amoeba3_11_release</attribute>
        <attribute name="category">release</attribute>
        <attribute name="item">
            
          <![CDATA[
-<body><span style="font-family: Arial;"> </span>
-    <p style="text-align: justify;">
-      <!--StartFragment--> </p>
-    <p style="text-align: justify;" class="MsoNormal"><span style="font-family: Arial;"><a
-          name="piro0812news"><b
-            style="mso-bidi-font-weight:normal"><o:p></o:p></b></a></span></p>
-    <span style="font-family: Arial;"> </span>
-    <p style="text-align: justify;" class="MsoNormal"><span style="font-family: Arial;"><span
-          style="mso-bookmark:piro0812news"><b
-            style="mso-bidi-font-weight:
-normal">We are pleased to announce the release of PiropasmaDB 3.0<o:p></o:p></b></span></span></p>
-    <span style="font-family: Arial;"> </span>
-    <p style="text-align: justify;" class="MsoNormal"><span style="font-family: Arial;"><span
-          style="mso-bookmark:piro0812news"><b
-            style="mso-bidi-font-weight:
-normal">New data in this release:<br>
-          </b></span></span></p>
-    <p style="text-align: justify;" class="MsoNormal"><br>
-      <span style="font-family: Arial;"><span style="mso-bookmark:piro0812news"><b
-            style="mso-bidi-font-weight:
-normal"><o:p></o:p></b></span></span></p>
-    <span style="font-family: Arial;"> </span>
-    <p style="text-align: justify;" class="MsoNoSpacing"><span style="font-family: Arial;"><span
-          style="mso-bookmark:piro0812news"><u>Genomic
-sequence
-            and annotation for <i style="mso-bidi-font-style:normal">Babesia
-              microti</i> R1<br>
-          </u></span></span></p>
-    <p style="text-align: justify;" class="MsoNoSpacing"><br>
-      <span style="font-family: Arial;"><span style="mso-bookmark:piro0812news"><u><o:p></o:p></u></span></span></p>
-    <span style="font-family: Arial;"> </span>
-    <p style="text-align: justify;" class="MsoNormal"><span style="font-family: Arial;"><span
-          style="mso-bookmark:piro0812news">The
-          <i style="mso-bidi-font-style:normal">Babesia microti</i> R1 genome
-          and annotation (</span><strong><a href="http://www.ncbi.nlm.nih.gov/bioproject?term=PRJEA72411"><span
-              style="mso-bookmark:piro0812news">Genbank</span></a></strong><span
-          style="mso-bookmark:piro0812news">)
-          is fully integrated into PiroplasmaDB (<a href="http://www.ncbi.nlm.nih.gov/pubmed/22833609"><strong>Cornillot
-              </strong><strong><em>et al.</em></strong></a>). <span style="mso-spacerun:yes">&nbsp;</span>Use
-          the </span><span style="mso-bookmark:piro0812news">searches available
-          in PiroplasmaDB</span><span style="mso-bookmark:piro0812news"> to find
-        </span><strong><a href="http://piroplasmadb.org/piro/im.do?s=c0867e0adfea68c9"><span
-              style="mso-bookmark:piro0812news"><i
-                style="mso-bidi-font-style:normal">B.
-                microti</i> genes</span></a></strong><span style="mso-bookmark:piro0812news">
-          or </span><strong><a href="http://piroplasmadb.org/piro/im.do?s=b435e285f75ae48f"><span
-              style="mso-bookmark:piro0812news">genomic
-              sequences</span></a></strong><span style="mso-bookmark:piro0812news">
-          <span style="mso-spacerun:yes">&nbsp;</span>based on a variety of
-          parameters and combine searches to identify genes with specific
-          characteristics.<span style="mso-spacerun:yes">&nbsp; </span>For
-          example, the following strategy combines several searches to find
-          signal peptide and/or transmembrane domain containing genes that are
-          conserved in Piroplasma but not in Haemosporidia. <br>
-        </span></span></p>
-    <p style="text-align: justify;" class="MsoNormal"><br>
-      <span style="font-family: Arial;"><span style="mso-bookmark:piro0812news"><o:p></o:p></span></span></p>
-    <span style="font-family: Arial;"> </span>
-    <p style="text-align: justify;" class="MsoPlainText"><span style="font-family: Arial;"><strong><span
-            style="mso-bookmark:piro0812news"><span
-              style="mso-spacerun:yes">&nbsp;</span></span></strong><strong><a
-            href="http://piroplasmadb.org/piro/im.do?s=7c44f6999344e543"><span
-              style="mso-bookmark:piro0812news">http://piroplasmadb.org/piro/im.do?s=7c44f6999344e543</span></a></strong><span
-          style="mso-bookmark:piro0812news"><o:p></o:p></span></span></p>
-    <span style="font-family: Arial;"> </span> <br>
-    <p style="text-align: justify;" class="MsoNormal"><span style="font-family: Arial;"><b
-          style="mso-bidi-font-weight:normal">New
-          Functionality:<o:p></o:p></b></span><br>
-      <span style="font-family: Arial;"><u><br>
-          PCR Primer Design tool added to GBrowse. <o:p></o:p></u></span><span
-        style="font-family: Arial;"><br>
+   <body><span style="font-family: Arial;"></span> <span style="font-family: Arial;"><b
+        style="mso-bidi-font-weight:normal">We
+        are pleased to announce the release of AmoebaDB 2.0<o:p></o:p></b></span>
+    <dl style="text-align: justify;">
+      <dd><br>
+        <span style="font-family: Arial;"><b style="mso-bidi-font-weight:normal"></b></span></dd>
+      <dt><span style="font-family: Arial;"><b style="mso-bidi-font-weight:normal">New
+            data in this release</b></span></dt>
+      <dd><br>
+      </dd>
+    </dl>
+    <ul>
+      <li><span style="font-family: Arial;"><span style="mso-bidi-font-style:normal"><span
+              style="font-family: Arial;"><span
+                style="mso-bidi-font-style:normal">Genome
+                sequence and annotation of</span></span></span><i style="mso-bidi-font-style:normal"><span
+              style="font-family: Arial;"><span
+                style="mso-bidi-font-style:normal">
+              </span></span>Acanthamoeba castellanii</i> str. Neff (<strong><a href="http://www.ncbi.nlm.nih.gov/pubmed/23375108">Clarke
+              <span style="font-style: italic;">et al.</span></a></strong>).&nbsp;&nbsp;</span></li>
+    </ul>
+    <span style=" font-family: Arial;"><br>
+    </span>
+    <ul>
+      <ul>
+      </ul>
+    </ul>
+    <span style=" font-family: Arial;"> </span>
+    <dl style="text-align: justify;">
+    </dl>
+    <dl>
+    </dl>
+    <dl>
+    </dl>
+    <dl>
+    </dl>
+    <div style="margin-left: 80px;"><span style="font-family: Arial;">Annotated
+        genomes may be searched using a variety of tools.&nbsp; For example, to
+        find all genes in Acanthamoeba, click on "<strong><a href="http://amoebadb.org/amoeba/showQuestion.do?questionFullName=GeneQuestions.GenesByTaxon">Organism</a></strong>"
+        under "Text, ID, organism" under the heading "identify genes by" on the
+        home page.&nbsp; Once on the search page you can select </span><span style="font-family: Arial;"><span
+          style="font-family: Arial;">"Acanthamoeba
+          castellanii str. Neff" under "Acanthamoeba". </span></span><span style="font-family: Arial;"><br>
         <br>
-      </span>
-    </p>
+        You can combine searches in AmoebaDB to identify genes in Acanthamoeba
+        with specific characteristics.&nbsp; For example, this search identifies
+        any gene that has either a secretory signal peptide or at least one
+        transmembrane domain or both, that has a kinase GO function associated
+        with it and that is conserved in amoebozoa:</span><span style="font-family: Arial;"><br>
+        <br>
+        <a href="http://amoebadb.org/amoeba/im.do?s=62d5295239beabb1"><strong>http://amoebadb.org/amoeba/im.do?s=62d5295239beabb1</strong></a><br>
+        <br>
+      </span></div>
+    <ul>
+      <li><span style="font-family: Arial;"><span style="mso-bidi-font-style:normal">Genome
+            sequence and annotation of </span><i style="mso-bidi-font-style:normal">Entamoeba
+            nuttalli</i> P19 (Lis Caler at the J. Craig Venter Institute (JCVI)
+          and were generated as part of the <strong><a href="http://amoebadb.org/amoeba/communityDownload.do?fname=E_histolytica_wp.pdf">Entamoeba
+              strain sequencing white paper</a></strong>.&nbsp; Additional
+          information on the project at JCVI can be accessed <strong><a href="http://gsc.jcvi.org/projects/gsc/e_histolytica/">here</a></strong>).</span></li>
+    </ul>
+    <span style=" font-family: Arial;"><br>
+    </span>
+    <ul>
+    </ul>
+    <span style=" font-family: Arial;"> </span>
+    <dl style="text-align: justify;">
+    </dl>
+    <ul>
+      <li><span style="font-family: Arial;">Entamoeba repeat elements<u><o:p></o:p></u>
+          (Provided by Lis Caler (JCVI)), this dataset maps repeat elements
+          (LINE, SINE, ERE) in E invadens IP1, and E. dispar SAW760. View repeat
+          elements aligned to the genome in the GBrowse track: <strong><a href="http://amoebadb.org/cgi-bin/gbrowse/amoebadb/?start=1;stop=14763;ref=DS548829;width=800;version=100;flip=0;grid=1;id=69238127c0507ada35790c337917c266;l=RepeatElements%1EGene;h_feat=edi_244000%40yellow">Entamoeba
+Repeat
+              Elements</a></strong></span></li>
+    </ul>
+    <span style=" font-family: Arial;"> </span><br>
+    <span style="font-family: Arial;"><b style="mso-bidi-font-weight:normal">New
+        Functionality:<o:p></o:p></b></span><br>
+    <span style="font-family: Arial;"><u><br>
+        PCR Primer Design tool added to GBrowse. <o:p></o:p></u></span><span style="font-family: Arial;"><br>
+      <br>
+    </span>
     <div style="margin-left: 40px;"><span style="font-family: Arial;">Design PCR
         primers to any region of the genome using this interactive, graphic
-        interface. To reach this tool, </span><span style="font-family: Arial;"><span
-          style="font-family: Arial;"><strong><a
-              href="http://piroplasmadb.org/cgi-bin/gbrowse/piroplasmadb/?name=FO082874:1554539..1586300;h_feat=bbm_iii04375@yellow">open
+        interface. To reach this tool, <strong><a href="http://amoebadb.org/cgi-bin/gbrowse/amoebadb/?name=DS548829:1..14763;h_feat=edi_244000@yellow">open
 the
-              PiroplasmaDB Genome Browser</a></strong> </span>at your genomic
-        region of interest, choose "Design PCR primers" from the dropdown menu
-        and click "GO".<span style="mso-spacerun:yes">&nbsp; </span>To design
-        primers, focus on a PCR product size range by highlighting the area on
-        the scale, then enter your preferred PCR parameters in the text boxes
-        and click Design Primer.<o:p></o:p></span></div>
+            AmoebaDB Genome Browser</a></strong> at your genomic region of
+        interest, choose "Design PCR primers" from the dropdown menu and click "GO".<span
+          style="mso-spacerun:yes">&nbsp;
+          </span>To design primers, focus on a PCR product size range by
+        highlighting the area on the scale, then enter your preferred PCR
+        parameters in the text boxes and click Design Primer.<o:p></o:p></span></div>
     <span style="font-family: Arial;"> </span> <br>
     <span style="font-style: italic;"><span style="font-style: italic;"><span style="text-decoration: underline;">Note:</span>
         Our bimonthly database releases incorporate new data and correct old
@@ -2064,11 +2293,7 @@ the
         is now on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
       style="font-weight: bold; font-style: italic;">
       and <a href="http://twitter.com/eupathdb">Twitter</a></span> <br style="font-family: Arial;">
-    <p style="text-align: justify;" class="MsoNormal"><br>
-      <span style="font-family: Arial;"><o:p></o:p></span></p>
-    <span style="font-family: Arial;"> </span>
-    <p style="text-align: justify;"><!--EndFragment--> </p>
-    <span style="font-family: Arial;"> </span>
+    <br style="font-family: Arial;">
   </body>
           ]]>
        </attribute>
@@ -2135,156 +2360,91 @@ the
        </attribute>
     </record>
 <record>
-       <attribute name="headline">PiroplasmaDB 2.0 Released</attribute>
-       <attribute name="date">31 August 2012 15:00</attribute>
-       <attribute name="tag">piro0812news</attribute>
-       <attribute name="category">release</attribute>
-       <attribute name="item">
-           
-         <![CDATA[
-<html>
-  <head>
-    <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
-    <title>piro08_12</title>
-  </head>
-  <body>
-    <div style="text-align: justify; font-family: Arial;"> <span style="font-weight: bold;">We
-        are pleased to announce the release of
-        PiroplasmaDB 2.0</span><br style="font-weight: bold;">
-      <span style="font-weight: bold;"> </span><br>
-      <font face="Arial">This release of </font>PiroplasmaDB<font face="Arial">
-        constitutes a complete
-        rebuild of the database.&nbsp; This means that all genomes and
-        data were reloaded and reanalyzed.&nbsp; </font><font face="Arial">It
-        is possible that many of your stored search strategies will need to be
-        rerun to accommodate the new analyses (please see note at the bottom of
-        this news item).&nbsp; </font><font face="Arial">We encourage you to
-        explore this release and, as usual,
-        we look forward to hearing from you with suggestions for further
-        improvement and any problems you may encounter. </font><br>
-      <br>
-      <span style="font-weight: bold;"> New data in this release:</span><br>
-      <span style="font-weight: bold;"> </span><br>
-    </div>
-    <ul style="text-align: justify; font-family: Arial;">
-      <li><span style="font-style: italic;">Babesia bovis</span> microarray
-        data from <a style="font-weight: bold;" href="http://www.ncbi.nlm.nih.gov/pubmed/21838895">Lau
-          <span style="font-style: italic;">et. al.</span></a> Incorporation of
-        this
-        data enables you to search for genes that are differentially regulated
-        between virulent and attenuated strains of <span style="font-style: italic;">B.
-          bovis</span>.&nbsp; Searches against
-        this data are available by selection "<a style="font-weight: bold;" href="http://piroplasmadb.org/piro/showQuestion.do?questionFullName=InternalQuestions.GenesByMicroarrayEvidence">Microarray</a>"
-        in the "Transcript Expression" section under the heading "Identify
-        Genes by" on the home page.</li>
-    </ul>
-    <div style="margin-left: 40px;"><span style="font-family: Arial;"><br>
-        Searches for gens based on their expression profile may be combined
-        with other available searches in PiroplasmaDB.&nbsp; For example, the
-        following shared search strategy identifies predicted secreted genes
-        that are differentially regulated between virulent and attenuated
-        strains:</span><br>
-    </div>
-    <div style="text-align: justify; font-family: Arial;"> </div>
-    <div style="text-align: justify; font-family: Arial;"> <a href="http://piroplasmadb.org/piro/im.do?s=eb3dc45918c75c68"><br>
-      </a></div>
-    <div style="margin-left: 80px; text-align: justify; font-family: Arial;"><a
-        href="http://piroplasmadb.org/piro/im.do?s=eb3dc45918c75c68"><span
-          style="font-weight: bold;">http://piroplasmadb.org/piro/im.do?s=eb3dc45918c75c68</span></a><br>
-    </div>
-    <div style="text-align: justify; font-family: Arial;"> <br>
-    </div>
-    <div style="margin-left: 40px; text-align: justify; font-family: Arial;">In
-      addition, graphical representations of expression profiles are
-      available on all <span style="font-style: italic;">B. bovis</span>
-      gene pages.&nbsp; As an example, you can visit the gene page for one of
-      the <a style="font-weight: bold;" href="http://piroplasmadb.org/gene/BBOV_IV001490">variant
-        erythrocyte
-        surface antigens</a> and scroll down to the expression section.<br>
-      <br>
-    </div>
-    <div style="text-align: justify; font-family: Arial;"> </div>
-    <ul style="text-align: justify; font-family: Arial;">
-      <li>Isolate data from environmental samples, <span style="font-style: italic;">Theileriidae</span>
-        and <span style="font-style: italic;">Babesiidae</span> obtained from
-        Genbank
-        are now available.&nbsp; These data may be searched based on multiple
-        criteria including geographic location, isolation source, host, strain,
-        etc.&nbsp; Searches against isolate data are available under the
-        "Isolates" section under the heading "Identify other data types" on the
-        home page.&nbsp; Isolate searches may be combined such as the following
-        strategy that identifies all Theileria isolates from Africa:<br>
-      </li>
-    </ul>
-    <div style="text-align: justify; font-family: Arial;"> <a href="http://piroplasmadb.org/piro/im.do?s=2c545c1d461d5df3"><br>
-        <span style="font-weight: bold;"></span></a> </div>
-    <div style="margin-left: 80px; text-align: justify; font-family: Arial;"><a
-        href="http://piroplasmadb.org/piro/im.do?s=2c545c1d461d5df3">
-        ht<span style="font-weight: bold;">tp://piroplasmadb.org/piro/im.do?s=2c545c1d461d5df3</span></a><br>
-    </div>
-    <div style="text-align: justify; font-family: Arial;"> <br>
-      <span style="font-weight: bold;"></span><br>
-      <span style="font-weight: bold;"> </span><br>
-      <span style="font-weight: bold;"> New functionality:</span><br>
-      <br>
-      Graphical representation of your gene results mapped to genomic
-      sequences.&nbsp; To use this feature, run any gene search then click on
-      the "Genome View" tab.&nbsp; This view allows you to interactively
-      visualize the genomic distribution of your results -- you can zoom
-      in/out, sort results or visit specific gene pages.&nbsp; <br>
-      <br>
-      <br>
-      <span style="font-style: italic;"><span style="font-style: italic;"><span
-            style="text-decoration: underline;">Note:</span>
-          Our bimonthly
-          database releases incorporate new data and correct old data when
-          necessary.&nbsp; Changes in annotation and new experimental data may
-          slightly alter your search results by increasing or decreasing the
-          number of hits. When search parameters change with a new release, we
-          invalidate (<span style="color: red;">Ø</span>) the search and ask you
-          to rerun it. When IDs are updated or removed, we map the old IDs to
-          the
-          new ones, remove the old IDs from your Basket, and leave your
-          Favorites
-          page alone.</span></span><br>
-      <span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
-      <span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
-is
-          now on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
-        style="font-weight: bold; font-style: italic;">
-        and <a href="http://twitter.com/eupathdb">Twitter</a></span><br>
-    </div>
-  </body>
-</html>
-          ]]>
-       </attribute>
-    </record>
-<record>
-       <attribute name="headline">New features in PiroplasmaDB</attribute>
+       <attribute name="headline">AmoebaDB 1.7 Released</attribute>
        <attribute name="date">11 January 2012 15:00</attribute>
-       <attribute name="tag">piro1211news</attribute>
+       <attribute name="tag">amoeba12_11_news</attribute>
        <attribute name="category">release</attribute>
        <attribute name="item">
            
          <![CDATA[
 <body>
-<span style="font-weight: bold; font-family: Arial;">We are pleased to
-announce new features in&nbsp; PiroplasmaDB<br>
-</span><br style="font-family: Arial;">
-<span style="font-weight: bold; font-family: Arial;">New
-functionality:</span><br style="font-family: Arial;">
-<br style="font-family: Arial;">
-<span style="font-weight: bold; font-family: Arial;">
+<div style="text-align: justify; font-family: Arial;"><span
+style="font-weight: bold;">We are pleased to announce the release
+of AmoebaDB 1.7</span><br>
+<span style="font-weight: bold;">
+</span><br>
+<span style="font-weight: bold;">
+New Data:</span><span style="font-weight: bold;"> </span><br>
+<ul>
+<li><span style="font-style: italic;">E. histolytica microarray data
+graciously provided p</span>republication by Rivka Bracha, Carol A.
+Gilchrist and David Mirelman.&nbsp; This data is based on <span
+style="font-style: italic;">E. histolytica </span>G3 vs HM1:IMSS
+Transcript Expression and can be searched in the <a
+style="font-weight: bold;"
+href="/amoeba/showQuestion.do?questionFullName=InternalQuestions.GenesByMicroarrayEvidence#attributions-section">microarray
+section</a> of AmoebaDB under the heading "G3 v. HM1". Genes can be
+identified based on fold change or percentile searches.&nbsp; In
+addition, microarray data is displayed graphically in the expression
+section on gene pages.</li>
+</ul>
+<br>
+<ul>
+<li><span style="font-style: italic;">E. histolytica</span>
+proteomics data from bead-purified phagosomes (<a
+style="font-weight: bold;"
+href="http://www.ncbi.nlm.nih.gov/pubmed/16153248">Marion <span
+style="font-style: italic;">et. al.</span></a>).&nbsp; To search this
+data click on the
+protein expression link under the "Identify Genes by:" heading, then
+click on "<a style="font-weight: bold;"
+href="http://amoebadb.org/amoeba/showQuestion.do?questionFullName=GeneQuestions.GenesByMassSpec">Mass
+Spec. Evidence</a>". On this page you can expand the
+"<span style="font-style: italic;">Entamoeba histolytica</span>" item
+and select "Human Serum Coated Magnetic Bead-Purified Phagosomes from
+Trophozoite (Marion et. al.)".&nbsp; <a style="font-weight: bold;"
+href="/amoeba/im.do?s=22708ab9c95a4d94">This
+search strategy</a> identifies all genes with evidence of protein
+expression based on this data.&nbsp; <br>
+</li>
+</ul>
+<br>
+<ul>
+<li><span style="font-style: italic;">E. histolytica</span>
+proteomics data from Purified Trophozoite Uropods (<a
+style="font-weight: bold;"
+href="http://www.ncbi.nlm.nih.gov/pubmed/21483708">Markiewicz et. al.</a>).&nbsp;
+To search this
+data click on the
+protein expression link under the "Identify Genes by:" heading, then
+click on "<a style="font-weight: bold;"
+href="http://amoebadb.org/amoeba/showQuestion.do?questionFullName=GeneQuestions.GenesByMassSpec">Mass
+Spec. Evidence</a>". On this page you can expand the
+"<span style="font-style: italic;">Entamoeba histolytica</span>" item
+and select "Purified Uropods from Trophozoite (Markiewicz et.
+al.)".&nbsp; <a style="font-weight: bold;"
+href="/amoeba/im.do?s=ead0cf8b9aea076f">This
+search strategy</a> identifies all genes with evidence of protein
+expression based on this data that also have a predicted signal
+peptide.&nbsp; <br>
+</li>
+</ul>
+</div>
+<div style="text-align: justify; font-family: Arial;"><br>
+<span style="font-weight: bold;">New
+functionality:</span><br>
+<br>
+<span style="font-weight: bold;">
 </span>
-<ul style="font-family: Arial;">
+<ul>
 <li>The genome browser has been updated.&nbsp; This newer version
 includes several improvements and functionalities.&nbsp; <a
 href="http://www.youtube.com/watch?v=jxA6VMN97Y8"><span
 style="font-weight: bold;">A tutorial </span></a>highlighting some of
 the new features is also available.&nbsp;&nbsp;</li>
 </ul>
-<br style="font-family: Arial;">
-<ul style="font-family: Arial;">
+<br>
+<ul>
 <li>A new column analysis tool is now available that allows you to
 generate a word cloud or histogram based on the data in result
 columns.&nbsp; To access this feature, run any search that returns a
@@ -2293,11 +2453,11 @@ column name.&nbsp; This will reveal a popup with the option to select
 "Word Cloud".&nbsp; Look for this analysis feature to be activated on
 additional columns in future releases.</li>
 </ul>
-<br style="font-family: Arial;">
-<ul style="font-family: Arial;">
+<br>
+<ul>
 <li>Several new tutorials have been generated:</li>
 </ul>
-<ul style="font-family: Arial;">
+<ul>
 <ul style="font-weight: bold;">
 <li><a href="http://www.youtube.com/watch?v=jxA6VMN97Y8">The genome
 browser.</a></li>
@@ -2313,9 +2473,10 @@ with invalid IDs and search strategies.</a></li>
 the orthology phylogenetic profile search.</a></li>
 </ul>
 </ul>
-<br style="font-family: Arial;">
-<span style="font-style: italic; font-family: Arial;"><span
-style="font-style: italic;"><span style="text-decoration: underline;">Note:</span>
+<br>
+<span style="font-style: italic;"></span><span
+style="font-style: italic;"><span style="font-style: italic;"><span
+style="text-decoration: underline;">Note:</span>
 Our bimonthly database releases incorporate new data and correct old
 data when necessary.&nbsp; Changes in annotation and new experimental
 data
@@ -2324,21 +2485,274 @@ number of hits. When search parameters change with a new release, we
 invalidate (<span style="color: red;">Ø</span>) the search and ask you
 to rerun it. When IDs are updated or removed, we map the old IDs to the
 new ones, remove the old IDs from your Basket, and leave your Favorites
-page alone.</span></span><br style="font-family: Arial;">
-<span style="font-weight: bold; font-family: Arial;"><span
-style="font-style: italic;"></span></span><br
-style="font-family: Arial;">
-<br style="font-family: Arial;">
-<span style="font-weight: bold; font-family: Arial;"><span
-style="font-style: italic;"></span></span><br
-style="font-family: Arial;">
-<span style="font-weight: bold; font-family: Arial;"><span
-style="font-style: italic;">EuPathDB
+page alone.</span></span><br>
+<span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
+<br>
+<span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
+<span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
 is now on <a
 href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
-style="font-weight: bold; font-style: italic; font-family: Arial;">
-and <a href="http://twitter.com/eupathdb">Twitter</a></span>
-<span style="font-weight: bold; font-family: Arial;"></span>
+style="font-weight: bold; font-style: italic;"> and <a
+href="http://twitter.com/eupathdb">Twitter</a></span></div>
+</body>
+          ]]>
+       </attribute>
+    </record>
+<record>
+       <attribute name="headline">AmoebaDB 1.5 Released</attribute>
+       <attribute name="date">21 July 2011 15:00</attribute>
+       <attribute name="tag">amoeba7_11_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body>
+<div style="text-align: justify;"><span style="font-weight: bold;"></span><span
+style="font-weight: bold;">We are pleased to announce the release
+of AmoebaDB 1.5</span><br>
+<span style="font-weight: bold;">
+</span><br>
+<span style="font-weight: bold;">
+New Data:</span><span style="font-weight: bold;"> </span><br>
+<br>
+</div>
+<ul style="text-align: justify;">
+<li><span style="font-style: italic;">E. histolytica </span>Rahman<span
+style="font-style: italic;"> </span>and<span
+style="font-style: italic;"> </span>moshkovskii<span
+style="font-style: italic;"> </span>genome
+sequence is now available in AmoebaDB.&nbsp; This data was graciously
+provided prepublication by Gareth Weedall and Neil Hall (Institute of
+Integrative Biology, University of Liverpool, UK).&nbsp;Genomic
+sequence data
+from unannotated genomes can be searched from the "Genomic Sequences"
+section under the heading "Identify other data types" on the home
+page. Sequence data may be searched based on <a
+style="font-weight: bold;"
+href="http://amoebadb.org/amoeba/showQuestion.do?questionFullName=GenomicSequenceQuestions.SequenceBySourceId">ID</a>,
+<a style="font-weight: bold;"
+href="http://amoebadb.org/amoeba/showQuestion.do?questionFullName=GenomicSequenceQuestions.SequencesByTaxon">organism</a>
+or <a style="font-weight: bold;"
+href="http://amoebadb.org/amoeba/showQuestion.do?questionFullName=GenomicSequenceQuestions.SequencesBySimilarity">BLAST</a>.</li>
+</ul>
+<br><br>
+<span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
+is now on <a
+href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+style="font-weight: bold; font-style: italic;"> and <a
+href="http://twitter.com/eupathdb">Twitter</a></span><br>
+</body>
+          ]]>
+       </attribute>
+    </record>
+<record>
+       <attribute name="headline">AmoebaDB 1.4 Released</attribute>
+       <attribute name="date">03 May 2011 15:00</attribute>
+       <attribute name="tag">amoeba5_11_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body>
+<div style="text-align: justify;"><span style="font-weight: bold;">We
+are pleased to announce the release
+of AmoebaDB 1.4</span><br>
+<span style="font-weight: bold;">
+</span><br>
+<span style="font-weight: bold;">
+New Data:</span><span style="font-weight: bold;"> </span><br>
+<br>
+</div>
+<ul style="text-align: justify;">
+<li><span style="font-style: italic;">E. histolytica </span>glycoproteins
+proteomics data from <a style="font-weight: bold;"
+href="http://www.ncbi.nlm.nih.gov/pubmed?term=20852023">Carpentieri <span
+style="font-style: italic;">et. al</span></a>.&nbsp; To search this
+data click on the
+protein expression link under the "Identify Genes by:" heading, then
+click on "<a style="font-weight: bold;"
+href="http://amoebadb.org/amoeba/showQuestion.do?questionFullName=GeneQuestions.GenesByMassSpec">Mass
+Spec. Evidence</a>".&nbsp; On this page you can expand the
+"<span style="font-style: italic;">Entamoeba histolytica</span>" item
+and select your data "Mass
+Spec/Glycosylation" and click "Get Answer".&nbsp;</li>
+</ul>
+<div style="text-align: justify;"><br>
+</div>
+<ul style="text-align: justify;">
+<ul>
+<li>As usual you can combine search results with other searches in
+a strategy.&nbsp; Here is an <a style="font-weight: bold;"
+href="http://amoebadb.org/amoeba/im.do?s=bcdb58f14af7325d">example
+search strategy</a> that leverages orthology to identify all <span
+style="font-style: italic;">Entamoeba </span>orthologs of <span
+style="font-style: italic;">E. histolytica</span> genes with
+proteomics evidence from this data, that are predicted to have a
+predicted signal peptide.</li>
+</ul>
+</ul>
+<div style="text-align: justify;">
+<div style="text-align: justify;"><br>
+<span style="font-weight: bold;">New functionality:</span><br>
+<br>
+<span style="font-weight: bold;">
+</span></div>
+<ul style="text-align: justify;">
+<li>You can now search for DNA segments defined by their chromosomal
+location or their nucleotide sequence (DNA motif pattern).&nbsp; This
+new search is available under "Identify Other Data Types"; click on
+"Genomic Segments (DNA motif)" then select either <a rel="me"
+style="font-weight: bold;"
+href="http://amoebadb.org/amoeba/showQuestion.do?questionFullName=SpanQuestions.DynSpansByMotifSearch">DNA
+motif pattern</a> or <a style="font-weight: bold;"
+href="http://amoebadb.org/amoeba/showQuestion.do?questionFullName=SpanQuestions.DynSpansBySourceId">Genomic
+Location</a>.</li>
+</ul>
+<div style="text-align: justify;">
+<br>
+</div>
+<ul style="text-align: justify;">
+<li>We introduced a new combine operation that allows users to
+combine
+steps based on relative locations on the genome.&nbsp; This enables
+you, for example, to return all genes that contain a specific DNA motif
+within 1000 nucleotides upstream of the annotated start site. Or you
+could return all genes that have a SNP between two strains within 500
+nucleotides of the start of the gene (or return all SNPs that are
+located in this region relative to genes).</li>
+</ul>
+<br>
+<ul style="text-align: justify;">
+<ul>
+<li>Here is an <a style="font-weight: bold;"
+href="http://amoebadb.org/amoeba/im.do?s=856a9a5b29f9e99e">example
+search strategy</a> that identifies protein coding genes with an AP-2
+like motif within 1000 bp of their 5' end.</li>
+</ul>
+</ul>
+<br>
+<ul style="text-align: justify;">
+<ul>
+<li>Tutorials highlighting the <a style="font-weight: bold;"
+href="http://eupathdb.org/tutorials/DNA_motif/dna_motif_viewlet_swf.html">DNA
+motif</a> search and the <a style="font-weight: bold;"
+href="http://eupathdb.org/tutorials/colocate/colocate_viewlet_swf.html">locational
+relationship functionality</a> are available.</li>
+</ul>
+</ul>
+<br>
+<div style="text-align: justify;">
+In addition, several new tutorials have been developed:<br>
+<br>
+</div>
+<ul style="text-align: justify;">
+<li><a style="font-weight: bold;"
+href="http://eupathdb.org/tutorials/Registration/register_final_viewlet_swf.html">How
+and why should you register for an account</a><br>
+</li>
+<li style="font-weight: bold;"><a
+href="http://eupathdb.org/tutorials/TextSearch/Text_Search_viewlet_swf.html">How
+to run a text search</a></li>
+<li><a style="font-weight: bold;"
+href="http://eupathdb.org/tutorials/Favorites/favorites_viewlet_swf.html">How
+to use Favorites</a></li>
+<li style="font-weight: bold;"><a
+href="http://eupathdb.org/tutorials/DNA_motif/dna_motif_viewlet_swf.html">How
+to find a DNA motif</a></li>
+<li><a style="font-weight: bold;"
+href="http://eupathdb.org/tutorials/colocate/colocate_viewlet_swf.html">How
+to use genomic co-location</a><br>
+</li>
+</ul>
+<div style="text-align: justify;">
+<br>
+<small><a href="http://twitter.com/eupathdb"><span
+style="font-weight: bold; font-style: italic;">Follow EuPathDB on
+Twitter</span></a></small>
+</div>
+</div>
+</body>
+          ]]>
+       </attribute>
+    </record>
+<record>
+       <attribute name="headline">AmoebaDB 1.3 Released</attribute>
+       <attribute name="date">18 November 2010 15:00</attribute>
+       <attribute name="tag">amoeba11_10_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body>
+<span style="font-weight: bold;">We are pleased to
+announce the release of AmoebaDB 1.3<br>
+<br>
+This release of AmoebaDB includes the following new data set:</span><span
+style="font-weight: bold;"> <br>
+<br>
+</span>
+<span style="font-weight: bold;">Draft</span> assemblies of the
+following genomes (Complete data source information is available <a
+href="http://amoebadb.org/amoeba/getDataset.do?display=detail&amp;datasets=E.dispar_Annotations,E.invadens_Annotations,E.histolytica_Annotations,E.histolyticaDS4_Genome,E.histolyticaKU50_Genome,E.histolyticaMS96_Genome,E.histolyticaHM1_CA_Genome,E.histolyticaKU48_Genome,E.histolyticaKU27_Genome&amp;title=Query#E.histolyticaDS4_Genome">here</a>):
+<br><br><ul>
+<ul>
+<li><span style="font-style: italic;">E. histolytica</span> DS4</li>
+<li><span style="font-style: italic;">E. histolytica </span>KU50</li>
+<li><span style="font-style: italic;">E. histolytica</span> MS96</li>
+<li><span style="font-style: italic;">E. histolytica</span> HM-1:CA</li>
+<li><span style="font-style: italic;">E. histolytica</span> KU48</li>
+<li><span style="font-style: italic;">E. histolytica</span> KU27 <br><br>
+</li>
+</ul>
+</ul>
+<span style="font-style: italic;">Genomic sequence data in AmoebaDB may
+be searched and accessed in multiple ways:</span><br><br>
+<ul>
+<ul>
+<li>Genomic sequence data is available under the heading "Genomic
+Sequences" on the home
+page and may be searched by <a
+href="http://amoebadb.org/amoeba/showQuestion.do?questionFullName=GenomicSequenceQuestions.SequencesByTaxon">species</a>,
+<a
+href="http://amoebadb.org/amoeba/showQuestion.do?questionFullName=GenomicSequenceQuestions.SequenceBySourceId">genomic
+sequence IDs</a> and <a
+href="http://amoebadb.org/amoeba/showQuestion.do?questionFullName=GenomicSequenceQuestions.SequencesBySimilarity">BLAST</a><span
+style="font-style: italic;">. <br>
+</span></li>
+<li>Additionally, genomic sequence data may be downloaded from the <a
+href="http://amoebadb.org/common/downloads/release-1.3/">AmoebaDB
+download directory</a>.<br><br></li>
+</ul>
+</ul>
+<ul>
+</ul>
+The sequence data has been graciously made available prepublication to
+the community via AmoebaDB by Lis Caler at the J. Craig Venter
+Institute (JCVI) and were generated as part of the <a
+href="http://amoebadb.org/amoeba/communityDownload.do?fname=E_histolytica_wp.pdf"><span
+style="font-style: italic;">Entamoeba</span> strain sequencing white
+paper</a>.&nbsp; Additional information on the project at JCVI can be
+accessed <a href="http://gsc.jcvi.org/projects/gsc/e_histolytica/">here</a>.&nbsp;
+<br><br>
+Two presentations from JCVI are available here:<br><br>
+<ul>
+<ul>
+<li><a
+href="http://amoebadb.org/amoeba/communityDownload.do?fname=Hannick%20Eh%20MPM%20Poster%202010.pdf">2010
+MPM poster presented by Linda I. Hannick.</a></li>
+<li><a
+href="http://amoebadb.org/amoeba/communityDownload.do?fname=Montreal_presentation.pptx">2010
+presentation at the Montreal Amebiasis meeting by Lis Caler.</a></li>
+</ul>
+</ul>
+<br>
+<span style="font-weight: bold;">New Feature in AmoebaDB:</span> you
+can now add publications to your user comments using their <a
+href="http://www.doi.org/index.html">Digital Object Identifier</a>
+(DOI) numbers.&nbsp; To view a list of all genes that have a user
+comment in PlasmoDB, click <a
+href="http://amoebadb.org/amoeba/showSummary.do?questionFullName=GeneQuestions.GenesByTextSearch&amp;array%28text_search_organism%29=&amp;array%28text_fields%29=User%20comments&amp;array%28whole_words%29=no&amp;value%28max_pvalue%29=-30&amp;value%28text_expression%29=*&amp;value%28timestamp%29=Nov%2017,%202010%206:23:53%20PM">here</a>.<br>
+<span style="font-weight: bold;"></span>
 </body>
           ]]>
        </attribute>
@@ -2346,27 +2760,400 @@ and <a href="http://twitter.com/eupathdb">Twitter</a></span>
 <record>
        <attribute name="headline">
          <![CDATA[
-          PiroplasmaDB 1.0 Released
+          AmoebaDB publication in Nucleic Acid Research
          ]]>
        </attribute>
-       <attribute name="date">15 April 2011 00:00</attribute>
-       <attribute name="tag">piro4_11_news</attribute>
+       <attribute name="date">18 November 2010 00:00</attribute>
+       <attribute name="tag">NAR2011</attribute>
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+
+We are pleased to announce the publication of a paper in Nucleic Acid Research describing AmoebaDB.<br>
+Please cite this manuscript when referencing the AmoebaDB resource in your publications.
+<p>
+<a href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=pubmed&cmd=search&term=20974635">
+AmoebaDB and MicrosporidiaDB: functional genomic resources for Amoebozoa and Microsporidia species.</a> Nucleic Acids Res. 2010 Oct 24. Aurrecoechea C, et al.
+]]>
+       </attribute>
+    </record>
+<record>
+       <attribute name="headline">
+         <![CDATA[
+Driving Biological Projects awarded
+         ]]>
+         </attribute>
+       <attribute name="date">20 October 2010 13:00</attribute>
+       <attribute name="tag">dbp_award_10202010</attribute>
+       <attribute name="category">dbp</attribute>
+       <attribute name="item">
+         <![CDATA[
+<b>We are pleased to report that the following Driving Biological Projects (DBPs) have been awarded in connection with the EuPathDB Bioinformatics Resource Center (BRC):</b><br><br>
+<ul>
+<li><b>The Toxoplasma oocyst transcriptome and proteome</b><br>
+   John Boothroyd, Matt Bogyo (Stanford) & Pat Conrad (UC Davis)<br>
+   This project is expected to yield expression data from an important, but inaccessible, life cycle stage (1 yr). <br><br></li>
+<li><b>A comprehensive catalog of the T. gondii & N. caninum parasite & infected host cell transcriptome & proteome</b><br>
+   Brian Gregory (Univ. Pennsylvania) & Jonathan Wastling (Univ. Liverpool)<br>
+   This project will produce an immense volume of sequence data, driving database improvements for handling 'next-gen' sequencing, non-coding RNAs, and interrogating host & pathogen datasets in parallel (2 yr).<br><br></li>
+
+<li><b>Dissection of Plasmodium falciparum genetic crosses by mass spectrometry-based metabolite QTL</b><br>
+   Manuel Llin&aacute;s (Princeton) & Michael Ferdig (Notre Dame)<br>
+   This project is expected to improve handling of genetic mapping data, incorporation of metabolomics results (integrated with pathway maps), and linking of specific genetic loci with metabolite abundance (2 yr).<br><br></li>
+</ul>
+
+A biennial competition for DBP awards is mandated by the BRC contract from NIH/NIAID, and supported by a total of $1.2M in total costs per award cycle.  The goal of this program is to produce high value genomic-scale datasets for the EuPathDB user community, and drive the further development of bioinformatics resources for data analysis and mining.<br><br>
+
+Letters of intent (LOI) were solicited in February (see Feb 4 News item), and reviewed by the EuPathDB Scientific Working Group (SWG; see News, March 31).  12 full applications were solicited from among the ~50 LOIs received, and awards were based on further scientific review by the SWG, and in consultation with NIAID program staff.  Cost negotiations and 'in kind' contributions from other sources made it possible to support 3 applications, from 6 investigators (in some cases, more than one LOI was merged into a single award).<br><br>
+
+We received far more high quality proposals than could be supported, testifying to the need for such mechanisms for data production bioinformatics analysis.  The EuPathDB team looks forward to working with members of our user community who are seeking funding for such projects from external sources.  Inquiries, including requests for support letters, should be directed to the EuPathDB staff (click on the 'Contact Us' link).<br><br>
+
+<b>A new solicitation for DBPs is anticipated in 2011, and will be announced on the EuPathDB web site.</b>
+          ]]>
+       </attribute>
+</record>
+<record>
+       <attribute name="headline">AmoebaDB 1.2 Released</attribute>
+       <attribute name="date">21 September 2010 15:00</attribute>
+       <attribute name="tag">amoeba09_10_news</attribute>
        <attribute name="category">release</attribute>
        <attribute name="item">
            
          <![CDATA[
 <body>
-<span style="font-weight: bold;">We are pleased to announce the release
-of PiroplasmaDB 1.0<br>
-</span><br>
-<span style="font-weight: bold;">This first release of PiroplasmaDB contains the
-following datasets:</span><span style="font-weight: bold;"> </span><br>
+<span style="font-weight: bold;">We are pleased to
+announce the release of AmoebaDB 1.2<br>
 <br>
+<br>
+This release of AmoebaDB includes the following new data set:</span><span
+style="font-weight: bold;"> <br>
+</span>
+<ul>
+<li>Proteomics data from <span style="font-style: italic;">E.
+histolytica </span>phagosomes of various degrees of maturation
+(<a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2211552/">Boettner
+et. al.</a>).&nbsp; This data can be searched in AmoebaDB from the <a
+href="http://amoebadb.org/amoeba/showQuestion.do?questionFullName=GeneQuestions.GenesByMassSpec">Mass
+Spec. search page</a> and results can be integrated with other search
+types.&nbsp; An example search strategy that integrates different
+search types can be viewed <a
+href="http://amoebadb.org/amoeba/im.do?s=3a0c08bd343b2607">here</a>.&nbsp;
+This strategy asks for all <span style="font-style: italic;">E.
+histolytica</span> genes&nbsp; with phagosome proteomic evidence, that
+contain transmembrane domains and&nbsp; contain a "kinase" PFAM
+domain.&nbsp; <br>
+</li>
+<li>Gene that have evidence of protein expression also have a
+graphical representation of the peptide hits on their respective gene
+pages (mousing over the graphics provides additional information such
+as peptide sequence).&nbsp; Here is a link to a gene page with
+proteomics evidence -- scroll down to the "Protein" section and show
+"Protein features".&nbsp; Note that samples are color coded.<br>
+</li>
+<li>Proteomics data can also be visualized in the genome
+browser.&nbsp; This <a
+href="http://amoebadb.org/cgi-bin/gbrowse/amoebadb/?start=1;stop=210398;ref=DS571146;width=800;version=100;cache=on;show_tooltips=on;grid=on;id=31c3276525b0c5ae2d30104f014a4a12;label=Gene-HustonMassSpecPeptides;h_feat=ehi_076870%40yellow%27%29">link</a>
+shows a 200Kb genomic region with the gene models and proteomics track
+turned on.&nbsp; <br>
+</li>
+</ul>
+<span style="font-weight: bold;">New features in this release include:</span><br>
+<ul>
+<li>The search strategy window is now resizable.</li>
+</ul>
+<br>
+<br>
+<span style="font-weight: bold;"></span>
+</body>
+          ]]>
+       </attribute>
+    </record>
+<record>
+       <attribute name="headline">AmoebaDB 1.1 Released</attribute>
+       <attribute name="date">15 July 2010 15:00</attribute>
+       <attribute name="tag">amoeba07_10_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body>
+<span style="font-weight: bold;">We are pleased to
+announce the release of AmoebaDB 1.1<br>
+<br>
+<br>
+This release of AmoebaDB includes the following new data sets:</span><span
+style="font-weight: bold;"> <br>
+</span>
+<ul>
+<li>Gene expression in <span style="font-style: italic;">Entamoeba
+histolytica</span> cysts and trophozoites.&nbsp; This study is
+described by <a href="http://www.ncbi.nlm.nih.gov/pubmed/17250591">Ehrenkaufer
+<span style="font-style: italic;">et. al.</span></a><br>
+</li>
+<li>Impact of intestinal colonization and invasion on the <span
+style="font-style: italic;">Entamoeba histolytica</span> transcriptome
+This study is described by <a
+href="http://www.ncbi.nlm.nih.gov/pubmed/16569449">Gilchrist <span
+style="font-style: italic;">et. al.</span></a><br>
+</li>
+</ul>
+Genes can be identified based on the fold change in their expression in
+either of the above experiments using the microarray search available
+in AmoebaDB (under the heading "Transcript Expression).&nbsp; <br>
+<br>
+In addition, AmoebaDB now has a logo!&nbsp; Template images used in
+AmoebaDB were kindly provided by Graham Clark, Fiona Henriquez, William
+Petri and Greg Roberts.<br>
+<br>
+<br>
+<span style="font-weight: bold;"></span>
+</body>
+          ]]>
+       </attribute>
+    </record>
+<record>
+       <attribute name="headline">New Features in AmoebaDB</attribute>
+       <attribute name="date">13 May 2010 15:00</attribute>
+       <attribute name="tag">amoeba05_10_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body>
+<span style="font-weight: bold;">We are pleased to
+announce new features in AmoebaDB 1.0<br>
+<br>
+<br>
+In an effort to continue improving the utility of&nbsp;</span><span
+ style="font-weight: bold;">AmoebaDB</span><span
+ style="font-weight: bold;"> we have
+implemented several new features in recent releases. &nbsp;<br>
+<br>
+</span>
+<ol>
+  <li><span style="font-weight: bold; font-style: italic;">"My
+Basket"</span> allows one to cherry pick genes and add them to
+the basket for subsequent conversion into a step in a strategy.
+&nbsp;The basket is accessible from the gray menu bar and the
+number of items in your basket is indicated.</li>
+  <br>
+  <li><span style="font-weight: bold; font-style: italic;">Weighted
+searches</span>&nbsp;allows you to assign an arbitrary weight
+to the searches (steps) in
+your search strategy making it possible for you to view a ranked list
+of your results. &nbsp;</li>
+  <div style="margin-left: 40px;">Here is an example of
+the
+same strategy looking for putative secreted enzymes. &nbsp;Notice
+that you
+have a larger number of results with weighting and those can be sorted
+based on the sum of the weights, giving a ranked list of results.<br>
+  <br>
+  <a href="http://amoebadb.org/amoeba/im.do?s=1f1149b09f8bdb94">Putative
+secreted enzymes (unweighted)</a><br>
+  <br>
+  <a href="http://amoebadb.org/amoeba/im.do?s=49f654c9c61fd4e1">Putative
+secreted enzymes (Weighted)</a></div>
+  <br>
+  <li><span style="font-weight: bold; font-style: italic;">"My
+Favorites"</span> allows you to bookmark and organize genes you
+access frequently. &nbsp;A tutorial on how to use this feature is
+available <a
+ href="http://eupathdb.org/tutorials/Favorites/favorites_viewlet_swf.html">here</a>.&nbsp;</li>
+</ol>
+<span style="font-weight: bold;"></span><span
+ style="font-weight: bold;">Feature evaluators still needed:<br>
+<br>
+</span>
+<div style="margin-left: 40px;">We welcome you to *sign
+up* to be an early evaluator of new features on the EuPathDB sites.
+This will be an opportunity for you to help us refine and improve
+features early in the development process.&nbsp;In fact, the "My
+Favorites" feature was the subject of our first survey and feature
+evaluator's comments and suggestions contributed to enhancing this
+feature. <br>
+<br>
+Signing on is easy and will
+require minimal effort on your part in the form of answering questions
+or rendering your opinion. &nbsp;<br>
+<br>
+To become&nbsp;a feature evaluator tester, <a
+ href="https://mail.pcbi.upenn.edu/mailman/listinfo/eupathdb_testers">click
+here</a>.</div>
+<br>
+<br>
+<span style="font-weight: bold;"></span>
+</body>
+          ]]>
+       </attribute>
+    </record>
+<record>
+       <attribute name="headline">EuPathDB Scientific Working Group</attribute>
+       <attribute name="date">31 March 2010 15:00</attribute>
+       <attribute name="tag">swg_announce_2010</attribute>
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+EuPathDB is pleased to announce the members of the scientific working group
+(SWG). The SWG provides EuPathDB with scientific oversight and 
+guidance.  Members of the SWG also review the driving biological projects initiative.<br><br>
 
-]]>
+<table>
+<tr>
+<td><a href="http://www.fnih.org/about">Michael Gottlieb</a>, Chair<br>
+Foundation for National Institutes of Health (FNIH)<br>
+Broad expertise in parasitology, large integrative projects (chair)<br>
+</td>
+<td>
+<a href="http://www.sanger.ac.uk/research/faculty/mberriman/">Matt Berriman</a><br>
+Wellcome Trust Sanger Institute<br>
+Pathogen genomics & functional annotation<br>
+</td>
+</tr><tr>
+<td>
+<a href="http://med.stanford.edu/profiles/John_Boothroyd/">John Boothroyd</a><br>
+Stanford University<br>
+Toxoplasma biology & host-pathogen interactions<br>
+</td>
+<td>
+<a href="http://www.vcu.edu/lifesci/research/res_fac_int_buck.html">Greg Buck</a><br>
+Virginia Commonwealth University<br>
+Pathogenomics of apicomplexan and kinetoplastid parasites<br>
+</td>
+</tr><tr>
+<td>
+<a href="http://www3.niaid.nih.gov/labs/aboutlabs/lmiv/default.htm">Patrick Duffy</a><br>
+National Institutes of Health (NIAID)<br>
+Laboratory & clinical aspects of malaria biology<br>
+</td>
+<td>
+<a href="http://www.cgm.northwestern.edu/">Pascale Gaudet</a><br>
+Northwestern University<br>
+Biocuration, ontologies, DIctyostelium<br>
+</td>
+</tr><tr>
+<td>
+<a href="http://www.paras.uzh.ch/research/microbiology.html">Adrian Hehl</a><br>
+University of  Zurich<br>
+Cellular and molecular biology of Giardia<br>
+</td>
+<td>
+<a href="http://www.botany.ubc.ca/keeling/">Patrick Keeling</a><br>
+University of British Columbia<br>
+Comparative genomics<br>
+</td>
+</tr><tr>
+<td>
+<a href="http://www.medicine.virginia.edu/clinical/departments/pathology/faculty/petri-page">Bill Petri</a><br>
+University of Virginia<br>
+Laboratory & clinical aspects of Entamoeba and diarrheal diseases<br>
+</td>
+<td>
+<a href="http://www.oicr.on.ca/Research/stein.htm">Lincoln Stein</a><br>
+Ontario Cancer Center<br>
+Bioinformatics tools & analysis<br>
+</td>
+</tr><tr>
+<td>
+<a href="http://www.genome.gov/26525388">Lu Wang</a><br>
+National Institutes of Health (NHGRI)<br>
+Large-scale sequencing<br>
+</td>
+<td>
+<a href="http://www.liv.ac.uk/infection-and-global-health/staff/jonathan-wastling/">Jonathan Wastling</a><br>
+University of Liverpool<br>
+Proteomics of apicomplexan parasites<br>
+</td>
+</tr><tr>
+<td>
+<a href="http://www.einstein.yu.edu/home/faculty/profile.asp?id=4218">Louis Weiss</a><br>
+Albert Einstein College of Medicine<br>
+Microsporidia, Toxoplasma, and clinical microbiology<br>
+</td>
+<td>
+<a href="http://www.hsph.harvard.edu/faculty/dyann-wirth/">Dyann Wirth</a><br>
+Harvard School of Public Health<br>
+Plasmodium population biology, drug discovery<br>
+</td></table>
+          ]]>
        </attribute>
     </record>
 
 
+<record>
+       <attribute name="headline"><![CDATA[AmoebaDB 1.0 released]]>
+       </attribute>
+       <attribute name="date">15 March 2010 15:00
+       </attribute>
+       <attribute name="tag">amoeba0310_news
+       </attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+
+<span style="font-weight: bold;">We are pleased to announce the release of AmoebaDB 1.0<br> 
+</span><br> 
+We are pleased to announced the full release of AmoebaDB 1.0 
+(<a href="http://amoebadb.org">http://amoebadb.org</a> or <a href="http://amebadb.org">http://amebadb.org</a>). &nbsp;<br> 
+Leveraging bioinformatics infrastructure developed in the context of the EuPathDB project (including PlasmoDB, etc), this resource 
+incorporates genome sequence and annotation from the Pathema project. &nbsp;
+<span style="font-weight: bold;"><br><br>
+Highlights include:</span>
+<br><br> 
+<ul> 
+ <li><span style="font-weight: bold;">Sequence and annotation for</span> <i>Entamoeba histolytica, E. dispar and E. invadens</i>.</span></li> 
+ <li><span style="font-weight: bold;">Genome sequence alignments</span>, permitting comparative genomic analysis of synteny between <i>Entamoeba</i> species.</li> 
+ <li><span style="font-weight: bold;">Expressed sequence tag data</span> for <i>E.&nbsp;histolytica</i> and <i> E. dispar.</i></li> 
+ <li><span style="font-weight: bold;">'User Comments'</span> may be added to any gene page, enhancing available annotation. 
+        Such comments become immediately visible and searchable by others.</li> 
+ <li><span style="font-weight: bold;">Identification of genes</span> based on text terms, ID #, GO terms, EC #, chromosomal location, BLAST, 
+        sequence features (length/MW, exons, signal sequences, Pfam domains, user-defined motifs), orthology, etc. </li> 
+ <li><span style="font-weight: bold;">Support for integrated searches</span>, via the 'search strategy builder'. &nbsp;Strategies can be stored and shared 
+       with others by logging into AmoebaDB. For an example, <a href="http://amoebadb.org/amoeba/im.do?s=aed2d725b224ff13"><b>open this sample strategy</b></a> 
+       that combines multiple searches, in your browser.</li>
+</ul>
+<br><br>
+<span style="font-weight: bold;">***<a href="https://mail.pcbi.upenn.edu/mailman/listinfo/eupathdb_testers">Sign up to be a EuPathDB feature evaluator:
+</a
+>***<br><br>
+</span> 
+<div style="margin-left: 20px;">
+We welcome you to <a href="https://mail.pcbi.upenn.edu/mailman/listinfo/eupathdb_testers">*sign up* to be an early evaluator</a>
+ of new features on the EuPathDB sites.  This will be an opportunity for you to help us refine and improve features early in the development process.  
+Signing up is easy.  Evaluating will require minimal effort on your part, 
+typically in the form of answering specific questions, testing and rendering your opinion.
+</div>
+ ]]>
+       </attribute>
+
+</record>
+
+
+<record>
+       <attribute name="headline">EuPathDB Driving Biological Projects</attribute>
+       <attribute name="date">04 February 2010 15:00</attribute>
+       <attribute name="tag">eupath_dbp_2010</attribute>
+       <attribute name="category"></attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+The NIAID-funded Eukaryotic Pathogen Genome Database
+(<a href="http://eupathdb.org">EuPathDB.org</a>) invites proposals for Driving Biological
+Projects (DBPs) focused on one or more of the eukaryotic
+pathogens supported by this Bioinformatics Resource Center
+(BRC). We anticipate making two awards of up to $600K each
+by July 1, 2010 (a second round of solicitations is expected
+in 2012).<i> A two page Letter of Intent (LOI) is due Feb 28,
+following which full applications will be solicited by
+invitation only, with a deadline of March 31.</i>  
+<a href="http://eupathdb.org/common/EuPathDB_DBP_announcement.pdf">
+Click here to
+download the RFP</a>.
+          ]]>
+       </attribute>
+</record>
 
 </xmlAnswer>

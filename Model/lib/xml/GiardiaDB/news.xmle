@@ -7,32 +7,45 @@
        <attribute name="date"></attribute>
        <attribute name="tag"></attribute>
        <attribute name="category"></attribute>
-       <attribute name="item">
-           
+       <attribute name="item">           
          <![CDATA[
           ]]>
        </attribute>
     </record>
+    
+    <section>
+      <h3>New data in this release</h3>
+      <h4>Annotation is updated for the following genomes:</h4><br>
+         <ul>
+          <li><i>Acanthamoeba castellanii</i> str. Neff</li>
+          <li><i>Entamoeba histolytica</i> HM-1:IMSS-A</li>
+          <li><i>Entamoeba histolytica</i> HM-1:IMSS-B</li>
+          <li><i>Entamoeba histolytica</i> HM-3:IMSS</li>
+          <li><i>Entamoeba histolytica</i> KU27</li>
+          <li><i>Entamoeba nuttalli</i> P19</li>
+          <li><i>Entamoeba invadens</i> IP1</li>
+         </ul>
+      </section>
 --> 
 
 <record>
-  <attribute name="headline">PiroplasmaDB 38 Released</attribute>
+  <attribute name="headline">GiardiaDB 38 Released</attribute>
   <attribute name="date">02 Jul 2018 13:00</attribute>
-  <attribute name="tag">PiroplasmaDB07_18_release</attribute>
+  <attribute name="tag">GiardiaDB11_18_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of PiroplasmaDB 38</strong></p>
+    <p><strong>We are pleased to announce the release of GiardiaDB 38</strong></p>
       
+   
       <section>
-      <h3><b>No new data in PiroplasmaDB 38</b></h3>
+        <h3><b>No new data in this release</b></h3> 
       </section>
       
       <section>
-      <h3><b>No new features in PiroplasmaDB 38</b></h3>
+        <h3><b>No new features in this release</b></h3> 
       </section>
-            
-      <section>
+      <section> 
          <aside>
            Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
            Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
@@ -48,30 +61,17 @@
 
 
 <record>
-  <attribute name="headline">PiroplasmaDB 37 Released</attribute>
+  <attribute name="headline">GiardiaDB 37 Released</attribute>
   <attribute name="date">25 Apr 2018 13:00</attribute>
-  <attribute name="tag">piroplasmadb04_18_release</attribute>
+  <attribute name="tag">giardiadb04_18_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of PiroplasmaDB 37</strong></p>
+    <p><strong>We are pleased to announce the release of GiardiaDB 37</strong></p>
       
+   
       <section>
-      <h3><b>New data in PiroplasmaDB 37</b></h3>
-      <div style="margin-left: 3em;"> 
-      <h4>Genome sequence and annotation</h4>
-           <ul>
-             <li><a href="http://piroplasmadb.org/piro/app/record/dataset/DS_1d1738f4e1"><i>Babesia ovata</i> strain Miyake</a> &ndash; 
-                 This genome appears for the first time in PiroplasmaDB and was downloaded from 
-                 <a href="https://www.ncbi.nlm.nih.gov/bioproject/PRJDB5725" target="_blank">NCBI Bioproject PRJDB5725</a>. 
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/29078748" target="_blank">Yamagishi et al.</a>
-             </li>
-           </ul> 
-      </div>
-      </section>
-      
-      <section>
-      <h3><b>New features in this release</b></h3>
+      <h3><b>New features in Release 37</b></h3>
       <div style="margin-left: 3em;">
       
          <h4>Beta EuPathDB Workspace</h4>
@@ -98,9 +98,12 @@
           </ul>  
       </div>
       </section>
-            
+      
       <section>
-        
+        <h3><b>No new data in this release</b></h3> 
+      </section>
+      
+      <section> 
          <aside>
            Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
            Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
@@ -115,31 +118,23 @@
 
 
 <record>
-  <attribute name="headline">PiroplasmaDB 36 Released</attribute>
+  <attribute name="headline">GiardiaDB 36 Released</attribute>
   <attribute name="date">19 Feb 2018 13:00</attribute>
-  <attribute name="tag">piroplasmadb02_18_release</attribute>
+  <attribute name="tag">giardiadb02_18_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of PiroplasmaDB 36</strong></p>
+    <p><strong>We are pleased to announce the release of GiardiaDB 36</strong></p>
       
       <section>
-      <h3><b>New data in this release</b></h3>
-      <div style="margin-left: 3em;"> 
-      <h4>Genome sequence and annotation</h4>
-           <ul>
-             <li><a href="http://piroplasmadb.org/piro/app/record/dataset/DS_4c30ca0b3a"><i> Babesia microti</i> strain RI</a> &ndash; 
-                 This genome was updated to the 
-                 <a href="https://www.ncbi.nlm.nih.gov/assembly/GCF_000691945.2" target="_blank">current Genbank version</a>.  
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/22833609" target="_blank">Cornillot et al.</a>
-             </li>
-           </ul> 
-      </div>
+        <h3><b>No new data in this release</b></h3> 
+
       </section>
+      
       
       <section>
       <h3><b>New features in this release</b></h3>
-      <div style="margin-left: 3em;">
+            <div style="margin-left: 3em;">
       
       <h4>Search Page Improvements: search pages were redesigned to include an organism filter and provide better access to help information.</h4>
       
@@ -165,8 +160,6 @@
             <li>Find the search under the Orthology and Synteny category.
                 </li>
           </ul>
-
-    
        
        <h4>Gene Record Page Improvements:</h4>
  
@@ -182,7 +175,7 @@
                 </li>
             <li>Metabolic pathway and reaction tables on gene pages now include reaction compound names, with CHEBI IDs on mouse over, 
                 and a column that indicates if the EC number associated with a gene is an exact match to the EC number in metabolic pathway.   
-                </li>
+                </li>    
           </ul>
 
         
@@ -214,9 +207,8 @@
           </ul>
        </div>
       </section>  
-            
-      <section>
-        
+      
+      <section> 
          <aside>
            Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
            Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
@@ -232,13 +224,30 @@
 
 
 <record>
-  <attribute name="headline">PiroplasmaDB 35 Released</attribute>
+  <attribute name="headline">GiardiaDB 35 Released</attribute>
   <attribute name="date">01 Dec 2017 13:00</attribute>
-  <attribute name="tag">piroplasmadb12_17_release</attribute>
+  <attribute name="tag">giardiadb12_17_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of PiroplasmaDB 35</strong></p>
+    <p><strong>We are pleased to announce the release of GiardiaDB 35</strong></p>
+      
+      <section>
+        <h3><b>New data in this release</b></h3> 
+        
+          <h4>Proteomics</h4>
+            <ul>
+              <li><a href="http://giardiadb.org/giardiadb/app/record/dataset/DS_fce62acf01">Trophozoite Secretome (pellet vs media) (GBGS)</a> &ndash;   
+                  Proteomic analysis of pellet and media (secreted) protein fractions from mid-log phase cultures 
+                  of <i>Giardia</i> Assemblage B isolate GS. Provided pre-publication by Kevin Tyler and Dong Xia.
+              </li>
+              <li><a href="http://giardiadb.org/giardiadb/app/record/dataset/DS_a800bfc55b">Trophozoite Secretome (pellet vs media) (GAWB)</a> &ndash;   
+                  Proteomic analysis of pellet and media (secreted) protein fractions from mid-log phase cultures 
+                  of <i>Giardia</i> Assemblage A isolate WB. Provided pre-publication by Kevin Tyler and Dong Xia.
+              </li>
+           </ul>
+      </section>
+      
       
       <section>
       <h3><b>New features in this release</b></h3>
@@ -248,7 +257,7 @@
           GO Slim terms are now indicated in EuPathDB sites in the following ways:<br>
           <ul>
             <li>The search,
-                <a href="http://piroplasmadb.org/piro/showQuestion.do?questionFullName=GeneQuestions.GenesByGoTerm">Identify Genes based on GO Terms</a>, 
+                <a href="http://giardiadb.org/giardiadb/showQuestion.do?questionFullName=GeneQuestions.GenesByGoTerm">Identify Genes based on GO Terms</a>, 
                 now includes an GO Subset option for limiting the search to only GO Slim generic terms.
                 </li>
             <li>GO Terms tables on gene pages now contain a 'GO Subset' column which identifies GO Slim generic terms.
@@ -257,21 +266,18 @@
                 the background and the gene list of interest in the Fisher's exact test that determines enrichment. 
                 </li>
           </ul>
-       </div>
        
        <h4>Revigo and Word Cloud access from GO Enrichment results</h4>
        <div style="margin-left: 3em;">
        
-          PiroplasmaDB offers a link between our GO Enrichment results and a Word Cloud visualization as well as 
+          GiardiaDB offers a link between our GO Enrichment results and a Word Cloud visualization as well as 
           Revigo, a tool that provides GO term summarization and visualization. The links to Revigo and the 
           Word Cloud now appear as buttons that are right justified above the GO enrichment result table. 
        
       </div>
       </section>
       
-      
-      <section>
-        <h3><b>No New data in this release</b></h3> 
+      <section> 
          <aside>
            Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
            Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
@@ -285,15 +291,26 @@
 </record>
 
 
-
 <record>
-  <attribute name="headline">PiroplasmaDB 34 Released</attribute>
+  <attribute name="headline">GiardiaDB 34 Released</attribute>
   <attribute name="date">07 Sep 2017 13:00</attribute>
-  <attribute name="tag">piroplasmadb08_17_release</attribute>
+  <attribute name="tag">giardiadb08_17_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of PiroplasmaDB 34</strong></p>
+    <p><strong>We are pleased to announce the release of GiardiaDB 34</strong></p>
+      
+      <section>
+        <h3><b>New data in this release</b></h3> 
+        
+          <h4>Proteomics</h4>
+            <ul>
+              <li><a href="http://giardiadb.org/giardiadb/app/record/dataset/DS_b737b49b8f">Soluble and insoluble trophozoite protein fractions (BHFC1)</a> &ndash;   
+                  Soluble and insoluble protein fraction proteomics of Giardia duodenalis BHFC1 aligned to Giardia assemblage A isolate WB. 
+                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/27760188">Coelho et al.</a> 
+              </li>
+           </ul>
+      </section>
       
       <section>
       <h3><b>New features in this release</b></h3>
@@ -303,15 +320,14 @@
           EuPathDB now offers a direct link from gene ontology (GO) enrichment results to 
           <a href="http://revigo.irb.hr/">REVIGO</a>, a tool that provides GO term summarization and visualization.  
           To access this feature first run a GO term enrichment using the 'Analyze Results' option from any gene search result. Then click on 
-          the 'Start Revigo Analysis' link (<a href="/piroplasmadb/images/Revigo.png">upper right hand side of enrichment results</a>) 
+          the 'Start Revigo Analysis' link (<a href="/giardiadb/images/Revigo.png">upper right hand side of enrichment results</a>) 
           to populate the REVIGO submission page with your GO enrichment results from EuPathDB.  Follow instructions 
           on the REVIGO page to complete your analysis.
           
       </div>
       </section>
       
-      <section>
-        <h3><b>No New data in this release</b></h3> 
+      <section>   
          <aside>
            Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
            Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
@@ -331,6 +347,9 @@
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
+    
+    
+    
     <section>
         
         <div style="margin-left: 3em;">
@@ -340,12 +359,12 @@
         This may underrepresent abundance for genes that are duplicated, such as paralogs. Non-unique reads are only available 
         as GBrowse subtracks. To view non-unique reads from a gene page, open the Coverage section and click 'View in 
         genome browser' above the coverage plots. 
-        (<a href="/piroplasmadb/images/FromCoverageNonuniqueReads.pdf">Tutorial document about viewing non-unique reads from a gene page</a>)
+        (<a href="/giardiadb/images/FromCoverageNonuniqueReads.pdf">Tutorial document about viewing non-unique reads from a gene page</a>)
         
         <br><br>
         To view non-unique reads without navigating to the gene page, open GBrowse from the home page.  Use the Select Tracks 
         tab to turn on the data track of interest and the subtracks configuration tool to turn on the non-unique reads subtracks. 
-        (<a href="/piroplasmadb/images/FromHomeNonuniqueReads.pdf">Tutorial document for viewing non-unique reads from the home page</a>)
+        (<a href="/giardiadb/images/FromHomeNonuniqueReads.pdf">Tutorial document for viewing non-unique reads from the home page</a>)
         
         <br><br>
         In release 34, gene pages contain a message about non-unique reads, an accurate description of the y-axis and links to 
@@ -361,27 +380,30 @@
 </record>
 
 <record>
-  <attribute name="headline">PiroplasmaDB 33 Released</attribute>
+  <attribute name="headline">GiardiaDB 33 Released</attribute>
   <attribute name="date">30 Jun 2017 13:00</attribute>
-  <attribute name="tag">piroplasmadb06_17_release</attribute>
+  <attribute name="tag">giardiadb06_17_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of PiroplasmaDB 33</strong></p>
+    <p><strong>We are pleased to announce the release of GiardiaDB 33</strong></p>
       
-      <section>
-        <h3><b>New Data in Release 33</b></h3>
+       <section>
+        <h3><b>New data in this release</b></h3> 
         
-        <h4>Whole genome sequencing of isolates:</h4>
-        Data were used to determine single nucleotide polymorphisms.
-         <ul>  
-           <li> <a href="http://piroplasmadb.org/piro/app/record/dataset/DS_66e2695658">Aligned Genomic Sequence Reads- 42 global isolates from human, tick and rodent</a> &mdash; 
-            Whole genome re-sequencing of <i>B. microti</i> isolates from human, rodent and tick. Data were used to determine SNPs against the <i>B. microti</i> RI reference.
-            <a href="http://www.ncbi.nlm.nih.gov/pubmed/27572973">Lemieux et al.</a><br>
-           </li>
-         </ul>
-  
-        <h3><b>New features in this release</b></h3> 
+        <h4>Subcellular Localization Images Added</h4>
+        <ul>
+          <li>
+            <a href="http://giardiadb.org/giardiadb/app/record/dataset/DS_5ea853774b">Cellular Localization of Trophozoite or Cytoskeletal GFP-fused proteins</a> &mdash; 
+                 Subcellular localization of selected trophozoite or cytoskeletal proteins from <i>Giardia</i> Assemblage A isolate WB determined 
+                 by live imaging of GFP-fusion strains. New images added, making a total of 
+            <a href="http://giardiadb.org/giardiadb/im.do?s=b7a829f262a1dca4">396 genes analyzed</a>.  (
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/22206034">Hagen et al.</a>)
+          </li>
+        </ul>
+        
+        
+       <h3><b>New features in this release</b></h3> 
 
            <ul>
             <li>Transcriptomics data are available for display and download from a strategy result.  For any strategy that returns genes, 
@@ -400,41 +422,8 @@
                 gray tool bar under the header. 
             </li>
            </ul>
-  
-  
-         <aside>
-           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
-           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
-           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
-           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
-         </aside>
-      </section>
-
-    ]]>
-  </attribute>
-</record>
-
-
-<record>
-  <attribute name="headline">PiroplasmaDB 32 Released</attribute>
-  <attribute name="date">19 Apr 2017 13:00</attribute>
-  <attribute name="tag">piroplasmadb04_17_release</attribute>
-  <attribute name="category">release</attribute>
-  <attribute name="item">
-    <![CDATA[
-    <p><strong>We are pleased to announce the release of PiroplasmaDB 32</strong></p>
-      
-      <section>
-        <h3>New Data in Release 32</h3>
         
-        <h4>Annotated Genomes</h4>
-         <ul>  
-           <li> <a href="http://piroplasmadb.org/piro/app/record/dataset/DS_4c30ca0b3a"><i>Babesia microti </i> R1</a> &mdash; 
-            This genome was reannotated.  
-            <a href="http://www.ncbi.nlm.nih.gov/bioproject?term=PRJEA72411">Bioproject home page at NCBI/GenBank</a>.
-            <a href="https://www.ncbi.nlm.nih.gov/pubmed/27752055">Silva et al.</a><br>
-           </li>
-      
+      </section>
       <section>
          <aside>
            Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
@@ -443,22 +432,22 @@
            When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
          </aside>
       </section>
-
+      
     ]]>
   </attribute>
 </record>
 
 
 <record>
-  <attribute name="headline">PiroplasmaDB 31 Released</attribute>
-  <attribute name="date">08 Mar 2017 13:00</attribute>
-  <attribute name="tag">piroplasmadb03_17_release</attribute>
+  <attribute name="headline">GiardiaDB 32 Released</attribute>
+  <attribute name="date">19 Apr 2017 13:00</attribute>
+  <attribute name="tag">giardiadb04_17_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of PiroplasmaDB 31</strong></p>
+    <p><strong>We are pleased to announce the release of GiardiaDB 32</strong></p>
       
-      <section>
+       <section>
         <h3>No New data in this release</h3> 
          <aside>
            Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
@@ -467,6 +456,31 @@
            When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
          </aside>
       </section>
+      
+
+    ]]>
+  </attribute>
+</record>
+
+<record>
+  <attribute name="headline">GiardiaDB 31 Released</attribute>
+  <attribute name="date">08 Mar 2017 13:00</attribute>
+  <attribute name="tag">giardiadb03_17_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of GiardiaDB 31</strong></p>
+      
+       <section>
+        <h3>No New data in this release</h3> 
+         <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+      
 
     ]]>
   </attribute>
@@ -917,16 +931,27 @@ Arial">Join our international team of 30+ software developers and biologists,
        </attribute>
     </record>
 <record>
-  <attribute name="headline">PiroplasmaDB 30 Released</attribute>
+  <attribute name="headline">GiardiaDB 30 Released</attribute>
   <attribute name="date">03 Feb 2017 13:00</attribute>
-  <attribute name="tag">piroplasmadb02_17_release</attribute>
+  <attribute name="tag">giardiadb02_17_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of PiroplasmaDB 30</strong></p>
+    <p><strong>We are pleased to announce the release of GiardiaDB 30</strong></p>
       
       <section>
-        <h3>No New data in this release</h3> 
+        <h3>New data in this release</h3> 
+        
+          <h4>RNA Sequencing</h4>
+            <ul>
+              <li><a href="http://giardiadb.org/giardiadb/app/record/dataset/DS_42de7ed04c">Time-dependent transcriptional changes in axenic trophozoites</a> &ndash;   
+                  Time-Dependent Transcriptional Changes in Axenic Giardia duodenalis Trophozoites. 
+                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/26636323">Ansell et al.</a> 
+              </li>
+           </ul>
+      </section>
+      
+      <section>   
          <aside>
            Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
            Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
@@ -941,32 +966,31 @@ Arial">Join our international team of 30+ software developers and biologists,
 
 
 <record>
-  <attribute name="headline">PiroplasmaDB 29 Released</attribute>
+  <attribute name="headline">GiardaDB 29 Released</attribute>
   <attribute name="date">13 Oct 2016 13:00</attribute>
-  <attribute name="tag">piroplasmadb10_16_release</attribute>
+  <attribute name="tag">giardiadb10_16_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of PiroplasmaDB 29</strong></p>
-    
+    <p><strong>We are pleased to announce the release of GiardiaDB 29</strong></p>
+
     <section>
-    <h3>PiroplasmaDB 29</h3>
-           PiroplasmaDB 29 represents extensive efforts to improve navigation and data accessibility 
+    <h3>GiardiaDB 29</h3>
+           GiardiaDB 29 represents extensive efforts to improve navigation and data accessibility 
            on record pages, provide consistent verbiage and data categories, and improve presentation of alternative transcripts. 
            All data were refreshed to the latest version and genome analyses were rerun.
            <ul>
              <li>Here is some help information to get you started with our new features.<br>
-                 <a href="http://piroplasmadb.org/documents/genePageTutorialGUS4.pdf">Gene Page Improvements</a> <br>
-                 <a href="http://piroplasmadb.org/documents/SearchCatsTutorial_3.pdf">Search Category Improvements</a> <br>
-                 <a href="http://piroplasmadb.org/documents/ExploreTranscripts.pdf">Explore Transcripts in Search Results</a><br>
+                 <a href="http://giardiadb.org/documents/genePageTutorialGUS4.pdf">Gene Page Improvements</a> <br>
+                 <a href="http://giardiadb.org/documents/SearchCatsTutorial_3.pdf">Search Category Improvements</a> <br>
+                 <a href="http://giardiadb.org/documents/ExploreTranscripts.pdf">Explore Transcripts in Search Results</a><br>
                  <!--Workspaces<br>-->
              </li><br>
              <li>Send Us Your Feedback!<br>We can polish our new features based on your valuable feedback. Please use the site 
-             and <a href="http://piroplasmadb.org/piro/contact.do">Contact Us</a> to tell us about your experience. 
+             and <a href="http://giardiadb.org/giardiadb/contact.do">Contact Us</a> to tell us about your experience. 
               </li><br>
-             <li>Release 28 is Still Available - <br><a href="http://r28.piroplasmadb.org/piro/">PiroplasmaDB 28</a> is available until we finalize our new features.
-             </li><br>
-           </ul>  
+             <li>Release 28 is Still Available - <br><a href="http://r28.giardiadb.org/giardiadb/">GiardiaDB 28</a> is available until we finalize our new features.</li><br>
+           </ul>
      </section>
       
      <section> 
@@ -1003,19 +1027,16 @@ Arial">Join our international team of 30+ software developers and biologists,
              </li>
            </ul>
         </section>   
-    
-    
+
     <section>
       <h3>New data in this release</h3>
-      <h4>Annotation is updated for the following genomes:</h4>
+      <h4>Annotation is updated for the following genome:</h4>
          <ul>
-          <li><i>Theileria annulata</i> strain ANKA</li>
-          <li><i>Babesia microti</i> strain RI</li>
-          <li><i>Babesia bigemina</i> strain BOND</li>
+          <li><i>Spironucleus salmonicida</i> ATCC50377</li>
          </ul>
       </section>
-    
     <section>
+
       <aside>
         Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
         Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
@@ -1030,13 +1051,13 @@ Arial">Join our international team of 30+ software developers and biologists,
 
 
 <record>
-  <attribute name="headline">PiroplasmaDB 28 Released</attribute>
+  <attribute name="headline">GiardaDB 28 Released</attribute>
   <attribute name="date">30 Mar 2016 13:00</attribute>
-  <attribute name="tag">piroplasmadb03_16_release</attribute>
+  <attribute name="tag">giardiadb03_16_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of PiroplasmaDB 28</strong></p>
+    <p><strong>We are pleased to announce the release of GiardiaDB 28</strong></p>
 
     <section>
       <h3>No new data or functionalities in this release</h3>
@@ -1053,14 +1074,15 @@ Arial">Join our international team of 30+ software developers and biologists,
   </attribute>
 </record>
 
+
 <record>
-  <attribute name="headline">PiroplasmaDB 27 Released</attribute>
+  <attribute name="headline">GiardiaDB 27 Released</attribute>
   <attribute name="date">19 Feb 2016 13:00</attribute>
-  <attribute name="tag">piroplasmadb02_16_release</attribute>
+  <attribute name="tag">giardiadb02_16_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of PiroplasmaDB 27</strong></p>
+    <p><strong>We are pleased to announce the release of GiardiaDB 27</strong></p>
 
     <section>
      <h3>New Features</h3>
@@ -1098,15 +1120,36 @@ Arial">Join our international team of 30+ software developers and biologists,
 
 
 <record>
-  <attribute name="headline">PiroplasmaDB 26 Released</attribute>
+  <attribute name="headline">GiardiaDB 26 Released</attribute>
   <attribute name="date">15 Oct 2015 13:00</attribute>
-  <attribute name="tag">piroplasmadb10_15_release</attribute>
+  <attribute name="tag">giardiadb10_15_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of PiroplasmaDB 26</strong></p>
+    <p><strong>We are pleased to announce the release of GiardiaDB 26</strong></p>
 
     <section>
+      <h3>New data in this release</h3>
+
+      <aside>
+        The data set title below links to a full description and list of associated searches and GBrowse tracks.
+      </aside>
+
+      <section>
+        <h4>Subcellular Localization Images</h4>
+        <ul>
+          <li>
+            <a href="http://GiardiaDB.org/a/getDataset.do?datasets=gassAWB_DBP_GeneImage_RSRC">
+                 Cellular Localization of Trophozoite or Cytoskeletal GFP-fused proteins</a> &mdash; 
+                 Subcellular localization of selected trophozoite or cytoskeletal proteins from <i>Giardia</i> Assemblage A isolate WB determined 
+                 by live imaging of GFP-fusion strains. Images for 108 new genes added, making a total of 
+            <a href="http://giardiadb.org/giardiadb/im.do?s=2ab7d1452171b3af">269 genes analyzed</a>.  (
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/22206034">Hagen et al.</a>)
+          </li>
+        </ul>
+      </section>
+
+
       <h3>New Features</h3>
       
       <section>
@@ -1150,6 +1193,7 @@ Arial">Join our international team of 30+ software developers and biologists,
         </ul>
       </section>
       
+      
       <aside>
         Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
         Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
@@ -1163,17 +1207,34 @@ Arial">Join our international team of 30+ software developers and biologists,
 </record>
 
 
+
 <record>
-  <attribute name="headline">PiroplasmaDB 25 Released</attribute>
+  <attribute name="headline">GiardiaDB 25 Released</attribute>
   <attribute name="date">23 July 2015 13:00</attribute>
-  <attribute name="tag">piroplasma7_15_release</attribute>
+  <attribute name="tag">giardiadb7_15_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of PiroplasmaDB 25</strong></p>
+    <p><strong>We are pleased to announce the release of GiardiaDB 25</strong></p>
 
     <section>
-      <h3>No new data or functionalities in this release</h3>
+      <h3>New data in this release</h3>
+
+      <aside>
+        The data set title below links to a full description and list of associated searches and GBrowse tracks.
+      </aside>
+
+      <section>
+        <h4>Proteomics</h4>
+        <ul>
+          <li>
+            <a href="http://GiardiaDB.org/a/getDataset.do?datasets=gassAWB_massSpec_Emery_Virulence_Proteomics_RSRC">
+            Virulent vs Avirulent Trophozoites (B-2041, H-106)</a> &mdash; 
+            <i>G. lamblia</i> Assemblage A proteomics of virulent and avirulent Strains (Mass Spec peptides); Paul A. Haynes, Macquarie University 
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/25266764">Emery et al.</a>
+          </li>
+        </ul>
+      </section>
 
       <aside>
         Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
@@ -1187,11 +1248,10 @@ Arial">Join our international team of 30+ software developers and biologists,
   </attribute>
 </record>
 
-
 <record>
-       <attribute name="headline">PiroplasmaDB 24 Released</attribute>
+       <attribute name="headline">GiardiaDB 24 Released</attribute>
        <attribute name="date">13 April 2015 13:00</attribute>
-       <attribute name="tag">pirodb4_15_release</attribute>
+       <attribute name="tag">giardiadb4_15_release</attribute>
        <attribute name="category">release</attribute>
        <attribute name="item">
            
@@ -1200,17 +1260,17 @@ Arial">Join our international team of 30+ software developers and biologists,
 <html>
   <head>
     <meta content="text/html; charset=windows-1252" http-equiv="content-type">
-    <title>pirodb_4_15</title>
+    <title>Giardiadb_4_15_news</title>
   </head>
   <body>
     <p> </p>
     <p> </p>
+    <p> </p>
     <p><span style="font-family: Helvetica,Arial,sans-serif;"> </span> </p>
     <div style="margin-left: 40px;"><span style="font-family: Helvetica,Arial,sans-serif;"><strong>We
-          are pleased to announce the release of PiroplasmaDB 24</strong><span style="font-weight: bold;"></span><br>
-      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-style: italic;"><br>
-          <em></em></span></span><span style="font-style: italic;"><span style="font-family: Helvetica,Arial,sans-serif;">All
-          EuPathDB release numbers have been synchronized to help us more
+          are pleased to announce the release of GiardiaDB 24</strong><span style="font-weight: bold;"></span><br>
+      </span> <span style="font-style: italic;"><span style="font-family: Helvetica,Arial,sans-serif;"><br>
+          All EuPathDB release numbers have been synchronized to help us more
           efficiently manage our expanding number of databases.&nbsp; As of this
           release all EuPathDB resource release numbers have been set to release
           24.&nbsp; Subsequent version numbers will increase by one with each
@@ -1222,12 +1282,10 @@ Arial">Join our international team of 30+ software developers and biologists,
         <tbody>
           <tr>
             <td style="margin-left: 185px; width: 188px; height: 23px; background-color: #cccccc; text-align: center;"><span
-                style="font-size:11.0pt;line-height:107%;font-family:Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:
-&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">EuPathDB<br>
+                style="font-size:11.0pt;line-height:107%;font-family:Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">EuPathDB<br>
                 Resource</span></td>
             <td style="width: 188px; height: 23px; background-color: #cccccc; text-align: center;"><span
-                style="font-size:11.0pt;line-height:107%;font-family:Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:
-&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA"><span
+                style="font-size:11.0pt;line-height:107%;font-family:Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA"><span
                   style="font-size:11.0pt;line-height:107%;font-family:Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">Jan
                   2015<br>
                 </span>Version #<br>
@@ -1235,57 +1293,27 @@ Arial">Join our international team of 30+ software developers and biologists,
             <td style="width: 188px; height: 23px; background-color: #cccccc; text-align: center;">
               <span style="font-size:11.0pt;line-height:107%;font-family:
 Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA"><span
-                  style="font-size:11.0pt;line-height:107%;font-family:Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:
-&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">April
+                  style="font-size:11.0pt;line-height:107%;font-family:Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">April
                   2015<br>
                 </span>Version #</span> </td>
           </tr>
           <tr>
-            <td style="width: 188px; height: 24px; background-color: #cccccc; text-align: center;">PiroplasmaDB</td>
-            <td style="width: 188px; height: 24px; background-color: #cccccc; text-align: center;">5.1</td>
+            <td style="width: 188px; height: 24px; background-color: #cccccc; text-align: center;">GiardiaDB</td>
+            <td style="width: 188px; height: 24px; background-color: #cccccc; text-align: center;">5.0</td>
             <td style="width: 188px; height: 24px; background-color: #cccccc; text-align: center;">24</td>
           </tr>
         </tbody>
       </table>
-      <div style="text-align: left;"><b style="mso-bidi-font-weight:normal">New
-          data in this release:</b></div>
-      <b style="mso-bidi-font-weight:normal"><o:p></o:p></b>
-      <p class="MsoNoSpacing"><em>The data set title below links to a full
-          description and list of associated searches and genome browser tracks.</em><o:p></o:p></p>
-      <p class="MsoNoSpacing"><o:p>&nbsp;</o:p></p>
-      <b style="mso-bidi-font-weight:
-normal">Annotated Genomes: <o:p></o:p></b><br>
-      <br>
-      <a href="http://piroplasmadb.org/a/getDataset.do?datasets=bbigBOND_primary_genome_RSRC"><i>Babesia
-          bigemina</i> BOND</a> - <span style="mso-spacerun:yes">first release
-        in PiroplasmaDB </span><a href="http://www.ncbi.nlm.nih.gov/bioproject/PRJEB5046">GenBank
-        version<span style="mso-spacerun:yes">&nbsp; </span>(13 June 2014)</a>,<span
-        style="mso-spacerun:yes">&nbsp;
-        </span><span style="mso-spacerun:yes">&nbsp;&nbsp;</span><span style="mso-spacerun:yes">&nbsp;</span><a
-        href="http://www.ncbi.nlm.nih.gov/pubmed/24799432">Jackson
-        <em>et al. </em></a><o:p></o:p><br>
-      <br>
-      <a href="http://piroplasmadb.org/a/getDataset.do?datasets=cfelWinnie_primary_genome_RSRC"><i
-          style="mso-bidi-font-style:normal">Cytauxzoon
-          felis</i> Winnie</a> - first release in <span style="mso-spacerun:yes">PiroplasmaDB</span><span
-        style="mso-spacerun:yes">
-      </span><a href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA196611">GenBank
-        version (1 Jan 2015)</a>,<span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;
-        </span><span style="mso-spacerun:yes">&nbsp;</span><a href="http://www.ncbi.nlm.nih.gov/pubmed/23977000">Tarigo
-        <em>et al.</em></a><o:p></o:p>
-      <p class="MsoNoSpacing"><o:p>&nbsp;</o:p></p>
-      <!--EndFragment--><a href="http://www.ncbi.nlm.nih.gov/pubmed/25313038"><em></em></a><o:p></o:p>
-      <br>
-      <o:p> <strong>New Features:</strong></o:p><strong> </strong><span style="font-family: Helvetica,Arial,sans-serif;"></span><span
+      <o:p><strong>New Features:</strong></o:p><strong> </strong><span style="font-family: Helvetica,Arial,sans-serif;"></span><span
         style="font-family: Helvetica,Arial,sans-serif;"><em></em></span>
-      <p class="MsoNoSpacing"><span style="font-family: Helvetica,Arial,sans-serif;"><em
-            style="text-decoration: underline;">Help
-            us improve our Data Set page</em>: The dataset page includes
-          information about all datasets loaded into our resources including,
-          release and date loaded, name of the provider, links to searches and
-          data visualization, etc... Take a look at the beta version of our
-          dataset page (access it from the data summary menu item at the top of
-          our web pages) and let us know what you think.<br>
+      <p class="MsoNoSpacing"><span style="font-family: Helvetica,Arial,sans-serif;">
+          <em style="text-decoration: underline;">Help us improve our Data Set
+            page</em>: The dataset page includes information about all datasets
+          loaded into our resources including, release and date loaded, name of
+          the provider, links to searches and data visualization, etc... Take a
+          look at the beta version of our dataset page (access it from the data
+          summary menu item at the top of our web pages) and let us know what
+          you think.<br>
         </span> </p>
     </div>
     <div style="text-align: justify;"> </div>
@@ -1319,6 +1347,7 @@ normal">Annotated Genomes: <o:p></o:p></b><br>
     <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
   </body>
 </html>
+
           ]]>
        </attribute>
     </record>
@@ -1392,82 +1421,115 @@ normal">Annotated Genomes: <o:p></o:p></b><br>
        </attribute>
     </record>
 <record>
-      <attribute name="headline">PiroplasmaDB 5.2 Released</attribute>
-       <attribute name="date">14 January 2015 12:00</attribute>
-       <attribute name="tag">piro12_14news</attribute>
+       <attribute name="headline">GiardiaDB 5.0 released</attribute>
+       <attribute name="date">10 September 2014 12:00</attribute>
+       <attribute name="tag">giardia08_14_news</attribute>
        <attribute name="category">release</attribute>
-       <attribute name="item">
-<![CDATA[
+       <attribute name="item">         
+         <![CDATA[
 <body><span style="font-family: Helvetica,Arial,sans-serif;"> </span>
     <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><strong>We
-          are pleased to announce the release of PiroplasmaDB 5.2</strong><br>
-      </span> <span style="font-family: Helvetica,Arial,sans-serif;"></span><span
-        style="font-family: Helvetica,Arial,sans-serif;"></span></div>
-    <p class="MsoPlainText"><b style="mso-bidi-font-weight:normal"><br>
-        Improvements and updates:<br>
-      </b></p>
-    <p class="MsoPlainText"><br>
-      <b style="mso-bidi-font-weight:normal"><o:p></o:p></b></p>
-    <p class="MsoPlainText" style="margin-left:.5in;text-indent:-.25in">BLAST
-      was updated to the latest NCBI version 2.2.30. </p>
-    <p class="MsoPlainText" style="margin-left:.5in;text-indent:-.25in">GBrowse
-      performance is improved following EuPathDB infrastructure changes.</p>
-    <div style="text-align: justify;">
-      <div style="margin-left: 40px;"> <span style="font-family: Helvetica,Arial,sans-serif;"></span><span
-          style="font-family: Helvetica,Arial,sans-serif;"><br>
-        </span> </div>
-      <div style="text-align: justify;"> </div>
-      <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><br>
-        </span> <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-style: italic;"><span
-              style="font-style: italic;"><span
-                style="text-decoration: underline;">Note:</span>
-              Our bimonthly database releases incorporate new data and correct
-              old data when necessary.&nbsp; Changes in annotation and new
-              experimental data may slightly alter your search results by
-              increasing or decreasing the number of hits. When search
-              parameters change with a new release, we invalidate (<span style="color: red;">Ø</span>)
-              the search and ask you to rerun it. When IDs are updated or
-              removed, we map the old IDs to the new ones, remove the old IDs
-              from your Basket, and leave your Favorites page alone.</span></span><br>
-        </span> <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold;"><span
-              style="font-style: italic;"></span></span></span>
-        <p><span style="font-family: Helvetica,Arial,sans-serif;"><em><strong>Follow</strong></em>
-            <span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
-                on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
-              style="font-weight: bold; font-style: italic;">,
-              <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="http://www.youtube.com/user/EuPathDB">YouTube</a></span></span></p>
-      </div>
-      <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold; font-style: italic;"></span><span
-          style="font-weight: bold; font-style: italic;"></span></span></div>
-    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
-    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><span
-          style="font-weight: bold; font-style: italic;"></span></span></div>
-    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+          are pleased to announce the release of GiardiaDB 5.0</strong><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><strong>New
+          data in this release</strong>:</span></div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> <br>
+    </span>
+    <ul style="text-align: justify;">
+    <!--
+      <li><span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold; color: #666666;"><em>Giardia</em>
+            subcellular localization data:</span> This data was funded by the
+          EuPathDB driving biological project mechanism and constitutes the
+          first batch of subcellular localization data.&nbsp; This data has been
+          provided prepublication by Dr. Scott Dawson.&nbsp; <span style="font-weight: normal;">View
+            experimental details and available searches in the <strong><a href="http://giardiadb.org/giardiadb/getDataset.do?datasets=gassAWB_DBP_GeneImage_RSRC">dataset
+                section</a></strong>.&nbsp;&nbsp;</span></span></li>
+                -->
+    </ul>
+    <span style=" font-family: Helvetica,Arial,sans-serif;"><span style=" font-weight: normal;"><br>
+      </span></span>
+    <ul>
+      <li><span style="font-family: Helvetica,Arial,sans-serif;"><strong style="color: #666666;"><em>G.
+              lamblia</em> Assemblage A (isolate WBC6) proteome during
+            encystation using tandem mass spectrometry (<a href="http://www.ncbi.nlm.nih.gov/pubmed/24391747">Faso<em>
+                et al.</em></a>):</strong> </span><span style="font-family: Helvetica,Arial,sans-serif;"><span
+            style="font-weight: normal;">View
+            experimental details and available searches in the <a href="/a/getDataset.do?datasets=gassAWB_massSpec_Faso_time_course_encystation_RSRC"><strong>dataset
+                section</strong></a>.&nbsp; </span></span></li>
+    </ul>
+    <span style=" font-family: Helvetica,Arial,sans-serif;"><span style=" font-weight: normal;"><br>
+      </span></span>
+    <ul>
     
-  </body>
-          ]]>
-       </attribute>
-    </record>
-<record>
-      <attribute name="headline">PiroplasmaDB 5.1 Released</attribute>
-       <attribute name="date">10 September 2014 12:00</attribute>
-       <attribute name="tag">piro8_14news</attribute>
-       <attribute name="category">release</attribute>
-       <attribute name="item">
-<![CDATA[
-<body>
-    <div style="text-align: justify;"><strong>We are pleased to announce the
-        release of PiroplasmaDB 5.1</strong><br>
+    <!--
+      <li><span style="font-family: Helvetica,Arial,sans-serif; color: #666666; font-weight: bold;"><span
+            style=" font-weight: normal;"><em
+              style="font-weight: bold;">G.
+              lamblia</em><span style="font-weight: bold;"> Assemblage A isolate
+              WB Sequencing of Argonaute-Associated Small RNAs (<a href="http://www.ncbi.nlm.nih.gov/pubmed/24586143">Saraiya
+                <em>et al.</em></a>): </span></span></span><br>
+        <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: normal;">View
+            experimental details and available searches in the <a href="/a/getDataset.do?datasets=gassAWB_smallNcRna_Wang_RSRC"><strong>dataset
+                section</strong></a>.&nbsp; </span></span></li>
+          -->      
+                
+    </ul>
+    <ul style="text-align: justify;">
+    </ul>
+    <span style="font-family: Helvetica,Arial,sans-serif;"><span style=" font-weight: normal;"><br>
+      </span></span>
+    <ul style="text-align: justify;">
+      <li><span style="font-family: Helvetica,Arial,sans-serif;"><strong><span style="color: #666666;">Genome
+              sequence and annotation from <em>Spironucleus salmonicida </em>ATCC50377
+              (<a href="http://www.ncbi.nlm.nih.gov/pubmed/24516394">Xu <em>et
+                  al.</em></a>):</span></strong><span style="font-weight: normal;"></span><span
+            style="font-weight: normal;">
+            View experimental details and available searches in the <a href="/a/getDataset.do?datasets=ssalATCC50377_primary_genome_RSRC"><strong>dataset
+                section</strong></a>.&nbsp; </span></span></li>
+    </ul>
+    <span style=" font-family: Helvetica,Arial,sans-serif;"><span style=" font-weight: normal;"></span></span><span
+      style="font-family: Helvetica,Arial,sans-serif;">
       <br>
+    </span>
+    <ul style="text-align: justify;">
+      <li><span style="font-family: Helvetica,Arial,sans-serif;"><em><span style="font-weight: bold; color: #666666;"><em><span
+                  style="font-family: Helvetica,Arial,sans-serif;"><strong><span
+                      style="color: #666666;"><em>Spironucleus
+                        salmonicida </em></span></strong></span></em></span></em><span
+            style="font-weight: bold; color: #666666;"><span
+              style="font-family: Helvetica,Arial,sans-serif;"><strong><span
+                  style="color: #666666;">ATCC50377</span></strong></span></span><span
+            style="font-weight: bold; color: #666666;"><span
+              style="font-family: Helvetica,Arial,sans-serif;"><strong><span
+                  style="color: #666666;">
+                  (</span></strong></span></span><span style="font-weight: bold; color: #666666;"><span
+              style="font-family: Helvetica,Arial,sans-serif;"><strong><span
+                  style="color: #666666;"><a
+                    href="http://www.ncbi.nlm.nih.gov/pubmed/24516394">Xu
+                  </a></span></strong></span></span><em><span style="font-weight: bold; color: #666666;"><em><span
+                  style="font-family: Helvetica,Arial,sans-serif;"><strong><span
+                      style="color: #666666;"><a
+                        href="http://www.ncbi.nlm.nih.gov/pubmed/24516394">
+                        <em>et al.</em></a>)</span></strong><span style="font-weight: normal;"></span></span></em></span></em><span
+            style="font-weight: bold; color: #666666;"><em>
+            </em>transcriptome data: </span>RNA was isolated from trophozoites
+          (exponential and stationary growth phases).&nbsp; View experimental
+          details and available searches in the <strong><a href="/a/getDataset.do?datasets=ssalATCC50377_Feifei_trophozoites_rnaSeq_RSRC">dataset
+              section</a></strong>.</span></li>
+    </ul>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span>
       <ul style="text-align: justify;">
         <li><span style="font-family: Helvetica,Arial,sans-serif;"><strong style="color: #666666;">Two
               new data types with searches have been added in this release:</strong>
             Compounds and Metabolic Pathways.&nbsp; This beta-release of
-            Compound and Metabolic Pathways data sets incorporates
-            KEGG pathways and a subset of PubChem records. Future
-            releases will include compounds for additional metabolites and small
-            molecules, and pathways from other sources such as MPMP, MetaCyc,
-            etc. Please explore the site and contact us with your feedback. </span></li>
+            Compound and Metabolic Pathways data sets incorporates KEGG pathways
+            and a subset of PubChem records. Future releases will include
+            compounds for additional metabolites and small molecules, and
+            pathways from other sources such as MPMP, MetaCyc, etc. Please
+            explore the site and contact us with your feedback. </span></li>
       </ul>
       <span style="font-family: Helvetica,Arial,sans-serif;"><br>
       </span>
@@ -1519,12 +1581,11 @@ normal">Annotated Genomes: <o:p></o:p></b><br>
           features:</strong><br>
       </span> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
       </span>
-      <blockquote> </blockquote>
       
       <ul>
         <li><span style="font-family: Helvetica,Arial,sans-serif;"><strong style="color: #666666;">Results
-              analysis tools:&nbsp; </strong><span style="color: #020302;">results
-              of any searches can now be analyzed for statistical enrichment or
+              analysis tools:&nbsp; </strong><span style="color: #020302;"> the results
+              of any gene search can now be analyzed for statistical enrichment of
               Gene Ontology (GO) terms, metabolic pathways or gene product text
               terms. <strong><a href="/a/analysisTools.jsp">A detailed
                   description of this new functionality and a video tutorial are
@@ -1567,23 +1628,72 @@ normal">Annotated Genomes: <o:p></o:p></b><br>
               style="font-weight: bold; font-style: italic;">,
               <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="http://www.youtube.com/user/EuPathDB">YouTube</a></span></span></p>
       </div>
-      <span style="font-weight: bold; font-style: italic;"></span></div>
-    <div style="text-align: justify;"><span style="font-weight: bold; font-style: italic;"></span></div>
+    </div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold; font-style: italic;"></span></span>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><span
+          style="font-weight: bold; font-style: italic;"></span><span
+          style="font-weight: bold; font-style: italic;"></span></span></div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
   </body>
           ]]>
        </attribute>
     </record>
 <record>
-      <attribute name="headline">New Tutorials</attribute>
+       <attribute name="headline">GiardiaDB 4.0 released</attribute>
        <attribute name="date">08 May 2014 12:00</attribute>
-       <attribute name="tag">piro5_14news</attribute>
+       <attribute name="tag">giardia05_14_news</attribute>
        <attribute name="category">release</attribute>
-       <attribute name="item">
-           
+       <attribute name="item">         
          <![CDATA[
- <body><span style="font-family: Helvetica,Arial,sans-serif;"></span><br>
-    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"></span>
+<body><span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><strong>We
+          are pleased to announce the release of GiardiaDB 4.0</strong><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><strong>New
+          data in this release</strong>:</span></div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> <br>
+    </span>
+    <ul style="text-align: justify;">
+      <li><span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold; color: #666666;"><em>Giardia</em>
+            subcellular localization data:</span> This data was funded by the
+          EuPathDB driving biological project mechanism and constitutes the
+          first batch of subcellular localization data.&nbsp; This data has
+          been provided prepublication by Dr. Scott Dawson.&nbsp; <span style="font-weight: normal;">View
+            experimental details and available searches in the <a href="http://giardiadb.org/giardiadb/getDataset.do?datasets=gassAWB_DBP_GeneImage_RSRC">dataset
+              section</a>.&nbsp;&nbsp;</span></span></li>
+    </ul>
+    <span style="font-family: Helvetica,Arial,sans-serif;"><span style=" font-weight: normal;"><br>
+      </span></span>
+    <ul style="text-align: justify;">
+      <li><span style="font-family: Helvetica,Arial,sans-serif;"><strong><span style="color: #666666;">Genome
+              sequence and annotation from <em>Giardia</em> Assemblages A2
+              isolate DH and B isolate GS (<a href="http://www.ncbi.nlm.nih.gov/pubmed/24307482">Adam
+                <em>et al.</em></a>):</span></strong><span style="font-weight: normal;"></span><span
+            style="font-weight: normal;">
+            View experimental details and available searches in the <a href="http://giardiadb.org/giardiadb/getDataset.do?datasets=gassBGS_B_primary_genome_RSRC,gassA2DH_primary_genome_RSRC">dataset
+              section</a>.&nbsp; </span></span></li>
+    </ul>
+    <span style=" font-family: Helvetica,Arial,sans-serif;"><span style=" font-weight: normal;"><br>
+      </span></span>
+    <ul style="text-align: justify;">
+      <li><span style=" font-family: Helvetica,Arial,sans-serif;"><span style=" font-weight: normal;"><span
+              style="font-weight: bold; color: #666666;">This
+              release of GiardiaDB constitutes a complete rebuild of the
+              database.</span> The latest versions of genome sequence and
+            annotation were loaded and all analyses were rerun and updated
+            (InterProSCan, SignalP, functional data mapping, etc.).<br>
+          </span></span></li>
+    </ul>
+    <span style="font-family: Helvetica,Arial,sans-serif;"><span style="color: #666666;"></span></span>
+    <div style="text-align: justify;">
+      <blockquote> </blockquote>
       <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold;">New
+          Tutorials:</span><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
       </span>
       <div style="margin-left: 40px;"><span style="font-family: Helvetica,Arial,sans-serif;"><a
             href="http://eupathdb.org/tutorials/GBrowse-UploadTrack-Help.pdf">Learn
@@ -1625,8 +1735,6 @@ normal">Annotated Genomes: <o:p></o:p></b><br>
       <span style="font-family: Helvetica,Arial,sans-serif;"><br>
       </span> </div>
     <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
-    <div style="text-align: justify;"> </div>
-    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
     <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><br>
       </span> <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-style: italic;"><span
             style="font-style: italic;"><span
@@ -1648,8 +1756,6 @@ normal">Annotated Genomes: <o:p></o:p></b><br>
             <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="http://www.youtube.com/user/EuPathDB">YouTube</a></span></span></p>
       <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold; font-style: italic;"></span></span></div>
     <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
-    <div style="text-align: justify;"> </div>
-    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
     <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><span
           style="font-weight: bold; font-style: italic;"></span><span
           style="font-weight: bold; font-style: italic;"></span></span></div>
@@ -1659,225 +1765,14 @@ normal">Annotated Genomes: <o:p></o:p></b><br>
        </attribute>
     </record>
 <record>
-      <attribute name="headline">PiroplasmaDB 5.0 Released</attribute>
-       <attribute name="date">30 January 2014 15:00</attribute>
-       <attribute name="tag">piro114news</attribute>
-       <attribute name="category">release</attribute>
-       <attribute name="item">
-           
-         <![CDATA[
- <body>
-    <div style="text-align: justify;"><strong>We are pleased to announce the
-        release of PiroplasmaDB 5.0</strong><strong></strong><br>
-      <br>
-      <br>
-      <span class="tracktitle">This release of PiroplasmaDB constitutes a
-        complete rebuild of the database and includes a number of new features
-        (see below). The latest versions of genome sequence and annotation were
-        loaded and all analyses were rerun and updated (InterProSCan, SignalP,
-        functional data mapping, etc.).<br>
-      <br>
-      <br>
-      <strong>New features:</strong><br>
-      <br>
-      <span style="text-decoration: underline;">Public Strategies</span>:&nbsp;
-      Share your search strategies with the community by making them
-      public.&nbsp; Making one of your strategies public is simple; go to the
-      "All" tab in your "My Strategies" section and click on a strategy's public
-      checkbox.&nbsp; <br>
-      <br>
-      <span style="text-decoration: underline;">Enhanced BLAST results</span>:&nbsp;
-      The gene results now include a column for score and percent identity
-      enabling sorting of results.<br>
-      <br>
-      <span style="text-decoration: underline;">Enhanced GO Term and InterPro
-        Domain searches</span>:&nbsp; Now this search includes an advanced
-      type-ahead function that allows searching for multiple GO Terms or domains
-      simultaneously.&nbsp; <br>
-      <br>
-      <span style="text-decoration: underline;">Email address update</span>:&nbsp;
-      Registered users can now update their email addresses from their profiles.<br>
-      <br>
-      <span style="text-decoration: underline;">Updated organism filter tables</span>:&nbsp;
-      The organism filter table has been unified across EuPathDB sites.<br>
-      <br>
-      <span style="text-decoration: underline;">Improved histogram</span>:&nbsp;
-      Numerical columns in a result can now be analyzed with a dynamic histogram
-      that enables binning and plotting values in normal or log scales.<br>
-      <br>
-      <span style="text-decoration: underline;">Fixed</span>: The orthology
-      phyletic pattern search now remembers your selected parameters making it
-      easier to revise searches.<br>
-      <br>
-      <strong></strong><br>
-      <strong></strong><br>
-      <strong>New database:&nbsp; </strong></div><br>
-    <ul style="text-align: justify;">
-     <li>EuPathDB is pleased to announce the release of a beta version of
-        <a href="http://hostdb.org"><strong>HostDB</strong></a> - a resource
-        dedicated to integrating functional host response data.&nbsp; The beta
-        release includes the human and mouse genomes and two datasets (RNA-Seq
-        and quantitative proteomics) examining the host response to Toxoplasma
-        infection.&nbsp; We look forward to expanding this database in data
-        content and functionality.&nbsp; We encourage you to explore <strong><a
-            href="http://hostdb.org">HostDB</a></strong>
-        and provide us with your <a href="mailto:help@hostdb.org"><strong>feedback</strong></a>.&nbsp;</li>
-    </ul>
-    <div style="text-align: justify;"><br>
-    </div>
-    <div style="text-align: justify;"><br>
-      <span style="font-style: italic;"><span style="font-style: italic;"><span
-            style="text-decoration: underline;">Note:</span>
-          Our bimonthly database releases incorporate new data and correct old
-          data when necessary.&nbsp; Changes in annotation and new experimental
-          data may slightly alter your search results by increasing or
-          decreasing the number of hits. When search parameters change with a
-          new release, we invalidate (<span style="color: red;">Ø</span>) the
-          search and ask you to rerun it. When IDs are updated or removed, we
-          map the old IDs to the new ones, remove the old IDs from your Basket,
-          and leave your Favorites page alone.</span></span><br>
-      <span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
-      <span style="font-weight: bold;"><span style="font-style: italic;">Follow EuPathDB on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
-        style="font-weight: bold; font-style: italic;">,
-        <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="http://www.youtube.com/user/EuPathDB">YouTube</a></span></div>
-    <div style="text-align: justify;"><span style="font-weight: bold; font-style: italic;"></span></div>
-  </body>
-          ]]>
-       </attribute>
-    </record>
-<record>
-       <attribute name="headline">EuPathDB Annual Workshop</attribute>
-       <attribute name="date">14 January 2014 15:00</attribute>
-       <attribute name="tag">eupathworkshop2014</attribute>
-       <attribute name="category">workshop</attribute>
-       <attribute name="item">
-           
-         <![CDATA[
- <body>
-    <p>We are pleased to announce the 9th annual EuPathDB workshop to be held in
-      Athens, Georgia, USA from June 15 to Wednesday, June 18, 2014.&nbsp;&nbsp;
-      <br>
-      <br>
-      Please note that the workshop expenses, in addition to room and board
-      costs are covered by EuPathDB (see cost and fees section below).&nbsp; <br>
-      <br>
-      Come learn how to effectively use EuPathDB resources and mine available
-      data to help guide your research.<br>
-      <br>
-      For more information and to apply, please visit:
-      http://workshop.eupathdb.org/current/<br>
-      <br>
-      The workshop will cover all of our component databases (EuPathDB,
-      AmoebaDB, CryptoDB, GiardiaDB, MicrosporidiaDB, PlasmoDB, PiroplasmaDB,
-      ToxoDB, TrichDB, TriTrypDB and OrthoMCL), and will run from 6:00PM (18:00)
-      on Sunday, June 15 to 5:00PM (17:00) on Wednesday, June 18, 2014.<br>
-      <br>
-      The application deadline is February 28, 2014 and the course is limited to
-      30 participants.<br>
-      <br>
-      <em><strong>Who should apply:</strong></em>&nbsp; This workshop is
-      intended to be a 3 day thorough and intensive introduction to database
-      resources that are part of the EuPathDB.org Bioinformatics Resource Center
-      (EuPathDB, AmoebaDB, CryptoDB, GiardiaDB, MicrosporidiaDB, PlasmoDB,
-      PiroplasmaDB, ToxoDB, TrichDB, TriTrypDB and OrthoMCL). The ideal
-      candidate would have a need to become an expert user of one or more of
-      these database resources and presumably has a bioinformatics research
-      problem that they might work on as part of their training while attending
-      the course. Preference will be given to applicants that are in a position
-      to benefit most from intensive training and that are in a position to
-      return to their home institution and transfer their newly acquired
-      knowledge to others. Evaluation of the applications will focus heavily on
-      your responses to the questions asked on the application page and on
-      letters of recommendation.<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
-      <strong><em>Costs and Fees:</em> </strong>The course is free. Housing
-      (double occupancy), all training materials and lunches are covered.
-      Attendees are expected to provide their own transportation to the course
-      and pay for a few of their meals. Letters of acceptance will be mailed
-      early to facilitate the solicitation of outside travel funds.<br>
-      <br>
-      Hotel room charges for a shared room will be paid by EuPathDB for the
-      nights of June 15 through June 18. Attendees who would like to have a
-      private room will need to pay the difference of $47 per night plus
-      tax.&nbsp;&nbsp;&nbsp; <br>
-      <br>
-      For more information and to apply, please visit:
-      http://workshop.eupathdb.org/current/<br>
-      <br>
-      If you have any questions or concerns please email help@eupathdb.org<br>
-      <br>
-      &nbsp;&nbsp;&nbsp; <br>
-      <br>
-      &nbsp; </p>
-  </body>
-          ]]>
-       </attribute>
-    </record>
-<record>
-      <attribute name="headline">PiroplasmaDB 4.0 Released</attribute>
+       <attribute name="headline">New Features in GiardiaDB</attribute>
        <attribute name="date">25 September 2013 15:00</attribute>
-       <attribute name="tag">piro913news</attribute>
+       <attribute name="tag">giardia09_13_news</attribute>
        <attribute name="category">release</attribute>
-       <attribute name="item">
-           
+       <attribute name="item">         
          <![CDATA[
-<body> <strong>We are pleased to announce the release of PiroplasmaDB 4.0</strong><strong></strong><br>
+<body> <strong>We are pleased to announce new features in GiardiaDB:</strong><strong></strong><br>
     <br>
-    <br>
-    <strong>New data in this release</strong>:<br>
-    <br>
-    <ul>
-      <li><span class="tracktitle">The following annotated genomes were
-          integrated into the PiroplasmaDB. </span><span class="tracktitle"><span
-            class="tracktitle">The
-            <a href="http://piroplasmadb.org/piro/getDataset.do?display=detail#Genomes%20and%20Annotation"><strong>data
-                set section</strong></a> includes detailed information about the
-            genomes and available searches:</span></span></li>
-    </ul>
-    <span class="tracktitle"><span class="tracktitle"></span></span>&nbsp;<o:p></o:p><br>
-    <ul>
-      <ul>
-        <li><span class="tracktitle"><span style="font-family:&quot;Courier New&quot;;mso-fareast-font-family:
-&quot;Courier New&quot;"><span style="mso-list:Ignore"><span style="font:7.0pt &quot;Times New Roman&quot;"></span></span></span></span><span
-            class="tracktitle"><a
-              href="http://piroplasmadb.org/piro/getDataset.do?question=GeneQuestions.GenesByTaxon&amp;display=detail#24"><strong>Theileria
-orentalis
-                Shintoku</strong></a> (GenBank version 9-6-2013) (</span><span class="tracktitle"><strong><a
-                href="http://www.ncbi.nlm.nih.gov/pubmed/22951932">Hayashida
-                <em>et al.</em></a></strong>)<br>
-          </span></li>
-      </ul>
-    </ul>
-    <span class="tracktitle"></span><br>
-    <ul>
-      <ul>
-        <li><span class="tracktitle"><strong><a href="http://piroplasmadb.org/piro/getDataset.do?question=GeneQuestions.GenesByTaxon&amp;display=detail#25">Theileria
-                equi WA</a></strong> (GenBank version 12-11-2013) (</span><strong><a
-              href="http://www.ncbi.nlm.nih.gov/pubmed/23137308">Kappmeyer
-              <em>et al.</em></a></strong>)<pubmedarticleset><pubmedarticle></pubmedarticle></pubmedarticleset></li>
-      </ul>
-    </ul>
-    <span class="tracktitle"></span><br>
-    <ul>
-      <li><span class="tracktitle"><span style="mso-bidi-font-style:normal">Proteomics
-            mass spec data from</span><i style="mso-bidi-font-style:normal">
-            Theileria annulata</i> schizonts (</span><span class="tracktitle"><strong><a
-              href="http://www.ncbi.nlm.nih.gov/pubmed/23178997"><span
-                class="tracktitle">Witschi
-                <em>et al.</em></span></a></strong>). Search for genes whose
-          protein products were present in extracts of whole cell lysates <i style="mso-bidi-font-style:normal">T.
-            annulata</i> schizonts from the </span><strong><a href="http://piroplasmadb.org/piro/showQuestion.do?questionFullName=GeneQuestions.GenesByMassSpec">PiroplasmaDB
-Mass
-            spec evidence search page</a></strong><span class="tracktitle">. In
-          addition, peptide evidence is displayed on </span><strong><a href="http://piroplasmadb.org/piro/app/record/gene/TA12105">gene
-pages
-            in the Protein Section</a></strong><span class="tracktitle"> and in
-          the genome browser by turning on the track - <strong><a href="http://piroplasmadb.org/cgi-bin/gbrowse/piroplasmadb/?start=850517;stop=950516;ref=tannA_chr01;width=800;version=100;flip=0;grid=1;id=8c6b1b09fb0b79acf52f9b5871db2398;l=Gene%1EMassSpecPeptides_tannAnkara_massSpec_dobbelaere_RSRC;h_feat=ta20770%40yellow">T.a.
-              MS/MS Peptides Schizont Proteome (Witschi et al.)</a></strong>.</span></li>
-    </ul>
-    <span class="tracktitle"></span><br>
-    <br>
-    <strong>New features:</strong><br>
     <br>
     <p class="MsoNoSpacing"><u>GBrowse tracks remain open between sessions:</u></p>
     <p class="MsoNoSpacing"><br>
@@ -1885,7 +1780,7 @@ pages
     <ul>
       <li>EuPathDB now stores GBrowse track configurations between sessions for
         registered users who log into any EuPathDB site. The EuPathDB login is
-        now integrated with the GBrowse login so that your previous session's
+        now integrated with the GBrowse login so that your previous session’s
         GBrowse tracks are displayed each time you return to a EuPathDB site. </li>
     </ul>
     <br>
@@ -1896,9 +1791,9 @@ pages
     <ul>
       <li>A new interactive table for choosing expression data sets lists
         datasets, searches for each dataset and the organism that the data is
-        aligned to. Use the table's filter function to limit the data set list
+        aligned to. Use the table’s filter function to limit the data set list
         based on author name, parasite life stages, etc. Click on an icon under
-        "Choose a search" to collapse the table and display the data set's
+        "Choose a search" to collapse the table and display the data set’s
         search page with its parameter list below the collapsed table. </li>
     </ul>
     <br>
@@ -1951,124 +1846,142 @@ pages
         is now on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
       style="font-weight: bold; font-style: italic;">,
       <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="www.youtube.com/user/EuPathDB/">YouTube</a></span>
+    
   </body>
           ]]>
        </attribute>
     </record>
 <record>
-      <attribute name="headline">PiroplasmaDB 3.0 Released</attribute>
-       <attribute name="date">11 March 2013 15:00</attribute>
-       <attribute name="tag">piro0313news</attribute>
+       <attribute name="headline">GiardiaDB 3.1 released</attribute>
+       <attribute name="date">31 may 2013 15:00</attribute>
+       <attribute name="tag">giardia05_13_news</attribute>
        <attribute name="category">release</attribute>
-       <attribute name="item">
-           
+       <attribute name="item">         
          <![CDATA[
-<body><span style="font-family: Arial;"> </span>
-    <p style="text-align: justify;">
-      <!--StartFragment--> </p>
-    <p style="text-align: justify;" class="MsoNormal"><span style="font-family: Arial;"><a
-          name="piro0812news"><b
-            style="mso-bidi-font-weight:normal"><o:p></o:p></b></a></span></p>
-    <span style="font-family: Arial;"> </span>
-    <p style="text-align: justify;" class="MsoNormal"><span style="font-family: Arial;"><span
-          style="mso-bookmark:piro0812news"><b
-            style="mso-bidi-font-weight:
-normal">We are pleased to announce the release of PiropasmaDB 3.0<o:p></o:p></b></span></span></p>
-    <span style="font-family: Arial;"> </span>
-    <p style="text-align: justify;" class="MsoNormal"><span style="font-family: Arial;"><span
-          style="mso-bookmark:piro0812news"><b
-            style="mso-bidi-font-weight:
-normal">New data in this release:<br>
-          </b></span></span></p>
-    <p style="text-align: justify;" class="MsoNormal"><br>
-      <span style="font-family: Arial;"><span style="mso-bookmark:piro0812news"><b
-            style="mso-bidi-font-weight:
-normal"><o:p></o:p></b></span></span></p>
-    <span style="font-family: Arial;"> </span>
-    <p style="text-align: justify;" class="MsoNoSpacing"><span style="font-family: Arial;"><span
-          style="mso-bookmark:piro0812news"><u>Genomic
-sequence
-            and annotation for <i style="mso-bidi-font-style:normal">Babesia
-              microti</i> R1<br>
-          </u></span></span></p>
-    <p style="text-align: justify;" class="MsoNoSpacing"><br>
-      <span style="font-family: Arial;"><span style="mso-bookmark:piro0812news"><u><o:p></o:p></u></span></span></p>
-    <span style="font-family: Arial;"> </span>
-    <p style="text-align: justify;" class="MsoNormal"><span style="font-family: Arial;"><span
-          style="mso-bookmark:piro0812news">The
-          <i style="mso-bidi-font-style:normal">Babesia microti</i> R1 genome
-          and annotation (</span><strong><a href="http://www.ncbi.nlm.nih.gov/bioproject?term=PRJEA72411"><span
-              style="mso-bookmark:piro0812news">Genbank</span></a></strong><span
-          style="mso-bookmark:piro0812news">)
-          is fully integrated into PiroplasmaDB (<a href="http://www.ncbi.nlm.nih.gov/pubmed/22833609"><strong>Cornillot
-              </strong><strong><em>et al.</em></strong></a>). <span style="mso-spacerun:yes">&nbsp;</span>Use
-          the </span><span style="mso-bookmark:piro0812news">searches available
-          in PiroplasmaDB</span><span style="mso-bookmark:piro0812news"> to find
-        </span><strong><a href="http://piroplasmadb.org/piro/im.do?s=c0867e0adfea68c9"><span
-              style="mso-bookmark:piro0812news"><i
-                style="mso-bidi-font-style:normal">B.
-                microti</i> genes</span></a></strong><span style="mso-bookmark:piro0812news">
-          or </span><strong><a href="http://piroplasmadb.org/piro/im.do?s=b435e285f75ae48f"><span
-              style="mso-bookmark:piro0812news">genomic
-              sequences</span></a></strong><span style="mso-bookmark:piro0812news">
-          <span style="mso-spacerun:yes">&nbsp;</span>based on a variety of
-          parameters and combine searches to identify genes with specific
-          characteristics.<span style="mso-spacerun:yes">&nbsp; </span>For
-          example, the following strategy combines several searches to find
-          signal peptide and/or transmembrane domain containing genes that are
-          conserved in Piroplasma but not in Haemosporidia. <br>
-        </span></span></p>
-    <p style="text-align: justify;" class="MsoNormal"><br>
-      <span style="font-family: Arial;"><span style="mso-bookmark:piro0812news"><o:p></o:p></span></span></p>
-    <span style="font-family: Arial;"> </span>
-    <p style="text-align: justify;" class="MsoPlainText"><span style="font-family: Arial;"><strong><span
-            style="mso-bookmark:piro0812news"><span
-              style="mso-spacerun:yes">&nbsp;</span></span></strong><strong><a
-            href="http://piroplasmadb.org/piro/im.do?s=7c44f6999344e543"><span
-              style="mso-bookmark:piro0812news">http://piroplasmadb.org/piro/im.do?s=7c44f6999344e543</span></a></strong><span
-          style="mso-bookmark:piro0812news"><o:p></o:p></span></span></p>
-    <span style="font-family: Arial;"> </span> <br>
-    <p style="text-align: justify;" class="MsoNormal"><span style="font-family: Arial;"><b
-          style="mso-bidi-font-weight:normal">New
-          Functionality:<o:p></o:p></b></span><br>
-      <span style="font-family: Arial;"><u><br>
-          PCR Primer Design tool added to GBrowse. <o:p></o:p></u></span><span
-        style="font-family: Arial;"><br>
-        <br>
+<body>
+<span style="font-family: Arial;"><strong>We are pleased to announce
+the release of Giardia</strong><strong>DB 3</strong><strong>.1</strong><br>
+<br>
+New data in this release:<br>
+<br>
+<class="data-source"><a class="title"
+href="http://giardiadb.org/giardiadb/getDataset.do?question=GeneQuestions.GenesByRNASeqgassAWB_Svard_rnaSeq_RSRCPercentile&amp;display=detail#Transcript%20Expression">
+<i>G. Assemblage</i>
+A isolate WB (WB) transcriptome profiling</a>
+<class="data-source"><br>
+<class="data-source">
+<div class="detail">
+<div class="summary">Transcriptome profiling of <i>Giardia
+intestinalis</i> assemblages A (WB), B (GS) and E (P15)
+Using strand-specific RNA-Seq (Note that this data was graciously
+provided prepublication by Staffan Svärd's group, Uppsala University,
+Sweden).</ul>
+<ul>
+<li>Genes may be identified based on their <a
+href="http://giardiadb.org/giardiadb/showQuestion.do?questionFullName=InternalQuestions.GenesByRNASeqEvidence"><span
+style="font-weight: bold;">percentile expression</span></a> and RNA
+sequence reads can be visualized for each assemblage in the <a
+href="http://giardiadb.org/cgi-bin/gbrowse/giardiadb/"><span
+style="font-weight: bold;">genome browser.</span></a></li>
+</ul>
+</div>
+</div>
+</li>
+</span><br>
+<span style="font-family: Arial;"><br>
+<br>
+</span><span style="font-family: Arial;"><span
+style="font-style: italic;"><span style="font-style: italic;"><span
+style="text-decoration: underline;">Note:</span> Our bimonthly
+database releases incorporate new data and correct old data when
+necessary.&nbsp; Changes in annotation and new experimental data may
+slightly alter your search results by increasing or decreasing the
+number of hits. When search parameters change with a new release, we
+invalidate (<span style="color: red;">Ø</span>) the search and ask you
+to rerun it. When IDs are updated or removed, we map the old IDs to the
+new ones, remove the old IDs from your Basket, and leave your Favorites
+page alone.</span></span><br>
+<span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
+<span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
+is now on <a
+href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+style="font-weight: bold; font-style: italic;"> and <a
+href="http://twitter.com/eupathdb">Twitter</a></span> </span>
+</body>
+          ]]>
+       </attribute>
+    </record>
+  <record>
+       <attribute name="headline">GiardiaDB 3.0 released</attribute>
+       <attribute name="date">11 march 2013 15:00</attribute>
+       <attribute name="tag">giardia11_03_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">         
+         <![CDATA[
+<body><span style="font-family: Arial;"><strong>We are pleased to announce the
+        release of Giardia</strong><strong>DB 3</strong><strong>.0</strong><br>
+      <br>
+      <b>New data in this release:</b><br>
+      <br>
+      Basal body proteomics data from <em>G. lamblia</em> Assemblage A (WB)
+      trophozoits (<a href="www.ncbi.nlm.nih.gov/pubmed/21723868"><span style="font-weight: bold;">Lauwaet
+          <em>et al.</em></span></a>). <br>
+      <br>
+    </span>
+    <ul>
+      <li><span style="font-family: Arial;">To search this data click on the
+          protein expression link under the "Identify Genes by:" heading on the
+          home page, then click on "<strong><a href="http://giardiadb.org/giardiadb/showQuestion.do?questionFullName=GeneQuestions.GenesByMassSpec">Mass
+              Spec. Evidence</a></strong>".&nbsp; On this page select the
+          "Assemblage A (WB) basal body proteome" sample and click "Get
+          Answer".&nbsp; <a href="http://giardiadb.org/giardiadb/im.do?s=bb153666f8375e37"><strong>This
+              is an example search strategy that finds all genes with mass spec
+              evidence from this experiment</strong></a>.</span></li>
+    </ul>
+    <span style="font-family: Arial;"><br>
+    </span>
+    <ul>
+      <li><span style="font-family: Arial;">Mass spec data may also be
+          visualized on gene pages and in the Genome browser.&nbsp; <strong><a
+              href="http://giardiadb.org/cgi-bin/gbrowse/giardiadb/?start=370000;stop=396999;ref=GLCHR01;width=800;version=100;flip=0;grid=1;id=6185a3b9137aef8758961bb459a19824;l=GillinMassSpecPeptides%1EGene">This
+              view shows a section of a section of chromosome 1 with the
+              proteomics track for this data turned on</a></strong>.</span></li>
+    </ul>
+    <p><span style="font-family: Arial;"><b style="mso-bidi-font-weight:normal"><br>
+        </b></span></p>
+    <p><span style="font-family: Arial;"><b style="mso-bidi-font-weight:normal">New
+          Functionality:<o:p></o:p></b><br>
+      </span> <span style="font-family: Arial;"><u><br>
+          PCR Primer Design tool added to GBrowse. <o:p></o:p></u><br>
+      </span> <span style="font-family: Arial;"><br>
       </span>
     </p>
     <div style="margin-left: 40px;"><span style="font-family: Arial;">Design PCR
         primers to any region of the genome using this interactive, graphic
-        interface. To reach this tool, </span><span style="font-family: Arial;"><span
-          style="font-family: Arial;"><strong><a
-              href="http://piroplasmadb.org/cgi-bin/gbrowse/piroplasmadb/?name=FO082874:1554539..1586300;h_feat=bbm_iii04375@yellow">open
+        interface. To reach this tool, <strong><a href="http://giardiadb.org/cgi-bin/gbrowse/giardiadb/">open
 the
-              PiroplasmaDB Genome Browser</a></strong> </span>at your genomic
-        region of interest, choose "Design PCR primers" from the dropdown menu
-        and click "GO".<span style="mso-spacerun:yes">&nbsp; </span>To design
-        primers, focus on a PCR product size range by highlighting the area on
-        the scale, then enter your preferred PCR parameters in the text boxes
-        and click Design Primer.<o:p></o:p></span></div>
-    <span style="font-family: Arial;"> </span> <br>
-    <span style="font-style: italic;"><span style="font-style: italic;"><span style="text-decoration: underline;">Note:</span>
-        Our bimonthly database releases incorporate new data and correct old
-        data when necessary.&nbsp; Changes in annotation and new experimental
-        data may slightly alter your search results by increasing or decreasing
-        the number of hits. When search parameters change with a new release, we
-        invalidate (<span style="color: red;">Ø</span>) the search and ask you
-        to rerun it. When IDs are updated or removed, we map the old IDs to the
-        new ones, remove the old IDs from your Basket, and leave your Favorites
-        page alone.</span></span><br>
-    <span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
-    <span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
-        is now on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
-      style="font-weight: bold; font-style: italic;">
-      and <a href="http://twitter.com/eupathdb">Twitter</a></span> <br style="font-family: Arial;">
-    <p style="text-align: justify;" class="MsoNormal"><br>
-      <span style="font-family: Arial;"><o:p></o:p></span></p>
-    <span style="font-family: Arial;"> </span>
-    <p style="text-align: justify;"><!--EndFragment--> </p>
-    <span style="font-family: Arial;"> </span>
+            GiardiaDB Genome Browser</a></strong> at your genomic region of
+        interest, choose "Design PCR primers" from the dropdown menu and click
+        "GO".<span style="mso-spacerun:yes">&nbsp; </span>To design primers,
+        focus on a PCR product size range by highlighting the area on the scale,
+        then enter your preferred PCR parameters in the text boxes and click
+        Design Primer.<o:p></o:p></span></div>
+    <span style="font-family: Arial;"> <br>
+      <span style="font-style: italic;"><span style="font-style: italic;"><span
+            style="text-decoration: underline;">Note:</span>
+          Our bimonthly database releases incorporate new data and correct old
+          data when necessary.&nbsp; Changes in annotation and new experimental
+          data may slightly alter your search results by increasing or
+          decreasing the number of hits. When search parameters change with a
+          new release, we invalidate (<span style="color: red;">Ø</span>) the
+          search and ask you to rerun it. When IDs are updated or removed, we
+          map the old IDs to the new ones, remove the old IDs from your Basket,
+          and leave your Favorites page alone.</span></span><br>
+      <span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
+      <span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
+          is now on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+        style="font-weight: bold; font-style: italic;">
+        and <a href="http://twitter.com/eupathdb">Twitter</a></span> </span>
   </body>
           ]]>
        </attribute>
@@ -2135,156 +2048,83 @@ the
        </attribute>
     </record>
 <record>
-       <attribute name="headline">PiroplasmaDB 2.0 Released</attribute>
-       <attribute name="date">31 August 2012 15:00</attribute>
-       <attribute name="tag">piro0812news</attribute>
-       <attribute name="category">release</attribute>
-       <attribute name="item">
-           
-         <![CDATA[
-<html>
-  <head>
-    <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
-    <title>piro08_12</title>
-  </head>
-  <body>
-    <div style="text-align: justify; font-family: Arial;"> <span style="font-weight: bold;">We
-        are pleased to announce the release of
-        PiroplasmaDB 2.0</span><br style="font-weight: bold;">
-      <span style="font-weight: bold;"> </span><br>
-      <font face="Arial">This release of </font>PiroplasmaDB<font face="Arial">
-        constitutes a complete
-        rebuild of the database.&nbsp; This means that all genomes and
-        data were reloaded and reanalyzed.&nbsp; </font><font face="Arial">It
-        is possible that many of your stored search strategies will need to be
-        rerun to accommodate the new analyses (please see note at the bottom of
-        this news item).&nbsp; </font><font face="Arial">We encourage you to
-        explore this release and, as usual,
-        we look forward to hearing from you with suggestions for further
-        improvement and any problems you may encounter. </font><br>
-      <br>
-      <span style="font-weight: bold;"> New data in this release:</span><br>
-      <span style="font-weight: bold;"> </span><br>
-    </div>
-    <ul style="text-align: justify; font-family: Arial;">
-      <li><span style="font-style: italic;">Babesia bovis</span> microarray
-        data from <a style="font-weight: bold;" href="http://www.ncbi.nlm.nih.gov/pubmed/21838895">Lau
-          <span style="font-style: italic;">et. al.</span></a> Incorporation of
-        this
-        data enables you to search for genes that are differentially regulated
-        between virulent and attenuated strains of <span style="font-style: italic;">B.
-          bovis</span>.&nbsp; Searches against
-        this data are available by selection "<a style="font-weight: bold;" href="http://piroplasmadb.org/piro/showQuestion.do?questionFullName=InternalQuestions.GenesByMicroarrayEvidence">Microarray</a>"
-        in the "Transcript Expression" section under the heading "Identify
-        Genes by" on the home page.</li>
-    </ul>
-    <div style="margin-left: 40px;"><span style="font-family: Arial;"><br>
-        Searches for gens based on their expression profile may be combined
-        with other available searches in PiroplasmaDB.&nbsp; For example, the
-        following shared search strategy identifies predicted secreted genes
-        that are differentially regulated between virulent and attenuated
-        strains:</span><br>
-    </div>
-    <div style="text-align: justify; font-family: Arial;"> </div>
-    <div style="text-align: justify; font-family: Arial;"> <a href="http://piroplasmadb.org/piro/im.do?s=eb3dc45918c75c68"><br>
-      </a></div>
-    <div style="margin-left: 80px; text-align: justify; font-family: Arial;"><a
-        href="http://piroplasmadb.org/piro/im.do?s=eb3dc45918c75c68"><span
-          style="font-weight: bold;">http://piroplasmadb.org/piro/im.do?s=eb3dc45918c75c68</span></a><br>
-    </div>
-    <div style="text-align: justify; font-family: Arial;"> <br>
-    </div>
-    <div style="margin-left: 40px; text-align: justify; font-family: Arial;">In
-      addition, graphical representations of expression profiles are
-      available on all <span style="font-style: italic;">B. bovis</span>
-      gene pages.&nbsp; As an example, you can visit the gene page for one of
-      the <a style="font-weight: bold;" href="http://piroplasmadb.org/gene/BBOV_IV001490">variant
-        erythrocyte
-        surface antigens</a> and scroll down to the expression section.<br>
-      <br>
-    </div>
-    <div style="text-align: justify; font-family: Arial;"> </div>
-    <ul style="text-align: justify; font-family: Arial;">
-      <li>Isolate data from environmental samples, <span style="font-style: italic;">Theileriidae</span>
-        and <span style="font-style: italic;">Babesiidae</span> obtained from
-        Genbank
-        are now available.&nbsp; These data may be searched based on multiple
-        criteria including geographic location, isolation source, host, strain,
-        etc.&nbsp; Searches against isolate data are available under the
-        "Isolates" section under the heading "Identify other data types" on the
-        home page.&nbsp; Isolate searches may be combined such as the following
-        strategy that identifies all Theileria isolates from Africa:<br>
-      </li>
-    </ul>
-    <div style="text-align: justify; font-family: Arial;"> <a href="http://piroplasmadb.org/piro/im.do?s=2c545c1d461d5df3"><br>
-        <span style="font-weight: bold;"></span></a> </div>
-    <div style="margin-left: 80px; text-align: justify; font-family: Arial;"><a
-        href="http://piroplasmadb.org/piro/im.do?s=2c545c1d461d5df3">
-        ht<span style="font-weight: bold;">tp://piroplasmadb.org/piro/im.do?s=2c545c1d461d5df3</span></a><br>
-    </div>
-    <div style="text-align: justify; font-family: Arial;"> <br>
-      <span style="font-weight: bold;"></span><br>
-      <span style="font-weight: bold;"> </span><br>
-      <span style="font-weight: bold;"> New functionality:</span><br>
-      <br>
-      Graphical representation of your gene results mapped to genomic
-      sequences.&nbsp; To use this feature, run any gene search then click on
-      the "Genome View" tab.&nbsp; This view allows you to interactively
-      visualize the genomic distribution of your results -- you can zoom
-      in/out, sort results or visit specific gene pages.&nbsp; <br>
-      <br>
-      <br>
-      <span style="font-style: italic;"><span style="font-style: italic;"><span
-            style="text-decoration: underline;">Note:</span>
-          Our bimonthly
-          database releases incorporate new data and correct old data when
-          necessary.&nbsp; Changes in annotation and new experimental data may
-          slightly alter your search results by increasing or decreasing the
-          number of hits. When search parameters change with a new release, we
-          invalidate (<span style="color: red;">Ø</span>) the search and ask you
-          to rerun it. When IDs are updated or removed, we map the old IDs to
-          the
-          new ones, remove the old IDs from your Basket, and leave your
-          Favorites
-          page alone.</span></span><br>
-      <span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
-      <span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
-is
-          now on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
-        style="font-weight: bold; font-style: italic;">
-        and <a href="http://twitter.com/eupathdb">Twitter</a></span><br>
-    </div>
-  </body>
-</html>
-          ]]>
-       </attribute>
-    </record>
-<record>
-       <attribute name="headline">New features in PiroplasmaDB</attribute>
+       <attribute name="headline">New Features and Data in GiardiaDB</attribute>
        <attribute name="date">11 January 2012 15:00</attribute>
-       <attribute name="tag">piro1211news</attribute>
+       <attribute name="tag">giardia12_11_news</attribute>
        <attribute name="category">release</attribute>
        <attribute name="item">
            
          <![CDATA[
 <body>
-<span style="font-weight: bold; font-family: Arial;">We are pleased to
-announce new features in&nbsp; PiroplasmaDB<br>
-</span><br style="font-family: Arial;">
-<span style="font-weight: bold; font-family: Arial;">New
-functionality:</span><br style="font-family: Arial;">
-<br style="font-family: Arial;">
-<span style="font-weight: bold; font-family: Arial;">
-</span>
-<ul style="font-family: Arial;">
+<div style="text-align: justify; font-family: Arial;"><span
+style="font-weight: bold;">We
+are pleased to announce new data and features in GiardiaDB</span> <span
+style="font-weight: bold;">2.5</span><br style="font-weight: bold;">
+<br style="font-weight: bold;">
+<span style="font-weight: bold;">New Data:</span><br>
+<br>
+<span style="font-style: italic;">Giardia lamblia </span>Genotype A1
+WB C6 (assemblage A) contigs and scaffolds have been assembled into
+chromosomes based on an optical map (<a style="font-weight: bold;"
+href="http://www.ncbi.nlm.nih.gov/pubmed/21835210">Perry <span
+style="font-style: italic;">et. al.</span></a>).&nbsp; The optical map
+has been incorporated into GiardiaDB where you can use it in searches
+(ie. <a style="font-weight: bold;"
+href="/giardiadb/showQuestion.do?questionFullName=GeneQuestions.GenesByLocation">identifying
+genes by chromosomal location</a>) and is graphically represented in
+the genomic context section of gene pages and in the genome
+browser.&nbsp; <br>
+<br>
+<ul>
+<li><a
+href="/cgi-bin/gbrowse/giardiadb/?start=630000;stop=1129999;ref=GLCHR01;width=800;version=100;flip=0;grid=1;id=916467792f65cdeafebde051864c44cd;l=Synteny%1EGene;h_feat=gl50803_846%40yellow"><span
+style="font-weight: bold;">This example genome browser view shows a
+500KB region of assemblage A chromosome one in addition to synteny
+tracks from assemblages B and E.</span></a></li>
+</ul>
+<span style="font-weight: bold;"><br>
+</span><br>
+Note that while overall the optical map data and assembly <a
+href="/giardiadb/communityDownload.do?fname=map%20of%20all%20chromsomes%20file.tiff"><span
+style="font-weight: bold;">data published by the Upcroft group</span></a>
+are in agreement, differences do exist.&nbsp; We encourage all
+interested to review the published literature including the following:<br>
+<br>
+<ul>
+<li style="font-weight: bold;"><a
+href="http://www.ncbi.nlm.nih.gov/pubmed/20739222">Upcroft JA, Krauer
+KG, Upcroft P. Chromosome sequence maps of the Giardia lamblia
+assemblage A isolate WB. Trends Parasitol. 2010 Oct;26(10):484-91.</a></li>
+<li style="font-weight: bold;"><a
+href="http://www.ncbi.nlm.nih.gov/pubmed/21835210">Perry DA, Morrison
+HG, Adam RD. Optical map of the genotype A1 WB C6 Giardia lamblia
+genome isolate. Mol Biochem Parasitol. 2011 Dec;180(2):112-4.</a></li>
+<li style="font-weight: bold;"><a
+href="http://www.ncbi.nlm.nih.gov/pubmed/20557214">Krauer KG, Burgess
+AG, Dunn LA, Upcroft P, Upcroft JA. Sequence map of the 2 Mb Giardia
+lamblia assemblage A chromosome. J Parasitol. 2010 Jun;96(3):660-2.</a></li>
+<li><a href="http://www.ncbi.nlm.nih.gov/pubmed/19842052"><span
+style="font-weight: bold;">Upcroft JA, Krauer KG, Burgess AG, Dunn LA,
+Chen N, Upcroft P. Sequence map of the 3-Mb Giardia duodenalis
+assemblage A chromosome. Chromosome Res. 2009;17(8):1001-14.</span></a><br>
+</li>
+</ul>
+<br>
+<span style="font-weight: bold;">New
+functionality:</span><br>
+<br>
+<span style="font-weight: bold;">
+</span></div>
+<ul style="text-align: justify; font-family: Arial;">
 <li>The genome browser has been updated.&nbsp; This newer version
 includes several improvements and functionalities.&nbsp; <a
 href="http://www.youtube.com/watch?v=jxA6VMN97Y8"><span
 style="font-weight: bold;">A tutorial </span></a>highlighting some of
 the new features is also available.&nbsp;&nbsp;</li>
 </ul>
-<br style="font-family: Arial;">
-<ul style="font-family: Arial;">
+<div style="text-align: justify; font-family: Arial;"><br>
+</div>
+<ul style="text-align: justify; font-family: Arial;">
 <li>A new column analysis tool is now available that allows you to
 generate a word cloud or histogram based on the data in result
 columns.&nbsp; To access this feature, run any search that returns a
@@ -2293,11 +2133,12 @@ column name.&nbsp; This will reveal a popup with the option to select
 "Word Cloud".&nbsp; Look for this analysis feature to be activated on
 additional columns in future releases.</li>
 </ul>
-<br style="font-family: Arial;">
-<ul style="font-family: Arial;">
+<div style="text-align: justify; font-family: Arial;"><br>
+</div>
+<ul style="text-align: justify; font-family: Arial;">
 <li>Several new tutorials have been generated:</li>
 </ul>
-<ul style="font-family: Arial;">
+<ul style="text-align: justify; font-family: Arial;">
 <ul style="font-weight: bold;">
 <li><a href="http://www.youtube.com/watch?v=jxA6VMN97Y8">The genome
 browser.</a></li>
@@ -2313,9 +2154,9 @@ with invalid IDs and search strategies.</a></li>
 the orthology phylogenetic profile search.</a></li>
 </ul>
 </ul>
-<br style="font-family: Arial;">
-<span style="font-style: italic; font-family: Arial;"><span
-style="font-style: italic;"><span style="text-decoration: underline;">Note:</span>
+<div style="text-align: justify; font-family: Arial;"><br>
+<span style="font-style: italic;"><span style="font-style: italic;"><span
+style="text-decoration: underline;">Note:</span>
 Our bimonthly database releases incorporate new data and correct old
 data when necessary.&nbsp; Changes in annotation and new experimental
 data
@@ -2324,21 +2165,102 @@ number of hits. When search parameters change with a new release, we
 invalidate (<span style="color: red;">Ø</span>) the search and ask you
 to rerun it. When IDs are updated or removed, we map the old IDs to the
 new ones, remove the old IDs from your Basket, and leave your Favorites
-page alone.</span></span><br style="font-family: Arial;">
-<span style="font-weight: bold; font-family: Arial;"><span
-style="font-style: italic;"></span></span><br
-style="font-family: Arial;">
-<br style="font-family: Arial;">
-<span style="font-weight: bold; font-family: Arial;"><span
-style="font-style: italic;"></span></span><br
-style="font-family: Arial;">
-<span style="font-weight: bold; font-family: Arial;"><span
-style="font-style: italic;">EuPathDB
+page alone.</span></span><br>
+<span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
+<br>
+<span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
+<span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
 is now on <a
 href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
-style="font-weight: bold; font-style: italic; font-family: Arial;">
-and <a href="http://twitter.com/eupathdb">Twitter</a></span>
-<span style="font-weight: bold; font-family: Arial;"></span>
+style="font-weight: bold; font-style: italic;">
+and <a href="http://twitter.com/eupathdb">Twitter</a></span><small><a
+href="http://twitter.com/eupathdb"><span
+style="font-weight: bold; font-style: italic;"></span></a></small>
+</div>
+</body>
+          ]]>
+       </attribute>
+    </record>
+<record>
+       <attribute name="headline">New Features in GiardiaDB</attribute>
+       <attribute name="date">03 May 2011 15:00</attribute>
+       <attribute name="tag">giardia5_11_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body>
+<span style="font-weight: bold;">New Features in GiardiaDB</span><br>
+<br>
+<ul>
+<li>You can now search for DNA segments defined by their chromosomal
+location or their nucleotide sequence (DNA motif pattern).&nbsp; This
+new search is available under "Identify Other Data Types"; click on
+"Genomic Segments (DNA motif)" then select either <a
+style="font-weight: bold;"
+href="http://giardiadb.org/giardiadb/showQuestion.do?questionFullName=SpanQuestions.DynSpansByMotifSearch">DNA
+motif pattern</a> or <a style="font-weight: bold;"
+href="http://giardiadb.org/giardiadb/showQuestion.do?questionFullName=SpanQuestions.DynSpansBySourceId">Genomic
+Location</a>.</li>
+</ul>
+<div style="text-align: justify;"><br>
+</div>
+<ul style="text-align: justify;">
+<li>We introduced a new combine operation that allows users to
+combine
+steps based on relative locations on the genome.&nbsp; This enables
+you, for
+example, to return all genes that contain a specific DNA motif within
+1000 nucleotides upstream of the annotated start site. Or you could
+return all genes that have a SNP between two strains within 500
+nucleotides of the start of the gene (or return all SNPs that are
+located in this region relative to genes).&nbsp;&nbsp;</li>
+</ul>
+<br>
+<ul style="text-align: justify;">
+<ul>
+<li>Here is an <a style="font-weight: bold;"
+href="http://giardiadb.org/giardiadb/im.do?s=1c4c35adc3734f0b">example
+search strategy</a> that identifies protein coding genes with an AP-2
+like motif within 1000 bp of their 5' end.</li>
+</ul>
+</ul>
+<br>
+<ul style="text-align: justify;">
+<ul>
+<li>Tutorials highlighting the <a style="font-weight: bold;"
+href="http://eupathdb.org/tutorials/DNA_motif/dna_motif_viewlet_swf.html">DNA
+motif</a> search and the <a style="font-weight: bold;"
+href="http://eupathdb.org/tutorials/colocate/colocate_viewlet_swf.html">locational
+relationship functionality</a> are available.</li>
+</ul>
+</ul>
+<br>
+<div style="text-align: justify;">
+In addition, several new tutorials have been developed:<br>
+<br>
+</div>
+<ul style="text-align: justify;">
+<li><a style="font-weight: bold;"
+href="http://eupathdb.org/tutorials/Registration/register_final_viewlet_swf.html">How
+and why should you register for an account</a><br>
+</li>
+<li style="font-weight: bold;"><a
+href="http://eupathdb.org/tutorials/TextSearch/Text_Search_viewlet_swf.html">How
+to run a text search</a></li>
+<li><a style="font-weight: bold;"
+href="http://eupathdb.org/tutorials/Favorites/favorites_viewlet_swf.html">How
+to use Favorites</a></li>
+<li style="font-weight: bold;"><a
+href="http://eupathdb.org/tutorials/DNA_motif/dna_motif_viewlet_swf.html">How
+to find a DNA motif</a></li>
+<li><a style="font-weight: bold;"
+href="http://eupathdb.org/tutorials/colocate/colocate_viewlet_swf.html">How
+to use genomic co-location</a></li>
+</ul>
+<small><a href="http://twitter.com/eupathdb"><span
+style="font-weight: bold; font-style: italic;">Follow EuPathDB on
+Twitter</span></a></small>
 </body>
           ]]>
        </attribute>
@@ -2346,27 +2268,744 @@ and <a href="http://twitter.com/eupathdb">Twitter</a></span>
 <record>
        <attribute name="headline">
          <![CDATA[
-          PiroplasmaDB 1.0 Released
+Driving Biological Projects awarded
          ]]>
+         </attribute>
+       <attribute name="date">20 October 2010 13:00</attribute>
+       <attribute name="tag">dbp_award_10202010</attribute>
+       <attribute name="category">dbp</attribute>
+       <attribute name="item">
+         <![CDATA[
+<b>We are pleased to report that the following Driving Biological Projects (DBPs) have been awarded in connection with the EuPathDB Bioinformatics Resource Center (BRC):</b><br><br>
+<ul>
+<li><b>The Toxoplasma oocyst transcriptome and proteome</b><br>
+   John Boothroyd, Matt Bogyo (Stanford) & Pat Conrad (UC Davis)<br>
+   This project is expected to yield expression data from an important, but inaccessible, life cycle stage (1 yr). <br><br></li>
+<li><b>A comprehensive catalog of the T. gondii & N. caninum parasite & infected host cell transcriptome & proteome</b><br>
+   Brian Gregory (Univ. Pennsylvania) & Jonathan Wastling (Univ. Liverpool)<br>
+   This project will produce an immense volume of sequence data, driving database improvements for handling 'next-gen' sequencing, non-coding RNAs, and interrogating host & pathogen datasets in parallel (2 yr).<br><br></li>
+
+<li><b>Dissection of Plasmodium falciparum genetic crosses by mass spectrometry-based metabolite QTL</b><br>
+   Manuel Llin&aacute;s (Princeton) & Michael Ferdig (Notre Dame)<br>
+   This project is expected to improve handling of genetic mapping data, incorporation of metabolomics results (integrated with pathway maps), and linking of specific genetic loci with metabolite abundance (2 yr).<br><br></li>
+</ul>
+
+A biennial competition for DBP awards is mandated by the BRC contract from NIH/NIAID, and supported by a total of $1.2M in total costs per award cycle.  The goal of this program is to produce high value genomic-scale datasets for the EuPathDB user community, and drive the further development of bioinformatics resources for data analysis and mining.<br><br>
+
+Letters of intent (LOI) were solicited in February (see Feb 4 News item), and reviewed by the EuPathDB Scientific Working Group (SWG; see News, March 31).  12 full applications were solicited from among the ~50 LOIs received, and awards were based on further scientific review by the SWG, and in consultation with NIAID program staff.  Cost negotiations and 'in kind' contributions from other sources made it possible to support 3 applications, from 6 investigators (in some cases, more than one LOI was merged into a single award).<br><br>
+
+We received far more high quality proposals than could be supported, testifying to the need for such mechanisms for data production bioinformatics analysis.  The EuPathDB team looks forward to working with members of our user community who are seeking funding for such projects from external sources.  Inquiries, including requests for support letters, should be directed to the EuPathDB staff (click on the 'Contact Us' link).<br><br>
+
+<b>A new solicitation for DBPs is anticipated in 2011, and will be announced on the EuPathDB web site.</b>
+          ]]>
        </attribute>
-       <attribute name="date">15 April 2011 00:00</attribute>
-       <attribute name="tag">piro4_11_news</attribute>
+</record>
+<record>
+       <attribute name="headline">GiardiaDB 2.3 Released</attribute>
+       <attribute name="date">21 September 2010 15:00</attribute>
+       <attribute name="tag">giardia09_10_news</attribute>
        <attribute name="category">release</attribute>
        <attribute name="item">
            
          <![CDATA[
 <body>
-<span style="font-weight: bold;">We are pleased to announce the release
-of PiroplasmaDB 1.0<br>
-</span><br>
-<span style="font-weight: bold;">This first release of PiroplasmaDB contains the
-following datasets:</span><span style="font-weight: bold;"> </span><br>
+<span style="font-weight: bold;">We are pleased to
+announce new data and features in GiardiaDB 2.3<br>
 <br>
+This release of GiardiaDB includes the following new data set:</span><span
+style="font-weight: bold;"> <br>
+</span>
+<ul>
+<li><span style="font-style: italic;">Giardia<span
+style="font-style: italic;"> intestinalis</span></span> microarray
+data during encystation from Adrian Hehl's group (<a
+href="http://www.ncbi.nlm.nih.gov/pubmed/20693303">Morf <span
+style="font-style: italic;">et. al.</span></a>).&nbsp; Three types of
+searches can be performed to
+interrogateinterrogatedinterrogatedinterrogatedinterrogatedinterrogated
+this data and are available in
+the <a
+href="http://giardiadb.org/giardiadb/showQuestion.do?questionFullName=InternalQuestions.GenesByMicroarrayEvidence">microarray
+search page</a>.&nbsp; As an example, one may ask for all genes that
+are differentially regulated 7 hours post encystation (under both
+encystation methods used in this study).&nbsp; To see the results of
+this question please follow the shared strategy <a
+href="http://giardiadb.org/giardiadb/im.do?s=26e0b6a97beb9bdd">here</a>.&nbsp;
+Gene pages also contain a graphical representation of the microarray
+results. &nbsp;</li>
+</ul>
+<span style="font-weight: bold;">New features in this release include:</span><br>
+<ul>
+<li>Improved organization of the <a
+href="http://giardiadb.org/giardiadb/showQuestion.do?questionFullName=InternalQuestions.GenesByMicroarrayEvidence">microarray
+search page</a>.</li>
+<li>The search strategy window is now resizable.</li>
+</ul>
+<span style="font-weight: bold;"></span>
+</body>
+          ]]>
+       </attribute>
+    </record>
+<record>
+       <attribute name="headline">GiardiaDB 2.2 Released</attribute>
+       <attribute name="date">15 July 2010 15:00</attribute>
+       <attribute name="tag">giardia07_10_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">           
+         <![CDATA[
+<body>
+<span style="font-weight: bold;">We are pleased to
+announce new features in Giardia 2.2<br>
+<br>
+This release of GiardiaDB includes the following new data sets:</span><span
+style="font-weight: bold;"> <br>
+<br>
+</span>
+<ul>
+<li><span style="font-style: italic;">Giardia<span
+style="font-style: italic;"> intestinalis</span></span> microarray
+data during host parasite interaction.&nbsp; This data was graciously
+provided prepublication by Emma Ringqvist and Staffan Svärd (Uppsala
+University, Sweden).</li>
+<li>Manually curated SAGE tag data provided by Andrew McArthur and
+described by <a href="http://www.ncbi.nlm.nih.gov/pubmed/20570699">Birkeland
+<span style="font-style: italic;">et. al.</span></a><br>
+</li>
+</ul>
+<span style="font-weight: bold;"></span>
+</body>
+          ]]>
+       </attribute>
+    </record>
+<record>
+       <attribute name="headline">New Features in GiardiaDB</attribute>
+       <attribute name="date">13 May 2010 15:00</attribute>
+       <attribute name="tag">giardia05_10_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body>
+<span style="font-weight: bold;">We are pleased to
+announce new features in Giardia 2.1<br>
+<br>
+<br>
+In an effort to continue improving the utility of GiardiaDB </span><span
+ style="font-weight: bold;">we have
+implemented several new features in recent releases. &nbsp;<br>
+<br>
+</span>
+<ol>
+  <li><span style="font-weight: bold; font-style: italic;">"My
+Basket"</span> allows one to cherry pick genes and add them to
+the basket for subsequent conversion into a step in a strategy.
+&nbsp;The basket is accessible from the gray menu bar and the
+number of items in your basket is indicated.</li>
+  <br>
+  <li><span style="font-weight: bold; font-style: italic;">Weighted
+searches</span>&nbsp;allows you to assign an arbitrary weight
+to the searches (steps) in
+your search strategy making it possible for you to view a ranked list
+of your results. &nbsp;</li>
+  <div style="margin-left: 40px;">Here is an example of
+the
+same strategy looking for putative secreted enzymes. &nbsp;Notice
+that you
+have a larger number of results with weighting and those can be sorted
+based on the sum of the weights, giving a ranked list of results.<br>
+  <br>
+  <a href="http://giardiadb.org/giardiadb/im.do?s=11cea73c70d44e95">Putative
+secreted enzymes (unweighted)</a><br>
+  <br>
+  <a href="http://giardiadb.org/giardiadb/im.do?s=525c3842824cc776">Putative
+secreted enzymes (Weighted)</a></div>
+  <br>
+  <li><span style="font-weight: bold; font-style: italic;">"My
+Favorites"</span> allows you to bookmark and organize genes you
+access frequently. &nbsp;A tutorial on how to use this feature is
+available <a
+ href="http://eupathdb.org/tutorials/Favorites/favorites_viewlet_swf.html">here</a>.&nbsp;</li>
+  <br>
+  <li>A <span style="font-weight: bold;">community
+annotation</span> field has been added to the text
+search page. &nbsp;This makes it possible for the Giardia research
+community to provide expert bulk annotations that would ultimately
+results in changes in the GenBank record and official annotation.
+&nbsp;Currently, there are 164 community annotations provided by
+Rod Adam concerning VSPs. &nbsp;To view community annotations go to
+the text search page in GiardiaDB and limit your search to the
+"Community annotation".&nbsp; To view all genes that have a
+community annotation associated with them simply enter the wild card
+"*" in the text search field.&nbsp; The annotation itself is
+prominently displayed on the gene pages right under the product name.
+&nbsp;You can also click on the comment ID to retrieve additional
+information.</li>
+  <li>A file including <span style="font-weight: bold;">assignment
+of contigs to chromosomes</span> has been made available by
+Hilary Morrison pre-publication in the community file section of
+GiardiaDB. &nbsp;<a
+ href="http://giardiadb.org/giardiadb/communityDownload.do?fname=opticalmap_placement.xls.txt">Links</a>
+to the file are available on all contig pages.</li>
+</ol>
+<span style="font-weight: bold;"></span><span
+ style="font-weight: bold;">Feature evaluators still needed:<br>
+<br>
+</span>
+<div style="margin-left: 40px;">We welcome you to *sign
+up* to be an early evaluator of new features on the EuPathDB sites.
+This will be an opportunity for you to help us refine and improve
+features early in the development process.&nbsp;In fact, the "My
+Favorites" feature was the subject of our first survey and feature
+evaluator's comments and suggestions contributed to enhancing this
+feature. <br>
+<br>
+Signing on is easy and will
+require minimal effort on your part in the form of answering questions
+or rendering your opinion. &nbsp;<br>
+<br>
+To become&nbsp;a feature evaluatora feature evaluatora feature
+evaluatora feature evaluator, <a
+ href="https://mail.pcbi.upenn.edu/mailman/listinfo/eupathdb_testers">click
+here</a>.</div>
+<br>
+<br>
+<span style="font-weight: bold;"></span>
+</body>
+          ]]>
+       </attribute>
+    </record>
 
+<record>
+       <attribute name="headline">EuPathDB Scientific Working Group</attribute>
+       <attribute name="date">31 March 2010 15:00</attribute>
+       <attribute name="tag">swg_announce_2010</attribute>
+       <attribute name="category"></attribute>
+       <attribute name="item">           
+         <![CDATA[
+EuPathDB is pleased to announce the members of the scientific working group
+(SWG). The SWG provides EuPathDB with scientific oversight and 
+guidance.  Members of the SWG also review the driving biological projects initiative.<br><br>
+
+<table>
+<tr>
+<td><a href="http://www.fnih.org/about">Michael Gottlieb</a>, Chair<br>
+Foundation for National Institutes of Health (FNIH)<br>
+Broad expertise in parasitology, large integrative projects (chair)<br>
+</td>
+<td>
+<a href="http://www.sanger.ac.uk/research/faculty/mberriman/">Matt Berriman</a><br>
+Wellcome Trust Sanger Institute<br>
+Pathogen genomics & functional annotation<br>
+</td>
+</tr><tr>
+<td>
+<a href="http://med.stanford.edu/profiles/John_Boothroyd/">John Boothroyd</a><br>
+Stanford University<br>
+Toxoplasma biology & host-pathogen interactions<br>
+</td>
+<td>
+<a href="http://www.vcu.edu/lifesci/research/res_fac_int_buck.html">Greg Buck</a><br>
+Virginia Commonwealth University<br>
+Pathogenomics of apicomplexan and kinetoplastid parasites<br>
+</td>
+</tr><tr>
+<td>
+<a href="http://www3.niaid.nih.gov/labs/aboutlabs/lmiv/default.htm">Patrick Duffy</a><br>
+National Institutes of Health (NIAID)<br>
+Laboratory & clinical aspects of malaria biology<br>
+</td>
+<td>
+<a href="http://www.cgm.northwestern.edu/">Pascale Gaudet</a><br>
+Northwestern University<br>
+Biocuration, ontologies, DIctyostelium<br>
+</td>
+</tr><tr>
+<td>
+<a href="http://www.paras.uzh.ch/research/microbiology.html">Adrian Hehl</a><br>
+University of  Zurich<br>
+Cellular and molecular biology of Giardia<br>
+</td>
+<td>
+<a href="http://www.botany.ubc.ca/keeling/">Patrick Keeling</a><br>
+University of British Columbia<br>
+Comparative genomics<br>
+</td>
+</tr><tr>
+<td>
+<a href="http://www.medicine.virginia.edu/clinical/departments/pathology/faculty/petri-page">Bill Petri</a><br>
+University of Virginia<br>
+Laboratory & clinical aspects of Entamoeba and diarrheal diseases<br>
+</td>
+<td>
+<a href="http://www.oicr.on.ca/Research/stein.htm">Lincoln Stein</a><br>
+Ontario Cancer Center<br>
+Bioinformatics tools & analysis<br>
+</td>
+</tr><tr>
+<td>
+<a href="http://www.genome.gov/26525388">Lu Wang</a><br>
+National Institutes of Health (NHGRI)<br>
+Large-scale sequencing<br>
+</td>
+<td>
+<a href="http://www.liv.ac.uk/infection-and-global-health/staff/jonathan-wastling/">Jonathan Wastling</a><br>
+University of Liverpool<br>
+Proteomics of apicomplexan parasites<br>
+</td>
+</tr><tr>
+<td>
+<a href="http://www.einstein.yu.edu/home/faculty/profile.asp?id=4218">Louis Weiss</a><br>
+Albert Einstein College of Medicine<br>
+Microsporidia, Toxoplasma, and clinical microbiology<br>
+</td>
+<td>
+<a href="http://www.hsph.harvard.edu/faculty/dyann-wirth/">Dyann Wirth</a><br>
+Harvard School of Public Health<br>
+Plasmodium population biology, drug discovery<br>
+</td></table>
+          ]]>
+       </attribute>
+    </record>
+
+<record>
+       <attribute name="headline">GiardiaDB new features</attribute>
+       <attribute name="date">15 March 2010 15:00</attribute>
+       <attribute name="tag">giardia_newFeatures_0310</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">           
+         <![CDATA[
+
+<span style="font-weight: bold;">We are pleased to 
+announce new features in GiardiaDB 2.1<br><br> 
+</span><span style="font-weight: bold;">New Features:</span><br><br>
+<ul>
+ <li>The gray tool bar at the top of all GiardiaDB web pages has 
+been enhanced to include a link to the "My Basket" feature including an 
+indication of how may items are in the basket.</li> 
+ <li>The genome browser has been updated to version 1.7, which 
+offers enhanced features and stability.&nbsp;</li> 
+ <li>Weighted searches are now available. &nbsp;This feature 
+allows you to assign an arbitrary weight to the searches (steps) in 
+your search strategy making it possible for you to view a ranked list 
+of your results.&nbsp;</li> 
+</ul> 
+<br>
+<span style="font-weight: bold;">***<a href="https://mail.pcbi.upenn.edu/mailman/listinfo/eupathdb_testers">Sign up to be a EuPathDB feature evaluator:</a
+>***<br><br>
+</span> 
+<div style="margin-left: 20px;">
+We welcome you to <a href="https://mail.pcbi.upenn.edu/mailman/listinfo/eupathdb_testers">*sign up* to be an early evaluator</a>
+ of new features on the EuPathDB sites.  This will be an opportunity for you to help us refine and improve features early in the development process.  
+Signing up is easy.  Evaluating will require minimal effort on your part, 
+typically in the form of answering specific questions, using the feature(s) and rendering your opinion.
+</div>
+
+
+
+          ]]>
+       </attribute>
+</record>
+
+<record>
+       <attribute name="headline">EuPathDB Driving Biological Projects</attribute>
+       <attribute name="date">04 February 2010 15:00</attribute>
+       <attribute name="tag">eupath_dbp_2010</attribute>
+       <attribute name="category"></attribute>
+       <attribute name="item">           
+         <![CDATA[
+The NIAID-funded Eukaryotic Pathogen Genome Database
+(<a href="http://eupathdb.org">EuPathDB.org</a>) invites proposals for Driving Biological
+Projects (DBPs) focused on one or more of the eukaryotic
+pathogens supported by this Bioinformatics Resource Center
+(BRC). We anticipate making two awards of up to $600K each
+by July 1, 2010 (a second round of solicitations is expected
+in 2012).<i> A two page Letter of Intent (LOI) is due Feb 28,
+following which full applications will be solicited by
+invitation only, with a deadline of March 31.</i>  
+<a href="http://eupathdb.org/common/EuPathDB_DBP_announcement.pdf">
+Click here to
+download the RFP</a>.
+
+          ]]>
+       </attribute>
+</record>
+
+<record>
+       <attribute name="headline">"My Basket", A New Feature in GiardiaDB</attribute>
+       <attribute name="date">22 December 2009 15:00</attribute>
+       <attribute name="tag">giardia1209news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">           
+         <![CDATA[
+We are pleased to announce the implementation&nbsp;a new tool in
+GiardiaDB. &nbsp;The "My
+Basket" tool allows you to select various genes from
+your searches and add them to your basket (much like a shopping cart).
+&nbsp;To add genes to your basket simply click on the basket icon
+in a
+result list or on a gene page. &nbsp;A green basket icon indicates
+that a
+genes is already in your basket. &nbsp;You can easily convert your
+basket to
+a strategy to save it and perform additional searches or combine it
+with one of your already existing strategies.
+&nbsp;Please note that using the basket feature requires you to
+login first.
+
+          ]]>
+       </attribute>
+    </record>
+<record>
+       <attribute name="headline">
+         <![CDATA[
+            <b>Working with Parasite Database Resources Workshop (April 17-21, 2010)</b>
+         ]]>
+       </attribute>
+       <attribute name="date">
+         20 November 2009 15:00
+       </attribute>
+       <attribute name="tag">
+         HinxtonWorkShop
+       </attribute>
+       <attribute name="category"></attribute>
+       <attribute name="item">           
+         <![CDATA[<big><br>
+We are pleased to announce a workshop taught as part of a collaboration between the Pathogen Genomics Group 
+(Wellcome Trust Sanger Institute, UK), the Eukaryotic Pathogen Bioinformatics Resource Center 
+(University of Georgia and University of Pennsylvania, US), and the Seattle Biomedical Research Institute (US). 
+This residential workshop aims to provide experimental biologists with hands-on experience in 
+genomic-scale data analysis, including genome browsers and comparison tools, methods for 
+data integration, and resources for sophisticated data mining.
+Many examples and exercises will be drawn from the kinetoplastida, including <i>Leishmania spp.</i>, 
+<i>Trypanosoma brucei</i>, and <i>Trypanosoma cruzi</i>, although applicants working on other protozoan 
+parasites will also benefit.<br><br>
+
+<span style="font-weight: bold;"><span
+ style="color: red;">!!!!!</span>Application Deadline
+is December 18th 2009<span style="color: red;">!!!!!!</span></span>
+<br><br>
+
+<b>For registration and additional information (including scholarships) please click <a href="http://www.wellcome.ac.uk/Education-resources/Courses-and-conferences/Advanced-Courses/Courses/WTX057366.htm">here</a> (Note: you will be diverted to and external site).
+</b><br><br>
+As usual, if you have any questions please send us an <a href="mailto:help@eupathdb.org">Email</a>. 
+
+          ]]>
+       </attribute>
+    </record>
+
+<record>
+       <attribute name="headline">GiardiaDB 2.0 released</attribute>
+       <attribute name="date">16 November 2009 15:00</attribute>
+       <attribute name="tag">giardia1109news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">           
+         <![CDATA[
+<span style="font-weight: bold;">We are pleased to
+announce the release of GiardiaDB 2.0<br>
+<br>
+</span>This is a major release of GiardiaDB that includes several
+new data types:<br>
+<br>
+<ul>
+  <li>Genome sequence and annotation of <span
+ style="font-style: italic;">Giardia</span> <span
+ style="font-style: italic;">intestinalis</span>
+assemblage B isolate GS. &nbsp;For further information please refer
+to the publication: <a
+ href="http://www.ncbi.nlm.nih.gov/pubmed/19696920">Draft
+genome sequencing of giardia intestinalis assemblage B isolate GS: is
+human giardiasis caused by two different species? PLoS Pathog. 2009
+Aug;5(8):e1000560 Franzén et al.</a></li>
+</ul>
+<ul>
+  <li>Sequence and annotation of <span
+ style="font-style: italic;">Giardia</span> assemblage
+E isolate P15 was provided by J. Jerlstrom-Hultqvist. O. Franzen, E.
+Castro, J. Ankarklev, D. Palm, J. O. Andersson, S.G. Svard and B.
+Andersson (Karolinska Institutet, Stockholm, Sweden and Uppsala
+University, Uppsala, Sweden). The genome sequence and annotation was
+graciously provided to GiardiaDB prepublication.&nbsp;&nbsp;</li>
+</ul>
+<div style="margin-left: 40px;"><span
+ style="font-style: italic;">note: genomic data may be
+searched in many ways such as identifying all genes from any of the
+assemblages, searching for genes using the text search or identifying
+genes from one assemblage based on functional data in another using
+orthology. &nbsp;In addition, all gene pages include a genomic
+context view </span><span style="font-style: italic;">highlighting
+</span><span style="font-style: italic;">synteny
+between the three assemblages in GiardiaDB.&nbsp; </span></div>
+<ul>
+  <li>Additional stress induction microarray data graciously
+provided by Cornelia Spycher and Adrian Hehl prepublication (University
+of Zürich, Switzerland). &nbsp;Genes may be identified based on
+their expression profile by running one of the&nbsp;<a
+ href="http://giardiadb.org/giardiadb/showQuestion.do?questionFullName=InternalQuestions.GenesByMicroarrayEvidence&amp;target=GENE">microarray
+searches </a>and results may be combined with other searches in
+GiardiaDB.</li>
+</ul>
+Additional features and Improvements:<br>
+<br>
+<ul>
+  <li>1012 genes from Giardia lamblia assemblage A isolate WB
+have been undeprecated based on synteny to assemblage B and E genomes.</li>
+</ul>
+<ul>
+  <li>Representation of SAGE tag data on gene pages has been
+improved providing graphical representation of tag counts over the life
+cycle of the parasite.</li>
+</ul>
+
+          ]]>
+       </attribute>
+    </record>
+<record>
+       <attribute name="headline"><![CDATA[
+         GiardiaDB 1.3 released
+         ]]>
+       </attribute>
+       <attribute name="date">25 September 2009 15:00</attribute>
+       <attribute name="tag">giardia909news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">           
+         <![CDATA[<b>We are pleased to
+announce the release of GiardiaDB 1.3</b><br>
+<br>
+<u>New Data:</u><br>
+<ul>
+  <li><i>G.
+intestinalis</i> mitosome enriched fraction proteomics
+provided by Jan Tachezy and described in <a
+ href="http://www.ncbi.nlm.nih.gov/pubmed/19717741">Rada <i>et. al.</i></a></li>
+  <li><i>Giardia</i>
+isolate data from GenBank are now included -- search for isolates based
+on many criteria such as geographic location, submitter name, isolation
+source and/or host. &nbsp;Also, generate nucleotide sequence
+alignments of isolates you select, and BLAST your sequence against the
+isolate database. <br>
+   </li>
+</ul>
+<u>New/Updated
+Features:</u><br>
+<ul>
+  <li>Now after you perform a BlastN against genomic sequence you
+can
+link from the blast output to the correct coordinates in the genome
+browser.&nbsp; This allows you to explore annotation and other
+functional
+data in relation to your BLAST hits.</li>
+  <li>A table of paralogs (if any) is now available on gene pages
+allowing you to view expanded gene families -- See <a
+ href="http://giardiadb.org/giardiadb/app/record/gene/GL50803_15158">GL50803_15158&nbsp;</a>for
+example (scroll down to the Orthologs and Paralogs Table).</li>
+  <li>The type ahead feature has been implemented for GO term, EC
+number and Interpro domain searches.</li>
+  <li>You can now edit or delete your user comments.</li>
+  <li>You can now modify your user profile, change your password
+or your email address.</li>
+</ul>
+Please also note that the parent portal site <a
+ href="http://eupathdb.org">EuPathDB</a> has just been
+updated, offering you the ability to explore results across organisms.<br>
+<br>
+Sincerely,<br>
+<br>
+The EuPathDB team.
+]]>
+       </attribute>
+    </record>
+<record>
+       <attribute name="headline"><![CDATA[
+         GiardiaDB 1.2 released
+         ]]>
+       </attribute>
+       <attribute name="date">14 July 2009 15:00</attribute>
+       <attribute name="tag">release12</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">           
+         <![CDATA[
+We are pleased to announce the release of GiardiaDB 1.2
+<p>
+This release features a new user interface with added functionality and a graphical strategy system for building complex searches.
+<p>
+The new user interface contains many new features including:
+<ul>
+<li>  A new search strategy interface that enables users to more easily construct complex searches.
+<li>  'User Comments' have been updated to enable submission of supporting evidence including pubmed identifiers and images (or other files). Comments may be added to any gene or sequence page, enhancing available annotation. 
+<li>  Files can now be uploaded and provided to the community via the file repository section.
+</ul>
+<p>
+The previous version of GiardiaDB may still be accessed <a href='http://old.giardiadb.org'>here</a>.
 ]]>
        </attribute>
     </record>
 
+ <record>
+       <attribute name="headline">
+         <![CDATA[
+         EuPathDB to take on the kinetoplastida
+         ]]>
+       </attribute>
+       <attribute name="date">
+       1 December 2008 15:00
+       </attribute>
+       <attribute name="tag">
+       1December2008GatesFoundation
+       </attribute>
+       <attribute name="category"></attribute>
+       <attribute name="item">           
+         <![CDATA[
+
+We are pleased to report
+an award from the <a href="http://www.gatesfoundation.org">Bill & Melinda Gates Foundation</a> in support of a
+TrypDB component of the <a href="http://eupathdb.org/">EuPathDB</a> family of databases,
+encompassing <i>Leishmania</i> species, <i>Trypanosoma brucei</i>, and
+<i>Trypanosoma cruzi</i>.  A coordinated award from the<a href="http://www.wellcome.ac.uk/"> Wellcome Trust</a>
+will permit enhanced annotation of kinetoplastid parasites. 
+These projects represent a collaborative effort between the
+GeneDB team (at the Wellcome Trust Sanger Institute), colleagues
+at the <a href="http://www.sbri.org/">Seattle Biomedical Research Institute</a>, and the EuPathDB
+team -- an NIAID-supported Bioinformatics Resource Center. Look
+for the first release of TrypDB in Jan 2009!
+
+ ]]>
+       </attribute>
+    </record>
+
+
+ <record>
+       <attribute name="headline">
+         <![CDATA[
+         GiardiaDB 1.1 Updated
+         ]]>
+       </attribute>
+       <attribute name="date">18 November 2008 00:00</attribute>
+       <attribute name="tag">18Nov20081.1.2update</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">           
+         <![CDATA[
+We are pleased to announce an update to GiardiaDB 1.1, which mainly affects the number of deprecated genes available through GiardiaDB and how query results are displayed.
+<p>
+1. In this release, all genes that were available through the genome project database (MBL GiardiaDB) are now included in GiardiaDB.  Hence, there are 4778 deprecated genes in this release.
+<p>
+2. When performing a query, you no longer select whether to query genes only, deprecated genes only, or both.  Instead, when a query is performed, all results will be returned with the option to view (or filter) all results, genes only or deprecated genes only (“genes only” is the default view of the results).
+<p>
+As a reminder, deprecated genes were labeled as such because they appear unlikely to represent true genes, based on incompatibility with longer gene models or alternative models for which functional evidence is available. A number of deprecated genes may in fact be true genes and as evidence becomes available to support this, we will elevate a deprecated gene to a "full" gene status.  We encourage users to notify us of such evidence by email or by adding specific user comments gene pages.
+    ]]>
+       </attribute>
+    </record>
+
+ <record>
+       <attribute name="headline">
+         <![CDATA[
+         Free microarrays
+         ]]>
+       </attribute>
+       <attribute name="date">18 November 2008 00:00</attribute>
+       <attribute name="tag">18Nov2008Microarrays</attribute>
+       <attribute name="category"></attribute>
+       <attribute name="item">           
+         <![CDATA[
+Free microarrays:  Please note that the Pathogen Functional Genomics Resource Center (<a href=http://pfgrc.jcvi.org/index.php>PFGRC</a>) at the J. Craig Venter Institute (<a href=http://www.jcvi.org/>JCVI</a>) provides several resources for investigators including microarrays for <i>Giardia lamblia</i> (WB strain, clone C6).<br><br>
+
+Click <a href=http://pfgrc.jcvi.org/index.php/microarray/available_microarrays.html>here</a> to view a list of available microarrays at PFGRC.
+
+    ]]>
+       </attribute>
+    </record>
+
+ <record>
+       <attribute name="headline">
+         <![CDATA[
+         GiardiaDB and TrichDB published in Nucleic Acids Research
+         ]]>
+       </attribute>
+       <attribute name="date">1 October 2008 00:00</attribute>
+       <attribute name="tag">1Oct2008NAR</attribute>
+       <attribute name="category"></attribute>
+       <attribute name="item">           
+         <![CDATA[
+
+We are pleased to announce the publication of the database paper
+introducing both GiardiaDB and TrichDB in the database issue of Nucleic
+Acid Research.
+<p>
+<a href="http://nar.oxfordjournals.org/cgi/content/full/gkn631">GiardiaDB and TrichDB: integrated genomic resources for the eukaryotic
+protist pathogens Giardia lamblia and Trichomonas vaginalis.</a> Nucleic
+Acids Research Advance Access published on September 29, 2008, DOI
+10.1093/nar/gkn631.
+
+          ]]>
+       </attribute>
+    </record>
+
+
+ <record>
+       <attribute name="headline">
+         <![CDATA[
+         GiardiaDB 1.1 is released with new Microarray, Mass Spec., Assemblies and SAGE Data
+         ]]>
+       </attribute>
+       <attribute name="date">12 May 2008 00:00</attribute>
+       <attribute name="tag">12May2008Release1.1</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">           
+         <![CDATA[
+
+We are pleased to announce that GiardiaDB is now available at <a href="http://giardiadb.org/">www.giardiadb.org</a>.  GiardiaDB is now part of ApiDB/EuPathDB (<a href="http://eupathdb.org">www.eupathdb.org</a>) and funded by <a href="http://www.niaid.nih.gov/dmid/genomes/brc/default.htm">NIH's BRC program</a>.
+<br><br>
+  Please send a message to the support team from the link at the bottom of the GiardiaDB web page (<a href="http://giardiadb.org/giardiadb/contact.do" class="new-window" data-name="contact_us">Contact Us!</a>).
+<br><br>
+GiardiaDB 1.1 provides the genome and annotation for the the eukaryotic parasite Giardia lamblia ATCC50803, WBC6 isolate, generated at the MBL and just reported in Science (Science 28 September 2007, Volume 317, pp. 1921-1926). 
+<p>New data available in this release includes: 
+<ul>
+  <li>Genes which were subsumed or largely overlapping with longer genes or genes with more evidence were marked as deprecated and all gene queries allow users to choose whether to query for these genes or not.
+  <li>Ten SAGE tag libraries are now available with queries and record pages.
+  <li>Microarry data from experiments examining stress induction in trophozoites.
+  <li>Proteomics data from trophozoites.
+  <li>All locations are reported on scaffolds but also available in contig coordinates.
+</ul>
+GiardiaDB, like the other ApiDB/EuPathDB sites, offers researchers a plethora of  tools for genomic data mining.  In addition to BLAST and pattern/motif similarity searches, users can identify G. lamblia genes by genomic position; common name or keyword; gene attributes such as gene type and exon number; transcript expression evidence (ESTs and SAGE tags); physical characteristics of predicted proteins such as molecular weight and secondary structure;  predicted function from Gene Ontology and EC enzyme number annotation;  and cellular location.  In addition, GiardiaDB contains pre-computed phylogenetic trees for proteins with homologues in other eukaryotic genomes.
+<br><br>
+Regards,
+<br>
+The GiardiaDB team
+
+
+          ]]>
+       </attribute>
+    </record>
+
+
+   <record>
+       <attribute name="headline">
+         <![CDATA[
+         GiardiaDB 1.0 is released
+         ]]>
+       </attribute>
+       <attribute name="date">1 October 2007 00:00</attribute>
+       <attribute name="tag">1October2007Release1.0</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">           
+         <![CDATA[
+
+We are pleased to announce that GiardiaDB is now available at <a href="http://giardiadb.org/">www.giardiadb.org</a>.  GiardiaDB is now part of ApiDB (<a href="http://apidb.org">www.apidb.org</a>) and funded by <a href="http://www.niaid.nih.gov/dmid/genomes/brc/default.htm">NIH's BRC program</a>.
+<br><br>
+The previous GiardiaDB, hosted by the MBL's Bay Paul Center, will remain available until the end of 2007.  During this transition period, we ask that you use <a href="http://giardiadb.org/">www.giardiadb.org</a> and notify us if there is a feature, tool, or query that you need that is not available at the new site.  Please send a message to the support team from the link at the bottom of the GiardiaDB web page (<a href="http://giardiadb.org/giardiadb/contact.do" class="new-window" data-name="contact_us">Contact Us!</a>).
+<br><br>
+GiardiaDB 1.0 provides the genome and annotation for the the eukaryotic parasite Giardia lamblia ATCC50803, WBC6 isolate, generated at the MBL and just reported in Science (Science 28 September 2007, Volume 317, pp. 1921-1926).   Also provided are expression data from EST and SAGE surveys.
+<br><br>
+GiardiaDB, like the other ApiDB sites, offers researchers a plethora of  tools for genomic data mining.  In addition to BLAST and pattern/motif similarity searches, users can identify G. lamblia genes by genomic position; common name or keyword; gene attributes such as gene type and exon number; transcript expression evidence (ESTs and SAGE tags); physical characteristics of predicted proteins such as molecular weight and secondary structure;  predicted function from Gene Ontology and EC enzyme number annotation;  and cellular location.  In addition, GiardiaDB contains pre-computed phylogenetic trees for proteins with homologues in other eukaryotic genomes.
+<br><br>
+Regards,
+<br>
+The GiardiaDB team
+
+
+          ]]>
+       </attribute>
+    </record>
 
 
 </xmlAnswer>
+

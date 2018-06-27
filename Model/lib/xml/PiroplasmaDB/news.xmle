@@ -3,14 +3,9 @@
 
 <!--
    <record>
-       <attribute name="headline">
-         <![CDATA[
-         ]]>
-       </attribute>
-       <attribute name="date">
-       </attribute>
-       <attribute name="tag">
-       </attribute>
+       <attribute name="headline"></attribute>
+       <attribute name="date"></attribute>
+       <attribute name="tag"></attribute>
        <attribute name="category"></attribute>
        <attribute name="item">
            
@@ -18,26 +13,25 @@
           ]]>
        </attribute>
     </record>
--->
+--> 
 
 <record>
-  <attribute name="headline">HostDB 38 Released</attribute>
+  <attribute name="headline">PiroplasmaDB 38 Released</attribute>
   <attribute name="date">02 Jul 2018 13:00</attribute>
-  <attribute name="tag">HostDB07_18_release</attribute>
+  <attribute name="tag">PiroplasmaDB11_18_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of HostDB 38</strong></p>
-      
+    <p><strong>We are pleased to announce the release of PiroplasmaDB 38</strong></p>
       
       <section>
-       <h3><b>No new data in HostDB 38</b></h3>
+      <h3><b>No new data in PiroplasmaDB 38</b></h3>
       </section>
       
       <section>
-      <h3><b>No new features in this release</b></h3>
+      <h3><b>No new features in PiroplasmaDB 38</b></h3>
       </section>
-      
+            
       <section>
          <aside>
            Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
@@ -54,37 +48,26 @@
 
 
 <record>
-  <attribute name="headline">HostDB 37 Released</attribute>
+  <attribute name="headline">PiroplasmaDB 37 Released</attribute>
   <attribute name="date">25 Apr 2018 13:00</attribute>
-  <attribute name="tag">hostdb04_18_release</attribute>
+  <attribute name="tag">piroplasmadb04_18_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of HostDB 37</strong></p>
-      
+    <p><strong>We are pleased to announce the release of PiroplasmaDB 37</strong></p>
       
       <section>
-       <h3><b>New data in HostDB 37</b></h3>
-         <div style="margin-left: 3em;">
-      
-     <h4>RNA Sequencing</h4>
-       <ul>
-           <li>
-            <a href="http://hostdb.org/hostdb/app/record/dataset/DS_4585d065bf"><i>M mulatta</i> infected with <i>P cynomolgi</i> over 100 days</a> &mdash; 
-            Transcriptome of whole blood and bone marrow from <i>Macaca mulatta</i> infected with <i>Plasmodium cynomolgi</i> over 100 days
-            <a href="http://www.ncbi.nlm.nih.gov/pubmed/27590312">Joyner et al.</a>  
-            This data set has a Plasmodium component available in PlasmoDB as:
-            <a href="http://plasmodb.org/plasmo/app/record/dataset/DS_40a06f276b">Transcriptome of <i>P cynomolgi</i> during 100-day infection in <i>M mulatta</i></a>.
-           </li>  
-           <li>
-            <a href="http://hostdb.org/hostdb/app/record/dataset/DS_2202e54a9e"><i>Leishmania major</i> and <i>Leishmania amazonensis</i> RNAseq during human macrophage infection</a> &mdash; 
-            RNAseq analysis of transcriptomes of human macrophage and parasite during an infection time course. 
-            <a href="http://www.ncbi.nlm.nih.gov/pubmed/27165796">Fernandes et al.</a>  
-            This data set has a Leishmania component available in TriTrypDB as:
-            <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_d18599afa8"><i>Leishmania major</i> RNAseq during human macrophage infection</a>.
-           </li> 
-       </ul><br>
-         </div>
+      <h3><b>New data in PiroplasmaDB 37</b></h3>
+      <div style="margin-left: 3em;"> 
+      <h4>Genome sequence and annotation</h4>
+           <ul>
+             <li><a href="http://piroplasmadb.org/piro/app/record/dataset/DS_1d1738f4e1"><i>Babesia ovata</i> strain Miyake</a> &ndash; 
+                 This genome appears for the first time in PiroplasmaDB and was downloaded from 
+                 <a href="https://www.ncbi.nlm.nih.gov/bioproject/PRJDB5725" target="_blank">NCBI Bioproject PRJDB5725</a>. 
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/29078748" target="_blank">Yamagishi et al.</a>
+             </li>
+           </ul> 
+      </div>
       </section>
       
       <section>
@@ -115,8 +98,9 @@
           </ul>  
       </div>
       </section>
-      
+            
       <section>
+        
          <aside>
            Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
            Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
@@ -130,26 +114,32 @@
 </record>
 
 
-
-
 <record>
-  <attribute name="headline">HostDB 36 Released</attribute>
+  <attribute name="headline">PiroplasmaDB 36 Released</attribute>
   <attribute name="date">19 Feb 2018 13:00</attribute>
-  <attribute name="tag">hostdb02_18_release</attribute>
+  <attribute name="tag">piroplasmadb02_18_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of HostDB 36</strong></p>
-      
+    <p><strong>We are pleased to announce the release of PiroplasmaDB 36</strong></p>
       
       <section>
-       <h3><b>No new data in this release</b></h3>
-
+      <h3><b>New data in this release</b></h3>
+      <div style="margin-left: 3em;"> 
+      <h4>Genome sequence and annotation</h4>
+           <ul>
+             <li><a href="http://piroplasmadb.org/piro/app/record/dataset/DS_4c30ca0b3a"><i> Babesia microti</i> strain RI</a> &ndash; 
+                 This genome was updated to the 
+                 <a href="https://www.ncbi.nlm.nih.gov/assembly/GCF_000691945.2" target="_blank">current Genbank version</a>.  
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/22833609" target="_blank">Cornillot et al.</a>
+             </li>
+           </ul> 
+      </div>
       </section>
       
       <section>
       <h3><b>New features in this release</b></h3>
-            <div style="margin-left: 3em;">
+      <div style="margin-left: 3em;">
       
       <h4>Search Page Improvements: search pages were redesigned to include an organism filter and provide better access to help information.</h4>
       
@@ -175,6 +165,8 @@
             <li>Find the search under the Orthology and Synteny category.
                 </li>
           </ul>
+
+    
        
        <h4>Gene Record Page Improvements:</h4>
  
@@ -222,8 +214,9 @@
           </ul>
        </div>
       </section>  
-      
+            
       <section>
+        
          <aside>
            Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
            Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
@@ -239,26 +232,13 @@
 
 
 <record>
-  <attribute name="headline">HostDB 35 Released</attribute>
+  <attribute name="headline">PiroplasmaDB 35 Released</attribute>
   <attribute name="date">01 Dec 2017 13:00</attribute>
-  <attribute name="tag">hostdb12_17_release</attribute>
+  <attribute name="tag">piroplasmadb12_17_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of HostDB 35</strong></p>
-      
-      
-      <section>
-       <h3><b>New data in this release</b></h3>
-       <h4>RNA Sequencing</h4>
-       <ul>
-           <li>
-            <a href="http://hostdb.org/hostdb/app/record/dataset/DS_92a3bc8cb7">Transcriptomes of 4 <i>M. musculus</i> cell types during infection with <i>T. gondii</i></a> &mdash; 
-            <i>M. musculus</i> cortical neurons, astrocytes, skeletal muscle cells and fibroblast transcriptomes during infection with <i>T. gondii</i> strain NTE.
-            <a href="https://www.ncbi.nlm.nih.gov/pubmed/28775382">Swierzy et al.</a>
-           </li>  
-       </ul><br>
-      </section>
+    <p><strong>We are pleased to announce the release of PiroplasmaDB 35</strong></p>
       
       <section>
       <h3><b>New features in this release</b></h3>
@@ -268,7 +248,7 @@
           GO Slim terms are now indicated in EuPathDB sites in the following ways:<br>
           <ul>
             <li>The search,
-                <a href="http://hostdb.org/hostdb/showQuestion.do?questionFullName=GeneQuestions.GenesByGoTerm">Identify Genes based on GO Terms</a>, 
+                <a href="http://piroplasmadb.org/piro/showQuestion.do?questionFullName=GeneQuestions.GenesByGoTerm">Identify Genes based on GO Terms</a>, 
                 now includes an GO Subset option for limiting the search to only GO Slim generic terms.
                 </li>
             <li>GO Terms tables on gene pages now contain a 'GO Subset' column which identifies GO Slim generic terms.
@@ -277,11 +257,12 @@
                 the background and the gene list of interest in the Fisher's exact test that determines enrichment. 
                 </li>
           </ul>
+       </div>
        
        <h4>Revigo and Word Cloud access from GO Enrichment results</h4>
        <div style="margin-left: 3em;">
        
-          HostDB offers a link between our GO Enrichment results and a Word Cloud visualization as well as 
+          PiroplasmaDB offers a link between our GO Enrichment results and a Word Cloud visualization as well as 
           Revigo, a tool that provides GO term summarization and visualization. The links to Revigo and the 
           Word Cloud now appear as buttons that are right justified above the GO enrichment result table. 
        
@@ -290,6 +271,7 @@
       
       
       <section>
+        <h3><b>No New data in this release</b></h3> 
          <aside>
            Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
            Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
@@ -303,34 +285,15 @@
 </record>
 
 
+
 <record>
-  <attribute name="headline">HostDB 34 Released</attribute>
+  <attribute name="headline">PiroplasmaDB 34 Released</attribute>
   <attribute name="date">07 Sep 2017 13:00</attribute>
-  <attribute name="tag">hostdb08_17_release</attribute>
+  <attribute name="tag">piroplasmadb08_17_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of HostDB 34</strong></p>
-    
-    <h3><b>New data in this release</b></h3>
-    <h4>Genome Sequence and Annotation</h4>
-       <ul>
-           <li>
-            <a href="http://hostdb.org/hostdb/app/record/dataset/DS_35227af971"><i>Macaca mulatta</i> 17573</a> &mdash; 
-            This annotated genome appears for the first time in HostDB. The data were provided by pre-publication
-            Dr. Robert Norgren, University of Nebraska Medical Center, although a previous version of the genome is published.  
-            <a href="http://www.ncbi.nlm.nih.gov/pubmed/25319552">Zimin et al.</a>.  
-           </li>  
-       </ul><br>
-       
-     <h4>RNA Sequencing</h4>
-       <ul>
-           <li>
-            <a href="http://hostdb.org/hostdb/app/record/dataset/DS_368d6dc0ff"><i>H sapiens</i> Transcriptome during Infection with <i>T cruzi</i></a> &mdash; 
-            Transcriptome of human foreskin fibroblasts during infection (time course) with T. cruzi Y strain.
-            <a href="http://www.ncbi.nlm.nih.gov/pubmed/27046031">Li et al.</a>.  
-           </li>  
-       </ul><br>
+    <p><strong>We are pleased to announce the release of PiroplasmaDB 34</strong></p>
       
       <section>
       <h3><b>New features in this release</b></h3>
@@ -340,15 +303,15 @@
           EuPathDB now offers a direct link from gene ontology (GO) enrichment results to 
           <a href="http://revigo.irb.hr/">REVIGO</a>, a tool that provides GO term summarization and visualization.  
           To access this feature first run a GO term enrichment using the 'Analyze Results' option from any gene search result. Then click on 
-          the 'Start Revigo Analysis' link (<a href="/hostdb/images/Revigo.png">upper right hand side of enrichment results</a>) 
+          the 'Start Revigo Analysis' link (<a href="/piroplasmadb/images/Revigo.png">upper right hand side of enrichment results</a>) 
           to populate the REVIGO submission page with your GO enrichment results from EuPathDB.  Follow instructions 
           on the REVIGO page to complete your analysis.
           
       </div>
       </section>
-       
+      
       <section>
-
+        <h3><b>No New data in this release</b></h3> 
          <aside>
            Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
            Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
@@ -368,9 +331,6 @@
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    
-    
-    
     <section>
         
         <div style="margin-left: 3em;">
@@ -380,12 +340,12 @@
         This may underrepresent abundance for genes that are duplicated, such as paralogs. Non-unique reads are only available 
         as GBrowse subtracks. To view non-unique reads from a gene page, open the Coverage section and click 'View in 
         genome browser' above the coverage plots. 
-        (<a href="/hostdb/images/FromCoverageNonuniqueReads.pdf">Tutorial document about viewing non-unique reads from a gene page</a>)
+        (<a href="/piroplasmadb/images/FromCoverageNonuniqueReads.pdf">Tutorial document about viewing non-unique reads from a gene page</a>)
         
         <br><br>
         To view non-unique reads without navigating to the gene page, open GBrowse from the home page.  Use the Select Tracks 
         tab to turn on the data track of interest and the subtracks configuration tool to turn on the non-unique reads subtracks. 
-        (<a href="/hostdb/images/FromHomeNonuniqueReads.pdf">Tutorial document for viewing non-unique reads from the home page</a>)
+        (<a href="/piroplasmadb/images/FromHomeNonuniqueReads.pdf">Tutorial document for viewing non-unique reads from the home page</a>)
         
         <br><br>
         In release 34, gene pages contain a message about non-unique reads, an accurate description of the y-axis and links to 
@@ -400,21 +360,27 @@
   </attribute>
 </record>
 
-
-
-
 <record>
-  <attribute name="headline">HostDB 33 Released</attribute>
+  <attribute name="headline">PiroplasmaDB 33 Released</attribute>
   <attribute name="date">30 Jun 2017 13:00</attribute>
-  <attribute name="tag">hostdb06_17_release</attribute>
+  <attribute name="tag">piroplasmadb06_17_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of HostDB 33</strong></p>
+    <p><strong>We are pleased to announce the release of PiroplasmaDB 33</strong></p>
       
       <section>
-        <h3><b>No New data in this release</b></h3>
+        <h3><b>New Data in Release 33</b></h3>
         
+        <h4>Whole genome sequencing of isolates:</h4>
+        Data were used to determine single nucleotide polymorphisms.
+         <ul>  
+           <li> <a href="http://piroplasmadb.org/piro/app/record/dataset/DS_66e2695658">Aligned Genomic Sequence Reads- 42 global isolates from human, tick and rodent</a> &mdash; 
+            Whole genome re-sequencing of <i>B. microti</i> isolates from human, rodent and tick. Data were used to determine SNPs against the <i>B. microti</i> RI reference.
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/27572973">Lemieux et al.</a><br>
+           </li>
+         </ul>
+  
         <h3><b>New features in this release</b></h3> 
 
            <ul>
@@ -434,7 +400,8 @@
                 gray tool bar under the header. 
             </li>
            </ul>
-         
+  
+  
          <aside>
            Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
            Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
@@ -447,27 +414,28 @@
   </attribute>
 </record>
 
+
 <record>
-  <attribute name="headline">HostDB 32 Released</attribute>
+  <attribute name="headline">PiroplasmaDB 32 Released</attribute>
   <attribute name="date">19 Apr 2017 13:00</attribute>
-  <attribute name="tag">hostdb04_17_release</attribute>
+  <attribute name="tag">piroplasmadb04_17_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of HostDB 32</strong></p>
-    
-    <h4>RNA Sequencing</h4>
-       <ul>
-           <li>
-            <a href="http://hostdb.org/hostdb/app/record/dataset/DS_13ae56d949">Transcriptomes of mouse macrophages infected with Leishmania mexicana</a> &mdash; 
-            Transcriptomes of uninfected Mus musculus bone marrow macrophages (BMDM) and 24h post-infection with Leishmania mexicana. 
-            <a href="http://www.ncbi.nlm.nih.gov/pubmed/26452044">Fiebig et al.</a>.  A corresponding <i>L. mexicana</i> data set is in TriTryDB &mdash; 
-            <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_10d28f3e4f">Promastigote, Axenic Amastigote and Intracellular Amastigote Transcriptomes</a>
-           </li>  
-       </ul><br>
-       
+    <p><strong>We are pleased to announce the release of PiroplasmaDB 32</strong></p>
+      
       <section>
-
+        <h3>New Data in Release 32</h3>
+        
+        <h4>Annotated Genomes</h4>
+         <ul>  
+           <li> <a href="http://piroplasmadb.org/piro/app/record/dataset/DS_4c30ca0b3a"><i>Babesia microti </i> R1</a> &mdash; 
+            This genome was reannotated.  
+            <a href="http://www.ncbi.nlm.nih.gov/bioproject?term=PRJEA72411">Bioproject home page at NCBI/GenBank</a>.
+            <a href="https://www.ncbi.nlm.nih.gov/pubmed/27752055">Silva et al.</a><br>
+           </li>
+      
+      <section>
          <aside>
            Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
            Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
@@ -482,13 +450,13 @@
 
 
 <record>
-  <attribute name="headline">HostDB 31 Released</attribute>
+  <attribute name="headline">PiroplasmaDB 31 Released</attribute>
   <attribute name="date">08 Mar 2017 13:00</attribute>
-  <attribute name="tag">hostdb03_17_release</attribute>
+  <attribute name="tag">piroplasmadb03_17_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of HostDB 31</strong></p>
+    <p><strong>We are pleased to announce the release of PiroplasmaDB 31</strong></p>
       
       <section>
         <h3>No New data in this release</h3> 
@@ -503,6 +471,7 @@
     ]]>
   </attribute>
 </record>
+
 
 <record>
        <attribute name="headline">EuPathDB is Hiring</attribute>
@@ -948,13 +917,13 @@ Arial">Join our international team of 30+ software developers and biologists,
        </attribute>
     </record>
 <record>
-  <attribute name="headline">HostDB 30 Released</attribute>
+  <attribute name="headline">PiroplasmaDB 30 Released</attribute>
   <attribute name="date">03 Feb 2017 13:00</attribute>
-  <attribute name="tag">hostdb02_17_release</attribute>
+  <attribute name="tag">piroplasmadb02_17_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of HostDB 30</strong></p>
+    <p><strong>We are pleased to announce the release of PiroplasmaDB 30</strong></p>
       
       <section>
         <h3>No New data in this release</h3> 
@@ -970,32 +939,34 @@ Arial">Join our international team of 30+ software developers and biologists,
   </attribute>
 </record>
 
+
 <record>
-  <attribute name="headline">HostDB 29 Released</attribute>
+  <attribute name="headline">PiroplasmaDB 29 Released</attribute>
   <attribute name="date">13 Oct 2016 13:00</attribute>
-  <attribute name="tag">hostdb10_16_release</attribute>
+  <attribute name="tag">piroplasmadb10_16_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of HostDB 29</strong></p>
-
+    <p><strong>We are pleased to announce the release of PiroplasmaDB 29</strong></p>
+    
     <section>
-    <h3>HostDB 29</h3>
-           HostDB 29 represents extensive efforts to improve navigation and data accessibility 
+    <h3>PiroplasmaDB 29</h3>
+           PiroplasmaDB 29 represents extensive efforts to improve navigation and data accessibility 
            on record pages, provide consistent verbiage and data categories, and improve presentation of alternative transcripts. 
            All data were refreshed to the latest version and genome analyses were rerun.
            <ul>
              <li>Here is some help information to get you started with our new features.<br>
-                 <a href="http://hostdb.org/documents/genePageTutorialGUS4.pdf">Gene Page Improvements</a> <br>
-                 <a href="http://hostdb.org/documents/SearchCatsTutorial_3.pdf">Search Category Improvements</a> <br>
-                 <a href="http://hostdb.org/documents/ExploreTranscripts.pdf">Explore Transcripts in Search Results</a><br>
+                 <a href="http://piroplasmadb.org/documents/genePageTutorialGUS4.pdf">Gene Page Improvements</a> <br>
+                 <a href="http://piroplasmadb.org/documents/SearchCatsTutorial_3.pdf">Search Category Improvements</a> <br>
+                 <a href="http://piroplasmadb.org/documents/ExploreTranscripts.pdf">Explore Transcripts in Search Results</a><br>
                  <!--Workspaces<br>-->
              </li><br>
              <li>Send Us Your Feedback!<br>We can polish our new features based on your valuable feedback. Please use the site 
-             and <a href="http://beta.hostdb.org/hostdb.b28/contact.do">Contact Us</a> to tell us about your experience. 
+             and <a href="http://piroplasmadb.org/piro/contact.do">Contact Us</a> to tell us about your experience. 
               </li><br>
-             <li>Release 28 is Still Available - <br><a href="http://beta.hostdb.org/hostdb.b28/">HostDB 28</a> is available until we finalize our new features.</li><br>
-           </ul>
+             <li>Release 28 is Still Available - <br><a href="http://r28.piroplasmadb.org/piro/">PiroplasmaDB 28</a> is available until we finalize our new features.
+             </li><br>
+           </ul>  
      </section>
       
      <section> 
@@ -1032,76 +1003,19 @@ Arial">Join our international team of 30+ software developers and biologists,
              </li>
            </ul>
         </section>   
-
-     <section>
-      <h3>New Data</h3>
-      <h4>Genome sequence and annotation is updated for the following genomes:</h4>
-         <ul>
-          <li><i>Homo sapiens</i> REF</li>
-          <li><i>Mus musculus</i> C57CL6J</li>
-         </ul>
-     </section>
-     <section>  
-      <h4>Transcriptomics</h4>
-        <ul>
-          <li>
-            <a href="http://hostdb.org/hostdb/app/record/dataset/DS_fcdd4f7a49">Transcriptome during infection with 29 strains of T. gondii</a> &mdash; 
-            Four transcriptomes were added to this data set for a total of 29 strains in this 
-            comparative transcriptome analysis of <i>Toxoplasma gondii</i> and the murine macrophages infected with them.
-            <a href="http://www.ncbi.nlm.nih.gov/pubmed/22847430">Minot et al.</a>.
-          </li>
-        </ul>
-      </section>
-      
- 
-      <aside>
-        Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
-        Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
-        When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
-        When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
-      </aside>
-
-    ]]>
-  </attribute>
-</record>
-
-
-<record>
-  <attribute name="headline">HostDB 28 Released</attribute>
-  <attribute name="date">30 Mar 2016 13:00</attribute>
-  <attribute name="tag">hostdb03_16_release</attribute>
-  <attribute name="category">release</attribute>
-  <attribute name="item">
-    <![CDATA[
-    <p><strong>We are pleased to announce the release of HostDB 28</strong></p>
-
+    
+    
     <section>
-     <h3>Updated Data sets</h3>
-      
-      <section>
-      <h4>Proteomics</h4>
-          <aside>
-          The following data sets were reloaded at the request of the data provider (J. Wastling) because the data analysis was significantly improved 
-          by applying multiple search engines. The new analysis produced more peptide/protein identifications and more reliable quantitation.
-          </aside>
-          
-          <ul>
-          <li>
-            <a href="http://hostdb.org/hostdb/app/record/dataset/DS_08fe07cd15">
-             Quantitative Proteome During an Infection with 4 strains of T. gondii and one strain of <i>N. caninum</i></a> &mdash; 
-                   <i>H. sapiens</i> peptide sequences from a proteomic analysis of mixed parasite/host samples
-                   collected during time course infections with 4 different strains of <i>T. gondii</i>. Wastling and Xia, unpublished
-          </li>
-          <li>
-            <a href="http://hostdb.org/hostdb/app/record/dataset/DS_70b01a66ee">
-             Proteome During Infection with 4 strains of <i>T. gondii</i> and one strain of <i>N. caninum</i> </a> &mdash; 
-                   <i>H. sapiens</i> peptide sequences from a proteomic analysis of a mixed parasite/host sample
-      collected during <i>T. gondii</i> infections in human foreskin fibroblasts. Wastling and Xia, unpublished
-          </li>
+      <h3>New data in this release</h3>
+      <h4>Annotation is updated for the following genomes:</h4>
+         <ul>
+          <li><i>Theileria annulata</i> strain ANKA</li>
+          <li><i>Babesia microti</i> strain RI</li>
+          <li><i>Babesia bigemina</i> strain BOND</li>
+         </ul>
       </section>
-     
-      
- 
+    
+    <section>
       <aside>
         Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
         Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
@@ -1116,13 +1030,37 @@ Arial">Join our international team of 30+ software developers and biologists,
 
 
 <record>
-  <attribute name="headline">HostDB 27 Released</attribute>
-  <attribute name="date">19 Feb 2016 13:00</attribute>
-  <attribute name="tag">hostdb02_16_release</attribute>
+  <attribute name="headline">PiroplasmaDB 28 Released</attribute>
+  <attribute name="date">30 Mar 2016 13:00</attribute>
+  <attribute name="tag">piroplasmadb03_16_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of HostDB 27</strong></p>
+    <p><strong>We are pleased to announce the release of PiroplasmaDB 28</strong></p>
+
+    <section>
+      <h3>No new data or functionalities in this release</h3>
+
+      <aside>
+        Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+        Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+        When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+        When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+      </aside>
+
+    </section>
+    ]]>
+  </attribute>
+</record>
+
+<record>
+  <attribute name="headline">PiroplasmaDB 27 Released</attribute>
+  <attribute name="date">19 Feb 2016 13:00</attribute>
+  <attribute name="tag">piroplasmadb02_16_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of PiroplasmaDB 27</strong></p>
 
     <section>
      <h3>New Features</h3>
@@ -1160,16 +1098,16 @@ Arial">Join our international team of 30+ software developers and biologists,
 
 
 <record>
-  <attribute name="headline">HostDB 26 Released</attribute>
+  <attribute name="headline">PiroplasmaDB 26 Released</attribute>
   <attribute name="date">15 Oct 2015 13:00</attribute>
-  <attribute name="tag">hostdb10_15_release</attribute>
+  <attribute name="tag">piroplasmadb10_15_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of HostDB 26</strong></p>
+    <p><strong>We are pleased to announce the release of PiroplasmaDB 26</strong></p>
 
     <section>
-            <h3>New Features</h3>
+      <h3>New Features</h3>
       
       <section>
        <h4>GBrowse Track Search </h4>
@@ -1224,14 +1162,15 @@ Arial">Join our international team of 30+ software developers and biologists,
   </attribute>
 </record>
 
+
 <record>
-  <attribute name="headline">HostDB 25 Released</attribute>
+  <attribute name="headline">PiroplasmaDB 25 Released</attribute>
   <attribute name="date">23 July 2015 13:00</attribute>
-  <attribute name="tag">hostdb7_15_release</attribute>
+  <attribute name="tag">piroplasma7_15_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of HostDB 25</strong></p>
+    <p><strong>We are pleased to announce the release of PiroplasmaDB 25</strong></p>
 
     <section>
       <h3>No new data or functionalities in this release</h3>
@@ -1249,12 +1188,10 @@ Arial">Join our international team of 30+ software developers and biologists,
 </record>
 
 
-
-
 <record>
-       <attribute name="headline">HostDB 24 Released</attribute>
+       <attribute name="headline">PiroplasmaDB 24 Released</attribute>
        <attribute name="date">13 April 2015 13:00</attribute>
-       <attribute name="tag">hostdb4_15_release</attribute>
+       <attribute name="tag">pirodb4_15_release</attribute>
        <attribute name="category">release</attribute>
        <attribute name="item">
            
@@ -1263,18 +1200,17 @@ Arial">Join our international team of 30+ software developers and biologists,
 <html>
   <head>
     <meta content="text/html; charset=windows-1252" http-equiv="content-type">
-    <title>hostdb_4_15_news</title>
+    <title>pirodb_4_15</title>
   </head>
   <body>
     <p> </p>
     <p> </p>
-    <p> </p>
-    <p> </p>
     <p><span style="font-family: Helvetica,Arial,sans-serif;"> </span> </p>
     <div style="margin-left: 40px;"><span style="font-family: Helvetica,Arial,sans-serif;"><strong>We
-          are pleased to announce the release of HostDB 24</strong><span style="font-weight: bold;"></span><br>
-      </span> <span style="font-style: italic;"><span style="font-family: Helvetica,Arial,sans-serif;"><br>
-          All EuPathDB release numbers have been synchronized to help us more
+          are pleased to announce the release of PiroplasmaDB 24</strong><span style="font-weight: bold;"></span><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-style: italic;"><br>
+          <em></em></span></span><span style="font-style: italic;"><span style="font-family: Helvetica,Arial,sans-serif;">All
+          EuPathDB release numbers have been synchronized to help us more
           efficiently manage our expanding number of databases.&nbsp; As of this
           release all EuPathDB resource release numbers have been set to release
           24.&nbsp; Subsequent version numbers will increase by one with each
@@ -1286,10 +1222,12 @@ Arial">Join our international team of 30+ software developers and biologists,
         <tbody>
           <tr>
             <td style="margin-left: 185px; width: 188px; height: 23px; background-color: #cccccc; text-align: center;"><span
-                style="font-size:11.0pt;line-height:107%;font-family:Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">EuPathDB<br>
+                style="font-size:11.0pt;line-height:107%;font-family:Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">EuPathDB<br>
                 Resource</span></td>
             <td style="width: 188px; height: 23px; background-color: #cccccc; text-align: center;"><span
-                style="font-size:11.0pt;line-height:107%;font-family:Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA"><span
+                style="font-size:11.0pt;line-height:107%;font-family:Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA"><span
                   style="font-size:11.0pt;line-height:107%;font-family:Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">Jan
                   2015<br>
                 </span>Version #<br>
@@ -1297,27 +1235,57 @@ Arial">Join our international team of 30+ software developers and biologists,
             <td style="width: 188px; height: 23px; background-color: #cccccc; text-align: center;">
               <span style="font-size:11.0pt;line-height:107%;font-family:
 Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA"><span
-                  style="font-size:11.0pt;line-height:107%;font-family:Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">April
+                  style="font-size:11.0pt;line-height:107%;font-family:Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">April
                   2015<br>
                 </span>Version #</span> </td>
           </tr>
           <tr>
-            <td style="width: 188px; height: 24px; background-color: #cccccc; text-align: center;">HostDB</td>
-            <td style="width: 188px; height: 24px; background-color: #cccccc; text-align: center;">2.2</td>
+            <td style="width: 188px; height: 24px; background-color: #cccccc; text-align: center;">PiroplasmaDB</td>
+            <td style="width: 188px; height: 24px; background-color: #cccccc; text-align: center;">5.1</td>
             <td style="width: 188px; height: 24px; background-color: #cccccc; text-align: center;">24</td>
           </tr>
         </tbody>
       </table>
-      <o:p><strong>New Features:</strong></o:p><strong> </strong><span style="font-family: Helvetica,Arial,sans-serif;"></span><span
+      <div style="text-align: left;"><b style="mso-bidi-font-weight:normal">New
+          data in this release:</b></div>
+      <b style="mso-bidi-font-weight:normal"><o:p></o:p></b>
+      <p class="MsoNoSpacing"><em>The data set title below links to a full
+          description and list of associated searches and genome browser tracks.</em><o:p></o:p></p>
+      <p class="MsoNoSpacing"><o:p>&nbsp;</o:p></p>
+      <b style="mso-bidi-font-weight:
+normal">Annotated Genomes: <o:p></o:p></b><br>
+      <br>
+      <a href="http://piroplasmadb.org/a/getDataset.do?datasets=bbigBOND_primary_genome_RSRC"><i>Babesia
+          bigemina</i> BOND</a> - <span style="mso-spacerun:yes">first release
+        in PiroplasmaDB </span><a href="http://www.ncbi.nlm.nih.gov/bioproject/PRJEB5046">GenBank
+        version<span style="mso-spacerun:yes">&nbsp; </span>(13 June 2014)</a>,<span
+        style="mso-spacerun:yes">&nbsp;
+        </span><span style="mso-spacerun:yes">&nbsp;&nbsp;</span><span style="mso-spacerun:yes">&nbsp;</span><a
+        href="http://www.ncbi.nlm.nih.gov/pubmed/24799432">Jackson
+        <em>et al. </em></a><o:p></o:p><br>
+      <br>
+      <a href="http://piroplasmadb.org/a/getDataset.do?datasets=cfelWinnie_primary_genome_RSRC"><i
+          style="mso-bidi-font-style:normal">Cytauxzoon
+          felis</i> Winnie</a> - first release in <span style="mso-spacerun:yes">PiroplasmaDB</span><span
+        style="mso-spacerun:yes">
+      </span><a href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA196611">GenBank
+        version (1 Jan 2015)</a>,<span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;
+        </span><span style="mso-spacerun:yes">&nbsp;</span><a href="http://www.ncbi.nlm.nih.gov/pubmed/23977000">Tarigo
+        <em>et al.</em></a><o:p></o:p>
+      <p class="MsoNoSpacing"><o:p>&nbsp;</o:p></p>
+      <!--EndFragment--><a href="http://www.ncbi.nlm.nih.gov/pubmed/25313038"><em></em></a><o:p></o:p>
+      <br>
+      <o:p> <strong>New Features:</strong></o:p><strong> </strong><span style="font-family: Helvetica,Arial,sans-serif;"></span><span
         style="font-family: Helvetica,Arial,sans-serif;"><em></em></span>
-      <p class="MsoNoSpacing"><span style="font-family: Helvetica,Arial,sans-serif;">
-          <em style="text-decoration: underline;">Help us improve our Data Set
-            page</em>: The dataset page includes information about all datasets
-          loaded into our resources including, release and date loaded, name of
-          the provider, links to searches and data visualization, etc... Take a
-          look at the beta version of our dataset page (access it from the data
-          summary menu item at the top of our web pages) and let us know what
-          you think.<br>
+      <p class="MsoNoSpacing"><span style="font-family: Helvetica,Arial,sans-serif;"><em
+            style="text-decoration: underline;">Help
+            us improve our Data Set page</em>: The dataset page includes
+          information about all datasets loaded into our resources including,
+          release and date loaded, name of the provider, links to searches and
+          data visualization, etc... Take a look at the beta version of our
+          dataset page (access it from the data summary menu item at the top of
+          our web pages) and let us know what you think.<br>
         </span> </p>
     </div>
     <div style="text-align: justify;"> </div>
@@ -1351,7 +1319,6 @@ Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-far
     <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
   </body>
 </html>
-
           ]]>
        </attribute>
     </record>
@@ -1425,41 +1392,29 @@ Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-far
        </attribute>
     </record>
 <record>
-       <attribute name="headline">HostDB 2.2 Released</attribute>
-       <attribute name="date">22 December 2014 13:00</attribute>
-       <attribute name="tag">host12_14_news</attribute>
+      <attribute name="headline">PiroplasmaDB 5.2 Released</attribute>
+       <attribute name="date">14 January 2015 12:00</attribute>
+       <attribute name="tag">piro12_14news</attribute>
        <attribute name="category">release</attribute>
        <attribute name="item">
-         <![CDATA[
- <body>
-    <div style="text-align: justify;"><strong>We are pleased to announce the
-        release of HostDB 2.3</strong><br>
-      <p class="MsoNoSpacing"><b style="mso-bidi-font-weight:normal">New data in
-          this release:<o:p></o:p></b></p>
-      <p class="MsoNoSpacing">The data set title below links to a full
-        description and list of associated searches and GBrowse tracks.</p>
-      <p class="MsoNoSpacing"><o:p>&nbsp;</o:p></p>
-      <p class="MsoNoSpacing" style="margin-left:.25in"><b style="mso-bidi-font-weight:
-normal">Proteomics:<o:p></o:p></b></p>
-      <p class="MsoNoSpacing" style="margin-left:.5in;text-indent:-.25in"><a href="/a/getDataset.do?datasets=hsapREF_massSpec_Lasonder_Schizont_Phosphoproteome_RSRC">Erythrocyte
-          <span class="SpellE">Phosphoproteome</span> during infection with P. <span
-            class="SpellE">fal</span>
-          3D7 <span class="SpellE">schizonts</span> (2012) (Lasonder et al.)</a>
-        - <span class="SpellE">Phosphoproteomic</span> analysis of <i style="mso-bidi-font-style:normal">Homo
-          sapiens</i> <span class="SpellE">erythocytes</span> harvested during
-        the schizont stage of a <i style="mso-bidi-font-style:normal">Plasmodium
-falciparum
-          3D7</i> infection.</p>
-      <p class="MsoNoSpacing"><o:p>&nbsp;</o:p></p>
-      <p class="MsoPlainText"><b style="mso-bidi-font-weight:normal">Improvements
-          and updates:<o:p></o:p></b></p>
-      <p class="MsoPlainText" style="margin-left:.5in;text-indent:-.25in">BLAST
-        was updated to the latest NCBI version 2.2.30. </p>
-      <p class="MsoPlainText" style="margin-left:.5in;text-indent:-.25in">GBrowse
-performance
-        is improved following EuPathDB infrastructure changes.</p>
-      <div style="margin-left: 40px;"><span style="font-family: Helvetica,Arial,sans-serif;">
-        </span> <span style="font-family: Helvetica,Arial,sans-serif;"><em></em><br>
+<![CDATA[
+<body><span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><strong>We
+          are pleased to announce the release of PiroplasmaDB 5.2</strong><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"></span><span
+        style="font-family: Helvetica,Arial,sans-serif;"></span></div>
+    <p class="MsoPlainText"><b style="mso-bidi-font-weight:normal"><br>
+        Improvements and updates:<br>
+      </b></p>
+    <p class="MsoPlainText"><br>
+      <b style="mso-bidi-font-weight:normal"><o:p></o:p></b></p>
+    <p class="MsoPlainText" style="margin-left:.5in;text-indent:-.25in">BLAST
+      was updated to the latest NCBI version 2.2.30. </p>
+    <p class="MsoPlainText" style="margin-left:.5in;text-indent:-.25in">GBrowse
+      performance is improved following EuPathDB infrastructure changes.</p>
+    <div style="text-align: justify;">
+      <div style="margin-left: 40px;"> <span style="font-family: Helvetica,Arial,sans-serif;"></span><span
+          style="font-family: Helvetica,Arial,sans-serif;"><br>
         </span> </div>
       <div style="text-align: justify;"> </div>
       <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><br>
@@ -1482,33 +1437,37 @@ performance
               style="font-weight: bold; font-style: italic;">,
               <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="http://www.youtube.com/user/EuPathDB">YouTube</a></span></span></p>
       </div>
-      <span style="font-weight: bold; font-style: italic;"></span></div>
-    <div style="text-align: justify;"><span style="font-weight: bold; font-style: italic;"></span></div>
+      <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold; font-style: italic;"></span><span
+          style="font-weight: bold; font-style: italic;"></span></span></div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><span
+          style="font-weight: bold; font-style: italic;"></span></span></div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
     
   </body>
           ]]>
        </attribute>
-</record>
+    </record>
 <record>
-       <attribute name="headline">HostDB 2.1 Released</attribute>
-       <attribute name="date">10 September 2014 13:00</attribute>
-       <attribute name="tag">host9_14_news</attribute>
+      <attribute name="headline">PiroplasmaDB 5.1 Released</attribute>
+       <attribute name="date">10 September 2014 12:00</attribute>
+       <attribute name="tag">piro8_14news</attribute>
        <attribute name="category">release</attribute>
        <attribute name="item">
-         <![CDATA[
- <body>
+<![CDATA[
+<body>
     <div style="text-align: justify;"><strong>We are pleased to announce the
-        release of HostDB 2.1</strong><br>
+        release of PiroplasmaDB 5.1</strong><br>
       <br>
       <ul style="text-align: justify;">
         <li><span style="font-family: Helvetica,Arial,sans-serif;"><strong style="color: #666666;">Two
               new data types with searches have been added in this release:</strong>
-            compounds and metabolic pathways.&nbsp; This beta-release of
-            Compound and Metabolic Pathways data sets incorporates KEGG pathways
-            and a subset of PubChem records. Future releases will include
-            compounds for additional metabolites and small molecules, and
-            pathways from other sources such as MPMP, MetaCyc, etc. Please
-            explore the site and contact us with your feedback. </span></li>
+            Compounds and Metabolic Pathways.&nbsp; This beta-release of
+            Compound and Metabolic Pathways data sets incorporates
+            KEGG pathways and a subset of PubChem records. Future
+            releases will include compounds for additional metabolites and small
+            molecules, and pathways from other sources such as MPMP, MetaCyc,
+            etc. Please explore the site and contact us with your feedback. </span></li>
       </ul>
       <span style="font-family: Helvetica,Arial,sans-serif;"><br>
       </span>
@@ -1560,6 +1519,8 @@ performance
           features:</strong><br>
       </span> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
       </span>
+      <blockquote> </blockquote>
+      
       <ul>
         <li><span style="font-family: Helvetica,Arial,sans-serif;"><strong style="color: #666666;">Results
               analysis tools:&nbsp; </strong><span style="color: #020302;">results
@@ -1569,7 +1530,7 @@ performance
                   description of this new functionality and a video tutorial are
                   also available</a></strong>.</span></span></li>
       </ul>
-      <span style="font-family: Helvetica,Arial,sans-serif;"><span style=" color: #020302;">
+      <span style="font-family: Helvetica,Arial,sans-serif;"><span style=" color: #020302;"><br>
         </span></span>
       <blockquote> </blockquote>
       <span style="font-family: Helvetica,Arial,sans-serif;"><br>
@@ -1611,59 +1572,179 @@ performance
   </body>
           ]]>
        </attribute>
-</record>
-
+    </record>
 <record>
-       <attribute name="headline">HostDB in Beta Released</attribute>
-       <attribute name="date">30 September 2013 13:00</attribute>
-       <attribute name="tag">host1_14_news</attribute>
+      <attribute name="headline">New Tutorials</attribute>
+       <attribute name="date">08 May 2014 12:00</attribute>
+       <attribute name="tag">piro5_14news</attribute>
        <attribute name="category">release</attribute>
        <attribute name="item">
+           
          <![CDATA[
- <body>
-    <p><strong>We are pleased to announce a beta release of HostDB</strong></p>
-    <p><br>
-      <strong></strong></p>
-    <p>HostDB is the newest addition to the Eukaryotic Pathogen databases (<strong><a
-          href="http://eupathdb.org">EuPathDB</a></strong>).&nbsp;
-      Apply the powerful search strategy system to query functional data from host organisms during infection with parasites.&nbsp; The beta release includes the
-      following datasets:</p>
-    <p><br>
-    </p>
-    <ul>
-      <li>The transcriptomes of primary murine macrophages (<em>M. musculus</em>
-        C57BL6J) during infection with 25 strains of <em>Toxoplasma gondii</em>
-        (<strong><a href="http://www.ncbi.nlm.nih.gov/pubmed/22847430">Minot <em>et
-              al.</em></a></strong>).&nbsp; For full attribution and available
-        searches please visit the <strong><a href="http://hostdb.org/hostdb/getDataset.do?question=GeneQuestions.GenesByRNASeqmmusC57BL6J_Saeij_Jeroen_25_strains_rnaSeq_RSRC&amp;display=detail#3">Dataset
-            details</a></strong>.&nbsp; </li>
-    </ul>
-    <br>
-    <ul>
-      <li>Proteomic analysis of Homo Sapiens during infection with 4 <em>Toxoplasma
-          gondii </em>(GT1, ME49, RH and VEG) strains graciously provided prepublication by
-        the Johnathan Wastling group (University of Liverpool).&nbsp; For full
-        attribution and available searches please visit the <strong><a href="http://hostdb.org/hostdb/getDataset.do?question=GeneQuestions.GenesByProteomicshsapREF_quantitativeMassSpec_Wastling_Tgondii_Infection_timecourse_RSRC&amp;display=detail#5">Dataset
-            details</a></strong>. This data was generated as part of one of the
-        EuPathDB-funded driving biological projects.</li>
-    </ul>
-    <br>
-    <p>We look forward to expanding this database in data content and
-      functionality.&nbsp; We encourage you to explore <strong><a href="http://hostdb.org">HostDB</a></strong>
-      and provide us with your <a href="mailto:help@hostdb.org"><strong>feedback</strong></a>.&nbsp;
-      </p>
-    <p><br>
-    </p>
-    <p><em><strong>Follow</strong></em> <span style="font-weight: bold;"><span
-          style="font-style: italic;">EuPathDB
-          on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
-        style="font-weight: bold; font-style: italic;">,
-        <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="http://www.youtube.com/user/EuPathDB">YouTube</a></span></p>
+ <body><span style="font-family: Helvetica,Arial,sans-serif;"></span><br>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"></span>
+      <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span>
+      <div style="margin-left: 40px;"><span style="font-family: Helvetica,Arial,sans-serif;"><a
+            href="http://eupathdb.org/tutorials/GBrowse-UploadTrack-Help.pdf">Learn
+            how to upload custom tracks in the genome browser</a>.&nbsp; </span></div>
+      <div style="margin-left: 40px;"> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+        </span> <span style="font-family: Helvetica,Arial,sans-serif;"><em>Our
+            YouTube channel is updated regularly with new tutorials.&nbsp; The
+            latest tutorials include:</em></span></div>
+      <span style="font-family: Helvetica,Arial,sans-serif;"><em> </em><br>
+      </span>
+      <ul style="margin-left: 40px;">
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><a href="http://youtu.be/SzRu9XBe_VM">Transform
+              by Orthology Across Taxon Groups</a>&nbsp;</span></li>
+      </ul>
+      <div style="margin-left: 40px;"> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+        </span> </div>
+      <ul style="margin-left: 40px;">
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><a href="https://www.youtube.com/watch?v=nYGS8LbbZ1w">Transform
+              by Orthology within a Taxon Group</a></span></li>
+      </ul>
+      <div style="margin-left: 40px;"> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+        </span> </div>
+      <ul style="margin-left: 40px;">
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><a href="https://www.youtube.com/watch?v=Q3wiUvqA82o">Orthology
+              information on gene pages</a></span></li>
+      </ul>
+      <div style="margin-left: 40px;"> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+        </span> </div>
+      <ul style="margin-left: 40px;">
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><a href="http://youtu.be/yKIKD8LEU-M">Inferring
+              UTR length using RNA sequencing data</a></span></li>
+      </ul>
+      <div style="margin-left: 40px;"><span style="font-family: Helvetica,Arial,sans-serif;"><br>
+        </span> </div>
+      <ul style="margin-left: 40px;">
+        <li><span style="font-family: Helvetica,Arial,sans-serif;"><a href="https://www.youtube.com/watch?v=dKhRaYINX9M">Decreasing
+              Gene Page Load Time</a></span></li>
+      </ul>
+      <span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span> </div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    <div style="text-align: justify;"> </div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-style: italic;"><span
+            style="font-style: italic;"><span
+              style="text-decoration: underline;">Note:</span>
+            Our bimonthly database releases incorporate new data and correct old
+            data when necessary.&nbsp; Changes in annotation and new
+            experimental data may slightly alter your search results by
+            increasing or decreasing the number of hits. When search parameters
+            change with a new release, we invalidate (<span style="color: red;">Ø</span>)
+            the search and ask you to rerun it. When IDs are updated or removed,
+            we map the old IDs to the new ones, remove the old IDs from your
+            Basket, and leave your Favorites page alone.</span></span><br>
+      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold;"><span
+            style="font-style: italic;"></span></span></span>
+      <p><span style="font-family: Helvetica,Arial,sans-serif;"><em><strong>Follow</strong></em>
+          <span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
+              on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+            style="font-weight: bold; font-style: italic;">,
+            <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="http://www.youtube.com/user/EuPathDB">YouTube</a></span></span></p>
+      <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold; font-style: italic;"></span></span></div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    <div style="text-align: justify;"> </div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
+    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><span
+          style="font-weight: bold; font-style: italic;"></span><span
+          style="font-weight: bold; font-style: italic;"></span></span></div>
+    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
   </body>
           ]]>
        </attribute>
-</record>
-
+    </record>
+<record>
+      <attribute name="headline">PiroplasmaDB 5.0 Released</attribute>
+       <attribute name="date">30 January 2014 15:00</attribute>
+       <attribute name="tag">piro114news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+ <body>
+    <div style="text-align: justify;"><strong>We are pleased to announce the
+        release of PiroplasmaDB 5.0</strong><strong></strong><br>
+      <br>
+      <br>
+      <span class="tracktitle">This release of PiroplasmaDB constitutes a
+        complete rebuild of the database and includes a number of new features
+        (see below). The latest versions of genome sequence and annotation were
+        loaded and all analyses were rerun and updated (InterProSCan, SignalP,
+        functional data mapping, etc.).<br>
+      <br>
+      <br>
+      <strong>New features:</strong><br>
+      <br>
+      <span style="text-decoration: underline;">Public Strategies</span>:&nbsp;
+      Share your search strategies with the community by making them
+      public.&nbsp; Making one of your strategies public is simple; go to the
+      "All" tab in your "My Strategies" section and click on a strategy's public
+      checkbox.&nbsp; <br>
+      <br>
+      <span style="text-decoration: underline;">Enhanced BLAST results</span>:&nbsp;
+      The gene results now include a column for score and percent identity
+      enabling sorting of results.<br>
+      <br>
+      <span style="text-decoration: underline;">Enhanced GO Term and InterPro
+        Domain searches</span>:&nbsp; Now this search includes an advanced
+      type-ahead function that allows searching for multiple GO Terms or domains
+      simultaneously.&nbsp; <br>
+      <br>
+      <span style="text-decoration: underline;">Email address update</span>:&nbsp;
+      Registered users can now update their email addresses from their profiles.<br>
+      <br>
+      <span style="text-decoration: underline;">Updated organism filter tables</span>:&nbsp;
+      The organism filter table has been unified across EuPathDB sites.<br>
+      <br>
+      <span style="text-decoration: underline;">Improved histogram</span>:&nbsp;
+      Numerical columns in a result can now be analyzed with a dynamic histogram
+      that enables binning and plotting values in normal or log scales.<br>
+      <br>
+      <span style="text-decoration: underline;">Fixed</span>: The orthology
+      phyletic pattern search now remembers your selected parameters making it
+      easier to revise searches.<br>
+      <br>
+      <strong></strong><br>
+      <strong></strong><br>
+      <strong>New database:&nbsp; </strong></div><br>
+    <ul style="text-align: justify;">
+     <li>EuPathDB is pleased to announce the release of a beta version of
+        <a href="http://hostdb.org"><strong>HostDB</strong></a> - a resource
+        dedicated to integrating functional host response data.&nbsp; The beta
+        release includes the human and mouse genomes and two datasets (RNA-Seq
+        and quantitative proteomics) examining the host response to Toxoplasma
+        infection.&nbsp; We look forward to expanding this database in data
+        content and functionality.&nbsp; We encourage you to explore <strong><a
+            href="http://hostdb.org">HostDB</a></strong>
+        and provide us with your <a href="mailto:help@hostdb.org"><strong>feedback</strong></a>.&nbsp;</li>
+    </ul>
+    <div style="text-align: justify;"><br>
+    </div>
+    <div style="text-align: justify;"><br>
+      <span style="font-style: italic;"><span style="font-style: italic;"><span
+            style="text-decoration: underline;">Note:</span>
+          Our bimonthly database releases incorporate new data and correct old
+          data when necessary.&nbsp; Changes in annotation and new experimental
+          data may slightly alter your search results by increasing or
+          decreasing the number of hits. When search parameters change with a
+          new release, we invalidate (<span style="color: red;">Ø</span>) the
+          search and ask you to rerun it. When IDs are updated or removed, we
+          map the old IDs to the new ones, remove the old IDs from your Basket,
+          and leave your Favorites page alone.</span></span><br>
+      <span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
+      <span style="font-weight: bold;"><span style="font-style: italic;">Follow EuPathDB on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+        style="font-weight: bold; font-style: italic;">,
+        <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="http://www.youtube.com/user/EuPathDB">YouTube</a></span></div>
+    <div style="text-align: justify;"><span style="font-weight: bold; font-style: italic;"></span></div>
+  </body>
+          ]]>
+       </attribute>
+    </record>
 <record>
        <attribute name="headline">EuPathDB Annual Workshop</attribute>
        <attribute name="date">14 January 2014 15:00</attribute>
@@ -1732,7 +1813,266 @@ performance
           ]]>
        </attribute>
     </record>
-
+<record>
+      <attribute name="headline">PiroplasmaDB 4.0 Released</attribute>
+       <attribute name="date">25 September 2013 15:00</attribute>
+       <attribute name="tag">piro913news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body> <strong>We are pleased to announce the release of PiroplasmaDB 4.0</strong><strong></strong><br>
+    <br>
+    <br>
+    <strong>New data in this release</strong>:<br>
+    <br>
+    <ul>
+      <li><span class="tracktitle">The following annotated genomes were
+          integrated into the PiroplasmaDB. </span><span class="tracktitle"><span
+            class="tracktitle">The
+            <a href="http://piroplasmadb.org/piro/getDataset.do?display=detail#Genomes%20and%20Annotation"><strong>data
+                set section</strong></a> includes detailed information about the
+            genomes and available searches:</span></span></li>
+    </ul>
+    <span class="tracktitle"><span class="tracktitle"></span></span>&nbsp;<o:p></o:p><br>
+    <ul>
+      <ul>
+        <li><span class="tracktitle"><span style="font-family:&quot;Courier New&quot;;mso-fareast-font-family:
+&quot;Courier New&quot;"><span style="mso-list:Ignore"><span style="font:7.0pt &quot;Times New Roman&quot;"></span></span></span></span><span
+            class="tracktitle"><a
+              href="http://piroplasmadb.org/piro/getDataset.do?question=GeneQuestions.GenesByTaxon&amp;display=detail#24"><strong>Theileria
+orentalis
+                Shintoku</strong></a> (GenBank version 9-6-2013) (</span><span class="tracktitle"><strong><a
+                href="http://www.ncbi.nlm.nih.gov/pubmed/22951932">Hayashida
+                <em>et al.</em></a></strong>)<br>
+          </span></li>
+      </ul>
+    </ul>
+    <span class="tracktitle"></span><br>
+    <ul>
+      <ul>
+        <li><span class="tracktitle"><strong><a href="http://piroplasmadb.org/piro/getDataset.do?question=GeneQuestions.GenesByTaxon&amp;display=detail#25">Theileria
+                equi WA</a></strong> (GenBank version 12-11-2013) (</span><strong><a
+              href="http://www.ncbi.nlm.nih.gov/pubmed/23137308">Kappmeyer
+              <em>et al.</em></a></strong>)<pubmedarticleset><pubmedarticle></pubmedarticle></pubmedarticleset></li>
+      </ul>
+    </ul>
+    <span class="tracktitle"></span><br>
+    <ul>
+      <li><span class="tracktitle"><span style="mso-bidi-font-style:normal">Proteomics
+            mass spec data from</span><i style="mso-bidi-font-style:normal">
+            Theileria annulata</i> schizonts (</span><span class="tracktitle"><strong><a
+              href="http://www.ncbi.nlm.nih.gov/pubmed/23178997"><span
+                class="tracktitle">Witschi
+                <em>et al.</em></span></a></strong>). Search for genes whose
+          protein products were present in extracts of whole cell lysates <i style="mso-bidi-font-style:normal">T.
+            annulata</i> schizonts from the </span><strong><a href="http://piroplasmadb.org/piro/showQuestion.do?questionFullName=GeneQuestions.GenesByMassSpec">PiroplasmaDB
+Mass
+            spec evidence search page</a></strong><span class="tracktitle">. In
+          addition, peptide evidence is displayed on </span><strong><a href="http://piroplasmadb.org/piro/app/record/gene/TA12105">gene
+pages
+            in the Protein Section</a></strong><span class="tracktitle"> and in
+          the genome browser by turning on the track - <strong><a href="http://piroplasmadb.org/cgi-bin/gbrowse/piroplasmadb/?start=850517;stop=950516;ref=tannA_chr01;width=800;version=100;flip=0;grid=1;id=8c6b1b09fb0b79acf52f9b5871db2398;l=Gene%1EMassSpecPeptides_tannAnkara_massSpec_dobbelaere_RSRC;h_feat=ta20770%40yellow">T.a.
+              MS/MS Peptides Schizont Proteome (Witschi et al.)</a></strong>.</span></li>
+    </ul>
+    <span class="tracktitle"></span><br>
+    <br>
+    <strong>New features:</strong><br>
+    <br>
+    <p class="MsoNoSpacing"><u>GBrowse tracks remain open between sessions:</u></p>
+    <p class="MsoNoSpacing"><br>
+      <u><o:p></o:p></u></p>
+    <ul>
+      <li>EuPathDB now stores GBrowse track configurations between sessions for
+        registered users who log into any EuPathDB site. The EuPathDB login is
+        now integrated with the GBrowse login so that your previous session's
+        GBrowse tracks are displayed each time you return to a EuPathDB site. </li>
+    </ul>
+    <br>
+    <p class="MsoNoSpacing"><u>New streamlined look for choosing expression data
+        sets (microarray, RNA-Seq):</u></p>
+    <p class="MsoNoSpacing"><br>
+      <u><o:p></o:p></u></p>
+    <ul>
+      <li>A new interactive table for choosing expression data sets lists
+        datasets, searches for each dataset and the organism that the data is
+        aligned to. Use the table's filter function to limit the data set list
+        based on author name, parasite life stages, etc. Click on an icon under
+        "Choose a search" to collapse the table and display the data set's
+        search page with its parameter list below the collapsed table. </li>
+    </ul>
+    <br>
+    <p class="MsoNoSpacing"><u>On-page help for expression search pages:</u></p>
+    <p class="MsoNoSpacing"><br>
+      <u><o:p></o:p></u></p>
+    <ul>
+      <li>Search parameters appear on the left and are arranged in a sentence
+        that helps you choose parameter values. </li>
+    </ul>
+    <br>
+    <ul>
+      <li>A help graphic and text appear on the right. To help you interpret
+        your parameters choices, the graphic changes to reflect your parameter
+        settings.</li>
+    </ul>
+    <br>
+    <ul>
+      <li>A <a href="http://www.youtube.com/watch?v=jMuVB-ZIdH0"><strong>YouTube
+            tutorial</strong></a> that describes this new feature is also
+        available.</li>
+    </ul>
+    <ul>
+    </ul>
+    <br>
+    <p class="MsoNoSpacing"><u>Improved Strategy Panel for viewing and editing
+        steps:</u></p>
+    <p class="MsoNoSpacing"><br>
+      <u><o:p></o:p></u></p>
+    <ul>
+      <li>The graphic interface of the strategy panel has been updated.<span style="mso-spacerun:yes">&nbsp;
+          </span>View the results of a strategy step by clicking anywhere inside
+        the box representing that step. To edit the parameter values for that
+        step, click on the EDIT icon that appears in the corner of each strategy
+        step box when hovering over the strategy panel.<o:p></o:p></li>
+    </ul>
+    <br>
+    <br>
+    <span style="font-style: italic;"><span style="font-style: italic;"><span style="text-decoration: underline;">Note:</span>
+        Our bimonthly database releases incorporate new data and correct old
+        data when necessary.&nbsp; Changes in annotation and new experimental
+        data may slightly alter your search results by increasing or decreasing
+        the number of hits. When search parameters change with a new release, we
+        invalidate (<span style="color: red;">Ø</span>) the search and ask you
+        to rerun it. When IDs are updated or removed, we map the old IDs to the
+        new ones, remove the old IDs from your Basket, and leave your Favorites
+        page alone.</span></span><br>
+    <span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
+    <span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
+        is now on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+      style="font-weight: bold; font-style: italic;">,
+      <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="www.youtube.com/user/EuPathDB/">YouTube</a></span>
+  </body>
+          ]]>
+       </attribute>
+    </record>
+<record>
+      <attribute name="headline">PiroplasmaDB 3.0 Released</attribute>
+       <attribute name="date">11 March 2013 15:00</attribute>
+       <attribute name="tag">piro0313news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body><span style="font-family: Arial;"> </span>
+    <p style="text-align: justify;">
+      <!--StartFragment--> </p>
+    <p style="text-align: justify;" class="MsoNormal"><span style="font-family: Arial;"><a
+          name="piro0812news"><b
+            style="mso-bidi-font-weight:normal"><o:p></o:p></b></a></span></p>
+    <span style="font-family: Arial;"> </span>
+    <p style="text-align: justify;" class="MsoNormal"><span style="font-family: Arial;"><span
+          style="mso-bookmark:piro0812news"><b
+            style="mso-bidi-font-weight:
+normal">We are pleased to announce the release of PiropasmaDB 3.0<o:p></o:p></b></span></span></p>
+    <span style="font-family: Arial;"> </span>
+    <p style="text-align: justify;" class="MsoNormal"><span style="font-family: Arial;"><span
+          style="mso-bookmark:piro0812news"><b
+            style="mso-bidi-font-weight:
+normal">New data in this release:<br>
+          </b></span></span></p>
+    <p style="text-align: justify;" class="MsoNormal"><br>
+      <span style="font-family: Arial;"><span style="mso-bookmark:piro0812news"><b
+            style="mso-bidi-font-weight:
+normal"><o:p></o:p></b></span></span></p>
+    <span style="font-family: Arial;"> </span>
+    <p style="text-align: justify;" class="MsoNoSpacing"><span style="font-family: Arial;"><span
+          style="mso-bookmark:piro0812news"><u>Genomic
+sequence
+            and annotation for <i style="mso-bidi-font-style:normal">Babesia
+              microti</i> R1<br>
+          </u></span></span></p>
+    <p style="text-align: justify;" class="MsoNoSpacing"><br>
+      <span style="font-family: Arial;"><span style="mso-bookmark:piro0812news"><u><o:p></o:p></u></span></span></p>
+    <span style="font-family: Arial;"> </span>
+    <p style="text-align: justify;" class="MsoNormal"><span style="font-family: Arial;"><span
+          style="mso-bookmark:piro0812news">The
+          <i style="mso-bidi-font-style:normal">Babesia microti</i> R1 genome
+          and annotation (</span><strong><a href="http://www.ncbi.nlm.nih.gov/bioproject?term=PRJEA72411"><span
+              style="mso-bookmark:piro0812news">Genbank</span></a></strong><span
+          style="mso-bookmark:piro0812news">)
+          is fully integrated into PiroplasmaDB (<a href="http://www.ncbi.nlm.nih.gov/pubmed/22833609"><strong>Cornillot
+              </strong><strong><em>et al.</em></strong></a>). <span style="mso-spacerun:yes">&nbsp;</span>Use
+          the </span><span style="mso-bookmark:piro0812news">searches available
+          in PiroplasmaDB</span><span style="mso-bookmark:piro0812news"> to find
+        </span><strong><a href="http://piroplasmadb.org/piro/im.do?s=c0867e0adfea68c9"><span
+              style="mso-bookmark:piro0812news"><i
+                style="mso-bidi-font-style:normal">B.
+                microti</i> genes</span></a></strong><span style="mso-bookmark:piro0812news">
+          or </span><strong><a href="http://piroplasmadb.org/piro/im.do?s=b435e285f75ae48f"><span
+              style="mso-bookmark:piro0812news">genomic
+              sequences</span></a></strong><span style="mso-bookmark:piro0812news">
+          <span style="mso-spacerun:yes">&nbsp;</span>based on a variety of
+          parameters and combine searches to identify genes with specific
+          characteristics.<span style="mso-spacerun:yes">&nbsp; </span>For
+          example, the following strategy combines several searches to find
+          signal peptide and/or transmembrane domain containing genes that are
+          conserved in Piroplasma but not in Haemosporidia. <br>
+        </span></span></p>
+    <p style="text-align: justify;" class="MsoNormal"><br>
+      <span style="font-family: Arial;"><span style="mso-bookmark:piro0812news"><o:p></o:p></span></span></p>
+    <span style="font-family: Arial;"> </span>
+    <p style="text-align: justify;" class="MsoPlainText"><span style="font-family: Arial;"><strong><span
+            style="mso-bookmark:piro0812news"><span
+              style="mso-spacerun:yes">&nbsp;</span></span></strong><strong><a
+            href="http://piroplasmadb.org/piro/im.do?s=7c44f6999344e543"><span
+              style="mso-bookmark:piro0812news">http://piroplasmadb.org/piro/im.do?s=7c44f6999344e543</span></a></strong><span
+          style="mso-bookmark:piro0812news"><o:p></o:p></span></span></p>
+    <span style="font-family: Arial;"> </span> <br>
+    <p style="text-align: justify;" class="MsoNormal"><span style="font-family: Arial;"><b
+          style="mso-bidi-font-weight:normal">New
+          Functionality:<o:p></o:p></b></span><br>
+      <span style="font-family: Arial;"><u><br>
+          PCR Primer Design tool added to GBrowse. <o:p></o:p></u></span><span
+        style="font-family: Arial;"><br>
+        <br>
+      </span>
+    </p>
+    <div style="margin-left: 40px;"><span style="font-family: Arial;">Design PCR
+        primers to any region of the genome using this interactive, graphic
+        interface. To reach this tool, </span><span style="font-family: Arial;"><span
+          style="font-family: Arial;"><strong><a
+              href="http://piroplasmadb.org/cgi-bin/gbrowse/piroplasmadb/?name=FO082874:1554539..1586300;h_feat=bbm_iii04375@yellow">open
+the
+              PiroplasmaDB Genome Browser</a></strong> </span>at your genomic
+        region of interest, choose "Design PCR primers" from the dropdown menu
+        and click "GO".<span style="mso-spacerun:yes">&nbsp; </span>To design
+        primers, focus on a PCR product size range by highlighting the area on
+        the scale, then enter your preferred PCR parameters in the text boxes
+        and click Design Primer.<o:p></o:p></span></div>
+    <span style="font-family: Arial;"> </span> <br>
+    <span style="font-style: italic;"><span style="font-style: italic;"><span style="text-decoration: underline;">Note:</span>
+        Our bimonthly database releases incorporate new data and correct old
+        data when necessary.&nbsp; Changes in annotation and new experimental
+        data may slightly alter your search results by increasing or decreasing
+        the number of hits. When search parameters change with a new release, we
+        invalidate (<span style="color: red;">Ø</span>) the search and ask you
+        to rerun it. When IDs are updated or removed, we map the old IDs to the
+        new ones, remove the old IDs from your Basket, and leave your Favorites
+        page alone.</span></span><br>
+    <span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
+    <span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
+        is now on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+      style="font-weight: bold; font-style: italic;">
+      and <a href="http://twitter.com/eupathdb">Twitter</a></span> <br style="font-family: Arial;">
+    <p style="text-align: justify;" class="MsoNormal"><br>
+      <span style="font-family: Arial;"><o:p></o:p></span></p>
+    <span style="font-family: Arial;"> </span>
+    <p style="text-align: justify;"><!--EndFragment--> </p>
+    <span style="font-family: Arial;"> </span>
+  </body>
+          ]]>
+       </attribute>
+    </record>
 <record>
        <attribute name="headline">EuPathDB Annual Workshop</attribute>
        <attribute name="date">20 January 2013 15:00</attribute>
@@ -1794,13 +2134,239 @@ performance
           ]]>
        </attribute>
     </record>
+<record>
+       <attribute name="headline">PiroplasmaDB 2.0 Released</attribute>
+       <attribute name="date">31 August 2012 15:00</attribute>
+       <attribute name="tag">piro0812news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<html>
+  <head>
+    <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+    <title>piro08_12</title>
+  </head>
+  <body>
+    <div style="text-align: justify; font-family: Arial;"> <span style="font-weight: bold;">We
+        are pleased to announce the release of
+        PiroplasmaDB 2.0</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;"> </span><br>
+      <font face="Arial">This release of </font>PiroplasmaDB<font face="Arial">
+        constitutes a complete
+        rebuild of the database.&nbsp; This means that all genomes and
+        data were reloaded and reanalyzed.&nbsp; </font><font face="Arial">It
+        is possible that many of your stored search strategies will need to be
+        rerun to accommodate the new analyses (please see note at the bottom of
+        this news item).&nbsp; </font><font face="Arial">We encourage you to
+        explore this release and, as usual,
+        we look forward to hearing from you with suggestions for further
+        improvement and any problems you may encounter. </font><br>
+      <br>
+      <span style="font-weight: bold;"> New data in this release:</span><br>
+      <span style="font-weight: bold;"> </span><br>
+    </div>
+    <ul style="text-align: justify; font-family: Arial;">
+      <li><span style="font-style: italic;">Babesia bovis</span> microarray
+        data from <a style="font-weight: bold;" href="http://www.ncbi.nlm.nih.gov/pubmed/21838895">Lau
+          <span style="font-style: italic;">et. al.</span></a> Incorporation of
+        this
+        data enables you to search for genes that are differentially regulated
+        between virulent and attenuated strains of <span style="font-style: italic;">B.
+          bovis</span>.&nbsp; Searches against
+        this data are available by selection "<a style="font-weight: bold;" href="http://piroplasmadb.org/piro/showQuestion.do?questionFullName=InternalQuestions.GenesByMicroarrayEvidence">Microarray</a>"
+        in the "Transcript Expression" section under the heading "Identify
+        Genes by" on the home page.</li>
+    </ul>
+    <div style="margin-left: 40px;"><span style="font-family: Arial;"><br>
+        Searches for gens based on their expression profile may be combined
+        with other available searches in PiroplasmaDB.&nbsp; For example, the
+        following shared search strategy identifies predicted secreted genes
+        that are differentially regulated between virulent and attenuated
+        strains:</span><br>
+    </div>
+    <div style="text-align: justify; font-family: Arial;"> </div>
+    <div style="text-align: justify; font-family: Arial;"> <a href="http://piroplasmadb.org/piro/im.do?s=eb3dc45918c75c68"><br>
+      </a></div>
+    <div style="margin-left: 80px; text-align: justify; font-family: Arial;"><a
+        href="http://piroplasmadb.org/piro/im.do?s=eb3dc45918c75c68"><span
+          style="font-weight: bold;">http://piroplasmadb.org/piro/im.do?s=eb3dc45918c75c68</span></a><br>
+    </div>
+    <div style="text-align: justify; font-family: Arial;"> <br>
+    </div>
+    <div style="margin-left: 40px; text-align: justify; font-family: Arial;">In
+      addition, graphical representations of expression profiles are
+      available on all <span style="font-style: italic;">B. bovis</span>
+      gene pages.&nbsp; As an example, you can visit the gene page for one of
+      the <a style="font-weight: bold;" href="http://piroplasmadb.org/gene/BBOV_IV001490">variant
+        erythrocyte
+        surface antigens</a> and scroll down to the expression section.<br>
+      <br>
+    </div>
+    <div style="text-align: justify; font-family: Arial;"> </div>
+    <ul style="text-align: justify; font-family: Arial;">
+      <li>Isolate data from environmental samples, <span style="font-style: italic;">Theileriidae</span>
+        and <span style="font-style: italic;">Babesiidae</span> obtained from
+        Genbank
+        are now available.&nbsp; These data may be searched based on multiple
+        criteria including geographic location, isolation source, host, strain,
+        etc.&nbsp; Searches against isolate data are available under the
+        "Isolates" section under the heading "Identify other data types" on the
+        home page.&nbsp; Isolate searches may be combined such as the following
+        strategy that identifies all Theileria isolates from Africa:<br>
+      </li>
+    </ul>
+    <div style="text-align: justify; font-family: Arial;"> <a href="http://piroplasmadb.org/piro/im.do?s=2c545c1d461d5df3"><br>
+        <span style="font-weight: bold;"></span></a> </div>
+    <div style="margin-left: 80px; text-align: justify; font-family: Arial;"><a
+        href="http://piroplasmadb.org/piro/im.do?s=2c545c1d461d5df3">
+        ht<span style="font-weight: bold;">tp://piroplasmadb.org/piro/im.do?s=2c545c1d461d5df3</span></a><br>
+    </div>
+    <div style="text-align: justify; font-family: Arial;"> <br>
+      <span style="font-weight: bold;"></span><br>
+      <span style="font-weight: bold;"> </span><br>
+      <span style="font-weight: bold;"> New functionality:</span><br>
+      <br>
+      Graphical representation of your gene results mapped to genomic
+      sequences.&nbsp; To use this feature, run any gene search then click on
+      the "Genome View" tab.&nbsp; This view allows you to interactively
+      visualize the genomic distribution of your results -- you can zoom
+      in/out, sort results or visit specific gene pages.&nbsp; <br>
+      <br>
+      <br>
+      <span style="font-style: italic;"><span style="font-style: italic;"><span
+            style="text-decoration: underline;">Note:</span>
+          Our bimonthly
+          database releases incorporate new data and correct old data when
+          necessary.&nbsp; Changes in annotation and new experimental data may
+          slightly alter your search results by increasing or decreasing the
+          number of hits. When search parameters change with a new release, we
+          invalidate (<span style="color: red;">Ø</span>) the search and ask you
+          to rerun it. When IDs are updated or removed, we map the old IDs to
+          the
+          new ones, remove the old IDs from your Basket, and leave your
+          Favorites
+          page alone.</span></span><br>
+      <span style="font-weight: bold;"><span style="font-style: italic;"></span></span><br>
+      <span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
+is
+          now on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+        style="font-weight: bold; font-style: italic;">
+        and <a href="http://twitter.com/eupathdb">Twitter</a></span><br>
+    </div>
+  </body>
+</html>
+          ]]>
+       </attribute>
+    </record>
+<record>
+       <attribute name="headline">New features in PiroplasmaDB</attribute>
+       <attribute name="date">11 January 2012 15:00</attribute>
+       <attribute name="tag">piro1211news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body>
+<span style="font-weight: bold; font-family: Arial;">We are pleased to
+announce new features in&nbsp; PiroplasmaDB<br>
+</span><br style="font-family: Arial;">
+<span style="font-weight: bold; font-family: Arial;">New
+functionality:</span><br style="font-family: Arial;">
+<br style="font-family: Arial;">
+<span style="font-weight: bold; font-family: Arial;">
+</span>
+<ul style="font-family: Arial;">
+<li>The genome browser has been updated.&nbsp; This newer version
+includes several improvements and functionalities.&nbsp; <a
+href="http://www.youtube.com/watch?v=jxA6VMN97Y8"><span
+style="font-weight: bold;">A tutorial </span></a>highlighting some of
+the new features is also available.&nbsp;&nbsp;</li>
+</ul>
+<br style="font-family: Arial;">
+<ul style="font-family: Arial;">
+<li>A new column analysis tool is now available that allows you to
+generate a word cloud or histogram based on the data in result
+columns.&nbsp; To access this feature, run any search that returns a
+list of results then click on the icon next to the product description
+column name.&nbsp; This will reveal a popup with the option to select
+"Word Cloud".&nbsp; Look for this analysis feature to be activated on
+additional columns in future releases.</li>
+</ul>
+<br style="font-family: Arial;">
+<ul style="font-family: Arial;">
+<li>Several new tutorials have been generated:</li>
+</ul>
+<ul style="font-family: Arial;">
+<ul style="font-weight: bold;">
+<li><a href="http://www.youtube.com/watch?v=jxA6VMN97Y8">The genome
+browser.</a></li>
+</ul>
+<ul>
+<li style="font-weight: bold;"><a href="http://youtu.be/0IP1d9raiMs">Customizing
+restriction sites in the genome browser.</a></li>
+<li style="font-weight: bold;"><a href="http://youtu.be/_It1Nghu-NI">Identifying
+isolates based on geographic location.</a></li>
+<li style="font-weight: bold;"><a href="http://youtu.be/8pP1rhSrjqo">Dealing
+with invalid IDs and search strategies.</a></li>
+<li style="font-weight: bold;"><a href="http://youtu.be/P7ptqGnECJ4">Using
+the orthology phylogenetic profile search.</a></li>
+</ul>
+</ul>
+<br style="font-family: Arial;">
+<span style="font-style: italic; font-family: Arial;"><span
+style="font-style: italic;"><span style="text-decoration: underline;">Note:</span>
+Our bimonthly database releases incorporate new data and correct old
+data when necessary.&nbsp; Changes in annotation and new experimental
+data
+may slightly alter your search results by increasing or decreasing the
+number of hits. When search parameters change with a new release, we
+invalidate (<span style="color: red;">Ø</span>) the search and ask you
+to rerun it. When IDs are updated or removed, we map the old IDs to the
+new ones, remove the old IDs from your Basket, and leave your Favorites
+page alone.</span></span><br style="font-family: Arial;">
+<span style="font-weight: bold; font-family: Arial;"><span
+style="font-style: italic;"></span></span><br
+style="font-family: Arial;">
+<br style="font-family: Arial;">
+<span style="font-weight: bold; font-family: Arial;"><span
+style="font-style: italic;"></span></span><br
+style="font-family: Arial;">
+<span style="font-weight: bold; font-family: Arial;"><span
+style="font-style: italic;">EuPathDB
+is now on <a
+href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
+style="font-weight: bold; font-style: italic; font-family: Arial;">
+and <a href="http://twitter.com/eupathdb">Twitter</a></span>
+<span style="font-weight: bold; font-family: Arial;"></span>
+</body>
+          ]]>
+       </attribute>
+    </record>
+<record>
+       <attribute name="headline">
+         <![CDATA[
+          PiroplasmaDB 1.0 Released
+         ]]>
+       </attribute>
+       <attribute name="date">15 April 2011 00:00</attribute>
+       <attribute name="tag">piro4_11_news</attribute>
+       <attribute name="category">release</attribute>
+       <attribute name="item">
+           
+         <![CDATA[
+<body>
+<span style="font-weight: bold;">We are pleased to announce the release
+of PiroplasmaDB 1.0<br>
+</span><br>
+<span style="font-weight: bold;">This first release of PiroplasmaDB contains the
+following datasets:</span><span style="font-weight: bold;"> </span><br>
+<br>
 
-
-
-
-
+]]>
+       </attribute>
+    </record>
 
 
 
 </xmlAnswer>
-

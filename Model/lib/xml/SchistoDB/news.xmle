@@ -3,17 +3,11 @@
 
 <!--
    <record>
-       <attribute name="headline">
-         <![CDATA[
-         ]]>
-       </attribute>
-       <attribute name="date">
-       </attribute>
-       <attribute name="tag">
-       </attribute>
+       <attribute name="headline"></attribute>
+       <attribute name="date"></attribute>
+       <attribute name="tag"></attribute>
        <attribute name="category"></attribute>
-       <attribute name="item">
-           
+       <attribute name="item">           
          <![CDATA[
           ]]>
        </attribute>
@@ -21,24 +15,17 @@
 -->
 
 <record>
-  <attribute name="headline">HostDB 38 Released</attribute>
+  <attribute name="headline">SchistoDB 38 Released</attribute>
   <attribute name="date">02 Jul 2018 13:00</attribute>
-  <attribute name="tag">HostDB07_18_release</attribute>
+  <attribute name="tag">SchistoDB11_18_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of HostDB 38</strong></p>
-      
-      
-      <section>
-       <h3><b>No new data in HostDB 38</b></h3>
-      </section>
+      <strong>We are pleased to announce the release of SchistoDB 38</strong>
       
       <section>
-      <h3><b>No new features in this release</b></h3>
-      </section>
-      
-      <section>
+        <h3><b>No new data in SchistoDB 38</b></h3> 
+        <h3><b>No features in SchistoDB 38</b></h3>
          <aside>
            Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
            Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
@@ -54,38 +41,13 @@
 
 
 <record>
-  <attribute name="headline">HostDB 37 Released</attribute>
+  <attribute name="headline">SchistoDB 37 Released</attribute>
   <attribute name="date">25 Apr 2018 13:00</attribute>
-  <attribute name="tag">hostdb04_18_release</attribute>
+  <attribute name="tag">schistodb04_18_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of HostDB 37</strong></p>
-      
-      
-      <section>
-       <h3><b>New data in HostDB 37</b></h3>
-         <div style="margin-left: 3em;">
-      
-     <h4>RNA Sequencing</h4>
-       <ul>
-           <li>
-            <a href="http://hostdb.org/hostdb/app/record/dataset/DS_4585d065bf"><i>M mulatta</i> infected with <i>P cynomolgi</i> over 100 days</a> &mdash; 
-            Transcriptome of whole blood and bone marrow from <i>Macaca mulatta</i> infected with <i>Plasmodium cynomolgi</i> over 100 days
-            <a href="http://www.ncbi.nlm.nih.gov/pubmed/27590312">Joyner et al.</a>  
-            This data set has a Plasmodium component available in PlasmoDB as:
-            <a href="http://plasmodb.org/plasmo/app/record/dataset/DS_40a06f276b">Transcriptome of <i>P cynomolgi</i> during 100-day infection in <i>M mulatta</i></a>.
-           </li>  
-           <li>
-            <a href="http://hostdb.org/hostdb/app/record/dataset/DS_2202e54a9e"><i>Leishmania major</i> and <i>Leishmania amazonensis</i> RNAseq during human macrophage infection</a> &mdash; 
-            RNAseq analysis of transcriptomes of human macrophage and parasite during an infection time course. 
-            <a href="http://www.ncbi.nlm.nih.gov/pubmed/27165796">Fernandes et al.</a>  
-            This data set has a Leishmania component available in TriTrypDB as:
-            <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_d18599afa8"><i>Leishmania major</i> RNAseq during human macrophage infection</a>.
-           </li> 
-       </ul><br>
-         </div>
-      </section>
+    <p><strong>We are pleased to announce the release of SchistoDB 37</strong></p>
       
       <section>
       <h3><b>New features in this release</b></h3>
@@ -117,6 +79,7 @@
       </section>
       
       <section>
+        <h3><b>No New data in SchistoDB 37</b></h3> 
          <aside>
            Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
            Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
@@ -130,26 +93,18 @@
 </record>
 
 
-
-
 <record>
-  <attribute name="headline">HostDB 36 Released</attribute>
+  <attribute name="headline">SchistoDB 36 Released</attribute>
   <attribute name="date">19 Feb 2018 13:00</attribute>
-  <attribute name="tag">hostdb02_18_release</attribute>
+  <attribute name="tag">schistodb02_18_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of HostDB 36</strong></p>
-      
-      
-      <section>
-       <h3><b>No new data in this release</b></h3>
-
-      </section>
+    <p><strong>We are pleased to announce the release of SchistoDB 36</strong></p>
       
       <section>
       <h3><b>New features in this release</b></h3>
-            <div style="margin-left: 3em;">
+      <div style="margin-left: 3em;">
       
       <h4>Search Page Improvements: search pages were redesigned to include an organism filter and provide better access to help information.</h4>
       
@@ -175,6 +130,8 @@
             <li>Find the search under the Orthology and Synteny category.
                 </li>
           </ul>
+
+    
        
        <h4>Gene Record Page Improvements:</h4>
  
@@ -205,7 +162,7 @@
           </ul>
         </div>
       </section>
-      
+ 
       <section>
       <h3><b>Introducing ClinEpiDB, a new member of the EuPathDB family of databases:</b></h3>
       <div style="margin-left: 3em;">
@@ -221,9 +178,10 @@
                 </li>
           </ul>
        </div>
-      </section>  
+      </section>       
       
       <section>
+        <h3><b>No New data in this release</b></h3> 
          <aside>
            Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
            Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
@@ -236,29 +194,14 @@
   </attribute>
 </record>
 
-
-
 <record>
-  <attribute name="headline">HostDB 35 Released</attribute>
+  <attribute name="headline">SchistoDB 35 Released</attribute>
   <attribute name="date">01 Dec 2017 13:00</attribute>
-  <attribute name="tag">hostdb12_17_release</attribute>
+  <attribute name="tag">schistodb12_17_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of HostDB 35</strong></p>
-      
-      
-      <section>
-       <h3><b>New data in this release</b></h3>
-       <h4>RNA Sequencing</h4>
-       <ul>
-           <li>
-            <a href="http://hostdb.org/hostdb/app/record/dataset/DS_92a3bc8cb7">Transcriptomes of 4 <i>M. musculus</i> cell types during infection with <i>T. gondii</i></a> &mdash; 
-            <i>M. musculus</i> cortical neurons, astrocytes, skeletal muscle cells and fibroblast transcriptomes during infection with <i>T. gondii</i> strain NTE.
-            <a href="https://www.ncbi.nlm.nih.gov/pubmed/28775382">Swierzy et al.</a>
-           </li>  
-       </ul><br>
-      </section>
+    <p><strong>We are pleased to announce the release of SchistoDB 35</strong></p>
       
       <section>
       <h3><b>New features in this release</b></h3>
@@ -268,7 +211,7 @@
           GO Slim terms are now indicated in EuPathDB sites in the following ways:<br>
           <ul>
             <li>The search,
-                <a href="http://hostdb.org/hostdb/showQuestion.do?questionFullName=GeneQuestions.GenesByGoTerm">Identify Genes based on GO Terms</a>, 
+                <a href="http://schistodb.net/schisto/showQuestion.do?questionFullName=GeneQuestions.GenesByGoTerm">Identify Genes based on GO Terms</a>, 
                 now includes an GO Subset option for limiting the search to only GO Slim generic terms.
                 </li>
             <li>GO Terms tables on gene pages now contain a 'GO Subset' column which identifies GO Slim generic terms.
@@ -277,11 +220,12 @@
                 the background and the gene list of interest in the Fisher's exact test that determines enrichment. 
                 </li>
           </ul>
+       </div>
        
        <h4>Revigo and Word Cloud access from GO Enrichment results</h4>
        <div style="margin-left: 3em;">
        
-          HostDB offers a link between our GO Enrichment results and a Word Cloud visualization as well as 
+          SchistoDB offers a link between our GO Enrichment results and a Word Cloud visualization as well as 
           Revigo, a tool that provides GO term summarization and visualization. The links to Revigo and the 
           Word Cloud now appear as buttons that are right justified above the GO enrichment result table. 
        
@@ -290,6 +234,7 @@
       
       
       <section>
+        <h3><b>No New data in this release</b></h3> 
          <aside>
            Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
            Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
@@ -303,34 +248,15 @@
 </record>
 
 
+
 <record>
-  <attribute name="headline">HostDB 34 Released</attribute>
+  <attribute name="headline">SchistoDB 34 Released</attribute>
   <attribute name="date">07 Sep 2017 13:00</attribute>
-  <attribute name="tag">hostdb08_17_release</attribute>
+  <attribute name="tag">schistodb08_17_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of HostDB 34</strong></p>
-    
-    <h3><b>New data in this release</b></h3>
-    <h4>Genome Sequence and Annotation</h4>
-       <ul>
-           <li>
-            <a href="http://hostdb.org/hostdb/app/record/dataset/DS_35227af971"><i>Macaca mulatta</i> 17573</a> &mdash; 
-            This annotated genome appears for the first time in HostDB. The data were provided by pre-publication
-            Dr. Robert Norgren, University of Nebraska Medical Center, although a previous version of the genome is published.  
-            <a href="http://www.ncbi.nlm.nih.gov/pubmed/25319552">Zimin et al.</a>.  
-           </li>  
-       </ul><br>
-       
-     <h4>RNA Sequencing</h4>
-       <ul>
-           <li>
-            <a href="http://hostdb.org/hostdb/app/record/dataset/DS_368d6dc0ff"><i>H sapiens</i> Transcriptome during Infection with <i>T cruzi</i></a> &mdash; 
-            Transcriptome of human foreskin fibroblasts during infection (time course) with T. cruzi Y strain.
-            <a href="http://www.ncbi.nlm.nih.gov/pubmed/27046031">Li et al.</a>.  
-           </li>  
-       </ul><br>
+    <p><strong>We are pleased to announce the release of SchistoDB 34</strong></p>
       
       <section>
       <h3><b>New features in this release</b></h3>
@@ -340,15 +266,15 @@
           EuPathDB now offers a direct link from gene ontology (GO) enrichment results to 
           <a href="http://revigo.irb.hr/">REVIGO</a>, a tool that provides GO term summarization and visualization.  
           To access this feature first run a GO term enrichment using the 'Analyze Results' option from any gene search result. Then click on 
-          the 'Start Revigo Analysis' link (<a href="/hostdb/images/Revigo.png">upper right hand side of enrichment results</a>) 
+          the 'Start Revigo Analysis' link (<a href="/schistodb/images/Revigo.png">upper right hand side of enrichment results</a>) 
           to populate the REVIGO submission page with your GO enrichment results from EuPathDB.  Follow instructions 
           on the REVIGO page to complete your analysis.
           
       </div>
       </section>
-       
+      
       <section>
-
+        <h3><b>No New data in this release</b></h3> 
          <aside>
            Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
            Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
@@ -368,9 +294,6 @@
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    
-    
-    
     <section>
         
         <div style="margin-left: 3em;">
@@ -380,12 +303,12 @@
         This may underrepresent abundance for genes that are duplicated, such as paralogs. Non-unique reads are only available 
         as GBrowse subtracks. To view non-unique reads from a gene page, open the Coverage section and click 'View in 
         genome browser' above the coverage plots. 
-        (<a href="/hostdb/images/FromCoverageNonuniqueReads.pdf">Tutorial document about viewing non-unique reads from a gene page</a>)
+        (<a href="/schistodb/images/FromCoverageNonuniqueReads.pdf">Tutorial document about viewing non-unique reads from a gene page</a>)
         
         <br><br>
         To view non-unique reads without navigating to the gene page, open GBrowse from the home page.  Use the Select Tracks 
         tab to turn on the data track of interest and the subtracks configuration tool to turn on the non-unique reads subtracks. 
-        (<a href="/hostdb/images/FromHomeNonuniqueReads.pdf">Tutorial document for viewing non-unique reads from the home page</a>)
+        (<a href="/schistodb/images/FromHomeNonuniqueReads.pdf">Tutorial document for viewing non-unique reads from the home page</a>)
         
         <br><br>
         In release 34, gene pages contain a message about non-unique reads, an accurate description of the y-axis and links to 
@@ -400,20 +323,17 @@
   </attribute>
 </record>
 
-
-
-
 <record>
-  <attribute name="headline">HostDB 33 Released</attribute>
+  <attribute name="headline">SchistoDB 33 Released</attribute>
   <attribute name="date">30 Jun 2017 13:00</attribute>
-  <attribute name="tag">hostdb06_17_release</attribute>
+  <attribute name="tag">schistodb06_17_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of HostDB 33</strong></p>
+    <p><strong>We are pleased to announce the release of SchistoDB 33</strong></p>
       
       <section>
-        <h3><b>No New data in this release</b></h3>
+        <h3><b>No New data in this release</b></h3> 
         
         <h3><b>New features in this release</b></h3> 
 
@@ -434,7 +354,7 @@
                 gray tool bar under the header. 
             </li>
            </ul>
-         
+        
          <aside>
            Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
            Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
@@ -447,48 +367,15 @@
   </attribute>
 </record>
 
+
 <record>
-  <attribute name="headline">HostDB 32 Released</attribute>
+  <attribute name="headline">SchistoDB 32 Released</attribute>
   <attribute name="date">19 Apr 2017 13:00</attribute>
-  <attribute name="tag">hostdb04_17_release</attribute>
+  <attribute name="tag">schistodb04_17_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of HostDB 32</strong></p>
-    
-    <h4>RNA Sequencing</h4>
-       <ul>
-           <li>
-            <a href="http://hostdb.org/hostdb/app/record/dataset/DS_13ae56d949">Transcriptomes of mouse macrophages infected with Leishmania mexicana</a> &mdash; 
-            Transcriptomes of uninfected Mus musculus bone marrow macrophages (BMDM) and 24h post-infection with Leishmania mexicana. 
-            <a href="http://www.ncbi.nlm.nih.gov/pubmed/26452044">Fiebig et al.</a>.  A corresponding <i>L. mexicana</i> data set is in TriTryDB &mdash; 
-            <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_10d28f3e4f">Promastigote, Axenic Amastigote and Intracellular Amastigote Transcriptomes</a>
-           </li>  
-       </ul><br>
-       
-      <section>
-
-         <aside>
-           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
-           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
-           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
-           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
-         </aside>
-      </section>
-
-    ]]>
-  </attribute>
-</record>
-
-
-<record>
-  <attribute name="headline">HostDB 31 Released</attribute>
-  <attribute name="date">08 Mar 2017 13:00</attribute>
-  <attribute name="tag">hostdb03_17_release</attribute>
-  <attribute name="category">release</attribute>
-  <attribute name="item">
-    <![CDATA[
-    <p><strong>We are pleased to announce the release of HostDB 31</strong></p>
+    <p><strong>We are pleased to announce the release of SchistoDB 32</strong></p>
       
       <section>
         <h3>No New data in this release</h3> 
@@ -503,6 +390,32 @@
     ]]>
   </attribute>
 </record>
+
+
+
+<record>
+  <attribute name="headline">SchistoDB 31 Released</attribute>
+  <attribute name="date">08 Mar 2017 13:00</attribute>
+  <attribute name="tag">schistodb03_17_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of SchistoDB 31</strong></p>
+      
+      <section>
+        <h3>No New data in this release</h3> 
+         <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+
+    ]]>
+  </attribute>
+</record>
+
 
 <record>
        <attribute name="headline">EuPathDB is Hiring</attribute>
@@ -948,13 +861,13 @@ Arial">Join our international team of 30+ software developers and biologists,
        </attribute>
     </record>
 <record>
-  <attribute name="headline">HostDB 30 Released</attribute>
+  <attribute name="headline">SchistoDB 30 Released</attribute>
   <attribute name="date">03 Feb 2017 13:00</attribute>
-  <attribute name="tag">hostdb02_17_release</attribute>
+  <attribute name="tag">schistodb02_17_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of HostDB 30</strong></p>
+    <p><strong>We are pleased to announce the release of SchistoDB 30</strong></p>
       
       <section>
         <h3>No New data in this release</h3> 
@@ -970,31 +883,32 @@ Arial">Join our international team of 30+ software developers and biologists,
   </attribute>
 </record>
 
+
 <record>
-  <attribute name="headline">HostDB 29 Released</attribute>
+  <attribute name="headline">SchistoDB 29 Released</attribute>
   <attribute name="date">13 Oct 2016 13:00</attribute>
-  <attribute name="tag">hostdb10_16_release</attribute>
+  <attribute name="tag">schistodb10_16_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of HostDB 29</strong></p>
+    <p><strong>We are pleased to announce the release of SchistoDB 29</strong></p>
 
     <section>
-    <h3>HostDB 29</h3>
-           HostDB 29 represents extensive efforts to improve navigation and data accessibility 
+    <h3>SchistoDB 29</h3>
+           SchistoDB 29 represents extensive efforts to improve navigation and data accessibility 
            on record pages, provide consistent verbiage and data categories, and improve presentation of alternative transcripts. 
            All data were refreshed to the latest version and genome analyses were rerun.
            <ul>
              <li>Here is some help information to get you started with our new features.<br>
-                 <a href="http://hostdb.org/documents/genePageTutorialGUS4.pdf">Gene Page Improvements</a> <br>
-                 <a href="http://hostdb.org/documents/SearchCatsTutorial_3.pdf">Search Category Improvements</a> <br>
-                 <a href="http://hostdb.org/documents/ExploreTranscripts.pdf">Explore Transcripts in Search Results</a><br>
+                 <a href="http://schistodb.org/documents/genePageTutorialGUS4.pdf">Gene Page Improvements</a> <br>
+                 <a href="http://schistodb.org/documents/SearchCatsTutorial_3.pdf">Search Category Improvements</a> <br>
+                 <a href="http://schistodb.org/documents/ExploreTranscripts.pdf">Explore Transcripts in Search Results</a><br>
                  <!--Workspaces<br>-->
              </li><br>
              <li>Send Us Your Feedback!<br>We can polish our new features based on your valuable feedback. Please use the site 
-             and <a href="http://beta.hostdb.org/hostdb.b28/contact.do">Contact Us</a> to tell us about your experience. 
+             and <a href="http://schistodb.net/schisto/contact.do">Contact Us</a> to tell us about your experience. 
               </li><br>
-             <li>Release 28 is Still Available - <br><a href="http://beta.hostdb.org/hostdb.b28/">HostDB 28</a> is available until we finalize our new features.</li><br>
+             <li>Release 28 is Still Available - <br><a href="http://r28.schistodb.net/schisto/">SchistoDB 28</a> is available until we finalize our new features.</li><br>
            </ul>
      </section>
       
@@ -1033,75 +947,30 @@ Arial">Join our international team of 30+ software developers and biologists,
            </ul>
         </section>   
 
-     <section>
-      <h3>New Data</h3>
-      <h4>Genome sequence and annotation is updated for the following genomes:</h4>
+      <section>
+      <h3>New data in this release</h3>
+      <h4>Annotation is updated for the following genome:</h4>
          <ul>
-          <li><i>Homo sapiens</i> REF</li>
-          <li><i>Mus musculus</i> C57CL6J</li>
+          <li><i>Schistosoma haematobium</i> Egypt</li>
          </ul>
-     </section>
-     <section>  
-      <h4>Transcriptomics</h4>
-        <ul>
-          <li>
-            <a href="http://hostdb.org/hostdb/app/record/dataset/DS_fcdd4f7a49">Transcriptome during infection with 29 strains of T. gondii</a> &mdash; 
-            Four transcriptomes were added to this data set for a total of 29 strains in this 
-            comparative transcriptome analysis of <i>Toxoplasma gondii</i> and the murine macrophages infected with them.
-            <a href="http://www.ncbi.nlm.nih.gov/pubmed/22847430">Minot et al.</a>.
-          </li>
-        </ul>
       </section>
-      
- 
-      <aside>
-        Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
-        Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
-        When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
-        When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
-      </aside>
-
     ]]>
   </attribute>
 </record>
 
 
 <record>
-  <attribute name="headline">HostDB 28 Released</attribute>
+  <attribute name="headline">SchistoDB 28 Released</attribute>
   <attribute name="date">30 Mar 2016 13:00</attribute>
-  <attribute name="tag">hostdb03_16_release</attribute>
+  <attribute name="tag">schistodb03_16_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of HostDB 28</strong></p>
+    <p><strong>We are pleased to announce the release of SchistoDB 28</strong></p>
 
     <section>
-     <h3>Updated Data sets</h3>
-      
-      <section>
-      <h4>Proteomics</h4>
-          <aside>
-          The following data sets were reloaded at the request of the data provider (J. Wastling) because the data analysis was significantly improved 
-          by applying multiple search engines. The new analysis produced more peptide/protein identifications and more reliable quantitation.
-          </aside>
-          
-          <ul>
-          <li>
-            <a href="http://hostdb.org/hostdb/app/record/dataset/DS_08fe07cd15">
-             Quantitative Proteome During an Infection with 4 strains of T. gondii and one strain of <i>N. caninum</i></a> &mdash; 
-                   <i>H. sapiens</i> peptide sequences from a proteomic analysis of mixed parasite/host samples
-                   collected during time course infections with 4 different strains of <i>T. gondii</i>. Wastling and Xia, unpublished
-          </li>
-          <li>
-            <a href="http://hostdb.org/hostdb/app/record/dataset/DS_70b01a66ee">
-             Proteome During Infection with 4 strains of <i>T. gondii</i> and one strain of <i>N. caninum</i> </a> &mdash; 
-                   <i>H. sapiens</i> peptide sequences from a proteomic analysis of a mixed parasite/host sample
-      collected during <i>T. gondii</i> infections in human foreskin fibroblasts. Wastling and Xia, unpublished
-          </li>
-      </section>
-     
-      
- 
+      <h3>No new data or functionalities in this release</h3>
+
       <aside>
         Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
         Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
@@ -1116,13 +985,13 @@ Arial">Join our international team of 30+ software developers and biologists,
 
 
 <record>
-  <attribute name="headline">HostDB 27 Released</attribute>
+  <attribute name="headline">SchistoDB 27 Released</attribute>
   <attribute name="date">19 Feb 2016 13:00</attribute>
-  <attribute name="tag">hostdb02_16_release</attribute>
+  <attribute name="tag">schistodb02_16_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of HostDB 27</strong></p>
+    <p><strong>We are pleased to announce the release of SchistoDB 27</strong></p>
 
     <section>
      <h3>New Features</h3>
@@ -1158,18 +1027,17 @@ Arial">Join our international team of 30+ software developers and biologists,
 </record>
 
 
-
 <record>
-  <attribute name="headline">HostDB 26 Released</attribute>
+  <attribute name="headline">SchistoDB 26 Released</attribute>
   <attribute name="date">15 Oct 2015 13:00</attribute>
-  <attribute name="tag">hostdb10_15_release</attribute>
+  <attribute name="tag">schistodb10_15_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of HostDB 26</strong></p>
+    <p><strong>We are pleased to announce the release of SchistoDB 26</strong></p>
 
     <section>
-            <h3>New Features</h3>
+      <h3>New Features</h3>
       
       <section>
        <h4>GBrowse Track Search </h4>
@@ -1225,13 +1093,13 @@ Arial">Join our international team of 30+ software developers and biologists,
 </record>
 
 <record>
-  <attribute name="headline">HostDB 25 Released</attribute>
+  <attribute name="headline">SchistoDB 25 Released</attribute>
   <attribute name="date">23 July 2015 13:00</attribute>
-  <attribute name="tag">hostdb7_15_release</attribute>
+  <attribute name="tag">schistodb7_15_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of HostDB 25</strong></p>
+    <p><strong>We are pleased to announce the release of SchistoDB 25</strong></p>
 
     <section>
       <h3>No new data or functionalities in this release</h3>
@@ -1248,558 +1116,49 @@ Arial">Join our international team of 30+ software developers and biologists,
   </attribute>
 </record>
 
-
-
-
 <record>
-       <attribute name="headline">HostDB 24 Released</attribute>
+       <attribute name="headline">SchistoDB 24 Released</attribute>
        <attribute name="date">13 April 2015 13:00</attribute>
-       <attribute name="tag">hostdb4_15_release</attribute>
+       <attribute name="tag">schistodb4_15_release</attribute>
        <attribute name="category">release</attribute>
        <attribute name="item">
            
          <![CDATA[
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta content="text/html; charset=windows-1252" http-equiv="content-type">
-    <title>hostdb_4_15_news</title>
-  </head>
-  <body>
-    <p> </p>
-    <p> </p>
-    <p> </p>
-    <p> </p>
-    <p><span style="font-family: Helvetica,Arial,sans-serif;"> </span> </p>
-    <div style="margin-left: 40px;"><span style="font-family: Helvetica,Arial,sans-serif;"><strong>We
-          are pleased to announce the release of HostDB 24</strong><span style="font-weight: bold;"></span><br>
-      </span> <span style="font-style: italic;"><span style="font-family: Helvetica,Arial,sans-serif;"><br>
-          All EuPathDB release numbers have been synchronized to help us more
-          efficiently manage our expanding number of databases.&nbsp; As of this
-          release all EuPathDB resource release numbers have been set to release
-          24.&nbsp; Subsequent version numbers will increase by one with each
-          release.&nbsp; For information about individual dataset version
-          numbers see the Data Sets page. </span></span><br>
-      <div style="text-align: center;"> </div>
-      <table style="width: 365px; height: 72px; text-align: left; margin-left: auto; margin-right: auto;"
-        border="0">
-        <tbody>
-          <tr>
-            <td style="margin-left: 185px; width: 188px; height: 23px; background-color: #cccccc; text-align: center;"><span
-                style="font-size:11.0pt;line-height:107%;font-family:Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">EuPathDB<br>
-                Resource</span></td>
-            <td style="width: 188px; height: 23px; background-color: #cccccc; text-align: center;"><span
-                style="font-size:11.0pt;line-height:107%;font-family:Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA"><span
-                  style="font-size:11.0pt;line-height:107%;font-family:Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">Jan
-                  2015<br>
-                </span>Version #<br>
-              </span></td>
-            <td style="width: 188px; height: 23px; background-color: #cccccc; text-align: center;">
-              <span style="font-size:11.0pt;line-height:107%;font-family:
-Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA"><span
-                  style="font-size:11.0pt;line-height:107%;font-family:Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">April
-                  2015<br>
-                </span>Version #</span> </td>
-          </tr>
-          <tr>
-            <td style="width: 188px; height: 24px; background-color: #cccccc; text-align: center;">HostDB</td>
-            <td style="width: 188px; height: 24px; background-color: #cccccc; text-align: center;">2.2</td>
-            <td style="width: 188px; height: 24px; background-color: #cccccc; text-align: center;">24</td>
-          </tr>
-        </tbody>
-      </table>
-      <o:p><strong>New Features:</strong></o:p><strong> </strong><span style="font-family: Helvetica,Arial,sans-serif;"></span><span
-        style="font-family: Helvetica,Arial,sans-serif;"><em></em></span>
-      <p class="MsoNoSpacing"><span style="font-family: Helvetica,Arial,sans-serif;">
-          <em style="text-decoration: underline;">Help us improve our Data Set
-            page</em>: The dataset page includes information about all datasets
-          loaded into our resources including, release and date loaded, name of
-          the provider, links to searches and data visualization, etc... Take a
-          look at the beta version of our dataset page (access it from the data
-          summary menu item at the top of our web pages) and let us know what
-          you think.<br>
-        </span> </p>
-    </div>
-    <div style="text-align: justify;"> </div>
-    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><br>
-      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-style: italic;"><span
-            style="font-style: italic;"><span
-              style="text-decoration: underline;">Note:</span>
-            Our bimonthly database releases incorporate new data and correct old
-            data when necessary.&nbsp; Changes in annotation and new
-            experimental data may slightly alter your search results by
-            increasing or decreasing the number of hits. When search parameters
-            change with a new release, we invalidate (<span style="color: red;">Ø</span>)
-            the search and ask you to rerun it. When IDs are updated or removed,
-            we map the old IDs to the new ones, remove the old IDs from your
-            Basket, and leave your Favorites page alone.</span></span><br>
-      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold;"><span
-            style="font-style: italic;"></span></span></span>
-      <p><span style="font-family: Helvetica,Arial,sans-serif;"><em><strong>Follow</strong></em>
-          <span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
-              on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
-            style="font-weight: bold; font-style: italic;">,
-            <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="http://www.youtube.com/user/EuPathDB">YouTube</a></span></span></p>
-    </div>
-    <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold; font-style: italic;"></span></span>
-    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
-    <div style="text-align: justify;"> </div>
-    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
-    <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><span
-          style="font-weight: bold; font-style: italic;"></span><span
-          style="font-weight: bold; font-style: italic;"></span></span></div>
-    <span style="font-family: Helvetica,Arial,sans-serif;"> </span>
-  </body>
-</html>
+We are pleased to announce the release of SchistoDB in collaboration with the EuPathDB resources.  This first release includes the genome sequence and annotation 
+of <i>Schistosoma haematobium</i> Egypt and the assembled genome sequence of <i>Schistosoma japonicum</i> Anhui and <i>Schistosoma mansoni</i> Puerto Rico.  
+Additional information about these genomes is available in the <a href="/a/getDataset.do?display=detail#Genomes%20and%20Annotation">dataset section</a> of SchistoDB.  
+We look forward to working with you as we integrate additional genomes and functional data over the coming years.
+          ]]>
+       </attribute>
+    </record>
 
-          ]]>
-       </attribute>
-    </record>
-<record>
-       <attribute name="headline">Letter to the EuPathDB Community</attribute>
-       <attribute name="date">19 February 2015 13:00</attribute>
-       <attribute name="tag">comm_lett</attribute>
-       <attribute name="category">letter</attribute>
-       <attribute name="item">
-           
+ <record>
+
+       <attribute name="headline">
          <![CDATA[
-<body>
-    <p>Dear colleagues -<br>
-      <br>
-      We are writing to provide an update on the Eukaryotic Pathogen Genomics
-      Resource (<a href="http://EuPathDB.org">EuPathDB.org</a>), which many
-      hundreds of laboratories wrote to support in connection with our
-      application for renewal as an NIH Bioinformatics Resource Center for
-      Infectious Diseases.&nbsp; We are pleased to report that the EuPathDB
-      contract has now been renewed.<br>
-      <br>
-      In addition to continuing to integrate the ever-increasing volume of
-      Omic-scale datasets available for microbial eukaryotes, new
-      functionalities anticipated over the coming months include:</p>
-    <ul>
-      <li>full integration of FungiDB into the EuPathDB family of databases</li>
-      <li>reorganization of EuPathDB record pages, so as to improve
-        navigability, better accommodate curated annotation (when available),
-        represent alternative transcripts, summarize functional genomic results,
-        etc</li>
-      <li>better representation of experimental metadata, including phenotyping
-        and clinical/field results</li>
-      <li>enhanced functionality of the host response database (<a href="http://HostDB.org">HostDB.org</a>)</li>
-      <li>improved handling of metabolic pathways, including incorporation of
-        metabolomic datasets</li>
-      <li>better support for orthology-based queries and cross-species inference</li>
-      <li>implementation of workspaces enabling users to upload and analyze
-        their own data (e.g. RNA-seq results)</li>
-    </ul>
-    <p><br>
-      The scope of this renewal extends beyond our previous mandate, which
-      officially covered only biosecurity threats (Cryptosporidium, Entamoeba,
-      Giardia, Toxoplasma, etc) and reemerging pathogens (e.g.
-      Plasmodium).&nbsp; This makes it easier for us to leverage EuPathDB
-      infrastructure in support of the kinetoplastida, oomycetes, fungi, and
-      other microbial eukaryotes, including both pathogenic and non-pathogenic
-      species.<br>
-      <br>
-      The scale of the EuPathDB award from NIH does not provide adequate funding
-      for full support of the TriTrypDB or FungiDB projects (unfortunately) ...
-      but the Wellcome Trust has agreed to consider an application covering
-      these initiatives, augmenting our existing award for kinetoplastid
-      resources.&nbsp; We will be contacting users of these databases shortly
-      for their support.<br>
-      <br>
-      As always, we look forward to feedback from database users, via the
-      'Contact Us' link on all EuPathDB web sites, face-to-face discussions at
-      major meetings, etc.<br>
-      <br>
-      Brian P. Brunk -- EuPathDB Senior Project Manager<br>
-      Christiane Hertz-Fowler -- Kinetoplastid Resources PI (on behalf of UK
-      co-PIs)<br>
-      Omar S. Harb -- EuPathDB Scientific Outreach Manager<br>
-      Jessica C. Kissinger -- EuPathDB joint-PI<br>
-      David S. Roos -- EuPathDB joint-PI, Kinetoplastid Resources co-PI, FungiDB
-      co-PI<br>
-      Jason E. Stajich -- FungiDB co-PI<br>
-      Christian J. Stoeckert -- EuPathDB co-PI</p>
-  </body>
-          ]]>
+         Beta SchistoDB 3.0 is released with three species, Schistosoma mansoni, S. japonicum, S. haematobium
+         ]]>
        </attribute>
-    </record>
-<record>
-       <attribute name="headline">HostDB 2.2 Released</attribute>
-       <attribute name="date">22 December 2014 13:00</attribute>
-       <attribute name="tag">host12_14_news</attribute>
+       <attribute name="date">01 July 2012 00:00</attribute>
+       <attribute name="tag">01July2012Release3.0</attribute>
        <attribute name="category">release</attribute>
-       <attribute name="item">
+       <attribute name="item">           
          <![CDATA[
- <body>
-    <div style="text-align: justify;"><strong>We are pleased to announce the
-        release of HostDB 2.3</strong><br>
-      <p class="MsoNoSpacing"><b style="mso-bidi-font-weight:normal">New data in
-          this release:<o:p></o:p></b></p>
-      <p class="MsoNoSpacing">The data set title below links to a full
-        description and list of associated searches and GBrowse tracks.</p>
-      <p class="MsoNoSpacing"><o:p>&nbsp;</o:p></p>
-      <p class="MsoNoSpacing" style="margin-left:.25in"><b style="mso-bidi-font-weight:
-normal">Proteomics:<o:p></o:p></b></p>
-      <p class="MsoNoSpacing" style="margin-left:.5in;text-indent:-.25in"><a href="/a/getDataset.do?datasets=hsapREF_massSpec_Lasonder_Schizont_Phosphoproteome_RSRC">Erythrocyte
-          <span class="SpellE">Phosphoproteome</span> during infection with P. <span
-            class="SpellE">fal</span>
-          3D7 <span class="SpellE">schizonts</span> (2012) (Lasonder et al.)</a>
-        - <span class="SpellE">Phosphoproteomic</span> analysis of <i style="mso-bidi-font-style:normal">Homo
-          sapiens</i> <span class="SpellE">erythocytes</span> harvested during
-        the schizont stage of a <i style="mso-bidi-font-style:normal">Plasmodium
-falciparum
-          3D7</i> infection.</p>
-      <p class="MsoNoSpacing"><o:p>&nbsp;</o:p></p>
-      <p class="MsoPlainText"><b style="mso-bidi-font-weight:normal">Improvements
-          and updates:<o:p></o:p></b></p>
-      <p class="MsoPlainText" style="margin-left:.5in;text-indent:-.25in">BLAST
-        was updated to the latest NCBI version 2.2.30. </p>
-      <p class="MsoPlainText" style="margin-left:.5in;text-indent:-.25in">GBrowse
-performance
-        is improved following EuPathDB infrastructure changes.</p>
-      <div style="margin-left: 40px;"><span style="font-family: Helvetica,Arial,sans-serif;">
-        </span> <span style="font-family: Helvetica,Arial,sans-serif;"><em></em><br>
-        </span> </div>
-      <div style="text-align: justify;"> </div>
-      <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><br>
-        </span> <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-style: italic;"><span
-              style="font-style: italic;"><span
-                style="text-decoration: underline;">Note:</span>
-              Our bimonthly database releases incorporate new data and correct
-              old data when necessary.&nbsp; Changes in annotation and new
-              experimental data may slightly alter your search results by
-              increasing or decreasing the number of hits. When search
-              parameters change with a new release, we invalidate (<span style="color: red;">Ø</span>)
-              the search and ask you to rerun it. When IDs are updated or
-              removed, we map the old IDs to the new ones, remove the old IDs
-              from your Basket, and leave your Favorites page alone.</span></span><br>
-        </span> <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold;"><span
-              style="font-style: italic;"></span></span></span>
-        <p><span style="font-family: Helvetica,Arial,sans-serif;"><em><strong>Follow</strong></em>
-            <span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
-                on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
-              style="font-weight: bold; font-style: italic;">,
-              <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="http://www.youtube.com/user/EuPathDB">YouTube</a></span></span></p>
-      </div>
-      <span style="font-weight: bold; font-style: italic;"></span></div>
-    <div style="text-align: justify;"><span style="font-weight: bold; font-style: italic;"></span></div>
-    
-  </body>
-          ]]>
-       </attribute>
-</record>
-<record>
-       <attribute name="headline">HostDB 2.1 Released</attribute>
-       <attribute name="date">10 September 2014 13:00</attribute>
-       <attribute name="tag">host9_14_news</attribute>
-       <attribute name="category">release</attribute>
-       <attribute name="item">
-         <![CDATA[
- <body>
-    <div style="text-align: justify;"><strong>We are pleased to announce the
-        release of HostDB 2.1</strong><br>
-      <br>
-      <ul style="text-align: justify;">
-        <li><span style="font-family: Helvetica,Arial,sans-serif;"><strong style="color: #666666;">Two
-              new data types with searches have been added in this release:</strong>
-            compounds and metabolic pathways.&nbsp; This beta-release of
-            Compound and Metabolic Pathways data sets incorporates KEGG pathways
-            and a subset of PubChem records. Future releases will include
-            compounds for additional metabolites and small molecules, and
-            pathways from other sources such as MPMP, MetaCyc, etc. Please
-            explore the site and contact us with your feedback. </span></li>
-      </ul>
-      <span style="font-family: Helvetica,Arial,sans-serif;"><br>
-      </span>
-      <ul style="text-align: justify;">
-        <ul>
-          <li><span style="font-family: Helvetica,Arial,sans-serif;"><span style=" mso-bidi-font-weight:normal">Metabolic
-                Pathways may be searched based on </span><b style=" mso-bidi-font-weight:normal"><a
-                  href="/a/showQuestion.do?questionFullName=PathwayQuestions.PathwaysByPathwayID">pathway
-                  Name/ID</a></b><span style=" mso-bidi-font-weight:normal">, </span><b
-                style=" mso-bidi-font-weight:normal"><a
-                  href="/a/showQuestion.do?questionFullName=PathwayQuestions.PathwaysByGeneList">genes</a></b><span
-                style=" mso-bidi-font-weight:normal">,
-                or</span><b style=" mso-bidi-font-weight:normal"> <a href="/a/showQuestion.do?questionFullName=PathwayQuestions.PathwaysByCompounds">compounds</a></b><span
-                style=" mso-bidi-font-weight:normal">.</span></span></li>
-        </ul>
-      </ul>
-      <span style="font-family: Helvetica,Arial,sans-serif;"><span style="  mso-bidi-font-weight:normal"><br>
-        </span></span> <span style="font-family: Helvetica,Arial,sans-serif;"><span
-          style="  mso-bidi-font-weight:normal"></span></span>
-      <ul style="text-align: justify;">
-        <ul>
-          <li><span style="font-family: Helvetica,Arial,sans-serif;"><span style="  mso-bidi-font-weight:normal">Compounds
-                may be searched based on </span><a href="/a/showQuestion.do?questionFullName=CompoundQuestions.CompoundsByCompoundID"><b
-                  style="  mso-bidi-font-weight:normal">compound
-                  ID</b></a><span style="  mso-bidi-font-weight:normal">, </span><a
-                href="/a/showQuestion.do?questionFullName=CompoundQuestions.CompoundsByTextSearch"><b
-                  style="  mso-bidi-font-weight:normal">text
-                  (synonym, InChI, etc.)</b></a><span style="  mso-bidi-font-weight:normal">,</span><b
-                style="  mso-bidi-font-weight:normal">
-                <a href="/a/showQuestion.do?questionFullName=CompoundQuestions.CompoundsByEcReaction">enzymes</a></b><span
-                style="  mso-bidi-font-weight:normal">,</span><b
-                style="  mso-bidi-font-weight:normal">
-                <a href="/a/showQuestion.do?questionFullName=CompoundQuestions.CompoundsByPathway">metabolic
-                  pathway</a></b><span style="  mso-bidi-font-weight:normal">,</span><b
-                style="  mso-bidi-font-weight:normal">
-                <a href="/a/showQuestion.do?questionFullName=CompoundQuestions.CompoundsByMolecularFormula">molecular
-                  formula</a></b><span style="  mso-bidi-font-weight:normal"><span
-                  style="font-weight: bold;">
-                </span>or<span style="font-weight: bold;"> </span></span><b style="  mso-bidi-font-weight:normal"><a
-                  href="/a/showQuestion.do?questionFullName=CompoundQuestions.CompoundsByMolecularWeight">molecular
-                  weight</a>.</b><span style="  mso-bidi-font-weight:normal"></span></span></li>
-        </ul>
-      </ul>
-      <p style="text-align: justify;" class="MsoNormal"><span style="font-family: Helvetica,Arial,sans-serif;"><b
-            style="mso-bidi-font-weight:normal"><br>
-          </b></span></p>
-      <span style="font-family: Helvetica,Arial,sans-serif;"><br>
-      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><strong>New
-          features:</strong><br>
-      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
-      </span>
-      <ul>
-        <li><span style="font-family: Helvetica,Arial,sans-serif;"><strong style="color: #666666;">Results
-              analysis tools:&nbsp; </strong><span style="color: #020302;">results
-              of any searches can now be analyzed for statistical enrichment or
-              Gene Ontology (GO) terms, metabolic pathways or gene product text
-              terms. <strong><a href="/a/analysisTools.jsp">A detailed
-                  description of this new functionality and a video tutorial are
-                  also available</a></strong>.</span></span></li>
-      </ul>
-      <span style="font-family: Helvetica,Arial,sans-serif;"><span style=" color: #020302;">
-        </span></span>
-      <blockquote> </blockquote>
-      <span style="font-family: Helvetica,Arial,sans-serif;"><br>
-      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold;">New
-          Tutorials:</span><br>
-      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
-      </span> <span style="font-family: Helvetica,Arial,sans-serif;"><a href="http://youtube.com/eupathdb"><br>
-        </a></span>
-      <div style="margin-left: 40px;"><span style="font-family: Helvetica,Arial,sans-serif;"><strong><a
-              href="http://youtu.be/npgkkychkrI">Learn how
-                  to use the Results Analysis tool</span></span></a>.&nbsp; </strong><br>
-        </span> </div>
-      <div style="margin-left: 40px;"> <span style="font-family: Helvetica,Arial,sans-serif;"><br>
-        </span> <span style="font-family: Helvetica,Arial,sans-serif;"><em></em><br>
-        </span> </div>
-      <div style="text-align: justify;"> </div>
-      <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><br>
-        </span> <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-style: italic;"><span
-              style="font-style: italic;"><span
-                style="text-decoration: underline;">Note:</span>
-              Our bimonthly database releases incorporate new data and correct
-              old data when necessary.&nbsp; Changes in annotation and new
-              experimental data may slightly alter your search results by
-              increasing or decreasing the number of hits. When search
-              parameters change with a new release, we invalidate (<span style="color: red;">Ø</span>)
-              the search and ask you to rerun it. When IDs are updated or
-              removed, we map the old IDs to the new ones, remove the old IDs
-              from your Basket, and leave your Favorites page alone.</span></span><br>
-        </span> <span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold;"><span
-              style="font-style: italic;"></span></span></span>
-        <p><span style="font-family: Helvetica,Arial,sans-serif;"><em><strong>Follow</strong></em>
-            <span style="font-weight: bold;"><span style="font-style: italic;">EuPathDB
-                on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
-              style="font-weight: bold; font-style: italic;">,
-              <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="http://www.youtube.com/user/EuPathDB">YouTube</a></span></span></p>
-      </div>
-      <span style="font-weight: bold; font-style: italic;"></span></div>
-    <div style="text-align: justify;"><span style="font-weight: bold; font-style: italic;"></span></div>
-  </body>
-          ]]>
-       </attribute>
-</record>
 
-<record>
-       <attribute name="headline">HostDB in Beta Released</attribute>
-       <attribute name="date">30 September 2013 13:00</attribute>
-       <attribute name="tag">host1_14_news</attribute>
-       <attribute name="category">release</attribute>
-       <attribute name="item">
-         <![CDATA[
- <body>
-    <p><strong>We are pleased to announce a beta release of HostDB</strong></p>
-    <p><br>
-      <strong></strong></p>
-    <p>HostDB is the newest addition to the Eukaryotic Pathogen databases (<strong><a
-          href="http://eupathdb.org">EuPathDB</a></strong>).&nbsp;
-      Apply the powerful search strategy system to query functional data from host organisms during infection with parasites.&nbsp; The beta release includes the
-      following datasets:</p>
-    <p><br>
-    </p>
-    <ul>
-      <li>The transcriptomes of primary murine macrophages (<em>M. musculus</em>
-        C57BL6J) during infection with 25 strains of <em>Toxoplasma gondii</em>
-        (<strong><a href="http://www.ncbi.nlm.nih.gov/pubmed/22847430">Minot <em>et
-              al.</em></a></strong>).&nbsp; For full attribution and available
-        searches please visit the <strong><a href="http://hostdb.org/hostdb/getDataset.do?question=GeneQuestions.GenesByRNASeqmmusC57BL6J_Saeij_Jeroen_25_strains_rnaSeq_RSRC&amp;display=detail#3">Dataset
-            details</a></strong>.&nbsp; </li>
-    </ul>
-    <br>
-    <ul>
-      <li>Proteomic analysis of Homo Sapiens during infection with 4 <em>Toxoplasma
-          gondii </em>(GT1, ME49, RH and VEG) strains graciously provided prepublication by
-        the Johnathan Wastling group (University of Liverpool).&nbsp; For full
-        attribution and available searches please visit the <strong><a href="http://hostdb.org/hostdb/getDataset.do?question=GeneQuestions.GenesByProteomicshsapREF_quantitativeMassSpec_Wastling_Tgondii_Infection_timecourse_RSRC&amp;display=detail#5">Dataset
-            details</a></strong>. This data was generated as part of one of the
-        EuPathDB-funded driving biological projects.</li>
-    </ul>
-    <br>
-    <p>We look forward to expanding this database in data content and
-      functionality.&nbsp; We encourage you to explore <strong><a href="http://hostdb.org">HostDB</a></strong>
-      and provide us with your <a href="mailto:help@hostdb.org"><strong>feedback</strong></a>.&nbsp;
-      </p>
-    <p><br>
-    </p>
-    <p><em><strong>Follow</strong></em> <span style="font-weight: bold;"><span
-          style="font-style: italic;">EuPathDB
-          on <a href="https://www.facebook.com/pages/EuPathDB/133123003429972">FaceBook</a></span></span><span
-        style="font-weight: bold; font-style: italic;">,
-        <a href="http://twitter.com/eupathdb">Twitter</a>, and <a href="http://www.youtube.com/user/EuPathDB">YouTube</a></span></p>
-  </body>
-          ]]>
-       </attribute>
-</record>
+We are pleased to announce that the beta SchistoDB is now available at <a href="http://beta.schistodb.net/">beta.schistodb.net</a>.  SchistoDB is supported by ApiDB/EuPathDB (<a href="http://eupathdb.org">www.eupathdb.org</a>).
+<br><br>
+  Please send a message to the support team from the link at the bottom of the SchistoDB web page (<a href="http://beta.schistodb.net/schistodb/help.jsp"  target="_blank">Contact Us!</a>).
+<br><br>
+SchistoDB, like the other ApiDB/EuPathDB sites, offers researchers a plethora of  tools for genomic data mining.  In addition to BLAST and pattern/motif similarity searches, users can identify these three schistosoma species' genes by genomic position; common name or keyword; gene attributes such as gene type and exon number; physical characteristics of predicted proteins such as molecular weight and secondary structure;  predicted function from Gene Ontology and EC enzyme number annotation;  and cellular location.  In addition, SchistoDB contains pre-computed phylogenetic trees for proteins with homologues in other eukaryotic genomes.
+<br><br>
+Regards,
+<br>
+The SchistoDB team
 
-<record>
-       <attribute name="headline">EuPathDB Annual Workshop</attribute>
-       <attribute name="date">14 January 2014 15:00</attribute>
-       <attribute name="tag">eupathworkshop2014</attribute>
-       <attribute name="category">workshop</attribute>
-       <attribute name="item">
-           
-         <![CDATA[
- <body>
-    <p>We are pleased to announce the 9th annual EuPathDB workshop to be held in
-      Athens, Georgia, USA from June 15 to Wednesday, June 18, 2014.&nbsp;&nbsp;
-      <br>
-      <br>
-      Please note that the workshop expenses, in addition to room and board
-      costs are covered by EuPathDB (see cost and fees section below).&nbsp; <br>
-      <br>
-      Come learn how to effectively use EuPathDB resources and mine available
-      data to help guide your research.<br>
-      <br>
-      For more information and to apply, please visit:
-      http://workshop.eupathdb.org/current/<br>
-      <br>
-      The workshop will cover all of our component databases (EuPathDB,
-      AmoebaDB, CryptoDB, GiardiaDB, MicrosporidiaDB, PlasmoDB, PiroplasmaDB,
-      ToxoDB, TrichDB, TriTrypDB and OrthoMCL), and will run from 6:00PM (18:00)
-      on Sunday, June 15 to 5:00PM (17:00) on Wednesday, June 18, 2014.<br>
-      <br>
-      The application deadline is February 28, 2014 and the course is limited to
-      30 participants.<br>
-      <br>
-      <em><strong>Who should apply:</strong></em>&nbsp; This workshop is
-      intended to be a 3 day thorough and intensive introduction to database
-      resources that are part of the EuPathDB.org Bioinformatics Resource Center
-      (EuPathDB, AmoebaDB, CryptoDB, GiardiaDB, MicrosporidiaDB, PlasmoDB,
-      PiroplasmaDB, ToxoDB, TrichDB, TriTrypDB and OrthoMCL). The ideal
-      candidate would have a need to become an expert user of one or more of
-      these database resources and presumably has a bioinformatics research
-      problem that they might work on as part of their training while attending
-      the course. Preference will be given to applicants that are in a position
-      to benefit most from intensive training and that are in a position to
-      return to their home institution and transfer their newly acquired
-      knowledge to others. Evaluation of the applications will focus heavily on
-      your responses to the questions asked on the application page and on
-      letters of recommendation.<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
-      <strong><em>Costs and Fees:</em> </strong>The course is free. Housing
-      (double occupancy), all training materials and lunches are covered.
-      Attendees are expected to provide their own transportation to the course
-      and pay for a few of their meals. Letters of acceptance will be mailed
-      early to facilitate the solicitation of outside travel funds.<br>
-      <br>
-      Hotel room charges for a shared room will be paid by EuPathDB for the
-      nights of June 15 through June 18. Attendees who would like to have a
-      private room will need to pay the difference of $47 per night plus
-      tax.&nbsp;&nbsp;&nbsp; <br>
-      <br>
-      For more information and to apply, please visit:
-      http://workshop.eupathdb.org/current/<br>
-      <br>
-      If you have any questions or concerns please email help@eupathdb.org<br>
-      <br>
-      &nbsp;&nbsp;&nbsp; <br>
-      <br>
-      &nbsp; </p>
-  </body>
+
           ]]>
        </attribute>
     </record>
-
-<record>
-       <attribute name="headline">EuPathDB Annual Workshop</attribute>
-       <attribute name="date">20 January 2013 15:00</attribute>
-       <attribute name="tag">eupathworkshop</attribute>
-       <attribute name="category">workshop</attribute>
-       <attribute name="item">
-           
-         <![CDATA[
- <body> 
-    <p align="justify">We are pleased to announce the 8th annual EuPathDB
-      workshop to be held in Athens, Georgia, USA from June 2-5, 2013.   <br />
-      <br />
-      Please note that the workshop expenses, in addition to room and board
-      costs are covered by EuPathDB (see cost and fees section below).  <br />
-      <br />
-      Come learn how to effectively use EuPathDB resources and mine available
-      data to help guide your research.<br />
-      <br />
-      <b><a href="http://workshop.eupathdb.org/current/">For more information
-          and to apply, please visit: http://workshop.eupathdb.org/current/</a></b><br />
-      <br />
-      The workshop will cover all of our component databases (EuPathDB,
-      AmoebaDB, CryptoDB, GiardiaDB, MicrosporidiaDB, PlasmoDB, PiroplasmaDB,
-      ToxoDB, TrichDB, TriTrypDB and OrthoMCL), and will run from 6:00PM (18:00)
-      on Sunday, June 2 to 5:00PM (17:00) on Wednesday, June 5, 2013.<br />
-      <br />
-      The application deadline is February 18, 2013 and the course is limited to
-      30 participants.<br />
-      <br />
-      Who should apply:  This workshop is intended to be a 3 day thorough and
-      intensive introduction to database resources that are part of the
-      EuPathDB.org Bioinformatics Resource Center (EuPathDB, AmoebaDB, CryptoDB,
-      GiardiaDB, MicrosporidiaDB, PlasmoDB, PiroplasmaDB, ToxoDB, TrichDB,
-      TriTrypDB and OrthoMCL). The ideal candidate would have a need to become
-      an expert user of one or more of these database resources and presumably
-      has a bioinformatics research problem that they might work on as part of
-      their training while attending the course. Preference will be given to
-      applicants that are in a position to benefit most from intensive training
-      and that are in a position to return to their home institution and
-      transfer their newly acquired knowledge to others. Evaluation of the
-      applications will focus heavily on your responses to the questions asked
-      on the application page and on letters of recommendation.<br />
-      <br />
-      Costs and Fees: The course is free. Housing, all training materials and
-      most meals are covered. Attendees are expected to provide their own
-      transportation to the course and pay for a few of their meals. No travel
-      funds are available. Letters of acceptance will be mailed early to
-      facilitate the solicitation of outside travel funds. Hotel room charges
-      will be paid by EuPathDB from June 2 through 11:00am June 6 (Note: course
-      ends at 5PM on June 5). Participants traveling from abroad may be able to
-      arrive a day early or stay a day late as needed to accommodate travel
-      arrangements.<br />
-      <br />
-      For more information and to apply, please visit: <b><a href="http://workshop.eupathdb.org/current/">http://workshop.eupathdb.org/current/</a></b><br />
-      <br />
-      If you have any questions or concerns please email <strong><a href="mailto:help@eupathdb.org">help@eupathdb.org</a></strong><br />
-    </p>
-  </body>
-          ]]>
-       </attribute>
-    </record>
-
-
-
-
-
-
 
 
 </xmlAnswer>
