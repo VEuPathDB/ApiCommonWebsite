@@ -95,10 +95,10 @@
        
        <h4>RNA Sequence</h4>
            <ul>
-            <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_40a06f276b">Transcriptome of <i>P cynomolgi</i> during 100-day infection in <i>M mulatta</i></a> &ndash; 
-              <i>P. cynomolgi</i> transcriptome of whole blood and bone marrow collected during 100-day infection of <i>M mulatta</i>.
+            <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_c35d971a20">Transcriptome of <i>P. cynomolgi</i> during 100-day infection in <i>M. mulatta</i></a> &ndash; 
+              <i>P. cynomolgi</i> transcriptome of whole blood and bone marrow collected during 100-day infection of <i>M. mulatta</i>.
               <a href="http://www.ncbi.nlm.nih.gov/pubmed/27590312">Joyner et al.</a> This data set has corresponding host data in HostDB called: 
-              <a href="http://hostdb.org/hostdb/app/record/dataset/DS_4585d065bf"><i>M mulatta</i> infected with <i>P cynomolgi</i> over 100 days</a>.
+              <a href="http://hostdb.org/hostdb/app/record/dataset/DS_4585d065bf" target="_blank"><i>M. mulatta</i> infected with <i>P. cynomolgi</i> over 100 days</a>.
               </li>
            </ul>
        
