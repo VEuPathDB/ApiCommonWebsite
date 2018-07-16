@@ -31,19 +31,19 @@
         <h4>Genome Sequence and Annotation: these annotated genomes appear for the first time in FungiDB.</h4>
            <ul>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_41e884fe46"><i>Cryptococcus gattii</i> EJB2</a> &ndash;  
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26330512">Farrer et al.</a>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26330512">Farrer et al. 2015</a>.
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_54fda600a6"><i>Fusarium oxysporum</i> f. sp. melonis 26406</a> &ndash; 
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/25081257">Ma et al.</a>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/25081257">Ma et al. 2014</a>.
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_95bd58312f"><i>Fusarium oxysporum</i> f. sp. cubense race 1</a> &ndash; 
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/24743270">Guo et al.</a>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/24743270">Guo et al. 2014</a>.
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_8671b6f798"><i>Fusarium oxysporum</i> f. sp. cubense race 4</a> &ndash; 
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/24743270">Guo et al.</a>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/24743270">Guo et al. 2014</a>.
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_6dfb70288f"><i>Histoplasma capsulatum</i> H143</a> &ndash; 
-                 <a href="http://www.ncbi.nlm.nih.gov/bioproject/PRJNA29161">NCBI BioProject PRJNA29161</a>
+                 <a href="http://www.ncbi.nlm.nih.gov/bioproject/PRJNA29161">NCBI BioProject PRJNA29161</a>.
              </li>
            </ul>
            <br>
@@ -51,13 +51,13 @@
         <h4>Genome Sequence and Annotation: updated genomes</h4>
            <ul>   
            <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_339f68fa2f"><i>Aspergillus campestris</i> IBT 28561</a> &ndash;
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/29317534">Kj&aelig;rb&oslash;lling et al.</a>.
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/29317534">Kj&aelig;rb&oslash;lling et al. 2018</a>.
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_ed02a8e11b"><i>Aspergillus novofumigatus</i> IBT 16806</a> &ndash; 
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/29317534">Kj&aelig;rb&oslash;lling et al.</a>.
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/29317534">Kj&aelig;rb&oslash;lling et al. 2018</a>.
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_93f3ae0e82"><i>Aspergillus steynii</i> IBT 23096</a> &ndash; 
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/29317534">Kj&aelig;rb&oslash;lling et al.</a>.
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/29317534">Kj&aelig;rb&oslash;lling et al. 2018</a>.
              </li>
            </ul>
            
@@ -65,23 +65,23 @@
            <ul>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_92336123f0">Gene expression changes during mycelia differentiation in <i>Coccidioides immitis</i></a> &ndash; 
                  A custom open reading frame oligonucleotide microarray to compare the transcriptome of <i>C. immitis</i> mycelia with two spherule samples grown <i>in vitro</i>.
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/23714098" target="_blank">Viriyakosol et al.</a>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/23714098" target="_blank">Viriyakosol et al. 2013</a>.
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_74596a0bd0">Comparative transcriptomics of <i>C. neoformans</i> mutants defective in heterochromatin regulation</a> &ndash; 
                  Stranded RNA-Seq profiles of WT, knockout strains of ezh2, msl1, ccc1, clr4, and ccc1-W52A aromatic cage mutant.
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/25533783" target="_blank">Dumesic et al.</a>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/25533783" target="_blank">Dumesic et al. 2015</a>.
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_20c29db32d">Stage-specific and genome-wide gene expression during the different developmental stages of <i>Fusarium graminearum</i></a> &ndash; 
                  Stand specific RNA-Seq of <i>F. graminerum</i> growth stages (conidia, vegetative hyphae, and perithecia at 6dpi)
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26934920" target="_blank">Liu et al.</a>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26934920" target="_blank">Liu et al. 2016</a>.
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_b9760320fa">Transcriptomic analysis during vegetative and infectious growth of <i>Fusarium graminearum</i> PH-1</a> &ndash; 
                  RNA-Seq of <i>F. graminearum</i> mycelia and 6dpi infection samples assessed by paired-end deep Illumina sequencing.
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/28261228" target="_blank">Wang et al.</a>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/28261228" target="_blank">Wang et al. 2017</a>.
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_36272f1e89"><i>N. crassa</i> transcriptomes during vegetative and sexual development stage</a> &ndash; 
                  Strand-specific RNA-Seq of <i>Neurospora</i> crassa growth stages
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/28847945" target="_blank">Liu et al.</a>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/28847945" target="_blank">Liu et al. 2017</a>.
              </li>
            </ul>
            
@@ -89,10 +89,18 @@
            <ul>   
            <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_5ca22e8fc8"><i>Coccidioides immitis</i> RS TE GBrowse track</a> &ndash;
                Annotation of transposable elements (TE) in Coccidioides immitis RS using RepeatMasker which identified TEs based on the RepBase reference library and REPET to support de novo TE identification.
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/29371508">Kirkland et al.</a>.
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/29371508">Kirkland et al. 2018</a>.
              </li>
            </ul>
-           <br>
+                      
+           <h4>Whole genome sequence of isolates for SNP analysis:</h4>
+           <ul>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_ffae05ef2c">Aligned genomic sequence reads - <i>A. fumigatus</i> isolates</a> &ndash;
+                 Whole-genome sequencing (WGS) was performed for high-resolution single-nucleotide polymorphism (SNP) analysis of 24 <i>A. fumigatus</i> isolates (azole-resistant and susceptible strains).   
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/26037120"> Adbolrasouli et al. 2015</a>.
+             </li>
+           </ul>
+      </section>
            
         <h4>Updated Functional Annotation</h4>
         <div style="margin-left: 3em;">
@@ -237,10 +245,10 @@
                  <a href="http://www.ncbi.nlm.nih.gov/bioproject/PRJNA217208">NCBI BioProject PRJNA217208</a>.
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_077dbc942e"><i> Candida auris</i> strain B8441</a> &ndash;  
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/27988485">Lockhart et al.</a>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/27988485">Lockhart et al. 2017</a>.
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_f670f03393"><i>Cryptococcus neoformans</i> var. grubii KN99</a> &ndash; 
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/29305388">Friedman et al.</a>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/29305388">Friedman et al. 2018</a>.
              </li>
              
            </ul>
@@ -259,21 +267,21 @@
            <ul>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_31af39c3b7">Comparative transcriptomes of yeast and hyphal forms in <i>Histoplasma capsulatum</i> G217B</a> &ndash; 
                  To compare yeast and hyphal transcript expression patterns cultures were grown at 37C for yeast-phase growth and at room temperature (RT) for hyphal phase growth. Total RNA was then isolated from biological duplicates of yeast or hyphal cultures and strand specific cDNA libraries were created from poly(A)-enriched RNA and sequenced using paired-end deep-sequencing. 
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26177267" target="_blank">Gilmore et al. 2015</a>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26177267" target="_blank">Gilmore et al. 2015</a>.
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_be15e27935">Comparative transcriptomes of yeast and hyphal forms in <i>Histoplasma capsulatum</i> G186AR</a> &ndash; 
                  To compare yeast and hyphal transcript expression patterns cultures were grown at 37C for yeast-phase growth and at room temperature (RT) for hyphal phase growth. Total RNA was then isolated from biological duplicates of yeast or hyphal cultures and strand specific cDNA libraries were created from poly(A)-enriched RNA and sequenced using paired-end deep-sequencing.
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26177267" target="_blank">Gilmore et al. 2015</a>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26177267" target="_blank">Gilmore et al. 2015</a>.
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_0a6c43682e">Comparative transcriptomes of yeast and hyphal forms in <i>Histoplasma capsulatum</i> H88</a> &ndash; 
                  To compare yeast and hyphal transcript expression patterns cultures were grown at 37C for yeast-phase growth and at room temperature (RT) for hyphal phase growth. Total RNA was then isolated from biological duplicates of yeast or hyphal cultures and strand specific cDNA libraries were created from poly(A)-enriched RNA and sequenced using paired-end deep-sequencing.
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26177267" target="_blank">Gilmore et al. 2015</a>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26177267" target="_blank">Gilmore et al. 2015</a>.
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_d2ff7c7826">Multidimensional regulation in transcriptome during sexual development in <i>Neurospora crassa</i></a> &ndash; 
                  Genome-wide analysis of <i>N. crassa</i> gene expression during sexual development. Transcriptomic sequencing was primed by random and multitargeted primers and accessed across eight time points encompassing the morphological changes and tissue and cellular development of maturing perithecia. 
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/24243796" target="_blank">Wang et al. 2014</a>, 
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/22626843" target="_blank">Wang et al. 2012</a>, 
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/25329823" target="_blank">Lehr et al. 2014</a>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/25329823" target="_blank">Lehr et al. 2014</a>.
              </li>
              
            </ul>
