@@ -17,11 +17,12 @@ import org.apidb.apicommon.model.stepanalysis.EnrichmentPluginUtil.Option; // Th
 // import org.gusdb.fgputil.db.runner.BasicResultSetHandler;
 // import org.gusdb.fgputil.db.runner.SQLRunner;
 import org.gusdb.fgputil.runtime.GusHome;
+import org.gusdb.fgputil.validation.ValidationBundle;
+import org.gusdb.fgputil.validation.ValidationBundle.ValidationBundleBuilder;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.analysis.AbstractSimpleProcessAnalyzer;
-import org.gusdb.wdk.model.analysis.ValidationErrors;
 import org.gusdb.wdk.model.answer.AnswerValue;
 
 public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
@@ -51,20 +52,20 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
 
     @Override
     public void validateProperties() throws WdkModelException {
-        this.serverEndpoints.put(EUPATH_NAME_KEY, getProperty(EUPATH_SEARCH_SERVER_ENDPOINT_PROP_KEY));        
-        this.serverEndpoints.put(PATRIC_NAME_KEY, getProperty(PATRIC_SEARCH_SERVER_ENDPOINT_PROP_KEY));        
-        this.serverEndpoints.put(VBASE_NAME_KEY, getProperty(VBASE_SEARCH_SERVER_ENDPOINT_PROP_KEY));        
-        this.serverEndpoints.put(EUPATH_PORTAL_NAME_KEY, getProperty(EUPATH_PORTAL_SEARCH_SERVER_ENDPOINT_PROP_KEY));        
+        this.serverEndpoints.put(EUPATH_NAME_KEY, getProperty(EUPATH_SEARCH_SERVER_ENDPOINT_PROP_KEY));
+        this.serverEndpoints.put(PATRIC_NAME_KEY, getProperty(PATRIC_SEARCH_SERVER_ENDPOINT_PROP_KEY));
+        this.serverEndpoints.put(VBASE_NAME_KEY, getProperty(VBASE_SEARCH_SERVER_ENDPOINT_PROP_KEY));
+        this.serverEndpoints.put(EUPATH_PORTAL_NAME_KEY, getProperty(EUPATH_PORTAL_SEARCH_SERVER_ENDPOINT_PROP_KEY));
         // TODO ... Add more for other BRCs
     }
 
   @Override
-  public ValidationErrors validateFormParams(Map<String, String[]> formParams) throws WdkModelException, WdkUserException {
+  public ValidationBundle validateFormParams(Map<String, String[]> formParams) throws WdkModelException, WdkUserException {
 
-    ValidationErrors errors = new ValidationErrors();
+    ValidationBundleBuilder errors = ValidationBundle.builder();
 
     if (!formParams.containsKey(THRESHOLD_PARAM_KEY)) {
-      errors.addParamMessage(THRESHOLD_PARAM_KEY, "Missing required parameter.");
+      errors.addError(THRESHOLD_PARAM_KEY, "Missing required parameter.");
     }
     else {
       try {
@@ -72,10 +73,10 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
         if (thresholdCutoff <= 0 ) throw new NumberFormatException();
       }
       catch (NumberFormatException e) {
-        errors.addParamMessage(THRESHOLD_PARAM_KEY, "Must be a number greater than 0.");
+        errors.addError(THRESHOLD_PARAM_KEY, "Must be a number greater than 0.");
       }
     }
-    return errors;
+    return EnrichmentPluginUtil.setValidationStatusAndBuild(errors);
   }
 
   @Override

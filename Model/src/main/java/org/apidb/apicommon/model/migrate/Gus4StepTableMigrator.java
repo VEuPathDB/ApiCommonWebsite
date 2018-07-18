@@ -25,7 +25,7 @@ import org.gusdb.fgputil.functional.FunctionalInterfaces.Function;
 import org.gusdb.fgputil.functional.Functions;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
-import org.gusdb.wdk.model.filter.FilterOption;
+import org.gusdb.wdk.model.answer.spec.FilterOption;
 import org.gusdb.wdk.model.fix.table.TableRowInterfaces.RowResult;
 import org.gusdb.wdk.model.fix.table.TableRowInterfaces.TableRowUpdaterPlugin;
 import org.gusdb.wdk.model.fix.table.TableRowInterfaces.TableRowWriter;

@@ -45,7 +45,7 @@ public class TranscriptTableReporter extends TableTabularReporter {
     return StepUtilities.createStep(
         baseAnswer.getUser(), null,
         baseAnswer.getQuestion(), paramValues,
-        baseAnswer.getFilter(), false, false, 0,
+        baseAnswer.getFilter(), false, 0,
         baseAnswer.getFilterOptions());
   }
 

@@ -49,7 +49,7 @@ public class GBrowseConnectionConfig implements ConnectionPoolConfig {
     return new StringBuilder("Config {").append(NL)
         .append("  connectionString: ").append(_connectionString).append(NL)
         .append("  username:         ").append(_username).append(NL)
-        .append("  password:         ").append(_password).append(NL)
+        .append("  password:         ").append("**hidden**").append(NL)
         .append("  dbType:           ").append(_dbType.toString()).append(NL)
         .append("  schemaName:       ").append(_schemaName).append(NL)
         .append("}").append(NL).toString();

@@ -14,7 +14,7 @@ import org.gusdb.wdk.events.StepRevisedEvent;
 import org.gusdb.wdk.events.UserProfileUpdateEvent;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
-import org.gusdb.wdk.model.filter.FilterOption;
+import org.gusdb.wdk.model.answer.spec.FilterOption;
 import org.gusdb.wdk.model.query.BooleanQuery;
 import org.gusdb.wdk.model.user.Step;
 import org.json.JSONObject;

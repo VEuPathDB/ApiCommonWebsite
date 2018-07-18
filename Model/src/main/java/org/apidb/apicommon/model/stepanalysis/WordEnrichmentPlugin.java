@@ -14,11 +14,12 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 import org.apidb.apicommon.model.stepanalysis.EnrichmentPluginUtil.Option;
 import org.gusdb.fgputil.runtime.GusHome;
+import org.gusdb.fgputil.validation.ValidationBundle;
+import org.gusdb.fgputil.validation.ValidationBundle.ValidationBundleBuilder;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.analysis.AbstractSimpleProcessAnalyzer;
-import org.gusdb.wdk.model.analysis.ValidationErrors;
 import org.gusdb.wdk.model.answer.AnswerValue;
 
 public class WordEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
@@ -44,9 +45,9 @@ public class WordEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   );
 
   @Override
-  public ValidationErrors validateFormParams(Map<String, String[]> formParams) throws WdkModelException, WdkUserException {
+  public ValidationBundle validateFormParams(Map<String, String[]> formParams) throws WdkModelException, WdkUserException {
 
-    ValidationErrors errors = new ValidationErrors();
+    ValidationBundleBuilder errors = ValidationBundle.builder();
 
     // validate pValueCutoff
     EnrichmentPluginUtil.validatePValue(formParams, errors);
@@ -54,7 +55,7 @@ public class WordEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     // validate organism
     EnrichmentPluginUtil.validateOrganism(formParams, getAnswerValue(), getWdkModel(), errors);
 
-    return errors;
+    return EnrichmentPluginUtil.setValidationStatusAndBuild(errors);
   }
 
   @Override

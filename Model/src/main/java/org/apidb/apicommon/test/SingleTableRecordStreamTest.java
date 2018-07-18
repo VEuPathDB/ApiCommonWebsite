@@ -14,12 +14,14 @@ import java.util.Map;
 
 import org.gusdb.fgputil.MapBuilder;
 import org.gusdb.fgputil.functional.FunctionalInterfaces.Function;
+import org.gusdb.fgputil.validation.ValidationLevel;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.answer.AnswerValue;
+import org.gusdb.wdk.model.answer.spec.FilterOption;
+import org.gusdb.wdk.model.answer.spec.FilterOptionList;
 import org.gusdb.wdk.model.answer.stream.RecordStream;
 import org.gusdb.wdk.model.answer.stream.SingleTableRecordStream;
-import org.gusdb.wdk.model.filter.FilterOptionList;
 import org.gusdb.wdk.model.record.RecordInstance;
 import org.gusdb.wdk.model.record.TableField;
 import org.gusdb.wdk.model.record.attribute.AttributeField;
@@ -64,8 +66,12 @@ public class SingleTableRecordStreamTest {
       .toMap();
 
   private static final FilterOptionList FILTERS(WdkModel model) throws WdkModelException {
-    return new FilterOptionList(model, QUESTION_NAME)
-        .addFilterOption("matched_transcript_filter_array", new JSONObject("{\"values\": [\"Y\"]}")); }
+    return FilterOptionList.builder()
+        .addFilterOption(FilterOption.builder()
+            .setFilterName("matched_transcript_filter_array")
+            .setValue(new JSONObject("{\"values\": [\"Y\"]}")))
+        .buildValidated(model.getQuestion(QUESTION_NAME), ValidationLevel.SEMANTIC);
+  }
 
   private static final String TABLE_NAME = "GeneTranscripts";
 
@@ -75,7 +81,7 @@ public class SingleTableRecordStreamTest {
     try (WdkModel model = WdkModel.construct(PROJECT_ID, getGusHome());
          PrintStream out = (args.length == 0 ? System.out : new PrintStream(new FileOutputStream(args[0])))) {
       Step step = createStep(model);
-      AnswerValue answer = (isTranscriptQuestion(step.getQuestion()) ?
+      AnswerValue answer = (isTranscriptQuestion(step.getAnswerSpec().getQuestion()) ?
           transformToGeneAnswer(step.getAnswerValue(), step.getStepId()) : step.getAnswerValue())
           .cloneWithNewPaging(0, -1); // want full results
       TableField tableField = answer.getQuestion().getRecordClass().getTableFieldMap().get(TABLE_NAME);
@@ -94,8 +100,8 @@ public class SingleTableRecordStreamTest {
   /*%%%%%%%%%%%%%%%%%%%%%%%%%%% helper functions %%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
   private static Step createStep(WdkModel model) throws WdkModelException {
-    return model.getStepFactory().createStep(new GuestUser(model), -1L,
-        model.getQuestion(QUESTION_NAME), PARAMETERS, null, false, true, 0, FILTERS(model));
+    return model.getStepFactory().createStep(new GuestUser(model),
+        model.getQuestion(QUESTION_NAME), PARAMETERS, null, FILTERS(model), 0, false, null, false, null, -1L);
   }
 
   private static Function<AttributeField, String> getFieldValue(final Map<String, AttributeValue> row) {

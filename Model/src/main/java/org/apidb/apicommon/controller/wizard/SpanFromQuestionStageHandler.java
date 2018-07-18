@@ -87,8 +87,7 @@ public class SpanFromQuestionStageHandler extends ShowSpanStageHandler {
                 servlet, request, wizardForm, strategy, questionName, user, stepId);
           }
           else {
-            childStep = user.createStep(null, question, params, filterName,
-                false, true, weight);
+            childStep = user.createStep(null, question, params, filterName, false, weight);
           }
         }
         else if (importStrategyId != null && importStrategyId.length() > 0) {

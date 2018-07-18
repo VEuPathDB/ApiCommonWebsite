@@ -21,11 +21,12 @@ import org.gusdb.fgputil.FormatUtil;
 import org.gusdb.fgputil.db.runner.BasicResultSetHandler;
 import org.gusdb.fgputil.db.runner.SQLRunner;
 import org.gusdb.fgputil.runtime.GusHome;
+import org.gusdb.fgputil.validation.ValidationBundle;
+import org.gusdb.fgputil.validation.ValidationBundle.ValidationBundleBuilder;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.analysis.AbstractSimpleProcessAnalyzer;
-import org.gusdb.wdk.model.analysis.ValidationErrors;
 import org.gusdb.wdk.model.answer.AnswerValue;
 import org.gusdb.wdk.model.user.analysis.IllegalAnswerValueException;
 
@@ -58,9 +59,9 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   );
 
   @Override
-  public ValidationErrors validateFormParams(Map<String, String[]> formParams) throws WdkModelException, WdkUserException {
+  public ValidationBundle validateFormParams(Map<String, String[]> formParams) throws WdkModelException, WdkUserException {
 
-    ValidationErrors errors = new ValidationErrors();
+    ValidationBundleBuilder errors = ValidationBundle.builder();
 
     // validate pValueCutoff
     EnrichmentPluginUtil.validatePValue(formParams, errors);
@@ -72,14 +73,14 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     EnrichmentPluginUtil.getArrayParamValueAsString(PATHWAYS_SRC_PARAM_KEY, formParams, errors);
 
     // only validate further if the above pass
-    if (errors.isEmpty()) {
+    if (!errors.hasErrors()) {
       validateFilteredPathways(errors);
     }
 
-    return errors;
+    return EnrichmentPluginUtil.setValidationStatusAndBuild(errors);
   }
 
-  private void validateFilteredPathways(ValidationErrors errors)
+  private void validateFilteredPathways(ValidationBundleBuilder errors)
         throws WdkModelException, WdkUserException {
 
     String countColumn = "CNT";
@@ -102,7 +103,7 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     BigDecimal count = (BigDecimal)result.get(countColumn);
 
     if (count.intValue() < 1) {
-      errors.addMessage("Your result has no genes with Pathways that satisfy the parameter choices you have made.  Please try adjusting the parameters.");
+      errors.addError("Your result has no genes with Pathways that satisfy the parameter choices you have made.  Please try adjusting the parameters.");
     }
   }
 

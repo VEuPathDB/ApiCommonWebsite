@@ -23,11 +23,12 @@ import org.gusdb.fgputil.db.runner.SQLRunner;
 import org.gusdb.fgputil.db.runner.SingleLongResultSetHandler;
 import org.gusdb.fgputil.db.runner.SingleLongResultSetHandler.Status;
 import org.gusdb.fgputil.runtime.GusHome;
+import org.gusdb.fgputil.validation.ValidationBundle;
+import org.gusdb.fgputil.validation.ValidationBundle.ValidationBundleBuilder;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.analysis.AbstractSimpleProcessAnalyzer;
-import org.gusdb.wdk.model.analysis.ValidationErrors;
 import org.gusdb.wdk.model.answer.AnswerValue;
 import org.gusdb.wdk.model.user.analysis.IllegalAnswerValueException;
 
@@ -89,9 +90,9 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   );
 
   @Override
-  public ValidationErrors validateFormParams(Map<String, String[]> formParams) throws WdkModelException, WdkUserException {
+  public ValidationBundle validateFormParams(Map<String, String[]> formParams) throws WdkModelException, WdkUserException {
 
-    ValidationErrors errors = new ValidationErrors();
+    ValidationBundleBuilder errors = ValidationBundle.builder();
 
     // validate pValueCutoff
     EnrichmentPluginUtil.validatePValue(formParams, errors);
@@ -113,17 +114,17 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
     //validate GOSubset  
     String goSubset = EnrichmentPluginUtil.getArrayParamValueAsString(
-    	GO_SUBSET_PARAM_KEY, formParams, errors);
+        GO_SUBSET_PARAM_KEY, formParams, errors);
 
     // only validate further if the above pass
-    if (errors.isEmpty()) {
+    if (!errors.hasErrors()) {
         validateFilteredGoTerms(/*sourcesStr,*/  evidCodesStr, ontology, goSubset, errors);
     }
 
-    return errors;
+    return EnrichmentPluginUtil.setValidationStatusAndBuild(errors);
   }
 
-    private void validateFilteredGoTerms(/*String sourcesStr,*/ String evidCodesStr, String ontology, String goSubset, ValidationErrors errors)
+  private void validateFilteredGoTerms(/*String sourcesStr,*/ String evidCodesStr, String ontology, String goSubset, ValidationBundleBuilder errors)
       throws WdkModelException, WdkUserException {
 
     String idSql =  EnrichmentPluginUtil.getOrgSpecificIdSql(getAnswerValue(), getFormParams());
@@ -150,7 +151,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     }
 
     if (result.getRetrievedValue() < 1) {
-      errors.addMessage("Your result has no genes with GO Terms that satisfy the parameter choices you have made.  Please try adjusting the parameters.");
+      errors.addError("Your result has no genes with GO Terms that satisfy the parameter choices you have made.  Please try adjusting the parameters.");
     }
   }
 
