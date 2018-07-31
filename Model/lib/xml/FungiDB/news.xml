@@ -30,12 +30,12 @@
         <h4>Genome Sequence and Annotation: these annotated genomes appear for the first time in FungiDB.</h4>
            <ul>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_41e884fe46"><i>Aspergillus ochraceoroseus</i> IBT 24754</a> &ndash;  
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/29317534">Kj&aelig;rb&oslash;lling et al.</a>
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/29317534">Kj&aelig;rb&oslash;lling et al., 2018</a>.
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_54fda600a6"><i>Sporothrix schenckii</i> 1099-18</a> &ndash; 
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/25351875">Teixeira et al.</a>
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/24855299">Teixeira et al.</a>
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/25480940">Teixeira et al.</a>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/25480940">Teixeira et al., 2015</a>.
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/25351875">Teixeira et al., 2014</a>.
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/24855299">Teixeira et al., 2014</a>.
              </li>
             </ul>
            <br>
@@ -46,25 +46,25 @@
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/29317534">Syngenta Biotechnology, Inc.</a>.
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_ed02a8e11b"><i>Candida albicans</i> SC5314</a> &ndash; 
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/15123810">Jones et al</a>.
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/17419877">van het Hoog M. et al</a>.
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/24025428">Muzzey et al</a>.
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/6394964">Gillum et al</a>.
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/24025428">Muzzey et al., 2013</a>.
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/17419877">van het Hoog M. et al., 2007</a>.
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/15123810">Jones et al., 2004</a>.
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/6394964">Gillum et al., 1984</a>.
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_ed02a8e11b"><i>Candida albicans</i> SC5314</a> &ndash; 
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/15123810">Jones et al</a>.
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/17419877">van het Hoog M. et al</a>.
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/24025428">Muzzey et al</a>.
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/6394964">Gillum et al</a>.
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/24025428">Muzzey et al., 2013</a>.
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/17419877">van het Hoog M. et al., 2007</a>.
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/15123810">Jones et al., 2004</a>.
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/6394964">Gillum et al., 1984</a>.
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_93f3ae0e82"><i>Candida albicans</i> WO-1</a> &ndash; 
-                 <<a href="https://www.ncbi.nlm.nih.gov/pubmed/19465905">Butler et al</a>.
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/12399384">Lockhart et al</a>.
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/3539914">Slutsky et al</a>.
+                 <<a href="https://www.ncbi.nlm.nih.gov/pubmed/19465905">Butler et al., 2009</a>.
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/12399384">Lockhart et al., 2002</a>.
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/3539914">Slutsky et al., 1987</a>.
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_93f3ae0e82"><i>Candida glabrata</i> CBS138</a> &ndash; 
-                 <<a href="https://www.ncbi.nlm.nih.gov/pubmed/15229592">Dujon et al</a>.
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/12527359">KOszul et al</a>.
+                 <<a href="https://www.ncbi.nlm.nih.gov/pubmed/15229592">Dujon et al., 2004</a>.
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/12527359">KOszul et al., 2003</a>.
              </li>
            </ul>
            
@@ -72,11 +72,11 @@
            <ul>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_92336123f0">Comparative transcriptomes of yeast and hyphal forms in <i>Histoplasma capsulatum</i> H143</a> &ndash; 
                  Analysis of yeast and hyphal transcript expression patterns in <i>Histoplasma capsulatum</i> H143 grown at 37°C and room temperature (RT), respectively.
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26177267" target="_blank">Gilmore et al.</a>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26177267" target="_blank">Gilmore et al., 2015</a>.
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_74596a0bd0">Comparative transcriptomics of <i>C. neoformans</i> mutants defective in heterochromatin regulation</a> &ndash; 
                  Transcriptomic response of <i>Aspergillus niger</i> to lignocellulose (wheat straw).
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/22912594" target="_blank">Delmas et al.</a>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/22912594" target="_blank">Delmas et al., 2012</a>.
              </li>
         	</ul>
         	
@@ -84,11 +84,11 @@
            <ul>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_92336123f0">Quantitative secretome profiling of Pka-1 regulated proteins in <i>Cryptococcus neoformans</i> (16, 48, 72, and 120 hr post inoculation).</a> &ndash; 
                  Targeted secretome profiling of Pka-1 regulated proteins in <i>C. neoformans</i> was performed at 16, 48, 72, and 120 hr post-inoculation in Pka-1 inductive and repressive media.
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26453029 " target="_blank">Geddes et al.</a>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26453029 " target="_blank">Geddes et al., 2015</a>.
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_74596a0bd0">Secretome profiling of Pka-1 regulated proteins in <i>Cryptococcus neoformans</i> (96hr post inoculation)</a> &ndash; 
                  Targeted secretome profiling of Pka-1 regulated proteins in <i>C. neoformans</i> was performed at 96 hr post-inoculation in Pka-1 inductive and repressive media.
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26453029 " target="_blank">Geddes et al.</a>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26453029 " target="_blank">Geddes et al., 2015</a>.
              </li>
         	</ul>
            
@@ -97,7 +97,7 @@
            <ul>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_df6d18e20e">H3K27me3 and H3K9me2 profiling in various <i>Cryptococcus neoformans</i> strains</a> &ndash;
              Charaterization of PRC2 complex and its role in assembly of heterochromatin. ChiP-Seq profiles (H3K27me3 and H3K9me3) are reported for WT, knockout strains (ezh2, msl1, clr4, and ccc1), and ccc1-w52a strain. 
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/27856696" target="_blank">Dekhang et al.</a>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/27856696" target="_blank">Dekhang et al., 2017</a>.
              </li>
            </ul>  
            
@@ -105,7 +105,7 @@
            <ul>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_f10e32c6b8">Manually Curated Fusarium Phenotypes</a> &ndash; 
                  The phenotypes for <i>Fusarium graminearum</i> PH-1 are manually curated from published literature describing phenotypes obtained from mutant studies. These phenotypes were mapped to several EuPathDB post-compositional ontologies for phenotype annotation. 
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/25758923" target="_blank">Yun et al. 2007</a>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/25758923" target="_blank">Yun et al., 2007</a>.
 
              </li>
            </ul>
@@ -115,7 +115,7 @@
            <ul>   
            <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_5ca22e8fc8"><i>Coccidioides posadasii</i> RS TE GBrowse track</a> &ndash;
                Annotation of transposable elements (TE) in <i>Coccidioides posadasii</i> using RepeatMasker, which identified TEs based on the RepBase reference library and REPET to support <i>de novo</i> TE identification.
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/29371508">Kirkland et al.</a>.
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/29371508">Kirkland et al., 2018</a>.
              </li>
            </ul>
            <br>
