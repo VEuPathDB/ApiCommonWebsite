@@ -15,7 +15,7 @@ import org.apidb.apicommon.model.TranscriptBooleanQuery;
 import org.gusdb.fgputil.db.SqlUtils;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
-import org.gusdb.wdk.model.answer.AnswerValue;
+import org.gusdb.wdk.model.answer.factory.AnswerValue;
 import org.gusdb.wdk.model.filter.FilterSummary;
 import org.gusdb.wdk.model.filter.ListColumnFilterSummary;
 import org.gusdb.wdk.model.filter.StepFilter;
@@ -175,7 +175,7 @@ public class GeneBooleanFilter extends StepFilter {
   @Override
   public JSONObject getDefaultValue(Step step) throws WdkModelException {
     // TODO: check whether intersection or union and apply
-    Map<String,String> paramValues = step.getParamValues();
+    Map<String,String> paramValues = step.getQueryInstanceSpec();
     boolean isWdkSetOperation = paramValues.containsKey(BooleanQuery.OPERATOR_PARAM);
     if (isWdkSetOperation) {
       return getDefaultValue(paramValues.get(BooleanQuery.OPERATOR_PARAM));

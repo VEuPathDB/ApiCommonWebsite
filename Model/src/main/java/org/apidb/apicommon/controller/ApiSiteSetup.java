@@ -74,7 +74,7 @@ public class ApiSiteSetup {
     }
 
     private String getOperator(Step revisedStep) throws WdkModelException {
-      String operator = revisedStep.getParamValues().get(BooleanQuery.OPERATOR_PARAM);
+      String operator = revisedStep.getQueryInstanceSpec().get(BooleanQuery.OPERATOR_PARAM);
       if (operator == null) {
         throw new WdkModelException("Found transcript boolen step " +
             revisedStep.getStepId() + " without " + BooleanQuery.OPERATOR_PARAM + " parameter.");

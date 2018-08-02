@@ -5,7 +5,7 @@ import org.gusdb.wdk.model.FieldTree;
 import org.gusdb.wdk.model.SelectableItem;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.analysis.AbstractStepAnalyzer;
-import org.gusdb.wdk.model.answer.AnswerValue;
+import org.gusdb.wdk.model.answer.factory.AnswerValue;
 import org.gusdb.wdk.model.user.analysis.ExecutionStatus;
 import org.gusdb.wdk.model.user.analysis.StatusLogger;
 

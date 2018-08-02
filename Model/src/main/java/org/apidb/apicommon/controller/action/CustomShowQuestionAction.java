@@ -22,7 +22,7 @@ import org.apache.struts.action.ActionServlet;
 import org.gusdb.wdk.controller.CConstants;
 import org.gusdb.wdk.controller.action.ShowQuestionAction;
 import org.gusdb.wdk.controller.actionutil.ActionUtility;
-import org.gusdb.wdk.model.answer.AnswerValue;
+import org.gusdb.wdk.model.answer.factory.AnswerValue;
 import org.gusdb.wdk.model.answer.stream.FileBasedRecordStream;
 import org.gusdb.wdk.model.answer.stream.RecordStream;
 import org.gusdb.wdk.model.jspwrap.AnswerValueBean;
@@ -141,7 +141,7 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
         params.put("dataset_subtype", datasetSubtypes[0]);
 
         QuestionBean dsQuestion = wdkModel.getQuestion(dsQuestionName);
-        AnswerValue answerValue = dsQuestion.getQuestion().makeAnswerValue(user.getUser(), params, true, 0);
+        AnswerValue answerValue = ActionUtility.makeAnswerValue(user, dsQuestion, params).getAnswerValue();
         answerValue.setPageToEntireResult();
 
         // make a list of attribute fields we need to expose

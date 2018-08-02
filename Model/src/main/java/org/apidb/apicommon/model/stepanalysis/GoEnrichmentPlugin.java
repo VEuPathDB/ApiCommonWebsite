@@ -29,7 +29,7 @@ import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.analysis.AbstractSimpleProcessAnalyzer;
-import org.gusdb.wdk.model.answer.AnswerValue;
+import org.gusdb.wdk.model.answer.factory.AnswerValue;
 import org.gusdb.wdk.model.user.analysis.IllegalAnswerValueException;
 
 public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {

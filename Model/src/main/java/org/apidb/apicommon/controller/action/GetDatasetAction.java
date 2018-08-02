@@ -102,8 +102,7 @@ public class GetDatasetAction extends Action {
                 logger.debug("Getting all data sources: ");
                 question = wdkModel.getQuestion(DATA_SOURCE_ALL);
             }
-            AnswerValueBean answerValue = question.makeAnswerValue(user,
-                    params, true, 0);
+            AnswerValueBean answerValue = ActionUtility.makeAnswerValue(user, question, params);
 
             Map<String, List<RecordBean>> categories = formatAnswer(answerValue);
             request.setAttribute(ATTR_DATA_SOURCES, categories);
