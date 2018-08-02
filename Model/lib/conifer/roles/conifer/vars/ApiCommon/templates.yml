@@ -35,3 +35,6 @@ tomcat_context.xml:
 rebuilder.conf:
   src: 'EbrcWebsiteCommon/rebuilder.conf.j2'
   dest: '{{ gus_home }}/config/rebuilder.conf'
+geneListComparison-config:
+  src: 'ApiCommonWebsite/geneListComparison-config.xml.j2'
+  dest: '{{ gus_home }}/config//geneListComparison-config.xml'

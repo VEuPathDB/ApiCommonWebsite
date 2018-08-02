@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+{# $SourceFileURL: ApiCommonWebsite/trunk/Model/lib/conifer/roles/conifer/templates/ApiCommonWebsite/geneListComparison-config.xml.j2 $ #}
+Templated by Conifer using
+{{ template_path }}
+with vars from
+Cohort: {{ cohort }}
+Project: {{ project }}
+Environment: {{ env|default() }}
+site_vars file: {{ site_vars }}
+-->
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>The configuration file for Profile Similarity Search WSF Plugin (in Plasmo currently).</comment>
+<entry key="perlExecutable">{{ genelistcomparisonconfig_perlExec }}</entry>
+<entry key="perlScript">{{ gus_home }}/lib/perl/ApiCommonWebService/WSFPlugin/geneListComparison.pl</entry>
+<entry key="dbConnection">{{ genelistcomparisonconfig_connectionUrl }}</entry>
+<entry key="dbLogin">{{ genelistcomparisonconfig_dbLogin }}</entry>
+<entry key="dbPassword">{{ genelistcomparisonconfig_dbPassword }}</entry>
+<entry key="projectId">{{ project }}</entry>
+</properties>
