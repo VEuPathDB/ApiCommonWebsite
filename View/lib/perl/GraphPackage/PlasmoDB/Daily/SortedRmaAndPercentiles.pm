@@ -7,9 +7,9 @@ use vars qw( @ISA );
 
 use EbrcWebsiteCommon::View::GraphPackage::PlasmoDB::Daily;
 
-use ApiCommonWebsite::Model::CannedQuery::Profile;
-use ApiCommonWebsite::Model::CannedQuery::ProfileSet;
-use ApiCommonWebsite::Model::CannedQuery::ElementNames;
+use EbrcWebsiteCommon::Model::CannedQuery::Profile;
+use EbrcWebsiteCommon::Model::CannedQuery::ProfileSet;
+use EbrcWebsiteCommon::Model::CannedQuery::ElementNames;
 
 my %profileSets = (TGFa =>             'percentile - daily_TGFa',
                    IL12p70 =>          'percentile - daily_IL12p70',
@@ -97,14 +97,14 @@ sub init {
   my $_ttl = $profileSets{$type};
 
   $Self->setPercentileQuery
-    ( ApiCommonWebsite::Model::CannedQuery::Profile->new
+    ( EbrcWebsiteCommon::Model::CannedQuery::Profile->new
       ( Name         => '_data',
         ProfileSet   => $_ttl,
       )
     );
 
   $Self->setPercentileNamesQuery
-    ( ApiCommonWebsite::Model::CannedQuery::ElementNames->new
+    ( EbrcWebsiteCommon::Model::CannedQuery::ElementNames->new
       ( Name         => '_names',
         ProfileSet   => $_ttl,
       )
