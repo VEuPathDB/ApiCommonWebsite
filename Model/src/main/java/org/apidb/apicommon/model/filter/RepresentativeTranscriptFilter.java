@@ -13,6 +13,7 @@ import org.gusdb.wdk.model.answer.spec.AnswerSpec;
 import org.gusdb.wdk.model.answer.spec.AnswerSpecBuilder;
 import org.gusdb.wdk.model.answer.spec.FilterOption;
 import org.gusdb.wdk.model.answer.spec.SimpleAnswerSpec;
+import org.gusdb.wdk.model.filter.FilterOptionList;
 import org.gusdb.wdk.model.filter.FilterSummary;
 import org.gusdb.wdk.model.filter.StepFilter;
 import org.gusdb.wdk.model.question.Question;
@@ -148,5 +149,32 @@ public class RepresentativeTranscriptFilter extends StepFilter {
   public ValidationBundle validate(Question question, JSONObject value, ValidationLevel validationLevel) {
     // No validation needed since this filter has no configuration. Its presence is all that is required.
     return ValidationBundle.builder(validationLevel).build();
+  }
+
+  public static AnswerValue updateAnswerValue(AnswerValue answerValue, Boolean shouldEngageFilter) throws WdkModelException {
+    FilterOptionList viewFilters = answerValue.getViewFilterOptions();
+    boolean filterOnInAnswer =
+        viewFilters.getFilterOption(RepresentativeTranscriptFilter.FILTER_NAME) != null;
+
+    if (filterOnInAnswer == shouldEngageFilter) {
+      return answerValue;
+    }
+
+    // Create a copy of answerValue and modify view filters appropriately
+    AnswerValue newAnswerValue = new AnswerValue(answerValue);
+    FilterOptionList newViewFilters = new FilterOptionList(viewFilters);
+
+    if (shouldEngageFilter) {
+      // add view filter
+      newViewFilters.addFilterOption(RepresentativeTranscriptFilter.FILTER_NAME, new JSONObject());
+    }
+    else {
+      // remove view filter (already present)
+      newViewFilters.removeFilterOption(RepresentativeTranscriptFilter.FILTER_NAME);
+    }
+
+    newAnswerValue.setViewFilterOptions(newViewFilters);
+
+    return newAnswerValue;
   }
 }

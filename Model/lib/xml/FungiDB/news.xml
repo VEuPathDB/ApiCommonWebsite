@@ -14,6 +14,226 @@
        </attribute>
     </record>
 -->
+<record>
+  <attribute name="headline">FungiDB 39 Released</attribute>
+  <attribute name="date">18 Aug 2018 13:00</attribute>
+  <attribute name="tag">FungiDB08_18_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of FungiDB 39</strong></p>
+      
+      <section>
+        <h3><b>New data in FungiDB 39</b></h3>
+        <div style="margin-left: 3em;">
+        
+        <h4>Genome Sequence and Annotation: these annotated genomes appear for the first time in FungiDB.</h4>
+           <ul>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_41e884fe46"><i>Aspergillus ochraceoroseus</i> IBT 24754</a> &ndash;  
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/29317534">Kj&aelig;rb&oslash;lling et al., 2018</a>.
+             </li>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_54fda600a6"><i>Sporothrix schenckii</i> 1099-18</a> &ndash; 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/25480940">Teixeira et al., 2015</a>.
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/25351875">Teixeira et al., 2014</a>.
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/24855299">Teixeira et al., 2014</a>.
+             </li>
+            </ul>
+           <br>
+           
+        <h4>Genome Sequence and Annotation: updated genomes</h4>
+           <ul>   
+           <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_339f68fa2f"><i>Botrytis cinerea</i> B05.10</a> &ndash;
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/29317534">Syngenta Biotechnology, Inc.</a>.
+             </li>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_ed02a8e11b"><i>Candida albicans</i> SC5314</a> &ndash; 
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/24025428">Muzzey et al., 2013</a>.
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/17419877">van het Hoog M. et al., 2007</a>.
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/15123810">Jones et al., 2004</a>.
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/6394964">Gillum et al., 1984</a>.
+             </li>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_ed02a8e11b"><i>Candida albicans</i> SC5314</a> &ndash; 
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/24025428">Muzzey et al., 2013</a>.
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/17419877">van het Hoog M. et al., 2007</a>.
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/15123810">Jones et al., 2004</a>.
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/6394964">Gillum et al., 1984</a>.
+             </li>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_93f3ae0e82"><i>Candida albicans</i> WO-1</a> &ndash; 
+                 <<a href="https://www.ncbi.nlm.nih.gov/pubmed/19465905">Butler et al., 2009</a>.
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/12399384">Lockhart et al., 2002</a>.
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/3539914">Slutsky et al., 1987</a>.
+             </li>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_93f3ae0e82"><i>Candida glabrata</i> CBS138</a> &ndash; 
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/15229592">Dujon et al., 2004</a>.
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/12527359">Koszul et al., 2003</a>.
+             </li>
+           </ul>
+           
+        <h4>Transcriptomics</h4>
+           <ul>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_92336123f0">Comparative transcriptomes of yeast and hyphal forms in <i>Histoplasma capsulatum</i> H143</a> &ndash; 
+                 Analysis of yeast and hyphal transcript expression patterns in <i>Histoplasma capsulatum</i> H143 grown at 37°C and room temperature (RT), respectively.
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26177267" target="_blank">Gilmore et al., 2015</a>.
+             </li>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_74596a0bd0">Comparative transcriptomics of <i>C. neoformans</i> mutants defective in heterochromatin regulation</a> &ndash; 
+                 Transcriptomic response of <i>Aspergillus niger</i> to lignocellulose (wheat straw).
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/22912594" target="_blank">Delmas et al., 2012</a>.
+             </li>
+        	</ul>
+        	
+        <h4>Proteomics</h4>
+           <ul>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_92336123f0">Quantitative secretome profiling of Pka-1 regulated proteins in <i>Cryptococcus neoformans</i> (16, 48, 72, and 120 hr post inoculation).</a> &ndash; 
+                 Targeted secretome profiling of Pka-1 regulated proteins in <i>C. neoformans</i> was performed at 16, 48, 72, and 120 hr post-inoculation in Pka-1 inductive and repressive media.
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26453029 " target="_blank">Geddes et al., 2015</a>.
+             </li>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_74596a0bd0">Secretome profiling of Pka-1 regulated proteins in <i>Cryptococcus neoformans</i> (96hr post inoculation)</a> &ndash; 
+                 Targeted secretome profiling of Pka-1 regulated proteins in <i>C. neoformans</i> was performed at 96 hr post-inoculation in Pka-1 inductive and repressive media.
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26453029 " target="_blank">Geddes et al., 2015</a>.
+             </li>
+        	</ul>
+           
+           
+        <h4>Chip-seq data</h4>
+           <ul>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_df6d18e20e">H3K27me3 and H3K9me2 profiling in various <i>Cryptococcus neoformans</i> strains</a> &ndash;
+             Charaterization of PRC2 complex and its role in assembly of heterochromatin. ChiP-Seq profiles (H3K27me3 and H3K9me3) are reported for WT, knockout strains (ezh2, msl1, clr4, and ccc1), and ccc1-w52a strain. 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/27856696" target="_blank">Dekhang et al., 2017</a>.
+             </li>
+           </ul>  
+           
+        <h4>Phenotype data</h4>
+           <ul>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_f10e32c6b8">Manually Curated Fusarium Phenotypes</a> &ndash; 
+                 The phenotypes for <i>Fusarium graminearum</i> PH-1 are manually curated from published literature describing phenotypes obtained from mutant studies. These phenotypes were mapped to several EuPathDB post-compositional ontologies for phenotype annotation. 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/25758923" target="_blank">Yun et al., 2007</a>.
+
+             </li>
+           </ul>
+           <br>
+           
+           <h4>Sequence sites, features and motifs</h4>
+           <ul>   
+           <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_5ca22e8fc8"><i>Coccidioides posadasii</i> RS TE GBrowse track</a> &ndash;
+               Annotation of transposable elements (TE) in <i>Coccidioides posadasii</i> using RepeatMasker, which identified TEs based on the RepBase reference library and REPET to support <i>de novo</i> TE identification.
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/29371508">Kirkland et al., 2018</a>.
+             </li>
+           </ul>
+           <br>
+           
+        <h4>Updated Functional Annotation</h4>
+        <div style="margin-left: 3em;">
+        
+            
+        <a href="https://docs.google.com/spreadsheets/d/13NIjxEWoLyGZYsSM7K0BuiggU5uOK9gVyCpX5J8nhcE/edit?usp=sharing" target="_blank">Summary of annotation updates</a> which include products, GO terms, EC numbers, gene names, synonyms, publications and notes from curators.
+        <br><br>
+        Functional annotations in FungiDB 38 have been updated for the following genomes:
+
+        <style>
+           #FunctAnnot_Bld38 table, #FunctAnnot_Bld38 td, #FunctAnnot_Bld38 th, #FunctAnnot_Bld38 tr {
+           text-align : center;
+           padding-left: 5px;
+           padding-right: 5px;
+           padding-top: 5px;
+           padding-bottom: 5px;
+           border: 1px solid black;
+           }
+           #FunctAnnot_Bld38 {
+           margin-left : 5 em;
+           }
+         </style> 
+           <table id="FunctAnnot_Bld38"> 
+           <tr>
+             <th>FungiDB Genome Version</th>
+             <th>Genes Updated</th>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_071f05cd56"><i>Aspergillus fumigatus</i> Af293</a></td>
+             <td>1 </td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4b35c88aa1"><i>Aspergillus nidulans </i> FGSC A4</a></td>
+             <td>17</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_60b6b264d3"><i>Coccidioides immitis </i> RS</a></td>
+             <td>1166</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_62f0e6170f"><i>Neurospora crassa  </i> OR74A</a></td>
+             <td>405</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_cbbce274f6"><i>Ustilago maydis </i> 521</a></td>
+             <td>3843</td>
+           </tr>
+           </table>
+           <br>
+       </div>
+       
+       <h4>Annotations from MIPS Functional Catalogue Database:</h4>  
+            <ul> 
+             <li>Functional catalogue annotations for <i>Ustilago maydis</i> 521 from MIPS database were converted to GO terms and integrated as functional annotations in FungiDB 38.
+             </li>
+           </ul>  
+           <br>
+           
+       <h4>Curated User Comments:</h4>  
+        Gene page comments that are entered by users are curated at GeneDB and regularly integrated as 
+        functional annotations in FungiDB.  18 user comments (unique) have been reviewed and updated in FungiDB 38.
+       <br><br>
+        
+        <div style="margin-left: 3em;">
+        
+        <style>
+           #UComment_Bld38 table, #UComment_Bld38 td, #UComment_Bld38 th, #UComment_Bld38 tr {
+           text-align : center;
+           padding-left: 5px;
+           padding-right: 5px;
+           padding-top: 5px;
+           padding-bottom: 5px;
+           border: 1px solid black;
+           }
+           #UComment_Bld38 {
+           margin-left : 5 em;
+           }
+         </style> 
+           <table id="UComment_Bld38"> 
+           <tr>
+             <th>FungiDB Genome Version</th>
+             <th>Comments Integrated</th>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_071f05cd56"><i>Aspergillus fumigatus</i> Af293</a></td>
+             <td> 1</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4b35c88aa1"><i>Aspergillus nidulans</i> FGSC A4</a></td>
+             <td> 1</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_62f0e6170f"><i>Neurospora crassa </i> OR74A</a></td>
+             <td>16</td>
+           </tr>
+          </table>    
+       </div>    
+       </section>
+      
+      <section>
+      <h3><b>No new features in this release</b></h3>
+      </section>
+      
+     <section>
+     <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+
+    ]]>
+  </attribute>
+</record>
 
 <record>
   <attribute name="headline">FungiDB 38 Released</attribute>
@@ -469,6 +689,7 @@
              </li>
            </ul>
            
+        
        <h4>Phenotype data</h4>
            <ul>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_c334877c42">Phenotypic analysis of <i>Neurospora crassa</i> knockout mutants</a> &ndash; A phenotypic pipeline was designed for high&#45;throughput analysis of 10 different traits during hyphal growth, asexual sporulation (macroconidiation), and the sexual cycle in knockout mutants from <i>Neurospora crassa</i>. Provider: Katherine Borkovich; dataset provided prior to publication.
