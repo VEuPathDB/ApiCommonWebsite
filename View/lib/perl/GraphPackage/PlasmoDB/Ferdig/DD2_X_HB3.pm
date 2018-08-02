@@ -7,7 +7,7 @@ use vars qw( @ISA);
 use EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet;
 use EbrcWebsiteCommon::View::GraphPackage::ScatterPlot;
 use EbrcWebsiteCommon::View::GraphPackage::BarPlot;
-use ApiCommonWebsite::Model::CannedQuery::Profile;
+use EbrcWebsiteCommon::Model::CannedQuery::Profile;
 
 sub init {
   my $self = shift;
@@ -103,7 +103,7 @@ sub queryParentalAlleles {
   if(defined($secondaryId)) {
     $key = 'VALUES';
 
-    $profile = ApiCommonWebsite::Model::CannedQuery::Profile->new
+    $profile = EbrcWebsiteCommon::Model::CannedQuery::Profile->new
       ( Name         => "_haploblockprofile",
         Id           => $secondaryId,
         ProfileSet   => 'Haplotype profiles of P falciparum HB3-DD2 progeny - Ferdig eQTL experiment',
@@ -111,7 +111,7 @@ sub queryParentalAlleles {
   } 
   else {
     $key = 'NAME';
-    $profile = ApiCommonWebsite::Model::CannedQuery::ElementNames->new
+    $profile = EbrcWebsiteCommon::Model::CannedQuery::ElementNames->new
       ( Name         => "_haploblocknames",
         Id           => $self->getId(),
         ProfileSet   => 'Profiles of DD2-HB3 expression from Ferdig',

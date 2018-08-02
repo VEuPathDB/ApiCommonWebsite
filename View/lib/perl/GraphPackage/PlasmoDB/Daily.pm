@@ -11,7 +11,7 @@ use vars qw( @ISA );
 
 use EbrcWebsiteCommon::View::GraphPackage;
 use EbrcWebsiteCommon::View::MultiScreen;
-use ApiCommonWebsite::Model::CannedQuery::Profile;
+use EbrcWebsiteCommon::Model::CannedQuery::Profile;
 use Time::HiRes qw ( time );
 
 # ========================================================================
