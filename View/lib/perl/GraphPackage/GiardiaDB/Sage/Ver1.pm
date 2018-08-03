@@ -19,9 +19,9 @@ use vars qw( @ISA );
 
 use EbrcWebsiteCommon::View::GraphPackage::GiardiaDB::Sage;
 
-use ApiCommonWebsite::Model::CannedQuery::Profile;
-use ApiCommonWebsite::Model::CannedQuery::ProfileSet;
-use ApiCommonWebsite::Model::CannedQuery::ElementNames;
+use EbrcWebsiteCommon::Model::CannedQuery::Profile;
+use EbrcWebsiteCommon::Model::CannedQuery::ProfileSet;
+use EbrcWebsiteCommon::Model::CannedQuery::ElementNames;
 
 # ========================================================================
 # --------------------------- Required Methods ---------------------------
@@ -35,14 +35,14 @@ sub init {
   my $_ttl  = 'giar sage count';
 
 	$Self->setDataQuery
-	( ApiCommonWebsite::Model::CannedQuery::Profile->new
+	( EbrcWebsiteCommon::Model::CannedQuery::Profile->new
 		( Name         => '_data',
       ProfileSet   => $_ttl,
 		)
 	);
 
 	$Self->setNamesQuery
-	( ApiCommonWebsite::Model::CannedQuery::ElementNames->new
+	( EbrcWebsiteCommon::Model::CannedQuery::ElementNames->new
 		( Name         => '_names',
       ProfileSet   => $_ttl,
 		)

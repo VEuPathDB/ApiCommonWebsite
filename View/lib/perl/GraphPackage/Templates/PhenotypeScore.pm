@@ -9,8 +9,8 @@ use EbrcWebsiteCommon::View::GraphPackage::GGLinePlot;
 
 use EbrcWebsiteCommon::View::GraphPackage::ProfileSet;
 
-use ApiCommonWebsite::Model::CannedQuery::PhenotypeRankedNthValues;
-use ApiCommonWebsite::Model::CannedQuery::PhenotypeRankedNthNames;
+use EbrcWebsiteCommon::Model::CannedQuery::PhenotypeRankedNthValues;
+use EbrcWebsiteCommon::Model::CannedQuery::PhenotypeRankedNthNames;
 
 
 sub getPhenotypeSpecs { }
@@ -39,17 +39,17 @@ sub makePhenotypeGraphObject {
 
   my $id = $self->getId();
 
-  my $goValuesCannedQueryGene = ApiCommonWebsite::Model::CannedQuery::PhenotypeRankedNthValues->new
+  my $goValuesCannedQueryGene = EbrcWebsiteCommon::Model::CannedQuery::PhenotypeRankedNthValues->new
       ( SourceIdValueQuery => $sourceIdValueQuery, N => 200, Name => "_${abbrev}_gv", Id => $id);
 
-  my $goNamesCannedQueryGene = ApiCommonWebsite::Model::CannedQuery::PhenotypeRankedNthNames->new
+  my $goNamesCannedQueryGene = EbrcWebsiteCommon::Model::CannedQuery::PhenotypeRankedNthNames->new
       ( SourceIdValueQuery => $sourceIdValueQuery, N => 200, Name => "_${abbrev}_gen", Id => $id);
 
 
-  my $goValuesCannedQueryCurve = ApiCommonWebsite::Model::CannedQuery::PhenotypeRankedNthValues->new
+  my $goValuesCannedQueryCurve = EbrcWebsiteCommon::Model::CannedQuery::PhenotypeRankedNthValues->new
       ( SourceIdValueQuery => $sourceIdValueQuery, N => 200, Name => "_${abbrev}_av", Id => 'ALL');
 
-  my $goNamesCannedQueryCurve = ApiCommonWebsite::Model::CannedQuery::PhenotypeRankedNthNames->new
+  my $goNamesCannedQueryCurve = EbrcWebsiteCommon::Model::CannedQuery::PhenotypeRankedNthNames->new
       ( SourceIdValueQuery => $sourceIdValueQuery, N => 200, Name => "_${abbrev}_aen", Id => 'ALL');
 
 

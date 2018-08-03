@@ -3,8 +3,8 @@ package ApiCommonWebsite::View::GraphPackage::EuPathDB::PathwayGenera;
 use strict;
 use vars qw( @ISA );
 
-use ApiCommonWebsite::Model::CannedQuery::PathwayGeneraNames;
-use ApiCommonWebsite::Model::CannedQuery::PathwayGeneraData;
+use EbrcWebsiteCommon::Model::CannedQuery::PathwayGeneraNames;
+use EbrcWebsiteCommon::Model::CannedQuery::PathwayGeneraData;
 
 @ISA = qw( EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet );
 use EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet;
@@ -22,12 +22,12 @@ sub init {
   my @generaList = map { $_->[0] } @$listOfLists;
   my @colorList = map { $_->[2] } @$listOfLists;
 
-  my $names = ApiCommonWebsite::Model::CannedQuery::PathwayGeneraNames->new
+  my $names = EbrcWebsiteCommon::Model::CannedQuery::PathwayGeneraNames->new
       ( Name         => "_names",
         Genera => \@generaList,
       );
 
-  my $data = ApiCommonWebsite::Model::CannedQuery::PathwayGeneraData->new
+  my $data = EbrcWebsiteCommon::Model::CannedQuery::PathwayGeneraData->new
         ( Name         => "_data",
           Genera => \@generaList,
           Id => $self->getId(),
