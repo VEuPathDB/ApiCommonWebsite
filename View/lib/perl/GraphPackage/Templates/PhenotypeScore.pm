@@ -111,6 +111,20 @@ gp = gp + annotate(\"text\", x = 5000, y = 0.9, label = \"Dispensable\", colour 
       ];
 }
 
+sub declareParts {
+  my ($self) = @_;
+
+  my $myPlotParts = $self->SUPER::declareParts();
+  #my $oldNewPlotPart = @{$myPlotParts}[0];
+  #push @{$myPlotParts}, $oldNewPlotPart;
+  pop @{$myPlotParts};
+
+  @{$myPlotParts}[0]->{visible_part} = "MIS,MFS";
+  @{$myPlotParts}[0]->{height} = @{$myPlotParts}[0]->{height} + 300;
+
+  return $myPlotParts;
+}
+
 1;
 
 
