@@ -20,6 +20,149 @@
 -->
 
 <record>
+  <attribute name="headline">TriTrypDB 39 Released</attribute>
+  <attribute name="date">20 Aug 2018 13:00</attribute>
+  <attribute name="tag">TriTrypDB08_18_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of TriTrypDB 39</strong></p>
+      
+      <section>
+        <h3><b>New data in TriTrypDB 39</b></h3> 
+        <div style="margin-left: 3em;">
+        <h4>Proteomics and post-translational modifications</h4>
+          <ul>
+          Acetylation proteomes of <i>T. cruzi</i> and <i>T. brucei</i> lysine and N-terminal amino acids. 
+          <a href="http://www.ncbi.nlm.nih.gov/pubmed/29168382" target="_blank">Moretti et al.</a>
+          <div style="margin-left: 3em;">
+           <li>
+              <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_2db3d0872d"><i>T. brucei</i> TREU927</a> bloodstream and procyclic form data
+           </li>
+           <li>
+              <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_c87b905ece"><i>T. cruzi</i> CL Brener Non-Esmeraldo-like</a> epimastigote data
+           </li>
+           <li>
+              <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_2a7b5a1ada"><i>T. cruzi</i> CL Brener Esmeraldo-like</a> epimastigote data
+           </li>
+           <li>
+              <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_d630a9d906"><i>T. cruzi</i> strain CL Brener</a> epimastigote data
+           </li>
+           </div>
+          </ul>
+         
+         <h4>ChIP Sequencing</h4>
+          <ul>
+           <li>
+            <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_5df257adeb">RNA pol II, H2A.Z and H3 genome-wide distribution</a> &mdash; 
+            Genome-wide distribution of RNA pol II, H2A.Z and H3 based on ChIP-seq against endogenously tagged RPB9 (RNA pol II subunit), MNase-ChIP-seq using a custom-made antibodies against H2A.Z and H3.
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/28701485">Wedel et al.</a>  
+            </li>
+          </ul>
+          
+      </div>
+      </section>
+      
+      
+      
+      <section>
+      <h3><b>Annotation News</b></h3>
+      <div style="margin-left: 3em;">
+       <h4>Updated Functional Annotation</h4>
+           
+        <div style="margin-left: 3em;">
+        
+        <a href="https://docs.google.com/spreadsheets/d/19O19SqJ-gOHfBqyp428sp7TlAfxEGNpYK1CPiv20RwM/edit?usp=sharing" target="_blank">Summary of annotation updates</a> 
+           which include products, GO terms, EC numbers, gene names, synonyms, publications and notes from curators. 
+        <br>
+        <br>
+        <style>
+           #FunctAnnot_Bld38 table, #FunctAnnot_Bld38 td, #FunctAnnot_Bld38 th, #FunctAnnot_Bld38 tr {
+           text-align : center;
+           padding-left: 5px;
+           padding-right: 5px;
+           padding-top: 5px;
+           padding-bottom: 5px;
+           border: 1px solid black;
+           }
+           #FunctAnnot_Bld38 {
+           margin-left : 5 em;
+           }
+         </style> 
+           <table id="FunctAnnot_Bld38"> 
+           <tr>
+             <th>TriTrypDB Genome Version</th>
+             <th>Download GeneDB GFF file</th>
+             <th>Genes Updated</th>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_31282613b1"><i>Trypanosoma brucei</i> 927</a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2018-05/Tbruceibrucei927.noseq.gff3.gz" target="_blank"> Tbruceibrucei927.noseq.gff3.gz</a></td> 
+             <td>1582 genes</td>
+           </tr>
+           </table>
+           <br><br>
+           
+        </div>
+      
+       <h4>Curated User Comments</h4>
+       <div style="margin-left: 3em;">
+       
+          Gene page comments that are entered by users are curated at GeneDB and regularly integrated as functional 
+          annotations in TriTrypDB. Seventeen user comments (unique) have been reviewed and updated in this release.<br><br>
+          
+       
+      
+      <style>
+           #UComment_Bld38 table, #UComment_Bld38 td, #UComment_Bld38 th, #UComment_Bld38 tr {
+           text-align : center;
+           padding-left: 5px;
+           padding-right: 5px;
+           padding-top: 5px;
+           padding-bottom: 5px;
+           border: 1px solid black;
+           }
+           #UComment_Bld38 {
+           margin-left : 5 em;
+           }
+         </style> 
+           <table id="UComment_Bld38"> 
+           <tr>
+             <th>TriTrypDB Genome Version</th>
+             <th>Comments Integrated</th>
+           </tr>
+           <tr>
+             <td><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_31282613b1"><i>T. brucei </i> 927</a></td>
+             <td>17</td>
+           </tr>
+          </table>
+          <br>
+          <br>
+          
+      </div>
+      </div>
+      </section>
+      
+      <section>
+      <h3><b>No new features in this release</b></h3>
+      </section>
+      
+      <section>
+         <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+
+    ]]>
+  </attribute>
+</record>
+
+
+
+<record>
   <attribute name="headline">TriTrypDB 38 Released</attribute>
   <attribute name="date">05 Jul 2018 13:00</attribute>
   <attribute name="tag">TriTrypDB07_18_release</attribute>
