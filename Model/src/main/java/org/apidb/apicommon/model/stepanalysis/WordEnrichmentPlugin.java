@@ -20,6 +20,8 @@ import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.analysis.AbstractSimpleProcessAnalyzer;
 import org.gusdb.wdk.model.analysis.ValidationErrors;
 import org.gusdb.wdk.model.answer.AnswerValue;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class WordEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
@@ -74,7 +76,22 @@ public class WordEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   }
 
   @Override
+  public JSONObject getFormViewModelJson() throws WdkModelException {
+    try {
+      return createFormViewModel().toJson();
+    // TODO: we catch user exception because this method is called only from the service layer, which
+    // will have pre-validated the AnswerValue.  Lose this when the user exception is purged from the backend core code
+    } catch (WdkUserException e) {
+      throw new WdkModelException();
+    }
+  }
+
+  @Override
   public Object getFormViewModel() throws WdkModelException, WdkUserException {
+    return createFormViewModel();
+  }
+  
+  private FormViewModel createFormViewModel() throws WdkModelException, WdkUserException {
     // get orgs to display in select
     List<Option> orgOptionList = EnrichmentPluginUtil
         .getOrgOptionList(getAnswerValue(), getWdkModel());
@@ -82,7 +99,16 @@ public class WordEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   }
   
   @Override
+  public JSONObject getResultViewModelJson() throws WdkModelException {
+    return createResultViewModel().toJson();
+  }
+  
+  @Override
   public Object getResultViewModel() throws WdkModelException {
+    return createResultViewModel();
+  }
+  
+  private ResultViewModel createResultViewModel() throws WdkModelException {
     Path inputPath = Paths.get(getStorageDirectory().toString(), TABBED_RESULT_FILE_PATH);
     List<ResultRow> results = new ArrayList<>();
     try (FileReader fileIn = new FileReader(inputPath.toFile());
@@ -113,6 +139,16 @@ public class WordEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     }
     
     public String getOrganismParamHelp() { return EnrichmentPluginUtil.ORGANISM_PARAM_HELP; }
+    
+    public JSONObject toJson() {
+      JSONObject json = new JSONObject();
+      JSONArray jsonarray = new JSONArray();
+      for (Option opt : _orgOptions) jsonarray.put(opt.toJson());
+      json.put("organismOptions", jsonarray);
+      json.put("organismParamHelp", EnrichmentPluginUtil.ORGANISM_PARAM_HELP);
+
+      return json;
+    }
   }
 
   public static class ResultViewModel {
@@ -133,6 +169,19 @@ public class WordEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     public List<ResultRow> getResultData() { return _resultData; }
     public String getDownloadPath() { return _downloadPath; }
     public String getPvalueCutoff() { return EnrichmentPluginUtil.getPvalueCutoff(_formParams); }
+    
+    JSONObject toJson() {
+      JSONObject json = new JSONObject();
+      json.put("headerRow", getHeaderRow());
+      json.put("headerDescription", getHeaderDescription());
+      JSONArray resultsJson = new JSONArray();
+      for (ResultRow rr : getResultData()) resultsJson.put(rr.toJson());
+      json.put("resultData", resultsJson);
+      json.put("downloadPath", getDownloadPath());
+      json.put("pvalueCutoff", getPvalueCutoff());
+      return json;
+    }
+
   }
 
   public static class ResultRow {
@@ -171,5 +220,20 @@ public class WordEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     public String getPvalue() { return _pValue; }
     public String getBenjamini() { return _benjamini; }
     public String getBonferroni() { return _bonferroni; }
+ 
+    public JSONObject toJson() {
+      JSONObject json = new JSONObject();
+      json.put("word", _word);
+      json.put("pathwayName", _descrip);
+      json.put("bgdGenes", _bgdGenes);
+      json.put("resultGenes", _resultGenes);
+      json.put("percentInResult", _percentInResult);
+      json.put("foldEnrich", _foldEnrich);
+      json.put("oddsRatio", _oddsRatio);
+      json.put("pValue", _pValue);
+      json.put("benjamini", _benjamini);
+      json.put("bonferroni", _bonferroni);
+      return json;
+    }
   }
 }

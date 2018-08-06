@@ -8,6 +8,8 @@ import org.gusdb.wdk.model.analysis.AbstractStepAnalyzer;
 import org.gusdb.wdk.model.answer.AnswerValue;
 import org.gusdb.wdk.model.user.analysis.ExecutionStatus;
 import org.gusdb.wdk.model.user.analysis.StatusLogger;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class CheckboxTreeTestPlugin extends AbstractStepAnalyzer {
 
@@ -15,9 +17,18 @@ public class CheckboxTreeTestPlugin extends AbstractStepAnalyzer {
 
   @Override
   public Object getFormViewModel() throws WdkModelException {
+    return createFormViewModel();
+  }
+  
+  private FieldTree createFormViewModel() throws WdkModelException {
     FieldTree tree = buildTreeParam();
     tree.addDefaultLeaves("value2", "value3", "value6");
     return tree;
+  }
+  
+  @Override
+  public JSONObject getFormViewModelJson() throws WdkModelException {
+    return createFormViewModel().toJson();
   }
 
   private FieldTree buildTreeParam() {
@@ -46,6 +57,15 @@ public class CheckboxTreeTestPlugin extends AbstractStepAnalyzer {
       result.append(option).append("\n");
     }
     return result.toString();
+  }
+  
+  @Override
+  public JSONObject getResultViewModelJson() throws WdkModelException {
+    JSONObject json = new JSONObject();
+    JSONArray jsonArray = new JSONArray();
+    for (String option : getFormParams().get(CHECKBOX_TREE_KEY)) jsonArray.put(option);
+    json.put(CHECKBOX_TREE_KEY, jsonArray);
+    return json;
   }
 
   @Override

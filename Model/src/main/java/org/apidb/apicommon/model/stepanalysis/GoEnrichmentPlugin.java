@@ -22,6 +22,7 @@ import org.gusdb.fgputil.db.runner.BasicResultSetHandler;
 import org.gusdb.fgputil.db.runner.SQLRunner;
 import org.gusdb.fgputil.db.runner.SingleLongResultSetHandler;
 import org.gusdb.fgputil.db.runner.SingleLongResultSetHandler.Status;
+import org.gusdb.fgputil.json.JsonUtil;
 import org.gusdb.fgputil.runtime.GusHome;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
@@ -30,6 +31,8 @@ import org.gusdb.wdk.model.analysis.AbstractSimpleProcessAnalyzer;
 import org.gusdb.wdk.model.analysis.ValidationErrors;
 import org.gusdb.wdk.model.answer.AnswerValue;
 import org.gusdb.wdk.model.user.analysis.IllegalAnswerValueException;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
@@ -217,6 +220,11 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
   @Override
   public Object getFormViewModel() throws WdkModelException, WdkUserException {
+    
+    return createFormViewModel();
+  }
+  
+  private FormViewModel createFormViewModel() throws WdkModelException, WdkUserException {
 
       // JP I THINK I NEED TO ADD SOMETHING HERE 
 
@@ -259,9 +267,24 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
     return new FormViewModel(orgOptionList, /*sources,*/ ontologies , evidCodes , goSubsets);
   }
+  
+  @Override
+  public JSONObject getFormViewModelJson() throws WdkModelException {
+    try {
+      return createFormViewModel().toJson();
+    // TODO: we catch user exception because this method is called only from the service layer, which
+    // will have pre-validated the AnswerValue.  Lose this when the user exception is purged from the backend core code
+    } catch (WdkUserException e) {
+      throw new WdkModelException();
+    }
+  }
 
   @Override
   public Object getResultViewModel() throws WdkModelException {
+    return createResultViewModel();
+  }
+  
+  private ResultViewModel createResultViewModel() throws WdkModelException {  
     Path inputPath = Paths.get(getStorageDirectory().toString(), HIDDEN_TABBED_RESULT_FILE_PATH);
     //    Path inputPath = Paths.get(getStorageDirectory().toString(), HIDDEN_TABBED_RESULT_FILE_PATH);
     //    Path imageResultFilePath = Paths.get(getStorageDirectory().toString(), IMAGE_RESULT_FILE_PATH);
@@ -285,13 +308,22 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
       throw new WdkModelException("Unable to process result file at: " + inputPath, ioe);
     }
   }
+  
+  @Override
+  public JSONObject getResultViewModelJson() throws WdkModelException {
+
+      return createResultViewModel().toJson();
+  }
+
+
 
   public static class FormViewModel {
     private List<Option> _orgOptions;
     private List<Option> _ontologyOptions;
     private List<Option> _evidCodeOptions;
     private List<Option> _goSubsetOptions;   
-      public FormViewModel(List<Option> orgOptions, List<Option> ontologyOptions, List<Option> evidCodeOptions, List<Option> goSubsetOptions) {
+    
+    public FormViewModel(List<Option> orgOptions, List<Option> ontologyOptions, List<Option> evidCodeOptions, List<Option> goSubsetOptions) {
       _orgOptions = orgOptions;
       _ontologyOptions = ontologyOptions;
       _evidCodeOptions = evidCodeOptions;
@@ -319,6 +351,33 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     public String getEvidenceParamHelp() { return EVIDENCE_PARAM_HELP; }
     public String getPvalueParamHelp() { return PVALUE_PARAM_HELP; }
     public String getGoSubsetParamHelp() { return GO_SUBSET_PARAM_HELP; }
+    
+    public JSONObject toJson() {
+      JSONObject json = new JSONObject();
+      json.put("organismHelp", EnrichmentPluginUtil.ORGANISM_PARAM_HELP);
+      json.put("ontologyHelp", ONTOLOGY_PARAM_HELP);
+      json.put("evidenceHelp", EVIDENCE_PARAM_HELP);
+      json.put("pvalueHelp", PVALUE_PARAM_HELP);
+      json.put("goSubsetHelp", GO_SUBSET_PARAM_HELP);
+      
+      JSONArray organismsJson = new JSONArray();
+      for (Option opt : _orgOptions) organismsJson.put(opt.toJson());
+      json.put("organismOptions", organismsJson);
+      
+      JSONArray ontologyJson = new JSONArray();
+      for (Option opt : _ontologyOptions) ontologyJson.put(opt.toJson());
+      json.put("ontologyOptions", ontologyJson);
+      
+      JSONArray evidenceJson = new JSONArray();
+      for (Option opt : _evidCodeOptions) evidenceJson.put(opt.toJson());
+      json.put("evidenceOptions", evidenceJson);
+      
+      JSONArray goSubsetJson = new JSONArray();
+      for (Option opt : _goSubsetOptions) goSubsetJson.put(opt.toJson());
+      json.put("goSubsetOptions", goSubsetJson);
+      
+      return json;
+    }
   }
 
   public static class ResultViewModel {
@@ -355,8 +414,27 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     public String getGoSubset() { return FormatUtil.join(_formParams.get(GoEnrichmentPlugin.GO_SUBSET_PARAM_KEY), ", "); }
     public String getGoTermBaseUrl() { return _goTermBaseUrl; }
     public String getRevigoInputList() {return _revigoInputList; }
+    
+    JSONObject toJson() {
+      JSONObject json = new JSONObject();
+      json.put("headerRow", getHeaderRow());
+      json.put("headerDescription", getHeaderDescription());
+      JSONArray resultsJson = new JSONArray();
+      for (ResultRow rr : getResultData()) resultsJson.put(rr.toJson());
+      json.put("resultData", resultsJson);
+      json.put("downloadPath", getDownloadPath());
+      json.put("imageDownloadPath", getImageDownloadPath());
+      json.put("hiddenDownloadPath", gethiddenDownloadPath());
+      json.put("pvalueCutoff", getPvalueCutoff());
+      json.put("evidenceCodes", JsonUtil.toJsonStringArray(_formParams.get(GoEnrichmentPlugin.GO_EVID_CODE_PARAM_KEY)));
+      json.put("goOntologies", JsonUtil.toJsonStringArray(_formParams.get(GoEnrichmentPlugin.GO_ASSOC_ONTOLOGY_PARAM_KEY)));
+      json.put("goSubset", JsonUtil.toJsonStringArray(_formParams.get(GoEnrichmentPlugin.GO_SUBSET_PARAM_KEY)));
+      json.put("goTermBaseUrl", getGoTermBaseUrl());
+      json.put("revidoInputList", getRevigoInputList());
+      return json;
+    }
   }
-
+  
   public static class ResultRow {
 
     private String _goId;
@@ -393,5 +471,20 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     public String getPvalue() { return _pValue; }
     public String getBenjamini() { return _benjamini; }
     public String getBonferroni() { return _bonferroni; }
+    
+    public JSONObject toJson() {
+      JSONObject json = new JSONObject();
+      json.put("goId", _goId);
+      json.put("goTerm", _goTerm);
+      json.put("bgdGenes", _bgdGenes);
+      json.put("resultGenes", _resultGenes);
+      json.put("percentInResult", _percentInResult);
+      json.put("foldEnrich", _foldEnrich);
+      json.put("oddsRatio", _oddsRatio);
+      json.put("pValue", _pValue);
+      json.put("benjamini", _benjamini);
+      json.put("bonferroni", _bonferroni);
+      return json;
+    }
   }
 }

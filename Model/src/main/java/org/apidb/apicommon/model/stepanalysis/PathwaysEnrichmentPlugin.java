@@ -20,6 +20,7 @@ import org.apidb.apicommon.model.stepanalysis.EnrichmentPluginUtil.Option;
 import org.gusdb.fgputil.FormatUtil;
 import org.gusdb.fgputil.db.runner.BasicResultSetHandler;
 import org.gusdb.fgputil.db.runner.SQLRunner;
+import org.gusdb.fgputil.json.JsonUtil;
 import org.gusdb.fgputil.runtime.GusHome;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
@@ -28,6 +29,8 @@ import org.gusdb.wdk.model.analysis.AbstractSimpleProcessAnalyzer;
 import org.gusdb.wdk.model.analysis.ValidationErrors;
 import org.gusdb.wdk.model.answer.AnswerValue;
 import org.gusdb.wdk.model.user.analysis.IllegalAnswerValueException;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
@@ -163,8 +166,22 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   }
   
   @Override
-  public Object getFormViewModel() throws WdkModelException, WdkUserException {
+  public JSONObject getFormViewModelJson() throws WdkModelException {
+    try {
+      return createFormViewModel().toJson();
+    // TODO: we catch user exception because this method is called only from the service layer, which
+    // will have pre-validated the AnswerValue.  Lose this when the user exception is purged from the backend core code
+    } catch (WdkUserException e) {
+      throw new WdkModelException();
+    }
+  }
 
+  @Override
+  public Object getFormViewModel() throws WdkModelException, WdkUserException {
+    return createFormViewModel();
+  }
+
+  private FormViewModel createFormViewModel() throws WdkModelException, WdkUserException {
     DataSource ds = getWdkModel().getAppDb().getDataSource();
     BasicResultSetHandler handler = new BasicResultSetHandler();
 
@@ -193,7 +210,16 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   }
 
   @Override
+  public JSONObject getResultViewModelJson() throws WdkModelException {
+    return createResultViewModel().toJson();
+  }
+  
+  @Override
   public Object getResultViewModel() throws WdkModelException {
+    return createResultViewModel();
+  }
+  
+  private ResultViewModel createResultViewModel() throws WdkModelException {
     Path inputPath = Paths.get(getStorageDirectory().toString(), HIDDEN_TABBED_RESULT_FILE_PATH);
     List<ResultRow> results = new ArrayList<>();
     try (FileReader fileIn = new FileReader(inputPath.toFile());
@@ -233,6 +259,14 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     }
 
     public String getOrganismParamHelp() { return EnrichmentPluginUtil.ORGANISM_PARAM_HELP; }
+    
+    public JSONObject toJson() {
+      JSONObject json = new JSONObject();
+      JSONArray optionsJson = new JSONArray();
+      for (Option o : _orgOptions) optionsJson.put(o);
+      json.put("options", optionsJson);
+      return json;
+    }
   }
 
   public static class ResultViewModel {
@@ -264,6 +298,23 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     public String getPvalueCutoff() { return EnrichmentPluginUtil.getPvalueCutoff(_formParams); }
     public String getPathwaysSources() { return FormatUtil.join(_formParams.get(PathwaysEnrichmentPlugin.PATHWAYS_SRC_PARAM_KEY), ", "); }
     public String getPathwayBaseUrl() { return _pathwayBaseUrl; }
+    
+    JSONObject toJson() {
+      JSONObject json = new JSONObject();
+      json.put("headerRow", getHeaderRow());
+      json.put("headerDescription", getHeaderDescription());
+      JSONArray resultsJson = new JSONArray();
+      for (ResultRow rr : getResultData()) resultsJson.put(rr.toJson());
+      json.put("resultData", resultsJson);
+      json.put("downloadPath", getDownloadPath());
+      json.put("imageDownloadPath", getImageDownloadPath());
+      json.put("hiddenDownloadPath", gethiddenDownloadPath());
+      json.put("pvalueCutoff", getPvalueCutoff());
+      json.put("pathwaySources", JsonUtil.toJsonStringArray(_formParams.get(PathwaysEnrichmentPlugin.PATHWAYS_SRC_PARAM_KEY)));
+      json.put("pathwayBaseUrl", getPathwayBaseUrl());
+      return json;
+    }
+
   }
 
   public static class ResultRow {
@@ -305,5 +356,22 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     public String getPvalue() { return _pValue; }
     public String getBenjamini() { return _benjamini; }
     public String getBonferroni() { return _bonferroni; }
+    
+    public JSONObject toJson() {
+      JSONObject json = new JSONObject();
+      json.put("pathwayId", _pathwayId);
+      json.put("pathwayName", _pathwayName);
+      json.put("pathwaySource", _pathwaySource);
+      json.put("bgdGenes", _bgdGenes);
+      json.put("resultGenes", _resultGenes);
+      json.put("percentInResult", _percentInResult);
+      json.put("foldEnrich", _foldEnrich);
+      json.put("oddsRatio", _oddsRatio);
+      json.put("pValue", _pValue);
+      json.put("benjamini", _benjamini);
+      json.put("bonferroni", _bonferroni);
+      return json;
+    }
+
   }
 }

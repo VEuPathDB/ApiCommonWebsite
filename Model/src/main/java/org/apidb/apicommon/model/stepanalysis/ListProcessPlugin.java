@@ -8,9 +8,11 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 import org.gusdb.fgputil.FormatUtil;
 import org.gusdb.wdk.model.WdkModelException;
+import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.analysis.AbstractSimpleProcessAnalyzer;
 import org.gusdb.wdk.model.analysis.ValidationErrors;
 import org.gusdb.wdk.model.answer.AnswerValue;
+import org.json.JSONObject;
 
 public class ListProcessPlugin extends AbstractSimpleProcessAnalyzer {
   
@@ -36,7 +38,29 @@ public class ListProcessPlugin extends AbstractSimpleProcessAnalyzer {
   }
   
   @Override
+  public Object getFormViewModel() throws WdkModelException, WdkUserException {
+    return null;
+  }
+
+  @Override
+  public JSONObject getFormViewModelJson() throws WdkModelException {
+    return new JSONObject();
+  }
+
+  
+  @Override
   public Object getResultViewModel() {
+    return createResultViewModel();
+  }
+  
+  @Override
+  public JSONObject getResultViewModelJson() {
+    JSONObject json = new JSONObject();
+    json.put("result", createResultViewModel());
+    return json;
+  }
+
+  private String createResultViewModel() {
     String result = "";
     try(FileReader fr = new FileReader(getStdoutFilePath().toFile());
         BufferedReader br = new BufferedReader(fr)) {

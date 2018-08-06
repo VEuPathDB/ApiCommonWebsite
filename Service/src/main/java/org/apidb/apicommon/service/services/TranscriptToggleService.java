@@ -3,6 +3,7 @@ package org.apidb.apicommon.service.services;
 import javax.ws.rs.BadRequestException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.ForbiddenException;
+import javax.ws.rs.NotFoundException;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -32,7 +33,7 @@ public class TranscriptToggleService extends WdkService {
       JSONObject input = new JSONObject(body);
       boolean filterTurnedOn = input.getBoolean(RepresentativeTranscriptFilter.FILTER_NAME);
       LOG.info("Action is to turn filter: " + filterTurnedOn);
-      Step step = getWdkModel().getStepFactory().getStepById(stepId);
+      Step step = getWdkModel().getStepFactory().getStepById(stepId).orElseThrow(()-> new NotFoundException("No step found for ID " + stepId));
       if (getSessionUser().getUserId() != step.getUser().getUserId()) {
         LOG.warn("Attempt made to edit Step " + stepId + " by non-owner (user id " +
             getSessionUser().getUserId() + "); session expired?");
