@@ -337,7 +337,7 @@ sub declareParts {
 1;
 
 #plasmo
-package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_40a06f276b;
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_c35d971a20;
 
 sub init {
   my $self = shift;
