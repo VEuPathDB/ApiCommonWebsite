@@ -102,6 +102,9 @@ sub finalProfileAdjustments {
   $profile->setLegendLabels(\@allLegend);
 
 
+  my $plotTitle = $profile->getPlotTitle();
+  $profile->setPlotTitle($plotTitle . " : Cell cycle phases" );
+
   return $self;
 }
 
