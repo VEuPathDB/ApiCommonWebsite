@@ -75,6 +75,19 @@ sub finalProfileAdjustments {
 1;
 
 
+# for TriTrypDB
+package ApiCommonWebsite::View::GraphPackage::Templates::Proteomics::NonRatio::DS_bf9c234fd9;
+
+sub finalProfileAdjustments {
+  my ($self, $profile) = @_;
+  $profile->setDefaultYMax(0.4);
+  return $self;
+}
+1;
+
+
+
+
 #--------------------------------------------------------------------------------
 
 # TEMPLATE_ANCHOR proteomicsSimpleNonRatio
