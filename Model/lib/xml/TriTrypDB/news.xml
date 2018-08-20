@@ -31,32 +31,44 @@
       <section>
         <h3><b>New data in TriTrypDB 39</b></h3> 
         <div style="margin-left: 3em;">
-        <h4>Proteomics and post-translational modifications</h4>
+
+        <h4>Genome Sequence and Annotation</h4>
           <ul>
-          Acetylation proteomes of <i>T. cruzi</i> and <i>T. brucei</i> lysine and N-terminal amino acids. 
-          <a href="http://www.ncbi.nlm.nih.gov/pubmed/29168382" target="_blank">Moretti et al.</a>
-          <div style="margin-left: 3em;">
            <li>
-              <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_2db3d0872d"><i>T. brucei</i> TREU927</a> bloodstream and procyclic form data
+            <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_0ccdb3a6ec">Transcriptome of <i>T. brucei</i> rhodesiense from human, rodent, culture</a> &mdash; 
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/29474390">Mulindwa et al.</a>  
+            </li>
+          </ul>
+        
+        <h4>Proteomics</h4>
+          <ul>
+           <li>
+             <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_bf9c234fd9">Quantitative <i>T. brucei</i> procyclic cell cycle proteome.</a> &mdash;  
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/29555687" target="_blank">Crozier et al.</a>
            </li>
            <li>
-              <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_c87b905ece"><i>T. cruzi</i> CL Brener Non-Esmeraldo-like</a> epimastigote data
+             <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_a318f71b03"><i>T. brucei</i> procyclic cell cycle peptides (clone 29.13.6)</a> &mdash;  
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/29555687" target="_blank">Crozier et al.</a>
            </li>
-           <li>
-              <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_2a7b5a1ada"><i>T. cruzi</i> CL Brener Esmeraldo-like</a> epimastigote data
-           </li>
-           <li>
-              <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_d630a9d906"><i>T. cruzi</i> strain CL Brener</a> epimastigote data
-           </li>
-           </div>
           </ul>
          
-         <h4>ChIP Sequencing</h4>
+         <h4>Whole Genome Sequencing reads for SNP and CNV analysis</h4>
           <ul>
            <li>
-            <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_5df257adeb">RNA pol II, H2A.Z and H3 genome-wide distribution</a> &mdash; 
-            Genome-wide distribution of RNA pol II, H2A.Z and H3 based on ChIP-seq against endogenously tagged RPB9 (RNA pol II subunit), MNase-ChIP-seq using a custom-made antibodies against H2A.Z and H3.
-            <a href="http://www.ncbi.nlm.nih.gov/pubmed/28701485">Wedel et al.</a>  
+            <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_7022bb9d95">Genome wide comparison of Leishmania donovani strains from Ethiopia</a> &mdash; 
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/29315303">Zackay et al.</a>  
+            </li>
+           <li>
+            <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_d6339f85c9"><i>T. brucei</i> population genomics</a> &mdash; 
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/26809473">Weir et al.</a>  
+            </li>
+          </ul>
+          
+          <h4>RNA Sequence</h4>
+          <ul>
+           <li>
+            <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_0ccdb3a6ec">Transcriptome of <i>T. brucei</i> rhodesiense from human, rodent, culture</a> &mdash; 
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/29474390">Mulindwa et al.</a>  
             </li>
           </ul>
           
@@ -72,12 +84,12 @@
            
         <div style="margin-left: 3em;">
         
-        <a href="https://docs.google.com/spreadsheets/d/19O19SqJ-gOHfBqyp428sp7TlAfxEGNpYK1CPiv20RwM/edit?usp=sharing" target="_blank">Summary of annotation updates</a> 
+        <a href="https://docs.google.com/spreadsheets/d/1OOeAk5smNu-ygswjDPN-Admrfi6SQZgpuag8WzF4ij0/edit?usp=sharing" target="_blank">Summary of annotation updates</a> 
            which include products, GO terms, EC numbers, gene names, synonyms, publications and notes from curators. 
         <br>
         <br>
         <style>
-           #FunctAnnot_Bld38 table, #FunctAnnot_Bld38 td, #FunctAnnot_Bld38 th, #FunctAnnot_Bld38 tr {
+           #FunctAnnot_Bld39 table, #FunctAnnot_Bld39 td, #FunctAnnot_Bld39 th, #FunctAnnot_Bld39 tr {
            text-align : center;
            padding-left: 5px;
            padding-right: 5px;
@@ -85,11 +97,11 @@
            padding-bottom: 5px;
            border: 1px solid black;
            }
-           #FunctAnnot_Bld38 {
+           #FunctAnnot_Bld39 {
            margin-left : 5 em;
            }
          </style> 
-           <table id="FunctAnnot_Bld38"> 
+           <table id="FunctAnnot_Bld39"> 
            <tr>
              <th>TriTrypDB Genome Version</th>
              <th>Download GeneDB GFF file</th>
@@ -97,8 +109,8 @@
            </tr>
            <tr>
              <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_31282613b1"><i>Trypanosoma brucei</i> 927</a></td>
-             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2018-05/Tbruceibrucei927.noseq.gff3.gz" target="_blank"> Tbruceibrucei927.noseq.gff3.gz</a></td> 
-             <td>1582 genes</td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2018-07/Tbruceibrucei927.noseq.gff3.gz" target="_blank"> Tbruceibrucei927.noseq.gff3.gz</a></td> 
+             <td>129 genes</td>
            </tr>
            </table>
            <br><br>
@@ -109,12 +121,12 @@
        <div style="margin-left: 3em;">
        
           Gene page comments that are entered by users are curated at GeneDB and regularly integrated as functional 
-          annotations in TriTrypDB. Seventeen user comments (unique) have been reviewed and updated in this release.<br><br>
+          annotations in TriTrypDB. 35 user comments (unique) have been reviewed and updated in this release.<br><br>
           
        
       
       <style>
-           #UComment_Bld38 table, #UComment_Bld38 td, #UComment_Bld38 th, #UComment_Bld38 tr {
+           #UComment_Bld39 table, #UComment_Bld39 td, #UComment_Bld39 th, #UComment_Bld39 tr {
            text-align : center;
            padding-left: 5px;
            padding-right: 5px;
@@ -122,18 +134,18 @@
            padding-bottom: 5px;
            border: 1px solid black;
            }
-           #UComment_Bld38 {
+           #UComment_Bld39 {
            margin-left : 5 em;
            }
          </style> 
-           <table id="UComment_Bld38"> 
+           <table id="UComment_Bld39"> 
            <tr>
              <th>TriTrypDB Genome Version</th>
              <th>Comments Integrated</th>
            </tr>
            <tr>
              <td><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_31282613b1"><i>T. brucei </i> 927</a></td>
-             <td>17</td>
+             <td>35</td>
            </tr>
           </table>
           <br>
