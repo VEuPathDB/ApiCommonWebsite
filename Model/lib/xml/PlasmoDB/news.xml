@@ -32,24 +32,11 @@
        <h3><b>New data in PlasmoDB 39</b></h3>
        <div style="margin-left: 3em;">
        
-       <h4>RNA Sequence</h4>
+       <h4>Whole genome sequencing reads for SNP and CNV analysis</h4>
            <ul>
-            <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_e764c70e8e">Hypnozoite RNAseq</a> &ndash; 
-              <i>P. vivax</i> hypnozoite RNAseq
-              <a href="http://www.ncbi.nlm.nih.gov/pubmed/29478773">Gural et al.</a> 
-              </li>
-            <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_8eeacbc46e">Ring, Oocyst and Sporozoite Transcriptomes</a> &ndash; 
-              Transcriptomes of oocyst, ring and sporozoite stages in <i>P. falciparum</i> determined by RNA sequence.
-              <a href="http://www.ncbi.nlm.nih.gov/pubmed/29539423">Zanghi et al.</a> 
-              </li>
-           </ul>
-           
-        <h4>ChIP Sequencing data</h4>
-           <ul>
-            <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_c930c27891">Epigenome of sporozoites (HP-1, H3K9me3, H3K9ac) and rings (HP-1, H3K9me3)</a> &ndash; 
-              Genome-wide distribution of HP-1 and H3K9me3 in <i>P. falciparum</i> rings and sporozoites, as well as H3K9ac in sporozoites.
-              <a href="http://www.ncbi.nlm.nih.gov/pubmed/29539423">Zanghi et al.</a> 
-              </li>
+            <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_b7ec60f469">Aligned genomic sequence reads - strain P01</a>  &ndash;
+               <a href="http://www.ncbi.nlm.nih.gov/pubmed/28008421">Auburn et al.</a>
+               </li>
            </ul>
         </section>
         <div>
