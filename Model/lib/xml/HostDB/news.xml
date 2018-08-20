@@ -31,7 +31,7 @@
       
       
       <section>
-       <h3><b>No new data in HostDB 39</b></h3>
+       <h3><b>New data in HostDB 39</b></h3>
       </section>
       
       <section>
@@ -65,6 +65,16 @@
       
       <section>
        <h3><b>No new data in HostDB 38</b></h3>
+       <h4>Proteomics</h4>
+       <ul>
+           <li>
+            <a href="http://hostdb.org/hostdb/app/record/dataset/DS_20f2f0535f">Human intestinal cell secretome during <i>Giardia</i> infection</a> &mdash; 
+            Secretome of human intestinal epithelial cell secretome during interaction with Giardia intestinalis WB clone C6 (ATCC30957; assemblage A) and isolates GS, clone H7 (ATCC50581; assemblage B)
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/29228011">Ma'ayeh et al.</a>  
+            This data set has Giardia components available in GiardiaDB as:
+            <a href="http://giardiadb.org/giardiadb/app/record/dataset/DS_0d06f3af80"><i>Giardia Assemblage</i> B secretome IEC infection</a> and 
+            <a href="http://giardiadb.org/giardiadb/app/record/datasetDS_767c9fca84"><i>Giardia Assemblage</i> A secretome IEC infection</a>.
+           </li>
       </section>
       
       <section>
