@@ -30,7 +30,19 @@
     <p><strong>We are pleased to announce the release of MicrosporidiaDB 39</strong></p>
 
       <section>
-        <h3><b>No new data in this release</b></h3> 
+        <h3><b>New data in this release</b></h3> 
+        <h4>Genome sequence and annotation</h4>
+        These annotated genomes analyzedin <a href="http://www.ncbi.nlm.nih.gov/pubmed/28345194" target="_blank">Wiredu Boakye et al.</a> appear for the first time in MicripsporidiaDB:
+           <ul>
+             <li><a href="http://microsporidiadb.org/micro/app/record/dataset/DS_564ee9d6f4"><i>Enterocytozoon hepatopenaei</i> strain TH1</a> 
+             </li>
+             <li><a href="http://microsporidiadb.org/micro/app/record/dataset/DS_4c9eea220a"><i>Enterospora canceri</i> strain GB1</a>
+             </li>
+             <li><a href="http://microsporidiadb.org/micro/app/record/dataset/DS_dddf8bd5fb"><i>Hepatospora eriocheir</i> strain canceri</a>
+             </li>
+             <li><a href="http://microsporidiadb.org/micro/app/record/dataset/DS_1ed75e2788"><i>Hepatospora eriocheir</i> strain GB1</a>
+             </li>
+           </ul>  
       </section>
       
       <section>

@@ -75,6 +75,44 @@ sub finalProfileAdjustments {
 1;
 
 
+# for TriTrypDB
+package ApiCommonWebsite::View::GraphPackage::Templates::Proteomics::NonRatio::DS_bf9c234fd9;
+
+sub finalProfileAdjustments {
+  my ($self, $profile) = @_;
+
+  $profile->setDefaultYMax(0.4);
+
+  my @allLegend;
+  foreach(1..2) {
+    push @allLegend, "G1";
+  }
+  foreach(1..2) {
+    push @allLegend, "S";
+  }
+  foreach(1..3) {
+    push @allLegend, "G2";
+  }
+  foreach(1..2) {
+    push @allLegend, "G1";
+  }
+  $profile->setColors(['#aed6f1','#a9dfbf', '#f9e79f' ]);
+
+  $profile->setHasExtraLegend(1); 
+  $profile->setLegendLabels(\@allLegend);
+
+
+  my $plotTitle = $profile->getPlotTitle();
+  $profile->setPlotTitle($plotTitle . " : Cell cycle phases" );
+
+  return $self;
+}
+
+1;
+
+
+
+
 #--------------------------------------------------------------------------------
 
 # TEMPLATE_ANCHOR proteomicsSimpleNonRatio
