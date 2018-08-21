@@ -42,7 +42,8 @@ public class ApiSiteSetup {
    */
   private static final EventListener TX_BOOLEAN_REVISE_LISTENER = new EventListener() {
 
-    @Override public void eventTriggered(Event event) throws Exception {
+    @Override
+    public void eventTriggered(Event event) throws Exception {
       StepRevisedEvent reviseEvent = (StepRevisedEvent)event;
       Step revisedStep = reviseEvent.getRevisedStep();
       if (!revisedStep.isBoolean() || !isTranscriptRecordClass(revisedStep.getRecordClass())) {
@@ -58,13 +59,12 @@ public class ApiSiteSetup {
       }
 
       // reset GeneBooleanFilter to default for new value
-      FilterOption geneBooleanFilter = revisedStep.getFilterOptions()
-          .getFilterOption(GeneBooleanFilter.GENE_BOOLEAN_FILTER_ARRAY_KEY);
-      if (geneBooleanFilter == null) {
-        throw new WdkModelException("Found transcript boolean step " +
-            revisedStep.getStepId() + " without GeneBooleanFilter.");
-      }
-      if (!geneBooleanFilter.isSetToDefaultValue(revisedStep)) {
+      FilterOption geneBooleanFilter = revisedStep.getAnswerSpec().getFilterOptions().stream()
+          .filter(option -> option.getKey().equals(GeneBooleanFilter.GENE_BOOLEAN_FILTER_ARRAY_KEY))
+          .findAny().orElseThrow(() -> new WdkModelException("Found transcript boolean step " +
+              revisedStep.getStepId() + " without GeneBooleanFilter."));
+
+      if (!geneBooleanFilter.isSetToDefaultValue(revisedStep.getAnswerSpec().toSimpleAnswerSpec())) {
         JSONObject newValue = GeneBooleanFilter.getDefaultValue(newOperator);
         LOG.info("Resetting gene boolean filter on step " + revisedStep.getStepId() +
             " to default value: " + newValue.toString(2));
@@ -74,7 +74,7 @@ public class ApiSiteSetup {
     }
 
     private String getOperator(Step revisedStep) throws WdkModelException {
-      String operator = revisedStep.getQueryInstanceSpec().get(BooleanQuery.OPERATOR_PARAM);
+      String operator = revisedStep.getAnswerSpec().getQueryInstanceSpec().get(BooleanQuery.OPERATOR_PARAM);
       if (operator == null) {
         throw new WdkModelException("Found transcript boolen step " +
             revisedStep.getStepId() + " without " + BooleanQuery.OPERATOR_PARAM + " parameter.");

@@ -11,6 +11,9 @@ import org.gusdb.fgputil.FormatUtil;
 import org.gusdb.fgputil.FormatUtil.Style;
 import org.gusdb.fgputil.cache.ValueProductionException;
 import org.gusdb.fgputil.db.runner.SQLRunner;
+import org.gusdb.fgputil.validation.ValidObjectFactory;
+import org.gusdb.fgputil.validation.ValidObjectFactory.SemanticallyValid;
+import org.gusdb.fgputil.validation.ValidationLevel;
 import org.gusdb.wdk.cache.CacheMgr;
 import org.gusdb.wdk.cache.FilterSizeCache.AllSizesFetcher;
 import org.gusdb.wdk.cache.FilterSizeCache.FilterSizeGroup;
@@ -22,6 +25,8 @@ import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.answer.AnswerFilterInstance;
 import org.gusdb.wdk.model.answer.factory.AnswerValue;
+import org.gusdb.wdk.model.answer.factory.AnswerValueFactory;
+import org.gusdb.wdk.model.answer.spec.AnswerSpec;
 import org.gusdb.wdk.model.query.Query;
 import org.gusdb.wdk.model.query.SqlQuery;
 import org.gusdb.wdk.model.user.Step;
@@ -57,9 +62,10 @@ public class CustomShowResultSizeAction extends ShowResultSizeAction {
     public FilterSizeGroup getUpdatedValue(Long stepId, FilterSizeGroup previousVersion)
         throws ValueProductionException {
       try {
-        Step step = _wdkModel.getStepFactory().getStepById(stepId);
+        Step step = _wdkModel.getStepFactory().getStepById(stepId)
+            .orElseThrow(() -> new WdkUserException("Could not find step with ID: " + stepId));
         AnswerValue answerValue = step.getAnswerValue(false);
-        if (!TranscriptUtil.isTranscriptQuestion(answerValue.getQuestion())) {
+        if (!TranscriptUtil.isTranscriptQuestion(answerValue.getAnswerSpec().getQuestion())) {
           return super.getUpdatedValue(stepId, previousVersion);
         }
         previousVersion.sizeMap = getAllFilterDisplaySizes(answerValue, _wdkModel);
@@ -73,13 +79,13 @@ public class CustomShowResultSizeAction extends ShowResultSizeAction {
   }
 
   private static Map<String, Integer> getAllFilterDisplaySizes(AnswerValue answerValue, WdkModel wdkModel)
-      throws WdkModelException, WdkUserException {
+      throws WdkModelException {
     Map<String, Integer> queryResults = getSizesFromCustomQuery(answerValue, wdkModel);
     LOG.debug("Bulk query returned: " + FormatUtil.prettyPrint(queryResults, Style.MULTI_LINE));
     Map<String, Integer> finalResults = new HashMap<>();
     List<String> unfoundFilters = new ArrayList<>();
     // build list of actual results from query results and get list of filters not provided by query
-    for (AnswerFilterInstance filterInstance : answerValue.getQuestion().getRecordClass().getFilterInstances()) {
+    for (AnswerFilterInstance filterInstance : answerValue.getAnswerSpec().getQuestion().getRecordClass().getFilterInstances()) {
       String filterName = filterInstance.getName();
       Map<String, Object> answerFilterParams = filterInstance.getParamValueMap();
       Object firstParamValue = answerFilterParams.isEmpty() ? null : answerFilterParams.values().iterator().next();
@@ -103,10 +109,11 @@ public class CustomShowResultSizeAction extends ShowResultSizeAction {
   }
 
   private static Map<String, Integer> getSizesFromCustomQuery(AnswerValue answerValue, WdkModel wdkModel)
-      throws WdkModelException, WdkUserException {
+      throws WdkModelException {
     Query query = wdkModel.getQuerySet(CUSTOM_FILTER_SIZE_QUERY_SET).getQuery(CUSTOM_FILTER_SIZE_QUERY_NAME);
-    AnswerValue clone = new AnswerValue(answerValue);
-    clone.setFilterInstance((AnswerFilterInstance)null);
+    SemanticallyValid<AnswerSpec> modifiedSpec = ValidObjectFactory.getSemanticallyValid(
+        AnswerSpec.builder(answerValue.getAnswerSpec()).setLegacyFilterName(null).build(ValidationLevel.SEMANTIC));
+    AnswerValue clone = AnswerValueFactory.makeAnswer(answerValue, modifiedSpec);
     String sql = ((SqlQuery)query).getSql().replace(Utilities.MACRO_ID_SQL, clone.getIdSql());
     LOG.debug("Running query: " + query.getFullName() + " with SQL: " + sql);
     final Map<String, Integer> querySizes = new HashMap<>();
