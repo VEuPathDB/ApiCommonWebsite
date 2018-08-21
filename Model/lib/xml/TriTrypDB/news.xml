@@ -47,7 +47,8 @@
             <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_54c31cddc4">Genome sequence and annotation for <i>Leishmania infantum</i> JPCM5 (MCAN/ES/98/LLM-724)</a> &mdash; 
             This updated genome and annotation features re-sequencing  by PacBio and Illumina methodologies, assembly into 36 contigs (chromosomes),  
             and annotation via Companion web server (<i>L. infantum</i> Friedlin as reference) supplemented with other electronic and manual curations. 
-            Updated gene IDs in TriTrypDB 39 are mapped to the previous version which is available, if needed, in TriTrypDB 38.
+            Updated gene IDs in TriTrypDB 39 are mapped to the previous version which is available, if needed, in 
+            <a href="http://r38.tritrypdb.org">TriTrypDB 38</a>.
             <a href="http://www.ncbi.nlm.nih.gov/pubmed/29273719">Gonz&#225;lez-de la Fuente et al.</a>  
             </li>
           </ul>
