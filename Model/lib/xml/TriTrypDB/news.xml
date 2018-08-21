@@ -17,6 +17,15 @@
           ]]>
        </attribute>
     </record>
+    
+     <h4>RNA Sequence</h4>
+          <ul>
+           <li>
+            <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_0ccdb3a6ec">Transcriptome of <i>T. brucei</i> rhodesiense from human, rodent, culture</a> &mdash; 
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/29474390">Mulindwa et al.</a>  
+            </li>
+          </ul>
+          
 -->
 
 <record>
@@ -35,8 +44,11 @@
         <h4>Genome Sequence and Annotation</h4>
           <ul>
            <li>
-            <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_0ccdb3a6ec">Transcriptome of <i>T. brucei</i> rhodesiense from human, rodent, culture</a> &mdash; 
-            <a href="http://www.ncbi.nlm.nih.gov/pubmed/29474390">Mulindwa et al.</a>  
+            <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_54c31cddc4">Genome sequence and annotation for <i>Leishmania infantum</i> JPCM5 (MCAN/ES/98/LLM-724)</a> &mdash; 
+            This updated genome and annotation features re-sequencing  by PacBio and Illumina methodologies, assembly into 36 contigs (chromosomes),  
+            and annotation via Companion web server (<i>L. infantum</i> Friedlin as reference) supplemented with other electronic and manual curations. 
+            Updated gene IDs in TriTrypDB 39 are mapped to the previous version which is available, if needed, in TriTrypDB 38.
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/29273719">Gonz&#225;lez-de la Fuente et al.</a>  
             </li>
           </ul>
         
@@ -63,19 +75,8 @@
             <a href="http://www.ncbi.nlm.nih.gov/pubmed/26809473">Weir et al.</a>  
             </li>
           </ul>
-          
-          <h4>RNA Sequence</h4>
-          <ul>
-           <li>
-            <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_0ccdb3a6ec">Transcriptome of <i>T. brucei</i> rhodesiense from human, rodent, culture</a> &mdash; 
-            <a href="http://www.ncbi.nlm.nih.gov/pubmed/29474390">Mulindwa et al.</a>  
-            </li>
-          </ul>
-          
       </div>
       </section>
-      
-      
       
       <section>
       <h3><b>Annotation News</b></h3>
@@ -123,8 +124,6 @@
           Gene page comments that are entered by users are curated at GeneDB and regularly integrated as functional 
           annotations in TriTrypDB. 35 user comments (unique) have been reviewed and updated in this release.<br><br>
           
-       
-      
       <style>
            #UComment_Bld39 table, #UComment_Bld39 td, #UComment_Bld39 th, #UComment_Bld39 tr {
            text-align : center;
