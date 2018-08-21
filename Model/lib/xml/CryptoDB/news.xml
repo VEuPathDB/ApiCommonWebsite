@@ -33,17 +33,8 @@
     <p><strong>We are pleased to announce the release of CryptoDB 39</strong></p>
       
        <section>
-      <h3><b>New data in CryptoDB 39</b></h3>
-        <div style="margin-left: 3em;">
-        <h4>Whole Genome Sequencing of Isolates</h4>
-          <ul>  
-            <li> <a href="http://cryptodb.org/cryptodb/app/record/dataset/DS_18d27de505"><i>Cryptosporidium hominis</i> genetic diversity in isolates from Bangladesh</a> &mdash; 
-            Genome sequencing of Cryptosporidium hominis from infants in slum dwelling from Dhaka Bangladesh.
-            <a href="http://www.ncbi.nlm.nih.gov/pubmed/29514308">Gilchrist et al.</a>.
-            </li>
-          </ul>
-        <div>
-      </section>
+      <h3><b>No new data in CryptoDB 39</b></h3>
+       </section>
       
       <section>
       <h3><b>No new features in this release</b></h3>
