@@ -31,6 +31,7 @@
 
       <section>
         <h3><b>New data in this release</b></h3> 
+        <div style="margin-left: 3em;">
         <h4>Genome sequence and annotation</h4>
         These annotated genomes analyzed in <a href="http://www.ncbi.nlm.nih.gov/pubmed/28345194" target="_blank">Wiredu Boakye et al.</a> appear for the first time in MicripsporidiaDB:
            <ul>
@@ -43,6 +44,7 @@
              <li><a href="http://microsporidiadb.org/micro/app/record/dataset/DS_1ed75e2788"><i>Hepatospora eriocheir</i> strain GB1</a>
              </li>
            </ul>  
+           </div>
       </section>
       
       <section>
