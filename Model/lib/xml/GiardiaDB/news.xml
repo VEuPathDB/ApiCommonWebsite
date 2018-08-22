@@ -44,14 +44,14 @@
             <ul>
               <li><a href="http://giardiadb.org/giardiadb/app/record/dataset/DS_0d06f3af80"><i>Giardia Assemblage</i> B secretome IEC infection</a> &ndash;   
                   Secretome of <i>Giardia intestinalis</i> isolates GS, clone H7 (ATCC50581; assemblage B) 
-                  during interaction with intestinal epithelial cells (IECs).<br>
+                  during interaction with intestinal epithelial cells (IECs).  
                   <a href="http://www.ncbi.nlm.nih.gov/pubmed/29228011" target="_blank">Ma'ayeh et al.</a>  
                   This data set has a host component available in HostDB as: 
                   <a href="http://hostdb.org/hostdb/app/record/dataset/DS_20f2f0535f">Human intestinal cell secretome during <i>Giardia</i> infection</a>
               </li>
               <li><a href="http://giardiadb.org/giardiadb/app/record/dataset/DS_767c9fca84"><i>Giardia Assemblage</i> A secretome IEC infection</a> &ndash;   
                   Secretome of <i>Giardia intestinalis</i> isolates WB clone C6 (ATCC30957; assemblage A) during interaction with 
-                  intestinal epithelial cells (IECs).<br>
+                  intestinal epithelial cells (IECs).  
                   <a href="http://www.ncbi.nlm.nih.gov/pubmed/29228011" target="_blank">Ma'ayeh et al.</a>
                   This data set has a host component available in HostDB as: 
                   <a href="http://hostdb.org/hostdb/app/record/dataset/DS_20f2f0535f">Human intestinal cell secretome during <i>Giardia</i> infection</a>
@@ -60,7 +60,7 @@
          <h4>RNA Sequence</h4>
             <ul>
               <li><a href="http://giardiadb.org/giardiadb/app/record/dataset/DS_8e23731f84"><i>Giardia Assemblage</i> A intestine foci transcriptome</a> &ndash;   
-                  Transcriptome from <i>Giardia</i> foci in murine intestine<br>
+                  Transcriptome from <i>Giardia</i> foci in murine intestine.  
                   <a href="http://www.ncbi.nlm.nih.gov/pubmed/28620589" target="_blank">Pham et al.</a>
               </li>
       </section>
