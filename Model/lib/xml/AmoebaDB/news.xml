@@ -44,17 +44,9 @@
       </section>
       
       <section>
-      <h3><b>New features in this release</b></h3>
+      <h3><b>New features in AmoebaDB 39</b></h3>
         <div style="margin-left: 3em;">
-        <h4>New Phenotype Searches</h4>
-         <ul>
-           <li>The <a href="/a/showQuestion.do?questionFullName=InternalGeneDatasetQuestions.GenesByPhenotypeEvidence">Identify Genes based on Phenotype Evidence </a> 
-           page now contains two new searches: 1. The Curated Phenotype (CP) search returns genes based on phenotype characteristics. For data sets without Phenotype Qualifier data, 
-           the CP search incorporates a filter parameter for quickly choosing the desired phenotype characteristics. The 
-           new Phenotype Text (PT) search returns genes whose phenotypic descriptions contain your text term. 
-           </li>
-         </ul>
-          <h4>FPKM Floor parameter in RNA-Seq fold change searches</h4>
+        <h4>FPKM Floor parameter in RNA-Seq fold change searches</h4>
          <ul>
            <li><a href="/a/showQuestion.do?questionFullName=InternalGeneDatasetQuestions.GenesByRNASeqEvidence">RNA Seq fold change searches</a> 
            now offer an <b>FPKM Floor</b> parameter for adjusting the FPKM value of low expressing genes. To avoid 
