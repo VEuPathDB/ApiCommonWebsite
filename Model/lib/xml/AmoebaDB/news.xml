@@ -49,8 +49,8 @@
         <h4>New Phenotype Searches</h4>
          <ul>
            <li>The <a href="/a/showQuestion.do?questionFullName=InternalGeneDatasetQuestions.GenesByPhenotypeEvidence">Identify Genes based on Phenotype Evidence </a> 
-           page now contains two new searches. The Curated Phenotype (CP) search returns genes based on phenotype characteristics. For data sets without Phenotype Qualifier data, 
-           the CP search incorporates a filter parameter for quickly choosing the phenotype characteristics of genes returned by the search. The 
+           page now contains two new searches: 1. The Curated Phenotype (CP) search returns genes based on phenotype characteristics. For data sets without Phenotype Qualifier data, 
+           the CP search incorporates a filter parameter for quickly choosing the desired phenotype characteristics. The 
            new Phenotype Text (PT) search returns genes whose phenotypic descriptions contain your text term. 
            </li>
          </ul>
@@ -64,8 +64,7 @@
            <a href="/a/assets/Fold_Change_Help.pdf">detailed RNA seq search help</a>.
            </li>
          </ul>  
-       </div>  
-      
+       </div> 
       </section>
       
       <section>
