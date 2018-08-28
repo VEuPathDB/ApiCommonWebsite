@@ -18,7 +18,7 @@ public class ApiWordCloudAttributePlugin extends EuPathWordCloudAttributePlugin 
     if (TranscriptUtil.isTranscriptQuestion(answerValue.getAnswerSpec().getQuestion())) {
       // transcript question; see if we should apply one-transcript-per-gene filter
       return AnswerValueFactory.makeAnswer(answerValue,
-          RepresentativeTranscriptFilter.applyToStepFromUserPreference(answerValue.getValidAnswerSpec(), answerValue.getUser()));
+          RepresentativeTranscriptFilter.applyToStepFromUserPreference(answerValue.getRunnableAnswerSpec(), answerValue.getUser()));
     }
     return answerValue;
   }

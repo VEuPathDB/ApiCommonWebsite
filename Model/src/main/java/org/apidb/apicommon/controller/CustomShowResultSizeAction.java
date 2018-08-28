@@ -11,9 +11,6 @@ import org.gusdb.fgputil.FormatUtil;
 import org.gusdb.fgputil.FormatUtil.Style;
 import org.gusdb.fgputil.cache.ValueProductionException;
 import org.gusdb.fgputil.db.runner.SQLRunner;
-import org.gusdb.fgputil.validation.ValidObjectFactory;
-import org.gusdb.fgputil.validation.ValidObjectFactory.SemanticallyValid;
-import org.gusdb.fgputil.validation.ValidationLevel;
 import org.gusdb.wdk.cache.CacheMgr;
 import org.gusdb.wdk.cache.FilterSizeCache.AllSizesFetcher;
 import org.gusdb.wdk.cache.FilterSizeCache.FilterSizeGroup;
@@ -111,9 +108,9 @@ public class CustomShowResultSizeAction extends ShowResultSizeAction {
   private static Map<String, Integer> getSizesFromCustomQuery(AnswerValue answerValue, WdkModel wdkModel)
       throws WdkModelException {
     Query query = wdkModel.getQuerySet(CUSTOM_FILTER_SIZE_QUERY_SET).getQuery(CUSTOM_FILTER_SIZE_QUERY_NAME);
-    SemanticallyValid<AnswerSpec> modifiedSpec = ValidObjectFactory.getSemanticallyValid(
-        AnswerSpec.builder(answerValue.getAnswerSpec()).setLegacyFilterName(null).build(ValidationLevel.SEMANTIC));
-    AnswerValue clone = AnswerValueFactory.makeAnswer(answerValue, modifiedSpec);
+        
+    AnswerValue clone = AnswerValueFactory.makeAnswer(answerValue,
+        AnswerSpec.builder(answerValue.getAnswerSpec()).setLegacyFilterName(null).buildRunnable());
     String sql = ((SqlQuery)query).getSql().replace(Utilities.MACRO_ID_SQL, clone.getIdSql());
     LOG.debug("Running query: " + query.getFullName() + " with SQL: " + sql);
     final Map<String, Integer> querySizes = new HashMap<>();

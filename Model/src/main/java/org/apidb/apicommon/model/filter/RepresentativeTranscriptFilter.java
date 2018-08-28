@@ -3,17 +3,19 @@ package org.apidb.apicommon.model.filter;
 import static org.gusdb.fgputil.functional.Functions.contains;
 
 import org.apache.log4j.Logger;
-import org.gusdb.fgputil.validation.ValidObjectFactory;
-import org.gusdb.fgputil.validation.ValidObjectFactory.SemanticallyValid;
+import org.gusdb.fgputil.Named;
+import org.gusdb.fgputil.validation.ValidObjectFactory.Runnable;
 import org.gusdb.fgputil.validation.ValidationBundle;
 import org.gusdb.fgputil.validation.ValidationLevel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.answer.factory.AnswerValue;
+import org.gusdb.wdk.model.answer.factory.AnswerValueFactory;
 import org.gusdb.wdk.model.answer.spec.AnswerSpec;
 import org.gusdb.wdk.model.answer.spec.AnswerSpecBuilder;
 import org.gusdb.wdk.model.answer.spec.FilterOption;
+import org.gusdb.wdk.model.answer.spec.FilterOptionList;
+import org.gusdb.wdk.model.answer.spec.FilterOptionList.FilterOptionListBuilder;
 import org.gusdb.wdk.model.answer.spec.SimpleAnswerSpec;
-import org.gusdb.wdk.model.filter.FilterOptionList;
 import org.gusdb.wdk.model.filter.FilterSummary;
 import org.gusdb.wdk.model.filter.StepFilter;
 import org.gusdb.wdk.model.question.Question;
@@ -119,7 +121,7 @@ public class RepresentativeTranscriptFilter extends StepFilter {
     return (prefValue == null ? REPRESENTATIVE_TRANSCRIPT_FILTER_ON_BY_DEFAULT : Boolean.valueOf(prefValue));
   }
 
-  public static SemanticallyValid<AnswerSpec> applyToStepFromUserPreference(SemanticallyValid<AnswerSpec> answerSpec, User user) {
+  public static Runnable<AnswerSpec> applyToStepFromUserPreference(Runnable<AnswerSpec> answerSpec, User user) {
     // read from step if transcript-only filter is turned on...
     boolean filterOnInStep = contains(answerSpec.getObject().getViewFilterOptions(), option ->
         option.getKey().equals(RepresentativeTranscriptFilter.FILTER_NAME));
@@ -142,7 +144,7 @@ public class RepresentativeTranscriptFilter extends StepFilter {
       newSpec.getViewFilterOptions().removeAll(option -> option.getFilterName().equals(RepresentativeTranscriptFilter.FILTER_NAME));
     }
 
-    return ValidObjectFactory.getSemanticallyValid(newSpec.build(ValidationLevel.SEMANTIC));
+    return newSpec.buildRunnable();
   }
 
   @Override
@@ -151,30 +153,28 @@ public class RepresentativeTranscriptFilter extends StepFilter {
     return ValidationBundle.builder(validationLevel).build();
   }
 
-  public static AnswerValue updateAnswerValue(AnswerValue answerValue, Boolean shouldEngageFilter) throws WdkModelException {
-    FilterOptionList viewFilters = answerValue.getViewFilterOptions();
+  public static AnswerValue getReplacementAnswerValue(AnswerValue answerValue, Boolean shouldEngageFilter) throws WdkModelException {
+    FilterOptionList viewFilters = answerValue.getAnswerSpec().getViewFilterOptions();
     boolean filterOnInAnswer =
-        viewFilters.getFilterOption(RepresentativeTranscriptFilter.FILTER_NAME) != null;
+        viewFilters.getFirst(Named.nameMatches(RepresentativeTranscriptFilter.FILTER_NAME)).isPresent();
 
     if (filterOnInAnswer == shouldEngageFilter) {
       return answerValue;
     }
 
     // Create a copy of answerValue and modify view filters appropriately
-    AnswerValue newAnswerValue = new AnswerValue(answerValue);
-    FilterOptionList newViewFilters = new FilterOptionList(viewFilters);
+    AnswerSpecBuilder newAnswerSpec = AnswerSpec.builder(answerValue.getAnswerSpec());
+    FilterOptionListBuilder newViewFilters = newAnswerSpec.getViewFilterOptions();
 
     if (shouldEngageFilter) {
       // add view filter
-      newViewFilters.addFilterOption(RepresentativeTranscriptFilter.FILTER_NAME, new JSONObject());
+      newViewFilters.addFilterOption(FilterOption.builder().setFilterName(RepresentativeTranscriptFilter.FILTER_NAME));
     }
     else {
       // remove view filter (already present)
-      newViewFilters.removeFilterOption(RepresentativeTranscriptFilter.FILTER_NAME);
+      newViewFilters.removeAll(filter -> filter.getFilterName().equals(RepresentativeTranscriptFilter.FILTER_NAME));
     }
 
-    newAnswerValue.setViewFilterOptions(newViewFilters);
-
-    return newAnswerValue;
+    return AnswerValueFactory.makeAnswer(answerValue, newAnswerSpec.buildRunnable());
   }
 }
