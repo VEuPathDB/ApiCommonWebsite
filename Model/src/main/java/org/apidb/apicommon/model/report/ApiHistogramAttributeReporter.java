@@ -10,7 +10,7 @@ import org.gusdb.wdk.model.report.Reporter;
 import org.json.JSONObject;
 
 public class ApiHistogramAttributeReporter extends HistogramAttributeReporter {
-  public ApiHistogramAttributeReporter(AnswerValue answerValue) throws WdkModelException {
+  public ApiHistogramAttributeReporter(AnswerValue answerValue) {
     super(answerValue);
   }
 
