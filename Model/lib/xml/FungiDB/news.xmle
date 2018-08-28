@@ -14,6 +14,170 @@
        </attribute>
     </record>
 -->
+<record>
+  <attribute name="headline">FungiDB 39 Released</attribute>
+  <attribute name="date">30 Aug 2018 13:00</attribute>
+  <attribute name="tag">FungiDB08_18_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of FungiDB 39</strong></p>
+      
+      <section>
+        <h3><b>New data in FungiDB 39</b></h3>
+        <div style="margin-left: 3em;">
+        
+        <h4>Genome Sequence and Annotation: these annotated genomes appear for the first time in FungiDB.</h4>
+           <ul>
+             <li><a href="http:/a/app/record/dataset/DS_9492ac49ce"><i>Aspergillus ochraceoroseus</i> IBT 24754</a> &ndash;  
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/29317534">Kj&aelig;rb&oslash;lling et al., 2018</a>.
+             </li>
+             <li><a href="http:/a/app/record/dataset/DS_ea5a27648e"><i>Sporothrix schenckii</i> 1099-18</a> &ndash; 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/25480940">Teixeira et al., 2015</a>.,
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/25351875">Teixeira et al., 2014</a>.,
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/24855299">Teixeira et al., 2014</a>.
+             </li>
+            </ul>
+           <br>
+           
+        <h4>Genome Sequence and Annotation: updated genomes</h4>
+           <ul>   
+           <li><a href="http:/a/app/record/dataset/DS_d09ab83818"><i>Botrytis cinerea</i> B05.10</a> &ndash;
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/29317534">Syngenta Biotechnology, Inc.</a>
+             </li>
+             <li><a href="http:/a/app/record/dataset/DS_0d9ee4ff86"><i>Candida albicans</i> SC5314</a> &ndash; 
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/24025428">Muzzey et al., 2013</a>.,
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/17419877">van het Hoog M. et al., 2007</a>.,
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/15123810">Jones et al., 2004</a>.,
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/6394964">Gillum et al., 1984</a>.
+             </li>
+             <li><a href="http:/a/app/record/dataset/DS_e43fc5921f"><i>Candida albicans</i> SC5314_B</a> &ndash; 
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/24025428">Muzzey et al., 2013</a>.,
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/17419877">van het Hoog M. et al., 2007</a>.,
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/15123810">Jones et al., 2004</a>.,
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/6394964">Gillum et al., 1984</a>.
+             </li>
+             <li><a href="http:/a/app/record/dataset/DS_033b09f437"><i>Candida albicans</i> WO-1</a> &ndash; 
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/19465905">Butler et al., 2009</a>.,
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/12399384">Lockhart et al., 2002</a>.,
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/3539914">Slutsky et al., 1987</a>.
+             </li>
+             <li><a href="http:/a/app/record/dataset/DS_c8c07fac9f"><i>Candida glabrata</i> CBS138</a> &ndash; 
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/15229592">Dujon et al., 2004</a>.
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/12527359">Koszul et al., 2003</a>.
+             </li>
+           </ul>
+           
+        <h4>Transcriptomics</h4>
+           <ul>
+             <li><a href="http:/a/app/record/dataset/DS_9f832f8fbb">Comparative transcriptomes of yeast and hyphal forms in <i>Histoplasma capsulatum</i> H143</a> &ndash; 
+                 Analysis of yeast and hyphal transcript expression patterns in <i>Histoplasma capsulatum</i> H143 grown at 37°C and room temperature (RT), respectively.
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26177267" target="_blank">Gilmore et al., 2015</a>.
+             </li>
+             <li><a href="http:/a/app/record/dataset/DS_760d4a011d">Transcriptomic response of <i>Aspergillus niger</i> to lignocellulose (wheat straw)</a> &ndash;
+             Transcriptomic profiling of Aspergillus niger growing on lignocellulose (AB SOLiD System 3.0). 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/22912594" target="_blank">Delmas et al., 2012</a>.
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/24792495" target="_blank">van Munster et al., 2014</a>.
+             </li>
+             <li><a href="http:/a/app/record/dataset/DS_bb15199826"><i>Aspergillus niger</i> gene co-expression network</a> &ndash;
+             A meta-analysis of 155 transcriptomics experiments generated genome level co-expression networks for 9579 genes of <i>Aspergillus niger</i> genome. <i>Manuscript submitted</i>.
+             </li>
+        	</ul>
+        	
+        <h4>Proteomics</h4>
+           <ul>
+             <li><a href="http:/a/app/record/dataset/DS_bed61daec2">Secretome profiling of <i>Cryptococcus neoformans</i></a> &ndash; 
+                 Targeted secretome profiling of Pka-1 regulated proteins in <i>C. neoformans</i> was performed at 16, 48, 72, 96, and 120 hr post-inoculation in Pka-1 inductive and repressive media.
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26453029 " target="_blank">Geddes et al., 2015</a>.
+             </li>
+             <li><a href="http:/a/app/record/dataset/DS_bed61daec2">Quantitative MassSpec of <i>Cryptococcus neoformans</i> secretome of Pka-1 regulated proteins</a> &ndash; 
+                 Targeted secretome profiling of Pka-1 regulated proteins in <i>C. neoformans</i> was performed at 16, 48, 72, and 120 hr post-inoculation in Pka-1 inductive and repressive media.
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26453029 " target="_blank">Geddes et al., 2015</a>.
+             </li>
+        	</ul>
+           
+           
+        <h4>ChiP-Seq data</h4>
+           <ul>
+             <li><a href="http:/a/app/record/dataset/DS_0486f374f7">H3K27me3 and H3K9me2 profiling in various <i>Cryptococcus neoformans</i> strains</a> &ndash;
+             Charaterization of PRC2 complex and its role in assembly of heterochromatin. ChiP-Seq profiles (H3K27me3 and H3K9me3) are reported for WT, knockout strains (<i>ezh2</i>, <i>msl1</i>, <i>clr4</i>, and <i>ccc1</i>), and <i>ccc1-w52a</i> strain. 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/27856696" target="_blank">Dekhang et al., 2017</a>.
+             </li>
+           </ul>  
+           
+        <h4>Whole genome sequence of isolates for SNP analysis:</h4>
+           <ul>
+             <li><a href="http:/a/app/record/dataset/DS_213496374f">Aligned genomic sequence reads - <i>Candida auris</i> clinical isolates</a> &ndash;
+                 Samples were collected from patients, patient contacts, healthcare workers, and the environment in 4 hospitals in Colombia with recent <i>C. auris</i> outbreaks.
+                 <a href="https://www.ncbi.nlm.nih.gov/bioproject/470683">NCBI's Bioproject record page</a>,  
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/29788045"> Escand&oacute;n et al., 2018</a>
+             </li>
+           </ul>
+           
+        <h4>Phenotype data</h4>
+           <ul>
+             <li><a href="http:/a/app/record/dataset/DS_61efdacf5b">Manually Curated Fusarium Phenotypes</a> &ndash; 
+                 The phenotypes for <i>Fusarium graminearum</i> PH-1 are manually curated from published literature describing phenotypes obtained from mutant studies. The phenotypic data from <a href="http://www.ncbi.nlm.nih.gov/pubmed/25758923" target="_blank">Yun et al., 2007</a> publicationhave been manually curated in-line with EuPathDB&#39;s approach for  phenotype annotation and integrated into FungiDB. 
+                 We followed an &quot; entity &#43; quality&quot; approach and curated phenotypes with multiple ontologies: Phenotypic Quality Ontology (PATO) for &quot;quality&quot; terms and Gene Ontology (GO), Fungal Gross Anatomy Ontology (FAO),
+                 Chemical Entities of Biological Interest (ChEBI) and Ascomycete Phenotype Ontology (APO) for &quot;entity&quot; terms. 
+             </li>
+           </ul>
+           <br>
+           
+           <h4>Sequence sites, features and motifs</h4>
+           <ul>   
+           <li><a href="http:/a/app/record/dataset/DS_af6def78b1"><i>Coccidioides posadasii</i> RS TE GBrowse track</a> &ndash;
+               Annotation of transposable elements (TE) in <i>Coccidioides posadasii</i> using RepeatMasker, which identified TEs based on the RepBase reference library and REPET to support <i>de novo</i> TE identification.
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/29371508">Kirkland et al., 2018</a>.
+             </li>
+           </ul>
+           <br>
+           
+       <h4>Annotations from MIPS Functional Catalogue Database:</h4>  
+            <ul> 
+             <li>Functional catalogue annotations for <i>Fusarium graminearum</i> PH-1 from MIPS database were converted to GO terms and integrated as functional annotations in FungiDB 39. For more information refer to <a href="https://docs.google.com/spreadsheets/d/13NIjxEWoLyGZYsSM7K0BuiggU5uOK9gVyCpX5J8nhcE/edit?usp=sharing" target="_blank">Summary of annotation updates</a>.
+             </li>
+           </ul>  
+           <br>
+       </div>    
+       </section>
+       
+      <section>
+      <h3><b>New features in FungiDB 39</b></h3>
+        <div style="margin-left: 3em;">
+        <h4>New Phenotype Searches</h4>
+         <ul>
+           <li>The <a href="/a/showQuestion.do?questionFullName=InternalGeneDatasetQuestions.GenesByPhenotypeEvidence">Identify Genes based on Phenotype Evidence </a> 
+           page now contains two new searches: 1. The Curated Phenotype (CP) search returns genes based on phenotype characteristics. For data sets without Phenotype Qualifier data, 
+           the CP search incorporates a filter parameter for quickly choosing the desired phenotype characteristics. The 
+           new Phenotype Text (PT) search returns genes whose phenotypic descriptions contain your text term. 
+           </li>
+         </ul>
+          <h4>FPKM Floor parameter in RNA-Seq fold change searches</h4>
+         <ul>
+           <li><a href="/a/showQuestion.do?questionFullName=InternalGeneDatasetQuestions.GenesByRNASeqEvidence">RNA Seq fold change searches</a> 
+           now offer an <b>FPKM Floor</b> parameter for adjusting the FPKM value of low expressing genes. To avoid 
+           misleading fold change values generated by dividing with very small numbers, we set very low FPKM values to a default <b>FPKM floor</b> which represents
+           10 mapped reads. The new parameter offers a range of floor values for raising or lowering the expression threshold of the search 
+           depending on the user's objectives. For more information use the parameter help (blue question mark icon) on the search page or read the 
+           <a href="/assets/Fold_Change_Help.pdf">detailed RNA seq search help</a>.
+           </li>
+         </ul>  
+       </div> 
+      </section>
+      
+     <section>
+     <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+
+    ]]>
+  </attribute>
+</record>
 
 <record>
   <attribute name="headline">FungiDB 38 Released</attribute>
@@ -469,6 +633,7 @@
              </li>
            </ul>
            
+        
        <h4>Phenotype data</h4>
            <ul>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_c334877c42">Phenotypic analysis of <i>Neurospora crassa</i> knockout mutants</a> &ndash; A phenotypic pipeline was designed for high&#45;throughput analysis of 10 different traits during hyphal growth, asexual sporulation (macroconidiation), and the sexual cycle in knockout mutants from <i>Neurospora crassa</i>. Provider: Katherine Borkovich; dataset provided prior to publication.
