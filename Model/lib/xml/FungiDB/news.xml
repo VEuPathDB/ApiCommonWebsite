@@ -79,6 +79,9 @@
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/22912594" target="_blank">Delmas et al., 2012</a>.
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/24792495" target="_blank">van Munster et al., 2014</a>.
              </li>
+             <li><a href="http:/a/app/record/dataset/DS_bb15199826"><i>Aspergillus niger</i> gene co-expression network</a> &ndash;
+             A meta-analysis of 155 transcriptomics experiments generated genome level co-expression networks for 9579 genes of <i>Aspergillus niger</i> genome. <i>Manuscript submitted</i>.
+             </li>
         	</ul>
         	
         <h4>Proteomics</h4>
@@ -102,10 +105,19 @@
              </li>
            </ul>  
            
+        <h4>Whole genome sequence of isolates for SNP analysis:</h4>
+           <ul>
+             <li><a href="http:/a/app/record/dataset/DS_213496374f">Aligned genomic sequence reads - <i>Candida auris</i> clinical isolates</a> &ndash;
+                 Samples were collected from patients, patient contacts, healthcare workers, and the environment in 4 hospitals in Colombia with recent <i>C. auris</i> outbreaks.
+                 <a href="https://www.ncbi.nlm.nih.gov/bioproject/470683">NCBI's Bioproject record page</a>,  
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/29788045"> Escand&oacute;n et al., 2018</a>
+             </li>
+           </ul>
+           
         <h4>Phenotype data</h4>
            <ul>
              <li><a href="http:/a/app/record/dataset/DS_61efdacf5b">Manually Curated Fusarium Phenotypes</a> &ndash; 
-                 The phenotypes for <i>Fusarium graminearum</i> PH-1 are manually curated from published literature describing phenotypes obtained from mutant studies. The phenotypic data from <a href="http://www.ncbi.nlm.nih.gov/pubmed/25758923" target="_blank">Yun et al., 2007</a> publicationhave been manually curated in-line with EuPathDB’s approach for  phenotype annotation and integrated into FungiDB. 
+                 The phenotypes for <i>Fusarium graminearum</i> PH-1 are manually curated from published literature describing phenotypes obtained from mutant studies. The phenotypic data from <a href="http://www.ncbi.nlm.nih.gov/pubmed/25758923" target="_blank">Yun et al., 2007</a> publicationhave been manually curated in-line with EuPathDB&#39;s approach for  phenotype annotation and integrated into FungiDB. 
                  We followed an &quot; entity &#43; quality&quot; approach and curated phenotypes with multiple ontologies: Phenotypic Quality Ontology (PATO) for &quot;quality&quot; terms and Gene Ontology (GO), Fungal Gross Anatomy Ontology (FAO),
                  Chemical Entities of Biological Interest (ChEBI) and Ascomycete Phenotype Ontology (APO) for &quot;entity&quot; terms. 
              </li>
@@ -121,106 +133,37 @@
            </ul>
            <br>
            
-        <h4>Updated Functional Annotation</h4>
-        <div style="margin-left: 3em;">
-        
-            
-        <a href="https://docs.google.com/spreadsheets/d/13NIjxEWoLyGZYsSM7K0BuiggU5uOK9gVyCpX5J8nhcE/edit?usp=sharing" target="_blank">Summary of annotation updates</a> which include products, GO terms, EC numbers, gene names, synonyms, publications and notes from curators.
-        <br><br>
-        Functional annotations in FungiDB 38 have been updated for the following genomes:
-
-        <style>
-           #FunctAnnot_Bld38 table, #FunctAnnot_Bld38 td, #FunctAnnot_Bld38 th, #FunctAnnot_Bld38 tr {
-           text-align : center;
-           padding-left: 5px;
-           padding-right: 5px;
-           padding-top: 5px;
-           padding-bottom: 5px;
-           border: 1px solid black;
-           }
-           #FunctAnnot_Bld38 {
-           margin-left : 5 em;
-           }
-         </style> 
-           <table id="FunctAnnot_Bld38"> 
-           <tr>
-             <th>FungiDB Genome Version</th>
-             <th>Genes Updated</th>
-           </tr>
-           <tr>
-             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_071f05cd56"><i>Aspergillus fumigatus</i> Af293</a></td>
-             <td>1 </td>
-           </tr>
-           <tr>
-             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4b35c88aa1"><i>Aspergillus nidulans </i> FGSC A4</a></td>
-             <td>17</td>
-           </tr>
-           <tr>
-             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_60b6b264d3"><i>Coccidioides immitis </i> RS</a></td>
-             <td>1166</td>
-           </tr>
-           <tr>
-             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_62f0e6170f"><i>Neurospora crassa  </i> OR74A</a></td>
-             <td>405</td>
-           </tr>
-           <tr>
-             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_cbbce274f6"><i>Ustilago maydis </i> 521</a></td>
-             <td>3843</td>
-           </tr>
-           </table>
-           <br>
-       </div>
-       
        <h4>Annotations from MIPS Functional Catalogue Database:</h4>  
             <ul> 
-             <li>Functional catalogue annotations for <i>Ustilago maydis</i> 521 from MIPS database were converted to GO terms and integrated as functional annotations in FungiDB 38.
+             <li>Functional catalogue annotations for <i>Fusarium graminearum</i> PH-1 from MIPS database were converted to GO terms and integrated as functional annotations in FungiDB 39. For more information refer to <a href="https://docs.google.com/spreadsheets/d/13NIjxEWoLyGZYsSM7K0BuiggU5uOK9gVyCpX5J8nhcE/edit?usp=sharing" target="_blank">Summary of annotation updates</a>.
              </li>
            </ul>  
            <br>
-           
-       <h4>Curated User Comments:</h4>  
-        Gene page comments that are entered by users are curated at GeneDB and regularly integrated as 
-        functional annotations in FungiDB.  18 user comments (unique) have been reviewed and updated in FungiDB 38.
-       <br><br>
-        
-        <div style="margin-left: 3em;">
-        
-        <style>
-           #UComment_Bld38 table, #UComment_Bld38 td, #UComment_Bld38 th, #UComment_Bld38 tr {
-           text-align : center;
-           padding-left: 5px;
-           padding-right: 5px;
-           padding-top: 5px;
-           padding-bottom: 5px;
-           border: 1px solid black;
-           }
-           #UComment_Bld38 {
-           margin-left : 5 em;
-           }
-         </style> 
-           <table id="UComment_Bld38"> 
-           <tr>
-             <th>FungiDB Genome Version</th>
-             <th>Comments Integrated</th>
-           </tr>
-           <tr>
-             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_071f05cd56"><i>Aspergillus fumigatus</i> Af293</a></td>
-             <td> 1</td>
-           </tr>
-           <tr>
-             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4b35c88aa1"><i>Aspergillus nidulans</i> FGSC A4</a></td>
-             <td> 1</td>
-           </tr>
-           <tr>
-             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_62f0e6170f"><i>Neurospora crassa </i> OR74A</a></td>
-             <td>16</td>
-           </tr>
-          </table>    
        </div>    
        </section>
-      
+       
       <section>
-      <h3><b>No new features in this release</b></h3>
+      <h3><b>New features in FungiDB 39</b></h3>
+        <div style="margin-left: 3em;">
+        <h4>New Phenotype Searches</h4>
+         <ul>
+           <li>The <a href="/a/showQuestion.do?questionFullName=InternalGeneDatasetQuestions.GenesByPhenotypeEvidence">Identify Genes based on Phenotype Evidence </a> 
+           page now contains two new searches: 1. The Curated Phenotype (CP) search returns genes based on phenotype characteristics. For data sets without Phenotype Qualifier data, 
+           the CP search incorporates a filter parameter for quickly choosing the desired phenotype characteristics. The 
+           new Phenotype Text (PT) search returns genes whose phenotypic descriptions contain your text term. 
+           </li>
+         </ul>
+          <h4>FPKM Floor parameter in RNA-Seq fold change searches</h4>
+         <ul>
+           <li><a href="/a/showQuestion.do?questionFullName=InternalGeneDatasetQuestions.GenesByRNASeqEvidence">RNA Seq fold change searches</a> 
+           now offer an <b>FPKM Floor</b> parameter for adjusting the FPKM value of low expressing genes. To avoid 
+           misleading fold change values generated by dividing with very small numbers, we set very low FPKM values to a default <b>FPKM floor</b> which represents
+           10 mapped reads. The new parameter offers a range of floor values for raising or lowering the expression threshold of the search 
+           depending on the user's objectives. For more information use the parameter help (blue question mark icon) on the search page or read the 
+           <a href="/assets/Fold_Change_Help.pdf">detailed RNA seq search help</a>.
+           </li>
+         </ul>  
+       </div> 
       </section>
       
      <section>

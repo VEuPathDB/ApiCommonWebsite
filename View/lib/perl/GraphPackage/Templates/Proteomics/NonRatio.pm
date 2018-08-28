@@ -82,25 +82,10 @@ sub finalProfileAdjustments {
   my ($self, $profile) = @_;
 
   $profile->setDefaultYMax(0.4);
+  $profile->addAdjustProfile('profile.df.full = transform(profile.df.full, "LEGEND" = ifelse(NAME == "0.5 hrs" | NAME == " 3 hrs" | NAME == " 10 hrs" | NAME == " 11 hrs", "G1", ifelse(NAME == " 5 hrs" | NAME == " 6 hrs", "S", "G2")));');
 
-  my @allLegend;
-  foreach(1..2) {
-    push @allLegend, "G1";
-  }
-  foreach(1..2) {
-    push @allLegend, "S";
-  }
-  foreach(1..3) {
-    push @allLegend, "G2";
-  }
-  foreach(1..2) {
-    push @allLegend, "G1";
-  }
-  $profile->setColors(['#aed6f1','#a9dfbf', '#f9e79f' ]);
-
-  $profile->setHasExtraLegend(1); 
-  $profile->setLegendLabels(\@allLegend);
-
+  my $colorMap = "c(\"G1\" = \"#aed6f1\", \"S\" = \"#f9e79f\", \"G2\" = \"#a9dfbf\")";
+  $profile->setColorVals($colorMap);
 
   my $plotTitle = $profile->getPlotTitle();
   $profile->setPlotTitle($plotTitle . " : Cell cycle phases" );
