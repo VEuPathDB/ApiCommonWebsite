@@ -80,7 +80,7 @@
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/24792495" target="_blank">van Munster et al., 2014</a>.
              </li>
              <li><a href="http:/a/app/record/dataset/DS_bb15199826"><i>Aspergillus niger</i> gene co-expression network</a> &ndash;
-             A meta-analysis of 155 transcriptomics experiments generated genome level co-expression networks for 9579 genes of <i>Aspergillus niger</i> genome. <i>Manuscript submitted</i>.
+             A meta-analysis of 155 transcriptomics experiments generated genome level co-expression networks for 9579 genes of <i>Aspergillus niger</i> genome. <a href="https://www.biorxiv.org/content/early/2018/08/23/398842" target="_blank">Manuscript submitted to bioRxiv</a>.
              </li>
         	</ul>
         	
@@ -135,7 +135,7 @@
            
        <h4>Annotations from MIPS Functional Catalogue Database:</h4>  
             <ul> 
-             <li>Functional catalogue annotations for <i>Fusarium graminearum</i> PH-1 from MIPS database were converted to GO terms and integrated as functional annotations in FungiDB 39. For more information refer to <a href="https://docs.google.com/spreadsheets/d/13NIjxEWoLyGZYsSM7K0BuiggU5uOK9gVyCpX5J8nhcE/edit?usp=sharing" target="_blank">Summary of annotation updates</a>.
+             <li>Functional catalogue annotations for <i>Fusarium graminearum</i> PH-1 and <i>Ustilago maydis</i> 521 from the MIPS database were converted to GO terms and integrated as functional annotations in FungiDB releases 37 and 38. The logs are now available for these in the links below in the respective news sections.</a>.
              </li>
            </ul>  
            <br>
