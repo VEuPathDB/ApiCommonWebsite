@@ -17,7 +17,182 @@
           ]]>
        </attribute>
     </record>
+    
+     <h4>RNA Sequence</h4>
+          <ul>
+           <li>
+            <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_0ccdb3a6ec">Transcriptome of <i>T. brucei</i> rhodesiense from human, rodent, culture</a> &mdash; 
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/29474390">Mulindwa et al.</a>  
+            </li>
+          </ul>
+          
 -->
+
+<record>
+  <attribute name="headline">TriTrypDB 39 Released</attribute>
+  <attribute name="date">30 Aug 2018 13:00</attribute>
+  <attribute name="tag">TriTrypDB08_18_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of TriTrypDB 39</strong></p>
+      
+      <section>
+        <h3><b>New data in TriTrypDB 39</b></h3> 
+        <div style="margin-left: 3em;">
+
+        <h4>Genome Sequence and Annotation</h4>
+          <ul>
+           <li>
+            <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_54c31cddc4">Genome sequence and annotation for <i>Leishmania infantum</i> JPCM5 (MCAN/ES/98/LLM-724)</a> &mdash; 
+            This updated genome and annotation features re-sequencing  by PacBio and Illumina methodologies, assembly into 36 contigs (chromosomes),  
+            and annotation via Companion web server (<i>L. infantum</i> Friedlin as reference) supplemented with other electronic and manual curations. 
+            Updated gene IDs in TriTrypDB 39 are mapped to the previous version which is available, if needed, in 
+            <a href="http://r38.tritrypdb.org">TriTrypDB 38</a>.
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/29273719">Gonz&#225;lez-de la Fuente et al.</a>  
+            </li>
+          </ul>
+        
+        <h4>Proteomics</h4>
+          <ul>
+           <li>
+             <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_bf9c234fd9">Quantitative <i>T. brucei</i> procyclic cell cycle proteome.</a> &mdash;  
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/29555687" target="_blank">Crozier et al.</a>
+           </li>
+           <li>
+             <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_a318f71b03"><i>T. brucei</i> procyclic cell cycle peptides (clone 29.13.6)</a> &mdash;  
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/29555687" target="_blank">Crozier et al.</a>
+           </li>
+          </ul>
+         
+         <h4>Whole Genome Sequencing reads for SNP and CNV analysis</h4>
+          <ul>
+           <li>
+            <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_7022bb9d95">Genome wide comparison of Leishmania donovani strains from Ethiopia</a> &mdash; 
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/29315303">Zackay et al.</a>  
+            </li>
+           <li>
+            <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_d6339f85c9"><i>T. brucei</i> population genomics</a> &mdash; 
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/26809473">Weir et al.</a>  
+            </li>
+          </ul>
+      </div>
+      </section>
+      
+      <section>
+      <h3><b>Annotation News</b></h3>
+      <div style="margin-left: 3em;">
+       <h4>Updated Functional Annotation</h4>
+           
+        <div style="margin-left: 3em;">
+        
+        <a href="https://docs.google.com/spreadsheets/d/1OOeAk5smNu-ygswjDPN-Admrfi6SQZgpuag8WzF4ij0/edit?usp=sharing" target="_blank">Summary of annotation updates</a> 
+           which include products, GO terms, EC numbers, gene names, synonyms, publications and notes from curators. 
+        <br>
+        <br>
+        <style>
+           #FunctAnnot_Bld39 table, #FunctAnnot_Bld39 td, #FunctAnnot_Bld39 th, #FunctAnnot_Bld39 tr {
+           text-align : center;
+           padding-left: 5px;
+           padding-right: 5px;
+           padding-top: 5px;
+           padding-bottom: 5px;
+           border: 1px solid black;
+           }
+           #FunctAnnot_Bld39 {
+           margin-left : 5 em;
+           }
+         </style> 
+           <table id="FunctAnnot_Bld39"> 
+           <tr>
+             <th>TriTrypDB Genome Version</th>
+             <th>Download GeneDB GFF file</th>
+             <th>Genes Updated</th>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_31282613b1"><i>Trypanosoma brucei</i> 927</a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2018-07/Tbruceibrucei927.noseq.gff3.gz" target="_blank"> Tbruceibrucei927.noseq.gff3.gz</a></td> 
+             <td>129 genes</td>
+           </tr>
+           </table>
+           <br><br>
+           
+        </div>
+      
+       <h4>Curated User Comments</h4>
+       <div style="margin-left: 3em;">
+       
+          Gene page comments that are entered by users are curated at GeneDB and regularly integrated as functional 
+          annotations in TriTrypDB. 35 user comments (unique) have been reviewed and updated in this release.<br><br>
+          
+      <style>
+           #UComment_Bld39 table, #UComment_Bld39 td, #UComment_Bld39 th, #UComment_Bld39 tr {
+           text-align : center;
+           padding-left: 5px;
+           padding-right: 5px;
+           padding-top: 5px;
+           padding-bottom: 5px;
+           border: 1px solid black;
+           }
+           #UComment_Bld39 {
+           margin-left : 5 em;
+           }
+         </style> 
+           <table id="UComment_Bld39"> 
+           <tr>
+             <th>TriTrypDB Genome Version</th>
+             <th>Comments Integrated</th>
+           </tr>
+           <tr>
+             <td><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_31282613b1"><i>T. brucei </i> 927</a></td>
+             <td>35</td>
+           </tr>
+          </table>
+          <br>
+          <br>
+          
+      </div>
+      </div>
+      </section>
+      
+      <section>
+      <h3><b>New features in TriTrypDB 39</b></h3>
+        <div style="margin-left: 3em;">
+        <h4>New Phenotype Searches</h4>
+         <ul>
+           <li>The <a href="/a/showQuestion.do?questionFullName=InternalGeneDatasetQuestions.GenesByPhenotypeEvidence">Identify Genes based on Phenotype Evidence </a> 
+           page now contains two new searches: 1. The Curated Phenotype (CP) search returns genes based on phenotype characteristics. For data sets without Phenotype Qualifier data, 
+           the CP search incorporates a filter parameter for quickly choosing the desired phenotype characteristics. The 
+           new Phenotype Text (PT) search returns genes whose phenotypic descriptions contain your text term. 
+           </li>
+         </ul>
+          <h4>FPKM Floor parameter in RNA-Seq fold change searches</h4>
+         <ul>
+           <li><a href="/a/showQuestion.do?questionFullName=InternalGeneDatasetQuestions.GenesByRNASeqEvidence">RNA Seq fold change searches</a> 
+           now offer an <b>FPKM Floor</b> parameter for adjusting the FPKM value of low expressing genes. To avoid 
+           misleading fold change values generated by dividing with very small numbers, we set very low FPKM values to a default <b>FPKM floor</b> which represents
+           10 mapped reads. The new parameter offers a range of floor values for raising or lowering the expression threshold of the search 
+           depending on the user's objectives. For more information use the parameter help (blue question mark icon) on the search page or read the 
+           <a href="/assets/Fold_Change_Help.pdf">detailed RNA seq search help</a>.
+           </li>
+         </ul>  
+       </div> 
+      </section>
+      
+      <section>
+         <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+
+    ]]>
+  </attribute>
+</record>
+
+
 
 <record>
   <attribute name="headline">TriTrypDB 38 Released</attribute>
