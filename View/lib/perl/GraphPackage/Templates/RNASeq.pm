@@ -7,8 +7,30 @@ use vars qw( @ISA );
 use ApiCommonWebsite::View::GraphPackage::Templates::Expression;
 use Data::Dumper;
 
+
+
 # @Override
-sub getKey{
+# sub getKey{
+#   my ($self, $profileSetName, $profileType) = @_;
+# #print STDERR Dumper($profileSetName);
+#   my ($groupName) = $self->getGroupNameFromProfileSetName($profileSetName);
+
+#   my ($strand) = $profileSetName =~ /\[.+ \- (.+) \- .+ \- /;
+#   ($strand) = $profileSetName =~ /\[.+ \- (.+) \- / if  (!$strand);
+
+#   $groupName = '' if (!$groupName);
+#   $profileType = 'percentile' if ($profileType eq 'channel1_percentiles');
+
+#   die if (!$strand);
+#   $strand = $strand eq 'unstranded'? ''  :  '_' . $self->getStrandDictionary()->{$strand};
+#   if ($groupName eq 'Non Unique') {
+#     $groupName = '';
+#   } 
+#   return "${groupName}_${profileType}${strand}";
+# }
+
+# @Override
+sub getKeys{
   my ($self, $profileSetName, $profileType) = @_;
 #print STDERR Dumper($profileSetName);
   my ($groupName) = $self->getGroupNameFromProfileSetName($profileSetName);
@@ -24,8 +46,15 @@ sub getKey{
   if ($groupName eq 'Non Unique') {
     $groupName = '';
   } 
-  return "${groupName}_${profileType}${strand}";
+  my $mainKey =  "${groupName}_${profileType}${strand}";
+  if ($profileType ne 'values' || $profileSetName =~ / \- nonunique\]/ || $groupName || $strand eq '') {
+      return([$mainKey])
+  }
+# capital letter B in Both so that this graph is sorted after antisense (reverse sort)
+  my $bothStrandsKey = "${groupName}_${profileType}_Both_strands";
+  return([$mainKey,$bothStrandsKey]);
 }
+
 
 sub switchStrands {
   return 0;
@@ -42,6 +71,15 @@ sub getRemainderRegex {
   return qr/\[.* \- (\S+)\]$/;
 }
 
+sub setStrandDictionaryHash {
+    my ($self,$sd) = @_;
+    $self->{_strand_dictionary_hash} = $sd;
+}
+
+sub getStrandDictionaryHash {
+    my $self = shift;
+    return $self->{_strand_dictionary_hash};
+}
 
 sub getStrandDictionary {
   my $self = shift;
@@ -52,10 +90,13 @@ sub getStrandDictionary {
     $firststrand = 'antisense';
     $secondstrand = 'sense';
   }
-  return { 'unstranded' => '',
+
+  my $hash = { 'unstranded' => '',
 	   'firststrand' => $firststrand,
 	   'secondstrand' => $secondstrand
 	 };
+  $self->setStrandDictionaryHash($hash);
+  return($hash);
 }
 
 # @Override
@@ -792,6 +833,8 @@ sub init {
 # pfal3D7_Bartfai_time_series_rnaSeq_RSRC
 package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_715bf2deda;
 
+
+
 sub init {
   my $self = shift;
 
@@ -799,10 +842,12 @@ sub init {
 
   my $graphObjects = $self->getGraphObjects();
 
-  my $scaledSenseProfile = $graphObjects->[2];
+
+
+  my $scaledSenseProfile = $graphObjects->[3];
   $scaledSenseProfile->setColors(['#8F006B']);
 
-  my $scaledAntiSenseProfile = $graphObjects->[3];
+  my $scaledAntiSenseProfile = $graphObjects->[4];
   $scaledAntiSenseProfile->setColors(['#8F006B']);
 
   return $self;
