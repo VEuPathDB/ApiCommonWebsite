@@ -15,11 +15,16 @@
           ]]>
        </attribute>
     </record>
+    
+           <li><a href="http://amoebadb.org/amoeba/app/record/dataset/DS_d0c4675f71">Trophozoite, cyst and cyst-like structures proteomics</a> &mdash; 
+             Proteomic profile of <i>E. histolytica</i> HM1:IMSS trophozoites, cysts that were isolated from stool samples and <i>in-vitro</i> produced cyst-like structures 
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/27228164" target="_blank">Luna-N&#225;car et al.</a>
+           </li>
 --> 
 
 <record>
   <attribute name="headline">AmoebaDB 39 Released</attribute>
-  <attribute name="date">20 Aug 2018 13:00</attribute>
+  <attribute name="date">30 Aug 2018 13:00</attribute>
   <attribute name="tag">AmoebaDB08_18_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
@@ -33,11 +38,6 @@
          <ul>
            <li><a href="http://amoebadb.org/amoeba/app/record/dataset/DS_1751356009">Membrane and Cytosolic proteomes by 3 extraction methods</a> &mdash; 
              <i>Entamoeba histolytica</i> HM1:IMSS proteome analysis of membrane and cytosolic fractions. This data provided prepublication by the Othman et al. 
-           </li>
-           <li><a href="http://amoebadb.org/amoeba/app/record/dataset/DS_d0c4675f71">Trophozoite, cyst and cyst-like structures proteomics</a> &mdash; 
-             Proteomic profile of <i>E. histolytica</i> HM1:IMSS trophozoites, cysts that were isolated from stool samples and <i>in-vitro</i> produced cyst-like structures 
-             <a href="http://www.ncbi.nlm.nih.gov/pubmed/27228164" target="_blank">Luna-N&#225;car et al.</a>,
-             Luna-Nácar
            </li>
          </ul>  
        </div>  
