@@ -16,11 +16,11 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.apache.log4j.Logger;
-import org.gusdb.wdk.service.service.WdkService;
+import org.gusdb.wdk.service.service.AbstractWdkService;
 import org.json.JSONObject;
 
 @Path("/jbrowse")
-public class JBrowseService extends WdkService {
+public class JBrowseService extends AbstractWdkService {
 
     @SuppressWarnings("unused")
     private static final Logger LOG = Logger.getLogger(JBrowseService.class);

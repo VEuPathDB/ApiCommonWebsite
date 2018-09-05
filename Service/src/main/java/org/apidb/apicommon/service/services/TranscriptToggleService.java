@@ -14,12 +14,12 @@ import org.apache.log4j.Logger;
 import org.apidb.apicommon.model.filter.RepresentativeTranscriptFilter;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.user.Step;
-import org.gusdb.wdk.service.service.WdkService;
+import org.gusdb.wdk.service.service.AbstractWdkService;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 @Path("/step/{stepId}/transcript-view/config")
-public class TranscriptToggleService extends WdkService {
+public class TranscriptToggleService extends AbstractWdkService {
 
   private static final Logger LOG = Logger.getLogger(TranscriptToggleService.class);
 
@@ -36,7 +36,7 @@ public class TranscriptToggleService extends WdkService {
       if (getSessionUser().getUserId() != step.getUser().getUserId()) {
         LOG.warn("Attempt made to edit Step " + stepId + " by non-owner (user id " +
             getSessionUser().getUserId() + "); session expired?");
-        throw new ForbiddenException(WdkService.PERMISSION_DENIED);
+        throw new ForbiddenException(AbstractWdkService.PERMISSION_DENIED);
       }
       if (filterTurnedOn) {
         step.addViewFilterOption(RepresentativeTranscriptFilter.FILTER_NAME, new JSONObject());
