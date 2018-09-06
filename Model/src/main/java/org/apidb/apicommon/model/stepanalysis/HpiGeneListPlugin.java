@@ -14,8 +14,6 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.apidb.apicommon.model.stepanalysis.EnrichmentPluginUtil.Option; // The static class here should be factored
-// import org.gusdb.fgputil.db.runner.BasicResultSetHandler;
-// import org.gusdb.fgputil.db.runner.SQLRunner;
 import org.gusdb.fgputil.runtime.GusHome;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
@@ -49,10 +47,10 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
     private static final String TABBED_RESULT_FILE_PATH = "hpiGeneListResult.tab";
 
 
-    private Map<String, String> serverEndpoints = new HashMap<String, String>();
+    private Map<String, String> serverEndpoints = new HashMap<>();
 
     @Override
-    public void validateProperties() throws WdkModelException {
+    public void validateProperties() {
         this.serverEndpoints.put(EUPATH_NAME_KEY, getProperty(EUPATH_SEARCH_SERVER_ENDPOINT_PROP_KEY));        
         this.serverEndpoints.put(PATRIC_NAME_KEY, getProperty(PATRIC_SEARCH_SERVER_ENDPOINT_PROP_KEY));        
         this.serverEndpoints.put(VBASE_NAME_KEY, getProperty(VBASE_SEARCH_SERVER_ENDPOINT_PROP_KEY));        
@@ -61,7 +59,7 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
     }
 
   @Override
-  public ValidationErrors validateFormParams(Map<String, String[]> formParams) throws WdkModelException, WdkUserException {
+  public ValidationErrors validateFormParamValues(Map<String, String[]> formParams) {
 
     ValidationErrors errors = new ValidationErrors();
 
@@ -121,12 +119,12 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
 
 
   @Override
-  public Object getFormViewModel() throws WdkModelException, WdkUserException {
+  public Object getFormViewModel() {
     return createFormViewModel();
   }
   
   @Override
-  public JSONObject getFormViewModelJson() throws WdkModelException {
+  public JSONObject getFormViewModelJson() {
     return createFormViewModel().toJson();
   }
   
