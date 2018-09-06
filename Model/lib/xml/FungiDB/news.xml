@@ -127,7 +127,9 @@
            
        <h4>Annotations from MIPS Functional Catalogue Database:</h4>  
             <ul> 
-             <li>Functional catalogue annotations for <i>Fusarium graminearum</i> PH-1 from MIPS database were converted to GO terms and integrated as functional annotations in FungiDB 39. For more information refer to <a href="https://docs.google.com/spreadsheets/d/13NIjxEWoLyGZYsSM7K0BuiggU5uOK9gVyCpX5J8nhcE/edit?usp=sharing" target="_blank">Summary of annotation updates</a>.
+             <li>Annotations from MIPS Functional Catalogue Database:
+             Functional catalogue annotations for <i>Fusarium graminearum</i> PH-1 and <i>Ustilago Maydis</i> 521 from the MIPS database were converted to GO terms and integrated as functional annotations in FungiDB Releases 37 and 38, respectively. 
+             The logs are now available in the news sections links below in the respective Summary of annotation updates files</a>.
              </li>
            </ul>  
            <br>
