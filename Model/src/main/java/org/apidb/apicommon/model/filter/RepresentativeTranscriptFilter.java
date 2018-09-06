@@ -4,6 +4,7 @@ import org.apache.log4j.Logger;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.answer.AnswerValue;
+import org.gusdb.wdk.model.filter.FilterOptionList;
 import org.gusdb.wdk.model.filter.FilterSummary;
 import org.gusdb.wdk.model.filter.StepFilter;
 import org.gusdb.wdk.model.user.Step;
@@ -136,4 +137,32 @@ public class RepresentativeTranscriptFilter extends StepFilter {
 
     return stepCopy;
   }
+
+  public static AnswerValue updateAnswerValue(AnswerValue answerValue, Boolean shouldEngageFilter) throws WdkModelException {
+    FilterOptionList viewFilters = answerValue.getViewFilterOptions();
+    boolean filterOnInAnswer =
+        viewFilters.getFilterOption(RepresentativeTranscriptFilter.FILTER_NAME) != null;
+
+    if (filterOnInAnswer == shouldEngageFilter) {
+      return answerValue;
+    }
+
+    // Create a copy of answerValue and modify view filters appropriately
+    AnswerValue newAnswerValue = new AnswerValue(answerValue);
+    FilterOptionList newViewFilters = new FilterOptionList(viewFilters);
+
+    if (shouldEngageFilter) {
+      // add view filter
+      newViewFilters.addFilterOption(RepresentativeTranscriptFilter.FILTER_NAME, new JSONObject());
+    }
+    else {
+      // remove view filter (already present)
+      newViewFilters.removeFilterOption(RepresentativeTranscriptFilter.FILTER_NAME);
+    }
+
+    newAnswerValue.setViewFilterOptions(newViewFilters);
+
+    return newAnswerValue;
+  }
+
 }

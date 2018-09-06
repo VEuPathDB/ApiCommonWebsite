@@ -136,11 +136,8 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
         "  (" + idSql + ") r"  + NL +
         "  where gts.gene_source_id = r.source_id" + NL +
         "    and gts.ontology = '" + ontology + "'" + NL +
-        "    AND decode(gts.evidence_code, 'IEA', 'Computed', 'Curated') in (" + evidCodesStr + ")" + NL +
-	" and case when "+ goSubset +" = 'Yes' and gts.is_go_slim = '1' then 1" + NL +
-        "     when (" + goSubset + " = 'No' and (gts.is_go_slim = '1' or gts.is_go_slim = '0')) then 1" + NL +
-        "     else 0" + NL +
-        "     end = 1" + NL ;
+        "    AND gts.evidence_category in (" + evidCodesStr + ")" + NL +
+	" and ("+ goSubset +" = 'No' or gts.is_go_slim = '1')" + NL ;
 
 
     DataSource ds = getWdkModel().getAppDb().getDataSource();

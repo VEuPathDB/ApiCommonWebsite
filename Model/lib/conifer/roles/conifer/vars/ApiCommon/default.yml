@@ -67,3 +67,8 @@ profilesimilarityconfig_dbPassword: '{{ modelconfig_appDb_password }}'
 profilesimilarityconfig_perlExec: /usr/bin/perl
 profilesimilarityconfig_connectionUrl: "{{ '' if modelconfig_userDb_connectionUrl.startswith('=c=') else modelconfig_appDb_connectionUrl|jdbc2Dbi }}"
 
+genelistcomparisonconfig_dbLogin: '{{ modelconfig_appDb_login }}'
+genelistcomparisonconfig_dbPassword: '{{ modelconfig_appDb_password }}'
+genelistcomparisonconfig_perlExec: /usr/bin/perl
+genelistcomparisonconfig_connectionUrl: "{{ '' if modelconfig_userDb_connectionUrl.startswith('=c=') else modelconfig_appDb_connectionUrl|jdbc2Dbi }}"
+

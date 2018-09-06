@@ -62,8 +62,13 @@ sub getRemainderRegex {
   return qr/(.+)/;
 }
 
+sub getKeys {
+    my ($self, $profileSetName, $profileType) = @_;
+    my $key = $self->getKey($profileSetName, $profileType);
+    return [$key];
+}
 
-sub getKey{
+sub getKey {
   my ($self, $profileSetName, $profileType) = @_;
 
   my $groupName = $self->getGroupNameFromProfileSetName($profileSetName);
@@ -112,12 +117,14 @@ sub init {
   foreach my $p (@{$allProfileSets}){
     my $profileName = $p->{profileName};
     my $profileType = $p->{profileType};
-    my $key = $self->getKey($profileName, $profileType);
+    my $keys = $self->getKeys($profileName, $profileType);
 
     if ($profileType eq 'standard_error') {
      $hasStdError{$profileName} = 1;
    } else {
-     push @{$plotParts{$key}}, $p;
+       foreach my $key (@$keys) {
+	   push @{$plotParts{$key}}, $p;
+       }
    }
   }
 

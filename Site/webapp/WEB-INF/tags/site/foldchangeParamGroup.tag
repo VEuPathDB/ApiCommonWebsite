@@ -4,6 +4,7 @@
   xmlns:jsp="http://java.sun.com/JSP/Page"
   xmlns:c="http://java.sun.com/jsp/jstl/core"
   xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+  xmlns:html="http://struts.apache.org/tags-html"
   xmlns:imp="urn:jsptagdir:/WEB-INF/tags/imp">
 
   <jsp:directive.attribute name="paramGroup" type="java.util.Map" required="true"/>
@@ -11,7 +12,7 @@
   <c:set var="profileset_genericParam" value="${paramGroup['profileset_generic']}"/>
   <c:set var="regulated_dirParam" value="${paramGroup['regulated_dir']}"/>
   <c:set var="fold_changeParam" value="${paramGroup['fold_change']}"/>
-  <c:set var="soft_floorParam" value="${paramGroup['soft_floor']}"/>
+  <c:set var="hard_floorParam" value="${paramGroup['hard_floor']}"/>
 
   <c:set var="samples_fc_ref_genericParam" value="${paramGroup['samples_fc_ref_generic']}"/>
   <c:set var="min_max_avg_refParam" value="${paramGroup['min_max_avg_ref']}"/>
@@ -56,6 +57,7 @@
         <imp:helpIcon helpContent="${fold_changeParam.help}" />
       </div>
 
+
       <div class="samples ui-helper-clearfix">
         <div id="min_max_avg_refaaa" class="param-line">
           between each gene's
@@ -63,6 +65,23 @@
           <span class="text prompt"> expression value </span>
           <imp:helpIcon helpContent="${min_max_avg_refParam.help}" />
         </div>
+
+      <c:choose>
+        <c:when test="${hard_floorParam.isVisible}">
+          <div id="hard_flooraaa" class="param-line">
+            <span class="text">   (or an
+            <span class="prompt">FPKM Floor</span> of</span>
+            <imp:enumParamInput qp="${hard_floorParam}"/>
+            <span class="text">)</span>
+            <imp:helpIcon helpContent="${hard_floorParam.help}" />
+            <imp:image alt="New feature icon" title="This is a new parameter!" src="wdk/images/new-feature.png" />
+          </div>
+        </c:when>
+        <c:otherwise>
+          <html:hidden property="value(${hard_floorParam.name})" />
+        </c:otherwise>
+      </c:choose>
+
         <div class="param-line" style="padding-bottom:0">
           <span class="text">
             in the following <span class="samples-tab reference">Reference Samples</span>
@@ -93,6 +112,16 @@
           <span class="text prompt"> expression value </span>
           <imp:helpIcon helpContent="${min_max_avg_compParam.help}" />
         </div>
+
+      <c:choose>
+        <c:when test="${hard_floorParam.isVisible}">
+          <div id="hard_flooraaa" class="param-line">
+            <span class="text">   (or the
+            <span class="prompt">FPKM Floor</span> selected above)</span>
+          </div>
+        </c:when>
+      </c:choose>
+
         <div class="param-line" style="padding-bottom:0">
           <span class="text">
             in the following <span class="samples-tab comparison">Comparison Samples</span>
@@ -118,14 +147,6 @@
         </div>
       </div>
 
-      <div class="param-line">
-        <span class="text">using a
-          <span class="prompt">Soft Floor</span> of</span>
-        <imp:stringParamInput qp="${soft_floorParam}"/>
-        <imp:helpIcon helpContent="${soft_floorParam.help}" />
-      </div>
-
-
     </div> <!-- .fold-change-params -->
 
     <div class="fold-change-graphic">
@@ -139,12 +160,12 @@
         choices you make at the left.
         It will begin to display when you choose a <b>Reference Sample</b> or a
          <b>Comparison Sample</b>.</p>
+	<div class="fold-change-help detailed-help">
+             <p>See the <a href='/assets/Fold_Change_Help.pdf'
+             target='_blank'>detailed help for this search</a>.</p>
+	</div>
       </div>
       <div class="fold-change-help dynamic-help"><jsp:text/></div>
-      <div class="fold-change-help detailed-help">
-        <p>See the <a href='/assets/Fold%20Change%20Help.pdf'
-         target='_blank'>detailed help for this search</a>.</p>
-      </div>
     </div>
 
     <script id="formula-partial" type="text/x-jst">
@@ -179,8 +200,8 @@
       <br/>
       <p>For each gene, the search calculates:</p>
       <%= _.map(formulas, formulaPartial).join('') %>
-      <p>and returns genes when <%= criteria %>.
-
+      <p>and returns genes when <%= criteria %>.</p>
+      <p>
         <% if (narrowest) { %>
           This calculation creates the <b>narrowest</b> window of expression values in
           which to look for genes that meet your fold change cutoff.
@@ -199,6 +220,17 @@
           To broaden the window, use the <%= toBroaden %>.
         <% } %>
       </p>
+      <div class="fold-change-help detailed-help">
+             <p>See the <a href='/assets/Fold_Change_Help.pdf'
+             target='_blank'>detailed help for this search</a>.</p>
+      </div>
+      <% if (hasHardFloor) { %>
+          <div id="hard_flooraaa" class="param-line">
+            <span class="text"><font color="red"><b>*</b></font> or <b>FPKM Floor</b>, whichever is greater</span>
+          </div>
+      <% } %>
+
+
     ]]>
     </script>
 

@@ -75,6 +75,29 @@ sub finalProfileAdjustments {
 1;
 
 
+# for TriTrypDB
+package ApiCommonWebsite::View::GraphPackage::Templates::Proteomics::NonRatio::DS_bf9c234fd9;
+
+sub finalProfileAdjustments {
+  my ($self, $profile) = @_;
+
+  $profile->setDefaultYMax(0.4);
+  $profile->addAdjustProfile('profile.df.full = transform(profile.df.full, "LEGEND" = ifelse(NAME == "0.5 hrs" | NAME == " 3 hrs" | NAME == " 10 hrs" | NAME == " 11 hrs", "G1", ifelse(NAME == " 5 hrs" | NAME == " 6 hrs", "S", "G2")));');
+
+  my $colorMap = "c(\"G1\" = \"#aed6f1\", \"S\" = \"#f9e79f\", \"G2\" = \"#a9dfbf\")";
+  $profile->setColorVals($colorMap);
+
+  my $plotTitle = $profile->getPlotTitle();
+  $profile->setPlotTitle($plotTitle . " : Cell cycle phases" );
+
+  return $self;
+}
+
+1;
+
+
+
+
 #--------------------------------------------------------------------------------
 
 # TEMPLATE_ANCHOR proteomicsSimpleNonRatio

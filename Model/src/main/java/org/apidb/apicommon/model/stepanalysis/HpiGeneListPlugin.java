@@ -147,7 +147,8 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
     }
 
     List<Option> thresholdTypeOptions = new ArrayList<>();
-    thresholdTypeOptions.add(new Option("percent_matched", "Percent Matched"));
+    thresholdTypeOptions.add(new Option("fdr", "False Discovery Rate"));
+    //    thresholdTypeOptions.add(new Option("percent_matched", "Percent Matched"));
 
     List<Option> useOrthologyOptions = new ArrayList<>();
     useOrthologyOptions.add(new Option("true", "Yes"));
@@ -248,7 +249,7 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
 
   public static class ResultViewModel {
 
-      private final ResultRow HEADER_ROW = new ResultRow("Experiment Identifier", "Species",  "Experiment Name", "Description", "Type", "URI", "Percent Matched", "List_URI");
+      private final ResultRow HEADER_ROW = new ResultRow("Experiment Identifier", "Species",  "Experiment Name", "Description", "Type", "URI", "Statistic", "List_URI");
 
       private final ResultRow COLUMN_HELP = new ResultRow(
                                                                 "Unique ID for this experiment",

@@ -1,4 +1,4 @@
 # $SourceFileURL$
 ---
 
-authenticationMethod: user_db
+modelconfig_authenticationMethod: user_db

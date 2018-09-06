@@ -19,9 +19,9 @@ use vars qw( @ISA );
 @ISA = qw( EbrcWebsiteCommon::View::GraphPackage::BasicBarPlot );
 
 use EbrcWebsiteCommon::View::GraphPackage::BasicBarPlot;
-use ApiCommonWebsite::Model::CannedQuery::Profile;
-use ApiCommonWebsite::Model::CannedQuery::ProfileSet;
-use ApiCommonWebsite::Model::CannedQuery::ElementNames;
+use EbrcWebsiteCommon::Model::CannedQuery::Profile;
+use EbrcWebsiteCommon::Model::CannedQuery::ProfileSet;
+use EbrcWebsiteCommon::Model::CannedQuery::ElementNames;
 
 # ========================================================================
 # --------------------------- Required Methods ---------------------------
@@ -35,14 +35,14 @@ sub init {
   my $name = 'Effects of Glucose Starvation in Toxoplasma gondii';
 
 	$Self->setDataQuery
-	( ApiCommonWebsite::Model::CannedQuery::Profile->new
+	( EbrcWebsiteCommon::Model::CannedQuery::Profile->new
 		( Name         => 'data',
       ProfileSet   => $name,
 		)
 	);
 
 	$Self->setNamesQuery
-	( ApiCommonWebsite::Model::CannedQuery::ElementNames->new
+	( EbrcWebsiteCommon::Model::CannedQuery::ElementNames->new
 		( Name         => 'names',
       ProfileSet   => $name,
 		)
