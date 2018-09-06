@@ -185,7 +185,7 @@ sub sortKeys {
 sub makeAndSetPlots {
   my ($self, $plotParts, $hasStdError) = @_;
   my @rv;
-
+  
   my $bottomMarginSize = $self->getBottomMarginSize();
   my $colors= $self->getProfileColors();
   my $pctColors= $self->getPercentileColors();
@@ -212,9 +212,11 @@ sub makeAndSetPlots {
     my $xAxisLabel;
     my $plotObj;
     my $plotPartModule = $key=~/percentile/? 'Percentile': $self->getExprPlotPartModuleString();
-
+    
     if((lc($self->getGraphType()) eq 'bar' || ($key=~/percentile/ && blessed($self) =~/TwoChannel/)) && $self->useLegacy() ) {
       $plotObj = "EbrcWebsiteCommon::View::GraphPackage::BarPlot::$plotPartModule";
+    } elsif(lc($self->getGraphType()) eq 'bar' && $key=~/Both_strands/ && $plotPartModule eq 'RNASeq') {
+      $plotObj = "EbrcWebsiteCommon::View::GraphPackage::GGBarPlot::${plotPartModule}SenseAntisense";
     } elsif((lc($self->getGraphType()) eq 'bar' || ($key=~/percentile/ && blessed($self) =~/TwoChannel/)) && !$self->useLegacy() ) {
       $plotObj = "EbrcWebsiteCommon::View::GraphPackage::GGBarPlot::$plotPartModule";
     } elsif(lc($self->getGraphType()) eq 'line' && $self->useLegacy()) {
@@ -230,39 +232,37 @@ sub makeAndSetPlots {
     } else {
       die "Graph must define a graph type of bar or line";
     }
+
     my $profile = eval {
-      $plotObj->new($self);
+      $plotObj->new($self,$profileSets);
     };
 
     if ($@) {
       die "Unable to make plot $plotObj: $@";
     }
 
+    if ($key!~/Both_strands/) {
+       $profile->setProfileSets($profileSets);
+       my @legendNames = map { $self->getRemainderNameFromProfileSetName($_->[0]) } @profileSetsArray;
+       # omit the legend when there is just one profile, and it is not a RNASeq dataset
+       my $keepSingleLegend = $self->keepSingleLegend();
+       if  ($#legendNames || $keepSingleLegend) {
+          $profile->setHasExtraLegend(1); 
+          $profile->setLegendLabels(\@legendNames);
+       }
+    }
+
     my $profile_part_name = $profile->getPartName(); # percentile / rma
     $key =~s/values/$profile_part_name/;
     $key =~s/^\_//;
     $profile->setPartName($key);
-
     $profile->setPlotTitle("$key - " . $profile->getId() );
-
-    my @legendNames = map { $self->getRemainderNameFromProfileSetName($_->[0]) } @profileSetsArray;
     my @profileTypes = map { $_->[1] } @profileSetsArray;
-
     $profile->setProfileTypes(\@profileTypes);
-
-    # omit the legend when there is just one profile, and it is not a RNASeq dataset
-    my $keepSingleLegend = $self->keepSingleLegend();
-
-    if  ($#legendNames || $keepSingleLegend) {
-      $profile->setHasExtraLegend(1); 
-      $profile->setLegendLabels(\@legendNames);
-    }
 
     if(lc($self->getGraphType()) eq 'bar') {
       $profile->setForceHorizontalXAxis($self->forceXLabelsHorizontal());
     }
-
-    $profile->setProfileSets($profileSets);
 
     if($bottomMarginSize) {
       $profile->setElementNameMarginSize($bottomMarginSize);
@@ -279,10 +279,14 @@ sub makeAndSetPlots {
     # These can be implemented by the subclass if needed
     if ($key=~/percentile/) {
       $profile->setColors($pctColors);
-    } else {
+    } 
+    elsif ($key=~/Both_strands/) {
+	my @colorArray = reverse(@{$colors});
+	$profile->setColors(\@colorArray);
+    }
+    else {
       $profile->setColors($colors);
     }
-
     $self->finalProfileAdjustments($profile);
     push @rv, $profile;
   }
