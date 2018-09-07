@@ -28,7 +28,7 @@ sub run {
 
     my $qh = $self->getQueryHandle($cgi);
 
-    print $cgi->header('text/html');
+    #print $cgi->header('text/html');
 
     my $sql;
     
