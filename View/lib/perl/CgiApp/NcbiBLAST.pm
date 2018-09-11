@@ -48,7 +48,6 @@ sub run {
     
     $sh->finish();
  
-
     
     my $ua = LWP::UserAgent->new;
 
@@ -151,26 +150,9 @@ sub run {
     # retrieve and display results
 
     my $req = new HTTP::Request GET => "https://blast.ncbi.nlm.nih.gov/blast/Blast.cgi?NCBI_GI=T&FORMAT_OBJECT=Alignment&ALIGNMENTS=5&CMD=Get&FORMAT_TYPE=HTML&RID=$rid";
-
-
-    #my $q = EbrcWebsiteCommon::View::CgiApp->new; 
-    #print $q->redirect("https://blast.ncbi.nlm.nih.gov/blast/Blast.cgi?NCBI_GI=T&FORMAT_OBJECT=Alignment&ALIGNMENT#\
-#S=5&CMD=Get&FORMAT_TYPE=HTML&RID=$rid");
-
     
-     print "Location: https://blast.ncbi.nlm.nih.gov/blast/Blast.cgi?NCBI_GI=T&FORMAT_OBJECT=Alignment&ALIGNMENTS\                  
-=5&CMD=Get&FORMAT_TYPE=HTML&RID=$rid"."\n\n";
-   
-
-
-
-    #$response = $ua->request($req);
-
-    #print $response->content;
-
-    
-   # print $cgi->end_html;
-    
+     print "Location: https://blast.ncbi.nlm.nih.gov/blast/Blast.cgi?NCBI_GI=T&FORMAT_OBJECT=Alignment&ALIGNMENTS=5&CMD=Get&FORMAT_TYPE=HTML&RID=$rid"."\n\n";
+       
 }
 
 
