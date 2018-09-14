@@ -309,8 +309,20 @@ sub init {
 
   my $combined = $self->makeCombinedGraph();
 
+  my @pieProfileSetNames = (['DeRisi HB3 Smoothed', 'values'],
+                            ['DeRisi HB3 non-smoothed', 'values']
+                           );
 
-  $self->setGraphObjects($combined, @hb3Graphs, @_3D7Graphs, @dd2Graphs);
+  my $pieProfileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@pieProfileSetNames);
+
+  my $hb3Pie = EbrcWebsiteCommon::View::GraphPackage::GGPiePlot::MPMP->new(@_);
+  $hb3Pie->setProfileSets($pieProfileSets);
+  $hb3Pie->setPartName("expr_val_pie_HB3");
+  my $pieTitle = $hb3Pie->getPlotTitle();
+  $hb3Pie->setPlotTitle("HB3 - $pieTitle");
+  $hb3Pie->setXaxisLabel('');
+
+  $self->setGraphObjects($combined, @hb3Graphs, @_3D7Graphs, @dd2Graphs, $hb3Pie);
 
   return $self;
 }
@@ -383,6 +395,7 @@ sub defineGraphs {
   my @profileSetNames = ([$smoothed, 'values'],
                          [$nonSmoothed, 'values']
                         );
+
 
   my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileSetNames);
 
