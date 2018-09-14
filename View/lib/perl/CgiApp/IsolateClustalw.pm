@@ -24,17 +24,29 @@ sub run {
 
 sub processParams {
   my ($self, $cgi, $dbh) = @_;
-  my $p = $cgi->param('isolate_ids');
-  $p =~ s/,$//;
-  my @ids = split /,/, $p;
-  my $list;
-  foreach my $id (@ids){
 
-    $list = $list.  "'" . $id. "',";
+
+  my $type  = $cgi->param('type');
+
+  if($type eq 'geneOrthologs') {
+    my @ids = $cgi->param('gene_ids');
+    $self->{ids} = join(',', @ids);
   }
-  $list =~ s/\,$//;
 
-  $self->{ids} = $list;
+  # JB: not sure why this is splitting then concatenating.  Seems like all this is doing is stripping the trailing comma
+  else {
+    my $p = $cgi->param('isolate_ids');
+    $p =~ s/,$//;
+    my @ids = split /,/, $p;
+    my $list;
+    foreach my $id (@ids){
+
+      $list = $list.  "'" . $id. "',";
+    }
+    $list =~ s/\,$//;
+
+    $self->{ids} = $list;
+  }
 }
 
 sub handleIsolates {
@@ -69,6 +81,15 @@ SELECT source_id,
 FROM   dots.nasequence nas
 WHERE  nas.source_id in ($ids) 
 EOSQL
+  } elsif($type eq 'geneOrthologs') {
+    $ids = join(',', map { "'$_'" } split(',', $ids));
+    $sql = <<EOSQL;
+select ps.source_id, ps.sequence
+from apidbtuning.proteinsequence ps, apidbtuning.transcriptattributes ta
+where ta.protein_source_id = ps.source_id
+and ta.project_id = ps.project_id
+and ta.gene_source_id in ($ids)
+EOSQL
   } else {  # regular isolates
     $sql = <<EOSQL;
 SELECT etn.source_id, etn.sequence
@@ -77,10 +98,12 @@ WHERE etn.source_id in ($ids)
 EOSQL
   }
 
+
   my $sequence;
   my $sth = $dbh->prepare($sql);
   $sth->execute();
   while(my ($id, $seq) = $sth->fetchrow_array()) {
+
     $id =~ s/^$sid\.// unless ($id eq $sid);
     my $noN = $seq;
     $noN =~ s/[ACGT]//g;
