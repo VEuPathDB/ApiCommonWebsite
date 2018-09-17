@@ -22,21 +22,18 @@ sub run {
     my $organism_type = $cgi->param('organism_type');
     my $input_type=$cgi->param('input_type');
     my $source_ID = $cgi->param('source_ID');
-    my $ID_Type = $cgi->param('ID_Type');
-
+    my $id_type = $cgi->param('id_type');
 
     my $qh = $self->getQueryHandle($cgi);
 
-    #print $cgi->header('text/html');                                                                                               
-
     my $sql;
 
-    if($ID_Type== 'protein'){
+    if($id_type eq  'protein'){
 
         $sql = "select SEQUENCE from APIDBTUNING.PROTEINSEQUENCE where SOURCE_ID = '" . $source_ID . "' and PROJECT_ID= '" . $project_id . "'";
     }else{
-        #$self->error();                                                                                                            
-        die "cannot find the protein sequence from database based on entered source_ID and PROJECT_ID" ;
+       
+	die "cannot find the protein sequence from database based on entered source_ID and PROJECT_ID" ;
     }
 
     my $sh = $qh->prepare($sql);
@@ -50,10 +47,7 @@ sub run {
 
     my $ua = LWP::UserAgent->new;
 
-
-    my $encoded_query=$seq;
-
-    my $args = "CMD=Put&organism_type=$organism_type&input_type=$input_type&fasta_input=" . $encoded_query;
+    my $args = "CMD=Put&organism_type=$organism_type&input_type=$input_type&fasta_input=" . $seq;
 
     my $req = new HTTP::Request POST => 'https://wolfpsort.hgc.jp/?submitted=1';
     
@@ -64,9 +58,9 @@ sub run {
 
     # get the response                                                                                                              
     my $response = $ua->request($req);
-    #print Dumper($response);
 
     #parse out the request id                                                                                                    
+
     my $id;
 
     if ($response->content =~ /id=(\w*)"/) {
@@ -74,25 +68,9 @@ sub run {
     } else {
 	print "didn't match\n";
     }
-  
-
-    #poll for results                                                                                                              
-    $req = new HTTP::Request GET => "https://wolfpsort.hgc.jp/?submitted=1&id=$id";
 
    # retrieve and display results  
     print "Location: https://wolfpsort.hgc.jp/?submitted=1&id=$id"."\n\n";
-
-
-
-}
-
-
-sub error{
-    #my ($msg) = @_;                                                                                                                
-
-    #print "ERROR: Please make sure the source_ID should be protein\n\n";                                                           
-    exit(1);
-
 
 }
 
