@@ -69,14 +69,14 @@ export class RecordHeading extends Component {
   }
 
   renderThumbnails() {
-    let { store } = this.context;
+    let { viewStore } = this.context;
     let { recordClass } = this.props;
     let { attributes, tables } = this.props.record;
     // Get field present in record instance. This is leveraging the fact that
     // we filter the category tree in the store based on the contents of
     // MetaTable.
     let instanceFields = new Set(
-      preorderSeq(store.getState().categoryTree)
+      preorderSeq(viewStore.getState().categoryTree)
       .filter(node => !node.children.length)
       .map(node => node.properties.name[0]));
 
@@ -147,7 +147,7 @@ export class RecordHeading extends Component {
 
 RecordHeading.contextTypes = {
   eventHandlers: PropTypes.object.isRequired,
-  store: PropTypes.object.isRequired
+  viewStore: PropTypes.object.isRequired
 };
 
 const ExpressionChildRow = makeDatasetGraphChildRow('ExpressionGraphsDataTable');
@@ -183,7 +183,13 @@ export function RecordTable(props) {
       return <MercatorTable {...props} />
 
     case 'Orthologs':
-      return <SortKeyTable {...props}/>
+      return <OrthologsForm {...props}/>
+
+    case 'WolfPsortForm':
+      return <WolfPsortForm {...props}/>
+
+    case 'BlastpForm':
+      return <BlastpForm {...props}/>
 
     case 'ProteinProperties':
       return <props.DefaultComponent {...props} childRow={Gbrowse.ProteinContext} />
@@ -509,5 +515,160 @@ class SortKeyTable extends React.Component {
     return <this.props.DefaultComponent {...this.props} value={this.sortValue(this.props.value)}/>
   }
 }
+
+
+class WolfPsortForm extends React.Component {
+
+    inputHeader(t)  {
+        if(t.length > 1) {
+            return <p>Select the Protein:</p>
+        }
+    }
+
+    printInputs(t)  {
+        if(t.length == 1) {
+            return (<input type="hidden" name="source_ID" value={t[0].protein_source_id}/>);
+        }
+
+        return (
+            t.map(p => {
+                return (
+                    <label key={p.protein_source_id}>
+                        <input type="radio" name="source_ID" value={p.protein_source_id}/>
+                        {p.protein_source_id} <br/> </label>
+                );
+            })
+        );
+    }
+
+
+    render() {
+    	let { project_id } = this.props.record.attributes;  
+        
+        let t = this.props.value;
+
+           return (
+            <form action="/cgi-bin/wolfPSORT.pl" target="_blank" method="post">
+            	  <input type="hidden" name="project_id" value={projectId}/>
+  	    	  <input type="hidden" id="input_type" name="input_type" value="fasta"/>
+ 	    	  <input type="hidden" id="id_type" name="id_type" value="protein"/>                       
+	    
+
+                  {this.inputHeader(t)}
+                  {this.printInputs(t)}
+
+		  <p>Select an organism type:</p>
+	    	  <input type="radio" name="organism_type" value="animal"/> Animal<br/>
+            	  <input type="radio" name="organism_type" value="plant"/> Plant<br/>
+            	  <input type="radio" name="organism_type" value="fungi"/> Fungi<br/><br/>
+
+  	    	  <input type="submit"/>
+
+
+            </form>
+
+        );
+    }
+}
+
+
+class BlastpForm extends React.Component {
+
+    inputHeader(t)  {
+        if(t.length > 1) {
+            return <p>Select the Protein:</p>
+        }
+    }
+
+    printInputs(t)  {
+        if(t.length == 1) {
+            return (<input type="hidden" name="source_ID" value={t[0].protein_source_id}/>);
+        }
+
+        return (
+            t.map(p => {
+                return (
+                    <label key={p.protein_source_id}>
+                        <input type="radio" name="source_ID" value={p.protein_source_id}/>
+                        {p.protein_source_id} <br/> </label>
+                );
+            })
+        );
+    }
+
+    render() {
+    	let { project_id } = this.props.record.attributes;
+
+        let t = this.props.value;
+
+	return (
+	       <form action="/cgi-bin/ncbiBLAST.pl" target="_blank" method="post">
+               	     <input type="hidden" name="project_id" value={projectId}/>
+  	       	     <input type="hidden" id="program" name="program" value="blastp"/>
+ 	       	     <input type="hidden" id="id_type" name="id_type" value="protein"/>                       
+
+                     {this.inputHeader(t)}
+                     {this.printInputs(t)}
+
+		     <p>Select the Database:</p>
+  	       	     <input type="radio" name="database" value="nr"/> Non-redundant protein sequences (nr)<br/> 
+	       	     <input type="radio" name="database" value="refseq_protein"/> Reference proteins (refseq_protein)<br/> 
+  	       	     <input type="radio" name="database" value="swissprot"/> UniProtKB/Swiss-Prot(swissprot)<br/>
+	       	     <input type="radio" name="database" value="landmark"/> Model Organisms (landmark)<br/>
+	       	     <input type="radio" name="database" value="pat"/> Patented protein sequences(pat)<br/>
+	       	     <input type="radio" name="database" value="pdb"/> Protein Data Bank proteins(pdb)<br/>
+	       	     <input type="radio" name="database" value="env_nr"/> Metagenomic proteins(env_nr)<br/>
+	       	     <input type="radio" name="database" value="tsa_nr"/> Transcriptome Shotgun Assembly proteins (tsa_nr)<br/><br/>
+
+  	       	     <input type="submit"/>
+               </form>
+        );
+    }
+}
+
+
+
+
+
+class OrthologsForm extends SortKeyTable {
+
+
+    toggleAll(checked) {
+        const node = ReactDOM.findDOMNode(this);
+        for (const input of node.querySelectorAll('input[name="gene_ids"]')) {
+            input.checked = checked;
+        }
+    }
+
+
+  render() {
+      let { source_id, gene_type } = this.props.record.attributes;
+
+      if(gene_type === "protein coding") {
+          return (
+              <form action="/cgi-bin/isolateClustalw" target="_blank" method="post">
+                  <this.props.DefaultComponent {...this.props} value={this.sortValue(this.props.value)}/>
+                  <input type="hidden" name="type" value="geneOrthologs"/>
+                  <input type="hidden" name="project_id" value={projectId}/>
+                  <input type="hidden" name="gene_ids" value={source_id}/>
+                  <input type="submit" value="Run clustalW for selected genes"/>
+                  <input type="button" name="CheckAll" value="Check All" onClick={() => this.toggleAll(true)}/>
+                  <input type="button" name="UnCheckAll" value="Uncheck All" onClick={() => this.toggleAll(false)}/> 
+              </form>
+          );
+      }
+
+      return (
+          <div>
+              <this.props.DefaultComponent {...this.props} value={this.sortValue(this.props.value)}/>
+              <p>NOTE: clusalW alignment is only available for protein coding genes</p>
+          </div>
+      );
+  }
+
+
+}
+
+
 
 const UserCommentsTable = addCommentLink(props => props.record.attributes.user_comment_link_url);
