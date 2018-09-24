@@ -49,6 +49,17 @@ sub init {
   $bar->setPartName("fpkm");
   $bar->setPlotTitle("$id - UserDataset $datasetId");
 
+
+  my $wantLogged = $bar->getWantLogged();
+  if($wantLogged) {
+    $bar->addAdjustProfile('profile.df.full$VALUE = log2(profile.df.full$VALUE + 1);');
+    $bar->setYaxisLabel('FPKM (log2)');
+    $bar->setIsLogged(1);
+    $bar->setDefaultYMax(4);
+    $bar->setSkipStdErr(1);
+  }
+
+
   $self->setGraphObjects($bar);
 
   

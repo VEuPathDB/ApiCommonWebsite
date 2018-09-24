@@ -72,7 +72,6 @@
 
  <target name="ApiCommonWebsite-Installation" depends="EbrcWebSvcCommon-Installation,
                                                        ApiCommonModel-Installation,
-                                                       ApiCommonModel/Datasources-Installation,
                                                        GBrowse-Installation,
  	                                                     ApiCommonWebsite-MavenInstallation,
                                                        ApiCommonWebsite/Model-Installation,
