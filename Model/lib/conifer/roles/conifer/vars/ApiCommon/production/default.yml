@@ -17,6 +17,7 @@ modelprop:
   'attr=google_analytics_id xpath=sites/site[@hostname=\"{}\"] default='.format( hostname|swap_hostname(_host_frontends) )
   )
 }}"
+  GOOGLE_MAPS_API_KEY: "{{ lookup('euparc', 'attr=api_key xpath=sites/google_maps default=NOKEY') }}"
 
 # this mapping allow different configs based on hostname.  Mainly used to give
 # different configs to qN.sitedb.org sites, it could be extended to others
