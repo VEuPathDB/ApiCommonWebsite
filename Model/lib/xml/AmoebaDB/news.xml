@@ -46,7 +46,8 @@
            the search results. 
            <a href="/assets/XXXX">Sense/Antisense search tutorial</a>.
            </li>
-         </ul>  
+         </ul>  <br>
+         
          <h4>New Gene page tools </h4>
          <ul>
            <li>Protein alignment tool &mdash; 
@@ -78,7 +79,26 @@
              populated with the prediction results. For more information see this 
              <a href="/assets/XXXX">Release 40 gene page tools tutorial</a>.
           </li>
-          
+         </ul><br>
+         
+         <h4>New Gene Result Analysis tool</h4>
+         <ul>
+           A new tool to find 'Experiments with Similar Results' is available for any gene result.  Use the blue 'Analysis 
+           Result' tab on any gene result page to access the tool.  The tool compares the genes in your current result to 
+           gene lists generated from each transcriptomic data set based on GSEA. The tool returns a list of @PROJECT_ID@ data sets whose 
+           gene lists are statistically similar and may be worth investigating. For more information, see this 
+           <a href="/assets/XXXX">Sense/Experiments with Similar Results tutorial</a>.
+           </li>
+         </ul>
+         
+         h4>New Proteome Upload tool</h4>
+         <ul>
+           A new tool to find 'Experiments with Similar Results' is available for any gene result.  Use the blue 'Analysis 
+           Result' tab on any gene result page to access the tool.  The tool compares the genes in your current result to 
+           gene lists generated from each transcriptomic data set based on GSEA. The tool returns a list of @PROJECT_ID@ data sets whose 
+           gene lists are statistically similar and may be worth investigating. For more information, see this 
+           <a href="/assets/XXXX">Sense/Experiments with Similar Results tutorial</a>.
+           </li>
          </ul>
        </div> 
       </section>
