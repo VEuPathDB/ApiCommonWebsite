@@ -31,9 +31,9 @@
         <h4>New Sense/Antisense RNA seq search</h4>
          <ul>
            <li><a href="/a/showQuestion.do?questionFullName=InternalGeneDatasetQuestions.GenesByRNASeqEvidence">RNA Seq searches</a> 
-           A new search for exploring sense vs antisense transcription is available for any RNA sequence data set based on strand specific data.  
-           For each gene, the search compares the fold change in sense reads between samples to the fold change in antisense reads between 
-           samples (A) and returns genes that have simultaneous changes in sense vs antisense transcripts between two samples. Versatile 
+           A new search for exploring sense vs antisense transcription is available for any strand specific RNA sequence data set.  
+           For each gene, the search compares the sense fold change between samples to the antisense fold change between 
+           samples (A) and returns genes that have simultaneous changes in sense vs antisense transcripts. Versatile 
            search parameters allow for choosing the direction and magnitude of the change in sense and antisense transcripts.  The search 
            result page lists genes, indicates the paired Comparison:Reference that meet the criteria, and offers two graphs to help interpret 
            the search results. 
@@ -73,27 +73,51 @@
              <a href="/assets/XXXX">Release 40 gene page tools tutorial</a>.
           </li>
          </ul><br>
-         
+      <!--   
          <h4>New Gene Result Analysis tool</h4>
          <ul>
-           A new tool to find 'Experiments with Similar Results' is available for any gene result.  Use the blue 'Analysis 
+           <li>A new tool to find 'Experiments with Similar Results' is available for any gene result.  Use the blue 'Analysis 
            Result' tab on any gene result page to access the tool.  The tool compares the genes in your current result to 
            gene lists generated from each transcriptomic data set based on GSEA. The tool returns a list of @PROJECT_ID@ data sets whose 
            gene lists are statistically similar and may be worth investigating. For more information, see this 
            <a href="/assets/XXXX">Sense/Experiments with Similar Results tutorial</a>.
            </li>
-         </ul>
-         <!--
-         h4>New Proteome Upload tool</h4>
+         </ul><br>
+       -->  
+         <h4>New Galaxy tool and workflow</h4>
          <ul>
-           A new tool to find 'Experiments with Similar Results' is available for any gene result.  Use the blue 'Analysis 
-           Result' tab on any gene result page to access the tool.  The tool compares the genes in your current result to 
-           gene lists generated from each transcriptomic data set based on GSEA. The tool returns a list of @PROJECT_ID@ data sets whose 
-           gene lists are statistically similar and may be worth investigating. For more information, see this 
-           <a href="/assets/XXXX">Sense/Experiments with Similar Results tutorial</a>.
+           <li>Map Your Proteins to OrthoMCL Groups workflow &mdash; 
+           EuPathDB Galaxy now includes a preconfigured workflow for mapping proteins to OrthoMCL groups. The workflow 
+           uses BLAST and the OrthoMCL algorithm to assign your set of proteins to OrthoMCL groups.
+           Access the  workflow from the EuPathDB Galaxy home page under 
+           'Get started with pre-configured workflows'. The workflow employs three tools which can be accessed 
+           separately in the EuPathDB Galaxy tools menu under EuPathDB OrthoMCL Tools. This workflow duplicates 
+           and replaces the 'Assign your proteins to groups' function in the Tools menu of the 
+           <a href="http://orthomcl.org/orthomcl/">OrthoMCL site</a>.
+           For more information see this 
+           <a href="/assets/XXXX">OrthoMCL proteome upload tutorial</a>.
            </li>
-         </ul>
-         -->
+           <li>RNA-Seq to EuPathDB export tool &mdash; 
+           EuPathDB Galaxy now includes a tool for exporting your RNA seq data to any EuPathDB site. The tool transfers 
+           bigwig and FPKM text files to your private My Data Sets page on EuPathDB. From the My Data Sets page the files 
+           are available for GBrowse visualization and the Search Strategy system.
+           For more information see this 
+           <a href="/assets/XXXX">RNA-Seq to EuPathDB export tool tutorial</a>.
+           </li>
+         </ul><br>
+         
+         <h4>New Data set Upload </h4>
+         <ul>
+           EuPathDB Galaxy now includes a preconfigured workflow for mapping proteins to OrthoMCL groups. The workflow 
+           uses BLAST and the OrthoMCL algorithm to assign your set of proteins to OrthoMCL groups.
+           Access the 'Map your proteins to OrthoMCL groups' workflow from the EuPathDB Galaxy home page under 
+           'Get started with pre-configured workflows'. This tool duplicates and replaces the 'Assign your 
+           proteins to groups' function in the Tools menu of the 
+           <a href="http://orthomcl.org/orthomcl/">OrthoMCL site</a>.
+           For more information see this 
+           <a href="/assets/XXXX">OrthoMCL proteome upload tutorial</a>.
+           </li>
+         </ul><br>
        </div> 
       </section>
       
