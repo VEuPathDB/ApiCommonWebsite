@@ -23,6 +23,88 @@
 --> 
 
 <record>
+  <attribute name="headline">AmoebaDB 40 Released</attribute>
+  <attribute name="date">9 Oct 2018 13:00</attribute>
+  <attribute name="tag">AmoebaDB10_18_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of AmoebaDB 40<br>
+    AmoebaDB 40 represents a software and features release</strong></p>
+      
+      <section>
+      <h3><b>New features in AmoebaDB 40</b></h3>
+        <div style="margin-left: 3em;">
+        <h4>New Sense/Antisense RNA seq search</h4>
+         <ul>
+           <li><a href="/a/showQuestion.do?questionFullName=InternalGeneDatasetQuestions.GenesByRNASeqEvidence">RNA Seq searches</a> 
+           A new search for exploring sense vs antisense transcription is available for any RNA sequence data set based on strand specific data.  
+           For each gene, the search compares the fold change in sense reads between samples to the fold change in antisense reads between 
+           samples (A) and returns genes that have simultaneous changes in sense vs antisense transcripts between two samples. Versatile 
+           search parameters allow for choosing the direction and magnitude of the change in sense and antisense transcripts.  The search 
+           result page lists genes, indicates the paired Comparison:Reference that meet the criteria, and offers two graphs to help interpret 
+           the search results. 
+           <a href="/assets/XXXX">Sense/Antisense search tutorial</a>.
+           </li>
+         </ul>  
+         <h4>New Gene page tools </h4>
+         <ul>
+           <li>Protein alignment tool &mdash; 
+              The <a href="/a/app/record/gene/EHI_011210#evolutionary-biology">Orthologs and Paralogs within EuPathDB</a> 
+              table now includes an option to run protein ClustalW alignments on orthologs.  Use the 'Protein clustalW' column to include orthologs in 
+              the aligment and click 'Run clustalW for selected genes' to initiate the alignment.  For more information see this
+              <a href="/assets/XXXX">Release 40 gene page tools tutorial</a>.
+          </li>
+          <li>Protein-protein BLAST tool &mdash; 
+             The <a href="/a/app/record/gene/EHI_011210#protein-properties"> Protein features and properties</a> 
+             data section now includes an option to BLASTP the protein sequence against 8 data bases including Non-redundant protein sequences (nr), 
+             Reference proteins (refseq_protein), UniProtKB/Swiss-Prot (swissprot), Model Organisms (landmark), Patented protein sequences(pat), 
+             Protein Data Bank proteins(pdb), Metagenomic proteins(env_nr), and Transcriptome Shotgun Assembly proteins (tsa_nr).  For more information see this 
+             <a href="/assets/XXXX">Release 40 gene page tools tutorial</a>.
+          </li>
+          <li>MitoP tool &mdash; 
+             The <a href="/a/app/record/gene/EHI_011210#protein-properties"> Protein features and properties</a> 
+             data section now includes an option to retrieve mitochondrial prediction data from  
+             <a href="https://ihg.gsf.de/ihg/mitoprot.html">MITOPROT: Prediction of mitochondrial targeting sequences</a>. Clicking 
+             the gene page MitoP tool Submit button initiates a query of the protein sequence in MITOPROT and opens a new tab 
+             populated with the prediction results. For more information see this 
+             <a href="/assets/XXXX">Release 40 gene page tools tutorial</a>.
+          </li>
+          <li>WoLF PSORT tool &mdash; 
+             The <a href="/a/app/record/gene/EHI_011210#protein-properties"> Protein features and properties</a> 
+             data section now includes an option to retrieve predictions of protein subcellular localization sites from  
+             <a href="https://wolfpsort.hgc.jp/aboutWoLF_PSORT.html.en">WoLF PSORT</a> based on amino acid sequences. Choose an 
+             Organism type and click Submit to initiate a query of the protein sequence in WoLF PSORT and opens a new tab 
+             populated with the prediction results. For more information see this 
+             <a href="/assets/XXXX">Release 40 gene page tools tutorial</a>.
+          </li>
+          
+         </ul>
+       </div> 
+      </section>
+      
+      <section>
+      <h3><b>No new data in AmoebaDB 40</b></h3>
+      
+      </section>
+      
+      
+      
+      <section>
+         <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+
+    ]]>
+  </attribute>
+</record>
+
+
+<record>
   <attribute name="headline">AmoebaDB 39 Released</attribute>
   <attribute name="date">30 Aug 2018 13:00</attribute>
   <attribute name="tag">AmoebaDB08_18_release</attribute>
