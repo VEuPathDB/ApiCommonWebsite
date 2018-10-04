@@ -43,20 +43,20 @@
          
          <h4>New Gene page tools </h4>
          <ul>
-           <li>Protein alignment tool &mdash; 
+           <li>Protein alignment tool &mdash; <br>
               The <a href="/a/app/record/gene/EHI_011210#evolutionary-biology">Orthologs and Paralogs within EuPathDB</a> 
               table now includes an option to run protein ClustalW alignments on orthologs.  Use the 'Protein clustalW' column to include orthologs in 
               the aligment and click 'Run clustalW for selected genes' to initiate the alignment.  For more information see this
               <a href="/assets/XXXX">Release 40 gene page tools tutorial</a>.
           </li>
-          <li>Protein-protein BLAST tool &mdash; 
+          <li>Protein-protein BLAST tool &mdash; <br>
              The <a href="/a/app/record/gene/EHI_011210#protein-properties"> Protein features and properties</a> 
              data section now includes an option to BLASTP the protein sequence against 8 data bases including Non-redundant protein sequences (nr), 
              Reference proteins (refseq_protein), UniProtKB/Swiss-Prot (swissprot), Model Organisms (landmark), Patented protein sequences(pat), 
              Protein Data Bank proteins(pdb), Metagenomic proteins(env_nr), and Transcriptome Shotgun Assembly proteins (tsa_nr).  For more information see this 
              <a href="/assets/XXXX">Release 40 gene page tools tutorial</a>.
           </li>
-          <li>MitoP tool &mdash; 
+          <li>MitoP tool &mdash; <br>
              The <a href="/a/app/record/gene/EHI_011210#protein-properties"> Protein features and properties</a> 
              data section now includes an option to retrieve mitochondrial prediction data from  
              <a href="https://ihg.gsf.de/ihg/mitoprot.html">MITOPROT: Prediction of mitochondrial targeting sequences</a>. Clicking 
@@ -64,7 +64,7 @@
              populated with the prediction results. For more information see this 
              <a href="/assets/XXXX">Release 40 gene page tools tutorial</a>.
           </li>
-          <li>WoLF PSORT tool &mdash; 
+          <li>WoLF PSORT tool &mdash; <br>
              The <a href="/a/app/record/gene/EHI_011210#protein-properties"> Protein features and properties</a> 
              data section now includes an option to retrieve predictions of protein subcellular localization sites from  
              <a href="https://wolfpsort.hgc.jp/aboutWoLF_PSORT.html.en">WoLF PSORT</a> based on amino acid sequences. Choose an 
@@ -86,7 +86,7 @@
        -->  
          <h4>New Galaxy tool and workflow</h4>
          <ul>
-           <li>Map Your Proteins to OrthoMCL Groups workflow &mdash; 
+           <li>Map Your Proteins to OrthoMCL Groups workflow &mdash; <br>
            EuPathDB Galaxy now includes a preconfigured workflow for mapping proteins to OrthoMCL groups. The workflow 
            uses BLAST and the OrthoMCL algorithm to assign your set of proteins to OrthoMCL groups.
            Access the  workflow from the EuPathDB Galaxy home page under 
@@ -97,7 +97,7 @@
            For more information see this 
            <a href="/assets/XXXX">OrthoMCL proteome upload tutorial</a>.
            </li>
-           <li>RNA-Seq to EuPathDB export tool &mdash; 
+           <li>RNA-Seq to EuPathDB export tool &mdash; <br>
            EuPathDB Galaxy now includes a tool for exporting your RNA seq data to any EuPathDB site. The tool transfers 
            bigwig and FPKM text files to your private My Data Sets page on EuPathDB. From the My Data Sets page the files 
            are available for GBrowse visualization and the Search Strategy system.
