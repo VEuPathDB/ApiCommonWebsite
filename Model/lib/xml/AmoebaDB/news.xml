@@ -80,7 +80,7 @@
              <a href="/assets/XXXX">Release 40 gene page tools tutorial</a>.
           </li>
          </ul><br>
-         
+       <!--  
          <h4>New Gene Result Analysis tool</h4>
          <ul>
            A new tool to find 'Experiments with Similar Results' is available for any gene result.  Use the blue 'Analysis 
@@ -90,7 +90,7 @@
            <a href="/assets/XXXX">Sense/Experiments with Similar Results tutorial</a>.
            </li>
          </ul>
-         
+        --> 
          h4>New Proteome Upload tool</h4>
          <ul>
            A new tool to find 'Experiments with Similar Results' is available for any gene result.  Use the blue 'Analysis 

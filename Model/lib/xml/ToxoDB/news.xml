@@ -83,7 +83,7 @@
            <a href="/assets/XXXX">Sense/Experiments with Similar Results tutorial</a>.
            </li>
          </ul>
-         
+         <!--
          h4>New Proteome Upload tool</h4>
          <ul>
            A new tool to find 'Experiments with Similar Results' is available for any gene result.  Use the blue 'Analysis 
@@ -93,6 +93,7 @@
            <a href="/assets/XXXX">Sense/Experiments with Similar Results tutorial</a>.
            </li>
          </ul>
+         -->
        </div> 
       </section>
       
