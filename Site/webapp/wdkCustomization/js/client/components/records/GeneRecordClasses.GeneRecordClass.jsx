@@ -155,6 +155,7 @@ const HostResponseChildRow = makeDatasetGraphChildRow('HostResponseGraphsDataTab
 const CrisprPhenotypeChildRow = makeDatasetGraphChildRow('CrisprPhenotypeGraphsDataTable');
 const PhenotypeScoreChildRow = makeDatasetGraphChildRow('PhenotypeScoreGraphsDataTable');
 const PhenotypeChildRow = makeDatasetGraphChildRow('PhenotypeGraphsDataTable');
+const UDTranscriptomicsChildRow = makeDatasetGraphChildRow('UserDatasetsTranscriptomicsGraphsDataTable');
 
 export function RecordTable(props) {
   switch(props.table.name) {
@@ -179,6 +180,9 @@ export function RecordTable(props) {
     case 'PhenotypeGraphs':
       return <props.DefaultComponent {...props} childRow={PhenotypeChildRow} />
 
+    case 'UserDatasetsTranscriptomicsGraphs':
+      return <props.DefaultComponent {...props} childRow={UDTranscriptomicsChildRow} />
+
     case 'MercatorTable':
       return <MercatorTable {...props} />
 
@@ -190,6 +194,10 @@ export function RecordTable(props) {
 
     case 'BlastpForm':
       return <BlastpForm {...props}/>
+
+
+    case 'MitoprotForm':
+      return <MitoprotForm {...props}/>
 
     case 'ProteinProperties':
       return <props.DefaultComponent {...props} childRow={Gbrowse.ProteinContext} />
@@ -548,7 +556,10 @@ class WolfPsortForm extends React.Component {
         let t = this.props.value;
 
            return (
-            <form action="/cgi-bin/wolfPSORT.pl" target="_blank" method="post">
+
+	   <div> 
+           
+	    <form action="/cgi-bin/wolfPSORT.pl" target="_blank" method="post">
             	  <input type="hidden" name="project_id" value={projectId}/>
   	    	  <input type="hidden" id="input_type" name="input_type" value="fasta"/>
  	    	  <input type="hidden" id="id_type" name="id_type" value="protein"/>                       
@@ -567,8 +578,13 @@ class WolfPsortForm extends React.Component {
 
             </form>
 
+ 	    <p>For more information about this tool <a target="_blank" rel="noopener noreferrer"  href="https://wolfpsort.hgc.jp/aboutWoLF_PSORT.html.en">click here</a></p>
+	</div>
+ 
+
         );
     }
+
 }
 
 
@@ -602,6 +618,9 @@ class BlastpForm extends React.Component {
         let t = this.props.value;
 
 	return (
+	       
+	    <div>	
+
 	       <form action="/cgi-bin/ncbiBLAST.pl" target="_blank" method="post">
                	     <input type="hidden" name="project_id" value={projectId}/>
   	       	     <input type="hidden" id="program" name="program" value="blastp"/>
@@ -622,11 +641,74 @@ class BlastpForm extends React.Component {
 
   	       	     <input type="submit"/>
                </form>
+	       
+	      <p>For more information about BLAST programs <a target="_blank" rel="noopener noreferrer" href="https://blast.ncbi.nlm.nih.gov/blast/Blast.cgi">click here</a></p>
+       
+        </div>
+
         );
     }
 }
 
 
+
+
+
+
+class MitoprotForm extends React.Component {
+
+    inputHeader(t)  {
+        if(t.length > 1) {
+            return <p>Select the Protein:</p>
+        }
+    }
+
+    printInputs(t)  {
+        if(t.length == 1) {
+            return (<input type="hidden" name="source_ID" value={t[0].protein_source_id}/>);
+        }
+
+        return (
+            t.map(p => {
+                return (
+                    <label key={p.protein_source_id}>
+                        <input type="radio" name="source_ID" value={p.protein_source_id}/>
+                        {p.protein_source_id} <br/> </label>
+                );
+            })
+        );
+    }
+
+
+    render() {
+    	let { project_id } = this.props.record.attributes;  
+        
+        let t = this.props.value;
+
+           return (
+	   
+	   <div>
+
+            <form action="/cgi-bin/mitoprot.pl" target="_blank" method="post">
+            	  <input type="hidden" name="project_id" value={projectId}/>
+  	    	  <input type="hidden" id="id_type" name="id_type" value="protein"/>                   	    	  
+
+                  {this.inputHeader(t)}
+                  {this.printInputs(t)}
+
+
+  	    	  <input type="submit"/>
+
+
+            </form>
+	    
+	     <p>For more information about this tool <a target="_blank" rel="noopener noreferrer" href="https://ihg.gsf.de/ihg/mitoprot.html">click here</a></p>
+
+        </div>
+
+        );
+    }
+}
 
 
 

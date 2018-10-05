@@ -26,7 +26,7 @@ import org.gusdb.wdk.model.record.RecordInstance;
 import org.gusdb.wdk.model.record.TableField;
 import org.gusdb.wdk.model.record.attribute.AttributeField;
 import org.gusdb.wdk.model.record.attribute.AttributeValue;
-import org.gusdb.wdk.model.user.GuestUser;
+import org.gusdb.wdk.model.user.UnregisteredUser.UnregisteredUserType;
 import org.gusdb.wdk.model.user.Step;
 import org.json.JSONObject;
 
@@ -100,8 +100,9 @@ public class SingleTableRecordStreamTest {
   /*%%%%%%%%%%%%%%%%%%%%%%%%%%% helper functions %%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
   private static Step createStep(WdkModel model) throws WdkModelException {
-    return model.getStepFactory().createStep(new GuestUser(model),
-        model.getQuestion(QUESTION_NAME), PARAMETERS, null, FILTERS(model), 0, false, null, false, null, -1L);
+    return model.getStepFactory().createStep(
+        model.getUserFactory().createUnregistedUser(UnregisteredUserType.GUEST),
+	model.getQuestion(QUESTION_NAME), PARAMETERS, null, FILTERS(model), 0, false, null, false, null, -1L);
   }
 
   private static Function<AttributeField, String> getFieldValue(final Map<String, AttributeValue> row) {
