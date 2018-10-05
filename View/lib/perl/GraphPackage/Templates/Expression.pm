@@ -195,9 +195,8 @@ sub makeAndSetPlots {
     my @plotProfiles =  @{$plotParts->{$key} };
     my @profileSetsArray;
 
-#print STDERR Dumper   \@plotProfiles;
     my @sortedPlotProfiles = sort {$a->{profileName}.$a->{profileType} cmp $b->{profileName}.$b->{profileType}} @plotProfiles;
-#print STDERR Dumper   \@sortedPlotProfiles;
+
     foreach my $p (@sortedPlotProfiles) {
       if ($hasStdError->{ $p->{profileName}} && !($key=~/percentile/)) {
 	push @profileSetsArray, [$p->{profileName}, $p->{profileType}, $p->{profileName}, 'standard_error'];
@@ -205,7 +204,6 @@ sub makeAndSetPlots {
 	push @profileSetsArray, [$p->{profileName}, $p->{profileType}];
       }
     }
-#print STDERR Dumper   \@profileSetsArray;
 
     my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileSetsArray);
 
