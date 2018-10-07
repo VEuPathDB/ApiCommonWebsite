@@ -30,7 +30,7 @@
         <div style="margin-left: 3em;">
         <h4>New Sense/Antisense RNA seq search</h4>
          <ul>
-           <li><a href="/a/showQuestion.do?questionFullName=InternalGeneDatasetQuestions.GenesByRNASeqEvidence">RNA Seq searches</a> 
+           <li><a href="/a/showQuestion.do?questionFullName=InternalGeneDatasetQuestions.GenesByRNASeqEvidence">RNA Seq searches</a> &mdash; <br>
            A new search for exploring sense vs antisense transcription is available for any strand specific RNA sequence data set.  
            For each gene, the search compares the sense fold change between samples to the antisense fold change between 
            samples (A) and returns genes that have simultaneous changes in sense vs antisense transcripts. Versatile 
@@ -59,7 +59,7 @@
           <li>MitoP tool &mdash; <br>
              The <a href="/a/app/record/gene/EHI_011210#protein-properties"> Protein features and properties</a> 
              data section now includes an option to retrieve mitochondrial prediction data from  
-             <a href="https://ihg.gsf.de/ihg/mitoprot.html">MITOPROT: Prediction of mitochondrial targeting sequences</a>. Clicking 
+             <a href="https://ihg.gsf.de/ihg/mitoprot.html" target="_blank">MITOPROT: Prediction of mitochondrial targeting sequences</a>. Clicking 
              the gene page MitoP tool Submit button initiates a query of the protein sequence in MITOPROT and opens a new tab 
              populated with the prediction results. For more information see this 
              <a href="/assets/XXXX">Release 40 gene page tools tutorial</a>.
@@ -67,7 +67,7 @@
           <li>WoLF PSORT tool &mdash; <br>
              The <a href="/a/app/record/gene/EHI_011210#protein-properties"> Protein features and properties</a> 
              data section now includes an option to retrieve predictions of protein subcellular localization sites from  
-             <a href="https://wolfpsort.hgc.jp/aboutWoLF_PSORT.html.en">WoLF PSORT</a> based on amino acid sequences. Choose an 
+             <a href="https://wolfpsort.hgc.jp/aboutWoLF_PSORT.html.en" target="_blank">WoLF PSORT</a> based on amino acid sequences. Choose an 
              Organism type and click Submit to initiate a query of the protein sequence in WoLF PSORT and opens a new tab 
              populated with the prediction results. For more information see this 
              <a href="/assets/XXXX">Release 40 gene page tools tutorial</a>.
@@ -93,7 +93,7 @@
            'Get started with pre-configured workflows'. The workflow employs three tools which can be accessed 
            separately in the EuPathDB Galaxy tools menu under EuPathDB OrthoMCL Tools. This workflow duplicates 
            and replaces the 'Assign your proteins to groups' function in the Tools menu of the 
-           <a href="http://orthomcl.org/orthomcl/">OrthoMCL site</a>.
+           <a href="http://orthomcl.org/orthomcl/" target="_blank">OrthoMCL site</a>.
            For more information see this 
            <a href="/assets/XXXX">OrthoMCL proteome upload tutorial</a>.
            </li>
