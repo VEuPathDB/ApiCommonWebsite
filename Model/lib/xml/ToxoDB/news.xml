@@ -22,8 +22,8 @@
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of ToxoDB 40<br>
-    ToxoDB 40 represents a software and features release</strong></p>
+    <p><strong>We are pleased to announce the release of ToxoDB 40.<br>
+    ToxoDB 40 represents a software and features release.</strong></p>
       
       <section>
       <h3><b>New features in ToxoDB 40</b></h3>
