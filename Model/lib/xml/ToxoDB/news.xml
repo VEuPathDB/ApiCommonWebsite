@@ -37,7 +37,7 @@
            the direction and magnitude of the change in sense and antisense transcripts.  The search result page lists genes and indicates 
            the paired Reference->Comparison samples that meet the criteria, and offers two graphs to help interpret 
            the search results (FPKM vs sample bar graph, antisense FC vs sense FC scatter plot)
-           <a href="/assets/XXXX">Sense/Antisense search tutorial</a>.
+           <a href="/assets/SenseAntisenseTutorial.pdf">Sense/Antisense search tutorial</a>.
            </li>
          </ul>  <br>
          
