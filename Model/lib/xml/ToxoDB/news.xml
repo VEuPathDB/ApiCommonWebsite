@@ -47,14 +47,14 @@
               The Orthologs and Paralogs within EuPathDB
               table now includes an option to run protein ClustalW alignments on orthologs.  Use the 'Protein clustalW' column to include orthologs in 
               the aligment and click 'Run clustalW for selected genes' to initiate the alignment.  For more information see this
-              <a href="/assets/XXXX">Release 40 gene page tools tutorial</a>.
+              <a href="/assets/ClustalWonGenePage.pdf">ClustalW from gene page tutorial</a>.
           </li>
           <li>Protein-protein BLAST tool &mdash; <br>
              The Protein features and properties
              data section now includes an option to BLASTP the protein sequence against 8 data bases including Non-redundant protein sequences (nr), 
              Reference proteins (refseq_protein), UniProtKB/Swiss-Prot (swissprot), Model Organisms (landmark), Patented protein sequences(pat), 
              Protein Data Bank proteins(pdb), Metagenomic proteins(env_nr), and Transcriptome Shotgun Assembly proteins (tsa_nr).  For more information see this 
-             <a href="/assets/XXXX">Release 40 gene page tools tutorial</a>.
+             <a href="/assets/RunningBlastP.pdf">BlastP from gene page tutorial</a>.
           </li>
           <li>MitoP tool &mdash; <br>
              The Protein features and properties 
@@ -62,7 +62,7 @@
              <a href="https://ihg.gsf.de/ihg/mitoprot.html" target="_blank">MITOPROT: Prediction of mitochondrial targeting sequences</a>. Clicking 
              the gene page MitoProt tool Submit button initiates a query of the protein sequence in MitoProt and opens a new tab 
              populated with the prediction results. For more information see this 
-             <a href="/assets/XXXX">Release 40 gene page tools tutorial</a>.
+             <a href="/assets/RunningMitoProt.pdf">MitoProt from gene page tutorial</a>.
           </li>
           <li>WoLF PSORT tool &mdash; <br>
              The Protein features and properties
@@ -70,7 +70,7 @@
              <a href="https://wolfpsort.hgc.jp/aboutWoLF_PSORT.html.en" target="_blank">WoLF PSORT</a> based on amino acid sequences. Choose an 
              Organism type and click Submit to initiate a query of the protein sequence in WoLF PSORT and opens a new tab 
              populated with the prediction results. For more information see this 
-             <a href="/assets/XXXX">Release 40 gene page tools tutorial</a>.
+             <a href="/assets/RunningWoLFPSORT.pdf">WoLF PSORT from gene page tutorial</a>.
           </li>
          </ul><br>
       <!--   
@@ -95,14 +95,14 @@
            and replaces the 'Assign your proteins to groups' function in the Tools menu of the 
            <a href="http://orthomcl.org/orthomcl/" target="_blank">OrthoMCL site</a>.
            For more information see this 
-           <a href="/assets/XXXX">OrthoMCL proteome upload tutorial</a>.
+           <a href="/assets/MapProteinsOrthoMCL.pdf">OrthoMCL proteome upload tutorial</a>.
            </li>
            <li>RNA-Seq to EuPathDB export tool &mdash; <br>
            EuPathDB Galaxy now includes a tool for exporting the results of your RNA seq analysis to any EuPathDB site. The tool transfers 
            bigwig and FPKM text files to your private My Data Sets page on EuPathDB. From the My Data Sets page the files 
            are available for GBrowse visualization and the Search Strategy system.
            For more information see this 
-           <a href="/assets/XXXX">RNA-Seq to EuPathDB export tool tutorial</a>.
+           <a href="/assets/GalaxyRNASeqExportTool.pdf">RNA Seq to EuPathDB export tool tutorial</a>.
            </li>
          </ul><br>
          
