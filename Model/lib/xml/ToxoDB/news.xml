@@ -60,7 +60,7 @@
              The Protein features and properties 
              data section now includes an option to retrieve mitochondrial prediction data from  
              <a href="https://ihg.gsf.de/ihg/mitoprot.html" target="_blank">MITOPROT: Prediction of mitochondrial targeting sequences</a>. Clicking 
-             the gene page MitoP tool Submit button initiates a query of the protein sequence in MITOPROT and opens a new tab 
+             the gene page MitoProt tool Submit button initiates a query of the protein sequence in MitoProt and opens a new tab 
              populated with the prediction results. For more information see this 
              <a href="/assets/XXXX">Release 40 gene page tools tutorial</a>.
           </li>
