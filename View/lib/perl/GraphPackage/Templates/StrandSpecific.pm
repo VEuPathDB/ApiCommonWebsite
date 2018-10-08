@@ -25,7 +25,7 @@ sub init {
   my @profileSets;
 
   foreach my $graphObject (@{$graphObjects}) {
-      if ($graphObject->isa("EbrcWebsiteCommon::View::GraphPackage::GGBarPlot::RNASeqSenseAntisense")) {
+      if ($graphObject->isa("EbrcWebsiteCommon::View::GraphPackage::GGBarPlot::RNASeqSenseAntisense") || $graphObject->isa("EbrcWebsiteCommon::View::GraphPackage::GGLinePlot::RNASeqSenseAntisense")) {
 	  my @profileSetNames = map{$_->getName()} @{$graphObject->getProfileSets()};
 	  my $strandHash = $graphObject->getStrandDictionaryHash();
 	  my ($senseId, $antisenseId);
@@ -51,7 +51,7 @@ sub init {
   }
 
   my $scatter = EbrcWebsiteCommon::View::GraphPackage::GGScatterPlot->new(@_);
-
+  
   $scatter->setProfileSets(\@profileSets);
   $scatter->setYaxisLabel("log2 (antisense fold-chg)");
   $scatter->setXaxisLabel("log2 (sense fold-chg)");
@@ -66,7 +66,6 @@ sub init {
   $scatter->setSenseFoldChange($senseFoldChange);
   $scatter->setAdjustXYScalesTogether('TRUE');
   $self->setGraphObjects($scatter);
-
   return $self;
 }
 1;
