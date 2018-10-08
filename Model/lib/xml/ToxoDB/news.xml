@@ -32,11 +32,11 @@
          <ul>
            <li><a href="/a/showQuestion.do?questionFullName=InternalGeneDatasetQuestions.GenesByRNASeqEvidence">RNA Seq searches</a> &mdash; <br>
            A new Sense/Antisense search for exploring strand specific transcription is available for any strand specific RNA sequence data set.  
-           For each gene, the search compares the sense fold change between samples to the antisense fold change between 
-           samples (A) and returns genes that have simultaneous changes in sense vs antisense transcripts. Versatile 
-           search parameters allow for choosing the direction and magnitude of the change in sense and antisense transcripts.  The search 
-           result page lists genes, indicates the paired Comparison:Reference that meet the criteria, and offers two graphs to help interpret 
-           the search results. 
+           For each gene, the search compares the fold change in sense reads to the fold change in antisense reads and returns genes that 
+           have simultaneous changes in sense vs antisense expression between two samples. Versatile search parameters allow for choosing 
+           the direction and magnitude of the change in sense and antisense transcripts.  The search result page lists genes and indicates 
+           the paired Reference->Comparison samples that meet the criteria, and offers two graphs to help interpret 
+           the search results (FPKM vs sample bar graph, antisense FC vs sense FC scatter plot)
            <a href="/assets/XXXX">Sense/Antisense search tutorial</a>.
            </li>
          </ul>  <br>
