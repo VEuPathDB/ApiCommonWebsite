@@ -249,6 +249,14 @@
              </li>
            </ul>
            
+           <h4>Whole genome sequence of isolates for SNP analysis:</h4>
+           <ul>
+             <li><a href="http:/a/app/record/dataset/DS_213496374f">Aligned genomic sequence reads - Genomic context of azole-resistance mutations in <i>Aspergillus fumigatus</i></a> &ndash;
+                 Whole-genome sequencing (WGS) was performed for high-resolution single-nucleotide polymorphism (SNP) analysis of 24 A. fumigatus isolates (azole-resistant and susceptible strains).
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/26037120">Abdolrasouli et al.</a>,  
+             </li>
+           </ul>
+           
            <h4>Sequence sites, features and motifs</h4>
            <ul>   
            <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_5ca22e8fc8"><i>Coccidioides immitis</i> RS TE GBrowse track</a> &ndash;
