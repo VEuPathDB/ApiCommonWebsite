@@ -47,22 +47,22 @@
               The Orthologs and Paralogs within EuPathDB
               table now includes an option to run protein ClustalW alignments on orthologs.  Use the 'Protein clustalW' column to include orthologs in 
               the aligment and click 'Run clustalW for selected genes' to initiate the alignment.  For more information see this
-              <a href="/assets/ClustalWonGenePage.pdf">ClustalW from gene page tutorial</a>.
+              <a href="/assets/ClustalWonGenePage.pdf">ClustalW tutorial</a>.
           </li>
           <li>Protein-protein BLAST tool &mdash; <br>
              The Protein features and properties
              data section now includes an option to BLASTP the protein sequence against 8 data bases including Non-redundant protein sequences (nr), 
              Reference proteins (refseq_protein), UniProtKB/Swiss-Prot (swissprot), Model Organisms (landmark), Patented protein sequences(pat), 
              Protein Data Bank proteins(pdb), Metagenomic proteins(env_nr), and Transcriptome Shotgun Assembly proteins (tsa_nr).  For more information see this 
-             <a href="/assets/RunningBlastP.pdf">BlastP from gene page tutorial</a>.
+             <a href="/assets/RunningBlastP.pdf">BlastP tutorial</a>.
           </li>
-          <li>MitoP tool &mdash; <br>
+          <li>MitoPort tool &mdash; <br>
              The Protein features and properties 
              data section now includes an option to retrieve mitochondrial prediction data from  
              <a href="https://ihg.gsf.de/ihg/mitoprot.html" target="_blank">MITOPROT: Prediction of mitochondrial targeting sequences</a>. Clicking 
              the gene page MitoProt tool Submit button initiates a query of the protein sequence in MitoProt and opens a new tab 
              populated with the prediction results. For more information see this 
-             <a href="/assets/RunningMitoProt.pdf">MitoProt from gene page tutorial</a>.
+             <a href="/assets/RunningMitoProt.pdf">MitoProt tutorial</a>.
           </li>
           <li>WoLF PSORT tool &mdash; <br>
              The Protein features and properties
@@ -70,7 +70,7 @@
              <a href="https://wolfpsort.hgc.jp/aboutWoLF_PSORT.html.en" target="_blank">WoLF PSORT</a> based on amino acid sequences. Choose an 
              Organism type and click Submit to initiate a query of the protein sequence in WoLF PSORT and opens a new tab 
              populated with the prediction results. For more information see this 
-             <a href="/assets/RunningWoLFPSORT.pdf">WoLF PSORT from gene page tutorial</a>.
+             <a href="/assets/RunningWoLFPSORT.pdf">WoLF PSORT tutorial</a>.
           </li>
          </ul><br>
       <!--   
