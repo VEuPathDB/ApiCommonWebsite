@@ -24,6 +24,122 @@
 -->
 
 <record>
+  <attribute name="headline">CryptoDB 40 Released</attribute>
+  <attribute name="date">11 Oct 2018 13:00</attribute>
+  <attribute name="tag">CryptoDB10_18_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of CryptoDB 40.<br>
+    CryptoDB 40 represents a software and features release.</strong></p>
+      
+      <section>
+      <h3><b>New features in CryptoDB 40</b></h3>
+        <div style="margin-left: 3em;">
+        <h4>New Sense/Antisense RNA seq search</h4>
+         <ul>
+           <li><a href="/a/showQuestion.do?questionFullName=InternalGeneDatasetQuestions.GenesByRNASeqEvidence">RNA Seq searches</a> &mdash; <br>
+           A new Sense/Antisense search for exploring strand specific transcription is available for any strand specific RNA sequence data set.  
+           For each gene, the search compares the fold change in sense reads to the fold change in antisense reads and returns genes that 
+           have simultaneous changes in sense vs antisense expression between two samples. Versatile search parameters allow for choosing 
+           the direction and magnitude of the change in sense and antisense transcripts.  The search result page lists genes and indicates 
+           the paired Reference->Comparison samples that meet the criteria, and offers two graphs to help interpret 
+           the search results (FPKM vs sample bar graph, antisense FC vs sense FC scatter plot)
+           <a href="/assets/SenseAntisenseTutorial.pdf">Sense/Antisense search tutorial</a>.
+           </li>
+         </ul>  <br>
+         
+         <h4>New Gene page tools </h4>
+         <ul>
+           <li>Protein alignment tool &mdash; <br>
+              The Orthologs and Paralogs within EuPathDB
+              table now includes an option to run protein ClustalW alignments on orthologs.  Use the 'Protein clustalW' column to include orthologs in 
+              the aligment and click 'Run clustalW for selected genes' to initiate the alignment.  For more information see this
+              <a href="/assets/ClustalWonGenePage.pdf">ClustalW tutorial</a>.
+          </li>
+          <li>Protein-protein BLAST tool &mdash; <br>
+             The Protein features and properties
+             data section now includes an option to BLASTP the protein sequence against 8 data bases including Non-redundant protein sequences (nr), 
+             Reference proteins (refseq_protein), UniProtKB/Swiss-Prot (swissprot), Model Organisms (landmark), Patented protein sequences(pat), 
+             Protein Data Bank proteins(pdb), Metagenomic proteins(env_nr), and Transcriptome Shotgun Assembly proteins (tsa_nr).  For more information see this 
+             <a href="/assets/RunningBlastP.pdf">BlastP tutorial</a>.
+          </li>
+          <li>MitoPort tool &mdash; <br>
+             The Protein features and properties 
+             data section now includes an option to retrieve mitochondrial prediction data from  
+             <a href="https://ihg.gsf.de/ihg/mitoprot.html" target="_blank">MITOPROT: Prediction of mitochondrial targeting sequences</a>. Clicking 
+             the gene page MitoProt tool Submit button initiates a query of the protein sequence in MitoProt and opens a new tab 
+             populated with the prediction results. For more information see this 
+             <a href="/assets/RunningMitoProt.pdf">MitoProt tutorial</a>.
+          </li>
+          <li>WoLF PSORT tool &mdash; <br>
+             The Protein features and properties
+             data section now includes an option to retrieve predictions of protein subcellular localization sites from  
+             <a href="https://wolfpsort.hgc.jp/aboutWoLF_PSORT.html.en" target="_blank">WoLF PSORT</a> based on amino acid sequences. Choose an 
+             Organism type and click Submit to initiate a query of the protein sequence in WoLF PSORT and opens a new tab 
+             populated with the prediction results. For more information see this 
+             <a href="/assets/RunningWoLFPSORT.pdf">WoLF PSORT tutorial</a>.
+          </li>
+         </ul><br>
+      <!--   
+         <h4>New Gene Result Analysis tool</h4>
+         <ul>
+           <li>A new tool to find 'Experiments with Similar Results' is available for any gene result.  Use the blue 'Analysis 
+           Result' tab on any gene result page to access the tool.  The tool compares the genes in your current result to 
+           gene lists generated from each transcriptomic data set based on GSEA. The tool returns a list of @PROJECT_ID@ data sets whose 
+           gene lists are statistically similar and may be worth investigating. For more information, see this 
+           <a href="/assets/XXXX">Sense/Experiments with Similar Results tutorial</a>.
+           </li>
+         </ul><br>
+       -->  
+         <h4>New Galaxy tool and workflow</h4>
+         <ul>
+           <li>Map Your Proteins to OrthoMCL Groups workflow &mdash; <br>
+           EuPathDB Galaxy now includes a preconfigured workflow for mapping proteins to OrthoMCL groups. The workflow 
+           uses BLAST and the OrthoMCL algorithm to assign your set of proteins to OrthoMCL groups.
+           Access the  workflow from the EuPathDB Galaxy home page under 
+           'Get started with pre-configured workflows'. The workflow employs three tools which can be accessed 
+           separately in the EuPathDB Galaxy tools menu under EuPathDB OrthoMCL Tools. This workflow duplicates 
+           and replaces the 'Assign your proteins to groups' function in the Tools menu of the 
+           <a href="http://orthomcl.org/orthomcl/" target="_blank">OrthoMCL site</a>.
+           For more information see this 
+           <a href="/assets/MapProteinsOrthoMCL.pdf">OrthoMCL proteome upload tutorial</a>.
+           </li>
+           <li>RNA-Seq to EuPathDB export tool &mdash; <br>
+           EuPathDB Galaxy now includes a tool for exporting the results of your RNA seq analysis to any EuPathDB site. The tool transfers 
+           bigwig and FPKM text files to your private My Data Sets page on EuPathDB. From the My Data Sets page the files 
+           are available for GBrowse visualization and the Search Strategy system.
+           For more information see this 
+           <a href="/assets/GalaxyRNASeqExportTool.pdf">RNA Seq to EuPathDB export tool tutorial</a>.
+           </li>
+         </ul><br>
+         
+         <br>
+       </div> 
+      </section>
+      
+      <section>
+      <h3><b>No new data in CryptoDB 40</b></h3>
+      
+      </section>
+      
+      
+      
+      <section>
+         <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+
+    ]]>
+  </attribute>
+</record>
+
+
+<record>
   <attribute name="headline">CryptoDB 39 Released</attribute>
   <attribute name="date">30 Aug 2018 13:00</attribute>
   <attribute name="tag">CryptoDB08_18_release</attribute>
