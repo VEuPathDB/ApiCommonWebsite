@@ -213,8 +213,14 @@ sub makeAndSetPlots {
     
     if((lc($self->getGraphType()) eq 'bar' || ($key=~/percentile/ && blessed($self) =~/TwoChannel/)) && $self->useLegacy() ) {
       $plotObj = "EbrcWebsiteCommon::View::GraphPackage::BarPlot::$plotPartModule";
-    } elsif(lc($self->getGraphType()) eq 'bar' && $key=~/Both_strands/ && $plotPartModule eq 'RNASeq') {
-      $plotObj = "EbrcWebsiteCommon::View::GraphPackage::GGBarPlot::${plotPartModule}SenseAntisense";
+    } elsif($key=~/Both_strands/ && $plotPartModule eq 'RNASeq') {
+	$self->setWantLogged(1);
+	if(lc($self->getGraphType()) eq 'bar') {
+	    $plotObj = "EbrcWebsiteCommon::View::GraphPackage::GGBarPlot::${plotPartModule}SenseAntisense";
+	} elsif(lc($self->getGraphType()) eq 'line') {
+	    $plotObj = "EbrcWebsiteCommon::View::GraphPackage::GGLinePlot::${plotPartModule}SenseAntisense";
+	    $xAxisLabel= $self->getXAxisLabel();
+	}	    
     } elsif((lc($self->getGraphType()) eq 'bar' || ($key=~/percentile/ && blessed($self) =~/TwoChannel/)) && !$self->useLegacy() ) {
       $plotObj = "EbrcWebsiteCommon::View::GraphPackage::GGBarPlot::$plotPartModule";
     } elsif(lc($self->getGraphType()) eq 'line' && $self->useLegacy()) {
@@ -280,6 +286,9 @@ sub makeAndSetPlots {
     } 
     elsif ($key=~/Both_strands/) {
 	my @colorArray = reverse(@{$colors});
+	if (scalar @colorArray == 1) {
+	    push @colorArray, "gray";
+	}
 	$profile->setColors(\@colorArray);
     }
     else {
