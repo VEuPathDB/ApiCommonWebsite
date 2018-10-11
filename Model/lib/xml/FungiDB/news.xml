@@ -197,7 +197,8 @@
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/24792495" target="_blank">van Munster et al., 2014</a>.
              </li>
              <li><a href="http:/a/app/record/dataset/DS_bb15199826"><i>Aspergillus niger</i> gene co-expression network</a> &ndash;
-             A meta-analysis of 155 transcriptomics experiments generated genome level co-expression networks for 9579 genes of <i>Aspergillus niger</i> genome. <a href="https://www.biorxiv.org/content/early/2018/08/23/398842" target="_blank">Manuscript submitted to bioRxiv</a>.
+             A meta-analysis of 155 transcriptomics experiments generated genome level co-expression networks for 9579 genes of <i>Aspergillus niger</i> genome. 
+             <a href="https://www.biorxiv.org/content/early/2018/08/23/398842" target="_blank">View manuscript at bioRxiv</a>.
              </li>
         	</ul>
         	
@@ -207,22 +208,13 @@
                  Targeted secretome profiling of Pka-1 regulated proteins in <i>C. neoformans</i> was performed at 16, 48, 72, 96, and 120 hr post-inoculation in Pka-1 inductive and repressive media.
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/26453029 " target="_blank">Geddes et al., 2015</a>.
              </li>
-             <li><a href="http:/a/app/record/dataset/DS_bed61daec2">Quantitative MassSpec of <i>Cryptococcus neoformans</i> secretome of Pka-1 regulated proteins</a> &ndash; 
+             <li><a href="http:/a/app/record/dataset/DS_c7f3659226">Quantitative MassSpec of <i>Cryptococcus neoformans</i> secretome of Pka-1 regulated proteins</a> &ndash; 
                  Targeted secretome profiling of Pka-1 regulated proteins in <i>C. neoformans</i> was performed at 16, 48, 72, and 120 hr post-inoculation in Pka-1 inductive and repressive media.
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/26453029 " target="_blank">Geddes et al., 2015</a>.
              </li>
         	</ul>
            
-           
-        <h4>ChiP-Seq data</h4>
-           <ul>
-             <li><a href="http:/a/app/record/dataset/DS_0486f374f7">H3K27me3 and H3K9me2 profiling in various <i>Cryptococcus neoformans</i> strains</a> &ndash;
-             Charaterization of PRC2 complex and its role in assembly of heterochromatin. ChiP-Seq profiles (H3K27me3 and H3K9me3) are reported for WT, knockout strains (<i>ezh2</i>, <i>msl1</i>, <i>clr4</i>, and <i>ccc1</i>), and <i>ccc1-w52a</i> strain. 
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/27856696" target="_blank">Dekhang et al., 2017</a>.
-             </li>
-           </ul>  
-           
-        <h4>Whole genome sequence of isolates for SNP analysis:</h4>
+        <h4>Whole genome sequence of isolates for SNP analysis</h4>
            <ul>
              <li><a href="http:/a/app/record/dataset/DS_213496374f">Aligned genomic sequence reads - <i>Candida auris</i> clinical isolates</a> &ndash;
                  Samples were collected from patients, patient contacts, healthcare workers, and the environment in 4 hospitals in Colombia with recent <i>C. auris</i> outbreaks.
@@ -252,7 +244,9 @@
            
        <h4>Annotations from MIPS Functional Catalogue Database:</h4>  
             <ul> 
-             <li>Functional catalogue annotations for <i>Fusarium graminearum</i> PH-1 and <i>Ustilago maydis</i> 521 from the MIPS database were converted to GO terms and integrated as functional annotations in FungiDB releases 37 and 38. The logs are now available for these in the links below in the respective news sections.</a>.
+             <li>Annotations from MIPS Functional Catalogue Database:
+             Functional catalogue annotations for <i>Fusarium graminearum</i> PH-1 and <i>Ustilago Maydis</i> 521 from the MIPS database were converted to GO terms and integrated as functional annotations in FungiDB Releases 37 and 38, respectively. 
+             The logs are now available in the news sections links below in the respective Summary of annotation updates files</a>.
              </li>
            </ul>  
            <br>
@@ -332,13 +326,13 @@
         <h4>Genome Sequence and Annotation: updated genomes</h4>
            <ul>   
            <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_339f68fa2f"><i>Aspergillus campestris</i> IBT 28561</a> &ndash;
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/29317534">Kj&aelig;rb&oslash;lling et al.</a>
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/29317534">Kj&aelig;rb&oslash;lling et al.</a>.
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_ed02a8e11b"><i>Aspergillus novofumigatus</i> IBT 16806</a> &ndash; 
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/29317534">Kj&aelig;rb&oslash;lling et al.</a>
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/29317534">Kj&aelig;rb&oslash;lling et al.</a>.
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_93f3ae0e82"><i>Aspergillus steynii</i> IBT 23096</a> &ndash; 
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/29317534">Kj&aelig;rb&oslash;lling et al.</a>
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/29317534">Kj&aelig;rb&oslash;lling et al.</a>.
              </li>
            </ul>
            
