@@ -55,7 +55,7 @@
              Protein Data Bank proteins(pdb), Metagenomic proteins(env_nr), and Transcriptome Shotgun Assembly proteins (tsa_nr).  For more information see this 
              <a href="/assets/RunningBlastP.pdf">BlastP tutorial</a>.
           </li>
-          <li>MitoPort tool &mdash; <br>
+          <li>MitoProt tool &mdash; <br>
              The Protein features and properties 
              data section now includes an option to retrieve mitochondrial prediction data from  
              <a href="https://ihg.gsf.de/ihg/mitoprot.html" target="_blank">MITOPROT: Prediction of mitochondrial targeting sequences</a>. Clicking 
@@ -67,7 +67,7 @@
              The Protein features and properties
              data section now includes an option to retrieve predictions of protein subcellular localization sites from  
              <a href="https://wolfpsort.hgc.jp/aboutWoLF_PSORT.html.en" target="_blank">WoLF PSORT</a> based on amino acid sequences. Choose an 
-             Organism type and click Submit to initiate a query of the protein sequence in WoLF PSORT and opens a new tab 
+             Organism type and click Submit to initiate a query of the protein sequence in WoLF PSORT and open a new tab 
              populated with the prediction results. For more information see this 
              <a href="/assets/RunningWoLFPSORT.pdf">WoLF PSORT tutorial</a>.
           </li>
