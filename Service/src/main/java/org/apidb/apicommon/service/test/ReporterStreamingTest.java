@@ -20,6 +20,7 @@ import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.report.config.StandardConfig;
 import org.gusdb.wdk.model.report.config.StandardConfig.StreamStrategy;
 import org.gusdb.wdk.service.request.exception.DataValidationException;
+import org.gusdb.wdk.service.request.exception.RequestMisformatException;
 import org.gusdb.wdk.service.service.AnswerService;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -51,7 +52,7 @@ public class ReporterStreamingTest {
 
   private static TwoTuple<String,Path> timeResponse(AnswerService answerService,
       String baseJsonStr, StreamStrategy streamStrategy, Path tmpFileDir)
-      throws WdkModelException, DataValidationException, JSONException, IOException {
+      throws WdkModelException, DataValidationException, JSONException, IOException, RequestMisformatException {
     log("\nBuilding final JSON for " + streamStrategy + " test.");
     JSONObject json = new JSONObject(baseJsonStr);
     JSONObject formatConfig = json.getJSONObject("formatting").getJSONObject("formatConfig");
