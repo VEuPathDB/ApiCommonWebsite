@@ -8,7 +8,7 @@ import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.answer.factory.AnswerValue;
 import org.gusdb.wdk.model.answer.spec.FilterOptionList;
 import org.gusdb.wdk.model.question.Question;
-import org.gusdb.wdk.model.report.AttributesTabularReporter;
+import org.gusdb.wdk.model.report.reporter.AttributesTabularReporter;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.apache.log4j.Logger;
