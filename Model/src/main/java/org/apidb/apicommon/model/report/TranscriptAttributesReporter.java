@@ -2,16 +2,16 @@ package org.apidb.apicommon.model.report;
 
 import java.util.Map;
 
+import org.apache.log4j.Logger;
 import org.apidb.apicommon.model.filter.RepresentativeTranscriptFilter;
 import org.gusdb.wdk.model.WdkModelException;
-import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.answer.factory.AnswerValue;
 import org.gusdb.wdk.model.answer.spec.FilterOptionList;
 import org.gusdb.wdk.model.question.Question;
+import org.gusdb.wdk.model.report.ReporterConfigException;
 import org.gusdb.wdk.model.report.reporter.AttributesTabularReporter;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.apache.log4j.Logger;
 
 public class TranscriptAttributesReporter extends AttributesTabularReporter {
 
@@ -31,14 +31,14 @@ public class TranscriptAttributesReporter extends AttributesTabularReporter {
   }
 
   @Override
-  public TranscriptAttributesReporter configure(JSONObject config) throws WdkUserException {
+  public TranscriptAttributesReporter configure(JSONObject config) throws ReporterConfigException {
     super.configure(config);
     try {
       applyFilter = config.getBoolean(PROP_APPLY_FILTER);
       return this;
     }
     catch (JSONException e) {
-      throw new WdkUserException("Missing required reporter property (boolean): " + PROP_APPLY_FILTER); 
+      throw new ReporterConfigException("Missing required reporter property (boolean): " + PROP_APPLY_FILTER); 
     }
   }
 

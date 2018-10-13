@@ -20,6 +20,7 @@ import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.answer.factory.AnswerValue;
 import org.gusdb.wdk.model.report.AbstractReporter;
 import org.gusdb.wdk.model.report.Reporter;
+import org.gusdb.wdk.model.report.ReporterConfigException;
 import org.json.JSONObject;
 import org.json.JSONWriter;
 
@@ -59,7 +60,7 @@ public abstract class IsolateViewReporter extends AbstractReporter {
   }
 
   @Override
-  public Reporter configure(JSONObject config) throws WdkUserException, WdkModelException {
+  public Reporter configure(JSONObject config) throws ReporterConfigException, WdkModelException {
     return this;
   }
 

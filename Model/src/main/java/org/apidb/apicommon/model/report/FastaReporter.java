@@ -22,6 +22,7 @@ import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.answer.factory.AnswerValue;
 import org.gusdb.wdk.model.jspwrap.AnswerValueBean;
 import org.gusdb.wdk.model.report.AbstractReporter;
+import org.gusdb.wdk.model.report.ReporterConfigException;
 import org.gusdb.wdk.model.report.config.StandardConfig;
 import org.json.JSONObject;
 
@@ -44,7 +45,7 @@ public abstract class FastaReporter extends AbstractReporter {
   }
 
   @Override
-  public FastaReporter configure(Map<String, String> config) throws WdkUserException, WdkModelException {
+  public FastaReporter configure(Map<String, String> config) throws ReporterConfigException, WdkModelException {
     throw new UnsupportedOperationException("This reporter must be configured with JSON.");
   }
 

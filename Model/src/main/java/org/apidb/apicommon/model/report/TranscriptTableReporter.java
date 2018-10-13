@@ -7,6 +7,7 @@ import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkRuntimeException;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.answer.factory.AnswerValue;
+import org.gusdb.wdk.model.report.ReporterConfigException;
 import org.gusdb.wdk.model.report.reporter.TableTabularReporter;
 import org.gusdb.wdk.model.user.Step;
 import org.gusdb.wdk.model.user.StepUtilities;
@@ -26,7 +27,7 @@ public class TranscriptTableReporter extends TableTabularReporter {
   }
 
   @Override
-  public TranscriptTableReporter configure(JSONObject config) throws WdkUserException {
+  public TranscriptTableReporter configure(JSONObject config) throws ReporterConfigException {
     try {
       _originalQuestionName = _baseAnswer.getQuestion().getName();
       Step baseStep = createBaseStep(_baseAnswer);
@@ -34,6 +35,9 @@ public class TranscriptTableReporter extends TableTabularReporter {
       // now that base answer is a Gene answer, check and assign selected table field name
       super.configure(config);
       return this;
+    }
+    catch (WdkUserException e) {
+      throw new ReporterConfigException(e.getMessage());
     }
     catch (WdkModelException e) {
       throw new WdkRuntimeException("Could not create in-memory step from incoming answer spec", e);

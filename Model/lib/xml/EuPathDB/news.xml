@@ -605,10 +605,10 @@ We are pleased to announce this new release of the ApiDB.org Website and Databas
 <ul>
 <li> All our queries offer the same functionality as our component sites: <a href="http://cryptodb.org/cryptodb/showXmlDataContent.do?name=XmlQuestions.News">Crypto 3.6</a>, <a href="http://plasmodb.org/plasmo/showXmlDataContent.do?name=XmlQuestions.News">Plasmo 5.4</a> and <a href="http://toxodb.org/toxo/showXmlDataContent.do?name=XmlQuestions.News">Toxo 4.3</a> recently released with new data.
 <li> All BLAST queries have been consolidated to a single interface, the same as in the component sites.
-  <li> More convenient access to help ... please click the  <a href="http://eupathdb.org/eupathdb/contact.do" class="new-window" data-name="contact_us">"Ask us a Question"</a> link on the front page sidebar, or the  <a href="http://eupathdb.org/eupathdb/contact.do" class="new-window" data-name="contact_us">"Contact Us"</a> at the top and bottom of every page to report problems or suggest improvements to the database.
+  <li> More convenient access to help ... please click the  <a href="http://eupathdb.org/eupathdb/app/contact-us" class="new-window" data-name="contact_us">"Ask us a Question"</a> link on the front page sidebar, or the  <a href="http://eupathdb.org/eupathdb/app/contact-us" class="new-window" data-name="contact_us">"Contact Us"</a> at the top and bottom of every page to report problems or suggest improvements to the database.
 </ul>
 
-Please notice that our BLAST tool has been consolidated to a single interface. We provide the same (updated) datasets as in the previous release: all Crypto, Plasmo and Toxo datasets plus the Theileria annulata and Theileria parva genomes, all ESTs from all apicomplexa, and the available clustered ESTs from apidots4.0 and the most recent Crypto and Toxo assemblies. Please provide your <a href="http://eupathdb.org/eupathdb/contact.do" class="new-window" data-name="contact_us">feedback</a> so we can continue improving ApiDB.
+Please notice that our BLAST tool has been consolidated to a single interface. We provide the same (updated) datasets as in the previous release: all Crypto, Plasmo and Toxo datasets plus the Theileria annulata and Theileria parva genomes, all ESTs from all apicomplexa, and the available clustered ESTs from apidots4.0 and the most recent Crypto and Toxo assemblies. Please provide your <a href="http://eupathdb.org/eupathdb/app/contact-us" class="new-window" data-name="contact_us">feedback</a> so we can continue improving ApiDB.
 
 <br>
 <br>
