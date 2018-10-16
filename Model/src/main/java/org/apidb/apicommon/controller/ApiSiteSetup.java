@@ -10,10 +10,12 @@ import org.apidb.apicommon.model.filter.GeneBooleanFilter;
 import org.gusdb.fgputil.events.Event;
 import org.gusdb.fgputil.events.EventListener;
 import org.gusdb.fgputil.events.Events;
+import org.gusdb.fgputil.validation.ValidationLevel;
 import org.gusdb.wdk.events.StepRevisedEvent;
 import org.gusdb.wdk.events.UserProfileUpdateEvent;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
+import org.gusdb.wdk.model.answer.spec.AnswerSpec;
 import org.gusdb.wdk.model.answer.spec.FilterOption;
 import org.gusdb.wdk.model.query.BooleanQuery;
 import org.gusdb.wdk.model.user.Step;
@@ -46,6 +48,7 @@ public class ApiSiteSetup {
     public void eventTriggered(Event event) throws Exception {
       StepRevisedEvent reviseEvent = (StepRevisedEvent)event;
       Step revisedStep = reviseEvent.getRevisedStep();
+      AnswerSpec answerSpec = revisedStep.getAnswerSpec();
       if (!revisedStep.isBoolean() || !isTranscriptRecordClass(revisedStep.getRecordClass())) {
         // only edit transcript boolean steps
         return;
@@ -59,16 +62,20 @@ public class ApiSiteSetup {
       }
 
       // reset GeneBooleanFilter to default for new value
-      FilterOption geneBooleanFilter = revisedStep.getAnswerSpec().getFilterOptions().stream()
+      FilterOption geneBooleanFilter = answerSpec.getFilterOptions().stream()
           .filter(option -> option.getKey().equals(GeneBooleanFilter.GENE_BOOLEAN_FILTER_ARRAY_KEY))
           .findAny().orElseThrow(() -> new WdkModelException("Found transcript boolean step " +
               revisedStep.getStepId() + " without GeneBooleanFilter."));
 
-      if (!geneBooleanFilter.isSetToDefaultValue(revisedStep.getAnswerSpec().toSimpleAnswerSpec())) {
+      if (!geneBooleanFilter.isSetToDefaultValue(answerSpec.toSimpleAnswerSpec())) {
         JSONObject newValue = GeneBooleanFilter.getDefaultValue(newOperator);
         LOG.info("Resetting gene boolean filter on step " + revisedStep.getStepId() +
             " to default value: " + newValue.toString(2));
-        revisedStep.addFilterOption(GeneBooleanFilter.GENE_BOOLEAN_FILTER_ARRAY_KEY, newValue);
+        AnswerSpec newAnswerSpec = AnswerSpec.builder(revisedStep.getAnswerSpec())
+            .replaceFirstFilterOption(GeneBooleanFilter.GENE_BOOLEAN_FILTER_ARRAY_KEY, newValue)
+            .build(ValidationLevel.RUNNABLE, answerSpec.getStepContainer());
+
+        revisedStep.setAnswerSpec(newAnswerSpec);
         revisedStep.saveParamFilters();
       }
     }

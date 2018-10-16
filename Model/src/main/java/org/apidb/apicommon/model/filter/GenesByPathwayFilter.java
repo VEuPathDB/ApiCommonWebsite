@@ -1,13 +1,16 @@
 package org.apidb.apicommon.model.filter;
 
-
 import org.apache.log4j.Logger;
-
+import org.gusdb.fgputil.validation.ValidationBundle;
+import org.gusdb.fgputil.validation.ValidationLevel;
+import org.gusdb.fgputil.validation.ValidationBundle.ValidationBundleBuilder;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.answer.factory.AnswerValue;
+import org.gusdb.wdk.model.answer.spec.SimpleAnswerSpec;
 import org.gusdb.wdk.model.filter.FilterSummary;
 import org.gusdb.wdk.model.filter.StepFilter;
+import org.gusdb.wdk.model.question.Question;
 import org.gusdb.wdk.model.user.Step;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -39,7 +42,7 @@ public class GenesByPathwayFilter extends StepFilter {
 
   @Override
   public String getSql(AnswerValue answer, String idSql, JSONObject jsValue)
-      throws WdkModelException, WdkUserException {
+      throws WdkModelException {
     Config config = parseConfig(jsValue);
 
     String rv = FILTER_SQL
@@ -74,20 +77,20 @@ public class GenesByPathwayFilter extends StepFilter {
 
   @Override
   public String getDisplayValue(AnswerValue answer, JSONObject jsValue)
-      throws WdkModelException, WdkUserException {
+      throws WdkModelException {
     // this filter should never be displayed
     return null;
   }
 
   @Override
   public FilterSummary getSummary(AnswerValue answer, String idSql)
-      throws WdkModelException, WdkUserException {
+      throws WdkModelException {
     // the inputs to this filter are discrete but not small; not feasible to provide summary
     return null;
   }
 
   @Override
-  public boolean defaultValueEquals(Step step, JSONObject value) throws WdkModelException {
+  public boolean defaultValueEquals(SimpleAnswerSpec spec, JSONObject value) throws WdkModelException {
     // there is no default value for this filter
     return false;
   }
@@ -111,6 +114,13 @@ public class GenesByPathwayFilter extends StepFilter {
     public String getExcludeIncomplateEc() { return _excludeIncompleteEc; }
     public String getExactMatchOnly() { return _exactMatchOnly; }
 
+  }
+
+  @Override
+  public ValidationBundle validate(Question question, JSONObject value, ValidationLevel validationLevel) {
+    ValidationBundleBuilder validation = ValidationBundle.builder(validationLevel);
+    // TODO Validate!!
+    return validation.build();
   }
 
 }

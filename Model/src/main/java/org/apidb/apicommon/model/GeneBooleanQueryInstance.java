@@ -1,9 +1,7 @@
 package org.apidb.apicommon.model;
 
-import java.util.Map;
-
+import org.gusdb.fgputil.collection.ReadOnlyMap;
 import org.gusdb.wdk.model.WdkModelException;
-import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.query.BooleanQuery;
 import org.gusdb.wdk.model.query.BooleanQueryInstance;
 import org.gusdb.wdk.model.user.User;
@@ -15,9 +13,9 @@ import org.gusdb.wdk.model.user.User;
  */
 public class GeneBooleanQueryInstance extends BooleanQueryInstance {
 
-  public GeneBooleanQueryInstance(User user, BooleanQuery query, Map<String, String> values, boolean validate,
-      int assignedWeight, Map<String, String> context) throws WdkModelException, WdkUserException {
-    super(user, query, values, validate, assignedWeight, context);
+  public GeneBooleanQueryInstance(User user, BooleanQuery query, ReadOnlyMap<String, String> values,
+      int assignedWeight) throws WdkModelException {
+    super(user, query, values, assignedWeight);
   }
 
   /**

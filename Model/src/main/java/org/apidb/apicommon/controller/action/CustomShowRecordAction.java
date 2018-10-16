@@ -16,13 +16,15 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.eupathdb.common.model.ProjectMapper;
+import org.gusdb.fgputil.MapBuilder;
 import org.gusdb.wdk.controller.action.ShowRecordAction;
 import org.gusdb.wdk.controller.actions.client.RecordPageAdapter;
 import org.gusdb.wdk.controller.actionutil.ActionUtility;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
+import org.gusdb.wdk.model.answer.factory.AnswerValueFactory;
+import org.gusdb.wdk.model.answer.spec.AnswerSpec;
 import org.gusdb.wdk.model.jspwrap.AnswerValueBean;
-import org.gusdb.wdk.model.jspwrap.QuestionBean;
 import org.gusdb.wdk.model.jspwrap.RecordBean;
 import org.gusdb.wdk.model.jspwrap.RecordClassBean;
 import org.gusdb.wdk.model.jspwrap.UserBean;
@@ -151,10 +153,13 @@ public class CustomShowRecordAction extends ShowRecordAction {
         UserBean user = ActionUtility.getUser(request);
 
         // get the data source question
-        QuestionBean question = wdkModel.getQuestion(GetDatasetAction.DATA_SOURCE_BY_RECORD_CLASS);
-        Map<String, String> params = new LinkedHashMap<String, String>();
-        params.put(PARAM_RECORD_CLASS, rcName);
-        AnswerValueBean answerValue = question.makeAnswerValue(user, params, true, 0);
+        Map<String, String> params = new MapBuilder<String, String>(PARAM_RECORD_CLASS, rcName).toMap();
+        AnswerValueBean answerValue = new AnswerValueBean(
+          AnswerValueFactory.makeAnswer(user.getUser(),
+            AnswerSpec.builder(wdkModel.getModel())
+                      .setQuestionName(GetDatasetAction.DATA_SOURCE_BY_RECORD_CLASS)
+                      .setParamValues(params)
+                      .buildRunnable()));
 
         // find all referenced attributes and tables;
         Iterator<RecordBean> dsRecords = answerValue.getRecords();

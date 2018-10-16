@@ -19,10 +19,13 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionServlet;
+import org.gusdb.fgputil.MapBuilder;
 import org.gusdb.wdk.controller.CConstants;
 import org.gusdb.wdk.controller.action.ShowQuestionAction;
 import org.gusdb.wdk.controller.actionutil.ActionUtility;
 import org.gusdb.wdk.model.answer.factory.AnswerValue;
+import org.gusdb.wdk.model.answer.factory.AnswerValueFactory;
+import org.gusdb.wdk.model.answer.spec.AnswerSpec;
 import org.gusdb.wdk.model.answer.stream.FileBasedRecordStream;
 import org.gusdb.wdk.model.answer.stream.RecordStream;
 import org.gusdb.wdk.model.jspwrap.AnswerValueBean;
@@ -67,15 +70,19 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
             if (questionName == null) {
                 question = (QuestionBean) request.getAttribute(CConstants.WDK_QUESTION_KEY);
                 questionName = question.getFullName();
-            } else {
+            }
+            else {
                 question = wdkModel.getQuestion(questionName);
             }
 
             // get the data source question
-            QuestionBean dsQuestion = wdkModel.getQuestion(GetDatasetAction.DATA_SOURCE_BY_QUESTION);
-            Map<String, String> params = new LinkedHashMap<String, String>();
-            params.put(PARAM_QUESTION, questionName);
-            AnswerValueBean answerValue = dsQuestion.makeAnswerValue(user, params, true, 0);
+            Map<String, String> params = new MapBuilder<String, String>(PARAM_QUESTION, questionName).toMap();
+            AnswerValueBean answerValue = new AnswerValueBean(
+              AnswerValueFactory.makeAnswer(user.getUser(),
+                AnswerSpec.builder(wdkModel.getModel())
+                          .setQuestionName(GetDatasetAction.DATA_SOURCE_BY_QUESTION)
+                          .setParamValues(params)
+                          .buildRunnable()));
 
             // find all referenced attributes and tables;
             Iterator<RecordBean> dsRecords = answerValue.getRecords();

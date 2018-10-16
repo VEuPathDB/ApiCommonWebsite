@@ -13,13 +13,16 @@ import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
 import org.gusdb.fgputil.db.SqlUtils;
+import org.gusdb.fgputil.validation.ValidationBundle;
+import org.gusdb.fgputil.validation.ValidationBundle.ValidationBundleBuilder;
+import org.gusdb.fgputil.validation.ValidationLevel;
 import org.gusdb.wdk.model.WdkModelException;
-import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.answer.factory.AnswerValue;
+import org.gusdb.wdk.model.answer.spec.SimpleAnswerSpec;
 import org.gusdb.wdk.model.filter.FilterSummary;
 import org.gusdb.wdk.model.filter.ListColumnFilterSummary;
 import org.gusdb.wdk.model.filter.StepFilter;
-import org.gusdb.wdk.model.user.Step;
+import org.gusdb.wdk.model.question.Question;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -38,8 +41,7 @@ public class MatchedTranscriptFilter extends StepFilter {
   }
 
   @Override
-  public FilterSummary getSummary(AnswerValue answer, String idSql) throws WdkModelException,
-      WdkUserException {
+  public FilterSummary getSummary(AnswerValue answer, String idSql) throws WdkModelException {
 
     Map<String, Integer> counts = new LinkedHashMap<>();
     // group by the query and get a count
@@ -51,7 +53,7 @@ public class MatchedTranscriptFilter extends StepFilter {
     String sql = getSummarySql(fullIdSql);
 
     ResultSet resultSet = null;
-    DataSource dataSource = answer.getQuestion().getWdkModel().getAppDb().getDataSource();
+    DataSource dataSource = answer.getAnswerSpec().getQuestion().getWdkModel().getAppDb().getDataSource();
     try {
       resultSet = SqlUtils.executeQuery(dataSource, sql, getKey() + "-summary");
       while (resultSet.next()) {
@@ -89,8 +91,7 @@ public class MatchedTranscriptFilter extends StepFilter {
   */
 
   @Override
-  public String getDisplayValue(AnswerValue answer, JSONObject jsValue) throws WdkModelException,
-      WdkUserException {
+  public String getDisplayValue(AnswerValue answer, JSONObject jsValue) throws WdkModelException {
     return "dont care";
   }
 
@@ -98,8 +99,7 @@ public class MatchedTranscriptFilter extends StepFilter {
    * Expected JSON is, for example: { values:["Y", "N"] }
    */
   @Override
-  public String getSql(AnswerValue answer, String idSql, JSONObject jsValue) throws WdkModelException,
-      WdkUserException {
+  public String getSql(AnswerValue answer, String idSql, JSONObject jsValue) throws WdkModelException {
 
     // the input idSql has filters applied, and they might strip off dyn columns. join those back in using the
     // original id sql
@@ -128,10 +128,9 @@ public class MatchedTranscriptFilter extends StepFilter {
    * @param answer
    * @param idSql
    * @return
-   * @throws WdkUserException
    * @throws WdkModelException
    */
-  private String getFullSql(AnswerValue answer, String idSql) throws WdkModelException, WdkUserException {
+  private String getFullSql(AnswerValue answer, String idSql) throws WdkModelException {
     String originalIdSql = answer.getIdsQueryInstance().getSql();
 
     return "select idsql.* from (" + originalIdSql + ") idsql, (" + idSql + ") filteredIdSql" +
@@ -144,8 +143,8 @@ public class MatchedTranscriptFilter extends StepFilter {
   }
 
   @Override
-  public boolean defaultValueEquals(Step step, JSONObject jsValue) throws WdkModelException {
-    JSONObject defaultValue = getDefaultValue(step);
+  public boolean defaultValueEquals(SimpleAnswerSpec spec, JSONObject jsValue) throws WdkModelException {
+    JSONObject defaultValue = getDefaultValue(spec);
     if (defaultValue == null && jsValue == null) return true;
     if (defaultValue == null || jsValue == null) return false;
     try {
@@ -159,13 +158,20 @@ public class MatchedTranscriptFilter extends StepFilter {
   }
 
   @Override
-  public JSONObject getDefaultValue(Step step) {
-    if (!step.isCombined() && !step.getQuestionName().toLowerCase().contains("basket")) {
+  public JSONObject getDefaultValue(SimpleAnswerSpec spec) {
+    if (!spec.getQuestion().isCombined() && !spec.getQuestion().getFullName().toLowerCase().contains("basket")) {
       return getFilterValueArray("Y");
     }
     else {
       logger.debug("_____________this step DOES NOT GET THE MATCHED RESULT FILTER");
       return null;
     }
+  }
+
+  @Override
+  public ValidationBundle validate(Question question, JSONObject value, ValidationLevel validationLevel) {
+    ValidationBundleBuilder validation = ValidationBundle.builder(validationLevel);
+    // TODO Validate!!
+    return validation.build();
   }
 }

@@ -13,15 +13,19 @@ import javax.sql.DataSource;
 
 import org.apidb.apicommon.model.TranscriptBooleanQuery;
 import org.gusdb.fgputil.db.SqlUtils;
+import org.gusdb.fgputil.validation.ValidationBundle;
+import org.gusdb.fgputil.validation.ValidationBundle.ValidationBundleBuilder;
+import org.gusdb.fgputil.validation.ValidationLevel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.answer.factory.AnswerValue;
+import org.gusdb.wdk.model.answer.spec.SimpleAnswerSpec;
 import org.gusdb.wdk.model.filter.FilterSummary;
 import org.gusdb.wdk.model.filter.ListColumnFilterSummary;
 import org.gusdb.wdk.model.filter.StepFilter;
 import org.gusdb.wdk.model.query.BooleanOperator;
 import org.gusdb.wdk.model.query.BooleanQuery;
-import org.gusdb.wdk.model.user.Step;
+import org.gusdb.wdk.model.question.Question;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -42,8 +46,7 @@ public class GeneBooleanFilter extends StepFilter {
   }
 
   @Override
-  public FilterSummary getSummary(AnswerValue answer, String idSql) throws WdkModelException,
-      WdkUserException {
+  public FilterSummary getSummary(AnswerValue answer, String idSql) throws WdkModelException {
 
     Map<String, Integer> counts = new LinkedHashMap<>();
     // group by the query and get a count
@@ -55,7 +58,7 @@ public class GeneBooleanFilter extends StepFilter {
     String sql = getSummarySql(fullIdSql);
 
     ResultSet resultSet = null;
-    DataSource dataSource = answer.getQuestion().getWdkModel().getAppDb().getDataSource();
+    DataSource dataSource = answer.getWdkModel().getAppDb().getDataSource();
     try {
       resultSet = SqlUtils.executeQuery(dataSource, sql, getKey() + "-summary");
       while (resultSet.next()) {
@@ -89,8 +92,7 @@ public class GeneBooleanFilter extends StepFilter {
   }
 
   @Override
-  public String getDisplayValue(AnswerValue answer, JSONObject jsValue) throws WdkModelException,
-      WdkUserException {
+  public String getDisplayValue(AnswerValue answer, JSONObject jsValue) throws WdkModelException {
     return "dont care";
   }
 
@@ -98,8 +100,7 @@ public class GeneBooleanFilter extends StepFilter {
    * Expected JSON is: { values:["10", "01", "11"] }
    */
   @Override
-  public String getSql(AnswerValue answer, String idSql, JSONObject jsValue) throws WdkModelException,
-      WdkUserException {
+  public String getSql(AnswerValue answer, String idSql, JSONObject jsValue) throws WdkModelException {
 
     // the input idSql has filters applied, and they might strip off dyn columns. join those back in using the
     // original id sql
@@ -132,7 +133,7 @@ public class GeneBooleanFilter extends StepFilter {
    * @throws WdkUserException
    * @throws WdkModelException
    */
-  private String getFullSql(AnswerValue answer, String idSql) throws WdkModelException, WdkUserException {
+  private String getFullSql(AnswerValue answer, String idSql) throws WdkModelException {
     String originalIdSql = answer.getIdsQueryInstance().getSql();
 
     return "select idsql.* from (" + originalIdSql + ") idsql, (" + idSql + ") filteredIdSql" +
@@ -145,8 +146,8 @@ public class GeneBooleanFilter extends StepFilter {
   }
 
   @Override
-  public boolean defaultValueEquals(Step step, JSONObject jsValue) throws WdkModelException {
-    JSONObject defaultValue = getDefaultValue(step);
+  public boolean defaultValueEquals(SimpleAnswerSpec spec, JSONObject jsValue) throws WdkModelException {
+    JSONObject defaultValue = getDefaultValue(spec);
     if (defaultValue == null && jsValue == null) return true;
     if (defaultValue == null || jsValue == null) return false;
     try {
@@ -159,7 +160,7 @@ public class GeneBooleanFilter extends StepFilter {
     }
   }
 
-  public static JSONObject getDefaultValue(String booleanOperatorValue) throws WdkModelException {
+  public static JSONObject getDefaultValue(String booleanOperatorValue) {
     BooleanOperator op = BooleanOperator.parse(booleanOperatorValue);
     switch (op) {
       case UNION: return getFilterValueArray("YY", "YN", "NY");
@@ -173,13 +174,20 @@ public class GeneBooleanFilter extends StepFilter {
   }
 
   @Override
-  public JSONObject getDefaultValue(Step step) throws WdkModelException {
+  public JSONObject getDefaultValue(SimpleAnswerSpec spec) {
     // TODO: check whether intersection or union and apply
-    Map<String,String> paramValues = step.getQueryInstanceSpec();
+    Map<String,String> paramValues = spec.getQueryInstanceSpec().toMap();
     boolean isWdkSetOperation = paramValues.containsKey(BooleanQuery.OPERATOR_PARAM);
     if (isWdkSetOperation) {
       return getDefaultValue(paramValues.get(BooleanQuery.OPERATOR_PARAM));
     }
     return null;
+  }
+
+  @Override
+  public ValidationBundle validate(Question question, JSONObject value, ValidationLevel validationLevel) {
+    ValidationBundleBuilder validation = ValidationBundle.builder(validationLevel);
+    // TODO Validate!!
+    return validation.build();
   }
 }

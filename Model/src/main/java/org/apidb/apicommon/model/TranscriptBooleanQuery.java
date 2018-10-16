@@ -1,12 +1,11 @@
 package org.apidb.apicommon.model;
 
-import java.util.Map;
 import java.util.Set;
 
 import org.apidb.apicommon.model.filter.GeneBooleanFilter;
+import org.gusdb.fgputil.collection.ReadOnlyMap;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
-import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.query.BooleanQuery;
 import org.gusdb.wdk.model.query.BooleanQueryInstance;
 import org.gusdb.wdk.model.query.Column;
@@ -57,17 +56,10 @@ public class TranscriptBooleanQuery extends BooleanQuery {
     das.addAttributeField(right_af);
   }
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see org.gusdb.wdk.model.query.Query#makeInstance()
-   */
   @Override
-  public BooleanQueryInstance makeInstance(User user, Map<String, String> values,
-    boolean validate, int assignedWeight, Map<String, String> context)
-    throws WdkModelException, WdkUserException {
-      return new TranscriptBooleanQueryInstance(user, this, values, validate,
-        assignedWeight, context);
+  protected BooleanQueryInstance makeInstance(User user, ReadOnlyMap<String,String> paramValues, int assignedWeight)
+      throws WdkModelException {
+    return new TranscriptBooleanQueryInstance(user, this, paramValues, assignedWeight);
   } 
 
   @Override

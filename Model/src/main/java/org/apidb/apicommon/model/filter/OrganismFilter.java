@@ -9,6 +9,9 @@ import java.util.Map;
 
 import org.gusdb.fgputil.db.runner.SQLRunner;
 import org.gusdb.fgputil.db.runner.SQLRunner.ResultSetHandler;
+import org.gusdb.fgputil.validation.ValidationBundle;
+import org.gusdb.fgputil.validation.ValidationLevel;
+import org.gusdb.fgputil.validation.ValidationBundle.ValidationBundleBuilder;
 import org.gusdb.wdk.model.Utilities;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
@@ -17,6 +20,7 @@ import org.gusdb.wdk.model.answer.factory.AnswerValue;
 import org.gusdb.wdk.model.filter.FilterSummary;
 import org.gusdb.wdk.model.filter.StepFilter;
 import org.gusdb.wdk.model.query.SqlQuery;
+import org.gusdb.wdk.model.question.Question;
 import org.gusdb.wdk.model.user.Step;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,7 +42,7 @@ public class OrganismFilter extends StepFilter {
   }
 
   @Override
-  public String getDisplayValue(AnswerValue answer, JSONObject jsValue) throws WdkModelException, WdkUserException {
+  public String getDisplayValue(AnswerValue answer, JSONObject jsValue) throws WdkModelException {
 	// TODO Auto-generated method stub
 	return null;
   }
@@ -141,6 +145,13 @@ public class OrganismFilter extends StepFilter {
   public FilterSummary getSummary(AnswerValue answer, String idSql) throws WdkModelException, WdkUserException {
 	// TODO Auto-generated method stub
 	return null;
+  }
+
+  @Override
+  public ValidationBundle validate(Question question, JSONObject value, ValidationLevel validationLevel) {
+    ValidationBundleBuilder validation = ValidationBundle.builder(validationLevel);
+    // TODO Validate!!
+    return validation.build();
   }
 
 }
