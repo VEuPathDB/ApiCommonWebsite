@@ -21,6 +21,15 @@ sub init {
   
   my $facet = $self->getFacets();
   my $contXAxis = $self->getContXAxis();
+
+  if ($facet->[0] eq 'na') {
+    $facet->[0] = 'EUPATH_0000048';
+  }
+  my $needXLab =0;
+  if ($contXAxis eq 'na') {
+    $contXAxis = 'EUPATH_0000113';
+    $needXLab = 1;
+  }
  
   my @profileSetArray = (['Uganda East Africa ICEMR Profiles','values', '', '', '', '', '', $facet, '', '', $contXAxis],
                          ['Amazonia Peru ICEMR Profiles','values', '', '', '', '', '', $facet, '', '', $contXAxis],
@@ -51,6 +60,9 @@ sub init {
                              'Amazonia ICEMR Profiles',
                              'Southern African ICEMR Profiles',
                              'Southeast Asia ICEMR Profiles']);
+  if ($needXLab) {
+    $scatter->setXaxisLabel("Age");
+  }
 
   $self->setGraphObjects($scatter);
 
