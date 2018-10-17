@@ -91,15 +91,16 @@
            
         <h4>Transcriptomics</h4>
            <ul>
-             <li><a href="http:/a/app/record/dataset/DS_9f832f8fbb">Comparative transcriptomes of yeast and hyphal forms in <i>Histoplasma capsulatum</i> H143</a> &ndash; 
+             <li><a href="http:/a/app/record/dataset/DS_9f832f8fbb">Comparison of gene expression patterns in <i>Paracoccidioides brasiliensis</i> mycelia and yeasts <i>in vitro</i></a> &ndash; 
                  Analysis of yeast and hyphal transcript expression patterns in <i>Histoplasma capsulatum</i> H143 grown at 37°C and room temperature (RT), respectively.
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/26177267" target="_blank">Gilmore et al., 2015</a>.
              </li>
-             <li><a href="http:/a/app/record/dataset/DS_760d4a011d">Transcriptomic response of <i>Aspergillus niger</i> to lignocellulose (wheat straw)</a> &ndash;
+             
+             <li><a href="http:/a/app/record/dataset/DS_56f8fb561f">Transcriptomic response of <i>Aspergillus niger</i> to lignocellulose (willow)</a> &ndash;
              Transcriptomic profiling of Aspergillus niger growing on lignocellulose (AB SOLiD System 3.0). 
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/22912594" target="_blank">Delmas et al., 2012</a>.
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/24792495" target="_blank">van Munster et al., 2014</a>.
              </li>
+             
              <li><a href="http:/a/app/record/dataset/DS_bb15199826"><i>Aspergillus niger</i> gene co-expression network</a> &ndash;
              A meta-analysis of 155 transcriptomics experiments generated genome level co-expression networks for 9579 genes of <i>Aspergillus niger</i> genome. <a href="https://www.biorxiv.org/content/early/2018/08/23/398842" target="_blank">Manuscript submitted to bioRxiv</a>.
              </li>
@@ -336,8 +337,8 @@
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/29317534">Kj&aelig;rb&oslash;lling et al., 2018</a>.
              </li>
              <li><a href="http:/a/app/record/dataset/DS_ea5a27648e"><i>Sporothrix schenckii</i> 1099-18</a> &ndash; 
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/25480940">Teixeira et al., 2015</a>.,
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/25351875">Teixeira et al., 2014</a>.,
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/25480940">Teixeira et al., 2015</a>,
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/25351875">Teixeira et al., 2014</a>, and 
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/24855299">Teixeira et al., 2014</a>.
              </li>
             </ul>
@@ -349,24 +350,24 @@
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/29317534">Syngenta Biotechnology, Inc.</a>
              </li>
              <li><a href="http:/a/app/record/dataset/DS_0d9ee4ff86"><i>Candida albicans</i> SC5314</a> &ndash; 
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/24025428">Muzzey et al., 2013</a>.,
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/17419877">van het Hoog M. et al., 2007</a>.,
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/15123810">Jones et al., 2004</a>.,
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/24025428">Muzzey et al., 2013</a>,
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/17419877">van het Hoog M. et al., 2007</a>,
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/15123810">Jones et al., 2004</a>, and 
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/6394964">Gillum et al., 1984</a>.
              </li>
              <li><a href="http:/a/app/record/dataset/DS_e43fc5921f"><i>Candida albicans</i> SC5314_B</a> &ndash; 
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/24025428">Muzzey et al., 2013</a>.,
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/17419877">van het Hoog M. et al., 2007</a>.,
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/15123810">Jones et al., 2004</a>.,
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/24025428">Muzzey et al., 2013</a>,
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/17419877">van het Hoog M. et al., 2007</a>,
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/15123810">Jones et al., 2004</a>, and 
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/6394964">Gillum et al., 1984</a>.
              </li>
              <li><a href="http:/a/app/record/dataset/DS_033b09f437"><i>Candida albicans</i> WO-1</a> &ndash; 
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/19465905">Butler et al., 2009</a>.,
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/12399384">Lockhart et al., 2002</a>.,
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/19465905">Butler et al., 2009</a>,
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/12399384">Lockhart et al., 2002</a>, and 
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/3539914">Slutsky et al., 1987</a>.
              </li>
              <li><a href="http:/a/app/record/dataset/DS_c8c07fac9f"><i>Candida glabrata</i> CBS138</a> &ndash; 
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/15229592">Dujon et al., 2004</a>.
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/15229592">Dujon et al., 2004</a> and 
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/12527359">Koszul et al., 2003</a>.
              </li>
            </ul>
@@ -379,7 +380,7 @@
              </li>
              <li><a href="http:/a/app/record/dataset/DS_760d4a011d">Transcriptomic response of <i>Aspergillus niger</i> to lignocellulose (wheat straw)</a> &ndash;
              Transcriptomic profiling of Aspergillus niger growing on lignocellulose (AB SOLiD System 3.0). 
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/22912594" target="_blank">Delmas et al., 2012</a>.
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/22912594" target="_blank">Delmas et al., 2012</a> and 
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/24792495" target="_blank">van Munster et al., 2014</a>.
              </li>
              <li><a href="http:/a/app/record/dataset/DS_bb15199826"><i>Aspergillus niger</i> gene co-expression network</a> &ndash;
@@ -412,8 +413,8 @@
            <ul>
              <li><a href="http:/a/app/record/dataset/DS_213496374f">Aligned genomic sequence reads - <i>Candida auris</i> clinical isolates</a> &ndash;
                  Samples were collected from patients, patient contacts, healthcare workers, and the environment in 4 hospitals in Colombia with recent <i>C. auris</i> outbreaks.
-                 <a href="https://www.ncbi.nlm.nih.gov/bioproject/470683">NCBI's Bioproject record page</a>,  
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/29788045"> Escand&oacute;n et al., 2018</a>
+                 <a href="https://www.ncbi.nlm.nih.gov/bioproject/470683">NCBI's Bioproject record page</a> and   
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/29788045"> Escand&oacute;n et al., 2018</a>.
              </li>
            </ul>
            
