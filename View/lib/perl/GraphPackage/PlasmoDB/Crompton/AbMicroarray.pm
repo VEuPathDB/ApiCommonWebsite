@@ -17,21 +17,28 @@ sub init {
   $self->setPlotWidth(600);
   $self->setScreenSize(300);
 
-#  my $colors = ['blue','white'];
   my $colors = ['blue'];
   my $facet = $self->getFacets();
   my $contXAxis = $self->getContXAxis();
-#  my $facet = ['ICEMR_health_status'];
-#  my $contXAxis = 'PATO_0000011';
- 
+  if ($facet->[0] eq 'na') {
+    $facet->[0] = 'OGMS_0000073';
+  }
+  my $needXLab = 0;
+  if ($contXAxis eq 'na') {
+    $contXAxis = 'OBI_0001169';
+    $needXLab = 1;
+  }
+
   my @profileSetArray = (['Crompton Ab Microarray Profiles','values', '', '', '', '', '', $facet, '', '', $contXAxis]);
   my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileSetArray);
 
   my $scatter = EbrcWebsiteCommon::View::GraphPackage::GGScatterPlot::LogRatio->new(@_);
-#  my $scatter = EbrcWebsiteCommon::View::GraphPackage::ScatterPlot::ClinicalMetaData->new(@_);
   $scatter->setProfileSets($profileSets);
   $scatter->setColors($colors);
-#  $scatter->setXaxisLabel("Age");
+
+  if ($needXLab) {
+    $scatter->setXaxisLabel("Age");
+  }
 
   $self->setGraphObjects($scatter);
 
