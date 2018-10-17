@@ -375,7 +375,7 @@
         <h4>Transcriptomics</h4>
            <ul>
              <li><a href="http:/a/app/record/dataset/DS_9f832f8fbb">Comparative transcriptomes of yeast and hyphal forms in <i>Histoplasma capsulatum</i> H143</a> &ndash; 
-                 Analysis of yeast and hyphal transcript expression patterns in <i>Histoplasma capsulatum</i> H143 grown at 37°C and room temperature (RT), respectively.
+                 Analysis of yeast and hyphal transcript expression patterns in <i>Histoplasma capsulatum</i> H143 grown at 37°C and room temperature, respectively.
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/26177267" target="_blank">Gilmore et al., 2015</a>.
              </li>
              <li><a href="http:/a/app/record/dataset/DS_760d4a011d">Transcriptomic response of <i>Aspergillus niger</i> to lignocellulose (wheat straw)</a> &ndash;
@@ -422,7 +422,7 @@
            <ul>
              <li><a href="http:/a/app/record/dataset/DS_61efdacf5b">Manually Curated Fusarium Phenotypes</a> &ndash; 
                  The phenotypes for <i>Fusarium graminearum</i> PH-1 are manually curated from published literature describing phenotypes obtained from mutant studies. The phenotypic data from <a href="http://www.ncbi.nlm.nih.gov/pubmed/25758923" target="_blank">Yun et al., 2007</a> publicationhave been manually curated in-line with EuPathDB&#39;s approach for  phenotype annotation and integrated into FungiDB. 
-                 We followed an &quot; entity &#43; quality&quot; approach and curated phenotypes with multiple ontologies: Phenotypic Quality Ontology (PATO) for &quot;quality&quot; terms and Gene Ontology (GO), Fungal Gross Anatomy Ontology (FAO),
+                 We followed an &quot;entity &#43; quality&quot; approach and curated phenotypes with multiple ontologies: Phenotypic Quality Ontology (PATO) for &quot;quality&quot; terms and Gene Ontology (GO), Fungal Gross Anatomy Ontology (FAO),
                  Chemical Entities of Biological Interest (ChEBI) and Ascomycete Phenotype Ontology (APO) for &quot;entity&quot; terms. 
              </li>
            </ul>
@@ -557,7 +557,7 @@
            <ul>
              <li><a href="http:/a/app/record/dataset/DS_213496374f">Aligned genomic sequence reads - Genomic context of azole-resistance mutations in <i>Aspergillus fumigatus</i></a> &ndash;
                  Whole-genome sequencing (WGS) was performed for high-resolution single-nucleotide polymorphism (SNP) analysis of 24 A. fumigatus isolates (azole-resistant and susceptible strains).
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/26037120">Abdolrasouli et al.</a>,  
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/26037120">Abdolrasouli et al.</a>  
              </li>
            </ul>
            
@@ -565,7 +565,7 @@
            <ul>   
            <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_5ca22e8fc8"><i>Coccidioides immitis</i> RS TE GBrowse track</a> &ndash;
                Annotation of transposable elements (TE) in Coccidioides immitis RS using RepeatMasker which identified TEs based on the RepBase reference library and REPET to support de novo TE identification.
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/29371508">Kirkland et al.</a>.
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/29371508">Kirkland et al.</a>
              </li>
            </ul>
            <br>
@@ -748,7 +748,7 @@
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_d2ff7c7826">Multidimensional regulation in transcriptome during sexual development in <i>Neurospora crassa</i></a> &ndash; 
                  Genome-wide analysis of <i>N. crassa</i> gene expression during sexual development. Transcriptomic sequencing was primed by random and multitargeted primers and accessed across eight time points encompassing the morphological changes and tissue and cellular development of maturing perithecia. 
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/24243796" target="_blank">Wang et al. 2014</a>, 
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/22626843" target="_blank">Wang et al. 2012</a>, 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/22626843" target="_blank">Wang et al. 2012</a>, and 
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/25329823" target="_blank">Lehr et al. 2014</a>
              </li>
              
@@ -759,8 +759,8 @@
            <ul>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_f10e32c6b8">Neurospora Genome Project Phenotype Image Collection</a> &ndash; 
                  New images were added to this data set describing the systematic characterisation of colony growth and morphology of <i>Neurospora crassa</i> knockout mutants. 
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/17352902" target="_blank">Dunlap et al. 2007</a>
-		 <a href="http://www.ncbi.nlm.nih.gov/pubmed/16801547" target="_blank">Colot et al. 2006</a>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/17352902" target="_blank">Dunlap et al. 2007</a>,
+		 <a href="http://www.ncbi.nlm.nih.gov/pubmed/16801547" target="_blank">Colot et al. 2006</a>, and
 		 <a href="http://www.ncbi.nlm.nih.gov/pubmed/21590422" target="_blank">Turner G.E. 2011</a>
              </li>
            </ul>
@@ -912,7 +912,7 @@
            <ul>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_0c8f7592b7"><i>Fusarium oxysporum</i> f. sp. cubense tropical race 4 54006</a> &ndash; 
                  Provider: Li-Jun Ma; genome provided prior to publication.  
-                 <a href="http://www.ncbi.nlm.nih.gov/bioproject/PRJNA73539">NCBI BioProject PRJNA73539</a>
+                 <a href="http://www.ncbi.nlm.nih.gov/bioproject/PRJNA73539">NCBI BioProject PRJNA73539</a>.
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_7f555aad50"><i>Fusarium oxysporum</i> Fo47</a> &ndash; 
                  Provider: Li-Jun Ma; genome provided prior to publication. 
@@ -923,7 +923,7 @@
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_76ede52023"><i>Histoplasma capsulatum</i> H88 (<i>Ajellomyces capsulatus</i> H88)</a> &ndash; 
                  The Broad Institute. 
-                 <a href="http://www.ncbi.nlm.nih.gov/bioproject/PRJNA29163">NCBI Bioproject PRJNA29163</a>
+                 <a href="http://www.ncbi.nlm.nih.gov/bioproject/PRJNA29163">NCBI Bioproject PRJNA29163</a>.
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_9a46569d2f"><i>Penicillium rubens</i> Wisconsin 54-1255</a> &ndash; 
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/18820685">van den Berg M. A. et al. 2011</a>
@@ -952,9 +952,9 @@
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/17352902" target="_blank">Borkovich et al.</a>
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_f10e32c6b8"><i>Neurospora</i> Genome Project Phenotype Image Collection</a> &ndash; Analysis of colony growth and morphology was performed on solid Vogel&#39;s minimal (MIN) medium. For each strain, the hyphae at the edge of the colony and plate growth were photographed. 
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/17352902" target="_blank">Dunlap et al. 2007</a>
-		 <a href="http://www.ncbi.nlm.nih.gov/pubmed/16801547" target="_blank">Colot et al. 2006</a>
-		 <a href="http://www.ncbi.nlm.nih.gov/pubmed/21590422" target="_blank">Turner G.E. 2011</a>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/17352902" target="_blank">Dunlap et al. 2007</a>,
+		 <a href="http://www.ncbi.nlm.nih.gov/pubmed/16801547" target="_blank">Colot et al. 2006</a>, and
+		 <a href="http://www.ncbi.nlm.nih.gov/pubmed/21590422" target="_blank">Turner G.E. 2011</a>.
              </li>
            </ul>
            
@@ -1847,11 +1847,11 @@
         <h4>RNA Sequencing:</h4>
            <ul>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4b0e1b490a">Cell cycle transcriptome of <i>Cryptococcus neoformans</i>  var. grubii</a> &ndash;   
-                 Cell-cycle transcript dynamics of wild-type budding yeast <i>Cryptococcus neoformans var. grubii</i>
+                 Cell-cycle transcript dynamics of wild-type budding yeast <i>Cryptococcus neoformans var. grubii</i>.
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/27918582">Kelliher et al.</a>
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_f101fb2669">Cell cycle transcriptome of <i>Saccharomyces cerevisiae</i> S288C</a> &ndash;   
-                 Cell-cycle transcript dynamics of wild-type budding yeast <i>Saccharomyces cerevisiae</i>
+                 Cell-cycle transcript dynamics of wild-type budding yeast <i>Saccharomyces cerevisiae</i>.
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/27918582">Kelliher et al.</a>
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_5ae73c0972">Transcriptome during sexual development in <i>Neurospora crassa</i> OR74A</a> &ndash;   
@@ -1882,7 +1882,7 @@
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_a0e51f125a">Aligned genomic sequence reads - <i>C. albicans</i> clinical isolates</a> &ndash;
                  Whole genome sequencing data from multiple <i>C. albicans</i> isolates collected 
                   from patients wtih oropharyngeal candidiasis.
-                 <a href="https://www.ncbi.nlm.nih.gov/bioproject/257929">NCBI's Bioproject record page</a>,  
+                 <a href="https://www.ncbi.nlm.nih.gov/bioproject/257929">NCBI's Bioproject record page</a> and  
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/25646566"> Ford et al.</a>
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_0a27b6bb7c">Aligned genome sequence reads : Multiple <i>Coccidioides</i> Isolates</a> &ndash;
@@ -2748,14 +2748,14 @@ Arial">Join our international team of 30+ software developers and biologists,
                        Inducer-Free Cellulase Secretion in Neurospora Crassa</a> &mdash;
             Global mRNA abundances from liquid cultures of N. crassa were measured by sequencing on the Illumina Genome Analyzer IIx 
             and HiSeq2000 platforms. Cultures were harvested at 4 hours (N. crassa), after a switch to media of interest. 
-            <a href="http://www.ncbi.nlm.nih.gov/pubmed/23766336">Coradetti et al.</a>.
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/23766336">Coradetti et al.</a>
           </li>
           <li>
             <a href="http://fungidb.org/fungidb/app/record/dataset/DS_8e61740c73">
                        Inducer-Free Cellulase Secretion in Aspergillus nidulans</a> &mdash;
             Global mRNA abundances from liquid cultures of A. nidulans were measured by sequencing on the Illumina Genome Analyzer IIx 
             and HiSeq2000 platforms. Cultures were harvested at 6 hours, after a switch to media of interest.
-            <a href="http://www.ncbi.nlm.nih.gov/pubmed/23766336">Coradetti et al.</a>.
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/23766336">Coradetti et al.</a>
           </li>
          </ul>
     <section>
@@ -3141,7 +3141,7 @@ Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-far
     <ul style="text-align: justify;">
       <li><span style="font-family: Helvetica,Arial,sans-serif;"><span style="text-decoration: underline;">Genomes
             and annotation</span> (full description and attribution is available
-          in the <strong><a href="/a/getDataset.do?display=detail#Genomes%20and%20Annotation">dataset
+          in the <strong><a href="/a/getDataset.do?display=detail#Genomes%20and%20Annotation">data set
               section</a></strong>):</span></li>
     </ul>
     <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><br>
@@ -3198,7 +3198,7 @@ Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-far
               style="font-family: Helvetica,Arial,sans-serif;">from
               3 </span></span><em>Phytophthora sojae</em> samples: media grown,
           cysts, and from infected soybean hypocotyls.&nbsp; Additional
-          information and links to searches can be viewed in the <strong><a href="/a/getDataset.do?question=GeneQuestions.GenesByRNASeqPsojP6497_Tyler_Infection_rnaSeq_RSRC&amp;display=detail#116">dataset
+          information and links to searches can be viewed in the <strong><a href="/a/getDataset.do?question=GeneQuestions.GenesByRNASeqPsojP6497_Tyler_Infection_rnaSeq_RSRC&amp;display=detail#116">data set
               section</a></strong>. &nbsp;</span></li>
     </ul>
     <p style="text-align: justify;" class="MsoNormal"><span style="font-family: Helvetica,Arial,sans-serif;"><b
@@ -3522,7 +3522,7 @@ reflect the V12 release made March 2013. The updated version will be available i
 The <span style="font-style: italic;">Coccidioides</span> RNA-Seq data
 in the previous release had flipped the labels of the spherule and
 mycelium results, this has been corrected.<br></br>
-Errors in previous loading of gene product information for P. sojae
+Errors in previous loading of gene product information for <i>P. sojae</i>
 had left many genes without sufficient product information and
 description. This has been corrected. <br></br>
 Synteny results between several species were not properly loaded in
@@ -3547,7 +3547,7 @@ reflect the current state of the database. <br></br>
        <attribute name="category">release</attribute>
        <attribute name="item"> 
 <![CDATA[
-FungiDB 2.1 is released and includes 39 Fungal genomes from Ascomycota, Basidiomycota, and Mucormycotina (Zygomycota) and 6 genomes of Oomycetes. This release builds on the 2.0 release from August to include 6 additional species, RNA-Seq from a population of Neurospora strains, growth time points in 3 fungi Coprinopsis, Neurospora, and Rhizopus, and Phytophthora species. The 6 new genomes include <span style="font-style: italic;">Batrachochytrium dendrobatidis</span>, <span style="font-style: italic;">Coprinopsis cinereus</span>, <span style="font-style: italic;">Histoplasma capsulatum</span>, <span style="font-style: italic;">Coccidioides posadasii<span>, <span style="font-style: italic;">Rhizopus oryzae (R. delemar)</span>, and <span style="font-style: italic;">Ustilago maydis</span>.
+FungiDB 2.1 is released and includes 39 Fungal genomes from Ascomycota, Basidiomycota, and Mucormycotina (Zygomycota) and 6 genomes of Oomycetes. This release builds on the 2.0 release from August to include 6 additional species, RNA-Seq from a population of <i>Neurospora</i> strains, growth time points in 3 fungi <i>Coprinopsis</i>, <i>Neurospora</i>, and <i>Rhizopus</i>, and <i>Phytophthora</i> species. The 6 new genomes include <span style="font-style: italic;">Batrachochytrium dendrobatidis</span>, <span style="font-style: italic;">Coprinopsis cinereus</span>, <span style="font-style: italic;">Histoplasma capsulatum</span>, <span style="font-style: italic;">Coccidioides posadasii<span>, <span style="font-style: italic;">Rhizopus oryzae (R. delemar)</span>, and <span style="font-style: italic;">Ustilago maydis</span>.
   ]]>
          </attribute>
    </record>
@@ -3562,8 +3562,8 @@ FungiDB 2.1 is released and includes 39 Fungal genomes from Ascomycota, Basidiom
 The 2.0 release, with 31 genomes including 6 Oomycetes was released at <a
 href="http://fungidb.org">fungidb.org</a>.The release includes improved
 view of the lists of species, links to OrthoMCL, inclusion of
-Microarray and RNA-Seq datasets from C.albicans, S. cerevisiae, N. crassa, S.pombe, and
-P. ramorum. The inclusion of the Oomycetes represents a collaboration
+Microarray and RNA-Seq datasets from <i>C.albicans</i>, <i>S. cerevisiae</i>, <i>N. crassa</i>, <i>S.pombe</i>, and
+<i>P. ramorum</i>. The inclusion of the Oomycetes represents a collaboration
 with <a href="http://bpp.oregonstate.edu/tyler">Brett Tyler's</a> group at Oregon State University.
 This is the first full release using new workflow and data analysis pipeline that has
 incorporated automation into the system.
@@ -3640,7 +3640,7 @@ strain JEC21</li>
        <attribute name="category">release</attribute>
        <attribute name="item">           
          <![CDATA[
-The 2.0 alpha release, with 8 genomes, from 5 Cryptococcus, Tremella mesenterica, Neurospora crassa, and Saccharomyces cerevisiae were released at <a href="http://alpha.fungidb.org">alpha.fungidb.org</a>. This is a pre-release using new workflow and data analysis pipeline. It will soon follow with additional species that incorporate the previously released genomes.
+The 2.0 alpha release, with 8 genomes, from 5 <i>Cryptococcus</i>, <i>Tremella mesenterica</i>, <i>Neurospora crassa</i>, and <i>Saccharomyces cerevisiae</i> were released at <a href="http://alpha.fungidb.org">alpha.fungidb.org</a>. This is a pre-release using new workflow and data analysis pipeline. It will soon follow with additional species that incorporate the previously released genomes.
           ]]>
        </attribute>
     </record>
