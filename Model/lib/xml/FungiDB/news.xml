@@ -31,62 +31,42 @@
         
         <h4>Genome Sequence and Annotation: these annotated genomes appear for the first time in FungiDB.</h4>
            <ul>
-             <li><a href="http:/a/app/record/dataset/DS_d6438671bd"><i>Aspergillus niger</i> N402</a> &ndash;  
+             <li><a href="http:/a/app/record/dataset/"><i>Aspergillus niger</i> N402</a> &ndash;  
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/29317534">Kj&aelig;rb&oslash;lling et al., 2018</a>.
              </li>
              
-             <li><a href="http:/a/app/record/dataset/DS_f5f72ac794"><i>Aspergillus niger</i> ATCC 1015</a> &ndash;  
+             <li><a href="http:/a/app/record/dataset/"><i>Aspergillus niger</i> ATCC 1015</a> &ndash;  
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/21543515">Andersen et al., 2011</a>.
              </li>
              
-              <li><a href="http:/a/app/record/dataset/DS_ba79cc3de1"><i>Aspergillus kawachii</i> IFO 4308</a> &ndash;  
+              <li><a href="http:/a/app/record/dataset/"><i>Aspergillus kawachii</i> IFO 4308</a> &ndash;  
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/22045919">Futagami et al., 2011</a>.
              </li>
              
-             <li><a href="http:/a/app/record/dataset/DS_32a5330fef"><i>Fusarium proliferatum</i> ET1</a> &ndash; 
+             <li><a href="http:/a/app/record/dataset/"><i>Fusarium proliferatum</i> ET1</a> &ndash; 
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/25480940">Teixeira et al., 2015</a>.
              </li>
              
-               <li><a href="http:/a/app/record/dataset/DS_9492ac49ce"><i>Fusarium proliferatum</i> NRRL62905</a> &ndash;  
+               <li><a href="http:/a/app/record/dataset/"><i>Fusarium proliferatum</i> NRRL62905</a> &ndash;  
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/25351875">Kj&aelig;rb&oslash;lling et al., 2018</a>.
              </li>
              
-             <li><a href="http:/a/app/record/dataset/DS_1566006e1e"><i>Scedosporium apiospermum</i> IHEM 14462</a> &ndash;  
+             <li><a href="http:/a/app/record/dataset/"><i>Scedosporium apiospermum</i> IHEM 14462</a> &ndash;  
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/25278533">Vandeputte et al., 2014</a>.
              </li>
            
-             <li><a href="http:/a/app/record/dataset/DS_3d23d8f8c0"><i>Sporothrix brasiliensis</i> 5110</a> &ndash;  
+             <li><a href="http:/a/app/record/dataset/"><i>Sporothrix brasiliensis</i> 5110</a> &ndash;  
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/25351875">Teixeira et al., 2014</a>.
              </li>
              
-            <li><a href="http:/a/app/record/dataset/DS_6048ff9e23"><i>Yarrowia lipolytica</i> CLIB89 (W29)</a> &ndash;  
+            <li><a href="http:/a/app/record/dataset/"><i>Yarrowia lipolytica</i> CLIB89 (W29)</a> &ndash;  
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/27603307">Magnan et al., 2016</a>.
              </li>
              
-            <li><a href="http:/a/app/record/dataset/DS_d1767fcbd3"><i>Candida parapsilosis</i> CDC 317</a> &ndash;  
+            <li><a href="http:/a/app/record/dataset/"><i>Candida parapsilosis</i> CDC 317</a> &ndash;  
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/19465905">Butler et al., 2009</a>.
              </li>
-               
-              <li><a href="http:/a/app/record/dataset/DS_9492ac49ce"><i>Cryptococcus gattii</i> NT-10</a> &ndash;  
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/25351875">Kj&aelig;rb&oslash;lling et al., 2018</a>.
-             </li>
-             
-              <li><a href="http:/a/app/record/dataset/DS_9492ac49ce"><i>Kwoniella bestiolae</i> CBS 10118</a> &ndash;  
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/25351875">Kj&aelig;rb&oslash;lling et al., 2018</a>.
-             </li>
-             
-              <li><a href="http:/a/app/record/dataset/DS_a62f2e98ce"><i>Lomentospora prolificans</i> JHH-5317</a> &ndash;  
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/28963165">Luo et al., 2017</a>.
-             </li>
-             
-              <li><a href="http:/a/app/record/dataset/DS_9492ac49ce"><i>Phytopthora plurivora</i> AV1007</a> &ndash;  
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/30060094">Vetukuri et al., 2018</a>.
-             </li>
-             
-              <li><a href="http:/a/app/record/dataset/DS_9492ac49ce"><i>Podospora anserina</i> S mat+</a> &ndash;  
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/18460219">Espagne et al., 2008</a> and
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/12892638">Silar et al., 2003</a>.
-             </li> 
+            
             </ul>
            <br>
            
