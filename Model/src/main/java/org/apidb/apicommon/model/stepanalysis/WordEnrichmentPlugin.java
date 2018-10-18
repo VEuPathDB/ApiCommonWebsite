@@ -45,7 +45,6 @@ public class WordEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
       "Bonferroni adjusted p-value"
   );
 
-  @Override
   public ValidationErrors validateFormParams(Map<String, String[]> formParams) throws WdkModelException, WdkUserException {
 
     ValidationErrors errors = new ValidationErrors();
@@ -70,7 +69,7 @@ public class WordEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
     Path resultFilePath = Paths.get(getStorageDirectory().toString(), TABBED_RESULT_FILE_PATH);
     String qualifiedExe = Paths.get(GusHome.getGusHome(), "bin", "apiWordEnrichment").toString();
-    LOG.info(qualifiedExe + " " + resultFilePath.toString() + " " + idSql + " " + 
+    LOG.info(qualifiedExe + " " + resultFilePath.toString() + " " + idSql + " " +
         wdkModel.getProjectId() + " " + pValueCutoff);
     return new String[]{ qualifiedExe, resultFilePath.toString(), idSql, wdkModel.getProjectId(), pValueCutoff};
   }
@@ -90,30 +89,30 @@ public class WordEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   public Object getFormViewModel() throws WdkModelException, WdkUserException {
     return createFormViewModel();
   }
-  
+
   private FormViewModel createFormViewModel() throws WdkModelException, WdkUserException {
     // get orgs to display in select
     List<Option> orgOptionList = EnrichmentPluginUtil
         .getOrgOptionList(getAnswerValue(), getWdkModel());
     return new FormViewModel(orgOptionList);
   }
-  
+
   @Override
   public JSONObject getResultViewModelJson() throws WdkModelException {
     return createResultViewModel().toJson();
   }
-  
+
   @Override
   public Object getResultViewModel() throws WdkModelException {
     return createResultViewModel();
   }
-  
+
   private ResultViewModel createResultViewModel() throws WdkModelException {
     Path inputPath = Paths.get(getStorageDirectory().toString(), TABBED_RESULT_FILE_PATH);
     List<ResultRow> results = new ArrayList<>();
     try (FileReader fileIn = new FileReader(inputPath.toFile());
          BufferedReader buffer = new BufferedReader(fileIn)) {
-      if (buffer.ready()) buffer.readLine();  // throw away header line	
+      if (buffer.ready()) buffer.readLine();  // throw away header line
       while (buffer.ready()) {
         String line = buffer.readLine();
         String[] columns = line.split(TAB);
@@ -137,9 +136,9 @@ public class WordEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     public List<Option> getOrganismOptions() {
       return _orgOptions;
     }
-    
+
     public String getOrganismParamHelp() { return EnrichmentPluginUtil.ORGANISM_PARAM_HELP; }
-    
+
     public JSONObject toJson() {
       JSONObject json = new JSONObject();
       JSONArray jsonarray = new JSONArray();
@@ -169,7 +168,7 @@ public class WordEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     public List<ResultRow> getResultData() { return _resultData; }
     public String getDownloadPath() { return _downloadPath; }
     public String getPvalueCutoff() { return EnrichmentPluginUtil.getPvalueCutoff(_formParams); }
-    
+
     JSONObject toJson() {
       JSONObject json = new JSONObject();
       json.put("headerRow", getHeaderRow());
@@ -220,7 +219,7 @@ public class WordEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     public String getPvalue() { return _pValue; }
     public String getBenjamini() { return _benjamini; }
     public String getBonferroni() { return _bonferroni; }
- 
+
     public JSONObject toJson() {
       JSONObject json = new JSONObject();
       json.put("word", _word);

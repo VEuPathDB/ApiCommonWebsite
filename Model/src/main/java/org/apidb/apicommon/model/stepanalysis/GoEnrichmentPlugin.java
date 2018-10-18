@@ -48,7 +48,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   private static final String TABBED_RESULT_FILE_PATH = "goEnrichmentResult.tab";
   private static final String HIDDEN_TABBED_RESULT_FILE_PATH = "hiddenGoEnrichmentResult.tab";
   private static final String IMAGE_RESULT_FILE_PATH = "goCloud.png";
-    //we would create another one here for the word cloud file 
+    //we would create another one here for the word cloud file
 
   private static final String ONTOLOGY_PARAM_HELP =
       "<p>Choose the Ontology that you are interested in analyzing. Only terms " +
@@ -60,7 +60,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
       "run separate GO enrichment analyses.</p>";
 
   private static final String EVIDENCE_PARAM_HELP =
-      "<p>A GO Evidence Code of IEA is assigned to a computationally assigned association." + 
+      "<p>A GO Evidence Code of IEA is assigned to a computationally assigned association." +
       "All others have some degree of curation</p>";
 
   private static final String PVALUE_PARAM_HELP =
@@ -91,7 +91,6 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
       "Bonferroni adjusted p-value"
   );
 
-  @Override
   public ValidationErrors validateFormParams(Map<String, String[]> formParams) throws WdkModelException, WdkUserException {
 
     ValidationErrors errors = new ValidationErrors();
@@ -102,19 +101,19 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     // validate organism
     EnrichmentPluginUtil.validateOrganism(formParams, getAnswerValue(), getWdkModel(), errors);
 
-    // validate annotation sources 
+    // validate annotation sources
     //    String sourcesStr = EnrichmentPluginUtil.getArrayParamValueAsString(
     //        GO_ASSOC_SRC_PARAM_KEY, formParams, errors);
 
     // validate evidence codes
     String evidCodesStr = EnrichmentPluginUtil.getArrayParamValueAsString(
-        GO_EVID_CODE_PARAM_KEY, formParams, errors); 
+        GO_EVID_CODE_PARAM_KEY, formParams, errors);
 
     // validate ontology
     String ontology = EnrichmentPluginUtil.getSingleAllowableValueParam(
         GO_ASSOC_ONTOLOGY_PARAM_KEY, formParams, errors);
 
-    //validate GOSubset  
+    //validate GOSubset
     String goSubset = EnrichmentPluginUtil.getArrayParamValueAsString(
     	GO_SUBSET_PARAM_KEY, formParams, errors);
 
@@ -173,7 +172,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     Path hiddenResultFilePath = Paths.get(getStorageDirectory().toString(), HIDDEN_TABBED_RESULT_FILE_PATH);
     Path imageResultFilePath = Paths.get(getStorageDirectory().toString(), IMAGE_RESULT_FILE_PATH);
     String qualifiedExe = Paths.get(GusHome.getGusHome(), "bin", "apiGoEnrichment").toString();
-    LOG.info(qualifiedExe + " " + resultFilePath.toString() + " " + idSql + " " + 
+    LOG.info(qualifiedExe + " " + resultFilePath.toString() + " " + idSql + " " +
 	     wdkModel.getProjectId() + " " + pValueCutoff + " " + ontology + " " + evidCodesStr + " " + goSubset + " " + imageResultFilePath.toString() + hiddenResultFilePath.toString());
     return new String[]{ qualifiedExe, resultFilePath.toString(), idSql,
                          wdkModel.getProjectId(), pValueCutoff, ontology, /*sourcesStr */ evidCodesStr, goSubset,  imageResultFilePath.toString(), hiddenResultFilePath.toString() };
@@ -181,10 +180,9 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
   /**
    * Make sure only one organism is represented in the results of this step
-   * 
+   *
    * @param answerValue answerValue that will be passed to this step
-   * @throws WdkUserException 
-   * @throws IllegalAnswerException if more than one organism is represented in this answer
+   * @throws WdkUserException
    */
   @Override
   public void validateAnswerValue(AnswerValue answerValue)
@@ -217,13 +215,13 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
   @Override
   public Object getFormViewModel() throws WdkModelException, WdkUserException {
-    
+
     return createFormViewModel();
   }
-  
+
   private FormViewModel createFormViewModel() throws WdkModelException, WdkUserException {
 
-      // JP I THINK I NEED TO ADD SOMETHING HERE 
+      // JP I THINK I NEED TO ADD SOMETHING HERE
 
     DataSource ds = getWdkModel().getAppDb().getDataSource();
     BasicResultSetHandler handler = new BasicResultSetHandler();
@@ -264,7 +262,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
     return new FormViewModel(orgOptionList, /*sources,*/ ontologies , evidCodes , goSubsets);
   }
-  
+
   @Override
   public JSONObject getFormViewModelJson() throws WdkModelException {
     try {
@@ -280,15 +278,15 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   public Object getResultViewModel() throws WdkModelException {
     return createResultViewModel();
   }
-  
-  private ResultViewModel createResultViewModel() throws WdkModelException {  
+
+  private ResultViewModel createResultViewModel() throws WdkModelException {
     Path inputPath = Paths.get(getStorageDirectory().toString(), HIDDEN_TABBED_RESULT_FILE_PATH);
     //    Path inputPath = Paths.get(getStorageDirectory().toString(), HIDDEN_TABBED_RESULT_FILE_PATH);
     //    Path imageResultFilePath = Paths.get(getStorageDirectory().toString(), IMAGE_RESULT_FILE_PATH);
     List<ResultRow> results = new ArrayList<>();
     try (FileReader fileIn = new FileReader(inputPath.toFile());
          BufferedReader buffer = new BufferedReader(fileIn)) {
-      if (buffer.ready()) buffer.readLine();  // throw away header line	
+      if (buffer.ready()) buffer.readLine();  // throw away header line
       StringBuilder revigoInputLists = new StringBuilder();
       while (buffer.ready()) {
         String line = buffer.readLine();
@@ -305,7 +303,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
       throw new WdkModelException("Unable to process result file at: " + inputPath, ioe);
     }
   }
-  
+
   @Override
   public JSONObject getResultViewModelJson() throws WdkModelException {
 
@@ -318,8 +316,8 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     private List<Option> _orgOptions;
     private List<Option> _ontologyOptions;
     private List<Option> _evidCodeOptions;
-    private List<Option> _goSubsetOptions;   
-    
+    private List<Option> _goSubsetOptions;
+
     public FormViewModel(List<Option> orgOptions, List<Option> ontologyOptions, List<Option> evidCodeOptions, List<Option> goSubsetOptions) {
       _orgOptions = orgOptions;
       _ontologyOptions = ontologyOptions;
@@ -333,7 +331,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
     public List<Option> getEvidCodeOptions() {
       return _evidCodeOptions;
-    } 
+    }
 
     public List<Option> getOntologyOptions() {
       return _ontologyOptions;
@@ -348,7 +346,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     public String getEvidenceParamHelp() { return EVIDENCE_PARAM_HELP; }
     public String getPvalueParamHelp() { return PVALUE_PARAM_HELP; }
     public String getGoSubsetParamHelp() { return GO_SUBSET_PARAM_HELP; }
-    
+
     public JSONObject toJson() {
       JSONObject json = new JSONObject();
       json.put("organismHelp", EnrichmentPluginUtil.ORGANISM_PARAM_HELP);
@@ -356,23 +354,23 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
       json.put("evidenceHelp", EVIDENCE_PARAM_HELP);
       json.put("pvalueHelp", PVALUE_PARAM_HELP);
       json.put("goSubsetHelp", GO_SUBSET_PARAM_HELP);
-      
+
       JSONArray organismsJson = new JSONArray();
       for (Option opt : _orgOptions) organismsJson.put(opt.toJson());
       json.put("organismOptions", organismsJson);
-      
+
       JSONArray ontologyJson = new JSONArray();
       for (Option opt : _ontologyOptions) ontologyJson.put(opt.toJson());
       json.put("ontologyOptions", ontologyJson);
-      
+
       JSONArray evidenceJson = new JSONArray();
       for (Option opt : _evidCodeOptions) evidenceJson.put(opt.toJson());
       json.put("evidenceOptions", evidenceJson);
-      
+
       JSONArray goSubsetJson = new JSONArray();
       for (Option opt : _goSubsetOptions) goSubsetJson.put(opt.toJson());
       json.put("goSubsetOptions", goSubsetJson);
-      
+
       return json;
     }
   }
@@ -411,7 +409,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     public String getGoSubset() { return FormatUtil.join(_formParams.get(GoEnrichmentPlugin.GO_SUBSET_PARAM_KEY), ", "); }
     public String getGoTermBaseUrl() { return _goTermBaseUrl; }
     public String getRevigoInputList() {return _revigoInputList; }
-    
+
     JSONObject toJson() {
       JSONObject json = new JSONObject();
       json.put("headerRow", getHeaderRow());
@@ -431,7 +429,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
       return json;
     }
   }
-  
+
   public static class ResultRow {
 
     private String _goId;
@@ -468,7 +466,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     public String getPvalue() { return _pValue; }
     public String getBenjamini() { return _benjamini; }
     public String getBonferroni() { return _bonferroni; }
-    
+
     public JSONObject toJson() {
       JSONObject json = new JSONObject();
       json.put("goId", _goId);
