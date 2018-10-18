@@ -19,7 +19,7 @@
 -->
 <record>
   <attribute name="headline">PlasmoDB 40 Released</attribute>
-  <attribute name="date">11 Oct 2018 13:00</attribute>
+  <attribute name="date">15 Oct 2018 13:00</attribute>
   <attribute name="tag">PlasmoDB10_18_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
@@ -1674,7 +1674,7 @@ Arial">Join our international team of 30+ software developers and biologists,
                  <!--Workspaces<br>-->
              </li><br>
              <li>Send Us Your Feedback!<br>We can polish our new features based on your valuable feedback. Please use the site 
-             and <a href="http://plasmodb.org/plasmo/contact.do">Contact Us</a> to tell us about your experience. 
+             and <a href="http://plasmodb.org/plasmo/app/contact-us">Contact Us</a> to tell us about your experience. 
               </li><br>
              <li>Release 28 is Still Available - <br><a href="http://r28.plasmodb.org/plasmo/">PlasmoDB 28</a> is available until we finalize our new features.</li><br>
             </ul> 
@@ -5053,7 +5053,7 @@ typically in the form of answering specific questions, using the feature(s) and 
        <attribute name="item">
            
          <![CDATA[
-PlasmoDB 4.4 has been discontinued.  If there are tools or other functionality that you used on PlasmoDB 4.4 that you need, please <b><a href="http://plasmodb.org/plasmo/contact.do" class="new-window" data-name="contact_us">contact us</a></b> to let us know and we will help you regain access to the missing functionality.
+PlasmoDB 4.4 has been discontinued.  If there are tools or other functionality that you used on PlasmoDB 4.4 that you need, please <b><a href="http://plasmodb.org/plasmo/app/contact-us" class="new-window" data-name="contact_us">contact us</a></b> to let us know and we will help you regain access to the missing functionality.
           ]]>
        </attribute>
 </record>

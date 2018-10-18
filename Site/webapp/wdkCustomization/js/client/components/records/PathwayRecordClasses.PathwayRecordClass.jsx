@@ -1,12 +1,12 @@
 /* global ChemDoodle */
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { flow, uniqueId } from 'lodash';
+import { uniqueId } from 'lodash';
 import $ from 'jquery';
 import { safeHtml } from 'wdk-client/ComponentUtils';
 import { loadChemDoodleWeb } from '../common/Compound';
 import { CategoriesCheckboxTree, Link, Loading, Dialog } from 'wdk-client/Components';
-import { withStore, withActions } from 'ebrc-client/util/component';
 import * as Ontology from 'wdk-client/OntologyUtils';
 import * as Category from 'wdk-client/CategoryUtils';
 import Menu from 'ebrc-client/components/Menu';
@@ -445,7 +445,7 @@ function makeCy(container, pathwayId, pathwaySource, PathwayNodes, PathwayEdges,
             {
               selector: 'node[node_type= "enzyme"][?hasImage]',
               style: {
-                  width:50,
+                  width:35,
                   height:25,
                   visibility:'visible',
                   'font-size':12,
@@ -456,11 +456,11 @@ function makeCy(container, pathwayId, pathwaySource, PathwayNodes, PathwayEdges,
             },
 
             {
-                selector: 'node[node_type= "enzyme"][zoomLevel > 1.4]',
+                selector: 'node[node_type= "enzyme"][zoomLevel > 1.4][?hasImage]',
                 style: {
                     visibility:'visible',
-                    width:25,
-                    height:10,
+                    width:35,
+                    height:25,
                     }
             },
 
@@ -468,8 +468,12 @@ function makeCy(container, pathwayId, pathwaySource, PathwayNodes, PathwayEdges,
             {
                 selector: 'node[node_type= "enzyme"][zoomLevel > 1.4][!hasImage]',
                 style: {
+                    visibility:'visible',
                    'font-size':6,
                     label: 'data(display_label)',
+                    width:'label',
+                    height:'label',
+
                 }
             },
 
@@ -562,6 +566,7 @@ function makeCy(container, pathwayId, pathwaySource, PathwayNodes, PathwayEdges,
                selector: 'node[node_type= "molecular entity"][?image][zoomLevel > 1.4][!side]',
                style: {
                    label:'data(name)',
+                   'border-width':0,
                    'text-valign': 'bottom',
                    'text-halign': 'center',
                    'text-margin-y':-6,
@@ -584,7 +589,7 @@ function makeCy(container, pathwayId, pathwaySource, PathwayNodes, PathwayEdges,
 
 
              {
-               selector: 'node[node_type= "molecular entity"][?paintingEnzymes][zoomLevel <= 2]',
+               selector: 'node[node_type= "molecular entity"][?paintingEnzymes][zoomLevel <= 1.4]',
                style: {
                shape: 'ellipse',
                width:7,
@@ -653,7 +658,7 @@ function makeCy(container, pathwayId, pathwaySource, PathwayNodes, PathwayEdges,
             {
                 selector: 'node.eupathdb-CytoscapeActiveNode',
                 style: {
-                    'border-width': '6px',
+                    'border-width': '3px',
                 },
             },
 
@@ -717,7 +722,7 @@ function makeCy(container, pathwayId, pathwaySource, PathwayNodes, PathwayEdges,
 
                     if (linkPrefix && (doAllNodes || n.data("gene_count") > 0 )) {
                         let link = linkPrefix + ecNum;
-                        let smallLink = link + '&h=20&w=50&compact=1';
+                        let smallLink = link + '&h=70&w=100&compact=1';
 
                         n.data('image', link);
                         n.data('smallImage', smallLink);
@@ -951,27 +956,27 @@ function readDynamicCols(dynamicColsOfIncomingStep, globalData) {
 }
 
 // enhance function supplements a component with additional custom data and AC props
-const enhance = flow(
+const enhance = connect(
   // pulls custom values out of store's state and will pass as props to enhanced component
 
-  withStore(state => ({
-    pathwayRecord: state.pathwayRecord,
+  (state) => ({
+    pathwayRecord: state.record.pathwayRecord,
     config: state.globalData.config,
     siteConfig: state.globalData.siteConfig,
-    nodeList: readDynamicCols(state.dynamicColsOfIncomingStep, state.globalData),
+    nodeList: readDynamicCols(state.record.dynamicColsOfIncomingStep, state.globalData),
     exactMatchEC: QueryString.parse(state.globalData.location.search.slice(1)).exact_match_only,
     excludeIncompleteEC: QueryString.parse(state.globalData.location.search.slice(1)).exclude_incomplete_ec,
-    dynamicColsOfIncomingStep: state.dynamicColsOfIncomingStep,
+    dynamicColsOfIncomingStep: state.record.dynamicColsOfIncomingStep,
     experimentCategoryTree: getExperimentCategoryTree(state),
     generaCategoryTree: getGeneraCategoryTree(state)
-  })),
-  // wraps these raw ACs with dispatchAction and will pass as props to enhanced component
-  withActions({
+  }),
+  // wraps these raw ACs with Redux store's dispatch and will pass as props to enhanced component
+  {
     setActiveNodeData,
     setPathwayError,
     setGeneraSelection,
     setFilteredNodeList
-  })
+  }
 );
 
 const SELECTORS = {
@@ -1615,7 +1620,7 @@ function setGeneraSelection(generaSelection) {
 
 function getExperimentCategoryTree(state) {
   return Ontology.getTree(state.globalData.ontology, Category.isQualifying({
-    recordClassName: state.recordClass.name,
+    recordClassName: state.record.recordClass.name,
     targetType: 'attribute',
     scope: 'graph-internal'
   }))

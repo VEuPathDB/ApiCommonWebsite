@@ -22,7 +22,7 @@
 
 <record>
   <attribute name="headline">TrichDB 40 Released</attribute>
-  <attribute name="date">11 Oct 2018 13:00</attribute>
+  <attribute name="date">15 Oct 2018 13:00</attribute>
   <attribute name="tag">TrichDB10_18_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
@@ -1049,7 +1049,7 @@ Arial">Join our international team of 30+ software developers and biologists,
                  <!--Workspaces<br>-->
              </li><br>
              <li>Send Us Your Feedback!<br>We can polish our new features based on your valuable feedback. Please use the site 
-             and <a href="http://trichdb.org/trichdb/contact.do">Contact Us</a> to tell us about your experience. 
+             and <a href="http://trichdb.org/trichdb/app/contact-us">Contact Us</a> to tell us about your experience. 
               </li><br>
              <li>Release 28 is Still Available - <br><a href="http://r28.trichdb.org/trichdb/">TrichDB 28</a> is available until we finalize our new features.</li><br>
           </ul>
@@ -2540,7 +2540,7 @@ TrichDB couples a comprehensive set of querying tools with extensively hyperlink
 <br><br>
 Finally, TrichDB is also a repository for T. vaginalis genome statistics, data and methods source links, links to other Trichmonas community web sites,  and daily updates of Trichomonas publications and genes deposited in Pubmed/Entrez.  New users can learn to use the TrichDB/ApiDB sites via a set of online tutorials linked from the TrichDB front page.
 <br><br>
-We hope you will take time to explore TrichDB. Please use the link found at the bottom of every TrichDB page to send us feedback  (<a href="http://trichdb.org/trichdb/contact.do" class="new-window" data-name="contact_us">Contact Us!</a>).  We look forward to hearing from you!
+We hope you will take time to explore TrichDB. Please use the link found at the bottom of every TrichDB page to send us feedback  (<a href="http://trichdb.org/trichdb/app/contact-us" class="new-window" data-name="contact_us">Contact Us!</a>).  We look forward to hearing from you!
 <br><br>
 Best regards,
 <br>

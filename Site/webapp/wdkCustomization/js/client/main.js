@@ -7,9 +7,9 @@ import smallMenuItems from './smallMenuItems';
 
 // import apicomm wrappers and additional routes
 import * as componentWrappers from './componentWrappers';
-import * as storeWrappers from './storeWrappers';
 import pluginConfig from './pluginConfig';
 import { wrapRoutes } from './routes';
+import wrapStoreModules from './wrapStoreModules';
 
 const quickSearches = [
   {
@@ -29,8 +29,8 @@ const quickSearches = [
         <li>chloroplast plastid</li>
         <li>"Histone H3"</li>
         <li>kinase</li>
-        <li>kinas\*</li>
-        <li>kin\*as\*</li>
+        <li>kinas*</li>
+        <li>kin*as*</li>
       </ul>
     `
     // help: `Use * as a wildcard, as in *inase, kin*se, kinas*. Do not use AND, OR. Use quotation marks to find an exact phrase. Click on 'Gene Text Search' to access the advanced gene search page.`,
@@ -41,8 +41,8 @@ const quickSearches = [
 initialize({
   componentWrappers,
   quickSearches,
-  storeWrappers,
   wrapRoutes,
+  wrapStoreModules,
   mainMenuItems,
   smallMenuItems,
   pluginConfig,
