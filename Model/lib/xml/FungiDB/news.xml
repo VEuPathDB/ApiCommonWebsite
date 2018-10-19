@@ -313,21 +313,7 @@
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_c334877c42">Phenotypic analysis of <i>Neurospora crassa</i> knockout mutants</a> &ndash; A phenotypic pipeline was designed for high&#45;throughput analysis of 10 different traits during hyphal growth, asexual sporulation (macroconidiation), and the sexual cycle in knockout mutants from <i>Neurospora crassa</i>. Provider: Katherine Borkovich; dataset provided prior to publication.
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/17352902" target="_blank">Borkovich et al.</a>
              </li>
-             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_f10e32c6b8"><i>Neurospora</i> Genome Project Phenotype Image Collection</a> &ndash; Analysis of colony growth and morphology was performed on solid Vogel&#39;s minimal (MIN) medium. For each strain, the hyphae at the edge of the colony and plate growth were photographed. 
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/17352902" target="_blank">Dunlap et al. 2007</a>,
-		 <a href="http://www.ncbi.nlm.nih.gov/pubmed/16801547" target="_blank">Colot et al. 2006</a>, and
-		 <a href="http://www.ncbi.nlm.nih.gov/pubmed/21590422" target="_blank">Turner G.E. 2011</a>.
-             </li>
-           </ul>
-           <br>
-           
-           <h4>Sequence sites, features and motifs</h4>
-           <ul>   
-           <li><a href="http:/a/app/record/dataset/DS_af6def78b1"><i>Coccidioides posadasii</i> RS TE GBrowse track</a> &ndash;
-               Annotation of transposable elements (TE) in <i>Coccidioides posadasii</i> using RepeatMasker, which identified TEs based on the RepBase reference library and REPET to support <i>de novo</i> TE identification.
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/29371508">Kirkland et al. 2018</a>.
-             </li>
-           </ul>
+             </ul>
            <br>
            
        <h4>Annotations from MIPS Functional Catalogue Database</h4>  
