@@ -9,9 +9,9 @@ import org.gusdb.wdk.model.answer.factory.AnswerValue;
  */
 public class GeneGenomeViewReporter extends GenomeViewReporter {
 
-    protected GeneGenomeViewReporter(AnswerValue answerValue) {
+  public GeneGenomeViewReporter(AnswerValue answerValue) {
     super(answerValue);
-  }
+  } 
 
     @Override
     public String prepareSql(String idSql) throws WdkModelException,

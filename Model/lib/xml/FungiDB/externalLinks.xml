@@ -27,12 +27,20 @@
             <attribute name="url"><![CDATA[http://fungalgenomes.org/blog]]></attribute>
         </row>
         <row>
-            <attribute name="title"><![CDATA[<i>Saccharomyces cerevisiae</i> at SGD]]></attribute>
+            <attribute name="title"><![CDATA[<i>Saccharomyces</i> genome database SGD]]></attribute>
             <attribute name="url"><![CDATA[http://yeastgenome.org]]></attribute>
+        </row>
+        <row>
+            <attribute name="title"><![CDATA[<i>Candida</i> genome database CGD]]></attribute>
+            <attribute name="url"><![CDATA[http://www.candidagenome.org]]></attribute>
         </row>
         <row>
             <attribute name="title"><![CDATA[<i>Aspergillus</i> genomes at AspGD]]></attribute>
             <attribute name="url"><![CDATA[http://www.aspergillusgenome.org/]]></attribute>
+        </row>
+        <row>
+            <attribute name="title"><![CDATA[<i>Aspergillus</i> resouce link page at AspGD]]></attribute>
+            <attribute name="url"><![CDATA[http://www.aspergillusgenome.org/ExternalResources.shtml]]></attribute>
         </row>
         <row>
             <attribute name="title"><![CDATA[Broad Fungal Genome Initiative]]></attribute>
@@ -54,17 +62,25 @@
             <attribute name="title"><![CDATA[Comparative Fungal Genome Platform]]></attribute>
             <attribute name="url"><![CDATA[http://cfgp.snu.ac.kr/]]></attribute>
         </row>
-<row>
+		<row>
             <attribute name="title"><![CDATA[Fungal Genetics Stock Center]]></attribute>
             <attribute name="url"><![CDATA[http://www.fgsc.net]]></attribute>
         </row>
-<row>
-            <attribute name="title"><![CDATA[<i>Aspergillus</i> resouce link page at AspGD]]></attribute>
-            <attribute name="url"><![CDATA[http://www.aspergillusgenome.org/ExternalResources.shtml]]></attribute>
+		<row>
+            <attribute name="title"><![CDATA[<i>Cyptococcus neoformans</i> TF Phenome Database]]></attribute>
+            <attribute name="url"><![CDATA[http://tf.cryptococcus.org/index.php?a=view]]></attribute>
         </row>
-<row>
-            <attribute name="title"><![CDATA[Oomycete Molecular Genetics Research Collaboration Network]]></attribute>
-            <attribute name="url"><![CDATA[http://pmgn.vbi.vt.edu/index.php]]></attribute>
+        <row>
+            <attribute name="title"><![CDATA[<i>Cyptococcus neoformans</i> TF Phenome Database]]></attribute>
+            <attribute name="url"><![CDATA[http://tf.cryptococcus.org/index.php?a=view]]></attribute>
+        </row>
+		<row>
+            <attribute name="title"><![CDATA[Fungal MLST Database]]></attribute>
+            <attribute name="url"><![CDATA[http://mlst.mycologylab.org/defaultinfo.aspx?page=home]]></attribute>
+        </row>
+        <row>
+            <attribute name="title"><![CDATA[KBase: U.S. DOE Systems Biology Knowledgebase]]></attribute>
+            <attribute name="url"><![CDATA[http://kbase.us]]></attribute>
         </row>
   </table>
 

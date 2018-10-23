@@ -15,187 +15,74 @@
     </record>
 -->
 
+<!--
 <record>
-  <attribute name="headline">FungiDB 40 Released</attribute>
-  <attribute name="date">15 Oct 2018 13:00</attribute>
-  <attribute name="tag">FungiDB10_18_release</attribute>
+  <attribute name="headline">FungiDB 42 Released</attribute>
+  <attribute name="date">15 Feb 2019 13:00</attribute>
+  <attribute name="tag">FungiDB02_19_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of FungiDB 40.<br>
-    FungiDB 40 represents a software and features release.</strong></p>
+    <p><strong>We are pleased to announce the release of FungiDB 41</strong></p>
       
       <section>
-      <h3><b>New features in FungiDB 40</b></h3>
-        <div style="margin-left: 3em;">
-        <h4>New Sense/Antisense RNA seq search</h4>
-         <ul>
-           <li><a href="/a/showQuestion.do?questionFullName=InternalGeneDatasetQuestions.GenesByRNASeqEvidence">RNA Seq searches</a> &mdash; <br>
-           A new Sense/Antisense search for exploring strand specific transcription is available for any strand specific RNA sequence data set.  
-           For each gene, the search compares the fold change in sense reads to the fold change in antisense reads and returns genes that 
-           have simultaneous changes in sense vs antisense expression between two samples. Versatile search parameters allow for choosing 
-           the direction and magnitude of the change in sense and antisense transcripts.  The search result page lists genes and indicates 
-           the paired Reference->Comparison samples that meet the criteria, and offers two graphs to help interpret 
-           the search results (FPKM vs sample bar graph, antisense FC vs sense FC scatter plot)
-           <a href="/assets/SenseAntisenseTutorial.pdf">Sense/Antisense search tutorial</a>.
-           </li>
-         </ul>  <br>
-         
-         <h4>New Gene page tools </h4>
-         <ul>
-           <li>Protein alignment tool &mdash; <br>
-              The Orthologs and Paralogs within EuPathDB
-              table now includes an option to run protein ClustalW alignments on orthologs.  Use the 'Protein clustalW' column to include orthologs in 
-              the aligment and click 'Run clustalW for selected genes' to initiate the alignment.  For more information see this
-              <a href="/assets/ClustalWonGenePage.pdf">ClustalW tutorial</a>.
-          </li>
-          <li>Protein-protein BLAST tool &mdash; <br>
-             The Protein features and properties
-             data section now includes an option to BLASTP the protein sequence against 8 data bases including Non-redundant protein sequences (nr), 
-             Reference proteins (refseq_protein), UniProtKB/Swiss-Prot (swissprot), Model Organisms (landmark), Patented protein sequences(pat), 
-             Protein Data Bank proteins(pdb), Metagenomic proteins(env_nr), and Transcriptome Shotgun Assembly proteins (tsa_nr).  For more information see this 
-             <a href="/assets/RunningBlastP.pdf">BlastP tutorial</a>.
-          </li>
-          <li>MitoProt tool &mdash; <br>
-             The Protein features and properties 
-             data section now includes an option to retrieve mitochondrial prediction data from  
-             <a href="https://ihg.gsf.de/ihg/mitoprot.html" target="_blank">MITOPROT: Prediction of mitochondrial targeting sequences</a>. Clicking 
-             the gene page MitoProt tool Submit button initiates a query of the protein sequence in MitoProt and opens a new tab 
-             populated with the prediction results. For more information see this 
-             <a href="/assets/RunningMitoProt.pdf">MitoProt tutorial</a>.
-          </li>
-          <li>WoLF PSORT tool &mdash; <br>
-             The Protein features and properties
-             data section now includes an option to retrieve predictions of protein subcellular localization sites from  
-             <a href="https://wolfpsort.hgc.jp/aboutWoLF_PSORT.html.en" target="_blank">WoLF PSORT</a> based on amino acid sequences. Choose an 
-             Organism type and click Submit to initiate a query of the protein sequence in WoLF PSORT and open a new tab 
-             populated with the prediction results. For more information see this 
-             <a href="/assets/RunningWoLFPSORT.pdf">WoLF PSORT tutorial</a>.
-          </li>
-         </ul><br>
-      <!--   
-         <h4>New Gene Result Analysis tool</h4>
-         <ul>
-           <li>A new tool to find 'Experiments with Similar Results' is available for any gene result.  Use the blue 'Analysis 
-           Result' tab on any gene result page to access the tool.  The tool compares the genes in your current result to 
-           gene lists generated from each transcriptomic data set based on GSEA. The tool returns a list of @PROJECT_ID@ data sets whose 
-           gene lists are statistically similar and may be worth investigating. For more information, see this 
-           <a href="/assets/XXXX">Sense/Experiments with Similar Results tutorial</a>.
-           </li>
-         </ul><br>
-       -->  
-         <h4>New Galaxy tool and workflow</h4>
-         <ul>
-           <li>Map Your Proteins to OrthoMCL Groups workflow &mdash; <br>
-           EuPathDB Galaxy now includes a preconfigured workflow for mapping proteins to OrthoMCL groups. The workflow 
-           uses BLAST and the OrthoMCL algorithm to assign your set of proteins to OrthoMCL groups.
-           Access the  workflow from the EuPathDB Galaxy home page under 
-           'Get started with pre-configured workflows'. The workflow employs three tools which can be accessed 
-           separately in the EuPathDB Galaxy tools menu under EuPathDB OrthoMCL Tools. This workflow duplicates 
-           and replaces the 'Assign your proteins to groups' function in the Tools menu of the 
-           <a href="http://orthomcl.org/orthomcl/" target="_blank">OrthoMCL site</a>.
-           For more information see this 
-           <a href="/assets/MapProteinsOrthoMCL.pdf">OrthoMCL proteome upload tutorial</a>.
-           </li>
-           <li>RNA-Seq to EuPathDB export tool &mdash; <br>
-           EuPathDB Galaxy now includes a tool for exporting the results of your RNA seq analysis to any EuPathDB site. The tool transfers 
-           bigwig and FPKM text files to your private My Data Sets page on EuPathDB. From the My Data Sets page the files 
-           are available for GBrowse visualization and the Search Strategy system.
-           For more information see this 
-           <a href="/assets/GalaxyRNASeqExportTool.pdf">RNA Seq to EuPathDB export tool tutorial</a>.
-           </li>
-         </ul><br>
-         
-         <br>
-       </div> 
-      </section>
-      
-      <section>
-      <h3><b>No new data in FungiDB 40</b></h3>
-      
-      </section>
-      
-      
-      
-      <section>
-         <aside>
-           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
-           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
-           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
-           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
-         </aside>
-      </section>
-
-    ]]>
-  </attribute>
-</record>
-
-
-<record>
-  <attribute name="headline">FungiDB 39 Released</attribute>
-  <attribute name="date">30 Aug 2018 13:00</attribute>
-  <attribute name="tag">FungiDB08_18_release</attribute>
-  <attribute name="category">release</attribute>
-  <attribute name="item">
-    <![CDATA[
-    <p><strong>We are pleased to announce the release of FungiDB 39</strong></p>
-      
-      <section>
-        <h3><b>New data in FungiDB 39</b></h3>
+        <h3><b>New data in FungiDB 41</b></h3>
         <div style="margin-left: 3em;">
         
         <h4>Genome Sequence and Annotation: these annotated genomes appear for the first time in FungiDB.</h4>
            <ul>
-             <li><a href="http:/a/app/record/dataset/DS_9492ac49ce"><i>Aspergillus ochraceoroseus</i> IBT 24754</a> &ndash;  
+             <li><a href="http:/a/app/record/dataset/"><i>Aspergillus niger</i> N402</a> &ndash;  
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/29317534">Kj&aelig;rb&oslash;lling et al., 2018</a>.
              </li>
-             <li><a href="http:/a/app/record/dataset/DS_ea5a27648e"><i>Sporothrix schenckii</i> 1099-18</a> &ndash; 
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/25480940">Teixeira et al., 2015</a>.,
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/25351875">Teixeira et al., 2014</a>.,
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/24855299">Teixeira et al., 2014</a>.
+             
+             <li><a href="http:/a/app/record/dataset/"><i>Aspergillus niger</i> ATCC 1015</a> &ndash;  
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/21543515">Andersen et al., 2011</a>.
              </li>
+             
+              <li><a href="http:/a/app/record/dataset/"><i>Aspergillus kawachii</i> IFO 4308</a> &ndash;  
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/22045919">Futagami et al., 2011</a>.
+             </li>
+             
+             <li><a href="http:/a/app/record/dataset/"><i>Fusarium proliferatum</i> ET1</a> &ndash; 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/25480940">Teixeira et al., 2015</a>.
+             </li>
+             
+               <li><a href="http:/a/app/record/dataset/"><i>Fusarium proliferatum</i> NRRL62905</a> &ndash;  
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/25351875">Kj&aelig;rb&oslash;lling et al., 2018</a>.
+             </li>
+             
+             <li><a href="http:/a/app/record/dataset/"><i>Scedosporium apiospermum</i> IHEM 14462</a> &ndash;  
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/25278533">Vandeputte et al., 2014</a>.
+             </li>
+           
+             <li><a href="http:/a/app/record/dataset/"><i>Sporothrix brasiliensis</i> 5110</a> &ndash;  
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/25351875">Teixeira et al., 2014</a>.
+             </li>
+             
+            <li><a href="http:/a/app/record/dataset/"><i>Yarrowia lipolytica</i> CLIB89 (W29)</a> &ndash;  
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/27603307">Magnan et al., 2016</a>.
+             </li>
+             
+            <li><a href="http:/a/app/record/dataset/"><i>Candida parapsilosis</i> CDC 317</a> &ndash;  
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/19465905">Butler et al., 2009</a>.
+             </li>
+            
             </ul>
            <br>
            
-        <h4>Genome Sequence and Annotation: updated genomes</h4>
-           <ul>   
-           <li><a href="http:/a/app/record/dataset/DS_d09ab83818"><i>Botrytis cinerea</i> B05.10</a> &ndash;
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/29317534">Syngenta Biotechnology, Inc.</a>
-             </li>
-             <li><a href="http:/a/app/record/dataset/DS_0d9ee4ff86"><i>Candida albicans</i> SC5314</a> &ndash; 
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/24025428">Muzzey et al., 2013</a>.,
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/17419877">van het Hoog M. et al., 2007</a>.,
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/15123810">Jones et al., 2004</a>.,
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/6394964">Gillum et al., 1984</a>.
-             </li>
-             <li><a href="http:/a/app/record/dataset/DS_e43fc5921f"><i>Candida albicans</i> SC5314_B</a> &ndash; 
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/24025428">Muzzey et al., 2013</a>.,
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/17419877">van het Hoog M. et al., 2007</a>.,
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/15123810">Jones et al., 2004</a>.,
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/6394964">Gillum et al., 1984</a>.
-             </li>
-             <li><a href="http:/a/app/record/dataset/DS_033b09f437"><i>Candida albicans</i> WO-1</a> &ndash; 
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/19465905">Butler et al., 2009</a>.,
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/12399384">Lockhart et al., 2002</a>.,
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/3539914">Slutsky et al., 1987</a>.
-             </li>
-             <li><a href="http:/a/app/record/dataset/DS_c8c07fac9f"><i>Candida glabrata</i> CBS138</a> &ndash; 
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/15229592">Dujon et al., 2004</a>.
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/12527359">Koszul et al., 2003</a>.
-             </li>
-           </ul>
            
         <h4>Transcriptomics</h4>
            <ul>
-             <li><a href="http:/a/app/record/dataset/DS_9f832f8fbb">Comparative transcriptomes of yeast and hyphal forms in <i>Histoplasma capsulatum</i> H143</a> &ndash; 
+             <li><a href="http:/a/app/record/dataset/DS_9f832f8fbb">Comparison of gene expression patterns in <i>Paracoccidioides brasiliensis</i> mycelia and yeasts <i>in vitro</i></a> &ndash; 
                  Analysis of yeast and hyphal transcript expression patterns in <i>Histoplasma capsulatum</i> H143 grown at 37°C and room temperature (RT), respectively.
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/26177267" target="_blank">Gilmore et al., 2015</a>.
              </li>
-             <li><a href="http:/a/app/record/dataset/DS_760d4a011d">Transcriptomic response of <i>Aspergillus niger</i> to lignocellulose (wheat straw)</a> &ndash;
+             
+             <li><a href="http:/a/app/record/dataset/DS_56f8fb561f">Transcriptomic response of <i>Aspergillus niger</i> to lignocellulose (willow)</a> &ndash;
              Transcriptomic profiling of Aspergillus niger growing on lignocellulose (AB SOLiD System 3.0). 
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/22912594" target="_blank">Delmas et al., 2012</a>.
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/24792495" target="_blank">van Munster et al., 2014</a>.
              </li>
+             
              <li><a href="http:/a/app/record/dataset/DS_bb15199826"><i>Aspergillus niger</i> gene co-expression network</a> &ndash;
              A meta-analysis of 155 transcriptomics experiments generated genome level co-expression networks for 9579 genes of <i>Aspergillus niger</i> genome. <a href="https://www.biorxiv.org/content/early/2018/08/23/398842" target="_blank">Manuscript submitted to bioRxiv</a>.
              </li>
@@ -258,6 +145,443 @@
            <br>
        </div>    
        </section>
+
+
+-->
+
+
+
+
+
+
+
+
+<record>
+  <attribute name="headline">FungiDB 41 Released</attribute>
+  <attribute name="date">05 Dec 2018 13:00</attribute>
+  <attribute name="tag">FungiDB12_18_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of FungiDB 41</strong></p>
+      
+      <section>
+        <h3><b>New data in FungiDB 41</b></h3>
+        <div style="margin-left: 3em;">
+        
+        <h4>Genome Sequence and Annotation: these annotated genomes appear for the first time in FungiDB.</h4>
+           <ul>
+             <li><a href="http:/a/app/record/dataset/DS_d6438671bd"><i>Aspergillus niger</i> N402</a> &ndash;  
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/29317534">Kj&aelig;rb&oslash;lling et al. 2018</a>.
+             </li>
+             
+             <li><a href="http:/a/app/record/dataset/DS_f5f72ac794"><i>Aspergillus niger</i> ATCC 1015</a> &ndash;  
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/21543515">Andersen et al. 2011</a>.
+             </li>
+             
+              <li><a href="http:/a/app/record/dataset/DS_ba79cc3de1"><i>Aspergillus kawachii</i> IFO 4308</a> &ndash;  
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/22045919">Futagami et al. 2011</a>.
+             </li>
+             
+             <li><a href="http:/a/app/record/dataset/DS_32a5330fef"><i>Fusarium proliferatum</i> ET1</a> &ndash; 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/25480940">Teixeira et al. 2015</a>.
+             </li>
+             
+               <li><a href="http:/a/app/record/dataset/DS_9492ac49ce"><i>Fusarium proliferatum</i> NRRL62905</a> &ndash;  
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/25351875">Kj&aelig;rb&oslash;lling et al. 2018</a>.
+             </li>
+             
+             <li><a href="http:/a/app/record/dataset/DS_1566006e1e"><i>Scedosporium apiospermum</i> IHEM 14462</a> &ndash;  
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/25278533">Vandeputte et al. 2014</a>.
+             </li>
+           
+             <li><a href="http:/a/app/record/dataset/DS_3d23d8f8c0"><i>Sporothrix brasiliensis</i> 5110</a> &ndash;  
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/25351875">Teixeira et al. 2014</a>.
+             </li>
+             
+            <li><a href="http:/a/app/record/dataset/DS_6048ff9e23"><i>Yarrowia lipolytica</i> CLIB89 (W29)</a> &ndash;  
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/27603307">Magnan et al. 2016</a>.
+             </li>
+             
+            <li><a href="http:/a/app/record/dataset/DS_d1767fcbd3"><i>Candida parapsilosis</i> CDC 317</a> &ndash;  
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/19465905">Butler et al. 2009</a>.
+             </li>
+               
+              <li><a href="http:/a/app/record/dataset/DS_9492ac49ce"><i>Cryptococcus gattii</i> NT-10</a> &ndash;  
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/25351875">Kj&aelig;rb&oslash;lling et al. 2018</a>.
+             </li>
+             
+              <li><a href="http:/a/app/record/dataset/DS_9492ac49ce"><i>Kwoniella bestiolae</i> CBS 10118</a> &ndash;  
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/25351875">Kj&aelig;rb&oslash;lling et al. 2018</a>.
+             </li>
+             
+              <li><a href="http:/a/app/record/dataset/DS_a62f2e98ce"><i>Lomentospora prolificans</i> JHH-5317</a> &ndash;  
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/28963165">Luo et al. 2017</a>.
+             </li>
+             
+              <li><a href="http:/a/app/record/dataset/DS_9492ac49ce"><i>Phytopthora plurivora</i> AV1007</a> &ndash;  
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/30060094">Vetukuri et al. 2018</a>.
+             </li>
+             
+              <li><a href="http:/a/app/record/dataset/DS_9492ac49ce"><i>Podospora anserina</i> S mat+</a> &ndash;  
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/18460219">Espagne et al. 2008</a> and
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/12892638">Silar et al. 2003</a>.
+             </li> 
+            </ul>
+           <br>
+           
+           
+        <h4>Transcriptomics</h4>
+           <ul>
+             <li><a href="http:/a/app/record/dataset/DS_9f832f8fbb">Comparison of gene expression patterns in <i>Paracoccidioides brasiliensis</i> mycelia and yeasts <i>in vitro</i></a> &ndash; 
+                 Analysis of yeast and hyphal transcript expression patterns in <i>Histoplasma capsulatum</i> H143 grown at 37°C and room temperature (RT), respectively.
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26177267" target="_blank">Gilmore et al. 2015</a>.
+             </li>
+             
+             <li><a href="http:/a/app/record/dataset/DS_56f8fb561f">Transcriptomic response of <i>Aspergillus niger</i> to lignocellulose (willow)</a> &ndash;
+             Transcriptomic profiling of Aspergillus niger growing on lignocellulose (AB SOLiD System 3.0). 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/22912594" target="_blank">Delmas et al. 2012</a>.
+             </li>
+             
+             <li><a href="http:/a/app/record/dataset/DS_bb15199826">Transcriptome of <i>N. crassa</i> strains growing on various carbon sources</a> &ndash;
+             Transcriptomic profiling to determine the role of the transcription factors CLR-1, CLR-2, and XLR-1 in plant cell wall degradation
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/26463163" target="_blank">Craig et al. 2015</a>.
+             </li>
+             
+             <li><a href="http:/a/app/record/dataset/DS_bb15199826">Transcriptome of <i>N. crassa</i> strains growing on various carbon sources</a> &ndash;
+             Transcriptomic profiling to determine the role of the transcription factors CLR-1, CLR-2, and XLR-1 in plant cell wall degradation
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/26463163" target="_blank">Craig et al. 2015</a>.
+             </li>
+             
+             <li><a href="http:/a/app/record/dataset/DS_bb15199826">Transcriptomics of banana pathogen <i>Fusarium oxysporum</i> f.sp. cubense race 1</a> &ndash;
+             Deep sequencing of mRNA from <i>Fusarium oxysporum</i> f. sp. cubense 1 after infecting <i>Musa acuminata</i> at 0h and 48h.
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/24743270" target="_blank">Guo et al. 2014</a>.
+             </li>
+        	</ul>
+        	
+        <h4>Proteomics</h4>
+           <ul>
+             <li><a href="http:/a/app/record/dataset/DS_bed61daec2">Protein composition of <i>C neoformans</i> yeast and spore forms</i></a> &ndash; 
+                 Nanoscale liquid chromatography/mass spectrometry was used to determine protein composition of Cryptococcus vegetative cells (yeast) and spores.
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26313153" target="_blank">Huang et al. 2015</a>.
+             </li>
+             
+             <li><a href="http:/a/app/record/dataset/DS_bed61daec2">Comparison of gene expression in 23 <i>Cryptococcus gattii</i> isolates</a> &ndash; 
+                 23 <i>C. gattii</i> isolates, representing both VIO strains and control strains, were grown for 24 hours in mammalian macrophages. 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/19651610" target="_blank">Ma et al. 2009</a>.
+             </li>
+        	</ul>
+           
+           <h4>Chip-seq data</h4>
+           <ul>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_df6d18e20e">ChiP-Seq of CLR-1, CLR-2, and XLR-1 knockout mutants and wild type strains growing on various carbon sources</a> &ndash;
+             TODO ADV-1 functions to generate distinct temporal dynamics of target genes in <i>Neurospora crassa</i>. 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26463163" target="_blank">Dekhang et al. 2015</a>
+             </li>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_df6d18e20e">ChiP-Seq of histone modifications in <i>F. graminearum</i> strains growing on media with high or low nitrogen levels</a> &ndash;
+             ChIP-seq of histone modifications in WT and kmt6 mutant of <i>Fusarium graminearum</i> grown in high and low nitrogen conditions. 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/24204317" target="_blank">Connolly et al. 2013</a>
+             </li>
+           </ul>  
+           
+        <h4>Whole genome sequence of isolates for SNP analysis</h4>
+           <ul>
+             <li><a href="http:/a/app/record/dataset/DS_213496374f">Aligned genomic sequence reads - <i>Cryptococcus neoformans</i> var. neoformans</a> &ndash;
+                 A total of 387 isolates from various lineages we sequenced (185 from global VNI lineage, 186 from African VNB, and 16 from VNII lineage corresponding to non-recombining split in VNB (VNBI and VNBII).
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/28611159"> Desjardins et al. 2017</a>
+             </li>
+             
+             <li><a href="http:/a/app/record/dataset/DS_213496374f">Aligned genomic sequence reads - <i>Neurospora crassa</i></a> &ndash;
+                 Genome-wide association study (GWAS) to identify novel loci underlying trait variation in the wild isolates of the filamentous fungus Neurospora crassa (Louisiana lineage).
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/26025978"> Zhao et al. 2015</a> and
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/23935534"> Palma-Guerrero et al. 2013</a>
+             </li>
+             
+             <li><a href="http:/a/app/record/dataset/DS_213496374f">Aligned genomic sequence reads - <i>Paracoccidioides brasiliensis</i></a> &ndash;
+                 Genome diversity, recombination, and virulence across the major lineages of <i>Paracoccidioides</i>.
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/27704050"> Mu&ntildeoz et al. 2016</a> 
+             </li>
+             
+             <li><a href="http:/a/app/record/dataset/DS_213496374f">Aligned genomic sequence reads - <i>Candida albicans</i></a> &ndash;
+                 Whole genome sequencing of wild-type and clinical isolates as well as laboratory-evolved strains of <i>Candida albicans</i> to identify and characterize mutations conferring amphotericin resistance.
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/24204207"> Vincent et al. 2013</a> 
+             </li>
+           </ul>
+           
+        <h4>Phenotype data: updated</h4>
+           <ul>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_c334877c42">Phenotypic analysis of <i>Neurospora crassa</i> knockout mutants</a> &ndash; A phenotypic pipeline was designed for high&#45;throughput analysis of 10 different traits during hyphal growth, asexual sporulation (macroconidiation), and the sexual cycle in knockout mutants from <i>Neurospora crassa</i>. Provider: Katherine Borkovich; dataset provided prior to publication.
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/17352902" target="_blank">Borkovich et al.</a>
+             </li>
+             </ul>
+           <br>
+           
+       <h4>Annotations from MIPS Functional Catalogue Database</h4>  
+            <ul> 
+             <li>Functional catalogue annotations for <i>Fusarium graminearum</i> PH-1 and <i>Ustilago maydis</i> 521 from the MIPS database were converted to GO terms and integrated as functional annotations in FungiDB releases 37 and 38. The logs are now available for these in the links below in the respective news sections.</a>.
+             </li>
+           </ul>  
+           <br>
+       </div>    
+       </section>
+       
+     <section>
+     <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+
+      
+     <section>
+     <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+
+    ]]>
+  </attribute>
+</record>
+
+
+<record>
+  <attribute name="headline">FungiDB 40 Released</attribute>
+  <attribute name="date">15 Oct 2018 13:00</attribute>
+  <attribute name="tag">FungiDB10_18_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of FungiDB 40.<br>
+    FungiDB 40 represents a software and features release.</strong></p>
+      
+      <section>
+      <h3><b>New features in FungiDB 40</b></h3>
+        <div style="margin-left: 3em;">
+        <h4>New Sense/Antisense RNA seq search</h4>
+         <ul>
+           <li><a href="/a/showQuestion.do?questionFullName=InternalGeneDatasetQuestions.GenesByRNASeqEvidence">RNA Seq searches</a> &mdash; <br>
+           A new Sense/Antisense search for exploring strand specific transcription is available for any strand specific RNA sequence data set.  
+           For each gene, the search compares the fold change in sense reads to the fold change in antisense reads and returns genes that 
+           have simultaneous changes in sense vs antisense expression between two samples. Versatile search parameters allow for choosing 
+           the direction and magnitude of the change in sense and antisense transcripts.  The search result page lists genes and indicates 
+           the paired Reference->Comparison samples that meet the criteria, and offers two graphs to help interpret 
+           the search results (FPKM vs sample bar graph, antisense FC vs sense FC scatter plot)
+           <a href="/assets/SenseAntisenseTutorial.pdf">Sense/Antisense search tutorial</a>.
+           </li>
+         </ul>  <br>
+         
+         <h4>New Gene page tools </h4>
+         <ul>
+           <li>Protein alignment tool &mdash; <br>
+              The Orthologs and Paralogs table now includes an option to run protein ClustalW alignments on selected orthologs.  Use the 'Protein clustalW' column to include orthologs in 
+              the aligment and click 'Run clustalW for selected genes' to initiate the alignment.  For more information see this
+              <a href="/assets/ClustalWonGenePage.pdf">ClustalW tutorial</a>.
+          </li>
+          <li>Protein-protein BLAST tool &mdash; <br>
+             The Protein features and properties
+             data section now includes an option to BLASTP the protein sequence against 8 data bases including Non-redundant protein sequences (nr), 
+             Reference proteins (refseq_protein), UniProtKB/Swiss-Prot (swissprot), Model Organisms (landmark), Patented protein sequences(pat), 
+             Protein Data Bank proteins (pdb), Metagenomic proteins (env_nr), and Transcriptome Shotgun Assembly proteins (tsa_nr).  For more information see this 
+             <a href="/assets/RunningBlastP.pdf">BlastP tutorial</a>.
+          </li>
+          <li>MitoProt tool &mdash; <br>
+             The Protein features and properties 
+             data section now includes an option to retrieve mitochondrial prediction data from  
+             <a href="https://ihg.gsf.de/ihg/mitoprot.html" target="_blank">MITOPROT: Prediction of mitochondrial targeting sequences</a>. Clicking 
+             the gene page MitoProt tool Submit button initiates a query of the protein sequence in MitoProt and opens a new tab 
+             populated with the prediction results. For more information see this 
+             <a href="/assets/RunningMitoProt.pdf">MitoProt tutorial</a>.
+          </li>
+          <li>WoLF PSORT tool &mdash; <br>
+             The Protein features and properties
+             data section now includes an option to retrieve predictions of protein subcellular localization sites from  
+             <a href="https://wolfpsort.hgc.jp/aboutWoLF_PSORT.html.en" target="_blank">WoLF PSORT</a> based on amino acid sequences. Choose an 
+             Organism type and click Submit to initiate a query of the protein sequence in WoLF PSORT and open a new tab 
+             populated with the prediction results. For more information see this 
+             <a href="/assets/RunningWoLFPSORT.pdf">WoLF PSORT tutorial</a>.
+          </li>
+         </ul><br>
+      <!--   
+         <h4>New Gene Result Analysis tool</h4>
+         <ul>
+           <li>A new tool to find 'Experiments with Similar Results' is available for any gene result.  Use the blue 'Analysis 
+           Result' tab on any gene result page to access the tool.  The tool compares the genes in your current result to 
+           gene lists generated from each transcriptomic data set based on GSEA. The tool returns a list of @PROJECT_ID@ data sets whose 
+           gene lists are statistically similar and may be worth investigating. For more information, see this 
+           <a href="/assets/XXXX">Sense/Experiments with Similar Results tutorial</a>.
+           </li>
+         </ul><br>
+       -->  
+         <h4>New Galaxy tool and workflow</h4>
+         <ul>
+           <li>Map Your Proteins to OrthoMCL Groups workflow &mdash; <br>
+           EuPathDB Galaxy now includes a preconfigured workflow for mapping proteins to OrthoMCL groups. The workflow 
+           uses BLAST and the OrthoMCL algorithm to assign your set of proteins to OrthoMCL groups.
+           Access the  workflow from the EuPathDB Galaxy home page under 
+           'Get started with pre-configured workflows'. The workflow employs three tools which can be accessed 
+           separately in the EuPathDB Galaxy tools menu under EuPathDB OrthoMCL Tools. This workflow duplicates 
+           and replaces the 'Assign your proteins to groups' function in the Tools menu of the 
+           <a href="http://orthomcl.org/orthomcl/" target="_blank">OrthoMCL site</a>.
+           For more information see this 
+           <a href="/assets/MapProteinsOrthoMCL.pdf">OrthoMCL proteome upload tutorial</a>.
+           </li>
+           <li>RNA-Seq to EuPathDB export tool &mdash; <br>
+           EuPathDB Galaxy now includes a tool for exporting the results of your RNA-seq analysis to any EuPathDB site. The tool transfers 
+           bigwig and FPKM text files to your private My Data Sets page on EuPathDB. From the My Data Sets page the files 
+           are available for GBrowse visualization and the Search Strategy system.
+           For more information see this 
+           <a href="/assets/GalaxyRNASeqExportTool.pdf">RNA-Seq to EuPathDB export tool tutorial</a>.
+           </li>
+         </ul><br>
+         
+         <br>
+       </div> 
+      </section>
+      
+      <section>
+      <h3><b>No new data in FungiDB 40</b></h3>
+      
+      </section>
+      
+      
+      
+      <section>
+         <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+
+    ]]>
+  </attribute>
+</record>
+
+
+<record>
+  <attribute name="headline">FungiDB 39 Released</attribute>
+  <attribute name="date">30 Aug 2018 13:00</attribute>
+  <attribute name="tag">FungiDB08_18_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of FungiDB 39</strong></p>
+      
+      <section>
+        <h3><b>New data in FungiDB 39</b></h3>
+        <div style="margin-left: 3em;">
+        
+        <h4>Genome Sequence and Annotation: these annotated genomes appear for the first time in FungiDB.</h4>
+           <ul>
+             <li><a href="http:/a/app/record/dataset/DS_9492ac49ce"><i>Aspergillus ochraceoroseus</i> IBT 24754</a> &ndash;  
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/29317534">Kj&aelig;rb&oslash;lling et al. 2018</a>
+             </li>
+             <li><a href="http:/a/app/record/dataset/DS_ea5a27648e"><i>Sporothrix schenckii</i> 1099-18</a> &ndash; 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/25480940">Teixeira et al. 2015</a>,
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/25351875">Teixeira et al. 2014</a>, and 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/24855299">Teixeira et al. 2014</a>.
+             </li>
+            </ul>
+           <br>
+           
+        <h4>Genome Sequence and Annotation: updated genomes</h4>
+           <ul>   
+           <li><a href="http:/a/app/record/dataset/DS_d09ab83818"><i>Botrytis cinerea</i> B05.10</a> &ndash;
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/29317534">Syngenta Biotechnology, Inc.</a>
+             </li>
+             <li><a href="http:/a/app/record/dataset/DS_0d9ee4ff86"><i>Candida albicans</i> SC5314</a> &ndash; 
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/24025428">Muzzey et al. 2013</a>,
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/17419877">van het Hoog M. et al. 2007</a>,
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/15123810">Jones et al. 2004</a>, and 
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/6394964">Gillum et al. 1984</a>.
+             </li>
+             <li><a href="http:/a/app/record/dataset/DS_e43fc5921f"><i>Candida albicans</i> SC5314_B</a> &ndash; 
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/24025428">Muzzey et al. 2013</a>,
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/17419877">van het Hoog M. et al. 2007</a>,
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/15123810">Jones et al. 2004</a>, and 
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/6394964">Gillum et al. 1984</a>.
+             </li>
+             <li><a href="http:/a/app/record/dataset/DS_033b09f437"><i>Candida albicans</i> WO-1</a> &ndash; 
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/19465905">Butler et al. 2009</a>,
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/12399384">Lockhart et al. 2002</a>, and 
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/3539914">Slutsky et al. 1987</a>
+             </li>
+             <li><a href="http:/a/app/record/dataset/DS_c8c07fac9f"><i>Candida glabrata</i> CBS138</a> &ndash; 
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/15229592">Dujon et al. 2004</a> and 
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/12527359">Koszul et al. 2003</a>.
+             </li>
+           </ul>
+           
+        <h4>Transcriptomics</h4>
+           <ul>
+             <li><a href="http:/a/app/record/dataset/DS_9f832f8fbb">Comparative transcriptomes of yeast and hyphal forms in <i>Histoplasma capsulatum</i> H143</a> &ndash; 
+                 Analysis of yeast and hyphal transcript expression patterns in <i>Histoplasma capsulatum</i> H143 grown at 37°C and room temperature, respectively.
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26177267" target="_blank">Gilmore et al. 2015</a>.
+             </li>
+             <li><a href="http:/a/app/record/dataset/DS_760d4a011d">Transcriptomic response of <i>Aspergillus niger</i> to lignocellulose (wheat straw)</a> &ndash;
+             Transcriptomic profiling of Aspergillus niger growing on lignocellulose (AB SOLiD System 3.0). 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/22912594" target="_blank">Delmas et al. 2012</a> and 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/24792495" target="_blank">van Munster et al. 2014</a>.
+             </li>
+             <li><a href="http:/a/app/record/dataset/DS_bb15199826"><i>Aspergillus niger</i> gene co-expression network</a> &ndash;
+             A meta-analysis of 155 transcriptomics experiments generated genome level co-expression networks for 9579 genes of <i>Aspergillus niger</i> genome. <a href="https://www.biorxiv.org/content/early/2018/08/23/398842" target="_blank">Manuscript submitted to bioRxiv</a>.
+             </li>
+        	</ul>
+        	
+        <h4>Proteomics</h4>
+           <ul>
+             <li><a href="http:/a/app/record/dataset/DS_bed61daec2">Secretome profiling of <i>Cryptococcus neoformans</i></a> &ndash; 
+                 Targeted secretome profiling of Pka-1 regulated proteins in <i>C. neoformans</i> was performed at 16, 48, 72, 96, and 120 hr post-inoculation in Pka-1 inductive and repressive media.
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26453029 " target="_blank">Geddes et al. 2015</a>.
+             </li>
+             <li><a href="http:/a/app/record/dataset/DS_bed61daec2">Quantitative MassSpec of <i>Cryptococcus neoformans</i> secretome of Pka-1 regulated proteins</a> &ndash; 
+                 Targeted secretome profiling of Pka-1 regulated proteins in <i>C. neoformans</i> was performed at 16, 48, 72, and 120 hr post-inoculation in Pka-1 inductive and repressive media.
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26453029 " target="_blank">Geddes et al. 2015</a>.
+             </li>
+        	</ul>
+           
+        <h4>Whole genome sequence of isolates for SNP analysis</h4>
+           <ul>
+             <li><a href="http:/a/app/record/dataset/DS_213496374f">Aligned genomic sequence reads - <i>Candida auris</i> clinical isolates</a> &ndash;
+                 Samples were collected from patients, patient contacts, healthcare workers, and the environment in 4 hospitals in Colombia with recent <i>C. auris</i> outbreaks.
+                 <a href="https://www.ncbi.nlm.nih.gov/bioproject/470683">NCBI's Bioproject record page</a> and   
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/29788045"> Escand&oacute;n et al. 2018</a>.
+             </li>
+           </ul>
+           
+        <h4>Phenotype data</h4>
+           <ul>
+             <li><a href="http:/a/app/record/dataset/DS_61efdacf5b">Manually Curated Fusarium Phenotypes</a> &ndash; 
+                 The phenotypes for <i>Fusarium graminearum</i> PH-1 are manually curated from published literature describing phenotypes obtained from mutant studies. The phenotypic data from <a href="http://www.ncbi.nlm.nih.gov/pubmed/25758923" target="_blank">Yun et al., 2007</a> publicationhave been manually curated in-line with EuPathDB&#39;s approach for  phenotype annotation and integrated into FungiDB. 
+                 We followed an &quot;entity &#43; quality&quot; approach and curated phenotypes with multiple ontologies: Phenotypic Quality Ontology (PATO) for &quot;quality&quot; terms and Gene Ontology (GO), Fungal Gross Anatomy Ontology (FAO),
+                 Chemical Entities of Biological Interest (ChEBI) and Ascomycete Phenotype Ontology (APO) for &quot;entity&quot; terms. 
+             </li>
+           </ul>
+           <br>
+           
+           <h4>Sequence sites, features and motifs</h4>
+           <ul>   
+           <li><a href="http:/a/app/record/dataset/DS_af6def78b1"><i>Coccidioides posadasii</i> RS TE GBrowse track</a> &ndash;
+               Annotation of transposable elements (TE) in <i>Coccidioides posadasii</i> using RepeatMasker, which identified TEs based on the RepBase reference library and REPET to support <i>de novo</i> TE identification.
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/29371508">Kirkland et al. 2018</a>.
+             </li>
+           </ul>
+           <br>
+           
+       <h4>Annotations from MIPS Functional Catalogue Database:</h4>  
+            <ul> 
+             <li>Functional catalogue annotations for <i>Fusarium graminearum</i> PH-1 and <i>Ustilago maydis</i> 521 from the MIPS database were converted to GO terms and integrated as functional annotations in FungiDB releases 37 and 38. The logs are now available for these in the links below in the respective news sections.</a>.
+             </li>
+           </ul>  
+           <br>
+       </div>    
+       </section>
        
       <section>
       <h3><b>New features in FungiDB 39</b></h3>
@@ -266,7 +590,7 @@
          <ul>
            <li>The <a href="/a/showQuestion.do?questionFullName=InternalGeneDatasetQuestions.GenesByPhenotypeEvidence">Identify Genes based on Phenotype Evidence </a> 
            page now contains two new searches: 1. The Curated Phenotype (CP) search returns genes based on phenotype characteristics. For data sets without Phenotype Qualifier data, 
-           the CP search incorporates a filter parameter for quickly choosing the desired phenotype characteristics. The 
+           the CP search incorporates a filter parameter for quickly choosing the desired phenotype characteristics. 2. The 
            new Phenotype Text (PT) search returns genes whose phenotypic descriptions contain your text term. 
            </li>
          </ul>
@@ -370,7 +694,7 @@
            <ul>
              <li><a href="http:/a/app/record/dataset/DS_213496374f">Aligned genomic sequence reads - Genomic context of azole-resistance mutations in <i>Aspergillus fumigatus</i></a> &ndash;
                  Whole-genome sequencing (WGS) was performed for high-resolution single-nucleotide polymorphism (SNP) analysis of 24 A. fumigatus isolates (azole-resistant and susceptible strains).
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/26037120">Abdolrasouli et al.</a>,  
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/26037120">Abdolrasouli et al.</a>  
              </li>
            </ul>
            
@@ -378,7 +702,7 @@
            <ul>   
            <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_5ca22e8fc8"><i>Coccidioides immitis</i> RS TE GBrowse track</a> &ndash;
                Annotation of transposable elements (TE) in Coccidioides immitis RS using RepeatMasker which identified TEs based on the RepBase reference library and REPET to support de novo TE identification.
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/29371508">Kirkland et al.</a>.
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/29371508">Kirkland et al.</a>
              </li>
            </ul>
            <br>
@@ -561,7 +885,7 @@
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_d2ff7c7826">Multidimensional regulation in transcriptome during sexual development in <i>Neurospora crassa</i></a> &ndash; 
                  Genome-wide analysis of <i>N. crassa</i> gene expression during sexual development. Transcriptomic sequencing was primed by random and multitargeted primers and accessed across eight time points encompassing the morphological changes and tissue and cellular development of maturing perithecia. 
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/24243796" target="_blank">Wang et al. 2014</a>, 
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/22626843" target="_blank">Wang et al. 2012</a>, 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/22626843" target="_blank">Wang et al. 2012</a>, and 
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/25329823" target="_blank">Lehr et al. 2014</a>
              </li>
              
@@ -572,8 +896,8 @@
            <ul>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_f10e32c6b8">Neurospora Genome Project Phenotype Image Collection</a> &ndash; 
                  New images were added to this data set describing the systematic characterisation of colony growth and morphology of <i>Neurospora crassa</i> knockout mutants. 
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/17352902" target="_blank">Dunlap et al. 2007</a>
-		 <a href="http://www.ncbi.nlm.nih.gov/pubmed/16801547" target="_blank">Colot et al. 2006</a>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/17352902" target="_blank">Dunlap et al. 2007</a>,
+		 <a href="http://www.ncbi.nlm.nih.gov/pubmed/16801547" target="_blank">Colot et al. 2006</a>, and
 		 <a href="http://www.ncbi.nlm.nih.gov/pubmed/21590422" target="_blank">Turner G.E. 2011</a>
              </li>
            </ul>
@@ -672,11 +996,11 @@
              <li>Announcing the Beta release of EuPathDB Workspace, a private workspace that can interface 
          with EuPathDB Galaxy and allows for viewing and interrogating private data against data that is already 
          integrated into EuPathDB (public data). The first EuPathDB workspace tool, 'Bigwig files to EuPathDB' 
-         exports bigwig files from EuPathDB Galaxy to EuPathDB. 
+         exports bigWig files from EuPathDB Galaxy to EuPathDB. 
          The tool creates a EuPathDB Data Set which is managed from the My Data Sets page along with your other private data sets. 
          Each data set also receives a record page which lists all files that the data set contains, offers file management 
          functions and ports files to the genome browser for viewing.<br><br>
-         <a href="https://youtu.be/igQZHjRBqV0" target="_blank">Video tutorial: Export Bigwig files to EuPathDB</a>
+         <a href="https://youtu.be/igQZHjRBqV0" target="_blank">Video tutorial: Export bigWig files to EuPathDB</a>
              </li>
          </ul>
          
@@ -725,7 +1049,7 @@
            <ul>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_0c8f7592b7"><i>Fusarium oxysporum</i> f. sp. cubense tropical race 4 54006</a> &ndash; 
                  Provider: Li-Jun Ma; genome provided prior to publication.  
-                 <a href="http://www.ncbi.nlm.nih.gov/bioproject/PRJNA73539">NCBI BioProject PRJNA73539</a>
+                 <a href="http://www.ncbi.nlm.nih.gov/bioproject/PRJNA73539">NCBI BioProject PRJNA73539</a>.
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_7f555aad50"><i>Fusarium oxysporum</i> Fo47</a> &ndash; 
                  Provider: Li-Jun Ma; genome provided prior to publication. 
@@ -736,7 +1060,7 @@
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_76ede52023"><i>Histoplasma capsulatum</i> H88 (<i>Ajellomyces capsulatus</i> H88)</a> &ndash; 
                  The Broad Institute. 
-                 <a href="http://www.ncbi.nlm.nih.gov/bioproject/PRJNA29163">NCBI Bioproject PRJNA29163</a>
+                 <a href="http://www.ncbi.nlm.nih.gov/bioproject/PRJNA29163">NCBI Bioproject PRJNA29163</a>.
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_9a46569d2f"><i>Penicillium rubens</i> Wisconsin 54-1255</a> &ndash; 
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/18820685">van den Berg M. A. et al. 2011</a>
@@ -765,9 +1089,9 @@
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/17352902" target="_blank">Borkovich et al.</a>
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_f10e32c6b8"><i>Neurospora</i> Genome Project Phenotype Image Collection</a> &ndash; Analysis of colony growth and morphology was performed on solid Vogel&#39;s minimal (MIN) medium. For each strain, the hyphae at the edge of the colony and plate growth were photographed. 
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/17352902" target="_blank">Dunlap et al. 2007</a>
-		 <a href="http://www.ncbi.nlm.nih.gov/pubmed/16801547" target="_blank">Colot et al. 2006</a>
-		 <a href="http://www.ncbi.nlm.nih.gov/pubmed/21590422" target="_blank">Turner G.E. 2011</a>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/17352902" target="_blank">Dunlap et al. 2007</a>,
+		 <a href="http://www.ncbi.nlm.nih.gov/pubmed/16801547" target="_blank">Colot et al. 2006</a>, and
+		 <a href="http://www.ncbi.nlm.nih.gov/pubmed/21590422" target="_blank">Turner G.E. 2011</a>.
              </li>
            </ul>
            
@@ -1080,7 +1404,7 @@
           which returns genes whose protein products were experimentally determined to be post-translationally modified. This search is categorized under Search for Genes, Proteomics, Post-Translational Modification.
        </div>
       
-      <h4>GO Slim Implementation<h4>
+      <h4>GO Slim Implementation</h4>
       <div style="margin-left: 3em;">
           
           GO Slim terms are now indicated in EuPathDB sites in the following ways:<br>
@@ -1188,7 +1512,7 @@
      
       <section>
       
-      <h4><i>Neurospora crassa</i> e-Compendium<h4>
+      <h4><i>Neurospora crassa</i> e-Compendium</h4>
       <div style="margin-left: 3em;">
       
       PubMed IDs from 
@@ -1202,21 +1526,21 @@
       
       <section>
       <h3><b>New features in this release</b></h3>
-      <h4>REVIGO direct link <h4>
+      <h4>REViGO direct link </h4>
       <div style="margin-left: 3em;">
           
           EuPathDB now offers a direct link from gene ontology (GO) enrichment results to 
-          <a href="http://revigo.irb.hr/">REVIGO</a>, a tool that provides GO term summarization and visualization.  
+          <a href="http://revigo.irb.hr/">REViGO</a>, a tool that provides GO term summarization and visualization.  
           To access this feature first run a GO term enrichment using the 'Analyze Results' option from any gene search result. Then click on 
           the 'Start Revigo Analysis' link (<a href="/fungidb/images/Revigo.png">upper right hand side of enrichment results</a>) 
-          to populate the REVIGO submission page with your GO enrichment results from EuPathDB.  Follow instructions 
-          on the REVIGO page to complete your analysis.
+          to populate the REViGO submission page with your GO enrichment results from EuPathDB.  Follow instructions 
+          on the REViGO page to complete your analysis.
           
       </div>
       </section>
       <section>
       
-      <h4>External database links<h4>
+      <h4>External database links</h4>
 
            <ul>
              <li>In a collaborative effort between FungiDB and PHI-Base, FungiDB gene pages now contain links to PHI-Base for
@@ -1660,11 +1984,11 @@
         <h4>RNA Sequencing:</h4>
            <ul>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4b0e1b490a">Cell cycle transcriptome of <i>Cryptococcus neoformans</i>  var. grubii</a> &ndash;   
-                 Cell-cycle transcript dynamics of wild-type budding yeast <i>Cryptococcus neoformans var. grubii</i>
+                 Cell-cycle transcript dynamics of wild-type budding yeast <i>Cryptococcus neoformans var. grubii</i>.
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/27918582">Kelliher et al.</a>
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_f101fb2669">Cell cycle transcriptome of <i>Saccharomyces cerevisiae</i> S288C</a> &ndash;   
-                 Cell-cycle transcript dynamics of wild-type budding yeast <i>Saccharomyces cerevisiae</i>
+                 Cell-cycle transcript dynamics of wild-type budding yeast <i>Saccharomyces cerevisiae</i>.
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/27918582">Kelliher et al.</a>
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_5ae73c0972">Transcriptome during sexual development in <i>Neurospora crassa</i> OR74A</a> &ndash;   
@@ -1695,7 +2019,7 @@
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_a0e51f125a">Aligned genomic sequence reads - <i>C. albicans</i> clinical isolates</a> &ndash;
                  Whole genome sequencing data from multiple <i>C. albicans</i> isolates collected 
                   from patients wtih oropharyngeal candidiasis.
-                 <a href="https://www.ncbi.nlm.nih.gov/bioproject/257929">NCBI's Bioproject record page</a>,  
+                 <a href="https://www.ncbi.nlm.nih.gov/bioproject/257929">NCBI's Bioproject record page</a> and  
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/25646566"> Ford et al.</a>
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_0a27b6bb7c">Aligned genome sequence reads : Multiple <i>Coccidioides</i> Isolates</a> &ndash;
@@ -2558,17 +2882,17 @@ Arial">Join our international team of 30+ software developers and biologists,
         <ul>
          <li>
             <a href="http://fungidb.org/fungidb/app/record/dataset/DS_44b0c00509">
-                       Inducer-Free Cellulase Secretion in Neurospora Crassa</a> &mdash;
-            Global mRNA abundances from liquid cultures of N. crassa were measured by sequencing on the Illumina Genome Analyzer IIx 
-            and HiSeq2000 platforms. Cultures were harvested at 4 hours (N. crassa), after a switch to media of interest. 
-            <a href="http://www.ncbi.nlm.nih.gov/pubmed/23766336">Coradetti et al.</a>.
+                       Inducer-Free Cellulase Secretion in <i>Neurospora crassa</i></a> &mdash;
+            Global mRNA abundances from liquid cultures of <i>N. crassa</i> were measured by sequencing on the Illumina Genome Analyzer IIx 
+            and HiSeq2000 platforms. Cultures were harvested at 4 hours, after a switch to media of interest. 
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/23766336">Coradetti et al.</a>
           </li>
           <li>
             <a href="http://fungidb.org/fungidb/app/record/dataset/DS_8e61740c73">
-                       Inducer-Free Cellulase Secretion in Aspergillus nidulans</a> &mdash;
+                       Inducer-Free Cellulase Secretion in <i>Aspergillus nidulans</i></a> &mdash;
             Global mRNA abundances from liquid cultures of A. nidulans were measured by sequencing on the Illumina Genome Analyzer IIx 
             and HiSeq2000 platforms. Cultures were harvested at 6 hours, after a switch to media of interest.
-            <a href="http://www.ncbi.nlm.nih.gov/pubmed/23766336">Coradetti et al.</a>.
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/23766336">Coradetti et al.</a>
           </li>
          </ul>
     <section>
@@ -2642,22 +2966,22 @@ One position is open in three possible locations: <br><br><a href="https://jobs.
         <h4>Genome Sequence and Annotation: the following genomes were updated to the current Genbank versions</h4>
         <ul>
           <li>
-            <a href="http://FungiDB.org/a/getDataset.do?datasets=Umay521_primary_genome_RSRC">Ustilago maydis 521</a> &mdash;
+            <a href="http://FungiDB.org/a/getDataset.do?datasets=Umay521_primary_genome_RSRC"><i>Ustilago maydis</i> 521</a> &mdash;
             genome sequence and annotation updated to 
             <a href="http://www.ncbi.nlm.nih.gov/assembly/272671">Genbank version 18 Feb 2015</a>.
           </li>
           <li>
-            <a href="http://FungiDB.org/a/getDataset.do?datasets=CposC735deltSOWgp_primary_genome_RSRC">Coccidioides posadasii C735 delta SOWgp</a> &mdash;
+            <a href="http://FungiDB.org/a/getDataset.do?datasets=CposC735deltSOWgp_primary_genome_RSRC"><i>Coccidioides posadasii</i> C735 delta SOWgp</a> &mdash;
             genome sequence and annotation updated to 
             <a href="http://www.ncbi.nlm.nih.gov/assembly/GCF_000151335.1">Genbank version 17 June 2009</a>.
           </li>
           <li>
-            <a href="http://FungiDB.org/a/getDataset.do?datasets=CposSilveira_primary_genome_RSRC">Coccidioides posadasii Silveira</a> &mdash;
+            <a href="http://FungiDB.org/a/getDataset.do?datasets=CposSilveira_primary_genome_RSRC"><i>Coccidioides posadasii</i> str. Silveira</a> &mdash;
             genome sequence and annotation updated to 
             <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000170175.2">Genbank version 25 Jan 2011</a>.
           </li>
           <li>
-            <a href="http://FungiDB.org/a/getDataset.do?datasets=CposRMSCC3488_primary_genome_RSRC">Coccidioides posadasii RMSCC3488</a> &mdash;
+            <a href="http://FungiDB.org/a/getDataset.do?datasets=CposRMSCC3488_primary_genome_RSRC"><i>Coccidioides posadasii</i> RMSCC3488</a> &mdash;
             genome sequence and annotation updated to 
             <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000150055.1">Genbank version 18 July 2007</a>.
           </li>
@@ -2668,39 +2992,39 @@ One position is open in three possible locations: <br><br><a href="https://jobs.
         <h4>New Genome Sequence: available for the first time in FungiDB:</h4> 
         <ul>  
           <li>
-            <a href="http://FungiDB.org/a/getDataset.do?datasets=CimmRMSCC2394_primary_genome_RSRC">Coccidioides immitis RMSCC 2394</a> &mdash;
+            <a href="http://FungiDB.org/a/getDataset.do?datasets=CimmRMSCC2394_primary_genome_RSRC"><i>Coccidioides immitis</i> RMSCC 2394</a> &mdash;
             <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000149895.1">Genbank version 11 Feb 2006</a>.
           </li>
           <li>
-            <a href="http://FungiDB.org/a/getDataset.do?datasets=CimmRMSCC3703_primary_genome_RSRC">Coccidioides immitis RMSCC 3703</a> &mdash;
+            <a href="http://FungiDB.org/a/getDataset.do?datasets=CimmRMSCC3703_primary_genome_RSRC"><i>Coccidioides immitis</i> RMSCC 3703</a> &mdash;
             <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000150085.1#/st">Genbank version 18 July 2007</a>.
           </li>
           <li>
-            <a href="http://FungiDB.org/a/getDataset.do?datasets=CposCPA0001_primary_genome_RSRC">Coccidioides posadasii CPA 0001</a> &mdash;
+            <a href="http://FungiDB.org/a/getDataset.do?datasets=CposCPA0001_primary_genome_RSRC"><i>Coccidioides posadasii</i> CPA 0001</a> &mdash;
             <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000150245.1">Genbank version 19 Nov 2007</a>.
           </li>
           <li>
-            <a href="http://FungiDB.org/a/getDataset.do?datasets=CposCPA0020_primary_genome_RSRC">Coccidioides posadasii CPA 0020</a> &mdash;
+            <a href="http://FungiDB.org/a/getDataset.do?datasets=CposCPA0020_primary_genome_RSRC"><i>Coccidioides posadasii</i> CPA 0020</a> &mdash;
             <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000150615.1">Genbank version 30 Jan 2008</a>.
           </li>
           <li>
-            <a href="http://FungiDB.org/a/getDataset.do?datasets=CposCPA0066_primary_genome_RSRC">Coccidioides posadasii CPA 0066</a> &mdash;
+            <a href="http://FungiDB.org/a/getDataset.do?datasets=CposCPA0066_primary_genome_RSRC"><i>Coccidioides posadasii</i> CPA 0066</a> &mdash;
             <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000150645.1">Genbank version 7 Feb 2008</a>.
           </li>
           <li>
-            <a href="http://FungiDB.org/a/getDataset.do?datasets=CposRMSCC1037_primary_genome_RSRC">Coccidioides posadasii RMSCC 1037</a> &mdash;
+            <a href="http://FungiDB.org/a/getDataset.do?datasets=CposRMSCC1037_primary_genome_RSRC"><i>Coccidioides posadasii</i> RMSCC 1037</a> &mdash;
             <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000150555.1">Genbank version 30 Jan 2008</a>.
           </li>
           <li>
-            <a href="http://FungiDB.org/a/getDataset.do?datasets=CposRMSCC1038_primary_genome_RSRC">Coccidioides posadasii RMSCC 1038</a> &mdash;
+            <a href="http://FungiDB.org/a/getDataset.do?datasets=CposRMSCC1038_primary_genome_RSRC"><i>Coccidioides posadasii</i> RMSCC 1038</a> &mdash;
             <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000150585.1">Genbank version 30 Jan 2008</a>.
           </li>
           <li>
-            <a href="http://FungiDB.org/a/getDataset.do?datasets=CposRMSCC2133_primary_genome_RSRC">Coccidioides posadasii RMSCC 2133</a> &mdash;
+            <a href="http://FungiDB.org/a/getDataset.do?datasets=CposRMSCC2133_primary_genome_RSRC"><i>Coccidioides posadasii</i> RMSCC 2133</a> &mdash;
             <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000150185.1">Genbank version 19 Nov 2007</a>.
           </li>
           <li>
-            <a href="http://FungiDB.org/a/getDataset.do?datasets=CposRMSCC3700_primary_genome_RSRC">Coccidioides posadasii RMSCC 3700</a> &mdash;
+            <a href="http://FungiDB.org/a/getDataset.do?datasets=CposRMSCC3700_primary_genome_RSRC"><i>Coccidioides posadasii</i> RMSCC 3700</a> &mdash;
             <a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000150215.1">Genbank version 19 Nov 2007</a>.
           </li>
         </ul>
@@ -2954,7 +3278,7 @@ Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-far
     <ul style="text-align: justify;">
       <li><span style="font-family: Helvetica,Arial,sans-serif;"><span style="text-decoration: underline;">Genomes
             and annotation</span> (full description and attribution is available
-          in the <strong><a href="/a/getDataset.do?display=detail#Genomes%20and%20Annotation">dataset
+          in the <strong><a href="/a/getDataset.do?display=detail#Genomes%20and%20Annotation">data set
               section</a></strong>):</span></li>
     </ul>
     <div style="text-align: justify;"><span style="font-family: Helvetica,Arial,sans-serif;"><br>
@@ -3011,7 +3335,7 @@ Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-far
               style="font-family: Helvetica,Arial,sans-serif;">from
               3 </span></span><em>Phytophthora sojae</em> samples: media grown,
           cysts, and from infected soybean hypocotyls.&nbsp; Additional
-          information and links to searches can be viewed in the <strong><a href="/a/getDataset.do?question=GeneQuestions.GenesByRNASeqPsojP6497_Tyler_Infection_rnaSeq_RSRC&amp;display=detail#116">dataset
+          information and links to searches can be viewed in the <strong><a href="/a/getDataset.do?question=GeneQuestions.GenesByRNASeqPsojP6497_Tyler_Infection_rnaSeq_RSRC&amp;display=detail#116">data set
               section</a></strong>. &nbsp;</span></li>
     </ul>
     <p style="text-align: justify;" class="MsoNormal"><span style="font-family: Helvetica,Arial,sans-serif;"><b
@@ -3335,7 +3659,7 @@ reflect the V12 release made March 2013. The updated version will be available i
 The <span style="font-style: italic;">Coccidioides</span> RNA-Seq data
 in the previous release had flipped the labels of the spherule and
 mycelium results, this has been corrected.<br></br>
-Errors in previous loading of gene product information for P. sojae
+Errors in previous loading of gene product information for <i>P. sojae</i>
 had left many genes without sufficient product information and
 description. This has been corrected. <br></br>
 Synteny results between several species were not properly loaded in
@@ -3360,7 +3684,7 @@ reflect the current state of the database. <br></br>
        <attribute name="category">release</attribute>
        <attribute name="item"> 
 <![CDATA[
-FungiDB 2.1 is released and includes 39 Fungal genomes from Ascomycota, Basidiomycota, and Mucormycotina (Zygomycota) and 6 genomes of Oomycetes. This release builds on the 2.0 release from August to include 6 additional species, RNA-Seq from a population of Neurospora strains, growth time points in 3 fungi Coprinopsis, Neurospora, and Rhizopus, and Phytophthora species. The 6 new genomes include <span style="font-style: italic;">Batrachochytrium dendrobatidis</span>, <span style="font-style: italic;">Coprinopsis cinereus</span>, <span style="font-style: italic;">Histoplasma capsulatum</span>, <span style="font-style: italic;">Coccidioides posadasii<span>, <span style="font-style: italic;">Rhizopus oryzae (R. delemar)</span>, and <span style="font-style: italic;">Ustilago maydis</span>.
+FungiDB 2.1 is released and includes 39 Fungal genomes from Ascomycota, Basidiomycota, and Mucormycotina (Zygomycota) and 6 genomes of Oomycetes. This release builds on the 2.0 release from August to include 6 additional species, RNA-Seq from a population of <i>Neurospora</i> strains, growth time points in 3 fungi <i>Coprinopsis</i>, <i>Neurospora</i>, and <i>Rhizopus</i>, and <i>Phytophthora</i> species. The 6 new genomes include <span style="font-style: italic;">Batrachochytrium dendrobatidis</span>, <span style="font-style: italic;">Coprinopsis cinereus</span>, <span style="font-style: italic;">Histoplasma capsulatum</span>, <span style="font-style: italic;">Coccidioides posadasii<span>, <span style="font-style: italic;">Rhizopus oryzae (R. delemar)</span>, and <span style="font-style: italic;">Ustilago maydis</span>.
   ]]>
          </attribute>
    </record>
@@ -3375,8 +3699,8 @@ FungiDB 2.1 is released and includes 39 Fungal genomes from Ascomycota, Basidiom
 The 2.0 release, with 31 genomes including 6 Oomycetes was released at <a
 href="http://fungidb.org">fungidb.org</a>.The release includes improved
 view of the lists of species, links to OrthoMCL, inclusion of
-Microarray and RNA-Seq datasets from C.albicans, S. cerevisiae, N. crassa, S.pombe, and
-P. ramorum. The inclusion of the Oomycetes represents a collaboration
+Microarray and RNA-Seq datasets from <i>C.albicans</i>, <i>S. cerevisiae</i>, <i>N. crassa</i>, <i>S.pombe</i>, and
+<i>P. ramorum</i>. The inclusion of the Oomycetes represents a collaboration
 with <a href="http://bpp.oregonstate.edu/tyler">Brett Tyler's</a> group at Oregon State University.
 This is the first full release using new workflow and data analysis pipeline that has
 incorporated automation into the system.
@@ -3453,7 +3777,7 @@ strain JEC21</li>
        <attribute name="category">release</attribute>
        <attribute name="item">           
          <![CDATA[
-The 2.0 alpha release, with 8 genomes, from 5 Cryptococcus, Tremella mesenterica, Neurospora crassa, and Saccharomyces cerevisiae were released at <a href="http://alpha.fungidb.org">alpha.fungidb.org</a>. This is a pre-release using new workflow and data analysis pipeline. It will soon follow with additional species that incorporate the previously released genomes.
+The 2.0 alpha release, with 8 genomes, from 5 <i>Cryptococcus</i>, <i>Tremella mesenterica</i>, <i>Neurospora crassa</i>, and <i>Saccharomyces cerevisiae</i> were released at <a href="http://alpha.fungidb.org">alpha.fungidb.org</a>. This is a pre-release using new workflow and data analysis pipeline. It will soon follow with additional species that incorporate the previously released genomes.
           ]]>
        </attribute>
     </record>

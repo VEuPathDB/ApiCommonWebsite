@@ -289,6 +289,8 @@ package ApiCommonWebsite::View::GraphPackage::Templates::ExpressionTwoChannel::D
 
 use Data::Dumper;
 
+use EbrcWebsiteCommon::View::GraphPackage::GGPiePlot;
+
 # @Override
 
 sub init {
@@ -315,12 +317,21 @@ sub init {
 
   my $pieProfileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@pieProfileSetNames);
 
-  my $hb3Pie = EbrcWebsiteCommon::View::GraphPackage::GGPiePlot::MPMP->new(@_);
+  my $hb3Pie = EbrcWebsiteCommon::View::GraphPackage::GGPiePlot->new(@_);
   $hb3Pie->setProfileSets($pieProfileSets);
   $hb3Pie->setPartName("expr_val_pie_HB3");
   my $pieTitle = $hb3Pie->getPlotTitle();
   $hb3Pie->setPlotTitle("HB3 - $pieTitle");
   $hb3Pie->setXaxisLabel('');
+
+  my $scalingFactor = $self->getScalingFactor();
+
+  my $size = 16 * $scalingFactor;
+  if($self->getCompact()) {
+    $size = 4;
+  }
+
+  $hb3Pie->setRPostscript("gp = gp + annotate(\"text\", x = 0, y = 0, label = profile.df.full\$ELEMENT_NAMES_NUMERIC[profile.df.full\$VALUE == max(profile.df.full\$VALUE)][1], size = $size)");
 
   $self->setGraphObjects($combined, @hb3Graphs, @_3D7Graphs, @dd2Graphs, $hb3Pie);
 
