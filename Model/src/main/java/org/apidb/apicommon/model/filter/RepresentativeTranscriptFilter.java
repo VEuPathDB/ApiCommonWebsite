@@ -141,7 +141,8 @@ public class RepresentativeTranscriptFilter extends StepFilter {
     }
     else {
       // remove view filter (already present)
-      newSpec.getViewFilterOptions().removeAll(option -> option.getFilterName().equals(RepresentativeTranscriptFilter.FILTER_NAME));
+      newSpec.getViewFilterOptions().removeAll(option ->
+          option.getFilterName().equals(RepresentativeTranscriptFilter.FILTER_NAME));
     }
 
     return newSpec.buildRunnable();
