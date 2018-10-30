@@ -24,9 +24,9 @@ import org.gusdb.wdk.model.report.ReporterConfigException;
 import org.json.JSONObject;
 import org.json.JSONWriter;
 
-public abstract class IsolateViewReporter extends AbstractReporter {
+public class IsolateViewReporter extends AbstractReporter {
 
-  protected IsolateViewReporter(AnswerValue answerValue) {
+  public IsolateViewReporter(AnswerValue answerValue) {
     super(answerValue);
   }
 
@@ -61,6 +61,11 @@ public abstract class IsolateViewReporter extends AbstractReporter {
 
   @Override
   public Reporter configure(JSONObject config) throws ReporterConfigException, WdkModelException {
+    return this;
+  }
+
+  @Override
+  public Reporter configure(Map<String, String> config) throws ReporterConfigException, WdkModelException {
     return this;
   }
 

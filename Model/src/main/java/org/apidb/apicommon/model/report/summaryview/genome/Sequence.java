@@ -30,6 +30,7 @@ public class Sequence implements Comparable<Sequence> {
     for (Feature feature : features) {
       feature.writeJson(writer);
     }
+    writer.endArray();
     writer.key("regions").array();
     for (Region region : regions) {
       region.writeJson(writer);
