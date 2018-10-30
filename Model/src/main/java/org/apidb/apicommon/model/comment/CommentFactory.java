@@ -25,6 +25,7 @@ import org.gusdb.fgputil.runtime.Manageable;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.config.ModelConfigUserDB;
+import org.gusdb.wdk.model.user.NoSuchElementException;
 import org.gusdb.wdk.model.user.UserFactory;
 
 /**
@@ -261,12 +262,17 @@ public class CommentFactory implements Manageable<CommentFactory> {
   }
 
   private void insertCommentUser(long userId) throws WdkModelException {
-    Map<String,String> props = _userFactory.getUserById(userId).getProfileProperties();
-    String sql = "insert into " + _config.getCommentSchema() + "comment_users " +
-        "(user_id, first_name, last_name, organization) values (?, ?, ?, ?)";
-    new SQLRunner(_commentDs, sql).executeStatement(
-        new Object[] { userId, props.get("firstName"), props.get("lastName"), props.get("organization") },
-        new Integer[] { Types.BIGINT, Types.VARCHAR, Types.VARCHAR, Types.VARCHAR });
+    try {
+      Map<String,String> props = _userFactory.getUserById(userId).getProfileProperties();
+      String sql = "insert into " + _config.getCommentSchema() + "comment_users " +
+          "(user_id, first_name, last_name, organization) values (?, ?, ?, ?)";
+      new SQLRunner(_commentDs, sql).executeStatement(
+          new Object[] { userId, props.get("firstName"), props.get("lastName"), props.get("organization") },
+          new Integer[] { Types.BIGINT, Types.VARCHAR, Types.VARCHAR, Types.VARCHAR });
+    }
+    catch (NoSuchElementException e) {
+      throw new WdkModelException(e);
+    }
   }
 
   public void updateCommentUser(UserProfile userProfile) {
