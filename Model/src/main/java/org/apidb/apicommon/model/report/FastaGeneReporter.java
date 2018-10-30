@@ -1,6 +1,6 @@
 package org.apidb.apicommon.model.report;
 
-import org.gusdb.wdk.model.answer.factory.AnswerValue;
+import org.gusdb.wdk.model.answer.AnswerValue;
 
 public class FastaGeneReporter extends FastaReporter {
 

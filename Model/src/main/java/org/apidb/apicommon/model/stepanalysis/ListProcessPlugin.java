@@ -11,7 +11,7 @@ import org.gusdb.fgputil.validation.ValidationBundle;
 import org.gusdb.fgputil.validation.ValidationBundle.ValidationBundleBuilder;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.analysis.AbstractSimpleProcessAnalyzer;
-import org.gusdb.wdk.model.answer.factory.AnswerValue;
+import org.gusdb.wdk.model.answer.AnswerValue;
 
 public class ListProcessPlugin extends AbstractSimpleProcessAnalyzer {
   

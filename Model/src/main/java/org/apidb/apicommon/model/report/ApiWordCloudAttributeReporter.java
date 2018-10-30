@@ -4,7 +4,7 @@ import org.apidb.apicommon.model.TranscriptUtil;
 import org.apidb.apicommon.model.filter.RepresentativeTranscriptFilter;
 import org.eupathdb.common.model.report.EbrcWordCloudAttributeReporter;
 import org.gusdb.wdk.model.WdkModelException;
-import org.gusdb.wdk.model.answer.factory.AnswerValue;
+import org.gusdb.wdk.model.answer.AnswerValue;
 import org.gusdb.wdk.model.report.Reporter;
 import org.gusdb.wdk.model.report.ReporterConfigException;
 import org.json.JSONObject;

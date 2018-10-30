@@ -4,7 +4,7 @@ import org.apidb.apicommon.model.TranscriptUtil;
 import org.apidb.apicommon.model.filter.RepresentativeTranscriptFilter;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
-import org.gusdb.wdk.model.answer.factory.AnswerValue;
+import org.gusdb.wdk.model.answer.AnswerValue;
 import org.gusdb.wdk.model.record.attribute.plugin.HistogramAttributePlugin;
 import org.gusdb.wdk.model.user.Step;
 import org.gusdb.wdk.model.user.User;

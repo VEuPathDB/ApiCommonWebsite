@@ -5,7 +5,7 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 import org.apidb.apicommon.model.filter.RepresentativeTranscriptFilter;
 import org.gusdb.wdk.model.WdkModelException;
-import org.gusdb.wdk.model.answer.factory.AnswerValue;
+import org.gusdb.wdk.model.answer.AnswerValue;
 import org.gusdb.wdk.model.answer.spec.FilterOptionList;
 import org.gusdb.wdk.model.question.Question;
 import org.gusdb.wdk.model.report.ReporterConfigException;

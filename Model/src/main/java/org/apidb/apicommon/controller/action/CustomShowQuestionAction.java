@@ -23,7 +23,7 @@ import org.gusdb.fgputil.MapBuilder;
 import org.gusdb.wdk.controller.CConstants;
 import org.gusdb.wdk.controller.action.ShowQuestionAction;
 import org.gusdb.wdk.controller.actionutil.ActionUtility;
-import org.gusdb.wdk.model.answer.factory.AnswerValue;
+import org.gusdb.wdk.model.answer.AnswerValue;
 import org.gusdb.wdk.model.answer.factory.AnswerValueFactory;
 import org.gusdb.wdk.model.answer.spec.AnswerSpec;
 import org.gusdb.wdk.model.answer.stream.FileBasedRecordStream;
