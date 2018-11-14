@@ -4,7 +4,7 @@ import static org.gusdb.fgputil.functional.Functions.contains;
 
 import org.apache.log4j.Logger;
 import org.gusdb.fgputil.Named;
-import org.gusdb.fgputil.validation.ValidObjectFactory.Runnable;
+import org.gusdb.fgputil.validation.ValidObjectFactory.RunnableObj;
 import org.gusdb.fgputil.validation.ValidationBundle;
 import org.gusdb.fgputil.validation.ValidationLevel;
 import org.gusdb.wdk.model.WdkModelException;
@@ -121,7 +121,7 @@ public class RepresentativeTranscriptFilter extends StepFilter {
     return (prefValue == null ? REPRESENTATIVE_TRANSCRIPT_FILTER_ON_BY_DEFAULT : Boolean.valueOf(prefValue));
   }
 
-  public static Runnable<AnswerSpec> applyToStepFromUserPreference(Runnable<AnswerSpec> answerSpec, User user) {
+  public static RunnableObj<AnswerSpec> applyToStepFromUserPreference(RunnableObj<AnswerSpec> answerSpec, User user) {
     // read from step if transcript-only filter is turned on...
     boolean filterOnInStep = contains(answerSpec.getObject().getViewFilterOptions(), option ->
         option.getKey().equals(RepresentativeTranscriptFilter.FILTER_NAME));
