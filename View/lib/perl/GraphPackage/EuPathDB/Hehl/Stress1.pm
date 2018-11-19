@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::GiardiaDB::Hehl::Stress1;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Hehl::Stress1;
 
 use strict;
 use vars qw( @ISA );

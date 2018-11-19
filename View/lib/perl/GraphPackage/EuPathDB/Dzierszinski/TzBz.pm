@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::ToxoDB::Dzierszinski::TzBz;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Dzierszinski::TzBz;
 
 use strict;
 use vars qw( @ISA );

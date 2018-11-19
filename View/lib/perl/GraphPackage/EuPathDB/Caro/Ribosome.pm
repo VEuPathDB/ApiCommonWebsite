@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::PlasmoDB::Caro::Ribosome;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Caro::Ribosome;
 
 use strict;
 use vars qw( @ISA );

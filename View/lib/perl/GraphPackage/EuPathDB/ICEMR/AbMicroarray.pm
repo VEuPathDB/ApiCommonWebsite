@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::PlasmoDB::ICEMR::AbMicroarray;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::ICEMR::AbMicroarray;
 
 use strict;
 use vars qw( @ISA);

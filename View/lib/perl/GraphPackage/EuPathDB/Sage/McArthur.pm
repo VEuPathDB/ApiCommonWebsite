@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::GiardiaDB::Sage::McArthur;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Sage::McArthur;
 
 use strict;
 use vars qw( @ISA );

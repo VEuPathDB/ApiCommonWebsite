@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::HostDB::Gregory::TgME49RnaSeqHuman;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Gregory::TgME49RnaSeqHuman;
 
 use strict;
 use vars qw( @ISA );

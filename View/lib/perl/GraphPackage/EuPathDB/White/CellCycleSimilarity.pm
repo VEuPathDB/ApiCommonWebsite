@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::ToxoDB::White::CellCycleSimilarity;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::White::CellCycleSimilarity;
 
 use strict;
 use vars qw( @ISA );

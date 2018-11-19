@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::PlasmoDB::Cowman::Sir2KO;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Cowman::Sir2KO;
 
 use strict;
 use vars qw( @ISA );

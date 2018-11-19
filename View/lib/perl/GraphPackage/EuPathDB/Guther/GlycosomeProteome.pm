@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::TriTrypDB::Guther::GlycosomeProteome;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Guther::GlycosomeProteome;
 
 use strict;
 use vars qw( @ISA );

@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::PlasmoDB::Winzeler::Cc;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Winzeler::Cc;
 
 use vars qw( @ISA );
 

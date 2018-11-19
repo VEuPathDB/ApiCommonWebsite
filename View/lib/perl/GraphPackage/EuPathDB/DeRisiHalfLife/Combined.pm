@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::PlasmoDB::DeRisiHalfLife::Combined;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::DeRisiHalfLife::Combined;
 
 use strict;
 use vars qw( @ISA );

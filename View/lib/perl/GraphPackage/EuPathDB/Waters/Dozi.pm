@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::PlasmoDB::Waters::Dozi;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Waters::Dozi;
 
 use strict;
 use vars qw( @ISA );

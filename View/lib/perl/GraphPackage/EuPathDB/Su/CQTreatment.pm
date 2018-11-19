@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::PlasmoDB::Su::CQTreatment;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Su::CQTreatment;
 
 use strict;
 use vars qw( @ISA );

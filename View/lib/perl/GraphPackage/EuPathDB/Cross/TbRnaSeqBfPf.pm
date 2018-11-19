@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::TriTrypDB::Cross::TbRnaSeqBfPf;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Cross::TbRnaSeqBfPf;
 
 use strict;
 use vars qw( @ISA );

@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::ToxoDB::Matrajt::BzTimeSeries;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Matrajt::BzTimeSeries;
 
 use strict;
 use vars qw( @ISA );

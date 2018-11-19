@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::PlasmoDB::MEXP128::Ver2;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::MEXP128::Ver2;
 
 use strict;
 use vars qw( @ISA );

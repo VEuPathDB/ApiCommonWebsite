@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::ToxoDB::Boothroyd::TgME49M4;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Boothroyd::TgME49M4;
 
 use strict;
 use vars qw( @ISA );

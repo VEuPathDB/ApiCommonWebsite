@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::TriTrypDB::Tarleton::TcTranscriptome;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Tarleton::TcTranscriptome;
 
 use strict;
 use vars qw( @ISA );

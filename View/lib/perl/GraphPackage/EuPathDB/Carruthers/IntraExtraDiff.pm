@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::ToxoDB::Carruthers::IntraExtraDiff;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Carruthers::IntraExtraDiff;
 
 use strict;
 use vars qw( @ISA );

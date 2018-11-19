@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::GiardiaDB::Hehl::Encystation;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Hehl::Encystation;
 
 use strict;
 use vars qw( @ISA );

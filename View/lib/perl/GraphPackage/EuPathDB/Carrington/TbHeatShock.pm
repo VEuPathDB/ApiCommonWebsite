@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::TriTrypDB::Carrington::TbHeatShock;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Carrington::TbHeatShock;
 
 use strict;
 use vars qw( @ISA );

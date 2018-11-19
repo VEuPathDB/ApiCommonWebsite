@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::FungiDB::SaccharomycesCerevisiae::MicroArrCellCycleTS;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::SaccharomycesCerevisiae::MicroArrCellCycleTS;
 
 use strict;
 use vars qw( @ISA );

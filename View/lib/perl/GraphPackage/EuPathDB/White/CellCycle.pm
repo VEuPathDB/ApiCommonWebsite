@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::ToxoDB::White::CellCycle;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::White::CellCycle;
 
 use strict;
 use vars qw( @ISA );

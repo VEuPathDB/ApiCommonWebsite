@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::ToxoDB::Gregory::TgME49RnaSeqTS;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Gregory::TgME49RnaSeqTS;
 
 use strict;
 use vars qw( @ISA );

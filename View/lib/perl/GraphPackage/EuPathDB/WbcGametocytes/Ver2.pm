@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::PlasmoDB::WbcGametocytes::Ver2;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::WbcGametocytes::Ver2;
 
 
 use strict;

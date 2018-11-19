@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::PlasmoDB::Su::PfSevenStages;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Su::PfSevenStages;
 
 use strict;
 use vars qw( @ISA );

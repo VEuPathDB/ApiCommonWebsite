@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::PiroplasmaDB::Lau::Bbovis;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Lau::Bbovis;
 
 use strict;
 use vars qw( @ISA );

@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::PlasmoDB::Duffy::PfRnaSeq;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Duffy::PfRnaSeq;
 
 
 use strict;

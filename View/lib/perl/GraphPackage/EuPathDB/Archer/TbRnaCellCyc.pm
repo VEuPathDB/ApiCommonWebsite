@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::TriTrypDB::Archer::TbRnaCellCyc;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Archer::TbRnaCellCyc;
 
 use strict;
 use vars qw( @ISA );

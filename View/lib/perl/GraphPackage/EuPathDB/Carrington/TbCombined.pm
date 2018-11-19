@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::TriTrypDB::Carrington::TbCombined;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Carrington::TbCombined;
 
 use strict;
 use vars qw( @ISA );

@@ -1,4 +1,4 @@
-package EbrcWebsiteCommon::View::GraphPackage::PlasmoDB::OverlayIRBC::Ver2;
+package EbrcWebsiteCommon::View::GraphPackage::EuPathDB::OverlayIRBC::Ver2;
 
 use strict;
 use vars qw( @ISA );
@@ -8,7 +8,7 @@ use vars qw( @ISA );
 use EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet;
 use EbrcWebsiteCommon::View::GraphPackage::LinePlot;
 
-use EbrcWebsiteCommon::View::GraphPackage::PlasmoDB::Winzeler::Mapping;
+use EbrcWebsiteCommon::View::GraphPackage::EuPathDB::Winzeler::Mapping;
 use EbrcWebsiteCommon::View::GraphPackage::Util;
 
 sub init {
@@ -30,8 +30,8 @@ sub init {
   my $times_hb3 = $self->getTimePointMapping($hb3ProfileSet, '48 Hour Cycle Timepoint Map for HB3');
   my $times_dd2 = $self->getTimePointMapping($dd2ProfileSet, '48 Hour Cycle Timepoint Map for Dd2');
 
-  my @temp_times = EbrcWebsiteCommon::View::GraphPackage::PlasmoDB::Winzeler::Mapping::TemperatureTimes();
-  my @sorb_times = EbrcWebsiteCommon::View::GraphPackage::PlasmoDB::Winzeler::Mapping::SorbitolTimes();
+  my @temp_times = EbrcWebsiteCommon::View::GraphPackage::EuPathDB::Winzeler::Mapping::TemperatureTimes();
+  my @sorb_times = EbrcWebsiteCommon::View::GraphPackage::EuPathDB::Winzeler::Mapping::SorbitolTimes();
 
 
   my @derisiProfileArray = ([$hb3ProfileSet, '', $times_hb3],

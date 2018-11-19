@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::ToxoDB::Boothroyd::TzBz;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Boothroyd::TzBz;
 
 use strict;
 use vars qw( @ISA );

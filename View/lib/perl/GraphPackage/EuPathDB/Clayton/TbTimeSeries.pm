@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::TriTrypDB::Clayton::TbTimeSeries;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Clayton::TbTimeSeries;
 
 use strict;
 use vars qw( @ISA );

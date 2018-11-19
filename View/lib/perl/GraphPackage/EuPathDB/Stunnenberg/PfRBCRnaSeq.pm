@@ -1,4 +1,4 @@
-package EbrcWebsiteCommon::View::GraphPackage::PlasmoDB::Stunnenberg::PfRBCRnaSeq;
+package EbrcWebsiteCommon::View::GraphPackage::EuPathDB::Stunnenberg::PfRBCRnaSeq;
 
 use strict;
 use vars qw( @ISA );

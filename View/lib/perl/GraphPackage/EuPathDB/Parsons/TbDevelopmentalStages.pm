@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::TriTrypDB::Parsons::TbDevelopmentalStages;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Parsons::TbDevelopmentalStages;
 
 use strict;
 use vars qw( @ISA );

@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::TriTrypDB::Tschudi::TbSimpleRNASeq;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Tschudi::TbSimpleRNASeq;
 
 use strict;
 use vars qw( @ISA );

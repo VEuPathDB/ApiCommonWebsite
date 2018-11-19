@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::TriTrypDB::Myler::LmSpliceSites;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Myler::LmSpliceSites;
 
 use strict;
 use vars qw( @ISA );

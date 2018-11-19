@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::PlasmoDB::Kazura::AbMicroarray;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Kazura::AbMicroarray;
 
 use strict;
 use vars qw( @ISA);
