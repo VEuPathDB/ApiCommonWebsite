@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "type": "object",
+  "description": "Mapping of references to other resources",
+  "additionalProperties": false,
+  "properties": {
+    "doi": {
+      "$ref": "./reference-array.json"
+    },
+    "genBank": {
+      "$ref": "./reference-array.json"
+    },
+    "pubMed": {
+      "$ref": "./reference-array.json"
+    },
+    "author": {
+      "$ref": "./reference-array.json"
+    }
+  }
+}

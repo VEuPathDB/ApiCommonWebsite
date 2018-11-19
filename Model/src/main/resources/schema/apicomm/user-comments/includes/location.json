@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "type": "object",
+  "properties": {
+    "target": {
+      "description": "Location target type",
+      "type": "string",
+      "maxLength": 20
+    },
+    "ranges": {
+      "description": "Location ranges",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "start": {
+            "type": "integer"
+          },
+          "end": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "start",
+          "end"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "reverse": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "target",
+    "locations"
+  ]
+}

@@ -10,8 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apidb.apicommon.controller.DownloadAction;
-import org.apidb.apicommon.controller.MimeTypes;
 import org.apidb.apicommon.model.comment.CommentConfig;
 import org.apidb.apicommon.model.comment.CommentFactory;
 import org.gusdb.wdk.controller.actionutil.ActionUtility;
@@ -26,7 +24,8 @@ public class UserFileDownloadAction extends DownloadAction {
       throws Exception {
 
     ServletContext application = getServlet().getServletContext();
-    String projectId = application.getInitParameter(Utilities.ARGUMENT_PROJECT_ID);
+    String projectId = application.getInitParameter(
+        Utilities.ARGUMENT_PROJECT_ID);
 
     String fname = request.getParameter("fname");
 
@@ -34,13 +33,15 @@ public class UserFileDownloadAction extends DownloadAction {
 
     if (!file.exists()) {
       return mapping.findForward("fileNotFound");
-    } else if (file.isDirectory()) {
+    }
+    else if (file.isDirectory()) {
       ActionForward forwardBase = mapping.findForward("isDir");
-      String dirPath = "../" + forwardBase.getPath() + "/" + projectId + "/"
-          + file.getName();
+      String dirPath = "../" + forwardBase.getPath() + "/" + projectId + "/" +
+          file.getName();
       System.out.println("dirPath " + dirPath);
       return new ActionForward(dirPath, true);
-    } else {
+    }
+    else {
       StreamInfo info = getStreamInfo(mapping, form, request, response);
       sendStreamResponse(response, info);
     }
@@ -75,7 +76,6 @@ public class UserFileDownloadAction extends DownloadAction {
     String filePath = uploadPath + "/" + projectId + "/" + fname;
 
     return new File(filePath);
-
   }
 
   @Override

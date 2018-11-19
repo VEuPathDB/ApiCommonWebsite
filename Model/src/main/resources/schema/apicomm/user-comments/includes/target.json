@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "type": "object",
+  "properties": {
+    "type": {
+      "description": "Comment target type name",
+      "type": "string",
+      "maxLength": 20,
+    },
+    "id": {
+      "description": "Comment target stable id",
+      "type": "string",
+      "maxLength": 200
+    }
+  },
+  "required": [
+    "id",
+    "type"
+  ],
+  "additionalProperties": false
+}
