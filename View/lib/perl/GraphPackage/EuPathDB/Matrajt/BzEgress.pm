@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::ToxoDB::Matrajt::BzEgress;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Matrajt::BzEgress;
 
 use strict;
 use vars qw( @ISA );

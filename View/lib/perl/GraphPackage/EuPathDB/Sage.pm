@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::GiardiaDB::Sage;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Sage;
 
 =pod
 

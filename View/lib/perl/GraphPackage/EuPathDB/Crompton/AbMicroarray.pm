@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::PlasmoDB::Crompton::AbMicroarray;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Crompton::AbMicroarray;
 
 use strict;
 use vars qw( @ISA);

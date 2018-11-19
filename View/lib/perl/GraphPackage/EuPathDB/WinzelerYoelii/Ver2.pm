@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::PlasmoDB::WinzelerYoelii::Ver2;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::WinzelerYoelii::Ver2;
 
 use strict;
 use vars qw( @ISA );

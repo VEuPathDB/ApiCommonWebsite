@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::TriTrypDB::ClaytonDegradation::HalfLife;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::ClaytonDegradation::HalfLife;
 
 use strict;
 use vars qw( @ISA );

@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::TriTrypDB::Tschudi::TbSpliceSites;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Tschudi::TbSpliceSites;
 
 use strict;
 use vars qw( @ISA );

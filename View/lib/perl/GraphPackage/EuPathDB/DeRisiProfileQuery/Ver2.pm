@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::PlasmoDB::DeRisiProfileQuery::Ver2;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::DeRisiProfileQuery::Ver2;
 
 use strict;
 use vars qw( @ISA );

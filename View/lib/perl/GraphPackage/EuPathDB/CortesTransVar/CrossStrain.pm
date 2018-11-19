@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::PlasmoDB::CortesTransVar::CrossStrain;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::CortesTransVar::CrossStrain;
 
 use strict;
 use vars qw( @ISA );

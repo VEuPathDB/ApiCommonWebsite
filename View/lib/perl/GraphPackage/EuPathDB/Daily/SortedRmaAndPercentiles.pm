@@ -1,11 +1,11 @@
-package ApiCommonWebsite::View::GraphPackage::PlasmoDB::Daily::SortedRmaAndPercentiles;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Daily::SortedRmaAndPercentiles;
 
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( EbrcWebsiteCommon::View::GraphPackage::PlasmoDB::Daily );
+@ISA = qw( EbrcWebsiteCommon::View::GraphPackage::EuPathDB::Daily );
 
-use EbrcWebsiteCommon::View::GraphPackage::PlasmoDB::Daily;
+use EbrcWebsiteCommon::View::GraphPackage::EuPathDB::Daily;
 
 use EbrcWebsiteCommon::Model::CannedQuery::Profile;
 use EbrcWebsiteCommon::Model::CannedQuery::ProfileSet;

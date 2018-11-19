@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::PlasmoDB::Llinas::pHMetabolite;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Llinas::pHMetabolite;
 
 use strict;
 use vars qw( @ISA);

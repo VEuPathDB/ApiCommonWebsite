@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::ToxoDB::Sullivan::GCN5A;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Sullivan::GCN5A;
 
 use strict;
 use vars qw( @ISA );

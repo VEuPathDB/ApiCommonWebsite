@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::GiardiaDB::Sage::Ver1;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Sage::Ver1;
 
 =pod
 
@@ -15,9 +15,9 @@ Provides initialization parameters for the stress data.
 use strict;
 use vars qw( @ISA );
 
-@ISA = qw( EbrcWebsiteCommon::View::GraphPackage::GiardiaDB::Sage );
+@ISA = qw( EbrcWebsiteCommon::View::GraphPackage::EuPathDB::Sage );
 
-use EbrcWebsiteCommon::View::GraphPackage::GiardiaDB::Sage;
+use EbrcWebsiteCommon::View::GraphPackage::EuPathDB::Sage;
 
 use EbrcWebsiteCommon::Model::CannedQuery::Profile;
 use EbrcWebsiteCommon::Model::CannedQuery::ProfileSet;

@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::PlasmoDB::Kappe::ReplicatesAveraged;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Kappe::ReplicatesAveraged;
 
 use strict;
 use vars qw( @ISA );

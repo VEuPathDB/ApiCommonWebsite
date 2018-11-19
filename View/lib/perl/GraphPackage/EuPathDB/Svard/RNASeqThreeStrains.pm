@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::GiardiaDB::Svard::RNASeqThreeStrains;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Svard::RNASeqThreeStrains;
 
 use strict;
 use vars qw( @ISA );

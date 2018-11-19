@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::TriTrypDB::Papadopoulou::LiAxenicVsIntracellular;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Papadopoulou::LiAxenicVsIntracellular;
 
 use strict;
 use vars qw( @ISA );

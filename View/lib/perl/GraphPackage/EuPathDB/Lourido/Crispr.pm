@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::ToxoDB::Lourido::Crispr;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Lourido::Crispr;
 
 use strict;
 use vars qw( @ISA );

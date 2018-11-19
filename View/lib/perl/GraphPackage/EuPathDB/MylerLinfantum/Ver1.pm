@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::TriTrypDB::MylerLinfantum::Ver1;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::MylerLinfantum::Ver1;
 use strict;
 use vars qw( @ISA );
 

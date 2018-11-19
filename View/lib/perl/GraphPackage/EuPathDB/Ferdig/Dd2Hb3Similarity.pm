@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::PlasmoDB::Ferdig::Dd2Hb3Similarity;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Ferdig::Dd2Hb3Similarity;
 
 use strict;
 use vars qw( @ISA );

@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::ToxoDB::Reid::NcRnaSeq;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Reid::NcRnaSeq;
 
 use strict;
 use vars qw( @ISA );

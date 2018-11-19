@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::TriTrypDB::Urbaniak::CompProtQuantMS;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Urbaniak::CompProtQuantMS;
 
 
 use strict;

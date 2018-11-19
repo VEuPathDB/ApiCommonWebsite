@@ -1,4 +1,4 @@
-package EbrcWebsiteCommon::View::GraphPackage::PlasmoDB::Newbold::IRBC;
+package EbrcWebsiteCommon::View::GraphPackage::EuPathDB::Newbold::IRBC;
 
 use strict;
 use vars qw( @ISA );

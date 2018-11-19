@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::GiardiaDB::Troell::CellCycle;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Troell::CellCycle;
 
 use strict;
 use vars qw( @ISA );

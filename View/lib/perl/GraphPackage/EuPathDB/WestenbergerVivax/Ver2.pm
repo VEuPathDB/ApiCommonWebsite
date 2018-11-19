@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::PlasmoDB::WestenbergerVivax::Ver2;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::WestenbergerVivax::Ver2;
 
 use strict;
 use vars qw( @ISA );

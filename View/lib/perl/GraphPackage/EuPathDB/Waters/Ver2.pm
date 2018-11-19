@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::PlasmoDB::Waters::Ver2;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Waters::Ver2;
 
 use strict;
 use vars qw( @ISA );

@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::PlasmoDB::Su::PfStrandSpecific;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Su::PfStrandSpecific;
 
 use strict;
 use vars qw( @ISA );

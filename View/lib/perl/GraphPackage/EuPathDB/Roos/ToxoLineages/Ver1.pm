@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::ToxoDB::Roos::ToxoLineages::Ver1;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Roos::ToxoLineages::Ver1;
 
 use strict;
 use vars qw( @ISA );

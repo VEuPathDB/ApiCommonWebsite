@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::GiardiaDB::Ringqvist::WbClone;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Ringqvist::WbClone;
 
 use strict;
 use vars qw( @ISA );

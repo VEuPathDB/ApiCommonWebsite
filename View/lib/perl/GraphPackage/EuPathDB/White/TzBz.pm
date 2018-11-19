@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::ToxoDB::White::TzBz;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::White::TzBz;
 
 use strict;
 use vars qw( @ISA );

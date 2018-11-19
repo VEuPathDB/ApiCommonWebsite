@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::TriTrypDB::Horn::TbRNAiRNASeq;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Horn::TbRNAiRNASeq;
 
 use strict;
 use vars qw( @ISA );

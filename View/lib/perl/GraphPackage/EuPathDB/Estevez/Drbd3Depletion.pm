@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::TriTrypDB::Estevez::Drbd3Depletion;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Estevez::Drbd3Depletion;
 
 use strict;
 use vars qw( @ISA );

@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::PlasmoDB::Winzeler::Mapping;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Winzeler::Mapping;
 
 =pod
 

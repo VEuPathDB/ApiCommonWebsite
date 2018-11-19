@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::PlasmoDB::CortesTransVar::TimeSeries;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::CortesTransVar::TimeSeries;
 
 
 use strict;

@@ -1,5 +1,5 @@
 
-package ApiCommonWebsite::View::GraphPackage::ToxoDB::Roos::ThreeClonalStrains::Ver1;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Roos::ThreeClonalStrains::Ver1;
 
 =pod
 

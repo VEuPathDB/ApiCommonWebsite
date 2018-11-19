@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::PlasmoDB::Daily;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Daily;
 
 # ========================================================================
 # ----------------------------- Declarations -----------------------------

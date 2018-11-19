@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::ToxoDB::Reid::TgVEGRnaSeq;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Reid::TgVEGRnaSeq;
 
 use strict;
 use vars qw( @ISA );

@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::ToxoDB::Sibley::TgME49Bradyzoite;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Sibley::TgME49Bradyzoite;
 
 use strict;
 use vars qw( @ISA );

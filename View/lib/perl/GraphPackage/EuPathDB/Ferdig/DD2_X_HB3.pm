@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::PlasmoDB::Ferdig::DD2_X_HB3;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Ferdig::DD2_X_HB3;
 
 use strict;
 use vars qw( @ISA);

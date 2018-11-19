@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::TriTrypDB::ClaytonDegradation::TbmRnaDegrd;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::ClaytonDegradation::TbmRnaDegrd;
 
 use strict;
 use vars qw( @ISA );

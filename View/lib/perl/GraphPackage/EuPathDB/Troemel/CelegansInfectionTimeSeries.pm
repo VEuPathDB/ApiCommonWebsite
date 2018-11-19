@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::MicrosporidiaDB::Troemel::CelegansInfectionTimeSeries;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Troemel::CelegansInfectionTimeSeries;
 
 use strict;
 use vars qw( @ISA );

@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::PlasmoDB::ZBPvivaxTS::Ver2;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::ZBPvivaxTS::Ver2;
 
 use vars qw( @ISA );
 
@@ -9,7 +9,7 @@ use EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet;
 use EbrcWebsiteCommon::View::GraphPackage::BarPlot;
 use EbrcWebsiteCommon::View::GraphPackage::LinePlot;
 
-use EbrcWebsiteCommon::View::GraphPackage::PlasmoDB::Winzeler::Mapping;
+use EbrcWebsiteCommon::View::GraphPackage::EuPathDB::Winzeler::Mapping;
 
 sub init {
   my $self = shift;

@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::ToxoDB::Matrajt::BzMutant;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Matrajt::BzMutant;
 
 use strict;
 use vars qw( @ISA );

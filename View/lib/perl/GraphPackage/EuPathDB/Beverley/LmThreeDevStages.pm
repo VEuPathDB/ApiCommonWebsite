@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::TriTrypDB::Beverley::LmThreeDevStages;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Beverley::LmThreeDevStages;
 
 use strict;
 use vars qw( @ISA );

@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::TriTrypDB::Matthews::TbDifferentiationSeries;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Matthews::TbDifferentiationSeries;
 
 use strict;
 use vars qw( @ISA );

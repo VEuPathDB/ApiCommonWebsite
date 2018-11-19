@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::ToxoDB::Roos::TzBz;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Roos::TzBz;
 
 use strict;
 use vars qw( @ISA );

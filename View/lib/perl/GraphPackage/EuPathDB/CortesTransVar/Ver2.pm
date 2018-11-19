@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::PlasmoDB::CortesTransVar::Ver2;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::CortesTransVar::Ver2;
 
 
 use strict;

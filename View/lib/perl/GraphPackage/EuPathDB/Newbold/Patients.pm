@@ -1,4 +1,4 @@
-package EbrcWebsiteCommon::View::GraphPackage::PlasmoDB::Newbold::Patients;
+package EbrcWebsiteCommon::View::GraphPackage::EuPathDB::Newbold::Patients;
 
 use strict;
 use vars qw( @ISA );
