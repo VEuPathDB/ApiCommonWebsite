@@ -1,12 +1,6 @@
 package org.apidb.apicommon.model.userfile;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.PreparedStatement;
@@ -61,6 +55,25 @@ public class UserFileFactory implements Manageable<UserFileFactory> {
     this._platform = database.getPlatform();
     this._config = config;
     this._projectId = projectId;
+  }
+
+  public InputStream getUserFile(String fname) throws WdkModelException {
+    File out = new File(_config.getUserFileUploadDir() + "/" + _projectId +
+        "/" + fname);
+
+    if(!out.exists())
+      throw new WdkModelException(String.format("user file %s does not exist",
+          fname));
+
+    if(!out.canRead())
+      throw new WdkModelException(String.format("user file %s is not readable",
+          fname));
+
+    try {
+      return new FileInputStream(out);
+    } catch (FileNotFoundException e) {
+      throw new WdkModelException(e);
+    }
   }
 
   public void addUserFile(UserFile userFile) throws UserFileUploadException {

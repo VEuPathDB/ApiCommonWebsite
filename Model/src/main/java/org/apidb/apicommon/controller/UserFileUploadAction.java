@@ -19,14 +19,13 @@ import org.gusdb.wdk.model.jspwrap.UserBean;
 import org.gusdb.wdk.model.jspwrap.WdkModelBean;
 
 public class UserFileUploadAction extends Action {
-    
+
   private Logger logger = Logger.getLogger(UserFileFactory.class);
-  
+
   @Override
-  public ActionForward execute(ActionMapping mapping,
-                               ActionForm form,
-                               HttpServletRequest request,
-                               HttpServletResponse response) throws Exception {
+  public ActionForward execute(ActionMapping mapping, ActionForm form,
+      HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
 
     String referer = request.getParameter(CConstants.WDK_REFERRER_URL_KEY);
     if (referer == null) referer = request.getHeader("referer");
@@ -43,7 +42,7 @@ public class UserFileUploadAction extends Action {
       FormFile formFile = formSet.get(i);
 
       if (formFile == null) continue;
-      
+
       String notes       = noteSet.get(i).trim();
       String title       = cuForm.getTitle().trim();
       String contentType = formFile.getContentType();
@@ -60,7 +59,7 @@ public class UserFileUploadAction extends Action {
       String email = user.getEmail().trim().toLowerCase();
       String userUID = user.getSignature().trim();
       String projectName = wdkModel.getDisplayName();
-      String projectVersion = wdkModel.getVersion();        
+      String projectVersion = wdkModel.getVersion();
 
       UserFile userFile = new UserFile(userUID);
       userFile.setFileName(fileName);
@@ -74,7 +73,7 @@ public class UserFileUploadAction extends Action {
       userFile.setProjectVersion(projectVersion);
 
       UserFileFactoryManager.getUserFileFactory(getServlet().getServletContext()).addUserFile(userFile);
-      
+
       logger.debug("contentType " + userFile.getContentType());
       logger.debug("fileName " + userFile.getFileName());
       logger.debug("notes " + userFile.getNotes());
@@ -82,7 +81,7 @@ public class UserFileUploadAction extends Action {
       logger.debug("ownerUID " + userFile.getUserUID());
       logger.debug("projectName " + userFile.getProjectName());
       logger.debug("projectVersion " + userFile.getProjectVersion());
-      
+
     }
     return new ActionForward("/communityUploadResult.jsp",true);
   }

@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "type": "object",
+  "properties": {
+    "title": {
+      "description": "Comment headline",
+      "$ref": "./includes/comments.headline.json"
+    },
+    "content": {
+      "type": "string"
+    },
+    "organism": {
+      "description": "Comment target organism",
+      "type": "string",
+      "maxLength": 100
+    },
+    "target": {
+      "description": "Comment target object",
+      "$ref": "./includes/target.json"
+    },
+    }
+  }
+}

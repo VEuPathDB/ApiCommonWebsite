@@ -2,9 +2,6 @@ package org.apidb.apicommon.model.comment;
 
 public abstract class CommentException extends Exception {
 
-  /**
-   * 
-   */
   private static final long serialVersionUID = 1L;
 
   public CommentException() {
