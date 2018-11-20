@@ -114,18 +114,18 @@ EOSQL
   my $range = 10000000;
   my $random = int(rand($range));
 
-  my $infile  = "/tmp/isolate_clustalw_tmp$random.fas";
-  my $outfile = "/tmp/isolate_clustalw_tmp$random.aln";
-  my $dndfile = "/tmp/isolate_clustalw_tmp$random.dnd";
-  my $tmpfile = "/tmp/isolate_clustalw_tmp$random.tmp";
+  my $infile  = "/tmp/isolate_clustalo_tmp$random.fas";
+  my $outfile = "/tmp/isolate_clustalo_tmp$random.aln";
+  my $dndfile = "/tmp/isolate_clustalo_tmp$random.dnd";
+  my $tmpfile = "/tmp/isolate_clustalo_tmp$random.tmp";
   
   open(OUT, ">$infile");
   print OUT $sequence;
   close OUT;
 
-  my $cmd = "/usr/bin/clustalw2 -infile=$infile -outfile=$outfile > $tmpfile";
+  my $cmd = "/usr/bin/clustalo -v --infile=$infile --outfile=$outfile --outfmt=clu --output-order=tree-order --guidetree-out=$dndfile --force > $tmpfile";
   system($cmd);
- my %origins = ();
+  my %origins = ();
 #  my @alignments = ();
   &createHTML($outfile,$cgi,%origins);
      
