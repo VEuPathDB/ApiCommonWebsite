@@ -10,6 +10,10 @@ import java.util.Collection;
 import static java.sql.Types.BIGINT;
 import static java.sql.Types.VARCHAR;
 
+/**
+ * Insert a link between a comment and records in a generic
+ * data source.
+ */
 public class InsertReferencesQuery extends InsertQuery {
 
   private static final String QUERY = "INSERT INTO %s.COMMENTREFERENCE (" +

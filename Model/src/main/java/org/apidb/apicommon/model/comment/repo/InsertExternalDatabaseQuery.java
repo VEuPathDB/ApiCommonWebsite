@@ -10,11 +10,15 @@ import java.sql.SQLException;
 import static java.sql.Types.BIGINT;
 import static java.sql.Types.VARCHAR;
 
+/**
+ * Insert a new external database entry and provide access
+ * to the new record's id.
+ */
 public class InsertExternalDatabaseQuery extends InsertQuery {
 
-  private static final String SQL = "INSERT INTO %s.external_databases (\n" +
-      "    external_database_id, external_database_name,\n" +
-      "    external_database_version)\n" +
+  private static final String SQL = "INSERT INTO %s.EXTERNAL_DATABASE (\n" +
+      "    EXTERNAL_DATABASE_ID, EXTERNAL_DATABASE_NAME,\n" +
+      "    EXTERNAL_DATABASE_VERSION)\n" +
       "VALUES (?, ?, ?)";
 
   private static final Integer[] TYPE = { BIGINT, VARCHAR, VARCHAR };

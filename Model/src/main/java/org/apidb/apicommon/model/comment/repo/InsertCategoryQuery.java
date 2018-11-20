@@ -9,6 +9,9 @@ import java.util.Collection;
 import static java.sql.Types.BIGINT;
 import static java.sql.Types.INTEGER;
 
+/**
+ * Insert a link between a comment and selected categories.
+ */
 public class InsertCategoryQuery extends InsertQuery {
 
   private static final String SQL = "INSERT INTO %s.COMMENTTARGETCATEGORY (" +

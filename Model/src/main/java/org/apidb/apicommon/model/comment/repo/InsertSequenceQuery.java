@@ -9,6 +9,9 @@ import java.sql.SQLException;
 import static java.sql.Types.BIGINT;
 import static java.sql.Types.CLOB;
 
+/**
+ * Insert sequence for a comment.
+ */
 public class InsertSequenceQuery extends InsertQuery {
   private static final String QUERY = "INSERT INTO %s.COMMENTSEQUENCE(" +
       "COMMENT_SEQUENCE_ID, SEQUENCE, COMMENT_ID) VALUES (?,?,?)";

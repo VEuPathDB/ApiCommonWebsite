@@ -8,6 +8,9 @@ import java.util.Optional;
 
 import static java.sql.Types.BIGINT;
 
+/**
+ * Get a single comment by id if that comment exists.
+ */
 public class GetCommentQuery extends BaseCommentQuery<Optional<Comment>> {
 
   private static final String SQL = "SELECT\n" + "  co.COMMENT_ID,\n" +

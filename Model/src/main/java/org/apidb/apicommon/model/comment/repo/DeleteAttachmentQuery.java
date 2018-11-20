@@ -4,6 +4,10 @@ import org.gusdb.fgputil.db.runner.SQLRunner;
 
 import static java.sql.Types.BIGINT;
 
+/**
+ * Delete link between comment and user file record by
+ * comment and file id.
+ */
 public class DeleteAttachmentQuery extends Query {
 
   private static final String SQL = "DELETE FROM %s.COMMENTFILE\n" +

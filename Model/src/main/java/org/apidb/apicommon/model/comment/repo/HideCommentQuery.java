@@ -4,6 +4,10 @@ import org.gusdb.fgputil.db.runner.SQLRunner;
 
 import static java.sql.Types.BIGINT;
 
+/**
+ * Update a comment record to perform a soft delete or
+ * 'hide'.
+ */
 public class HideCommentQuery extends Query {
 
   private static final String SQL = "UPDATE %s.COMMENTS\n" +

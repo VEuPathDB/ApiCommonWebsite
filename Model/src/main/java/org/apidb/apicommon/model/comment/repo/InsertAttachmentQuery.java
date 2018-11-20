@@ -7,6 +7,9 @@ import org.gusdb.fgputil.db.runner.SQLRunner;
 import static java.sql.Types.BIGINT;
 import static java.sql.Types.VARCHAR;
 
+/**
+ * Insert a link between a comment and a user file.
+ */
 public class InsertAttachmentQuery extends InsertQuery {
 
   private static final String SQL = "INSERT INTO %s.COMMENTFILE (" +

@@ -5,6 +5,9 @@ import org.gusdb.fgputil.db.runner.SQLRunner;
 
 import java.sql.SQLException;
 
+/**
+ * Insert Query Base
+ */
 abstract class InsertQuery extends Query {
   private final String _table;
   private final IdSupplier _idProvider;

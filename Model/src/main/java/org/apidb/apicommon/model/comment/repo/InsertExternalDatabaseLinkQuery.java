@@ -5,9 +5,12 @@ import org.gusdb.fgputil.db.runner.SQLRunner;
 
 import static java.sql.Types.BIGINT;
 
+/**
+ * Insert a link between a comment and an external database.
+ */
 public class InsertExternalDatabaseLinkQuery extends InsertQuery {
-  private static final String SQL = "INSERT INTO %s.comment_external_database (\n" +
-      "    external_database_id, comment_id)\n" +
+  private static final String SQL = "INSERT INTO %s.COMMENT_EXTERNAL_DATABASE (\n" +
+      "    EXTERNAL_DATABASE_ID, COMMENT_ID)\n" +
       "VALUES (?, ?)";
 
   private static final Integer[] TYPES = { BIGINT, BIGINT };

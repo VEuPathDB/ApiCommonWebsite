@@ -6,6 +6,12 @@ import org.gusdb.fgputil.db.runner.SQLRunner;
 import static java.sql.Types.BIGINT;
 import static java.sql.Types.VARCHAR;
 
+/**
+ * Update an author's details.
+ *
+ * This is used by a listener for the user profile change
+ * event to keep the author details up to date.
+ */
 public class UpdateAuthorQuery extends Query {
 
   private static final String QUERY = "UPDATE %s.COMMENT_USERS\n" +
