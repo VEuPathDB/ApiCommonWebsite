@@ -9,6 +9,12 @@ import java.util.*;
 import static java.sql.Types.BIGINT;
 import static java.sql.Types.VARCHAR;
 
+/**
+ * Find comments by one or both of the following filters:
+ *
+ * * comment author
+ * * comment target type & comment target id
+ */
 public class FindCommentQuery extends BaseCommentQuery<Collection<Comment>> {
 
   private static final String QUERY = "SELECT\n" + "  co.COMMENT_ID,\n" +

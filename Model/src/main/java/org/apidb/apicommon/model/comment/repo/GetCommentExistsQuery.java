@@ -5,6 +5,10 @@ import java.sql.SQLException;
 
 import static java.sql.Types.BIGINT;
 
+/**
+ * Get whether or not a comment with the given id exists in
+ * the comment table.
+ */
 public class GetCommentExistsQuery extends ValueQuery<Boolean> {
   private static final String SQL = "SELECT 1 FROM %s.COMMENTS WHERE COMMENT_ID = ?";
 

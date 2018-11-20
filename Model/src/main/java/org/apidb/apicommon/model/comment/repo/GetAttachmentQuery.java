@@ -8,6 +8,10 @@ import java.util.Optional;
 
 import static java.sql.Types.BIGINT;
 
+/**
+ * Get the link between a comment and a file if such a link
+ * exists.
+ */
 public class GetAttachmentQuery extends ValueQuery<Optional<Attachment>> {
 
   private static final String SQL = "SELECT *\n" +

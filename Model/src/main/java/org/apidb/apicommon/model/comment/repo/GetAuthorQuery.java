@@ -8,6 +8,10 @@ import java.util.Optional;
 
 import static java.sql.Types.BIGINT;
 
+/**
+ * Get comment author details if an entry for the given user
+ * id exists.
+ */
 public class GetAuthorQuery extends ValueQuery<Optional<Author>> {
 
   private static final String QUERY = "SELECT *\n" +

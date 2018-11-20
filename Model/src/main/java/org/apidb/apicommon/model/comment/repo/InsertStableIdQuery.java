@@ -9,6 +9,10 @@ import java.util.Collection;
 import static java.sql.Types.BIGINT;
 import static java.sql.Types.VARCHAR;
 
+/**
+ * Insert link between a comment and one or more secondary
+ * targets.
+ */
 public class InsertStableIdQuery extends InsertQuery {
 
   private static final String SQL = "INSERT INTO %s.COMMENTSTABLEID (\n" +

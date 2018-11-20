@@ -11,6 +11,9 @@ import java.io.StringReader;
 
 import static java.sql.Types.*;
 
+/**
+ * Insert a new comment record.
+ */
 public class InsertCommentQuery extends InsertQuery {
   private static final String SQL =
       "INSERT INTO %s.COMMENTS (\n" + "  COMMENT_ID, USER_ID, EMAIL,\n" +

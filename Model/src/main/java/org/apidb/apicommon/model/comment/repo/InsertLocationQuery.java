@@ -11,6 +11,9 @@ import static java.sql.Types.BIGINT;
 import static java.sql.Types.INTEGER;
 import static java.sql.Types.VARCHAR;
 
+/**
+ * Insert new location entries for a comment.
+ */
 public class InsertLocationQuery extends InsertQuery {
 
   private static final String QUERY = "INSERT INTO %s.LOCATIONS (" +

@@ -7,6 +7,9 @@ import org.gusdb.fgputil.db.runner.SQLRunner;
 import static java.sql.Types.BIGINT;
 import static java.sql.Types.VARCHAR;
 
+/**
+ * Insert comment author details
+ */
 public class InsertAuthorQuery extends InsertQuery {
   private static final String QUERY = "INSERT INTO %s.COMMENT_USERS (\n" +
       "USER_ID, FIRST_NAME, LAST_NAME, ORGANIZATION)\n" +

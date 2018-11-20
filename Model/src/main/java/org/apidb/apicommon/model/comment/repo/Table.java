@@ -2,7 +2,6 @@ package org.apidb.apicommon.model.comment.repo;
 
 public interface Table {
   String COMMENT_TO_EXT_DB    = "COMMENT_EXTERNAL_DATABASE";
-  String COMMENT_TO_FILE      = "COMMENTFILE";
   String COMMENT_TO_REFERENCE = "COMMENTREFERENCE";
   String COMMENT_TO_STABLE_ID = "COMMENTSTABLEID";
   String COMMENT_TO_SEQUENCE  = "COMMENTSEQUENCE";

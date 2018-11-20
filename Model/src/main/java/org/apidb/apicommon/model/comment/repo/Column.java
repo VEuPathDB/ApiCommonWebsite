@@ -9,7 +9,6 @@ interface Column {
         CONCEPTUAL        = "conceptual",
         CONTENT           = "content",
         HEADLINE          = "headline",
-        LOCATION_STRING   = "location_string",
         ORGANISM          = "organism",
         PROJECT_NAME      = "project_name",
         PROJECT_VERSION   = "project_version",
