@@ -54,7 +54,8 @@ public class CommentFactory implements Manageable<CommentFactory> {
           gusHome).getUserDB();
       DatabaseInstance db;
       if (userDbConfig.isSameConnectionInfoAs(config)) {
-        // if connections are the same, then ignore comment config connection info and use UserDB database instance
+        // if connections are the same, then ignore comment config connection
+        // info and use UserDB database instance
         db = DatabaseInstance.getAllInstances().get(WdkModel.DB_INSTANCE_USER);
         isReusingUserDb = true;
       }
@@ -158,39 +159,6 @@ public class CommentFactory implements Manageable<CommentFactory> {
       throw new WdkModelException(e);
     }
   }
-//
-//  public ArrayList<MultiBox> getMultiBoxData(String nameCol, String valueCol,
-//      String table, String condition) throws WdkModelException {
-//
-//    ArrayList<MultiBox> list = new ArrayList<>();
-//
-//    StringBuilder sql = new StringBuilder();
-//    sql.append("SELECT ").append(nameCol).append(",").append(valueCol);
-//    sql.append(" FROM  ").append(_config.getCommentSchema()).append(table);
-//    if (condition != null) {
-//      sql.append(" WHERE ").append(condition);
-//    }
-//
-//    MultiBox multiBox;
-//
-//    try (Connection con = ConnectionMapping.getConnection(
-//        _commentDs); PreparedStatement ps = con.prepareStatement(
-//        sql.toString())) {
-//      try (ResultSet rs = ps.executeQuery()) {
-//
-//        while (rs.next()) {
-//          String name = rs.getString(nameCol);
-//          int value = rs.getInt(valueCol);
-//          multiBox = new MultiBox(name, value + "");
-//          list.add(multiBox);
-//        }
-//        return list;
-//      }
-//    }
-//    catch (SQLException e) {
-//      throw new WdkModelException(e);
-//    }
-//  }
 
   public long createComment(CommentRequest comment, User user)
       throws WdkModelException {
@@ -222,6 +190,10 @@ public class CommentFactory implements Manageable<CommentFactory> {
       new InsertSequenceQuery(schema, comment.getSequence(), commentId,
           this::getNextId).run(con);
 
+      if(comment.getPreviousCommentId() != null)
+        new UpdateAttachmentQuery(schema, comment.getPreviousCommentId(),
+            commentId).run(con);
+
       saveExternalDb(con, commentId, comment.getExternalDb());
 
       con.commit();
@@ -236,6 +208,16 @@ public class CommentFactory implements Manageable<CommentFactory> {
   public void deleteComment(long commentId) throws WdkModelException {
     try(Connection con = ConnectionMapping.getConnection(_commentDs)) {
       new HideCommentQuery(_config.getCommentSchema(), commentId).run(con);
+    } catch (SQLException e) {
+      throw new WdkModelException(e);
+    }
+  }
+
+  public void deleteAttachment(long commentId, long attachmentId)
+    throws WdkModelException {
+    try(Connection con = ConnectionMapping.getConnection(_commentDs)) {
+      new DeleteAttachmentQuery(_config.getCommentSchema(), commentId,
+          attachmentId).run(con);
     } catch (SQLException e) {
       throw new WdkModelException(e);
     }

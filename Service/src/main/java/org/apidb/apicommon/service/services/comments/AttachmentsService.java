@@ -101,7 +101,10 @@ public class AttachmentsService extends AbstractUserCommentService {
       @PathParam(UserCommentsService.URI_PARAM) long commentId,
       @PathParam(URI_PARAM) long attachmentId) throws WdkModelException {
     checkCommentId(commentId);
-    return Response.serverError().build();
+    checkFileId(attachmentId);
+    getCommentFactory().deleteAttachment(commentId, attachmentId);
+    getFileFactory().deleteUserFile(attachmentId);
+    return Response.noContent().build();
   }
 
   /**
@@ -119,7 +122,7 @@ public class AttachmentsService extends AbstractUserCommentService {
       @PathParam(URI_PARAM) long attachmentId) throws WdkModelException {
     final Attachment att = getCommentFactory().getAttachment(commentId,
         attachmentId).orElseThrow(NotFoundException::new);
-    final InputStream data = getFileFactory().getUserFile(att.getName());
+    final InputStream data = getFileFactory().getUserFile(attachmentId);
 
     return Response.ok(
         (StreamingOutput) outputStream -> IOUtils.copy(data, outputStream),
@@ -158,5 +161,10 @@ public class AttachmentsService extends AbstractUserCommentService {
 
   private String mimeTypeOf(String name) {
     return MimeTypes.getMimeType(name.substring(name.lastIndexOf('.')));
+  }
+
+  private void checkFileId(long fileId) throws WdkModelException {
+    if(!getFileFactory().fileExists(fileId))
+      throw new NotFoundException();
   }
 }
