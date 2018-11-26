@@ -2,6 +2,8 @@ package org.apidb.apicommon.model.comment;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.jsonwebtoken.lang.Collections;
+import joptsimple.internal.Strings;
 import org.apidb.apicommon.model.comment.pojo.*;
 import org.apidb.apicommon.model.comment.repo.*;
 import org.gusdb.fgputil.db.ConnectionMapping;
@@ -19,7 +21,9 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 import static org.apidb.apicommon.model.comment.ReferenceType.*;
 
@@ -160,7 +164,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
     }
   }
 
-  public long createComment(CommentRequest comment, User user)
+  public long createComment(CommentRequest com, User user)
       throws WdkModelException {
     final String schema = _config.getCommentSchema();
     long commentId;
@@ -169,32 +173,40 @@ public class CommentFactory implements Manageable<CommentFactory> {
       con.setAutoCommit(false);
       commentId = getNextId(Table.COMMENTS);
 
-      if (!new GetAuthorQuery(schema, user.getUserId()).run(con).value().isPresent())
-        new InsertAuthorQuery(schema, Author.fromUser(user)).run(con);
+      try {
+        if (!new GetAuthorQuery(schema, user.getUserId()).run(con).value().isPresent())
+          new InsertAuthorQuery(schema, Author.fromUser(user)).run(con);
 
-      new InsertCommentQuery(schema, commentId, comment, user, _project).run(con);
+        new InsertCommentQuery(schema, commentId, com, user, _project).run(con);
 
-      final InsertReferencesQuery refQuery = new InsertReferencesQuery(schema,
-          commentId, this::getNextId);
-      refQuery.load(DIGITAL_OBJECT_ID, comment.getDigitalObjectIds()).run(con);
-      refQuery.load(ACCESSION, comment.getGenBankAccessions()).run(con);
-      refQuery.load(AUTHOR, comment.getAdditionalAuthors()).run(con);
-      refQuery.load(PUB_MED, comment.getPubMedIds()).run(con);
+        new InsertStableIdQuery(schema, commentId, joinStableIds(com),
+            this::getNextId).run(con);
 
-      new InsertLocationQuery(schema, commentId, comment.getLocations(),
-          this::getNextId).run(con);
-      new InsertCategoryQuery(schema, commentId, comment.getCategoryIds(),
-          this::getNextId).run(con);
-      new InsertStableIdQuery(schema, commentId, comment.getRelatedStableIds(),
-          this::getNextId).run(con);
-      new InsertSequenceQuery(schema, comment.getSequence(), commentId,
-          this::getNextId).run(con);
+        final InsertReferencesQuery refQuery = new InsertReferencesQuery(schema,
+            commentId, this::getNextId);
 
-      if(comment.getPreviousCommentId() != null)
-        new UpdateAttachmentQuery(schema, comment.getPreviousCommentId(),
-            commentId).run(con);
-
-      saveExternalDb(con, commentId, comment.getExternalDb());
+        if (!Collections.isEmpty(com.getDigitalObjectIds()))
+          refQuery.load(DIGITAL_OBJECT_ID, com.getDigitalObjectIds()).run(con);
+        if (!Collections.isEmpty(com.getGenBankAccessions()))
+          refQuery.load(ACCESSION, com.getGenBankAccessions()).run(con);
+        if (!Collections.isEmpty(com.getAdditionalAuthors()))
+          refQuery.load(AUTHOR, com.getAdditionalAuthors()).run(con);
+        if (!Collections.isEmpty(com.getPubMedIds()))
+          refQuery.load(PUB_MED, com.getPubMedIds()).run(con);
+        if (!Collections.isEmpty(com.getCategoryIds()))
+          new InsertCategoryQuery(schema, commentId, com.getCategoryIds(), this::getNextId).run(con);
+        if (!Strings.isNullOrEmpty(com.getSequence()))
+          new InsertSequenceQuery(schema, com.getSequence(), commentId, this::getNextId).run(con);
+        if (com.getLocation() != null)
+          new InsertLocationQuery(schema, commentId, com.getLocation(), this::getNextId).run(con);
+        if (com.getPreviousCommentId() != null)
+          new UpdateAttachmentQuery(schema, com.getPreviousCommentId(), commentId).run(con);
+        if (com.getExternalDatabase() != null)
+          saveExternalDb(con, commentId, com.getExternalDatabase());
+      } catch (Throwable e) {
+        con.rollback();
+        throw e;
+      }
 
       con.commit();
     }
@@ -297,5 +309,32 @@ public class CommentFactory implements Manageable<CommentFactory> {
     com.setPubMedRefs(
         JSON.readerFor(new TypeReference<Collection<PubMedReference>>() {})
             .readValue(url));
+  }
+
+  /**
+   * Create a new set containing the additional targets as well as primary
+   * target record.
+   *
+   * Comments have a target link in the COMMENTS table in addition to a link to
+   * the same target in the COMMENTSTABLEID table.
+   *
+   * @param com Comment for which to get a full list of target stable ids.
+   *
+   * @return A merged list of all target stable ids.
+   */
+  private Set<String> joinStableIds(CommentRequest com) {
+    final Set<String> set = new HashSet<>(com.getRelatedStableIds());
+    set.add(com.getTarget().getId());
+    return set;
+  }
+
+  public Collection<Attachment> getAllAttachments(long commentId)
+      throws WdkModelException {
+    try(Connection con = ConnectionMapping.getConnection(_commentDs)) {
+      return new GetAllAttachmentsQuery(_config.getCommentSchema(), commentId)
+          .run(con).value();
+    } catch (SQLException e) {
+      throw new WdkModelException(e);
+    }
   }
 }

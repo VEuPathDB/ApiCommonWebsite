@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "type": "object",
+  "properties": {
+    "userId": {
+      "type": "integer"
+    },
+    "firstName": {
+      "type": "string",
+      "maxLength": 50
+    },
+    "lastName": {
+      "type": "string",
+      "maxLength": 50
+    },
+    "organization": {
+      "type": "string",
+      "maxLength": 255
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "firstName",
+    "lastName",
+    "organization",
+    "userId"
+  ]
+}

@@ -1,17 +1,11 @@
 package org.apidb.apicommon.model.comment.pojo;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 /**
  * POJO representing a request for a the creation of a new comment.
  */
-public class CommentRequest extends BaseComment{
+public class CommentRequest extends BaseComment {
 
   /**
    * Previous comment id.
@@ -28,18 +22,8 @@ public class CommentRequest extends BaseComment{
    */
   private Set<Integer> _categoryIds;
 
-  /**
-   *
-   */
-  private Locations _locations;
-
-  @JsonCreator
-  public CommentRequest(
-      @JsonProperty("userId") long userId,
-      @JsonProperty("title")  String title
-  ) {
-    super(userId);
-    setHeadline(Objects.requireNonNull(title));
+  public CommentRequest() {
+    _categoryIds = new HashSet<>();
   }
 
   public Set<Integer> getCategoryIds() {
@@ -52,13 +36,8 @@ public class CommentRequest extends BaseComment{
     return this;
   }
 
-  public Locations getLocations() {
-    return _locations;
-  }
-
-  public CommentRequest setLocations(Locations locations) {
-    _locations = locations;
-    return this;
+  public CommentRequest setLocation(Location location) {
+    return (CommentRequest) super.setLocation(location);
   }
 
   public Long getPreviousCommentId() {
@@ -76,8 +55,8 @@ public class CommentRequest extends BaseComment{
   }
 
   @Override
-  public CommentRequest setExternalDb(ExternalDatabase externalDb) {
-    return (CommentRequest) super.setExternalDb(externalDb);
+  public CommentRequest setExternalDatabase(ExternalDatabase externalDatabase) {
+    return (CommentRequest) super.setExternalDatabase(externalDatabase);
   }
 
   @Override

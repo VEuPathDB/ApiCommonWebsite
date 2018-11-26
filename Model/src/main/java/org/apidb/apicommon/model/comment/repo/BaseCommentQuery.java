@@ -18,12 +18,12 @@ abstract class BaseCommentQuery<T> extends ValueQuery<T> {
     return Optional.ofNullable(rs.getString(Column.CommentSequence.SEQUENCE));
   }
 
-  protected static Optional<Locations> rs2Location(ResultSet rs) throws SQLException {
+  protected static Optional<Location> rs2Location(ResultSet rs) throws SQLException {
     final String coordType = rs.getString(Column.Location.COORD_TYPE);
     if(coordType == null)
       return Optional.empty();
 
-    return Optional.of(new Locations().setCoordinateType(coordType)
+    return Optional.of(new Location().setCoordinateType(coordType)
         .setReversed(rs.getBoolean(Column.Location.REVERSED)));
   }
 
@@ -122,13 +122,23 @@ abstract class BaseCommentQuery<T> extends ValueQuery<T> {
         .setHeadline(rs.getString(Column.Comment.HEADLINE))
         .setReviewStatus(rs2ReviewStatus(rs))
         .setContent(rs.getString(Column.Comment.CONTENT))
-        .setOrganism(rs.getString(Column.Comment.ORGANISM));
+        .setOrganism(rs.getString(Column.Comment.ORGANISM))
+        .setAuthor(rs2Author(rs));
 
     out.getTarget()
         .setId(rs.getString(Column.Comment.STABLE_ID))
         .setType(rs.getString(Column.Comment.TARGET_ID));
 
     return out;
+  }
+
+  protected static Optional<Attachment> rs2Attachment(final ResultSet rs) throws SQLException {
+    final long id = rs.getLong(Column.CommentFile.ID);
+    return rs.wasNull()
+      ? Optional.empty()
+      : Optional.of(new Attachment().setId(id)
+        .setName(rs.getString(Column.CommentFile.NAME))
+        .setDescription(rs.getString(Column.CommentFile.NOTES)));
   }
 
   /**
@@ -159,5 +169,12 @@ abstract class BaseCommentQuery<T> extends ValueQuery<T> {
   private static ReviewStatus rs2ReviewStatus(final ResultSet rs) throws SQLException {
     return ReviewStatus.fromString(rs.getString(
         Column.Comment.REVIEW_STATUS));
+  }
+
+  private static Author rs2Author(final ResultSet rs) throws SQLException {
+    return new Author().setUserId(rs.getLong(Column.Comment.USER_ID))
+        .setFirstName(rs.getString(Column.CommentUser.FIRST_NAME))
+        .setLastName(rs.getString(Column.CommentUser.LAST_NAME))
+        .setOrganization(rs.getString(Column.CommentUser.ORGANIZATION));
   }
 }

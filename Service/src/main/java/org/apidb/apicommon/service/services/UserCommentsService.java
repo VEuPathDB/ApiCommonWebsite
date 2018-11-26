@@ -3,11 +3,14 @@ package org.apidb.apicommon.service.services;
 import joptsimple.internal.Strings;
 import org.apidb.apicommon.model.comment.pojo.Comment;
 import org.apidb.apicommon.model.comment.pojo.CommentRequest;
+import org.apidb.apicommon.model.comment.pojo.ExternalDatabase;
 import org.gusdb.wdk.core.api.JsonKeys;
 import org.gusdb.wdk.model.Utilities;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.user.User;
+import org.gusdb.wdk.service.annotation.InSchema;
+import org.gusdb.wdk.service.annotation.OutSchema;
 import org.json.JSONObject;
 
 import javax.ws.rs.*;
@@ -48,15 +51,20 @@ public class UserCommentsService extends AbstractUserCommentService {
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
+  @InSchema("apicomm.user-comments.post-request")
+  @OutSchema("apicomm.user-comments.post-response")
   public Response newComment(CommentRequest body) throws WdkModelException {
-    final WdkModel wdk = getWdkModel();
-    final User user = wdk.getUserFactory().getUserById(body.getUserId());
+    final User user = getSessionUser();
+
+    if (user.isGuest())
+      throw new NotAuthorizedException("guest users cannot post comments");
+
     final long id = getCommentFactory().createComment(body, user);
 
-    notificationEmail(wdk, user, body, id);
+    notificationEmail(getWdkModel(), user, body, id);
 
     return Response.created(_uriInfo.getAbsolutePathBuilder().build(id))
-      .entity(new JSONObject().append(JsonKeys.ID, id))
+      .entity(new JSONObject().put(JsonKeys.ID, id))
       .build();
   }
 
@@ -79,6 +87,7 @@ public class UserCommentsService extends AbstractUserCommentService {
    */
   @GET
   @Produces(MediaType.APPLICATION_JSON)
+  @OutSchema("apicomm.user-comments.get-response")
   public Collection<Comment> getAllComments(
     @QueryParam("author")      final Long   author,
     @QueryParam("target-type") final String targetType,
@@ -100,6 +109,7 @@ public class UserCommentsService extends AbstractUserCommentService {
   @GET
   @Path(ID_PATH)
   @Produces(MediaType.APPLICATION_JSON)
+  @OutSchema("apicomm.user-comments.id.get-response")
   public Comment getComment(@PathParam(URI_PARAM) long _commentId)
       throws WdkModelException {
     return getCommentFactory().getComment(_commentId)
@@ -127,9 +137,10 @@ public class UserCommentsService extends AbstractUserCommentService {
     final String targType  = com.getTarget().getType();
     final String stableId  = com.getTarget().getId();
     final String subject = String.format("%s %s %s", projectId, targType, stableId);
+    final ExternalDatabase exDb = com.getExternalDatabase();
 
     StringBuilder body = new StringBuilder();
-    if(projectId.equals("TriTrypDB") || organism.equals("Plasmodium falciparum") || organism.equals("Cryptosporidium parvum")) {
+    if(projectId.equals("TriTrypDB") || "Plasmodium falciparum".equals(organism) || "Cryptosporidium parvum".equals(organism)) {
       body.append("Thank you! Your comment will be reviewed by a curator shortly.\n");
     } else {
       body.append("Thanks for your comment!\n");
@@ -144,11 +155,16 @@ public class UserCommentsService extends AbstractUserCommentService {
         .append("DOI(s): ").append(Strings.join(com.getDigitalObjectIds(), ", ")).append("\n")
         .append("Related Genes: ").append(Strings.join(com.getRelatedStableIds(), ", ")).append("\n")
         .append("Accession: ").append(Strings.join(com.getGenBankAccessions(), ", ")).append("\n")
-        .append("Email: ").append(user.getEmail()).append("\n")
-        .append("Organism: ").append(organism).append("\n")
-        .append("DB Name: ").append(com.getExternalDb().getName()).append("\n")
-        .append("DB Version: ").append(com.getExternalDb().getVersion()).append("\n")
-        .append("Comment Link: ").append(buildURL(comId).toString()).append("\n")
+        .append("Email: ").append(user.getEmail()).append("\n");
+
+    if(organism != null)
+      body.append("Organism: ").append(organism).append("\n");
+
+    if(exDb != null)
+      body.append("DB Name: ").append(exDb.getName()).append("\n")
+          .append("DB Version: ").append(exDb.getVersion()).append("\n");
+
+    body.append("Comment Link: ").append(buildURL(comId).toString()).append("\n")
         .append("-------------------------------------------------------\n");
 
     // used for redmine issue tracker

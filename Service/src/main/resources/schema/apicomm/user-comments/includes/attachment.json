@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "User File ID",
+      "type": "integer",
+      "minimum": 1
+    },
+    "name": {
+      "description": "Attachment file name",
+      "type": "string",
+      "maxLength": 500
+    },
+    "description": {
+      "description": "Attachment notes",
+      "type": "string",
+      "maxLength": 4000
+    },
+    "preview": {
+      "description": "URL attachment preview (for image attachments only)",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "name",
+    "description"
+  ]
+}

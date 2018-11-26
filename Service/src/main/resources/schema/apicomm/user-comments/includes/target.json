@@ -5,7 +5,7 @@
     "type": {
       "description": "Comment target type name",
       "type": "string",
-      "maxLength": 20,
+      "maxLength": 20
     },
     "id": {
       "description": "Comment target stable id",

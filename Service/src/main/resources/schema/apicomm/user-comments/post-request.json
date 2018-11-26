@@ -1,0 +1,77 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "type": "object",
+  "definitions": {
+    "referenceId": {
+      "description": "Reference resource id",
+      "type": "string",
+      "maxLength": 100
+    }
+  },
+  "properties": {
+    "genBankAccessions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/referenceId"
+      }
+    },
+    "categoryIds": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      }
+    },
+    "content": {
+      "type": "string"
+    },
+    "digitalObjectIds": {
+      "description": "Digital Object Identifiers",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/referenceId"
+      }
+    },
+    "externalDb": {
+      "$ref": "/schema/apicomm/user-comments/includes/external-database.json"
+    },
+    "headline": {
+      "description": "Comment headline",
+      "type": "string",
+      "maxLength": 2000
+    },
+    "organism": {
+      "description": "Comment target organism",
+      "type": "string",
+      "maxLength": 100
+    },
+    "previousCommentId": {
+      "description": "ID of the comment that this comment should replace.",
+      "type": "integer"
+    },
+    "pubMedIds": {
+      "description": "IDs of PubMed publications to link to this comment",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/referenceId"
+      }
+    },
+    "relatedStableIds": {
+      "description": "Other records relevant to this comment",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "maxLength": 200
+      }
+    },
+    "target": {
+      "description": "Comment target object",
+      "$ref": "/schema/apicomm/user-comments/includes/target.json"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "headline",
+    "content",
+    "target"
+  ]
+}

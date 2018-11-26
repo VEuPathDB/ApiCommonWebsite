@@ -2,13 +2,11 @@
   "$schema": "http://json-schema.org/draft-04/schema",
   "type": "object",
   "properties": {
-    "target": {
-      "description": "Location target type",
+    "coordinateType": {
       "type": "string",
       "maxLength": 20
     },
     "ranges": {
-      "description": "Location ranges",
       "type": "array",
       "items": {
         "type": "object",
@@ -33,7 +31,7 @@
     }
   },
   "required": [
-    "target",
-    "locations"
+    "coordinateType",
+    "ranges"
   ]
 }

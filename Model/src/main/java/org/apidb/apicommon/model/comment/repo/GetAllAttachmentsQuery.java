@@ -4,7 +4,8 @@ import org.apidb.apicommon.model.comment.pojo.Attachment;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Optional;
+import java.util.Collection;
+import java.util.HashSet;
 
 import static java.sql.Types.BIGINT;
 
@@ -12,20 +13,18 @@ import static java.sql.Types.BIGINT;
  * Get the link between a comment and a file if such a link
  * exists.
  */
-public class GetAttachmentQuery extends ValueQuery<Optional<Attachment>> {
+public class GetAllAttachmentsQuery extends ValueQuery<Collection<Attachment>> {
 
   private static final String SQL = "SELECT *\n" +
-      "FROM %s.COMMENTFILE\n" + "WHERE FILE_ID = ? AND COMMENT_ID = ?";
+      "FROM %s.COMMENTFILE\n" + "WHERE COMMENT_ID = ?";
 
-  private static final Integer[] TYPES = { BIGINT, BIGINT };
+  private static final Integer[] TYPES = { BIGINT };
 
-  private long _fileId;
   private long _commentId;
 
-  public GetAttachmentQuery(String schema, long commentId, long fileId) {
+  public GetAllAttachmentsQuery(String schema, long commentId) {
     super(schema);
     _commentId = commentId;
-    _fileId = fileId;
   }
 
   @Override
@@ -34,16 +33,18 @@ public class GetAttachmentQuery extends ValueQuery<Optional<Attachment>> {
   }
 
   @Override
-  protected Optional<Attachment> parseResults(ResultSet rs) throws SQLException {
-    if (!rs.next())
-      return Optional.empty();
+  protected Collection<Attachment> parseResults(ResultSet rs) throws SQLException {
+    final Collection<Attachment> out = new HashSet<>();
 
-    return Optional.of(rs2Attachment(rs));
+    while(rs.next())
+      out.add(rs2Attachment(rs));
+
+    return out;
   }
 
   @Override
   protected Object[] getParams() {
-    return new Object[]{ _fileId, _commentId };
+    return new Object[]{ _commentId };
   }
 
   @Override
