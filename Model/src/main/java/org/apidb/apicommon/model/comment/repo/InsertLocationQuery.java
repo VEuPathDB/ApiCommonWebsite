@@ -1,7 +1,7 @@
 package org.apidb.apicommon.model.comment.repo;
 
+import org.apidb.apicommon.model.comment.pojo.Location;
 import org.apidb.apicommon.model.comment.pojo.LocationRange;
-import org.apidb.apicommon.model.comment.pojo.Locations;
 import org.gusdb.fgputil.db.runner.BasicArgumentBatch;
 import org.gusdb.fgputil.db.runner.SQLRunner;
 
@@ -31,9 +31,9 @@ public class InsertLocationQuery extends InsertQuery {
 
   private final long _comId;
 
-  private final Locations _locs;
+  private final Location _locs;
 
-  public InsertLocationQuery(String schema, long commentId, Locations locs,
+  public InsertLocationQuery(String schema, long commentId, Location locs,
       IdSupplier idProvider) {
     super(schema, Table.COMMENT_TO_LOCATION, idProvider);
     _comId = commentId;

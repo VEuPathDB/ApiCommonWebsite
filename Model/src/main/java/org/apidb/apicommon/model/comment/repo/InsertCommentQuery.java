@@ -15,13 +15,25 @@ import static java.sql.Types.*;
  * Insert a new comment record.
  */
 public class InsertCommentQuery extends InsertQuery {
-  private static final String SQL =
-      "INSERT INTO %s.COMMENTS (\n" + "  COMMENT_ID, USER_ID, EMAIL,\n" +
-          "  COMMENT_DATE, COMMENT_TARGET_ID, STABLE_ID,\n" +
-          "  CONCEPTUAL, PROJECT_NAME, PROJECT_VERSION,\n" +
-          "  HEADLINE, REVIEW_STATUS_ID, CONTENT,\n" +
-          "  ORGANISM, PREV_COMMENT_ID\n" + ")\n" +
-          "VALUES (?, ?, ?, current_timestamp, ?, ?, 0, ?, ?, ?, ?, ?, ?, ?)";
+  private static final String SQL = "INSERT INTO \n" +
+      "  %s.COMMENTS (\n" +
+      "    COMMENT_ID,\n" +
+      "    USER_ID,\n" +
+      "    EMAIL,\n" +
+      "    COMMENT_DATE,\n" +
+      "    COMMENT_TARGET_ID,\n" +
+      "    STABLE_ID,\n" +
+      "    CONCEPTUAL,\n" +
+      "    PROJECT_NAME,\n" +
+      "    PROJECT_VERSION,\n" +
+      "    HEADLINE,\n" +
+      "    REVIEW_STATUS_ID,\n" +
+      "    CONTENT,\n" +
+      "    ORGANISM,\n" +
+      "    PREV_COMMENT_ID\n" +
+      "  )\n" +
+      "VALUES\n" +
+      "  (?, ?, ?, current_timestamp, ?, ?, 0, ?, ?, ?, ?, ?, ?, ?)";
 
   private static final Integer[] TYPES = {
       BIGINT,  // COMMENT_ID
@@ -63,7 +75,7 @@ public class InsertCommentQuery extends InsertQuery {
 
     out.add(new Object[] {
         _id,                                 // COMMENT_ID
-        _req.getUserId(),                    // USER_ID
+        _user.getUserId(),                   // USER_ID
         _user.getEmail(),                    // EMAIL
         _req.getTarget().getType(),          // COMMENT_TARGET_ID
         _req.getTarget().getId(),            // STABLE_ID

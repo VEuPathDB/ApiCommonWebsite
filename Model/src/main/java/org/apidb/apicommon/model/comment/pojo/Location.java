@@ -3,7 +3,7 @@ package org.apidb.apicommon.model.comment.pojo;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class Locations {
+public class Location {
 
   private boolean reversed;
 
@@ -11,7 +11,7 @@ public class Locations {
 
   private String coordinateType;
 
-  public Locations() {
+  public Location() {
     _ranges = new HashSet<>();
   }
 
@@ -19,13 +19,13 @@ public class Locations {
     return Collections.unmodifiableSet(_ranges);
   }
 
-  public Locations setRanges(final Collection<LocationRange> ranges) {
+  public Location setRanges(final Collection<LocationRange> ranges) {
     _ranges.clear();
     _ranges.addAll(ranges);
     return this;
   }
 
-  public Locations addRange(final LocationRange ranges) {
+  public Location addRange(final LocationRange ranges) {
     _ranges.add(ranges);
     return this;
   }
@@ -34,7 +34,7 @@ public class Locations {
     return reversed;
   }
 
-  public Locations setReversed(boolean reversed) {
+  public Location setReversed(boolean reversed) {
     this.reversed = reversed;
     return this;
   }
@@ -43,7 +43,7 @@ public class Locations {
     return coordinateType;
   }
 
-  public Locations setCoordinateType(String coordinateType) {
+  public Location setCoordinateType(String coordinateType) {
     this.coordinateType = coordinateType;
     return this;
   }

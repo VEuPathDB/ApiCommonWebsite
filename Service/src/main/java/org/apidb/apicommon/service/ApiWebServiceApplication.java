@@ -5,7 +5,7 @@ import static org.gusdb.fgputil.functional.Functions.filter;
 import java.util.Set;
 
 import org.apidb.apicommon.service.services.*;
-import org.apidb.apicommon.service.services.comments.UserCommentService;
+import org.apidb.apicommon.service.services.comments.AttachmentsService;
 import org.eupathdb.common.service.EuPathServiceApplication;
 import org.gusdb.fgputil.SetBuilder;
 import org.gusdb.wdk.service.service.SessionService;
@@ -23,8 +23,8 @@ public class ApiWebServiceApplication extends EuPathServiceApplication {
           !clazz.getName().equals(BasketService.class.getName())))
 
       // add ApiCommon-specific services
+      .add(AttachmentsService.class)
       .add(UserCommentsService.class)
-      .add(UserCommentService.class)
       .add(TranscriptToggleService.class)
       .add(ApiSessionService.class)
       .add(CustomBasketService.class)

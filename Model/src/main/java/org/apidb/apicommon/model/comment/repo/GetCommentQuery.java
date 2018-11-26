@@ -13,35 +13,57 @@ import static java.sql.Types.BIGINT;
  */
 public class GetCommentQuery extends BaseCommentQuery<Optional<Comment>> {
 
-  private static final String SQL = "SELECT\n" + "  co.COMMENT_ID,\n" +
-    "  co.USER_ID,\n" + "  co.COMMENT_DATE,\n" + "  co.COMMENT_TARGET_ID,\n" +
-    "  co.STABLE_ID,\n" + "  co.CONCEPTUAL,\n" + "  co.PROJECT_NAME,\n" +
-    "  co.PROJECT_VERSION,\n" + "  co.HEADLINE,\n" + "  co.LOCATION_STRING,\n" +
-    "  co.CONTENT,\n" + "  co.ORGANISM,\n" + "  co.REVIEW_STATUS_ID,\n" +
-    "  co.IS_VISIBLE,\n" + "  cous.FIRST_NAME,\n" + "  cous.LAST_NAME,\n" +
-    "  cous.ORGANIZATION,\n" + "  costid.STABLE_ID,\n" + "  cose.SEQUENCE,\n" +
-    "  exda.EXTERNAL_DATABASE_NAME,\n" + "  exda.EXTERNAL_DATABASE_VERSION,\n" +
-    "  cofi.FILE_ID,\n" + "  cofi.NAME,\n" + "  cofi.NOTES,\n" +
-    "  core.SOURCE_ID,\n" + "  core.DATABASE_NAME,\n" + "  lo.IS_REVERSE,\n" +
-    "  lo.COORDINATE_TYPE,\n" + "  lo.LOCATION_START,\n" +
+  private static final String SQL = "SELECT\n" +
+    "  co.COMMENT_ID,\n" +
+    "  co.USER_ID,\n" +
+    "  co.COMMENT_DATE,\n" +
+    "  co.COMMENT_TARGET_ID,\n" +
+    "  co.STABLE_ID,\n" +
+    "  co.CONCEPTUAL,\n" +
+    "  co.PROJECT_NAME,\n" +
+    "  co.PROJECT_VERSION,\n" +
+    "  co.HEADLINE,\n" +
+    "  co.LOCATION_STRING,\n" +
+    "  co.CONTENT,\n" +
+    "  co.ORGANISM,\n" +
+    "  co.REVIEW_STATUS_ID,\n" +
+    "  co.IS_VISIBLE,\n" +
+    "  cous.FIRST_NAME,\n" +
+    "  cous.LAST_NAME,\n" +
+    "  cous.ORGANIZATION,\n" +
+    "  costid.STABLE_ID,\n" +
+    "  cose.SEQUENCE,\n" +
+    "  exda.EXTERNAL_DATABASE_NAME,\n" +
+    "  exda.EXTERNAL_DATABASE_VERSION,\n" +
+    "  cofi.FILE_ID,\n" +
+    "  cofi.NAME,\n" +
+    "  cofi.NOTES,\n" +
+    "  core.SOURCE_ID,\n" +
+    "  core.DATABASE_NAME,\n" +
+    "  lo.IS_REVERSE,\n" +
+    "  lo.COORDINATE_TYPE,\n" +
+    "  lo.LOCATION_START,\n" +
     "  lo.LOCATION_END\n" +
-    "FROM\n" + "  %1$s.COMMENTS co\n" +
-    "  INNER JOIN %1$s.COMMENT_USERS cous\n" +
+    "FROM\n" +
+    "  %1$s.COMMENTS                            co\n" +
+    "  INNER JOIN %1$s.COMMENT_USERS            cous\n" +
     "    ON co.USER_ID = cous.USER_ID\n" +
-    "  LEFT JOIN %1$s.COMMENTSTABLEID costid\n" +
+    "  LEFT JOIN %1$s.COMMENTSTABLEID           costid\n" +
     "    ON co.COMMENT_ID = costid.COMMENT_ID\n" +
-    "  LEFT JOIN %1$s.COMMENTSEQUENCE cose\n" +
+    "  LEFT JOIN %1$s.COMMENTSEQUENCE           cose\n" +
     "    ON co.COMMENT_ID = cose.COMMENT_ID\n" +
     "  LEFT JOIN %1$s.COMMENT_EXTERNAL_DATABASE coexda\n" +
     "    ON co.COMMENT_ID = coexda.COMMENT_ID\n" +
-    "  LEFT JOIN %1$s.COMMENTFILE cofi\n" +
+    "  LEFT JOIN %1$s.COMMENTFILE               cofi\n" +
     "    ON co.COMMENT_ID = cofi.COMMENT_ID\n" +
-    "  LEFT JOIN %1$s.COMMENTREFERENCE core\n" +
+    "  LEFT JOIN %1$s.COMMENTREFERENCE          core\n" +
     "    ON co.COMMENT_ID = core.COMMENT_ID\n" +
-    "  LEFT JOIN %1$s.EXTERNAL_DATABASES exda\n" +
+    "  LEFT JOIN %1$s.EXTERNAL_DATABASES        exda\n" +
     "    ON coexda.EXTERNAL_DATABASE_ID = exda.EXTERNAL_DATABASE_ID\n" +
-    "  LEFT JOIN %1$s.LOCATIONS lo\n" +
-    "    ON co.COMMENT_ID = lo.COMMENT_ID\n" + "WHERE\n" + "  co.COMMENT_ID = ?";
+    "  LEFT JOIN %1$s.LOCATIONS                 lo\n" +
+    "    ON co.COMMENT_ID = lo.COMMENT_ID\n" +
+    "WHERE\n" +
+    "  co.COMMENT_ID = ?";
 
   private static final Integer[] TYPES = { BIGINT };
 
@@ -64,13 +86,15 @@ public class GetCommentQuery extends BaseCommentQuery<Optional<Comment>> {
 
     Comment out = rs2Comment(rs);
     rs2Sequence(rs).ifPresent(out::setSequence);
-    rs2Location(rs).ifPresent(out::setLocations);
-    rs2ExternalDb(rs).ifPresent(out::setExternalDb);
+    rs2Location(rs).ifPresent(out::setLocation);
+    rs2ExternalDb(rs).ifPresent(out::setExternalDatabase);
 
     do {
-      rs2LocationRange(rs).ifPresent(out.getLocations()::addRange);
+      rs2LocationRange(rs).ifPresent(
+          rng -> out.locationOption().ifPresent(loc -> loc.addRange(rng)));
       rs2Related(rs).ifPresent(out::addRelatedStableId);
       rs2Reference(rs).ifPresent(t -> appendReference(out, t));
+      rs2Attachment(rs).ifPresent(out::addAttachment);
     } while(rs.next());
 
     return Optional.of(out);

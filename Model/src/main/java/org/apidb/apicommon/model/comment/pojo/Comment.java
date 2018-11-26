@@ -21,8 +21,6 @@ public class Comment extends BaseComment {
 
   private ReviewStatus _reviewStatus;
 
-  private Locations _locations;
-
   private Project _project;
 
   /**
@@ -35,8 +33,8 @@ public class Comment extends BaseComment {
     @JsonProperty("id")     long comId,
     @JsonProperty("userId") long userId
   ) {
-    super(userId);
     _commentId = comId;
+    setUserId(userId);
 
     _attachments = new HashSet<>();
     _categories = new HashSet<>();
@@ -62,7 +60,6 @@ public class Comment extends BaseComment {
     return this;
   }
 
-  @JsonGetter("pubMed")
   public Collection<PubMedReference> getPubMedRefs() {
     return Collections.unmodifiableCollection(_pubMed);
   }
@@ -73,7 +70,6 @@ public class Comment extends BaseComment {
     return this;
   }
 
-  @JsonSetter("pubMed")
   public Comment setPubMedRefs(Collection<PubMedReference> pmRefs) {
     _pubMed.clear();
     _pubMed.addAll(pmRefs);
@@ -104,6 +100,7 @@ public class Comment extends BaseComment {
     return this;
   }
 
+  @JsonIgnore
   public Project getProject() {
     return _project;
   }
@@ -122,15 +119,6 @@ public class Comment extends BaseComment {
     return this;
   }
 
-  public Locations getLocations() {
-    return _locations;
-  }
-
-  public Comment setLocations(final Locations locs) {
-    _locations = locs;
-    return this;
-  }
-
   public Author getAuthor() {
     return _author;
   }
@@ -144,9 +132,8 @@ public class Comment extends BaseComment {
     return Collections.unmodifiableCollection(_attachments);
   }
 
-  public Comment setAttachments(Collection<Attachment> files) {
-    _attachments.clear();
-    files.stream().peek(Objects::requireNonNull).forEach(_attachments::add);
+  public Comment addAttachment(Attachment att) {
+    _attachments.add(att);
     return this;
   }
 
@@ -163,6 +150,12 @@ public class Comment extends BaseComment {
   @Override
   public Comment setDigitalObjectIds(Collection<String> ids) {
     return (Comment) super.setDigitalObjectIds(ids);
+  }
+
+  @Override
+  @JsonIgnore
+  public long getUserId() {
+    return super.getUserId();
   }
 
   @Override
@@ -196,8 +189,8 @@ public class Comment extends BaseComment {
   }
 
   @Override
-  public Comment setExternalDb(ExternalDatabase externalDb) {
-    return (Comment) super.setExternalDb(externalDb);
+  public Comment setExternalDatabase(ExternalDatabase externalDatabase) {
+    return (Comment) super.setExternalDatabase(externalDatabase);
   }
 
   @Override
@@ -212,5 +205,10 @@ public class Comment extends BaseComment {
   @Override
   public Comment addAdditionalAuthor(String author) {
     return (Comment) super.addAdditionalAuthor(author);
+  }
+
+  @Override
+  public Comment setLocation(Location locs) {
+    return (Comment) super.setLocation(locs);
   }
 }

@@ -1,18 +1,12 @@
 package org.apidb.apicommon.model.comment.pojo;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-class BaseComment {
-  private final long _userId;
-
-  private final Target _target;
+public class BaseComment {
 
   private final Set<String> _relatedStableIds;
 
@@ -24,28 +18,38 @@ class BaseComment {
 
   private final Set<String> _pubMedIds;
 
+  private Target _target;
+
+  private long _userId;
+
   private String _headline;
 
   private String _content;
 
   private String _sequence;
 
-  private ExternalDatabase _externalDb;
+  private ExternalDatabase _externalDatabase;
 
   private String organism;
 
-  public BaseComment(long userId) {
+  private Location _location;
+
+  public BaseComment() {
     _target = new Target();
     _relatedStableIds = new HashSet<>();
     _digitalObjectIds = new HashSet<>();
     _genBankAccessions = new HashSet<>();
     _additionalAuthors = new HashSet<>();
     _pubMedIds = new HashSet<>();
-    _userId = userId;
   }
 
   public long getUserId() {
     return _userId;
+  }
+
+  public BaseComment setUserId(long userId) {
+    _userId = userId;
+    return this;
   }
 
   public String getContent() {
@@ -70,8 +74,27 @@ class BaseComment {
     return _target;
   }
 
+  public BaseComment setTarget(Target target) {
+    _target = target;
+    return this;
+  }
+
   public String getOrganism() {
     return organism;
+  }
+
+  public Location getLocation() {
+    return _location;
+  }
+
+  @JsonIgnore
+  public Optional<Location> locationOption() {
+    return Optional.ofNullable(_location);
+  }
+
+  public BaseComment setLocation(final Location locs) {
+    _location = locs;
+    return this;
   }
 
   public BaseComment setOrganism(String organism) {
@@ -88,12 +111,12 @@ class BaseComment {
     return this;
   }
 
-  public ExternalDatabase getExternalDb() {
-    return _externalDb;
+  public ExternalDatabase getExternalDatabase() {
+    return _externalDatabase;
   }
 
-  public BaseComment setExternalDb(ExternalDatabase externalDb) {
-    _externalDb = externalDb;
+  public BaseComment setExternalDatabase(ExternalDatabase externalDatabase) {
+    _externalDatabase = externalDatabase;
     return this;
   }
 
@@ -163,12 +186,6 @@ class BaseComment {
 
   public BaseComment addPubMedId(String id) {
     _pubMedIds.add(id);
-    return this;
-  }
-
-  public BaseComment setPubMedIds(Collection<String> ids) {
-    _pubMedIds.clear();
-    _pubMedIds.addAll(ids);
     return this;
   }
 }

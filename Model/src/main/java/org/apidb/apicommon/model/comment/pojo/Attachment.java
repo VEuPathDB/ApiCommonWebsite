@@ -1,5 +1,6 @@
 package org.apidb.apicommon.model.comment.pojo;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import org.apidb.apicommon.model.userfile.UserFile;
 
 import java.util.Objects;
@@ -7,10 +8,12 @@ import java.util.Objects;
 /**
  * User Comment File Attachment
  */
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Attachment {
   private long _id;
   private String _name;
   private String _description;
+  private String _preview;
 
   public long getId() {
     return _id;
@@ -37,6 +40,14 @@ public class Attachment {
   public Attachment setDescription(String description) {
     _description = description;
     return this;
+  }
+
+  public String getPreview() {
+    return _preview;
+  }
+
+  public void setPreview(String preview) {
+    _preview = preview;
   }
 
   @Override

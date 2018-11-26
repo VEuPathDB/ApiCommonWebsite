@@ -23,16 +23,20 @@ import javax.ws.rs.core.*;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collection;
-import java.util.Collections;
 
 @Path(AttachmentsService.BASE_PATH)
 public class AttachmentsService extends AbstractUserCommentService {
-  public static final String BASE_PATH = UserCommentsService.ID_PATH + "/attachments";
+  public static final String BASE_PATH = UserCommentsService.BASE_PATH +
+      UserCommentsService.ID_PATH + "/attachments";
   public static final String URI_PARAM = "attachment-id";
   public static final String ID_PATH   = "/{" + URI_PARAM + "}";
 
   @Context
-  protected UriInfo _uriInfo;
+  private UriInfo _uriInfo;
+
+  public AttachmentsService() {
+    System.out.println("foo");
+  }
 
   /**
    * Get a list of all attachment details for a given comment.
@@ -47,7 +51,7 @@ public class AttachmentsService extends AbstractUserCommentService {
       throws WdkModelException {
     checkCommentId(commentId);
 
-    return Collections.emptyList();
+    return getCommentFactory().getAllAttachments(commentId);
   }
 
   /**
@@ -69,12 +73,15 @@ public class AttachmentsService extends AbstractUserCommentService {
     @FormDataParam("file") final InputStream fileStream,
     @FormDataParam("file") final FormDataContentDisposition meta
   ) throws WdkModelException, UserFileUploadException {
+    if(description == null)
+      throw new BadRequestException("description is required");
+
     if(meta == null || fileStream == null)
-      throw new BadRequestException();
+      throw new BadRequestException("file cannot be null");
 
     checkCommentId(commentId);
 
-    UserFile userFile = buildUserFile(getWdkModel(), getSessionUser(), meta,
+    UserFile userFile = buildUserFile(getWdkModel(), getUser(), meta,
         description, fileStream);
 
     getFileFactory().addUserFile(userFile);
@@ -85,7 +92,7 @@ public class AttachmentsService extends AbstractUserCommentService {
         Attachment.fromUserFile(userFile));
 
     return Response.created(_uriInfo.getAbsolutePathBuilder().build())
-      .entity(new JSONObject().append(JsonKeys.ID, ""))
+      .entity(new JSONObject().put(JsonKeys.ID, userFile.getUserFileId()))
       .build();
   }
 
@@ -102,6 +109,7 @@ public class AttachmentsService extends AbstractUserCommentService {
       @PathParam(URI_PARAM) long attachmentId) throws WdkModelException {
     checkCommentId(commentId);
     checkFileId(attachmentId);
+    getUser();
     getCommentFactory().deleteAttachment(commentId, attachmentId);
     getFileFactory().deleteUserFile(attachmentId);
     return Response.noContent().build();
@@ -126,7 +134,9 @@ public class AttachmentsService extends AbstractUserCommentService {
 
     return Response.ok(
         (StreamingOutput) outputStream -> IOUtils.copy(data, outputStream),
-        mimeTypeOf(att.getName())).build();
+        mimeTypeOf(att.getName()))
+        .header("Content-Disposition", "attachment; filename=" + att.getName())
+        .build();
   }
 
   private UserFileFactory getFileFactory() {
