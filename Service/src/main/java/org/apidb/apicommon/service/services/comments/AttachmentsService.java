@@ -3,6 +3,7 @@ package org.apidb.apicommon.service.services.comments;
 import org.apache.commons.io.IOUtils;
 import org.apidb.apicommon.controller.MimeTypes;
 import org.apidb.apicommon.model.comment.pojo.Attachment;
+import org.apidb.apicommon.model.comment.pojo.Comment;
 import org.apidb.apicommon.model.userfile.UserFile;
 import org.apidb.apicommon.model.userfile.UserFileFactory;
 import org.apidb.apicommon.model.userfile.UserFileUploadException;
@@ -34,10 +35,6 @@ public class AttachmentsService extends AbstractUserCommentService {
   @Context
   private UriInfo _uriInfo;
 
-  public AttachmentsService() {
-    System.out.println("foo");
-  }
-
   /**
    * Get a list of all attachment details for a given comment.
    *
@@ -57,6 +54,9 @@ public class AttachmentsService extends AbstractUserCommentService {
   /**
    * Upload new attachment
    *
+   * Note: A user must be logged in and own the target comment to use this
+   *       endpoint.
+   *
    * @param commentId   ID of the comment that the uploaded attachment will
    *                    belong to.
    * @param description User description/note for the current attachment upload.
@@ -68,21 +68,23 @@ public class AttachmentsService extends AbstractUserCommentService {
   @Consumes(MediaType.MULTIPART_FORM_DATA)
   @Produces(MediaType.APPLICATION_JSON)
   public Response newAttachment(
-    @PathParam(UserCommentsService.URI_PARAM) long commentId,
+    @PathParam(UserCommentsService.URI_PARAM) final long commentId,
     @FormDataParam("description") final String description,
     @FormDataParam("file") final InputStream fileStream,
     @FormDataParam("file") final FormDataContentDisposition meta
   ) throws WdkModelException, UserFileUploadException {
+
     if(description == null)
       throw new BadRequestException("description is required");
 
     if(meta == null || fileStream == null)
       throw new BadRequestException("file cannot be null");
 
-    checkCommentId(commentId);
+    final User user = fetchUser();
+    checkCommentOwnership(fetchComment(commentId), user);
 
-    UserFile userFile = buildUserFile(getWdkModel(), getUser(), meta,
-        description, fileStream);
+    UserFile userFile = buildUserFile(getWdkModel(), user, meta, description,
+        fileStream);
 
     getFileFactory().addUserFile(userFile);
     // IMPORTANT: The "attachment" instance is created after the call to
@@ -99,6 +101,9 @@ public class AttachmentsService extends AbstractUserCommentService {
   /**
    * Delete comment attachment by ID
    *
+   * Note: A user must be logged in and own the target comment to use this
+   *       endpoint.
+   *
    * @param commentId    ID of the comment the attachment belongs to
    * @param attachmentId ID of the attachment to be deleted
    */
@@ -107,9 +112,13 @@ public class AttachmentsService extends AbstractUserCommentService {
   public Response deleteAttachment(
       @PathParam(UserCommentsService.URI_PARAM) long commentId,
       @PathParam(URI_PARAM) long attachmentId) throws WdkModelException {
-    checkCommentId(commentId);
+    final Comment com = fetchComment(commentId);
+
     checkFileId(attachmentId);
-    getUser();
+
+    final User user = fetchUser();
+
+    checkCommentOwnership(com, user);
     getCommentFactory().deleteAttachment(commentId, attachmentId);
     getFileFactory().deleteUserFile(attachmentId);
     return Response.noContent().build();
@@ -128,8 +137,9 @@ public class AttachmentsService extends AbstractUserCommentService {
   public Response getAttachment(
       @PathParam(UserCommentsService.URI_PARAM) long commentId,
       @PathParam(URI_PARAM) long attachmentId) throws WdkModelException {
-    final Attachment att = getCommentFactory().getAttachment(commentId,
-        attachmentId).orElseThrow(NotFoundException::new);
+    final Attachment att = getCommentFactory()
+        .getAttachment(commentId, attachmentId)
+        .orElseThrow(NotFoundException::new);
     final InputStream data = getFileFactory().getUserFile(attachmentId);
 
     return Response.ok(

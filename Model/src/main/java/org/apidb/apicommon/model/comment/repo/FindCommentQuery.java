@@ -145,7 +145,8 @@ public class FindCommentQuery extends BaseCommentQuery<Collection<Comment>> {
       if(com.getExternalDatabase() == null)
         rs2ExternalDb(rs).ifPresent(com::setExternalDatabase);
 
-      rs2LocationRange(rs).ifPresent(com.getLocation()::addRange);
+      rs2LocationRange(rs).ifPresent(
+          rng -> com.locationOption().ifPresent(loc -> loc.addRange(rng)));
       rs2Related(rs).ifPresent(com::addRelatedStableId);
       rs2Reference(rs).ifPresent(t -> appendReference(com, t));
       rs2Attachment(rs).ifPresent(com::addAttachment);

@@ -1,9 +1,8 @@
 package org.apidb.apicommon.service.services;
 
-import joptsimple.internal.Strings;
+import org.apidb.apicommon.model.comment.CommentAlertEmailFormatter;
 import org.apidb.apicommon.model.comment.pojo.Comment;
 import org.apidb.apicommon.model.comment.pojo.CommentRequest;
-import org.apidb.apicommon.model.comment.pojo.ExternalDatabase;
 import org.gusdb.wdk.core.api.JsonKeys;
 import org.gusdb.wdk.model.Utilities;
 import org.gusdb.wdk.model.WdkModel;
@@ -54,16 +53,19 @@ public class UserCommentsService extends AbstractUserCommentService {
   @InSchema("apicomm.user-comments.post-request")
   @OutSchema("apicomm.user-comments.post-response")
   public Response newComment(CommentRequest body) throws WdkModelException {
-    final User user = getSessionUser();
+    final User user = fetchUser();
 
-    if (user.isGuest())
-      throw new NotAuthorizedException("guest users cannot post comments");
+    // If the user is attempting to "update" or replace a
+    // comment, ensure that the previous comment exists and
+    // user actually owns that comment.
+    if (body.getPreviousCommentId() != null)
+      checkCommentOwnership(fetchComment(body.getPreviousCommentId()), user);
 
     final long id = getCommentFactory().createComment(body, user);
 
     notificationEmail(getWdkModel(), user, body, id);
 
-    return Response.created(_uriInfo.getAbsolutePathBuilder().build(id))
+    return Response.created(buildURL(id))
       .entity(new JSONObject().put(JsonKeys.ID, id))
       .build();
   }
@@ -110,76 +112,36 @@ public class UserCommentsService extends AbstractUserCommentService {
   @Path(ID_PATH)
   @Produces(MediaType.APPLICATION_JSON)
   @OutSchema("apicomm.user-comments.id.get-response")
-  public Comment getComment(@PathParam(URI_PARAM) long _commentId)
-      throws WdkModelException {
-    return getCommentFactory().getComment(_commentId)
-        .orElseThrow(NotFoundException::new);
+  public Comment getComment(@PathParam(URI_PARAM) long comId) throws WdkModelException {
+    return fetchComment(comId);
   }
 
   @DELETE
   @Path(ID_PATH)
-  public Response deleteComment(@PathParam(URI_PARAM) long _commentId)
-      throws WdkModelException {
-    checkCommentId(_commentId);
-    getCommentFactory().deleteComment(_commentId);
+  public Response deleteComment(@PathParam(URI_PARAM) long comId) throws WdkModelException {
+    checkCommentOwnership(fetchComment(comId), fetchUser());
+    getCommentFactory().deleteComment(comId);
     return Response.noContent().build();
   }
 
   private URI buildURL(long comId) {
-    return _uriInfo.getAbsolutePathBuilder().build(comId);
+    return _uriInfo.getAbsolutePathBuilder()
+      .path(String.valueOf(comId))
+      .build();
   }
 
   private void notificationEmail(WdkModel wdk, User user, CommentRequest com,
       long comId) throws WdkModelException {
 
-    final String projectId = wdk.getProjectId();
-    final String organism  = com.getOrganism();
-    final String targType  = com.getTarget().getType();
-    final String stableId  = com.getTarget().getId();
-    final String subject = String.format("%s %s %s", projectId, targType, stableId);
-    final ExternalDatabase exDb = com.getExternalDatabase();
+    final CommentAlertEmailFormatter form = new CommentAlertEmailFormatter();
 
-    StringBuilder body = new StringBuilder();
-    if(projectId.equals("TriTrypDB") || "Plasmodium falciparum".equals(organism) || "Cryptosporidium parvum".equals(organism)) {
-      body.append("Thank you! Your comment will be reviewed by a curator shortly.\n");
-    } else {
-      body.append("Thanks for your comment!\n");
-    }
-    body.append("-------------------------------------------------------\n")
-        .append("Comment Id: ").append(comId).append("\n")
-        .append("Headline: ").append(com.getHeadline()).append("\n")
-        .append("Target: ").append(targType).append("\n")
-        .append("Source_Id: ").append(stableId).append("\n")
-        .append("Comment: ").append(com.getContent()).append("\n")
-        .append("PMID: ").append(Strings.join(com.getPubMedIds(), ", ")).append("\n")
-        .append("DOI(s): ").append(Strings.join(com.getDigitalObjectIds(), ", ")).append("\n")
-        .append("Related Genes: ").append(Strings.join(com.getRelatedStableIds(), ", ")).append("\n")
-        .append("Accession: ").append(Strings.join(com.getGenBankAccessions(), ", ")).append("\n")
-        .append("Email: ").append(user.getEmail()).append("\n");
-
-    if(organism != null)
-      body.append("Organism: ").append(organism).append("\n");
-
-    if(exDb != null)
-      body.append("DB Name: ").append(exDb.getName()).append("\n")
-          .append("DB Version: ").append(exDb.getVersion()).append("\n");
-
-    body.append("Comment Link: ").append(buildURL(comId).toString()).append("\n")
-        .append("-------------------------------------------------------\n");
-
-    // used for redmine issue tracker
-    StringBuilder bodyRedmine = new StringBuilder(body.toString())
-        .append("Project: uiresulvb\n")
-        .append("Tracker: Communication\n")
-        .append("Assignee: annotator\n")
-        .append("EuPathDB Team: Outreach\n")
-        .append("Component:").append(projectId).append("\n");
-
-
+    final String subject = form.makeSubject(wdk.getProjectId(), com);
+    final String url = buildURL(comId).toString();
     final String smtp = wdk.getModelConfig().getSmtpServer();
+
     Utilities.sendEmail(smtp, ANNOTATORS_EMAIL + ", " + user.getEmail(),
-        SOURCE_EMAIL, subject, body.toString());
+        SOURCE_EMAIL, subject, form.makeSelfAlertBody(wdk, user, com, comId, url));
     Utilities.sendEmail(smtp, REDMINE_EMAIL, SOURCE_EMAIL, subject,
-        bodyRedmine.toString());
+        form.makeRedmineAlertBody(wdk, user, com, comId, url));
   }
 }
