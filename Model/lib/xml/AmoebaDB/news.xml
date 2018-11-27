@@ -36,7 +36,18 @@
       </section>
       
       <section>
-      <h3><b>No new features in AmoebaDB 41</b></h3>
+      <h3><b>New features in CryptoDB 41</b></h3>
+        <div style="margin-left: 3em;">
+         <h4>New Gene Result Analysis tool</h4>
+         <ul>
+           <li>A new tool to find 'Experiments with Similar Results' is available for any gene result.  Use the blue 'Analysis 
+           Result' tab on any gene result page to access the tool.  The tool compares the genes in your current result to 
+           gene lists generated from each transcriptomic data set based on GSEA. The tool returns a list of @PROJECT_ID@ data sets whose 
+           gene lists are statistically similar and may be worth investigating. For more information, see this 
+           <a href="/assets/XXXX">Sense/Experiments with Similar Results tutorial</a>.
+           </li>
+         </ul><br>
+       </div> 
       </section>
       
       <section>
