@@ -24,6 +24,84 @@
 -->
 
 <record>
+  <attribute name="headline">CryptoDB 41 Released</attribute>
+  <attribute name="date">15 Dec 2018 13:00</attribute>
+  <attribute name="tag">CryptoDB12_18_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of CryptoDB 41</strong></p>
+      
+       <section>
+      <h3><b>New data in CryptoDB 41</b></h3>
+        <div style="margin-left: 3em;">
+        <h4>Genome Sequence</h4>
+         <ul>
+           <li><a href="http://cryptodb.org/cryptodb/app/record/dataset/DS_92062c4a9b"><i>Cryptosporidium sp.</i> chipmunk LX-2015</a> &mdash; <br>
+           <i>Cryptosporidium</i> chipmunk genotype I is an emerging zoonotic pathogen. 
+           <a href="http://www.ncbi.nlm.nih.gov/pubmed/25762767" target="_blank">Guo et al.</a>.
+           </li>
+         </ul>  
+         <h4>Whole genome sequencing of isolates</h4>
+         <ul>
+           <li><a href="http://cryptodb.org/cryptodb/app/record/dataset/DS_33b107b983">Genomic variation in patient-derived <i>Cryptosporidium hominis</i> samples<i></a> &mdash; <br>
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/28003424" target="_blank">Sikora et al.</a>.
+           </li>
+           <li><a href="http://cryptodb.org/cryptodb/app/record/dataset/DS_1cd846fd00"><i>Cryptosporidium hominis</i> genetic diversity in isolates from Bangladesh</a> &mdash; <br>
+             Genome sequencing of <i>Cryptosporidium hominis</i> from infants in slum dwelling from Dhaka Bangladesh.
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/29514308" target="_blank">Gilchrist et al.</a>.
+           </li>
+         </ul> 
+         <h4>RNA sequence</h4>
+         <ul>
+           <li><a href="http://cryptodb.org/cryptodb/app/record/dataset/DS_f86ff234a4">Transcriptome of <i>Cryptosporidium parvum</i> intracellular stages<i></a> &mdash; <br>
+              The transcriptome of cultured MDBK cells infected with <i>Cryptosporidium parvum</i> was 
+              analyzed by Illumina RNA sequencing. Four to five replicate samples of MDBK cells were sequenced 
+              2h, 24h, and 48h post-infection.  Data are 
+              provided prepublication from the Widmer Lab at Tufts University.
+           </li>
+           <li><a href="http://cryptodb.org/cryptodb/app/record/dataset/DS_0c49609b3a">Transcriptome of <i>Cryptosporidium hominis</i> oocysts<i></a> &mdash; <br>
+             Oocysts were analyzed by Illumina RNA sequencing. Data 
+             are provided prepublication from the Widmer Lab at Tufts University.
+           </li>
+           <li><a href="http://cryptodb.org/cryptodb/app/record/dataset/DS_0c49609b3a">Transcriptome of <i>Cryptosporidium parvum</i> sporozoites treated with GalNAc<i></a> &mdash; <br>
+             <i>C. parvum</i> sporozoites were incubated in either PBS or 10 &#181;M GalNac for 0h (2 replicates each) or 2h (5 replicates each) and analyzed 
+             by Illumina RNA sequencing. Data are provided prepublication from the Widmer Lab at Tufts University.
+           </li>
+         </ul> 
+       </div> 
+       </section>
+      
+      <section>
+      <h3><b>New features in CryptoDB 41</b></h3>
+        <div style="margin-left: 3em;">
+         <h4>New Gene Result Analysis tool</h4>
+         <ul>
+           <li>A new tool to find 'Experiments with Similar Results' is available for any gene result.  Use the blue 'Analysis 
+           Result' tab on any gene result page to access the tool.  The tool compares the genes in your current result to 
+           gene lists generated from each transcriptomic data set based on GSEA. The tool returns a list of @PROJECT_ID@ data sets whose 
+           gene lists are statistically similar and may be worth investigating. For more information, see this 
+           <a href="/assets/XXXX">Sense/Experiments with Similar Results tutorial</a>.
+           </li>
+         </ul><br>
+       </div> 
+      </section>
+      
+      <section>
+         <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+
+    ]]>
+  </attribute>
+</record>
+
+
+<record>
   <attribute name="headline">CryptoDB 40 Released</attribute>
   <attribute name="date">15 Oct 2018 13:00</attribute>
   <attribute name="tag">CryptoDB10_18_release</attribute>
