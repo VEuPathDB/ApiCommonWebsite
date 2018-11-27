@@ -1,0 +1,146 @@
+#%RAML 1.0
+title: ApiCommonWebsite/Service
+
+traits:
+  ownershipChecked:
+    responses:
+      401:
+        description: >
+          Unauthorized.  Returned if an attempt was made by a user to modify
+          another user's comment.
+
+/user-comments:
+  displayName: User Comments
+
+  get:
+    description:
+      Retrieve a list of comments.  Returning all comments has been disallowed,
+      one or more query parameters must be provided to filter the results.
+    queryParameters:
+      target-type:
+        description: >
+          Comment target record type.  Note: if this is used, `target-id` must
+          also be used.
+        type: string
+        example: gene
+        required: false
+      target-id:
+        description: >
+          Comment target record id.  Note: if this is used, `target-type` must
+          also be used.
+        type: string
+        example: TGME49_293760
+        required: false
+      author:
+        description: Comment author id
+        type: integer
+        format: int64
+        required: false
+    responses:
+      200:
+        description: Success
+        body:
+          application/json:
+            type: !include ../../src/main/resources/schema/apicomm/user-comments/get-response.json
+      500:
+        description: Internal server error
+
+  post:
+    is: [ ownershipChecked ]
+    description: Create or Replace comment
+    body:
+      application/json:
+        type: !include ../../src/main/resources/schema/apicomm/user-comments/post-request.json
+    responses:
+      204:
+        body:
+          application/json:
+            type: !include ../../src/main/resources/schema/apicomm/user-comments/post-response.json
+      400:
+        body:
+          text/plain:
+      500:
+       body:
+         text/plain:
+
+  /{commentId}:
+    uriParameters:
+      commentId:
+        description: Comment database id
+        type: integer
+        format: int64
+
+    get:
+      description: Get details for a specific comment
+      responses:
+        200:
+          description: Success
+          body:
+            application/json:
+              type: !include ../../src/main/resources/schema/apicomm/user-comments/id/get-response.json
+        404:
+          description: Invalid comment id
+          body:
+            application/json:
+    delete:
+      is: [ ownershipChecked ]
+      description: Delete specific comment
+      responses:
+        204:
+          description: Deleted
+        401:
+          description: Unauthorized (Cannot delete another user's comment)
+        404:
+          description: Invalid comment id
+        500:
+          description: Internal server error
+
+    /attachments:
+      get:
+        description: Get a list of attachments for a specific comment
+        responses:
+          200:
+            description: Success
+            body:
+              application/json:
+          404:
+            description: Invalid comment id
+
+      post:
+        description: Upload a new attachment
+        body:
+          multipart/formdata:
+            type: object
+            properties:
+              file:
+                description: File to upload
+              description:
+                description: File description
+
+      /{attachmentId}:
+        uriParameters:
+          attachmentId:
+            description: User file id
+            type: integer
+            format: int64
+
+        get:
+          description: Returns the attachment as a download.
+          responses:
+            200:
+              description: "Success, will have Content-Disposition: attachment"
+            404:
+              description: Invalid attachment id
+            500:
+              description: Internal server error
+
+        delete:
+          description: Delete attachment
+          is: [ ownershipChecked ]
+          responses:
+            201:
+              description: Attachment deleted
+            404:
+              description: Invalid attachment id
+            500:
+              description: Internal server error
