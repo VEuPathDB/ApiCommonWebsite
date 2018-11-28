@@ -39,17 +39,17 @@
          <ul>
            <li><a href="http://cryptodb.org/cryptodb/app/record/dataset/DS_92062c4a9b"><i>Cryptosporidium sp.</i> chipmunk LX-2015</a> &mdash; <br>
            <i>Cryptosporidium</i> chipmunk genotype I is an emerging zoonotic pathogen. 
-           <a href="http://www.ncbi.nlm.nih.gov/pubmed/25762767" target="_blank">Guo et al.</a>.
+           <a href="http://www.ncbi.nlm.nih.gov/pubmed/25762767" target="_blank">Guo et al.</a>
            </li>
          </ul>  
          <h4>Whole genome sequencing of isolates</h4>
          <ul>
-           <li><a href="http://cryptodb.org/cryptodb/app/record/dataset/DS_33b107b983">Genomic variation in patient-derived <i>Cryptosporidium hominis</i> samples<i></a> &mdash; <br>
-             <a href="http://www.ncbi.nlm.nih.gov/pubmed/28003424" target="_blank">Sikora et al.</a>.
+           <li><a href="http://cryptodb.org/cryptodb/app/record/dataset/DS_33b107b983">Genomic variation in patient-derived <i>Cryptosporidium hominis</i> samples</a> &mdash; 
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/28003424" target="_blank">Sikora et al.</a>
            </li>
            <li><a href="http://cryptodb.org/cryptodb/app/record/dataset/DS_1cd846fd00"><i>Cryptosporidium hominis</i> genetic diversity in isolates from Bangladesh</a> &mdash; <br>
              Genome sequencing of <i>Cryptosporidium hominis</i> from infants in slum dwelling from Dhaka Bangladesh.
-             <a href="http://www.ncbi.nlm.nih.gov/pubmed/29514308" target="_blank">Gilchrist et al.</a>.
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/29514308" target="_blank">Gilchrist et al.</a>
            </li>
          </ul> 
          <h4>RNA sequence</h4>
@@ -81,7 +81,7 @@
            Result' tab on any gene result page to access the tool.  The tool compares the genes in your current result to 
            gene lists generated from each transcriptomic data set based on GSEA. The tool returns a list of @PROJECT_ID@ data sets whose 
            gene lists are statistically similar and may be worth investigating. For more information, see this 
-           <a href="/assets/XXXX">Sense/Experiments with Similar Results tutorial</a>.
+           <a href="/assets/XXXX">Experiments with Similar Results tutorial</a>.
            </li>
          </ul><br>
        </div> 
