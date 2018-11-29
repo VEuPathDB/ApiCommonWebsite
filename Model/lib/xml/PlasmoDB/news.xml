@@ -17,6 +17,177 @@
        </attribute>
     </record>
 -->
+
+<record>
+  <attribute name="headline">PlasmoDB 41 Released</attribute>
+  <attribute name="date">15 Dec 2018 13:00</attribute>
+  <attribute name="tag">PlasmoDB12_18_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of PlasmoDB 41</strong></p>
+      
+      <section>
+      <h3><b>New data in PlasmoDB 41</b></h3>
+        <div style="margin-left: 3em;">
+        <h4>Genome sequence and annotation</h4>
+        These annotated genomes analyzed in <a href="http://www.ncbi.nlm.nih.gov/pubmed/29862326" target="_blank">Otto et al.</a> are integrated into PlasmoDB:
+           <ul>
+             <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_87081c7aae"><i>Plasmodium falciparum</i> 7G8</a>  &ndash;
+             </li>
+             <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_1abc3cd4c9"><i>Plasmodium falciparum</i> CD01</a>  &ndash;
+             </li>
+             <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_58283fc81a"><i>Plasmodium falciparum</i> Dd2</a>  &ndash;
+             </li>
+             <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_1f8272dd26"><i>Plasmodium falciparum</i> GA01</a>  &ndash;
+             </li>
+             <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_76a6761cc5"><i>Plasmodium falciparum</i> GB4</a>  &ndash;
+             </li>
+             <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_e93d27ac3f"><i>Plasmodium falciparum</i> GN01</a>  &ndash;
+             </li>
+             <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_c4279fbeb1"><i>Plasmodium falciparum</i> HB3</a>  &ndash;
+             </li>
+             <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_d5ed3f9510"><i>Plasmodium falciparum</i> IT</a>  &ndash;
+             </li>
+             <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_87335f3dd3"><i>Plasmodium falciparum</i> KE01</a>  &ndash;
+             </li>
+             <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_d3f46b855b"><i>Plasmodium falciparum</i> KH01</a>  &ndash;
+             </li>
+             <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_87488c4d13"><i>Plasmodium falciparum</i> KH02</a>  &ndash;
+             </li>
+             <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_2a60a79d5d"><i>Plasmodium falciparum</i> ML01</a>  &ndash;
+             </li>
+             <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_44bdb781e5"><i>Plasmodium falciparum</i> SD01</a>  &ndash;
+             </li>
+             </li>
+             <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_f307cb349b"><i>Plasmodium falciparum</i> SN01</a>  &ndash;
+             </li>
+             <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_bcd8da0561"><i>Plasmodium falciparum</i> TG01</a>  &ndash;
+             </li>
+           </ul> 
+        <h4>Whole genome sequence of isolates</h4>
+           <ul>
+             <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_2d13238b19">Geographically dispersed <i>P. falciparum</i> isolates</a> &mdash;<br>
+             Illumina whole genome sequencing of P falciparum isolates and lab strains. Data were aligned to the Pf3D7 reference genome was used to determine SNPs.
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/29862326" target="_blank">Otto et al.</a>
+             </li>
+           </ul> 
+           
+        <h4>Updated Functional Annotation</h4>
+          <div style="margin-left: 3em;">
+        
+        <a href="https://docs.google.com/spreadsheets/d/1Mwh0RCDXiOAi5imBLDnJQy8cTUrO30AfJlaLeFJewGE/edit#gid=1112700546">Summary of annotation updates</a>
+          which include products, GO terms, gene names, synonyms and PMID. <br><br>
+        
+        <style>
+           #FunctAnnot_Bld41 table, #FunctAnnot_Bld41 td, #FunctAnnot_Bld41 th, #FunctAnnot_Bld41 tr {
+           text-align : center;
+           padding-left: 5px;
+           padding-right: 5px;
+           padding-top: 5px;
+           padding-bottom: 5px;
+           border: 1px solid black;
+           }
+           #FunctAnnot_Bld41 {
+           margin-left : 5 em;
+           }
+         </style> 
+           <table id="FunctAnnot_Bld41"> 
+           <tr>
+             <th>PlasmoDB Genome Version</th>
+             <th>Download GeneDB GFF file</th>
+             <th>Genes Updated</th>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on PlasmoDB."><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_f2d80510c7"><i>P. berghei</i> ANKA </a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2018-11/Pberghei.gff3.gz">GeneDB version November, 2018</a></td>
+             <td>666 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on PlasmoDB."><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_5dab6e4a9f"><i>P. chabaudi</i> AS </a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2018-11/Pchabaudi.gff3.gz">GeneDB version November, 2018</a></td>
+             <td>663 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on PlasmoDB."><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_1d17c1883c"><i>P. falciparum</i> 3D7 </a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2018-11/Pfalciparum.gff3.gz">GeneDB version November, 2018</a></td>
+             <td>1194 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on PlasmoDB."><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_22b4dadc51"><i>P. gallinaceum</i> 8A </a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2018-11/Pknowlesi.gff3.gz">GeneDB version November, 2018</a></td>
+             <td>682 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on PlasmoDB."><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_8793a259f4"><i>P. knowlesi</i> H </a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/ftp.sanger.ac.uk/pub/project/pathogens/gff3/2018-11/Pknowlesi.gff3.gz">GeneDB version November, 2018</a></td>
+             <td>655 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on PlasmoDB."><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_3986a0b578"><i>P. malariae</i> UG01 </a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2018-11/Pmalariae.gff3.gz">GeneDB version November, 2018</a></td>
+             <td>677 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on PlasmoDB."><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_a4928ff670"><i>P. ovale curtisi</i> GH01 </a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2018-11/Povale.gff3.gz">GeneDB version November, 2018</a></td>
+             <td>671 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on PlasmoDB."><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_91fa338f8f"><i>P. reichenowi</i> CDC </a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2018-11/Preichenowi.gff3.gz">GeneDB version November, 2018</a></td>
+             <td>636 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on PlasmoDB."><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_c3f289d21a"><i>P. relictum</i> SGS1 </a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2018-11/Prelictum.gff3.gz">GeneDB version November, 2018</a></td>
+             <td>683 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on PlasmoDB."><a href="http://alpha.plasmodb.org/plasmo.alpha/app/record/dataset/DS_ad07e73d42"><i>P. vivax</i> P01 </a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2018-11/PvivaxP01.gff3.gz">GeneDB version November, 2018</a></td>
+             <td>700 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on PlasmoDB."><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_b5a76b5939"><i>P. yoelii yoelii</i> 17X </a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2018-11/Pyoelii.gff3.gz">GeneDB version November, 2018</a></td>
+             <td>628 genes</td>
+           </tr>
+           </table>
+           <br><br>    
+           </div>
+      </section>
+      
+      <section>
+      <h3><b>New features in PlasmoDB 41</b></h3>
+        <div style="margin-left: 3em;">
+         <h4>New Gene Result Analysis tool</h4>
+         <ul>
+           <li>A new tool to find 'Experiments with Similar Results' is available for any gene result.  Use the blue 'Analysis 
+           Result' tab on any gene result page to access the tool.  The tool compares the genes in your current result to 
+           gene lists generated from each transcriptomic data set based on GSEA. The tool returns a list of @PROJECT_ID@ data sets whose 
+           gene lists are statistically similar and may be worth investigating. For more information, see this 
+           <a href="/assets/XXXX">Experiments with Similar Results tutorial</a>.
+           </li>
+         </ul><br>
+       </div> 
+      </section>
+      
+      <section>
+         <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+
+    ]]>
+  </attribute>
+</record>
+
+
+
 <record>
   <attribute name="headline">PlasmoDB 40 Released</attribute>
   <attribute name="date">15 Oct 2018 13:00</attribute>
