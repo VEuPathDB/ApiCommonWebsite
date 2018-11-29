@@ -38,11 +38,13 @@
             <a href="http://hostdb.org/hostdb/app/record/dataset/DS_c3d58a9aae">HFF transcriptional response to virulent and avirulent <i>T. cruzi</i></a> &mdash; <br>
             Transcriptional response of human foreskin fibroblasts following infection with <i>T. cruzi</i>. RNA was sequenced from infected HFF at 60 and 96 hours post 
             infection and from uninfected controls. 
-            <a href="http://www.ncbi.nlm.nih.gov/pubmed/29240831">Belew et al.</a>  
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/29240831" target="_blank">Belew et al.</a>  
             This data set has <i>T. cruzi</i> components available in TriTrypDB as:<br>
-            <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_7809e9bef4">Comparative transcriptomes of virulent and avirulent <i>T. cruzi</i> (Esmo aligned)</a>,<br>
-            <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_c09dab28a7">Comparative transcriptomes of virulent and avirulent <i>T. cruzi</i> (Non-Esmo aligned)</a> and <br> 
+            <div style="margin-left: 3em;">
+            <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_7809e9bef4">Comparative transcriptomes of virulent and avirulent <i>T. cruzi</i> (Esmo aligned)</a><br>
+            <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_c09dab28a7">Comparative transcriptomes of virulent and avirulent <i>T. cruzi</i> (Non-Esmo aligned)</a><br> 
             <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_f3315ea663">Comparative transcriptomes of virulent and avirulent <i>T. cruzi</i> (CLBrener)</a>.
+            </div>
            </li>
        </ul>
       </section>
