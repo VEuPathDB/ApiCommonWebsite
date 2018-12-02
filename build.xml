@@ -127,6 +127,7 @@
       <property name="project" value="ApiCommonWebsite"/>
       <property name="component" value="Site"/>
     </ant>
+    <mkdir dir="${htdocsTargetDir}/plasmoap/tmp"/>
   </target>
 
   <target name="ApiCommonWebsite/View-Installation" depends="ApiCommonWebsite/Model-Installation">
