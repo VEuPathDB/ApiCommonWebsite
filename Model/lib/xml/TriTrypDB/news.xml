@@ -49,21 +49,21 @@
             Transcriptomes of virulent and avirulent <i>T. cruzi</i> determined by RNA sequencing.
             <a href="http://www.ncbi.nlm.nih.gov/pubmed/29240831" target="_blank">Belew et al.</a>  
             This data set has corresponding host data at HostDB: 
-            <a href="http://hostdb.org/hostdb/app/record/dataset/DS_c3d58a9aae">HFF transcriptional response to virulent and avirulent <i>T. cruzi</i></a>.
+            <a href="http://hostdb.org/hostdb/app/record/dataset/DS_c3d58a9aae" target="_blank">HFF transcriptional response to virulent and avirulent <i>T. cruzi</i></a>.
            </li>
            <li>
             <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_7809e9bef4">Comparative transcriptomes of virulent and avirulent <i>T. cruzi</i> (Esmo aligned)</a> &mdash; <br>
             Transcriptomes of virulent and avirulent <i>T. cruzi</i> determined by RNA sequencing.
             <a href="http://www.ncbi.nlm.nih.gov/pubmed/29240831" target="_blank">Belew et al.</a>  
             This data set has corresponding host data at HostDB: 
-            <a href="http://hostdb.org/hostdb/app/record/dataset/DS_c3d58a9aae">HFF transcriptional response to virulent and avirulent <i>T. cruzi</i></a>.
+            <a href="http://hostdb.org/hostdb/app/record/dataset/DS_c3d58a9aae" target="_blank">HFF transcriptional response to virulent and avirulent <i>T. cruzi</i></a>.
            </li>
            <li>
             <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_c09dab28a7">Comparative transcriptomes of virulent and avirulent <i>T. cruzi</i> (Non-Esmo aligned)</a> &mdash; <br>
             Transcriptomes of virulent and avirulent <i>T. cruzi</i> determined by RNA sequencing.
             <a href="http://www.ncbi.nlm.nih.gov/pubmed/29240831" target="_blank">Belew et al.</a>  
             This data set has corresponding host data at HostDB: 
-            <a href="http://hostdb.org/hostdb/app/record/dataset/DS_c3d58a9aae">HFF transcriptional response to virulent and avirulent <i>T. cruzi</i></a>.
+            <a href="http://hostdb.org/hostdb/app/record/dataset/DS_c3d58a9aae" target="_blank">HFF transcriptional response to virulent and avirulent <i>T. cruzi</i></a>.
            </li>
            <li>
             <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_0ccdb3a6ec">Transcriptome of <i>T. brucei</i> rhodesiense from human, rodent, culture</a> &mdash; 
@@ -82,11 +82,11 @@
            </li>
            </ul>
            
-        <h4>Transcription Start Sites- GBrowse Track </h4>
+        <h4>Transcription Start Sites - GBrowse Track </h4>
           <ul>
            <li>
              <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_5df257adeb">Sequencing of small 5'-triphosphate-containing RNA (transcription start sites)</a> &mdash;  <br>
-             Trnascription start site data is integrated as a GBRowse track.  The data represent a COVERnant analysis of RNA sequence data. 
+             Transcription start site data is integrated as a GBRowse track.  The data represent a COVERnant analysis of RNA sequence data. 
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/28701485" target="_blank">Wedel et al.</a>   
              <a href="http://tritrypdb.org/cgi-bin/gbrowse/tritrypdb/?start=1758000;stop=1783999;ref=Tb927_09_v5.1;width=1024;version=100;flip=0;grid=1;id=a70110168e2cef9107609f2485b89a82;l=tbruTREU927_Wedel-polIIandhistone_chipSeq_RSRC_TSS%1EtbruTREU927_Wedel-polIIandhistone_chipSeq_RSRCCoverageUnlogged%1EGene" target="_blank">View data in GBRowse</a>
            </li>

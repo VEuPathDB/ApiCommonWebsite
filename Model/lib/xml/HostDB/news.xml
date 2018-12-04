@@ -41,9 +41,9 @@
             <a href="http://www.ncbi.nlm.nih.gov/pubmed/29240831" target="_blank">Belew et al.</a>  
             This data set has <i>T. cruzi</i> components available in TriTrypDB as:<br>
             <div style="margin-left: 3em;">
-            <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_7809e9bef4">Comparative transcriptomes of virulent and avirulent <i>T. cruzi</i> (Esmo aligned)</a><br>
-            <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_c09dab28a7">Comparative transcriptomes of virulent and avirulent <i>T. cruzi</i> (Non-Esmo aligned)</a><br> 
-            <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_f3315ea663">Comparative transcriptomes of virulent and avirulent <i>T. cruzi</i> (CLBrener)</a>.
+            <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_7809e9bef4" target="_blank">Comparative transcriptomes of virulent and avirulent <i>T. cruzi</i> (Esmo aligned)</a><br>
+            <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_c09dab28a7" target="_blank">Comparative transcriptomes of virulent and avirulent <i>T. cruzi</i> (Non-Esmo aligned)</a><br> 
+            <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_f3315ea663" target="_blank">Comparative transcriptomes of virulent and avirulent <i>T. cruzi</i> (CLBrener)</a>.
             </div>
            </li>
        </ul>
