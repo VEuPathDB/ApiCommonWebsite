@@ -73,7 +73,15 @@ public class SpanFromQuestionStageHandler extends ShowSpanStageHandler {
         // create a step from the input
         String filterName = request.getParameter(PARAM_FILTER);
         long stepId = Long.valueOf(request.getParameter(CConstants.WDK_STEP_ID_KEY));
-        long strategyId = Long.valueOf(request.getParameter(CConstants.WDK_STRATEGY_ID_KEY));
+
+        // did we get strategyId_stepId? (nested)
+        String  strategyKey = request.getParameter(CConstants.WDK_STRATEGY_ID_KEY);
+        int pos = strategyKey.indexOf("_");
+        String strStratId = (pos > 0) ? strategyKey.substring(0, pos)
+                : strategyKey;
+
+        long strategyId = Long.valueOf(strStratId);
+        //long strategyId = Long.valueOf(request.getParameter(CConstants.WDK_STRATEGY_ID_KEY));
         
         StrategyBean strategy = user.getStrategy(strategyId);
 
