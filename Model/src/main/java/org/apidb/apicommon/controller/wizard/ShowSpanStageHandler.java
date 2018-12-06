@@ -41,7 +41,7 @@ public abstract class ShowSpanStageHandler implements StageHandler {
     public Map<String, Object> execute(ActionServlet servlet,
             HttpServletRequest request, HttpServletResponse response,
             WizardForm wizardForm) throws Exception {
-        logger.debug("Entering SpanFromQuestionStageHandler....");
+        logger.debug("Entering ShowSpanStageHandler....");
 
         // get child step
         StepBean childStep = getChildStep(servlet, request, response,
