@@ -217,6 +217,9 @@
              
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_f670f03393"><i>Cryptococcus neoformans</i> var. grubii KN99</a> &ndash; 
+                 Gene mapping and functional annotation corrections: (1) old_locus_tag was mapped to new_locus_tag; (2) new_locus_tag is available in the <i>Names, 
+                 Previous Identifiers, and Aliases</i> section of the gene record page and should be used as the most recent and correct gene identifier; 
+                 (3) functional annotation (product description) was updated using new_locus_tag
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/29305388">Friedman et al. 2018</a>.
              </li>  
             </ul>
