@@ -8,6 +8,7 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 import org.gusdb.fgputil.FormatUtil;
 import org.gusdb.fgputil.validation.ValidationBundle;
+import org.gusdb.fgputil.validation.ValidationLevel;
 import org.gusdb.fgputil.validation.ValidationBundle.ValidationBundleBuilder;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.analysis.AbstractSimpleProcessAnalyzer;
@@ -23,12 +24,12 @@ public class ListProcessPlugin extends AbstractSimpleProcessAnalyzer {
   
   @Override
   public ValidationBundle validateFormParams(Map<String,String[]> params) {
-    ValidationBundleBuilder errors = ValidationBundle.builder();
+    ValidationBundleBuilder errors = ValidationBundle.builder(ValidationLevel.SEMANTIC);
     String[] vals = params.get(LOCATION_PARAM);
     if ( vals == null || vals.length != 1 || vals[0].isEmpty()) {
       errors.addError(LOCATION_PARAM, "Location value cannot be empty.");
     }
-    return EnrichmentPluginUtil.setValidationStatusAndBuild(errors);
+    return errors.build();
   }
   
   @Override

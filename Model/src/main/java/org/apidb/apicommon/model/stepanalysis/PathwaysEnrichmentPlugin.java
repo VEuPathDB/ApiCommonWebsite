@@ -22,6 +22,7 @@ import org.gusdb.fgputil.db.runner.BasicResultSetHandler;
 import org.gusdb.fgputil.db.runner.SQLRunner;
 import org.gusdb.fgputil.runtime.GusHome;
 import org.gusdb.fgputil.validation.ValidationBundle;
+import org.gusdb.fgputil.validation.ValidationLevel;
 import org.gusdb.fgputil.validation.ValidationBundle.ValidationBundleBuilder;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
@@ -61,7 +62,7 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   @Override
   public ValidationBundle validateFormParams(Map<String, String[]> formParams) throws WdkModelException, WdkUserException {
 
-    ValidationBundleBuilder errors = ValidationBundle.builder();
+    ValidationBundleBuilder errors = ValidationBundle.builder(ValidationLevel.SEMANTIC);
 
     // validate pValueCutoff
     EnrichmentPluginUtil.validatePValue(formParams, errors);
@@ -77,11 +78,11 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
       validateFilteredPathways(errors);
     }
 
-    return EnrichmentPluginUtil.setValidationStatusAndBuild(errors);
+    return errors.build();
   }
 
   private void validateFilteredPathways(ValidationBundleBuilder errors)
-        throws WdkModelException, WdkUserException {
+        throws WdkModelException {
 
     String countColumn = "CNT";
     String idSql = EnrichmentPluginUtil.getOrgSpecificIdSql(getAnswerValue(), getFormParams());
@@ -110,7 +111,7 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   @Override
   protected String[] getCommand(AnswerValue answerValue) throws WdkModelException, WdkUserException {
 
-    WdkModel wdkModel = answerValue.getQuestion().getWdkModel();
+    WdkModel wdkModel = answerValue.getAnswerSpec().getQuestion().getWdkModel();
     Map<String,String[]> params = getFormParams();
 
     String idSql = EnrichmentPluginUtil.getOrgSpecificIdSql(answerValue, params);

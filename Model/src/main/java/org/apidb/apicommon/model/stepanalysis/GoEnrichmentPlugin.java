@@ -25,6 +25,7 @@ import org.gusdb.fgputil.db.runner.SingleLongResultSetHandler.Status;
 import org.gusdb.fgputil.runtime.GusHome;
 import org.gusdb.fgputil.validation.ValidationBundle;
 import org.gusdb.fgputil.validation.ValidationBundle.ValidationBundleBuilder;
+import org.gusdb.fgputil.validation.ValidationLevel;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
@@ -92,7 +93,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   @Override
   public ValidationBundle validateFormParams(Map<String, String[]> formParams) throws WdkModelException, WdkUserException {
 
-    ValidationBundleBuilder errors = ValidationBundle.builder();
+    ValidationBundleBuilder errors = ValidationBundle.builder(ValidationLevel.SEMANTIC);
 
     // validate pValueCutoff
     EnrichmentPluginUtil.validatePValue(formParams, errors);
@@ -121,11 +122,11 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
         validateFilteredGoTerms(/*sourcesStr,*/  evidCodesStr, ontology, goSubset, errors);
     }
 
-    return EnrichmentPluginUtil.setValidationStatusAndBuild(errors);
+    return errors.build();
   }
 
   private void validateFilteredGoTerms(/*String sourcesStr,*/ String evidCodesStr, String ontology, String goSubset, ValidationBundleBuilder errors)
-      throws WdkModelException, WdkUserException {
+      throws WdkModelException {
 
     String idSql =  EnrichmentPluginUtil.getOrgSpecificIdSql(getAnswerValue(), getFormParams());
     String sql =
@@ -155,7 +156,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   @Override
   protected String[] getCommand(AnswerValue answerValue) throws WdkModelException, WdkUserException {
 
-    WdkModel wdkModel = answerValue.getQuestion().getWdkModel();
+    WdkModel wdkModel = answerValue.getAnswerSpec().getQuestion().getWdkModel();
     Map<String,String[]> params = getFormParams();
 
     String idSql = EnrichmentPluginUtil.getOrgSpecificIdSql(answerValue, params);

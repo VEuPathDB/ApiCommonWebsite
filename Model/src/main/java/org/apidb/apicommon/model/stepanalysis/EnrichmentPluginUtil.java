@@ -1,8 +1,5 @@
 package org.apidb.apicommon.model.stepanalysis;
 
-import static org.gusdb.fgputil.validation.ValidationStatus.FAILED_SEMANTICS;
-import static org.gusdb.fgputil.validation.ValidationStatus.SEMANTICALLY_VALID;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -14,7 +11,6 @@ import javax.sql.DataSource;
 import org.gusdb.fgputil.FormatUtil;
 import org.gusdb.fgputil.db.runner.SQLRunner;
 import org.gusdb.fgputil.db.runner.SQLRunner.ResultSetHandler;
-import org.gusdb.fgputil.validation.ValidationBundle;
 import org.gusdb.fgputil.validation.ValidationBundle.ValidationBundleBuilder;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
@@ -106,7 +102,7 @@ public class EnrichmentPluginUtil {
   }
 
   public static String getOrgSpecificIdSql(AnswerValue answerValue, Map<String,
-      String[]> params) throws WdkModelException, WdkUserException {
+      String[]> params) throws WdkModelException {
     // must wrap idSql with code that filters by the passed organism param
     return "SELECT ga.source_id " +
         "FROM ApidbTuning.GeneAttributes ga, " +
@@ -154,10 +150,6 @@ public class EnrichmentPluginUtil {
       orgOptionList.add(new Option(organism, organism));
     }
     return orgOptionList;
-  }
-
-  public static ValidationBundle setValidationStatusAndBuild(ValidationBundleBuilder errors) {
-    return errors.setStatus(errors.hasErrors() ? FAILED_SEMANTICS : SEMANTICALLY_VALID).build();
   }
 
   /* Don't need this check any more since allowing multiple orgs in result */

@@ -15,6 +15,7 @@ import org.apache.log4j.Logger;
 import org.apidb.apicommon.model.stepanalysis.EnrichmentPluginUtil.Option;
 import org.gusdb.fgputil.runtime.GusHome;
 import org.gusdb.fgputil.validation.ValidationBundle;
+import org.gusdb.fgputil.validation.ValidationLevel;
 import org.gusdb.fgputil.validation.ValidationBundle.ValidationBundleBuilder;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
@@ -47,7 +48,7 @@ public class WordEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   @Override
   public ValidationBundle validateFormParams(Map<String, String[]> formParams) throws WdkModelException, WdkUserException {
 
-    ValidationBundleBuilder errors = ValidationBundle.builder();
+    ValidationBundleBuilder errors = ValidationBundle.builder(ValidationLevel.SEMANTIC);
 
     // validate pValueCutoff
     EnrichmentPluginUtil.validatePValue(formParams, errors);
@@ -55,13 +56,13 @@ public class WordEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     // validate organism
     EnrichmentPluginUtil.validateOrganism(formParams, getAnswerValue(), getWdkModel(), errors);
 
-    return EnrichmentPluginUtil.setValidationStatusAndBuild(errors);
+    return errors.build();
   }
 
   @Override
   protected String[] getCommand(AnswerValue answerValue) throws WdkModelException, WdkUserException {
 
-    WdkModel wdkModel = answerValue.getQuestion().getWdkModel();
+    WdkModel wdkModel = answerValue.getAnswerSpec().getQuestion().getWdkModel();
     Map<String,String[]> params = getFormParams();
 
     String idSql = EnrichmentPluginUtil.getOrgSpecificIdSql(answerValue, params);

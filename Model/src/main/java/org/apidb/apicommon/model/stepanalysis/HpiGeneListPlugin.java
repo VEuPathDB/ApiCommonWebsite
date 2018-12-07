@@ -19,6 +19,7 @@ import org.apidb.apicommon.model.stepanalysis.EnrichmentPluginUtil.Option; // Th
 import org.gusdb.fgputil.runtime.GusHome;
 import org.gusdb.fgputil.validation.ValidationBundle;
 import org.gusdb.fgputil.validation.ValidationBundle.ValidationBundleBuilder;
+import org.gusdb.fgputil.validation.ValidationLevel;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
@@ -62,7 +63,7 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
   @Override
   public ValidationBundle validateFormParams(Map<String, String[]> formParams) throws WdkModelException, WdkUserException {
 
-    ValidationBundleBuilder errors = ValidationBundle.builder();
+    ValidationBundleBuilder errors = ValidationBundle.builder(ValidationLevel.SEMANTIC);
 
     if (!formParams.containsKey(THRESHOLD_PARAM_KEY)) {
       errors.addError(THRESHOLD_PARAM_KEY, "Missing required parameter.");
@@ -76,13 +77,13 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
         errors.addError(THRESHOLD_PARAM_KEY, "Must be a number greater than 0.");
       }
     }
-    return EnrichmentPluginUtil.setValidationStatusAndBuild(errors);
+    return errors.build();
   }
 
   @Override
   protected String[] getCommand(AnswerValue answerValue) throws WdkModelException, WdkUserException {
       
-      WdkModel wdkModel = answerValue.getQuestion().getWdkModel();
+      WdkModel wdkModel = answerValue.getAnswerSpec().getQuestion().getWdkModel();
       Map<String,String[]> params = getFormParams();
 
       String type = "gene"; 
