@@ -76,7 +76,7 @@ public class ApiSiteSetup {
             .build(ValidationLevel.RUNNABLE, answerSpec.getStepContainer());
 
         revisedStep.setAnswerSpec(newAnswerSpec);
-        revisedStep.saveParamFilters();
+        revisedStep.writeParamFiltersToDb();
       }
     }
 

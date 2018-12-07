@@ -44,7 +44,7 @@ public class TranscriptToggleService extends AbstractWdkService {
       else {
         step.removeViewFilterOption(RepresentativeTranscriptFilter.FILTER_NAME);
       }
-      step.saveParamFilters();
+      step.writeParamFiltersToDb();
       return Response.ok().build();
     }
     catch (WdkModelException e) {

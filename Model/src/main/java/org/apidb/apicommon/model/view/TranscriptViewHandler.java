@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 import org.apidb.apicommon.model.filter.RepresentativeTranscriptFilter;
 import org.gusdb.fgputil.FormatUtil;
 import org.gusdb.fgputil.functional.TreeNode;
+import org.gusdb.fgputil.validation.ValidObjectFactory.RunnableObj;
 import org.gusdb.wdk.controller.summary.ResultTablePaging;
 import org.gusdb.wdk.controller.summary.SummaryTableUpdateProcessor;
 import org.gusdb.wdk.model.FieldTree;
@@ -36,7 +37,7 @@ public class TranscriptViewHandler implements SummaryViewHandler {
   private static final String TRANSCRIPT_FILTERED_STEP = "modifiedStep";
 
   @Override
-  public Map<String, Object> process(Step step, Map<String, String[]> parameters,
+  public Map<String, Object> process(RunnableObj<AnswerSpec> step, Map<String, String[]> parameters,
       User user, WdkModel wdkModel) throws WdkModelException, WdkUserException {
 
     // check to see if this request is asking to write summary attributes, sorting, or paging?
