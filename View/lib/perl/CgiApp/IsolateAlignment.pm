@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::CgiApp::IsolateClustalw;
+package ApiCommonWebsite::View::CgiApp::IsolateAlignment;
 
 @ISA = qw( EbrcWebsiteCommon::View::CgiApp );
 
@@ -156,11 +156,11 @@ sub createHTML {
   while(<O>) {
     chomp;
     if ($_ =~/CLUSTAL O/) {
-  print $cgi->pre("CLUSTAL O(1.2.3) Multiple Sequence Alignments\n");
+  print $cgi->pre("Clustal Omega 1.2.3 Multiple Sequence Alignments\n");
   next;
     }
     elsif($_=~/^CLUSTAL/) {
-  print $cgi->pre("CLUSTAL 2.1 Multiple Sequence Alignments\n");
+  print $cgi->pre("Clustal 2.1 Multiple Sequence Alignments\n");
     next;
     }
     next if (/^\s+$/ || /\*{1,}+/);

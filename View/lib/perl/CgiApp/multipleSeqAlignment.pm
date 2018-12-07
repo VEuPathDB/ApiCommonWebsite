@@ -19,7 +19,7 @@ use EbrcWebsiteCommon::View::CgiApp;
 use EbrcWebsiteCommon::Model::ModelXML;
 use CGI;
 use CGI::Carp qw(fatalsToBrowser set_message);
-use ApiCommonWebsite::View::CgiApp::IsolateClustalw;
+use ApiCommonWebsite::View::CgiApp::IsolateAlignment;
 use Bio::Graphics::Browser2::PadAlignment;
 
 sub run {
@@ -121,7 +121,7 @@ sub run {
 
   if ($type eq 'clustal') {
     my $tempfile = &doClustalWalignment(\%alignmentHash, $mercatorOutputDir, $referenceId);
-    ApiCommonWebsite::View::CgiApp::IsolateClustalw::createHTML($tempfile,$cgi,%originsHash);
+    ApiCommonWebsite::View::CgiApp::IsolateAlignment::createHTML($tempfile,$cgi,%originsHash);
   } elsif($type eq 'fasta_ungapped') {
     my $seqIO = Bio::SeqIO->new(-fh => \*STDOUT, -format => 'fasta');
     my $seenReference;
@@ -410,7 +410,7 @@ sub doClustalWalignment {
     my %hash = %$sequenceHash;
     my ($fh1, $multifasta) = tempfile();
     my $seqin = Bio::SeqIO->new (-file=> ">$multifasta", -format=>'fasta');
-#    my $outfile = $folder."clustalw.aln";
+#    my $outfile = $folder."clustal.aln";
 #    my $tempfile = $folder."tempclustalstderr.txt";
     my ($fh2, $outfile) = tempfile();
     my ($fh3, $tempfile) = tempfile();

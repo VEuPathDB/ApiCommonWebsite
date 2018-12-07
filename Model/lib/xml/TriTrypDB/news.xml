@@ -26,7 +26,245 @@
             </li>
           </ul>
           
+             <div style="margin-left: 3em;">
+         <h4>New Gene Result Analysis tool</h4>
+         <ul>
+           <li>A new tool to find 'Experiments with Similar Results' is available for any gene result.  Use the blue 'Analysis 
+           Result' tab on any gene result page to access the tool.  The tool compares the genes in your current result to 
+           gene lists generated from each transcriptomic data set based on GSEA. The tool returns a list of @PROJECT_ID@ data sets whose 
+           gene lists are statistically similar and may be worth investigating. For more information, see this 
+           <a href="/assets/XXXX">Experiments with Similar Results tutorial</a>.
+           </li>
+         </ul><br>
+       </div> 
+          
 -->
+
+<record>
+  <attribute name="headline">TriTrypDB 41 Released</attribute>
+  <attribute name="date">15 Dec 2018 13:00</attribute>
+  <attribute name="tag">TriTrypDB12_18_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of TriTrypDB 41</strong></p>
+      
+      <section>
+      <h3><b>New data in TriTrypDB 41</b></h3>
+      <div style="margin-left: 3em;">
+        <h4>Genome sequence and annotation</h4>
+         
+         <h4>RNA Sequencing</h4>
+          <ul>
+           <li>
+            <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_f3315ea663">Comparative transcriptomes of virulent and avirulent <i>T. cruzi</i> (CLBrener aligned)</a> &mdash;<br> 
+            Transcriptomes of virulent and avirulent <i>T. cruzi</i> determined by RNA sequencing.
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/29240831" target="_blank">Belew et al.</a>  
+            This data set has corresponding host data at HostDB: 
+            <a href="http://hostdb.org/hostdb/app/record/dataset/DS_c3d58a9aae" target="_blank">HFF transcriptional response to virulent and avirulent <i>T. cruzi</i></a>.
+           </li>
+           <li>
+            <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_7809e9bef4">Comparative transcriptomes of virulent and avirulent <i>T. cruzi</i> (Esmo aligned)</a> &mdash; <br>
+            Transcriptomes of virulent and avirulent <i>T. cruzi</i> determined by RNA sequencing.
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/29240831" target="_blank">Belew et al.</a>  
+            This data set has corresponding host data at HostDB: 
+            <a href="http://hostdb.org/hostdb/app/record/dataset/DS_c3d58a9aae" target="_blank">HFF transcriptional response to virulent and avirulent <i>T. cruzi</i></a>.
+           </li>
+           <li>
+            <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_c09dab28a7">Comparative transcriptomes of virulent and avirulent <i>T. cruzi</i> (Non-Esmo aligned)</a> &mdash; <br>
+            Transcriptomes of virulent and avirulent <i>T. cruzi</i> determined by RNA sequencing.
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/29240831" target="_blank">Belew et al.</a>  
+            This data set has corresponding host data at HostDB: 
+            <a href="http://hostdb.org/hostdb/app/record/dataset/DS_c3d58a9aae" target="_blank">HFF transcriptional response to virulent and avirulent <i>T. cruzi</i></a>.
+           </li>
+           <li>
+            <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_0ccdb3a6ec">Transcriptome of <i>T. brucei</i> rhodesiense from human, rodent, culture</a> &mdash; 
+            Transcriptome of <i>T. brucei</i> rhodesiense from humans and rodents determined by RNA sequencing.
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/29474390" target="_blank">Mulindwa et al.</a>  
+            
+           </li>
+          </ul>
+          
+        <h4>Proteomics</h4>
+          <ul>
+           <li>
+             <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_1ec24003f1">Quantitative proteomics of <i>T. brucei</i> differentiation</a> &mdash;  
+             Quant proteomics of <i>Trypanosoma brucei</i> AnTat1.1 differentiation with time points at 0, 2, 4, 6, 12, 24, and 48 hours. 
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/26910529" target="_blank">Dejung et al.</a>
+           </li>
+           </ul>
+           
+        <h4>Transcription Start Sites - GBrowse Track </h4>
+          <ul>
+           <li>
+             <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_5df257adeb">Sequencing of small 5'-triphosphate-containing RNA (transcription start sites)</a> &mdash;  <br>
+             Transcription start site data is integrated as a GBRowse track.  The data represent a COVERnant analysis of RNA sequence data. 
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/28701485" target="_blank">Wedel et al.</a>   
+             <a href="http://tritrypdb.org/cgi-bin/gbrowse/tritrypdb/?start=1758000;stop=1783999;ref=Tb927_09_v5.1;width=1024;version=100;flip=0;grid=1;id=a70110168e2cef9107609f2485b89a82;l=tbruTREU927_Wedel-polIIandhistone_chipSeq_RSRC_TSS%1EtbruTREU927_Wedel-polIIandhistone_chipSeq_RSRCCoverageUnlogged%1EGene" target="_blank">View data in GBRowse</a>
+           </li>
+           </ul>
+        <div>
+      </section>
+      
+      <section>
+      <h3><b>Annotation News</b></h3>
+      <div style="margin-left: 3em;">
+       <h4>Updated Functional Annotation</h4>
+           
+        <div style="margin-left: 3em;">
+        
+        <a href="https://docs.google.com/spreadsheets/d/1wYqwEtoyFqDESl0IiT71jC3BpoJz20e-kVqxae25uxA/edit?usp=sharing" target="_blank">Summary of annotation updates</a> 
+           which include products, GO terms, EC numbers, gene names, synonyms, publications, external database references and notes from curators. 
+        <br>
+        <br>
+        <style>
+           #FunctAnnot_Bld41 table, #FunctAnnot_Bld41 td, #FunctAnnot_Bld41 th, #FunctAnnot_Bld41 tr {
+           text-align : center;
+           padding-left: 5px;
+           padding-right: 5px;
+           padding-top: 5px;
+           padding-bottom: 5px;
+           border: 1px solid black;
+           }
+           #FunctAnnot_Bld41 {
+           margin-left : 5 em;
+           }
+         </style> 
+           <table id="FunctAnnot_Bld41"> 
+           <tr>
+             <th>TriTrypDB Genome Version</th>
+             <th>Download GeneDB GFF file</th>
+             <th>Genes Updated</th>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_3b2d78a053"><i>Leishmania braziliensis </i> MHOM/BR/75/M2904</a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2018-08/Lbraziliensis.noseq.gff3.gz" target="_blank"> Lbraziliensis.noseq.gff3.gz</a></td> 
+             <td>90 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_21f12513c4"><i>Leishmania donovani</i> BPK282A1</a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2018-08/Ldonovani_BPK282A1.noseq.gff3.gz" target="_blank"> Ldonovani_BPK282A1.noseq.gff3.gz</a></td> 
+             <td>87 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_839623217a"><i>Leishmania major</i> Friedlin</a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2018-08/Lmajor.noseq.gff3.gz" target="_blank"> Lmajor.noseq.gff3.gz</a></td> 
+             <td>98 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_e318592c8e"><i>Leishmania mexicana</i> MHOM/GT/2001/U1103</a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2018-08/Lmexicana.noseq.gff3.gz" target="_blank"> Lmexicana.noseq.gff3.gz</a></td> 
+             <td>91 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_31282613b1"><i>Trypanosoma brucei </i>927</a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2018-08/Tbruceibrucei927.noseq.gff3.gz" target="_blank"> Tbruceibrucei927.noseq.gff3.gz</a></td> 
+             <td>7700 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_34f7091496"><i>Trypanosoma brucei gambiense</i> DAL972</a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2018-08/Tbruceigambiense.noseq.gff3.gz" target="_blank"> Tbruceigambiense.noseq.gff3.gz</a></td> 
+             <td>104 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_26f6be1159"><i>Trypanosoma congolense </i> IL3000</a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2018-08/Tcongolense.noseq.gff3.gz" target="_blank"> Tcongolense.noseq.gff3.gz</a></td> 
+             <td>417 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_1a6c8bdaac"><i>Trypanosoma cruzi </i> CL Brener</a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2018-08/Tcruzi.noseq.gff3.gz" target="_blank"> Tcruzi.noseq.gff3.gz</a></td> 
+             <td>121 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_ec7df4510a"><i>Trypanosoma vivax </i> Y486</a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2018-08/Tvivax.noseq.gff3.gz" target="_blank"> Tvivax.noseq.gff3.gz</a></td> 
+             <td>96 genes</td>
+           </tr>
+           </table>
+           <br><br>
+           
+        </div>
+      
+       <h4>Curated User Comments</h4>
+       <div style="margin-left: 3em;">
+       
+          Gene page comments that are entered by users are curated at GeneDB and regularly integrated as functional 
+          annotations in TriTrypDB. 162 user comments (unique) have been integrated in this release.<br><br>
+          
+      <style>
+           #UComment_Bld41 table, #UComment_Bld41 td, #UComment_Bld41 th, #UComment_Bld41 tr {
+           text-align : center;
+           padding-left: 5px;
+           padding-right: 5px;
+           padding-top: 5px;
+           padding-bottom: 5px;
+           border: 1px solid black;
+           }
+           #UComment_Bld41 {
+           margin-left : 5 em;
+           }
+         </style> 
+           <table id="UComment_Bld41"> 
+           <tr>
+             <th>TriTrypDB Genome Version</th>
+             <th>Comments Integrated</th>
+           </tr>
+           <tr>
+             <td><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_3b2d78a053"><i>Leishmania braziliensis </i> MHOM/BR/75/M2904</a></td>
+             <td>2</td>
+           </tr>
+           <tr>
+             <td><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_21f12513c4"><i>Leishmania donovani</i> BPK282A1</a></td>
+             <td>4</td>
+           </tr>
+           <tr>
+             <td><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_839623217a"><i>Leishmania major</i> Friedlin</a></td>
+             <td>3</td>
+           </tr>
+           <tr>
+             <td><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_e318592c8e"><i>Leishmania mexicana</i> MHOM/GT/2001/U1103</a></td>
+             <td>8</td>
+           </tr>
+           <tr>
+             <td><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_31282613b1"><i>Trypanosoma brucei</i> 927</a></td>
+             <td>42</td>
+           </tr>
+           <tr>
+             <td><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_34f7091496"><i>Trypanosoma brucei gambiense </i> DAL972</a></td>
+             <td>7</td>
+           </tr>
+           <tr>
+             <td><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_26f6be1159"><i>Trypanosoma congolense</i> IL3000</a></td>
+             <td>66</td>
+           </tr>
+          </table>
+          <br>
+          <br>
+          
+      </div>
+      </div>
+      </section>
+      
+      <section>
+      <h3><b>No new features in TriTrypDB 41</b></h3>
+     
+      </section>
+      
+      <section>
+         <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+
+    ]]>
+  </attribute>
+</record>
+
+
 
 <record>
   <attribute name="headline">TriTrypDB 40 Released</attribute>
