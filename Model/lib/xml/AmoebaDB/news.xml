@@ -54,7 +54,7 @@
       EuPathDB sites are now using Clustal Omega for gene page protein alignments in the 'Orthologs and Paralogs within EuPathDB' table, and the 
       'Retrieve multiple sequence alignment or multi-FASTA' tool in the 'Orthology and synteny' section of gene pages. The 'Isolate Alignments in this Gene Region' tool 
       still uses the CulstalW.  
-       <div> 
+       </div> 
       <h4>New Gene page tool </h4>
          <ul>
            <li>Interpro  &mdash; <br>
