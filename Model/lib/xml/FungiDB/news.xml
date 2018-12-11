@@ -179,9 +179,21 @@
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/22045919">Futagami et al. 2011</a>.
              </li>
              
+              <li><a href="http:/a/app/record/dataset/DS_d1767fcbd3"><i>Candida parapsilosis</i> CDC 317</a> &ndash;  
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/19465905">Butler et al. 2009</a>.
+             </li>
+             
+             <li><a href="http:/a/app/record/dataset/DS_8d24f658c0"><i>Cryptococcus gattii</i> NT-10</a> &ndash;  
+                 <a href="http://www.ncbi.nlm.nih.gov/bioproject/PRJNA191330">NCBI BioProject PRJNA191330</a>.
+             </li>
+             
              <li><a href="http:/a/app/record/dataset/DS_32a5330fef"><i>Fusarium proliferatum</i> ET1</a> &ndash; 
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/28040774">Niehaus et al. 2016</a>.
              </li>
+             
+               <li><a href="http:/a/app/record/dataset/DS_a62f2e98ce"><i>Lomentospora prolificans</i> JHH-5317</a> &ndash;  
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/28963165">Luo et al. 2017</a>.
+             </li> 
              
              <li><a href="http:/a/app/record/dataset/DS_1566006e1e"><i>Scedosporium apiospermum</i> IHEM 14462</a> &ndash;  
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/25278533">Vandeputte et al. 2014</a>.
@@ -193,19 +205,7 @@
              
             <li><a href="http:/a/app/record/dataset/DS_6048ff9e23"><i>Yarrowia lipolytica</i> CLIB89 (W29)</a> &ndash;  
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/27603307">Magnan et al. 2016</a>.
-             </li>
-             
-            <li><a href="http:/a/app/record/dataset/DS_d1767fcbd3"><i>Candida parapsilosis</i> CDC 317</a> &ndash;  
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/19465905">Butler et al. 2009</a>.
-             </li>
-               
-              <li><a href="http:/a/app/record/dataset/DS_8d24f658c0"><i>Cryptococcus gattii</i> NT-10</a> &ndash;  
-                 <a href="http://www.ncbi.nlm.nih.gov/bioproject/PRJNA191330">NCBI BioProject PRJNA191330</a>.
-             </li>
-             
-              <li><a href="http:/a/app/record/dataset/DS_a62f2e98ce"><i>Lomentospora prolificans</i> JHH-5317</a> &ndash;  
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/28963165">Luo et al. 2017</a>.
-             </li>  
+             </li>   
             </ul>
            <br>
            
@@ -217,7 +217,10 @@
              
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_f670f03393"><i>Cryptococcus neoformans</i> var. grubii KN99</a> &ndash; 
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/29305388">Friedman et al.</a>
+                 Gene mapping and functional annotation corrections: (1) old_locus_tag was mapped to new_locus_tag; (2) new_locus_tag is available in the <i>Names, 
+                 Previous Identifiers, and Aliases</i> section of the gene record page and should be used as the most recent and correct gene identifier; 
+                 (3) functional annotation (product description) was updated using new_locus_tag
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/29305388">Friedman et al. 2018</a>.
              </li>  
             </ul>
            <br> 
@@ -230,7 +233,7 @@
              </li>
              
              <li><a href="http:/a/app/record/dataset/DS_56f8fb561f">Transcriptomic response of <i>Aspergillus niger</i> to lignocellulose (willow)</a> &ndash;
-             Transcriptomic profiling of Aspergillus niger growing on lignocellulose (AB SOLiD System 3.0). 
+             Transcriptomic profiling of <i>Aspergillus niger</i> growing on lignocellulose (AB SOLiD System 3.0). 
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/22912594" target="_blank">Delmas et al. 2012</a>.
              </li>
              
@@ -244,66 +247,68 @@
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/24743270" target="_blank">Guo et al. 2014</a>.
              </li>
         	</ul>
-        	
+        <br>
+        	 
         <h4>Proteomics</h4>
            <ul>
              <li><a href="http:/a/app/record/dataset/DS_9efaab4256">Protein composition of <i>C neoformans</i> yeast and spore forms</i></a> &ndash; 
                  Nanoscale liquid chromatography/mass spectrometry was used to determine protein composition of <i>Cryptococcus</i> vegetative cells (yeast) and spores.
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/26313153" target="_blank">Huang et al. 2015</a>.
              </li>
-             
         	</ul>
+        <br>
            
            <h4>Chip-Seq data</h4>
            <ul>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_17f48c08a1">ChiP-Seq of CLR-1, CLR-2, and XLR-1 knockout mutants and wild type strains growing on various carbon sources</a> &ndash;
-             TODO ADV-1 functions to generate distinct temporal dynamics of target genes in <i>Neurospora crassa</i>. 
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26463163" target="_blank">Craig et al. 2015</a>
+             The plant cell wall is composed of many complex polymers, and its deconstruction requires an equally complex orchestration of a wide array of enzymes. 
+             In <i>Neurospora crassa</i>, <i>clr-1</i>, <i>clr-2</i> and <i>xlr-1</i> have been identified as the key transcription factors involved in cell wall breakdown. In order to define their regulons, we performed ChIPseq upon these three transcription factors.  
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26463163" target="_blank">Craig et al. 2015</a>.
              </li>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_e030fc9abf">ChiP-Seq of histone modifications in <i>F. graminearum</i> strains growing on media with high or low nitrogen levels</a> &ndash;
              ChIP-seq of histone modifications in WT and kmt6 mutant of <i>Fusarium graminearum</i> grown in high and low nitrogen conditions. 
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/24204317" target="_blank">Connolly et al. 2013</a>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/24204317" target="_blank">Connolly et al. 2013</a>.
              </li>
            </ul>  
+            <br>
            
         <h4>Whole genome sequence of isolates for SNP analysis</h4>
            <ul>
              <li><a href="http:/a/app/record/dataset/DS_cc66146b8b">Aligned genomic sequence reads - <i>Cryptococcus neoformans</i> var. neoformans</a> &ndash;
                  A total of 387 isolates from various lineages we sequenced (185 from global VNI lineage, 186 from African VNB, and 16 from VNII lineage corresponding to non-recombining split in VNB (VNBI and VNBII).
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/28611159"> Desjardins et al. 2017</a>
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/28611159"> Desjardins et al. 2017</a>.
              </li>
              
              <li><a href="http:/a/app/record/dataset/DS_59d1c30302">Aligned genomic sequence reads - <i>Neurospora crassa</i></a> &ndash;
-                 Genome-wide association study (GWAS) to identify novel loci underlying trait variation in the wild isolates of the filamentous fungus Neurospora crassa (Louisiana lineage).
+                 Genome-wide association study (GWAS) to identify novel loci underlying trait variation in the wild isolates of the filamentous fungus <i>Neurospora crassa</i> (Louisiana lineage).
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/26025978"> Zhao et al. 2015</a> and
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/23935534"> Palma-Guerrero et al. 2013</a>
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/23935534"> Palma-Guerrero et al. 2013</a>.
              </li>
              
              <li><a href="http:/a/app/record/dataset/DS_edc6f8f95f">Aligned genomic sequence reads - <i>Paracoccidioides brasiliensis</i></a> &ndash;
                  Genome diversity, recombination, and virulence across the major lineages of <i>Paracoccidioides</i>.
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/27704050"> Mu&ntildeoz et al. 2016</a> 
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/27704050"> Mu&ntildeoz et al. 2016</a> .
              </li>
              
              <li><a href="http:/a/app/record/dataset/DS_4db802da0d">Aligned genomic sequence reads - <i>Candida albicans</i></a> &ndash;
                  Whole genome sequencing of wild-type and clinical isolates as well as laboratory-evolved strains of <i>Candida albicans</i> to identify and characterize mutations conferring amphotericin resistance.
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/24204207"> Vincent et al. 2013</a> 
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/24204207"> Vincent et al. 2013</a> .
              </li>
            </ul>
+            <br>
            
         <h4>Phenotype data: updated</h4>
            <ul>
              <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_c334877c42">Phenotypic analysis of <i>Neurospora crassa</i> knockout mutants</a> &ndash; A phenotypic pipeline was designed for high&#45;throughput analysis of 10 different traits during hyphal growth, asexual sporulation (macroconidiation), and the sexual cycle in knockout mutants from <i>Neurospora crassa</i>. Provider: Katherine Borkovich; dataset provided prior to publication.
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/17352902" target="_blank">Borkovich et al.</a>
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/17352902" target="_blank">Borkovich et al. 2007</a>.
              </li>
              </ul>
            <br>
            
            <h4>Link Outs</h4>
-           Link outs to the Cryptococcus neoformans kinase phenome and Cryptococcus neoformans transcription factor databases for <i>Cryptococcus neoformans</i> genes are available from individual gene record pages, Link Outs contents menu.
-           <br>
-           Links outs to CAZy database are now available for <Neurospora crassa> genome.
-           
-           NCBI RefSeq data was loaded for the following genomes: 
+           Link outs to the <i>Cryptococcus neoformans</i> kinase phenome and <i>Cryptococcus neoformans</i> transcription factor databases were 
+           created on individual gene record pages for <i>Cryptococcus neoformans</i>. Also, NCBI RefSeq, MEROPS, and CAZy link outs were loaded for 
+           <i>Neurospora crassa</i> OR74A , <i>Cryptococcus neoformans</i> JEC21 and H99, and NCBI RefSeq and MEROPS link outs for <i>Coccidioides immitis<i> RS. 
            <br>
            
  <h4>Updated Functional Annotation</h4>
@@ -334,25 +339,24 @@
            </tr>
            <tr>
              <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_60b6b264d3"><i>Coccidioides immitis</i> RS </a></td>
-             <td>1 </td>
+             <td>9756 </td>
            </tr>
            <tr>
              <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_8f0322af73"><i>Cryptococcus neoformans</i> H99 </a></td>
-             <td>17</td>
+             <td>6974</td>
            </tr>
            <tr>
              <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4d171eb9ea"><i>Cryptococcus neoformans</i> JEC21 </a></td>
-             <td>1166</td>
+             <td>6632</td>
            </tr>
            <tr>
              <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_62f0e6170f"><i>Neurospora crassa</i> OR74A</a></td>
-             <td>405</td>
+             <td>9758</td>
            </tr>
            </table>
            <br>
        </div>
  
-        <br><br>
        <h4>Curated User Comments:</h4>  
         Gene page comments that are entered by users are curated and integrated as functional annotations in FungiDB. 139 user comments have been reviewed and updated in FungiDB 41.
        <br><br>
