@@ -61,6 +61,10 @@
               The 'Protein features and properties' section now includes an option to submit the protein sequence for 
               sequence analysis and classification via <a href="https://www.ebi.ac.uk/interpro/" target="_blank">InterPro</a>. 
           </li>
+          <li>GPI anchor prediction  &mdash; <br>
+              The 'XXX' section now includes an option to submit the protein sequence for 
+              GPI Modification Site Prediction via <a href="https://www.ebi.ac.uk/interpro/" target="_blank">XXX</a>. 
+          </li>
          </ul>
       
       </section>
