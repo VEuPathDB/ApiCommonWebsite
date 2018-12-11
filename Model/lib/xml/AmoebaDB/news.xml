@@ -51,15 +51,15 @@
       <h3><b>New features in AmoebaDB 41</b></h3>
       <h4>Introducing Clustal Omega </h4><br>
       <div style="margin-left: 3em;">
-      EuPathDB sites are now using Clustal Omega for gene page protein alignments in the 'Orthologs and Paralogs within EuPathDB' table, and the 
+      EuPathDB sites are now using Clustal Omega for gene page protein alignments in the 'Orthologs and Paralogs within EuPathDB' table and the 
       'Retrieve multiple sequence alignment or multi-FASTA' tool in the 'Orthology and synteny' section of gene pages. The 'Isolate Alignments in this Gene Region' tool 
-      still uses the CulstalW.  
+      still uses CulstalW.  
        </div> 
       <h4>New Gene page tool </h4>
          <ul>
            <li>Interpro  &mdash; <br>
-              The Protein features and properties section now includes an option to submit the protein sequence for 
-              sequence analysis and classification via <a href="https://www.ebi.ac.uk/interpro/">InterPro</a>. 
+              The 'Protein features and properties' section now includes an option to submit the protein sequence for 
+              sequence analysis and classification via <a href="https://www.ebi.ac.uk/interpro/" target="_blank">InterPro</a>. 
           </li>
          </ul>
       
