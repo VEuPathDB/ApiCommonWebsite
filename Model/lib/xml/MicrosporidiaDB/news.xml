@@ -75,7 +75,7 @@
       'Retrieve multiple sequence alignment or multi-FASTA' tool in the 'Orthology and synteny' section of gene pages. The 'Isolate Alignments in this Gene Region' tool 
       still uses CulstalW.  
        </div> 
-      <h4>New Gene page tool </h4>
+      <h4>New Gene page tools </h4>
          <ul>
            <li>Interpro  &mdash; <br>
               The 'Protein features and properties' section now includes an option to submit the protein sequence for 
