@@ -36,7 +36,7 @@
 
 <record>
   <attribute name="headline">AmoebaDB 41 Released</attribute>
-  <attribute name="date">15 Dec 2018 13:00</attribute>
+  <attribute name="date">13 Dec 2018 13:00</attribute>
   <attribute name="tag">AmoebaDB12_18_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
@@ -62,11 +62,10 @@
               sequence analysis and classification via <a href="https://www.ebi.ac.uk/interpro/" target="_blank">InterPro</a>. 
           </li>
           <li>GPI anchor prediction  &mdash; <br>
-              The 'XXX' section now includes an option to submit the protein sequence for 
-              GPI Modification Site Prediction via <a href="https://www.ebi.ac.uk/interpro/" target="_blank">XXX</a>. 
+              The 'Protein features and properties' section now includes an option to submit the protein sequence for 
+              GPI modification site prediction via the <a href="http://mendel.imp.ac.at/sat/gpi/gpi_server.html" target="_blank">GPI Lipid Anchor Project</a>. 
           </li>
          </ul>
-      
       </section>
       
       <section>
