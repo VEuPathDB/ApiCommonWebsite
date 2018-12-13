@@ -7,6 +7,7 @@ import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkRuntimeException;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.answer.AnswerValue;
+import org.gusdb.wdk.model.answer.spec.AnswerSpec;
 import org.gusdb.wdk.model.report.ReporterConfigException;
 import org.gusdb.wdk.model.report.reporter.TableTabularReporter;
 import org.gusdb.wdk.model.user.Step;
@@ -29,7 +30,7 @@ public class TranscriptTableReporter extends TableTabularReporter {
   @Override
   public TranscriptTableReporter configure(JSONObject config) throws ReporterConfigException {
     try {
-      _originalQuestionName = _baseAnswer.getQuestion().getName();
+      _originalQuestionName = _baseAnswer.getAnswerSpec().getQuestion().getName();
       Step baseStep = createBaseStep(_baseAnswer);
       _baseAnswer = TranscriptUtil.transformToGeneAnswer(_baseAnswer, baseStep.getStepId());
       // now that base answer is a Gene answer, check and assign selected table field name
@@ -45,12 +46,13 @@ public class TranscriptTableReporter extends TableTabularReporter {
   }
 
   private static Step createBaseStep(AnswerValue baseAnswer) throws WdkModelException {
-    Map<String, String> paramValues = baseAnswer.getIdsQueryInstance().getParamStableValues();
+    AnswerSpec spec = baseAnswer.getAnswerSpec();
+    Map<String, String> paramValues = spec.getQueryInstanceSpec().toMap();
     return StepUtilities.createStep(
         baseAnswer.getUser(), null,
-        baseAnswer.getQuestion(), paramValues,
-        baseAnswer.getFilter(), false, 0,
-        baseAnswer.getFilterOptions());
+        spec.getQuestion(), paramValues,
+        spec.getLegacyFilter(), false, 0,
+        spec.getFilterOptions());
   }
 
   @Override
