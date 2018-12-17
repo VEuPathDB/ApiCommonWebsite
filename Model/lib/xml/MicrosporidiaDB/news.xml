@@ -34,7 +34,7 @@
 
 <record>
   <attribute name="headline">MicrosporidiaDB 41 Released</attribute>
-  <attribute name="date">15 Dec 2018 13:00</attribute>
+  <attribute name="date">13 Dec 2018 13:00</attribute>
   <attribute name="tag">MicrosporidiaDB12_18_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
@@ -68,8 +68,24 @@
       </section>
       
       <section>
-      <h3><b>No new features in MicrosporidiaDB 41</b></h3>
-       
+      <h3><b>New features in MicrosporidiaDB 41</b></h3>
+      <h4>Introducing Clustal Omega </h4><br>
+      <div style="margin-left: 3em;">
+      EuPathDB sites are now using Clustal Omega for gene page protein alignments in the 'Orthologs and Paralogs within EuPathDB' table and the 
+      'Retrieve multiple sequence alignment or multi-FASTA' tool in the 'Orthology and synteny' section of gene pages. The 'Isolate Alignments in this Gene Region' tool 
+      still uses CulstalW.  
+       </div> 
+      <h4>New Gene page tools </h4>
+         <ul>
+           <li>Interpro  &mdash; <br>
+              The 'Protein features and properties' section now includes an option to submit the protein sequence for 
+              sequence analysis and classification via <a href="https://www.ebi.ac.uk/interpro/" target="_blank">InterPro</a>. 
+          </li>
+          <li>GPI anchor prediction  &mdash; <br>
+              The 'Protein features and properties' section now includes an option to submit the protein sequence for 
+              GPI modification site prediction via the <a href="http://mendel.imp.ac.at/sat/gpi/gpi_server.html" target="_blank">GPI Lipid Anchor Project</a>. 
+          </li>
+         </ul>
       </section>
       
       <section>
