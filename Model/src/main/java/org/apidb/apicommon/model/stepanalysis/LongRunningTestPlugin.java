@@ -6,6 +6,7 @@ import org.gusdb.wdk.model.analysis.AbstractStepAnalyzer;
 import org.gusdb.wdk.model.answer.AnswerValue;
 import org.gusdb.wdk.model.user.analysis.ExecutionStatus;
 import org.gusdb.wdk.model.user.analysis.StatusLogger;
+import org.json.JSONObject;
 
 public class LongRunningTestPlugin extends AbstractStepAnalyzer {
 
@@ -36,7 +37,29 @@ public class LongRunningTestPlugin extends AbstractStepAnalyzer {
   }
 
   @Override
-  public Object getResultViewModel() {
+  public JSONObject getResultViewModelJson() {
+    JSONObject json = new JSONObject();
+    json.put("message", createResultViewModel());
+    return json;
+  }
+  
+  private String createResultViewModel() {
     return getPersistentCharData();
   }
+  
+  @Override
+  public Object getResultViewModel() {
+    return createResultViewModel();
+  }
+  
+  @Override
+  public JSONObject getFormViewModelJson() {
+    return new JSONObject();
+  }
+  
+  @Override
+  public Object getFormViewModel() {
+    return null;
+  }
+
 }
