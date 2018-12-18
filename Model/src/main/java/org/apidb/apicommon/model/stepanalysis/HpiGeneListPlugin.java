@@ -14,8 +14,6 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.apidb.apicommon.model.stepanalysis.EnrichmentPluginUtil.Option; // The static class here should be factored
-// import org.gusdb.fgputil.db.runner.BasicResultSetHandler;
-// import org.gusdb.fgputil.db.runner.SQLRunner;
 import org.gusdb.fgputil.runtime.GusHome;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
@@ -23,6 +21,8 @@ import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.analysis.AbstractSimpleProcessAnalyzer;
 import org.gusdb.wdk.model.analysis.ValidationErrors;
 import org.gusdb.wdk.model.answer.AnswerValue;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
 
@@ -47,10 +47,10 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
     private static final String TABBED_RESULT_FILE_PATH = "hpiGeneListResult.tab";
 
 
-    private Map<String, String> serverEndpoints = new HashMap<String, String>();
+    private Map<String, String> serverEndpoints = new HashMap<>();
 
     @Override
-    public void validateProperties() throws WdkModelException {
+    public void validateProperties() {
         this.serverEndpoints.put(EUPATH_NAME_KEY, getProperty(EUPATH_SEARCH_SERVER_ENDPOINT_PROP_KEY));        
         this.serverEndpoints.put(PATRIC_NAME_KEY, getProperty(PATRIC_SEARCH_SERVER_ENDPOINT_PROP_KEY));        
         this.serverEndpoints.put(VBASE_NAME_KEY, getProperty(VBASE_SEARCH_SERVER_ENDPOINT_PROP_KEY));        
@@ -59,7 +59,7 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
     }
 
   @Override
-  public ValidationErrors validateFormParams(Map<String, String[]> formParams) throws WdkModelException, WdkUserException {
+  public ValidationErrors validateFormParamValues(Map<String, String[]> formParams) {
 
     ValidationErrors errors = new ValidationErrors();
 
@@ -119,7 +119,16 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
 
 
   @Override
-  public Object getFormViewModel() throws WdkModelException, WdkUserException {
+  public Object getFormViewModel() {
+    return createFormViewModel();
+  }
+  
+  @Override
+  public JSONObject getFormViewModelJson() {
+    return createFormViewModel().toJson();
+  }
+  
+  private FormViewModel createFormViewModel() {
 
     List<Option> brcOptions = new ArrayList<>();
     if ( serverEndpoints.get(EUPATH_NAME_KEY) != null ) {
@@ -148,6 +157,16 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
 
   @Override
   public Object getResultViewModel() throws WdkModelException {
+    return createResultViewModel();
+  }
+  
+  @Override
+  public JSONObject getResultViewModelJson() throws WdkModelException {
+    return createResultViewModel().toJson();
+  }
+  
+
+  private ResultViewModel createResultViewModel() throws WdkModelException {
     Path inputPath = Paths.get(getStorageDirectory().toString(), TABBED_RESULT_FILE_PATH);
 
     //String brcValue = getFormParams().get(BRC_PARAM_KEY)[0];
@@ -204,6 +223,26 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
       public String getThresholdParamHelp() { return this.thresholdParamHelp; }
       public String getUseOrthologyParamHelp() { return this.useOrthologyParamHelp; }
       public String getProjectId() { return projectId; }
+      
+      public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("brcParamHelp", getBrcParamHelp());
+        json.put("thresholdTypeParamHelp", getThresholdTypeParamHelp());
+        json.put("thresholdParamHelp", getThresholdParamHelp());
+        json.put("useOrthologyParamHelp", getUseOrthologyParamHelp());
+        json.put("projectId", getProjectId());
+        JSONArray brcJson = new JSONArray();
+        for (Option o : getBrcOptions()) brcJson.put(o);
+        json.put("brcOptions", brcJson);
+        JSONArray threshTypeJson = new JSONArray();
+        for (Option o : getThresholdTypeOptions()) threshTypeJson.put(o);
+        json.put("thresholdTypeOptions", threshTypeJson);
+        JSONArray useOrthologyJson = new JSONArray();
+        for (Option o : getUseOrthologyOptions()) useOrthologyJson.put(o);
+        json.put("useOrthologyOptions", useOrthologyJson);
+
+        return json;
+      }
   }
 
   public static class ResultViewModel {
@@ -249,6 +288,17 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
       public Map<String,String[]> getFormParams() {
           return this.formParams;
       }
+      
+      public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("headerRow", getHeaderRow());
+        json.put("headerDescription", getHeaderDescription());
+        JSONArray resultsJson = new JSONArray();
+        for (ResultRow rr : getResultData()) resultsJson.put(rr.toJson());
+        json.put("resultData", resultsJson);
+        json.put("downloadPath", getDownloadPath());
+        return json;
+      }
   }
 
   public static class ResultRow {
@@ -281,5 +331,19 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
       public String getUri() { return this.uri; }
       public String getSignificance() { return this.significance; }      
       public String getServerEndPoint() { return this.serverEndpoint; }      
+      
+      public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("experimentId", getExperimentId());
+        json.put("species", getSpecies());
+        json.put("experimentName", getExperimentName());
+        json.put("description", getDescription());
+        json.put("type", getType());
+        json.put("uri", getUri());
+        json.put("significance", getSignificance());
+        json.put("serverEndpoint", getServerEndPoint());
+
+        return json;
+      }
   }
 }
