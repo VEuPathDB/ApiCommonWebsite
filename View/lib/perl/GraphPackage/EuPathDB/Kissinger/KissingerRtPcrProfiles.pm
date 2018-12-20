@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::CryptoDB::Kissinger::KissingerRtPcrProfiles;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Kissinger::KissingerRtPcrProfiles;
 
 use strict;
 use vars qw( @ISA );
