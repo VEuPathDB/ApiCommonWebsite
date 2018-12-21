@@ -20,6 +20,7 @@ import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.answer.AnswerValue;
 import org.gusdb.wdk.model.answer.AnswerValueAttributes;
 import org.gusdb.wdk.model.answer.SummaryViewHandler;
+import org.gusdb.wdk.model.answer.spec.AnswerSpec;
 import org.gusdb.wdk.model.jspwrap.AnswerValueBean;
 import org.gusdb.wdk.model.jspwrap.StepBean;
 import org.gusdb.wdk.model.jspwrap.UserBean;
@@ -37,14 +38,14 @@ public class TranscriptViewHandler implements SummaryViewHandler {
   private static final String TRANSCRIPT_FILTERED_STEP = "modifiedStep";
 
   @Override
-  public Map<String, Object> process(RunnableObj<AnswerSpec> step, Map<String, String[]> parameters,
+  public Map<String, Object> process(RunnableObj<AnswerSpec> answerSpec, Map<String, String[]> parameters,
       User user, WdkModel wdkModel) throws WdkModelException, WdkUserException {
 
     // check to see if this request is asking to write summary attributes, sorting, or paging?
     LOG.info("Call to " + getClass().getSimpleName() + " with params: " + FormatUtil.paramsToString(parameters));
 
     // customize step params and any filters (legacy, normal, view)
-    step = RepresentativeTranscriptFilter.applyToStepFromUserPreference(step, user);
+    step = RepresentativeTranscriptFilter.applyToStepFromUserPreference(step);
 
     // create beans for convenience
     UserBean userBean = new UserBean(user);
@@ -88,9 +89,9 @@ public class TranscriptViewHandler implements SummaryViewHandler {
   }
 
   @Override
-  public String processUpdate(Step step, Map<String, String[]> parameters, User user, WdkModel wdkModel)
+  public String processUpdate(RunnableObj<AnswerSpec> answerSpec, Map<String, String[]> parameters, User user, WdkModel wdkModel)
       throws WdkModelException, WdkUserException {
-    return SummaryTableUpdateProcessor.processUpdates(step, parameters, user, wdkModel,
+    return SummaryTableUpdateProcessor.processUpdates(answerSpec, parameters, user, wdkModel,
         UserPreferences.DEFAULT_SUMMARY_VIEW_PREF_SUFFIX);
   }
 
