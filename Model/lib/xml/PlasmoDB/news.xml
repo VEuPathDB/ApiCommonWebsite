@@ -80,7 +80,7 @@
         <h4>Whole genome sequence of isolates</h4>
            <ul>
              <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_2d13238b19">Geographically dispersed <i>P. falciparum</i> isolates</a> &mdash;<br>
-             Illumina whole genome sequencing of P falciparum isolates and lab strains. Data were aligned to the Pf3D7 reference genome and used to determine SNPs.
+             Illumina whole genome sequencing of <i>P. falciparum</i> isolates and lab strains. Data were aligned to the Pf3D7 reference genome and used to determine SNPs.
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/29862326" target="_blank">Otto et al.</a>
              </li>
            </ul> 
