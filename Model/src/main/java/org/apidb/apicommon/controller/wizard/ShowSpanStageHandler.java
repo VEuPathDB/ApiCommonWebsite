@@ -7,14 +7,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
-import org.apache.struts.action.ActionServlet;
 import org.gusdb.wdk.controller.CConstants;
 import org.gusdb.wdk.controller.action.ShowQuestionAction;
-import org.gusdb.wdk.controller.actionutil.ActionUtility;
 import org.gusdb.wdk.controller.form.QuestionForm;
 import org.gusdb.wdk.controller.form.WizardForm;
 import org.gusdb.wdk.controller.wizard.StageHandler;
 import org.gusdb.wdk.controller.wizard.StageHandlerUtility;
+import org.gusdb.wdk.controller.wizard.WizardFormIfc;
+import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.jspwrap.AnswerParamBean;
@@ -33,31 +33,28 @@ public abstract class ShowSpanStageHandler implements StageHandler {
 
     private static final Logger logger = Logger.getLogger(SpanFromQuestionStageHandler.class);
 
-    protected abstract StepBean getChildStep(ActionServlet servlet,
+    protected abstract StepBean getChildStep(WdkModelBean wdkModel,
             HttpServletRequest request, HttpServletResponse response,
-            WizardForm wizardForm) throws Exception;
+            WizardFormIfc wizardForm) throws Exception;
 
     @Override
-    public Map<String, Object> execute(ActionServlet servlet,
+    public Map<String, Object> execute(WdkModel wdkModelRaw,
             HttpServletRequest request, HttpServletResponse response,
-            WizardForm wizardForm) throws Exception {
+            WizardFormIfc wizardForm) throws Exception {
         logger.debug("Entering ShowSpanStageHandler....");
 
         // get child step
-        StepBean childStep = getChildStep(servlet, request, response,
-                wizardForm);
+        WdkModelBean wdkModel = new WdkModelBean(wdkModelRaw);
+        StepBean childStep = getChildStep(wdkModel, request, response, wizardForm);
 
         // get a span logic question
-        WdkModelBean wdkModel = ActionUtility.getWdkModel(servlet);
         String spanQuestionName = ProcessSpanStageHandler.getSpanQuestion(childStep.getRecordClass().getFullName());
         QuestionBean spanQuestion = wdkModel.getQuestion(spanQuestionName);
 
         // initialize the wizardForm so that it has the param information
         QuestionForm questionForm = new QuestionForm();
         questionForm.setQuestion(spanQuestion);
-        questionForm.setServlet(servlet);
-        ShowQuestionAction.prepareQuestionForm(spanQuestion, servlet, request,
-                questionForm);
+        ShowQuestionAction.prepareQuestionForm(spanQuestion, request, questionForm);
         wizardForm.copyFrom(questionForm);
 
         Map<String, Object> attributes = new HashMap<String, Object>();
@@ -80,7 +77,7 @@ public abstract class ShowSpanStageHandler implements StageHandler {
         return attributes;
     }
 
-    private void prepareInsert(HttpServletRequest request, WizardForm wizardForm,
+    private void prepareInsert(HttpServletRequest request, WizardFormIfc wizardForm,
                 StepBean childStep, Map<String, Object> attributes)
             throws NumberFormatException, WdkModelException, WdkUserException {
         StepBean currentStep = StageHandlerUtility.getCurrentStep(request);
@@ -112,7 +109,7 @@ public abstract class ShowSpanStageHandler implements StageHandler {
     }
 
     private void prepareRevise(
-            HttpServletRequest request, WizardForm wizardForm,
+            HttpServletRequest request, WizardFormIfc wizardForm,
             StepBean childStep, Map<String, Object> attributes)
             throws WdkModelException {
         StepBean currentStep = StageHandlerUtility.getCurrentStep(request);
@@ -137,7 +134,7 @@ public abstract class ShowSpanStageHandler implements StageHandler {
     }
 
     private void prepareAdd(HttpServletRequest request,
-            WizardForm wizardForm, StepBean childStep,
+            WizardFormIfc wizardForm, StepBean childStep,
             Map<String, Object> attributes) throws NumberFormatException,
             WdkUserException, WdkModelException {
         StepBean rootStep = StageHandlerUtility.getRootStep(request, wizardForm);
