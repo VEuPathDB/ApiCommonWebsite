@@ -32,14 +32,13 @@ public class JBrowseService extends AbstractWdkService {
         return Response.ok(new JSONObject().put("featureDensity", 0.0002).toString()).build();
     }
 
-
     @GET
     @Path("features/{refseq_name}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getJbrowseFeatures(@PathParam("refseq_name") String refseqName, 
                                        @QueryParam("feature") String feature,
                                        @QueryParam("start") String start,
-                                       @QueryParam("end") String end) throws IOException, InterruptedException {
+                                       @QueryParam("end") String end)  throws IOException, InterruptedException {
 
         String gusHome = getWdkModel().getGusHome();
 
@@ -52,6 +51,43 @@ public class JBrowseService extends AbstractWdkService {
         command.add(end);
         command.add(feature);
 
+        String result = jsonStringFromCommand(command);
+
+        return Response.ok(result).build();
+    }
+
+
+    @GET
+    @Path("names/{organismAbbrev}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getJbrowseNames(@SuppressWarnings("unused") @PathParam("organismAbbrev") String organismAbbrev, @QueryParam("equals") String eq, @QueryParam("startsWith") String startsWith)  throws IOException, InterruptedException {
+
+        String gusHome = getWdkModel().getGusHome();
+
+        boolean isPartial = true;
+        String sourceId = startsWith;
+
+        if(eq != null && !eq.equals("")) {
+            isPartial = false;
+            sourceId = eq;
+        }
+
+        List<String> command = new ArrayList<String>();
+        command.add(gusHome + "/bin/jbrowseNames");
+        command.add(gusHome);
+        command.add(organismAbbrev);
+        command.add(String.valueOf(isPartial));
+        command.add(sourceId);
+
+        String result = jsonStringFromCommand(command);
+
+        return Response.ok(result).build();
+    }
+
+
+    public String jsonStringFromCommand (List<String> command) throws IOException, InterruptedException {
+
+        String gusHome = getWdkModel().getGusHome();
         ProcessBuilder pb = new ProcessBuilder(command);
         Map<String, String> env = pb.environment();
         env.put("GUS_HOME", gusHome);
@@ -61,7 +97,6 @@ public class JBrowseService extends AbstractWdkService {
         Process p = pb.start();
 
         BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
-
 
         String result = "";
         String line;
@@ -79,7 +114,8 @@ public class JBrowseService extends AbstractWdkService {
             result = "{}";
         }
 
-
-        return Response.ok(result).build();
+        return result;
     }
+
+
 }
