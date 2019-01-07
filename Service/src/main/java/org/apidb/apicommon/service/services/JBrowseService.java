@@ -60,7 +60,7 @@ public class JBrowseService extends AbstractWdkService {
     @GET
     @Path("names/{organismAbbrev}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getJbrowseNames(@SuppressWarnings("unused") @PathParam("organismAbbrev") String organismAbbrev, @QueryParam("equals") String eq, @QueryParam("startsWith") String startsWith)  throws IOException, InterruptedException {
+    public Response getJbrowseNames(@SuppressWarnings("unused") @PathParam("organismAbbrev") String organismAbbrev, @QueryParam("equals") String eq, @QueryParam("startswith") String startsWith)  throws IOException, InterruptedException {
 
         String gusHome = getWdkModel().getGusHome();
 
