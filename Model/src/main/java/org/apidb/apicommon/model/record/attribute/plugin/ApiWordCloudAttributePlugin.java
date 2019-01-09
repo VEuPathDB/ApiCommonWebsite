@@ -7,9 +7,6 @@ import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.answer.AnswerValue;
 import org.gusdb.wdk.model.answer.factory.AnswerValueFactory;
-import org.gusdb.wdk.model.answer.spec.AnswerSpec;
-import org.gusdb.wdk.model.user.Step;
-import org.gusdb.wdk.model.user.User;
 
 public class ApiWordCloudAttributePlugin extends EuPathWordCloudAttributePlugin {
 
@@ -18,7 +15,8 @@ public class ApiWordCloudAttributePlugin extends EuPathWordCloudAttributePlugin 
     if (TranscriptUtil.isTranscriptQuestion(answerValue.getAnswerSpec().getQuestion())) {
       // transcript question; see if we should apply one-transcript-per-gene filter
       return AnswerValueFactory.makeAnswer(answerValue,
-          RepresentativeTranscriptFilter.applyToStepFromUserPreference(answerValue.getRunnableAnswerSpec(), answerValue.getUser()));
+          RepresentativeTranscriptFilter.applyToStepFromUserPreference(
+              answerValue.getRunnableAnswerSpec(), answerValue.getUser()));
     }
     return answerValue;
   }

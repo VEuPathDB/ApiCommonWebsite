@@ -31,6 +31,7 @@ import org.gusdb.wdk.model.jspwrap.UserBean;
 import org.gusdb.wdk.model.jspwrap.WdkModelBean;
 import org.gusdb.wdk.model.record.TableValue;
 import org.gusdb.wdk.model.record.attribute.AttributeValue;
+import org.gusdb.wdk.model.user.StepContainer;
 
 public class CustomShowRecordAction extends ShowRecordAction {
 
@@ -159,7 +160,7 @@ public class CustomShowRecordAction extends ShowRecordAction {
             AnswerSpec.builder(wdkModel.getModel())
                       .setQuestionName(GetDatasetAction.DATA_SOURCE_BY_RECORD_CLASS)
                       .setParamValues(params)
-                      .buildRunnable()));
+                      .buildRunnable(user.getUser(), StepContainer.emptyContainer())));
 
         // find all referenced attributes and tables;
         Iterator<RecordBean> dsRecords = answerValue.getRecords();

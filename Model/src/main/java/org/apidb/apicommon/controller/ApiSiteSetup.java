@@ -72,8 +72,9 @@ public class ApiSiteSetup {
         LOG.info("Resetting gene boolean filter on step " + revisedStep.getStepId() +
             " to default value: " + newValue.toString(2));
         AnswerSpec newAnswerSpec = AnswerSpec.builder(revisedStep.getAnswerSpec())
-            .replaceFirstFilterOption(GeneBooleanFilter.GENE_BOOLEAN_FILTER_ARRAY_KEY, newValue)
-            .build(ValidationLevel.RUNNABLE, answerSpec.getStepContainer());
+            .replaceFirstFilterOption(GeneBooleanFilter.GENE_BOOLEAN_FILTER_ARRAY_KEY,
+                option -> option.setValue(newValue))
+            .build(revisedStep.getUser(), answerSpec.getStepContainer(), ValidationLevel.RUNNABLE);
 
         revisedStep.setAnswerSpec(newAnswerSpec);
         revisedStep.writeParamFiltersToDb();

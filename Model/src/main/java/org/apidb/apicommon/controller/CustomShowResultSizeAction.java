@@ -11,6 +11,8 @@ import org.gusdb.fgputil.FormatUtil;
 import org.gusdb.fgputil.FormatUtil.Style;
 import org.gusdb.fgputil.cache.ValueProductionException;
 import org.gusdb.fgputil.db.runner.SQLRunner;
+import org.gusdb.fgputil.validation.ValidObjectFactory.RunnableObj;
+import org.gusdb.fgputil.validation.ValidationLevel;
 import org.gusdb.wdk.cache.CacheMgr;
 import org.gusdb.wdk.cache.FilterSizeCache.AllSizesFetcher;
 import org.gusdb.wdk.cache.FilterSizeCache.FilterSizeGroup;
@@ -59,9 +61,12 @@ public class CustomShowResultSizeAction extends ShowResultSizeAction {
     public FilterSizeGroup getUpdatedValue(Long stepId, FilterSizeGroup previousVersion)
         throws ValueProductionException {
       try {
-        Step step = _wdkModel.getStepFactory().getStepById(stepId)
-            .orElseThrow(() -> new WdkUserException("Could not find step with ID: " + stepId));
-        AnswerValue answerValue = step.getAnswerValue(false);
+        RunnableObj<Step> step = _wdkModel.getStepFactory()
+            .getStepById(stepId, ValidationLevel.RUNNABLE)
+            .orElseThrow(() -> new WdkUserException("Could not find step with ID: " + stepId))
+            .getRunnable()
+            .getOrThrow(s -> new WdkUserException("Step with ID " + stepId + " is not valid."));
+        AnswerValue answerValue = AnswerValueFactory.makeAnswer(step);
         if (!TranscriptUtil.isTranscriptQuestion(answerValue.getAnswerSpec().getQuestion())) {
           return super.getUpdatedValue(stepId, previousVersion);
         }
@@ -108,19 +113,22 @@ public class CustomShowResultSizeAction extends ShowResultSizeAction {
   private static Map<String, Integer> getSizesFromCustomQuery(AnswerValue answerValue, WdkModel wdkModel)
       throws WdkModelException {
     Query query = wdkModel.getQuerySet(CUSTOM_FILTER_SIZE_QUERY_SET).getQuery(CUSTOM_FILTER_SIZE_QUERY_NAME);
-        
-    AnswerValue clone = AnswerValueFactory.makeAnswer(answerValue,
-        AnswerSpec.builder(answerValue.getAnswerSpec()).setLegacyFilterName(null).buildRunnable());
+    AnswerValue clone = AnswerValueFactory.makeAnswer(answerValue, AnswerSpec
+        .builder(answerValue.getAnswerSpec())
+        .setLegacyFilterName(null)
+        .buildRunnable(answerValue.getUser(), answerValue.getAnswerSpec().getStepContainer()));
     String sql = ((SqlQuery)query).getSql().replace(Utilities.MACRO_ID_SQL, clone.getIdSql());
     LOG.debug("Running query: " + query.getFullName() + " with SQL: " + sql);
-    final Map<String, Integer> querySizes = new HashMap<>();
-    new SQLRunner(wdkModel.getAppDb().getDataSource(), sql, CUSTOM_FILTER_SIZE_QUERY_NAME).executeQuery(rs -> {
+    return new SQLRunner(wdkModel.getAppDb().getDataSource(), sql, CUSTOM_FILTER_SIZE_QUERY_NAME)
+        .executeQuery(rs -> {
+      Map<String, Integer> querySizes = new HashMap<>();
       while (rs.next()) {
         querySizes.put(rs.getString(FILTER_NAME_COLUMN), rs.getInt(FILTER_SIZE_COLUMN));
       }
+      LOG.debug("Loaded " + querySizes.size() + " from bulk filter size query: " +
+          FormatUtil.prettyPrint(querySizes, Style.MULTI_LINE));
+      return querySizes;
     });
-    LOG.debug("Loaded " + querySizes.size() + " from bulk filter size query: " + FormatUtil.prettyPrint(querySizes, Style.MULTI_LINE));
-    return querySizes;
   }
 
   // no filter is specified, will return all (legacy) filter sizes for the given step

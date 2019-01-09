@@ -32,7 +32,7 @@ public class TranscriptTableReporter extends TableTabularReporter {
     try {
       _originalQuestionName = _baseAnswer.getAnswerSpec().getQuestion().getName();
       Step baseStep = createBaseStep(_baseAnswer);
-      _baseAnswer = TranscriptUtil.transformToGeneAnswer(_baseAnswer, baseStep.getStepId());
+      _baseAnswer = TranscriptUtil.transformToGeneAnswer(_baseAnswer, baseStep);
       // now that base answer is a Gene answer, check and assign selected table field name
       super.configure(config);
       return this;

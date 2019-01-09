@@ -10,6 +10,8 @@ import org.gusdb.wdk.model.answer.factory.AnswerValueFactory;
 import org.gusdb.wdk.model.answer.spec.AnswerSpec;
 import org.gusdb.wdk.model.question.Question;
 import org.gusdb.wdk.model.record.RecordClass;
+import org.gusdb.wdk.model.user.Step;
+import org.gusdb.wdk.model.user.StepContainer.ListStepContainer;
 
 public class TranscriptUtil {
 
@@ -38,24 +40,22 @@ public class TranscriptUtil {
     return isTranscriptRecordClass(question.getRecordClass());
   }
 
-  public static AnswerValue transformToGeneAnswer(AnswerValue transcriptAnswer, long stepId) throws WdkUserException {
+  public static AnswerValue transformToGeneAnswer(AnswerValue transcriptAnswer, Step step) throws WdkUserException {
     try {
-      Question question = transcriptAnswer.getAnswerSpec().getQuestion().getWdkModel().getQuestion(XFORM_QUESTION_NAME);
-      if (question == null) {
-        throw new WdkModelException("Can't find xform with name: " + XFORM_QUESTION_NAME);
-      }
+      Question question = transcriptAnswer.getWdkModel().getQuestion(XFORM_QUESTION_NAME)
+          .orElseThrow(() -> new WdkModelException("Can't find xform with name: " + XFORM_QUESTION_NAME));
       String paramName = "gene_result";
       if (question.getParamMap().size() != 1 || !question.getParamMap().containsKey(paramName)) {
         throw new WdkModelException("Expected question " + XFORM_QUESTION_NAME +
             " to have exactly one parameter named " + paramName);
       }
-      Map<String, String> params = new MapBuilder<String, String>(paramName, String.valueOf(stepId)).toMap();
-      AnswerValue geneAnswer = AnswerValueFactory.makeAnswer(transcriptAnswer.getUser(),
-          AnswerSpec.builder(question.getWdkModel())
-                    .setQuestionName(XFORM_QUESTION_NAME)
-                    .setParamValues(params)
-                    .setAssignedWeight(10)
-                    .buildRunnable());
+      Map<String, String> params = new MapBuilder<String, String>(paramName, String.valueOf(step.getStepId())).toMap();
+      AnswerValue geneAnswer = AnswerValueFactory.makeAnswer(transcriptAnswer.getUser(), AnswerSpec
+          .builder(question.getWdkModel())
+          .setQuestionName(XFORM_QUESTION_NAME)
+          .setParamValues(params)
+          .setAssignedWeight(10)
+          .buildRunnable(transcriptAnswer.getUser(), new ListStepContainer(step)));
 
       // make sure gene answer uses same page size as transcript answer
       return geneAnswer.cloneWithNewPaging(transcriptAnswer.getStartIndex(), transcriptAnswer.getEndIndex());

@@ -39,6 +39,7 @@ import org.gusdb.wdk.model.record.TableField;
 import org.gusdb.wdk.model.record.TableValue;
 import org.gusdb.wdk.model.record.attribute.AttributeField;
 import org.gusdb.wdk.model.record.attribute.AttributeValue;
+import org.gusdb.wdk.model.user.StepContainer;
 
 public class CustomShowQuestionAction extends ShowQuestionAction {
 
@@ -82,7 +83,7 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
                 AnswerSpec.builder(wdkModel.getModel())
                           .setQuestionName(GetDatasetAction.DATA_SOURCE_BY_QUESTION)
                           .setParamValues(params)
-                          .buildRunnable()));
+                          .buildRunnable(user.getUser(), StepContainer.emptyContainer())));
 
             // find all referenced attributes and tables;
             Iterator<RecordBean> dsRecords = answerValue.getRecords();
@@ -148,7 +149,11 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
         params.put("dataset_subtype", datasetSubtypes[0]);
 
         QuestionBean dsQuestion = wdkModel.getQuestion(dsQuestionName);
-        AnswerValue answerValue = ActionUtility.makeAnswerValue(user, dsQuestion, params).getAnswerValue();
+        AnswerValue answerValue = AnswerValueFactory.makeAnswer(user.getUser(),
+            AnswerSpec.builder(wdkModel.getModel())
+            .setQuestionName(dsQuestionName)
+            .setParamValues(params)
+            .buildRunnable(user.getUser(), StepContainer.emptyContainer()));
         answerValue.setPageToEntireResult();
 
         // make a list of attribute fields we need to expose

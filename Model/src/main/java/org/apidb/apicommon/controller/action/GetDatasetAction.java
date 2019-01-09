@@ -17,6 +17,8 @@ import org.apache.struts.action.ActionMapping;
 import org.gusdb.wdk.controller.actionutil.ActionUtility;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
+import org.gusdb.wdk.model.answer.factory.AnswerValueFactory;
+import org.gusdb.wdk.model.answer.spec.AnswerSpec;
 import org.gusdb.wdk.model.jspwrap.AnswerValueBean;
 import org.gusdb.wdk.model.jspwrap.QuestionBean;
 import org.gusdb.wdk.model.jspwrap.RecordBean;
@@ -24,6 +26,7 @@ import org.gusdb.wdk.model.jspwrap.UserBean;
 import org.gusdb.wdk.model.jspwrap.WdkModelBean;
 import org.gusdb.wdk.model.jspwrap.XmlQuestionSetBean;
 import org.gusdb.wdk.model.record.attribute.AttributeValue;
+import org.gusdb.wdk.model.user.StepContainer;
 
 public class GetDatasetAction extends Action {
 
@@ -102,7 +105,12 @@ public class GetDatasetAction extends Action {
                 logger.debug("Getting all data sources: ");
                 question = wdkModel.getQuestion(DATA_SOURCE_ALL);
             }
-            AnswerValueBean answerValue = ActionUtility.makeAnswerValue(user, question, params);
+            AnswerValueBean answerValue = new AnswerValueBean(
+                AnswerValueFactory.makeAnswer(user.getUser(), AnswerSpec
+                    .builder(wdkModel.getModel())
+                    .setQuestionName(question.getFullName())
+                    .setParamValues(params)
+                    .buildRunnable(user.getUser(), StepContainer.emptyContainer())));
 
             Map<String, List<RecordBean>> categories = formatAnswer(answerValue);
             request.setAttribute(ATTR_DATA_SOURCES, categories);

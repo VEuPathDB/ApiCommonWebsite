@@ -2,8 +2,8 @@ package org.apidb.apicommon.model.filter;
 
 import org.apache.log4j.Logger;
 import org.gusdb.fgputil.validation.ValidationBundle;
-import org.gusdb.fgputil.validation.ValidationLevel;
 import org.gusdb.fgputil.validation.ValidationBundle.ValidationBundleBuilder;
+import org.gusdb.fgputil.validation.ValidationLevel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.answer.AnswerValue;
@@ -11,7 +11,6 @@ import org.gusdb.wdk.model.answer.spec.SimpleAnswerSpec;
 import org.gusdb.wdk.model.filter.FilterSummary;
 import org.gusdb.wdk.model.filter.StepFilter;
 import org.gusdb.wdk.model.question.Question;
-import org.gusdb.wdk.model.user.Step;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -43,9 +42,9 @@ public class GenesByPathwayFilter extends StepFilter {
   @Override
   public String getSql(AnswerValue answer, String idSql, JSONObject jsValue)
       throws WdkModelException {
-    Config config = parseConfig(jsValue);
-
-    String rv = FILTER_SQL
+    try {
+      Config config = parseConfig(jsValue);
+      String rv = FILTER_SQL
         .replace("@PROJECT_ID@", answer.getUser().getWdkModel().getProjectId())
         .replace("$$id_sql$$", idSql)
         .replace("$$pathway_source$$", config.getPathwaySource())
@@ -53,8 +52,13 @@ public class GenesByPathwayFilter extends StepFilter {
         .replace("$$exact_match_only$$", config.getExactMatchOnly())
         .replace("$$pathway_source_id$$", config.getPathwayId());
 
-    logger.debug("SQL=" + rv);
-    return rv;
+      logger.debug("SQL=" + rv);
+      return rv;
+    }
+    catch (WdkUserException e) {
+      // should already be validated by validate method below so should never get here
+      throw new WdkModelException(e);
+    }
   }
 
   private Config parseConfig(JSONObject jsValue) throws WdkUserException {
@@ -119,7 +123,12 @@ public class GenesByPathwayFilter extends StepFilter {
   @Override
   public ValidationBundle validate(Question question, JSONObject value, ValidationLevel validationLevel) {
     ValidationBundleBuilder validation = ValidationBundle.builder(validationLevel);
-    // TODO Validate!!
+    try {
+      parseConfig(value);
+    }
+    catch (WdkUserException e) {
+      validation.addError(e.toString());
+    }
     return validation.build();
   }
 

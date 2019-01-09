@@ -4,8 +4,11 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.apidb.apicommon.model.filter.RepresentativeTranscriptFilter;
+import org.gusdb.fgputil.validation.ValidObjectFactory.RunnableObj;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.answer.AnswerValue;
+import org.gusdb.wdk.model.answer.factory.AnswerValueFactory;
+import org.gusdb.wdk.model.answer.spec.AnswerSpec;
 import org.gusdb.wdk.model.answer.spec.FilterOptionList;
 import org.gusdb.wdk.model.question.Question;
 import org.gusdb.wdk.model.report.ReporterConfigException;
@@ -47,18 +50,22 @@ public class TranscriptAttributesReporter extends AttributesTabularReporter {
    */
   @Override
   public void initialize() throws WdkModelException {
-    if (!applyFilter)
+    if (!applyFilter) {
       return; // use existing answer value
+    }
+    // otherwise need to create new base answervalue with transcript filter applied
 
-    // need to create new base answervalue and apply transcript filter
-    _baseAnswer = new AnswerValue(_baseAnswer);
     Question question = getQuestion();
     String filterName = RepresentativeTranscriptFilter.FILTER_NAME;
-    if (question.getFilter(filterName) == null)
-      throw new WdkModelException("Can't find transcript filter with name " + filterName + " on question " + question.getFullName());
+    if (question.getFilter(filterName) == null) {
+      throw new WdkModelException("Can't find transcript filter with name " +
+          filterName + " on question " + question.getFullName());
+    }
     JSONObject jsFilterValue = new JSONObject(); // this filter has no params, so this stays empty
-    FilterOptionList optionsList = new FilterOptionList(_wdkModel, question.getFullName());
-    optionsList.addFilterOption(filterName, jsFilterValue);
-    _baseAnswer.setViewFilterOptions(optionsList);
+    RunnableObj<AnswerSpec> modifiedSpec = AnswerSpec
+        .builder(_baseAnswer.getAnswerSpec())
+        .setViewFilterOptions(FilterOptionList.builder().addFilterOption(filterName, jsFilterValue))
+        .buildRunnable(_baseAnswer.getUser(), _baseAnswer.getAnswerSpec().getStepContainer());
+    _baseAnswer = AnswerValueFactory.makeAnswer(_baseAnswer, modifiedSpec);
   }
 }
