@@ -58,6 +58,24 @@ public class JBrowseService extends AbstractWdkService {
 
 
     @GET
+    @Path("seq/{organismAbbrev}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getJbrowseRefSeqs(@SuppressWarnings("unused") @PathParam("organismAbbrev") String organismAbbrev )  throws IOException, InterruptedException {
+
+        String gusHome = getWdkModel().getGusHome();
+
+        List<String> command = new ArrayList<String>();
+        command.add(gusHome + "/bin/jbrowseRefSeqs");
+        command.add(gusHome);
+        command.add(organismAbbrev);
+
+        String result = jsonStringFromCommand(command);
+
+        return Response.ok(result).build();
+    }
+
+
+    @GET
     @Path("names/{organismAbbrev}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getJbrowseNames(@SuppressWarnings("unused") @PathParam("organismAbbrev") String organismAbbrev, @QueryParam("equals") String eq, @QueryParam("startswith") String startsWith)  throws IOException, InterruptedException {
