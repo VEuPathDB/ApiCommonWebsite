@@ -7,13 +7,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
-import org.apache.struts.action.ActionServlet;
 import org.gusdb.wdk.controller.action.ShowQuestionAction;
-import org.gusdb.wdk.controller.actionutil.ActionUtility;
 import org.gusdb.wdk.controller.form.QuestionForm;
-import org.gusdb.wdk.controller.form.WizardForm;
 import org.gusdb.wdk.controller.wizard.StageHandler;
 import org.gusdb.wdk.controller.wizard.StageHandlerUtility;
+import org.gusdb.wdk.controller.wizard.WizardFormIfc;
+import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.jspwrap.AnswerParamBean;
 import org.gusdb.wdk.model.jspwrap.ParamBean;
@@ -31,9 +30,9 @@ public class ShowOrthologStageHandler implements StageHandler {
             .getLogger(ShowOrthologStageHandler.class);
 
     @Override
-    public Map<String, Object> execute(ActionServlet servlet,
+    public Map<String, Object> execute(WdkModel wdkModelRaw,
             HttpServletRequest request, HttpServletResponse response,
-            WizardForm wizardForm) throws Exception {
+            WizardFormIfc wizardForm) throws Exception {
         logger.debug("Entering ShowOrthologStageHandler....");
 
         // determine where to add the ortholog. If the current step is the root
@@ -47,7 +46,7 @@ public class ShowOrthologStageHandler implements StageHandler {
         StepBean currentStep = StageHandlerUtility.getCurrentStep(request);
 
         // get a span logic question
-        WdkModelBean wdkModel = ActionUtility.getWdkModel(servlet);
+        WdkModelBean wdkModel = new WdkModelBean(wdkModelRaw);
         String questionName = request.getParameter(PARAM_QUESTION_NAME);
         QuestionBean question = wdkModel.getQuestion(questionName);
         AnswerParamBean answerParam = null;
@@ -73,8 +72,7 @@ public class ShowOrthologStageHandler implements StageHandler {
         // prepare question form
         logger.debug("Preparing form for question: " + questionName);
         QuestionForm questionForm = new QuestionForm();
-        ShowQuestionAction.prepareQuestionForm(question, servlet, request,
-                questionForm);
+        ShowQuestionAction.prepareQuestionForm(question, request, questionForm);
         wizardForm.copyFrom(questionForm);
         logger.debug("wizard form: " + wizardForm);
 
@@ -82,7 +80,7 @@ public class ShowOrthologStageHandler implements StageHandler {
         attributes.put(ATTR_QUESTION, question);
 
         // check the custom form
-        ShowQuestionAction.checkCustomForm(servlet, request, question);
+        ShowQuestionAction.checkCustomForm(wizardForm.getServletContext(), request, question);
 
         logger.debug("Leaving ShowOrthologStageHandler....");
         return attributes;

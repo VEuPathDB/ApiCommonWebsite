@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
-import org.apache.struts.action.ActionServlet;
 import org.gusdb.wdk.controller.CConstants;
 import org.gusdb.wdk.controller.action.ProcessBooleanAction;
 import org.gusdb.wdk.controller.action.ProcessQuestionAction;
@@ -14,6 +13,7 @@ import org.gusdb.wdk.controller.actionutil.ActionUtility;
 import org.gusdb.wdk.controller.form.QuestionForm;
 import org.gusdb.wdk.controller.form.WizardForm;
 import org.gusdb.wdk.controller.wizard.ProcessBooleanStageHandler;
+import org.gusdb.wdk.controller.wizard.WizardFormIfc;
 import org.gusdb.wdk.model.Utilities;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.jspwrap.QuestionBean;
@@ -31,9 +31,9 @@ public class SpanFromQuestionStageHandler extends ShowSpanStageHandler {
     private static final Logger logger = Logger.getLogger(SpanFromQuestionStageHandler.class);
 
     @Override
-    public StepBean getChildStep(ActionServlet servlet,
+    public StepBean getChildStep(WdkModelBean wdkModel,
             HttpServletRequest request, HttpServletResponse response,
-            WizardForm wizardForm) throws Exception {
+            WizardFormIfc wizardForm) throws Exception {
         logger.debug("Entering SpanFromQuestionStageHandler....");
 
         UserBean user = ActionUtility.getUser(request);
@@ -44,13 +44,11 @@ public class SpanFromQuestionStageHandler extends ShowSpanStageHandler {
             throw new WdkUserException("Required "
                     + CConstants.QUESTION_FULLNAME_PARAM + " is missing.");
 
-        WdkModelBean wdkModel = ActionUtility.getWdkModel(servlet);
         QuestionBean question = wdkModel.getQuestion(questionName);
 
         // prepare the params
         QuestionForm questionForm = new QuestionForm();
         questionForm.copyFrom(wizardForm);
-        questionForm.setServlet(servlet);
         questionForm.setQuestion(question);
 
         Map<String, String> params = ProcessQuestionAction.prepareParams(user,
@@ -92,7 +90,7 @@ public class SpanFromQuestionStageHandler extends ShowSpanStageHandler {
           String action = request.getParameter(ProcessBooleanAction.PARAM_ACTION);
           if (action.equals(WizardForm.ACTION_REVISE)) {
             childStep = ProcessBooleanStageHandler.updateStepWithQuestion(
-                servlet, request, wizardForm, strategy, questionName, user, stepId);
+                request, wizardForm, strategy, questionName, user, stepId);
           }
           else {
             childStep = user.createStep(null, question, params, filterName,

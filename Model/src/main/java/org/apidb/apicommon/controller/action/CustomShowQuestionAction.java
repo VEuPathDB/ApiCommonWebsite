@@ -18,10 +18,10 @@ import org.apache.log4j.Logger;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.ActionServlet;
 import org.gusdb.wdk.controller.CConstants;
 import org.gusdb.wdk.controller.action.ShowQuestionAction;
 import org.gusdb.wdk.controller.actionutil.ActionUtility;
+import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.answer.AnswerValue;
 import org.gusdb.wdk.model.answer.stream.FileBasedRecordStream;
 import org.gusdb.wdk.model.answer.stream.RecordStream;
@@ -51,9 +51,9 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
 
     private static final Logger logger = Logger.getLogger(CustomShowQuestionAction.class);
 
-    public static void loadDatasets(ActionServlet servlet,
+    public static void loadDatasets(WdkModel wdkModelRaw,
             HttpServletRequest request) throws Exception {
-        WdkModelBean wdkModel = ActionUtility.getWdkModel(servlet);
+        WdkModelBean wdkModel = new WdkModelBean(wdkModelRaw);
 
         List<RecordBean> questionRefs = new ArrayList<RecordBean>();
 
@@ -97,9 +97,9 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
         request.setAttribute(ATTR_REFERENCE_QUESTIONS, questionRefs);
     }
 
-    public static void loadQuestionsByDataset(ActionServlet servlet,
+    public static void loadQuestionsByDataset(WdkModel wdkModelRaw,
             HttpServletRequest request) throws Exception {
-        WdkModelBean wdkModel = ActionUtility.getWdkModel(servlet);
+        WdkModelBean wdkModel = new WdkModelBean(wdkModelRaw);
         UserBean user = ActionUtility.getUser(request);
 
         //eg:  InternalGeneDatasetQuestions.GenesByRNASeqEvidence
@@ -246,11 +246,11 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
         request.setAttribute(ATTR_MISSING_IN_MODEL_QUESTIONS, missQuestionsMap);
     }
 
-    public static void loadReferences(ActionServlet servlet,
+    public static void loadReferences(WdkModel wdkModel,
             HttpServletRequest request) throws Exception {
-        loadQuestionsByDataset(servlet, request);
+        loadQuestionsByDataset(wdkModel, request);
         //logger.debug("\n\n MOVING TO LOAD DATASETS \n\n");
-        loadDatasets(servlet, request);
+        loadDatasets(wdkModel, request);
     }
 
     @Override
@@ -259,7 +259,8 @@ public class CustomShowQuestionAction extends ShowQuestionAction {
             throws Exception {
         // run execute from parent
         ActionForward forward = super.execute(mapping, form, request, response);
-        loadReferences(servlet, request);
+        WdkModel wdkModel = ActionUtility.getWdkModel(servlet).getModel();
+        loadReferences(wdkModel, request);
 
         logger.info("*****CustomShowQuestionAction going to: " + forward);
         return forward;
