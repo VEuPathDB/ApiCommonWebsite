@@ -160,6 +160,13 @@
                                                            ApiCommonWebsite-Installation,
                                                            ApiCommonWebsite/View-WebInstallation,
                                                            ApiCommonWebsite/Site-WebInstallation">
+    <!-- JBrowse Stuff -->
+    <delete dir="${webappTargetDir}/jbrowse/eupath_data" followsymlinks="false" removeNotFollowedSymlinks="true"/>
+    <mkdir dir="${webappTargetDir}/jbrowse/eupath_data"/>
+    <symlink link="${webappTargetDir}/jbrowse/eupath_data/webServices" resource="/var/www/Common/apiSiteFilesMirror/webServices"/>
+    <symlink link="${webappTargetDir}/jbrowse/eupath_data/auxiliary" resource="/var/www/Common/apiSiteFilesMirror/auxiliary"/>
+    <symlink link="${webappTargetDir}/jbrowse/tracks" resource="${targetDir}/lib/jbrowse/auto_generated"/>
+
   </target>
 
 
@@ -169,6 +176,14 @@
       <property name="project" value="ApiCommonWebsite"/>
       <property name="component" value="Site"/>
     </ant>
+
+    <!--JBrowse stuff -->
+    <delete file="${webappTargetDir}/jbrowse/jbrowse.conf"/>
+    <delete file="${webappTargetDir}/jbrowse/functions.conf"/>
+    <copy file="${projectsDir}/ApiCommonModel/Model/lib/jbrowse/jbrowse.conf" tofile="${webappTargetDir}/jbrowse/jbrowse.conf"/>
+    <copy file="${projectsDir}/ApiCommonModel/Model/lib/jbrowse/functions.conf" tofile="${webappTargetDir}/jbrowse/functions.conf"/>
+
+
 
     <!-- replacement for dataPlotter file used to do expression graph -->
     <replace file="${cgibinTargetDir}/dataPlotter.pl" 
