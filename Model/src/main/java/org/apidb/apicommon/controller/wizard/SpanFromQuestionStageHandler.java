@@ -30,6 +30,7 @@ public class SpanFromQuestionStageHandler extends ShowSpanStageHandler {
 
     private static final Logger logger = Logger.getLogger(SpanFromQuestionStageHandler.class);
 
+    @Deprecated
     @Override
     public StepBean getChildStep(WdkModelBean wdkModel,
             HttpServletRequest request, HttpServletResponse response,
