@@ -58,6 +58,60 @@ public class JBrowseService extends AbstractWdkService {
 
 
     @GET
+    @Path("dnaseq/{organismAbbrev}/{study}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getJbrowseDNASeqTracks(@PathParam("organismAbbrev") String organismAbbrev, 
+                                           @PathParam("study") String study) throws IOException, InterruptedException {
+
+        String gusHome = getWdkModel().getGusHome();
+        String projectId = getWdkModel().getProjectId();
+        String buildNumber = getWdkModel().getBuildNumber();
+
+        List<String> command = new ArrayList<String>();
+        command.add(gusHome + "/bin/jbrowseDNASeqTracks");
+        command.add(gusHome);
+        command.add(organismAbbrev);
+        command.add(study);
+        command.add(projectId);
+        command.add(buildNumber);
+
+        String result = jsonStringFromCommand(command);
+
+        return Response.ok(result).build();
+    }
+
+
+    @GET
+    @Path("rnaseq/{organismAbbrev}/{study}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getJbrowseRNASeqTracks(@PathParam("organismAbbrev") String organismAbbrev, 
+                                           @PathParam("study") String study) throws IOException, InterruptedException {
+
+        String gusHome = getWdkModel().getGusHome();
+        String projectId = getWdkModel().getProjectId();
+        String buildNumber = getWdkModel().getBuildNumber();
+        String webservicesDir = getWdkModel().getProperties().get("WEBSERVICEMIRROR");
+
+        System.err.println("WEBSERVICEMIRROR=" + webservicesDir);
+
+        List<String> command = new ArrayList<String>();
+        command.add(gusHome + "/bin/jbrowseRNASeqTracks");
+        command.add(gusHome);
+        command.add(organismAbbrev);
+        command.add(study);
+        command.add(projectId);
+        command.add(buildNumber);
+        command.add(webservicesDir);
+
+        String result = jsonStringFromCommand(command);
+
+        return Response.ok(result).build();
+    }
+
+
+
+
+    @GET
     @Path("seq/{organismAbbrev}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getJbrowseRefSeqs(@PathParam("organismAbbrev") String organismAbbrev )  throws IOException, InterruptedException {
