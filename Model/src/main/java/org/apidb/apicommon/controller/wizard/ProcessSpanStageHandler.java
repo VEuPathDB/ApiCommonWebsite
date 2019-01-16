@@ -7,11 +7,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
-import org.apache.struts.action.ActionServlet;
 import org.apidb.apicommon.model.TranscriptUtil;
 import org.gusdb.wdk.controller.actionutil.ActionUtility;
-import org.gusdb.wdk.controller.form.WizardForm;
 import org.gusdb.wdk.controller.wizard.StageHandler;
+import org.gusdb.wdk.controller.wizard.WizardFormIfc;
+import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.jspwrap.StepBean;
 import org.gusdb.wdk.model.jspwrap.UserBean;
@@ -43,9 +43,9 @@ public class ProcessSpanStageHandler implements StageHandler {
     }
 
     @Override
-    public Map<String, Object> execute(ActionServlet servlet,
+    public Map<String, Object> execute(WdkModel wdkModel,
             HttpServletRequest request, HttpServletResponse response,
-            WizardForm wizardForm) throws Exception {
+            WizardFormIfc wizardForm) throws Exception {
         logger.debug("Entering ProcessSpanStageHandler....");
 
         String output = (String) wizardForm.getValueOrArray(PARAM_OUTPUT);
@@ -70,7 +70,7 @@ public class ProcessSpanStageHandler implements StageHandler {
     }
 
     private void computeRegion(HttpServletRequest request,
-            WizardForm wizardForm, String region) {
+            WizardFormIfc wizardForm, String region) {
         String option = wizardForm.getValue("region_" + region).toString();
         if (option.equals("exact")) {
             // use exact region of the feature

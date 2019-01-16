@@ -40,7 +40,7 @@ public class ReporterStreamingTest {
       String baseJsonStr = new JSONObject(IoUtil.readAllChars(inputFile)).toString();
       log("Creating answer service");
       AnswerService answerService = new AnswerService();
-      answerService.testSetup(wdkModel, wdkModel.getSystemUser());
+      answerService.testSetup(wdkModel);
       Path tmpFileDir = IoUtil.createOpenPermsTempDir("wdk_stream_test_");
       TwoTuple<String,Path> pagedAnswerResults = timeResponse(answerService, baseJsonStr, StreamStrategy.PAGED_ANSWER, tmpFileDir);
       TwoTuple<String,Path> fileBasedResults = timeResponse(answerService, baseJsonStr, StreamStrategy.FILE_BASED, tmpFileDir);
