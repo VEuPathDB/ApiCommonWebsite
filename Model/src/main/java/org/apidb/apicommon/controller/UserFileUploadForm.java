@@ -37,6 +37,11 @@ public class UserFileUploadForm extends ActionForm {
         this.file = file;
         setFormFiles(indx, file);
     }
+
+    /**
+     * @param idx not used; only one file field
+     * @return
+     */
     public FormFile getFile(int idx) {
         return file;
     }
@@ -61,6 +66,10 @@ public class UserFileUploadForm extends ActionForm {
         setFormNotes(indx, notes);
     }
 
+    /**
+     * @param idx not used; only one notes field
+     * @return
+     */
     public String getNotes(int idx) {
         return notes;
     }
