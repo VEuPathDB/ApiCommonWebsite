@@ -6,13 +6,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
-import org.apache.struts.action.ActionServlet;
 import org.gusdb.wdk.controller.actionutil.ActionUtility;
-import org.gusdb.wdk.controller.form.WizardForm;
+import org.gusdb.wdk.controller.wizard.WizardFormIfc;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.jspwrap.StepBean;
 import org.gusdb.wdk.model.jspwrap.StrategyBean;
 import org.gusdb.wdk.model.jspwrap.UserBean;
+import org.gusdb.wdk.model.jspwrap.WdkModelBean;
 
 public class SpanFromStrategyStageHandler extends ShowSpanStageHandler {
 
@@ -21,8 +21,8 @@ public class SpanFromStrategyStageHandler extends ShowSpanStageHandler {
   private static final Logger logger = Logger.getLogger(SpanFromQuestionStageHandler.class);
 
   @Override
-  public StepBean getChildStep(ActionServlet servlet, HttpServletRequest request,
-      HttpServletResponse response, WizardForm wizardForm) throws Exception {
+  public StepBean getChildStep(WdkModelBean wdkModel, HttpServletRequest request,
+      HttpServletResponse response, WizardFormIfc wizardForm) throws Exception {
     logger.debug("Entering SpanFromQuestionStageHandler....");
 
     // load strategy
