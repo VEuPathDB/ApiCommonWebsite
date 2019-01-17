@@ -190,7 +190,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
           refQuery.load(PUB_MED, com.getPubMedIds()).run(con);
         if (!com.getCategoryIds().isEmpty())
           new InsertCategoryQuery(schema, commentId, com.getCategoryIds(), this::getNextId).run(con);
-        if (com.getSequence() == null || com.getSequence().isEmpty())
+        if (com.getSequence() != null && !com.getSequence().isEmpty())
           new InsertSequenceQuery(schema, com.getSequence(), commentId, this::getNextId).run(con);
         if (com.getLocation() != null)
           new InsertLocationQuery(schema, commentId, com.getLocation(), this::getNextId).run(con);
