@@ -2,8 +2,6 @@ package org.apidb.apicommon.model.comment;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.jsonwebtoken.lang.Collections;
-import joptsimple.internal.Strings;
 import org.apidb.apicommon.model.comment.pojo.*;
 import org.apidb.apicommon.model.comment.repo.*;
 import org.gusdb.fgputil.db.ConnectionMapping;
@@ -20,10 +18,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 import static org.apidb.apicommon.model.comment.ReferenceType.*;
 
@@ -185,17 +180,17 @@ public class CommentFactory implements Manageable<CommentFactory> {
         final InsertReferencesQuery refQuery = new InsertReferencesQuery(schema,
             commentId, this::getNextId);
 
-        if (!Collections.isEmpty(com.getDigitalObjectIds()))
+        if (!com.getDigitalObjectIds().isEmpty())
           refQuery.load(DIGITAL_OBJECT_ID, com.getDigitalObjectIds()).run(con);
-        if (!Collections.isEmpty(com.getGenBankAccessions()))
+        if (!com.getGenBankAccessions().isEmpty())
           refQuery.load(ACCESSION, com.getGenBankAccessions()).run(con);
-        if (!Collections.isEmpty(com.getAdditionalAuthors()))
+        if (!com.getAdditionalAuthors().isEmpty())
           refQuery.load(AUTHOR, com.getAdditionalAuthors()).run(con);
-        if (!Collections.isEmpty(com.getPubMedIds()))
+        if (!com.getPubMedIds().isEmpty())
           refQuery.load(PUB_MED, com.getPubMedIds()).run(con);
-        if (!Collections.isEmpty(com.getCategoryIds()))
+        if (!com.getCategoryIds().isEmpty())
           new InsertCategoryQuery(schema, commentId, com.getCategoryIds(), this::getNextId).run(con);
-        if (!Strings.isNullOrEmpty(com.getSequence()))
+        if (com.getSequence() == null || com.getSequence().isEmpty())
           new InsertSequenceQuery(schema, com.getSequence(), commentId, this::getNextId).run(con);
         if (com.getLocation() != null)
           new InsertLocationQuery(schema, commentId, com.getLocation(), this::getNextId).run(con);
