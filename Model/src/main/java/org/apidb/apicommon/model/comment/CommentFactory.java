@@ -30,7 +30,7 @@ import org.gusdb.wdk.model.user.UserFactory;
 
 /**
  * Manages user comments on WDK records
- * 
+ *
  * @author xingao
  */
 public class CommentFactory implements Manageable<CommentFactory> {
@@ -282,7 +282,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
     new SQLRunner(_commentDs, sql).executeUpdate(
         new Object[] { props.get("firstName"), props.get("lastName"), props.get("organization"), userProfile.getUserId() },
         new Integer[] { Types.VARCHAR, Types.VARCHAR, Types.VARCHAR, Types.BIGINT });
-    
+
   }
 
   private void saveLocations(long commentId, Comment comment) throws SQLException {
@@ -618,7 +618,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
   private void saveAssociatedStableIds(long commentId, String[] associatedStableIds) throws SQLException {
     String commentSchema = _config.getCommentSchema();
 
-    // removing duplicates 
+    // removing duplicates
     Set<String> stringSet = new HashSet<>(Arrays.asList(associatedStableIds));
     String[] associatedStableIds_noDup = stringSet.toArray(new String[0]);
 
@@ -678,10 +678,10 @@ public class CommentFactory implements Manageable<CommentFactory> {
    * For the first release, this method hard-code the external database name and version, instead of looking
    * up directly in GUS. This avoids the backward dblink requirement; The site should provide such information
    * to the comment factory in future releases.
-   * 
+   *
    * UPDATE: Assume that the Comment parameter already has the external database info filled in. Use the first
    * extdb/versions (Is there a case at all where we need more than one ext db???)
-   * 
+   *
    * @param commentId
    * @param comment
    */
@@ -1309,7 +1309,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
     ArrayList<MultiBox> list = new ArrayList<MultiBox>();
     ResultSet rs = null;
     PreparedStatement ps = null;
-    
+
     StringBuffer sql = new StringBuffer();
     sql.append("SELECT " + nameCol + "," + valueCol);
     sql.append(" FROM  " + _config.getCommentSchema() + table);
