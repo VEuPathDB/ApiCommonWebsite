@@ -94,7 +94,7 @@ public class NewCommentForm extends ActionForm {
         try {
             WdkModelBean wdkModelBean = ActionUtility.getWdkModel(getServlet());
 
-            GeneIdValidator validator = new GeneIdValidator(wdkModelBean);
+            GeneIdValidator validator = new GeneIdValidator(wdkModelBean.getModel());
             return validator;
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -355,6 +355,10 @@ public class NewCommentForm extends ActionForm {
         setFormFiles(indx, file);
     }
 
+    /**
+     * @param idx not used; only one file field
+     * @return
+     */
     public FormFile getFile(int idx) {
         return file;
     }
@@ -388,6 +392,10 @@ public class NewCommentForm extends ActionForm {
         setFormNotes(indx, notes);
     }
 
+    /**
+     * @param idx not used; only one notes field
+     * @return
+     */
     public String getNotes(int idx) {
         return notes;
     }
