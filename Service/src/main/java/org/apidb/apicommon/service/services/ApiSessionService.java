@@ -4,7 +4,6 @@ import static org.gusdb.fgputil.FormatUtil.urlEncodeUtf8;
 
 import javax.servlet.http.Cookie;
 
-import org.gusdb.wdk.model.jspwrap.UserBean;
 import org.gusdb.wdk.model.user.User;
 import org.gusdb.wdk.service.service.SessionService;
 
@@ -18,7 +17,7 @@ public class ApiSessionService extends SessionService {
       .append("?redirectUrl=").append(urlEncodeUtf8(redirectUrl))
       .append("&project=").append(getWdkModel().getProjectId())
       .append("&cookieMaxAge=").append(cookie.getMaxAge())
-      .append("&userDisplayName=").append(urlEncodeUtf8(new UserBean(user).getFirstName()))
+      .append("&userDisplayName=").append(urlEncodeUtf8(user.getProfileProperties().get("firstName")))
       .toString();
   }
 }

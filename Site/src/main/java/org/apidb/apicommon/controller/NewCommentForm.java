@@ -94,7 +94,7 @@ public class NewCommentForm extends ActionForm {
         try {
             WdkModelBean wdkModelBean = ActionUtility.getWdkModel(getServlet());
 
-            GeneIdValidator validator = new GeneIdValidator(wdkModelBean);
+            GeneIdValidator validator = new GeneIdValidator(wdkModelBean.getModel());
             return validator;
         } catch (Exception e) {
             System.out.println(e.getMessage());

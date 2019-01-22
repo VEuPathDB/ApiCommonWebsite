@@ -20,7 +20,6 @@ import org.gusdb.fgputil.json.JsonUtil;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.answer.AnswerValue;
-import org.gusdb.wdk.model.jspwrap.AnswerValueBean;
 import org.gusdb.wdk.model.report.AbstractReporter;
 import org.gusdb.wdk.model.report.ReporterConfigException;
 import org.gusdb.wdk.model.report.config.StandardConfig;
@@ -109,7 +108,7 @@ public abstract class FastaReporter extends AbstractReporter {
     for (String key : JsonUtil.getKeys(configuration)) {
       formInputs.put(key, configuration.get(key).toString());
     }
-    formInputs.put("ids", new AnswerValueBean(answer).getAllIdList());
+    formInputs.put("ids", answer.getAllIdsAsString());
     return formInputs;
   }
 }
