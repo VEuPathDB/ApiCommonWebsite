@@ -16,9 +16,11 @@ import org.gusdb.wdk.events.UserProfileUpdateEvent;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.answer.spec.AnswerSpec;
+import org.gusdb.wdk.model.answer.spec.AnswerSpecBuilder;
 import org.gusdb.wdk.model.answer.spec.FilterOption;
 import org.gusdb.wdk.model.query.BooleanQuery;
 import org.gusdb.wdk.model.user.Step;
+import org.gusdb.wdk.model.user.Step.StepBuilder;
 import org.json.JSONObject;
 
 public class ApiSiteSetup {
@@ -71,13 +73,14 @@ public class ApiSiteSetup {
         JSONObject newValue = GeneBooleanFilter.getDefaultValue(newOperator);
         LOG.info("Resetting gene boolean filter on step " + revisedStep.getStepId() +
             " to default value: " + newValue.toString(2));
-        AnswerSpec newAnswerSpec = AnswerSpec.builder(revisedStep.getAnswerSpec())
+        AnswerSpecBuilder newAnswerSpec = AnswerSpec.builder(revisedStep.getAnswerSpec())
             .replaceFirstFilterOption(GeneBooleanFilter.GENE_BOOLEAN_FILTER_ARRAY_KEY,
-                option -> option.setValue(newValue))
-            .build(revisedStep.getUser(), answerSpec.getStepContainer(), ValidationLevel.RUNNABLE);
+                option -> option.setValue(newValue));
 
-        revisedStep.setAnswerSpec(newAnswerSpec);
-        revisedStep.writeParamFiltersToDb();
+        StepBuilder stepBuilder = Step.builder(revisedStep).setAnswerSpec(newAnswerSpec);
+
+        revisedStep.getAnswerSpec().getWdkModel().getStepFactory()
+            .updateStepAndDependents(revisedStep, stepBuilder, true, ValidationLevel.RUNNABLE);
       }
     }
 
