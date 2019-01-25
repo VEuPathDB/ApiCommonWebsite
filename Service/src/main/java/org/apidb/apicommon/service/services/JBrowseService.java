@@ -96,7 +96,9 @@ public class JBrowseService extends AbstractWdkService {
     @Path("rnaseq/{organismAbbrev}/{study}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getJbrowseRNASeqTracks(@PathParam("organismAbbrev") String organismAbbrev, 
-                                           @PathParam("study") String study) throws IOException, InterruptedException {
+                                           @PathParam("study") String study,
+                                           @QueryParam("showIntronJunctions") String showIntronJunctions,
+                                           @QueryParam("intronSizeLimit") String intronSizeLimit) throws IOException, InterruptedException {
 
         String gusHome = getWdkModel().getGusHome();
         String projectId = getWdkModel().getProjectId();
@@ -113,6 +115,8 @@ public class JBrowseService extends AbstractWdkService {
         command.add(projectId);
         command.add(buildNumber);
         command.add(webservicesDir);
+        command.add(showIntronJunctions);
+        command.add(intronSizeLimit);
 
         String result = jsonStringFromCommand(command);
 
