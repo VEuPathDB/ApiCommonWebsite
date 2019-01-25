@@ -47,10 +47,12 @@ public class JBrowseService extends AbstractWdkService {
                                        @QueryParam("end") String end)  throws IOException, InterruptedException {
 
         String gusHome = getWdkModel().getGusHome();
+        String projectId = getWdkModel().getProjectId();
 
         List<String> command = new ArrayList<String>();
         command.add(gusHome + "/bin/jbrowseFeatures");
         command.add(gusHome);
+        command.add(projectId);
         command.add(refseqName);
         command.add(start);
         command.add(end);
@@ -156,10 +158,12 @@ public class JBrowseService extends AbstractWdkService {
     public Response getJbrowseRefSeqs(@PathParam("organismAbbrev") String organismAbbrev )  throws IOException, InterruptedException {
 
         String gusHome = getWdkModel().getGusHome();
+        String projectId = getWdkModel().getProjectId();
 
         List<String> command = new ArrayList<String>();
         command.add(gusHome + "/bin/jbrowseRefSeqs");
         command.add(gusHome);
+        command.add(projectId);
         command.add(organismAbbrev);
 
         String result = jsonStringFromCommand(command);
@@ -174,6 +178,7 @@ public class JBrowseService extends AbstractWdkService {
     public Response getJbrowseNames(@PathParam("organismAbbrev") String organismAbbrev, @QueryParam("equals") String eq, @QueryParam("startswith") String startsWith)  throws IOException, InterruptedException {
 
         String gusHome = getWdkModel().getGusHome();
+        String projectId = getWdkModel().getProjectId();
 
         boolean isPartial = true;
         String sourceId = startsWith;
@@ -186,6 +191,7 @@ public class JBrowseService extends AbstractWdkService {
         List<String> command = new ArrayList<String>();
         command.add(gusHome + "/bin/jbrowseNames");
         command.add(gusHome);
+        command.add(projectId);
         command.add(organismAbbrev);
         command.add(String.valueOf(isPartial));
         command.add(sourceId);
