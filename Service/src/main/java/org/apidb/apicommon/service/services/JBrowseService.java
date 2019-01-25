@@ -1,26 +1,31 @@
 package org.apidb.apicommon.service.services;
 
+import static org.gusdb.wdk.service.FileRanges.getFileChunkResponse;
+import static org.gusdb.wdk.service.FileRanges.parseRangeHeaderValue;
+
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.File;
 import java.io.InputStreamReader;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-
 import javax.ws.rs.GET;
+import javax.ws.rs.HeaderParam;
+import javax.ws.rs.NotFoundException;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriInfo; 
-import javax.ws.rs.core.Context; 
 import javax.ws.rs.core.MultivaluedMap;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
 
 import org.apache.log4j.Logger;
+import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.service.service.AbstractWdkService;
 import org.json.JSONObject;
 
@@ -132,25 +137,35 @@ public class JBrowseService extends AbstractWdkService {
     @Path("rnaseq/bigwig/{orgNameForFileNames}/{dataset}/{sampleDir}/{file}")
     @Produces(MediaType.APPLICATION_OCTET_STREAM)
     public Response getRNASeqBigwig(@PathParam("orgNameForFileNames") String orgNameForFileNames, 
-                                           @PathParam("dataset") String dataset,
-                                           @PathParam("sampleDir") String sampleDir,
-                                           @PathParam("file") String file) throws IOException, InterruptedException {
+                                    @PathParam("dataset") String dataset,
+                                    @PathParam("sampleDir") String sampleDir,
+                                    @PathParam("file") String file,
+                                    @HeaderParam("Range") String fileRange) throws WdkModelException {
 
         String projectId = getWdkModel().getProjectId();
         String buildNumber = getWdkModel().getBuildNumber();
         String webservicesDir = getWdkModel().getProperties().get("WEBSERVICEMIRROR");
 
+        String path = checkPath(
+            webservicesDir + "/" +
+            projectId + "/" +
+            "build-" + buildNumber + "/" +
+            orgNameForFileNames + "/" +
+            "bigwig" + "/" +
+            dataset + "/" +
+            sampleDir + "/" +
+            file);
 
-        String path = webservicesDir + "/" + projectId + "/" + "build-" + buildNumber + "/" + orgNameForFileNames + "/" + "bigwig" + "/" + dataset + "/" + sampleDir + "/" + file;
-
-        File fileFullPath = new File(path);
-
-        return Response.ok(fileFullPath, MediaType.APPLICATION_OCTET_STREAM)
-            //            .header("Content-Disposition", "attachment; filename=\"" + fileFullPath.getName() + "\"" ) //optional
-            .build();
+        return getFileChunkResponse(Paths.get(path), parseRangeHeaderValue(fileRange));
     }
 
-
+    private String checkPath(String fileSystemPath) {
+      // TODO: think about whether other checks belong here
+      if (fileSystemPath.contains("..") || fileSystemPath.contains("$")) {
+        throw new NotFoundException(formatNotFound("*"));
+      }
+      return fileSystemPath;
+    }
 
     @GET
     @Path("seq/{organismAbbrev}")
