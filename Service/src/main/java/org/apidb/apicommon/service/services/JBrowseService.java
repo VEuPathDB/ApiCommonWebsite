@@ -2,6 +2,7 @@ package org.apidb.apicommon.service.services;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.File;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
@@ -123,6 +124,29 @@ public class JBrowseService extends AbstractWdkService {
         return Response.ok(result).build();
     }
 
+
+
+    @GET
+    @Path("rnaseq/bigwig/{orgNameForFileNames}/{dataset}/{sampleDir}/{file}")
+    @Produces(MediaType.APPLICATION_OCTET_STREAM)
+    public Response getRNASeqBigwig(@PathParam("orgNameForFileNames") String orgNameForFileNames, 
+                                           @PathParam("dataset") String dataset,
+                                           @PathParam("sampleDir") String sampleDir,
+                                           @PathParam("file") String file) throws IOException, InterruptedException {
+
+        String projectId = getWdkModel().getProjectId();
+        String buildNumber = getWdkModel().getBuildNumber();
+        String webservicesDir = getWdkModel().getProperties().get("WEBSERVICEMIRROR");
+
+
+        String path = webservicesDir + "/" + projectId + "/" + "build-" + buildNumber + "/" + orgNameForFileNames + "/" + "bigwig" + "/" + dataset + "/" + sampleDir + "/" + file;
+
+        File fileFullPath = new File(path);
+
+        return Response.ok(fileFullPath, MediaType.APPLICATION_OCTET_STREAM)
+            //            .header("Content-Disposition", "attachment; filename=\"" + fileFullPath.getName() + "\"" ) //optional
+            .build();
+    }
 
 
 
