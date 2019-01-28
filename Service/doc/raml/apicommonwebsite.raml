@@ -14,20 +14,17 @@ traits:
 
   get:
     description:
-      Retrieve a list of comments.  Returning all comments has been disallowed,
-      one or more query parameters must be provided to filter the results.
+      Retrieve a list of comments, either for a single record or a single author.
     queryParameters:
       target-type:
         description: >
-          Comment target record type.  Note: if this is used, `target-id` must
-          also be used.
+          Comment target record type.  If this is used, `target-id` must also be used.
         type: string
         example: gene
         required: false
       target-id:
         description: >
-          Comment target record id.  Note: if this is used, `target-type` must
-          also be used.
+          Comment target record id.  If this is used, `target-type` must also be used.
         type: string
         example: TGME49_293760
         required: false
@@ -47,7 +44,10 @@ traits:
 
   post:
     is: [ ownershipChecked ]
-    description: Create or Replace comment
+    description: Create or replace a comment.  To create a comment, omit the previousCommentId field in the JSON body.
+    To replace a comment, provide the previousCommentID the new comment replaces.  The replaced comment will be retained, but marked
+    as deleted in the database, and the new comment will point to it as a previous comment.  This is to support (future)
+    rollback of edits.
     body:
       application/json:
         type: !include ../../src/main/resources/schema/apicomm/user-comments/post-request.json
