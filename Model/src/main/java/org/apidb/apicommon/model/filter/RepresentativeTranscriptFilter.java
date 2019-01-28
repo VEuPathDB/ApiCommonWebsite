@@ -121,7 +121,7 @@ public class RepresentativeTranscriptFilter extends StepFilter {
     return (prefValue == null ? REPRESENTATIVE_TRANSCRIPT_FILTER_ON_BY_DEFAULT : Boolean.valueOf(prefValue));
   }
 
-  public static RunnableObj<AnswerSpec> applyToStepFromUserPreference(RunnableObj<AnswerSpec> answerSpec, User user) {
+  public static RunnableObj<AnswerSpec> applyToStepFromUserPreference(RunnableObj<AnswerSpec> answerSpec, User user) throws WdkModelException {
     // read from step if transcript-only filter is turned on...
     boolean filterOnInStep = contains(answerSpec.getObject().getViewFilterOptions(), option ->
         option.getKey().equals(RepresentativeTranscriptFilter.FILTER_NAME));
@@ -145,7 +145,7 @@ public class RepresentativeTranscriptFilter extends StepFilter {
           option.getFilterName().equals(RepresentativeTranscriptFilter.FILTER_NAME));
     }
 
-    return newSpec.buildRunnable();
+    return newSpec.buildRunnable(user, answerSpec.getObject().getStepContainer());
   }
 
   @Override
@@ -176,6 +176,7 @@ public class RepresentativeTranscriptFilter extends StepFilter {
       newViewFilters.removeAll(filter -> filter.getFilterName().equals(RepresentativeTranscriptFilter.FILTER_NAME));
     }
 
-    return AnswerValueFactory.makeAnswer(answerValue, newAnswerSpec.buildRunnable());
+    return AnswerValueFactory.makeAnswer(answerValue, newAnswerSpec.buildRunnable(
+        answerValue.getUser(), answerValue.getAnswerSpec().getStepContainer()));
   }
 }

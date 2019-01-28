@@ -21,7 +21,6 @@ import org.gusdb.fgputil.FormatUtil;
 import org.gusdb.fgputil.db.runner.BasicResultSetHandler;
 import org.gusdb.fgputil.db.runner.SQLRunner;
 import org.gusdb.fgputil.db.runner.SingleLongResultSetHandler;
-import org.gusdb.fgputil.db.runner.SingleLongResultSetHandler.Status;
 import org.gusdb.fgputil.runtime.GusHome;
 import org.gusdb.fgputil.validation.ValidationBundle;
 import org.gusdb.fgputil.validation.ValidationBundle.ValidationBundleBuilder;
@@ -136,19 +135,14 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
         "  where gts.gene_source_id = r.source_id" + NL +
         "    and gts.ontology = '" + ontology + "'" + NL +
         "    AND gts.evidence_category in (" + evidCodesStr + ")" + NL +
-	" and ("+ goSubset +" = 'No' or gts.is_go_slim = '1')" + NL ;
-
+        "  and ("+ goSubset +" = 'No' or gts.is_go_slim = '1')" + NL ;
 
     DataSource ds = getWdkModel().getAppDb().getDataSource();
-    SingleLongResultSetHandler result =
-        new SQLRunner(ds, sql, "count-filtered-go-terms")
-          .executeQuery(new SingleLongResultSetHandler());
+    long result = new SQLRunner(ds, sql, "count-filtered-go-terms")
+        .executeQuery(new SingleLongResultSetHandler())
+        .orElseThrow(() -> new WdkModelException("No result found in count query: " + sql));
 
-    if (!Status.NON_NULL_VALUE.equals(result.getStatus())) {
-      throw new WdkModelException("No result found in count query: " + sql);
-    }
-
-    if (result.getRetrievedValue() < 1) {
+    if (result < 1) {
       errors.addError("Your result has no genes with GO Terms that satisfy the parameter choices you have made.  Please try adjusting the parameters.");
     }
   }

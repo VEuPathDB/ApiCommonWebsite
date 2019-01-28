@@ -1,7 +1,5 @@
 package org.apidb.apicommon.model.stepanalysis;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -10,7 +8,6 @@ import javax.sql.DataSource;
 
 import org.gusdb.fgputil.FormatUtil;
 import org.gusdb.fgputil.db.runner.SQLRunner;
-import org.gusdb.fgputil.db.runner.SQLRunner.ResultSetHandler;
 import org.gusdb.fgputil.validation.ValidationBundle.ValidationBundleBuilder;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
@@ -126,20 +123,20 @@ public class EnrichmentPluginUtil {
    */
   public static List<String> getDistinctOrgsInAnswer(AnswerValue answerValue,
       WdkModel wdkModel) throws WdkModelException, WdkUserException {
-    final List<String> orgNames = new ArrayList<>();
     String sql = "SELECT distinct ga.organism " +
         "FROM ApidbTuning.GeneAttributes ga, " +
         "(" + answerValue.getIdSql() + ") r " +
         "where ga.source_id = r.gene_source_id " +
         "order by ga.organism asc";
     DataSource ds = wdkModel.getAppDb().getDataSource();
-    new SQLRunner(ds, sql, "select-distinct-orgs-in-result").executeQuery(new ResultSetHandler() {
-      @Override
-      public void handleResult(ResultSet rs) throws SQLException {
-        while (rs.next()) {
-          orgNames.add(rs.getString(1));
-        }}});
-    return orgNames;
+    return new SQLRunner(ds, sql, "select-distinct-orgs-in-result")
+        .executeQuery(rs -> {
+          List<String> orgNames = new ArrayList<>();
+          while (rs.next()) {
+            orgNames.add(rs.getString(1));
+          }
+          return orgNames;
+        });
   }
 
   public static List<Option> getOrgOptionList(AnswerValue answerValue,

@@ -83,7 +83,7 @@ public class SingleTableRecordStreamTest {
          PrintStream out = (args.length == 0 ? System.out : new PrintStream(new FileOutputStream(args[0])))) {
       Step step = createStep(model);
       AnswerValue answer = (isTranscriptQuestion(step.getAnswerSpec().getQuestion()) ?
-          transformToGeneAnswer(step.getAnswerValue(), step.getStepId()) : step.getAnswerValue())
+          transformToGeneAnswer(step.getAnswerValue(), step) : step.getAnswerValue())
           .cloneWithNewPaging(0, -1); // want full results
       TableField tableField = answer.getAnswerSpec().getQuestion().getRecordClass().getTableFieldMap().get(TABLE_NAME);
 

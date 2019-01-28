@@ -25,7 +25,6 @@ import org.gusdb.fgputil.runtime.Manageable;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.config.ModelConfigUserDB;
-import org.gusdb.wdk.model.user.NoSuchElementException;
 import org.gusdb.wdk.model.user.UserFactory;
 
 /**
@@ -254,25 +253,27 @@ public class CommentFactory implements Manageable<CommentFactory> {
     printStatus();
   }
 
-  private boolean userPresentInCommentUsersTable(long userId) {
+  private boolean userPresentInCommentUsersTable(long userId) throws WdkModelException {
     String sql = "select count(*) from " + _config.getCommentSchema() + "comment_users where user_id = ?";
-    SingleLongResultSetHandler result = new SQLRunner(_commentDs, sql).executeQuery(
-        new Object[]{ userId }, new Integer[]{ Types.BIGINT }, new SingleLongResultSetHandler());
-    return result.getRetrievedValue() > 0;
+    long result = new SQLRunner(_commentDs, sql)
+        .executeQuery(
+            new Object[]{ userId },
+            new Integer[]{ Types.BIGINT },
+            new SingleLongResultSetHandler())
+        .orElseThrow(() -> new WdkModelException("Count query did not return a value."));
+    return result > 0;
   }
 
   private void insertCommentUser(long userId) throws WdkModelException {
-    try {
-      Map<String,String> props = _userFactory.getUserById(userId).getProfileProperties();
-      String sql = "insert into " + _config.getCommentSchema() + "comment_users " +
-          "(user_id, first_name, last_name, organization) values (?, ?, ?, ?)";
-      new SQLRunner(_commentDs, sql).executeStatement(
-          new Object[] { userId, props.get("firstName"), props.get("lastName"), props.get("organization") },
-          new Integer[] { Types.BIGINT, Types.VARCHAR, Types.VARCHAR, Types.VARCHAR });
-    }
-    catch (NoSuchElementException e) {
-      throw new WdkModelException(e);
-    }
+    Map<String,String> props = _userFactory
+        .getUserById(userId)
+        .orElseThrow(() -> new WdkModelException("Unknown user: " + userId))
+        .getProfileProperties();
+    String sql = "insert into " + _config.getCommentSchema() + "comment_users " +
+        "(user_id, first_name, last_name, organization) values (?, ?, ?, ?)";
+    new SQLRunner(_commentDs, sql).executeStatement(
+        new Object[] { userId, props.get("firstName"), props.get("lastName"), props.get("organization") },
+        new Integer[] { Types.BIGINT, Types.VARCHAR, Types.VARCHAR, Types.VARCHAR });
   }
 
   public void updateCommentUser(UserProfile userProfile) {
