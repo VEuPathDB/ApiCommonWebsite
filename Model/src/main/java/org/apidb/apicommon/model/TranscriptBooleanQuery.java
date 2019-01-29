@@ -3,20 +3,18 @@ package org.apidb.apicommon.model;
 import java.util.Set;
 
 import org.apidb.apicommon.model.filter.GeneBooleanFilter;
-import org.gusdb.fgputil.collection.ReadOnlyMap;
+import org.gusdb.fgputil.validation.ValidObjectFactory.RunnableObj;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.query.BooleanQuery;
-import org.gusdb.wdk.model.query.BooleanQueryInstance;
 import org.gusdb.wdk.model.query.Column;
 import org.gusdb.wdk.model.query.Query;
+import org.gusdb.wdk.model.query.spec.QueryInstanceSpec;
 import org.gusdb.wdk.model.question.DynamicAttributeSet;
 import org.gusdb.wdk.model.question.Question;
 import org.gusdb.wdk.model.record.RecordClass;
 import org.gusdb.wdk.model.record.attribute.ColumnAttributeField;
 import org.gusdb.wdk.model.record.attribute.QueryColumnAttributeField;
-// import org.apache.log4j.Logger;
-import org.gusdb.wdk.model.user.User;
 
 
 public class TranscriptBooleanQuery extends BooleanQuery {
@@ -57,9 +55,8 @@ public class TranscriptBooleanQuery extends BooleanQuery {
   }
 
   @Override
-  protected BooleanQueryInstance makeInstance(User user, ReadOnlyMap<String,String> paramValues, int assignedWeight)
-      throws WdkModelException {
-    return new TranscriptBooleanQueryInstance(user, this, paramValues, assignedWeight);
+  protected TranscriptBooleanQueryInstance makeInstance(RunnableObj<QueryInstanceSpec> spec) {
+    return new TranscriptBooleanQueryInstance(spec);
   } 
 
   @Override

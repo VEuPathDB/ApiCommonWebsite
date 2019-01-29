@@ -1,21 +1,18 @@
 package org.apidb.apicommon.model;
 
-import org.gusdb.fgputil.collection.ReadOnlyMap;
-import org.gusdb.wdk.model.WdkModelException;
-import org.gusdb.wdk.model.query.BooleanQuery;
+import org.gusdb.fgputil.validation.ValidObjectFactory.RunnableObj;
 import org.gusdb.wdk.model.query.BooleanQueryInstance;
-import org.gusdb.wdk.model.user.User;
+import org.gusdb.wdk.model.query.spec.QueryInstanceSpec;
 
 /**
  * Do boolean operations on gene_source_id.  This is a helper class for TranscriptBooleanQueryInstance
+ * 
  * @author Steve
- *
  */
 public class GeneBooleanQueryInstance extends BooleanQueryInstance {
 
-  public GeneBooleanQueryInstance(User user, BooleanQuery query, ReadOnlyMap<String, String> values,
-      int assignedWeight) throws WdkModelException {
-    super(user, query, values, assignedWeight);
+  public GeneBooleanQueryInstance(RunnableObj<QueryInstanceSpec> spec) {
+    super(spec);
   }
 
   /**

@@ -2,19 +2,21 @@ package org.apidb.apicommon.model;
 
 import static org.gusdb.fgputil.FormatUtil.NL;
 
-import org.gusdb.fgputil.collection.ReadOnlyMap;
+import org.gusdb.fgputil.validation.ValidObjectFactory.RunnableObj;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.query.BooleanQueryInstance;
-import org.gusdb.wdk.model.user.User;
+import org.gusdb.wdk.model.query.spec.QueryInstanceSpec;
 
 public class TranscriptBooleanQueryInstance extends BooleanQueryInstance {
 
   private GeneBooleanQueryInstance genebqi;
 
-  public TranscriptBooleanQueryInstance(User user, TranscriptBooleanQuery query,
-      ReadOnlyMap<String, String> paramValues, int assignedWeight) throws WdkModelException {
-    super(user, query, paramValues, assignedWeight);
-    genebqi = new GeneBooleanQueryInstance(user, query, paramValues, assignedWeight);
+  public TranscriptBooleanQueryInstance(RunnableObj<QueryInstanceSpec> spec) {
+    super(spec);
+    if (!(spec.getObject().getQuery() instanceof TranscriptBooleanQuery)) {
+      throw new IllegalStateException("Spec passed to BooleanQueryInstance does not contain a BooleanQuery");
+    }
+    genebqi = new GeneBooleanQueryInstance(spec);
   }
 
   @Override
