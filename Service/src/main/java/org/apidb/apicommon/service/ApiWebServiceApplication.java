@@ -5,13 +5,15 @@ import static org.gusdb.fgputil.functional.Functions.filter;
 import java.util.Set;
 
 import org.apidb.apicommon.service.services.ApiSessionService;
+import org.apidb.apicommon.service.services.ApiStepService;
 import org.apidb.apicommon.service.services.BigWigTrackService;
-import org.apidb.apicommon.service.services.CustomBasketService;
+import org.apidb.apicommon.service.services.ApiBasketService;
 import org.apidb.apicommon.service.services.TranscriptToggleService;
 import org.eupathdb.common.service.EuPathServiceApplication;
 import org.gusdb.fgputil.SetBuilder;
 import org.gusdb.wdk.service.service.SessionService;
 import org.gusdb.wdk.service.service.user.BasketService;
+import org.gusdb.wdk.service.service.user.StepService;
 import org.apidb.apicommon.service.services.JBrowseService;
 
 public class ApiWebServiceApplication extends EuPathServiceApplication {
@@ -23,12 +25,14 @@ public class ApiWebServiceApplication extends EuPathServiceApplication {
       // add WDK services
       .addAll(filter(super.getClasses(), clazz ->
           !clazz.getName().equals(SessionService.class.getName()) &&
-          !clazz.getName().equals(BasketService.class.getName())))
+          !clazz.getName().equals(BasketService.class.getName()) &&
+          !clazz.getName().equals(StepService.class.getName())))
 
       // add ApiCommon-specific services
-      .add(TranscriptToggleService.class)
       .add(ApiSessionService.class)
-      .add(CustomBasketService.class)
+      .add(ApiBasketService.class)
+      .add(ApiStepService.class)
+      .add(TranscriptToggleService.class)
       .add(BigWigTrackService.class)
       .add(JBrowseService.class)
 

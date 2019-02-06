@@ -22,9 +22,9 @@ import org.gusdb.wdk.model.record.RecordClass;
 import org.gusdb.wdk.service.request.user.BasketRequests.BasketActions;
 import org.gusdb.wdk.service.service.user.BasketService;
 
-public class CustomBasketService extends BasketService {
+public class ApiBasketService extends BasketService {
 
-  public CustomBasketService(@PathParam(USER_ID_PATH_PARAM) String userIdStr) {
+  public ApiBasketService(@PathParam(USER_ID_PATH_PARAM) String userIdStr) {
     super(userIdStr);
   }
 
