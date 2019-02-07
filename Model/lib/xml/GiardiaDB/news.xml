@@ -38,6 +38,7 @@
            </li>
          </ul><br>
        </div> 
+       Predictein: structural homology prediction
 --> 
 
 <record>
@@ -50,7 +51,15 @@
     <p><strong>We are pleased to announce the release of GiardiaDB 41</strong></p>
       
       <section>
-      <h3><b>No new data in GiardiaDB 41</b></h3>
+      <h3><b>New data in GiardiaDB 41</b></h3>
+      <h4>Predictein: structural homology prediction</h4><br>
+      <div style="margin-left: 3em;">
+        The I-TASSER suite was used to predict structural models for ∼5,000 proteins and identify their closest 
+        empirically-determined structural homologues in the Protein Data Bank. Record pages for <i>Giardia Assemblage</i> 
+        A isolate WB now contain links to these protein structural predictions at the 
+        <a href="http://www.predictein.org/" target="_blank">Predictein</a> website.   
+        <a href="https://academic.oup.com/gigascience/article/8/1/giy150/5232230" target="_blank">Ansell et al.</a>
+      </div> 
       </section>
       
       <section>
