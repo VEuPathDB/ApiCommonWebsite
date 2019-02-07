@@ -17,6 +17,7 @@ import org.gusdb.fgputil.Tuples.TwoTuple;
 import org.gusdb.fgputil.runtime.GusHome;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
+import org.gusdb.wdk.model.question.Question;
 import org.gusdb.wdk.model.report.config.StandardConfig;
 import org.gusdb.wdk.model.report.config.StandardConfig.StreamStrategy;
 import org.gusdb.wdk.service.request.exception.DataValidationException;
@@ -30,16 +31,22 @@ public class ReporterStreamingTest {
   private static final int BUFFER_SIZE = 32768;
 
   public static void main(String[] args) throws Exception {
-    if (args.length != 2) {
-      System.err.println("\nUSAGE: " + ReporterStreamingTest.class.getSimpleName() + " <project_id> <answer_request_json_file>\n");
+    if (args.length != 3) {
+      System.err.println("\nUSAGE: " + ReporterStreamingTest.class.getSimpleName() + " <project_id> <question_name> <answer_request_json_file>\n");
       System.exit(1);
     }
-    try (FileReader inputFile = new FileReader(args[1]);
-         WdkModel wdkModel = WdkModel.construct(args[0], GusHome.getGusHome())) {
-      log("Parsing input file: " + args[1]);
-      String baseJsonStr = new JSONObject(IoUtil.readAllChars(inputFile)).toString();
+    String projectId = args[0];
+    String questionName = args[1];
+    String inputJsonFileName = args[2];
+    
+    try (FileReader inputFile = new FileReader(inputJsonFileName);
+         WdkModel wdkModel = WdkModel.construct(projectId, GusHome.getGusHome())) {
+      Question question = wdkModel.getQuestion(questionName)
+          .orElseThrow(() -> new WdkModelException("Question " + questionName + " does not exist in this WDK model."));
+      log("Parsing input file: " + inputJsonFileName);
+      JSONObject answerRequestJson = new JSONObject(IoUtil.readAllChars(inputFile));
       log("Creating answer service");
-      AnswerService answerService = new AnswerService();
+      AnswerService answerService = new AnswerService(question.getRecordClassName(), question.getFullName());
       answerService.testSetup(wdkModel);
       Path tmpFileDir = IoUtil.createOpenPermsTempDir("wdk_stream_test_");
       TwoTuple<String,Path> pagedAnswerResults = timeResponse(answerService, baseJsonStr, StreamStrategy.PAGED_ANSWER, tmpFileDir);

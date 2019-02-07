@@ -16,6 +16,7 @@ import javax.ws.rs.PathParam;
 import org.gusdb.fgputil.db.SqlUtils;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
+import org.gusdb.wdk.model.WdkRuntimeException;
 import org.gusdb.wdk.model.record.PrimaryKeyDefinition;
 import org.gusdb.wdk.model.record.PrimaryKeyValue;
 import org.gusdb.wdk.model.record.RecordClass;
@@ -28,6 +29,10 @@ public class ApiBasketService extends BasketService {
     super(userIdStr);
   }
 
+  private static RecordClass getTranscriptRecordClass(WdkModel wdkModel) {
+    return wdkModel.getRecordClass(TRANSCRIPT_RECORDCLASS)
+        .orElseThrow(() -> new WdkRuntimeException(TRANSCRIPT_RECORDCLASS + " does not exist in this model."));
+  }
   /**
    * Convert gene requests to transcript requests
    */
@@ -37,7 +42,7 @@ public class ApiBasketService extends BasketService {
     return isGeneRecordClass(recordClass.getFullName()) ?
         // convert gene IDs to transcript IDs
         new RevisedRequest<>(
-            recordClass.getWdkModel().getRecordClass(TRANSCRIPT_RECORDCLASS),
+            getTranscriptRecordClass(getWdkModel()),
             new BasketActions(
                 getTranscriptRecords(actions.getRecordsToAdd(), recordClass),
                 getTranscriptRecords(actions.getRecordsToRemove(), recordClass))) :
@@ -54,7 +59,7 @@ public class ApiBasketService extends BasketService {
     return isGeneRecordClass(recordClass.getFullName()) ?
         // convert gene IDs to transcript IDs
         new RevisedRequest<>(
-            recordClass.getWdkModel().getRecordClass(TRANSCRIPT_RECORDCLASS),
+            getTranscriptRecordClass(getWdkModel()),
             getTranscriptRecords(pksToQuery, recordClass)) :
         // otherwise use default
         super.translateQueryRequest(recordClass, pksToQuery);
@@ -69,7 +74,7 @@ public class ApiBasketService extends BasketService {
       throws WdkModelException {
 
     WdkModel wdkModel = geneRecordClass.getWdkModel();
-    RecordClass transcriptRecordClass = wdkModel.getRecordClass(TRANSCRIPT_RECORDCLASS);
+    RecordClass transcriptRecordClass = getTranscriptRecordClass(wdkModel);
     PrimaryKeyDefinition transcriptPkDef =  transcriptRecordClass.getPrimaryKeyDefinition(); 
     String[] genePkColumns = geneRecordClass.getPrimaryKeyDefinition().getColumnRefs();
     List<String[]> geneRecords = new ArrayList<>();
