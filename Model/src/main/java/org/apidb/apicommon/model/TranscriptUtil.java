@@ -42,7 +42,7 @@ public class TranscriptUtil {
 
   public static AnswerValue transformToGeneAnswer(AnswerValue transcriptAnswer, Step step) throws WdkUserException {
     try {
-      Question question = transcriptAnswer.getWdkModel().getQuestion(XFORM_QUESTION_NAME)
+      Question question = transcriptAnswer.getWdkModel().getQuestionByName(XFORM_QUESTION_NAME)
           .orElseThrow(() -> new WdkModelException("Can't find xform with name: " + XFORM_QUESTION_NAME));
       String paramName = "gene_result";
       if (question.getParamMap().size() != 1 || !question.getParamMap().containsKey(paramName)) {

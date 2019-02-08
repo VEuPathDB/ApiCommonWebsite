@@ -71,7 +71,7 @@ public class SingleTableRecordStreamTest {
         .addFilterOption(FilterOption.builder()
             .setFilterName("matched_transcript_filter_array")
             .setValue(new JSONObject("{\"values\": [\"Y\"]}")))
-        .buildValidated(model.getQuestion(QUESTION_NAME).get(), FilterType.STANDARD, ValidationLevel.SEMANTIC);
+        .buildValidated(model.getQuestionByName(QUESTION_NAME).get(), FilterType.STANDARD, ValidationLevel.SEMANTIC);
   }
 
   private static final String TABLE_NAME = "GeneTranscripts";
@@ -103,7 +103,7 @@ public class SingleTableRecordStreamTest {
   private static Step createStep(WdkModel model) throws WdkModelException {
     return model.getStepFactory().createStep(
         model.getUserFactory().createUnregistedUser(UnregisteredUserType.GUEST),
-	model.getQuestion(QUESTION_NAME).get(), PARAMETERS, null, FILTERS(model), 0, false, null, false, null, null);
+	model.getQuestionByName(QUESTION_NAME).get(), PARAMETERS, null, FILTERS(model), 0, false, null, false, null, null);
   }
 
   private static Function<AttributeField, String> getFieldValue(final Map<String, AttributeValue> row) {

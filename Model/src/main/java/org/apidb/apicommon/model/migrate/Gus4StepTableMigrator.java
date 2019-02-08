@@ -168,7 +168,7 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
     //   question names will have been updated and we won't kick out as many invalid steps whose question
     //   names are missing from the current model.
     // use (possibly already modified) question name to look up question in the current model
-    Optional<Question> questionOpt = _wdkModel.getQuestion(step.getQuestionName());
+    Optional<Question> questionOpt = _wdkModel.getQuestionByName(step.getQuestionName());
     if (!questionOpt.isPresent()) {
       int invalidStepsByQuestion = INVALID_STEP_COUNT_QUESTION.incrementAndGet();
       if (LOG_INVALID_STEPS)
