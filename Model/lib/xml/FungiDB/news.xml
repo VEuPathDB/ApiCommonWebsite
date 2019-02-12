@@ -15,106 +15,107 @@
     </record>
 -->
 
-<!--
+
 <record>
   <attribute name="headline">FungiDB 42 Released</attribute>
-  <attribute name="date">15 Feb 2019 13:00</attribute>
+  <attribute name="date">28 Feb 2019 13:00</attribute>
   <attribute name="tag">FungiDB02_19_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of FungiDB 41</strong></p>
+    <p><strong>We are pleased to announce the release of FungiDB 42</strong></p>
       
       <section>
-        <h3><b>New data in FungiDB 41</b></h3>
+        <h3><b>New data in FungiDB 42</b></h3>
         <div style="margin-left: 3em;">
         
         <h4>Genome Sequence and Annotation: these annotated genomes appear for the first time in FungiDB.</h4>
            <ul>
-             <li><a href="http:/a/app/record/dataset/"><i>Aspergillus niger</i> N402</a> &ndash;  
+             <li><a href="http:/a/app/record/dataset/DS_778f9987a4"><i>Cryptococcus dejecticola</i> CBS10117</a> &ndash;  
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/29317534">Kj&aelig;rb&oslash;lling et al., 2018</a>.
              </li>
              
-             <li><a href="http:/a/app/record/dataset/"><i>Aspergillus niger</i> ATCC 1015</a> &ndash;  
+             <li><a href="http:/a/app/record/dataset/DS_7acdb4b9a1"><i>Kwoniella bestiolae</i> CBS 10118</a> &ndash;  
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/21543515">Andersen et al., 2011</a>.
              </li>
              
-              <li><a href="http:/a/app/record/dataset/"><i>Aspergillus kawachii</i> IFO 4308</a> &ndash;  
+              <li><a href="http:/a/app/record/dataset/DS_9159f06aae"><i>Naganishia albida</i> NRRL Y-1402</a> &ndash;  
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/22045919">Futagami et al., 2011</a>.
              </li>
              
-             <li><a href="http:/a/app/record/dataset/"><i>Fusarium proliferatum</i> ET1</a> &ndash; 
+             <li><a href="http:/a/app/record/dataset/DS_e983d1d491"><i>Fusarium oxysporum</i> FOSC 3-a</a> &ndash; 
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/25480940">Teixeira et al., 2015</a>.
              </li>
              
-               <li><a href="http:/a/app/record/dataset/"><i>Fusarium proliferatum</i> NRRL62905</a> &ndash;  
+               <li><a href="http:/a/app/record/dataset/DS_812930c840"><i>Phytopthora plurivora</i> AV1007</a> &ndash;  
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/25351875">Kj&aelig;rb&oslash;lling et al., 2018</a>.
              </li>
              
-             <li><a href="http:/a/app/record/dataset/"><i>Scedosporium apiospermum</i> IHEM 14462</a> &ndash;  
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/25278533">Vandeputte et al., 2014</a>.
-             </li>
-           
-             <li><a href="http:/a/app/record/dataset/"><i>Sporothrix brasiliensis</i> 5110</a> &ndash;  
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/25351875">Teixeira et al., 2014</a>.
-             </li>
-             
-            <li><a href="http:/a/app/record/dataset/"><i>Yarrowia lipolytica</i> CLIB89 (W29)</a> &ndash;  
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/27603307">Magnan et al., 2016</a>.
-             </li>
-             
-            <li><a href="http:/a/app/record/dataset/"><i>Candida parapsilosis</i> CDC 317</a> &ndash;  
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/19465905">Butler et al., 2009</a>.
-             </li>
-            
             </ul>
            <br>
            
+        <h4>Genome Sequence and Annotation: updated genomes</h4> 
+         	<ul>
+        	  <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_f670f03393"><i>Cryptococcus neoformans</i> var. grubii KN99</a> &ndash; 
+                 Gene mapping and functional annotation were re-mapped using the update files from GenBank
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/29305388">Friedman et al. 2018</a>.
+             </li>  
+             
+             <li><a href="http:/a/app/record/dataset/DS_d1767fcbd3"><i>Candida parapsilosis</i> CDC 317</a> &ndash;  
+                 The genome was reloaded to include the mitochondrial genome 
+                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/19465905">Butler et al. 2009</a>.
+             </li>
+            </ul>
+           <br>    
            
         <h4>Transcriptomics</h4>
            <ul>
-             <li><a href="http:/a/app/record/dataset/DS_9f832f8fbb">Comparison of gene expression patterns in <i>Paracoccidioides brasiliensis</i> mycelia and yeasts <i>in vitro</i></a> &ndash; 
-                 Analysis of yeast and hyphal transcript expression patterns in <i>Histoplasma capsulatum</i> H143 grown at 37°C and room temperature (RT), respectively.
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26177267" target="_blank">Gilmore et al., 2015</a>.
+             <li><a href="http:/a/app/record/dataset/DS_3de13093fd">Transcriptomics of banana pathogen <i>F. oxysporum f.sp. cubense</i> race 4</a> &ndash; 
+                 Strand specific RNA-Seq analysis of <i>Fusarium oxysporum f. sp. cubense</i>4 infecting <i>Musa acuminata</i> at 0h and 48h.
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/24743270" target="_blank">Gilmore et al., 2015</a>.
              </li>
              
-             <li><a href="http:/a/app/record/dataset/DS_56f8fb561f">Transcriptomic response of <i>Aspergillus niger</i> to lignocellulose (willow)</a> &ndash;
-             Transcriptomic profiling of Aspergillus niger growing on lignocellulose (AB SOLiD System 3.0). 
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/22912594" target="_blank">Delmas et al., 2012</a>.
+             <li><a href="http:/a/app/record/dataset/DS_00b5344451">Transcriptome of heat-stressed <i>Fusarium graminearum</i> Z-3639</a> &ndash;
+             Illumina HiSeq 2000 of 24 h-old mycelia from complete medium incubated in 25C and 37C for 15 min. 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/27306495" target="_blank">Delmas et al., 2012</a>.
              </li>
              
-             <li><a href="http:/a/app/record/dataset/DS_bb15199826"><i>Aspergillus niger</i> gene co-expression network</a> &ndash;
-             A meta-analysis of 155 transcriptomics experiments generated genome level co-expression networks for 9579 genes of <i>Aspergillus niger</i> genome. <a href="https://www.biorxiv.org/content/early/2018/08/23/398842" target="_blank">Manuscript submitted to bioRxiv</a>.
+             <li><a href="http:/a/app/record/dataset/DS_ecba2dec39">Transcriptome profiling of <i>Candida auris</i> clinical isolates forming biofilm</a> &ndash;
+             Transcriptomic investigation of isolates collected by Public Health England, UK using Illumina HiSeq X Ten technology.
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/29997121" target="_blank">Delmas et al., 2012</a>.
              </li>
+             
+             <li><a href="http:/a/app/record/dataset/DS_b6fe0c017e">Transcriptome analysis of <i>Aspergillus fumigatus</i> grown in blood</a> &ndash;
+             Gene expression profile at various stages of an <i>in vitro<i> model of aspergillosis.
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/26311470" target="_blank">Delmas et al., 2012</a>.
+             </li>
+             
+             <li><a href="http:/a/app/record/dataset/DS_3190d69ecb">Transcriptomes of itraconazole-resistant strains derived from A1160, HapB and 29.9.</a> &ndash;
+             RNA-Seq of Aspergillus fumigatus mutants resistant to itraconazole.
+             </li>
+             
+             <li><a href="http:/a/app/record/dataset/DS_139dce39e2">Stranded RNA-Seq of WT and cqs1delta strains during sexual development stage</a> &ndash;
+             Stranded RNA-Seq of <i>C. neoformans</i> JEC21 WT (XL280&alpha;) and cqs1&Delta; strains grown on V8 media.
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/29784977" target="_blank">Delmas et al., 2012</a>.
+             </li>
+             
+             <li><a href="http:/a/app/record/dataset/DS_9c905047fb"><i>Cryptococcus neoformans</i> sexual reproduction is controlled by a quorum sensing peptide</a> &ndash;
+             Transcriptomic analysis of gene expression in <i>Cryptococcus neoformans</i> var neoformans targeting pheromone pathways and quorum sensing.
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/29784977" target="_blank">Delmas et al., 2012</a>.
+             </li>
+             
         	</ul>
-        	
-        <h4>Proteomics</h4>
-           <ul>
-             <li><a href="http:/a/app/record/dataset/DS_bed61daec2">Secretome profiling of <i>Cryptococcus neoformans</i></a> &ndash; 
-                 Targeted secretome profiling of Pka-1 regulated proteins in <i>C. neoformans</i> was performed at 16, 48, 72, 96, and 120 hr post-inoculation in Pka-1 inductive and repressive media.
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26453029 " target="_blank">Geddes et al., 2015</a>.
-             </li>
-             <li><a href="http:/a/app/record/dataset/DS_bed61daec2">Quantitative MassSpec of <i>Cryptococcus neoformans</i> secretome of Pka-1 regulated proteins</a> &ndash; 
-                 Targeted secretome profiling of Pka-1 regulated proteins in <i>C. neoformans</i> was performed at 16, 48, 72, and 120 hr post-inoculation in Pka-1 inductive and repressive media.
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26453029 " target="_blank">Geddes et al., 2015</a>.
-             </li>
-        	</ul>
-           
-           
-        <h4>ChiP-Seq data</h4>
-           <ul>
-             <li><a href="http:/a/app/record/dataset/DS_0486f374f7">H3K27me3 and H3K9me2 profiling in various <i>Cryptococcus neoformans</i> strains</a> &ndash;
-             Charaterization of PRC2 complex and its role in assembly of heterochromatin. ChiP-Seq profiles (H3K27me3 and H3K9me3) are reported for WT, knockout strains (<i>ezh2</i>, <i>msl1</i>, <i>clr4</i>, and <i>ccc1</i>), and <i>ccc1-w52a</i> strain. 
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/27856696" target="_blank">Dekhang et al., 2017</a>.
-             </li>
-           </ul>  
-           
+        	          
         <h4>Whole genome sequence of isolates for SNP analysis:</h4>
            <ul>
-             <li><a href="http:/a/app/record/dataset/DS_213496374f">Aligned genomic sequence reads - <i>Candida auris</i> clinical isolates</a> &ndash;
-                 Samples were collected from patients, patient contacts, healthcare workers, and the environment in 4 hospitals in Colombia with recent <i>C. auris</i> outbreaks.
-                 <a href="https://www.ncbi.nlm.nih.gov/bioproject/470683">NCBI's Bioproject record page</a>,  
-                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/29788045"> Escand&oacute;n et al., 2018</a>
+             <li><a href="http:/a/app/record/dataset/DS_d33a14b7e6">Aligned genomic sequence reads - <i>Candida auris</i> isolates</a> &ndash;
+                 Multidrug-resistant <i>Candida auris</i> isolates were collected from on 3 continents and sequenced Illumina HiSeq 2500 technology.
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/27988485"> Escand&oacute;n et al., 2018</a>
+             </li>
+             
+             <li><a href="http:/a/app/record/dataset/DS_11cc0909dd">SNP calls on <i>Paracoccidioides lutzii</i> WGS</a> &ndash;
+                 Whole genome sequencing of <i>P. lutzii</i> isolates.
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/27704050"> Escand&oacute;n et al., 2018</a>
              </li>
            </ul>
            
@@ -128,32 +129,21 @@
            </ul>
            <br>
            
-           <h4>Sequence sites, features and motifs</h4>
-           <ul>   
-           <li><a href="http:/a/app/record/dataset/DS_af6def78b1"><i>Coccidioides posadasii</i> RS TE GBrowse track</a> &ndash;
-               Annotation of transposable elements (TE) in <i>Coccidioides posadasii</i> using RepeatMasker, which identified TEs based on the RepBase reference library and REPET to support <i>de novo</i> TE identification.
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/29371508">Kirkland et al., 2018</a>.
-             </li>
-           </ul>
-           <br>
-           
-       <h4>Annotations from MIPS Functional Catalogue Database:</h4>  
-            <ul> 
-             <li>Functional catalogue annotations for <i>Fusarium graminearum</i> PH-1 and <i>Ustilago maydis</i> 521 from the MIPS database were converted to GO terms and integrated as functional annotations in FungiDB releases 37 and 38. The logs are now available for these in the links below in the respective news sections.</a>.
-             </li>
-           </ul>  
-           <br>
        </div>    
        </section>
+       
+       <section>
+     <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
 
-
--->
-
-
-
-
-
-
+    ]]>
+  </attribute>
+</record>
 
 
 <record>
