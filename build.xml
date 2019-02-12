@@ -177,10 +177,6 @@
                                                            ApiCommonWebsite/View-WebInstallation,
                                                            ApiCommonWebsite/Site-WebInstallation">
     <!-- JBrowse Stuff -->
-    <delete dir="${webappTargetDir}/jbrowse/eupath_data" followsymlinks="false" removeNotFollowedSymlinks="true"/>
-    <mkdir dir="${webappTargetDir}/jbrowse/eupath_data"/>
-    <symlink link="${webappTargetDir}/jbrowse/eupath_data/webServices" resource="/var/www/Common/apiSiteFilesMirror/webServices"/>
-    <symlink link="${webappTargetDir}/jbrowse/eupath_data/auxiliary" resource="/var/www/Common/apiSiteFilesMirror/auxiliary"/>
     <symlink link="${webappTargetDir}/jbrowse/tracks" resource="${targetDir}/lib/jbrowse/auto_generated"/>
 
   </target>
