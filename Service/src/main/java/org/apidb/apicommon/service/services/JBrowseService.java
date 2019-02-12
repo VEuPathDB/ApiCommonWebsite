@@ -159,6 +159,40 @@ public class JBrowseService extends AbstractWdkService {
         return getFileChunkResponse(Paths.get(path), parseRangeHeaderValue(fileRange));
     }
 
+
+
+
+    @GET
+    @Path("dnaseq/bam/{orgNameForFileNames}/{dataset}/{sample}/{bamIndex}")
+    @Produces(MediaType.APPLICATION_OCTET_STREAM)
+    public Response getDNASeqBam(@PathParam("orgNameForFileNames") String orgNameForFileNames, 
+                                    @PathParam("dataset") String dataset,
+                                    @PathParam("sample") String sample,
+                                    @PathParam("bamIndex") String bamIndex,
+                                    @HeaderParam("Range") String fileRange) throws WdkModelException {
+
+        String projectId = getWdkModel().getProjectId();
+        String buildNumber = getWdkModel().getBuildNumber();
+        String webservicesDir = getWdkModel().getProperties().get("WEBSERVICEMIRROR");
+
+        String path = checkPath(
+            webservicesDir + "/" +
+            projectId + "/" +
+            "build-" + buildNumber + "/" +
+            orgNameForFileNames + "/" +
+            "bam" + "/" +
+            dataset + "/" +
+            sample + "/" +
+            bamIndex);
+
+        return getFileChunkResponse(Paths.get(path), parseRangeHeaderValue(fileRange));
+    }
+
+
+
+
+
+
     private String checkPath(String fileSystemPath) {
       // TODO: think about whether other checks belong here
       if (fileSystemPath.contains("..") || fileSystemPath.contains("$")) {
