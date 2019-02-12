@@ -136,7 +136,8 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
     }
 
     List<Option> thresholdTypeOptions = new ArrayList<>();
-    thresholdTypeOptions.add(new Option("fdr", "False Discovery Rate"));
+    thresholdTypeOptions.add(new Option("fc", "Fold Change"));
+    //    thresholdTypeOptions.add(new Option("fdr", "False Discovery Rate"));
     //    thresholdTypeOptions.add(new Option("percent_matched", "Percent Matched"));
 
     List<Option> useOrthologyOptions = new ArrayList<>();
