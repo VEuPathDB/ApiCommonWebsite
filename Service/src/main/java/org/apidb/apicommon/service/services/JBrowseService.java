@@ -169,9 +169,10 @@ public class JBrowseService extends AbstractWdkService {
 
         String webservicesDir = getWdkModel().getProperties().get("WEBSERVICEMIRROR");
 
+        String auxPath = webservicesDir.replaceAll("webServices", "auxiliary");
+
         String path = checkPath(
-            webservicesDir + "/" +
-            "../auxiliary/" + 
+            auxPath + "/" +
             data);
 
         return getFileChunkResponse(Paths.get(path), parseRangeHeaderValue(fileRange));
