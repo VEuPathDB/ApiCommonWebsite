@@ -113,8 +113,6 @@ public class JBrowseService extends AbstractWdkService {
         String buildNumber = getWdkModel().getBuildNumber();
         String webservicesDir = getWdkModel().getProperties().get("WEBSERVICEMIRROR");
 
-        System.err.println("WEBSERVICEMIRROR=" + webservicesDir);
-
         List<String> command = new ArrayList<String>();
         command.add(gusHome + "/bin/jbrowseRNASeqTracks");
         command.add(gusHome);
