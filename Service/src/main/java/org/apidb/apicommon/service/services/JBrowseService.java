@@ -80,11 +80,11 @@ public class JBrowseService extends AbstractWdkService {
     @Path("dnaseq/{organismAbbrev}/{study}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getJbrowseDNASeqTracks(@PathParam("organismAbbrev") String organismAbbrev, 
+                                           @QueryParam("hasCNVData") String hasCNVData,
                                            @PathParam("study") String study) throws IOException, InterruptedException {
 
         String gusHome = getWdkModel().getGusHome();
         String projectId = getWdkModel().getProjectId();
-        String buildNumber = getWdkModel().getBuildNumber();
 
         List<String> command = new ArrayList<String>();
         command.add(gusHome + "/bin/jbrowseDNASeqTracks");
@@ -92,7 +92,7 @@ public class JBrowseService extends AbstractWdkService {
         command.add(organismAbbrev);
         command.add(study);
         command.add(projectId);
-        command.add(buildNumber);
+        command.add(hasCNVData);
 
         String result = jsonStringFromCommand(command);
 
@@ -158,6 +158,25 @@ public class JBrowseService extends AbstractWdkService {
 
         return getFileChunkResponse(Paths.get(path), parseRangeHeaderValue(fileRange));
     }
+
+
+
+    @GET
+    @Path("auxiliary")
+    @Produces(MediaType.APPLICATION_OCTET_STREAM)
+    public Response getAuxiliaryFile(@QueryParam("data") String data,
+                                    @HeaderParam("Range") String fileRange) throws WdkModelException {
+
+        String webservicesDir = getWdkModel().getProperties().get("WEBSERVICEMIRROR");
+
+        String path = checkPath(
+            webservicesDir + "/" +
+            "../auxiliary/" + 
+            data);
+
+        return getFileChunkResponse(Paths.get(path), parseRangeHeaderValue(fileRange));
+    }
+
 
 
 
