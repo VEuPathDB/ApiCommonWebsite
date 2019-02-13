@@ -131,15 +131,10 @@ public class JBrowseService extends AbstractWdkService {
         return Response.ok(result).build();
     }
 
-
-
     @GET
-    @Path("rnaseq/bigwig/{orgNameForFileNames}/{dataset}/{sampleDir}/{file}")
+    @Path("store")
     @Produces(MediaType.APPLICATION_OCTET_STREAM)
-    public Response getRNASeqBigwig(@PathParam("orgNameForFileNames") String orgNameForFileNames, 
-                                    @PathParam("dataset") String dataset,
-                                    @PathParam("sampleDir") String sampleDir,
-                                    @PathParam("file") String file,
+    public Response getJBrowseStore(@QueryParam("data") String data,
                                     @HeaderParam("Range") String fileRange) throws WdkModelException {
 
         String projectId = getWdkModel().getProjectId();
@@ -150,15 +145,10 @@ public class JBrowseService extends AbstractWdkService {
             webservicesDir + "/" +
             projectId + "/" +
             "build-" + buildNumber + "/" +
-            orgNameForFileNames + "/" +
-            "bigwig" + "/" +
-            dataset + "/" +
-            sampleDir + "/" +
-            file);
+            data);
 
         return getFileChunkResponse(Paths.get(path), parseRangeHeaderValue(fileRange));
     }
-
 
 
     @GET
@@ -177,40 +167,6 @@ public class JBrowseService extends AbstractWdkService {
 
         return getFileChunkResponse(Paths.get(path), parseRangeHeaderValue(fileRange));
     }
-
-
-
-
-
-    @GET
-    @Path("dnaseq/bam/{orgNameForFileNames}/{dataset}/{sample}/{bamIndex}")
-    @Produces(MediaType.APPLICATION_OCTET_STREAM)
-    public Response getDNASeqBam(@PathParam("orgNameForFileNames") String orgNameForFileNames, 
-                                    @PathParam("dataset") String dataset,
-                                    @PathParam("sample") String sample,
-                                    @PathParam("bamIndex") String bamIndex,
-                                    @HeaderParam("Range") String fileRange) throws WdkModelException {
-
-        String projectId = getWdkModel().getProjectId();
-        String buildNumber = getWdkModel().getBuildNumber();
-        String webservicesDir = getWdkModel().getProperties().get("WEBSERVICEMIRROR");
-
-        String path = checkPath(
-            webservicesDir + "/" +
-            projectId + "/" +
-            "build-" + buildNumber + "/" +
-            orgNameForFileNames + "/" +
-            "bam" + "/" +
-            dataset + "/" +
-            sample + "/" +
-            bamIndex);
-
-        return getFileChunkResponse(Paths.get(path), parseRangeHeaderValue(fileRange));
-    }
-
-
-
-
 
 
     private String checkPath(String fileSystemPath) {
