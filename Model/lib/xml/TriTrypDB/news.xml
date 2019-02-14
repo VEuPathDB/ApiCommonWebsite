@@ -136,16 +136,93 @@
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/27863903" target="_blank">Dean et al</a>.
              </li>
             </ul>
-        <h4>Functional Annotation Updates</h4>
-            <ul>
-             <li><a href="/a/app/record/dataset/DS_c357287e29">Cellular Localization of tagged <i>T.brucei</i> proteins (TrypTag)</a> &ndash; 
-                 Additional images and localization information associated with GO terms are  integrated into TriTrypDB 42. This update 
-                 brings the total number of genes with TrypTag images to 5292 and total number of genes associated with TrypTag-called GO terms to 4954.
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/27863903" target="_blank">Dean et al</a>.
-             </li>
-            </ul>
-            
-      </div>
+
+       <h4>Updated Functional Annotation</h4>
+           
+        <div style="margin-left: 3em;">
+        
+        <a href="https://docs.google.com/spreadsheets/d/1ycQjow8WuOH5MDGDMEZmY_2-3SKr-YDhRg-6kIfy4hg/edit?usp=sharing" target="_blank">Summary of annotation updates</a> 
+           which include products, GO terms, EC numbers, gene names, synonyms, publications, external database references and notes from curators. 
+        <br>
+        Functional annotations in TriTrypDB 42 have been updated for the following genomes:
+        <br>
+        <style>
+           #FunctAnnot_Bld42 table, #FunctAnnot_Bld42 td, #FunctAnnot_Bld42 th, #FunctAnnot_Bld42 tr {
+           text-align : center;
+           padding-left: 5px;
+           padding-right: 5px;
+           padding-top: 5px;
+           padding-bottom: 5px;
+           border: 1px solid black;
+           }
+           #FunctAnnot_Bld42 {
+           margin-left : 5 em;
+           }
+         </style> 
+           <table id="FunctAnnot_Bld42"> 
+           <tr>
+             <th>TriTrypDB Genome Version</th>
+             <th>Download GeneDB GFF file</th>
+             <th>Genes Updated</th>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_31282613b1"><i>Trypanosoma brucei </i>927</a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2018-08/Tbruceibrucei927.noseq.gff3.gz" target="_blank"> Tbruceibrucei927.noseq.gff3.gz</a></td> 
+             <td>495 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_1a6c8bdaac"><i>Trypanosoma cruzi </i>CL Brener</a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2018-08/Tcruzi.noseq.gff3.gz" target="_blank"> Tcruzi.noseq.gff3.gz</a></td> 
+             <td>67 genes</td>
+           </tr>
+           </table>
+           <br><br>
+           
+        </div>
+      
+       <h4>Curated User Comments</h4>
+       <div style="margin-left: 3em;">
+       
+          Gene page comments that are entered by users are curated at GeneDB and regularly integrated as functional 
+          annotations in TriTrypDB. 49 user comments (unique) have been integrated in this release.<br><br>
+          
+      <style>
+           #UComment_Bld42 table, #UComment_Bld42 td, #UComment_Bld42 th, #UComment_Bld42 tr {
+           text-align : center;
+           padding-left: 5px;
+           padding-right: 5px;
+           padding-top: 5px;
+           padding-bottom: 5px;
+           border: 1px solid black;
+           }
+           #UComment_Bld42 {
+           margin-left : 5 em;
+           }
+         </style> 
+           <table id="UComment_Bld42"> 
+           <tr>
+             <th>TriTrypDB Genome Version</th>
+             <th>Comments Integrated</th>
+           </tr>
+           <tr>
+             <td><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_31282613b1"><i>Trypanosoma brucei</i> 927</a></td>
+             <td>48</td>
+           </tr>
+           <tr>
+             <td><a href="/a/app/record/dataset/DS_1a6c8bdaac"><i>Trypanosoma cruzi</i> CL Brener</a></td>
+             <td>1</td>
+           </tr>
+          </table>
+          </div>
+          <br>
+          <br>
+       <h4>Curated User Comments</h4>
+         <div style="margin-left: 3em;">
+          <a href="/a/app/record/dataset/DS_c357287e29">Cellular Localization of tagged <i>T.brucei</i> proteins (TrypTag)</a> &ndash; 
+          Additional images (see Phenotypes above) and localization information associated with GO terms were obtained from the TrypTag Project, 
+          bringing the total number of genes with TrypTag images to 5292 and total number of genes associated with GO terms 
+          from TrypTag.org images to 4954.
+         </div>
       </section>
       
       <section>
