@@ -38,7 +38,11 @@
     <p><strong>We are pleased to announce the release of ToxoDB 42</strong></p>
       
       <section>
-      <h3><b>No new data in ToxoDB 42</b></h3>
+      <h3><b>New data in ToxoDB 42</b></h3>
+      <div style="margin-left: 3em;">
+        <a href="http://toxodb.org/toxo/app/record/dataset/XXX">RFLP genotypes of <i>T. gondii</i> Brazilian isolates from pig and goat for human consumption</a> &mdash; 
+        Multilocus PCR-RFLP genotyping of <i>Toxoplasma gondii</i> isolates from farm animals raised and slaughtered in Piauí, Brazil by origin of samples.
+        <a href="https://www.ncbi.nlm.nih.gov/pubmed/29080759">R&ecirc;go et al</a>.
       </section>
       
       <section>
