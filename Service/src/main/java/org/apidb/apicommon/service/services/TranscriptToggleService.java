@@ -16,7 +16,7 @@ import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.answer.spec.AnswerSpec;
 import org.gusdb.wdk.model.answer.spec.AnswerSpecBuilder;
 import org.gusdb.wdk.model.user.Step;
-import org.gusdb.wdk.model.user.StepFactoryHelpers.UserCache;
+import org.gusdb.wdk.model.user.UserCache;
 import org.gusdb.wdk.service.service.AbstractWdkService;
 import org.json.JSONObject;
 
