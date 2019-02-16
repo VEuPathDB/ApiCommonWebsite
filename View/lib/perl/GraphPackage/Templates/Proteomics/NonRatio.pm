@@ -96,6 +96,104 @@ sub finalProfileAdjustments {
 1;
 
 
+# for PlasmoDB Apicoplast_ER Quant Proteomes
+package ApiCommonWebsite::View::GraphPackage::Templates::Proteomics::NonRatio::DS_32db942cc7;
+
+
+use EbrcWebsiteCommon::View::GraphPackage::ProfileSet;
+use EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet;
+use EbrcWebsiteCommon::Model::CannedQuery::PhenotypeRankedNthValues;
+use EbrcWebsiteCommon::Model::CannedQuery::PhenotypeRankedNthNames;
+
+
+# @Override
+sub init {
+  my $self = shift;
+
+  $self->SUPER::init(@_);
+
+  my $specs = $self->getSpecs();
+
+  my @gos;
+  foreach my $ps (@$specs) {
+    my $go = $self->makeGraphObject($ps->{query}, $ps->{abbrev}, $ps->{name});
+    push @gos, $go;
+  }
+  $self->setGraphObjects(@gos);
+
+  return $self;
+}
+
+sub getSpecs {
+  return [ {abbrev => "Apico",
+            name => "Apicoplast Abundance",
+            query => "SELECT ga.source_id, nafe.value
+                      FROM apidbtuning.geneattributes ga, results.nafeatureexpression nafe
+                      WHERE nafe.na_feature_id = ga.na_feature_id
+                      AND nafe.protocol_app_node_id = 1091365",
+           },
+           {abbrev => "ER",
+            name => "ER Abundance",
+            query => "SELECT ga.source_id, nafe.value
+                      FROM apidbtuning.geneattributes ga, results.nafeatureexpression nafe
+                      WHERE nafe.na_feature_id = ga.na_feature_id
+                      AND nafe.protocol_app_node_id = 1091374",
+           },
+      ];
+}
+
+
+sub makeGraphObject {
+  my ($self, $sourceIdValueQuery, $abbrev, $name) = @_;
+
+  my $id = $self->getId();
+
+  my $goValuesCannedQueryGene = EbrcWebsiteCommon::Model::CannedQuery::PhenotypeRankedNthValues->new
+      ( SourceIdValueQuery => $sourceIdValueQuery, N => 200, Name => "_${abbrev}_gv", Id => $id);
+
+  my $goNamesCannedQueryGene = EbrcWebsiteCommon::Model::CannedQuery::PhenotypeRankedNthNames->new
+      ( SourceIdValueQuery => $sourceIdValueQuery, N => 200, Name => "_${abbrev}_gen", Id => $id);
+
+
+  my $goValuesCannedQueryCurve = EbrcWebsiteCommon::Model::CannedQuery::PhenotypeRankedNthValues->new
+      ( SourceIdValueQuery => $sourceIdValueQuery, N => 200, Name => "_${abbrev}_av", Id => 'ALL');
+
+  my $goNamesCannedQueryCurve = EbrcWebsiteCommon::Model::CannedQuery::PhenotypeRankedNthNames->new
+      ( SourceIdValueQuery => $sourceIdValueQuery, N => 200, Name => "_${abbrev}_aen", Id => 'ALL');
+
+
+  my $goProfileSetGene = EbrcWebsiteCommon::View::GraphPackage::ProfileSet->new("DUMMY");
+  $goProfileSetGene->setProfileCannedQuery($goValuesCannedQueryGene);
+  $goProfileSetGene->setProfileNamesCannedQuery($goNamesCannedQueryGene);
+
+  my $goProfileSetCurve = EbrcWebsiteCommon::View::GraphPackage::ProfileSet->new("DUMMY");
+  $goProfileSetCurve->setProfileCannedQuery($goValuesCannedQueryCurve);
+  $goProfileSetCurve->setProfileNamesCannedQuery($goNamesCannedQueryCurve);
+
+  my $go = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot->new(@_);
+
+  $go->setDefaultYMin(0);
+  $go->setDefaultYMax(0.2);
+  $go->setProfileSets([$goProfileSetCurve, $goProfileSetGene]);
+  $go->setYaxisLabel($name);
+  $go->setColors(["grey", "red"]);
+  #$go->setColors(["grey", "blue"]);
+  $go->setPartName($abbrev);
+  $go->setPlotTitle("$id - $name");
+  $go->setXaxisLabel("");
+
+
+  my $legend = ["All Genes", $id];
+
+  $go->setHasExtraLegend(1);
+  $go->setLegendLabels($legend);
+
+
+  return $go;
+}
+
+1;
+
 
 
 #--------------------------------------------------------------------------------
