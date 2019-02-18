@@ -118,7 +118,7 @@ EOSQL
 EOSQL
       }
 	  elsif($clustalQueryType eq 'genomic'){
-	    my ($fwdSQL, $revSQL);
+	    my ($fwdSQL, $revSQL); # SQLis currently the same, but depending on function two queries may be needed.
 	  
 	    # Offset values of the two above postions, the 3s make the values not inclusive of ATG/Stop codon.
         my $oneOffset = $cgi->param('oneOffset'); 
@@ -132,16 +132,16 @@ EOSQL
 		if ($absTwoOffset > 2500) {$absTwoOffset = 2500}
 		else{}
 		
-		$fwdSQL = "WHEN gd.strand = 'forward' then substr(gs.sequence, gd.cds_start - $absOneOffset, gd.cds_length + $absOneOffset + $absTwoOffset)";
-		$revSQL = "WHEN gd.strand = 'reverse' then substr(gs.sequence, gd.cds_start - $absTwoOffset, gd.cds_length + $absOneOffset + $absTwoOffset)";	
+		$fwdSQL = "WHEN gd.strand = 'forward' then substr(gs.sequence, gd.coding_start - $absOneOffset, (gd.coding_end - gd.coding_start) +1 + $absOneOffset + $absTwoOffset)";
+		$revSQL = "WHEN gd.strand = 'reverse' then substr(gs.sequence, gd.coding_start - $absTwoOffset, (gd.coding_end - gd.coding_start ) +1 + $absOneOffset + $absTwoOffset)";	
 		
 	  $sql = <<EOSQL;
 	  --Query for genomic.
 	  with geneDetails as (
 	  select ta.gene_start_min - 0 as min
 	  , ta.gene_end_max + 0 as max
-	  , ta.cds_start
-	  , ta.cds_end
+	  , ta.coding_start
+	  , ta.coding_end
 	  , ta.strand
 	  , ta.source_id
 	  , ta.gene_source_id
