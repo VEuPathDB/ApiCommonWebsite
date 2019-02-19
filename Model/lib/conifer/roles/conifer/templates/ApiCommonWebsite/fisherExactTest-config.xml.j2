@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+{# $SourceFileURL: ApiCommonWebsite/trunk/Model/lib/conifer/roles/conifer/templates/ApiCommonWebsite/fisherExactTest-config.xml.j2 $ #}
+Templated by Conifer using
+{{ template_path }}
+with vars from
+Cohort: {{ cohort }}
+Project: {{ project }}
+Environment: {{ env|default() }}
+site_vars file: {{ site_vars }}
+-->
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>The configuration file for Fisher Exact Test WSF Plugin.</comment>
+<entry key="perlExecutable">{{ fisherexacttestconfig_perlExec }}</entry>
+<entry key="perlScript">{{ gus_home }}/lib/perl/ApiCommonWebService/WSFPlugin/fisherExactTest.pl</entry>
+<entry key="dbConnection">{{ fisherexacttestconfig_connectionUrl }}</entry>
+<entry key="dbLogin">{{ fisherexacttestconfig_dbLogin }}</entry>
+<entry key="dbPassword">{{ fisherexacttestconfig_dbPassword }}</entry>
+<entry key="projectId">{{ project }}</entry>
+</properties>

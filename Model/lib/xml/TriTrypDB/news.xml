@@ -41,6 +41,215 @@
 -->
 
 <record>
+  <attribute name="headline">TriTrypDB 42 Released</attribute>
+  <attribute name="date">28 Feb 2019 13:00</attribute>
+  <attribute name="tag">TriTrypDB2_19_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of TriTrypDB 42</strong></p>
+      
+      <section>
+      <h3><b>New data in TriTrypDB 42</b></h3>
+      <div style="margin-left: 3em;">
+      <h4>Genome Sequence and Annotation - These annotated genomes appear for the first time in TriTrypDB.</h4>
+            <ul>
+             <li><a href="/a/app/record/dataset/DS_801df5b78d"><i>Bodo saltans</i> strain Lake Konstanz</a> &ndash; 
+                 This <i>Bodo saltans</i> genome sequence and annotation represents a draft version. Please carefully consider gene models and genome structure before drawing conclusions.
+                 <a href="https://www.ncbi.nlm.nih.gov/bioproject/PRJEB10421" target="_blank">NCBI Bioproject</a>. 
+             </li>
+             <li><a href="/a/app/record/dataset/DS_aa86d09f50"><i>Leishmania donovani</i> CL-SL</a> &ndash; 
+                 PacBio genome sequence and annotation of a clinical isolate of <i>L. donovani</i> causing cutaneous leishmaniasis from Sri Lanka.
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/30409989" target="_blank">Lypaczewski et al</a>.  
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/24992200" target="_blank">Zhangi et al</a>. 
+             </li>
+             <li><a href="/a/app/record/dataset/DS_f35827c3d2"><i>Trypanosoma cruzi</i> TCC</a> &ndash; 
+                  Genome sequence and annotation for <i>Trypanosoma cruzi</i> TCC sequenced with PacBio Single Molecule Real-Time technology and Illumina methods.
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/29708484" target="_blank">Bern&aacute; et al</a>. 
+             </li>
+            </ul>
+        <h4>Additional Version of Genome Sequence and Annotation - This version of <i>T. cruzi</i> Dm28c appears for the first time in TriTrypDB.</h4>
+            <ul>
+             <li><a href="/a/app/record/dataset/DS_59b1d9cd42"><i>Trypanosoma cruzi</i> Dm28c 2018</a> &ndash; 
+                 Genome sequence and annotation for <i>Trypanosoma cruzi</i> Dm28c sequenced with PacBio Single Molecule Real-Time technology.
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/29708484" target="_blank">Bern&aacute; et al</a>. 
+             </li>
+            </ul>
+        <h4>Renamed Versions of Genome Sequence and Annotation - To distinguish the three versions of <i>T. cruzi</i> Dm28c in TriTrypDB, these versions are renamed.</h4>
+            <ul>
+             <li><a href="/a/app/record/dataset/DS_a428584386"><i>Trypanosoma cruzi</i> Dm28c 2014</a> &ndash; 
+                 This genome sequence and annotation was previously called <i>Trypanosoma cruzi</i> Dm28c. It was sequenced using 454 technology. 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/24482508" target="_blank">Grisard et al</a>.  
+                 <a href="https://www.ncbi.nlm.nih.gov/bioproject/PRJNA225928" target="_blank">NCBI Bioproject</a>
+                  
+             </li>
+             <li><a href="/a/app/record/dataset/DS_a428584386"><i>Trypanosoma cruzi</i> Dm28c 2017</a> &ndash; 
+                 This genome sequence and annotation was previously called <i>Trypanosoma cruzi</i> cruzi strain Dm28c. It was sequenced with Pacific Biosciences SMRT technology using P5-C3 chemistry.
+                 <a href="https://www.ncbi.nlm.nih.gov/bioproject/PRJNA330977" target="_blank">NCBI Bioproject</a>. 
+             </li>
+            </ul>
+        <h4>Newly Annotated Genomes</h4>
+            <ul>
+             <li><a href="/a/app/record/dataset/DS_317f0d802c"><i>Leishmania amazonensis</i> MHOM/BR/71973/M2269</a> &ndash; 
+                 This genome was annotated at EuPathDB using the Companion genome annotation pipeline. The genome was downloaded
+                  from Genbank and was sequences with a combination of 454 and Illumina GAII technologies.  
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/23857904" target="_blank">Real et al</a>. 
+                 <a href="http://www.ncbi.nlm.nih.gov/bioproject/173202" target="_blank">NCBI Bioproject</a>
+             </li>
+            </ul>
+        <h4>RNA sequence data</h4>
+            <ul>
+             <li><a href="/a/app/record/dataset/DS_917e265ce7">Adipose tissue vs bloodstream form transcriptomes</a> &ndash; 
+                 Transcriptomes of <i>T brucei</i> parasites isolated from mouse blood on day 4 pi and gonadal fat on day 6 pi. 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/27237364" target="_blank">Trindade et al</a>. 
+             </li>
+             <li><a href="/a/app/record/dataset/DS_917e265ce7"><i>Leishmania amazonensis</i> RNAseq during human macrophage infection</a> &ndash; 
+                  RNAseq analysis of transcriptomes of human macrophage and Leishmania amazonensis during an infection time course. This study 
+                  was performed on mixed parasite/host samples and has associated data sets for <i>L. major</i> in TriTrypDB and human in HostDB 
+                  (<a href="http://hostdb.org/hostdb/showQuestion.do?questionFullName=InternalGeneDatasetQuestions.GenesByRNASeqEvidence" target="_blank">Leishmania major and Leishmania amazonensis RNAseq during human macrophage infection</a>).
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/27165796" target="_blank">Fernandes et al</a>. 
+             </li>
+             <li><a href="/a/app/record/dataset/DS_b5cbc0fe92">Transcriptomes of <i>T. brucei</i> culture-derived slender/stumpy bloodstream  and early/late procyclic forms</a> &ndash; 
+                 RNA-Seq analysis was performed on defined cultures of slender bloodstream forms, stumpy bloodstream forms and early and late procyclic forms.
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/29606092" target="_blank">Naguleswaran et al</a>. 
+             </li>
+            </ul>
+        <h4>Whole Genome Sequencing of Isolates</h4>
+            <ul>
+             <li><a href="/a/app/record/dataset/DS_b5913e0a1e">Whole genome sequencing of <i>T. cruzi</i> TcI isolates and clones</a> &ndash; 
+                 Provided prepublication from Bjorn Andersson lab, Department of Cell and Molecular Biology, Karolinska Institute.
+                 <a href="https://www.ncbi.nlm.nih.gov/bioproject/PRJNA325924" target="_blank">NCBI Bioproject</a>
+             </li>
+            </ul>
+        <h4>ChIP Seq data</h4>
+            <ul>
+             <li><a href="/a/app/record/dataset/DS_a9140f56f8"><i>Leishmania major</i> KKT1 Chip-Seq (Centromeres)</a> &ndash; 
+                 Chromatin immunoprecipitation coupled to high-throughput sequencing (ChIP-Seq) of <i>L. major</i> KKT1 (LmKKT1) clearly identified one major peak per chromosome.
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/28935715" target="_blank">Garcia-Silva et al</a>.
+             </li>
+            </ul>
+        <h4>Phenotypes</h4>
+            <ul>
+             <li><a href="/a/app/record/dataset/DS_c357287e29">Cellular Localization of tagged <i>T.brucei</i> proteins (TrypTag)</a> &ndash; 
+                 Additional images and localization information associated with GO terms are  integrated into TriTrypDB 42. This update 
+                 brings the total number of genes with TrypTag images to 5292 and total number of genes associated with TrypTag-called GO terms to 4954.
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/27863903" target="_blank">Dean et al</a>.
+             </li>
+            </ul>
+
+       <h4>Updated Functional Annotation</h4>
+           
+        <div style="margin-left: 3em;">
+        
+        <a href="https://docs.google.com/spreadsheets/d/1ycQjow8WuOH5MDGDMEZmY_2-3SKr-YDhRg-6kIfy4hg/edit?usp=sharing" target="_blank">Summary of annotation updates</a> 
+           which include products, GO terms, EC numbers, gene names, synonyms, publications, external database references and notes from curators. 
+        <br>
+        Functional annotations in TriTrypDB 42 have been updated for the following genomes:
+        <br>
+        <style>
+           #FunctAnnot_Bld42 table, #FunctAnnot_Bld42 td, #FunctAnnot_Bld42 th, #FunctAnnot_Bld42 tr {
+           text-align : center;
+           padding-left: 5px;
+           padding-right: 5px;
+           padding-top: 5px;
+           padding-bottom: 5px;
+           border: 1px solid black;
+           }
+           #FunctAnnot_Bld42 {
+           margin-left : 5 em;
+           }
+         </style> 
+           <table id="FunctAnnot_Bld42"> 
+           <tr>
+             <th>TriTrypDB Genome Version</th>
+             <th>Download GeneDB GFF file</th>
+             <th>Genes Updated</th>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_31282613b1"><i>Trypanosoma brucei </i>927</a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2018-08/Tbruceibrucei927.noseq.gff3.gz" target="_blank"> Tbruceibrucei927.noseq.gff3.gz</a></td> 
+             <td>495 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_1a6c8bdaac"><i>Trypanosoma cruzi </i>CL Brener</a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2018-08/Tcruzi.noseq.gff3.gz" target="_blank"> Tcruzi.noseq.gff3.gz</a></td> 
+             <td>67 genes</td>
+           </tr>
+           </table>
+           <br><br>
+           
+        </div>
+      
+       <h4>Curated User Comments</h4>
+       <div style="margin-left: 3em;">
+       
+          Gene page comments that are entered by users are curated at GeneDB and regularly integrated as functional 
+          annotations in TriTrypDB. 49 user comments (unique) have been integrated in this release.<br><br>
+          
+      <style>
+           #UComment_Bld42 table, #UComment_Bld42 td, #UComment_Bld42 th, #UComment_Bld42 tr {
+           text-align : center;
+           padding-left: 5px;
+           padding-right: 5px;
+           padding-top: 5px;
+           padding-bottom: 5px;
+           border: 1px solid black;
+           }
+           #UComment_Bld42 {
+           margin-left : 5 em;
+           }
+         </style> 
+           <table id="UComment_Bld42"> 
+           <tr>
+             <th>TriTrypDB Genome Version</th>
+             <th>Comments Integrated</th>
+           </tr>
+           <tr>
+             <td><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_31282613b1"><i>Trypanosoma brucei</i> 927</a></td>
+             <td>48</td>
+           </tr>
+           <tr>
+             <td><a href="/a/app/record/dataset/DS_1a6c8bdaac"><i>Trypanosoma cruzi</i> CL Brener</a></td>
+             <td>1</td>
+           </tr>
+          </table>
+          </div>
+          <br>
+          <br>
+       <h4>Curated User Comments</h4>
+         <div style="margin-left: 3em;">
+          <a href="/a/app/record/dataset/DS_c357287e29">Cellular Localization of tagged <i>T.brucei</i> proteins (TrypTag)</a> &ndash; 
+          Additional images (see Phenotypes above) and localization information associated with GO terms were obtained from the TrypTag Project, 
+          bringing the total number of genes with TrypTag images to 5292 and total number of genes associated with GO terms 
+          from TrypTag.org images to 4954.
+         </div>
+      </section>
+      
+      <section>
+      <h3><b>New features in TriTrypDB 42</b></h3>
+      <h4>New feature?</h4><br>
+      <div style="margin-left: 3em;">
+         New Feature? 
+       </div> 
+      </section>
+      
+      <section>
+         <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+
+    ]]>
+  </attribute>
+</record>
+
+
+
+
+<record>
   <attribute name="headline">TriTrypDB 41 Released</attribute>
   <attribute name="date">13 Dec 2018 13:00</attribute>
   <attribute name="tag">TriTrypDB12_18_release</attribute>

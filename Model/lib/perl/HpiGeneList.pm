@@ -69,7 +69,9 @@ sub run {
     foreach my $d (@{$jsonString}) {
       my $desc = $d->{'description'};
       $desc =~s/[\t|\n]//g;
-      my $significance = int(($d->{'idLists'}[0])->{significance} * 100000 + 0.5) / 100000;
+
+      my $significance = ($d->{'idLists'}[0])->{significance};
+#      my $significance = int(($d->{'idLists'}[0])->{significance} * 100000 + 0.5) / 100000;
       print OUT $d->{'experimentIdentifier'} . "\t" .
           $d->{'species'}  . "\t" .
           $d->{'displayName'}  . "\t" .
