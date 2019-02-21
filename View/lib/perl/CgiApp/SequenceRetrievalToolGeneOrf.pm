@@ -41,7 +41,12 @@ sub run {
 
   $self->setSqls();
 
-  my $seqIO = Bio::SeqIO->new(-fh => \*STDOUT, -format => 'fasta');
+  my $seqIO;
+  if ($self->{noLineBreaks}) {
+    $seqIO = Bio::SeqIO->new(-fh => \*STDOUT, -format => 'fasta', -width=>"32766");
+  } else {
+    $seqIO = Bio::SeqIO->new(-fh => \*STDOUT, -format => 'fasta');
+  }
 
   if ($self->{type} eq 'genomic') {
     $self->handleGenomic($dbh, $seqIO);
@@ -72,6 +77,7 @@ sub processParams {
   $self->{endAnchor3} = $cgi->param('endAnchor3');
   $self->{sourceIdFilter} = $cgi->param('sourceIdFilter');
   $self->{onlyIdDefLine} = $cgi->param('onlyIdDefLine');
+  $self->{noLineBreaks} = $cgi->param('noLineBreaks');
 
 
   # to allow for NOT mapping an id to the latest one
