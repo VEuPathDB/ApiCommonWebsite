@@ -152,7 +152,7 @@
              <th>Genes with phenotypes</th>
            </tr>
            <tr>
-             <td title="Click here to view this dataset's full description."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_61efdacf5b"><i>Fusarium graminearum</i> PH-1</a></td>
+             <td title=<i>Fusarium graminearum</i> PH-1</td>
              <td>11,556</td>
              <td>642</td>
            </tr>
@@ -197,19 +197,19 @@
              <th>Genes with phenotypes</th>
            </tr>
            <tr>
-             <td title="Click here to view this dataset's full description."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_61efdacf5b"><i>Cryptococcus gattii</i> WM276</a></td>
+             <td title=<i>Cryptococcus gattii</i> WM276</td>
              <td>14</td>
              <td>3</td>
            </tr>
            
            <tr>
-             <td title="Click here to view this dataset's full description."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_61efdacf5b"><i>Cryptococcus gattii</i> var grubii H99</a></td>
+             <td title=<i>Cryptococcus gattii</i> var grubii H99</td>
              <td>1,968</td>
              <td>422</td>
            </tr>
            
            <tr>
-             <td title="Click here to view this dataset's full description."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_61efdacf5b"><i>Cryptococcus gattii</i> var neoformans JEC21</a></td>
+             <td title=Cryptococcus gattii</i> var neoformans JEC21</td>
              <td>526</td>
              <td>128</td>
            </tr>
