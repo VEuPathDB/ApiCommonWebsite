@@ -113,13 +113,42 @@ sub init {
   $self->SUPER::init(@_);
 
   my $specs = $self->getSpecs();
+  my $id = $self->getId();
 
-  my @gos;
+  my @profileSets;
   foreach my $ps (@$specs) {
-    my $go = $self->makeGraphObject($ps->{query}, $ps->{abbrev}, $ps->{name});
-    push @gos, $go;
+    #my $go = $self->makeGraphObject($ps->{query}, $ps->{abbrev}, $ps->{name});
+    my $profileSet = $self->makeProfileSet($ps->{query}, $ps->{abbrev}, $ps->{name});
+    push @profileSets, $profileSet;
   }
-  $self->setGraphObjects(@gos);
+
+  my $go = EbrcWebsiteCommon::View::GraphPackage::GGScatterPlot->new(@_);
+  $go->setDefaultYMin(0);
+  $go->setDefaultYMax(0.2);
+  $go->setDefaultXMin(0);
+  $go->setDefaultXMax(0.2);
+  $go->setProfileSets(\@profileSets);
+  $go->setYaxisLabel("Apicoplast Abundance");
+  $go->setPartName("apico.er");
+  $go->setPlotTitle("$id - ER vs. Apicoplast Abundance");
+  $go->setXaxisLabel("ER Abundance");
+  $go->addAdjustProfile('
+profile.df.full$PROFILE_FILE[grepl("Apico", profile.df.full$PROFILE_FILE)] <- "Apico"
+profile.df.full$PROFILE_FILE[grepl("ER", profile.df.full$PROFILE_FILE)] <- "ER"
+profile.df.full$ELEMENT_NAMES <- NULL
+profile.df.full$LEGEND <- NULL
+profile.df.full$Group.1 <- NULL
+profile.df.full$ELEMENT_ORDER <- NULL
+profile.df.full <- profile.df.full %>% spread(PROFILE_FILE, VALUE)
+profile.df.full$ELEMENT_NAMES_NUMERIC <- NULL
+names(profile.df.full)[names(profile.df.full) == "ER"] <- "ELEMENT_NAMES_NUMERIC"
+names(profile.df.full)[names(profile.df.full) == "Apico"] <- "VALUE"
+profile.df.full$VALUE <- as.numeric(profile.df.full$VALUE)
+profile.df.full$ELEMENT_NAMES_NUMERIC <- as.numeric(profile.df.full$ELEMENT_NAMES_NUMERIC)
+profile
+profile.df.full$PROFILE_FILE = "Dummy";
+');
+  $self->setGraphObjects($go);
 
   return $self;
 }
@@ -141,6 +170,26 @@ sub getSpecs {
            },
       ];
 }
+
+sub makeProfileSet {
+  my ($self, $sourceIdValueQuery, $abbrev, $name) = @_;
+
+  my $id = $self->getId();
+
+  my $goValuesCannedQueryCurve = EbrcWebsiteCommon::Model::CannedQuery::PhenotypeRankedNthValues->new
+      ( SourceIdValueQuery => $sourceIdValueQuery, N => 200, Name => "_${abbrev}_av", Id => 'ALL');
+
+  my $goNamesCannedQueryCurve = EbrcWebsiteCommon::Model::CannedQuery::PhenotypeRankedNthNames->new
+      ( SourceIdValueQuery => $sourceIdValueQuery, N => 200, Name => "_${abbrev}_aen", Id => 'ALL');
+
+
+  my $goProfileSetCurve = EbrcWebsiteCommon::View::GraphPackage::ProfileSet->new("DUMMY");
+  $goProfileSetCurve->setProfileCannedQuery($goValuesCannedQueryCurve);
+  $goProfileSetCurve->setProfileNamesCannedQuery($goNamesCannedQueryCurve);
+
+  return($goProfileSetCurve);
+}
+
 
 
 sub makeGraphObject {
