@@ -62,6 +62,13 @@
                  The genome was reloaded to include the mitochondrial genome 
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/19465905">Butler et al. 2009</a>.
              </li>
+             
+             <li><a href="http:/a/app/record/dataset/DS_d1767fcbd3"><i>Neurospora crassa</i> OR74A</a> &ndash;  
+                 The genome was reloaded. Incorrect gene aliases reflecting The Broad Institution version four (June 2010) gene set 
+                 were previously loaded to FungiDB due to two dates of issue (February and June). 
+                 This was rectified with remapping of these aliases using only the February version four gene ids. 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/12712197">Galagan et al. 2009</a>.
+             </li>
             </ul>
            <br>    
            
@@ -92,7 +99,7 @@
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/29784977" target="_blank">Tian et al. 2018</a>.
              </li>
              <li><a href="http:/a/app/record/dataset/DS_3de13093fd">Transcriptomics of banana pathogen <i>F. oxysporum f.sp. cubense</i> race 4</a> &ndash; 
-                 Strand specific RNA-Seq analysis of <i>Fusarium oxysporum f. sp. cubense</i>4 infecting <i>Musa acuminata</i> at 0h and 48h.
+                 Strand specific RNA-Seq analysis of <i>Fusarium oxysporum f. sp. cubense</i> race 4 infecting <i>Musa acuminata</i> at 0h and 48h.
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/24743270" target="_blank">Guo et al. 2014</a>.
              </li>
              
@@ -119,18 +126,117 @@
            
         <h4>Phenotype data</h4>
            <ul>
-             <li><a href="http:/a/app/record/dataset/DS_61efdacf5b">Manually Curated Fusarium Phenotypes</a> &ndash; 
-                 The phenotypes for <i>Fusarium graminearum</i> PH-1 are manually curated from published literature describing phenotypes obtained from mutant studies. The phenotypic data from <a href="http://www.ncbi.nlm.nih.gov/pubmed/25758923" target="_blank">Yun et al., 2007</a> publicationhave been manually curated in-line with EuPathDB&#39;s approach for  phenotype annotation and integrated into FungiDB. 
-                 We followed an &quot; entity &#43; quality&quot; approach and curated phenotypes with multiple ontologies: Phenotypic Quality Ontology (PATO) for &quot;quality&quot; terms and Gene Ontology (GO), Fungal Gross Anatomy Ontology (FAO),
+             <li><a href="http:/a/app/record/dataset/DS_61efdacf5b">Manually Curated <i>Fusarium</i> Phenotypes</a> &ndash; 
+                 The phenotypes for <i>Fusarium graminearum</i> PH-1 are manually curated from published literature describing phenotypes obtained from mutant studies. 
+                 We have curated and added phenotypes from <a href="https://www.ncbi.nlm.nih.gov/pubmed/22028654" target="_blank">Son et al. 2011</a> publication 
+                 on transcription factors to the currently existing Fusarium phenotypes from <a href="https://www.ncbi.nlm.nih.gov/pubmed/25758923" target="_blank">Yun et al. 2007</a>.
+                 We followed an &quot;entity &#43; quality&quot; approach and curated phenotypes with multiple ontologies: 
+                 Phenotypic Quality Ontology (PATO) for &quot;quality&quot; terms and Gene Ontology (GO), Fungal Gross Anatomy Ontology (FAO),
                  Chemical Entities of Biological Interest (ChEBI) and Ascomycete Phenotype Ontology (APO) for &quot;entity&quot; terms. 
              </li>
+             </ul>
+             <br>
+               
+        <div style="margin-left: 3em;">
+        
+        <style>
+           #Phenotype_Bld42 table, #Phenotype_Bld42 td, #Phenotype_Bld42 th, #Phenotype_Bld42 tr {
+           text-align : center;
+           padding-left: 5px;
+           padding-right: 5px;
+           padding-top: 5px;
+           padding-bottom: 5px;
+           border: 1px solid black;
+           }
+           #Phenotype_Bld42 {
+           margin-left : 5 em;
+           }
+         </style> 
+           <table id="Phenotype_Bld42"> 
+           <tr>
+             <th>Species</th>
+             <th>Phenotype mapping</th>
+             <th>Genes with phenotypes</th>
+           </tr>
+           <tr>
+             <td title=<i>Fusarium graminearum</i> PH-1</td>
+             <td>11,556</td>
+             <td>642</td>
+           </tr>
+          </table>
+          <br>
+          </div> 
+             
+           <br>
+           
+           <ul>
+             <li><a href="http:/a/app/record/dataset/DS_61efdacf5b">Manually Curated <i>Cryptococcus</i> Phenotypes</a> &ndash; 
+                 The phenotypes for <i>Cryptococcus neoformans</i> JEC21 and H99 and <i>Cryptococcus gattii</i> WM276 genomes are manually 
+                 curated from published literature describing phenotypes obtained from mutant studies. The curated phenotypes from 
+                 <a href="https://docs.google.com/spreadsheets/d/1m7hLDZjphgKJTFJeDx20nA7CVjm0eLQfyMjjRK64G5g/edit?usp=sharing" target="_blank"><i>Cryptococcus</i> RO3 Project </a> are available in FungiDB as controlled vocabularies since release 25. 
+                 We have mapped these phenotypes into ontologies in-line with EuPathDB's approach for phenotype annotation.
+                 We followed an &quot;entity &#43; quality&quot; approach and curated phenotypes with multiple ontologies: 
+                 Phenotypic Quality Ontology (PATO) for &quot;quality&quot; terms and Gene Ontology (GO), Fungal Gross Anatomy Ontology (FAO),
+                 Chemical Entities of Biological Interest (ChEBI) and Ascomycete Phenotype Ontology (APO) for &quot;entity&quot; terms. 
+             </li>
+              </ul>
+             <br>
+              
+        <div style="margin-left: 3em;">
+        
+        <style>
+           #Phenotype_Bld42 table, #Phenotype_Bld42 td, #Phenotype_Bld42 th, #Phenotype_Bld42 tr {
+           text-align : center;
+           padding-left: 5px;
+           padding-right: 5px;
+           padding-top: 5px;
+           padding-bottom: 5px;
+           border: 1px solid black;
+           }
+           #Phenotype_Bld42 {
+           margin-left : 5 em;
+           }
+         </style> 
+           <table id="Phenotype_Bld42"> 
+           <tr>
+             <th>Species</th>
+             <th>Phenotype mapping</th>
+             <th>Genes with phenotypes</th>
+           </tr>
+           <tr>
+             <td title=<i>Cryptococcus gattii</i> WM276</td>
+             <td>14</td>
+             <td>3</td>
+           </tr>
+           
+           <tr>
+             <td title=<i>Cryptococcus gattii</i> var grubii H99</td>
+             <td>1,968</td>
+             <td>422</td>
+           </tr>
+           
+           <tr>
+             <td title=Cryptococcus gattii</i> var neoformans JEC21</td>
+             <td>526</td>
+             <td>128</td>
+           </tr>
+          </table>
+          <br>
+          </div> 
+             
            </ul>
            <br>
+           
+           <h4>Link Outs</h4>
+           Link outs to the NCBI RefSeq, CAZy, and MEROPS databases were integrated for <i>Aspergillus nidulans</i>, <i>A. niger</i> and <i>A. oryzae</i>, and link outs to RefSeq and MEROPS databases were integrated for 
+           <i>A. fumigatus</i>. 
+           <br>
+           
            
            <h4>Updated Functional Annotation</h4>
         <div style="margin-left: 3em;">
                     
-        <a href="https://docs.google.com/spreadsheets/d/19AdZL1ZYWTAe3eV_McbXsfl2tVVrRf8NMskRf_knIkg/edit?usp=sharing" target="_blank">Summary of annotation updates</a> which include products, GO terms, EC numbers, gene names, synonyms, publications and notes from curators.
+        <a href="https://docs.google.com/spreadsheets/d/1RynjM06XLt05ijeFQpA-cbJtUnQoHbex8zs2YKj-IOI/edit?usp=sharing" target="_blank">Summary of annotation updates</a> which include products, GO terms, EC numbers, gene names, synonyms, publications, external database references, and notes from curators.
         <br><br>
         Functional annotations have been updated for the following genomes:
 
@@ -153,27 +259,27 @@
              <th>Genes Updated</th>
            </tr>
            <tr>
-             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_60b6b264d3"><i>Coccidioides immitis</i> RS </a></td>
-             <td>9756 </td>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_071f05cd56"><i>Aspergillus fumigatus</i> Af293 </a></td>
+             <td>9621 </td>
            </tr>
            <tr>
-             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_8f0322af73"><i>Cryptococcus neoformans</i> H99 </a></td>
-             <td>6974</td>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4b35c88aa1"><i>Aspergillus nidulans</i> FGSC A4 </a></td>
+             <td>9063</td>
            </tr>
            <tr>
-             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4d171eb9ea"><i>Cryptococcus neoformans</i> JEC21 </a></td>
-             <td>6632</td>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_e3b988685c"><i>Aspergillus niger </i> CBS 513.88 </a></td>
+             <td>10138</td>
            </tr>
            <tr>
-             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_62f0e6170f"><i>Neurospora crassa</i> OR74A</a></td>
-             <td>9758</td>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_07d4b5c58b"><i>Aspergillus oryzae </i> ORIB40</a></td>
+             <td>11783</td>
            </tr>
            </table>
            <br>
        </div>
  
        <h4>Curated User Comments:</h4>  
-        Gene page comments that are entered by users are curated and integrated as functional annotations in FungiDB. 139 user comments have been reviewed and updated in FungiDB 42.
+        Gene page comments that are entered by users are curated and integrated as functional annotations in FungiDB. 19 user comments have been reviewed and updated in FungiDB 42.
        <br><br>
         
         <div style="margin-left: 3em;">
@@ -197,8 +303,13 @@
              <th>Comments Integrated</th>
            </tr>
            <tr>
-             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_62f0e6170f"><i>Neurospora crassa </i> OR74A</a></td>
-             <td>139</td>
+             <td title="Click here to view this dataset's full description."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4b35c88aa1"><i>Aspergillus nidulans</i> FGSC A4</a></td>
+             <td>18</td>
+           </tr>
+           
+           <tr>
+             <td title="Click here to view this dataset's full description."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_e3b988685c"><i>Aspergillus niger</i> CBS 513.88</a></td>
+             <td>1</td>
            </tr>
           </table>
           <br>
