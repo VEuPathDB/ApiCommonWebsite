@@ -168,7 +168,7 @@
                  curated from published literature describing phenotypes obtained from mutant studies. The curated phenotypes from 
                  <a href="https://docs.google.com/spreadsheets/d/1m7hLDZjphgKJTFJeDx20nA7CVjm0eLQfyMjjRK64G5g/edit?usp=sharing" target="_blank"><i>Cryptococcus</i> RO3 Project </a> are available in FungiDB as controlled vocabularies since release 25. 
                  We have mapped these phenotypes into ontologies in-line with EuPathDB's approach for phenotype annotation.
-                 We followed an &quot; entity &#43; quality&quot; approach and curated phenotypes with multiple ontologies: 
+                 We followed an &quot;entity &#43; quality&quot; approach and curated phenotypes with multiple ontologies: 
                  Phenotypic Quality Ontology (PATO) for &quot;quality&quot; terms and Gene Ontology (GO), Fungal Gross Anatomy Ontology (FAO),
                  Chemical Entities of Biological Interest (ChEBI) and Ascomycete Phenotype Ontology (APO) for &quot;entity&quot; terms. 
              </li>
