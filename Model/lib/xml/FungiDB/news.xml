@@ -123,7 +123,7 @@
                  The phenotypes for <i>Fusarium graminearum</i> PH-1 are manually curated from published literature describing phenotypes obtained from mutant studies. 
                  We have curated and added phenotypes from <a href="https://www.ncbi.nlm.nih.gov/pubmed/22028654" target="_blank">Son et al. 2011</a> publication 
                  on transcription factors to the currently existing Fusarium phenotypes from <a href="https://www.ncbi.nlm.nih.gov/pubmed/25758923" target="_blank">Yun et al. 2007</a>.
-                 We followed an &quot; entity &#43; quality&quot; approach and curated phenotypes with multiple ontologies: 
+                 We followed an &quot;entity &#43; quality&quot; approach and curated phenotypes with multiple ontologies: 
                  Phenotypic Quality Ontology (PATO) for &quot;quality&quot; terms and Gene Ontology (GO), Fungal Gross Anatomy Ontology (FAO),
                  Chemical Entities of Biological Interest (ChEBI) and Ascomycete Phenotype Ontology (APO) for &quot;entity&quot; terms. 
              </li>
@@ -167,7 +167,7 @@
                  The phenotypes for <i>Cryptococcus neoformans</i> JEC21 and H99 and <i>Cryptococcus gattii</i> WM276 genomes are manually 
                  curated from published literature describing phenotypes obtained from mutant studies. The curated phenotypes from 
                  <a href="https://docs.google.com/spreadsheets/d/1m7hLDZjphgKJTFJeDx20nA7CVjm0eLQfyMjjRK64G5g/edit?usp=sharing" target="_blank"><i>Cryptococcus</i> RO3 Project </a> are available in FungiDB as controlled vocabularies since release 25. 
-                 We have mapped these phenotypes into ontologies in-line with EuPathDB's approach for phenotype annotation
+                 We have mapped these phenotypes into ontologies in-line with EuPathDB's approach for phenotype annotation.
                  We followed an &quot; entity &#43; quality&quot; approach and curated phenotypes with multiple ontologies: 
                  Phenotypic Quality Ontology (PATO) for &quot;quality&quot; terms and Gene Ontology (GO), Fungal Gross Anatomy Ontology (FAO),
                  Chemical Entities of Biological Interest (ChEBI) and Ascomycete Phenotype Ontology (APO) for &quot;entity&quot; terms. 
@@ -203,13 +203,13 @@
            </tr>
            
            <tr>
-             <td title="Click here to view this dataset's full description."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_61efdacf5b"><i>Cryptococcus gattii</i> WM276</a></td>
+             <td title="Click here to view this dataset's full description."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_61efdacf5b"><i>Cryptococcus gattii</i> var grubii H99</a></td>
              <td>1,968</td>
              <td>422</td>
            </tr>
            
            <tr>
-             <td title="Click here to view this dataset's full description."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_61efdacf5b"><i>Cryptococcus gattii</i> WM276</a></td>
+             <td title="Click here to view this dataset's full description."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_61efdacf5b"><i>Cryptococcus gattii</i> var neoformans JEC21</a></td>
              <td>526</td>
              <td>128</td>
            </tr>
@@ -220,6 +220,10 @@
            </ul>
            <br>
            
+           <h4>Link Outs</h4>
+           Link outs to the NCBI RefSeq, CAZy, and MEROPS databases were integrated for <i>Aspergillus nidulans</i>, <i>A. niger</i> and <i>A. oryzae</i>, and link outs to RefSeq and MEROPS databases were integrated for 
+           <i>A. fumigatus</i>. 
+           <br>
            
            
            <h4>Updated Functional Annotation</h4>
