@@ -231,7 +231,7 @@
            </li>
            <li>
              Beta access to JBrowse &ndash; In anticipation of converting to the 
-             <a href="https://jbrowse.org/" target="_blank">JBrowse Genome Browser</a>, our beta implementation is available from every gene page. Use the 
+             <a href="https://jbrowse.org/" target="_blank">JBrowse Genome Browser</a>, a beta implementation is available from gene pages. Use the 
              JBrowse Genome Browser link under the graphic Shortcuts on the gene page. 
              <a href="/assets/JBrowseLink.png">Example Link Location</a>
              JBrowse 
