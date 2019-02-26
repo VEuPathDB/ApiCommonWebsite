@@ -117,15 +117,10 @@ sub init {
 
   my @profileSets;
   foreach my $ps (@$specs) {
-    #my $go = $self->makeGraphObject($ps->{query}, $ps->{abbrev}, $ps->{name});
     my @profileSet = $self->makeProfileSets($ps->{query}, $ps->{abbrev}, $ps->{name});
     push @profileSets, @profileSet;
   }
   my $go = EbrcWebsiteCommon::View::GraphPackage::GGScatterPlot->new(@_);
-  #$go->setDefaultYMin(0);
-  #$go->setDefaultYMax(0.2);
-  #$go->setDefaultXMin(0);
-  #$go->setDefaultXMax(0.2);
   $go->setProfileSets(\@profileSets);
   $go->setYaxisLabel("Apicoplast Abundance");
   $go->setPartName("apico.er");
@@ -166,15 +161,26 @@ sub getSpecs {
             name => "Apicoplast Abundance",
             query => "SELECT ga.source_id, nafe.value
                       FROM apidbtuning.geneattributes ga, results.nafeatureexpression nafe
+                      , study.protocolappnode pan, study.studylink sl, study.study s
                       WHERE nafe.na_feature_id = ga.na_feature_id
-                      AND nafe.protocol_app_node_id = 1091365",
+                      AND pan.protocol_app_node_id = sl.protocol_app_node_id
+                      AND nafe.protocol_app_node_id = sl.protocol_app_node_id
+                      AND sl.study_id = s.study_id
+                      AND s.NAME = 'Apicoplast and ER Proteomes'
+                      AND pan.NAME LIKE 'Apicoplast%' ",
            },
            {abbrev => "ER",
             name => "ER Abundance",
             query => "SELECT ga.source_id, nafe.value
                       FROM apidbtuning.geneattributes ga, results.nafeatureexpression nafe
+                      , study.protocolappnode pan, study.studylink sl, study.study s
                       WHERE nafe.na_feature_id = ga.na_feature_id
-                      AND nafe.protocol_app_node_id = 1091374",
+                      AND pan.protocol_app_node_id = sl.protocol_app_node_id
+                      AND nafe.protocol_app_node_id = sl.protocol_app_node_id
+                      AND sl.study_id = s.study_id
+                      AND s.NAME = 'Apicoplast and ER Proteomes'
+                      AND pan.NAME LIKE 'ER%' ",
+
            },
       ];
 }
@@ -205,57 +211,6 @@ sub makeProfileSets {
   $goProfileSetGene->setProfileNamesCannedQuery($goNamesCannedQueryGene);
 
   return(($goProfileSetCurve, $goProfileSetGene));
-}
-
-
-
-sub makeGraphObject {
-  my ($self, $sourceIdValueQuery, $abbrev, $name) = @_;
-
-  my $id = $self->getId();
-
-  my $goValuesCannedQueryGene = EbrcWebsiteCommon::Model::CannedQuery::PhenotypeRankedNthValues->new
-      ( SourceIdValueQuery => $sourceIdValueQuery, N => 200, Name => "_${abbrev}_gv", Id => $id);
-
-  my $goNamesCannedQueryGene = EbrcWebsiteCommon::Model::CannedQuery::PhenotypeRankedNthNames->new
-      ( SourceIdValueQuery => $sourceIdValueQuery, N => 200, Name => "_${abbrev}_gen", Id => $id);
-
-
-  my $goValuesCannedQueryCurve = EbrcWebsiteCommon::Model::CannedQuery::PhenotypeRankedNthValues->new
-      ( SourceIdValueQuery => $sourceIdValueQuery, N => 200, Name => "_${abbrev}_av", Id => 'ALL');
-
-  my $goNamesCannedQueryCurve = EbrcWebsiteCommon::Model::CannedQuery::PhenotypeRankedNthNames->new
-      ( SourceIdValueQuery => $sourceIdValueQuery, N => 200, Name => "_${abbrev}_aen", Id => 'ALL');
-
-
-  my $goProfileSetGene = EbrcWebsiteCommon::View::GraphPackage::ProfileSet->new("DUMMY");
-  $goProfileSetGene->setProfileCannedQuery($goValuesCannedQueryGene);
-  $goProfileSetGene->setProfileNamesCannedQuery($goNamesCannedQueryGene);
-
-  my $goProfileSetCurve = EbrcWebsiteCommon::View::GraphPackage::ProfileSet->new("DUMMY");
-  $goProfileSetCurve->setProfileCannedQuery($goValuesCannedQueryCurve);
-  $goProfileSetCurve->setProfileNamesCannedQuery($goNamesCannedQueryCurve);
-
-  my $go = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot->new(@_);
-
-  $go->setDefaultYMin(0);
-  $go->setDefaultYMax(0.2);
-  $go->setProfileSets([$goProfileSetCurve, $goProfileSetGene]);
-  $go->setYaxisLabel($name);
-  $go->setColors(["grey", "red"]);
-  #$go->setColors(["grey", "blue"]);
-  $go->setPartName($abbrev);
-  $go->setPlotTitle("$id - $name");
-  $go->setXaxisLabel("");
-
-
-  my $legend = ["All Genes", $id];
-
-  $go->setHasExtraLegend(1);
-  $go->setLegendLabels($legend);
-
-
-  return $go;
 }
 
 1;
