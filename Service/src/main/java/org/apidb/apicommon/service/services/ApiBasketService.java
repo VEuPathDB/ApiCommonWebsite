@@ -5,10 +5,7 @@ import static org.apidb.apicommon.model.TranscriptUtil.isGeneRecordClass;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import javax.sql.DataSource;
 import javax.ws.rs.PathParam;
@@ -20,6 +17,7 @@ import org.gusdb.wdk.model.WdkRuntimeException;
 import org.gusdb.wdk.model.record.PrimaryKeyDefinition;
 import org.gusdb.wdk.model.record.PrimaryKeyValue;
 import org.gusdb.wdk.model.record.RecordClass;
+import org.gusdb.wdk.service.request.exception.DataValidationException;
 import org.gusdb.wdk.service.request.user.BasketRequests.BasketActions;
 import org.gusdb.wdk.service.service.user.BasketService;
 
@@ -38,16 +36,15 @@ public class ApiBasketService extends BasketService {
    */
   @Override
   protected RevisedRequest<BasketActions> translatePatchRequest(
-      RecordClass recordClass, BasketActions actions) throws WdkModelException {
-    return isGeneRecordClass(recordClass.getFullName()) ?
-        // convert gene IDs to transcript IDs
-        new RevisedRequest<>(
-            getTranscriptRecordClass(getWdkModel()),
-            new BasketActions(
-                getTranscriptRecords(actions.getRecordsToAdd(), recordClass),
-                getTranscriptRecords(actions.getRecordsToRemove(), recordClass))) :
-        // otherwise use default
-        super.translatePatchRequest(recordClass, actions);
+      RecordClass recordClass, BasketActions actions) throws
+      DataValidationException, WdkModelException {
+    return isGeneRecordClass(recordClass.getFullName())
+      // convert gene IDs to transcript IDs
+      ? new RevisedRequest<>(getTranscriptRecordClass(getWdkModel()),
+        new BasketActions(actions.getAction(),
+          getTranscriptRecords(actions.getIdentifiers(), recordClass)))
+      // otherwise use default
+      : super.translatePatchRequest(recordClass, actions);
   }
 
   /**
@@ -66,16 +63,17 @@ public class ApiBasketService extends BasketService {
   }
 
   /**
-   * The request has a set of gene IDs.  Transform that into the set of all 
+   * The request has a set of gene IDs.  Transform that into the set of all
    * transcript IDs for the genes in the original set.  The record class here
    * is Genes
    */
-  private static List<PrimaryKeyValue> getTranscriptRecords(List<PrimaryKeyValue> genePkValues, RecordClass geneRecordClass)
+  private static List<PrimaryKeyValue> getTranscriptRecords(
+      Collection<PrimaryKeyValue> genePkValues, RecordClass geneRecordClass)
       throws WdkModelException {
 
     WdkModel wdkModel = geneRecordClass.getWdkModel();
     RecordClass transcriptRecordClass = getTranscriptRecordClass(wdkModel);
-    PrimaryKeyDefinition transcriptPkDef =  transcriptRecordClass.getPrimaryKeyDefinition(); 
+    PrimaryKeyDefinition transcriptPkDef =  transcriptRecordClass.getPrimaryKeyDefinition();
     String[] genePkColumns = geneRecordClass.getPrimaryKeyDefinition().getColumnRefs();
     List<String[]> geneRecords = new ArrayList<>();
     String[] values = new String[genePkColumns.length];
@@ -105,7 +103,7 @@ public class ApiBasketService extends BasketService {
         geneIdsString = new StringBuilder("'" + geneRecord[sourceIdColumn] + "'");
       else
         geneIdsString.append(", '" + geneRecord[sourceIdColumn] + "'");
-      
+
       // run the query for this batch
       if (count++ == 1000) {
         count = 0;
