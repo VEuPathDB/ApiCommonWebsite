@@ -103,7 +103,7 @@ package ApiCommonWebsite::View::GraphPackage::Templates::Proteomics::NonRatio::D
 use EbrcWebsiteCommon::View::GraphPackage::ProfileSet;
 use EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet;
 use EbrcWebsiteCommon::Model::CannedQuery::PhenotypeRankedNthValues;
-use EbrcWebsiteCommon::Model::CannedQuery::PhenotypeRankedNthNames;
+use EbrcWebsiteCommon::Model::CannedQuery::PhenotypeRankedNthSourceIdNames;
 use Data::Dumper;
 
 # @Override
@@ -137,24 +137,23 @@ profile.df.full$LEGEND[grepl("ALL", profile.df.full$PROFILE_FILE)] <- "All Genes
 profile.df.full$LEGEND[!grepl("ALL", profile.df.full$PROFILE_FILE)] <- unlist(lapply(strsplit(profile.df.full$PROFILE_FILE[!grepl("ALL", profile.df.full$PROFILE_FILE)], "-"),"[",2)) 
 profile.df.full$PROFILE_FILE[grepl("Apico", profile.df.full$PROFILE_FILE)] <- "Apico"
 profile.df.full$PROFILE_FILE[grepl("ER", profile.df.full$PROFILE_FILE)] <- "ER"
-profile.df.full$ELEMENT_NAMES <- NULL
+profile.df.full$ELEMENT_NAMES_NUMERIC <- NULL
 profile.df.full$Group.1 <- NULL
 profile.df.full$ELEMENT_ORDER <- NULL
 profile.df.full <- profile.df.full %>% spread(PROFILE_FILE, VALUE)
-profile.df.full$ELEMENT_NAMES_NUMERIC <- NULL
+profile.df.full$ELEMENT_NAMES <- NULL
 names(profile.df.full)[names(profile.df.full) == "ER"] <- "ELEMENT_NAMES_NUMERIC"
 names(profile.df.full)[names(profile.df.full) == "Apico"] <- "VALUE"
 profile.df.full$VALUE[profile.df.full$VALUE == 0] <- NA
 profile.df.full$ELEMENT_NAMES_NUMERIC[profile.df.full$ELEMENT_NAMES_NUMERIC == 0] <- NA
 profile.df.full$VALUE <- as.numeric(profile.df.full$VALUE)
 profile.df.full$ELEMENT_NAMES_NUMERIC <- as.numeric(profile.df.full$ELEMENT_NAMES_NUMERIC)
-profile.df.full$ELEMENT_NAMES_NUMERIC[profile.df.full$LEGEND != "All Genes" & is.na(profile.df.full$ELEMENT_NAMES_NUMERIC)] <- profile.df.full$ELEMENT_NAMES_NUMERIC[profile.df.full$LEGEND != "All Genes" & !is.na(profile.df.full$ELEMENT_NAMES_NUMERIC)]
 profile.df.full$PROFILE_FILE = "Dummy"
 profile.is.numeric <- TRUE
 ');
   $go->setRPostscript("
 gp = gp + scale_x_log10() +
-  scale_y_log10()
+  scale_y_log10() 
 ");
 
   $self->setGraphObjects($go);
@@ -188,13 +187,13 @@ sub makeProfileSets {
   my $goValuesCannedQueryCurve = EbrcWebsiteCommon::Model::CannedQuery::PhenotypeRankedNthValues->new
       ( SourceIdValueQuery => $sourceIdValueQuery, N => 800, Name => "_${abbrev}_av", Id => 'ALL');
 
-  my $goNamesCannedQueryCurve = EbrcWebsiteCommon::Model::CannedQuery::PhenotypeRankedNthNames->new
+  my $goNamesCannedQueryCurve = EbrcWebsiteCommon::Model::CannedQuery::PhenotypeRankedNthSourceIdNames->new
       ( SourceIdValueQuery => $sourceIdValueQuery, N => 800, Name => "_${abbrev}_aen", Id => 'ALL');
 
   my $goValuesCannedQueryGene = EbrcWebsiteCommon::Model::CannedQuery::PhenotypeRankedNthValues->new
       ( SourceIdValueQuery => $sourceIdValueQuery, N => 800, Name => "_${abbrev}_gv", Id => $id);
 
-  my $goNamesCannedQueryGene = EbrcWebsiteCommon::Model::CannedQuery::PhenotypeRankedNthNames->new
+  my $goNamesCannedQueryGene = EbrcWebsiteCommon::Model::CannedQuery::PhenotypeRankedNthSourceIdNames->new
       ( SourceIdValueQuery => $sourceIdValueQuery, N => 800, Name => "_${abbrev}_gen", Id => $id);
 
   my $goProfileSetCurve = EbrcWebsiteCommon::View::GraphPackage::ProfileSet->new("DUMMY");
