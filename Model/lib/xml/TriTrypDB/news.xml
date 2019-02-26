@@ -37,7 +37,8 @@
            </li>
          </ul><br>
        </div> 
-<a href="/assets/MapProteinsOrthoMCL.pdf">OrthoMCL proteome upload tutorial</a>          
+<a href="/assets/MapProteinsOrthoMCL.pdf">OrthoMCL proteome upload tutorial</a>         
+             Generic Genome Browser version 2.48  
 -->
 
 <record>
@@ -230,11 +231,10 @@
              sequence alignment or multi-FASTA' tool.
            </li>
            <li>
-             Beta access to JBrowse &ndash; In anticipation of converting to the 
-             <a href="https://jbrowse.org/" target="_blank">JBrowse Genome Browser</a>, a beta implementation is available from gene pages. Use the 
+             Beta access to JBrowse &ndash; A beta implementation of the 
+             <a href="https://jbrowse.org/" target="_blank">JBrowse Genome Browser</a>, is available from gene pages. Use the 
              JBrowse Genome Browser link under the graphic Shortcuts on the gene page. 
              <a href="/assets/JBrowseLink.png">Example Link Location</a>
-             JBrowse 
            </li>
            <li>
              New Gene Page STRING tool &ndash; The 'Protein features and properties' section now includes an option to submit the protein sequence 
