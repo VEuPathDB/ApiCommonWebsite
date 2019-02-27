@@ -21,12 +21,13 @@ sub init {
 
   my $colors = ['blue'];
 
-  if ($facet->[0] eq 'na') {
-    $facet->[0] = 'EUPATH_0005012';
+  if (!(defined $facet) | $facet->[0] eq 'na') {
+    $facet->[0] = 'none';
   }
+
   my $needXLab = 0;
-  if ($contXAxis eq 'na') {
-    $contXAxis = 'EUPATH_0005032';
+  if (!(defined $contXAxis) | $contXAxis eq 'na') {
+    $contXAxis = 'EUPATH_0005029';
     $needXLab = 1;
   }
 
@@ -38,7 +39,7 @@ sub init {
   $scatter->setColors($colors);
 
   if ($needXLab) {
-    $scatter->setXaxisLabel("Age");
+    $scatter->setXaxisLabel("Malaria incidence in the previous 365 days, log transformed");
   }
 
   $self->setGraphObjects($scatter);
