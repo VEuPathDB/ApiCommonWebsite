@@ -225,19 +225,22 @@
       <div style="margin-left: 3em;">
          <ul>
            <li>
-             Updated Alignment Tool on Gene Pages &ndash; The Clustal Omega alignment tool in the 'Orthologs and Paralogs within EuPathDB' table now 
+             Updated Alignment Tool on Gene Pages &ndash; <br>
+             The Clustal Omega alignment tool in the 'Orthologs and Paralogs within EuPathDB' table now 
              accommodates protein, CDS and genomic sequence alignments. To run Clustal Omega, select genes from the table. Then choose the sequence 
              type and initiate the alignment with the 'Run Clutal Omega for selected genes' button. This tool replaces the 'Retrieve multiple 
              sequence alignment or multi-FASTA' tool.
            </li>
            <li>
-             Beta access to JBrowse &ndash; A beta implementation of the 
+             Beta access to JBrowse &ndash; <br>
+             A beta implementation of the 
              <a href="https://jbrowse.org/" target="_blank">JBrowse Genome Browser</a>, is available from gene pages. Use the 
              JBrowse Genome Browser link under the graphic Shortcuts on the gene page. 
              <a href="/assets/JBrowseLink.png">Example Link Location</a>
            </li>
            <li>
-             New Gene Page STRING tool &ndash; The 'Protein features and properties' section now includes an option to submit the protein sequence 
+             New Gene Page STRING tool &ndash; <br>
+             The 'Protein features and properties' section now includes an option to submit the protein sequence 
              to the <a href="https://string-db.org/" target="_blank">STRING</a> functional protein association networks. 
              <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5210637/" target="_blank">Szklarczyk et al</a>.
            </li>
