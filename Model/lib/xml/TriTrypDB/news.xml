@@ -249,8 +249,8 @@
              when you come back or when you share a strategy with someone else.
            </li>
            <li>
-             New Options in the Download Tool &ndash; <br>
-             The header line of Fasta formated downloadscan be configured to contain only the gene ID.  The sequence can 
+             New Options for FASTA downloads &ndash; <br>
+             The header line of FASTA formatted downloads can be configured to contain only the gene ID.  The sequence can 
              be configured to appear on a signle line or the standard 60 characters per line. 
            </li>
          </ul>
