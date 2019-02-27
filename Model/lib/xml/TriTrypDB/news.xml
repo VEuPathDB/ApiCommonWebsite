@@ -221,7 +221,6 @@
       
       <section>
       <h3><b>New features in TriTrypDB 42</b></h3>
-      <h4>New features in TriTrypDB 42</h4><br>
       <div style="margin-left: 3em;">
          <ul>
            <li>
@@ -241,8 +240,18 @@
            <li>
              New Gene Page STRING tool &ndash; <br>
              The 'Protein features and properties' section now includes an option to submit the protein sequence 
-             to the <a href="https://string-db.org/" target="_blank">STRING</a> functional protein association networks. 
+             to the <a href="https://string-db.org/" target="_blank">STRING</a> functional protein association network. 
              <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5210637/" target="_blank">Szklarczyk et al</a>.
+           </li>
+           <li>
+             Result Table Improvements &ndash; <br>
+             Result column configurations and sorting are now saved for each strategy step and will be retained 
+             when you come back or when you share a strategy with someone else.
+           </li>
+           <li>
+             New Options in the Download Tool &ndash; <br>
+             The header line of Fasta formated downloadscan be configured to contain only the gene ID.  The sequence can 
+             be configured to appear on a signle line or the standard 60 characters per line. 
            </li>
          </ul>
        </div> 
