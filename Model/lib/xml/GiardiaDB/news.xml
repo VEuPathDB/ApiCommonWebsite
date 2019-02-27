@@ -49,6 +49,15 @@
   <attribute name="item">
     <![CDATA[
     <p><strong>We are pleased to announce the release of GiardiaDB 42</strong></p>
+    
+    <section>
+    <h3><b>Release 42 Webinar</b></h3>
+    <div style="margin-left: 3em;">
+      Join us on March 20, 2019 10:00-11:00 AM EDT for our Release 42 Highlights webinar where we will discuss and 
+      demonstrate new features and data available in release 42 of EuPathDB sites. 
+      <a href="https://attendee.gotowebinar.com/register/6755367952348158722">Register here</a>
+    </div>
+    </section>
       
       <section>
       <h3><b>No new data in GiardiaDB 42</b></h3>
