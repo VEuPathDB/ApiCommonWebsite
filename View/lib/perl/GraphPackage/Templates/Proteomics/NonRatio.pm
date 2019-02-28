@@ -139,10 +139,11 @@ profile.df.full <- profile.df.full %>% spread(PROFILE_FILE, VALUE)
 profile.df.full$ELEMENT_NAMES <- NULL
 names(profile.df.full)[names(profile.df.full) == "ER"] <- "ELEMENT_NAMES_NUMERIC"
 names(profile.df.full)[names(profile.df.full) == "Apico"] <- "VALUE"
-#profile.df.full$VALUE[profile.df.full$VALUE == 0] <- 0.0000001
-profile.df.full$ELEMENT_NAMES_NUMERIC[profile.df.full$ELEMENT_NAMES_NUMERIC == 0] <- NA
 profile.df.full$VALUE <- as.numeric(profile.df.full$VALUE)
 profile.df.full$ELEMENT_NAMES_NUMERIC <- as.numeric(profile.df.full$ELEMENT_NAMES_NUMERIC)
+profile.df.gene <- profile.df.full[profile.df.full$LEGEND != "All Genes",]
+profile.df.full <- profile.df.full[profile.df.full$LEGEND == "All Genes",]
+profile.df.full <- rbind(profile.df.full, profile.df.gene)
 profile.df.full$PROFILE_FILE = "Dummy"
 profile.is.numeric <- TRUE
 ');
