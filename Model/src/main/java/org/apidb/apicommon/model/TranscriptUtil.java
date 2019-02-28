@@ -3,8 +3,9 @@ package org.apidb.apicommon.model;
 import java.util.Map;
 
 import org.gusdb.fgputil.MapBuilder;
+import org.gusdb.fgputil.validation.ValidObjectFactory.RunnableObj;
+import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
-import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.answer.AnswerValue;
 import org.gusdb.wdk.model.answer.factory.AnswerValueFactory;
 import org.gusdb.wdk.model.answer.spec.AnswerSpec;
@@ -12,6 +13,8 @@ import org.gusdb.wdk.model.question.Question;
 import org.gusdb.wdk.model.record.RecordClass;
 import org.gusdb.wdk.model.user.Step;
 import org.gusdb.wdk.model.user.StepContainer.ListStepContainer;
+import org.gusdb.wdk.model.user.User;
+import org.gusdb.wdk.model.user.UserCache;
 
 public class TranscriptUtil {
 
@@ -40,29 +43,33 @@ public class TranscriptUtil {
     return isTranscriptRecordClass(question.getRecordClass());
   }
 
-  public static AnswerValue transformToGeneAnswer(AnswerValue transcriptAnswer, Step step) throws WdkUserException {
-    try {
-      Question question = transcriptAnswer.getWdkModel().getQuestionByName(XFORM_QUESTION_NAME)
-          .orElseThrow(() -> new WdkModelException("Can't find xform with name: " + XFORM_QUESTION_NAME));
-      String paramName = "gene_result";
-      if (question.getParamMap().size() != 1 || !question.getParamMap().containsKey(paramName)) {
-        throw new WdkModelException("Expected question " + XFORM_QUESTION_NAME +
-            " to have exactly one parameter named " + paramName);
-      }
-      Map<String, String> params = new MapBuilder<String, String>(paramName, String.valueOf(step.getStepId())).toMap();
-      AnswerValue geneAnswer = AnswerValueFactory.makeAnswer(transcriptAnswer.getUser(), AnswerSpec
-          .builder(question.getWdkModel())
-          .setQuestionName(XFORM_QUESTION_NAME)
-          .setParamValues(params)
-          .setAssignedWeight(10)
-          .buildRunnable(transcriptAnswer.getUser(), new ListStepContainer(step)));
+  public static AnswerValue transformToGeneAnswer(AnswerValue transcriptAnswer) throws WdkModelException {
+    Question question = transcriptAnswer.getWdkModel().getQuestionByName(XFORM_QUESTION_NAME)
+        .orElseThrow(() -> new WdkModelException("Can't find xform with name: " + XFORM_QUESTION_NAME));
+    String paramName = "gene_result";
+    if (question.getParamMap().size() != 1 || !question.getParamMap().containsKey(paramName)) {
+      throw new WdkModelException("Expected question " + XFORM_QUESTION_NAME +
+          " to have exactly one parameter named " + paramName);
+    }
 
-      // make sure gene answer uses same page size as transcript answer
-      return geneAnswer.cloneWithNewPaging(transcriptAnswer.getStartIndex(), transcriptAnswer.getEndIndex());
-    }
-    catch (WdkModelException e) {
-      // unfortunately best place to call this is in configure(), which only throws WdkUserException
-      throw new WdkUserException(e);
-    }
+    WdkModel model = transcriptAnswer.getWdkModel();
+    User user = transcriptAnswer.getUser();
+
+    RunnableObj<Step> step = Step.builder(model, user.getUserId(), model.getStepFactory().getNewStepId())
+        .setAnswerSpec(AnswerSpec.builder(transcriptAnswer.getAnswerSpec()))
+        .buildRunnable(new UserCache(user), null);
+
+    Map<String, String> transformParams = new MapBuilder<String, String>(
+        paramName, String.valueOf(step.getObject().getStepId())).toMap();
+
+    AnswerValue geneAnswer = AnswerValueFactory.makeAnswer(transcriptAnswer.getUser(), AnswerSpec
+        .builder(question.getWdkModel())
+        .setQuestionName(XFORM_QUESTION_NAME)
+        .setParamValues(transformParams)
+        .setAssignedWeight(10)
+        .buildRunnable(transcriptAnswer.getUser(), new ListStepContainer(step.getObject())));
+
+    // make sure gene answer uses same page size as transcript answer
+    return geneAnswer.cloneWithNewPaging(transcriptAnswer.getStartIndex(), transcriptAnswer.getEndIndex());
   }
 }
