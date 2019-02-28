@@ -24,6 +24,15 @@
   <attribute name="item">
     <![CDATA[
     <p><strong>We are pleased to announce the release of FungiDB 42</strong></p>
+    
+    <section>
+    <h3><b>Release 42 Webinar</b></h3>
+    <div style="margin-left: 3em;">
+      Join us on March 20, 2019 10:00-11:00 AM EDT for our Release 42 Highlights webinar where we will discuss and 
+      demonstrate new features and data available in release 42 of EuPathDB sites. 
+      <a href="https://attendee.gotowebinar.com/register/6755367952348158722">Register here</a>
+    </div>
+    </section>
       
       <section>
         <h3><b>New data in FungiDB 42</b></h3>
@@ -64,9 +73,9 @@
              </li>
              
              <li><a href="http:/a/app/record/dataset/DS_d1767fcbd3"><i>Neurospora crassa</i> OR74A</a> &ndash;  
-                 The genome was reloaded. Incorrect gene aliases reflecting The Broad Institution version four (June 2010) gene set 
+                 The genome was reloaded. Incorrect gene aliases reflecting The Broad Institution v4 (June 2010) gene set 
                  were previously loaded to FungiDB due to two dates of issue (February and June). 
-                 This was rectified with remapping of these aliases using only the February version four gene ids. 
+                 This was rectified with remapping of these aliases using only the February version gene ids. 
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/12712197">Galagan et al. 2009</a>.
              </li>
             </ul>
@@ -210,7 +219,7 @@
            </tr>
            
            <tr>
-             <td title=<i>Cryptococcus gattii</i> var grubii H99</td>
+             <td title=<i>Cryptococcus neoformans</i> var grubii H99</td>
              <td>1,968</td>
              <td>422</td>
            </tr>
@@ -318,6 +327,44 @@
            
        </div>    
        </section>
+       
+       <section>
+      <h3><b>New features in FungiDB 42</b></h3>
+      <div style="margin-left: 3em;">
+         <ul>
+           <li>
+             Updated Alignment Tool on Gene Pages &ndash; <br>
+             The Clustal Omega alignment tool in the 'Orthologs and Paralogs within EuPathDB' table now 
+             accommodates protein, CDS and genomic sequence alignments. To run Clustal Omega, select genes from the table. Then choose the sequence 
+             type and initiate the alignment with the 'Run Clutal Omega for selected genes' button. This tool replaces the 'Retrieve multiple 
+             sequence alignment or multi-FASTA' tool.
+           </li>
+           <li>
+             Beta access to JBrowse &ndash; <br>
+             A beta implementation of the 
+             <a href="https://jbrowse.org/" target="_blank">JBrowse Genome Browser</a>, is available from gene pages. Use the 
+             JBrowse Genome Browser link under the graphic Shortcuts on the gene page. 
+             <a href="/assets/JBrowseLink.png">Example Link Location</a>
+           </li>
+           <li>
+             New Gene Page STRING tool &ndash; <br>
+             The 'Protein features and properties' section now includes an option to submit the protein sequence 
+             to the <a href="https://string-db.org/" target="_blank">STRING</a> functional protein association network. 
+             <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5210637/" target="_blank">Szklarczyk et al</a>.
+           </li>
+           <li>
+             Result Table Improvements &ndash; <br>
+             Result column configurations and sorting are now saved for each strategy step and will be retained 
+             when you come back or when you share a strategy with someone else.
+           </li>
+           <li>
+             New Options for FASTA downloads &ndash; <br>
+             The header line of FASTA formatted downloads can be configured to contain only the gene ID.  The sequence can 
+             be configured to appear on a signle line or the standard 60 characters per line. 
+           </li>
+         </ul>
+       </div> 
+      </section>
        
        <section>
      <aside>

@@ -103,8 +103,8 @@ package ApiCommonWebsite::View::GraphPackage::Templates::Proteomics::NonRatio::D
 use EbrcWebsiteCommon::View::GraphPackage::ProfileSet;
 use EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet;
 use EbrcWebsiteCommon::Model::CannedQuery::PhenotypeRankedNthValues;
-use EbrcWebsiteCommon::Model::CannedQuery::PhenotypeRankedNthNames;
-
+use EbrcWebsiteCommon::Model::CannedQuery::PhenotypeRankedNthSourceIdNames;
+use Data::Dumper;
 
 # @Override
 sub init {
@@ -117,37 +117,40 @@ sub init {
 
   my @profileSets;
   foreach my $ps (@$specs) {
-    #my $go = $self->makeGraphObject($ps->{query}, $ps->{abbrev}, $ps->{name});
-    my $profileSet = $self->makeProfileSet($ps->{query}, $ps->{abbrev}, $ps->{name});
-    push @profileSets, $profileSet;
+    my @profileSet = $self->makeProfileSets($ps->{query}, $ps->{abbrev}, $ps->{name});
+    push @profileSets, @profileSet;
   }
-
   my $go = EbrcWebsiteCommon::View::GraphPackage::GGScatterPlot->new(@_);
-  $go->setDefaultYMin(0);
-  $go->setDefaultYMax(0.2);
-  $go->setDefaultXMin(0);
-  $go->setDefaultXMax(0.2);
   $go->setProfileSets(\@profileSets);
   $go->setYaxisLabel("Apicoplast Abundance");
   $go->setPartName("apico.er");
   $go->setPlotTitle("$id - ER vs. Apicoplast Abundance");
   $go->setXaxisLabel("ER Abundance");
+  $go->setColors(["grey", "red"]);
   $go->addAdjustProfile('
+profile.df.full$LEGEND[grepl("ALL", profile.df.full$PROFILE_FILE)] <- "All Genes"
+profile.df.full$LEGEND[!grepl("ALL", profile.df.full$PROFILE_FILE)] <- unlist(lapply(strsplit(profile.df.full$PROFILE_FILE[!grepl("ALL", profile.df.full$PROFILE_FILE)], "-"),"[",2)) 
 profile.df.full$PROFILE_FILE[grepl("Apico", profile.df.full$PROFILE_FILE)] <- "Apico"
 profile.df.full$PROFILE_FILE[grepl("ER", profile.df.full$PROFILE_FILE)] <- "ER"
-profile.df.full$ELEMENT_NAMES <- NULL
-profile.df.full$LEGEND <- NULL
+profile.df.full$ELEMENT_NAMES_NUMERIC <- NULL
 profile.df.full$Group.1 <- NULL
 profile.df.full$ELEMENT_ORDER <- NULL
 profile.df.full <- profile.df.full %>% spread(PROFILE_FILE, VALUE)
-profile.df.full$ELEMENT_NAMES_NUMERIC <- NULL
+profile.df.full$ELEMENT_NAMES <- NULL
 names(profile.df.full)[names(profile.df.full) == "ER"] <- "ELEMENT_NAMES_NUMERIC"
 names(profile.df.full)[names(profile.df.full) == "Apico"] <- "VALUE"
+profile.df.full$VALUE[profile.df.full$VALUE == 0] <- NA
+profile.df.full$ELEMENT_NAMES_NUMERIC[profile.df.full$ELEMENT_NAMES_NUMERIC == 0] <- NA
 profile.df.full$VALUE <- as.numeric(profile.df.full$VALUE)
 profile.df.full$ELEMENT_NAMES_NUMERIC <- as.numeric(profile.df.full$ELEMENT_NAMES_NUMERIC)
-profile
-profile.df.full$PROFILE_FILE = "Dummy";
+profile.df.full$PROFILE_FILE = "Dummy"
+profile.is.numeric <- TRUE
 ');
+  $go->setRPostscript("
+gp = gp + scale_x_log10() +
+  scale_y_log10() 
+");
+
   $self->setGraphObjects($go);
 
   return $self;
@@ -158,87 +161,56 @@ sub getSpecs {
             name => "Apicoplast Abundance",
             query => "SELECT ga.source_id, nafe.value
                       FROM apidbtuning.geneattributes ga, results.nafeatureexpression nafe
+                      , study.protocolappnode pan, study.studylink sl, study.study s
                       WHERE nafe.na_feature_id = ga.na_feature_id
-                      AND nafe.protocol_app_node_id = 1091365",
+                      AND pan.protocol_app_node_id = sl.protocol_app_node_id
+                      AND nafe.protocol_app_node_id = sl.protocol_app_node_id
+                      AND sl.study_id = s.study_id
+                      AND s.NAME = 'Apicoplast and ER Proteomes'
+                      AND pan.NAME LIKE 'Apicoplast%' ",
            },
            {abbrev => "ER",
             name => "ER Abundance",
             query => "SELECT ga.source_id, nafe.value
                       FROM apidbtuning.geneattributes ga, results.nafeatureexpression nafe
+                      , study.protocolappnode pan, study.studylink sl, study.study s
                       WHERE nafe.na_feature_id = ga.na_feature_id
-                      AND nafe.protocol_app_node_id = 1091374",
+                      AND pan.protocol_app_node_id = sl.protocol_app_node_id
+                      AND nafe.protocol_app_node_id = sl.protocol_app_node_id
+                      AND sl.study_id = s.study_id
+                      AND s.NAME = 'Apicoplast and ER Proteomes'
+                      AND pan.NAME LIKE 'ER%' ",
+
            },
       ];
 }
 
-sub makeProfileSet {
+sub makeProfileSets {
   my ($self, $sourceIdValueQuery, $abbrev, $name) = @_;
 
   my $id = $self->getId();
 
   my $goValuesCannedQueryCurve = EbrcWebsiteCommon::Model::CannedQuery::PhenotypeRankedNthValues->new
-      ( SourceIdValueQuery => $sourceIdValueQuery, N => 200, Name => "_${abbrev}_av", Id => 'ALL');
+      ( SourceIdValueQuery => $sourceIdValueQuery, N => 800, Name => "_${abbrev}_av", Id => 'ALL');
 
-  my $goNamesCannedQueryCurve = EbrcWebsiteCommon::Model::CannedQuery::PhenotypeRankedNthNames->new
-      ( SourceIdValueQuery => $sourceIdValueQuery, N => 200, Name => "_${abbrev}_aen", Id => 'ALL');
+  my $goNamesCannedQueryCurve = EbrcWebsiteCommon::Model::CannedQuery::PhenotypeRankedNthSourceIdNames->new
+      ( SourceIdValueQuery => $sourceIdValueQuery, N => 800, Name => "_${abbrev}_aen", Id => 'ALL');
 
+  my $goValuesCannedQueryGene = EbrcWebsiteCommon::Model::CannedQuery::PhenotypeRankedNthValues->new
+      ( SourceIdValueQuery => $sourceIdValueQuery, N => 800, Name => "_${abbrev}_gv", Id => $id);
+
+  my $goNamesCannedQueryGene = EbrcWebsiteCommon::Model::CannedQuery::PhenotypeRankedNthSourceIdNames->new
+      ( SourceIdValueQuery => $sourceIdValueQuery, N => 800, Name => "_${abbrev}_gen", Id => $id);
 
   my $goProfileSetCurve = EbrcWebsiteCommon::View::GraphPackage::ProfileSet->new("DUMMY");
   $goProfileSetCurve->setProfileCannedQuery($goValuesCannedQueryCurve);
   $goProfileSetCurve->setProfileNamesCannedQuery($goNamesCannedQueryCurve);
-
-  return($goProfileSetCurve);
-}
-
-
-
-sub makeGraphObject {
-  my ($self, $sourceIdValueQuery, $abbrev, $name) = @_;
-
-  my $id = $self->getId();
-
-  my $goValuesCannedQueryGene = EbrcWebsiteCommon::Model::CannedQuery::PhenotypeRankedNthValues->new
-      ( SourceIdValueQuery => $sourceIdValueQuery, N => 200, Name => "_${abbrev}_gv", Id => $id);
-
-  my $goNamesCannedQueryGene = EbrcWebsiteCommon::Model::CannedQuery::PhenotypeRankedNthNames->new
-      ( SourceIdValueQuery => $sourceIdValueQuery, N => 200, Name => "_${abbrev}_gen", Id => $id);
-
-
-  my $goValuesCannedQueryCurve = EbrcWebsiteCommon::Model::CannedQuery::PhenotypeRankedNthValues->new
-      ( SourceIdValueQuery => $sourceIdValueQuery, N => 200, Name => "_${abbrev}_av", Id => 'ALL');
-
-  my $goNamesCannedQueryCurve = EbrcWebsiteCommon::Model::CannedQuery::PhenotypeRankedNthNames->new
-      ( SourceIdValueQuery => $sourceIdValueQuery, N => 200, Name => "_${abbrev}_aen", Id => 'ALL');
-
 
   my $goProfileSetGene = EbrcWebsiteCommon::View::GraphPackage::ProfileSet->new("DUMMY");
   $goProfileSetGene->setProfileCannedQuery($goValuesCannedQueryGene);
   $goProfileSetGene->setProfileNamesCannedQuery($goNamesCannedQueryGene);
 
-  my $goProfileSetCurve = EbrcWebsiteCommon::View::GraphPackage::ProfileSet->new("DUMMY");
-  $goProfileSetCurve->setProfileCannedQuery($goValuesCannedQueryCurve);
-  $goProfileSetCurve->setProfileNamesCannedQuery($goNamesCannedQueryCurve);
-
-  my $go = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot->new(@_);
-
-  $go->setDefaultYMin(0);
-  $go->setDefaultYMax(0.2);
-  $go->setProfileSets([$goProfileSetCurve, $goProfileSetGene]);
-  $go->setYaxisLabel($name);
-  $go->setColors(["grey", "red"]);
-  #$go->setColors(["grey", "blue"]);
-  $go->setPartName($abbrev);
-  $go->setPlotTitle("$id - $name");
-  $go->setXaxisLabel("");
-
-
-  my $legend = ["All Genes", $id];
-
-  $go->setHasExtraLegend(1);
-  $go->setLegendLabels($legend);
-
-
-  return $go;
+  return(($goProfileSetCurve, $goProfileSetGene));
 }
 
 1;
