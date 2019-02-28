@@ -2,6 +2,8 @@ package org.apidb.apicommon.service.services;
 
 import static org.apidb.apicommon.model.TranscriptUtil.isTranscriptRecordClass;
 
+import javax.ws.rs.PathParam;
+
 import org.apache.log4j.Logger;
 import org.apidb.apicommon.model.filter.GeneBooleanFilter;
 import org.gusdb.fgputil.validation.ValidationLevel;
@@ -19,7 +21,7 @@ public class ApiStepService extends StepService {
 
   private static final Logger LOG = Logger.getLogger(ApiStepService.class);
 
-  public ApiStepService(String uid) {
+  public ApiStepService(@PathParam(USER_ID_PATH_PARAM) String uid) {
     super(uid);
   }
 
