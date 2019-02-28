@@ -161,7 +161,7 @@ sub getSpecs {
   return [ {abbrev => "Apico",
             name => "Apicoplast Abundance",
             query => "SELECT ga.source_id,
-                      CASE WHEN (nafe.value = 0 ) THEN 0.0000001
+                      CASE WHEN (nafe.value = 0 ) THEN 1e-9
                       ELSE nafe.value END as value
 		      FROM apidbtuning.geneattributes ga, results.nafeatureexpression nafe
                       , study.protocolappnode pan, study.studylink sl, study.study s
@@ -175,7 +175,7 @@ sub getSpecs {
            {abbrev => "ER",
             name => "ER Abundance",
             query => "SELECT ga.source_id,
-                      CASE WHEN (nafe.value = 0 ) THEN 0.0000001
+                      CASE WHEN (nafe.value = 0 ) THEN 1e-9
                       ELSE nafe.value END as value
                       FROM apidbtuning.geneattributes ga, results.nafeatureexpression nafe
                       , study.protocolappnode pan, study.studylink sl, study.study s
