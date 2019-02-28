@@ -139,7 +139,7 @@ profile.df.full <- profile.df.full %>% spread(PROFILE_FILE, VALUE)
 profile.df.full$ELEMENT_NAMES <- NULL
 names(profile.df.full)[names(profile.df.full) == "ER"] <- "ELEMENT_NAMES_NUMERIC"
 names(profile.df.full)[names(profile.df.full) == "Apico"] <- "VALUE"
-profile.df.full$VALUE[profile.df.full$VALUE == 0] <- NA
+#profile.df.full$VALUE[profile.df.full$VALUE == 0] <- 0.0000001
 profile.df.full$ELEMENT_NAMES_NUMERIC[profile.df.full$ELEMENT_NAMES_NUMERIC == 0] <- NA
 profile.df.full$VALUE <- as.numeric(profile.df.full$VALUE)
 profile.df.full$ELEMENT_NAMES_NUMERIC <- as.numeric(profile.df.full$ELEMENT_NAMES_NUMERIC)
@@ -159,8 +159,10 @@ gp = gp + scale_x_log10() +
 sub getSpecs {
   return [ {abbrev => "Apico",
             name => "Apicoplast Abundance",
-            query => "SELECT ga.source_id, nafe.value
-                      FROM apidbtuning.geneattributes ga, results.nafeatureexpression nafe
+            query => "SELECT ga.source_id,
+                      CASE WHEN (nafe.value = 0 ) THEN 0.0000001
+                      ELSE nafe.value END as value
+		      FROM apidbtuning.geneattributes ga, results.nafeatureexpression nafe
                       , study.protocolappnode pan, study.studylink sl, study.study s
                       WHERE nafe.na_feature_id = ga.na_feature_id
                       AND pan.protocol_app_node_id = sl.protocol_app_node_id
@@ -171,7 +173,9 @@ sub getSpecs {
            },
            {abbrev => "ER",
             name => "ER Abundance",
-            query => "SELECT ga.source_id, nafe.value
+            query => "SELECT ga.source_id,
+                      CASE WHEN (nafe.value = 0 ) THEN 0.0000001
+                      ELSE nafe.value END as value
                       FROM apidbtuning.geneattributes ga, results.nafeatureexpression nafe
                       , study.protocolappnode pan, study.studylink sl, study.study s
                       WHERE nafe.na_feature_id = ga.na_feature_id
