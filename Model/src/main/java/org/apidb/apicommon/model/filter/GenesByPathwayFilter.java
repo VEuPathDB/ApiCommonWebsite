@@ -8,7 +8,6 @@ import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.answer.AnswerValue;
 import org.gusdb.wdk.model.answer.spec.SimpleAnswerSpec;
-import org.gusdb.wdk.model.filter.FilterSummary;
 import org.gusdb.wdk.model.filter.StepFilter;
 import org.gusdb.wdk.model.question.Question;
 import org.json.JSONException;
@@ -87,7 +86,7 @@ public class GenesByPathwayFilter extends StepFilter {
   }
 
   @Override
-  public FilterSummary getSummary(AnswerValue answer, String idSql)
+  public JSONObject getSummaryJson(AnswerValue answer, String idSql)
       throws WdkModelException {
     // the inputs to this filter are discrete but not small; not feasible to provide summary
     return null;

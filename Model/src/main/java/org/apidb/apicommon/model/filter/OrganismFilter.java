@@ -20,7 +20,6 @@ import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.answer.AnswerValue;
 import org.gusdb.wdk.model.answer.spec.SimpleAnswerSpec;
-import org.gusdb.wdk.model.filter.FilterSummary;
 import org.gusdb.wdk.model.filter.StepFilter;
 import org.gusdb.wdk.model.query.SqlQuery;
 import org.gusdb.wdk.model.question.Question;
@@ -147,12 +146,6 @@ public class OrganismFilter extends StepFilter {
   @Override
   public String getDisplayValue(AnswerValue answer, JSONObject jsValue) throws WdkModelException {
     return getOrganismNameArray(jsValue).map(names -> FormatUtil.join(names, ", ")).orElse("");
-  }
-
-  @Override
-  @Deprecated // used to display summary in JSPs; use getSummaryJson() instead
-  public FilterSummary getSummary(AnswerValue answer, String idSql) throws WdkModelException {
-    throw new UnsupportedOperationException("This filter does not support JSP rendering.");
   }
 
   @Override

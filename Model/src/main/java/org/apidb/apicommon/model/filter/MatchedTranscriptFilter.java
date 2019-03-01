@@ -19,7 +19,6 @@ import org.gusdb.fgputil.validation.ValidationLevel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.answer.AnswerValue;
 import org.gusdb.wdk.model.answer.spec.SimpleAnswerSpec;
-import org.gusdb.wdk.model.filter.FilterSummary;
 import org.gusdb.wdk.model.filter.ListColumnFilterSummary;
 import org.gusdb.wdk.model.filter.StepFilter;
 import org.gusdb.wdk.model.question.Question;
@@ -41,7 +40,7 @@ public class MatchedTranscriptFilter extends StepFilter {
   }
 
   @Override
-  public FilterSummary getSummary(AnswerValue answer, String idSql) throws WdkModelException {
+  public JSONObject getSummaryJson(AnswerValue answer, String idSql) throws WdkModelException {
 
     Map<String, Integer> counts = new LinkedHashMap<>();
     // group by the query and get a count
@@ -68,7 +67,7 @@ public class MatchedTranscriptFilter extends StepFilter {
     finally {
       SqlUtils.closeResultSetAndStatement(resultSet, null);
     }
-    return new ListColumnFilterSummary(counts);
+    return new ListColumnFilterSummary(counts).toJson();
 
   }
 

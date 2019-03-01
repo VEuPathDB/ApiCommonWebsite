@@ -16,7 +16,6 @@ import org.gusdb.wdk.model.answer.spec.FilterOption;
 import org.gusdb.wdk.model.answer.spec.FilterOptionList;
 import org.gusdb.wdk.model.answer.spec.FilterOptionList.FilterOptionListBuilder;
 import org.gusdb.wdk.model.answer.spec.SimpleAnswerSpec;
-import org.gusdb.wdk.model.filter.FilterSummary;
 import org.gusdb.wdk.model.filter.StepFilter;
 import org.gusdb.wdk.model.question.Question;
 import org.gusdb.wdk.model.user.User;
@@ -98,7 +97,7 @@ public class RepresentativeTranscriptFilter extends StepFilter {
   }
 
   @Override
-  public FilterSummary getSummary(AnswerValue answer, String idSql) throws WdkModelException {
+  public JSONObject getSummaryJson(AnswerValue answer, String idSql) throws WdkModelException {
     throw new UnsupportedOperationException("This filter does not provide a FilterSummary");
   }
 
