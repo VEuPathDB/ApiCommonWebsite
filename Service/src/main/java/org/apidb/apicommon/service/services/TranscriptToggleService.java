@@ -1,7 +1,6 @@
 package org.apidb.apicommon.service.services;
 
 import javax.ws.rs.Consumes;
-import javax.ws.rs.ForbiddenException;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -36,14 +35,9 @@ public class TranscriptToggleService extends AbstractWdkService {
     boolean filterTurnedOn = input.getBoolean(RepresentativeTranscriptFilter.FILTER_NAME);
     LOG.info("Action is to turn filter: " + filterTurnedOn);
 
-    Step step = getWdkModel().getStepFactory().getStepById(stepId, ValidationLevel.SYNTACTIC)
+    Step step = getWdkModel().getStepFactory().getStepByIdAndUserId(
+        stepId, getSessionUser().getUserId(), ValidationLevel.SYNTACTIC)
         .orElseThrow(() -> new NotFoundException("No step exists with ID " + stepId));
-
-    if (getSessionUser().getUserId() != step.getUser().getUserId()) {
-      LOG.warn("Attempt made to edit Step " + stepId + " by non-owner (user id " +
-          getSessionUser().getUserId() + "); session expired?");
-      throw new ForbiddenException(AbstractWdkService.PERMISSION_DENIED);
-    }
 
     AnswerSpecBuilder newSpec = AnswerSpec.builder(step.getAnswerSpec());
     if (filterTurnedOn) {
