@@ -41,7 +41,12 @@ sub run {
 
   $self->setSqls();
 
-  my $seqIO = Bio::SeqIO->new(-fh => \*STDOUT, -format => 'fasta');
+  my $seqIO;
+  if ($self->{noLineBreaks}) {
+    $seqIO = Bio::SeqIO->new(-fh => \*STDOUT, -format => 'fasta', -width=>"32766");
+  } else {
+    $seqIO = Bio::SeqIO->new(-fh => \*STDOUT, -format => 'fasta');
+  }
 
   if ($self->{type} eq 'genomic') {
     $self->handleGenomic($dbh, $seqIO);
@@ -71,6 +76,9 @@ sub processParams {
   $self->{startAnchor3}   = $cgi->param('startAnchor3');
   $self->{endAnchor3} = $cgi->param('endAnchor3');
   $self->{sourceIdFilter} = $cgi->param('sourceIdFilter');
+  $self->{onlyIdDefLine} = $cgi->param('onlyIdDefLine');
+  $self->{noLineBreaks} = $cgi->param('noLineBreaks');
+
 
   # to allow for NOT mapping an id to the latest one
   $self->{ignore_gene_alias}= $cgi->param('ignore_gene_alias');
@@ -485,8 +493,12 @@ EOSQL
 sub writeSeq {
   my ($self, $seqIO, $seq, $desc, $displayId, $geneStart, $geneEnd, $isReversed) = @_;
 
-
   my $length = length($seq);
+  if ($self->{onlyIdDefLine}){
+    $desc = '';
+  } else {
+    $desc = $desc . "| length=" . $length;
+  }
 
   if ($length == 0) {
     print "$displayId $desc | length=0\n\n";
@@ -494,7 +506,7 @@ sub writeSeq {
 
     my $bioSeq = Bio::Seq->new(-display_id => $displayId,
 			       -seq => $seq,
-			       -description => "$desc | length=$length",
+			       -description => $desc,
 			       -alphabet => $self->{type} ne "protein" ?
 			       "dna" : "protein");
     $bioSeq = $bioSeq->revcom() if $isReversed;

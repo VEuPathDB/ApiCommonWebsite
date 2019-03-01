@@ -29,6 +29,85 @@
 
 
 <record>
+  <attribute name="headline">ToxoDB 42 Released</attribute>
+  <attribute name="date">28 Feb 2019 13:00</attribute>
+  <attribute name="tag">ToxoDB2_19_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of ToxoDB 42</strong></p>
+    
+    <section>
+    <h3><b>Release 42 Webinar</b></h3>
+    <div style="margin-left: 3em;">
+      Join us on March 20, 2019 10:00-11:00 AM EDT for our Release 42 Highlights webinar where we will discuss and 
+      demonstrate new features and data available in release 42 of EuPathDB sites. 
+      <a href="https://attendee.gotowebinar.com/register/6755367952348158722">Register here</a>
+    </div>
+    </section>
+      
+      <section>
+      <h3><b>New data in ToxoDB 42</b></h3>
+      <div style="margin-left: 3em;">
+        <a href="http://toxodb.org/toxo/app/record/dataset/XXX">RFLP genotypes of <i>T. gondii</i> Brazilian isolates from pig and goat for human consumption</a> &mdash; 
+        Multilocus PCR-RFLP genotyping of <i>Toxoplasma gondii</i> isolates from farm animals raised and slaughtered in Piauí, Brazil by origin of samples.
+        <a href="https://www.ncbi.nlm.nih.gov/pubmed/29080759">R&ecirc;go et al</a>.
+      </section>
+      
+      <section>
+      <h3><b>New features in ToxoDB 42</b></h3>
+      <div style="margin-left: 3em;">
+         <ul>
+           <li>
+             Updated Alignment Tool on Gene Pages &ndash; <br>
+             The Clustal Omega alignment tool in the 'Orthologs and Paralogs within EuPathDB' table now 
+             accommodates protein, CDS and genomic sequence alignments. To run Clustal Omega, select genes from the table. Then choose the sequence 
+             type and initiate the alignment with the 'Run Clutal Omega for selected genes' button. This tool replaces the 'Retrieve multiple 
+             sequence alignment or multi-FASTA' tool.
+           </li>
+           <li>
+             Beta access to JBrowse &ndash; <br>
+             A beta implementation of the 
+             <a href="https://jbrowse.org/" target="_blank">JBrowse Genome Browser</a>, is available from gene pages. Use the 
+             JBrowse Genome Browser link under the graphic Shortcuts on the gene page. 
+             <a href="/assets/JBrowseLink.png">Example Link Location</a>
+           </li>
+           <li>
+             New Gene Page STRING tool &ndash; <br>
+             The 'Protein features and properties' section now includes an option to submit the protein sequence 
+             to the <a href="https://string-db.org/" target="_blank">STRING</a> functional protein association network. 
+             <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5210637/" target="_blank">Szklarczyk et al</a>.
+           </li>
+           <li>
+             Result Table Improvements &ndash; <br>
+             Result column configurations and sorting are now saved for each strategy step and will be retained 
+             when you come back or when you share a strategy with someone else.
+           </li>
+           <li>
+             New Options for FASTA downloads &ndash; <br>
+             The header line of FASTA formatted downloads can be configured to contain only the gene ID.  The sequence can 
+             be configured to appear on a signle line or the standard 60 characters per line. 
+           </li>
+         </ul>
+       </div> 
+      </section>
+      
+      <section>
+         <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+
+    ]]>
+  </attribute>
+</record>
+
+
+
+<record>
   <attribute name="headline">ToxoDB 41 Released</attribute>
   <attribute name="date">13 Dec 2018 13:00</attribute>
   <attribute name="tag">ToxoDB12_18_release</attribute>

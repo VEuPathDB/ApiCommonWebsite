@@ -38,9 +38,28 @@ public class JBrowseService extends AbstractWdkService {
     @GET
     @Path("stats/global")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getJbrowseFeatures(@SuppressWarnings("unused") @QueryParam("feature") String feature) {
+    public Response getJbrowseGlobalStats(@SuppressWarnings("unused") @QueryParam("feature") String feature) {
         return Response.ok(new JSONObject().put("featureDensity", 0.0002).toString()).build();
     }
+
+
+    
+
+    @GET
+    @Path("stats/regionFeatureDensities/{refseq_name}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getJbrowseRegionFeatureDensities(@PathParam("refseq_name") String refseqName, 
+                                                     @Context UriInfo uriInfo,
+                                                     @QueryParam("feature") String feature,
+                                                     @QueryParam("start") String start,
+                                                     @QueryParam("end") String end)  throws IOException, InterruptedException {
+
+        String result = featuresAndRegionStats(refseqName, uriInfo, feature, start, end);
+
+        return Response.ok(result).build();
+    }
+
+
 
     @GET
     @Path("features/{refseq_name}")
@@ -51,26 +70,8 @@ public class JBrowseService extends AbstractWdkService {
                                        @QueryParam("start") String start,
                                        @QueryParam("end") String end)  throws IOException, InterruptedException {
 
-        String gusHome = getWdkModel().getGusHome();
-        String projectId = getWdkModel().getProjectId();
 
-        List<String> command = new ArrayList<String>();
-        command.add(gusHome + "/bin/jbrowseFeatures");
-        command.add(gusHome);
-        command.add(projectId);
-        command.add(refseqName);
-        command.add(start);
-        command.add(end);
-        command.add(feature);
-
-        MultivaluedMap<String, String> queryParams = uriInfo.getQueryParameters(); 
-        for (String key : queryParams.keySet()) {
-            String value = queryParams.getFirst(key);
-
-            command.add(key + "=" + value);
-        }
-
-        String result = jsonStringFromCommand(command);
+        String result = featuresAndRegionStats(refseqName, uriInfo, feature, start, end);
 
         return Response.ok(result).build();
     }
@@ -80,11 +81,11 @@ public class JBrowseService extends AbstractWdkService {
     @Path("dnaseq/{organismAbbrev}/{study}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getJbrowseDNASeqTracks(@PathParam("organismAbbrev") String organismAbbrev, 
+                                           @QueryParam("hasCNVData") String hasCNVData,
                                            @PathParam("study") String study) throws IOException, InterruptedException {
 
         String gusHome = getWdkModel().getGusHome();
         String projectId = getWdkModel().getProjectId();
-        String buildNumber = getWdkModel().getBuildNumber();
 
         List<String> command = new ArrayList<String>();
         command.add(gusHome + "/bin/jbrowseDNASeqTracks");
@@ -92,12 +93,33 @@ public class JBrowseService extends AbstractWdkService {
         command.add(organismAbbrev);
         command.add(study);
         command.add(projectId);
-        command.add(buildNumber);
+        command.add(hasCNVData);
 
         String result = jsonStringFromCommand(command);
 
         return Response.ok(result).build();
     }
+
+
+    @GET
+    @Path("rnaseqJunctions/{organismAbbrev}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getJbrowseRNASeqJunctionTracks(@PathParam("organismAbbrev") String organismAbbrev)  throws IOException, InterruptedException {
+
+        String gusHome = getWdkModel().getGusHome();
+        String projectId = getWdkModel().getProjectId();
+
+        List<String> command = new ArrayList<String>();
+        command.add(gusHome + "/bin/jbrowseRNASeqJunctionTracks");
+        command.add(gusHome);
+        command.add(organismAbbrev);
+        command.add(projectId);
+
+        String result = jsonStringFromCommand(command);
+
+        return Response.ok(result).build();
+    }
+
 
 
     @GET
@@ -112,8 +134,6 @@ public class JBrowseService extends AbstractWdkService {
         String projectId = getWdkModel().getProjectId();
         String buildNumber = getWdkModel().getBuildNumber();
         String webservicesDir = getWdkModel().getProperties().get("WEBSERVICEMIRROR");
-
-        System.err.println("WEBSERVICEMIRROR=" + webservicesDir);
 
         List<String> command = new ArrayList<String>();
         command.add(gusHome + "/bin/jbrowseRNASeqTracks");
@@ -131,15 +151,10 @@ public class JBrowseService extends AbstractWdkService {
         return Response.ok(result).build();
     }
 
-
-
     @GET
-    @Path("rnaseq/bigwig/{orgNameForFileNames}/{dataset}/{sampleDir}/{file}")
+    @Path("store")
     @Produces(MediaType.APPLICATION_OCTET_STREAM)
-    public Response getRNASeqBigwig(@PathParam("orgNameForFileNames") String orgNameForFileNames, 
-                                    @PathParam("dataset") String dataset,
-                                    @PathParam("sampleDir") String sampleDir,
-                                    @PathParam("file") String file,
+    public Response getJBrowseStore(@QueryParam("data") String data,
                                     @HeaderParam("Range") String fileRange) throws WdkModelException {
 
         String projectId = getWdkModel().getProjectId();
@@ -150,14 +165,29 @@ public class JBrowseService extends AbstractWdkService {
             webservicesDir + "/" +
             projectId + "/" +
             "build-" + buildNumber + "/" +
-            orgNameForFileNames + "/" +
-            "bigwig" + "/" +
-            dataset + "/" +
-            sampleDir + "/" +
-            file);
+            data);
 
         return getFileChunkResponse(Paths.get(path), parseRangeHeaderValue(fileRange));
     }
+
+
+    @GET
+    @Path("auxiliary")
+    @Produces(MediaType.APPLICATION_OCTET_STREAM)
+    public Response getAuxiliaryFile(@QueryParam("data") String data,
+                                    @HeaderParam("Range") String fileRange) throws WdkModelException {
+
+        String webservicesDir = getWdkModel().getProperties().get("WEBSERVICEMIRROR");
+
+        String auxPath = webservicesDir.replaceAll("webServices", "auxiliary");
+
+        String path = checkPath(
+            auxPath + "/" +
+            data);
+
+        return getFileChunkResponse(Paths.get(path), parseRangeHeaderValue(fileRange));
+    }
+
 
     private String checkPath(String fileSystemPath) {
       // TODO: think about whether other checks belong here
@@ -216,6 +246,31 @@ public class JBrowseService extends AbstractWdkService {
         return Response.ok(result).build();
     }
 
+
+    
+    public String featuresAndRegionStats (String refseqName, UriInfo uriInfo, String feature, String start, String end)  throws IOException, InterruptedException {
+
+        String gusHome = getWdkModel().getGusHome();
+        String projectId = getWdkModel().getProjectId();
+
+        List<String> command = new ArrayList<String>();
+        command.add(gusHome + "/bin/jbrowseFeatures");
+        command.add(gusHome);
+        command.add(projectId);
+        command.add(refseqName);
+        command.add(start);
+        command.add(end);
+        command.add(feature);
+
+        MultivaluedMap<String, String> queryParams = uriInfo.getQueryParameters(); 
+        for (String key : queryParams.keySet()) {
+            String value = queryParams.getFirst(key);
+
+            command.add(key + "=" + value);
+        }
+
+        return jsonStringFromCommand(command);
+    }
 
     public String jsonStringFromCommand (List<String> command) throws IOException, InterruptedException {
 
