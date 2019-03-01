@@ -25,6 +25,7 @@ import org.gusdb.wdk.model.user.Step;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.semanticweb.owlapi.util.InferredAxiomGenerator;
 
 /**
  * 
@@ -44,7 +45,15 @@ public class GeneBooleanFilter extends StepFilter {
   @Override
   public FilterSummary getSummary(AnswerValue answer, String idSql) throws WdkModelException,
       WdkUserException {
+    return new ListColumnFilterSummary(getCounts(answer, idSql));
+  }
 
+  @Override
+  public JSONObject getSummaryJson(AnswerValue answer, String idSql) throws WdkModelException, WdkUserException {
+    return new JSONObject(getCounts(answer, idSql));
+  }
+
+  private Map<String, Integer> getCounts(AnswerValue answer, String idSql) throws WdkModelException, WdkUserException {
     Map<String, Integer> counts = new LinkedHashMap<>();
     // group by the query and get a count
 
@@ -71,7 +80,7 @@ public class GeneBooleanFilter extends StepFilter {
     finally {
       SqlUtils.closeResultSetAndStatement(resultSet, null);
     }
-    return new ListColumnFilterSummary(counts);
+    return counts;
   }
 
   private String getSummarySql(String idSql) {

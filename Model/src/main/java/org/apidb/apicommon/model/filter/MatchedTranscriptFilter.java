@@ -40,7 +40,16 @@ public class MatchedTranscriptFilter extends StepFilter {
   @Override
   public FilterSummary getSummary(AnswerValue answer, String idSql) throws WdkModelException,
       WdkUserException {
+    return new ListColumnFilterSummary(getSummaryCounts(answer, idSql));
 
+  }
+
+  @Override
+  public JSONObject getSummaryJson(AnswerValue answer, String idSql) throws WdkModelException, WdkUserException {
+    return new JSONObject(getSummaryCounts(answer, idSql));
+  }
+
+  private Map<String, Integer> getSummaryCounts(AnswerValue answer, String idSql) throws WdkModelException, WdkUserException {
     Map<String, Integer> counts = new LinkedHashMap<>();
     // group by the query and get a count
 
@@ -66,8 +75,8 @@ public class MatchedTranscriptFilter extends StepFilter {
     finally {
       SqlUtils.closeResultSetAndStatement(resultSet, null);
     }
-    return new ListColumnFilterSummary(counts);
 
+    return counts;
   }
 
   private String getSummarySql(String idSql) {
