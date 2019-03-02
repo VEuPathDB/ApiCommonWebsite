@@ -11,6 +11,7 @@ import static org.gusdb.fgputil.runtime.GusHome.getGusHome;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.Function;
 
 import org.gusdb.fgputil.MapBuilder;
@@ -111,7 +112,7 @@ public class SingleTableRecordStreamTest {
             .setQuestionName(QUESTION_NAME)
             .setParamValues(PARAMETERS)
             .setFilterOptions(FILTERS))
-        .buildRunnable(new UserCache(user), null);
+        .buildRunnable(new UserCache(user), Optional.empty());
   }
 
   private static Function<AttributeField, String> getFieldValue(final Map<String, AttributeValue> row) {

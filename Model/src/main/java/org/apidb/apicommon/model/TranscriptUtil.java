@@ -1,6 +1,7 @@
 package org.apidb.apicommon.model;
 
 import java.util.Map;
+import java.util.Optional;
 
 import org.gusdb.fgputil.MapBuilder;
 import org.gusdb.fgputil.validation.ValidObjectFactory.RunnableObj;
@@ -57,7 +58,7 @@ public class TranscriptUtil {
 
     RunnableObj<Step> step = Step.builder(model, user.getUserId(), model.getStepFactory().getNewStepId())
         .setAnswerSpec(AnswerSpec.builder(transcriptAnswer.getAnswerSpec()))
-        .buildRunnable(new UserCache(user), null);
+        .buildRunnable(new UserCache(user), Optional.empty());
 
     Map<String, String> transformParams = new MapBuilder<String, String>(
         paramName, String.valueOf(step.get().getStepId())).toMap();
