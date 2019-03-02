@@ -85,7 +85,7 @@ public class SingleTableRecordStreamTest {
          PrintStream out = (args.length == 0 ? System.out : new PrintStream(new FileOutputStream(args[0])))) {
       RunnableObj<Step> step = createStep(model);
       AnswerValue answer = 
-          isTranscriptQuestion(step.getObject().getAnswerSpec().getQuestion()) ?
+          isTranscriptQuestion(step.get().getAnswerSpec().getQuestion()) ?
           transformToGeneAnswer(AnswerValueFactory.makeAnswer(step)) :
           AnswerValueFactory.makeAnswer(step);
       answer = answer.cloneWithNewPaging(0, -1); // want full results

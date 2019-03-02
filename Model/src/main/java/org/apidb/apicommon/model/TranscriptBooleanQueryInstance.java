@@ -13,7 +13,7 @@ public class TranscriptBooleanQueryInstance extends BooleanQueryInstance {
 
   public TranscriptBooleanQueryInstance(RunnableObj<QueryInstanceSpec> spec) {
     super(spec);
-    if (!(spec.getObject().getQuery() instanceof TranscriptBooleanQuery)) {
+    if (!(spec.get().getQuery() instanceof TranscriptBooleanQuery)) {
       throw new IllegalStateException("Spec passed to BooleanQueryInstance does not contain a BooleanQuery");
     }
     genebqi = new GeneBooleanQueryInstance(spec);

@@ -60,14 +60,14 @@ public class TranscriptUtil {
         .buildRunnable(new UserCache(user), null);
 
     Map<String, String> transformParams = new MapBuilder<String, String>(
-        paramName, String.valueOf(step.getObject().getStepId())).toMap();
+        paramName, String.valueOf(step.get().getStepId())).toMap();
 
     AnswerValue geneAnswer = AnswerValueFactory.makeAnswer(transcriptAnswer.getUser(), AnswerSpec
         .builder(question.getWdkModel())
         .setQuestionName(XFORM_QUESTION_NAME)
         .setParamValues(transformParams)
         .setAssignedWeight(10)
-        .buildRunnable(transcriptAnswer.getUser(), new ListStepContainer(step.getObject())));
+        .buildRunnable(transcriptAnswer.getUser(), new ListStepContainer(step.get())));
 
     // make sure gene answer uses same page size as transcript answer
     return geneAnswer.cloneWithNewPaging(transcriptAnswer.getStartIndex(), transcriptAnswer.getEndIndex());
