@@ -232,6 +232,8 @@ sub createHTML {
   my ($outfile, $cgi, %origins) = @_;
   open(O, "$outfile") or die "cant open $outfile for reading:$!";
  my $userOutFormat = $cgi->param('clustalOutFormat');
+ my $alignmentElse = "";
+ 
  if ($userOutFormat eq "clu"){
   my %hash;
   tie %hash, "Tie::IxHash";
@@ -276,10 +278,14 @@ sub createHTML {
                                                    show_matches      => 1})); 
 
   }
-  else{
-	# Add in while loop and sub tab char. 
-    print $cgi->pre(<O>);
+ else{
+	while(<O>){
+	$alignmentElse = $alignmentElse . $_;
+	#print $_;  #the linespacing is incorrect with this.
+	}
+	print $cgi->pre($alignmentElse);
    }
+   close O;
 }
 
 1;
