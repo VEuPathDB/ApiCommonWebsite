@@ -203,10 +203,12 @@ EOSQL
   print OUT $sequence;
   close OUT;
 
-  my $cmd = "/usr/bin/clustalo -v --infile=$infile --outfile=$outfile --outfmt=clu --output-order=tree-order --guidetree-out=$dndfile --force > $tmpfile";
+  my $userOutFormat = $cgi->param('clustalOutFormat');
+  #my $userOutFormat = "clu";
+  my $cmd = "/usr/bin/clustalo -v --infile=$infile --outfile=$outfile --outfmt=$userOutFormat --output-order=tree-order --guidetree-out=$dndfile --force > $tmpfile";
   system($cmd);
   my %origins = ();
-#  my @alignments = ();
+  my @alignments = ();
   &createHTML($outfile,$cgi,%origins);
      
   open(D, "$dndfile");
@@ -221,19 +223,22 @@ EOSQL
 
 sub error {
   my ($msg) = @_;
-
   print "ERROR: $msg\n\n";
   exit(1);
 }
 
 
 sub createHTML {
-    my ($outfile, $cgi, %origins) = @_;
+  my ($outfile, $cgi, %origins) = @_;
   open(O, "$outfile") or die "cant open $outfile for reading:$!";
+ my $userOutFormat = $cgi->param('clustalOutFormat');
+ my $alignmentElse = "";
+ 
+ if ($userOutFormat eq "clu"){
   my %hash;
   tie %hash, "Tie::IxHash";
-
-  while(<O>) {
+ 
+  while(<O>) { 
     chomp;
     if ($_ =~/CLUSTAL O/) {
   print $cgi->pre("Clustal Omega 1.2.3 Multiple Sequence Alignments\n");
@@ -272,7 +277,15 @@ sub createHTML {
                                                    show_similarities => 1, 
                                                    show_matches      => 1})); 
 
+  }
+ else{
+	while(<O>){
+	$alignmentElse = $alignmentElse . $_;
+	#print $_;  #the linespacing is incorrect with this.
+	}
+	print $cgi->pre($alignmentElse);
+   }
+   close O;
 }
-
 
 1;
