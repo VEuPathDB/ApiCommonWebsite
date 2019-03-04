@@ -78,22 +78,17 @@ public class JBrowseService extends AbstractWdkService {
 
 
     @GET
-    @Path("dnaseq/{organismAbbrev}/{study}")
+    @Path("dnaseq/{organismAbbrev}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getJbrowseDNASeqTracks(@PathParam("organismAbbrev") String organismAbbrev, 
-                                           @QueryParam("hasCNVData") String hasCNVData,
-                                           @PathParam("study") String study) throws IOException, InterruptedException {
+    public Response getJbrowseDNASeqTracks(@PathParam("organismAbbrev") String organismAbbrev) throws IOException, InterruptedException {
 
         String gusHome = getWdkModel().getGusHome();
         String projectId = getWdkModel().getProjectId();
 
         List<String> command = new ArrayList<String>();
         command.add(gusHome + "/bin/jbrowseDNASeqTracks");
-        command.add(gusHome);
         command.add(organismAbbrev);
-        command.add(study);
         command.add(projectId);
-        command.add(hasCNVData);
 
         String result = jsonStringFromCommand(command);
 
