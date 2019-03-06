@@ -25,7 +25,6 @@ import org.gusdb.wdk.model.user.Step;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.semanticweb.owlapi.util.InferredAxiomGenerator;
 
 /**
  * 
@@ -37,6 +36,8 @@ public class GeneBooleanFilter extends StepFilter {
   protected static final String COLUMN_COUNT = "count";
   public static final String GENE_BOOLEAN_FILTER_ARRAY_KEY = "gene_boolean_filter_array";
 
+  private static enum Value { YY, YN, NY, NN }
+
   @Override
   public String getKey() {
     return GENE_BOOLEAN_FILTER_ARRAY_KEY;
@@ -45,16 +46,20 @@ public class GeneBooleanFilter extends StepFilter {
   @Override
   public FilterSummary getSummary(AnswerValue answer, String idSql) throws WdkModelException,
       WdkUserException {
-    return new ListColumnFilterSummary(getCounts(answer, idSql));
+    return new ListColumnFilterSummary(getSummaryCounts(answer, idSql));
   }
 
   @Override
   public JSONObject getSummaryJson(AnswerValue answer, String idSql) throws WdkModelException, WdkUserException {
-    return new JSONObject(getCounts(answer, idSql));
+    return new JSONObject(getSummaryCounts(answer, idSql));
   }
 
-  private Map<String, Integer> getCounts(AnswerValue answer, String idSql) throws WdkModelException, WdkUserException {
+  private Map<String, Integer> getSummaryCounts(AnswerValue answer, String idSql) throws WdkModelException, WdkUserException {
     Map<String, Integer> counts = new LinkedHashMap<>();
+    for (Value value: Value.values()) {
+      counts.put(value.name(), 0);
+    }
+
     // group by the query and get a count
 
     // the input idSql has filters applied, and they might strip off dyn columns. join those back in using the
@@ -171,13 +176,13 @@ public class GeneBooleanFilter extends StepFilter {
   public static JSONObject getDefaultValue(String booleanOperatorValue) throws WdkModelException {
     BooleanOperator op = BooleanOperator.parse(booleanOperatorValue);
     switch (op) {
-      case UNION: return getFilterValueArray("YY", "YN", "NY");
-      case INTERSECT: return getFilterValueArray("YY");
-      case LEFT_MINUS: return getFilterValueArray("YN");
-      case RIGHT_MINUS: return getFilterValueArray("NY");
-      case RIGHT_ONLY: return getFilterValueArray("YY", "NY");
-      case LEFT_ONLY: return getFilterValueArray("YY", "YN");
-      default: return getFilterValueArray("YY", "YN", "NY");
+      case UNION: return getFilterValueArray(Value.YY.name(), Value.YN.name(), Value.NY.name());
+      case INTERSECT: return getFilterValueArray(Value.YY.name());
+      case LEFT_MINUS: return getFilterValueArray(Value.YN.name());
+      case RIGHT_MINUS: return getFilterValueArray(Value.NY.name());
+      case RIGHT_ONLY: return getFilterValueArray(Value.YY.name(), Value.NY.name());
+      case LEFT_ONLY: return getFilterValueArray(Value.YY.name(), Value.YN.name());
+      default: return getFilterValueArray(Value.YY.name(), Value.YN.name(), Value.NY.name());
     }
   }
 
