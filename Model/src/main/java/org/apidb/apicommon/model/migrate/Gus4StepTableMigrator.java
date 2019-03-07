@@ -26,7 +26,7 @@ import org.gusdb.fgputil.Tuples.ThreeTuple;
 import org.gusdb.fgputil.functional.Functions;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
-import org.gusdb.wdk.model.answer.spec.ParamsAndFiltersFormat;
+import org.gusdb.wdk.model.answer.spec.ParamsAndFiltersDbColumnFormat;
 import org.gusdb.wdk.model.fix.table.TableRowInterfaces.RowResult;
 import org.gusdb.wdk.model.fix.table.TableRowInterfaces.TableRowUpdaterPlugin;
 import org.gusdb.wdk.model.fix.table.TableRowInterfaces.TableRowWriter;
@@ -155,8 +155,8 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
     if (NonApiGus4StepMigrationPlugin.updateParamsProperty(step)) mods.add(UpdateType.updateParams);
 
     // 4. Add "filters" property if not present and convert any found objects to filter array
-    if (NonApiGus4StepMigrationPlugin.updateFiltersProperty(step, ParamsAndFiltersFormat.KEY_FILTERS)) mods.add(UpdateType.fixFilters);
-    if (NonApiGus4StepMigrationPlugin.updateFiltersProperty(step, ParamsAndFiltersFormat.KEY_VIEW_FILTERS)) mods.add(UpdateType.addViewFilters);
+    if (NonApiGus4StepMigrationPlugin.updateFiltersProperty(step, ParamsAndFiltersDbColumnFormat.KEY_FILTERS)) mods.add(UpdateType.fixFilters);
+    if (NonApiGus4StepMigrationPlugin.updateFiltersProperty(step, ParamsAndFiltersDbColumnFormat.KEY_VIEW_FILTERS)) mods.add(UpdateType.addViewFilters);
 
     // 5. Remove use_boolean_filter param when found
     if (NonApiGus4StepMigrationPlugin.removeUseBooleanFilterParam(step)) mods.add(UpdateType.useBoolFilter);
@@ -213,7 +213,7 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
     if (!isBoolean) return false;
     if (!isTranscriptRecordClass(recordClass)) return false;
     // figure out default value based on boolean param
-    JSONObject params = step.getParamFilters().getJSONObject(ParamsAndFiltersFormat.KEY_PARAMS);
+    JSONObject params = step.getParamFilters().getJSONObject(ParamsAndFiltersDbColumnFormat.KEY_PARAMS);
     boolean isWdkSetOperation = params.has(BooleanQuery.OPERATOR_PARAM);
     if (!isWdkSetOperation) {
       LOG.warn("Found boolean step (ID " + step.getStepId() + ") that does not have param " + BooleanQuery.OPERATOR_PARAM);
@@ -238,10 +238,10 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
   }
 
   private static boolean addFilterValueArray(StepData step, String name, JSONObject value) {
-    JSONArray filters = step.getParamFilters().getJSONArray(ParamsAndFiltersFormat.KEY_FILTERS);
+    JSONArray filters = step.getParamFilters().getJSONArray(ParamsAndFiltersDbColumnFormat.KEY_FILTERS);
     for (int i = 0; i < filters.length(); i++) {
       JSONObject filterData = filters.getJSONObject(i);
-      if (filterData.getString(ParamsAndFiltersFormat.KEY_NAME).equals(name)) {
+      if (filterData.getString(ParamsAndFiltersDbColumnFormat.KEY_NAME).equals(name)) {
         // filter already present; doesn't need to be added
         return false;
       }
@@ -255,9 +255,9 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
     }
     // create filter object
     JSONObject filterObject = new JSONObject();
-    filterObject.put(ParamsAndFiltersFormat.KEY_NAME, name);
-    filterObject.put(ParamsAndFiltersFormat.KEY_VALUE, value);
-    filterObject.put(ParamsAndFiltersFormat.KEY_DISABLED, false);
+    filterObject.put(ParamsAndFiltersDbColumnFormat.KEY_NAME, name);
+    filterObject.put(ParamsAndFiltersDbColumnFormat.KEY_VALUE, value);
+    filterObject.put(ParamsAndFiltersDbColumnFormat.KEY_DISABLED, false);
     filters.put(0, filterObject);
     return true;
   }
@@ -373,10 +373,10 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
     boolean modified = false;
     if (!TranscriptUtil.isTranscriptQuestion(question)) {
       JSONObject displayParams = step.getParamFilters();
-      JSONArray filters = displayParams.getJSONArray(ParamsAndFiltersFormat.KEY_FILTERS);
+      JSONArray filters = displayParams.getJSONArray(ParamsAndFiltersDbColumnFormat.KEY_FILTERS);
       for (int i = 0; i < filters.length(); i++) {
         JSONObject filter = filters.getJSONObject(i);
-        String name = filter.getString(ParamsAndFiltersFormat.KEY_NAME);
+        String name = filter.getString(ParamsAndFiltersDbColumnFormat.KEY_NAME);
         if (MatchedTranscriptFilter.MATCHED_TRANSCRIPT_FILTER_ARRAY_KEY.equals(name)) {
           // illegal; this filter should not be here
           filters.remove(i);
