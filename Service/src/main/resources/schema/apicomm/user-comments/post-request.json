@@ -31,7 +31,7 @@
         "$ref": "#/definitions/referenceId"
       }
     },
-    "externalDb": {
+    "externalDatabase": {
       "$ref": "/schema/apicomm/user-comments/includes/external-database.json"
     },
     "headline": {
