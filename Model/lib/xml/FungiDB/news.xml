@@ -40,20 +40,20 @@
         
         <h4>Genome Sequence and Annotation: these annotated genomes appear for the first time in FungiDB.</h4>
            <ul>
-             <li><a href="http:/a/app/record/dataset/DS_778f9987a4"><i>Cryptococcus dejecticola</i> CBS10117</a>  
+             <li><a href="/a/app/record/dataset/DS_778f9987a4"><i>Cryptococcus dejecticola</i> CBS10117</a>  
              </li>
              
-             <li><a href="http:/a/app/record/dataset/DS_7acdb4b9a1"><i>Kwoniella bestiolae</i> CBS 10118</a>  
+             <li><a href="/a/app/record/dataset/DS_7acdb4b9a1"><i>Kwoniella bestiolae</i> CBS 10118</a>  
              </li>
              
-              <li><a href="http:/a/app/record/dataset/DS_9159f06aae"><i>Naganishia albida</i> NRRL Y-1402</a> &ndash;  
+              <li><a href="/a/app/record/dataset/DS_9159f06aae"><i>Naganishia albida</i> NRRL Y-1402</a> &ndash;  
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/27198024">Vajpeyi et al. 2016</a>.
              </li>
              
-             <li><a href="http:/a/app/record/dataset/DS_e983d1d491"><i>Fusarium oxysporum</i> FOSC 3-a</a> 
+             <li><a href="/a/app/record/dataset/DS_e983d1d491"><i>Fusarium oxysporum</i> FOSC 3-a</a> 
              </li>
              
-               <li><a href="http:/a/app/record/dataset/DS_812930c840"><i>Phytopthora plurivora</i> AV1007</a> &ndash;  
+               <li><a href="/a/app/record/dataset/DS_812930c840"><i>Phytopthora plurivora</i> AV1007</a> &ndash;  
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/30060094">Vetukuri et al. 2018</a>.
              </li>
              
@@ -67,12 +67,12 @@
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/29305388">Friedman et al. 2018</a>.
              </li>  
              
-             <li><a href="http:/a/app/record/dataset/DS_d1767fcbd3"><i>Candida parapsilosis</i> CDC 317</a> &ndash;  
+             <li><a href="/a/app/record/dataset/DS_d1767fcbd3"><i>Candida parapsilosis</i> CDC 317</a> &ndash;  
                  The genome was reloaded to include the mitochondrial genome 
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/19465905">Butler et al. 2009</a>.
              </li>
              
-             <li><a href="http:/a/app/record/dataset/DS_d1767fcbd3"><i>Neurospora crassa</i> OR74A</a> &ndash;  
+             <li><a href="/a/app/record/dataset/DS_d1767fcbd3"><i>Neurospora crassa</i> OR74A</a> &ndash;  
                  The genome was reloaded. Incorrect gene aliases reflecting The Broad Institution v4 (June 2010) gene set 
                  were previously loaded to FungiDB due to two dates of issue (February and June). 
                  This was rectified with remapping of these aliases using only the February version gene ids. 
@@ -84,35 +84,35 @@
         <h4>Transcriptomics</h4>
            <ul>
            
-           <li><a href="http:/a/app/record/dataset/DS_ecba2dec39">Transcriptome profiling of <i>Candida auris</i> clinical isolates forming biofilm</a> &ndash;
+           <li><a href="/a/app/record/dataset/DS_ecba2dec39">Transcriptome profiling of <i>Candida auris</i> clinical isolates forming biofilm</a> &ndash;
              Transcriptomic investigation of isolates collected by Public Health England, UK using Illumina HiSeq X Ten technology.
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/29997121" target="_blank">Kean et al. 2018</a>.
              </li>
              
-             <li><a href="http:/a/app/record/dataset/DS_b6fe0c017e">Transcriptome analysis of <i>Aspergillus fumigatus</i> grown in blood</a> &ndash;
+             <li><a href="/a/app/record/dataset/DS_b6fe0c017e">Transcriptome analysis of <i>Aspergillus fumigatus</i> grown in blood</a> &ndash;
              Gene expression profile at various stages of an <i>in vitro</i> model of aspergillosis.
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/26311470" target="_blank">Irmer et al. 2015</a>.
              </li>
              
-             <li><a href="http:/a/app/record/dataset/DS_3190d69ecb">Transcriptomes of itraconazole-resistant strains derived from A1160, HapB and 29.9.</a> &ndash;
+             <li><a href="/a/app/record/dataset/DS_3190d69ecb">Transcriptomes of itraconazole-resistant strains derived from A1160, HapB and 29.9.</a> &ndash;
              RNA-Seq of <i>Aspergillus fumigatus</i> mutants resistant to itraconazole.
              </li>
              
-             <li><a href="http:/a/app/record/dataset/DS_139dce39e2">Stranded RNA-Seq of WT and cqs1delta strains during sexual development stage</a> &ndash;
+             <li><a href="/a/app/record/dataset/DS_139dce39e2">Stranded RNA-Seq of WT and cqs1delta strains during sexual development stage</a> &ndash;
              Stranded RNA-Seq of <i>C. neoformans</i> JEC21 WT (XL280&alpha;) and cqs1&Delta; strains grown on V8 media.
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/29784977" target="_blank">Tian et al. 2018</a>.
              </li>
              
-             <li><a href="http:/a/app/record/dataset/DS_9c905047fb"><i>Cryptococcus neoformans</i> sexual reproduction is controlled by a quorum sensing peptide</a> &ndash;
+             <li><a href="/a/app/record/dataset/DS_9c905047fb"><i>Cryptococcus neoformans</i> sexual reproduction is controlled by a quorum sensing peptide</a> &ndash;
              Transcriptomic analysis of gene expression in <i>Cryptococcus neoformans</i> var neoformans targeting pheromone pathways and quorum sensing.
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/29784977" target="_blank">Tian et al. 2018</a>.
              </li>
-             <li><a href="http:/a/app/record/dataset/DS_3de13093fd">Transcriptomics of banana pathogen <i>F. oxysporum f.sp. cubense</i> race 4</a> &ndash; 
+             <li><a href="/a/app/record/dataset/DS_3de13093fd">Transcriptomics of banana pathogen <i>F. oxysporum f.sp. cubense</i> race 4</a> &ndash; 
                  Strand specific RNA-Seq analysis of <i>Fusarium oxysporum f. sp. cubense</i> race 4 infecting <i>Musa acuminata</i> at 0h and 48h.
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/24743270" target="_blank">Guo et al. 2014</a>.
              </li>
              
-             <li><a href="http:/a/app/record/dataset/DS_00b5344451">Transcriptome of heat-stressed <i>Fusarium graminearum</i> Z-3639</a> &ndash;
+             <li><a href="/a/app/record/dataset/DS_00b5344451">Transcriptome of heat-stressed <i>Fusarium graminearum</i> Z-3639</a> &ndash;
              Illumina HiSeq 2000 of 24 h-old mycelia from complete medium incubated in 25C and 37C for 15 min. 
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/27306495" target="_blank">Bui et al. 2016</a>.
              </li>
@@ -121,12 +121,12 @@
         	          
         <h4>Whole genome sequence of isolates for SNP analysis:</h4>
            <ul>
-             <li><a href="http:/a/app/record/dataset/DS_d33a14b7e6">Aligned genomic sequence reads - <i>Candida auris</i> isolates</a> &ndash;
+             <li><a href="/a/app/record/dataset/DS_d33a14b7e6">Aligned genomic sequence reads - <i>Candida auris</i> isolates</a> &ndash;
                  Multidrug-resistant <i>Candida auris</i> isolates were collected from on 3 continents and sequenced Illumina HiSeq 2500 technology.
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/27988485">Lockhart et al. 2017</a>.
              </li>
              
-             <li><a href="http:/a/app/record/dataset/DS_11cc0909dd">SNP calls on <i>Paracoccidioides lutzii</i> WGS</a> &ndash;
+             <li><a href="/a/app/record/dataset/DS_11cc0909dd">SNP calls on <i>Paracoccidioides lutzii</i> WGS</a> &ndash;
                  Whole genome sequencing of <i>P. lutzii</i> isolates.
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/27704050">Mu&ntilde;oz et al. 2018</a>.
              </li>
@@ -135,7 +135,7 @@
            
         <h4>Phenotype data</h4>
            <ul>
-             <li><a href="http:/a/app/record/dataset/DS_61efdacf5b">Manually Curated <i>Fusarium</i> Phenotypes</a> &ndash; 
+             <li><a href="/a/app/record/dataset/DS_61efdacf5b">Manually Curated <i>Fusarium</i> Phenotypes</a> &ndash; 
                  The phenotypes for <i>Fusarium graminearum</i> PH-1 are manually curated from published literature describing phenotypes obtained from mutant studies. 
                  We have curated and added phenotypes from <a href="https://www.ncbi.nlm.nih.gov/pubmed/22028654" target="_blank">Son et al. 2011</a> publication 
                  on transcription factors to the currently existing Fusarium phenotypes from <a href="https://www.ncbi.nlm.nih.gov/pubmed/25758923" target="_blank">Yun et al. 2007</a>.
@@ -179,7 +179,7 @@
            <br>
            
            <ul>
-             <li><a href="http:/a/app/record/dataset/DS_61efdacf5b">Manually Curated <i>Cryptococcus</i> Phenotypes</a> &ndash; 
+             <li><a href="/a/app/record/dataset/DS_61efdacf5b">Manually Curated <i>Cryptococcus</i> Phenotypes</a> &ndash; 
                  The phenotypes for <i>Cryptococcus neoformans</i> JEC21 and H99 and <i>Cryptococcus gattii</i> WM276 genomes are manually 
                  curated from published literature describing phenotypes obtained from mutant studies. The curated phenotypes from 
                  <a href="https://docs.google.com/spreadsheets/d/1m7hLDZjphgKJTFJeDx20nA7CVjm0eLQfyMjjRK64G5g/edit?usp=sharing" target="_blank"><i>Cryptococcus</i> RO3 Project </a> are available in FungiDB as controlled vocabularies since release 25. 
@@ -396,39 +396,39 @@
         
         <h4>Genome Sequence and Annotation: these annotated genomes appear for the first time in FungiDB.</h4>
            <ul>
-             <li><a href="http:/a/app/record/dataset/DS_d6438671bd"><i>Aspergillus niger</i> N402</a> &ndash;  
+             <li><a href="/a/app/record/dataset/DS_d6438671bd"><i>Aspergillus niger</i> N402</a> &ndash;  
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/3224384">Bos et al. 1988</a>.
              </li>
              
-              <li><a href="http:/a/app/record/dataset/DS_ba79cc3de1"><i>Aspergillus kawachii</i> IFO 4308</a> &ndash;  
+              <li><a href="/a/app/record/dataset/DS_ba79cc3de1"><i>Aspergillus kawachii</i> IFO 4308</a> &ndash;  
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/22045919">Futagami et al. 2011</a>.
              </li>
              
-              <li><a href="http:/a/app/record/dataset/DS_d1767fcbd3"><i>Candida parapsilosis</i> CDC 317</a> &ndash;  
+              <li><a href="/a/app/record/dataset/DS_d1767fcbd3"><i>Candida parapsilosis</i> CDC 317</a> &ndash;  
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/19465905">Butler et al. 2009</a>.
              </li>
              
-             <li><a href="http:/a/app/record/dataset/DS_8d24f658c0"><i>Cryptococcus gattii</i> NT-10</a> &ndash;  
+             <li><a href="/a/app/record/dataset/DS_8d24f658c0"><i>Cryptococcus gattii</i> NT-10</a> &ndash;  
                  <a href="http://www.ncbi.nlm.nih.gov/bioproject/PRJNA191330">NCBI BioProject PRJNA191330</a>.
              </li>
              
-             <li><a href="http:/a/app/record/dataset/DS_32a5330fef"><i>Fusarium proliferatum</i> ET1</a> &ndash; 
+             <li><a href="/a/app/record/dataset/DS_32a5330fef"><i>Fusarium proliferatum</i> ET1</a> &ndash; 
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/28040774">Niehaus et al. 2016</a>.
              </li>
              
-               <li><a href="http:/a/app/record/dataset/DS_a62f2e98ce"><i>Lomentospora prolificans</i> JHH-5317</a> &ndash;  
+               <li><a href="/a/app/record/dataset/DS_a62f2e98ce"><i>Lomentospora prolificans</i> JHH-5317</a> &ndash;  
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/28963165">Luo et al. 2017</a>.
              </li> 
              
-             <li><a href="http:/a/app/record/dataset/DS_1566006e1e"><i>Scedosporium apiospermum</i> IHEM 14462</a> &ndash;  
+             <li><a href="/a/app/record/dataset/DS_1566006e1e"><i>Scedosporium apiospermum</i> IHEM 14462</a> &ndash;  
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/25278533">Vandeputte et al. 2014</a>.
              </li>
            
-             <li><a href="http:/a/app/record/dataset/DS_3d23d8f8c0"><i>Sporothrix brasiliensis</i> 5110</a> &ndash;  
+             <li><a href="/a/app/record/dataset/DS_3d23d8f8c0"><i>Sporothrix brasiliensis</i> 5110</a> &ndash;  
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/25351875">Teixeira et al. 2014</a>.
              </li>
              
-            <li><a href="http:/a/app/record/dataset/DS_6048ff9e23"><i>Yarrowia lipolytica</i> CLIB89 (W29)</a> &ndash;  
+            <li><a href="/a/app/record/dataset/DS_6048ff9e23"><i>Yarrowia lipolytica</i> CLIB89 (W29)</a> &ndash;  
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/27603307">Magnan et al. 2016</a>.
              </li>   
             </ul>
@@ -436,7 +436,7 @@
            
         <h4>Genome Sequence and Annotation: updated genomes</h4> 
          	<ul>
-        	<li><a href="http:/a/app/record/dataset/DS_f5f72ac794"><i>Aspergillus niger</i> ATCC 1015</a> &ndash;  
+        	<li><a href="/a/app/record/dataset/DS_f5f72ac794"><i>Aspergillus niger</i> ATCC 1015</a> &ndash;  
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/21543515">Andersen et al. 2011</a>.
              </li> 
              
@@ -452,22 +452,22 @@
            
         <h4>Transcriptomics</h4>
            <ul>
-             <li><a href="http:/a/app/record/dataset/DS_cc8da1fe9f">Comparison of gene expression in 23 <i>Cryptococcus gattii</i> isolates</a> &ndash; 
+             <li><a href="/a/app/record/dataset/DS_cc8da1fe9f">Comparison of gene expression in 23 <i>Cryptococcus gattii</i> isolates</a> &ndash; 
                  23 <i>C. gattii</i> isolates, representing both VIO strains and control strains, were grown for 24 hours in mammalian macrophages. 
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/19651610" target="_blank">Ma et al. 2009</a>.
              </li>
              
-             <li><a href="http:/a/app/record/dataset/DS_56f8fb561f">Transcriptomic response of <i>Aspergillus niger</i> to lignocellulose (willow)</a> &ndash;
+             <li><a href="/a/app/record/dataset/DS_56f8fb561f">Transcriptomic response of <i>Aspergillus niger</i> to lignocellulose (willow)</a> &ndash;
              Transcriptomic profiling of <i>Aspergillus niger</i> growing on lignocellulose (AB SOLiD System 3.0). 
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/22912594" target="_blank">Delmas et al. 2012</a>.
              </li>
              
-             <li><a href="http:/a/app/record/dataset/DS_7270577827">Transcriptome of <i>N. crassa</i> strains growing on various carbon sources</a> &ndash;
+             <li><a href="/a/app/record/dataset/DS_7270577827">Transcriptome of <i>N. crassa</i> strains growing on various carbon sources</a> &ndash;
              Transcriptomic profiling to determine the role of the transcription factors CLR-1, CLR-2, and XLR-1 in plant cell wall degradation
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/26463163" target="_blank">Craig et al. 2015</a>.
              </li>
              
-             <li><a href="http:/a/app/record/dataset/DS_3fbf685d63">Transcriptomics of banana pathogen <i>Fusarium oxysporum</i> f.sp. cubense race 1</a> &ndash;
+             <li><a href="/a/app/record/dataset/DS_3fbf685d63">Transcriptomics of banana pathogen <i>Fusarium oxysporum</i> f.sp. cubense race 1</a> &ndash;
              Deep sequencing of mRNA from <i>Fusarium oxysporum</i> f. sp. cubense 1 after infecting <i>Musa acuminata</i> at 0h and 48h.
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/24743270" target="_blank">Guo et al. 2014</a>.
              </li>
@@ -476,7 +476,7 @@
         	 
         <h4>Proteomics</h4>
            <ul>
-             <li><a href="http:/a/app/record/dataset/DS_9efaab4256">Protein composition of <i>C neoformans</i> yeast and spore forms</i></a> &ndash; 
+             <li><a href="/a/app/record/dataset/DS_9efaab4256">Protein composition of <i>C neoformans</i> yeast and spore forms</i></a> &ndash; 
                  Nanoscale liquid chromatography/mass spectrometry was used to determine protein composition of <i>Cryptococcus</i> vegetative cells (yeast) and spores.
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/26313153" target="_blank">Huang et al. 2015</a>.
              </li>
@@ -499,23 +499,23 @@
            
         <h4>Whole genome sequence of isolates for SNP analysis</h4>
            <ul>
-             <li><a href="http:/a/app/record/dataset/DS_cc66146b8b">Aligned genomic sequence reads - <i>Cryptococcus neoformans</i> var. neoformans</a> &ndash;
+             <li><a href="/a/app/record/dataset/DS_cc66146b8b">Aligned genomic sequence reads - <i>Cryptococcus neoformans</i> var. neoformans</a> &ndash;
                  A total of 387 isolates from various lineages we sequenced (185 from global VNI lineage, 186 from African VNB, and 16 from VNII lineage corresponding to non-recombining split in VNB (VNBI and VNBII).
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/28611159"> Desjardins et al. 2017</a>.
              </li>
              
-             <li><a href="http:/a/app/record/dataset/DS_59d1c30302">Aligned genomic sequence reads - <i>Neurospora crassa</i></a> &ndash;
+             <li><a href="/a/app/record/dataset/DS_59d1c30302">Aligned genomic sequence reads - <i>Neurospora crassa</i></a> &ndash;
                  Genome-wide association study (GWAS) to identify novel loci underlying trait variation in the wild isolates of the filamentous fungus <i>Neurospora crassa</i> (Louisiana lineage).
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/26025978"> Zhao et al. 2015</a> and
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/23935534"> Palma-Guerrero et al. 2013</a>.
              </li>
              
-             <li><a href="http:/a/app/record/dataset/DS_edc6f8f95f">Aligned genomic sequence reads - <i>Paracoccidioides brasiliensis</i></a> &ndash;
+             <li><a href="/a/app/record/dataset/DS_edc6f8f95f">Aligned genomic sequence reads - <i>Paracoccidioides brasiliensis</i></a> &ndash;
                  Genome diversity, recombination, and virulence across the major lineages of <i>Paracoccidioides</i>.
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/27704050"> Mu&ntildeoz et al. 2016</a> .
              </li>
              
-             <li><a href="http:/a/app/record/dataset/DS_4db802da0d">Aligned genomic sequence reads - <i>Candida albicans</i></a> &ndash;
+             <li><a href="/a/app/record/dataset/DS_4db802da0d">Aligned genomic sequence reads - <i>Candida albicans</i></a> &ndash;
                  Whole genome sequencing of wild-type and clinical isolates as well as laboratory-evolved strains of <i>Candida albicans</i> to identify and characterize mutations conferring amphotericin resistance.
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/24204207"> Vincent et al. 2013</a> .
              </li>
@@ -781,10 +781,10 @@
         
         <h4>Genome Sequence and Annotation: these annotated genomes appear for the first time in FungiDB.</h4>
            <ul>
-             <li><a href="http:/a/app/record/dataset/DS_9492ac49ce"><i>Aspergillus ochraceoroseus</i> IBT 24754</a> &ndash;  
+             <li><a href="/a/app/record/dataset/DS_9492ac49ce"><i>Aspergillus ochraceoroseus</i> IBT 24754</a> &ndash;  
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/29317534">Kj&aelig;rb&oslash;lling et al. 2018</a>
              </li>
-             <li><a href="http:/a/app/record/dataset/DS_ea5a27648e"><i>Sporothrix schenckii</i> 1099-18</a> &ndash; 
+             <li><a href="/a/app/record/dataset/DS_ea5a27648e"><i>Sporothrix schenckii</i> 1099-18</a> &ndash; 
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/25480940">Teixeira et al. 2015</a>,
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/25351875">Teixeira et al. 2014</a>, and 
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/24855299">Teixeira et al. 2014</a>.
@@ -794,27 +794,27 @@
            
         <h4>Genome Sequence and Annotation: updated genomes</h4>
            <ul>   
-           <li><a href="http:/a/app/record/dataset/DS_d09ab83818"><i>Botrytis cinerea</i> B05.10</a> &ndash;
+           <li><a href="/a/app/record/dataset/DS_d09ab83818"><i>Botrytis cinerea</i> B05.10</a> &ndash;
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/29317534">Syngenta Biotechnology, Inc.</a>
              </li>
-             <li><a href="http:/a/app/record/dataset/DS_0d9ee4ff86"><i>Candida albicans</i> SC5314</a> &ndash; 
+             <li><a href="/a/app/record/dataset/DS_0d9ee4ff86"><i>Candida albicans</i> SC5314</a> &ndash; 
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/24025428">Muzzey et al. 2013</a>,
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/17419877">van het Hoog M. et al. 2007</a>,
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/15123810">Jones et al. 2004</a>, and 
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/6394964">Gillum et al. 1984</a>.
              </li>
-             <li><a href="http:/a/app/record/dataset/DS_e43fc5921f"><i>Candida albicans</i> SC5314_B</a> &ndash; 
+             <li><a href="/a/app/record/dataset/DS_e43fc5921f"><i>Candida albicans</i> SC5314_B</a> &ndash; 
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/24025428">Muzzey et al. 2013</a>,
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/17419877">van het Hoog M. et al. 2007</a>,
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/15123810">Jones et al. 2004</a>, and 
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/6394964">Gillum et al. 1984</a>.
              </li>
-             <li><a href="http:/a/app/record/dataset/DS_033b09f437"><i>Candida albicans</i> WO-1</a> &ndash; 
+             <li><a href="/a/app/record/dataset/DS_033b09f437"><i>Candida albicans</i> WO-1</a> &ndash; 
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/19465905">Butler et al. 2009</a>,
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/12399384">Lockhart et al. 2002</a>, and 
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/3539914">Slutsky et al. 1987</a>
              </li>
-             <li><a href="http:/a/app/record/dataset/DS_c8c07fac9f"><i>Candida glabrata</i> CBS138</a> &ndash; 
+             <li><a href="/a/app/record/dataset/DS_c8c07fac9f"><i>Candida glabrata</i> CBS138</a> &ndash; 
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/15229592">Dujon et al. 2004</a> and 
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/12527359">Koszul et al. 2003</a>.
              </li>
@@ -822,27 +822,27 @@
            
         <h4>Transcriptomics</h4>
            <ul>
-             <li><a href="http:/a/app/record/dataset/DS_9f832f8fbb">Comparative transcriptomes of yeast and hyphal forms in <i>Histoplasma capsulatum</i> H143</a> &ndash; 
+             <li><a href="/a/app/record/dataset/DS_9f832f8fbb">Comparative transcriptomes of yeast and hyphal forms in <i>Histoplasma capsulatum</i> H143</a> &ndash; 
                  Analysis of yeast and hyphal transcript expression patterns in <i>Histoplasma capsulatum</i> H143 grown at 37°C and room temperature, respectively.
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/26177267" target="_blank">Gilmore et al. 2015</a>.
              </li>
-             <li><a href="http:/a/app/record/dataset/DS_760d4a011d">Transcriptomic response of <i>Aspergillus niger</i> to lignocellulose (wheat straw)</a> &ndash;
+             <li><a href="/a/app/record/dataset/DS_760d4a011d">Transcriptomic response of <i>Aspergillus niger</i> to lignocellulose (wheat straw)</a> &ndash;
              Transcriptomic profiling of Aspergillus niger growing on lignocellulose (AB SOLiD System 3.0). 
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/22912594" target="_blank">Delmas et al. 2012</a> and 
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/24792495" target="_blank">van Munster et al. 2014</a>.
              </li>
-             <li><a href="http:/a/app/record/dataset/DS_bb15199826"><i>Aspergillus niger</i> gene co-expression network</a> &ndash;
+             <li><a href="/a/app/record/dataset/DS_bb15199826"><i>Aspergillus niger</i> gene co-expression network</a> &ndash;
              A meta-analysis of 155 transcriptomics experiments generated genome level co-expression networks for 9579 genes of <i>Aspergillus niger</i> genome. <a href="https://www.biorxiv.org/content/early/2018/08/23/398842" target="_blank">Manuscript submitted to bioRxiv</a>.
              </li>
         	</ul>
         	
         <h4>Proteomics</h4>
            <ul>
-             <li><a href="http:/a/app/record/dataset/DS_bed61daec2">Secretome profiling of <i>Cryptococcus neoformans</i></a> &ndash; 
+             <li><a href="/a/app/record/dataset/DS_bed61daec2">Secretome profiling of <i>Cryptococcus neoformans</i></a> &ndash; 
                  Targeted secretome profiling of Pka-1 regulated proteins in <i>C. neoformans</i> was performed at 16, 48, 72, 96, and 120 hr post-inoculation in Pka-1 inductive and repressive media.
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/26453029 " target="_blank">Geddes et al. 2015</a>.
              </li>
-             <li><a href="http:/a/app/record/dataset/DS_bed61daec2">Quantitative MassSpec of <i>Cryptococcus neoformans</i> secretome of Pka-1 regulated proteins</a> &ndash; 
+             <li><a href="/a/app/record/dataset/DS_bed61daec2">Quantitative MassSpec of <i>Cryptococcus neoformans</i> secretome of Pka-1 regulated proteins</a> &ndash; 
                  Targeted secretome profiling of Pka-1 regulated proteins in <i>C. neoformans</i> was performed at 16, 48, 72, and 120 hr post-inoculation in Pka-1 inductive and repressive media.
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/26453029 " target="_blank">Geddes et al. 2015</a>.
              </li>
@@ -850,7 +850,7 @@
            
         <h4>Whole genome sequence of isolates for SNP analysis</h4>
            <ul>
-             <li><a href="http:/a/app/record/dataset/DS_213496374f">Aligned genomic sequence reads - <i>Candida auris</i> clinical isolates</a> &ndash;
+             <li><a href="/a/app/record/dataset/DS_213496374f">Aligned genomic sequence reads - <i>Candida auris</i> clinical isolates</a> &ndash;
                  Samples were collected from patients, patient contacts, healthcare workers, and the environment in 4 hospitals in Colombia with recent <i>C. auris</i> outbreaks.
                  <a href="https://www.ncbi.nlm.nih.gov/bioproject/470683">NCBI's Bioproject record page</a> and   
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/29788045"> Escand&oacute;n et al. 2018</a>.
@@ -859,7 +859,7 @@
            
         <h4>Phenotype data</h4>
            <ul>
-             <li><a href="http:/a/app/record/dataset/DS_61efdacf5b">Manually Curated Fusarium Phenotypes</a> &ndash; 
+             <li><a href="/a/app/record/dataset/DS_61efdacf5b">Manually Curated Fusarium Phenotypes</a> &ndash; 
                  The phenotypes for <i>Fusarium graminearum</i> PH-1 are manually curated from published literature describing phenotypes obtained from mutant studies. The phenotypic data from <a href="http://www.ncbi.nlm.nih.gov/pubmed/25758923" target="_blank">Yun et al., 2007</a> publicationhave been manually curated in-line with EuPathDB&#39;s approach for  phenotype annotation and integrated into FungiDB. 
                  We followed an &quot;entity &#43; quality&quot; approach and curated phenotypes with multiple ontologies: Phenotypic Quality Ontology (PATO) for &quot;quality&quot; terms and Gene Ontology (GO), Fungal Gross Anatomy Ontology (FAO),
                  Chemical Entities of Biological Interest (ChEBI) and Ascomycete Phenotype Ontology (APO) for &quot;entity&quot; terms. 
@@ -869,7 +869,7 @@
            
            <h4>Sequence sites, features and motifs</h4>
            <ul>   
-           <li><a href="http:/a/app/record/dataset/DS_af6def78b1"><i>Coccidioides posadasii</i> RS TE GBrowse track</a> &ndash;
+           <li><a href="/a/app/record/dataset/DS_af6def78b1"><i>Coccidioides posadasii</i> RS TE GBrowse track</a> &ndash;
                Annotation of transposable elements (TE) in <i>Coccidioides posadasii</i> using RepeatMasker, which identified TEs based on the RepBase reference library and REPET to support <i>de novo</i> TE identification.
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/29371508">Kirkland et al. 2018</a>.
              </li>
@@ -994,7 +994,7 @@
            
            <h4>Whole genome sequence of isolates for SNP analysis:</h4>
            <ul>
-             <li><a href="http:/a/app/record/dataset/DS_213496374f">Aligned genomic sequence reads - Genomic context of azole-resistance mutations in <i>Aspergillus fumigatus</i></a> &ndash;
+             <li><a href="/a/app/record/dataset/DS_213496374f">Aligned genomic sequence reads - Genomic context of azole-resistance mutations in <i>Aspergillus fumigatus</i></a> &ndash;
                  Whole-genome sequencing (WGS) was performed for high-resolution single-nucleotide polymorphism (SNP) analysis of 24 A. fumigatus isolates (azole-resistant and susceptible strains).
                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/26037120">Abdolrasouli et al.</a>  
              </li>
