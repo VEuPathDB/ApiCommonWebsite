@@ -44,14 +44,15 @@ public class ReporterStreamingTest {
     try (FileReader inputFile = new FileReader(inputJsonFileName);
          WdkModel wdkModel = WdkModel.construct(projectId, GusHome.getGusHome())) {
 
-      Question question = wdkModel.getQuestionByName(questionName)
+      Question question = wdkModel.getQuestionByFullName(questionName)
           .orElseThrow(() -> new WdkModelException("Question " + questionName + " does not exist in this WDK model."));
 
       log("Parsing input file: " + inputJsonFileName);
       String answerRequestJson = IoUtil.readAllChars(inputFile);
 
       log("Creating answer service");
-      AnswerService answerService = new AnswerService(question.getRecordClassName(), question.getFullName());
+      String recordClassUrlSegment = question.getRecordClass().getUrlSegment();
+      AnswerService answerService = new AnswerService(recordClassUrlSegment, question.getName());
       answerService.testSetup(wdkModel);
 
       Path tmpFileDir = IoUtil.createOpenPermsTempDir("wdk_stream_test_" + new Date().getTime());
