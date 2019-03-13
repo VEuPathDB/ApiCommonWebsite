@@ -172,7 +172,7 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
   public static class FormViewModel {
 
       private final String brcParamHelp = "Choose which database to search";
-      private final String thresholdTypeParamHelp = "Metric used to determine if this gene list matches a study";
+      private final String thresholdTypeParamHelp = "Fold_change cutoff for creating gene sets";
       private final String thresholdParamHelp = "This number is used as a cutoff when finding studies from a gene list";
       private final String useOrthologyParamHelp = "Should we extend the search to consider genes orthologous to ones in the input list?";
 
