@@ -109,7 +109,7 @@ public class SingleTableRecordStreamTest {
     User user = model.getUserFactory().createUnregistedUser(UnregisteredUserType.GUEST);
     return Step.builder(model, user.getUserId(), model.getStepFactory().getNewStepId())
         .setAnswerSpec(AnswerSpec.builder(model)
-            .setQuestionName(QUESTION_NAME)
+            .setQuestionFullName(QUESTION_NAME)
             .setParamValues(PARAMETERS)
             .setFilterOptions(FILTERS))
         .buildRunnable(new UserCache(user), Optional.empty());
@@ -118,7 +118,7 @@ public class SingleTableRecordStreamTest {
   private static Function<AttributeField, String> getFieldValue(final Map<String, AttributeValue> row) {
     return new Function<AttributeField,String>() {
       @Override public String apply(AttributeField field) {
-        try { return (String)row.get(field.getName()).getValue(); }
+        try { return row.get(field.getName()).getValue(); }
         catch (Exception e) { return "ERR"; }
       }
     };

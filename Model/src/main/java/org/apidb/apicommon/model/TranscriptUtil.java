@@ -45,7 +45,7 @@ public class TranscriptUtil {
   }
 
   public static AnswerValue transformToGeneAnswer(AnswerValue transcriptAnswer) throws WdkModelException {
-    Question question = transcriptAnswer.getWdkModel().getQuestionByName(XFORM_QUESTION_NAME)
+    Question question = transcriptAnswer.getWdkModel().getQuestionByFullName(XFORM_QUESTION_NAME)
         .orElseThrow(() -> new WdkModelException("Can't find xform with name: " + XFORM_QUESTION_NAME));
     String paramName = "gene_result";
     if (question.getParamMap().size() != 1 || !question.getParamMap().containsKey(paramName)) {
@@ -65,7 +65,7 @@ public class TranscriptUtil {
 
     AnswerValue geneAnswer = AnswerValueFactory.makeAnswer(transcriptAnswer.getUser(), AnswerSpec
         .builder(question.getWdkModel())
-        .setQuestionName(XFORM_QUESTION_NAME)
+        .setQuestionFullName(XFORM_QUESTION_NAME)
         .setParamValues(transformParams)
         .setAssignedWeight(10)
         .buildRunnable(transcriptAnswer.getUser(), new ListStepContainer(step.get())));

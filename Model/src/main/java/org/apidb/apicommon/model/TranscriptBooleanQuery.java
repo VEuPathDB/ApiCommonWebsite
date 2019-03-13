@@ -19,8 +19,6 @@ import org.gusdb.wdk.model.record.attribute.QueryColumnAttributeField;
 
 public class TranscriptBooleanQuery extends BooleanQuery {
 
-//  private static final Logger logger = Logger.getLogger(TranscriptBooleanQuery.class);
-
   public static final String LEFT_MATCH_COLUMN_TITLE = "Transcript Returned by Previous Search";
   public static final String RIGHT_MATCH_COLUMN_TITLE = "Transcript Returned by Latest Search";
   public static final String LEFT_MATCH_COLUMN_TITLE_DESC = "Transcript returned by your previous step (yes or no)";
@@ -95,16 +93,10 @@ public class TranscriptBooleanQuery extends BooleanQuery {
     column.setQuery(this);
     columnMap.put(RIGHT_MATCH_COLUMN, column);
   }
-  
-  /*
-   * (non-Javadoc)
-   * 
-   * @see org.gusdb.wdk.model.query.Query#clone()
-   */
+
   @Override
   public Query clone() {
     return new TranscriptBooleanQuery(this);
   }
-
 
 }
