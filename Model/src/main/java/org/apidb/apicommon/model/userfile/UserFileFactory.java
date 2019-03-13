@@ -76,7 +76,7 @@ public class UserFileFactory implements Manageable<UserFileFactory> {
 
     try {
       ps = SqlUtils.getPreparedStatement(_database.getDataSource(),
-          "DELETE FROM " + schema + "USERFILE WHEREUSERFILEID = ?");
+          "DELETE FROM " + schema + "USERFILE WHERE USERFILEID = ?");
       ps.setLong(1, fileId);
       ps.execute();
     } catch (SQLException e) {
