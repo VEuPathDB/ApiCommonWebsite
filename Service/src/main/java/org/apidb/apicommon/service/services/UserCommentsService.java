@@ -139,9 +139,10 @@ public class UserCommentsService extends AbstractUserCommentService {
     final String url = buildURL(comId).toString();
     final String smtp = wdk.getModelConfig().getSmtpServer();
 
-    Utilities.sendEmail(smtp, ANNOTATORS_EMAIL + ", " + user.getEmail(),
-        SOURCE_EMAIL, subject, form.makeSelfAlertBody(wdk, user, com, comId, url));
-    Utilities.sendEmail(smtp, REDMINE_EMAIL, SOURCE_EMAIL, subject,
-        form.makeRedmineAlertBody(wdk, user, com, comId, url));
+    // TODO: Uncomment these - this is just here so I don't pester the annotators/Redmine during testing.
+    // Utilities.sendEmail(smtp, ANNOTATORS_EMAIL + ", " + user.getEmail(),
+        // SOURCE_EMAIL, subject, form.makeSelfAlertBody(wdk, user, com, comId, url));
+    // Utilities.sendEmail(smtp, REDMINE_EMAIL, SOURCE_EMAIL, subject,
+        // form.makeRedmineAlertBody(wdk, user, com, comId, url));
   }
 }
