@@ -160,8 +160,9 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
          BufferedReader buffer = new BufferedReader(fileIn)) {
       while (buffer.ready()) {
         String line = buffer.readLine();
+	//	LOG.info("LINE = " + line);
         String[] columns = line.split(TAB);
-        results.add(new ResultRow(columns[0], columns[1], columns[2], columns[3], columns[4], columns[5], columns[6], columns[7]));
+        results.add(new ResultRow(columns[0],columns[1],columns[2],columns[3],columns[4],columns[5],columns[6],columns[7],columns[8], columns[9], columns[10], columns[11]));
       }
       return new ResultViewModel(TABBED_RESULT_FILE_PATH, results, getFormParams());
     }
@@ -173,7 +174,7 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
   public static class FormViewModel {
 
       private final String brcParamHelp = "Choose which database to search";
-      private final String thresholdTypeParamHelp = "Metric used to determine if this gene list matches a study";
+      private final String thresholdTypeParamHelp = "Fold_change cutoff for creating gene sets";
       private final String thresholdParamHelp = "This number is used as a cutoff when finding studies from a gene list";
       private final String useOrthologyParamHelp = "Should we extend the search to consider genes orthologous to ones in the input list?";
 
@@ -211,7 +212,7 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
 
   public static class ResultViewModel {
 
-      private final ResultRow HEADER_ROW = new ResultRow("Experiment Identifier", "Species",  "Experiment Name", "Description", "Type", "URI", "Statistic", "List_URI");
+      private final ResultRow HEADER_ROW = new ResultRow("Experiment Identifier", "Species",  "Experiment Name", "Description","Type", "URI", "Count1", "Count2", "Count3", "Count4", "Statistic", "List_URI");
 
       private final ResultRow COLUMN_HELP = new ResultRow(
                                                                 "Unique ID for this experiment",
@@ -220,7 +221,11 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
                                                                 "Details about this experiment",
                                                                 "What type of experiment was this",
                                                                 "Where can I find more information about this experiment",
-                                                                "Statistic used to identify this experiment",
+								"The number of overlapping genes between user input gene list and this data set with FC>inputFC (Background Genome: all genes in this Data Set)",
+								"The number of overlapping genes in user input gene list but NOT in this data set with FC>inputFC (Background Genome: all genes in this Data Set)",
+								"The number of overlapping genes NOT in user input gene list, but in this data set with FC>inputFC (Background Genome: all genes in this Data Set)",
+								"The number of overlapping genes Neither in user input gene list Nor in this data set with FC>inputFC (Background Genome: all genes in this Data Set)",
+                                                                "Statistic used to identify this experiment (p-value)",
                                                                 "URI for the List"
                                                                 );
       
@@ -262,16 +267,25 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
       private String description;
       private String type;
       private String uri;
+      private String t11;
+      private String t12;
+      private String t21;
+      private String t22;
       private String significance;
       private String serverEndpoint;
 
-      public ResultRow(String experimentId, String species, String experimentName, String description, String type, String uri, String significance, String serverEndpoint) {
+      public ResultRow(String experimentId, String species, String experimentName, String description, String type, String uri, String t11, String t12, String t21, String t22, String significance, String serverEndpoint) {
+
         this.experimentId = experimentId;
         this.species = species;
         this.experimentName = experimentName;
         this.description = description;
         this.type = type;
         this.uri = uri;
+	this.t11 = t11;
+	this.t12 = t12;
+	this.t21 = t21;
+	this.t22 = t22;
         this.significance = significance;
         this.serverEndpoint = serverEndpoint;
     }
@@ -282,6 +296,10 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
       public String getDescription() { return this.description; }
       public String getType() { return this.type; }
       public String getUri() { return this.uri; }
+      public String getT11() { return this.t11; }      
+      public String getT12() { return this.t12; }      
+      public String getT21() { return this.t21; }      
+      public String getT22() { return this.t22; }      
       public String getSignificance() { return this.significance; }      
       public String getServerEndPoint() { return this.serverEndpoint; }      
   }
