@@ -38,7 +38,8 @@ public class ApiStepService extends StepService {
   protected void applyAdditionalChanges(Step existingStep, StepBuilder replacementBuilder)
       throws WdkModelException {
 
-    if (!existingStep.isBoolean() || !isTranscriptRecordClass(existingStep.getRecordClass())) {
+    if (!existingStep.isBoolean() || !isTranscriptRecordClass(existingStep.getRecordClass()
+        .orElseThrow(() -> new WdkModelException("Passed existing step does not have a valid question.")))) {
       // only edit transcript boolean steps
       return;
     }
