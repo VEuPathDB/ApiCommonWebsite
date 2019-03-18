@@ -175,6 +175,7 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
 		  
 		  results.add(new ResultRow(columns[0],columns[1],columns[2],columns[3],columns[4],columns[5],columns[6],columns[7],columns[8], columns[9], columns[10], columns[11]));
 	      }
+	      /*
 	      results.forEach(ResultRow -> {
 		      LOG.info("The P_value Before Sort is:BBBBBefore" + ResultRow.getSignificance());
 		  });
@@ -182,12 +183,10 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
 	      results.forEach(ResultRow -> {
 		      LOG.info("The P_value After Sort is: AAAAAfter" + ResultRow.getSignificance());
 		  });
-	      /*		      
-	      ResultViewModel = new ResultViewModel(TABBED_RESULT_FILE_PATH, results, getFormParams());
-	      ResultViewModel a = new ResultViewModel(TABBED_RESULT_FILE_PATH, results, getFormParams());
-	      a.getResultData();
-	      return a;
 	      */
+
+	      Collections.sort(results); // sort out by p-value
+
 	      return new ResultViewModel(TABBED_RESULT_FILE_PATH, results, getFormParams());
 
 	  }
