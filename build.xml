@@ -196,8 +196,8 @@
     <delete dir="${webappTargetDir}/jbrowse/node_modules"/>
     <copy file="${projectsDir}/ApiCommonModel/Model/lib/jbrowse/jbrowse.conf" tofile="${webappTargetDir}/jbrowse/jbrowse.conf"/>
     <copy file="${projectsDir}/ApiCommonModel/Model/lib/jbrowse/functions.conf" tofile="${webappTargetDir}/jbrowse/functions.conf"/>
-    <copy file="${projectsDir}/JBrowse/Site/htdocs/index.html" tofile="${webappTargetDir}/jbrowse/index.html"/>
-    <copy file="${projectsDir}/JBrowse/Site/htdocs/apiJBrowse.js" tofile="${webappTargetDir}/jbrowse/apiJBrowse.js"/>
+    <copy file="${projectsDir}/ApiCommonModel/Model/lib/jbrowse/index.html" tofile="${webappTargetDir}/jbrowse/index.html"/>
+    <copy file="${projectsDir}/ApiCommonModel/Model/lib/jbrowse/apiJBrowse.js" tofile="${webappTargetDir}/jbrowse/apiJBrowse.js"/>
 
 
 
