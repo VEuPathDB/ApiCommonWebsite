@@ -24,7 +24,9 @@ sub run {
 sub processParams {
   my ($self, $cgi, $dbh) = @_;
   my $type  = $cgi->param('type');
+  
 
+  print DUMPER $type;
   if($type eq 'geneOrthologs') {
     my @ids = $cgi->param('gene_ids');
     $self->{ids} = join(',', @ids);
@@ -62,6 +64,9 @@ sub handleIsolates {
 
   # Used to determine the SQL query for the gene page clustalo.
   my $clustalQueryType = $cgi->param('sequence_Type');
+   if ((! defined $clustalQueryType) || ($clustalQueryType eq "")){ 
+   $clustalQueryType = "protein";
+  }
 
   $start =~ s/,//g;
   $end =~ s/,//g;
@@ -70,14 +75,15 @@ sub handleIsolates {
     $end   = $start + 50;
     $start = $start - 50;
   }
-  my $sql = "";
+  my $sql = "";  #NOTE - the sql needs to return an array of 3 values. Only the gene page Clustal Omega uses 3 values, beware the order of values [id, strand, seq]. Strand is only used for the genomic query, so a dummy value is used elsewhere. 
 
   if($type =~ /htsSNP/i) {
     $ids =~ s/'(\w)/'$sid\.$1/g;
     $ids .= ",'$sid'";   # always compare with reference isolate
     $sql = <<EOSQL;
 SELECT source_id, 
-       substr(nas.sequence, $start,$end-$start+1) as sequence 
+	   source_id
+       substr(nas.sequence, $start,$end-$start+1) as sequence,
 FROM   dots.nasequence nas
 WHERE  nas.source_id in ($ids) 
 EOSQL
@@ -162,24 +168,24 @@ EOSQL
     }  
   } else {  # regular isolates
     $sql = <<EOSQL;
-SELECT etn.source_id, etn.sequence
+SELECT etn.source_id, etn.source_id, etn.sequence
 FROM   ApidbTuning.PopsetSequence etn
 WHERE etn.source_id in ($ids)
 EOSQL
 
   }
-
+  
   my $sequence;
   my $sth = $dbh->prepare($sql);
   $sth->execute();
   while(my ($id, $strand, $seq) = $sth->fetchrow_array()) {
-	
+  print STDERR $seq;	
 	if ($strand eq 'reverse' && $clustalQueryType eq "genomic"){	  
 	    my $seqR = Bio::Seq->new(-seq => $seq, alphabet => 'dna');
 	    $seqR = $seqR->revcom();
 		$seq = $seqR->seq;
 	}
-	elsif($strand eq 'forward'){
+	elsif($strand eq 'forward' && $clustalQueryType eq "genomic"){
 	;
     }
     else{;} # For protein/CDS there is no need to check the strand, so this should pass the seq through for whatever is the other value returned by the SQL query.
@@ -204,7 +210,11 @@ EOSQL
   close OUT;
 
   my $userOutFormat = $cgi->param('clustalOutFormat');
-  #my $userOutFormat = "clu";
+  if ((! defined $userOutFormat) || ($userOutFormat eq "")){
+	     $userOutFormat = "clu";
+  } 
+  
+  
   my $cmd = "/usr/bin/clustalo -v --infile=$infile --outfile=$outfile --outfmt=$userOutFormat --output-order=tree-order --guidetree-out=$dndfile --force > $tmpfile";
   system($cmd);
   my %origins = ();
@@ -231,8 +241,12 @@ sub error {
 sub createHTML {
   my ($outfile, $cgi, %origins) = @_;
   open(O, "$outfile") or die "cant open $outfile for reading:$!";
- my $userOutFormat = $cgi->param('clustalOutFormat');
- my $alignmentElse = "";
+
+  my $userOutFormat = $cgi->param('clustalOutFormat');
+  if ((! defined $userOutFormat) || ($userOutFormat eq "")){ 
+    $userOutFormat = "clu";
+  }
+  my $alignmentElse = "";
  
  if ($userOutFormat eq "clu"){
   my %hash;

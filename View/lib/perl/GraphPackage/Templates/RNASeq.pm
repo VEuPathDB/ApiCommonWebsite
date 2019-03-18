@@ -680,52 +680,201 @@ RADJUST
 
 # tbruTREU927_RNAi_Horn_*rnaSeq_RSRC
 package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_3f5188c7a8;
-use base qw( ApiCommonWebsite::View::GraphPackage::Templates::RNASeq );
 use strict;
-sub getGraphType { 'bar' }
-sub excludedProfileSetsString { '' }
-sub getSampleLabelsString { '' }
-sub getColorsString { '#800080;#008000'  } 
-sub getForceXLabelsHorizontalString { 'true' } 
-sub getBottomMarginSize { 0 }
-sub getExprPlotPartModuleString { 'RNASeq' }
-sub getXAxisLabel { '' }
-sub switchStrands {
-   return 0;
-}
+use vars qw( @ISA );
 
-sub getRemainderRegex {
-  return qr/Horn(.*) \[/;
-}
+@ISA = qw( EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet );
+use EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet;
+use EbrcWebsiteCommon::View::GraphPackage::ProfileSet;
+use EbrcWebsiteCommon::Model::CannedQuery::RankedNthRatioValues;
+use EbrcWebsiteCommon::Model::CannedQuery::PhenotypeRankedNthNames;
+use Data::Dumper;
 
-sub getProfileColors {
-  my ($self) = @_;
 
-  my @colors =  @{$self->getColors()};
-  return \@colors;
-}
+# @Override
+sub init {
+  my $self = shift;
 
-sub finalProfileAdjustments {
-  my ($self, $profile) = @_;
+  $self->SUPER::init(@_);
 
-  my @labels = map {"fpkm" . $_} @{$profile->getLegendLabels()};
-  $profile->setLegendLabels(\@labels);
-  $profile->setIsStacked(0);
+  my $specs = $self->getSpecs();
+  my $id = $self->getId();
 
-  my $rAdjustString = << 'RADJUST';
-  if ('NAME' %in% colnames(profile.df.full) & 'LEGEND' %in% colnames(profile.df.full)) {
-    newVals <- aggregate(VALUE ~ NAME, with(profile.df.full, data.frame(NAME=NAME, VALUE=ifelse(LEGEND=="nonunique", 1, -1)*VALUE)), sum);
-    profile.df.full$VALUE[profile.df.full$LEGEND == "nonunique" & profile.df.full$NAME == newVals$NAME] <- newVals$VALUE;
-    profile.df.full$VALUE[profile.df.full$VALUE < 0] <- 0;
-    profile.df.full$STACK <- paste0(profile.df.full$NAME, "- ", profile.df.full$LEGEND, " reads");
-    #profile.df.full$LEGEND <- factor(profile.df.full$LEGEND, levels = rev(levels(as.factor(profile.df.full$LEGEND))));
-    profile.df.full$STDERR[profile.df.full$LEGEND == 'nonunique'] <- NA
-    profile.df.full$MAX_ERR[profile.df.full$LEGEND == 'nonunique'] <- NA
-    profile.df.full$MIN_ERR[profile.df.full$LEGEND == 'nonunique'] <- NA
+  my @profileSets;
+  foreach my $ps (@$specs) {
+    my @profileSet = $self->makeProfileSets($ps->{query}, $ps->{abbrev}, $ps->{name});
+    push @profileSets, @profileSet;
   }
-RADJUST
-  
-  $profile->addAdjustProfile($rAdjustString);
+  my $go = EbrcWebsiteCommon::View::GraphPackage::GGScatterPlot->new(@_);
+
+  $go->setProfileSets(\@profileSets);
+  $go->setXaxisLabel("");
+  $go->setPartName("ratio.rank");
+  $go->setPlotTitle("$id - Unique CDS aligned");
+  $go->setYaxisLabel("fpkm ratio");
+  $go->setColors(["gray", "red"]);
+#  $go->setColors(["#4f5051", "#6d6e70", "#c0c1c4", "#909193", "red"]);
+  $go->addAdjustProfile('
+profile.df.full$NUM <- round(profile.df.full$NUM, digits = 2)
+profile.df.full$DENOM <- round(profile.df.full$DENOM, digits = 2)
+profile.df.full$TOOLTIP <- paste0(profile.df.full$NUM, " : ", profile.df.full$DENOM)
+#profile.df.full$TOOLTIP <- paste0(profile.df.full$NUM, " : ", profile.df.full$DENOM, "|", unlist(lapply(strsplit(profile.df.full$PROFILE_FILE, "_"),"[",2)))
+profile.df.full$FACET <- as.factor(paste0(unlist(lapply(strsplit(profile.df.full$PROFILE_FILE, "_"),"[",2)), " / NoTet"))
+profile.df.full$LEGEND[!grepl("ALL", profile.df.full$PROFILE_FILE)] <- unlist(lapply(strsplit(profile.df.full$PROFILE_FILE[!grepl("ALL", profile.df.full$PROFILE_FILE)], "-"),"[",2))
+profile.df.full$LEGEND[grepl("ALL", profile.df.full$PROFILE_FILE)] <- "All Genes"
+#profile.df.full$LEGEND[grepl("ALL", profile.df.full$PROFILE_FILE)] <- paste0(unlist(lapply(strsplit(profile.df.full$PROFILE_FILE[grepl("ALL", profile.df.full$PROFILE_FILE)], "_"),"[",2))," / NoTet")
+profile.df.gene <- profile.df.full[!(grepl("NoTet", profile.df.full$LEGEND)),]
+profile.df.full <- profile.df.full[grepl("NoTet", profile.df.full$LEGEND),]
+profile.df.full <- rbind(profile.df.full, profile.df.gene)
+  ');
+  $go->setRPostscript("
+gp = gp + scale_y_log10() 
+");
+#  $go->setFacets(['LEGEND']);
+  $go->setFacetNumCols(2);
+
+  $self->setGraphObjects($go);
+
+  return $self;
+}
+
+sub getSpecs {
+  return[ {abbrev => "BFD3",
+	   name => "BFD3",
+	   query => "select bfd3.source_id,  bfd3.value/notet.value as value, bfd3.value as num, notet.value as denom
+        from (
+            SELECT ga.source_id, CASE WHEN (nafe.value = 0) THEN 0.019
+				 ELSE nafe.value END as value
+                      FROM apidbtuning.geneattributes ga, results.nafeatureexpression nafe
+                      , study.protocolappnode pan, study.studylink sl, study.study s
+                      WHERE nafe.na_feature_id = ga.na_feature_id
+                      AND pan.protocol_app_node_id = sl.protocol_app_node_id
+                      AND nafe.protocol_app_node_id = sl.protocol_app_node_id
+                      AND sl.study_id = s.study_id
+                      AND s.NAME = 'T.brucei paired end RNA Seq data from Horn aligned with cds coordinates [htseq-union - unstranded - fpkm - unique]'
+                      AND pan.NAME LIKE '%BFD3%') bfd3
+         left join (            
+            SELECT ga.source_id, CASE WHEN (nafe.value = 0) THEN 0.019
+				 ELSE nafe.value END as value
+                      FROM apidbtuning.geneattributes ga, results.nafeatureexpression nafe
+                      , study.protocolappnode pan, study.studylink sl, study.study s
+                      WHERE nafe.na_feature_id = ga.na_feature_id
+                      AND pan.protocol_app_node_id = sl.protocol_app_node_id
+                      AND nafe.protocol_app_node_id = sl.protocol_app_node_id
+                      AND sl.study_id = s.study_id
+                      AND s.NAME = 'T.brucei paired end RNA Seq data from Horn aligned with cds coordinates [htseq-union - unstranded - fpkm - unique]'
+                      AND pan.NAME LIKE '%Tet%') notet
+          on bfd3.source_id = notet.source_id"
+	  },
+	  {abbrev => "BFD6",
+	   name => "BFD6",
+	   query => "select bfd3.source_id,  bfd3.value/notet.value as value, bfd3.value as num, notet.value as denom
+        from (
+            SELECT ga.source_id, CASE WHEN (nafe.value = 0) THEN 0.019
+				 ELSE nafe.value END as value
+                      FROM apidbtuning.geneattributes ga, results.nafeatureexpression nafe
+                      , study.protocolappnode pan, study.studylink sl, study.study s
+                      WHERE nafe.na_feature_id = ga.na_feature_id
+                      AND pan.protocol_app_node_id = sl.protocol_app_node_id
+                      AND nafe.protocol_app_node_id = sl.protocol_app_node_id
+                      AND sl.study_id = s.study_id
+                      AND s.NAME = 'T.brucei paired end RNA Seq data from Horn aligned with cds coordinates [htseq-union - unstranded - fpkm - unique]'
+                      AND pan.NAME LIKE '%BFD6%') bfd3
+         left join (            
+            SELECT ga.source_id, CASE WHEN (nafe.value = 0) THEN 0.019
+				 ELSE nafe.value END as value
+                      FROM apidbtuning.geneattributes ga, results.nafeatureexpression nafe
+                      , study.protocolappnode pan, study.studylink sl, study.study s
+                      WHERE nafe.na_feature_id = ga.na_feature_id
+                      AND pan.protocol_app_node_id = sl.protocol_app_node_id
+                      AND nafe.protocol_app_node_id = sl.protocol_app_node_id
+                      AND sl.study_id = s.study_id
+                      AND s.NAME = 'T.brucei paired end RNA Seq data from Horn aligned with cds coordinates [htseq-union - unstranded - fpkm - unique]'
+                      AND pan.NAME LIKE '%Tet%') notet
+          on bfd3.source_id = notet.source_id"
+	  },
+	  {abbrev => "PF",
+	   name => "PF",
+	   query => "select bfd3.source_id,  bfd3.value/notet.value as value, bfd3.value as num, notet.value as denom
+        from (
+            SELECT ga.source_id, CASE WHEN (nafe.value = 0) THEN 0.019
+				 ELSE nafe.value END as value
+                      FROM apidbtuning.geneattributes ga, results.nafeatureexpression nafe
+                      , study.protocolappnode pan, study.studylink sl, study.study s
+                      WHERE nafe.na_feature_id = ga.na_feature_id
+                      AND pan.protocol_app_node_id = sl.protocol_app_node_id
+                      AND nafe.protocol_app_node_id = sl.protocol_app_node_id
+                      AND sl.study_id = s.study_id
+                      AND s.NAME = 'T.brucei paired end RNA Seq data from Horn aligned with cds coordinates [htseq-union - unstranded - fpkm - unique]'
+                      AND pan.NAME LIKE '%PF%') bfd3
+         left join (            
+            SELECT ga.source_id, CASE WHEN (nafe.value = 0) THEN 0.019
+				 ELSE nafe.value END as value
+                      FROM apidbtuning.geneattributes ga, results.nafeatureexpression nafe
+                      , study.protocolappnode pan, study.studylink sl, study.study s
+                      WHERE nafe.na_feature_id = ga.na_feature_id
+                      AND pan.protocol_app_node_id = sl.protocol_app_node_id
+                      AND nafe.protocol_app_node_id = sl.protocol_app_node_id
+                      AND sl.study_id = s.study_id
+                      AND s.NAME = 'T.brucei paired end RNA Seq data from Horn aligned with cds coordinates [htseq-union - unstranded - fpkm - unique]'
+                      AND pan.NAME LIKE '%Tet%') notet
+          on bfd3.source_id = notet.source_id"
+	  },
+	  {abbrev => "DIF",
+	   name => "DIF",
+	   query => "select bfd3.source_id,  bfd3.value/notet.value as value, bfd3.value as num, notet.value as denom
+        from (
+            SELECT ga.source_id, CASE WHEN (nafe.value = 0) THEN 0.019
+				 ELSE nafe.value END as value
+                      FROM apidbtuning.geneattributes ga, results.nafeatureexpression nafe
+                      , study.protocolappnode pan, study.studylink sl, study.study s
+                      WHERE nafe.na_feature_id = ga.na_feature_id
+                      AND pan.protocol_app_node_id = sl.protocol_app_node_id
+                      AND nafe.protocol_app_node_id = sl.protocol_app_node_id
+                      AND sl.study_id = s.study_id
+                      AND s.NAME = 'T.brucei paired end RNA Seq data from Horn aligned with cds coordinates [htseq-union - unstranded - fpkm - unique]'
+                      AND pan.NAME LIKE '%DIF%') bfd3
+         left join (            
+            SELECT ga.source_id, CASE WHEN (nafe.value = 0) THEN 0.019
+				 ELSE nafe.value END as value
+                      FROM apidbtuning.geneattributes ga, results.nafeatureexpression nafe
+                      , study.protocolappnode pan, study.studylink sl, study.study s
+                      WHERE nafe.na_feature_id = ga.na_feature_id
+                      AND pan.protocol_app_node_id = sl.protocol_app_node_id
+                      AND nafe.protocol_app_node_id = sl.protocol_app_node_id
+                      AND sl.study_id = s.study_id
+                      AND s.NAME = 'T.brucei paired end RNA Seq data from Horn aligned with cds coordinates [htseq-union - unstranded - fpkm - unique]'
+                      AND pan.NAME LIKE '%Tet%') notet
+          on bfd3.source_id = notet.source_id"
+	  } ];
+}
+
+sub makeProfileSets {
+  my ($self, $sourceIdValueQuery, $abbrev, $name) = @_;
+
+  my $id = $self->getId();
+
+  my $goValuesCannedQueryCurve = EbrcWebsiteCommon::Model::CannedQuery::RankedNthRatioValues->new
+      ( SourceIdValueQuery => $sourceIdValueQuery, N => 200, Name => "_${abbrev}_av", Id => 'ALL');
+
+  my $goNamesCannedQueryCurve = EbrcWebsiteCommon::Model::CannedQuery::PhenotypeRankedNthNames->new
+      ( SourceIdValueQuery => $sourceIdValueQuery, N => 200, Name => "_${abbrev}_aen", Id => 'ALL');
+
+  my $goValuesCannedQueryGene = EbrcWebsiteCommon::Model::CannedQuery::RankedNthRatioValues->new
+      ( SourceIdValueQuery => $sourceIdValueQuery, N => 200, Name => "_${abbrev}_gv", Id => $id);
+
+  my $goNamesCannedQueryGene = EbrcWebsiteCommon::Model::CannedQuery::PhenotypeRankedNthNames->new
+      ( SourceIdValueQuery => $sourceIdValueQuery, N => 200, Name => "_${abbrev}_gen", Id => $id);
+
+  my $goProfileSetCurve = EbrcWebsiteCommon::View::GraphPackage::ProfileSet->new("DUMMY");
+  $goProfileSetCurve->setProfileCannedQuery($goValuesCannedQueryCurve);
+  $goProfileSetCurve->setProfileNamesCannedQuery($goNamesCannedQueryCurve);
+
+  my $goProfileSetGene = EbrcWebsiteCommon::View::GraphPackage::ProfileSet->new("DUMMY");
+  $goProfileSetGene->setProfileCannedQuery($goValuesCannedQueryGene);
+  $goProfileSetGene->setProfileNamesCannedQuery($goNamesCannedQueryGene);
+
+  return(($goProfileSetCurve, $goProfileSetGene));
 }
 
 1;
