@@ -117,6 +117,26 @@ public class JBrowseService extends AbstractWdkService {
 
 
     @GET
+    @Path("organismSpecific/{organismAbbrev}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getJbrowseOrganismSpecificTracks(@PathParam("organismAbbrev") String organismAbbrev)  throws IOException, InterruptedException {
+
+        String gusHome = getWdkModel().getGusHome();
+        String projectId = getWdkModel().getProjectId();
+
+        List<String> command = new ArrayList<String>();
+        command.add(gusHome + "/bin/jbrowseOrganismSpecificTracks");
+        command.add(organismAbbrev);
+        command.add(projectId);
+
+        String result = jsonStringFromCommand(command);
+
+        return Response.ok(result).build();
+    }
+
+
+
+    @GET
     @Path("organismList")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getOrganismList() throws IOException, InterruptedException {
@@ -147,16 +167,41 @@ public class JBrowseService extends AbstractWdkService {
         String webservicesDir = getWdkModel().getProperties().get("WEBSERVICEMIRROR");
 
         List<String> command = new ArrayList<String>();
-        command.add(gusHome + "/bin/jbrowseRNASeqTracks");
+        command.add(gusHome + "/bin/jbrowseRnaAndChipSeqTracks");
         command.add(organismAbbrev);
         command.add(projectId);
         command.add(buildNumber);
         command.add(webservicesDir);
+        command.add("RNASeq");
 
         String result = jsonStringFromCommand(command);
 
         return Response.ok(result).build();
     }
+
+    @GET
+    @Path("chipseq/{organismAbbrev}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getJbrowseChIPSeqTracks(@PathParam("organismAbbrev") String organismAbbrev) throws IOException, InterruptedException {
+
+        String gusHome = getWdkModel().getGusHome();
+        String projectId = getWdkModel().getProjectId();
+        String buildNumber = getWdkModel().getBuildNumber();
+        String webservicesDir = getWdkModel().getProperties().get("WEBSERVICEMIRROR");
+
+        List<String> command = new ArrayList<String>();
+        command.add(gusHome + "/bin/jbrowseRnaAndChipSeqTracks");
+        command.add(organismAbbrev);
+        command.add(projectId);
+        command.add(buildNumber);
+        command.add(webservicesDir);
+        command.add("ChIPSeq");
+
+        String result = jsonStringFromCommand(command);
+
+        return Response.ok(result).build();
+    }
+
 
     @GET
     @Path("store")

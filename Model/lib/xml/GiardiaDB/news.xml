@@ -71,7 +71,8 @@
              Updated Alignment Tool on Gene Pages &ndash; <br>
              The Clustal Omega alignment tool in the 'Orthologs and Paralogs within EuPathDB' table now 
              accommodates protein, CDS and genomic sequence alignments. To run Clustal Omega, select genes from the table. Then choose the sequence 
-             type and initiate the alignment with the 'Run Clutal Omega for selected genes' button. This tool replaces the 'Retrieve multiple 
+             type and initiate the alignment with the 'Run Clutal Omega for selected genes' button. Output formats include Mismatches highlighted, FASTA, PHYLIP, STOCKHOLM, 
+             and VIENNA. This tool replaces the 'Retrieve multiple 
              sequence alignment or multi-FASTA' tool.
            </li>
            <li>
