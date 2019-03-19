@@ -89,7 +89,8 @@ public class UserCommentsService extends AbstractUserCommentService {
    */
   @GET
   @Produces(MediaType.APPLICATION_JSON)
-  @OutSchema("apicomm.user-comments.get-response")
+  // TODO: Once updates to the schema have been finalized, uncomment this!
+  // @OutSchema("apicomm.user-comments.get-response")
   public Collection<Comment> getAllComments(
     @QueryParam("author")      final Long   author,
     @QueryParam("target-type") final String targetType,
