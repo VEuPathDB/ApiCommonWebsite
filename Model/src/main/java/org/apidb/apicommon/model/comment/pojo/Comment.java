@@ -100,7 +100,6 @@ public class Comment extends BaseComment {
     return this;
   }
 
-  @JsonIgnore
   public Project getProject() {
     return _project;
   }
