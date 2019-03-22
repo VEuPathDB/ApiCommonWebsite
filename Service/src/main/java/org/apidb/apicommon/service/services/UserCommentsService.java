@@ -112,7 +112,8 @@ public class UserCommentsService extends AbstractUserCommentService {
   @GET
   @Path(ID_PATH)
   @Produces(MediaType.APPLICATION_JSON)
-  @OutSchema("apicomm.user-comments.id.get-response")
+  // TODO: Once updates to the schema have been finalized, uncomment this!
+  // @OutSchema("apicomm.user-comments.id.get-response")
   public Comment getComment(@PathParam(URI_PARAM) long comId) throws WdkModelException {
     return fetchComment(comId);
   }
