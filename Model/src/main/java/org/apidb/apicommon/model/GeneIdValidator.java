@@ -6,15 +6,15 @@ import java.sql.ResultSet;
 import javax.sql.DataSource;
 
 import org.gusdb.fgputil.db.SqlUtils;
-import org.gusdb.wdk.model.jspwrap.WdkModelBean;
+import org.gusdb.wdk.model.WdkModel;
 
 public class GeneIdValidator {
 
     private DataSource dataSource;
 
-    public GeneIdValidator(WdkModelBean wdkModelBean) {
+    public GeneIdValidator(WdkModel wdkModel) {
         try {
-          dataSource = wdkModelBean.getModel().getAppDb().getDataSource();
+          dataSource = wdkModel.getAppDb().getDataSource();
         } catch (Exception e) {
           e.printStackTrace();
         }

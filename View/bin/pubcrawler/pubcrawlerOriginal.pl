@@ -2684,7 +2684,8 @@ sub first_visit{
 #				'retmax='.$PARAM{'getmax'}, # doesn't work!
 				"tool=$PARAM{'tool'}",
 				"email=$sender",
-				"$term"
+				"$term",
+				"api_key=f2006d7a9fa4e92b2931d964bb75ada85a08"
 				);
     } else {
 
@@ -2700,7 +2701,9 @@ sub first_visit{
 				'retmax='.$PARAM{'getmax'},
 				"tool=$PARAM{'tool'}",
 				"email=$sender",
-				"$term");
+				"$term",
+				"api_key=f2006d7a9fa4e92b2931d964bb75ada85a08"
+	);
     }
 
     
