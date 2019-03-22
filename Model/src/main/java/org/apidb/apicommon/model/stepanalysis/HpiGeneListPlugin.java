@@ -1,7 +1,7 @@
 package org.apidb.apicommon.model.stepanalysis;
 
 import static org.gusdb.fgputil.FormatUtil.TAB;
-
+import java.util.Collections;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -11,6 +11,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import java.util.Arrays;
+import java.util.Comparator;
+
+
+import java.util.Collections;
+
+
 
 import org.apache.log4j.Logger;
 import org.apidb.apicommon.model.stepanalysis.EnrichmentPluginUtil.Option; // The static class here should be factored
@@ -85,6 +93,7 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
       Map<String,String[]> params = getFormParams();
 
       String type = "gene"; 
+
       String idSource = "alt_locus_tag";
       
       String idSql =  "select distinct gene_source_id from (" + answerValue.getIdSql() + ")";
@@ -96,6 +105,9 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
 
       String thresholdType = params.get(THRESHOLD_TYPE_PARAM_KEY)[0];
       String useOrthology = params.get(USE_ORTHOLOGY_PARAM_KEY)[0];
+
+      //      String orderbyp = "| sort -k9,9";
+
 
       // create another path here for the image word cloud JP LOOK HERE name it like imageFilePath
       Path resultFilePath = Paths.get(getStorageDirectory().toString(), TABBED_RESULT_FILE_PATH);
@@ -110,7 +122,8 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
                +  idSource + " "
                + resultFilePath.toString() + " "
                + wdkModel.getProjectId() + " "
-               + searchServerEndpoint
+               + searchServerEndpoint + " "
+	       //	       + orderbyp
                );
 
       //TODO:  Add server endpoint
@@ -169,23 +182,36 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
 
   private ResultViewModel createResultViewModel() throws WdkModelException {
     Path inputPath = Paths.get(getStorageDirectory().toString(), TABBED_RESULT_FILE_PATH);
+      
+      //String brcValue = getFormParams().get(BRC_PARAM_KEY)[0];                                                                      
+      List<ResultRow> results = new ArrayList<>();
+      try (FileReader fileIn = new FileReader(inputPath.toFile());
+	   BufferedReader buffer = new BufferedReader(fileIn)) {
+	      while (buffer.ready()) {
+		  String line = buffer.readLine();
+		  //LOG.info("LINE = " + line);                                                                         
+		  String[] columns = line.split(TAB);
+		  
+		  results.add(new ResultRow(columns[0],columns[1],columns[2],columns[3],columns[4],columns[5],columns[6],columns[7],columns[8], columns[9], columns[10], columns[11]));
+	      }
+	      /*
+	      results.forEach(ResultRow -> {
+		      LOG.info("The P_value Before Sort is:BBBBBefore" + ResultRow.getSignificance());
+		  });
+	      Collections.sort(results); // sort out p-value
+	      results.forEach(ResultRow -> {
+		      LOG.info("The P_value After Sort is: AAAAAfter" + ResultRow.getSignificance());
+		  });
+	      */
 
-    //String brcValue = getFormParams().get(BRC_PARAM_KEY)[0];
+	      Collections.sort(results); // sort out by p-value
 
-    List<ResultRow> results = new ArrayList<>();
-    try (FileReader fileIn = new FileReader(inputPath.toFile());
-         BufferedReader buffer = new BufferedReader(fileIn)) {
-      while (buffer.ready()) {
-        String line = buffer.readLine();
-	//	LOG.info("LINE = " + line);
-        String[] columns = line.split(TAB);
-        results.add(new ResultRow(columns[0],columns[1],columns[2],columns[3],columns[4],columns[5],columns[6],columns[7],columns[8], columns[9], columns[10], columns[11]));
+	      return new ResultViewModel(TABBED_RESULT_FILE_PATH, results, getFormParams());
+
+	  }
+      catch (IOException ioe) {
+	  throw new WdkModelException("Unable to process result file at: " + inputPath, ioe);
       }
-      return new ResultViewModel(TABBED_RESULT_FILE_PATH, results, getFormParams());
-    }
-    catch (IOException ioe) {
-      throw new WdkModelException("Unable to process result file at: " + inputPath, ioe);
-    }
   }
 
   public static class FormViewModel {
@@ -270,13 +296,14 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
     private String downloadPath;
     private Map<String, String[]> formParams;
 
-    public ResultViewModel(String downloadPath, List<ResultRow> resultData,
-			   Map<String, String[]> formParams) {
-      this.downloadPath = downloadPath;
-      this.formParams = formParams;
-      this.resultData = resultData;
-    }
-
+    public ResultViewModel(String downloadPath, List<ResultRow> resultData, Map<String, String[]> formParams) 
+      {
+	  this.downloadPath = downloadPath;
+	  this.formParams = formParams;
+	  //this.resultData = resultData;
+	  this.resultData = Collections.unmodifiableList(resultData);
+      }
+      
       public ResultRow getHeaderRow() {
           return this.HEADER_ROW;
       }
@@ -286,6 +313,10 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
       }
 
       public List<ResultRow> getResultData() {
+	  /*	  resultData.forEach(ResultRow -> {
+	  	  LOG.info("The Final P_value is:" + ResultRow.getSignificance());
+		  });
+	  */
           return this.resultData;
       }
       public String getDownloadPath() {
@@ -307,50 +338,66 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
       }
   }
 
-  public static class ResultRow {
+    public static class ResultRow implements Comparable<Object>{
+	
+	private String experimentId;
+	private String species;
+	private String experimentName;
+	private String description;
+	private String type;
+	private String uri;
+	private String t11;
+	private String t12;
+	private String t21;
+	private String t22;
+	private String significance;
+	private String serverEndpoint;
 
-      private String experimentId;
-      private String species;
-      private String experimentName;
-      private String description;
-      private String type;
-      private String uri;
-      private String t11;
-      private String t12;
-      private String t21;
-      private String t22;
-      private String significance;
-      private String serverEndpoint;
+	public ResultRow(String experimentId, String species, String experimentName, String description, String type, String uri, String t11, String t12, String t21, String t22, String significance, String serverEndpoint) {
 
-      public ResultRow(String experimentId, String species, String experimentName, String description, String type, String uri, String t11, String t12, String t21, String t22, String significance, String serverEndpoint) {
+	    this.experimentId = experimentId;
+	    this.species = species;
+	    this.experimentName = experimentName;
+	    this.description = description;
+	    this.type = type;
+	    this.uri = uri;
+	    this.t11 = t11;
+	    this.t12 = t12;
+	    this.t21 = t21;
+	    this.t22 = t22;
+	    this.significance = significance;
+	    this.serverEndpoint = serverEndpoint;
+	}
+	  
 
-        this.experimentId = experimentId;
-        this.species = species;
-        this.experimentName = experimentName;
-        this.description = description;
-        this.type = type;
-        this.uri = uri;
-	this.t11 = t11;
-	this.t12 = t12;
-	this.t21 = t21;
-	this.t22 = t22;
-        this.significance = significance;
-        this.serverEndpoint = serverEndpoint;
-    }
+	//	@Override
+	public int compareTo(Object o){
+	    ResultRow r = (ResultRow) o;
+	    if(Double.parseDouble(this.significance) == Double.parseDouble(r.significance)) {
+		return 0;
+	    }
+	    else if(Double.parseDouble(this.significance) < Double.parseDouble(r.significance)) {
+		return -1;
+	    }
+	    else {
+		return 1;
+	    }
+	}
+	
+	public String getExperimentId() { return this.experimentId; }
+	public String getSpecies() { return this.species; }
+	public String getExperimentName() { return this.experimentName; }
+	public String getDescription() { return this.description; }
+	public String getType() { return this.type; }
+	public String getUri() { return this.uri; }
+	public String getT11() { return this.t11; }      
+	public String getT12() { return this.t12; }      
+	public String getT21() { return this.t21; }      
+	public String getT22() { return this.t22; }      
+	public String getSignificance() { return this.significance; }      
+	public String getServerEndPoint() { return this.serverEndpoint; }      
 
-      public String getExperimentId() { return this.experimentId; }
-      public String getSpecies() { return this.species; }
-      public String getExperimentName() { return this.experimentName; }
-      public String getDescription() { return this.description; }
-      public String getType() { return this.type; }
-      public String getUri() { return this.uri; }
-      public String getT11() { return this.t11; }      
-      public String getT12() { return this.t12; }      
-      public String getT21() { return this.t21; }      
-      public String getT22() { return this.t22; }      
-      public String getSignificance() { return this.significance; }      
-      public String getServerEndPoint() { return this.serverEndpoint; }      
-      
+
       public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("experimentId", getExperimentId());
@@ -364,5 +411,5 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
 
         return json;
       }
+    }
   }
-}
