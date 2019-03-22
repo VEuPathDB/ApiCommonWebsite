@@ -38,3 +38,6 @@ rebuilder.conf:
 geneListComparison-config:
   src: 'ApiCommonWebsite/geneListComparison-config.xml.j2'
   dest: '{{ gus_home }}/config//geneListComparison-config.xml'
+fisherExactTest-config:
+  src: 'ApiCommonWebsite/fisherExactTest-config.xml.j2'
+  dest: '{{ gus_home }}/config//fisherExactTest-config.xml'

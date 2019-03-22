@@ -8,8 +8,8 @@
     <version>1.0.0</version>
   </parent>
 
-  <name>Api Common Website - Model</name>
-  <artifactId>api-common-website-model</artifactId>
+  <name>Api Common Website - Site</name>
+  <artifactId>api-common-website-site</artifactId>
   <packaging>jar</packaging>
 
   <dependencies>
@@ -30,8 +30,18 @@
     </dependency>
 
     <dependency>
+      <groupId>org.gusdb</groupId>
+      <artifactId>wdk-website-controller</artifactId>
+    </dependency>
+
+    <dependency>
       <groupId>org.eupathdb</groupId>
       <artifactId>ebrc-website-common-model</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.eupathdb</groupId>
+      <artifactId>api-common-website-model</artifactId>
     </dependency>
 
     <dependency>
@@ -79,22 +89,6 @@
       <artifactId>json</artifactId>
     </dependency>
 
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-core</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-databind</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-annotations</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>io.vulpine.lib</groupId>
-      <artifactId>Jackfish</artifactId>
-    </dependency>
   </dependencies>
 
 </project>

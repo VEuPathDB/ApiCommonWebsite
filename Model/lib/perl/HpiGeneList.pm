@@ -7,6 +7,8 @@ use WDK::Model::ModelConfig;
 use DBI;
 use JSON;
 
+use Data::Dumper;
+
 sub new {
   my ($class)  = @_;
 
@@ -62,20 +64,34 @@ sub run {
     my $message = $resp->decoded_content;
     # print "Received reply: $message\n";
 
-# experimentIdentifier,species,displayName,description,type,uri,significance
+# experimentIdentifier,species,displayName,description,type,uri,t11,t12,t21,t22,significance
     # parse JSON string
     my $jsonString = decode_json($message);
+
+#    print STDERR Dumper ($jsonString);
 
     foreach my $d (@{$jsonString}) {
       my $desc = $d->{'description'};
       $desc =~s/[\t|\n]//g;
-      my $significance = int(($d->{'idLists'}[0])->{significance} * 100000 + 0.5) / 100000;
+
+      my $significance = ($d->{'idLists'}[0])->{significance};
+      my $t11 = ($d->{'idLists'}[0])->{t11};
+      my $t12 = ($d->{'idLists'}[0])->{t12};
+      my $t21 = ($d->{'idLists'}[0])->{t21};
+      my $t22 = ($d->{'idLists'}[0])->{t22};
+
+
+#      my $significance = int(($d->{'idLists'}[0])->{significance} * 100000 + 0.5) / 100000;
       print OUT $d->{'experimentIdentifier'} . "\t" .
           $d->{'species'}  . "\t" .
           $d->{'displayName'}  . "\t" .
           $desc . "\t" .
           $d->{'type'}  . "\t" .
           $d->{'uri'}  . "\t" .
+	  $t11 .  "\t" .
+	  $t12 .  "\t" .
+	  $t21 .  "\t" .
+	  $t22 .  "\t" .
 	  $significance .  "\t" .
           ($d->{'idLists'}[0])->{uri}.   "\n";
     }
