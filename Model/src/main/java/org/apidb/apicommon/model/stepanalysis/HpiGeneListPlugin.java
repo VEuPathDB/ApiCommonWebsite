@@ -236,7 +236,7 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
 
   public static class ResultViewModel {
 
-      private final ResultRow HEADER_ROW = new ResultRow("Experiment Identifier", "Species",  "Experiment Name", "Description","Type", "URI", "Count1", "Count2", "Count3", "Count4", "Statistic", "List_URI");
+      private final ResultRow HEADER_ROW = new ResultRow("Experiment Identifier", "Species",  "Experiment Name", "Description","Type", "URI", "Observed Overlap", "Expected Overlap", "Percent of overlapping genes in your result", "Percent of this experiment genes in bkgd", "Statistic", "List_URI");
 
       private final ResultRow COLUMN_HELP = new ResultRow(
                                                                 "Unique ID for this experiment",
@@ -245,10 +245,10 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
                                                                 "Details about this experiment",
                                                                 "What type of experiment was this",
                                                                 "Where can I find more information about this experiment",
-								"The number of overlapping genes between user input gene list and this data set with FC>inputFC (Background Genome: all genes in this Data Set)",
-								"The number of overlapping genes in user input gene list but NOT in this data set with FC>inputFC (Background Genome: all genes in this Data Set)",
-								"The number of overlapping genes NOT in user input gene list, but in this data set with FC>inputFC (Background Genome: all genes in this Data Set)",
-								"The number of overlapping genes Neither in user input gene list Nor in this data set with FC>inputFC (Background Genome: all genes in this Data Set)",
+								"The observed number of overlapping genes in your input gene list and this experiment",
+								"The expected number of overlapping genes in your input gene list and this experiment",
+								"Percent of overlapping genes in your gene list",
+								"Percent of this particular experiment genes in background genome",
                                                                 "Statistic used to identify this experiment (p-value)",
                                                                 "URI for the List"
                                                                 );
