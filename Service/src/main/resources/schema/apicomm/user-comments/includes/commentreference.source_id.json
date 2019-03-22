@@ -1,0 +1,7 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "description": "Type for the COMMENTREFERENCE.SOURCE_ID database column",
+  "type": "string",
+  "maxLength": 100,
+  "minLength": 1
+}

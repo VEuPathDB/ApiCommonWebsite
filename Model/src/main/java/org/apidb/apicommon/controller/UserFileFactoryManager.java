@@ -12,5 +12,4 @@ public class UserFileFactoryManager {
     String projectId = context.getInitParameter(Utilities.ARGUMENT_PROJECT_ID);
     return InstanceManager.getInstance(UserFileFactory.class, projectId);
   }
-
 }
