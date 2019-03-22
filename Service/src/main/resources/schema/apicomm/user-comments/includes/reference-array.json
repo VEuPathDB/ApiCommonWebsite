@@ -1,0 +1,8 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "type": "array",
+  "description": "Array of reference resource ids",
+  "items": {
+    "$ref": "./commentreference.source_id.json"
+  }
+}
