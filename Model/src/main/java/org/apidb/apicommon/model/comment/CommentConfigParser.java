@@ -14,6 +14,8 @@ import org.xml.sax.SAXException;
  */
 public class CommentConfigParser extends XmlParser {
 
+  private static final String PROP_NAME = "commentConfig";
+
   private final String _gusHome;
   private final Digester _digester;
 
@@ -41,8 +43,8 @@ public class CommentConfigParser extends XmlParser {
     Digester digester = new Digester();
     digester.setValidating(false);
 
-    digester.addObjectCreate("commentConfig", CommentConfig.class);
-    digester.addSetProperties("commentConfig");
+    digester.addObjectCreate(PROP_NAME, CommentConfig.class);
+    digester.addSetProperties(PROP_NAME);
 
     return digester;
   }

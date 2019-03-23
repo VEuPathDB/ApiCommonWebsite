@@ -1,0 +1,136 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "type": "object",
+  "definitions": {
+    "referenceId": {
+      "description": "Reference resource id",
+      "type": "string",
+      "maxLength": 100
+    }
+  },
+  "properties": {
+    "additionalAuthors": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/referenceId"
+      }
+    },
+    "attachments": {
+      "type": "array",
+      "items": {
+        "$ref": "/schema/apicomm/user-comments/includes/attachment.json"
+      }
+    },
+    "author": {
+      "$ref": "/schema/apicomm/user-comments/includes/display-author.json"
+    },
+    "categories": {
+      "description": "Comment category display names",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "maxLength": 100
+      }
+    },
+    "commentDate": {
+      "description": "Comment creation timestamp",
+      "type": "integer"
+    },
+    "conceptual": {
+      "description": "Whether or not this comment has been marked as \"conceptual\"",
+      "type": "boolean"
+    },
+    "content": {
+      "description": "Comment body text",
+      "type": "string"
+    },
+    "digitalObjectIds": {
+      "description": "Digital Object Identifiers",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/referenceId"
+      }
+    },
+    "externalDatabase": {
+      "$ref": "/schema/apicomm/user-comments/includes/external-database.json"
+    },
+    "genBankAccessions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/referenceId"
+      }
+    },
+    "headline": {
+      "description": "Comment headline",
+      "type": "string",
+      "maxLength": 2000
+    },
+    "id": {
+      "description": "Comment database ID",
+      "type": "integer",
+      "minimum": 1
+    },
+    "location": {
+      "description": "Comment locations",
+      "$ref": "/schema/apicomm/user-comments/includes/location.json"
+    },
+    "organism": {
+      "description": "Comment target organism",
+      "type": "string",
+      "maxLength": 100
+    },
+    "pubMedRefs": {
+      "description": "PubMed link details",
+      "type": "array",
+      "items": {
+        "$ref": "/schema/apicomm/user-comments/includes/pub-med.json"
+      }
+    },
+    "relatedStableIds": {
+      "description": "Other records relevant to this comment",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "maxLength": 200
+      }
+    },
+    "reviewStatus": {
+      "description": "Status of this comment's review process",
+      "type": "string",
+      "enum": [
+        "accepted",
+        "adopted",
+        "community",
+        "not_spam",
+        "rejected",
+        "spam",
+        "task",
+        "unknown"
+      ]
+    },
+    "sequence": {
+      "type": "string"
+    },
+    "target": {
+      "$ref": "/schema/apicomm/user-comments/includes/target.json"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "additionalAuthors",
+    "attachments",
+    "author",
+    "categories",
+    "commentDate",
+    "conceptual",
+    "content",
+    "digitalObjectIds",
+    "genBankAccessions",
+    "headline",
+    "id",
+    "pubMedRefs",
+    "relatedStableIds",
+    "reviewStatus",
+    "target"
+  ]
+}
