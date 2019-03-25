@@ -729,9 +729,12 @@ profile.df.full <- rbind(profile.df.full, profile.df.gene)
   ');
   $go->setRPostscript("
 gp = gp + scale_y_log10() 
+gp = gp + scale_x_continuous(breaks = round(seq(min(profile.df.full\$ELEMENT_NAMES_NUMERIC), max(profile.df.full\$ELEMENT_NAMES_NUMERIC), by = 11000),1))
+gp = gp + annotate(\"text\", x = 5000, y = 150, label = \"RNAi\nenhances\nfitness\", colour = 'red', size=3.5)
+gp = gp + annotate(\"text\", x = 6000, y = 0.001, label = \"RNAi\nreduces\nfitness\", colour = '#d3883f', size=3.5)
+gp = gp + geom_hline(yintercept=1, color=\"darkgray\", size=0.5)
 ");
-#  $go->setFacets(['LEGEND']);
-  $go->setFacetNumCols(2);
+  $go->setFacetNumCols(4);
 
   $self->setGraphObjects($go);
 
@@ -855,16 +858,16 @@ sub makeProfileSets {
   my $id = $self->getId();
 
   my $goValuesCannedQueryCurve = EbrcWebsiteCommon::Model::CannedQuery::RankedNthRatioValues->new
-      ( SourceIdValueQuery => $sourceIdValueQuery, N => 200, Name => "_${abbrev}_av", Id => 'ALL');
+      ( SourceIdValueQuery => $sourceIdValueQuery, N => 100, Name => "_${abbrev}_av", Id => 'ALL');
 
   my $goNamesCannedQueryCurve = EbrcWebsiteCommon::Model::CannedQuery::PhenotypeRankedNthNames->new
-      ( SourceIdValueQuery => $sourceIdValueQuery, N => 200, Name => "_${abbrev}_aen", Id => 'ALL');
+      ( SourceIdValueQuery => $sourceIdValueQuery, N => 100, Name => "_${abbrev}_aen", Id => 'ALL');
 
   my $goValuesCannedQueryGene = EbrcWebsiteCommon::Model::CannedQuery::RankedNthRatioValues->new
-      ( SourceIdValueQuery => $sourceIdValueQuery, N => 200, Name => "_${abbrev}_gv", Id => $id);
+      ( SourceIdValueQuery => $sourceIdValueQuery, N => 100, Name => "_${abbrev}_gv", Id => $id);
 
   my $goNamesCannedQueryGene = EbrcWebsiteCommon::Model::CannedQuery::PhenotypeRankedNthNames->new
-      ( SourceIdValueQuery => $sourceIdValueQuery, N => 200, Name => "_${abbrev}_gen", Id => $id);
+      ( SourceIdValueQuery => $sourceIdValueQuery, N => 100, Name => "_${abbrev}_gen", Id => $id);
 
   my $goProfileSetCurve = EbrcWebsiteCommon::View::GraphPackage::ProfileSet->new("DUMMY");
   $goProfileSetCurve->setProfileCannedQuery($goValuesCannedQueryCurve);
