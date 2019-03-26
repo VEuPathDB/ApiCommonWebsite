@@ -68,7 +68,7 @@ sub run {
     # parse JSON string
     my $jsonString = decode_json($message);
 
-#    print STDERR Dumper ($jsonString);
+    print STDERR Dumper ($jsonString);
 
     foreach my $d (@{$jsonString}) {
       my $desc = $d->{'description'};
@@ -77,6 +77,7 @@ sub run {
       my $significance = ($d->{'idLists'}[0])->{significance};
       my $t11 = ($d->{'idLists'}[0])->{t11};
       my $t12 = ($d->{'idLists'}[0])->{t12};
+      my $t33 = ($d->{'idLists'}[0])->{t33};
       my $t21 = ($d->{'idLists'}[0])->{t21};
       my $t22 = ($d->{'idLists'}[0])->{t22};
 
@@ -90,6 +91,7 @@ sub run {
           $d->{'uri'}  . "\t" .
 	  $t11 .  "\t" .
 	  $t12 .  "\t" .
+	  $t33 .  "\t" .
 	  $t21 .  "\t" .
 	  $t22 .  "\t" .
 	  $significance .  "\t" .
