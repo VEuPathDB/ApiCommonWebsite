@@ -173,7 +173,7 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
 		  //LOG.info("LINE = " + line);                                                                         
 		  String[] columns = line.split(TAB);
 		  
-		  results.add(new ResultRow(columns[0],columns[1],columns[2],columns[3],columns[4],columns[5],columns[6],columns[7],columns[8], columns[9], columns[10], columns[11]));
+		  results.add(new ResultRow(columns[0],columns[1],columns[2],columns[3],columns[4],columns[5],columns[6],columns[7],columns[8], columns[9], columns[10], columns[11], columns[12]));
 	      }
 	      /*
 	      results.forEach(ResultRow -> {
@@ -236,7 +236,7 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
 
   public static class ResultViewModel {
 
-      private final ResultRow HEADER_ROW = new ResultRow("Experiment Identifier", "Species",  "Experiment Name", "Description","Type", "URI", "Observed Overlap", "Expected Overlap", "Percent of overlapping genes in your result", "Percent of this experiment genes in bkgd", "Statistic", "List_URI");
+      private final ResultRow HEADER_ROW = new ResultRow("Experiment Identifier", "Species",  "Experiment Name", "Description","Type", "URI", "Observed overlap", "Expected overlap", "Fold enrichment", "Percent of overlapping genes in your result", "Percent of this experiment genes in bkgd", "Statistic", "List_URI");
 
       private final ResultRow COLUMN_HELP = new ResultRow(
                                                                 "Unique ID for this experiment",
@@ -245,10 +245,11 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
                                                                 "Details about this experiment",
                                                                 "What type of experiment was this",
                                                                 "Where can I find more information about this experiment",
-								"The observed number of overlapping genes in your input gene list and this experiment",
+								"The observed number of overlapping genes in your input gene list and in this experiment meets the fold change cut-off value criteria",
 								"The expected number of overlapping genes in your input gene list and this experiment",
+								"The observed overlap divided by the expected overlap",
 								"Percent of overlapping genes in your gene list",
-								"Percent of this particular experiment genes in background genome",
+								"Percent of this experiment genes that meets the fold change criteria in background genome",
                                                                 "Statistic used to identify this experiment (p-value)",
                                                                 "URI for the List"
                                                                 );
@@ -298,12 +299,13 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
 	private String uri;
 	private String t11;
 	private String t12;
+	private String t33;
 	private String t21;
 	private String t22;
 	private String significance;
 	private String serverEndpoint;
 
-	public ResultRow(String experimentId, String species, String experimentName, String description, String type, String uri, String t11, String t12, String t21, String t22, String significance, String serverEndpoint) {
+	public ResultRow(String experimentId, String species, String experimentName, String description, String type, String uri, String t11, String t12, String t33, String t21, String t22, String significance, String serverEndpoint) {
 
 	    this.experimentId = experimentId;
 	    this.species = species;
@@ -313,6 +315,7 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
 	    this.uri = uri;
 	    this.t11 = t11;
 	    this.t12 = t12;
+	    this.t33 = t33;
 	    this.t21 = t21;
 	    this.t22 = t22;
 	    this.significance = significance;
@@ -342,6 +345,7 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
 	public String getUri() { return this.uri; }
 	public String getT11() { return this.t11; }      
 	public String getT12() { return this.t12; }      
+	public String getT33() { return this.t33; }      
 	public String getT21() { return this.t21; }      
 	public String getT22() { return this.t22; }      
 	public String getSignificance() { return this.significance; }      
