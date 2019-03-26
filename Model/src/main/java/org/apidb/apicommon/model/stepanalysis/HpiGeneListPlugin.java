@@ -297,15 +297,15 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
 	private String description;
 	private String type;
 	private String uri;
-	private String t11;
-	private String t12;
-	private String t33;
-	private String t21;
-	private String t22;
+	private String c11;
+	private String c22;
+	private String c33;
+	private String c44;
+	private String c55;
 	private String significance;
 	private String serverEndpoint;
 
-	public ResultRow(String experimentId, String species, String experimentName, String description, String type, String uri, String t11, String t12, String t33, String t21, String t22, String significance, String serverEndpoint) {
+	public ResultRow(String experimentId, String species, String experimentName, String description, String type, String uri, String c11, String c22, String c33, String c44, String c55, String significance, String serverEndpoint) {
 
 	    this.experimentId = experimentId;
 	    this.species = species;
@@ -313,11 +313,11 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
 	    this.description = description;
 	    this.type = type;
 	    this.uri = uri;
-	    this.t11 = t11;
-	    this.t12 = t12;
-	    this.t33 = t33;
-	    this.t21 = t21;
-	    this.t22 = t22;
+	    this.c11 = c11;
+	    this.c22 = c22;
+	    this.c33 = c33;
+	    this.c44 = c44;
+	    this.c55 = c55;
 	    this.significance = significance;
 	    this.serverEndpoint = serverEndpoint;
 	}
@@ -343,11 +343,11 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
 	public String getDescription() { return this.description; }
 	public String getType() { return this.type; }
 	public String getUri() { return this.uri; }
-	public String getT11() { return this.t11; }      
-	public String getT12() { return this.t12; }      
-	public String getT33() { return this.t33; }      
-	public String getT21() { return this.t21; }      
-	public String getT22() { return this.t22; }      
+	public String getC11() { return this.c11; }      
+	public String getC22() { return this.c22; }      
+	public String getC33() { return this.c33; }      
+	public String getC44() { return this.c44; }      
+	public String getC55() { return this.c55; }      
 	public String getSignificance() { return this.significance; }      
 	public String getServerEndPoint() { return this.serverEndpoint; }      
     }

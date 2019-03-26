@@ -75,11 +75,11 @@ sub run {
       $desc =~s/[\t|\n]//g;
 
       my $significance = ($d->{'idLists'}[0])->{significance};
-      my $t11 = ($d->{'idLists'}[0])->{t11};
-      my $t12 = ($d->{'idLists'}[0])->{t12};
-      my $t33 = ($d->{'idLists'}[0])->{t33};
-      my $t21 = ($d->{'idLists'}[0])->{t21};
-      my $t22 = ($d->{'idLists'}[0])->{t22};
+      my $c11 = ($d->{'idLists'}[0])->{c11};
+      my $c22 = ($d->{'idLists'}[0])->{c22};
+      my $c33 = ($d->{'idLists'}[0])->{c33};
+      my $c44 = ($d->{'idLists'}[0])->{c44};
+      my $c55 = ($d->{'idLists'}[0])->{c55};
 
 
 #      my $significance = int(($d->{'idLists'}[0])->{significance} * 100000 + 0.5) / 100000;
@@ -89,11 +89,11 @@ sub run {
           $desc . "\t" .
           $d->{'type'}  . "\t" .
           $d->{'uri'}  . "\t" .
-	  $t11 .  "\t" .
-	  $t12 .  "\t" .
-	  $t33 .  "\t" .
-	  $t21 .  "\t" .
-	  $t22 .  "\t" .
+	  $c11 .  "\t" .
+	  $c22 .  "\t" .
+	  $c33 .  "\t" .
+	  $c44 .  "\t" .
+	  $c55 .  "\t" .
 	  $significance .  "\t" .
           ($d->{'idLists'}[0])->{uri}.   "\n";
     }
