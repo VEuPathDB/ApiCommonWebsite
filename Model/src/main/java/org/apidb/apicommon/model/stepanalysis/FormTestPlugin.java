@@ -13,6 +13,8 @@ import org.gusdb.wdk.model.analysis.AbstractStepAnalyzer;
 import org.gusdb.wdk.model.answer.AnswerValue;
 import org.gusdb.wdk.model.user.analysis.ExecutionStatus;
 import org.gusdb.wdk.model.user.analysis.StatusLogger;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class FormTestPlugin extends AbstractStepAnalyzer {
 
@@ -26,6 +28,14 @@ public class FormTestPlugin extends AbstractStepAnalyzer {
     public void setSelectOptions(List<NamedValue> selectOptions) {
       _selectOptions = selectOptions;
     }
+    
+   public JSONObject toJson() {
+     JSONObject json = new JSONObject();
+     JSONArray jsonarray = new JSONArray();
+     for (NamedValue nv : getSelectOptions()) jsonarray.put(nv);
+     json.put("selectOptions", jsonarray);
+     return json;
+   }
   }
   
   @Override
@@ -45,9 +55,25 @@ public class FormTestPlugin extends AbstractStepAnalyzer {
   public Object getResultViewModel() {
     return getPersistentCharData();
   }
+  
+  @Override
+  public JSONObject getResultViewModelJson() {
+    JSONObject json = new JSONObject();
+    json.put("persistentCharData", getPersistentCharData());
+    return json;
+  }
 
   @Override
   public Object getFormViewModel() {
+    return createFormViewModel(); 
+  }
+  
+  @Override
+  public JSONObject getFormViewModelJson() {
+    return createFormViewModel().toJson();
+  }
+  
+  private FormViewModel createFormViewModel() {
     FormViewModel model = new FormViewModel();
     model.setSelectOptions(new ListBuilder<NamedValue>()
         .add(new NamedValue("Value 1", "val1"))
@@ -56,4 +82,5 @@ public class FormTestPlugin extends AbstractStepAnalyzer {
         .toList());
     return model;
   }
+  
 }
