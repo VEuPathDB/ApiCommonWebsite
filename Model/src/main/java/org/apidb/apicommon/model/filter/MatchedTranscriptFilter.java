@@ -32,6 +32,8 @@ public class MatchedTranscriptFilter extends StepFilter {
   protected static final String MATCHED_RESULT_COLUMN = "matched_result";
   public static final String MATCHED_TRANSCRIPT_FILTER_ARRAY_KEY = "matched_transcript_filter_array";
 
+  private static enum Value { Y, N }
+
   @Override
   public String getKey() {
     return MATCHED_TRANSCRIPT_FILTER_ARRAY_KEY;
@@ -40,8 +42,20 @@ public class MatchedTranscriptFilter extends StepFilter {
   @Override
   public FilterSummary getSummary(AnswerValue answer, String idSql) throws WdkModelException,
       WdkUserException {
+    return new ListColumnFilterSummary(getSummaryCounts(answer, idSql));
 
+  }
+
+  @Override
+  public JSONObject getSummaryJson(AnswerValue answer, String idSql) throws WdkModelException, WdkUserException {
+    return new JSONObject(getSummaryCounts(answer, idSql));
+  }
+
+  private Map<String, Integer> getSummaryCounts(AnswerValue answer, String idSql) throws WdkModelException, WdkUserException {
     Map<String, Integer> counts = new LinkedHashMap<>();
+    for (Value value: Value.values()) {
+      counts.put(value.name(), 0);
+    }
     // group by the query and get a count
 
     // the input idSql has filters applied, and they might strip off dyn columns. join those back in using the
@@ -66,8 +80,8 @@ public class MatchedTranscriptFilter extends StepFilter {
     finally {
       SqlUtils.closeResultSetAndStatement(resultSet, null);
     }
-    return new ListColumnFilterSummary(counts);
 
+    return counts;
   }
 
   private String getSummarySql(String idSql) {
@@ -161,7 +175,7 @@ public class MatchedTranscriptFilter extends StepFilter {
   @Override
   public JSONObject getDefaultValue(Step step) {
     if (!step.isCombined() && !step.getQuestionName().toLowerCase().contains("basket")) {
-      return getFilterValueArray("Y");
+      return getFilterValueArray(Value.Y.name());
     }
     else {
       logger.debug("_____________this step DOES NOT GET THE MATCHED RESULT FILTER");

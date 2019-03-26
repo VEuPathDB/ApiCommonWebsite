@@ -17,6 +17,7 @@ import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.analysis.ValidationErrors;
 import org.gusdb.wdk.model.answer.AnswerValue;
 import org.gusdb.wdk.model.user.analysis.IllegalAnswerValueException;
+import org.json.JSONObject;
 
 public class EnrichmentPluginUtil {
 
@@ -25,6 +26,8 @@ public class EnrichmentPluginUtil {
 
   private static final String PVALUE_PARAM_KEY = "pValueCutoff";
   private static final String ORGANISM_PARAM_KEY = "organism";
+  public static final String TERM_KEY = "term";
+  public static final String DISPLAY_KEY = "display";
 
   public static final String ORGANISM_PARAM_HELP =
       "<p>Choose an organism to run an enrichment on. To see all organisms, select 'All results' filter above.</p>";
@@ -38,6 +41,13 @@ public class EnrichmentPluginUtil {
     }
     public String getTerm() { return _term; }
     public String getDisplay() { return _display; }
+    
+    public JSONObject toJson() {
+      JSONObject json = new JSONObject();
+      json.put(TERM_KEY, _term);
+      json.put(DISPLAY_KEY, _display);
+      return json;
+    }
   }
 
   public static void validateOrganism(Map<String, String[]> formParams, AnswerValue answerValue,
