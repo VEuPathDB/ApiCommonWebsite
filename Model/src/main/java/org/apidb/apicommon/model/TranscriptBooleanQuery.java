@@ -8,7 +8,6 @@ import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.query.BooleanQuery;
 import org.gusdb.wdk.model.query.Column;
-import org.gusdb.wdk.model.query.Query;
 import org.gusdb.wdk.model.query.spec.QueryInstanceSpec;
 import org.gusdb.wdk.model.question.DynamicAttributeSet;
 import org.gusdb.wdk.model.question.Question;
@@ -95,7 +94,7 @@ public class TranscriptBooleanQuery extends BooleanQuery {
   }
 
   @Override
-  public Query clone() {
+  public TranscriptBooleanQuery clone() {
     return new TranscriptBooleanQuery(this);
   }
 
