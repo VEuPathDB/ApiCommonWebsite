@@ -1,29 +1,20 @@
 package org.apidb.apicommon.model.stepanalysis;
 
 import static org.gusdb.fgputil.FormatUtil.TAB;
-import java.util.Collections;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import java.util.Arrays;
-import java.util.Comparator;
-
-
-import java.util.Collections;
-
-
-
 import org.apache.log4j.Logger;
 import org.apidb.apicommon.model.stepanalysis.EnrichmentPluginUtil.Option; // The static class here should be factored
-// import org.gusdb.fgputil.db.runner.BasicResultSetHandler;
-// import org.gusdb.fgputil.db.runner.SQLRunner;
 import org.gusdb.fgputil.runtime.GusHome;
 import org.gusdb.fgputil.validation.ValidationBundle;
 import org.gusdb.fgputil.validation.ValidationBundle.ValidationBundleBuilder;
@@ -33,6 +24,8 @@ import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.analysis.AbstractSimpleProcessAnalyzer;
 import org.gusdb.wdk.model.answer.AnswerValue;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
 
@@ -57,10 +50,10 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
     private static final String TABBED_RESULT_FILE_PATH = "hpiGeneListResult.tab";
 
 
-    private Map<String, String> serverEndpoints = new HashMap<String, String>();
+    private Map<String, String> serverEndpoints = new HashMap<>();
 
     @Override
-    public void validateProperties() throws WdkModelException {
+    public void validateProperties() {
         this.serverEndpoints.put(EUPATH_NAME_KEY, getProperty(EUPATH_SEARCH_SERVER_ENDPOINT_PROP_KEY));
         this.serverEndpoints.put(PATRIC_NAME_KEY, getProperty(PATRIC_SEARCH_SERVER_ENDPOINT_PROP_KEY));
         this.serverEndpoints.put(VBASE_NAME_KEY, getProperty(VBASE_SEARCH_SERVER_ENDPOINT_PROP_KEY));
@@ -69,7 +62,7 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
     }
 
   @Override
-  public ValidationBundle validateFormParams(Map<String, String[]> formParams) throws WdkModelException, WdkUserException {
+  public ValidationBundle validateFormParamValues(Map<String, String[]> formParams) throws WdkModelException {
 
     ValidationBundleBuilder errors = ValidationBundle.builder(ValidationLevel.SEMANTIC);
 
@@ -134,7 +127,16 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
 
 
   @Override
-  public Object getFormViewModel() throws WdkModelException, WdkUserException {
+  public Object getFormViewModel() {
+    return createFormViewModel();
+  }
+  
+  @Override
+  public JSONObject getFormViewModelJson() {
+    return createFormViewModel().toJson();
+  }
+  
+  private FormViewModel createFormViewModel() {
 
     List<Option> brcOptions = new ArrayList<>();
     if ( serverEndpoints.get(EUPATH_NAME_KEY) != null ) {
@@ -164,7 +166,17 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
 
   @Override
   public Object getResultViewModel() throws WdkModelException {
-      Path inputPath = Paths.get(getStorageDirectory().toString(), TABBED_RESULT_FILE_PATH);
+    return createResultViewModel();
+  }
+  
+  @Override
+  public JSONObject getResultViewModelJson() throws WdkModelException {
+    return createResultViewModel().toJson();
+  }
+  
+
+  private ResultViewModel createResultViewModel() throws WdkModelException {
+    Path inputPath = Paths.get(getStorageDirectory().toString(), TABBED_RESULT_FILE_PATH);
       
       //String brcValue = getFormParams().get(BRC_PARAM_KEY)[0];                                                                      
       List<ResultRow> results = new ArrayList<>();
@@ -175,7 +187,7 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
 		  //LOG.info("LINE = " + line);                                                                         
 		  String[] columns = line.split(TAB);
 		  
-		  results.add(new ResultRow(columns[0],columns[1],columns[2],columns[3],columns[4],columns[5],columns[6],columns[7],columns[8], columns[9], columns[10], columns[11]));
+		  results.add(new ResultRow(columns[0],columns[1],columns[2],columns[3],columns[4],columns[5],columns[6],columns[7],columns[8], columns[9], columns[10], columns[11], columns[12]));
 	      }
 	      /*
 	      results.forEach(ResultRow -> {
@@ -234,11 +246,31 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
       public String getThresholdParamHelp() { return this.thresholdParamHelp; }
       public String getUseOrthologyParamHelp() { return this.useOrthologyParamHelp; }
       public String getProjectId() { return projectId; }
+      
+      public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("brcParamHelp", getBrcParamHelp());
+        json.put("thresholdTypeParamHelp", getThresholdTypeParamHelp());
+        json.put("thresholdParamHelp", getThresholdParamHelp());
+        json.put("useOrthologyParamHelp", getUseOrthologyParamHelp());
+        json.put("projectId", getProjectId());
+        JSONArray brcJson = new JSONArray();
+        for (Option o : getBrcOptions()) brcJson.put(o);
+        json.put("brcOptions", brcJson);
+        JSONArray threshTypeJson = new JSONArray();
+        for (Option o : getThresholdTypeOptions()) threshTypeJson.put(o);
+        json.put("thresholdTypeOptions", threshTypeJson);
+        JSONArray useOrthologyJson = new JSONArray();
+        for (Option o : getUseOrthologyOptions()) useOrthologyJson.put(o);
+        json.put("useOrthologyOptions", useOrthologyJson);
+
+        return json;
+      }
   }
 
   public static class ResultViewModel {
 
-      private final ResultRow HEADER_ROW = new ResultRow("Experiment Identifier", "Species",  "Experiment Name", "Description","Type", "URI", "Count1", "Count2", "Count3", "Count4", "Statistic", "List_URI");
+      private final ResultRow HEADER_ROW = new ResultRow("Experiment Identifier", "Species",  "Experiment Name", "Description","Type", "URI", "Observed overlap", "Expected overlap", "Fold enrichment", "Percent of overlapping genes in your result", "Percent of this experiment genes in bkgd", "Statistic", "List_URI");
 
       private final ResultRow COLUMN_HELP = new ResultRow(
                                                                 "Unique ID for this experiment",
@@ -247,10 +279,11 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
                                                                 "Details about this experiment",
                                                                 "What type of experiment was this",
                                                                 "Where can I find more information about this experiment",
-								"The number of overlapping genes between user input gene list and this data set with FC>inputFC (Background Genome: all genes in this Data Set)",
-								"The number of overlapping genes in user input gene list but NOT in this data set with FC>inputFC (Background Genome: all genes in this Data Set)",
-								"The number of overlapping genes NOT in user input gene list, but in this data set with FC>inputFC (Background Genome: all genes in this Data Set)",
-								"The number of overlapping genes Neither in user input gene list Nor in this data set with FC>inputFC (Background Genome: all genes in this Data Set)",
+								"The observed number of overlapping genes in your input gene list and in this experiment meets the fold change cut-off value criteria",
+								"The expected number of overlapping genes in your input gene list and this experiment",
+								"The observed overlap divided by the expected overlap",
+								"Percent of overlapping genes in your gene list",
+								"Percent of this experiment genes that meets the fold change criteria in background genome",
                                                                 "Statistic used to identify this experiment (p-value)",
                                                                 "URI for the List"
                                                                 );
@@ -288,6 +321,17 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
       public Map<String,String[]> getFormParams() {
           return this.formParams;
       }
+      
+      public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("headerRow", getHeaderRow());
+        json.put("headerDescription", getHeaderDescription());
+        JSONArray resultsJson = new JSONArray();
+        for (ResultRow rr : getResultData()) resultsJson.put(rr.toJson());
+        json.put("resultData", resultsJson);
+        json.put("downloadPath", getDownloadPath());
+        return json;
+      }
   }
 
     public static class ResultRow implements Comparable<Object>{
@@ -298,14 +342,15 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
 	private String description;
 	private String type;
 	private String uri;
-	private String t11;
-	private String t12;
-	private String t21;
-	private String t22;
+	private String c11;
+	private String c22;
+	private String c33;
+	private String c44;
+	private String c55;
 	private String significance;
 	private String serverEndpoint;
 
-	public ResultRow(String experimentId, String species, String experimentName, String description, String type, String uri, String t11, String t12, String t21, String t22, String significance, String serverEndpoint) {
+	public ResultRow(String experimentId, String species, String experimentName, String description, String type, String uri, String c11, String c22, String c33, String c44, String c55, String significance, String serverEndpoint) {
 
 	    this.experimentId = experimentId;
 	    this.species = species;
@@ -313,16 +358,17 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
 	    this.description = description;
 	    this.type = type;
 	    this.uri = uri;
-	    this.t11 = t11;
-	    this.t12 = t12;
-	    this.t21 = t21;
-	    this.t22 = t22;
+	    this.c11 = c11;
+	    this.c22 = c22;
+	    this.c33 = c33;
+	    this.c44 = c44;
+	    this.c55 = c55;
 	    this.significance = significance;
 	    this.serverEndpoint = serverEndpoint;
 	}
 	  
 
-	//	@Override
+	@Override
 	public int compareTo(Object o){
 	    ResultRow r = (ResultRow) o;
 	    if(Double.parseDouble(this.significance) == Double.parseDouble(r.significance)) {
@@ -342,11 +388,27 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
 	public String getDescription() { return this.description; }
 	public String getType() { return this.type; }
 	public String getUri() { return this.uri; }
-	public String getT11() { return this.t11; }      
-	public String getT12() { return this.t12; }      
-	public String getT21() { return this.t21; }      
-	public String getT22() { return this.t22; }      
+	public String getC11() { return this.c11; }      
+	public String getC22() { return this.c22; }      
+	public String getC33() { return this.c33; }      
+	public String getC44() { return this.c44; }      
+	public String getC55() { return this.c55; }      
 	public String getSignificance() { return this.significance; }      
 	public String getServerEndPoint() { return this.serverEndpoint; }      
+
+
+      public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("experimentId", getExperimentId());
+        json.put("species", getSpecies());
+        json.put("experimentName", getExperimentName());
+        json.put("description", getDescription());
+        json.put("type", getType());
+        json.put("uri", getUri());
+        json.put("significance", getSignificance());
+        json.put("serverEndpoint", getServerEndPoint());
+
+        return json;
+      }
     }
-}
+  }

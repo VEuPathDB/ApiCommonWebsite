@@ -3,6 +3,7 @@ package org.apidb.apicommon.model;
 import java.util.Set;
 
 import org.apidb.apicommon.model.filter.GeneBooleanFilter;
+import org.apidb.apicommon.model.filter.MatchedTranscriptFilter;
 import org.gusdb.fgputil.validation.ValidObjectFactory.RunnableObj;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
@@ -78,6 +79,9 @@ public class TranscriptBooleanQuery extends BooleanQuery {
     GeneBooleanFilter gbf = (GeneBooleanFilter)RecordClass.resolveStepFilterReferenceByName(
         "transcriptFilters.geneBooleanFilter", _wdkModel, "TranscriptBooleanQuery");
     contextQuestion.addFilter(gbf);
+
+    // Ignore matched_transcript_filter_array filter since it is not applicable to this question type
+    contextQuestion.addIgnoredFilterFromRecordClass(MatchedTranscriptFilter.MATCHED_TRANSCRIPT_FILTER_ARRAY_KEY);
   }
 
   @Override

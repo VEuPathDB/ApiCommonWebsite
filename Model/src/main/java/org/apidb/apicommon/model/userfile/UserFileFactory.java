@@ -3,16 +3,19 @@ package org.apidb.apicommon.model.userfile;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.file.Paths;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.Optional;
 
 import javax.sql.DataSource;
 
@@ -63,6 +66,75 @@ public class UserFileFactory implements Manageable<UserFileFactory> {
     this._projectId = projectId;
   }
 
+  public boolean fileExists(long fileId) throws WdkModelException {
+    return getFileName(fileId)
+        .map(this::getFile)
+        .map(File::exists)
+        .orElse(false);
+  }
+
+  public void deleteUserFile(long fileId) throws WdkModelException {
+    final File file = getFileName(fileId).map(this::getFile)
+        .orElseThrow(WdkModelException::new);
+    final String schema = _config.getUserFileSchema();
+
+    PreparedStatement ps = null;
+
+    try {
+      ps = SqlUtils.getPreparedStatement(_database.getDataSource(),
+          "DELETE FROM " + schema + "USERFILE WHERE USERFILEID = ?");
+      ps.setLong(1, fileId);
+      ps.execute();
+    } catch (SQLException e) {
+      throw new WdkModelException(e);
+    } finally {
+      SqlUtils.closeStatement(ps);
+    }
+
+    file.delete();
+  }
+
+  public Optional<String> getFileName(long fileId) throws WdkModelException {
+    final String schema = _config.getUserFileSchema();
+    PreparedStatement ps = null;
+    String out = null;
+
+    try {
+      ps = SqlUtils.getPreparedStatement(_database.getDataSource(),
+          "SELECT FILENAME FROM " + schema + "USERFILE WHERE USERFILEID = ?");
+      ps.setLong(1, fileId);
+      try(ResultSet rs = ps.executeQuery()) {
+        if (rs.next())
+          out = rs.getString(1);
+      }
+    } catch (SQLException e) {
+      throw new WdkModelException(e);
+    } finally {
+      SqlUtils.closeStatement(ps);
+    }
+
+    return Optional.ofNullable(out);
+  }
+
+  public InputStream getUserFile(long fileId) throws WdkModelException {
+    final File out = getFileName(fileId).map(this::getFile)
+        .orElseThrow(WdkModelException::new);
+
+    if(!out.exists())
+      throw new WdkModelException(String.format("user file %s does not exist",
+          out.getName()));
+
+    if(!out.canRead())
+      throw new WdkModelException(String.format("user file %s is not readable",
+          out.getName()));
+
+    try {
+      return new FileInputStream(out);
+    } catch (FileNotFoundException e) {
+      throw new WdkModelException(e);
+    }
+  }
+
   public void addUserFile(UserFile userFile) throws UserFileUploadException {
     File filePath = new File(_config.getUserFileUploadDir() + "/" + _projectId);
     String fileName = userFile.getFileName();
@@ -73,8 +145,7 @@ public class UserFileFactory implements Manageable<UserFileFactory> {
 
     try {
       if (!fileName.equals("")) {
-        LOG.debug("File save path:" + filePath.toString());
-        fileOnDisk = new File(filePath, fileName);
+        fileOnDisk = getFile(fileName);
 
         int ver = 0;
         String[] nameParts = parseFilename(fileName);
@@ -84,7 +155,7 @@ public class UserFileFactory implements Manageable<UserFileFactory> {
         while (fileOnDisk.exists() || nameExistsInDb(fileOnDisk.getName())) {
           ver++;
           String newName = nameParts[0] + ".copy_" + ver + ((nameParts[1] != null) ? "." + nameParts[1] : "");
-          fileOnDisk = new File(filePath, newName);
+          fileOnDisk = getFile(newName);
           userFile.setFileName(newName);
         }
 
@@ -106,7 +177,7 @@ public class UserFileFactory implements Manageable<UserFileFactory> {
       }
     }
     catch (IOException ioe) {
-      String msg = "Could not write '" + fileName + "' to '" + filePath + "'";
+      String msg = "Could not write '" + fileOnDisk.getName() + "' to '" + fileOnDisk.getParent() + "'";
       LOG.warn(msg);
       throw new UserFileUploadException(msg + "\n" + ioe);
     }
@@ -243,5 +314,9 @@ public class UserFileFactory implements Manageable<UserFileFactory> {
       SqlUtils.closeResultSetAndStatement(rs, ps);
     }
     return exists;
+  }
+
+  private File getFile(String name) {
+    return Paths.get(_config.getUserFileUploadDir(), _projectId, name).toFile();
   }
 }

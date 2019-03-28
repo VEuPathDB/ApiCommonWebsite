@@ -1,0 +1,7 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "description": "Type for the COMMENTS.HEADLINE database column",
+  "type": "string",
+  "maxLength": 2000,
+  "minLength": 1
+}
