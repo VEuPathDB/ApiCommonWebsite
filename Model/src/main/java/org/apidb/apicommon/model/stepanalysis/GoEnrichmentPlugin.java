@@ -91,7 +91,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
       "Bonferroni adjusted p-value"
   );
 
-  public ValidationBundle validateFormParams(Map<String, String[]> formParams) throws WdkModelException, WdkUserException {
+  public ValidationBundle validateFormParams(Map<String, String[]> formParams) throws WdkModelException {
 
     ValidationBundleBuilder errors = ValidationBundle.builder(ValidationLevel.SEMANTIC);
 
@@ -214,7 +214,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     return createFormViewModel();
   }
 
-  private FormViewModel createFormViewModel() throws WdkModelException, WdkUserException {
+  private FormViewModel createFormViewModel() throws WdkModelException {
 
       // JP I THINK I NEED TO ADD SOMETHING HERE
 
@@ -260,13 +260,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
   @Override
   public JSONObject getFormViewModelJson() throws WdkModelException {
-    try {
-      return createFormViewModel().toJson();
-    // TODO: we catch user exception because this method is called only from the service layer, which
-    // will have pre-validated the AnswerValue.  Lose this when the user exception is purged from the backend core code
-    } catch (WdkUserException e) {
-      throw new WdkModelException();
-    }
+    return createFormViewModel().toJson();
   }
 
   @Override

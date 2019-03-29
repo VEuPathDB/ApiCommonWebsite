@@ -369,7 +369,7 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
 	  
 
 	@Override
-	public int compareTo(Object o){
+  public int compareTo(Object o){
 	    ResultRow r = (ResultRow) o;
 	    if(Double.parseDouble(this.significance) == Double.parseDouble(r.significance)) {
 		return 0;

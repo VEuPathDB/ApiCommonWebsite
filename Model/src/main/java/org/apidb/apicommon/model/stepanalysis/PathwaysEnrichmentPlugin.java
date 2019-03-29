@@ -70,12 +70,7 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     EnrichmentPluginUtil.validatePValue(formParams, errors);
 
     // validate organism
-    try {
-      EnrichmentPluginUtil.validateOrganism(formParams, getAnswerValue(), getWdkModel(), errors);
-    }
-    catch (WdkUserException e) {
-      errors.addError(e.getMessage());
-    }
+    EnrichmentPluginUtil.validateOrganism(formParams, getAnswerValue(), getWdkModel(), errors);
 
     // validate annotation sources 
     EnrichmentPluginUtil.getArrayParamValueAsString(PATHWAYS_SRC_PARAM_KEY, formParams, errors);
@@ -90,7 +85,6 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
   private void validateFilteredPathways(ValidationBundleBuilder errors)
         throws WdkModelException {
-
     String countColumn = "CNT";
     String idSql = EnrichmentPluginUtil.getOrgSpecificIdSql(getAnswerValue(), getFormParams());
     String sql = 
@@ -171,13 +165,7 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   
   @Override
   public JSONObject getFormViewModelJson() throws WdkModelException {
-    try {
-      return createFormViewModel().toJson();
-    // TODO: we catch user exception because this method is called only from the service layer, which
-    // will have pre-validated the AnswerValue.  Lose this when the user exception is purged from the backend core code
-    } catch (WdkUserException e) {
-      throw new WdkModelException();
-    }
+    return createFormViewModel().toJson();
   }
 
   @Override
@@ -185,7 +173,7 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     return createFormViewModel();
   }
 
-  private FormViewModel createFormViewModel() throws WdkModelException, WdkUserException {
+  private FormViewModel createFormViewModel() throws WdkModelException {
     DataSource ds = getWdkModel().getAppDb().getDataSource();
     BasicResultSetHandler handler = new BasicResultSetHandler();
 

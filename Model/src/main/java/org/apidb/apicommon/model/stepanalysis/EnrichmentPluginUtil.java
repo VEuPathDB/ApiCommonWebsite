@@ -11,7 +11,6 @@ import org.gusdb.fgputil.db.runner.SQLRunner;
 import org.gusdb.fgputil.validation.ValidationBundle.ValidationBundleBuilder;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
-import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.answer.AnswerValue;
 import org.gusdb.wdk.model.user.analysis.IllegalAnswerValueException;
 import org.json.JSONObject;
@@ -48,7 +47,8 @@ public class EnrichmentPluginUtil {
   }
 
   public static void validateOrganism(Map<String, String[]> formParams, AnswerValue answerValue,
-      WdkModel wdkModel, ValidationBundleBuilder errors) throws WdkModelException, WdkUserException {
+      WdkModel wdkModel, ValidationBundleBuilder errors) throws WdkModelException {
+
     String organism = getSingleAllowableValueParam(ORGANISM_PARAM_KEY, formParams, errors);
     if (!getDistinctOrgsInAnswer(answerValue, wdkModel).contains(organism)) {
       errors.addError(ORGANISM_PARAM_KEY, "Invalid value passed for Organism: '" + organism + "' does not appear in this result.");
@@ -108,8 +108,8 @@ public class EnrichmentPluginUtil {
     return "'" + FormatUtil.join(values, "','") + "'";
   }
 
-  public static String getOrgSpecificIdSql(AnswerValue answerValue, Map<String,
-      String[]> params) throws WdkModelException {
+  public static String getOrgSpecificIdSql(AnswerValue answerValue,
+      Map<String,String[]> params) throws WdkModelException {
     // must wrap idSql with code that filters by the passed organism param
     return "SELECT ga.source_id " +
         "FROM ApidbTuning.GeneAttributes ga, " +
@@ -128,11 +128,10 @@ public class EnrichmentPluginUtil {
    * @param answerValue answer value for the step to analyze
    * @param wdkModel WDK model object
    * @return two-element list; elements are lists of taxon_ids (index 0) and org names (index 1)
-   * @throws WdkModelException
-   * @throws WdkUserException
+   * @throws WdkModelException if unable to get distinct orgs
    */
   public static List<String> getDistinctOrgsInAnswer(AnswerValue answerValue,
-      WdkModel wdkModel) throws WdkModelException, WdkUserException {
+      WdkModel wdkModel) throws WdkModelException {
     String sql = "SELECT distinct ga.organism " +
         "FROM ApidbTuning.GeneAttributes ga, " +
         "(" + answerValue.getIdSql() + ") r " +
@@ -140,17 +139,17 @@ public class EnrichmentPluginUtil {
         "order by ga.organism asc";
     DataSource ds = wdkModel.getAppDb().getDataSource();
     return new SQLRunner(ds, sql, "select-distinct-orgs-in-result")
-        .executeQuery(rs -> {
-          List<String> orgNames = new ArrayList<>();
-          while (rs.next()) {
-            orgNames.add(rs.getString(1));
-          }
-          return orgNames;
-        });
+      .executeQuery(rs -> {
+        List<String> orgNames = new ArrayList<>();
+        while (rs.next()) {
+          orgNames.add(rs.getString(1));
+        }
+        return orgNames;
+      });
   }
 
   public static List<Option> getOrgOptionList(AnswerValue answerValue,
-      WdkModel wdkModel) throws WdkModelException, WdkUserException {
+      WdkModel wdkModel) throws WdkModelException {
     List<String> orgList = getDistinctOrgsInAnswer(answerValue, wdkModel);
     List<Option> orgOptionList = new ArrayList<>();
     for (String organism : orgList) {
@@ -162,7 +161,7 @@ public class EnrichmentPluginUtil {
   /* Don't need this check any more since allowing multiple orgs in result */
   @Deprecated
   public static void checkSingleOrgAnswerValue(AnswerValue answerValue, WdkModel wdkModel)
-      throws WdkModelException, WdkUserException, IllegalAnswerValueException {
+      throws WdkModelException, IllegalAnswerValueException {
     List<String> distinctOrgs = getDistinctOrgsInAnswer(answerValue, wdkModel);
     if (distinctOrgs.size() > 1) {
       throw new IllegalAnswerValueException("Your result has genes from more than " +
