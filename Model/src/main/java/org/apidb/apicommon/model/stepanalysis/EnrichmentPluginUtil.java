@@ -51,7 +51,7 @@ public class EnrichmentPluginUtil {
   }
 
   public static void validateOrganism(Map<String, String[]> formParams, AnswerValue answerValue,
-      WdkModel wdkModel, ValidationErrors errors) throws WdkModelException, WdkUserException {
+      WdkModel wdkModel, ValidationErrors errors) throws WdkModelException {
     String organism = getSingleAllowableValueParam(ORGANISM_PARAM_KEY, formParams, errors);
     if (!getDistinctOrgsInAnswer(answerValue, wdkModel).contains(organism)) {
       errors.addParamMessage(ORGANISM_PARAM_KEY, "Invalid value passed for Organism: '" + organism + "' does not appear in this result.");
@@ -112,13 +112,18 @@ public class EnrichmentPluginUtil {
   }
 
   public static String getOrgSpecificIdSql(AnswerValue answerValue, Map<String,
-      String[]> params) throws WdkModelException, WdkUserException {
-    // must wrap idSql with code that filters by the passed organism param
-    return "SELECT ga.source_id " +
-        "FROM ApidbTuning.GeneAttributes ga, " +
-        "(" + answerValue.getIdSql() + ") r " +
-        "where ga.source_id = r.gene_source_id " +
-        "and  ga.organism = '" + params.get(ORGANISM_PARAM_KEY)[0] + "'";
+      String[]> params) throws WdkModelException {
+    try {
+      // must wrap idSql with code that filters by the passed organism param
+      return "SELECT ga.source_id " +
+          "FROM ApidbTuning.GeneAttributes ga, " +
+          "(" + answerValue.getIdSql() + ") r " +
+          "where ga.source_id = r.gene_source_id " +
+          "and  ga.organism = '" + params.get(ORGANISM_PARAM_KEY)[0] + "'";
+    }
+    catch (WdkUserException e) {
+      throw new WdkModelException(e);
+    }
   }
 
   public static String getPvalueCutoff(Map<String, String[]> params) {
@@ -131,29 +136,33 @@ public class EnrichmentPluginUtil {
    * @param answerValue answer value for the step to analyze
    * @param wdkModel WDK model object
    * @return two-element list; elements are lists of taxon_ids (index 0) and org names (index 1)
-   * @throws WdkModelException
-   * @throws WdkUserException
+   * @throws WdkModelException if unable to get distinct orgs
    */
   public static List<String> getDistinctOrgsInAnswer(AnswerValue answerValue,
-      WdkModel wdkModel) throws WdkModelException, WdkUserException {
-    final List<String> orgNames = new ArrayList<>();
-    String sql = "SELECT distinct ga.organism " +
-        "FROM ApidbTuning.GeneAttributes ga, " +
-        "(" + answerValue.getIdSql() + ") r " +
-        "where ga.source_id = r.gene_source_id " +
-        "order by ga.organism asc";
-    DataSource ds = wdkModel.getAppDb().getDataSource();
-    new SQLRunner(ds, sql, "select-distinct-orgs-in-result").executeQuery(new ResultSetHandler() {
-      @Override
-      public void handleResult(ResultSet rs) throws SQLException {
-        while (rs.next()) {
-          orgNames.add(rs.getString(1));
-        }}});
-    return orgNames;
+      WdkModel wdkModel) throws WdkModelException {
+    try {
+      final List<String> orgNames = new ArrayList<>();
+      String sql = "SELECT distinct ga.organism " +
+          "FROM ApidbTuning.GeneAttributes ga, " +
+          "(" + answerValue.getIdSql() + ") r " +
+          "where ga.source_id = r.gene_source_id " +
+          "order by ga.organism asc";
+      DataSource ds = wdkModel.getAppDb().getDataSource();
+      new SQLRunner(ds, sql, "select-distinct-orgs-in-result").executeQuery(new ResultSetHandler() {
+        @Override
+        public void handleResult(ResultSet rs) throws SQLException {
+          while (rs.next()) {
+            orgNames.add(rs.getString(1));
+          }}});
+      return orgNames;
+    }
+    catch (Exception e) {
+      return WdkModelException.unwrap(e, List.class);
+    }
   }
 
   public static List<Option> getOrgOptionList(AnswerValue answerValue,
-      WdkModel wdkModel) throws WdkModelException, WdkUserException {
+      WdkModel wdkModel) throws WdkModelException {
     List<String> orgList = getDistinctOrgsInAnswer(answerValue, wdkModel);
     List<Option> orgOptionList = new ArrayList<>();
     for (String organism : orgList) {
@@ -166,7 +175,7 @@ public class EnrichmentPluginUtil {
   /* Don't need this check any more since allowing multiple orgs in result */
   @Deprecated
   public static void checkSingleOrgAnswerValue(AnswerValue answerValue, WdkModel wdkModel)
-      throws WdkModelException, WdkUserException, IllegalAnswerValueException {
+      throws WdkModelException, IllegalAnswerValueException {
     List<String> distinctOrgs = getDistinctOrgsInAnswer(answerValue, wdkModel);
     if (distinctOrgs.size() > 1) {
       throw new IllegalAnswerValueException("Your result has genes from more than " +

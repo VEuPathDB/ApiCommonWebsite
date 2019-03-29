@@ -36,6 +36,7 @@ public class CommentRequest extends BaseComment {
     return this;
   }
 
+  @Override
   public CommentRequest setLocation(Location location) {
     return (CommentRequest) super.setLocation(location);
   }

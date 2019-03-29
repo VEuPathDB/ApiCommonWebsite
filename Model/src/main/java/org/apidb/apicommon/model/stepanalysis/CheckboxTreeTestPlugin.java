@@ -20,7 +20,7 @@ public class CheckboxTreeTestPlugin extends AbstractStepAnalyzer {
     return createFormViewModel();
   }
   
-  private FieldTree createFormViewModel() throws WdkModelException {
+  private FieldTree createFormViewModel() {
     FieldTree tree = buildTreeParam();
     tree.addDefaultLeaves("value2", "value3", "value6");
     return tree;
