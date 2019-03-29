@@ -20,7 +20,6 @@ import org.apidb.apicommon.model.stepanalysis.EnrichmentPluginUtil.Option;
 import org.gusdb.fgputil.FormatUtil;
 import org.gusdb.fgputil.db.runner.BasicResultSetHandler;
 import org.gusdb.fgputil.db.runner.SQLRunner;
-import org.gusdb.fgputil.json.JsonUtil;
 import org.gusdb.fgputil.runtime.GusHome;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
@@ -61,7 +60,7 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   );
 
   @Override
-  public ValidationErrors validateFormParamValues(Map<String, String[]> formParams) throws WdkModelException, WdkUserException {
+  public ValidationErrors validateFormParamValues(Map<String, String[]> formParams) throws WdkModelException {
 
     ValidationErrors errors = new ValidationErrors();
 
@@ -83,7 +82,7 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   }
 
   private void validateFilteredPathways(ValidationErrors errors)
-        throws WdkModelException, WdkUserException {
+        throws WdkModelException {
 
     String countColumn = "CNT";
     String idSql = EnrichmentPluginUtil.getOrgSpecificIdSql(getAnswerValue(), getFormParams());
@@ -308,7 +307,7 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
       json.put("imageDownloadPath", getImageDownloadPath());
       json.put("hiddenDownloadPath", gethiddenDownloadPath());
       json.put("pvalueCutoff", getPvalueCutoff());
-      json.put("pathwaySources", JsonUtil.toJsonStringArray(_formParams.get(PathwaysEnrichmentPlugin.PATHWAYS_SRC_PARAM_KEY)));
+      json.put("pathwaySources", new JSONArray(_formParams.get(PathwaysEnrichmentPlugin.PATHWAYS_SRC_PARAM_KEY)));
       json.put("pathwayBaseUrl", getPathwayBaseUrl());
       return json;
     }

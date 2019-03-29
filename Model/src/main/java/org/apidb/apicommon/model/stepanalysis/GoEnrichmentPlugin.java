@@ -22,7 +22,6 @@ import org.gusdb.fgputil.db.runner.BasicResultSetHandler;
 import org.gusdb.fgputil.db.runner.SQLRunner;
 import org.gusdb.fgputil.db.runner.SingleLongResultSetHandler;
 import org.gusdb.fgputil.db.runner.SingleLongResultSetHandler.Status;
-import org.gusdb.fgputil.json.JsonUtil;
 import org.gusdb.fgputil.runtime.GusHome;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
@@ -91,7 +90,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
       "Bonferroni adjusted p-value"
   );
 
-  public ValidationErrors validateFormParams(Map<String, String[]> formParams) throws WdkModelException, WdkUserException {
+  public ValidationErrors validateFormParams(Map<String, String[]> formParams) throws WdkModelException {
 
     ValidationErrors errors = new ValidationErrors();
 
@@ -126,7 +125,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   }
 
     private void validateFilteredGoTerms(/*String sourcesStr,*/ String evidCodesStr, String ontology, String goSubset, ValidationErrors errors)
-      throws WdkModelException, WdkUserException {
+      throws WdkModelException {
 
     String idSql =  EnrichmentPluginUtil.getOrgSpecificIdSql(getAnswerValue(), getFormParams());
     String sql =
@@ -421,9 +420,9 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
       json.put("imageDownloadPath", getImageDownloadPath());
       json.put("hiddenDownloadPath", gethiddenDownloadPath());
       json.put("pvalueCutoff", getPvalueCutoff());
-      json.put("evidenceCodes", JsonUtil.toJsonStringArray(_formParams.get(GoEnrichmentPlugin.GO_EVID_CODE_PARAM_KEY)));
-      json.put("goOntologies", JsonUtil.toJsonStringArray(_formParams.get(GoEnrichmentPlugin.GO_ASSOC_ONTOLOGY_PARAM_KEY)));
-      json.put("goSubset", JsonUtil.toJsonStringArray(_formParams.get(GoEnrichmentPlugin.GO_SUBSET_PARAM_KEY)));
+      json.put("evidenceCodes", new JSONArray(_formParams.get(GoEnrichmentPlugin.GO_EVID_CODE_PARAM_KEY)));
+      json.put("goOntologies", new JSONArray(_formParams.get(GoEnrichmentPlugin.GO_ASSOC_ONTOLOGY_PARAM_KEY)));
+      json.put("goSubset", new JSONArray(_formParams.get(GoEnrichmentPlugin.GO_SUBSET_PARAM_KEY)));
       json.put("goTermBaseUrl", getGoTermBaseUrl());
       json.put("revidoInputList", getRevigoInputList());
       return json;

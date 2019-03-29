@@ -1,24 +1,32 @@
 package org.apidb.apicommon.service.services;
 
+import java.net.URI;
+import java.util.Collection;
+
+import javax.ws.rs.BadRequestException;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
+
 import org.apidb.apicommon.model.comment.CommentAlertEmailFormatter;
 import org.apidb.apicommon.model.comment.pojo.Comment;
 import org.apidb.apicommon.model.comment.pojo.CommentRequest;
 import org.gusdb.wdk.core.api.JsonKeys;
-import org.gusdb.wdk.model.Utilities;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.user.User;
 import org.gusdb.wdk.service.annotation.InSchema;
 import org.gusdb.wdk.service.annotation.OutSchema;
 import org.json.JSONObject;
-
-import javax.ws.rs.*;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriInfo;
-import java.net.URI;
-import java.util.Collection;
 
 @Path(UserCommentsService.BASE_PATH)
 public class UserCommentsService extends AbstractUserCommentService {

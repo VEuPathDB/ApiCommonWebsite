@@ -31,7 +31,7 @@ public class ApiSiteSetup {
    *
    * @param wdkModel initialized WDK model
    */
-  public static void initialize(@SuppressWarnings("unused") WdkModel wdkModel) {
+  public static void initialize(WdkModel wdkModel) {
     // add transcript boolean revise event listener
     Events.subscribe(TX_BOOLEAN_REVISE_LISTENER, StepRevisedEvent.class);
     // add user profile update event listener

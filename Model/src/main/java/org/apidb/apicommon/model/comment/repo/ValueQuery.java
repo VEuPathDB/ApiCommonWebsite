@@ -15,6 +15,7 @@ public abstract class ValueQuery<T> extends Query {
   }
 
   @Override
+  @SuppressWarnings("unchecked")
   public ValueQuery<T> run(Connection con) throws SQLException {
     return (ValueQuery<T>) super.run(con);
   }

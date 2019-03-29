@@ -1,24 +1,17 @@
 package org.apidb.apicommon.model.stepanalysis;
 
 import static org.gusdb.fgputil.FormatUtil.TAB;
-import java.util.Collections;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import java.util.Arrays;
-import java.util.Comparator;
-
-
-import java.util.Collections;
-
-
 
 import org.apache.log4j.Logger;
 import org.apidb.apicommon.model.stepanalysis.EnrichmentPluginUtil.Option; // The static class here should be factored
@@ -374,7 +367,8 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
 	  
 
 	//	@Override
-	public int compareTo(Object o){
+	@Override
+  public int compareTo(Object o){
 	    ResultRow r = (ResultRow) o;
 	    if(Double.parseDouble(this.significance) == Double.parseDouble(r.significance)) {
 		return 0;

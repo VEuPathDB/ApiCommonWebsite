@@ -107,7 +107,7 @@ public class CommentAlertEmailFormatter {
 
   private static String formatField(String field, Object value, boolean escape) {
     String val = (value instanceof Collection)
-      ? formatList((Collection) value)
+      ? formatList((Collection<?>) value)
       : String.valueOf(value);
     if (escape)
       val = FormatUtil.escapeHtml(val);
