@@ -711,7 +711,7 @@ sub init {
   $go->setXaxisLabel("");
   $go->setPartName("ratio.rank");
   $go->setPlotTitle("$id - Unique CDS aligned");
-  $go->setYaxisLabel("fpkm ratio");
+  $go->setYaxisLabel("fpkm ratio (relative fitness)");
   $go->setColors(["gray", "red"]);
 #  $go->setColors(["#4f5051", "#6d6e70", "#c0c1c4", "#909193", "red"]);
   $go->addAdjustProfile('
@@ -730,8 +730,8 @@ profile.df.full <- rbind(profile.df.full, profile.df.gene)
   $go->setRPostscript("
 gp = gp + scale_y_log10() 
 gp = gp + scale_x_continuous(breaks = round(seq(min(profile.df.full\$ELEMENT_NAMES_NUMERIC), max(profile.df.full\$ELEMENT_NAMES_NUMERIC), by = 11000),1))
-gp = gp + annotate(\"text\", x = 5000, y = 150, label = \"RNAi\nenhances\nfitness\", colour = 'red', size=3.5)
-gp = gp + annotate(\"text\", x = 6000, y = 0.001, label = \"RNAi\nreduces\nfitness\", colour = '#d3883f', size=3.5)
+#gp = gp + annotate(\"text\", x = 5000, y = 150, label = \"RNAi\nenhances\nfitness\", colour = 'red', size=3.5)
+#gp = gp + annotate(\"text\", x = 6000, y = 0.001, label = \"RNAi\nreduces\nfitness\", colour = '#d3883f', size=3.5)
 gp = gp + geom_hline(yintercept=1, color=\"darkgray\", size=0.5)
 ");
   $go->setFacetNumCols(4);
