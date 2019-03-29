@@ -2,6 +2,7 @@ package org.apidb.apicommon.service.services;
 
 import java.net.URI;
 import java.util.Collection;
+import java.util.Set;
 
 import javax.ws.rs.BadRequestException;
 import javax.ws.rs.Consumes;
@@ -20,12 +21,14 @@ import javax.ws.rs.core.UriInfo;
 import org.apidb.apicommon.model.comment.CommentAlertEmailFormatter;
 import org.apidb.apicommon.model.comment.pojo.Comment;
 import org.apidb.apicommon.model.comment.pojo.CommentRequest;
+import org.apidb.apicommon.model.GeneIdValidator;
 import org.gusdb.wdk.core.api.JsonKeys;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.user.User;
 import org.gusdb.wdk.service.annotation.InSchema;
 import org.gusdb.wdk.service.annotation.OutSchema;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 @Path(UserCommentsService.BASE_PATH)
@@ -69,6 +72,15 @@ public class UserCommentsService extends AbstractUserCommentService {
     if (body.getPreviousCommentId() != null)
       checkCommentOwnership(fetchComment(body.getPreviousCommentId()), user);
 
+    final JSONArray validationErrors = validateRelatedStableIds(
+      body.getRelatedStableIds(),
+      new GeneIdValidator(getWdkModel())
+    );
+
+    if (validationErrors.length() > 0) {
+      throw new BadRequestException(validationErrors.toString());
+    }
+  
     final long id = getCommentFactory().createComment(body, user);
 
     notificationEmail(getWdkModel(), user, body, id);
@@ -97,8 +109,7 @@ public class UserCommentsService extends AbstractUserCommentService {
    */
   @GET
   @Produces(MediaType.APPLICATION_JSON)
-  // TODO: Once updates to the schema have been finalized, uncomment this!
-  // @OutSchema("apicomm.user-comments.get-response")
+  @OutSchema("apicomm.user-comments.get-response")
   public Collection<Comment> getAllComments(
     @QueryParam("author")      final Long   author,
     @QueryParam("target-type") final String targetType,
@@ -120,8 +131,7 @@ public class UserCommentsService extends AbstractUserCommentService {
   @GET
   @Path(ID_PATH)
   @Produces(MediaType.APPLICATION_JSON)
-  // TODO: Once updates to the schema have been finalized, uncomment this!
-  // @OutSchema("apicomm.user-comments.id.get-response")
+  @OutSchema("apicomm.user-comments.id.get-response")
   public Comment getComment(@PathParam(URI_PARAM) long comId) throws WdkModelException {
     return fetchComment(comId);
   }
@@ -132,6 +142,20 @@ public class UserCommentsService extends AbstractUserCommentService {
     checkCommentOwnership(fetchComment(comId), fetchUser());
     getCommentFactory().deleteComment(comId);
     return Response.noContent().build();
+  }
+
+  private JSONArray validateRelatedStableIds(Set<String> relatedStableIds, GeneIdValidator validator) {
+    JSONArray validationErrors = new JSONArray();
+
+    for (String stableId : relatedStableIds) {
+      if (!validator.checkStableIds(stableId)) {
+        validationErrors.put(
+          "In Part III, the identifier + \"" + stableId + "\" is not a valid id."
+        );
+      }
+    }
+
+    return validationErrors;
   }
 
   private URI buildURL(long comId) {

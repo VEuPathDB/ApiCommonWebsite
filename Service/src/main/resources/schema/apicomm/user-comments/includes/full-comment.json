@@ -79,6 +79,10 @@
       "type": "string",
       "maxLength": 100
     },
+    "project": {
+      "description": "Project name and version where the comment was made",
+      "$ref": "/schema/apicomm/user-comments/includes/project.json"
+    },
     "pubMedRefs": {
       "description": "PubMed link details",
       "type": "array",
