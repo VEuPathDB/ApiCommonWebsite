@@ -94,4 +94,12 @@ public class CommentRequest extends BaseComment {
   public CommentRequest setRelatedStableIds(Collection<String> ids) {
     return (CommentRequest) super.setRelatedStableIds(ids);
   }
+
+  public CommentRequest setPubMedIds(Collection<String> ids) {
+    for (String id : ids) {
+      super.addPubMedId(id);
+    }
+
+    return this;
+  }
 }

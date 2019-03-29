@@ -39,6 +39,9 @@
       "type": "string",
       "maxLength": 2000
     },
+    "location": {
+      "$ref": "/schema/apicomm/user-comments/includes/location.json"
+    },
     "organism": {
       "description": "Comment target organism",
       "type": "string",
