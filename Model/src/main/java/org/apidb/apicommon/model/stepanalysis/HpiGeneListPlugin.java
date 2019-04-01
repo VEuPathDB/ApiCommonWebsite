@@ -277,11 +277,11 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
                                                                 "Details about this experiment",
                                                                 "What type of experiment was this",
                                                                 "Where can I find more information about this experiment",
-								"The observed number of overlapping genes in your input gene list and in this experiment meets the fold change cut-off value criteria",
-								"The expected number of overlapping genes in your input gene list and this experiment",
+								"The observed number of overlapping genes in your gene set and in this particular experiment",
+								"The expected number of overlapping genes in your gene set and this particular experiment",
 								"The observed overlap divided by the expected overlap",
-								"Percent of overlapping genes in your gene list",
-								"Percent of this experiment genes that meets the fold change criteria in background genome",
+								"The number of overlapping genes divided by the number of genes in your gene set",
+								"The number of genes in this experiment meet the fold change criteria divided by the number of genes in background genome",
                                                                 "Statistic used to identify this experiment (p-value)",
                                                                 "URI for the List"
                                                                 );
@@ -404,6 +404,11 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
         json.put("description", getDescription());
         json.put("type", getType());
         json.put("uri", getUri());
+	json.put("c11", getC11());
+	json.put("c22", getC22());
+	json.put("c33", getC33());
+	json.put("c44", getC44());
+	json.put("c55", getC55());
         json.put("significance", getSignificance());
         json.put("serverEndpoint", getServerEndPoint());
 
