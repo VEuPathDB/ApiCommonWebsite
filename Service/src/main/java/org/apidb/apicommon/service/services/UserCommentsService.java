@@ -150,7 +150,7 @@ public class UserCommentsService extends AbstractUserCommentService {
     for (String stableId : relatedStableIds) {
       if (!validator.checkStableIds(stableId)) {
         validationErrors.put(
-          "In Part III, the identifier + \"" + stableId + "\" is not a valid id."
+          "In Part III, the identifier \"" + stableId + "\" is not a valid id."
         );
       }
     }
