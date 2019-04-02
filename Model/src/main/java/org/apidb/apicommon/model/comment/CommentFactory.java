@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apidb.apicommon.model.comment.pojo.*;
 import org.apidb.apicommon.model.comment.repo.*;
 import org.gusdb.fgputil.db.ConnectionMapping;
+import org.gusdb.fgputil.db.SqlUtils;
 import org.gusdb.fgputil.db.pool.DatabaseInstance;
 import org.gusdb.fgputil.runtime.InstanceManager;
 import org.gusdb.fgputil.runtime.Manageable;
@@ -18,6 +19,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.*;
 
 import static org.apidb.apicommon.model.comment.ReferenceType.*;
@@ -79,6 +82,43 @@ public class CommentFactory implements Manageable<CommentFactory> {
     }
     catch (CommentModelException ex) {
       throw new WdkModelException();
+    }
+  }
+
+  public ArrayList<MultiBox> getMultiBoxData(String nameCol, String valueCol, String table, String condition) {
+
+    ArrayList<MultiBox> list = new ArrayList<MultiBox>();
+    ResultSet rs = null;
+    PreparedStatement ps = null;
+    
+    StringBuffer sql = new StringBuffer();
+    sql.append("SELECT " + nameCol + "," + valueCol);
+    sql.append(" FROM  " + _config.getCommentSchema() + table);
+    if (condition != null) {
+      sql.append(" WHERE " + condition);
+    }
+
+    MultiBox multiBox = null;
+
+    try {
+      ps = SqlUtils.getPreparedStatement(_commentDs, sql.toString());
+      rs = ps.executeQuery();
+
+      while (rs.next()) {
+        String name = rs.getString(nameCol);
+        int value = rs.getInt(valueCol);
+        multiBox = new MultiBox(name, value + "");
+        list.add(multiBox);
+      }
+      return list;
+    }
+    catch (Exception e) {
+      e.printStackTrace();
+      throw new RuntimeException(e);
+    }
+    finally {
+      SqlUtils.closeResultSetAndStatement(rs, ps);
+      // printStatus();
     }
   }
 
