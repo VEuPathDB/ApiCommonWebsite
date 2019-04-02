@@ -70,7 +70,7 @@ public class FindCommentQuery extends BaseCommentQuery<Collection<Comment>> {
       "  AND co.IS_VISIBLE = 1";
   private static final String USER_FILTER = "co.USER_ID = ?";
   private static final String TARGET_FILTER = "co.COMMENT_TARGET_ID = ?\n" +
-      "  AND co.STABLE_ID = ?";
+      "  AND ? IN (co.STABLE_ID, costid.STABLE_ID)";
 
   private String filter;
 
