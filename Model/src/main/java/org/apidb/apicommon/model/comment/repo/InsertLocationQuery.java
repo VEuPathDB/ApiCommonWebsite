@@ -52,7 +52,7 @@ public class InsertLocationQuery extends InsertQuery {
     for (LocationRange range : _locs.getRanges()) {
       batch.add(
           new Object[] { _comId, nextId(), range.getStart(), range.getEnd(),
-              _locs.getCoordinateType(), _locs.isReversed() ? 1 : 0 });
+              _locs.getCoordinateType(), _locs.isReverse() ? 1 : 0 });
     }
 
     batch.setParameterTypes(TYPES);

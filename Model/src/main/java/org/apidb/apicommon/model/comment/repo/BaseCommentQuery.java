@@ -24,7 +24,7 @@ abstract class BaseCommentQuery<T> extends ValueQuery<T> {
       return Optional.empty();
 
     return Optional.of(new Location().setCoordinateType(coordType)
-        .setReversed(rs.getBoolean(Column.Location.REVERSED)));
+        .setReverse(rs.getBoolean(Column.Location.REVERSED)));
   }
 
   protected static Optional<LocationRange> rs2LocationRange(ResultSet rs) throws SQLException {

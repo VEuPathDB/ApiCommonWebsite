@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 
 public class Location {
 
-  private boolean reversed;
+  private boolean reverse;
 
   private final Set<LocationRange> _ranges;
 
@@ -30,12 +30,12 @@ public class Location {
     return this;
   }
 
-  public boolean isReversed() {
-    return reversed;
+  public boolean isReverse() {
+    return reverse;
   }
 
-  public Location setReversed(boolean reversed) {
-    this.reversed = reversed;
+  public Location setReverse(boolean reverse) {
+    this.reverse = reverse;
     return this;
   }
 
@@ -61,7 +61,7 @@ public class Location {
             .map(Object::toString)
             .collect(Collectors.joining(", ")));
 
-    if (isReversed())
+    if (isReverse())
       sb.append(" (reverse strand)");
     else
       sb.append(" (forward strand)");
