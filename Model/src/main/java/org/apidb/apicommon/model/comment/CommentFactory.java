@@ -131,9 +131,15 @@ public class CommentFactory implements Manageable<CommentFactory> {
 
   public Optional<Comment> getComment(long commentId) throws WdkModelException {
     try(Connection con = _commentDs.getConnection()) {
-      return new GetCommentQuery(_config.getCommentSchema(), commentId)
-          .run(con).value();
-    } catch (SQLException ex) {
+      final Optional<Comment> out = new GetCommentQuery(
+        _config.getCommentSchema(), commentId).run(con).value();
+      if (out.isPresent()) {
+        final Comment tmp = out.get();
+        tmp.setPubMedRefs(getPubMedRefs(tmp));
+      }
+
+      return out;
+    } catch (IOException | SQLException ex) {
       throw new WdkModelException(ex);
     }
   }
