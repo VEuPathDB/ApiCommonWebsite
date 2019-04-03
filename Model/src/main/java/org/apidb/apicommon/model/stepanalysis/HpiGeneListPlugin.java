@@ -268,7 +268,7 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
 
   public static class ResultViewModel {
 
-      private final ResultRow HEADER_ROW = new ResultRow("Experiment Identifier", "Species",  "Experiment Name", "Description","Type", "URI", "Observed overlap", "Expected overlap", "Fold enrichment", "Percent of overlapping genes in your result", "Percent of this experiment genes in bkgd", "Statistic", "List_URI");
+      private final ResultRow HEADER_ROW = new ResultRow("Experiment Identifier", "Species",  "Experiment Name", "Description","Type", "URI", "Observed overlap", "Expected overlap", "Fold enrichment", "Percent of overlapping genes in your result", "Percent of this experiment genes in bkgd", "P-value", "List_URI");
 
       private final ResultRow COLUMN_HELP = new ResultRow(
                                                                 "Unique ID for this experiment",
@@ -282,7 +282,7 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
 								"The observed overlap divided by the expected overlap",
 								"The number of overlapping genes divided by the number of genes in your gene set",
 								"The number of genes in this experiment meet the fold change criteria divided by the number of genes in background genome",
-                                                                "Statistic used to identify this experiment (p-value)",
+                                                                "Statistic used to identify this experiment",
                                                                 "URI for the List"
                                                                 );
       
