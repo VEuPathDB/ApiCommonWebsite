@@ -16,7 +16,7 @@ import static java.sql.Types.VARCHAR;
  */
 public class InsertExternalDatabaseQuery extends InsertQuery {
 
-  private static final String SQL = "INSERT INTO %s.EXTERNAL_DATABASE (\n" +
+  private static final String SQL = "INSERT INTO %s.EXTERNAL_DATABASES (\n" +
       "    EXTERNAL_DATABASE_ID, EXTERNAL_DATABASE_NAME,\n" +
       "    EXTERNAL_DATABASE_VERSION)\n" +
       "VALUES (?, ?, ?)";
