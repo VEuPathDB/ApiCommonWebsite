@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apidb.apicommon.model.comment.pojo.*;
 import org.apidb.apicommon.model.comment.repo.*;
-import org.gusdb.fgputil.db.ConnectionMapping;
 import org.gusdb.fgputil.db.SqlUtils;
 import org.gusdb.fgputil.db.pool.DatabaseInstance;
 import org.gusdb.fgputil.runtime.InstanceManager;
@@ -90,7 +89,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
     ArrayList<MultiBox> list = new ArrayList<MultiBox>();
     ResultSet rs = null;
     PreparedStatement ps = null;
-    
+
     StringBuffer sql = new StringBuffer();
     sql.append("SELECT " + nameCol + "," + valueCol);
     sql.append(" FROM  " + _config.getCommentSchema() + table);
@@ -131,7 +130,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
   }
 
   public Optional<Comment> getComment(long commentId) throws WdkModelException {
-    try(Connection con  = ConnectionMapping.getConnection(_commentDs)) {
+    try(Connection con = _commentDs.getConnection()) {
       return new GetCommentQuery(_config.getCommentSchema(), commentId)
           .run(con).value();
     } catch (SQLException ex) {
@@ -140,7 +139,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
   }
 
   public boolean commentExists(long commentId) throws WdkModelException {
-    try(Connection con = ConnectionMapping.getConnection(_commentDs)) {
+    try(Connection con = _commentDs.getConnection()) {
       return new GetCommentExistsQuery(_config.getCommentSchema(), commentId)
           .run(con).value();
     } catch (SQLException ex) {
@@ -149,11 +148,13 @@ public class CommentFactory implements Manageable<CommentFactory> {
   }
 
   /**
-   * Retrieve comments by author
+   * Retrieve comments by author and/or target
    *
-   * @param author comment author
+   * @param author   comment author
+   * @param stableId comment target id
+   * @param type     comment target type
    *
-   * @return Collection of comments matching the given author
+   * @return Collection of comments matching the given search criteria
    */
   public Collection<Comment> queryComments(Long author, String stableId,
       String type) throws WdkModelException {
@@ -170,10 +171,10 @@ public class CommentFactory implements Manageable<CommentFactory> {
       query.setFilter(author);
     }
 
-    try(Connection con = ConnectionMapping.getConnection(_commentDs)) {
+    try(Connection con = _commentDs.getConnection()) {
       out = query.run(con).value();
       for (Comment comment : out) {
-        getPubMedRefs(comment);
+        comment.setPubMedRefs(getPubMedRefs(comment));
       }
     } catch (SQLException | IOException e) {
       throw new WdkModelException(e);
@@ -183,7 +184,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
   }
 
   public void createAttachment(long commentId, Attachment att) throws WdkModelException {
-    try(Connection con = ConnectionMapping.getConnection(_commentDs)) {
+    try(Connection con = _commentDs.getConnection()) {
       new InsertAttachmentQuery(_config.getCommentSchema(), commentId, att)
           .run(con);
     } catch (SQLException e) {
@@ -192,7 +193,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
   }
 
   public void updateAuthor(Author author) throws WdkModelException {
-    try(Connection con = ConnectionMapping.getConnection(_commentDs)) {
+    try(Connection con = _commentDs.getConnection()) {
       new UpdateAuthorQuery(_config.getCommentSchema(), author).run(con);
     } catch (SQLException e) {
       throw new WdkModelException(e);
@@ -204,7 +205,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
     final String schema = _config.getCommentSchema();
     long commentId;
 
-    try (Connection con = ConnectionMapping.getConnection(_commentDs)) {
+    try (Connection con = _commentDs.getConnection()) {
       con.setAutoCommit(false);
       commentId = getNextId(Table.COMMENTS);
 
@@ -253,7 +254,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
   }
 
   public void deleteComment(long commentId) throws WdkModelException {
-    try(Connection con = ConnectionMapping.getConnection(_commentDs)) {
+    try(Connection con = _commentDs.getConnection()) {
       new HideCommentQuery(_config.getCommentSchema(), commentId).run(con);
     } catch (SQLException e) {
       throw new WdkModelException(e);
@@ -262,7 +263,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
 
   public void deleteAttachment(long commentId, long attachmentId)
     throws WdkModelException {
-    try(Connection con = ConnectionMapping.getConnection(_commentDs)) {
+    try(Connection con = _commentDs.getConnection()) {
       new DeleteAttachmentQuery(_config.getCommentSchema(), commentId,
           attachmentId).run(con);
     } catch (SQLException e) {
@@ -278,7 +279,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
    */
   public Optional<Attachment> getAttachment(long commentId, long attachmentId)
       throws WdkModelException {
-    try(Connection con = ConnectionMapping.getConnection(_commentDs)) {
+    try(Connection con = _commentDs.getConnection()) {
       return new GetAttachmentQuery(_config.getCommentSchema(), commentId,
           attachmentId).run(con).value();
     } catch (SQLException e) {
@@ -337,13 +338,12 @@ public class CommentFactory implements Manageable<CommentFactory> {
    *
    * @param com ID of the comment for which to lookup PubMed links
    */
-  private void getPubMedRefs(Comment com)
+  private Collection<PubMedReference> getPubMedRefs(Comment com)
       throws IOException {
     final URL url = new URL(_host + "/cgi-bin/pmid2json?pmids=" + String.join(
         ",", com.getPubMedIds()));
-    com.setPubMedRefs(
-        JSON.readerFor(new TypeReference<Collection<PubMedReference>>() {})
-            .readValue(url));
+    return JSON.readerFor(new TypeReference<Collection<PubMedReference>>() {})
+        .readValue(url);
   }
 
   /**
@@ -365,7 +365,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
 
   public Collection<Attachment> getAllAttachments(long commentId)
       throws WdkModelException {
-    try(Connection con = ConnectionMapping.getConnection(_commentDs)) {
+    try(Connection con = _commentDs.getConnection()) {
       return new GetAllAttachmentsQuery(_config.getCommentSchema(), commentId)
           .run(con).value();
     } catch (SQLException e) {
