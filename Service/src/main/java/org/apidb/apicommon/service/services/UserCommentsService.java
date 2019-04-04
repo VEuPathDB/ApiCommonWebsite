@@ -21,6 +21,7 @@ import javax.ws.rs.core.UriInfo;
 import org.apidb.apicommon.model.comment.CommentAlertEmailFormatter;
 import org.apidb.apicommon.model.comment.pojo.Comment;
 import org.apidb.apicommon.model.comment.pojo.CommentRequest;
+import org.apidb.apicommon.model.comment.pojo.MultiBox;
 import org.apidb.apicommon.model.GeneIdValidator;
 import org.gusdb.wdk.core.api.JsonKeys;
 import org.gusdb.wdk.model.WdkModel;
@@ -33,9 +34,10 @@ import org.json.JSONObject;
 
 @Path(UserCommentsService.BASE_PATH)
 public class UserCommentsService extends AbstractUserCommentService {
-  public static final String URI_PARAM = "comment-id";
-  public static final String BASE_PATH = "/user-comments";
-  public static final String ID_PATH   = "/{" + URI_PARAM + "}";
+  public static final String URI_PARAM          = "comment-id";
+  public static final String BASE_PATH          = "/user-comments";
+  public static final String CATEGORY_LIST_PATH = "/category-list";
+  public static final String ID_PATH            = "/{" + URI_PARAM + "}";
 
   public static final String SOURCE_EMAIL     = "annotator@apidb.org";
   public static final String ANNOTATORS_EMAIL = "EUPATHDB_ANNOTATORS@lists.upenn.edu";
@@ -126,6 +128,21 @@ public class UserCommentsService extends AbstractUserCommentService {
       throw new BadRequestException("target-id and target-type cannot be used separately");
 
     return getCommentFactory().queryComments(author, targetId, targetType);
+  }
+
+  @GET
+  @Path(CATEGORY_LIST_PATH)
+  @Produces(MediaType.APPLICATION_JSON)
+  @OutSchema("apicomm.user-comments.category-list.get-response")
+  public Collection<MultiBox> getCategoryList(
+    @QueryParam("target-type") final String targetType
+  ) throws WdkModelException {
+    return getCommentFactory().getMultiBoxData(
+      "category",
+      "target_category_id",
+      "TargetCategory", 
+      "comment_target_id='" + targetType + "'"
+    );
   }
 
   @GET

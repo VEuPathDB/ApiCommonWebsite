@@ -3,9 +3,9 @@ package org.apidb.apicommon.model.comment.pojo;
 public class MultiBox {
 
     private String name;
-    private String value;
+    private Integer value;
 
-    public MultiBox(String name, String value) {
+    public MultiBox(String name, Integer value) {
       this.name = name;
       this.value = value;
     }
@@ -18,11 +18,11 @@ public class MultiBox {
       return this.name;
     }
 
-    public void setValue(String value) {
+    public void setValue(Integer value) {
       this.value = value;
     }
 
-    public String getValue() {
+    public Integer getValue() {
       return this.value;
     }
 }
