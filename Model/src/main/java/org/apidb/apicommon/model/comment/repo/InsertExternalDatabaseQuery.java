@@ -28,7 +28,7 @@ public class InsertExternalDatabaseQuery extends InsertQuery {
 
   public InsertExternalDatabaseQuery(String schema, ExternalDatabase extDb,
       IdSupplier idProvider) {
-    super(schema, Table.EXTERNAL_DB, idProvider);
+    super(schema, Table.EXTERNAL_DBS, idProvider);
     _extDb = extDb;
   }
 
