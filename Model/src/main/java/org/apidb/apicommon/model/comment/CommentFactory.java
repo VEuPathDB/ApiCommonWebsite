@@ -84,39 +84,14 @@ public class CommentFactory implements Manageable<CommentFactory> {
     }
   }
 
-  public Collection<MultiBox> getMultiBoxData(String nameCol, String valueCol, String table, String condition) {
-
-    ArrayList<MultiBox> list = new ArrayList<MultiBox>();
-    ResultSet rs = null;
-    PreparedStatement ps = null;
-
-    StringBuffer sql = new StringBuffer();
-    sql.append("SELECT " + nameCol + "," + valueCol);
-    sql.append(" FROM  " + _config.getCommentSchema() + "." + table);
-    if (condition != null) {
-      sql.append(" WHERE " + condition);
-    }
-
-    MultiBox multiBox = null;
-
-    try {
-      ps = SqlUtils.getPreparedStatement(_commentDs, sql.toString());
-      rs = ps.executeQuery();
-
-      while (rs.next()) {
-        String name = rs.getString(nameCol);
-        int value = rs.getInt(valueCol);
-        multiBox = new MultiBox(name, value);
-        list.add(multiBox);
-      }
-      return list;
-    }
-    catch (Exception e) {
-      e.printStackTrace();
-      throw new RuntimeException(e);
-    }
-    finally {
-      SqlUtils.closeResultSetAndStatement(rs, ps);
+  public Collection<Category> getCategoriesByType(final String type) throws WdkModelException {
+    try (final Connection con = _commentDs.getConnection()) {
+      return new GetCategoriesQuery(_config.getCommentSchema())
+        .filterByType(type)
+        .run(con)
+        .value();
+    } catch (SQLException e) {
+      throw new WdkModelException(e);
     }
   }
 

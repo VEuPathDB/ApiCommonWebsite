@@ -19,9 +19,9 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
 import org.apidb.apicommon.model.comment.CommentAlertEmailFormatter;
+import org.apidb.apicommon.model.comment.pojo.Category;
 import org.apidb.apicommon.model.comment.pojo.Comment;
 import org.apidb.apicommon.model.comment.pojo.CommentRequest;
-import org.apidb.apicommon.model.comment.pojo.MultiBox;
 import org.apidb.apicommon.model.GeneIdValidator;
 import org.gusdb.wdk.core.api.JsonKeys;
 import org.gusdb.wdk.model.WdkModel;
@@ -82,7 +82,7 @@ public class UserCommentsService extends AbstractUserCommentService {
     if (validationErrors.length() > 0) {
       throw new BadRequestException(validationErrors.toString());
     }
-  
+
     final long id = getCommentFactory().createComment(body, user);
 
     notificationEmail(getWdkModel(), user, body, id);
@@ -134,15 +134,10 @@ public class UserCommentsService extends AbstractUserCommentService {
   @Path(CATEGORY_LIST_PATH)
   @Produces(MediaType.APPLICATION_JSON)
   @OutSchema("apicomm.user-comments.category-list.get-response")
-  public Collection<MultiBox> getCategoryList(
+  public Collection<Category> getCategoryList(
     @QueryParam("target-type") final String targetType
   ) throws WdkModelException {
-    return getCommentFactory().getMultiBoxData(
-      "category",
-      "target_category_id",
-      "TargetCategory", 
-      "comment_target_id='" + targetType + "'"
-    );
+    return getCommentFactory().getCategoriesByType(targetType);
   }
 
   @GET
