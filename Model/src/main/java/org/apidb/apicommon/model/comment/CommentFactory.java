@@ -84,7 +84,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
     }
   }
 
-  public ArrayList<MultiBox> getMultiBoxData(String nameCol, String valueCol, String table, String condition) {
+  public Collection<MultiBox> getMultiBoxData(String nameCol, String valueCol, String table, String condition) {
 
     ArrayList<MultiBox> list = new ArrayList<MultiBox>();
     ResultSet rs = null;
@@ -92,7 +92,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
 
     StringBuffer sql = new StringBuffer();
     sql.append("SELECT " + nameCol + "," + valueCol);
-    sql.append(" FROM  " + _config.getCommentSchema() + table);
+    sql.append(" FROM  " + _config.getCommentSchema() + "." + table);
     if (condition != null) {
       sql.append(" WHERE " + condition);
     }
@@ -106,7 +106,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
       while (rs.next()) {
         String name = rs.getString(nameCol);
         int value = rs.getInt(valueCol);
-        multiBox = new MultiBox(name, value + "");
+        multiBox = new MultiBox(name, value);
         list.add(multiBox);
       }
       return list;
@@ -117,7 +117,6 @@ public class CommentFactory implements Manageable<CommentFactory> {
     }
     finally {
       SqlUtils.closeResultSetAndStatement(rs, ps);
-      // printStatus();
     }
   }
 
