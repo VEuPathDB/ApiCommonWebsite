@@ -43,6 +43,10 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
     private static final String BRC_PARAM_KEY = "brcParam";
     private static final String THRESHOLD_TYPE_PARAM_KEY = "thresholdTypeParam";
     private static final String THRESHOLD_PARAM_KEY = "thresholdParam";
+
+    private static final String DS_CUTOFF_TYPE_PARAM_KEY = "datasetCutoffTypeParam";
+    private static final String DS_CUTOFF_PARAM_KEY = "datasetCutoffParam";
+
     private static final String USE_ORTHOLOGY_PARAM_KEY = "useOrthologyParam";
     
     private static final String TABBED_RESULT_FILE_PATH = "hpiGeneListResult.tab";
@@ -76,6 +80,21 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
         errors.addParamMessage(THRESHOLD_PARAM_KEY, "Must be a number greater than 0.");
       }
     }
+
+    if (!formParams.containsKey(DS_CUTOFF_PARAM_KEY)) {
+      errors.addParamMessage(DS_CUTOFF_PARAM_KEY, "Missing required parameter.");
+    }
+    else {
+      try {
+        double datasetCutoff = Double.parseDouble(formParams.get(DS_CUTOFF_PARAM_KEY)[0]);
+        if (datasetCutoff <= 0 ) throw new NumberFormatException();
+      }
+      catch (NumberFormatException e) {
+        errors.addParamMessage(DS_CUTOFF_PARAM_KEY, "Must be a number greater than 0.");
+      }
+    }
+
+
     return errors;
   }
 
@@ -99,7 +118,8 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
       String thresholdType = params.get(THRESHOLD_TYPE_PARAM_KEY)[0];
       String useOrthology = params.get(USE_ORTHOLOGY_PARAM_KEY)[0];
 
-      //      String orderbyp = "| sort -k9,9";
+      String datasetCutoff = params.get(DS_CUTOFF_PARAM_KEY)[0];
+      String datasetCutoffType = params.get(DS_CUTOFF_TYPE_PARAM_KEY)[0];
 
 
       // create another path here for the image word cloud JP LOOK HERE name it like imageFilePath
@@ -110,6 +130,8 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
                + idSql + " "
                +  thresholdType + " "
                +  threshold + " "
+               +  datasetCutoffType + " "
+               +  datasetCutoff + " "
                +  useOrthology + " "
                +  type + " "
                +  idSource + " "
@@ -120,7 +142,7 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
                );
 
       //TODO:  Add server endpoint
-      return new String[]{ qualifiedExe, idSql, thresholdType, threshold, useOrthology, type, idSource, resultFilePath.toString(), wdkModel.getProjectId(), searchServerEndpoint};
+      return new String[]{ qualifiedExe, idSql, thresholdType, threshold, datasetCutoffType, datasetCutoff, useOrthology, type, idSource, resultFilePath.toString(), wdkModel.getProjectId(), searchServerEndpoint};
   }
 
 
@@ -151,7 +173,7 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
     }
 
     List<Option> thresholdTypeOptions = new ArrayList<>();
-    thresholdTypeOptions.add(new Option("fc", "Fold Change"));
+    thresholdTypeOptions.add(new Option("pValue", "p-value"));
     //    thresholdTypeOptions.add(new Option("fdr", "False Discovery Rate"));
     //    thresholdTypeOptions.add(new Option("percent_matched", "Percent Matched"));
 
@@ -159,7 +181,11 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
     useOrthologyOptions.add(new Option("true", "Yes"));
     useOrthologyOptions.add(new Option("false", "No"));
 
-    return new FormViewModel(brcOptions, thresholdTypeOptions, useOrthologyOptions, getWdkModel().getProjectId());
+    List<Option> datasetCutoffTypeOptions = new ArrayList<>();
+    datasetCutoffTypeOptions.add(new Option("Fold Change", "Fold Change"));
+    datasetCutoffTypeOptions.add(new Option("Rank", "Rank"));
+
+    return new FormViewModel(brcOptions, thresholdTypeOptions, datasetCutoffTypeOptions, useOrthologyOptions, getWdkModel().getProjectId());
   }
 
   @Override
@@ -210,19 +236,24 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
   public static class FormViewModel {
 
       private final String brcParamHelp = "Choose which database to search";
-      private final String thresholdTypeParamHelp = "Fold_change cutoff for creating gene sets";
+      private final String thresholdTypeParamHelp = "This number is used as a cutoff when finding studies from a gene list";
       private final String thresholdParamHelp = "This number is used as a cutoff when finding studies from a gene list";
       private final String useOrthologyParamHelp = "Should we extend the search to consider genes orthologous to ones in the input list?";
 
+      private final String datasetCutoffTypeParamHelp = "Select how to create gene lists to search against";
+      private final String datasetCutoffParamHelp = "This number is used as a cutoff when creating gene lists to search";
+
       private List<Option> brcOptions;
       private List<Option> thresholdTypeOptions;
+      private List<Option> datasetCutoffTypeOptions;
       private List<Option> useOrthologyOptions;
 
       private String projectId;
 
-      public FormViewModel(List<Option> brcOptions, List<Option> thresholdTypeOptions, List<Option> useOrthologyOptions, String projectId) {
+      public FormViewModel(List<Option> brcOptions, List<Option> thresholdTypeOptions, List<Option> datasetCutoffTypeOptions, List<Option> useOrthologyOptions, String projectId) {
           this.brcOptions = brcOptions;
           this.thresholdTypeOptions = thresholdTypeOptions;
+          this.datasetCutoffTypeOptions = datasetCutoffTypeOptions;
           this.useOrthologyOptions = useOrthologyOptions;
           this.projectId = projectId;
       }
@@ -235,6 +266,10 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
           return this.thresholdTypeOptions;
       }
 
+      public List<Option> getDatasetCutoffTypeOptions() {
+          return this.datasetCutoffTypeOptions;
+      }
+
       public List<Option> getUseOrthologyOptions() {
           return this.useOrthologyOptions;
       }
@@ -242,6 +277,10 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
       public String getBrcParamHelp() { return this.brcParamHelp; }
       public String getThresholdTypeParamHelp() { return this.thresholdTypeParamHelp; }
       public String getThresholdParamHelp() { return this.thresholdParamHelp; }
+
+      public String getDatasetCutoffTypeParamHelp() { return this.datasetCutoffTypeParamHelp; }
+      public String getDatasetCutoffParamHelp() { return this.datasetCutoffParamHelp; }
+
       public String getUseOrthologyParamHelp() { return this.useOrthologyParamHelp; }
       public String getProjectId() { return projectId; }
       
@@ -250,6 +289,10 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
         json.put("brcParamHelp", getBrcParamHelp());
         json.put("thresholdTypeParamHelp", getThresholdTypeParamHelp());
         json.put("thresholdParamHelp", getThresholdParamHelp());
+
+        json.put("datasetCutoffTypeParamHelp", getDatasetCutoffTypeParamHelp());
+        json.put("datasetCutoffParamHelp", getDatasetCutoffParamHelp());
+
         json.put("useOrthologyParamHelp", getUseOrthologyParamHelp());
         json.put("projectId", getProjectId());
         JSONArray brcJson = new JSONArray();
@@ -258,6 +301,9 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
         JSONArray threshTypeJson = new JSONArray();
         for (Option o : getThresholdTypeOptions()) threshTypeJson.put(o);
         json.put("thresholdTypeOptions", threshTypeJson);
+        JSONArray datasetCutoffTypeJson = new JSONArray();
+        for (Option o : getDatasetCutoffTypeOptions()) datasetCutoffTypeJson.put(o);
+        json.put("datasetCutoffTypeOptions", datasetCutoffTypeJson);
         JSONArray useOrthologyJson = new JSONArray();
         for (Option o : getUseOrthologyOptions()) useOrthologyJson.put(o);
         json.put("useOrthologyOptions", useOrthologyJson);
