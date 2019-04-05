@@ -164,56 +164,13 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   
   @Override
   public JSONObject getFormViewModelJson() throws WdkModelException {
-    try {
-      return createFormViewModel().toJson();
-    // TODO: we catch user exception because this method is called only from the service layer, which
-    // will have pre-validated the AnswerValue.  Lose this when the user exception is purged from the backend core code
-    } catch (WdkUserException e) {
-      throw new WdkModelException();
-    }
-  }
-
-  @Override
-  public Object getFormViewModel() throws WdkModelException, WdkUserException {
-    return createFormViewModel();
-  }
-
-  private FormViewModel createFormViewModel() throws WdkModelException, WdkUserException {
-    DataSource ds = getWdkModel().getAppDb().getDataSource();
-    BasicResultSetHandler handler = new BasicResultSetHandler();
-
-    String idSql = getAnswerValue().getIdSql();
-
-    // find annotation sources used in the result set
-    String sql = "select distinct pa.pathway_source" + NL +
-      "from apidbtuning.transcriptPathway tp, (" + idSql + ") r" + NL +
-      ", apidbtuning.pathwayattributes pa" + NL +
-      "where tp.gene_source_id = r.gene_source_id" + NL +
-      "and pa.pathway_id = tp.pathway_id" + NL +
-      "group by pa.pathway_id, pa.pathway_source";
-
-    new SQLRunner(ds, sql, "select-pathway-sources").executeQuery(handler);
-    List<Option> sources = new ArrayList<>();
-
-    for (Map<String,Object> cols : handler.getResults()) {
-      sources.add(new Option(cols.get("PATHWAY_SOURCE").toString()));
-    }
-
-    // get orgs to display in select
-    List<Option> orgOptionList = EnrichmentPluginUtil
-        .getOrgOptionList(getAnswerValue(), getWdkModel());
-    
-    return new FormViewModel(orgOptionList, sources);
+    // this is now declared in the model xml
+    return null;
   }
 
   @Override
   public JSONObject getResultViewModelJson() throws WdkModelException {
     return createResultViewModel().toJson();
-  }
-  
-  @Override
-  public Object getResultViewModel() throws WdkModelException {
-    return createResultViewModel();
   }
   
   private ResultViewModel createResultViewModel() throws WdkModelException {
@@ -234,35 +191,6 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     }
     catch (IOException ioe) {
       throw new WdkModelException("Unable to process result file at: " + inputPath, ioe);
-    }
-  }
-
-  public static class FormViewModel {
-
-    private List<Option> _orgOptions;
-    private List<Option> _sourceOptions;
-
-    public FormViewModel(List<Option> orgOptions, List<Option> sourceOptions) {
-      _orgOptions = orgOptions;
-      _sourceOptions = sourceOptions;
-    }
-
-    public List<Option> getOrganismOptions() {
-      return _orgOptions;
-    }
-
-    public List<Option> getSourceOptions() {
-      return _sourceOptions;
-    }
-
-    public String getOrganismParamHelp() { return EnrichmentPluginUtil.ORGANISM_PARAM_HELP; }
-    
-    public JSONObject toJson() {
-      JSONObject json = new JSONObject();
-      JSONArray optionsJson = new JSONArray();
-      for (Option o : _orgOptions) optionsJson.put(o);
-      json.put("options", optionsJson);
-      return json;
     }
   }
 

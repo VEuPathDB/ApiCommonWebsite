@@ -22,21 +22,11 @@ public class ResultCounterPlugin extends AbstractStepAnalyzer {
     JSONObject json = new JSONObject();
     return json;
   }
-  
-  @Override
-  public Object getFormViewModel() throws WdkModelException {
-    return null;
-    
-  }
   @Override
   public JSONObject getResultViewModelJson() throws WdkModelException {
     JSONObject json = new JSONObject();
     json.put("resultCount", createResultViewModel());
     return json;
-  }
-  @Override
-  public Object getResultViewModel() throws WdkModelException {
-    return createResultViewModel();
   }
   
   private Integer createResultViewModel() throws WdkModelException {
