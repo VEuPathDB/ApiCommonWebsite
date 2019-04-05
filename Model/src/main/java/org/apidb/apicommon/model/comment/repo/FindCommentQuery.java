@@ -20,8 +20,6 @@ import static java.sql.Types.VARCHAR;
  */
 public class FindCommentQuery extends BaseCommentQuery<Collection<Comment>> {
 
-  protected static final String RELATED = "RELATED_ID";
-
   private static final String QUERY = "WITH ids AS (\n" +
     "  SELECT\n" +
     "    a." + Column.Comment.ID + "\n" +
