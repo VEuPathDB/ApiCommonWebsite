@@ -3,6 +3,7 @@ package org.apidb.apicommon.model.comment.repo;
 import org.apidb.apicommon.model.comment.ReferenceType;
 import org.apidb.apicommon.model.comment.ReviewStatus;
 import org.apidb.apicommon.model.comment.pojo.*;
+import org.apidb.apicommon.model.comment.repo.Column.TargetCategory;
 import org.gusdb.fgputil.Tuples;
 
 import java.sql.ResultSet;
@@ -10,24 +11,27 @@ import java.sql.SQLException;
 import java.util.Optional;
 
 abstract class BaseCommentQuery<T> extends ValueQuery<T> {
-  protected BaseCommentQuery(String schema) {
+
+  static final String RELATED = "RELATED_ID";
+
+  BaseCommentQuery(String schema) {
     super(schema);
   }
 
-  protected static Optional<String> rs2Sequence(ResultSet rs) throws SQLException {
+  static Optional<String> rs2Sequence(ResultSet rs) throws SQLException {
     return Optional.ofNullable(rs.getString(Column.CommentSequence.SEQUENCE));
   }
 
-  protected static Optional<Location> rs2Location(ResultSet rs) throws SQLException {
+  static Optional<Location> rs2Location(ResultSet rs) throws SQLException {
     final String coordType = rs.getString(Column.Location.COORD_TYPE);
     if(coordType == null)
       return Optional.empty();
 
     return Optional.of(new Location().setCoordinateType(coordType)
-        .setReversed(rs.getBoolean(Column.Location.REVERSED)));
+        .setReverse(rs.getBoolean(Column.Location.REVERSED)));
   }
 
-  protected static Optional<LocationRange> rs2LocationRange(ResultSet rs) throws SQLException {
+  static Optional<LocationRange> rs2LocationRange(ResultSet rs) throws SQLException {
     final long start = rs.getLong(Column.Location.START);
 
     if(rs.wasNull())
@@ -41,8 +45,8 @@ abstract class BaseCommentQuery<T> extends ValueQuery<T> {
     return Optional.of(new LocationRange(start, end));
   }
 
-  protected static Optional<String> rs2Related(ResultSet rs) throws SQLException {
-    return Optional.ofNullable(rs.getString(Column.CommentStableId.STABLE_ID));
+  static Optional<String> rs2Related(ResultSet rs) throws SQLException {
+    return Optional.ofNullable(rs.getString(RELATED));
   }
 
   /**
@@ -53,7 +57,7 @@ abstract class BaseCommentQuery<T> extends ValueQuery<T> {
    * @return An ExternalDatabase instance if the given row contains external db
    *         details.  Otherwise none.
    */
-  protected static Optional<ExternalDatabase> rs2ExternalDb(ResultSet rs)
+  static Optional<ExternalDatabase> rs2ExternalDb(ResultSet rs)
       throws SQLException {
 
     final String name = rs.getString(Column.ExternalDatabase.NAME);
@@ -73,7 +77,7 @@ abstract class BaseCommentQuery<T> extends ValueQuery<T> {
    * @return A tuple containing a reference type and ID if the given row
    *         contains a reference.  Otherwise none.
    */
-  protected static Optional<Tuples.TwoTuple<ReferenceType, String>> rs2Reference(
+  static Optional<Tuples.TwoTuple<ReferenceType, String>> rs2Reference(
       ResultSet rs) throws SQLException {
 
     final String value = rs.getString(Column.CommentReference.SOURCE_ID);
@@ -85,7 +89,7 @@ abstract class BaseCommentQuery<T> extends ValueQuery<T> {
         .map(t -> new Tuples.TwoTuple<>(t, value));
   }
 
-  protected static void appendReference(Comment com,
+  static void appendReference(Comment com,
       Tuples.TwoTuple<ReferenceType, String> tup) {
 
     switch (tup.getFirst()) {
@@ -113,7 +117,7 @@ abstract class BaseCommentQuery<T> extends ValueQuery<T> {
    *
    * @return Newly created comment from the given row.
    */
-  protected static Comment rs2Comment(final ResultSet rs) throws SQLException {
+  static Comment rs2Comment(final ResultSet rs) throws SQLException {
     final Comment out = new Comment(rs.getLong(Column.Comment.ID), rs.getLong(
         Column.Comment.USER_ID))
         .setCommentDate(rs.getDate(Column.Comment.DATE))
@@ -132,7 +136,7 @@ abstract class BaseCommentQuery<T> extends ValueQuery<T> {
     return out;
   }
 
-  protected static Optional<Attachment> rs2Attachment(final ResultSet rs) throws SQLException {
+  static Optional<Attachment> rs2Attachment(final ResultSet rs) throws SQLException {
     final long id = rs.getLong(Column.CommentFile.ID);
     return rs.wasNull()
       ? Optional.empty()
@@ -169,6 +173,13 @@ abstract class BaseCommentQuery<T> extends ValueQuery<T> {
   private static ReviewStatus rs2ReviewStatus(final ResultSet rs) throws SQLException {
     return ReviewStatus.fromString(rs.getString(
         Column.Comment.REVIEW_STATUS));
+  }
+
+  static Optional<Category> rs2Category(final ResultSet rs) throws SQLException {
+    final String val = rs.getString(Column.TargetCategory.NAME);
+    return val == null
+      ? Optional.empty()
+      : Optional.of(new Category(rs.getInt(TargetCategory.ID), val));
   }
 
   private static Author rs2Author(final ResultSet rs) throws SQLException {

@@ -54,6 +54,11 @@ public class Comment extends BaseComment {
     return Collections.unmodifiableSet(_categories);
   }
 
+  public Comment addCategory(String cat) {
+    _categories.add(cat);
+    return this;
+  }
+
   public Comment setCategories(Collection<String> categoryNames) {
     _categories.clear();
     _categories.addAll(categoryNames);

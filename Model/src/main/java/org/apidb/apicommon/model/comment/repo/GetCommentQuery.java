@@ -1,6 +1,8 @@
 package org.apidb.apicommon.model.comment.repo;
 
+import org.apidb.apicommon.model.comment.pojo.Category;
 import org.apidb.apicommon.model.comment.pojo.Comment;
+import org.apidb.apicommon.model.comment.repo.Column.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,54 +16,61 @@ import static java.sql.Types.BIGINT;
 public class GetCommentQuery extends BaseCommentQuery<Optional<Comment>> {
 
   private static final String SQL = "SELECT\n" +
-    "  co.COMMENT_ID,\n" +
-    "  co.USER_ID,\n" +
-    "  co.COMMENT_DATE,\n" +
-    "  co.COMMENT_TARGET_ID,\n" +
-    "  co.STABLE_ID,\n" +
-    "  co.CONCEPTUAL,\n" +
-    "  co.PROJECT_NAME,\n" +
-    "  co.PROJECT_VERSION,\n" +
-    "  co.HEADLINE,\n" +
-    "  co.LOCATION_STRING,\n" +
-    "  co.CONTENT,\n" +
-    "  co.ORGANISM,\n" +
-    "  co.REVIEW_STATUS_ID,\n" +
-    "  co.IS_VISIBLE,\n" +
-    "  cous.FIRST_NAME,\n" +
-    "  cous.LAST_NAME,\n" +
-    "  cous.ORGANIZATION,\n" +
-    "  costid.STABLE_ID,\n" +
-    "  cose.SEQUENCE,\n" +
-    "  exda.EXTERNAL_DATABASE_NAME,\n" +
-    "  exda.EXTERNAL_DATABASE_VERSION,\n" +
-    "  cofi.FILE_ID,\n" +
-    "  cofi.NAME,\n" +
-    "  cofi.NOTES,\n" +
-    "  core.SOURCE_ID,\n" +
-    "  core.DATABASE_NAME,\n" +
-    "  lo.IS_REVERSE,\n" +
-    "  lo.COORDINATE_TYPE,\n" +
-    "  lo.LOCATION_START,\n" +
-    "  lo.LOCATION_END\n" +
+    "  co." + Column.Comment.ID               + ",\n" +
+    "  co." + Column.Comment.USER_ID          + ",\n" +
+    "  co." + Column.Comment.DATE             + ",\n" +
+    "  co." + Column.Comment.TARGET_ID        + ",\n" +
+    "  co." + Column.Comment.STABLE_ID        + ",\n" +
+    "  co." + Column.Comment.CONCEPTUAL       + ",\n" +
+    "  co." + Column.Comment.PROJECT_NAME     + ",\n" +
+    "  co." + Column.Comment.PROJECT_VERSION  + ",\n" +
+    "  co." + Column.Comment.HEADLINE         + ",\n" +
+    "  co." + Column.Comment.LOCATION         + ",\n" +
+    "  co." + Column.Comment.CONTENT          + ",\n" +
+    "  co." + Column.Comment.ORGANISM         + ",\n" +
+    "  co." + Column.Comment.REVIEW_STATUS    + ",\n" +
+    "  us." + CommentUser.FIRST_NAME          + ",\n" +
+    "  us." + CommentUser.LAST_NAME           + ",\n" +
+    "  us." + CommentUser.ORGANIZATION        + ",\n" +
+    "  id." + CommentStableId.STABLE_ID       + " " + RELATED + ",\n" +
+    "  se." + CommentSequence.SEQUENCE        + ",\n" +
+    "  db." + Column.ExternalDatabase.NAME    + ",\n" +
+    "  db." + Column.ExternalDatabase.VERSION + ",\n" +
+    "  fi." + CommentFile.ID                  + ",\n" +
+    "  fi." + CommentFile.NAME                + ",\n" +
+    "  fi." + CommentFile.NOTES               + ",\n" +
+    "  re." + CommentReference.SOURCE_ID      + ",\n" +
+    "  re." + CommentReference.DATABASE       + ",\n" +
+    "  lo." + Column.Location.REVERSED        + ",\n" +
+    "  lo." + Column.Location.COORD_TYPE      + ",\n" +
+    "  lo." + Column.Location.START           + ",\n" +
+    "  lo." + Column.Location.END             + ",\n" +
+    "  ca." + TargetCategory.NAME             + ",\n" +
+    "  ca." + TargetCategory.ID               + "\n" +
     "FROM\n" +
-    "  %1$s.COMMENTS                            co\n" +
-    "  INNER JOIN %1$s.COMMENT_USERS            cous\n" +
-    "    ON co.USER_ID = cous.USER_ID\n" +
-    "  LEFT JOIN %1$s.COMMENTSTABLEID           costid\n" +
-    "    ON co.COMMENT_ID = costid.COMMENT_ID\n" +
-    "  LEFT JOIN %1$s.COMMENTSEQUENCE           cose\n" +
-    "    ON co.COMMENT_ID = cose.COMMENT_ID\n" +
-    "  LEFT JOIN %1$s.COMMENT_EXTERNAL_DATABASE coexda\n" +
-    "    ON co.COMMENT_ID = coexda.COMMENT_ID\n" +
-    "  LEFT JOIN %1$s.COMMENTFILE               cofi\n" +
-    "    ON co.COMMENT_ID = cofi.COMMENT_ID\n" +
-    "  LEFT JOIN %1$s.COMMENTREFERENCE          core\n" +
-    "    ON co.COMMENT_ID = core.COMMENT_ID\n" +
-    "  LEFT JOIN %1$s.EXTERNAL_DATABASES        exda\n" +
-    "    ON coexda.EXTERNAL_DATABASE_ID = exda.EXTERNAL_DATABASE_ID\n" +
-    "  LEFT JOIN %1$s.LOCATIONS                 lo\n" +
-    "    ON co.COMMENT_ID = lo.COMMENT_ID\n" +
+    "  ids\n" +
+    "  INNER JOIN %1$s." + Table.COMMENTS + " co\n" +
+    "    ON ids.COMMENT_ID = co." + Column.Comment.ID + "\n" +
+    "  INNER JOIN %1$s." + Table.COMMENT_USERS + " us\n" +
+    "    ON co." + Column.Comment.USER_ID + " = us." + CommentUser.ID + "\n" +
+    "  LEFT JOIN %1$s." + Table.COMMENT_TO_STABLE_ID + " id\n" +
+    "    ON co." + Column.Comment.ID + " = id." + CommentStableId.COMMENT_ID + "\n" +
+    "  LEFT JOIN %1$s." + Table.COMMENT_TO_SEQUENCE + " se\n" +
+    "    ON co." + Column.Comment.ID + " = se." + CommentSequence.COMMENT_ID + "\n" +
+    "  LEFT JOIN %1$s." + Table.COMMENT_TO_EXT_DB + " codb\n" +
+    "    ON co." + Column.Comment.ID + " = codb." + CommentExternalDb.COMMENT_ID + "\n" +
+    "  LEFT JOIN %1$s." + Table.COMMENT_TO_FILE + " fi\n" +
+    "    ON co." + Column.Comment.ID + " = fi." + CommentFile.COMMENT_ID + "\n" +
+    "  LEFT JOIN %1$s." + Table.COMMENT_TO_REFERENCE + " re\n" +
+    "    ON co." + Column.Comment.ID + " = re." + CommentReference.COMMENT_ID + "\n" +
+    "  LEFT JOIN %1$s." + Table.EXTERNAL_DBS + " db\n" +
+    "    ON codb." + CommentExternalDb.DB_ID + " = db." + ExternalDatabase.ID + "\n" +
+    "  LEFT JOIN %1$s." + Table.COMMENT_TO_LOCATION + " lo\n" +
+    "    ON co." + Column.Comment.ID + " = lo." + Column.Location.COMMENT_ID + "\n" +
+    "  LEFT JOIN %1$s." + Table.COMMENT_TO_CATEGORY + " coca\n" +
+    "    ON co." + Column.Comment.ID + " = coca." + CommentCategory.COMMENT_ID + "\n" +
+    "  LEFT JOIN %1$s." + Table.CATEGORIES + " ca\n" +
+    "    ON coca." + CommentCategory.CATEGORY_ID + " = ca." + TargetCategory.ID + "\n" +
     "WHERE\n" +
     "  co.COMMENT_ID = ?";
 
@@ -95,6 +104,7 @@ public class GetCommentQuery extends BaseCommentQuery<Optional<Comment>> {
       rs2Related(rs).ifPresent(out::addRelatedStableId);
       rs2Reference(rs).ifPresent(t -> appendReference(out, t));
       rs2Attachment(rs).ifPresent(out::addAttachment);
+      rs2Category(rs).map(Category::getName).ifPresent(out::addCategory);
     } while(rs.next());
 
     return Optional.of(out);

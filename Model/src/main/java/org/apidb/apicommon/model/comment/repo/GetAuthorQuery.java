@@ -60,7 +60,7 @@ public class GetAuthorQuery extends ValueQuery<Optional<Author>> {
    */
   static Author rs2Author(final ResultSet rs) throws SQLException {
     return new Author()
-        .setUserId(rs.getLong(Column.CommentUser.USER_ID))
+        .setUserId(rs.getLong(Column.CommentUser.ID))
         .setFirstName(rs.getString(Column.CommentUser.FIRST_NAME))
         .setLastName(rs.getString(Column.CommentUser.LAST_NAME))
         .setOrganization(rs.getString(Column.CommentUser.ORGANIZATION));
