@@ -36,21 +36,10 @@ public class ListProcessPlugin extends AbstractSimpleProcessAnalyzer {
   }
   
   @Override
-  public Object getFormViewModel() {
-    return null;
-  }
-
-  @Override
   public JSONObject getFormViewModelJson() {
     return new JSONObject();
   }
 
-  
-  @Override
-  public Object getResultViewModel() {
-    return createResultViewModel();
-  }
-  
   @Override
   public JSONObject getResultViewModelJson() {
     JSONObject json = new JSONObject();
