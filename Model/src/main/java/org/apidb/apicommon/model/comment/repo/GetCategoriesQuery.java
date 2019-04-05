@@ -21,14 +21,15 @@ public class GetCategoriesQuery extends ValueQuery<Collection<Category>> {
     WHERE = "\nWHERE " + TargetCategory.TARGET_ID + " = ?";
 
   private static final Integer[] TYPES = { Types.VARCHAR };
-  private String type;
+
+  private String _type;
 
   public GetCategoriesQuery(String schema) {
     super(schema);
   }
 
   public GetCategoriesQuery filterByType(final String type) {
-    this.type = type;
+    _type = type;
     return this;
   }
 
@@ -43,7 +44,7 @@ public class GetCategoriesQuery extends ValueQuery<Collection<Category>> {
 
   @Override
   protected Object[] getParams() {
-    return hasFilter() ? new Object[] { type } : new Object[0];
+    return hasFilter() ? new Object[] { _type } : new Object[0];
   }
 
   @Override
@@ -57,7 +58,7 @@ public class GetCategoriesQuery extends ValueQuery<Collection<Category>> {
   }
 
   private boolean hasFilter() {
-    return !isNull(type);
+    return !isNull(_type);
   }
 
   static Category rs2Category(final ResultSet rs) throws SQLException {
