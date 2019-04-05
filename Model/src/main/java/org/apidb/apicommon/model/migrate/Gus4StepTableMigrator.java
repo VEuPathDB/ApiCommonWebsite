@@ -179,7 +179,7 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
     Question question = questionOpt.get();
     RecordClass recordClass = question.getRecordClass();
     boolean isBoolean = question.getQuery().isBoolean();
-    boolean isLeaf = !question.getQuery().isCombined();
+    boolean isLeaf = question.getQuery().getAnswerParamCount() == 0;
 
     // 7. Add matched transcript filter to all leaf transcript steps
     if (addMatchedTranscriptFilter(step, isLeaf, recordClass)) mods.add(UpdateType.matchedTxFilter);

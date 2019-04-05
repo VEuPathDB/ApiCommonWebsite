@@ -161,7 +161,8 @@ public class MatchedTranscriptFilter extends StepFilter {
 
   @Override
   public JSONObject getDefaultValue(SimpleAnswerSpec spec) {
-    if (!spec.getQuestion().isCombined() && !spec.getQuestion().getFullName().toLowerCase().contains("basket")) {
+    if (spec.getQuestion().getQuery().getAnswerParamCount() < 2 &&
+        !spec.getQuestion().getFullName().toLowerCase().contains("basket")) {
       return getFilterValueArray(Value.Y.name());
     }
     else {
