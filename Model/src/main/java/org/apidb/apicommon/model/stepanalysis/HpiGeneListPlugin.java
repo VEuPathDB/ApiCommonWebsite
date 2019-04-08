@@ -2,11 +2,13 @@ package org.apidb.apicommon.model.stepanalysis;
 
 import org.apache.log4j.Logger;
 import org.gusdb.fgputil.runtime.GusHome;
+import org.gusdb.fgputil.validation.ValidationBundle;
+import org.gusdb.fgputil.validation.ValidationBundle.ValidationBundleBuilder;
+import org.gusdb.fgputil.validation.ValidationLevel;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.analysis.AbstractSimpleProcessAnalyzer;
-import org.gusdb.wdk.model.analysis.ValidationErrors;
 import org.gusdb.wdk.model.answer.AnswerValue;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -62,7 +64,7 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
   }
 
   @Override
-  public ValidationErrors validateFormParamValues(Map<String, String[]> formParams) {
+  public ValidationBundle validateFormParamValues(Map<String, String[]> formParams) {
 
     ValidationBundleBuilder errors = ValidationBundle.builder(ValidationLevel.SEMANTIC);
 
@@ -79,7 +81,8 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
 
     if (!formParams.containsKey(DS_CUTOFF_PARAM_KEY)) {
       errors.addError(DS_CUTOFF_PARAM_KEY, "Missing required parameter.");
-    } else {
+    }
+    else {
       try {
         double datasetCutoff = Double.parseDouble(formParams.get(DS_CUTOFF_PARAM_KEY)[0]);
         if (datasetCutoff <= 0) throw new NumberFormatException();
@@ -94,7 +97,7 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
   @Override
   protected String[] getCommand(AnswerValue answerValue) throws WdkModelException, WdkUserException {
 
-    WdkModel wdkModel = answerValue.getQuestion().getWdkModel();
+    WdkModel wdkModel = answerValue.getAnswerSpec().getQuestion().getWdkModel();
     Map<String, String[]> params = getFormParams();
 
     String type = "gene";
