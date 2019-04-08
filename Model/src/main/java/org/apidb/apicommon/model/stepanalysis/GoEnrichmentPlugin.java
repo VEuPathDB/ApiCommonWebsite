@@ -16,7 +16,6 @@ import java.util.Map;
 import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
-import org.apidb.apicommon.model.stepanalysis.EnrichmentPluginUtil.Option;
 import org.gusdb.fgputil.FormatUtil;
 import org.gusdb.fgputil.db.runner.BasicResultSetHandler;
 import org.gusdb.fgputil.db.runner.SQLRunner;
@@ -48,31 +47,6 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   private static final String HIDDEN_TABBED_RESULT_FILE_PATH = "hiddenGoEnrichmentResult.tab";
   private static final String IMAGE_RESULT_FILE_PATH = "goCloud.png";
     //we would create another one here for the word cloud file
-
-  private static final String ONTOLOGY_PARAM_HELP =
-      "<p>Choose the Ontology that you are interested in analyzing. Only terms " +
-      "from this ontology will be considered during the enrichment analysis.</p>" +
-      "<p>The ontologies are three structured, controlled vocabularies that describe " +
-      "gene products in terms of their related biological processes, cellular " +
-      "components and molecular functions. For statistical reasons, only one " +
-      "ontology may be analyzed at once. If you are interested in more than one, " +
-      "run separate GO enrichment analyses.</p>";
-
-  private static final String EVIDENCE_PARAM_HELP =
-      "<p>A GO Evidence Code of IEA is assigned to a computationally assigned association." +
-      "All others have some degree of curation</p>";
-
-  private static final String PVALUE_PARAM_HELP =
-      "<p>Choose the P-Value Cutoff that a GO term must meet before it is " +
-      "considered enriched in your gene result. The P-value is a statistical " +
-      "measure of the likelihood that a certain GO term appears among the " +
-      "genes in your results more often than it appears in the set of all " +
-      "genes for that organism (background).</p>";
-
- private static final String GO_SUBSET_PARAM_HELP =
-     "<p> Choose Yes to limit enrichment analysis " +
-     "based on terms that are in the GO Slim generic subset. " +
-     "This will limit both the background and the gene list of interest.</p>";
 
   public static final ResultRow HEADER_ROW = new ResultRow(
       "GO ID", "GO Term", "Genes in the bkgd with this term", "Genes in your result with this term", "Percent of bkgd Genes in your result", "Fold enrichment", "Odds ratio", "P-value", "Benjamini", "Bonferroni");

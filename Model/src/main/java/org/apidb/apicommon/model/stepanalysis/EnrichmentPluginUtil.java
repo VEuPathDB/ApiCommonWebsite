@@ -16,8 +16,6 @@ import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.analysis.ValidationErrors;
 import org.gusdb.wdk.model.answer.AnswerValue;
-import org.gusdb.wdk.model.user.analysis.IllegalAnswerValueException;
-import org.json.JSONObject;
 
 public class EnrichmentPluginUtil {
 
@@ -28,27 +26,6 @@ public class EnrichmentPluginUtil {
   private static final String ORGANISM_PARAM_KEY = "organism";
   public static final String TERM_KEY = "term";
   public static final String DISPLAY_KEY = "display";
-
-  public static final String ORGANISM_PARAM_HELP =
-      "<p>Choose an organism to run an enrichment on. To see all organisms, select 'All results' filter above.</p>";
-  
-  public static class Option {
-    private String _term;
-    private String _display;
-    public Option(String term) { this(term, term); }
-    public Option(String term, String display) {
-      _term = term; _display = display;
-    }
-    public String getTerm() { return _term; }
-    public String getDisplay() { return _display; }
-    
-    public JSONObject toJson() {
-      JSONObject json = new JSONObject();
-      json.put(TERM_KEY, _term);
-      json.put(DISPLAY_KEY, _display);
-      return json;
-    }
-  }
 
   public static void validateOrganism(Map<String, String[]> formParams, AnswerValue answerValue,
       WdkModel wdkModel, ValidationErrors errors) throws WdkModelException {
@@ -161,30 +138,4 @@ public class EnrichmentPluginUtil {
     }
   }
 
-  public static List<Option> getOrgOptionList(AnswerValue answerValue,
-      WdkModel wdkModel) throws WdkModelException {
-    List<String> orgList = getDistinctOrgsInAnswer(answerValue, wdkModel);
-    List<Option> orgOptionList = new ArrayList<>();
-    for (String organism : orgList) {
-      orgOptionList.add(new Option(organism, organism));
-    }
-    return orgOptionList;
-  }
-  
-
-  /* Don't need this check any more since allowing multiple orgs in result */
-  @Deprecated
-  public static void checkSingleOrgAnswerValue(AnswerValue answerValue, WdkModel wdkModel)
-      throws WdkModelException, IllegalAnswerValueException {
-    List<String> distinctOrgs = getDistinctOrgsInAnswer(answerValue, wdkModel);
-    if (distinctOrgs.size() > 1) {
-      throw new IllegalAnswerValueException("Your result has genes from more than " +
-          "one organism.  This enrichment analysis tool only accepts gene " +
-          "lists from one organism.  Please use the Filter boxes to limit your " +
-          "result to a single organism and try again.");
-    }
-    else if (distinctOrgs.isEmpty()) {
-      throw new WdkModelException("No organisms returned from distinct orgs query.");
-    }
-  }
 }
