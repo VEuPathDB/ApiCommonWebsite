@@ -14,11 +14,6 @@ import org.json.JSONObject;
 public class CheckboxTreeTestPlugin extends AbstractStepAnalyzer {
 
   private static final String CHECKBOX_TREE_KEY = "myTree";
-
-  @Override
-  public Object getFormViewModel() throws WdkModelException {
-    return createFormViewModel();
-  }
   
   private FieldTree createFormViewModel() {
     FieldTree tree = buildTreeParam();
@@ -48,15 +43,6 @@ public class CheckboxTreeTestPlugin extends AbstractStepAnalyzer {
     root.addChild(new SelectableItem("value5", "Value 5"));
     root.addChild(new SelectableItem("value6", "Value 6"));
     return tree;
-  }
-
-  @Override
-  public Object getResultViewModel() throws WdkModelException {
-    StringBuilder result = new StringBuilder("Items selected:\n\n");
-    for (String option : getFormParams().get(CHECKBOX_TREE_KEY)) {
-      result.append(option).append("\n");
-    }
-    return result.toString();
   }
   
   @Override

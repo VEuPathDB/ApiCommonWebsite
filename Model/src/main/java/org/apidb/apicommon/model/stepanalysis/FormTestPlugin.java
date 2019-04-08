@@ -52,22 +52,12 @@ public class FormTestPlugin extends AbstractStepAnalyzer {
   }
 
   @Override
-  public Object getResultViewModel() {
-    return getPersistentCharData();
-  }
-  
-  @Override
   public JSONObject getResultViewModelJson() {
     JSONObject json = new JSONObject();
     json.put("persistentCharData", getPersistentCharData());
     return json;
   }
 
-  @Override
-  public Object getFormViewModel() {
-    return createFormViewModel(); 
-  }
-  
   @Override
   public JSONObject getFormViewModelJson() {
     return createFormViewModel().toJson();

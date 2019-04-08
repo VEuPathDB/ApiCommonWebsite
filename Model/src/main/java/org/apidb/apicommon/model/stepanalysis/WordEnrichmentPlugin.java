@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
-import org.apidb.apicommon.model.stepanalysis.EnrichmentPluginUtil.Option;
 import org.gusdb.fgputil.runtime.GusHome;
 import org.gusdb.fgputil.validation.ValidationBundle;
 import org.gusdb.fgputil.validation.ValidationLevel;
@@ -78,29 +77,13 @@ public class WordEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
   @Override
   public JSONObject getFormViewModelJson() throws WdkModelException {
-    return createFormViewModel().toJson();
-  }
-
-  @Override
-  public Object getFormViewModel() throws WdkModelException, WdkUserException {
-    return createFormViewModel();
-  }
-
-  private FormViewModel createFormViewModel() throws WdkModelException {
-    // get orgs to display in select
-    List<Option> orgOptionList = EnrichmentPluginUtil
-        .getOrgOptionList(getAnswerValue(), getWdkModel());
-    return new FormViewModel(orgOptionList);
+    // this is now declared in the model xml
+    return null;
   }
 
   @Override
   public JSONObject getResultViewModelJson() throws WdkModelException {
     return createResultViewModel().toJson();
-  }
-
-  @Override
-  public Object getResultViewModel() throws WdkModelException {
-    return createResultViewModel();
   }
 
   private ResultViewModel createResultViewModel() throws WdkModelException {
@@ -118,31 +101,6 @@ public class WordEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     }
     catch (IOException ioe) {
       throw new WdkModelException("Unable to process result file at: " + inputPath, ioe);
-    }
-  }
-
-  public static class FormViewModel {
-
-    private List<Option> _orgOptions;
-
-    public FormViewModel(List<Option> orgOptions) {
-      _orgOptions = orgOptions;
-    }
-
-    public List<Option> getOrganismOptions() {
-      return _orgOptions;
-    }
-
-    public String getOrganismParamHelp() { return EnrichmentPluginUtil.ORGANISM_PARAM_HELP; }
-
-    public JSONObject toJson() {
-      JSONObject json = new JSONObject();
-      JSONArray jsonarray = new JSONArray();
-      for (Option opt : _orgOptions) jsonarray.put(opt.toJson());
-      json.put("organismOptions", jsonarray);
-      json.put("organismParamHelp", EnrichmentPluginUtil.ORGANISM_PARAM_HELP);
-
-      return json;
     }
   }
 

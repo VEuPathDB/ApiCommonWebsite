@@ -46,20 +46,10 @@ public class LongRunningTestPlugin extends AbstractStepAnalyzer {
   private String createResultViewModel() {
     return getPersistentCharData();
   }
-  
-  @Override
-  public Object getResultViewModel() {
-    return createResultViewModel();
-  }
-  
+
   @Override
   public JSONObject getFormViewModelJson() {
     return new JSONObject();
-  }
-  
-  @Override
-  public Object getFormViewModel() {
-    return null;
   }
 
 }

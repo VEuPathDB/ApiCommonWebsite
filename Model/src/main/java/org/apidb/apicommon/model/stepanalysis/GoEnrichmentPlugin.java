@@ -16,7 +16,6 @@ import java.util.Map;
 import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
-import org.apidb.apicommon.model.stepanalysis.EnrichmentPluginUtil.Option;
 import org.gusdb.fgputil.FormatUtil;
 import org.gusdb.fgputil.db.runner.BasicResultSetHandler;
 import org.gusdb.fgputil.db.runner.SQLRunner;
@@ -49,31 +48,6 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   private static final String HIDDEN_TABBED_RESULT_FILE_PATH = "hiddenGoEnrichmentResult.tab";
   private static final String IMAGE_RESULT_FILE_PATH = "goCloud.png";
     //we would create another one here for the word cloud file
-
-  private static final String ONTOLOGY_PARAM_HELP =
-      "<p>Choose the Ontology that you are interested in analyzing. Only terms " +
-      "from this ontology will be considered during the enrichment analysis.</p>" +
-      "<p>The ontologies are three structured, controlled vocabularies that describe " +
-      "gene products in terms of their related biological processes, cellular " +
-      "components and molecular functions. For statistical reasons, only one " +
-      "ontology may be analyzed at once. If you are interested in more than one, " +
-      "run separate GO enrichment analyses.</p>";
-
-  private static final String EVIDENCE_PARAM_HELP =
-      "<p>A GO Evidence Code of IEA is assigned to a computationally assigned association." +
-      "All others have some degree of curation</p>";
-
-  private static final String PVALUE_PARAM_HELP =
-      "<p>Choose the P-Value Cutoff that a GO term must meet before it is " +
-      "considered enriched in your gene result. The P-value is a statistical " +
-      "measure of the likelihood that a certain GO term appears among the " +
-      "genes in your results more often than it appears in the set of all " +
-      "genes for that organism (background).</p>";
-
- private static final String GO_SUBSET_PARAM_HELP =
-     "<p> Choose Yes to limit enrichment analysis " +
-     "based on terms that are in the GO Slim generic subset. " +
-     "This will limit both the background and the gene list of interest.</p>";
 
   public static final ResultRow HEADER_ROW = new ResultRow(
       "GO ID", "GO Term", "Genes in the bkgd with this term", "Genes in your result with this term", "Percent of bkgd Genes in your result", "Fold enrichment", "Odds ratio", "P-value", "Benjamini", "Bonferroni");
@@ -209,63 +183,9 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   }
 
   @Override
-  public Object getFormViewModel() throws WdkModelException, WdkUserException {
-
-    return createFormViewModel();
-  }
-
-  private FormViewModel createFormViewModel() throws WdkModelException {
-
-      // JP I THINK I NEED TO ADD SOMETHING HERE
-
-    DataSource ds = getWdkModel().getAppDb().getDataSource();
-    BasicResultSetHandler handler = new BasicResultSetHandler();
-    String idSql = getAnswerValue().getIdSql();
-
-    // find ontologies used in the result set
-    String sql = "select distinct gts.ontology" + NL +
-      "from apidbtuning.GoTermSummary gts, (" + idSql + ") r" + NL +
-      "where gts.gene_source_id = r.gene_source_id and gts.ontology is not null";
-    new SQLRunner(ds, sql, "select-go-term-ontologies").executeQuery(handler);
-    List<Option> ontologies = new ArrayList<>();
-    for (Map<String,Object> cols : handler.getResults()) {
-      ontologies.add(new Option(cols.get("ONTOLOGY").toString()));
-    }
-
-    // find evidence codes used in the result set
-    sql = "select 'Curated' as evidence from dual union select 'Computed' from dual";
-    new SQLRunner(ds, sql).executeQuery(handler);
-    List<Option> evidCodes = new ArrayList<>();
-    for (Map<String,Object> cols : handler.getResults()) {
-        String evidString = cols.get("EVIDENCE").toString();
-        evidCodes.add(new Option(evidString, evidString));
-    }
-
-    // find goSubset used in the result set
-    sql = "select 'Yes' as gosubset from dual union select 'No' from dual";
-    new SQLRunner(ds, sql).executeQuery(handler);
-    List<Option> goSubsets = new ArrayList<>();
-    for (Map<String,Object> cols : handler.getResults()) {
-        String goSubset = cols.get("GOSUBSET").toString();
-        goSubsets.add(new Option(goSubset, goSubset));
-    }
-
-
-    // get orgs to display in select
-    List<Option> orgOptionList = EnrichmentPluginUtil
-        .getOrgOptionList(getAnswerValue(), getWdkModel());
-
-    return new FormViewModel(orgOptionList, /*sources,*/ ontologies , evidCodes , goSubsets);
-  }
-
-  @Override
   public JSONObject getFormViewModelJson() throws WdkModelException {
-    return createFormViewModel().toJson();
-  }
-
-  @Override
-  public Object getResultViewModel() throws WdkModelException {
-    return createResultViewModel();
+    // This is now declared as parameters in the model xml
+    return null;
   }
 
   private ResultViewModel createResultViewModel() throws WdkModelException {
@@ -297,71 +217,6 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   public JSONObject getResultViewModelJson() throws WdkModelException {
 
       return createResultViewModel().toJson();
-  }
-
-
-
-  public static class FormViewModel {
-    private List<Option> _orgOptions;
-    private List<Option> _ontologyOptions;
-    private List<Option> _evidCodeOptions;
-    private List<Option> _goSubsetOptions;
-
-    public FormViewModel(List<Option> orgOptions, List<Option> ontologyOptions, List<Option> evidCodeOptions, List<Option> goSubsetOptions) {
-      _orgOptions = orgOptions;
-      _ontologyOptions = ontologyOptions;
-      _evidCodeOptions = evidCodeOptions;
-      _goSubsetOptions = goSubsetOptions;
-    }
-
-    public List<Option> getOrganismOptions() {
-      return _orgOptions;
-    }
-
-    public List<Option> getEvidCodeOptions() {
-      return _evidCodeOptions;
-    }
-
-    public List<Option> getOntologyOptions() {
-      return _ontologyOptions;
-    }
-
-    public List<Option> getGoSubsetOptions() {
-      return _goSubsetOptions;
-    }
-
-    public String getOrganismParamHelp() { return EnrichmentPluginUtil.ORGANISM_PARAM_HELP; }
-    public String getOntologyParamHelp() { return ONTOLOGY_PARAM_HELP; }
-    public String getEvidenceParamHelp() { return EVIDENCE_PARAM_HELP; }
-    public String getPvalueParamHelp() { return PVALUE_PARAM_HELP; }
-    public String getGoSubsetParamHelp() { return GO_SUBSET_PARAM_HELP; }
-
-    public JSONObject toJson() {
-      JSONObject json = new JSONObject();
-      json.put("organismHelp", EnrichmentPluginUtil.ORGANISM_PARAM_HELP);
-      json.put("ontologyHelp", ONTOLOGY_PARAM_HELP);
-      json.put("evidenceHelp", EVIDENCE_PARAM_HELP);
-      json.put("pvalueHelp", PVALUE_PARAM_HELP);
-      json.put("goSubsetHelp", GO_SUBSET_PARAM_HELP);
-
-      JSONArray organismsJson = new JSONArray();
-      for (Option opt : _orgOptions) organismsJson.put(opt.toJson());
-      json.put("organismOptions", organismsJson);
-
-      JSONArray ontologyJson = new JSONArray();
-      for (Option opt : _ontologyOptions) ontologyJson.put(opt.toJson());
-      json.put("ontologyOptions", ontologyJson);
-
-      JSONArray evidenceJson = new JSONArray();
-      for (Option opt : _evidCodeOptions) evidenceJson.put(opt.toJson());
-      json.put("evidenceOptions", evidenceJson);
-
-      JSONArray goSubsetJson = new JSONArray();
-      for (Option opt : _goSubsetOptions) goSubsetJson.put(opt.toJson());
-      json.put("goSubsetOptions", goSubsetJson);
-
-      return json;
-    }
   }
 
   public static class ResultViewModel {
@@ -444,17 +299,6 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
       _benjamini = benjamini;
       _bonferroni = bonferroni;
     }
-
-    public String getGoId() { return _goId; }
-    public String getGoTerm() { return _goTerm; }
-    public String getBgdGenes() { return _bgdGenes; }
-    public String getResultGenes() { return _resultGenes; }
-    public String getPercentInResult() { return _percentInResult; }
-    public String getFoldEnrich() { return _foldEnrich; }
-    public String getOddsRatio() { return _oddsRatio; }
-    public String getPvalue() { return _pValue; }
-    public String getBenjamini() { return _benjamini; }
-    public String getBonferroni() { return _bonferroni; }
 
     public JSONObject toJson() {
       JSONObject json = new JSONObject();
