@@ -223,14 +223,14 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
     private String downloadPath;
     private Map<String, String[]> formParams;
 
-    public ResultViewModel(String downloadPath, List<ResultRow> resultData, Map<String, String[]> formParams) 
+    public ResultViewModel(String downloadPath, List<ResultRow> resultData, Map<String, String[]> formParams)
       {
 	  this.downloadPath = downloadPath;
 	  this.formParams = formParams;
 	  //this.resultData = resultData;
 	  this.resultData = Collections.unmodifiableList(resultData);
       }
-      
+
       public ResultRow getHeaderRow() {
           return this.HEADER_ROW;
       }
@@ -252,11 +252,11 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
       public Map<String,String[]> getFormParams() {
           return this.formParams;
       }
-      
+
       public JSONObject toJson() {
         JSONObject json = new JSONObject();
-        json.put("headerRow", getHeaderRow());
-        json.put("headerDescription", getHeaderDescription());
+        json.put("headerRow", getHeaderRow().toJson());
+        json.put("headerDescription", getHeaderDescription().toJson());
         JSONArray resultsJson = new JSONArray();
         for (ResultRow rr : getResultData()) resultsJson.put(rr.toJson());
         json.put("resultData", resultsJson);
