@@ -260,8 +260,8 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
     JSONObject toJson() {
       JSONObject json = new JSONObject();
-      json.put("headerRow", getHeaderRow());
-      json.put("headerDescription", getHeaderDescription());
+      json.put("headerRow", getHeaderRow().toJson());
+      json.put("headerDescription", getHeaderDescription().toJson());
       JSONArray resultsJson = new JSONArray();
       for (ResultRow rr : getResultData()) resultsJson.put(rr.toJson());
       json.put("resultData", resultsJson);
