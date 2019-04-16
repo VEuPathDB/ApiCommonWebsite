@@ -34,7 +34,7 @@ public class WordEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   public static final ResultRow COLUMN_HELP = new ResultRow(
       "Word",
       "Description",
-      "Number of genes with this word in the background",
+      "Number of genes with this word in the background (the reference genome)",
       "Number of genes with this word in your result",
       "Of the genes in the background with this word, the percent that are present in your result",
       "The percent of genes with this word in your result divided by the percent of genes with this word in the background",
