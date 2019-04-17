@@ -181,22 +181,22 @@
                 <tr>
                   <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_8f0322af73"><i>Cryptococcus neoformans</i> H99 </a></td>
                   <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/genedb/releases/2019-04/CneoformansH99/CneoformansH99.gff.gz ">GeneDB version April, 2019</a></td>
-                  <td>666 genes</td>
+                  <td>141</td>
                 </tr>
                 <tr>
                   <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4d171eb9ea"><i>Cryptococcus neoformans</i> JEC21 </a></td>
-                  <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2018-11/Pchabaudi.gff3.gz">GeneDB version April, 2019</a></td>
-                  <td>663 genes</td>
+                  <td title="Click here to download GeneDB's GFF file for this genome."><a href="tp://ftp.sanger.ac.uk/pub/genedb/releases/2019-04/CneoformansneoformansJEC21/CneoformansneoformansJEC21.gff.gz">GeneDB version April, 2019</a></td>
+                  <td>395</td>
                 </tr>
                 <tr>
                   <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="https://fungidb.org/fungidb/app/record/dataset/DS_d22dd5953a"><i>Magnaporthe oryzae</i> 70-15 </a></td>
-                  <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2018-11/Pfalciparum.gff3.gz">GeneDB version April, 2019</a></td>
-                  <td>1194 genes</td>
+                  <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/genedb/releases/2019-04/Moryzae7015/Moryzae7015.gff.gz">GeneDB version April, 2019</a></td>
+                  <td>14</td>
                 </tr>
                 <tr>
                   <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_62f0e6170"><i>Neurospora crassa</i> OR74A </a></td>
-                  <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/project/pathogens/gff3/2018-11/Pgallinaceum.gff3.gz">GeneDB version April, 20196</a></td>
-                  <td>682 genes</td>
+                  <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/genedb/releases/2019-04/NcrassaOR74A/NcrassaOR74A.gff.gz">GeneDB version April, 20196</a></td>
+                  <td>53</td>
                 </tr>
                 </table>
                 <br><br>    
