@@ -51,7 +51,56 @@
     </section>
       
       <section>
-      <h3><b>No new data in ToxoDB 43</b></h3>
+      <h3><b>New data in ToxoDB 43</b></h3>
+      <div style="margin-left: 3em;">
+        <h4>RNA Sequence</h4>
+         <ul>
+           <li>
+            <a href="/a/app/record/dataset/DS_f0e4d50c6f">Transcriptomes of virulent and avirulent <i>N. caninum</i> strains</a> &mdash; 
+            RNA sequence analysis of virulent (Nc-Spain7) and avirulent (Nc-Spain1H) <i>N. caninum</i> strains. This data was also aligned to the cow genome and the parasite data is available in HostDB. 
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/29154927" target="_blank">Horcajo et al. 2018</a><br>
+           </li>
+           <li>
+            <a href="/a/app/record/dataset/DS_ed865811eb">Transcriptomes of virulent and avirulent <i>N caninum</i> isolates during bovine infection</a> &mdash; 
+            Transcriptomic analysis of two different isolates of <i>Neospora caninum</i>, the highly virulent isolate, Nc-Spain7, and the comparatively 
+            avirulent isolate, Nc-Spain1H. Mixed host-parasite samples of <i>N. caninum</i> infection 8 hours post infection of bovine trophoblast cell 
+            line F3 were analyzed. Bovine data is available in HostDB. <br>
+            <a href="https://hostdb.org/hostdb/app/record/dataset/DS_468233ddd6">Transcriptome of <i>Bos taurus</i> during infection with virulent and avirulent <i>N. caninum</i> strains</a>. 
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/28899691" target="_blank">Horcajo et al. 2017</a><br>
+            </li> 
+           <li>
+            <a href="/a/app/record/dataset/DS_1c4d3b1cc4">Transcriptome of wild-type and gra18 mutant strains of <i>T. gondii</i></a> &mdash; 
+            This data was also aligned to the mouse genome and the host data is available in HostDB. <br>
+            <a href="https://hostdb.org/hostdb/app/record/dataset/DS_426d9b5081">Transcriptome of mouse bone marrow derived macrophages infected by wild-type and gra18 mutant strains of <i>T. gondii</i></a>
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/30320549" target="_blank">He et al. 2017</a><br>
+            </li>
+            <li>
+            <a href="/a/app/record/dataset/DS_75742b9a0a">Tachyzoite and merozoite transcriptomes</a> &mdash; 
+            High-throughput RNA-Seq (SOLiD5) to compare the merozoite and tachyzoite transcriptomes from <i>T. gondii</i> CZ strain. Data are aligned to <i>T. gondii</i> ME49. 
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/25757795" target="_blank">Hehl et al.</a><br>
+            </li>
+         </ul>
+        <h4>Proteomics</h4>
+         <ul>
+           <li>
+            <a href="/a/app/record/dataset/DS_cfb8a438c7">Tachyzoite proteome (12, 36, 56 hpi) of virulent and avirulent <i>N. caninum</i> strains</a> &mdash; 
+            Proteomic analysis of two <i>Neospora caninum</i> strains of disparate virulence: virulent Nc-Spain7 strain and the comparatively avirulent Nc-Spain1H strain. Samples taken at 12, 36 and 56 hours post infection were analyzed. 
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/29154927" target="_blank">Horcajo et al.</a><br>
+           </li>
+           <li>
+            <a href="/a/app/record/dataset/DS_b09d5417b9">Quantiative tachyzoite proteome (12, 36, 56 hpi) of virulent and avirulent <i>N. caninum</i> strains</a> &mdash; 
+            Quantitative proteomic analysis of two <i>Neospora caninum</i> strains of disparate virulence: virulent Nc-Spain7 strain and the comparatively avirulent Nc-Spain1H strain. Samples taken at 12, 36 and 56 hours post infection were analyzed. 
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/29154927" target="_blank">Horcajo et al.</a><br>
+           </li>
+         </ul>
+       <h4>ChIP Sequence</h4>
+        <ul>
+          <li>
+            <a href="/a/app/record/dataset/DS_d4c9b14efe">Versatile acetylation-methylation switch at K31 of histone H4</a> &mdash; 
+            Versatile modifications at Lys31 within the globular domain of histone H4 that crucially determine genome organization and expression in Apicomplexa parasites.
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/29101771" target="_blank">Sindikubwabo et al.</a><br>
+          </li>
+       </div>
       </section>
       
       <section>
