@@ -15,20 +15,22 @@
     </record>
 -->
 
-<!--
+
 <record>
   <attribute name="headline">FungiDB 43 Released</attribute>
-  <attribute name="date">07 Mar 2019 13:00</attribute>
-  <attribute name="tag">FungiDB04_29_release</attribute>
+  <attribute name="date">25 Apr 2019 13:00</attribute>
+  <attribute name="tag">FungiDB4_19_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
     <p><strong>We are pleased to announce the release of FungiDB 43</strong></p>
     
-    <section>
+   <section>
     <h3><b>Release 43 Webinar</b></h3>
     <div style="margin-left: 3em;">
-     SUSANNE _ ADD TEXT HERE
+      Join us on TODO for our Release 43 Highlights webinar where we will discuss and 
+      demonstrate new features and data available in release 43 of EuPathDB sites. 
+      <a href="TODO">Register here</a>
     </div>
     </section>
       
@@ -36,36 +38,34 @@
         <h3><b>New data in FungiDB 43</b></h3>
         <div style="margin-left: 3em;">
         
-                 
-          
-        
+
         <h4>Genome Sequence and Annotation: these annotated genomes appear for the first time in FungiDB.</h4>
            <ul>
-             <li><a href="/a/app/record/dataset/DS_778f9987a4"><i>Aspergillus niger</i> ATCC 13496</a> &ndash;
+             <li><a href="/a/app/record/dataset/DS_b6d1bccea1"><i>Aspergillus niger</i> ATCC 13496</a> &ndash;
              a href="http://www.ncbi.nlm.nih.gov/pubmed/30349117">Vesth et al. 2018</a>.  
              </li>
              
-             <li><a href="/a/app/record/dataset/DS_7acdb4b9a1"><i>Candida tropicalis</i> MYA-3404</a> &ndash;
+             <li><a href="/a/app/record/dataset/DS_adb102b7b5"><i>Candida tropicalis</i> MYA-3404</a> &ndash;
              a href="http://www.ncbi.nlm.nih.gov/pubmed/19465905">Butler et al. 2009</a>.  
              </li>
                                         
-             <li><a href="/a/app/record/dataset/DS_e983d1d491"><i>Cladophialophora carrionii</i> KSF</a> &ndash;
+             <li><a href="/a/app/record/dataset/DS_0bb6f43912"><i>Cladophialophora carrionii</i> KSF</a> &ndash;
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/28348446">Teixeira et al. 2017</a>. 
              </li>
              
-             <li><a href="/a/app/record/dataset/DS_ed04aca700"><i>Exophiala oligosperma</i> CBS72588</a> &ndash;  
+             <li><a href="/a/app/record/dataset/DS_2a627331a7"><i>Exophiala oligosperma</i> CBS 72588</a> &ndash;  
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/28348446">Teixeira et al. 2017</a>.
              </li>
              
-            <li><a href="/a/app/record/dataset/DS_812930c840"><i>Fonsecaea pedrosoi</i> CBS 271.37</a> &ndash;  
+            <li><a href="/a/app/record/dataset/DS_3171c60cef"><i>Fonsecaea pedrosoi</i> CBS 271.37</a> &ndash;  
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/28187150">Moreno et al. 2017</a>.
              </li>
              
-            <li><a href="/a/app/record/dataset/DS_812930c840"><i>Kwoniella heveanensis</i> CBS 569</a> &ndash;  
+            <li><a href="/a/app/record/dataset/DS_af3eec8762"><i>Kwoniella heveanensis</i> CBS 569</a> &ndash;  
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/22447698">Chen et al. 2012</a>.
              </li>
              
-              <li><a href="/a/app/record/dataset/DS_812930c840"><i>Puccinia triticina</i> 1-1 BBBD Race 1</a> &ndash;  
+              <li><a href="/a/app/record/dataset/DS_160f9f30a6"><i>Puccinia triticina</i> 1-1 BBBD Race 1</a> &ndash;  
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/27913634 ">Cuomo et al. 2017</a>.
              </li>
              
@@ -75,11 +75,11 @@
            
            <h4>New Genome Sequence: available for the first time in FungiDB:</h4>
         <ul>
-        	<li><a href="/a/app/record/dataset/DS_ed04aca700"><i>Amauroascus mutatus</i> UAMH 3576</a> &ndash;  
+        	<li><a href="/a/app/record/dataset/DS_7aa9de4305"><i>Amauroascus mutatus</i> UAMH 3576</a> &ndash;  
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/26613950">Whiston et al. 2015</a>.
         	</li>
         
-        	<li><a href="/a/app/record/dataset/DS_812930c840"><i>Naganishia albida</i> JCM2334</a &ndash;  
+        	<li><a href="/a/app/record/dataset/DS_a2d340e1d2"><i>Naganishia albida</i> JCM2334</a &ndash;  
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/27198024">Vajpeyi et al et al. 2016</a>.
         	</li>
                         
@@ -89,17 +89,17 @@
         <h4>Transcriptomics</h4>
            <ul>
            
-           <li><a href="/a/app/record/dataset/DS_ecba2dec39">Transcriptome of <i>C. tropicalis</i> cells under in vitro biofilm-forming conditions</a> &ndash;
+           <li><a href="/a/app/record/dataset/DS_add4b4cd57">Transcriptome of <i>C. tropicalis</i> cells under in vitro biofilm-forming conditions</a> &ndash;
              Transcriptional profiling of a-type <i>wor1</i> deleted cells (wor1-delta white) and mixed a-type and alpha-type opaque cells (mixed opaque) under <i>in-vitro</i> biofilm-forming conditions.
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/4612417" target="_blank">Jones et al. 2014</a>.
              </li>
              
-             <li><a href="/a/app/record/dataset/DS_b6fe0c017e"><i>A. fumigatus</i> responses under oxidative and iron stresses</a> &ndash;
+             <li><a href="/a/app/record/dataset/DS_525e17347f"><i>A. fumigatus</i> responses under oxidative and iron stresses</a> &ndash;
              RNA-Seq experiments examining <i>A. fumigatus</i> responses to oxidative stress and iron starvation.
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/29747589" target="_blank">Kurucz et al. 2018</a>.
              </li>
              
-             <li><a href="/a/app/record/dataset/DS_3190d69ecb">Transcriptomic profiling of <i>Cryptococcus</i> cells in response to oxidative stress.</a> &ndash;
+             <li><a href="/a/app/record/dataset/DS_b45be95903">Transcriptomic profiling of <i>Cryptococcus</i> cells in response to oxidative stress.</a> &ndash;
              WT and <i>gsb1</i> mutant were grown in YPD and in the presence of oxidative stress (H2O2) to identify transcriptional change s occurring in response to stress.
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/28642475" target="_blank">Cheon et al. 2017</a>.
              </li>
@@ -352,7 +352,7 @@
   </attribute>
 </record>
 
--->
+
 
 
 <record>
