@@ -42,7 +42,7 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   private static final String TABBED_RESULT_FILE_PATH = "pathwaysEnrichmentResult.tab";
     private static final String HIDDEN_TABBED_RESULT_FILE_PATH = "hiddenPathwaysEnrichmentResult.tab";
     private static final String IMAGE_RESULT_FILE_PATH = "goCloud.png";
-  
+
   private static final ResultRow HEADER_ROW = new ResultRow(
       "Pathway ID", "Pathway Name", "Pathway Source", "Genes in the bkgd with this pathway","Genes in your result with this pathway", "Percent of bkgd Genes in your result", "Fold enrichment", "Odds ratio", "P-value", "Benjamini", "Bonferroni");
 
@@ -71,7 +71,7 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     // validate organism
     EnrichmentPluginUtil.validateOrganism(formParams, getAnswerValue(), getWdkModel(), errors);
 
-    // validate annotation sources 
+    // validate annotation sources
     EnrichmentPluginUtil.getArrayParamValueAsString(PATHWAYS_SRC_PARAM_KEY, formParams, errors);
 
     // only validate further if the above pass
@@ -86,7 +86,7 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
         throws WdkModelException {
     String countColumn = "CNT";
     String idSql = EnrichmentPluginUtil.getOrgSpecificIdSql(getAnswerValue(), getFormParams());
-    String sql = 
+    String sql =
         "SELECT count (distinct tp.pathway_source_id) as " + countColumn + NL +
         "FROM   apidbtuning.transcriptPathway tp, " + NL +
         "(" + idSql + ") r" + NL +
@@ -124,7 +124,7 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     Path imageResultFilePath = Paths.get(getStorageDirectory().toString(), IMAGE_RESULT_FILE_PATH);
 
     String qualifiedExe = Paths.get(GusHome.getGusHome(), "bin", "apiPathwaysEnrichment").toString();
-    LOG.info(qualifiedExe + " " + resultFilePath.toString() + " " + idSql + " " + 
+    LOG.info(qualifiedExe + " " + resultFilePath.toString() + " " + idSql + " " +
         wdkModel.getProjectId() + " " + pValueCutoff + imageResultFilePath.toString() + hiddenResultFilePath.toString());
     return new String[]{ qualifiedExe, resultFilePath.toString(), idSql, wdkModel.getProjectId(), pValueCutoff,
 			 sourcesStr, imageResultFilePath.toString(), hiddenResultFilePath.toString()};
@@ -132,7 +132,7 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
   /**
    * Make sure only one organism is represented in the results of this step
-   * 
+   *
    * @param answerValue answerValue that will be passed to this step
    */
   @Override
@@ -161,7 +161,7 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
           "Please revise your search and try again.");
     }
   }
-  
+
   @Override
   public JSONObject getFormViewModelJson() throws WdkModelException {
     // this is now declared in the model xml
@@ -172,13 +172,13 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   public JSONObject getResultViewModelJson() throws WdkModelException {
     return createResultViewModel().toJson();
   }
-  
+
   private ResultViewModel createResultViewModel() throws WdkModelException {
     Path inputPath = Paths.get(getStorageDirectory().toString(), HIDDEN_TABBED_RESULT_FILE_PATH);
     List<ResultRow> results = new ArrayList<>();
     try (FileReader fileIn = new FileReader(inputPath.toFile());
          BufferedReader buffer = new BufferedReader(fileIn)) {
-      if (buffer.ready()) buffer.readLine();  // throw away header line	
+      if (buffer.ready()) buffer.readLine();  // throw away header line
       while (buffer.ready()) {
         String line = buffer.readLine();
         String[] columns = line.split(TAB);
@@ -223,11 +223,11 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     public String getPvalueCutoff() { return EnrichmentPluginUtil.getPvalueCutoff(_formParams); }
     public String getPathwaysSources() { return FormatUtil.join(_formParams.get(PathwaysEnrichmentPlugin.PATHWAYS_SRC_PARAM_KEY), ", "); }
     public String getPathwayBaseUrl() { return _pathwayBaseUrl; }
-    
+
     JSONObject toJson() {
       JSONObject json = new JSONObject();
-      json.put("headerRow", getHeaderRow());
-      json.put("headerDescription", getHeaderDescription());
+      json.put("headerRow", getHeaderRow().toJson());
+      json.put("headerDescription", getHeaderDescription().toJson());
       JSONArray resultsJson = new JSONArray();
       for (ResultRow rr : getResultData()) resultsJson.put(rr.toJson());
       json.put("resultData", resultsJson);
@@ -281,7 +281,7 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     public String getPvalue() { return _pValue; }
     public String getBenjamini() { return _benjamini; }
     public String getBonferroni() { return _bonferroni; }
-    
+
     public JSONObject toJson() {
       JSONObject json = new JSONObject();
       json.put("pathwayId", _pathwayId);

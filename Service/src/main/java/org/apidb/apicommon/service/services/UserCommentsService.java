@@ -24,6 +24,7 @@ import org.apidb.apicommon.model.comment.pojo.Comment;
 import org.apidb.apicommon.model.comment.pojo.CommentRequest;
 import org.apidb.apicommon.model.GeneIdValidator;
 import org.gusdb.wdk.core.api.JsonKeys;
+import org.gusdb.wdk.model.Utilities;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.user.User;
@@ -185,10 +186,9 @@ public class UserCommentsService extends AbstractUserCommentService {
     final String url = buildURL(comId).toString();
     final String smtp = wdk.getModelConfig().getSmtpServer();
 
-    // TODO: Uncomment these - this is just here so I don't pester the annotators/Redmine during testing.
-    // Utilities.sendEmail(smtp, ANNOTATORS_EMAIL + ", " + user.getEmail(),
-        // SOURCE_EMAIL, subject, form.makeSelfAlertBody(wdk, user, com, comId, url));
-    // Utilities.sendEmail(smtp, REDMINE_EMAIL, SOURCE_EMAIL, subject,
-        // form.makeRedmineAlertBody(wdk, user, com, comId, url));
+    Utilities.sendEmail(smtp, ANNOTATORS_EMAIL + ", " + user.getEmail(),
+        SOURCE_EMAIL, subject, form.makeSelfAlertBody(wdk, user, com, comId, url));
+    Utilities.sendEmail(smtp, REDMINE_EMAIL, SOURCE_EMAIL, subject,
+        form.makeRedmineAlertBody(wdk, user, com, comId, url));
   }
 }

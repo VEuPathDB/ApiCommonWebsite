@@ -31,6 +31,54 @@
 -->
 
 <record>
+  <attribute name="headline">PlasmoDB 43 Released</attribute>
+  <attribute name="date">25 Apr 2019 13:00</attribute>
+  <attribute name="tag">PlasmoDB4_19_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of PlasmoDB 43</strong></p>
+    
+    <section>
+    <h3><b>Release 43 Webinar</b></h3>
+    <div style="margin-left: 3em;">
+      Join us on TODO for our Release 43 Highlights webinar where we will discuss and 
+      demonstrate new features and data available in release 43 of EuPathDB sites. 
+      <a href="TODO">Register here</a>
+    </div>
+    </section>
+      
+      <section>
+      <h3><b>No new data in PlasmoDB 43</b></h3>
+      </section>
+      
+      <section>
+      <h3><b>New features in PlasmoDB 43</b></h3>
+      <div style="margin-left: 3em;">
+         <ul>
+           <li>
+             TODO
+           </li>
+         </ul>
+       </div> 
+      </section>
+      
+      <section>
+         <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+
+    ]]>
+  </attribute>
+</record>
+
+
+
+<record>
   <attribute name="headline">PlasmoDB 42 Released</attribute>
   <attribute name="date">07 Mar 2019 13:00</attribute>
   <attribute name="tag">PlasmoDB3_19_release</attribute>
