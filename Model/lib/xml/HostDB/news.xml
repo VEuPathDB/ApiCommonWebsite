@@ -53,7 +53,26 @@
     </section>
       
       <section>
-      <h3><b>No new data in HostDB 43</b></h3>
+      <h3><b>New data in HostDB 43</b></h3>
+      <div style="margin-left: 3em;">
+        <h4>RNA Sequence</h4>
+         <ul>
+           <li>
+            <a href="/a/app/record/dataset/DS_468233ddd6">Transcriptome of <i>Bos taurus</i> during infection with virulent and avirulent <i>N. caninum</i> strains</a> &mdash; 
+            Transcriptomic analysis of <i>Bos taurus</i> during infection with two different isolates of <i>Neospora caninum</i>, the highly virulent isolate Nc-Spain7 and the comparatively avirulent isolate Nc-Spain1H. This data was also aligned to the <i>N. caninum</i> genome and the parasite data is available in ToxoDB.<br> 
+            <a href="https://toxodb.org/toxo/app/record/dataset/DS_ed865811eb">Parasite trascriptome during infection in <i>Bos taurus</i> cells</a><br>
+            <a href="https://toxodb.org/toxo/app/record/dataset/DS_f0e4d50c6f">Purified parasite trascriptome of Nc-Spain strains</a><br>
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/28899691" target="_blank">Horcajo et al. 2017</a><br>
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/29154927" target="_blank">Horcajo et al. 2018</a><br>
+           </li>
+           <li>
+            <a href="/a/app/record/dataset/DS_426d9b5081">Transcriptome of mouse bone marrow derived macrophages infected by wild-type and gra18 mutant strains of <i>T. gondii</i></a> &mdash; 
+            This data was also aligned to the <i>T. gondii</i> genome and the parasite data is available in ToxoDB.<br> 
+            <a href="https://toxodb.org/toxo/app/record/dataset/DS_1c4d3b1cc4">Transcriptome of wild-type and gra18 mutant strains of <i>T. gondii</i></a><br>
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/30320549" target="_blank">He et al. 2017</a><br>
+            </li>
+         </ul>
+       </div>
       </section>
       
       <section>
@@ -61,7 +80,7 @@
       <div style="margin-left: 3em;">
          <ul>
            <li>
-             TODO
+             TODO 
            </li>
          </ul>
        </div> 
