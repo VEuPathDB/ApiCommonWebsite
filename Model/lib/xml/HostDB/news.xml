@@ -67,7 +67,7 @@
            </li>
            <li>
             <a href="/a/app/record/dataset/DS_426d9b5081">Transcriptome of mouse bone marrow derived macrophages infected by wild-type and gra18 mutant strains of <i>T. gondii</i></a> &mdash; 
-            This data was also aligned to the <i>T. gondii</i> genome and the parasite data is available in ToxoDB.<br> 
+            The raw sequence reads were also aligned to the <i>T. gondii</i> genome and is available in ToxoDB.<br> 
             <a href="https://toxodb.org/toxo/app/record/dataset/DS_1c4d3b1cc4">Transcriptome of wild-type and gra18 mutant strains of <i>T. gondii</i></a><br>
             <a href="http://www.ncbi.nlm.nih.gov/pubmed/30320549" target="_blank">He et al. 2017</a><br>
             </li>
