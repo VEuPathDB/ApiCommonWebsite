@@ -49,7 +49,28 @@
     </section>
       
       <section>
-      <h3><b>No new data in PlasmoDB 43</b></h3>
+      <h3><b>New data in PlasmoDB 43</b></h3>
+        <h4>RNA Sequence</h4>
+         <ul>
+           <li>
+             <a href="/a/app/record/dataset/DS_5d989bb8e4">Strand specific transcriptome of the intraerythrocytic developmental cycle</a> &ndash; 
+             Strand specific RNA seq analysis of intraerythrocytic cycle (10, 20, 30, 40 hpi). 
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/24559473" target="_blank">Siegel et al</a>.
+           </li>
+           <li>
+             <a href="/a/app/record/dataset/DS_84fb1047ea">Hypnozoite, schizont and blood stage transcriptomes (laser microdissection)</a> &ndash; 
+             <i>Plasmodium cynomolgi</i> hypnozoites and schizonts were isolated by laser capture microdissection from infected monkey hepatocytes. These samples were analyzed by RNA‐seq along with RNA extracted from frozen, infected <i>M. fascicularis</i> blood samples.
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/28256794" target="_blank">Cubi et al</a>.
+           </li>
+          </ul>
+          
+        <h4>ChIP-Seq</h4>
+         <ul>
+           <li>
+             <a href="/a/app/record/dataset/DS_76d32b8164">H3K4me3, H3K9me3, HP1, H4K31me1 & H4K31ac histone post-translational modifications</a> &ndash; 
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/29101771" target="_blank">Sindikubwabo et al</a>.
+           </li>
+         </ul>
       </section>
       
       <section>
@@ -102,7 +123,7 @@
       <h4>Genome Sequence and Annotation</h4>
             <ul>
              <li><a href="/a/app/record/dataset/DS_22083c762c"><i>P. vivax-like</i> Pvl01</a> &ndash; 
-                 This genome appears for the first time in PlasmoDBDB and was downloaded from the 
+                 This genome appears for the first time in PlasmoDB and was downloaded from the 
                  <a href="ftp://ftp.sanger.ac.uk/pub/pathogens/Plasmodium/P_vivaxLike/" target="_blank">Wellcome Sanger Institute</a>. 
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/30142149" target="_blank">Gilabert et al</a>.
              </li>
