@@ -60,7 +60,148 @@
     </section>
       
       <section>
-      <h3><b>No new data in TriTrypDB 43</b></h3>
+      <h3><b>New data in TriTrypDB 43</b></h3>
+      <div style="margin-left: 3em;">
+       <h4>Genome Sequence and Annotation</h4>
+         <ul>
+           <li><a href="/a/app/record/dataset/DS_801df5b78d"><i>Leishmania donovani</i> strain LV9</a> &ndash; 
+                 PacBio genome sequence and annotation. Annotation was performed using Companion using 
+                 <i>L. donovani</i> BPK282A1 as reference.  These data are provided unpublished from the 
+                 <a href="https://www.sanger.ac.uk/science/groups/berriman-group" target="blank">Berriman Group</a> at
+                 the Wellcome Sanger Institute.  
+           </li>
+         </ul>
+       
+       <h4>Unannotated Genome Sequence</h4>
+        <ul> 
+         <li><a href="/a/app/record/dataset/DS_4405580551"><i>Trypanosoma cruzi</i> strain 231</a> &ndash; 
+           <a href="http://www.ncbi.nlm.nih.gov/pubmed/29442617" target="_blank">Baptista et al.</a> and 
+           <a href="http://www.ncbi.nlm.nih.gov/pubmed/26141959" target="_blank">Reis-Cunha et al.</a>
+         </li>
+         <li><a href="/a/app/record/dataset/DS_6a49629990"><i>Trypanosoma cruzi</i> Bug2148</a> &ndash; 
+           <a href="http://www.ncbi.nlm.nih.gov/pubmed/29348355" target="_blank">Callejas-Hernández et al. Jan 2018</a> and 
+           <a href="http://www.ncbi.nlm.nih.gov/pubmed/30279473" target="_blank">Callejas-Hernández et al. Oct 2018</a>.
+         </li>
+         <li><a href="/a/app/record/dataset/DS_6a49629990"><i>Trypanosoma cruzi</i> Y</a> &ndash; 
+           <a href="http://www.ncbi.nlm.nih.gov/pubmed/30279473" target="_blank">Callejas-Hernández et al. Oct 2018</a>.
+         </li>
+        </ul>
+        
+       <h4>Whole Genome Sequencing of Isolates</h4>
+        <ul> 
+         <li><a href="/a/app/record/dataset/DS_4a9649ea09">Genomic diversity in <i>Leishmania donovani</i> in Indian subcontinent</a> &ndash; 
+           Whole genome sequences from clinical isolates were used to track the evolution and epidemiology of <i>L. donovani</i> from the Indian subcontinent.
+           <a href="http://www.ncbi.nlm.nih.gov/pubmed/27003289" target="_blank">Imamura et al.</a>
+         </li> 
+        </ul>
+        
+       <h4>Updated Functional Annotation</h4>
+           
+        <div style="margin-left: 3em;">
+        
+        <a href="https://docs.google.com/spreadsheets/d/1Fs4K4QyZJVXGx6__biqBFtUZHskekDzYqkw29VZVoOg/edit?usp=sharing" target="_blank">Summary of annotation updates</a> 
+           which include products, GO terms, EC numbers, gene names, synonyms, publications, external database references and notes from curators. These functional 
+           annotations are current with GeneDB April 2019 GFF versions.
+        <br>
+        Functional annotations in TriTrypDB 43 have been updated for the following genomes:
+        <br>
+        <style>
+           #FunctAnnot_Bld43 table, #FunctAnnot_Bld43 td, #FunctAnnot_Bld43 th, #FunctAnnot_Bld43 tr {
+           text-align : center;
+           padding-left: 5px;
+           padding-right: 5px;
+           padding-top: 5px;
+           padding-bottom: 5px;
+           border: 1px solid black;
+           }
+           #FunctAnnot_Bld43 {
+           margin-left : 5 em;
+           }
+         </style> 
+           <table id="FunctAnnot_Bld43"> 
+           <tr>
+             <th>TriTrypDB Genome Version</th>
+             <th>Download GeneDB GFF file</th>
+             <th>Genes Updated</th>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_3b2d78a053"><i>L. braziliensis </i>MHOM/BR/75/M2904</a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/genedb/releases/2019-04/Lbraziliensis/Lbraziliensis.gff.gz" target="_blank"> Lbraziliensis.gff.gz</a></td> 
+             <td>1 gene</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_e318592c8e"><i>L. mexicana </i>MHOM/GT/2001/U1103</a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/genedb/releases/2019-04/Lmexicana/Lmexicana.gff.gz" target="_blank"> Lmexicana.gff.gz</a></td> 
+             <td>13 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_839623217a"><i>L. major </i>strain Friedlin</a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/genedb/releases/2019-04/Lmajor/Lmajor.gff.gz" target="_blank"> Lmajor.gff.gz</a></td> 
+             <td>99 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_31282613b1"><i>Trypanosoma brucei </i>927</a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/genedb/releases/2019-04/Tbruceibrucei927/Tbruceibrucei927.gff.gz" target="_blank"> Tbruceibrucei927.gff.gz</a></td> 
+             <td>118 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_34f7091496"><i>Trypanosoma brucei </i>gambiense DAL972</a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/genedb/releases/2019-04/Tbruceigambiense/Tbruceigambiense.gff.gz" target="_blank"> Tbruceigambiense.gff.gz</a></td> 
+             <td>72 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_1a6c8bdaac"><i>Trypanosoma cruzi </i>CL Brener</a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/genedb/releases/2019-04/Tcruzi/Tcruzi.gff.gz" target="_blank"> Tcruzi.gff.gz</a></td> 
+             <td>76 genes</td>
+           </tr>
+           </table>
+           <br><br>
+           
+        </div>
+      
+       <h4>Curated User Comments</h4>
+       <div style="margin-left: 3em;">
+       
+          Gene page comments that are entered by users are curated at GeneDB and regularly integrated as functional 
+          annotations in TriTrypDB. Twenty user comments (unique) have been integrated in this release.<br><br>
+          
+      <style>
+           #UComment_Bld43 table, #UComment_Bld43 td, #UComment_Bld43 th, #UComment_Bld43 tr {
+           text-align : center;
+           padding-left: 5px;
+           padding-right: 5px;
+           padding-top: 5px;
+           padding-bottom: 5px;
+           border: 1px solid black;
+           }
+           #UComment_Bld43 {
+           margin-left : 5 em;
+           }
+         </style> 
+           <table id="UComment_Bld43"> 
+           <tr>
+             <th>TriTrypDB Genome Version</th>
+             <th>Comments Integrated</th>
+           </tr>
+           <tr>
+             <td><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_3b2d78a053"><i>L. braziliensis</i> MHOM/BR/75/M2904</a></td>
+             <td>1</td>
+           </tr>
+           <tr>
+             <td><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_839623217a"><i>L. major</i> Friedlin</a></td>
+             <td>14</td>
+           </tr>
+           <tr>
+             <td><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_e318592c8e"><i>L. mexicana</i> MHOM/GT/2001/U1103</a></td>
+             <td>1</td>
+           </tr>
+           <tr>
+             <td><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_31282613b1"><i>Trypanosoma brucei</i> 927</a></td>
+             <td>4</td>
+           </tr>
+          </table>
+          </div>
+      </div>      
       </section>
       
       <section>
