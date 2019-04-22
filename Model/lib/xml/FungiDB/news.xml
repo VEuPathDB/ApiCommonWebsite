@@ -42,11 +42,11 @@
         <h4>Genome Sequence and Annotation: these annotated genomes appear for the first time in FungiDB.</h4>
            <ul>
              <li><a href="/a/app/record/dataset/DS_b6d1bccea1"><i>Aspergillus niger</i> ATCC 13496</a> &ndash;
-             a href="http://www.ncbi.nlm.nih.gov/pubmed/30349117">Vesth et al. 2018</a>.  
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/30349117">Vesth et al. 2018</a>.  
              </li>
              
              <li><a href="/a/app/record/dataset/DS_adb102b7b5"><i>Candida tropicalis</i> MYA-3404</a> &ndash;
-             a href="http://www.ncbi.nlm.nih.gov/pubmed/19465905">Butler et al. 2009</a>.  
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/19465905">Butler et al. 2009</a>.  
              </li>
                                         
              <li><a href="/a/app/record/dataset/DS_0bb6f43912"><i>Cladophialophora carrionii</i> KSF</a> &ndash;
@@ -79,8 +79,8 @@
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/26613950">Whiston et al. 2015</a>.
         	</li>
         
-        	<li><a href="/a/app/record/dataset/DS_a2d340e1d2"><i>Naganishia albida</i> JCM2334</a &ndash;  
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/27198024">Vajpeyi et al et al. 2016</a>.
+        	<li><a href="/a/app/record/dataset/DS_a2d340e1d2"><i>Naganishia albida</i> JCM2334</a> &ndash;  
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/27198024">Vajpeyi et al. 2016</a>.
         	</li>
                         
             </ul>
