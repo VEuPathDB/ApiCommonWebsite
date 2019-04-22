@@ -195,7 +195,7 @@
                 </tr>
                 <tr>
                   <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_62f0e6170"><i>Neurospora crassa</i> OR74A </a></td>
-                  <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/genedb/releases/2019-04/NcrassaOR74A/NcrassaOR74A.gff.gz">GeneDB version April, 20196</a></td>
+                  <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/genedb/releases/2019-04/NcrassaOR74A/NcrassaOR74A.gff.gz">GeneDB version April, 2019</a></td>
                   <td>53</td>
                 </tr>
                 </table>
@@ -254,14 +254,14 @@
        </div>    
        </section>
        
-       <h4>Annotations from Gene Ontology Consortium (GOC) resources:</h4>  
+       <h4>Annotations from Gene Ontology Consortium (GOC) resources:</h4>
+       <div style="margin-left: 3em;">  
         Curated and computed gene ontology (GO) annotations from Gene Ontology Consortium (GOC) resources have been integrated into FungiDB in Release 43 for 
         <i>Saccharomyces cerevisiae</i>, <i>Schizosaccharomyces pombe</i> and <i>Magnaporthe oryzae</i>.  These GO annotations are current with GOC version from Feb 01, 2019. 
         The processes GAF files from which GO annotations were loaded onto FungiDB can be found in the public folder linked  
         <a href="https://github.com/Achchuthan/FungiDB-Curation/tree/master/Gene%20Ontology%20Annotations%20from%20GOC%20resources/Release%2043" target="_blank">here</a>.
        <br><br>
         
-        <div style="margin-left: 3em;">
         
         <style>
            #GOC_Bld43 table, #GOC_Bld43 td, #GOC_Bld43 th, #GOC_Bld43 tr {
@@ -276,7 +276,7 @@
            margin-left : 5 em;
            }
          </style> 
-           <table id="GOCt_Bld43"> 
+           <table id="GOC_Bld43"> 
            <tr>
              <th>FungiDB Genome</th>
              <th>Major contributing resource</th>
@@ -284,20 +284,20 @@
            </tr>
            <tr>
              <td title="Click here to view this dataset's full description"><a href="https://fungidb.org/fungidb/app/record/dataset/DS_d22dd5953a"><i>Magnaporthe oryzae</i></i> 70-15</a></td>
-             <td>title="Click here to be redirected to associated publication"><a href="https://www.ncbi.nlm.nih.gov/pubmed/19278549">PAMGO</a></td>
+             <td title="Click here to be redirected to associated publication"><a href="https://www.ncbi.nlm.nih.gov/pubmed/19278549">PAMGO</a></td>
              <td>2,013</td>
            </tr>
            
            <tr>
              <td title="Click here to view this dataset's full description"><a href="https://fungidb.org/fungidb/app/record/dataset/DS_2dcd6c5034"><i>Saccharomyces cerevisiae</i> S288c</a></td>
-             <td>title="Click here to be redirected to SGD"><a href="https://www.yeastgenome.org/ ">SGD</a></td>
-             <td>2,013</td>
+             <td title="Click here to be redirected to SGD"><a href="https://www.yeastgenome.org/ ">SGD</a></td>
+             <td> 2,013</td>
            </tr>
            
            <tr>
              <td title="Click here to view this dataset's full description."><a href="https://fungidb.org/fungidb/app/record/dataset/DS_a885718221"><i>Schizosaccharomyces pombe</i> 972h </a></td>
-             <td>title="Click here to be redirected to PomBase"><a href="https://www.pombase.org/">SGD</a></td>
-             <td>54,492</td>
+             <td title="Click here to be redirected to PomBase"><a href="https://www.pombase.org/">SGD</a></td>
+             <td> 54,492</td>
            </tr>
           </table>
           <br>
