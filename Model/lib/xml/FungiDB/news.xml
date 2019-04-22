@@ -317,6 +317,12 @@
              record pages on any EuPathDB site.  
            </li>
          </ul>
+         <ul>
+           <li>
+             FungiDB gene pages now include a Model Organism Orthologs section for easy navigation to the SGD, PomBase 
+             and CGD orthologs of your FungiDB gene.  
+           </li>
+         </ul>
        </div> 
       </section>
        
