@@ -68,7 +68,9 @@
       <div style="margin-left: 3em;">
          <ul>
            <li>
-             TODO
+             A beta implementation of the 
+             <a href="https://jbrowse.org/" target="_blank">JBrowse Genome Browser</a> is now available from gene 
+             record pages on any EuPathDB site.  
            </li>
          </ul>
        </div> 

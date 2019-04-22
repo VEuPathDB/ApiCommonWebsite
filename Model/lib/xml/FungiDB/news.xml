@@ -307,7 +307,18 @@
        </div>    
        </section>
        
-       
+       <section>
+      <h3><b>New features in FungiDB 43</b></h3>
+      <div style="margin-left: 3em;">
+         <ul>
+           <li>
+             A beta implementation of the 
+             <a href="https://jbrowse.org/" target="_blank">JBrowse Genome Browser</a> is now available from gene 
+             record pages on any EuPathDB site.  
+           </li>
+         </ul>
+       </div> 
+      </section>
        
        <section>
      <aside>
