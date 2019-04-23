@@ -151,8 +151,7 @@
           <br>
           </div> 
              
-           
-          
+              
       <h4>Updated Functional Annotation</h4>
                <div style="margin-left: 3em;">
              
@@ -199,16 +198,14 @@
                   <td>53</td>
                 </tr>
                 </table>
-                <br><br>    
+                <br>    
                 </div>
-           </section>
  
-       <h4>Curated User Comments:</h4>  
+       <h4>Curated User Comments:</h4>
+       <div style="margin-left: 3em;">  
+       
         Gene page comments that are entered by users are curated and integrated as functional annotations in FungiDB. 77 user comments have been reviewed and updated in FungiDB 43.
-       <br><br>
-        
-        <div style="margin-left: 3em;">
-        
+         
         <style>
            #UComment_Bld43 table, #UComment_Bld43 td, #UComment_Bld43 th, #UComment_Bld43 tr {
            text-align : center;
@@ -249,13 +246,10 @@
           </table>
           <br>
           </div> 
-           <br>
-           
-       </div>    
-       </section>
        
        <h4>Annotations from Gene Ontology Consortium (GOC) resources:</h4>
-       <div style="margin-left: 3em;">  
+       <div style="margin-left: 3em;"> 
+        
         Curated and computed gene ontology (GO) annotations from Gene Ontology Consortium (GOC) resources have been integrated into FungiDB in Release 43 for 
         <i>Saccharomyces cerevisiae</i>, <i>Schizosaccharomyces pombe</i> and <i>Magnaporthe oryzae</i>.  These GO annotations are current with GOC version from Feb 01, 2019. 
         The processes GAF files from which GO annotations were loaded onto FungiDB can be found in the public folder linked  
