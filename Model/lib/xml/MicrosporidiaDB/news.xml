@@ -41,12 +41,12 @@
     <![CDATA[
     <p><strong>We are pleased to announce the release of MicrosporidiaDB 43</strong></p>
     
-    <section>
+     <section>
     <h3><b>Release 43 Webinar</b></h3>
     <div style="margin-left: 3em;">
-      Join us on TODO for our Release 43 Highlights webinar where we will discuss and 
+      Join us on May 15th at 10:00 am (EST) for our Release 43 Highlights webinar where we will discuss and 
       demonstrate new features and data available in release 43 of EuPathDB sites. 
-      <a href="TODO">Register here</a>
+      <a href="https://attendee.gotowebinar.com/register/5760372602565130253">Register here</a>
     </div>
     </section>
       
@@ -59,7 +59,9 @@
       <div style="margin-left: 3em;">
          <ul>
            <li>
-             TODO
+             A beta implementation of the 
+             <a href="https://jbrowse.org/" target="_blank">JBrowse Genome Browser</a> is now available from gene 
+             record pages on any EuPathDB site.  
            </li>
          </ul>
        </div> 
