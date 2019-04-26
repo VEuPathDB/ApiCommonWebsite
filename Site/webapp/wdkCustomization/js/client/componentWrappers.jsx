@@ -15,6 +15,8 @@ import RecordTableContainer from './components/common/RecordTableContainer';
 import { loadPathwayGeneDynamicCols } from './actioncreators/RecordViewActionCreators';
 import ApiSiteHeader from './components/SiteHeader';
 
+import { projectId } from './config';
+
 export const SiteHeader = () => ApiSiteHeader;
 
 const stopPropagation = event => event.stopPropagation();
@@ -83,17 +85,32 @@ export const RecordTable = makeDynamicWrapper('RecordTable', RecordTableContaine
 export const RecordTableDescription = makeDynamicWrapper('RecordTableDescription');
 export const ResultTable = makeDynamicWrapper('ResultTable');
 
-const RecordClassSpecificRecordlink = makeDynamicWrapper('RecordLink');
-
 /** Remove project_id from record links */
-export function RecordLink(WdkRecordLink) {
-  const ResolvedRecordLink = RecordClassSpecificRecordlink(WdkRecordLink);
+function ApiRecordLinkWrapper(WdkRecordLink) {
   return function ApiRecordLink(props) {
+    // In EuPathDB, we want to link to external component site.
+    // We can derive the url from the project_id primary key value.
+    if (projectId === 'EuPathDB') {
+      const targetProjectIdEntry = props.recordId.find(p => p.name === 'project_id');
+      const pkUrlSegments = props.recordId.map(p => p.value).join('/');
+      if (targetProjectIdEntry) {
+        // derive link to external site
+        const externalUrl = `//${targetProjectIdEntry.value.toLowerCase()}.org/a/app/record/${props.recordClass.urlSegment}/${pkUrlSegments}`;
+        return <a href={externalUrl}>{props.children}</a>;
+      }
+    }
+
     let recordId = props.recordId.filter(p => p.name !== 'project_id');
     return (
-      <ResolvedRecordLink {...props} recordId={recordId}/>
+      <WdkRecordLink {...props} recordId={recordId}/>
     );
-  };
+  }
+}
+
+const RecordSpecificRecordLink = makeDynamicWrapper('RecordLink');
+
+export function RecordLink(WdkRecordLink) {
+  return RecordSpecificRecordLink(ApiRecordLinkWrapper(WdkRecordLink));
 }
 
 function downloadRecordTable(record, tableName) {
