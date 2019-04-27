@@ -177,13 +177,21 @@ public class UserCommentsService extends AbstractUserCommentService {
       .build();
   }
 
+  private String getClientURL(long comId, String targetId, String targetType) {
+    return getContextUri() + 
+      "/app/user-comments/show" +
+      "?stableId="              + targetId + 
+      "&commentTargetId="       + targetType +
+      "#"                       + comId;
+  }
+
   private void notificationEmail(WdkModel wdk, User user, CommentRequest com,
       long comId) throws WdkModelException {
 
     final CommentAlertEmailFormatter form = new CommentAlertEmailFormatter();
 
     final String subject = form.makeSubject(wdk.getProjectId(), com);
-    final String url = buildURL(comId).toString();
+    final String url = getClientURL(comId, com.getTarget().getId(), com.getTarget().getType());
     final String smtp = wdk.getModelConfig().getSmtpServer();
 
     Utilities.sendEmail(smtp, ANNOTATORS_EMAIL + ", " + user.getEmail(),

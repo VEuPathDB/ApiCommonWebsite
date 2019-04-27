@@ -48,9 +48,7 @@ public class GetCommentQuery extends BaseCommentQuery<Optional<Comment>> {
     "  ca." + TargetCategory.NAME             + ",\n" +
     "  ca." + TargetCategory.ID               + "\n" +
     "FROM\n" +
-    "  ids\n" +
-    "  INNER JOIN %1$s." + Table.COMMENTS + " co\n" +
-    "    ON ids.COMMENT_ID = co." + Column.Comment.ID + "\n" +
+    "%1$s." + Table.COMMENTS + " co\n" +
     "  INNER JOIN %1$s." + Table.COMMENT_USERS + " us\n" +
     "    ON co." + Column.Comment.USER_ID + " = us." + CommentUser.ID + "\n" +
     "  LEFT JOIN %1$s." + Table.COMMENT_TO_STABLE_ID + " id\n" +
