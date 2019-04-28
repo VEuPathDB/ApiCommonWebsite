@@ -184,7 +184,7 @@
                 </tr>
                 <tr>
                   <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4d171eb9ea"><i>Cryptococcus neoformans</i> JEC21 </a></td>
-                  <td title="Click here to download GeneDB's GFF file for this genome."><a href="tp://ftp.sanger.ac.uk/pub/genedb/releases/2019-04/CneoformansneoformansJEC21/CneoformansneoformansJEC21.gff.gz">GeneDB version April, 2019</a></td>
+                  <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/genedb/releases/2019-04/CneoformansneoformansJEC21/CneoformansneoformansJEC21.gff.gz">GeneDB version April, 2019</a></td>
                   <td>395</td>
                 </tr>
                 <tr>
@@ -226,17 +226,17 @@
            </tr>
            <tr>
              <td title="Click here to view this dataset's full description."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_8f0322af73"><i>Cryptococcus neoformans</i></i> H99</a></td>
-             <td>141</td>
+             <td>5</td>
            </tr>
            
            <tr>
              <td title="Click here to view this dataset's full description."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4d171eb9ea "><i>Cryptococcus neoformans</i> JEC21</a></td>
-             <td>395</td>
+             <td>8</td>
            </tr>
            
            <tr>
              <td title="Click here to view this dataset's full description."><a href="https://fungidb.org/fungidb/app/record/dataset/DS_d22dd5953a"><i>Magnaporthe oryzae</i> 70-15</a></td>
-             <td>14</td>
+             <td>11</td>
            </tr>
            
            <tr>
@@ -252,7 +252,7 @@
         
         Curated and computed gene ontology (GO) annotations from Gene Ontology Consortium (GOC) resources have been integrated into FungiDB in Release 43 for 
         <i>Saccharomyces cerevisiae</i>, <i>Schizosaccharomyces pombe</i> and <i>Magnaporthe oryzae</i>.  These GO annotations are current with GOC version from Feb 01, 2019. 
-        The processes GAF files from which GO annotations were loaded onto FungiDB can be found in the public folder linked  
+        The processed GAF files from which GO annotations were loaded onto FungiDB can be found in the public folder linked  
         <a href="https://github.com/Achchuthan/FungiDB-Curation/tree/master/Gene%20Ontology%20Annotations%20from%20GOC%20resources/Release%2043" target="_blank">here</a>.
        <br><br>
         
@@ -285,13 +285,13 @@
            <tr>
              <td title="Click here to view this dataset's full description"><a href="https://fungidb.org/fungidb/app/record/dataset/DS_2dcd6c5034"><i>Saccharomyces cerevisiae</i> S288c</a></td>
              <td title="Click here to be redirected to SGD"><a href="https://www.yeastgenome.org/ ">SGD</a></td>
-             <td> 2,013</td>
+             <td>123,087</td>
            </tr>
            
            <tr>
              <td title="Click here to view this dataset's full description."><a href="https://fungidb.org/fungidb/app/record/dataset/DS_a885718221"><i>Schizosaccharomyces pombe</i> 972h </a></td>
-             <td title="Click here to be redirected to PomBase"><a href="https://www.pombase.org/">SGD</a></td>
-             <td> 54,492</td>
+             <td title="Click here to be redirected to PomBase"><a href="https://www.pombase.org/">PomBase</a></td>
+             <td>54,492</td>
            </tr>
           </table>
           <br>
