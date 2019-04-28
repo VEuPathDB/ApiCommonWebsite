@@ -37,7 +37,7 @@ public class InsertExternalDatabaseQuery extends InsertQuery {
     final BasicArgumentBatch out = new BasicArgumentBatch();
     out.add(new Object[]{ _id = nextId(), _extDb.getName(), _extDb.getVersion() });
     out.setParameterTypes(TYPE);
-    return null;
+    return out;
   }
 
   @Override
