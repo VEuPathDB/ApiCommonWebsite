@@ -269,8 +269,12 @@
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/29708484" target="_blank">Bern&aacute; et al</a>. 
              </li>
             </ul>
-        <h4>Additional Version of Genome Sequence and Annotation - This version of <i>T. cruzi</i> Dm28c appears for the first time in TriTrypDB.</h4>
+        <h4>Additional Version of Genome Sequence and Annotation</h4>
             <ul>
+             <li><a href="/a/app/record/dataset/DS_313efe4051"><i>Trypanosoma brucei</i> Lister 427 (2018)</a> &ndash; 
+                 Genome sequence and annotation for <i>Trypanosoma brucei</i> Lister 427 (2018) sequenced with SMRT sequencing technology (PacBio) to ~100X coverage.
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/30333624" target="_blank">M&uuml;ller et al</a>. 
+             </li>
              <li><a href="/a/app/record/dataset/DS_59b1d9cd42"><i>Trypanosoma cruzi</i> Dm28c 2018</a> &ndash; 
                  Genome sequence and annotation for <i>Trypanosoma cruzi</i> Dm28c sequenced with PacBio Single Molecule Real-Time technology.
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/29708484" target="_blank">Bern&aacute; et al</a>. 
