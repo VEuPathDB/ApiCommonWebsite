@@ -88,6 +88,14 @@ public class UserCommentsService extends AbstractUserCommentService {
 
     notificationEmail(getWdkModel(), user, body, id);
 
+    // Hack to support legacy behavior involving how we keep
+    // comment history.
+    // Mark the comment passed as previous comment id as
+    // hidden in the database to prevent the old version
+    // being displayed to the users.
+    if (body.getPreviousCommentId() != null)
+      getCommentFactory().deleteComment(body.getPreviousCommentId());
+
     return Response.created(buildURL(id))
       .entity(new JSONObject().put(JsonKeys.ID, id))
       .build();
@@ -178,9 +186,9 @@ public class UserCommentsService extends AbstractUserCommentService {
   }
 
   private String getClientURL(long comId, String targetId, String targetType) {
-    return getContextUri() + 
+    return getContextUri() +
       "/app/user-comments/show" +
-      "?stableId="              + targetId + 
+      "?stableId="              + targetId +
       "&commentTargetId="       + targetType +
       "#"                       + comId;
   }
