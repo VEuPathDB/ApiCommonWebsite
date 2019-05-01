@@ -1876,7 +1876,9 @@
            </tr>
            <tr>
              <td><img src="images/MaHPIC_Functional_Genomics_Core.jpg" height="13px" width="13px"> <b>Functional Genomics</b></td>
-             <td><b>Coming Soon</b></td>  <!--<br> <a href="https://www.ncbi.nlm.nih.gov/sra" target="_blank">E30 Sequence data at NCBI's SRA</a><br><a href="https://www.ncbi.nlm.nih.gov/geo/" target="_blank">E25 Expression Results on NCBI's GEO</a><br><a href="https://www.ncbi.nlm.nih.gov/bioproject/XXX" target="_blank">E25 BioProject record at NCBI</a>-->
+             <td><b> <a href="https://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA368917" target="_blank">MaHPIC Umbrella BioProject</a>
+                     <br><a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE123495" target="_blank">E30 Results at NCBI's GEO</a>
+                     </b></td> 
              <td>N/A</td>
            </tr>
            <tr>
