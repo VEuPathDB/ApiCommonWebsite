@@ -8,6 +8,7 @@ import javax.sql.DataSource;
 import org.gusdb.fgputil.db.SqlUtils;
 import org.gusdb.wdk.model.WdkModel;
 
+// TODO: this class appears to be unused.
 public class GeneIdValidator {
 
     private DataSource dataSource;

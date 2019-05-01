@@ -22,7 +22,6 @@ import org.apidb.apicommon.model.comment.CommentAlertEmailFormatter;
 import org.apidb.apicommon.model.comment.pojo.Category;
 import org.apidb.apicommon.model.comment.pojo.Comment;
 import org.apidb.apicommon.model.comment.pojo.CommentRequest;
-import org.apidb.apicommon.model.GeneIdValidator;
 import org.gusdb.wdk.core.api.JsonKeys;
 import org.gusdb.wdk.model.Utilities;
 import org.gusdb.wdk.model.WdkModel;
@@ -76,9 +75,7 @@ public class UserCommentsService extends AbstractUserCommentService {
       checkCommentOwnership(fetchComment(body.getPreviousCommentId()), user);
 
     final JSONArray validationErrors = validateRelatedStableIds(
-      body.getRelatedStableIds(),
-      new GeneIdValidator(getWdkModel())
-    );
+      body.getRelatedStableIds());
 
     if (validationErrors.length() > 0) {
       throw new BadRequestException(validationErrors.toString());
@@ -165,18 +162,12 @@ public class UserCommentsService extends AbstractUserCommentService {
     return Response.noContent().build();
   }
 
-  private JSONArray validateRelatedStableIds(Set<String> relatedStableIds, GeneIdValidator validator) {
-    JSONArray validationErrors = new JSONArray();
-
-    for (String stableId : relatedStableIds) {
-      if (!validator.checkStableIds(stableId)) {
-        validationErrors.put(
-          "In Part III, the identifier \"" + stableId + "\" is not a valid id."
-        );
-      }
-    }
-
-    return validationErrors;
+  private JSONArray validateRelatedStableIds(Set<String> relatedStableIds)
+  throws WdkModelException {
+    return getCommentFactory().getInvalidStableIds(relatedStableIds)
+      .stream()
+      .map(id -> "In Part III, the identifier \"" + id + "\" is not a valid id.")
+      .collect(JSONArray::new, JSONArray::put, (x, y) -> y.forEach(x::put));
   }
 
   private URI buildURL(long comId) {
