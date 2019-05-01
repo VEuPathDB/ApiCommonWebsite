@@ -8,11 +8,10 @@ import static org.apidb.apicommon.model.comment.ReferenceType.PUB_MED;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 import javax.sql.DataSource;
 
@@ -73,6 +72,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
   private CommentConfig _config;
   private boolean _isReusingUserDb;
   private String _host;
+  private WdkModel _wdkModel;
 
   @Override
   public CommentFactory getInstance(String projectId, String gusHome)
@@ -107,7 +107,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
 
       final String host = wdkModel.getProperties().get("LOCALHOST");
 
-      factory.initialize(db, config, isReusingUserDb,
+      factory.initialize(wdkModel, db, config, isReusingUserDb,
           new Project(projectId, wdkModel.getVersion()), host.endsWith("/")
               ? host.substring(0, host.lastIndexOf("/")) : host);
 
@@ -307,8 +307,46 @@ public class CommentFactory implements Manageable<CommentFactory> {
     }
   }
 
-  private void initialize(DatabaseInstance commentDb, CommentConfig config,
-      boolean isReusingUserDb, Project project, String host) {
+  public Collection<String> getInvalidStableIds(Collection<String> stableIds)
+  throws WdkModelException {
+    final String sql = "SELECT source_id FROM ApidbTuning.GeneAttributes\n" +
+      "WHERE source_id = ?\n" +
+      "UNION\n" +
+      "SELECT name FROM apidbtuning.samples\n" +
+      "WHERE name = ?\n" +
+      "UNION\n" +
+      "SELECT source_id FROM DoTS.ExternalNASequence\n" +
+      "WHERE source_id = ?\n" +
+      "UNION\n" +
+      "SELECT id FROM ApidbTuning.Geneid\n" +
+      "WHERE id = ? ";
+
+    final Collection<String> errs = new ArrayList<>();
+    try(
+      Connection con = _wdkModel.getAppDb().getDataSource().getConnection();
+      PreparedStatement ps = con.prepareStatement(sql)
+    ) {
+      for (String sourceId : stableIds) {
+        ps.setString(1, sourceId);
+        ps.setString(2, sourceId);
+        ps.setString(3, sourceId);
+        ps.setString(4, sourceId);
+        try (ResultSet rs = ps.executeQuery()) {
+          if (!rs.next())
+            errs.add(sourceId);
+        }
+      }
+    } catch (SQLException e) {
+      throw new WdkModelException(e);
+    }
+
+    return errs;
+  }
+
+  private void initialize(WdkModel model, DatabaseInstance commentDb,
+    CommentConfig config, boolean isReusingUserDb, Project project, String host
+  ) {
+    _wdkModel = model;
     _project = project;
     _host = host;
     _commentDb = commentDb;
