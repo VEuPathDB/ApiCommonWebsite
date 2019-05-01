@@ -14,6 +14,332 @@
        </attribute>
     </record>
 -->
+<record>
+  <attribute name="headline">FungiDB 44 Released</attribute>
+  <attribute name="date">25 June 2019 13:00</attribute>
+  <attribute name="tag">FungiDB6_19_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of FungiDB 44</strong></p>
+    
+    <section>
+    <h3><b>Release 44 Webinar</b></h3>
+    <div style="margin-left: 3em;">
+      Join us on May 15th at 10:00 am (EST) for our Release 44 Highlights webinar where we will discuss and 
+      demonstrate new features and data available in release 44 of EuPathDB sites. 
+      <a href="https://attendee.gotowebinar.com/register/5760372602565130253">Register here</a>
+    </div>
+    </section>
+      
+      <section>
+        <h3><b>New data in FungiDB 44</b></h3>
+        <div style="margin-left: 3em;">
+        
+
+        <h4>Genome Sequence and Annotation: these annotated genomes appear for the first time in FungiDB.</h4>
+           <ul>
+             <li><a href="/a/app/record/dataset/DS_b6d1bccea1"><i>Cladophialophora immunda</i> CBS 83496</a> &ndash;
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/28348446">Teixeira et al. 2017</a>.  
+             </li>
+             
+             <li><a href="/a/app/record/dataset/DS_adb102b7b5"><i>Pleurotus ostreatus</i> PC9</a> &ndash;
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/27117896">Alfaro et al. 2016</a>.  
+             </li>
+             
+             <li><a href="/a/app/record/dataset/DS_2a627331a7"><i>Rhizophagus irregularis</i> DAOM 181602 (DAOM 197198)</a> &ndash;  
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/29355972">Chen et al. 2018</a>.
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/27572831">Ropars et al. 2016</a>.
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/24277808">Tisserant et al. 2013</a>.
+             </li>
+            
+            </ul>
+           <br>
+           
+           
+           <h4>New Genome Sequence: available for the first time in FungiDB:</h4>
+        <ul>
+        	<li><a href="/a/app/record/dataset/DS_7aa9de4305"><i>Amauroascus niger</i> UAMH 3544</a> &ndash;  
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26613950">Whiston et al. 2015</a>.
+        	</li>
+        
+                        
+            </ul>
+           <br>
+                      
+        <h4>Transcriptomics</h4>
+           <ul>
+           
+           <li><a href="/a/app/record/dataset/DS_add4b4cd57">Transcriptional responses of <i>Fusarium graminearum</i> to plant cell wall substrates</a> &ndash;
+             <i>Fusarium graminearum</i> was cultured at 25 °C on minimal M3 medium with glucose, birch wood xylan, carboxy methyl cellulose or hop cell wall as sole 
+             carbon source. Microarray experiments were achieved with a Geniom device (febit biomed, Germany). Each of the four tested 
+             condition was tested with two biological and two technical replicates.
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/23311999" target="_blank">Carapito et al. 2013</a>.
+             </li>
+             
+             <li><a href="/a/app/record/dataset/DS_525e17347f">Strand-Specific RNA-Seq Analyses of Fruiting Body Development in <i>Coprinopsis cinerea</i></a> &ndash;
+             Meiosis was compared in rad50-1 and wild type strains of <i>C. cinerea</i> at 6 time points spanning the meiotic timecourse.
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/23050232" target="_blank">Anderson et al. 2012</a>.
+             </li>
+             
+             <li><a href="/a/app/record/dataset/DS_b45be95903">Gene expression profiling of <i>Aspergillus fumigatus</i> during a temperature shift</a> &ndash;
+             Temperature shift from 30C to 37C or 30C to 48C. Samples were taken after the defined time (0, 15, 30, 60, 120, and 180 min).
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/16372009" target="_blank">Nierman et al. 2005</a>.
+             </li>
+             
+            <li><a href="/a/app/record/dataset/DS_add4b4cd57">Transcriptome landscape of <i>Candida glabrata</i> during pH change and nitrosative stress</a> &ndash;
+             RNA-Seq-based analysis of the transcriptomic landscape of <i>C. glabrata</i> in nutrient-rich media, as well as under nitrosative stress and during pH shift.
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/25586221" target="_blank">Linde et al. 2015</a>.
+             </li>
+             
+             <li><a href="/a/app/record/dataset/DS_525e17347f"><i>Aspergillus fumigatus</i> transcriptome under normoxia and hypoxia conditions</a> &ndash;
+             RNAseq analysis of the <i>Aspergillus fumigatus</i> was used to determine its response to early hypoxic conditions.
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/24996522" target="_blank">Losada et al. 2014</a>.
+             </li>
+             
+             <li><a href="/a/app/record/dataset/DS_b45be95903"><i>Histoplasma capsulatum</i> G186A and G217A yeast and mycelial transcriptomes</a> &ndash;
+             Yeast and mycelial transcriptome of <i>Histoplasma capsulatum</i> G186A (ATCC 26029) strain was analyzed via the Illumina GAII platform.
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/24112604" target="_blank">Edwards et al. 2013</a>.
+             </li>
+             
+            <li><a href="/a/app/record/dataset/DS_b45be95903">Gene expression analysis of ADV-1 and PP-1 mutants in <i>Neurospora crassa</i></a> &ndash;
+             The transcription factors ADV-1 and PP-1 are essential for germling communication and fusion and <i>Neurospora crassa</i>.
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/29678830" target="_blank">Fischer et al. 2018</a>.
+             </li>
+             
+             <li><a href="/a/app/record/dataset/DS_b45be95903">O2-responsive genes in the human pathogenic fungus <i>Aspergillus fumigatus</i></a> &ndash;
+             Transcriptomic investigation of low oxygen adaptation of <i>A. fumigatus</i>.
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/24948085" target="_blank">Hillmann et al. 2014</a>.
+             </li>
+             
+        	</ul>
+        	<br>
+        	          
+                   
+        <h4>Phenotype data</h4>
+           <ul>
+             <li><a href="/a/app/record/dataset/DS_43c139682a">Manually curated <i>Cryptococcus</i> Phenotypes</a> &ndash; 
+                 The phenotypes for <i>Cryptococcus neoformans</i> JEC21 and H99 and <i>Cryptococcus gatii</i> WM276 are manually curated from published literature describing 
+                 phenotypes obtained from mutant studies. We have curated and added phenotypes from <a href="https://www.ncbi.nlm.nih.gov/pubmed/25849373" target="_blank">Jung et al. </a> 
+                 publication on transcription factors to the currently existing phenotypic dataset for <i>C. neoformans</i> H99.
+                 We followed an &quot;entity &#43; quality&quot; approach and curated phenotypes with multiple ontologies: 
+                 Phenotypic Quality Ontology (PATO) for &quot;quality&quot; terms and Gene Ontology (GO), Fungal Gross Anatomy Ontology (FAO),
+                 Chemical Entities of Biological Interest (ChEBI) and Ascomycete Phenotype Ontology (APO) for &quot;entity&quot; terms. 
+             </li>
+             </ul>
+             <br>
+               
+        <div style="margin-left: 3em;">
+        
+        <style>
+           #Phenotype_Bld43 table, #Phenotype_Bld43 td, #Phenotype_Bld43 th, #Phenotype_Bld43 tr {
+           text-align : center;
+           padding-left: 5px;
+           padding-right: 5px;
+           padding-top: 5px;
+           padding-bottom: 5px;
+           border: 1px solid black;
+           }
+           #Phenotype_Bld42 {
+           margin-left : 5 em;
+           }
+         </style> 
+           <table id="Phenotype_Bld43"> 
+           <tr>
+             <th>Species</th>
+             <th>Phenotype mapping</th>
+             <th>Genes with phenotypes</th>
+           </tr>
+           <tr>
+             <td><i>Cryptococcus neoformans</i> var grubii H99</td>
+             <td>4260</td>
+             <td>142</td>
+           </tr>
+          </table>
+          <br>
+          </div> 
+             
+              
+      <h4>Updated Functional Annotation</h4>
+               <div style="margin-left: 3em;">
+             
+             <a href="https://docs.google.com/spreadsheets/d/1MbLv4m-9DF_jqxKtbW9fO7woGq_b5d-k1qoOYirSK5s/edit?usp=sharing" target="_blank">Summary of annotation updates</a>
+               which include products, GO terms, EC numbers, gene names, synonyms, publications, external database references and notes from curators. These functional annotations are current with GeneDB April 2019 GFF versions. <br><br>
+             
+             <style>
+                #FunctAnnot_Bld43 table, #FunctAnnot_Bld43 td, #FunctAnnot_Bld43 th, #FunctAnnot_Bld43 tr {
+                text-align : center;
+                padding-left: 5px;
+                padding-right: 5px;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                border: 1px solid black;
+                }
+                #FunctAnnot_Bld43 {
+                margin-left : 5 em;
+                }
+              </style> 
+                <table id="FunctAnnot_Bld43"> 
+                <tr>
+                  <th>FungiDB Genome Version</th>
+                  <th>Download GeneDB GFF file</th>
+                  <th>Genes Updated</th>
+                </tr>
+                <tr>
+                  <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_8f0322af73"><i>Cryptococcus neoformans</i> H99 </a></td>
+                  <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/genedb/releases/2019-04/CneoformansH99/CneoformansH99.gff.gz ">GeneDB version April, 2019</a></td>
+                  <td>141</td>
+                </tr>
+                <tr>
+                  <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4d171eb9ea"><i>Cryptococcus neoformans</i> JEC21 </a></td>
+                  <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/genedb/releases/2019-04/CneoformansneoformansJEC21/CneoformansneoformansJEC21.gff.gz">GeneDB version April, 2019</a></td>
+                  <td>395</td>
+                </tr>
+                <tr>
+                  <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="https://fungidb.org/fungidb/app/record/dataset/DS_d22dd5953a"><i>Magnaporthe oryzae</i> 70-15 </a></td>
+                  <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/genedb/releases/2019-04/Moryzae7015/Moryzae7015.gff.gz">GeneDB version April, 2019</a></td>
+                  <td>14</td>
+                </tr>
+                <tr>
+                  <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_62f0e6170"><i>Neurospora crassa</i> OR74A </a></td>
+                  <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/genedb/releases/2019-04/NcrassaOR74A/NcrassaOR74A.gff.gz">GeneDB version April, 2019</a></td>
+                  <td>53</td>
+                </tr>
+                </table>
+                <br>    
+                </div>
+ 
+       <h4>Curated User Comments:</h4>
+       <div style="margin-left: 3em;">  
+       
+        Gene page comments that are entered by users are curated and integrated as functional annotations in FungiDB. 77 user comments have been reviewed and updated in FungiDB 43.
+         
+        <style>
+           #UComment_Bld43 table, #UComment_Bld43 td, #UComment_Bld43 th, #UComment_Bld43 tr {
+           text-align : center;
+           padding-left: 5px;
+           padding-right: 5px;
+           padding-top: 5px;
+           padding-bottom: 5px;
+           border: 1px solid black;
+           }
+           #UComment_Bld43 {
+           margin-left : 5 em;
+           }
+         </style> 
+           <table id="UComment_Bld43"> 
+           <tr>
+             <th>FungiDB Genome Version</th>
+             <th>Comments Integrated</th>
+           </tr>
+           <tr>
+             <td title="Click here to view this dataset's full description."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_8f0322af73"><i>Cryptococcus neoformans</i></i> H99</a></td>
+             <td>5</td>
+           </tr>
+           
+           <tr>
+             <td title="Click here to view this dataset's full description."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4d171eb9ea "><i>Cryptococcus neoformans</i> JEC21</a></td>
+             <td>8</td>
+           </tr>
+           
+           <tr>
+             <td title="Click here to view this dataset's full description."><a href="https://fungidb.org/fungidb/app/record/dataset/DS_d22dd5953a"><i>Magnaporthe oryzae</i> 70-15</a></td>
+             <td>11</td>
+           </tr>
+           
+           <tr>
+             <td title="Click here to view this dataset's full description."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_62f0e6170f"><i>Neurospora crassa</i> </a></td>
+             <td>53</td>
+           </tr>
+          </table>
+          <br>
+          </div> 
+       
+       <h4>Annotations from Gene Ontology Consortium (GOC) resources:</h4>
+       <div style="margin-left: 3em;"> 
+        
+        Curated and computed gene ontology (GO) annotations from Gene Ontology Consortium (GOC) resources have been integrated into FungiDB in Release 43 for 
+        <i>Saccharomyces cerevisiae</i>, <i>Schizosaccharomyces pombe</i> and <i>Magnaporthe oryzae</i>.  These GO annotations are current with GOC version from Feb 01, 2019. 
+        The processed GAF files from which GO annotations were loaded onto FungiDB can be found in the public folder linked  
+        <a href="https://github.com/Achchuthan/FungiDB-Curation/tree/master/Gene%20Ontology%20Annotations%20from%20GOC%20resources/Release%2043" target="_blank">here</a>.
+       <br><br>
+        
+        
+        <style>
+           #GOC_Bld43 table, #GOC_Bld43 td, #GOC_Bld43 th, #GOC_Bld43 tr {
+           text-align : center;
+           padding-left: 5px;
+           padding-right: 5px;
+           padding-top: 5px;
+           padding-bottom: 5px;
+           border: 1px solid black;
+           }
+           #GOC_Bld43 {
+           margin-left : 5 em;
+           }
+         </style> 
+           <table id="GOC_Bld43"> 
+           <tr>
+             <th>FungiDB Genome</th>
+             <th>Major contributing resource</th>
+             <th>GO annotations</th>
+           </tr>
+           <tr>
+             <td title="Click here to view this dataset's full description"><a href="https://fungidb.org/fungidb/app/record/dataset/DS_d22dd5953a"><i>Magnaporthe oryzae</i></i> 70-15</a></td>
+             <td title="Click here to be redirected to associated publication"><a href="https://www.ncbi.nlm.nih.gov/pubmed/19278549">PAMGO</a></td>
+             <td>2,013</td>
+           </tr>
+           
+           <tr>
+             <td title="Click here to view this dataset's full description"><a href="https://fungidb.org/fungidb/app/record/dataset/DS_2dcd6c5034"><i>Saccharomyces cerevisiae</i> S288c</a></td>
+             <td title="Click here to be redirected to SGD"><a href="https://www.yeastgenome.org/ ">SGD</a></td>
+             <td>123,087</td>
+           </tr>
+           
+           <tr>
+             <td title="Click here to view this dataset's full description."><a href="https://fungidb.org/fungidb/app/record/dataset/DS_a885718221"><i>Schizosaccharomyces pombe</i> 972h </a></td>
+             <td title="Click here to be redirected to PomBase"><a href="https://www.pombase.org/">PomBase</a></td>
+             <td>54,492</td>
+           </tr>
+          </table>
+          <br>
+          </div> 
+           <br>
+           
+       </div>    
+       </section>
+       
+       <section>
+      <h3><b>New features in FungiDB 43</b></h3>
+      <div style="margin-left: 3em;">
+         <ul>
+           <li>
+             A beta implementation of the 
+             <a href="https://jbrowse.org/" target="_blank">JBrowse Genome Browser</a> is now available from gene 
+             record pages on any EuPathDB site.  
+           </li>
+         </ul>
+         <ul>
+           <li>
+             FungiDB gene pages now include a Model Organism Orthologs section for easy navigation to the SGD, PomBase 
+             and CGD orthologs of your FungiDB gene.  
+           </li>
+         </ul>
+       </div> 
+      </section>
+       
+       <section>
+     <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+
+    ]]>
+  </attribute>
+</record>
 
 
 <record>
@@ -49,8 +375,7 @@
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/19465905">Butler et al. 2009</a>.  
              </li>
                                         
-             <li><a href="/a/app/record/dataset/DS_0bb6f43912"><i>Cladophialophora carrionii</i> KSF</a> &ndash;
-             <a href="http://www.ncbi.nlm.nih.gov/pubmed/28348446">Teixeira et al. 2017</a>. 
+             <li><a href="/a/app/record/dataset/DS_0bb6f43912"><i>Cladophialophora carrionii</i> KSF</a>
              </li>
              
              <li><a href="/a/app/record/dataset/DS_2a627331a7"><i>Exophiala oligosperma</i> CBS 72588</a> &ndash;  
@@ -61,8 +386,7 @@
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/28187150">Moreno et al. 2017</a>.
              </li>
              
-            <li><a href="/a/app/record/dataset/DS_af3eec8762"><i>Kwoniella heveanensis</i> CBS 569</a> &ndash;  
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/22447698">Chen et al. 2012</a>.
+            <li><a href="/a/app/record/dataset/DS_af3eec8762"><i>Kwoniella heveanensis</i> CBS 569</a>
              </li>
              
               <li><a href="/a/app/record/dataset/DS_160f9f30a6"><i>Puccinia triticina</i> 1-1 BBBD Race 1</a> &ndash;  
