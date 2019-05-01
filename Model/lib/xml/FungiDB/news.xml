@@ -375,7 +375,7 @@
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/19465905">Butler et al. 2009</a>.  
              </li>
                                         
-             <li><a href="/a/app/record/dataset/DS_0bb6f43912"><i>Cladophialophora carrionii</i> KSF</a>
+             <li><a href="/a/app/record/dataset/DS_0bb6f43912"><i>Cladophialophora carrionii</i> KSF</a> 
              </li>
              
              <li><a href="/a/app/record/dataset/DS_2a627331a7"><i>Exophiala oligosperma</i> CBS 72588</a> &ndash;  
@@ -386,7 +386,7 @@
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/28187150">Moreno et al. 2017</a>.
              </li>
              
-            <li><a href="/a/app/record/dataset/DS_af3eec8762"><i>Kwoniella heveanensis</i> CBS 569</a>
+            <li><a href="/a/app/record/dataset/DS_af3eec8762"><i>Kwoniella heveanensis</i> CBS 569</a>  
              </li>
              
               <li><a href="/a/app/record/dataset/DS_160f9f30a6"><i>Puccinia triticina</i> 1-1 BBBD Race 1</a> &ndash;  
@@ -529,6 +529,7 @@
        <div style="margin-left: 3em;">  
        
         Gene page comments that are entered by users are curated and integrated as functional annotations in FungiDB. 77 user comments have been reviewed and updated in FungiDB 43.
+        <br><br>
          
         <style>
            #UComment_Bld43 table, #UComment_Bld43 td, #UComment_Bld43 th, #UComment_Bld43 tr {
@@ -656,6 +657,7 @@
     ]]>
   </attribute>
 </record>
+
 
 
 
