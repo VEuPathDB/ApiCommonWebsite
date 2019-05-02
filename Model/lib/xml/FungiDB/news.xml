@@ -48,8 +48,8 @@
              </li>
              
              <li><a href="/a/app/record/dataset/DS_2a627331a7"><i>Rhizophagus irregularis</i> DAOM 181602 (DAOM 197198)</a> &ndash;  
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/29355972">Chen et al. 2018</a>.
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/27572831">Ropars et al. 2016</a>.
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/29355972">Chen et al. 2018</a>,
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/27572831">Ropars et al. 2016</a>,
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/24277808">Tisserant et al. 2013</a>.
              </li>
             
@@ -69,27 +69,10 @@
                       
         <h4>Transcriptomics</h4>
            <ul>
-           
-           <li><a href="/a/app/record/dataset/DS_add4b4cd57">Transcriptional responses of <i>Fusarium graminearum</i> to plant cell wall substrates</a> &ndash;
-             <i>Fusarium graminearum</i> was cultured at 25 °C on minimal M3 medium with glucose, birch wood xylan, carboxy methyl cellulose or hop cell wall as sole 
-             carbon source. Microarray experiments were achieved with a Geniom device (febit biomed, Germany). Each of the four tested 
-             condition was tested with two biological and two technical replicates.
-             <a href="http://www.ncbi.nlm.nih.gov/pubmed/23311999" target="_blank">Carapito et al. 2013</a>.
-             </li>
-             
-             <li><a href="/a/app/record/dataset/DS_525e17347f">Strand-Specific RNA-Seq Analyses of Fruiting Body Development in <i>Coprinopsis cinerea</i></a> &ndash;
-             Meiosis was compared in rad50-1 and wild type strains of <i>C. cinerea</i> at 6 time points spanning the meiotic timecourse.
-             <a href="http://www.ncbi.nlm.nih.gov/pubmed/23050232" target="_blank">Anderson et al. 2012</a>.
-             </li>
-             
+               
              <li><a href="/a/app/record/dataset/DS_b45be95903">Gene expression profiling of <i>Aspergillus fumigatus</i> during a temperature shift</a> &ndash;
-             Temperature shift from 30C to 37C or 30C to 48C. Samples were taken after the defined time (0, 15, 30, 60, 120, and 180 min).
+             Temperature shift from 30&deg;C to 37&deg;C or 30&deg;C to 48&deg;C. Samples were taken at 0, 15, 30, 60, 120, and 180 min after the shift.
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/16372009" target="_blank">Nierman et al. 2005</a>.
-             </li>
-             
-            <li><a href="/a/app/record/dataset/DS_add4b4cd57">Transcriptome landscape of <i>Candida glabrata</i> during pH change and nitrosative stress</a> &ndash;
-             RNA-Seq-based analysis of the transcriptomic landscape of <i>C. glabrata</i> in nutrient-rich media, as well as under nitrosative stress and during pH shift.
-             <a href="http://www.ncbi.nlm.nih.gov/pubmed/25586221" target="_blank">Linde et al. 2015</a>.
              </li>
              
              <li><a href="/a/app/record/dataset/DS_525e17347f"><i>Aspergillus fumigatus</i> transcriptome under normoxia and hypoxia conditions</a> &ndash;
@@ -97,8 +80,30 @@
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/24996522" target="_blank">Losada et al. 2014</a>.
              </li>
              
-             <li><a href="/a/app/record/dataset/DS_b45be95903"><i>Histoplasma capsulatum</i> G186A and G217A yeast and mycelial transcriptomes</a> &ndash;
-             Yeast and mycelial transcriptome of <i>Histoplasma capsulatum</i> G186A (ATCC 26029) strain was analyzed via the Illumina GAII platform.
+                         
+            <li><a href="/a/app/record/dataset/DS_add4b4cd57">Transcriptome landscape of <i>Candida glabrata</i> during pH change and nitrosative stress</a> &ndash;
+             RNA-Seq-based analysis of the transcriptomic landscape of <i>C. glabrata</i> in nutrient-rich media, under nitrosative stress, and during pH shift.
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/25586221" target="_blank">Linde et al. 2015</a>.
+             </li>
+             
+             <li><a href="/a/app/record/dataset/DS_525e17347f">Strand-Specific RNA-Seq Analyses of Fruiting Body Development in <i>Coprinopsis cinerea</i></a> &ndash;
+             Meiosis was compared in <i>rad50-1</i> and wild type strains of <i>C. cinerea</i> at 6 time points spanning the meiotic timecourse.
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/23050232" target="_blank">Anderson et al. 2012</a>.
+             </li>
+             
+             <li><a href="/a/app/record/dataset/DS_b45be95903">O2-responsive genes in the human pathogenic fungus <i>Aspergillus fumigatus</i></a> &ndash;
+             Transcriptomic investigation of low oxygen adaptation of <i>A. fumigatus</i>.
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/24948085" target="_blank">Hillmann et al. 2014</a>.
+             </li>
+             
+             <li><a href="/a/app/record/dataset/DS_add4b4cd57">Transcriptional responses of <i>Fusarium graminearum</i> to plant cell wall substrates</a> &ndash;
+             <i>Fusarium graminearum</i> was cultured at 25&deg;C on minimal M3 medium with glucose, birch wood xylan, carboxy methyl cellulose or hop cell wall as sole 
+             carbon source. 
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/23311999" target="_blank">Carapito et al. 2013</a>.
+             </li>
+             
+            <li><a href="/a/app/record/dataset/DS_b45be95903"><i>Histoplasma capsulatum</i> G186A and G217A yeast and mycelial transcriptomes</a> &ndash;
+             Yeast and mycelial transcriptome of <i>Histoplasma capsulatum</i> G186A and G217A strains.
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/24112604" target="_blank">Edwards et al. 2013</a>.
              </li>
              
@@ -107,11 +112,7 @@
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/29678830" target="_blank">Fischer et al. 2018</a>.
              </li>
              
-             <li><a href="/a/app/record/dataset/DS_b45be95903">O2-responsive genes in the human pathogenic fungus <i>Aspergillus fumigatus</i></a> &ndash;
-             Transcriptomic investigation of low oxygen adaptation of <i>A. fumigatus</i>.
-             <a href="http://www.ncbi.nlm.nih.gov/pubmed/24948085" target="_blank">Hillmann et al. 2014</a>.
-             </li>
-             
+                          
         	</ul>
         	<br>
         	          
