@@ -8,31 +8,10 @@ use ApiCommonWebsite::View::GraphPackage::Templates::Expression;
 use Data::Dumper;
 
 
-
-# @Override
-# sub getKey{
-#   my ($self, $profileSetName, $profileType) = @_;
-# #print STDERR Dumper($profileSetName);
-#   my ($groupName) = $self->getGroupNameFromProfileSetName($profileSetName);
-
-#   my ($strand) = $profileSetName =~ /\[.+ \- (.+) \- .+ \- /;
-#   ($strand) = $profileSetName =~ /\[.+ \- (.+) \- / if  (!$strand);
-
-#   $groupName = '' if (!$groupName);
-#   $profileType = 'percentile' if ($profileType eq 'channel1_percentiles');
-
-#   die if (!$strand);
-#   $strand = $strand eq 'unstranded'? ''  :  '_' . $self->getStrandDictionary()->{$strand};
-#   if ($groupName eq 'Non Unique') {
-#     $groupName = '';
-#   } 
-#   return "${groupName}_${profileType}${strand}";
-# }
-
 # @Override
 sub getKeys{
   my ($self, $profileSetName, $profileType) = @_;
-#print STDERR Dumper($profileSetName);
+  #print STDERR Dumper($profileSetName);
   my ($groupName) = $self->getGroupNameFromProfileSetName($profileSetName);
 
   my ($strand) = $profileSetName =~ /\[.+ \- (.+) \- .+ \- /;
@@ -50,7 +29,7 @@ sub getKeys{
   if ($profileType ne 'values' || $profileSetName =~ / \- nonunique\]/ || $groupName || $strand eq '') {
       return([$mainKey])
   }
-# capital letter B in Both so that this graph is sorted after antisense (reverse sort)
+  # capital letter B in Both so that this graph is sorted after antisense (reverse sort)
   my $bothStrandsKey = "${groupName}_${profileType}_Both_strands";
   return([$mainKey,$bothStrandsKey]);
 }
