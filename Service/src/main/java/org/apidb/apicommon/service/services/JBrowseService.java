@@ -1,11 +1,11 @@
 package org.apidb.apicommon.service.services;
 
+import static org.gusdb.fgputil.FormatUtil.join;
 import static org.gusdb.wdk.service.FileRanges.getFileChunkResponse;
 import static org.gusdb.wdk.service.FileRanges.parseRangeHeaderValue;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.InputStream;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +32,6 @@ import org.json.JSONObject;
 @Path("/jbrowse")
 public class JBrowseService extends AbstractWdkService {
 
-    @SuppressWarnings("unused")
     private static final Logger LOG = Logger.getLogger(JBrowseService.class);
 
     @GET
@@ -52,11 +51,9 @@ public class JBrowseService extends AbstractWdkService {
                                                      @Context UriInfo uriInfo,
                                                      @QueryParam("feature") String feature,
                                                      @QueryParam("start") String start,
-                                                     @QueryParam("end") String end)  throws IOException, InterruptedException {
+                                                     @QueryParam("end") String end)  throws IOException {
 
-        String result = featuresAndRegionStats(refseqName, uriInfo, feature, start, end);
-
-        return Response.ok(result).build();
+        return featuresAndRegionStats(refseqName, uriInfo, feature, start, end);
     }
 
 
@@ -68,19 +65,17 @@ public class JBrowseService extends AbstractWdkService {
                                        @Context UriInfo uriInfo,
                                        @QueryParam("feature") String feature,
                                        @QueryParam("start") String start,
-                                       @QueryParam("end") String end)  throws IOException, InterruptedException {
+                                       @QueryParam("end") String end)  throws IOException {
 
 
-        String result = featuresAndRegionStats(refseqName, uriInfo, feature, start, end);
-
-        return Response.ok(result).build();
+        return featuresAndRegionStats(refseqName, uriInfo, feature, start, end);
     }
 
 
     @GET
     @Path("dnaseq/{organismAbbrev}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getJbrowseDNASeqTracks(@PathParam("organismAbbrev") String organismAbbrev) throws IOException, InterruptedException {
+    public Response getJbrowseDNASeqTracks(@PathParam("organismAbbrev") String organismAbbrev) throws IOException {
 
         String gusHome = getWdkModel().getGusHome();
         String projectId = getWdkModel().getProjectId();
@@ -90,16 +85,14 @@ public class JBrowseService extends AbstractWdkService {
         command.add(organismAbbrev);
         command.add(projectId);
 
-        String result = jsonStringFromCommand(command);
-
-        return Response.ok(result).build();
+        return responseFromCommand(command);
     }
 
 
     @GET
     @Path("rnaseqJunctions/{organismAbbrev}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getJbrowseRNASeqJunctionTracks(@PathParam("organismAbbrev") String organismAbbrev)  throws IOException, InterruptedException {
+    public Response getJbrowseRNASeqJunctionTracks(@PathParam("organismAbbrev") String organismAbbrev)  throws IOException {
 
         String gusHome = getWdkModel().getGusHome();
         String projectId = getWdkModel().getProjectId();
@@ -109,9 +102,7 @@ public class JBrowseService extends AbstractWdkService {
         command.add(organismAbbrev);
         command.add(projectId);
 
-        String result = jsonStringFromCommand(command);
-
-        return Response.ok(result).build();
+        return responseFromCommand(command);
     }
 
 
@@ -119,7 +110,7 @@ public class JBrowseService extends AbstractWdkService {
     @GET
     @Path("organismSpecific/{organismAbbrev}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getJbrowseOrganismSpecificTracks(@PathParam("organismAbbrev") String organismAbbrev)  throws IOException, InterruptedException {
+    public Response getJbrowseOrganismSpecificTracks(@PathParam("organismAbbrev") String organismAbbrev)  throws IOException {
 
         String gusHome = getWdkModel().getGusHome();
         String projectId = getWdkModel().getProjectId();
@@ -129,9 +120,7 @@ public class JBrowseService extends AbstractWdkService {
         command.add(organismAbbrev);
         command.add(projectId);
 
-        String result = jsonStringFromCommand(command);
-
-        return Response.ok(result).build();
+        return responseFromCommand(command);
     }
 
 
@@ -139,7 +128,7 @@ public class JBrowseService extends AbstractWdkService {
     @GET
     @Path("organismList")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getOrganismList() throws IOException, InterruptedException {
+    public Response getOrganismList() throws IOException {
 
         String gusHome = getWdkModel().getGusHome();
         String projectId = getWdkModel().getProjectId();
@@ -148,9 +137,7 @@ public class JBrowseService extends AbstractWdkService {
         command.add(gusHome + "/bin/jbrowseOrganismList");
         command.add(projectId);
 
-        String result = jsonStringFromCommand(command);
-
-        return Response.ok(result).build();
+        return responseFromCommand(command);
     }
 
 
@@ -159,7 +146,7 @@ public class JBrowseService extends AbstractWdkService {
     @GET
     @Path("rnaseq/{organismAbbrev}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getJbrowseRNASeqTracks(@PathParam("organismAbbrev") String organismAbbrev) throws IOException, InterruptedException {
+    public Response getJbrowseRNASeqTracks(@PathParam("organismAbbrev") String organismAbbrev) throws IOException {
 
         String gusHome = getWdkModel().getGusHome();
         String projectId = getWdkModel().getProjectId();
@@ -174,15 +161,13 @@ public class JBrowseService extends AbstractWdkService {
         command.add(webservicesDir);
         command.add("RNASeq");
 
-        String result = jsonStringFromCommand(command);
-
-        return Response.ok(result).build();
+        return responseFromCommand(command);
     }
 
     @GET
     @Path("chipseq/{organismAbbrev}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getJbrowseChIPSeqTracks(@PathParam("organismAbbrev") String organismAbbrev) throws IOException, InterruptedException {
+    public Response getJbrowseChIPSeqTracks(@PathParam("organismAbbrev") String organismAbbrev) throws IOException {
 
         String gusHome = getWdkModel().getGusHome();
         String projectId = getWdkModel().getProjectId();
@@ -197,9 +182,7 @@ public class JBrowseService extends AbstractWdkService {
         command.add(webservicesDir);
         command.add("ChIPSeq");
 
-        String result = jsonStringFromCommand(command);
-
-        return Response.ok(result).build();
+        return responseFromCommand(command);
     }
 
 
@@ -252,7 +235,7 @@ public class JBrowseService extends AbstractWdkService {
     @GET
     @Path("seq/{organismAbbrev}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getJbrowseRefSeqs(@PathParam("organismAbbrev") String organismAbbrev )  throws IOException, InterruptedException {
+    public Response getJbrowseRefSeqs(@PathParam("organismAbbrev") String organismAbbrev )  throws IOException {
 
         String gusHome = getWdkModel().getGusHome();
         String projectId = getWdkModel().getProjectId();
@@ -263,16 +246,14 @@ public class JBrowseService extends AbstractWdkService {
         command.add(projectId);
         command.add(organismAbbrev);
 
-        String result = jsonStringFromCommand(command);
-
-        return Response.ok(result).build();
+        return responseFromCommand(command);
     }
 
 
     @GET
     @Path("names/{organismAbbrev}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getJbrowseNames(@PathParam("organismAbbrev") String organismAbbrev, @QueryParam("equals") String eq, @QueryParam("startswith") String startsWith)  throws IOException, InterruptedException {
+    public Response getJbrowseNames(@PathParam("organismAbbrev") String organismAbbrev, @QueryParam("equals") String eq, @QueryParam("startswith") String startsWith)  throws IOException {
 
         String gusHome = getWdkModel().getGusHome();
         String projectId = getWdkModel().getProjectId();
@@ -293,14 +274,12 @@ public class JBrowseService extends AbstractWdkService {
         command.add(String.valueOf(isPartial));
         command.add(sourceId);
 
-        String result = jsonStringFromCommand(command);
-
-        return Response.ok(result).build();
+        return responseFromCommand(command);
     }
 
 
     
-    public String featuresAndRegionStats (String refseqName, UriInfo uriInfo, String feature, String start, String end)  throws IOException, InterruptedException {
+    public Response featuresAndRegionStats (String refseqName, UriInfo uriInfo, String feature, String start, String end)  throws IOException {
 
         String gusHome = getWdkModel().getGusHome();
         String projectId = getWdkModel().getProjectId();
@@ -321,40 +300,45 @@ public class JBrowseService extends AbstractWdkService {
             command.add(key + "=" + value);
         }
 
-        return jsonStringFromCommand(command);
+        return responseFromCommand(command);
     }
 
-    public String jsonStringFromCommand (List<String> command) throws IOException, InterruptedException {
+    public Response responseFromCommand(List<String> command) throws IOException {
 
-        String gusHome = getWdkModel().getGusHome();
         ProcessBuilder pb = new ProcessBuilder(command);
         Map<String, String> env = pb.environment();
-        env.put("GUS_HOME", gusHome);
+        env.put("GUS_HOME", getWdkModel().getGusHome());
 
         pb.redirectErrorStream(true);
 
         Process p = pb.start();
+        InputStream processInputStream = p.getInputStream();
 
-        BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
+        // wrap process's input stream so we can log any problems
+        InputStream resultInputStream = new InputStream() {
 
-        String result = "";
-        String line;
-        while ((line = br.readLine()) != null) {
-            result += line;
-        }
+          @Override
+          public int read() throws IOException {
+            return processInputStream.read();
+          }
 
-        p.waitFor();
+          @Override
+          public void close() {
+            try {
+              p.waitFor();
+            }
+            catch (InterruptedException e) {
+              LOG.warn("JBrowse process interrupted before completion. " +
+                  "Command line: " + join(command, " "));
+            }
+            int exitValue = p.exitValue();
+            if (exitValue != 0) {
+              LOG.error("JBrowse process did not complete successfully " +
+                  "(exitValue=" + exitValue + "). Command line: " + join(command, " "));
+            }
+          }
+        };
 
-        if(p.exitValue() != 0) {
-            throw new RuntimeException(result);
-        }
-
-        if(result.equals("")) {
-            result = "{}";
-        }
-
-        return result;
+        return Response.ok(getStreamingOutput(resultInputStream)).build();
     }
-
-
 }
