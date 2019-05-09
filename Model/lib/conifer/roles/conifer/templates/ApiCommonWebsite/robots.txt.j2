@@ -6,12 +6,12 @@
 #Environment: {{ env|default() }}
 #site_vars file: {{ site_vars }}
 
-Allow: /{{robots_webapp}}/app/search/organism/GenomeDataTypes/result*
-Allow: /{{robots_webapp}}/app/record/organism/
-Allow: /{{robots_webapp}}/*.js
-Allow: /{{robots_webapp}}/*.css
-Allow: /{{robots_webapp}}/service/*
+Allow: /{{ webapp_ctx }}/app/search/organism/GenomeDataTypes/result*
+Allow: /{{ webapp_ctx }}/app/record/organism/
+Allow: /{{ webapp_ctx }}/*.js
+Allow: /{{ webapp_ctx }}/*.css
+Allow: /{{ webapp_ctx }}/service/*
 Allow: /sitemap.txt
 
-Sitemap: https://{{hostname}}/sitemap.txt
+Sitemap: https://{{ hostname }}/sitemap.txt
 
