@@ -1,0 +1,17 @@
+#Templated by Conifer using
+#{{ template_path }}
+#with vars from
+#Cohort: {{ cohort }}
+#Project: {{ project }}
+#Environment: {{ env|default() }}
+#site_vars file: {{ site_vars }}
+
+Allow: /{{robots_webapp}}/app/search/organism/GenomeDataTypes/result*
+Allow: /{{robots_webapp}}/app/record/organism/
+Allow: /{{robots_webapp}}/*.js
+Allow: /{{robots_webapp}}/*.css
+Allow: /{{robots_webapp}}/service/*
+Allow: /sitemap.txt
+
+Sitemap: https://{{hostname}}/sitemap.txt
+
