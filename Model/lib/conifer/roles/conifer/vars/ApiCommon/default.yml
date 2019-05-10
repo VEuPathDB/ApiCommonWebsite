@@ -79,5 +79,5 @@ fisherexacttestconfig_connectionUrl: "{{ '' if modelconfig_userDb_connectionUrl.
 
 # below will remove the wN. prefix from live sites.  This is used for
 # creating link references for robots.txt / sitemap.txt for live sites.
-live_hostname: "{{ hostname | regex_replace('^w[0-9]','') }}"
+live_hostname: "{{ hostname | regex_replace('^w[0-9]\\.','') }}"
 
