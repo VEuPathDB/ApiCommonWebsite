@@ -76,4 +76,3 @@ fisherexacttestconfig_dbLogin: '{{ modelconfig_appDb_login }}'
 fisherexacttestconfig_dbPassword: '{{ modelconfig_appDb_password }}'
 fisherexacttestconfig_perlExec: /usr/bin/perl
 fisherexacttestconfig_connectionUrl: "{{ '' if modelconfig_userDb_connectionUrl.startswith('=c=') else modelconfig_appDb_connectionUrl|jdbc2Dbi }}"
-
