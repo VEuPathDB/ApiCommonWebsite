@@ -104,8 +104,8 @@ EOSQL
       with geneDetails as (
       select ta.gene_start_min - 0 as min
       , ta.gene_end_max + 0 as max
-      , ta.cds_start
-      , ta.cds_end
+      , ta.coding_start
+      , ta.coding_end
       , ta.strand
       , ta.source_id
       , ta.gene_source_id
@@ -115,8 +115,8 @@ EOSQL
       )
       select ts.source_id, gd.strand,
       CASE
-          WHEN gd.strand = 'forward' then SUBSTR(ts.sequence, (gd.cds_start - gd.min+1) , gd.cds_length)
-          WHEN gd.strand = 'reverse' then SUBSTR(ts.sequence, (gd.max - gd.cds_end+1) , (gd.cds_length))
+          WHEN gd.strand = 'forward' then SUBSTR(ts.sequence, (gd.coding_start - gd.min+1) , gd.cds_length)
+          WHEN gd.strand = 'reverse' then SUBSTR(ts.sequence, (gd.max - gd.coding_end+1) , (gd.cds_length))
       END
       from apidbtuning.transcriptsequence ts
       , geneDetails gd
