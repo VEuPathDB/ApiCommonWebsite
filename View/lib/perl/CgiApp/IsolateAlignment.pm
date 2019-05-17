@@ -216,21 +216,16 @@ EOSQL
   system($cmd);
   my %origins = ();
   my @alignments = ();
-  &createHTML($outfile,$cgi,%origins);
-
   my $dndData = "";
 
-  open(D, "$dndfile");
-  print "<pre>";
-  print "<hr>.dnd file\n\n";
+  open(D, "$dndfile"); #This is for the iTOL input. 
   while(<D>) {
-    print $_;
+	#  print $_;
     my $revData = reverse($_);
     $revData =~ s/:/%/;
     $revData =~ s/:/_/;
     $revData = reverse($revData);
     $revData =~ s/%/:/;
-    # print "$revData\n";
     $dndData = $dndData . $revData . "\n";
   }
   close D;
@@ -249,10 +244,15 @@ EOSQL
   # print Dumper $response->{'_headers'}->{'location'};
   # print Dumper $response->content;
   my $iTOLLink =  "https://itol.embl.de/" . $response->{'_headers'}->{'location'};
-  print "<a href='$iTOLLink' target='_blank'>Click here to view an iTOL phylogenetic tree of the alignment. </a>\n";
-  print "</pre>";
-  # print "Make link to iTOL here.\n";
-  # print $dndData;
+  my $iTOLHTML = "<a href='$iTOLLink' target='_blank'><h4>Click here to view a phylogenetic tree of the alignment.</h4></a>";
+  &createHTML($iTOLHTML,$outfile,$cgi,%origins);
+
+  open(D, "$dndfile"); # Printing the dendrogram on the results page.
+  print "<pre>";
+  print "<hr>.dnd file\n\n";
+  while(<D>) {
+	print $_;
+  }
 }
 
 sub error {
@@ -263,8 +263,8 @@ sub error {
 
 
 sub createHTML {
-  my ($outfile, $cgi, %origins) = @_;
-  open(O, "$outfile") or die "cant open $outfile for reading:$!";
+  my ($iTOLLINK, $outfile, $cgi, %origins) = @_;
+  open(O, "$outfile") or die "can't open $outfile for reading:$!";
 
   my $userOutFormat = $cgi->param('clustalOutFormat');
   if ((! defined $userOutFormat) || ($userOutFormat eq "")){
@@ -279,8 +279,9 @@ sub createHTML {
   while(<O>) {
     chomp;
     if ($_ =~/CLUSTAL O/) {
-      print $cgi->pre("Clustal Omega 1.2.3 Multiple Sequence Alignments\n");
-      next;
+      print $cgi->pre("<h3>Clustal Omega 1.2.3 Multiple Sequence Alignments</h3>");
+      print $cgi->pre($iTOLLINK);
+	  next;
     }
     elsif($_=~/^CLUSTAL/) {
       print $cgi->pre("Clustal 2.1 Multiple Sequence Alignments\n");
