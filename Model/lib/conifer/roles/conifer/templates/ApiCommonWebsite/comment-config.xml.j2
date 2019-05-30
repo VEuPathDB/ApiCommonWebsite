@@ -29,6 +29,9 @@ site_vars file: {{ site_vars }}
     {% if commentconfig_maxWait is defined -%}
     maxWait="{{ commentconfig_maxWait }}"
     {% endif -%}
+    {% if commentconfig_defaultFetchSize is defined -%}
+    defaultFetchSize="{{ commentconfig_defaultFetchSize }}"
+    {% endif -%}
     {% if commentconfig_showConnections is defined -%}
     showConnections="{{ commentconfig_showConnections }}"
     {% endif -%}
