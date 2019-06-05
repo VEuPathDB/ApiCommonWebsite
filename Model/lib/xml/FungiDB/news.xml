@@ -39,15 +39,12 @@
 
         <h4>Genome Sequence and Annotation: these annotated genomes appear for the first time in FungiDB.</h4>
            <ul>
-             <li><a href="/a/app/record/dataset/DS_b6d1bccea1"><i>Cladophialophora immunda</i> CBS 83496</a> &ndash;
+             
+             <li><a href="/a/app/record/dataset/DS_6438c3f349"><i>Cladophialophora immunda</i> CBS 83496</a> &ndash;
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/28348446">Teixeira et al. 2017</a>.  
              </li>
              
-             <li><a href="/a/app/record/dataset/DS_adb102b7b5"><i>Pleurotus ostreatus</i> PC9</a> &ndash;
-             <a href="http://www.ncbi.nlm.nih.gov/pubmed/27117896">Alfaro et al. 2016</a>.  
-             </li>
-             
-             <li><a href="/a/app/record/dataset/DS_2a627331a7"><i>Rhizophagus irregularis</i> DAOM 181602 (DAOM 197198)</a> &ndash;  
+             <li><a href="/a/app/record/dataset/DS_248d79bc8e"><i>Rhizophagus irregularis</i> DAOM 181602 (DAOM 197198)</a> &ndash;  
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/29355972">Chen et al. 2018</a>,
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/27572831">Ropars et al. 2016</a>,
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/24277808">Tisserant et al. 2013</a>.
@@ -59,7 +56,7 @@
            
            <h4>New Genome Sequence: available for the first time in FungiDB:</h4>
         <ul>
-        	<li><a href="/a/app/record/dataset/DS_7aa9de4305"><i>Amauroascus niger</i> UAMH 3544</a> &ndash;  
+        	<li><a href="/a/app/record/dataset/DS_ab94e95077"><i>Amauroascus niger</i> UAMH 3544</a> &ndash;  
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/26613950">Whiston et al. 2015</a>.
         	</li>
         
@@ -70,28 +67,28 @@
         <h4>Transcriptomics</h4>
            <ul>
                
-             <li><a href="/a/app/record/dataset/DS_b45be95903">Gene expression profiling of <i>Aspergillus fumigatus</i> during a temperature shift</a> &ndash;
+             <li><a href="/a/app/record/dataset/DS_2fce165b71">Gene expression profiling of <i>Aspergillus fumigatus</i> during a temperature shift</a> &ndash;
              Temperature shift from 30&deg;C to 37&deg;C or 30&deg;C to 48&deg;C. Samples were taken at 0, 15, 30, 60, 120, and 180 min after the shift.
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/16372009" target="_blank">Nierman et al. 2005</a>.
              </li>
              
-             <li><a href="/a/app/record/dataset/DS_525e17347f"><i>Aspergillus fumigatus</i> transcriptome under normoxia and hypoxia conditions</a> &ndash;
+             <li><a href="/a/app/record/dataset/DS_795f56c575"><i>Aspergillus fumigatus</i> transcriptome under normoxia and hypoxia conditions</a> &ndash;
              RNAseq analysis of the <i>Aspergillus fumigatus</i> was used to determine its response to early hypoxic conditions.
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/24996522" target="_blank">Losada et al. 2014</a>.
              </li>
              
                          
-            <li><a href="/a/app/record/dataset/DS_add4b4cd57">Transcriptome landscape of <i>Candida glabrata</i> during pH change and nitrosative stress</a> &ndash;
+            <li><a href="/a/app/record/dataset/DS_4fe013954b">Transcriptome landscape of <i>Candida glabrata</i> during pH change and nitrosative stress</a> &ndash;
              RNA-Seq-based analysis of the transcriptomic landscape of <i>C. glabrata</i> in nutrient-rich media, under nitrosative stress, and during pH shift.
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/25586221" target="_blank">Linde et al. 2015</a>.
              </li>
              
-             <li><a href="/a/app/record/dataset/DS_525e17347f">Strand-Specific RNA-Seq Analyses of Fruiting Body Development in <i>Coprinopsis cinerea</i></a> &ndash;
+             <li><a href="/a/app/record/dataset/DS_b9dffe2a12">Strand-Specific RNA-Seq Analyses of Fruiting Body Development in <i>Coprinopsis cinerea</i></a> &ndash;
              Meiosis was compared in <i>rad50-1</i> and wild type strains of <i>C. cinerea</i> at 6 time points spanning the meiotic timecourse.
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/23050232" target="_blank">Anderson et al. 2012</a>.
              </li>
              
-             <li><a href="/a/app/record/dataset/DS_b45be95903">O2-responsive genes in the human pathogenic fungus <i>Aspergillus fumigatus</i></a> &ndash;
+             <li><a href="/a/app/record/dataset/DS_9572ee47dc">O2-responsive genes in the human pathogenic fungus <i>Aspergillus fumigatus</i></a> &ndash;
              Transcriptomic investigation of low oxygen adaptation of <i>A. fumigatus</i>.
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/24948085" target="_blank">Hillmann et al. 2014</a>.
              </li>
@@ -102,12 +99,12 @@
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/23311999" target="_blank">Carapito et al. 2013</a>.
              </li>
              
-            <li><a href="/a/app/record/dataset/DS_b45be95903"><i>Histoplasma capsulatum</i> G186A and G217A yeast and mycelial transcriptomes</a> &ndash;
+            <li><a href="/a/app/record/dataset/DS_b8793f4345"><i>Histoplasma capsulatum</i> G186A and G217A yeast and mycelial transcriptomes</a> &ndash;
              Yeast and mycelial transcriptome of <i>Histoplasma capsulatum</i> G186A and G217A strains.
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/24112604" target="_blank">Edwards et al. 2013</a>.
              </li>
              
-            <li><a href="/a/app/record/dataset/DS_b45be95903">Gene expression analysis of ADV-1 and PP-1 mutants in <i>Neurospora crassa</i></a> &ndash;
+            <li><a href="/a/app/record/dataset/DS_c45818957f">Gene expression analysis of ADV-1 and PP-1 mutants in <i>Neurospora crassa</i></a> &ndash;
              The transcription factors ADV-1 and PP-1 are essential for germling communication and fusion and <i>Neurospora crassa</i>.
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/29678830" target="_blank">Fischer et al. 2018</a>.
              </li>
