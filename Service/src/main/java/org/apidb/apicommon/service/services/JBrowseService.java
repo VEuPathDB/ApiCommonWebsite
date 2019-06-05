@@ -245,9 +245,30 @@ public class JBrowseService extends AbstractWdkService {
         command.add(gusHome);
         command.add(projectId);
         command.add(organismAbbrev);
+        command.add("genomic");
 
         return responseFromCommand(command);
     }
+
+
+    @GET
+    @Path("aaseq/{organismAbbrev}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getJbrowseAaRefSeqs(@PathParam("organismAbbrev") String organismAbbrev )  throws IOException {
+
+        String gusHome = getWdkModel().getGusHome();
+        String projectId = getWdkModel().getProjectId();
+
+        List<String> command = new ArrayList<String>();
+        command.add(gusHome + "/bin/jbrowseRefSeqs");
+        command.add(gusHome);
+        command.add(projectId);
+        command.add(organismAbbrev);
+        command.add("protein");
+
+        return responseFromCommand(command);
+    }
+
 
 
     @GET
@@ -271,11 +292,43 @@ public class JBrowseService extends AbstractWdkService {
         command.add(gusHome);
         command.add(projectId);
         command.add(organismAbbrev);
+        command.add("genomic");
+        command.add(String.valueOf(isPartial));
+        command.add(sourceId);
+
+
+        return responseFromCommand(command);
+    }
+
+
+    @GET
+    @Path("aanames/{organismAbbrev}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getJbrowseAaNames(@PathParam("organismAbbrev") String organismAbbrev, @QueryParam("equals") String eq, @QueryParam("startswith") String startsWith)  throws IOException {
+
+        String gusHome = getWdkModel().getGusHome();
+        String projectId = getWdkModel().getProjectId();
+
+        boolean isPartial = true;
+        String sourceId = startsWith;
+
+        if(eq != null && !eq.equals("")) {
+            isPartial = false;
+            sourceId = eq;
+        }
+
+        List<String> command = new ArrayList<String>();
+        command.add(gusHome + "/bin/jbrowseNames");
+        command.add(gusHome);
+        command.add(projectId);
+        command.add(organismAbbrev);
+        command.add("protein");
         command.add(String.valueOf(isPartial));
         command.add(sourceId);
 
         return responseFromCommand(command);
     }
+
 
 
     

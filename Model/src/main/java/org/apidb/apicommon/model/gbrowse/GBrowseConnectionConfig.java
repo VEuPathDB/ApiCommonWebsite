@@ -1,11 +1,11 @@
 package org.apidb.apicommon.model.gbrowse;
 
+import static org.gusdb.fgputil.FormatUtil.NL;
+
 import org.gusdb.fgputil.db.platform.SupportedPlatform;
 import org.gusdb.fgputil.db.pool.ConnectionPoolConfig;
 
 public class GBrowseConnectionConfig implements ConnectionPoolConfig {
-
-  private static final String NL = System.getProperty("line.separator");
   
   // vars needed by connection pool
   private String _connectionString;
@@ -37,6 +37,7 @@ public class GBrowseConnectionConfig implements ConnectionPoolConfig {
   @Override public short getMaxIdle() { return 5; }
   @Override public short getMinIdle() { return 0; }
   @Override public long getMaxWait() { return 100; }
+  @Override public int getDefaultFetchSize() { return 100; }
   @Override public boolean isShowConnections() { return false; }
   @Override public long getShowConnectionsInterval() { return 0; }
   @Override public long getShowConnectionsDuration() { return 0; }

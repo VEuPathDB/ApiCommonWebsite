@@ -43,6 +43,7 @@ commentconfig_maxActive: 20
 commentconfig_maxIdle: 1
 commentconfig_minIdle: 1
 commentconfig_maxWait: 50
+commentconfig_defaultFetchSize: 200
 commentconfig_commentSchema: userlogins5
 commentconfig_userLoginSchema: userlogins5
 commentconfig_userLoginDbLink: '{{ modelconfig_appDb_userDbLink }}'

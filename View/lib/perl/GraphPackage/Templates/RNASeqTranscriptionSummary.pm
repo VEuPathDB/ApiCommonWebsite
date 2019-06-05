@@ -51,6 +51,6 @@ use strict;
   sub getForceXLabelsHorizontalString { 'true' }
   sub getBottomMarginSize { 0 }
   sub getExprPlotPartModuleString { 'RNASeqTranscriptionSummary' }
-  sub getXAxisLabel { 'FPKM' }
+  sub getXAxisLabel { 'FPKM - Sample 1' }
 
 1;

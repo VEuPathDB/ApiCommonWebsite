@@ -5,6 +5,7 @@ import {
 } from './components/controllers/GalaxyTermsController';
 
 const PlasmoDB = 'PlasmoDB';
+const TriTrypDB = 'TriTrypDB';
 const CryptoDB = 'CryptoDB';
 const ToxoDB = 'ToxoDB';
 const EuPathDB = 'EuPathDB';
@@ -37,6 +38,7 @@ export default function mainMenuItems({ siteConfig, config, preferences }, defau
       id: 'userDatasets',
       text: 'My Data Sets',
       beta: true,
+      exclude: [EuPathDB],
       route: '/workspace/datasets'
     } : null,
 
@@ -74,13 +76,23 @@ export default function mainMenuItems({ siteConfig, config, preferences }, defau
           id: 'companion',
           text: 'Companion',
           tooltip: 'Annotate your sequence and determine orthology, phylogeny & synteny',
-          url: 'https://companion.sanger.ac.uk'
+          url: 'https://companion.sanger.ac.uk',
+          target: '_blank'
+        },
+        {
+          id: 'LeishGEdit',
+          text: 'LeishGEdit',
+          include: [TriTrypDB],
+          tooltip: 'Your online resource for CRISPR Cas9 T7 RNA Polymerase gene editing in kinetoplastids',
+          url: 'http://www.leishgedit.net',
+          target: '_blank'
         },
         {
           id: 'EuPaGDT',
           text: 'EuPaGDT',
           tooltip: 'Eukaryotic Pathogen CRISPR guide RNA/DNA Design Tool',
-          url: 'http://grna.ctegd.uga.edu'
+          url: 'http://grna.ctegd.uga.edu',
+          target: '_blank'
         },
         {
           id: 'pubcrawler',
@@ -103,7 +115,8 @@ export default function mainMenuItems({ siteConfig, config, preferences }, defau
           id: 'pats',
           text: 'PATS',
           include: [PlasmoDB],
-          url: 'http://modlabcadd.ethz.ch/software/pats/'
+          url: 'http://modlabcadd.ethz.ch/software/pats/',
+          target: '_blank'
         },
 	/*        {
           id: 'plasmit',
@@ -115,7 +128,8 @@ export default function mainMenuItems({ siteConfig, config, preferences }, defau
           id: 'ancillary-genome-browser',
           text: 'Ancillary Genome Browser',
           include: [ToxoDB],
-          url: 'http://ancillary.toxodb.org'
+          url: 'http://ancillary.toxodb.org',
+          target: '_blank'
         },
         {
           id: 'webservices',

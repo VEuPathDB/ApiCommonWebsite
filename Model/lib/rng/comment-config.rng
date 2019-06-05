@@ -46,6 +46,11 @@
                 </attribute>
             </optional>
             <optional>
+                <attribute name="defaultFetchSize">
+                    <data type="unsignedShort" />
+                </attribute>
+            </optional>
+            <optional>
                 <group>
                     <attribute name="showConnections">
                         <data type="boolean" />
