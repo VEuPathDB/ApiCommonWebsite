@@ -86,7 +86,9 @@
 
  <target name="ApiCommonWebsite-Installation" depends="EbrcWebSvcCommon-Installation,
                                                        ApiCommonModel-Installation,
- 	                                               ApiCommonWebsite-MavenInstallation,
+                                                       GBrowse-Installation,
+                                                       JBrowse-Installation,
+ 	                                                     ApiCommonWebsite-MavenInstallation,
                                                        ApiCommonWebsite/Model-Installation,
                                                        ApiCommonWebsite/View-Installation,
                                                        ApiCommonWebsite/Site-Installation,
@@ -169,13 +171,14 @@
  </target>
 -->
   <target name="ApiCommonWebsite-WebInstallation" depends="EbrcWebSvcCommon-WebInstallation,
+                                                           GBrowse-WebInstallation,
+                                                           JBrowse-WebInstallation,
                                                            ApiCommonWebsite-Installation,
                                                            ApiCommonWebsite/View-WebInstallation,
                                                            ApiCommonWebsite/Site-WebInstallation">
-    <!-- JBrowse Stuff
+    <!-- JBrowse Stuff -->
     <symlink link="${webappTargetDir}/jbrowse/tracks" resource="${targetDir}/lib/jbrowse/auto_generated"/>
     <symlink link="${webappTargetDir}/jbrowse/common_tracks" resource="${targetDir}/lib/jbrowse/common"/>
-    -->
 
   </target>
 
@@ -187,7 +190,7 @@
       <property name="component" value="Site"/>
     </ant>
 
-    <!--JBrowse stuff
+    <!--JBrowse stuff -->
     <delete file="${webappTargetDir}/jbrowse/jbrowse.conf"/>
     <delete file="${webappTargetDir}/jbrowse/functions.conf"/>
     <delete file="${webappTargetDir}/jbrowse/index.html"/>
@@ -196,7 +199,8 @@
     <copy file="${projectsDir}/ApiCommonModel/Model/lib/jbrowse/functions.conf" tofile="${webappTargetDir}/jbrowse/functions.conf"/>
     <copy file="${projectsDir}/ApiCommonModel/Model/lib/jbrowse/index.html" tofile="${webappTargetDir}/jbrowse/index.html"/>
     <copy file="${projectsDir}/ApiCommonModel/Model/lib/jbrowse/apiJBrowse.js" tofile="${webappTargetDir}/jbrowse/apiJBrowse.js"/>
-    -->
+
+
 
     <!-- replacement for dataPlotter file used to do expression graph -->
     <replace file="${cgibinTargetDir}/dataPlotter.pl" 
@@ -262,3 +266,4 @@
   </target>  
 
 </project>
+
