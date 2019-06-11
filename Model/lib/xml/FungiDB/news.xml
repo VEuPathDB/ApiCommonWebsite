@@ -113,8 +113,8 @@
            <ul>
              <li><a href="/a/app/record/dataset/DS_43c139682a">Manually curated <i>Cryptococcus</i> Phenotypes</a> &ndash; 
                  The phenotypes for <i>Cryptococcus neoformans</i> JEC21 and H99 and <i>Cryptococcus gatii</i> WM276 are manually curated from published literature describing 
-                 phenotypes obtained from mutant studies. We have curated and added phenotypes from <a href="https://www.ncbi.nlm.nih.gov/pubmed/27677328" target="_blank">Lee et al. </a> 
-                 publication on on kinases to the currently existing phenotypic dataset for <i>C. neoformans</i> H99.
+                 phenotypes obtained from mutant studies. We have curated and added phenotypes from <a href="https://www.ncbi.nlm.nih.gov/pubmed/27677328" target="_blank">Lee et al</a>.  
+                 publication on kinases to the currently existing phenotypic dataset for <i>C. neoformans</i> H99.
                  We followed an &quot;entity &#43; quality&quot; approach and curated phenotypes with multiple ontologies: 
                  Phenotypic Quality Ontology (PATO) for &quot;quality&quot; terms and Gene Ontology (GO), Fungal Gross Anatomy Ontology (FAO),
                  Chemical Entities of Biological Interest (ChEBI) and Ascomycete Phenotype Ontology (APO) for &quot;entity&quot; terms. 
@@ -189,13 +189,13 @@
                 </tr>
                 <tr>
                   <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_8f0322af73"><i>Cryptococcus neoformans</i> H99 </a></td>
-                  <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/genedb/releases/2019-06/CneoformansH99/CneoformansH99.gff.gz">GeneDB version April, 2019</a></td>
-                  <td>141</td>
+                  <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/genedb/releases/2019-06/CneoformansH99/CneoformansH99.gff.gz">GeneDB version June, 2019</a></td>
+                  <td>255</td>
                 </tr>
                 <tr>
                   <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4d171eb9ea"><i>Cryptococcus neoformans</i> JEC21 </a></td>
-                  <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/genedb/releases/2019-06/CneoformansneoformansJEC21/CneoformansneoformansJEC21.gff.gz  ">GeneDB version April, 2019</a></td>
-                  <td>395</td>
+                  <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/genedb/releases/2019-06/CneoformansneoformansJEC21/CneoformansneoformansJEC21.gff.gz  ">GeneDB version June, 2019</a></td>
+                  <td>267</td>
                 </tr>
                 </table>
                 <br>    
@@ -250,25 +250,25 @@
            </tr>
            
            <tr>
-             <td title="Click here to view this dataset's full description"><a href="https://fungidb.org/fungidb/app/record/dataset/DS_c8c07fac9f"><i>Candida albicans</i></i> CBS 138</a></td>
+             <td title="Click here to view this dataset's full description"><a href="https://fungidb.org/fungidb/app/record/dataset/DS_c8c07fac9f"><i>Candida glabrata</i></i> CBS 138</a></td>
              <td title="Click here to be redirected to CGD"><a href="http://www.candidagenome.org/">CGD</a></td>
              <td>36,531</td>
            </tr>
            
            <tr>
-             <td title="Click here to view this dataset's full description"><a href="https://fungidb.org/fungidb/app/record/dataset/DS_d1767fcbd3"><i>Candida albicans</i></i> CDC317</a></td>
+             <td title="Click here to view this dataset's full description"><a href="https://fungidb.org/fungidb/app/record/dataset/DS_d1767fcbd3"><i>Candida parapsilosis</i></i> CDC317</a></td>
              <td title="Click here to be redirected to CGD"><a href="http://www.candidagenome.org/">CGD</a></td>
-             <td>37,202</td>
+             <td>39,202</td>
            </tr>
            
            <tr>
-             <td title="Click here to view this dataset's full description"><a href="https://fungidb.org/fungidb/app/record/dataset/DS_adb102b7b5"><i>Candida albicans</i></i> MYA_3404</a></td>
+             <td title="Click here to view this dataset's full description"><a href="https://fungidb.org/fungidb/app/record/dataset/DS_adb102b7b5"><i>Candida tropicalis</i></i> MYA_3404</a></td>
              <td title="Click here to be redirected to CGD"><a href="http://www.candidagenome.org/">CGD</a></td>
              <td>19,122</td>
            </tr>
            
            <tr>
-             <td title="Click here to view this dataset's full description"><a href="https://fungidb.org/fungidb/app/record/dataset/DS_783046b845"><i>Candida albicans</i></i> ATCC 42720</a></td>
+             <td title="Click here to view this dataset's full description"><a href="https://fungidb.org/fungidb/app/record/dataset/DS_783046b845"><i>Clavispora lusitaniae</i></i> ATCC 42720</a></td>
              <td title="Click here to be redirected to CGD"><a href="http://www.candidagenome.org/">CGD</a></td>
              <td>17,756</td>
            </tr>
