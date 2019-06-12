@@ -123,6 +123,22 @@ public class JBrowseService extends AbstractWdkService {
         return responseFromCommand(command);
     }
 
+    @GET
+    @Path("organismSpecificPbrowse/{organismAbbrev}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getJbrowseOrganismSpecificPbrowseTracks(@PathParam("organismAbbrev") String organismAbbrev)  throws IOException {
+
+        String gusHome = getWdkModel().getGusHome();
+        String projectId = getWdkModel().getProjectId();
+
+        List<String> command = new ArrayList<String>();
+        command.add(gusHome + "/bin/jbrowseOrganismSpecificPbrowseTracks");
+        command.add(organismAbbrev);
+        command.add(projectId);
+
+        return responseFromCommand(command);
+    }
+
 
 
     @GET
