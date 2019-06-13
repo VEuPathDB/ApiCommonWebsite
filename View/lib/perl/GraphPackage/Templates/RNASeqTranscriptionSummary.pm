@@ -12,14 +12,18 @@ sub getAllProfileSetNames {
   my ($self) = @_;
 
   my $id = $self->getId();
-  my $sql = "select profile_set_name from apidbtuning.profile 
-			where dataset_type = 'transcript_expression' 
-			and dataset_subtype = 'rnaseq' 
-			and profile_type = 'values' 
-			and source_id = '$id'
-			and profile_set_name not like '%nonunique%'
-			and (profile_set_name like '%firststrand%' 
-				or profile_set_name like '%unstranded%')";
+  my $sql = "select distinct profile_set_name
+		from apidbtuning.profile p, 
+		     apidbtuning.profilesamples ps, 
+		     apidbtuning.expressiongraphsdata d
+                where p.dataset_type = 'transcript_expression' 
+                and p.dataset_subtype = 'rnaseq' 
+                and p.profile_type = 'values' 
+                and p.source_id = '$id'
+                and d.sample_name not like '%antisense%'
+                and d.sample_name like '%unique%'
+                and p.profile_set_name = ps.study_name
+                and ps.protocol_app_node_id = d.protocol_app_node_id";
 
   my $dbh = $self->getQueryHandle();
   my $sh = $dbh->prepare($sql);
