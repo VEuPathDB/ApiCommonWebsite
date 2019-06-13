@@ -35,20 +35,20 @@
 --> 
 
 <record>
-  <attribute name="headline">AmoebaDB 43 Released</attribute>
-  <attribute name="date">25 Apr 2019 13:00</attribute>
-  <attribute name="tag">AmoebaDB4_19_release</attribute>
+  <attribute name="headline">AmoebaDB 44 Released</attribute>
+  <attribute name="date">25 Jun 2019 13:00</attribute>
+  <attribute name="tag">AmoebaDB6_19_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of AmoebaDB 43</strong></p>
+    <p><strong>We are pleased to announce the release of AmoebaDB 44</strong></p>
     
     <section>
-    <h3><b>Release 43 Webinar</b></h3>
+    <h3><b>Release 44 Webinar</b></h3>
     <div style="margin-left: 3em;">
-      Join us on May 15th at 10:00 am (EST) for our Release 43 Highlights webinar where we will discuss and 
-      demonstrate new features and data available in release 43 of EuPathDB sites. 
-      <a href="https://attendee.gotowebinar.com/register/5760372602565130253">Register here</a>
+      Join us on XXX at 10:00 am (EST) for our Release 44 Highlights webinar where we will discuss and 
+      demonstrate new features and data available in release 44 of EuPathDB sites. 
+      <a href="XXX">Register here</a>
     </div>
     </section>
       
