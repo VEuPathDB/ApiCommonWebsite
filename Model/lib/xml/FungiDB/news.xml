@@ -66,12 +66,7 @@
                       
         <h4>Transcriptomics</h4>
            <ul>
-               
-             <li><a href="/a/app/record/dataset/DS_2fce165b71">Gene expression profiling of <i>Aspergillus fumigatus</i> during a temperature shift</a> &ndash;
-             Temperature shift from 30&deg;C to 37&deg;C or 30&deg;C to 48&deg;C. Samples were taken at 0, 15, 30, 60, 120, and 180 min after the shift.
-             <a href="http://www.ncbi.nlm.nih.gov/pubmed/16372009" target="_blank">Nierman et al. 2005</a>.
-             </li>
-             
+                          
              <li><a href="/a/app/record/dataset/DS_795f56c575"><i>Aspergillus fumigatus</i> transcriptome under normoxia and hypoxia conditions</a> &ndash;
              RNAseq analysis of the <i>Aspergillus fumigatus</i> was used to determine its response to early hypoxic conditions.
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/24996522" target="_blank">Losada et al. 2014</a>.
