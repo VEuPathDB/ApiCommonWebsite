@@ -31,6 +31,88 @@
 -->
 
 <record>
+  <attribute name="headline">PlasmoDB 44 Released</attribute>
+  <attribute name="date">25 Jun 2019 13:00</attribute>
+  <attribute name="tag">PlasmoDB6_19_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of PlasmoDB 44</strong></p>
+    
+     <section>
+    <h3><b>Release 44 Webinar</b></h3>
+    <div style="margin-left: 3em;">
+      Join us on TODO (EST) for our Release 43 Highlights webinar where we will discuss and 
+      demonstrate new features and data available in release 43 of EuPathDB sites. 
+      <a href="https://attendee.gotowebinar.com/register/TODO">Register here</a>
+    </div>
+    </section>
+      
+      <section>
+      <h3><b>New data in PlasmoDB 44</b></h3>
+      <div style="margin-left: 3em;">
+        <h4>RNA Sequence</h4>
+         <ul>
+           <li>
+             <a href="/a/app/record/dataset/DS_b1c60e998b">Intraerythrocytic development cycle transcriptome (2018)</a> &ndash; 
+             Strand specific RNA-seq analysis of 8 time points during the <i>P. falciparum</i> 3D7 intraerythrocytic development cycle.
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/29649445" target="_blank">Toenhake et al</a>.
+           </li>
+           <li>
+             <a href="/a/app/record/dataset/DS_de592be00f">Sporozoite transcriptome in different microenvironments</a> &ndash; 
+             <i>Plasmodium vivax</i> transcriptome in 4 microenvironments at 3 time points and 2 temperatures to investigate th e skin-to-liver-stage journey. 
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/30111801" target="_blank">Roth et al</a>.
+           </li>
+          </ul>
+          
+        <h4>ChIP-Seq</h4>
+         <ul>
+           <li>
+             <a href="/a/app/record/dataset/DS_11b957c1d4">Regulatory elements during intraerythrocytic development by ATACseq</a> &ndash; 
+             Chromatin accessibility defined by directly profiling chromatin accessibility using the assay for transposase accessible chromatin sequencing (ATAC-seq) at eight time points during the intraerythrocytic cycle.
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/29649445" target="_blank">Toenhake et al</a>.
+           </li>
+         </ul>
+         
+        <h4>Peptide Array - Serum Antibody</h4>
+         <ul>
+           <li>
+             <a href="/a/app/record/dataset/DS_8422fbca1c">Peptide arrays of individuals naturally exposed to <i>Plasmodium</i></a> &ndash; 
+             Clinically well-characterized serum samples from individuals living in the Nouna Health District, Burkina Faso, West Africa, were assayed on high density custom peptide arrays. 
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/30630936" target="_blank">Jaenisch et al</a>.
+           </li>
+         </ul> 
+      </div>      
+      </section>
+      
+      <section>
+      <h3><b>New features in PlasmoDB 44</b></h3>
+      <div style="margin-left: 3em;">
+         <ul>
+           <li>
+             A beta implementation of the 
+             <a href="https://jbrowse.org/" target="_blank">JBrowse Genome Browser</a> is now available from gene 
+             record pages on any EuPathDB site.  
+           </li>
+         </ul>
+       </div> 
+      </section>
+      
+      <section>
+         <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+
+    ]]>
+  </attribute>
+</record>
+
+
+<record>
   <attribute name="headline">PlasmoDB 43 Released</attribute>
   <attribute name="date">25 Apr 2019 13:00</attribute>
   <attribute name="tag">PlasmoDB4_19_release</attribute>
