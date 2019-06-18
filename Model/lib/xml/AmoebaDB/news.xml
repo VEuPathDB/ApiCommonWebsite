@@ -53,6 +53,54 @@
     </section>
       
       <section>
+      <h3><b>No new data in AmoebaDB 44</b></h3>
+      </section>
+      
+      <section>
+      <h3><b>New features in AmoebaDB 44</b></h3>
+      <div style="margin-left: 3em;">
+         <ul>
+           <li>
+             A beta implementation of the 
+             <a href="https://jbrowse.org/" target="_blank">JBrowse Genome Browser</a> is now available from gene 
+             record pages on any EuPathDB site.  
+           </li>
+         </ul>
+       </div> 
+      </section>
+      
+      <section>
+         <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+
+    ]]>
+  </attribute>
+</record>
+
+<record>
+  <attribute name="headline">AmoebaDB 43 Released</attribute>
+  <attribute name="date">25 Apr 2019 13:00</attribute>
+  <attribute name="tag">AmoebaDB4_19_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of AmoebaDB 43</strong></p>
+    
+    <section>
+    <h3><b>Release 43 Webinar</b></h3>
+    <div style="margin-left: 3em;">
+      Join us on May 15th at 10:00 am (EST) for our Release 43 Highlights webinar where we will discuss and 
+      demonstrate new features and data available in release 43 of EuPathDB sites. 
+      <a href="https://attendee.gotowebinar.com/register/5760372602565130253">Register here</a>
+    </div>
+    </section>
+      
+      <section>
       <h3><b>No new data in AmoebaDB 43</b></h3>
       </section>
       
@@ -81,6 +129,8 @@
     ]]>
   </attribute>
 </record>
+
+
 
 
 
