@@ -29,8 +29,8 @@ sub init {
 
   my @profileSets;
   while(my ($psId, $psName) = $sh->fetchrow_array()) {
-    my $udValuesQuery = EbrcWebsiteCommon::Model::CannedQuery::UDProfileValues->new(Id => $id, ProfileSetId => $psId);
-    my $udNamesQuery = EbrcWebsiteCommon::Model::CannedQuery::UDProfileNames->new(ProfileSetId => $psId);
+    my $udValuesQuery = EbrcWebsiteCommon::Model::CannedQuery::UDProfileValues->new(Id => $id, ProfileSetId => $psId, Name => $psName);
+    my $udNamesQuery = EbrcWebsiteCommon::Model::CannedQuery::UDProfileNames->new(ProfileSetId => $psId, Name => $psName);
 
     my $profileSet = EbrcWebsiteCommon::View::GraphPackage::ProfileSet->new("DUMMY");
     $profileSet->setProfileCannedQuery($udValuesQuery);
@@ -48,6 +48,9 @@ sub init {
   $bar->setColors(["Violet"]);
   $bar->setPartName("fpkm");
   $bar->setPlotTitle("$id - UserDataset $datasetId");
+  $bar->addAdjustProfile('
+profile.df.full$NAME <- abbreviate(profile.df.full$NAME, 10)
+');
 
 
   my $wantLogged = $bar->getWantLogged();
