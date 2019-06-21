@@ -45,13 +45,19 @@ sub init {
   $bar->setDefaultYMin(0);
   $bar->setProfileSets(\@profileSets);
   $bar->setYaxisLabel("fpkm");
-  $bar->setColors(["Violet"]);
   $bar->setPartName("fpkm");
   $bar->setPlotTitle("$id - UserDataset $datasetId");
   $bar->addAdjustProfile('
 profile.df.full$NAME <- abbreviate(profile.df.full$NAME, 10)
+profile.df.full$LEGEND <- sapply(strsplit(profile.df.full$PROFILE_FILE, "-", fixed = TRUE), "[[", 3)
+profile.df.full$LEGEND <- gsub(".tab", "", profile.df.full$LEGEND)
+hideLegend = FALSE
 ');
-
+  $bar->setRPostscript('
+numColors = length(unique(profile.df.full$LEGEND))
+gp = gp + scale_fill_manual(values=viridis(numColors, begin=.2, end=.8), breaks=profile.df.full$LEGEND, name="Legend")
+gp = gp + scale_colour_manual(values=viridis(numColors, begin=.2, end=.8), breaks=profile.df.full$LEGEND, name="Legend")
+');
 
   my $wantLogged = $bar->getWantLogged();
   if($wantLogged) {
