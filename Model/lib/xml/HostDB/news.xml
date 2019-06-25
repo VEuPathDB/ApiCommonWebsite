@@ -35,6 +35,56 @@
 -->
 
 <record>
+  <attribute name="headline">HostDB 44 Released</attribute>
+  <attribute name="date">25 Jun 2019 13:00</attribute>
+  <attribute name="tag">HostDB6_19_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of HostDB 44</strong></p>
+    
+     <section>
+    <h3><b>Release 44 Webinar</b></h3>
+    <div style="margin-left: 3em;">
+      Join us on TODO (EST) for our Release 44 Highlights webinar where we will discuss and 
+      demonstrate new features and data available in release 44 of EuPathDB sites. 
+      <a href="https://attendee.gotowebinar.com/register/TODO">Register here</a>
+    </div>
+    </section>
+      
+      <section>
+      <h3><b>No new data in HostDB 44</b></h3>
+      </section>
+      
+      <section>
+      <h3><b>New features in HostDB 44</b></h3>
+      <div style="margin-left: 3em;">
+         <ul>
+           <li>
+             A beta implementation of the 
+             <a href="https://jbrowse.org/" target="_blank">JBrowse Genome Browser</a> is now available from gene 
+             record pages on any EuPathDB site.  
+           </li>
+         </ul>
+       </div> 
+      </section>
+      
+      <section>
+         <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+
+    ]]>
+  </attribute>
+</record>
+
+
+
+<record>
   <attribute name="headline">HostDB 43 Released</attribute>
   <attribute name="date">25 Apr 2019 13:00</attribute>
   <attribute name="tag">HostDB4_19_release</attribute>
@@ -58,7 +108,7 @@
         <h4>RNA Sequence</h4>
          <ul>
            <li>
-            <a href="/a/app/record/dataset/DS_468233ddd6">Transcriptome of <i>Bos taurus</i> during infection with virulent and avirulent <i>N. caninum</i> strains</a> &mdash; 
+            <a href="https://hostdb.org/hostdb/app/record/dataset/DS_468233ddd6">Transcriptome of <i>Bos taurus</i> during infection with virulent and avirulent <i>N. caninum</i> strains</a> &mdash; 
             Transcriptomic analysis of <i>Bos taurus</i> during infection with two different isolates of <i>Neospora caninum</i>, the highly virulent isolate Nc-Spain7 and the comparatively avirulent isolate Nc-Spain1H. 
             <a href="http://www.ncbi.nlm.nih.gov/pubmed/28899691" target="_blank">Horcajo et al. 2017</a> and 
             <a href="http://www.ncbi.nlm.nih.gov/pubmed/29154927" target="_blank">Horcajo et al. 2018</a><br>
@@ -67,7 +117,7 @@
             <a href="https://toxodb.org/toxo/app/record/dataset/DS_f0e4d50c6f">Purified parasite transcriptome of Nc-Spain strains</a><br>
            </li>
            <li>
-            <a href="/a/app/record/dataset/DS_426d9b5081">Transcriptome of mouse bone marrow derived macrophages infected by wild-type and gra18 mutant strains of <i>T. gondii</i></a> &mdash; 
+            <a href="https://hostdb.org/hostdb/app/record/dataset/DS_426d9b5081">Transcriptome of mouse bone marrow derived macrophages infected by wild-type and gra18 mutant strains of <i>T. gondii</i></a> &mdash; 
             The raw sequence reads were also aligned to the <i>T. gondii</i> genome and is available in ToxoDB.<br> 
             <a href="https://toxodb.org/toxo/app/record/dataset/DS_1c4d3b1cc4">Transcriptome of wild-type and gra18 mutant strains of <i>T. gondii</i></a><br>
             <a href="http://www.ncbi.nlm.nih.gov/pubmed/30320549" target="_blank">He et al. 2017</a><br>
@@ -128,7 +178,7 @@
         <h4>Genome Sequence and Annotation</h4>
           <ul>
           <li>
-            <a href="/a/app/record/dataset/DS_f14fc7e764"><i>Bos taurus</i> breed Hereford</a> &mdash; 
+            <a href="https://hostdb.org/hostdb/app/record/dataset/DS_f14fc7e764"><i>Bos taurus</i> breed Hereford</a> &mdash; 
             The genome sequence and annotation for the cow genome appears for the first time in HostDB. 
             <a href="http://www.ncbi.nlm.nih.gov/pubmed/19393038" target="_blank">Zimin et al.</a>  
            </li>
@@ -136,7 +186,7 @@
        <h4>Transcriptomics</h4>
           <ul>
           <li>
-            <a href="/a/app/record/dataset/DS_c8182bae60">Host cell transcriptome in bovine cells infected with <i>Cryptosporidium parvum</i></a> &mdash; <br>
+            <a href="https://hostdb.org/hostdb/app/record/dataset/DS_c8182bae60">Host cell transcriptome in bovine cells infected with <i>Cryptosporidium parvum</i></a> &mdash; <br>
             Transcriptome of MDBK cells during <i>C. parvum</i> intracellular infection. Reads were mapped to the <i>Bos taurus</i>, breed Hereford reference genome. 
             <a href="http://vetprofiles.tufts.edu/faculty/giovanni-f-widmer" target="_blank">Widmer lab</a> unpublished. 
            </li>
@@ -276,7 +326,7 @@
         <div style="margin-left: 3em;">
         <h4>New Sense/Antisense RNA seq search</h4>
          <ul>
-           <li><a href="/a/showQuestion.do?questionFullName=InternalGeneDatasetQuestions.GenesByRNASeqEvidence">RNA Seq searches</a> &mdash; <br>
+           <li><a href="https://hostdb.org/hostdb/showQuestion.do?questionFullName=InternalGeneDatasetQuestions.GenesByRNASeqEvidence">RNA Seq searches</a> &mdash; <br>
            A new Sense/Antisense search for exploring strand specific transcription is available for any strand specific RNA sequence data set.  
            For each gene, the search compares the fold change in sense reads to the fold change in antisense reads and returns genes that 
            have simultaneous changes in sense vs antisense expression between two samples. Versatile search parameters allow for choosing 
@@ -407,7 +457,7 @@
         <div style="margin-left: 3em;">
         <h4>FPKM Floor parameter in RNA-Seq fold change searches</h4>
          <ul>
-           <li><a href="/a/showQuestion.do?questionFullName=InternalGeneDatasetQuestions.GenesByRNASeqEvidence">RNA Seq fold change searches</a> 
+           <li><a href="https://hostdb.org/hostdb/showQuestion.do?questionFullName=InternalGeneDatasetQuestions.GenesByRNASeqEvidence">RNA Seq fold change searches</a> 
            now offer an <b>FPKM Floor</b> parameter for adjusting the FPKM value of low expressing genes. To avoid 
            misleading fold change values generated by dividing with very small numbers, we set very low FPKM values to a default <b>FPKM floor</b> which represents
            10 mapped reads. The new parameter offers a range of floor values for raising or lowering the expression threshold of the search 
@@ -582,7 +632,7 @@
       
           <ul>
             <li>The new 
-                <a href="/a/showQuestion.do?questionFullName=GeneQuestions.GenesByParalogCount">Paralog Count search</a>
+                <a href="https://hostdb.org/hostdb/showQuestion.do?questionFullName=GeneQuestions.GenesByParalogCount">Paralog Count search</a>
                 returns genes based on the number of assigned paralogs. Find genes that have a number of paralogs within the specified range. 
                 Paralogs are defined as genes from the same species that belong to the same OrthoMCL group.
                 </li>
@@ -1945,24 +1995,24 @@ performance
       <ul style="text-align: justify;">
         <ul>
           <li><span style="font-family: Helvetica,Arial,sans-serif;"><span style="  mso-bidi-font-weight:normal">Compounds
-                may be searched based on </span><a href="/a/showQuestion.do?questionFullName=CompoundQuestions.CompoundsByCompoundID"><b
+                may be searched based on </span><a href="https://hostdb.org/hostdb/showQuestion.do?questionFullName=CompoundQuestions.CompoundsByCompoundID"><b
                   style="  mso-bidi-font-weight:normal">compound
                   ID</b></a><span style="  mso-bidi-font-weight:normal">, </span><a
-                href="/a/showQuestion.do?questionFullName=CompoundQuestions.CompoundsByTextSearch"><b
+                href="https://hostdb.org/hostdb/showQuestion.do?questionFullName=CompoundQuestions.CompoundsByTextSearch"><b
                   style="  mso-bidi-font-weight:normal">text
                   (synonym, InChI, etc.)</b></a><span style="  mso-bidi-font-weight:normal">,</span><b
                 style="  mso-bidi-font-weight:normal">
-                <a href="/a/showQuestion.do?questionFullName=CompoundQuestions.CompoundsByEcReaction">enzymes</a></b><span
+                <a href="https://hostdb.org/hostdb/showQuestion.do?questionFullName=CompoundQuestions.CompoundsByEcReaction">enzymes</a></b><span
                 style="  mso-bidi-font-weight:normal">,</span><b
                 style="  mso-bidi-font-weight:normal">
-                <a href="/a/showQuestion.do?questionFullName=CompoundQuestions.CompoundsByPathway">metabolic
+                <a href="https://hostdb.org/hostdb/showQuestion.do?questionFullName=CompoundQuestions.CompoundsByPathway">metabolic
                   pathway</a></b><span style="  mso-bidi-font-weight:normal">,</span><b
                 style="  mso-bidi-font-weight:normal">
-                <a href="/a/showQuestion.do?questionFullName=CompoundQuestions.CompoundsByMolecularFormula">molecular
+                <a href="https://hostdb.org/hostdb/showQuestion.do?questionFullName=CompoundQuestions.CompoundsByMolecularFormula">molecular
                   formula</a></b><span style="  mso-bidi-font-weight:normal"><span
                   style="font-weight: bold;">
                 </span>or<span style="font-weight: bold;"> </span></span><b style="  mso-bidi-font-weight:normal"><a
-                  href="/a/showQuestion.do?questionFullName=CompoundQuestions.CompoundsByMolecularWeight">molecular
+                  href="https://hostdb.org/hostdb/showQuestion.do?questionFullName=CompoundQuestions.CompoundsByMolecularWeight">molecular
                   weight</a>.</b><span style="  mso-bidi-font-weight:normal"></span></span></li>
         </ul>
       </ul>
@@ -1979,7 +2029,7 @@ performance
               analysis tools:&nbsp; </strong><span style="color: #020302;">results
               of any searches can now be analyzed for statistical enrichment or
               Gene Ontology (GO) terms, metabolic pathways or gene product text
-              terms. <strong><a href="/a/analysisTools.jsp">A detailed
+              terms. <strong><a href="https://hostdb.org/hostdb/analysisTools.jsp">A detailed
                   description of this new functionality and a video tutorial are
                   also available</a></strong>.</span></span></li>
       </ul>

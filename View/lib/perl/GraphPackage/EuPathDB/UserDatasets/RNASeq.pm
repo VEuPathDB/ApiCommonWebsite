@@ -29,8 +29,8 @@ sub init {
 
   my @profileSets;
   while(my ($psId, $psName) = $sh->fetchrow_array()) {
-    my $udValuesQuery = EbrcWebsiteCommon::Model::CannedQuery::UDProfileValues->new(Id => $id, ProfileSetId => $psId);
-    my $udNamesQuery = EbrcWebsiteCommon::Model::CannedQuery::UDProfileNames->new(ProfileSetId => $psId);
+    my $udValuesQuery = EbrcWebsiteCommon::Model::CannedQuery::UDProfileValues->new(Id => $id, ProfileSetId => $psId, Name => $psName);
+    my $udNamesQuery = EbrcWebsiteCommon::Model::CannedQuery::UDProfileNames->new(ProfileSetId => $psId, Name => $psName);
 
     my $profileSet = EbrcWebsiteCommon::View::GraphPackage::ProfileSet->new("DUMMY");
     $profileSet->setProfileCannedQuery($udValuesQuery);
@@ -45,10 +45,19 @@ sub init {
   $bar->setDefaultYMin(0);
   $bar->setProfileSets(\@profileSets);
   $bar->setYaxisLabel("fpkm");
-  $bar->setColors(["Violet"]);
   $bar->setPartName("fpkm");
   $bar->setPlotTitle("$id - UserDataset $datasetId");
-
+  $bar->addAdjustProfile('
+profile.df.full$NAME <- abbreviate(profile.df.full$NAME, 10)
+profile.df.full$LEGEND <- sapply(strsplit(profile.df.full$PROFILE_FILE, "-", fixed = TRUE), "[[", 3)
+profile.df.full$LEGEND <- gsub(".tab", "", profile.df.full$LEGEND)
+hideLegend = FALSE
+');
+  $bar->setRPostscript('
+numColors = length(unique(profile.df.full$LEGEND))
+gp = gp + scale_fill_manual(values=viridis(numColors, begin=.2, end=.8), breaks=profile.df.full$LEGEND, name="Legend")
+gp = gp + scale_colour_manual(values=viridis(numColors, begin=.2, end=.8), breaks=profile.df.full$LEGEND, name="Legend")
+');
 
   my $wantLogged = $bar->getWantLogged();
   if($wantLogged) {

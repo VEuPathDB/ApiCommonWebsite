@@ -42,6 +42,181 @@
 -->
 
 <record>
+  <attribute name="headline">TriTrypDB 44 Released</attribute>
+  <attribute name="date">25 Jun 2019 13:00</attribute>
+  <attribute name="tag">TriTrypDB6_19_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of TriTrypDB 44</strong></p>
+    
+    <section>
+    <h3><b>Release 44 Webinar</b></h3>
+    <div style="margin-left: 3em;">
+      Join us on TODO (EST) for our Release 44 Highlights webinar where we will discuss and 
+      demonstrate new features and data available in release 44 of EuPathDB sites. 
+      <a href="https://attendee.gotowebinar.com/register/TODO">Register here</a>
+    </div>
+    </section>
+      
+      <section>
+      <h3><b>New data in TriTrypDB 44</b></h3>
+      <div style="margin-left: 3em;">
+       <h4>RNA Sequence</h4>
+         <ul>
+           <li><a href="/a/app/record/dataset/DS_cf6d4532c7">Influence of glucose on transcriptome of SS, LS, PC</a> &ndash; 
+                  RNA seq analysis of long slender, short stumpy (with or without added glucose and proline/threonine) and procyclic form cells differentiated from SS in very low glucose. 
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/30381351" target="blank">Qiu et al.</a> 
+           </li>
+         </ul>
+       
+       <h4>Updated Functional Annotation</h4>
+           
+        <div style="margin-left: 3em;">
+        
+        <a href="https://docs.google.com/spreadsheets/d/1X3BQ7w3uAtedo8-5EkiAwshu7r5gXKnYqPSCZxvX8Fg/edit?usp=sharing" target="_blank">Summary of annotation updates</a> 
+           which include products, GO terms, EC numbers, gene names, synonyms, publications, external database references and notes from curators. These functional 
+           annotations are current with GeneDB June 2019 GFF versions.
+        <br><br>
+        Functional annotations in TriTrypDB 44 have been updated for the following genomes:
+        <br>
+        <style>
+           #FunctAnnot_Bld44 table, #FunctAnnot_Bld44 td, #FunctAnnot_Bld44 th, #FunctAnnot_Bld44 tr {
+           text-align : center;
+           padding-left: 5px;
+           padding-right: 5px;
+           padding-top: 5px;
+           padding-bottom: 5px;
+           border: 1px solid black;
+           }
+           #FunctAnnot_Bld44 {
+           margin-left : 5 em;
+           }
+         </style> 
+           <table id="FunctAnnot_Bld44"> 
+           <tr>
+             <th>TriTrypDB Genome Version</th>
+             <th>Download GeneDB GFF file</th>
+             <th>Genes Updated</th>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_3b2d78a053"><i>L. braziliensis </i>MHOM/BR/75/M2904</a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/genedb/releases/2019-06/Lbraziliensis/Lbraziliensis.gff.gz" target="_blank"> Lbraziliensis.gff.gz</a></td> 
+             <td>2270 gene</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_21f12513c4"><i>L. donovani </i>BPK282A1</a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/genedb/releases/2019-06/LdonovaniBPK282A1/LdonovaniBPK282A1.gff.gz" target="_blank"> LdonovaniBPK282A1.gff.gz</a></td> 
+             <td>2282 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_839623217a"><i>L. major </i>strain Friedlin</a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/genedb/releases/2019-06/Lmajor/Lmajor.gff.gz" target="_blank"> Lmajor.gff.gz</a></td> 
+             <td>2320 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_e318592c8e"><i>L. mexicana </i>MHOM/GT/2001/U1103</a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/genedb/releases/2019-06/Lmexicana/Lmexicana.gff.gz" target="_blank"> Lmexicana.gff.gz</a></td> 
+             <td>2327 genes</td>
+           </tr>
+           
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_31282613b1"><i>Trypanosoma brucei </i>927</a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/genedb/releases/2019-06/Tbruceibrucei927/Tbruceibrucei927.gff.gz" target="_blank"> Tbruceibrucei927.gff.gz</a></td> 
+             <td>55 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_34f7091496"><i>Trypanosoma brucei </i>gambiense DAL972</a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/genedb/releases/2019-06/Tbruceigambiense/Tbruceigambiense.gff.gz" target="_blank"> Tbruceigambiense.gff.gz</a></td> 
+             <td>2786 genes</td>
+           </tr>
+            <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_26f6be1159"><i>Trypanosoma congolense </i>IL3000</a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/genedb/releases/2019-06/Tcongolense/Tcongolense.gff.gz" target="_blank"> Tcongolense.gff.gz</a></td> 
+             <td>2425 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_1a6c8bdaac"><i>Trypanosoma cruzi </i>CL Brener</a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/genedb/releases/2019-06/Tcruzi/Tcruzi.gff.gz" target="_blank"> Tcruzi.gff.gz</a></td> 
+             <td>4916 genes</td>
+           </tr>
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_ec7df4510a"><i>Trypanosoma vivax </i>Y486</a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/genedb/releases/2019-06/Tvivax/Tvivax.gff.gz" target="_blank"> Tvivax.gff.gz</a></td> 
+             <td>2524 genes</td>
+           </tr>
+           </table>
+           <br><br>
+           
+        </div>
+      
+       <h4>Curated User Comments</h4>
+       <div style="margin-left: 3em;">
+       
+          Gene page comments that are entered by users are curated at GeneDB and regularly integrated as functional 
+          annotations in TriTrypDB. 63 user comments (unique) have been integrated in this release.<br><br>
+          
+      <style>
+           #UComment_Bld44 table, #UComment_Bld44 td, #UComment_Bld43 th, #UComment_Bld44 tr {
+           text-align : center;
+           padding-left: 5px;
+           padding-right: 5px;
+           padding-top: 5px;
+           padding-bottom: 5px;
+           border: 1px solid black;
+           }
+           #UComment_Bld44 {
+           margin-left : 5 em;
+           }
+         </style> 
+           <table id="UComment_Bld44"> 
+           <tr>
+             <th>TriTrypDB Genome Version</th>
+             <th>Comments Integrated</th>
+           </tr>
+           <tr>
+             <td><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_e318592c8e"><i>L. mexicana</i> MHOM/GT/2001/U1103</a></td>
+             <td>31</td>
+           </tr>
+           <tr>
+             <td><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_31282613b1"><i>Trypanosoma brucei</i> 927</a></td>
+             <td>32</td>
+           </tr>
+          </table>
+          </div>
+      </div>      
+      </section>
+      
+      <section>
+      <h3><b>New features in TriTrypDB 44</b></h3>
+      <div style="margin-left: 3em;">
+         <ul>
+           <li>
+             A beta implementation of the 
+             <a href="https://jbrowse.org/" target="_blank">JBrowse Genome Browser</a> is now available from gene 
+             record pages on any EuPathDB site.  
+           </li>
+         </ul>
+       </div> 
+      </section>
+      
+      <section>
+         <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+
+    ]]>
+  </attribute>
+</record>
+
+
+
+
+<record>
   <attribute name="headline">TriTrypDB 43 Released</attribute>
   <attribute name="date">25 Apr 2019 13:00</attribute>
   <attribute name="tag">TriTrypDB4_19_release</attribute>
