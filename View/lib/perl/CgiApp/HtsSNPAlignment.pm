@@ -125,7 +125,8 @@ from m, (select pan_id, count(*) n from m group by pan_id) ct
 where ct.pan_id = m.pan_id 
 $filterPredicatesCountString
 EOSQL
-
+	
+	#print Dumper $sql; 
     $sth = $dbh->prepare($sql);
     $sth->execute();
 
@@ -138,13 +139,15 @@ EOSQL
       $data{$node}->{$term} = $value;
     }
 
-  if ($metadata) {
+	#print Dumper %data; 
 
-    print "### Metadata for the Strains: ### $tab $tab (Sequences are below)$newline";
-    foreach my $key (sort keys %data) {
-      print "#Strain=$key : ";
+  if ($metadata) {
+    
+	print "### Metadata for the Strains: $newline"; # $tab $tab (Sequences are below)$newline";
+	foreach my $key (sort keys %data) {
+      print "#Isolate=$key :  ";
       foreach my $ca (sort keys  ($data{$key})) {
-	print "$ca=". $data{$key}->{$ca} . "$tab" ;
+	print "$ca= ". $data{$key}->{$ca} . "$tab" ;
       }
       print "$newline";
     }
@@ -165,6 +168,8 @@ FROM   dots.nasequence nas
 WHERE  nas.source_id in ($ids) 
 EOSQL
 
+
+  #print STDERR Dumper $sql; 
   $sth = $dbh->prepare($sql);
   $sth->execute();
 

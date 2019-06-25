@@ -39,7 +39,87 @@
          </ul><br>
        </div> 
        Predictein: structural homology prediction
+       
+     POSSIBLY FOR 44 but definitely for 45           
+      <h4>Proteomics</h4>
+            <ul>
+              <li><a href="/a/app/record/dataset/DS_1dec15a9c9">Metranidazone-resistant <i>Giardia</i> proteomes and post-translational modifications</a> &ndash;   
+                  Three <i>Giardia Assemblage A</i> isolate WB lines that are resistant to metranidazole, WB MtzR, 106 MtzR and 713 MtzR, were analyzed by quantitative proteomics and for post-translational modifications. 
+                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/29688452" target="_blank">Emery et al.</a>
+              </li>
+            </ul>
+       
 --> 
+
+<record>
+  <attribute name="headline">GiardiaDB 44 Released</attribute>
+  <attribute name="date">25 Jun 2019 13:00</attribute>
+  <attribute name="tag">GiardiaDB6_19_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of GiardiaDB 44</strong></p>
+    
+     <section>
+    <h3><b>Release 44 Webinar</b></h3>
+    <div style="margin-left: 3em;">
+      Join us on TODO (EST) for our Release 44 Highlights webinar where we will discuss and 
+      demonstrate new features and data available in release 44 of EuPathDB sites. 
+      <a href="https://attendee.gotowebinar.com/register/TODO">Register here</a>
+    </div>
+    </section>
+      
+      <section>
+      <h3><b>New data in GiardiaDB 44</b></h3>
+      <div style="margin-left: 3em;">
+      <h4>Unannotated Genomes</h4>
+            <ul>
+              <li><a href="/a/app/record/dataset/DS_78922f8cf6"><i>Giardia Assemblage A</i> isolate AS175</a> &ndash; 
+                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/23555231" target="_blank">Franzen et al.</a>
+              </li>
+              <li><a href="/a/app/record/dataset/DS_0bcfe5e81b"><i>Giardia Assemblage B</i> isolate BAH15c1</a> &ndash; 
+                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/26003141" target="_blank">Wielinga et al.</a>
+              </li>
+            </ul>      
+      <h4>RNA Sequence</h4>
+            <ul>
+              <li><a href="/a/app/record/dataset/DS_eb68026b3f">Trophozoite Transcriptome of <i>Giardia assemblage A</i> strain AS175</a> &ndash;   
+                  Trophozoite transcriptome of <i>G. Assemblage A</i> strain AS175 at passage 4 and 33. These data were aligned to <i>Giardia Assemblage A</i> isolate WB. 
+                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/23555231" target="_blank">Franzen et al.</a>
+              </li>
+            </ul>
+     
+      </div>
+      </section>
+      
+      <section>
+      <h3><b>New features in GiardiaDB 44</b></h3>
+      <div style="margin-left: 3em;">
+         <ul>
+           <li>
+             A beta implementation of the 
+             <a href="https://jbrowse.org/" target="_blank">JBrowse Genome Browser</a> is now available from gene 
+             record pages on any EuPathDB site.  
+           </li>
+         </ul>
+       </div> 
+      </section>
+      
+      <section>
+         <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+
+    ]]>
+  </attribute>
+</record>
+
+
+
 
 <record>
   <attribute name="headline">GiardiaDB 43 Released</attribute>
