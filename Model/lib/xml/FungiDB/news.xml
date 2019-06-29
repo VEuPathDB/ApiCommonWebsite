@@ -147,14 +147,6 @@
           <br>
           </div> 
              
-              <ul>
-             <li><a href="/a/app/record/dataset/DS_43c139682a">Phenotypes from PHI-base database </a> &ndash; 
-                 <a href="http://www.phi-base.org/" target="_blank">PHI-base</a> catalogues experimentally verified pathogenicity, 
-                 virulence and effector genes from fungal, oomycete and bacterial pathogens, which infect animal, plant, fungal and insect hosts. 
-                 The pathogen &ndash; host interactions (PHI) phenotypes and pathogen&ndash;specific phenotypes from PHI&ndash;base were integrated for 18 different genomes available in FungiDB in this release. 
-                 This dataset is current with PHI-base version 4.6. We have integrated 2,633 phenotypic annotations mapping to 1,636 genes in total.
-             </li>
-             </ul>
              <br>
              
       <h4>Updated Functional Annotation</h4>
