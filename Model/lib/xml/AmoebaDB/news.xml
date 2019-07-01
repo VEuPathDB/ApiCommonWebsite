@@ -36,8 +36,8 @@
 
 <record>
   <attribute name="headline">AmoebaDB 44 Released</attribute>
-  <attribute name="date">25 Jun 2019 13:00</attribute>
-  <attribute name="tag">AmoebaDB6_19_release</attribute>
+  <attribute name="date">25 Jul 2019 13:00</attribute>
+  <attribute name="tag">AmoebaDB719_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
@@ -61,22 +61,17 @@
       <div style="margin-left: 3em;">
          <ul>
            <li>
-             Synteny tracks are availabe in our beta implementation of the 
-             <a href="https://jbrowse.org/" target="_blank">JBrowse Genome Browser</a>.
+             Synteny and the Protein Browser are availabe in our beta implementation of the 
+             <a href="https://jbrowse.org/" target="_blank">JBrowse Genome Browser</a>. 
            </li>
            <li>
-             New EuPathDB RNA Seq Tool. The EuPathDB Galaxy Workspace now offers a tool for calculating 
-             FPKM values from per-gene read counts.  
+             New EuPathDB RNA Seq Tool. The EuPathDB Galaxy Workspace now offers a tool that converts 
+             read counts from HTSeq-count output to FPKM values. 
            </li>
            <li>
-             New EuPathDB Export Tool. The EuPathDB Galaxy Workspace now offers a tool for exporting gene 
-             lists to EuPathDB for use in our search strategy system. This tool obtains a gene list, and 
-             from that, creates a valid EuPathDB dataset that will be exported to one or more EuPathDB 
-             projects of your choice.
-           </li>
-           <li>
-             New EuPathDB Workflows. The EuPathDB Galaxy Workspace is updated with 3 new pre-configured 
-             workflows for 'unpaired unstranded', 'paired-end strand-specific' and 'unpaired strand-specific' data sets.
+             New EuPathDB Workflows. The EuPathDB Galaxy Workspace is updated with several new 
+             pre-configured workflows that are designed to allow export of strand specific data 
+             to EuPathdb for visualization and searching.
            </li>
          </ul>
        </div> 
