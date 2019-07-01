@@ -50,8 +50,19 @@
       <h3><b>New data in PiroplasmaDB 44</b></h3>
       <div style="margin-left: 3em;">
       <h4>Proteomics</h4>
-            <ul>
-           <li>
+         <ul>
+           <li><a href="/a/app/record/dataset/DS_82bee9fe75"><i>Theileria parva</i> sporozoite proteome</a> &ndash; 
+             <i>T. parva</i> Mugugua sporozoite proteome determined by MudPIT LC-MS/MS analysis
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/29258832" target="_blank">Nyagwange et al</a>. 
+           </li>
+         </ul> 
+      </div>
+      </section>
+      
+      <section>
+      <h3><b>New features in PiroplasmaDB 44</b></h3>
+      <div style="margin-left: 3em;">
+         <li>
              Synteny and the Protein Browser are availabe in our beta implementation of the 
              <a href="https://jbrowse.org/" target="_blank">JBrowse Genome Browser</a>. 
            </li>
@@ -64,20 +75,6 @@
              pre-configured workflows that are designed to allow export of strand specific data 
              to EuPathDB for visualization and searching.
            </li>
-         </ul>
-      </div>
-      </section>
-      
-      <section>
-      <h3><b>New features in PiroplasmaDB 44</b></h3>
-      <div style="margin-left: 3em;">
-         <ul>
-           <li>
-             A beta implementation of the 
-             <a href="https://jbrowse.org/" target="_blank">JBrowse Genome Browser</a> is now available from gene 
-             record pages on any EuPathDB site.  
-           </li>
-         </ul>
        </div>  
       </section>
       
