@@ -62,6 +62,7 @@
       <section>
       <h3><b>New features in PiroplasmaDB 44</b></h3>
       <div style="margin-left: 3em;">
+        <ul>
          <li>
              Synteny and the Protein Browser are availabe in our beta implementation of the 
              <a href="https://jbrowse.org/" target="_blank">JBrowse Genome Browser</a>. 
@@ -75,6 +76,7 @@
              pre-configured workflows that are designed to allow export of strand specific data 
              to EuPathDB for visualization and searching.
            </li>
+         </ul>
        </div>  
       </section>
       
