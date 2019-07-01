@@ -46,9 +46,9 @@
     <section>
     <h3><b>Release 44 Webinar</b></h3>
     <div style="margin-left: 3em;">
-      Join us on XXX at 10:00 am (EST) for our Release 44 Highlights webinar where we will discuss and 
+      Join us on Tuesday July 9th at 10:00 am (EST) for our Release 44 Highlights webinar where we will discuss and 
       demonstrate new features and data available in release 44 of EuPathDB sites. 
-      <a href="XXX">Register here</a>
+      <a href="https://attendee.gotowebinar.com/register/7430028289888360460">Register here</a>
     </div>
     </section>
       
@@ -61,9 +61,22 @@
       <div style="margin-left: 3em;">
          <ul>
            <li>
-             A beta implementation of the 
-             <a href="https://jbrowse.org/" target="_blank">JBrowse Genome Browser</a> is now available from gene 
-             record pages on any EuPathDB site.  
+             Synteny tracks are availabe in our beta implementation of the 
+             <a href="https://jbrowse.org/" target="_blank">JBrowse Genome Browser</a>.
+           </li>
+           <li>
+             New EuPathDB RNA Seq Tool. The EuPathDB Galaxy Workspace now offers a tool for calculating 
+             FPKM values from per-gene read counts.  
+           </li>
+           <li>
+             New EuPathDB Export Tool. The EuPathDB Galaxy Workspace now offers a tool for exporting gene 
+             lists to EuPathDB for use in our search strategy system. This tool obtains a gene list, and 
+             from that, creates a valid EuPathDB dataset that will be exported to one or more EuPathDB 
+             projects of your choice.
+           </li>
+           <li>
+             New EuPathDB Workflows. The EuPathDB Galaxy Workspace is updated with 3 new pre-configured 
+             workflows for 'unpaired unstranded', 'paired-end strand-specific' and 'unpaired strand-specific' data sets.
            </li>
          </ul>
        </div> 
