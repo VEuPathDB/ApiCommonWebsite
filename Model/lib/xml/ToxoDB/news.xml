@@ -51,7 +51,18 @@
     </section>
       
       <section>
-      <h3><b>No new data in ToxoDB 44</b></h3>
+      <h3><b>New data in ToxoDB 44</b></h3>
+      <div style="margin-left: 3em;">
+       <h4>RFLP Genotypes</h4>
+         <ul>
+           <li>
+             <a href="/a/app/record/dataset/DS_1e92f1af90">RFLP genotypes of Brazilian isolates from pig and goat for human consumption</a> &mdash; 
+            RFLP genotypes of <i>T. gondii</i> isolates from pig and goat that were slaughtered for human consumption in the state of Piaui, Northeastern Brazil.
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/30479944" target="_blank">Rego et al. 2018</a><br>
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/29080759" target="_blank">Rego et al. 2017</a><br>
+           </li>
+         </ul>
+      </div>     
       </section>
       
       <section>
