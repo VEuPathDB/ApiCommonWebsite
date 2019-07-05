@@ -34,8 +34,8 @@
 
 <record>
   <attribute name="headline">ToxoDB 44 Released</attribute>
-  <attribute name="date">25 Jun 2019 13:00</attribute>
-  <attribute name="tag">ToxoDB6_19_release</attribute>
+  <attribute name="date">02 Jul 2019 13:00</attribute>
+  <attribute name="tag">ToxoDB7_19_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
@@ -44,14 +44,29 @@
      <section>
     <h3><b>Release 44 Webinar</b></h3>
     <div style="margin-left: 3em;">
-      Join us on TODO am (EST) for our Release 44 Highlights webinar where we will discuss and 
+      Join us on Tuesday July 16th at 10:00 am (EST) for our Release 44 Highlights webinar where we will discuss and 
       demonstrate new features and data available in release 44 of EuPathDB sites. 
-      <a href="https://attendee.gotowebinar.com/register/TODO">Register here</a>
+      <a href="https://attendee.gotowebinar.com/register/7430028289888360460">Register here</a>
     </div>
     </section>
       
       <section>
-      <h3><b>No new data in ToxoDB 44</b></h3>
+      <h3><b>New data in ToxoDB 44</b></h3>
+      <div style="margin-left: 3em;">
+       <h4>RFLP Genotypes</h4>
+         <ul>
+           <li>
+             <a href="/a/app/record/dataset/DS_1e92f1af90">RFLP genotypes of Brazilian isolates from pig and goat for human consumption</a> &mdash; 
+            RFLP genotypes of <i>T. gondii</i> isolates from pig and goat that were slaughtered for human consumption in the state of Piaui, Northeastern Brazil.
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/30479944" target="_blank">Rego et al. 2018</a> and <a href="http://www.ncbi.nlm.nih.gov/pubmed/29080759" target="_blank">Rego et al. 2017</a><br>
+           </li>
+           <li>
+             <a href="/a/app/record/dataset/DS_0bd5c9ce25">RFLP genotypes of Brazilian isolates from birds for human consumption</a> &mdash; 
+            RFLP genotypes of <i>T. gondii</i> isolates from birds that were slaughtered for human consumption in the state of Piaui, Northeastern Brazil.
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/30479944" target="_blank">Rego et al. 2018</a> and <a href="http://www.ncbi.nlm.nih.gov/pubmed/29080759" target="_blank">Rego et al. 2017</a><br>
+           </li>
+         </ul>
+      </div>     
       </section>
       
       <section>
@@ -59,9 +74,17 @@
       <div style="margin-left: 3em;">
          <ul>
            <li>
-             A beta implementation of the 
-             <a href="https://jbrowse.org/" target="_blank">JBrowse Genome Browser</a> is now available from gene 
-             record pages on any EuPathDB site.  
+             Synteny and the Protein Browser are availabe in our beta implementation of the 
+             <a href="https://jbrowse.org/" target="_blank">JBrowse Genome Browser</a>. 
+           </li>
+           <li>
+             New EuPathDB RNA Seq Tool. The EuPathDB Galaxy Workspace now offers a tool that converts 
+             read counts from HTSeq-count output to FPKM values. 
+           </li>
+           <li>
+             New EuPathDB Workflows. The EuPathDB Galaxy Workspace is updated with several new 
+             pre-configured workflows that are designed to allow export of strand specific data 
+             to EuPathDB for visualization and searching.
            </li>
          </ul>
        </div> 
