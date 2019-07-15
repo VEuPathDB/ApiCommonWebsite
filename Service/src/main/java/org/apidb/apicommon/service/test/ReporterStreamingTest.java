@@ -22,7 +22,6 @@ import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.question.Question;
 import org.gusdb.wdk.model.report.config.StandardConfig;
 import org.gusdb.wdk.model.report.config.StandardConfig.StreamStrategy;
-import org.gusdb.wdk.model.report.reporter.DefaultJsonReporter;
 import org.gusdb.wdk.service.request.exception.DataValidationException;
 import org.gusdb.wdk.service.request.exception.RequestMisformatException;
 import org.gusdb.wdk.service.service.AnswerService;
@@ -76,7 +75,7 @@ public class ReporterStreamingTest {
 
     log("Starting request using " + streamStrategy);
     Timer t = new Timer();
-    Response response = answerService.buildResult(DefaultJsonReporter.RESERVED_NAME, json);
+    Response response = answerService.createStandardReportAnswer(json);
     StreamingOutput output = (StreamingOutput)response.getEntity();
 
     Path outputFile = Paths.get(tmpFileDir.toString(), streamStrategy + ".txt");
