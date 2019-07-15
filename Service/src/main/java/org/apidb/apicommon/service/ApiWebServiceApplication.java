@@ -1,7 +1,5 @@
 package org.apidb.apicommon.service;
 
-import static org.gusdb.fgputil.functional.Functions.filter;
-
 import java.util.Set;
 
 import org.apidb.apicommon.service.services.ApiBasketService;
@@ -11,6 +9,7 @@ import org.apidb.apicommon.service.services.BigWigTrackService;
 import org.apidb.apicommon.service.services.JBrowseService;
 import org.apidb.apicommon.service.services.TranscriptToggleService;
 import org.apidb.apicommon.service.services.UserCommentsService;
+import org.apidb.apicommon.service.services.JBrowseUserDatasetsService;
 import org.apidb.apicommon.service.services.comments.AttachmentsService;
 import org.eupathdb.common.service.EuPathServiceApplication;
 import org.gusdb.fgputil.SetBuilder;
@@ -24,20 +23,20 @@ public class ApiWebServiceApplication extends EuPathServiceApplication {
     return new SetBuilder<Class<?>>()
 
       // add WDK services
-      .addAll(filter(super.getClasses(), clazz ->
-          !clazz.getName().equals(SessionService.class.getName()) &&
-          !clazz.getName().equals(BasketService.class.getName()) &&
-          !clazz.getName().equals(StepService.class.getName())))
+      .addAll(super.getClasses())
+
+      // replace overridden services with ApiCommon versions
+      .replace(SessionService.class, ApiSessionService.class)
+      .replace(BasketService.class, ApiBasketService.class)
+      .replace(StepService.class, ApiStepService.class)
 
       // add ApiCommon-specific services
-      .add(ApiSessionService.class)
-      .add(ApiBasketService.class)
-      .add(ApiStepService.class)
       .add(AttachmentsService.class)
       .add(UserCommentsService.class)
       .add(TranscriptToggleService.class)
       .add(BigWigTrackService.class)
       .add(JBrowseService.class)
+      .add(JBrowseUserDatasetsService.class)
 
       .toSet();
   }
