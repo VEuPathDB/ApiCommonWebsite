@@ -56,9 +56,10 @@ public class JBrowseUserDatasetsService extends UserService {
     public void addUserDatasetInfoToJsonArray(UserDatasetInfo dataset,
         JSONArray datasetsJson, UserDatasetSession dsSession) throws WdkModelException {
       JSONArray samples = getSamplesJsonForDataset(dsSession, dataset);
-      for (int i = 0 ; i < samples.length(); i++) {
-        datasetsJson.put(samples.getJSONObject(i));
-      }
+      if (dataset.isInstalled() && dataset.getUserDatasetCompatibility().isCompatible())
+	  for (int i = 0 ; i < samples.length(); i++) {
+	      datasetsJson.put(samples.getJSONObject(i));
+	  }
     }
 
     private JSONArray getSamplesJsonForDataset(UserDatasetSession dsSession, UserDatasetInfo datasetInfo) throws WdkModelException {
