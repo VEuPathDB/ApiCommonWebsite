@@ -8,6 +8,7 @@ import javax.ws.rs.core.MediaType;
 
 import org.apache.log4j.Logger;
 import org.gusdb.wdk.model.WdkModelException;
+import javax.ws.rs.ForbiddenException;
 import org.gusdb.wdk.model.user.dataset.UserDataset;
 import org.gusdb.wdk.model.user.dataset.UserDatasetDependency;
 import org.gusdb.wdk.model.user.dataset.UserDatasetFile;
@@ -36,10 +37,20 @@ public class JBrowseUserDatasetsService extends UserService {
 
     LOG.debug("\nservice user-datasets-jbrowse has been called ---gets all jbrowse configuration for user datasets\n");
 
-    JSONArray tracks = UserDatasetService.getAllUserDatasetsJson(
-        getWdkModel(),
-        getPrivateRegisteredUser(),
-        new JBrowseUserDatasetFormatter(publicOrganismAbbrev));
+    JSONArray tracks;
+    try {
+        tracks = UserDatasetService.getAllUserDatasetsJson(getWdkModel(),
+                                                           getPrivateRegisteredUser(),
+                                                           new JBrowseUserDatasetFormatter(publicOrganismAbbrev));
+    }
+    // if the user isn't logged in, just return an empty array
+    catch(ForbiddenException e) {
+        tracks = new JSONArray();
+    }
+    catch(WdkModelException e) {
+        tracks = new JSONArray();
+        LOG.info(e.toString());
+    }
 
     return new JSONObject().put("tracks", tracks);
   }
