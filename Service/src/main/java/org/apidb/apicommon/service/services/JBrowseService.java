@@ -107,9 +107,9 @@ public class JBrowseService extends AbstractWdkService {
 
 
     @GET
-    @Path("tracks/{organismAbbrev}/aa/trackList.json")
+    @Path("{tracks}/{organismAbbrev}/aa/trackList.json")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getJbrowseAaTracks(@PathParam("organismAbbrev") String organismAbbrev)  throws IOException {
+    public Response getJbrowseAaTracks(@PathParam("organismAbbrev") String organismAbbrev, @PathParam("tracks") String tracks)  throws IOException {
 
         String gusHome = getWdkModel().getGusHome();
         String projectId = getWdkModel().getProjectId();
@@ -120,15 +120,16 @@ public class JBrowseService extends AbstractWdkService {
         command.add(organismAbbrev);
         command.add(projectId);
         command.add(String.valueOf(isPbrowse));
+        command.add(tracks);
 
         return responseFromCommand(command);
     }
 
 
     @GET
-    @Path("tracks/{organismAbbrev}/trackList.json")
+    @Path("{tracks}/{organismAbbrev}/trackList.json")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getJbrowseTracks(@PathParam("organismAbbrev") String organismAbbrev)  throws IOException {
+    public Response getJbrowseTracks(@PathParam("organismAbbrev") String organismAbbrev, @PathParam("tracks") String tracks)  throws IOException {
 
         String gusHome = getWdkModel().getGusHome();
         String projectId = getWdkModel().getProjectId();
@@ -140,6 +141,7 @@ public class JBrowseService extends AbstractWdkService {
         command.add(organismAbbrev);
         command.add(projectId);
         command.add(String.valueOf(isPbrowse));
+        command.add(tracks);
 
         return responseFromCommand(command);
     }
