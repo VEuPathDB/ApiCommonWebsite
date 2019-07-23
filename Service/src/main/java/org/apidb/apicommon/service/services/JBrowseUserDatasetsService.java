@@ -73,18 +73,59 @@ public class JBrowseUserDatasetsService extends UserService {
 	  }
     }
 
+
+      private JSONArray getBigwigSampleConfiguration(UserDataset dataset, UserDatasetSession dsSession, String subcategory) throws WdkModelException {
+          JSONArray samplesJson = new JSONArray();
+
+          int maxScore = 1000;
+          Long datasetId = dataset.getUserDatasetId();
+          UserDatasetMeta datasetMeta = dataset.getMeta();
+          String datasetName = datasetMeta.getName();
+          String datasetSummary = datasetMeta.getSummary();
+
+          for (UserDatasetFile file : dataset.getFiles().values()) {
+              String fileName = file.getFileName(dsSession);
+              if(!fileName.toUpperCase().endsWith(".BW"))
+                  continue ;
+
+              String urlTemplate = "/a/service/users/current/user-datasets/" + datasetId + "/user-datafiles/" + fileName;
+
+              JSONObject json = new JSONObject();
+              json.put("storeClass", "JBrowse/Store/SeqFeature/BigWig");
+              json.put("urlTemplate", urlTemplate);
+              json.put("yScalePosition",  "left");
+              json.put("key", datasetName + " " + fileName);
+              json.put("label", datasetName + " " + fileName);
+              json.put("type", "JBrowse/View/Track/Wiggle/XYPlot");
+              json.put("category", "My Data from Galaxy");
+              json.put("min_score", 0);
+              json.put("max_score", maxScore);
+
+              JSONObject style = new JSONObject();
+              style.put("pos_color", "#5B2C6F");
+
+              JSONObject metadata = new JSONObject();
+              metadata.put("subcategory", subcategory);
+              metadata.put("dataset", datasetName);
+              metadata.put("trackType", "Coverage");
+              metadata.put("mdescription", datasetSummary);
+              
+              json.put("metadata", metadata);
+              json.put("style", style);
+
+              samplesJson.put(json);
+          }
+          return samplesJson;
+      }
+
+
     private JSONArray getSamplesJsonForDataset(UserDatasetSession dsSession, UserDatasetInfo datasetInfo) throws WdkModelException {
 
       JSONArray samplesJson = new JSONArray();
 
       String genomeSuffix = "_" + _publicOrganismAbbrev + "_Genome";
-      int maxScore = 1000;
 
       UserDataset dataset = datasetInfo.getDataset();
-      UserDatasetType type = dataset.getType();
-      String datasetType = type.getName();
-      if(datasetType.equals("RnaSeq"))
-        datasetType = "RNASeq";
 
       boolean matchesOrganismAbbrev = false;
 
@@ -96,39 +137,14 @@ public class JBrowseUserDatasetsService extends UserService {
       if(!matchesOrganismAbbrev) 
         return samplesJson;
 
+      UserDatasetType type = dataset.getType();
+      String datasetType = type.getName();
 
-      Long datasetId = dataset.getUserDatasetId();
-      UserDatasetMeta datasetMeta = dataset.getMeta();
-      String datasetName = datasetMeta.getName();
-      String datasetSummary = datasetMeta.getSummary();
-
-      for (UserDatasetFile file : dataset.getFiles().values()) {
-        String fileName = file.getFileName(dsSession);
-        if(!fileName.toUpperCase().endsWith(".BW"))
-          continue ;
-
-        String urlTemplate = "/a/service/users/current/user-datasets/" + datasetId + "/user-datafiles/" + fileName;
-
-        JSONObject json = new JSONObject();
-        json.put("storeClass", "JBrowse/Store/SeqFeature/BigWig");
-        json.put("urlTemplate", urlTemplate);
-        json.put("yScalePosition",  "left");
-        json.put("key", datasetName + " " + fileName);
-        json.put("label", datasetName + " " + fileName);
-        json.put("type", "JBrowse/View/Track/Wiggle/XYPlot");
-        json.put("category", "My Data from Galaxy");
-        json.put("min_score",0);
-        json.put("max_score", maxScore);
-
-        JSONObject metadata = new JSONObject();
-        metadata.put("subcategory", datasetType);
-        metadata.put("dataset", datasetName);
-        metadata.put("trackType", "Coverage");
-        metadata.put("mdescription", datasetSummary);
-
-        json.put("metadata", metadata);
-
-        samplesJson.put(json);
+      if(datasetType.equals("RnaSeq")) {
+          return getBigwigSampleConfiguration(dataset, dsSession, "RNASeq");
+      }
+      if(datasetType.equals("BigwigFiles")) {
+          return getBigwigSampleConfiguration(dataset, dsSession, "Bigwig Files From User");
       }
 
       return samplesJson;
