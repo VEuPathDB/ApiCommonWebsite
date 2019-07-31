@@ -33,7 +33,7 @@ public class JBrowseUserDatasetsService extends UserService {
   @GET
   @Path("user-datasets-jbrowse/{organism}")
   @Produces(MediaType.APPLICATION_JSON)
-  public JSONObject getAllUserDatasetsJBrowse(@PathParam("organism") String publicOrganismAbbrev) throws WdkModelException {
+  public JSONObject getAllUserDatasetsJBrowse(@PathParam("organism") String publicOrganismAbbrev) {
 
     LOG.debug("\nservice user-datasets-jbrowse has been called ---gets all jbrowse configuration for user datasets\n");
 
