@@ -26,7 +26,7 @@
     <section>
     <h3><b>Release 45 Webinar</b></h3>
     <div style="margin-left: 3em;">
-      Join us on Tuesday July 16th at 10:00 am (EST) for our Release 45 Highlights webinar where we will discuss and 
+      Join us on TO DO for our Release 45 Highlights webinar where we will discuss and 
       demonstrate new features and data available in Release 45 of EuPathDB sites. 
       <a href="https://attendee.gotowebinar.com/register/7430028289888360460">Register here</a>
     </div>
@@ -40,26 +40,20 @@
         <h4>Genome Sequence and Annotation: these annotated genomes appear for the first time in FungiDB.</h4>
            <ul>
              
-             <li><a href="/a/app/record/dataset/DS_6438c3f349"><i>Trichoderma virens</i> Gv29-8</a> &ndash;
+             <li><a href="/a/app/record/dataset/DS_0fb7174bf2"><i>Trichoderma virens</i> Gv29-8</a> &ndash;
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/21501500">Kubicek et al. 2011</a>.  
              </li>
              
-            <li><a href="/a/app/record/dataset/DS_6438c3f349"><i>Texophiala mesophila</i> CBS 40295</a> &ndash;
+            <li><a href="/a/app/record/dataset/DS_2fc9a9f5c4"><i>Exophiala mesophila</i> CBS 40295</a> &ndash;
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/25858835">Tafer et al. 2015</a>.  
              </li>
              
-            <li><a href="/a/app/record/dataset/DS_6438c3f349"><i>Candida duobushaemulonis</i> B09383</a> &ndash;
+            <li><a href="/a/app/record/dataset/DS_08ca801eb9"><i>Candida duobushaemulonis</i> B09383</a> &ndash;
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/29599161">Chow et al. 2018</a>.  
              </li>
              
-            <li><a href="/a/app/record/dataset/DS_6438c3f349"><i>Cenococcum geophilum</i> 1.58</a> &ndash;
+            <li><a href="/a/app/record/dataset/DS_8ad8c5bb42"><i>Cenococcum geophilum</i> 1.58</a> &ndash;
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/27601008">Peter et al. 2016</a>.  
-             </li>
-             
-             <li><a href="/a/app/record/dataset/DS_248d79bc8e"><i>Rhizophagus irregularis</i> DAOM 181602 (DAOM 197198)</a> &ndash;  
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/29355972">Chen et al. 2018</a>,
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/27572831">Ropars et al. 2016</a>,
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/24277808">Tisserant et al. 2013</a>.
              </li>
             
             </ul>
@@ -68,11 +62,11 @@
            
            <h4>New Genome Sequence: available for the first time in FungiDB:</h4>
         <ul>
-        	<li><a href="/a/app/record/dataset/DS_ab94e95077"><i>Chrysosporium queenslandicum</i> CBS 280.77</a> &ndash;  
+        	<li><a href="/a/app/record/dataset/DS_e92ae61f2f"><i>Chrysosporium queenslandicum</i> CBS 280.77</a> &ndash;  
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/26613950">Whiston et al. 2015</a>.
         	</li>
         
-            <li><a href="/a/app/record/dataset/DS_ab94e95077"><i>Byssoonygena ceratinophila</i> UAMH 5669</a> &ndash;  
+            <li><a href="/a/app/record/dataset/DS_ceab3a6f00"><i>Byssoonygena ceratinophila</i> UAMH 5669</a> &ndash;  
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/26613950">Whiston et al. 2015</a>.
         	</li>
         	       
@@ -82,34 +76,29 @@
         <h4>Transcriptomics</h4>
            <ul>
                           
-             <li><a href="/a/app/record/dataset/DS_795f56c575"><i>Aspergillus fumigatus</i> transcriptome under normoxia and hypoxia conditions</a> &ndash;
-             RNAseq analysis of the <i>Aspergillus fumigatus</i> was used to determine its response to early hypoxic conditions.
-             <a href="http://www.ncbi.nlm.nih.gov/pubmed/24996522" target="_blank">Losada et al. 2014</a>.
+             <li><a href="/a/app/record/dataset/DS_c37910b5b2">Transcriptome analysis of the col-26 mutant and its wild type parental strain</a> &ndash;
+             <i>Neurospora crassa</i>: mRNA profiles after 4 hours of exposure to various carbon sources.
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/28467421 " target="_blank">Xiong et al. 2017</a>.
              </li>
              
                          
-            <li><a href="/a/app/record/dataset/DS_4fe013954b">Transcriptome landscape of <i>Candida glabrata</i> during pH change and nitrosative stress</a> &ndash;
-             RNA-Seq-based analysis of the transcriptomic landscape of <i>C. glabrata</i> in nutrient-rich media, under nitrosative stress, and during pH shift.
-             <a href="http://www.ncbi.nlm.nih.gov/pubmed/25586221" target="_blank">Linde et al. 2015</a>.
+            <li><a href="/a/app/record/dataset/DS_0a988118ee">WT and DAMT3 mutant transcriptomes</a> &ndash;
+             <i>Phytophthora sojae</i>:RNA-Seq analysis of the mycelium stage.
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/30382931" target="_blank">Chen et al. 2018</a>.
              </li>
              
-             <li><a href="/a/app/record/dataset/DS_b9dffe2a12">Microarray analysis of fruiting body development in <i>Coprinopsis cinerea</i></a> &ndash;
-             Meiosis was compared in <i>rad50-1</i> and wild type strains of <i>C. cinerea</i> at 6 time points spanning the meiotic timecourse.
+             <li><a href="/a/app/record/dataset/DS_cac42e08eb">Microarray analysis of fruiting body development in <i>Coprinopsis cinerea</i></a> &ndash;
+             <i>Fusarium graminearum</i>:Meiosis was compared in <i>rad50-1</i> and wild type strains of <i>C. cinerea</i> at 6 time points spanning the meiotic timecourse.
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/23050232" target="_blank">Anderson et al. 2012</a>.
              </li>
              
-             <li><a href="/a/app/record/dataset/DS_9572ee47dc">O2-responsive genes in the human pathogenic fungus <i>Aspergillus fumigatus</i></a> &ndash;
-             Transcriptomic investigation of low oxygen adaptation of <i>A. fumigatus</i>.
-             <a href="http://www.ncbi.nlm.nih.gov/pubmed/24948085" target="_blank">Hillmann et al. 2014</a>.
+             <li><a href="/a/app/record/dataset/DS_9916d7089f">Global transcriptional analysis of wild-type and cuf1delta cells</a> &ndash;
+             <i>Cryptococcus neoformans</i>Genome-wide assessment of the Cu-responsive, Cuf1-dependent transcriptome.
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/29608794" target="_blank">Garcia-Santamarina et al. 2018</a>.
              </li>
              
              
-            <li><a href="/a/app/record/dataset/DS_b8793f4345"><i>Histoplasma capsulatum</i> G186A and G217A yeast and mycelial transcriptomes</a> &ndash;
-             Yeast and mycelial transcriptome of <i>Histoplasma capsulatum</i> G186A and G217A strains.
-             <a href="http://www.ncbi.nlm.nih.gov/pubmed/24112604" target="_blank">Edwards et al. 2013</a>.
-             </li>
-             
-            <li><a href="/a/app/record/dataset/DS_c45818957f">Gene expression analysis of ADV-1 and PP-1 mutants in <i>Neurospora crassa</i></a> &ndash;
+            <li><a href="/a/app/record/dataset/DS_6297bc8dfd">Transcriptional analysis of sorted subpopulations of C57BL6J macrophages infected with <i>Candida albicans</i></a> &ndash;
              The transcription factors ADV-1 and PP-1 are essential for germling communication and fusion and <i>Neurospora crassa</i>.
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/29678830" target="_blank">Fischer et al. 2018</a>.
              </li>
@@ -135,7 +124,7 @@
         <div style="margin-left: 3em;">
         
         <style>
-           #Phenotype_Bld44 table, #Phenotype_Bld44 td, #Phenotype_Bld44 th, #Phenotype_Bld44 tr {
+           #Phenotype_Bld45 table, #Phenotype_Bld45 td, #Phenotype_Bld45 th, #Phenotype_Bld45 tr {
            text-align : center;
            padding-left: 5px;
            padding-right: 5px;
@@ -143,11 +132,11 @@
            padding-bottom: 5px;
            border: 1px solid black;
            }
-           #Phenotype_Bld44 {
+           #Phenotype_Bld45 {
            margin-left : 5 em;
            }
          </style> 
-           <table id="Phenotype_Bld44"> 
+           <table id="Phenotype_Bld45"> 
            <tr>
              <th>Species</th>
              <th>New phenotype mappings</th>
@@ -164,6 +153,50 @@
              
              <br>
              
+             <ul>
+             <li><a href="/a/app/record/dataset/DS_61efdacf5b">Manually Curated <i>Fusarium</i> Phenotypes</a> &ndash; 
+                 The phenotypes for <i>Fusarium graminearum</i> PH-1 are manually curated from published literature describing phenotypes obtained from mutant studies. 
+                 We have curated and added phenotypes from <a href="https://www.ncbi.nlm.nih.gov/pubmed/22028654" target="_blank">Son et al. 2011</a> publication 
+                 on transcription factors to the currently existing Fusarium phenotypes from <a href="https://www.ncbi.nlm.nih.gov/pubmed/25758923" target="_blank">Yun et al. 2007</a>.
+                 We followed an &quot;entity &#43; quality&quot; approach and curated phenotypes with multiple ontologies: 
+                 Phenotypic Quality Ontology (PATO) for &quot;quality&quot; terms and Gene Ontology (GO), Fungal Gross Anatomy Ontology (FAO),
+                 Chemical Entities of Biological Interest (ChEBI) and Ascomycete Phenotype Ontology (APO) for &quot;entity&quot; terms. 
+             </li>
+             </ul>
+             <br>
+               
+        <div style="margin-left: 3em;">
+        
+        <style>
+           #Phenotype_Bld45 table, #Phenotype_Bld45 td, #Phenotype_Bld45 th, #Phenotype_Bld45 tr {
+           text-align : center;
+           padding-left: 5px;
+           padding-right: 5px;
+           padding-top: 5px;
+           padding-bottom: 5px;
+           border: 1px solid black;
+           }
+           #Phenotype_Bld45 {
+           margin-left : 5 em;
+           }
+         </style> 
+           <table id="Phenotype_Bld45"> 
+           <tr>
+             <th>Species</th>
+             <th>Phenotype mapping</th>
+             <th>Genes with phenotypes</th>
+           </tr>
+           <tr>
+             <td><i>Fusarium graminearum</i> PH-1</td>
+             <td>11,556</td>
+             <td>642</td>
+           </tr>
+          </table>
+          <br>
+          </div> 
+             
+           <br>
+             
       <h4>Updated Functional Annotation</h4>
                <div style="margin-left: 3em;">
              
@@ -171,7 +204,7 @@
                which include products, GO terms, EC numbers, gene names, synonyms, publications, external database references and notes from curators. These functional annotations are current with GeneDB June 2019 GFF versions. <br><br>
              
              <style>
-                #FunctAnnot_Bld44 table, #FunctAnnot_Bld44 td, #FunctAnnot_Bld44 th, #FunctAnnot_Bld44 tr {
+                #FunctAnnot_Bld45 table, #FunctAnnot_Bld45 td, #FunctAnnot_Bld45 th, #FunctAnnot_Bld45 tr {
                 text-align : center;
                 padding-left: 5px;
                 padding-right: 5px;
@@ -179,11 +212,11 @@
                 padding-bottom: 5px;
                 border: 1px solid black;
                 }
-                #FunctAnnot_Bld44 {
+                #FunctAnnot_Bld45 {
                 margin-left : 5 em;
                 }
               </style> 
-                <table id="FunctAnnot_Bld44"> 
+                <table id="FunctAnnot_Bld45"> 
                 <tr>
                   <th>FungiDB Genome Version</th>
                   <th>Download GeneDB GFF file</th>
@@ -215,7 +248,7 @@
         
         
         <style>
-           #GOC_Bld44 table, #GOC_Bld44 td, #GOC_Bld44 th, #GOC_Bld44 tr {
+           #GOC_Bld45 table, #GOC_Bld45 td, #GOC_Bld45 th, #GOC_Bld45 tr {
            text-align : center;
            padding-left: 5px;
            padding-right: 5px;
@@ -223,11 +256,11 @@
            padding-bottom: 5px;
            border: 1px solid black;
            }
-           #GOC_Bld44 {
+           #GOC_Bld45 {
            margin-left : 5 em;
            }
          </style> 
-           <table id="GOC_Bld44"> 
+           <table id="GOC_Bld45"> 
            <tr>
              <th>FungiDB Genome</th>
              <th>Major contributing resource</th>
