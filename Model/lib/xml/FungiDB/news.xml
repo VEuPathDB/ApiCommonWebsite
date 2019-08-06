@@ -15,6 +15,341 @@
     </record>
 -->
 <record>
+  <attribute name="headline">FungiDB 45 Released</attribute>
+  <attribute name="date">28 Aug 2019 13:00</attribute>
+  <attribute name="tag">FungiDB8_28_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of FungiDB 45</strong></p>
+    
+    <section>
+    <h3><b>Release 45 Webinar</b></h3>
+    <div style="margin-left: 3em;">
+      Join us on TO DO for our Release 45 Highlights webinar where we will discuss and 
+      demonstrate new features and data available in Release 45 of EuPathDB sites. 
+      <a href="https://attendee.gotowebinar.com/register/7430028289888360460">Register here</a>
+    </div>
+    </section>
+      
+      <section>
+        <h3><b>New data in FungiDB 45</b></h3>
+        <div style="margin-left: 3em;">
+        
+
+        <h4>Genome Sequence and Annotation: these annotated genomes appear for the first time in FungiDB.</h4>
+           <ul>
+             
+             <li><a href="/a/app/record/dataset/DS_0fb7174bf2"><i>Trichoderma virens</i> Gv29-8</a> &ndash;
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/21501500">Kubicek et al. 2011</a>.  
+             </li>
+             
+            <li><a href="/a/app/record/dataset/DS_2fc9a9f5c4"><i>Exophiala mesophila</i> CBS 40295</a> &ndash;
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/25858835">Tafer et al. 2015</a>.  
+             </li>
+             
+            <li><a href="/a/app/record/dataset/DS_08ca801eb9"><i>Candida duobushaemulonis</i> B09383</a> &ndash;
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/29599161">Chow et al. 2018</a>.  
+             </li>
+             
+            <li><a href="/a/app/record/dataset/DS_8ad8c5bb42"><i>Cenococcum geophilum</i> 1.58</a> &ndash;
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/27601008">Peter et al. 2016</a>.  
+             </li>
+            
+            </ul>
+           <br>
+           
+           
+           <h4>New Genome Sequence: available for the first time in FungiDB:</h4>
+        <ul>
+        	<li><a href="/a/app/record/dataset/DS_e92ae61f2f"><i>Chrysosporium queenslandicum</i> CBS 280.77</a> &ndash;  
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26613950">Whiston et al. 2015</a>.
+        	</li>
+        
+            <li><a href="/a/app/record/dataset/DS_ceab3a6f00"><i>Byssoonygena ceratinophila</i> UAMH 5669</a> &ndash;  
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26613950">Whiston et al. 2015</a>.
+        	</li>
+        	       
+            </ul>
+           <br>
+                      
+        <h4>Transcriptomics</h4>
+           <ul>
+                          
+             <li><a href="/a/app/record/dataset/DS_c37910b5b2">Transcriptome analysis of the col-26 mutant and its wild type parental strain</a> &ndash;
+             <i>Neurospora crassa</i>: mRNA profiles after 4 hours of exposure to various carbon sources.
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/28467421 " target="_blank">Xiong et al. 2017</a>.
+             </li>
+             
+                         
+            <li><a href="/a/app/record/dataset/DS_0a988118ee">WT and DAMT3 mutant transcriptomes</a> &ndash;
+             <i>Phytophthora sojae</i>: RNA-Seq analysis of the mycelium stage.
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/30382931" target="_blank">Chen et al. 2018</a>.
+             </li>
+             
+             <li><a href="/a/app/record/dataset/DS_cac42e08eb">Microarray analysis of fruiting body development in <i>Coprinopsis cinerea</i></a> &ndash;
+             <i>Fusarium graminearum</i>: Meiosis was compared in <i>rad50-1</i> and wild type strains of <i>C. cinerea</i> at 6 time points spanning the meiotic timecourse.
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/23050232" target="_blank">Anderson et al. 2012</a>.
+             </li>
+             
+             <li><a href="/a/app/record/dataset/DS_9916d7089f">Global transcriptional analysis of wild-type and cuf1delta cells</a> &ndash;
+             <i>Cryptococcus neoformans</i>: Genome-wide assessment of the Cu-responsive, Cuf1-dependent transcriptome.
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/29608794" target="_blank">Garcia-Santamarina et al. 2018</a>.
+             </li>
+             
+             
+            <li><a href="/a/app/record/dataset/DS_6297bc8dfd">Transcriptional analysis of sorted subpopulations of mouse C57BL6J macrophages infected with <i>Candida albicans</i></a> &ndash;
+             TODO: .
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/29678830" target="_blank">Fischer et al. 2018</a>.
+             </li>
+             
+                          
+        	</ul>
+        	<br>
+        	          
+                   
+        <h4>Phenotype data</h4>
+           <ul>
+             <li><a href="/a/app/record/dataset/DS_43c139682a">Manually curated <i>Cryptococcus</i> Phenotypes</a> &ndash; 
+                 The phenotypes for <i>Cryptococcus neoformans</i> JEC21 and H99 and <i>Cryptococcus gatii</i> WM276 are manually curated from published literature describing 
+                 phenotypes obtained from mutant studies. We have curated and added phenotypes from <a href="https://www.ncbi.nlm.nih.gov/pubmed/27677328" target="_blank">Lee et al</a>.  
+                 publication on kinases to the currently existing phenotypic dataset for <i>C. neoformans</i> H99.
+                 We followed an &quot;entity &#43; quality&quot; approach and curated phenotypes with multiple ontologies: 
+                 Phenotypic Quality Ontology (PATO) for &quot;quality&quot; terms and Gene Ontology (GO), Fungal Gross Anatomy Ontology (FAO),
+                 Chemical Entities of Biological Interest (ChEBI) and Ascomycete Phenotype Ontology (APO) for &quot;entity&quot; terms. 
+             </li>
+             </ul>
+             <br>
+               
+        <div style="margin-left: 3em;">
+        
+        <style>
+           #Phenotype_Bld45 table, #Phenotype_Bld45 td, #Phenotype_Bld45 th, #Phenotype_Bld45 tr {
+           text-align : center;
+           padding-left: 5px;
+           padding-right: 5px;
+           padding-top: 5px;
+           padding-bottom: 5px;
+           border: 1px solid black;
+           }
+           #Phenotype_Bld45 {
+           margin-left : 5 em;
+           }
+         </style> 
+           <table id="Phenotype_Bld45"> 
+           <tr>
+             <th>Species</th>
+             <th>New phenotype mappings</th>
+             <th>Genes with phenotypes</th>
+           </tr>
+           <tr>
+             <td><i>Cryptococcus neoformans</i> var grubii H99</td>
+             <td>4027</td>
+             <td>130</td>
+           </tr>
+          </table>
+          <br>
+          </div> 
+             
+             <br>
+             
+             <ul>
+             <li><a href="/a/app/record/dataset/DS_61efdacf5b">Manually Curated <i>Fusarium</i> Phenotypes</a> &ndash; 
+                 The phenotypes for <i>Fusarium graminearum</i> PH-1 are manually curated from published literature describing phenotypes obtained from mutant studies. 
+                 We have curated and added phenotypes from <a href="https://www.ncbi.nlm.nih.gov/pubmed/22028654" target="_blank">Son et al. 2011</a> publication 
+                 on transcription factors to the currently existing Fusarium phenotypes from <a href="https://www.ncbi.nlm.nih.gov/pubmed/25758923" target="_blank">Yun et al. 2007</a>.
+                 We followed an &quot;entity &#43; quality&quot; approach and curated phenotypes with multiple ontologies: 
+                 Phenotypic Quality Ontology (PATO) for &quot;quality&quot; terms and Gene Ontology (GO), Fungal Gross Anatomy Ontology (FAO),
+                 Chemical Entities of Biological Interest (ChEBI) and Ascomycete Phenotype Ontology (APO) for &quot;entity&quot; terms. 
+             </li>
+             </ul>
+             <br>
+               
+        <div style="margin-left: 3em;">
+        
+        <style>
+           #Phenotype_Bld45 table, #Phenotype_Bld45 td, #Phenotype_Bld45 th, #Phenotype_Bld45 tr {
+           text-align : center;
+           padding-left: 5px;
+           padding-right: 5px;
+           padding-top: 5px;
+           padding-bottom: 5px;
+           border: 1px solid black;
+           }
+           #Phenotype_Bld45 {
+           margin-left : 5 em;
+           }
+         </style> 
+           <table id="Phenotype_Bld45"> 
+           <tr>
+             <th>Species</th>
+             <th>Phenotype mapping</th>
+             <th>Genes with phenotypes</th>
+           </tr>
+           <tr>
+             <td><i>Fusarium graminearum</i> PH-1</td>
+             <td>11,556</td>
+             <td>642</td>
+           </tr>
+          </table>
+          <br>
+          </div> 
+             
+           <br>
+             
+      <h4>Updated Functional Annotation</h4>
+               <div style="margin-left: 3em;">
+             
+             <a href="https://docs.google.com/spreadsheets/d/1IoBVcv4WeydzkLs531eRQmI7JZY0bHLZ8yj-xmPQNaQ/edit?usp=sharing" target="_blank">Summary of annotation updates</a>
+               which include products, GO terms, EC numbers, gene names, synonyms, publications, external database references and notes from curators. These functional annotations are current with GeneDB June 2019 GFF versions. <br><br>
+             
+             <style>
+                #FunctAnnot_Bld45 table, #FunctAnnot_Bld45 td, #FunctAnnot_Bld45 th, #FunctAnnot_Bld45 tr {
+                text-align : center;
+                padding-left: 5px;
+                padding-right: 5px;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                border: 1px solid black;
+                }
+                #FunctAnnot_Bld45 {
+                margin-left : 5 em;
+                }
+              </style> 
+                <table id="FunctAnnot_Bld45"> 
+                <tr>
+                  <th>FungiDB Genome Version</th>
+                  <th>Download GeneDB GFF file</th>
+                  <th>Genes Updated</th>
+                </tr>
+                <tr>
+                  <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_8f0322af73"><i>Cryptococcus neoformans</i> H99 </a></td>
+                  <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/genedb/releases/2019-06/CneoformansH99/CneoformansH99.gff.gz">GeneDB version June, 2019</a></td>
+                  <td>255</td>
+                </tr>
+                <tr>
+                  <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4d171eb9ea"><i>Cryptococcus neoformans</i> JEC21 </a></td>
+                  <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/genedb/releases/2019-06/CneoformansneoformansJEC21/CneoformansneoformansJEC21.gff.gz  ">GeneDB version June, 2019</a></td>
+                  <td>267</td>
+                </tr>
+                </table>
+                <br>    
+                </div>
+
+       
+       <h4>Annotations from Gene Ontology Consortium (GOC) resources:</h4>
+       <div style="margin-left: 3em;"> 
+        
+        Curated and computed gene ontology (GO) annotations from Gene Ontology Consortium (GOC) resources have been integrated into FungiDB in Release 44 for 
+        <i>Candida</i> genomes. These GO annotations are current with GOC version 17 April 2019. 
+        The processed GAF files from which GO annotations were loaded onto FungiDB can be found in the public folder linked  
+        <a href="https://github.com/Achchuthan/FungiDB-Curation/tree/master/Gene%20Ontology%20Annotations%20from%20GOC%20resources/Release%2044" target="_blank">here</a>.
+       <br><br>
+        
+        
+        <style>
+           #GOC_Bld45 table, #GOC_Bld45 td, #GOC_Bld45 th, #GOC_Bld45 tr {
+           text-align : center;
+           padding-left: 5px;
+           padding-right: 5px;
+           padding-top: 5px;
+           padding-bottom: 5px;
+           border: 1px solid black;
+           }
+           #GOC_Bld45 {
+           margin-left : 5 em;
+           }
+         </style> 
+           <table id="GOC_Bld45"> 
+           <tr>
+             <th>FungiDB Genome</th>
+             <th>Major contributing resource</th>
+             <th>GO annotations</th>
+           </tr>
+           <tr>
+             <td title="Click here to view this dataset's full description"><a href="https://fungidb.org/fungidb/app/record/dataset/DS_0d9ee4ff86"><i>Candida albicans</i></i> SC5314</a></td>
+             <td title="Click here to be redirected to CGD"><a href="http://www.candidagenome.org/">CGD</a></td>
+             <td>56,203</td>
+           </tr>
+           
+           <tr>
+             <td title="Click here to view this dataset's full description"><a href="https://fungidb.org/fungidb/app/record/dataset/DS_e43fc5921f"><i>Candida albicans</i></i> SC5314_B</a></td>
+             <td title="Click here to be redirected to CGD"><a href="http://www.candidagenome.org/">CGD</a></td>
+             <td>38</td>
+           </tr>
+           
+           <tr>
+             <td title="Click here to view this dataset's full description"><a href="https://fungidb.org/fungidb/app/record/dataset/DS_033b09f437"><i>Candida albicans</i></i> WO-1</a></td>
+             <td title="Click here to be redirected to CGD"><a href="http://www.candidagenome.org/">CGD</a></td>
+             <td>19,037</td>
+           </tr>
+           
+           <tr>
+             <td title="Click here to view this dataset's full description"><a href="https://fungidb.org/fungidb/app/record/dataset/DS_c8c07fac9f"><i>Candida glabrata</i></i> CBS 138</a></td>
+             <td title="Click here to be redirected to CGD"><a href="http://www.candidagenome.org/">CGD</a></td>
+             <td>36,531</td>
+           </tr>
+           
+           <tr>
+             <td title="Click here to view this dataset's full description"><a href="https://fungidb.org/fungidb/app/record/dataset/DS_d1767fcbd3"><i>Candida parapsilosis</i></i> CDC317</a></td>
+             <td title="Click here to be redirected to CGD"><a href="http://www.candidagenome.org/">CGD</a></td>
+             <td>39,202</td>
+           </tr>
+           
+           <tr>
+             <td title="Click here to view this dataset's full description"><a href="https://fungidb.org/fungidb/app/record/dataset/DS_adb102b7b5"><i>Candida tropicalis</i></i> MYA_3404</a></td>
+             <td title="Click here to be redirected to CGD"><a href="http://www.candidagenome.org/">CGD</a></td>
+             <td>19,122</td>
+           </tr>
+           
+           <tr>
+             <td title="Click here to view this dataset's full description"><a href="https://fungidb.org/fungidb/app/record/dataset/DS_783046b845"><i>Clavispora lusitaniae</i></i> ATCC 42720</a></td>
+             <td title="Click here to be redirected to CGD"><a href="http://www.candidagenome.org/">CGD</a></td>
+             <td>17,756</td>
+           </tr>
+          </table>
+          <br>
+          </div> 
+           <br>
+           
+       </div>    
+       </section>
+       
+       <section>
+      <h3><b>New features in FungiDB 44</b></h3>
+      <div style="margin-left: 3em;">
+         <ul>
+           <li>
+             Synteny and the Protein Browser are availabe in our beta implementation of the 
+             <a href="https://jbrowse.org/" target="_blank">JBrowse Genome Browser</a>. 
+           </li>
+           <li>
+             New EuPathDB RNA Seq Tool. The EuPathDB Galaxy Workspace now offers a tool that converts 
+             read counts from HTSeq-count output to FPKM values. 
+           </li>
+           <li>
+             New EuPathDB Workflows. The EuPathDB Galaxy Workspace is updated with several new 
+             pre-configured workflows that are designed to allow export of strand specific data 
+             to EuPathDB for visualization and searching.
+           </li>
+         </ul>
+       </div> 
+      </section>
+       
+       <section>
+     <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+
+    ]]>
+  </attribute>
+</record>
+
+<record>
   <attribute name="headline">FungiDB 44 Released</attribute>
   <attribute name="date">02 Jul 2019 13:00</attribute>
   <attribute name="tag">FungiDB7_19_release</attribute>
