@@ -15,6 +15,401 @@
     </record>
 -->
 <record>
+  <attribute name="headline">FungiDB 45 Released</attribute>
+  <attribute name="date">28 Aug 2019 13:00</attribute>
+  <attribute name="tag">FungiDB8_28_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of FungiDB 45</strong></p>
+    
+    <section>
+    <h3><b>Release 45 Webinar</b></h3>
+    <div style="margin-left: 3em;">
+      Join us on TO DO for our Release 45 Highlights webinar where we will discuss and 
+      demonstrate new features and data available in Release 45 of EuPathDB sites. 
+      <a href="https://attendee.gotowebinar.com/register/7430028289888360460">Register here</a>
+    </div>
+    </section>
+      
+      <section>
+        <h3><b>New data in FungiDB 45</b></h3>
+        <div style="margin-left: 3em;">
+        
+
+        <h4>Genome Sequence and Annotation: these annotated genomes appear for the first time in FungiDB.</h4>
+           <ul>
+             
+             <li><a href="/a/app/record/dataset/DS_0fb7174bf2"><i>Trichoderma virens</i> Gv29-8</a> &ndash;
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/21501500">Kubicek et al. 2011</a>.  
+             </li>
+             
+            <li><a href="/a/app/record/dataset/DS_2fc9a9f5c4"><i>Exophiala mesophila</i> CBS 40295</a> &ndash;
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/25858835">Tafer et al. 2015</a>.  
+             </li>
+             
+            <li><a href="/a/app/record/dataset/DS_08ca801eb9"><i>Candida duobushaemulonis</i> B09383</a> &ndash;
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/29599161">Chow et al. 2018</a>.  
+             </li>
+             
+            <li><a href="/a/app/record/dataset/DS_8ad8c5bb42"><i>Cenococcum geophilum</i> 1.58</a> &ndash;
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/27601008">Peter et al. 2016</a>.  
+             </li>
+            
+            </ul>
+           <br>
+           
+           
+           <h4>New Genome Sequence: available for the first time in FungiDB:</h4>
+        <ul>
+        	<li><a href="/a/app/record/dataset/DS_e92ae61f2f"><i>Chrysosporium queenslandicum</i> CBS 280.77</a> &ndash;  
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26613950">Whiston et al. 2015</a>.
+        	</li>
+        
+            <li><a href="/a/app/record/dataset/DS_ceab3a6f00"><i>Byssoonygena ceratinophila</i> UAMH 5669</a> &ndash;  
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/26613950">Whiston et al. 2015</a>.
+        	</li>
+        	       
+            </ul>
+           <br>
+                      
+        <h4>Transcriptomics</h4>
+           <ul>
+                          
+             <li><a href="/a/app/record/dataset/DS_c37910b5b2">Transcriptome analysis of the col-26 mutant and its wild type parental strain</a> &ndash;
+             <i>Neurospora crassa</i>: mRNA profiles after 4 hours of exposure to various carbon sources.
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/28467421 " target="_blank">Xiong et al. 2017</a>.
+             </li>
+             
+                         
+            <li><a href="/a/app/record/dataset/DS_0a988118ee">WT and DAMT3 mutant transcriptomes</a> &ndash;
+             <i>Phytophthora sojae</i>: RNA-Seq analysis of the mycelium stage.
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/24625133" target="_blank">Zhao et al. 2014</a>.
+             </li>
+             
+             <li><a href="/a/app/record/dataset/DS_cac42e08eb">Genome-wide gene expression analysis of spores and mycelium</a> &ndash;
+             <i>Fusarium graminearum</i>: Examination of gene expression in two developmental stages.
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/23050232" target="_blank">Anderson et al. 2012</a>.
+             </li>
+             
+             <li><a href="/a/app/record/dataset/DS_9916d7089f">Global transcriptional analysis of wild-type and cuf1delta cells</a> &ndash;
+             <i>Cryptococcus neoformans</i>: Genome-wide assessment of the Cu-responsive, Cuf1-dependent transcriptome.
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/29608794" target="_blank">Garcia-Santamarina et al. 2018</a>.
+             </li>
+             
+             
+            <li><a href="/a/app/record/dataset/DS_086cc94697">Transcriptional analysis of sorted subpopulations of macrophages infected with <i>Candida albicans</i></a> &ndash;
+             RNA-Seq of C57BL6J macrophages infected with the CAI4 strain of <i>Candida albicans</i>.
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/30962448" target="_blank">Mu&ntilde;oz et al. 2019</a>.
+             </li>
+             
+                          
+        	</ul>
+        	<br>
+        	          
+                   
+        <h4>Phenotype data</h4>
+           <ul>
+             <li><a href="/a/app/record/dataset/DS_43c139682a">Manually curated <i>Cryptococcus</i> Phenotypes</a> &ndash; 
+                 The phenotypes for <i>Cryptococcus neoformans</i> JEC21 and H99 and <i>Cryptococcus gatii</i> WM276 are manually curated from published literature describing 
+                 phenotypes obtained from mutant studies. We have curated and added phenotypes from <a href="https://www.ncbi.nlm.nih.gov/pubmed/30291809" target="_blank">Bairwa et al. 2019</a>.  
+                 publication on kinases to the currently existing phenotypic dataset for <i>C. neoformans</i> H99.
+                 We followed an &quot;entity &#43; quality&quot; approach and curated phenotypes with multiple ontologies: 
+                 Phenotypic Quality Ontology (PATO) for &quot;quality&quot; terms and Gene Ontology (GO), Fungal Gross Anatomy Ontology (FAO),
+                 Chemical Entities of Biological Interest (ChEBI) and Ascomycete Phenotype Ontology (APO) for &quot;entity&quot; terms. 
+             </li>
+             </ul>
+             <br>
+               
+        <div style="margin-left: 3em;">
+        
+        <style>
+           #Phenotype_Bld45 table, #Phenotype_Bld45 td, #Phenotype_Bld45 th, #Phenotype_Bld45 tr {
+           text-align : center;
+           padding-left: 5px;
+           padding-right: 5px;
+           padding-top: 5px;
+           padding-bottom: 5px;
+           border: 1px solid black;
+           }
+           #Phenotype_Bld45 {
+           margin-left : 5 em;
+           }
+         </style> 
+           <table id="Phenotype_Bld45"> 
+           <tr>
+             <th>Species</th>
+             <th>New phenotype mappings</th>
+             <th>Genes with phenotypes</th>
+           </tr>
+           <tr>
+             <td><i>Cryptococcus neoformans</i> var grubii H99</td>
+             <td>707</td>
+             <td>154</td>
+           </tr>
+          </table>
+          <br>
+          </div> 
+             
+             <br>
+             
+             <ul>
+             <li><a href="/a/app/record/dataset/DS_61efdacf5b">Manually Curated <i>Fusarium</i> Phenotypes</a> &ndash; 
+                 The phenotypes for <i>Fusarium graminearum</i> PH-1 are manually curated from published literature describing phenotypes obtained from mutant studies. 
+                 We have curated and added phenotypes from <a href="https://www.ncbi.nlm.nih.gov/pubmed/22216007" target="_blank">Wang et al. 2011</a> publication 
+                 on kinome. We followed an &quot;entity &#43; quality&quot; approach and curated phenotypes with multiple ontologies: 
+                 Phenotypic Quality Ontology (PATO) for &quot;quality&quot; terms and Gene Ontology (GO), Fungal Gross Anatomy Ontology (FAO),
+                 Chemical Entities of Biological Interest (ChEBI) and Ascomycete Phenotype Ontology (APO) for &quot;entity&quot; terms. 
+             </li>
+             </ul>
+             <br>
+               
+        <div style="margin-left: 3em;">
+        
+        <style>
+           #Phenotype_Bld45 table, #Phenotype_Bld45 td, #Phenotype_Bld45 th, #Phenotype_Bld45 tr {
+           text-align : center;
+           padding-left: 5px;
+           padding-right: 5px;
+           padding-top: 5px;
+           padding-bottom: 5px;
+           border: 1px solid black;
+           }
+           #Phenotype_Bld45 {
+           margin-left : 5 em;
+           }
+         </style> 
+           <table id="Phenotype_Bld45"> 
+           <tr>
+             <th>Species</th>
+             <th>Phenotype mapping</th>
+             <th>Genes with phenotypes</th>
+           </tr>
+           <tr>
+             <td><i>Fusarium graminearum</i> PH-1</td>
+             <td>772</td>
+             <td>110</td>
+           </tr>
+          </table>
+          <br>
+          </div> 
+             
+           <br>
+           
+             
+             <ul>
+             <li><a href="/a/app/record/dataset/DS_e51cb08950">PHI-base phenotypes</a> &ndash; 
+             PHI-base is a web-accessible database that 
+             catalogues experimentally verified pathogenicity, 
+             virulence and effector genes from fungal, oomycete and bacterial pathogens, 
+             which infect animal, plant, fungal and insect hosts. The pathogen – host interactions (PHI) phenotypes 
+             and pathogen-specific phenotypes from PHI-base were integrated for 18 different genomes 
+             available in FungiDB in this release. 
+             This dataset is current with PHI-base version 4.6. 
+             We have integrated 2,633 phenotypic annotations mapping to 1,636 genes in total.
+             </li>
+             </ul>
+             <br>
+             
+      <h4>Updated Functional Annotation</h4>
+               <div style="margin-left: 3em;">
+             
+             <a href="https://docs.google.com/spreadsheets/d/1nmegyMpMbarACc04x0bKyTfqmsJltQ2yB8DT9YotN-w/edit?usp=sharing" target="_blank">Summary of annotation updates</a>
+               which include products, GO terms, EC numbers, gene names, synonyms, publications, external database references and notes from curators. These functional annotations are current with GeneDB August 2019 GFF versions. <br><br>
+             
+             <style>
+                #FunctAnnot_Bld45 table, #FunctAnnot_Bld45 td, #FunctAnnot_Bld45 th, #FunctAnnot_Bld45 tr {
+                text-align : center;
+                padding-left: 5px;
+                padding-right: 5px;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                border: 1px solid black;
+                }
+                #FunctAnnot_Bld45 {
+                margin-left : 5 em;
+                }
+              </style> 
+                <table id="FunctAnnot_Bld45"> 
+                <tr>
+                  <th>FungiDB Genome Version</th>
+                  <th>Download GeneDB GFF file</th>
+                  <th>Genes Updated</th>
+                </tr>
+                <tr>
+                  <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_071f05cd56"><i>Aspergillus fumigatus</i> Af293</a></td>
+                  <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/genedb/releases/2019-08/AfumigatusAf293/AfumigatusAf293.gff.gz">GeneDB version August, 2019</a></td>
+                  <td>216</td>
+                </tr>
+                <tr>
+                  <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4b35c88aa1"><i>Aspergillus nidulans</i> FGSC A4</a></td>
+                  <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/genedb/releases/2019-08/AnidulansFGSCA4/AnidulansFGSCA4.gff.gz">GeneDB version August, 2019</a></td>
+                  <td>556</td>
+                </tr>
+                <tr>
+                  <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4b35c88aa1"><i>Fusarium graminearum</i> PH-1</a></td>
+                  <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/genedb/releases/2019-08/FgraminearumPH1/FgraminearumPH1.gff.gz">GeneDB version August, 2019</a></td>
+                  <td>958</td>
+                </tr>
+                </table>
+                <br>    
+                </div>
+
+                <h4>Curated User Comments:</h4>
+                       <div style="margin-left: 3em;">  
+                       
+                        Gene page comments that are entered by users are curated and integrated as functional annotations in FungiDB. 
+                        45 user comments have been reviewed and updated.
+                        <br><br>
+                         
+                        <style>
+                           #UComment_Bld45 table, #UComment_Bld45 td, #UComment_Bld45 th, #UComment_Bld45 tr {
+                           text-align : center;
+                           padding-left: 5px;
+                           padding-right: 5px;
+                           padding-top: 5px;
+                           padding-bottom: 5px;
+                           border: 1px solid black;
+                           }
+                           #UComment_Bld45 {
+                           margin-left : 5 em;
+                           }
+                         </style> 
+                           <table id="UComment_Bld45"> 
+                           <tr>
+                             <th>FungiDB Genome Version</th>
+                             <th>Comments Integrated</th>
+                           </tr>
+                           <tr>
+                             <td title="Click here to view this dataset's full description."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_071f05cd56"><i>Aspergillus fumigatus></i> Af293</a></td>
+                             <td>22</td>
+                           </tr>
+                           
+                           <tr>
+                             <td title="Click here to view this dataset's full description."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4b35c88aa1"><i>Aspergillus nidulans</i> FGSC A4 1</a></td>
+                             <td>4</td>
+                           </tr>
+                           
+                           <tr>
+                             <td title="Click here to view this dataset's full description."><a href="https://fungidb.org/fungidb/app/record/dataset/DS_cd90ec7602"><i>Fusarium graminearum</i> PH-1</a></td>
+                             <td>19</td>
+                           </tr>
+                           
+                          </table>
+                          <br>
+                          </div> 
+       
+       <h4>Updated Gene Ontology (GO) Annotations from AspGD</h4>
+       <div style="margin-left: 3em;"> 
+        
+        Curated and computed gene ontology (GO) annotations from <a href="http://www.aspgd.org/" target="_blank">AspGD</a>  
+        have been updated for <i>Aspergillus</i> genomes.  These GO annotations are current with AspGD version from 
+        22-07-2019. The processed GAF files from which GO annotations were loaded onto FungiDB can be found in this public folder  
+        <a href="https://github.com/Achchuthan/FungiDB-Curation/tree/master/Gene%20Ontology%20Annotations%20from%20GOC%20resources/Release%2045" target="_blank">here</a>.
+       <br><br>
+        
+        
+        <style>
+           #GOC_Bld45 table, #GO_Bld45 td, #GO_Bld45 th, #GO_Bld45 tr {
+           text-align : center;
+           padding-left: 5px;
+           padding-right: 5px;
+           padding-top: 5px;
+           padding-bottom: 5px;
+           border: 1px solid black;
+           }
+           #GO_Bld45 {
+           margin-left : 5 em;
+           }
+         </style> 
+           <table id="GO_Bld45"> 
+           <tr>
+             <th>FungiDB Genome</th>
+             <th>GO annotation</th>
+           </tr>
+           <tr>
+             <td title="Click here to view this dataset's full description"><a href="https://fungidb.org/fungidb/app/record/dataset/DS_d22680da9c"><i>Aspergillus clavatus</i> NRRL1</a></td>
+             <td>22,527</td>
+           </tr>
+           
+           <tr>
+             <td title="Click here to view this dataset's full description"><a href="https://fungidb.org/fungidb/app/record/dataset/DS_8ddc55305a"><i>Aspergillus fischeri</i> NRRL 181B</a></td>
+    
+             <td>25,158</td>
+           </tr>
+           
+           <tr>
+             <td title="Click here to view this dataset's full description"><a href="https://fungidb.org/fungidb/app/record/dataset/DS_66bbb7c459"><i>Aspergillus fumigatus</i> A1163</a></td>
+             
+             <td>23,287</td>
+           </tr>
+           
+           <tr>
+             <td title="Click here to view this dataset's full description"><a href="https://fungidb.org/fungidb/app/record/dataset/DS_071f05cd56"><i>Aspergillus fumigatus</i> Af293</a></td>
+            
+             <td>37,952</td>
+           </tr>
+           
+           <tr>
+             <td title="Click here to view this dataset's full description"><a href="https://fungidb.org/fungidb/app/record/dataset/DS_4b35c88aa1"><i>Aspergillus nidulans</i> FGSC A4</a></td>
+             
+             <td>41,635</td>
+           </tr>
+           
+           <tr>
+             <td title="Click here to view this dataset's full description"><a href="https://fungidb.org/fungidb/app/record/dataset/DS_e3b988685c"><i>Aspergillus niger</i> CBS 513.88</a></td>
+             
+             <td>47,920</td>
+           </tr>
+           
+           <tr>
+             <td title="Click here to view this dataset's full description"><a href="https://fungidb.org/fungidb/app/record/dataset/DS_07d4b5c58b"><i>Aspergillus oryzae</i> RIB40</a></td>
+             
+             <td>41,975</td>
+           </tr>
+          </table>
+          <br>
+          </div> 
+           <br>
+           
+       </div>    
+       </section>
+       
+       <section>
+      <h3><b>New features in FungiDB 44</b></h3>
+      <div style="margin-left: 3em;">
+         <ul>
+           <li>
+             Synteny and the Protein Browser are availabe in our beta implementation of the 
+             <a href="https://jbrowse.org/" target="_blank">JBrowse Genome Browser</a>. 
+           </li>
+           <li>
+             New EuPathDB RNA Seq Tool. The EuPathDB Galaxy Workspace now offers a tool that converts 
+             read counts from HTSeq-count output to FPKM values. 
+           </li>
+           <li>
+             New EuPathDB Workflows. The EuPathDB Galaxy Workspace is updated with several new 
+             pre-configured workflows that are designed to allow export of strand specific data 
+             to EuPathDB for visualization and searching.
+           </li>
+         </ul>
+       </div> 
+      </section>
+       
+       <section>
+     <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+
+    ]]>
+  </attribute>
+</record>
+
+<record>
   <attribute name="headline">FungiDB 44 Released</attribute>
   <attribute name="date">02 Jul 2019 13:00</attribute>
   <attribute name="tag">FungiDB7_19_release</attribute>
