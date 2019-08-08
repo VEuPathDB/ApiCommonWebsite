@@ -62,7 +62,7 @@ gp = gp + scale_colour_manual(values=viridis(numColors, begin=.2, end=.8), break
   my $wantLogged = $bar->getWantLogged();
   if($wantLogged) {
     $bar->addAdjustProfile('profile.df.full$VALUE = log2(profile.df.full$VALUE + 1);');
-    $bar->setYaxisLabel('FPKM (log2)');
+    $bar->setYaxisLabel('log2(FPKM + 1)');
     $bar->setIsLogged(1);
     $bar->setDefaultYMax(4);
     $bar->setSkipStdErr(1);
