@@ -84,11 +84,11 @@
                          
             <li><a href="/a/app/record/dataset/DS_0a988118ee">WT and DAMT3 mutant transcriptomes</a> &ndash;
              <i>Phytophthora sojae</i>: RNA-Seq analysis of the mycelium stage.
-             <a href="http://www.ncbi.nlm.nih.gov/pubmed/30382931" target="_blank">Chen et al. 2018</a>.
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/24625133" target="_blank">Zhao et al. 2014</a>.
              </li>
              
-             <li><a href="/a/app/record/dataset/DS_cac42e08eb">Microarray analysis of fruiting body development in <i>Coprinopsis cinerea</i></a> &ndash;
-             <i>Fusarium graminearum</i>: Meiosis was compared in <i>rad50-1</i> and wild type strains of <i>C. cinerea</i> at 6 time points spanning the meiotic timecourse.
+             <li><a href="/a/app/record/dataset/DS_cac42e08eb">Genome-wide gene expression analysis of spores and mycelium</a> &ndash;
+             <i>Fusarium graminearum</i>: Examination of gene expression in two developmental stages.
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/23050232" target="_blank">Anderson et al. 2012</a>.
              </li>
              
@@ -98,9 +98,9 @@
              </li>
              
              
-            <li><a href="/a/app/record/dataset/DS_6297bc8dfd">Transcriptional analysis of sorted subpopulations of mouse C57BL6J macrophages infected with <i>Candida albicans</i></a> &ndash;
-             TODO: .
-             <a href="http://www.ncbi.nlm.nih.gov/pubmed/29678830" target="_blank">Fischer et al. 2018</a>.
+            <li><a href="/a/app/record/dataset/DS_086cc94697">Transcriptional analysis of sorted subpopulations of macrophages infected with <i>Candida albicans</i></a> &ndash;
+             RNA-Seq of C57BL6J macrophages infected with the CAI4 strain of <i>Candida albicans</i>.
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/30962448" target="_blank">Mu&ntilde;oz et al. 2019</a>.
              </li>
              
                           
@@ -198,7 +198,7 @@
            
              
              <ul>
-             <li><a href="/a/app/record/dataset/DS_61efdacf5b">PHI-base phenotypes</a> &ndash; 
+             <li><a href="/a/app/record/dataset/DS_e51cb08950">PHI-base phenotypes</a> &ndash; 
              PHI-base is a web-accessible database that 
              catalogues experimentally verified pathogenicity, 
              virulence and effector genes from fungal, oomycete and bacterial pathogens, 
