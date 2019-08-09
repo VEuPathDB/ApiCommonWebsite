@@ -33,6 +33,52 @@
        
        href="/a/showQuestion.do?questionFullName=InternalGeneDatasetQuestions.GenesByRNASeqEvidence
 -->
+<record>
+  <attribute name="headline">HostDB 45 Released</attribute>
+  <attribute name="date">28 Aug 2019 13:00</attribute>
+  <attribute name="tag">HostDB_28_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of HostDB 45</strong></p>
+    
+     <section>
+    <h3><b>Release 45 Webinar</b></h3>
+    <div style="margin-left: 3em;">
+      Join us on TO DO TO DO 10:00 am (EST) for our Release 44 Highlights webinar where we will discuss and 
+      demonstrate new features and data available in release 44 of EuPathDB sites. 
+      <a href="https://attendee.gotowebinar.com/register/7430028289888360460">Register here</a>
+    </div>
+    </section>
+      
+      <section>
+      <h3><b>New data in HostDB 45</b></h3>
+      <div style="margin-left: 3em;">
+        
+       <h4>Transcriptomics</h4>
+          <ul>
+          <li>
+            <a href="https://hostdb.org/hostdb/app/record/dataset/DS_6297bc8dfd ">Transcriptional analysis of sorted subpopulations of mouse macrophages infected with <i>C. albicans</i></a> &mdash; <br>
+            C57BL6J macrophages were infected with the CAI4 strain of <i>Candida albicans</i>. 
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/30962448" target="_blank">Mu&ntilde;oz et al. 2019</a>. 
+           </li>
+         </ul>   
+      </section>
+      
+      
+      <section>
+         <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+
+    ]]>
+  </attribute>
+</record>
+
 
 <record>
   <attribute name="headline">HostDB 44 Released</attribute>

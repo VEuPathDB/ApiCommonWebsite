@@ -579,6 +579,31 @@ sub init {
 
 # TriTryp - tbruTREU927_Rijo_Circadian_Regulation_rnaSeq_RSRC
 package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_1cc46f3acb;
+use Data::Dumper;
+
+# @Override
+sub getKeys{
+  my ($self, $profileSetName, $profileType) = @_;
+
+  $profileType = 'percentile' if ($profileType eq 'channel1_percentiles');
+
+  my $metacycle = 0;
+  if (index($profileSetName, "MetaCycle") != -1) {
+    $metacycle = 1;
+  } 
+  my $mainKey =  ["_${profileType}"];
+
+  #trying to ignore dup fpkm values, but also pass everything else to same plot part as the main profile to use as annotation
+  if ($metacycle) {
+    if ($profileType eq 'values' || $profileType eq 'percentile') {
+      return([]);
+    } else {
+      $mainKey = ["_values", "_percentile"];
+    }
+  }
+
+  return($mainKey);
+}
 
 sub getProfileColors {
   my ($self) = @_;
@@ -603,28 +628,51 @@ sub finalProfileAdjustments {
   my ($self, $profile) = @_;
 
   my $rAdjustString = << 'RADJUST';
-    profile.df.full$ELEMENT_NAMES = factor(profile.df.full$ELEMENT_NAMES,   levels=c('BSF 0hr Alt Temp', 'BSF 4hr Alt Temp', 'BSF 8hr Alt Temp', 'BSF 12hr Alt Temp', 'BSF 16hr Alt Temp', 'BSF 20hr Alt Temp', 'BSF 24hr Alt Temp', 'BSF 28hr Alt Temp', 'BSF 32hr Alt Temp', 'BSF 36hr Alt Temp', 'BSF 40hr Alt Temp', 'BSF 44hr Alt Temp', 'BSF 48hr Alt Temp',   
-   'BSF 0hr Const Temp', 'BSF 4hr Const Temp', 'BSF 8hr Const Temp', 'BSF 12hr Const Temp', 'BSF 16hr Const Temp', 'BSF 20hr Const Temp', 'BSF 24hr Const Temp', 'BSF 28hr Const Temp', 'BSF 32hr Const Temp', 'BSF 36hr Const Temp', 'BSF 40hr Const Temp', 'BSF 44hr Const Temp', 'BSF 48hr Const Temp',
-   'PF 0hr Alt Temp', 'PF 4hr Alt Temp', 'PF 8hr Alt Temp', 'PF 12hr Alt Temp', 'PF 16hr Alt Temp', 'PF 20hr Alt Temp', 'PF 24hr Alt Temp', 'PF 28hr Alt Temp', 'PF 32hr Alt Temp', 'PF 36hr Alt Temp', 'PF 40hr Alt Temp', 'PF 44hr Alt Temp', 'PF 48hr Alt Temp',
-   'PF 0hr Const Temp', 'PF 4hr Const Temp', 'PF 8hr Const Temp', 'PF 12hr Const Temp', 'PF 16hr Const Temp', 'PF 20hr Const Temp', 'PF 24hr Const Temp', 'PF 28hr Const Temp', 'PF 32hr Const Temp', 'PF 36hr Const Temp', 'PF 40hr Const Temp', 'PF 44hr Const Temp', 'PF 48hr Const Temp' ));
-
-   profile.df.full$GROUP = c( 
-    "BSF Alt Temp","BSF Alt Temp","BSF Alt Temp","BSF Alt Temp","BSF Alt Temp","BSF Alt Temp","BSF Alt Temp","BSF Alt Temp","BSF Alt Temp","BSF Alt Temp","BSF Alt Temp","BSF Alt Temp","BSF Alt Temp",
-    "BSF Const Temp","BSF Const Temp","BSF Const Temp","BSF Const Temp","BSF Const Temp","BSF Const Temp","BSF Const Temp","BSF Const Temp","BSF Const Temp","BSF Const Temp","BSF Const Temp","BSF Const Temp","BSF Const Temp",
-    "PF Alt Temp","PF Alt Temp","PF Alt Temp","PF Alt Temp","PF Alt Temp","PF Alt Temp","PF Alt Temp","PF Alt Temp","PF Alt Temp","PF Alt Temp","PF Alt Temp","PF Alt Temp","PF Alt Temp",
-    "PF Const Temp","PF Const Temp","PF Const Temp","PF Const Temp","PF Const Temp","PF Const Temp","PF Const Temp","PF Const Temp","PF Const Temp","PF Const Temp","PF Const Temp","PF Const Temp","PF Const Temp"
-  );
-
+  annotation.df <- profile.df.full[!profile.df.full$PROFILE_TYPE %in% c('values', 'channel1_percentiles'),]
+  profile.df.full <- profile.df.full[profile.df.full$PROFILE_TYPE %in% c('values', 'channel1_percentiles'),]
+  profile.df.full$GROUP <- gsub("([0-9]+)...", "", profile.df.full$ELEMENT_NAMES)
   profile.df.full$PROFILE_FILE = profile.df.full$GROUP
   profile.df.full$LEGEND = profile.df.full$GROUP
+
+  if (nrow(annotation.df) > 0) {  
+    annotation.df <- transform(annotation.df, "VALUE"=ifelse(VALUE < .05 & PROFILE_TYPE == "pvalue", "<0.05", VALUE)) 
+    annotation.df$LEGEND <- gsub("  ", " ", paste(gsub("Con", "Const", gsub("Cons", "Con", gsub("_", " ", substr(annotation.df$ELEMENT_NAMES, 11,17)))), "Temp"))
+    annotation.df$LINETEXT <- paste0(substr(annotation.df$ELEMENT_NAMES, 1,3), " ", annotation.df$PROFILE_TYPE, ": ", annotation.df$VALUE)
+    annotation.df <- group_by(annotation.df, LEGEND)
+    annotation.df <- summarize(annotation.df, LINETEXT = paste(LINETEXT, collapse="||"))
+    annotation.df$LINETEXT <- paste0(annotation.df$LEGEND, "||", annotation.df$LINETEXT)
+    profile.df.full <- merge(profile.df.full, annotation.df, by = "LEGEND")
+  }
 RADJUST
 
-  my $legend = ['BSF Alt Temp', 'BSF Const Temp', 'PF Alt Temp', 'BPF Const Temp'];
-  $profile->setSmoothLines(0);
+  my $rPostscript = << 'RPOST';
+  if ("LINETEXT" %in% colnames(profile.df.full)) {  
+    remove_geom <- function(ggplot2_object, geom_type) {
+      layers <- lapply(ggplot2_object$layers, 
+        function(x) {
+          if (class(x$geom)[1] == geom_type) {
+   	    NULL
+    	  } else {
+    	    x
+   	  }
+        }
+      )
+      layers <- layers[!sapply(layers, is.null)]
+      ggplot2_object$layers <- layers
+      ggplot2_object
+    }
+  
+    gp <- remove_geom(gp, "GeomLine")
+ 
+    gp = gp + aes(group=GROUP)
+    gp = gp + geom_tooltip(aes(tooltip=LINETEXT), real.geom=geom_line)
+  }
+RPOST
 
+  $profile->setSmoothLines(0);
   $profile->setXaxisLabel('Hours');
-  $profile->setLegendLabels($legend);
   $profile->addAdjustProfile($rAdjustString);
+  $profile->setRPostscript($rPostscript);
 }
 
 1;
@@ -935,7 +983,7 @@ sub init {
   $line->setProfileSets($profileSets);
   $line->setPartName('fpkm_line');
   $line->setAdjustProfile('profile.df.full$VALUE = log2(profile.df.full$VALUE + 1);');
-  $line->setYaxisLabel('FPKM (log2)');
+  $line->setYaxisLabel('log2(FPKM + 1)');
   $line->setPointsPch($pch);
   $line->setXaxisLabel("Timepoint");
   $line->setColors([$colors->[0], $colors->[1]]);

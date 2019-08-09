@@ -110,6 +110,7 @@ sub init {
   $self->SUPER::init(@_);
 
   my $allProfileSets = $self->getAllProfileSetNames();
+
   my %plotParts;
   my %hasStdError;
 
@@ -120,12 +121,12 @@ sub init {
     my $keys = $self->getKeys($profileName, $profileType);
 
     if ($profileType eq 'standard_error') {
-     $hasStdError{$profileName} = 1;
-   } else {
-       foreach my $key (@$keys) {
-	   push @{$plotParts{$key}}, $p;
-       }
-   }
+      $hasStdError{$profileName} = 1;
+    } else {
+      foreach my $key (@$keys) {
+        push @{$plotParts{$key}}, $p;
+      }
+    }
   }
 
 
@@ -201,7 +202,11 @@ sub makeAndSetPlots {
       if ($hasStdError->{ $p->{profileName}} && !($key=~/percentile/)) {
 	push @profileSetsArray, [$p->{profileName}, $p->{profileType}, $p->{profileName}, 'standard_error'];
       } else {
-	push @profileSetsArray, [$p->{profileName}, $p->{profileType}];
+	if (defined $p->{displayName}) {
+	  push @profileSetsArray, [$p->{profileName}, $p->{profileType}, '','','','','','', $p->{displayName}];
+	} else {
+	  push @profileSetsArray, [$p->{profileName}, $p->{profileType}];
+	}
       }
     }
 
