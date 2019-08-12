@@ -63,8 +63,9 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
     // TODO ... Add more for other BRCs
   }
 
-  @Override
-  public ValidationBundle validateFormParamValues(Map<String, String[]> formParams) {
+  // TODO: verify that validation is being performed here (i.e. that these params live in the model
+  @SuppressWarnings("unused")
+  private ValidationBundle validateFormParamValues(Map<String, String[]> formParams) {
 
     ValidationBundleBuilder errors = ValidationBundle.builder(ValidationLevel.SEMANTIC);
 
@@ -139,12 +140,6 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
 
     //TODO:  Add server endpoint
     return new String[]{qualifiedExe, idSql, thresholdType, threshold, datasetCutoffType, datasetCutoff, useOrthology, type, idSource, resultFilePath.toString(), wdkModel.getProjectId(), searchServerEndpoint};
-  }
-
-  @Override
-  public JSONObject getFormViewModelJson() throws WdkModelException {
-    // This is now declared as parameters in the model xml
-    return null;
   }
 
   @Override

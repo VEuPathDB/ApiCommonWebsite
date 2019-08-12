@@ -76,12 +76,6 @@ public class WordEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   }
 
   @Override
-  public JSONObject getFormViewModelJson() throws WdkModelException {
-    // this is now declared in the model xml
-    return null;
-  }
-
-  @Override
   public JSONObject getResultViewModelJson() throws WdkModelException {
     return createResultViewModel().toJson();
   }

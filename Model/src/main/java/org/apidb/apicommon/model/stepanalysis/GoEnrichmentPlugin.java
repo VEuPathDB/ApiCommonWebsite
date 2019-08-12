@@ -182,12 +182,6 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     }
   }
 
-  @Override
-  public JSONObject getFormViewModelJson() throws WdkModelException {
-    // This is now declared as parameters in the model xml
-    return null;
-  }
-
   private ResultViewModel createResultViewModel() throws WdkModelException {
     Path inputPath = Paths.get(getStorageDirectory().toString(), HIDDEN_TABBED_RESULT_FILE_PATH);
     //    Path inputPath = Paths.get(getStorageDirectory().toString(), HIDDEN_TABBED_RESULT_FILE_PATH);

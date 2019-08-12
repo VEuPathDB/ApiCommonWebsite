@@ -60,8 +60,9 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
       "Bonferroni adjusted p-value"
   );
 
-  @Override
-  public ValidationBundle validateFormParamValues(Map<String, String[]> formParams) throws WdkModelException {
+  // TODO: verify that validation is being performed here (i.e. that these params live in the model
+  @SuppressWarnings("unused")
+  private ValidationBundle validateFormParamValues(Map<String, String[]> formParams) throws WdkModelException {
 
     ValidationBundleBuilder errors = ValidationBundle.builder(ValidationLevel.SEMANTIC);
 
@@ -160,12 +161,6 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
       throw new IllegalAnswerValueException("Your result has no genes that are in pathways, so you can't use this tool on this result. " +
           "Please revise your search and try again.");
     }
-  }
-
-  @Override
-  public JSONObject getFormViewModelJson() throws WdkModelException {
-    // this is now declared in the model xml
-    return null;
   }
 
   @Override

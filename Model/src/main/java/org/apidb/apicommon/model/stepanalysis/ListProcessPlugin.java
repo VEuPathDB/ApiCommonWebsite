@@ -21,9 +21,10 @@ public class ListProcessPlugin extends AbstractSimpleProcessAnalyzer {
   private static final String LIST_EXECUTABLE = "/bin/ls";
   private static final String LIST_OPTIONS = "-alF";
   private static final String LOCATION_PARAM = "location";
-  
-  @Override
-  public ValidationBundle validateFormParamValues(Map<String,String[]> params) {
+
+  // TODO: verify that validation is being performed here (i.e. that these params live in the model
+  @SuppressWarnings("unused")
+  private ValidationBundle validateFormParamValues(Map<String,String[]> params) {
     ValidationBundleBuilder errors = ValidationBundle.builder(ValidationLevel.SEMANTIC);
     String[] vals = params.get(LOCATION_PARAM);
     if ( vals == null || vals.length != 1 || vals[0].isEmpty()) {
@@ -35,11 +36,6 @@ public class ListProcessPlugin extends AbstractSimpleProcessAnalyzer {
   @Override
   protected String[] getCommand(AnswerValue answerValue) {
     return new String[]{ LIST_EXECUTABLE, LIST_OPTIONS, getFormParams().get(LOCATION_PARAM)[0] };
-  }
-  
-  @Override
-  public JSONObject getFormViewModelJson() {
-    return new JSONObject();
   }
 
   @Override
