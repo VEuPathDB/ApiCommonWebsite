@@ -11,9 +11,16 @@ use Data::Dumper;
 sub getAllProfileSetNames {
   my ($self) = @_;
 
+  my @datasetNames = (
+			#TEMPLATE_ANCHOR transcriptionSummaryGraph
+		     );
+  my $datasetNamesString = join "', '", @datasetNames;
+  $datasetNamesString = "'" . $datasetNamesString . "'"; 
+ 
   my $id = $self->getId();
   my $sql = "select distinct profile_set_name,
-	 	    dsp.display_name || decode(p.profile_set_suffix, null, '', ' - ' || p.profile_set_suffix) as display_name
+	 	    dsp.display_name || decode(p.profile_set_suffix, null, '', ' - ' || p.profile_set_suffix) || ', ' || dsp.short_attribution as display_name,
+		    dsp.dataset_presenter_id as presenter_id
 		from apidbtuning.profile p, 
 		     apidbtuning.profilesamples ps, 
 		     apidbtuning.expressiongraphsdata d,
@@ -26,7 +33,8 @@ sub getAllProfileSetNames {
                 and d.sample_name like '%unique%'
                 and p.profile_set_name = ps.study_name
                 and ps.protocol_app_node_id = d.protocol_app_node_id
-		and p.dataset_name = dsp.name";
+		and p.dataset_name = dsp.name
+		and dsp.name in ($datasetNamesString)";
 
   my $dbh = $self->getQueryHandle();
   my $sh = $dbh->prepare($sql);
