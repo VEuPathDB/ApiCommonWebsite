@@ -75,7 +75,7 @@
            </li>
            <li>
              The new RNASeq Transcript Summary tool on gene pages helps reveal experiments in which the gene is highly 
-             regulated. The tool displays the gene's FPKM values for all experiments in @PROJECTID@ and offers features such as 
+             regulated. The tool displays the gene's FPKM values for all experiments in HostDB and offers features such as 
              log/linear scaling, zoom and pan to explore the gene's expression in each experiment.
            </li>
          </ul>
