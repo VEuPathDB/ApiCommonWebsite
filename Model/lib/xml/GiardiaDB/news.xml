@@ -52,6 +52,79 @@
 --> 
 
 <record>
+  <attribute name="headline">GiardiaDB 45 Released</attribute>
+  <attribute name="date">25 Aug 2019 13:00</attribute>
+  <attribute name="tag">GiardiaDB8_19_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of GiardiaDB 45</strong></p>
+    
+    <section>
+    <h3><b>Release 45 Webinar</b></h3>
+    <div style="margin-left: 3em;">
+      Join us on TODO at 10:00 am (EST) for our Release 45 Highlights webinar where we will discuss and 
+      demonstrate new features and data available in release 45 of EuPathDB sites. 
+      <a href="TODO">Register here</a>
+    </div>
+    </section>
+      
+      <section>
+      <h3><b>New data in GiardiaDB 45</b></h3>
+      <div style="margin-left: 3em;">
+      <h4>Annotated Genomes</h4>
+            <ul>
+              <li><a href="/a/app/record/dataset/DS_cf6ec570dd"><i>Giardia muris</i> strain Roberts-Thomson</a> &ndash; 
+                  <a href="http://www.ncbi.nlm.nih.gov/bioproject/PRJNA524057" target="_blank">NCBI Bioproject home page</a>, Xu et al.
+              </li>
+            </ul>      
+      <h4>Proteomics</h4>
+            <ul>
+              <li><a href="/a/app/record/dataset/DS_1dec15a9c9">Metranidazone-resistant Giardia proteomes and post-translational modifications</a> &ndash;   
+                  Three <i>Giardia Assemblage A</i> isolate WB lines that are resistant to metranidazole, WB MtzR, 106 MtzR and 713 MtzR, were analyzed by quantitative proteomics and for post-translational modifications.
+                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/29688452" target="_blank">Emery et al.</a>
+              </li>
+              <li><a href="/a/app/record/dataset/DS_587864765f">Nitro drug-resistant strains and wild type proteomics</a> &ndash;   
+                  MS shotgun analysis of three resistant strains separately grown in the presence of two nitro drugs and compared to wild-types.
+                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/30889439" target="_blank">Muller et al.</a>
+              </li>
+            </ul>
+     
+      </div>
+      </section>
+      
+      <section>
+      <h3><b>New features in GiardiaDB 45</b></h3>
+      <div style="margin-left: 3em;">
+         <ul>
+           <li>
+             All EuPathDB sites now offer the <a href="https://jbrowse.org/" target="_blank">JBrowse Genome Browser</a>.  GBrowse will be phased out in coming releases.  Please 
+             <a href="https://eupathdb.org/eupathdb/app/contact-us">Contact Us</a> with comments and suggestions for the genome browser. 
+           </li>
+           <li>
+             The new RNASeq Transcript Summary tool on gene pages helps reveal experiments in which the gene is highly 
+             regulated. The tool displays the gene's FPKM values for all experiments in @PROJECTID@ and offers features such as 
+             log/linear scaling, zoom and pan to explore the gene's expression in each experiment.
+           </li>
+         </ul>
+       </div> 
+      </section>
+      
+      <section>
+         <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+
+    ]]>
+  </attribute>
+</record>
+
+
+<record>
   <attribute name="headline">GiardiaDB 44 Released</attribute>
   <attribute name="date">02 Jul 2019 13:00</attribute>
   <attribute name="tag">GiardiaDB7_19_release</attribute>
