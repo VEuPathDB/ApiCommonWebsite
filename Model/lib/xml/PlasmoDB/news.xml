@@ -31,6 +31,75 @@
 -->
 
 <record>
+  <attribute name="headline">PlasmoDB 45 Released</attribute>
+  <attribute name="date">25 Aug 2019 13:00</attribute>
+  <attribute name="tag">PlasmoDB8_19_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of PlasmoDB 45</strong></p>
+    
+    <section>
+    <h3><b>Release 45 Webinar</b></h3>
+    <div style="margin-left: 3em;">
+      Join us on September 11, 2019 at 10:00 am (EST) for our Release 45 Highlights webinar where we will discuss and 
+      demonstrate new features and data available in release 45 of EuPathDB sites. 
+      <a href="https://attendee.gotowebinar.com/register/5757077368783897612" target="_blank">Register here</a>
+    </div>
+    </section>
+      
+      <section>
+      <h3><b>New data in PlasmoDB 45</b></h3>
+      <div style="margin-left: 3em;">
+      <h4>RNA Sequence</h4>
+         <ul>
+           <li>
+             <a href="/a/app/record/dataset/DS_e962e201b8">Asexual blood stages, salivary gland sporozoite and midgut oocyst transcriptomes</a> &ndash; 
+             Transcriptional analysis of asexual blood stages from 4 infected donors and the salivary gland sporozoites and midgut oocysts resulting from infecting mosquitoes with their blood.
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/28091569" target="_blank">Gomez-Diaz et al.</a>
+           </li>
+      <h4>Microarray</h4>
+         <ul>
+           <li>
+             <a href="/a/app/record/dataset/DS_57b027468b">Gametocyte time course from commitment to maturity</a> &ndash; 
+             Comprehensive high-resolution transcriptome dataset spanning the whole of gametocyte commitment and development of <i>P. falciparum</i>.
+             <a href="https://www.biorxiv.org/content/10.1101/633222v1.full" target="_blank">BioRxiv, Biljon et al</a>.
+           </li>
+      </div>
+      </section>
+      
+      <section>
+      <h3><b>New features in PlasmoDB 45</b></h3>
+      <div style="margin-left: 3em;">
+         <ul>
+           <li>
+             All EuPathDB sites now offer the <a href="https://jbrowse.org/" target="_blank">JBrowse Genome Browser</a>.  GBrowse will be phased out in coming releases.  Please 
+             <a href="https://eupathdb.org/eupathdb/app/contact-us">Contact Us</a> with comments and suggestions for the genome browser. 
+           </li>
+           <li>
+             The new RNASeq Transcript Summary tool on gene pages helps reveal experiments in which the gene is highly 
+             regulated. The tool displays the gene's FPKM values for all experiments in PlasmoDB and offers features such as 
+             log/linear scaling, zoom and pan to explore the gene's expression in each experiment.
+           </li>
+         </ul>
+       </div> 
+      </section>
+      
+      <section>
+         <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+
+    ]]>
+  </attribute>
+</record>
+
+
+<record>
   <attribute name="headline">PlasmoDB 44 Released</attribute>
   <attribute name="date">02 Jul 2019 13:00</attribute>
   <attribute name="tag">PlasmoDB7_19_release</attribute>
@@ -39,12 +108,12 @@
     <![CDATA[
     <p><strong>We are pleased to announce the release of PlasmoDB 44</strong></p>
     
-     <section>
-    <h3><b>Release 44 Webinar</b></h3>
+    <section>
+    <h3><b>Release 45 Webinar</b></h3>
     <div style="margin-left: 3em;">
-      Join us on Tuesday July 16th at 10:00 am (EST) for our Release 44 Highlights webinar where we will discuss and 
-      demonstrate new features and data available in release 44 of EuPathDB sites. 
-      <a href="https://attendee.gotowebinar.com/register/7430028289888360460">Register here</a>
+      Join us on September 11, 2019 at 10:00 am (EST) for our Release 45 Highlights webinar where we will discuss and 
+      demonstrate new features and data available in release 45 of EuPathDB sites. 
+      <a href="https://attendee.gotowebinar.com/register/5757077368783897612" target="_blank">Register here</a>
     </div>
     </section>
       

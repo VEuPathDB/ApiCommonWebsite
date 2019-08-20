@@ -27,6 +27,56 @@
        </div> 
 --> 
 
+<record>
+  <attribute name="headline">PiroplasmaDB 45 Released</attribute>
+  <attribute name="date">25 Aug 2019 13:00</attribute>
+  <attribute name="tag">PiroplasmaDB8_19_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of PiroplasmaDB 45</strong></p>
+    
+    <section>
+    <h3><b>Release 45 Webinar</b></h3>
+    <div style="margin-left: 3em;">
+      Join us on September 11, 2019 at 10:00 am (EST) for our Release 45 Highlights webinar where we will discuss and 
+      demonstrate new features and data available in release 45 of EuPathDB sites. 
+      <a href="https://attendee.gotowebinar.com/register/5757077368783897612" target="_blank">Register here</a>
+    </div>
+    </section>
+      
+      <section>
+      <h3><b>No new data in PiroplasmaDB 45</b></h3>
+      
+      <section>
+      <h3><b>New features in PiroplasmaDB 45</b></h3>
+      <div style="margin-left: 3em;">
+         <ul>
+           <li>
+             All EuPathDB sites now offer the <a href="https://jbrowse.org/" target="_blank">JBrowse Genome Browser</a>.  GBrowse will be phased out in coming releases.  Please 
+             <a href="https://eupathdb.org/eupathdb/app/contact-us">Contact Us</a> with comments and suggestions for the genome browser. 
+           </li>
+           <li>
+             The new RNASeq Transcript Summary tool on gene pages helps reveal experiments in which the gene is highly 
+             regulated. The tool displays the gene's FPKM values for all experiments in PiroplasmaDB and offers features such as 
+             log/linear scaling, zoom and pan to explore the gene's expression in each experiment.
+           </li>
+         </ul>
+       </div> 
+      </section>
+      
+      <section>
+         <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+
+    ]]>
+  </attribute>
+</record>
 
 <record>
   <attribute name="headline">PiroplasmaDB 44 Released</attribute>

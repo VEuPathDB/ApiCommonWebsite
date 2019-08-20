@@ -35,7 +35,7 @@
 -->
 <record>
   <attribute name="headline">HostDB 45 Released</attribute>
-  <attribute name="date">28 Aug 2019 13:00</attribute>
+  <attribute name="date">25 Aug 2019 13:00</attribute>
   <attribute name="tag">HostDB_28_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
@@ -45,9 +45,9 @@
      <section>
     <h3><b>Release 45 Webinar</b></h3>
     <div style="margin-left: 3em;">
-      Join us on TO DO TO DO 10:00 am (EST) for our Release 44 Highlights webinar where we will discuss and 
-      demonstrate new features and data available in release 44 of EuPathDB sites. 
-      <a href="https://attendee.gotowebinar.com/register/7430028289888360460">Register here</a>
+      Join us on September 11, 2019 at 10:00 am (EST) for our Release 45 Highlights webinar where we will discuss and 
+      demonstrate new features and data available in release 45 of EuPathDB sites. 
+      <a href="https://attendee.gotowebinar.com/register/5757077368783897612" target="_blank">Register here</a>
     </div>
     </section>
       
@@ -58,13 +58,29 @@
        <h4>Transcriptomics</h4>
           <ul>
           <li>
-            <a href="https://hostdb.org/hostdb/app/record/dataset/DS_6297bc8dfd ">Transcriptional analysis of sorted subpopulations of mouse macrophages infected with <i>C. albicans</i></a> &mdash; <br>
+            <a href="https://hostdb.org/hostdb/app/record/dataset/DS_6297bc8dfd ">Transcriptional analysis of sorted subpopulations of mouse macrophages infected with <i>C. albicans</i></a> &mdash;
             C57BL6J macrophages were infected with the CAI4 strain of <i>Candida albicans</i>. 
             <a href="http://www.ncbi.nlm.nih.gov/pubmed/30962448" target="_blank">Mu&ntilde;oz et al. 2019</a>. 
            </li>
          </ul>   
       </section>
       
+            <section>
+      <h3><b>New features in HostDB 45</b></h3>
+      <div style="margin-left: 3em;">
+         <ul>
+           <li>
+             All EuPathDB sites now offer the <a href="https://jbrowse.org/" target="_blank">JBrowse Genome Browser</a>.  GBrowse will be phased out in coming releases.  Please 
+             <a href="https://eupathdb.org/eupathdb/app/contact-us">Contact Us</a> with comments and suggestions for the genome browser. 
+           </li>
+           <li>
+             The new RNASeq Transcript Summary tool on gene pages helps reveal experiments in which the gene is highly 
+             regulated. The tool displays the gene's FPKM values for all experiments in HostDB and offers features such as 
+             log/linear scaling, zoom and pan to explore the gene's expression in each experiment.
+           </li>
+         </ul>
+       </div> 
+      </section>
       
       <section>
          <aside>
