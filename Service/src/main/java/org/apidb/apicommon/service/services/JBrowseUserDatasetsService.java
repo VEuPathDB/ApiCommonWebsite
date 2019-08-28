@@ -33,7 +33,7 @@ public class JBrowseUserDatasetsService extends UserService {
   @GET
   @Path("user-datasets-jbrowse/{organism}")
   @Produces(MediaType.APPLICATION_JSON)
-  public JSONObject getAllUserDatasetsJBrowse(@PathParam("organism") String publicOrganismAbbrev) throws WdkModelException {
+  public JSONObject getAllUserDatasetsJBrowse(@PathParam("organism") String publicOrganismAbbrev) {
 
     LOG.debug("\nservice user-datasets-jbrowse has been called ---gets all jbrowse configuration for user datasets\n");
 
@@ -66,7 +66,7 @@ public class JBrowseUserDatasetsService extends UserService {
     @Override
     public void addUserDatasetInfoToJsonArray(UserDatasetInfo dataset,
         JSONArray datasetsJson, UserDatasetSession dsSession) throws WdkModelException {
-      JSONArray samples = getSamplesJsonForDataset(dsSession, dataset);
+      JSONArray samples = getSamplesJsonForDataset(dataset);
       if (dataset.isInstalled() && dataset.getUserDatasetCompatibility().isCompatible())
 	  for (int i = 0 ; i < samples.length(); i++) {
 	      datasetsJson.put(samples.getJSONObject(i));
@@ -74,7 +74,7 @@ public class JBrowseUserDatasetsService extends UserService {
     }
 
 
-      private JSONArray getBigwigSampleConfiguration(UserDataset dataset, UserDatasetSession dsSession, String subcategory) throws WdkModelException {
+      private JSONArray getBigwigSampleConfiguration(UserDataset dataset, String subcategory) throws WdkModelException {
           JSONArray samplesJson = new JSONArray();
 
           int maxScore = 1000;
@@ -84,7 +84,7 @@ public class JBrowseUserDatasetsService extends UserService {
           String datasetSummary = datasetMeta.getSummary();
 
           for (UserDatasetFile file : dataset.getFiles().values()) {
-              String fileName = file.getFileName(dsSession);
+              String fileName = file.getFileName();
               if(!fileName.toUpperCase().endsWith(".BW"))
                   continue ;
 
@@ -109,7 +109,7 @@ public class JBrowseUserDatasetsService extends UserService {
               metadata.put("dataset", datasetName);
               metadata.put("trackType", "Coverage");
               metadata.put("mdescription", datasetSummary);
-              
+
               json.put("metadata", metadata);
               json.put("style", style);
 
@@ -119,7 +119,7 @@ public class JBrowseUserDatasetsService extends UserService {
       }
 
 
-    private JSONArray getSamplesJsonForDataset(UserDatasetSession dsSession, UserDatasetInfo datasetInfo) throws WdkModelException {
+    private JSONArray getSamplesJsonForDataset(UserDatasetInfo datasetInfo) throws WdkModelException {
 
       JSONArray samplesJson = new JSONArray();
 
@@ -130,21 +130,21 @@ public class JBrowseUserDatasetsService extends UserService {
       boolean matchesOrganismAbbrev = false;
 
       for (UserDatasetDependency dependency : dataset.getDependencies()) {
-        if(dependency.getResourceIdentifier().endsWith(genomeSuffix)) 
+        if(dependency.getResourceIdentifier().endsWith(genomeSuffix))
           matchesOrganismAbbrev = true;
       }
 
-      if(!matchesOrganismAbbrev) 
+      if(!matchesOrganismAbbrev)
         return samplesJson;
 
       UserDatasetType type = dataset.getType();
       String datasetType = type.getName();
 
       if(datasetType.equals("RnaSeq")) {
-          return getBigwigSampleConfiguration(dataset, dsSession, "RNASeq");
+          return getBigwigSampleConfiguration(dataset, "RNASeq");
       }
       if(datasetType.equals("BigwigFiles")) {
-          return getBigwigSampleConfiguration(dataset, dsSession, "Bigwig Files From User");
+          return getBigwigSampleConfiguration(dataset, "Bigwig Files From User");
       }
 
       return samplesJson;

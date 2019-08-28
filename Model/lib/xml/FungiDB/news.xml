@@ -16,8 +16,8 @@
 -->
 <record>
   <attribute name="headline">FungiDB 45 Released</attribute>
-  <attribute name="date">28 Aug 2019 13:00</attribute>
-  <attribute name="tag">FungiDB8_28_release</attribute>
+  <attribute name="date">25 Aug 2019 13:00</attribute>
+  <attribute name="tag">FungiDB8_25_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
@@ -26,9 +26,9 @@
     <section>
     <h3><b>Release 45 Webinar</b></h3>
     <div style="margin-left: 3em;">
-      Join us on TO DO for our Release 45 Highlights webinar where we will discuss and 
-      demonstrate new features and data available in Release 45 of EuPathDB sites. 
-      <a href="https://attendee.gotowebinar.com/register/7430028289888360460">Register here</a>
+      Join us on September 11, 2019 at 10:00 am (EST) for our Release 45 Highlights webinar where we will discuss and 
+      demonstrate new features and data available in release 45 of EuPathDB sites. 
+      <a href="https://attendee.gotowebinar.com/register/5757077368783897612" target="_blank">Register here</a>
     </div>
     </section>
       
@@ -106,8 +106,36 @@
                           
         	</ul>
         	<br>
-        	          
-                   
+        
+        <h4>Whole genome sequence of isolates for SNP analysis:</h4>
+           <ul>
+             <li><a href="/a/app/record/dataset/DS_4477b85a6c">Aligned genome sequence reads - <i>C. neoformans</i> Zambian environmental and clinical isolates</a> &ndash;
+                 Forty five isolates were sequenced using Illumina HiSeq 2000 technology.
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/27862555">Vanhove et al. 2017</a>.
+             </li>
+             
+           </ul>
+           <br>	          
+              
+        <h4>Proteomics</h4>
+           <ul>
+             <li><a href="/a/app/record/dataset/DS_64eb488423">Adaptive mechanisms of conidia to nutrient restriction in <i.A. fumigatus</i></a> &ndash; 
+                 A clinical strain was grown for 3, 15, and 30 days to follow the changes associated with conidia adaptation to nutrient limitation.
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/28365406" target="_blank">Anjo et al. 2017</a>.
+             </li>
+        	</ul>
+        <br>
+        
+        <h4>DAP-Seq data</h4>
+           <ul>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_08d2dc7307">DAP-Seq performed on ADV-1 and PP-1 proteins in <i>Neurospora crassa</i></a> &ndash;
+             To identify genes that were regulated and bound by ADV-1 or PP-1, DNA-affinity purification sequencing (DAP-seq) was used to identify transcription factor binding sites in <i>N. crassa</i>.  
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/29678830" target="_blank">Fischer et al. 2018</a>.
+             </li>
+
+           </ul>  
+            <br>
+            
         <h4>Phenotype data</h4>
            <ul>
              <li><a href="/a/app/record/dataset/DS_43c139682a">Manually curated <i>Cryptococcus</i> Phenotypes</a> &ndash; 
@@ -195,21 +223,7 @@
           </div> 
              
            <br>
-           
-             
-             <ul>
-             <li><a href="/a/app/record/dataset/DS_e51cb08950">PHI-base phenotypes</a> &ndash; 
-             PHI-base is a web-accessible database that 
-             catalogues experimentally verified pathogenicity, 
-             virulence and effector genes from fungal, oomycete and bacterial pathogens, 
-             which infect animal, plant, fungal and insect hosts. The pathogen – host interactions (PHI) phenotypes 
-             and pathogen-specific phenotypes from PHI-base were integrated for 18 different genomes 
-             available in FungiDB in this release. 
-             This dataset is current with PHI-base version 4.6. 
-             We have integrated 2,633 phenotypic annotations mapping to 1,636 genes in total.
-             </li>
-             </ul>
-             <br>
+                      
              
       <h4>Updated Functional Annotation</h4>
                <div style="margin-left: 3em;">
@@ -247,7 +261,7 @@
                   <td>556</td>
                 </tr>
                 <tr>
-                  <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4b35c88aa1"><i>Fusarium graminearum</i> PH-1</a></td>
+                  <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on FungiDB."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_cd90ec7602"><i>Fusarium graminearum</i> PH-1</a></td>
                   <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/genedb/releases/2019-08/FgraminearumPH1/FgraminearumPH1.gff.gz">GeneDB version August, 2019</a></td>
                   <td>958</td>
                 </tr>
@@ -281,12 +295,12 @@
                              <th>Comments Integrated</th>
                            </tr>
                            <tr>
-                             <td title="Click here to view this dataset's full description."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_071f05cd56"><i>Aspergillus fumigatus></i> Af293</a></td>
+                             <td title="Click here to view this dataset's full description."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_071f05cd56"><i>Aspergillus fumigatus</i> Af293</a></td>
                              <td>22</td>
                            </tr>
                            
                            <tr>
-                             <td title="Click here to view this dataset's full description."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4b35c88aa1"><i>Aspergillus nidulans</i> FGSC A4 1</a></td>
+                             <td title="Click here to view this dataset's full description."><a href="http://fungidb.org/fungidb/app/record/dataset/DS_4b35c88aa1"><i>Aspergillus nidulans</i> FGSC A4 </a></td>
                              <td>4</td>
                            </tr>
                            
@@ -333,7 +347,7 @@
            </tr>
            
            <tr>
-             <td title="Click here to view this dataset's full description"><a href="https://fungidb.org/fungidb/app/record/dataset/DS_8ddc55305a"><i>Aspergillus fischeri</i> NRRL 181B</a></td>
+             <td title="Click here to view this dataset's full description"><a href="https://fungidb.org/fungidb/app/record/dataset/DS_8ddc55305a"><i>Aspergillus fischeri</i> NRRL 181</a></td>
     
              <td>25,158</td>
            </tr>
@@ -376,21 +390,17 @@
        </section>
        
        <section>
-      <h3><b>New features in FungiDB 44</b></h3>
+      <h3><b>New features in FungiDB 45</b></h3>
       <div style="margin-left: 3em;">
          <ul>
            <li>
-             Synteny and the Protein Browser are availabe in our beta implementation of the 
-             <a href="https://jbrowse.org/" target="_blank">JBrowse Genome Browser</a>. 
+             All EuPathDB sites now offer the <a href="https://jbrowse.org/" target="_blank">JBrowse Genome Browser</a>.  GBrowse will be phased out in coming releases.  Please 
+             <a href="https://eupathdb.org/eupathdb/app/contact-us">Contact Us</a> with comments and suggestions for the genome browser. 
            </li>
            <li>
-             New EuPathDB RNA Seq Tool. The EuPathDB Galaxy Workspace now offers a tool that converts 
-             read counts from HTSeq-count output to FPKM values. 
-           </li>
-           <li>
-             New EuPathDB Workflows. The EuPathDB Galaxy Workspace is updated with several new 
-             pre-configured workflows that are designed to allow export of strand specific data 
-             to EuPathDB for visualization and searching.
+             The new RNASeq Transcript Summary tool on gene pages helps reveal experiments in which the gene is highly 
+             regulated. The tool displays the gene's FPKM values for all experiments in FungiDB and offers features such as 
+             log/linear scaling, zoom and pan to explore the gene's expression in each experiment.
            </li>
          </ul>
        </div> 

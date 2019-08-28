@@ -983,7 +983,7 @@ sub init {
   $line->setProfileSets($profileSets);
   $line->setPartName('fpkm_line');
   $line->setAdjustProfile('profile.df.full$VALUE = log2(profile.df.full$VALUE + 1);');
-  $line->setYaxisLabel('FPKM (log2)');
+  $line->setYaxisLabel('log2(FPKM + 1)');
   $line->setPointsPch($pch);
   $line->setXaxisLabel("Timepoint");
   $line->setColors([$colors->[0], $colors->[1]]);
