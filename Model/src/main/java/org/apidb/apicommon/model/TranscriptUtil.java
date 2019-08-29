@@ -10,6 +10,7 @@ import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.answer.AnswerValue;
 import org.gusdb.wdk.model.answer.factory.AnswerValueFactory;
 import org.gusdb.wdk.model.answer.spec.AnswerSpec;
+import org.gusdb.wdk.model.query.spec.QueryInstanceSpec;
 import org.gusdb.wdk.model.question.Question;
 import org.gusdb.wdk.model.record.RecordClass;
 import org.gusdb.wdk.model.user.Step;
@@ -66,8 +67,10 @@ public class TranscriptUtil {
     AnswerValue geneAnswer = AnswerValueFactory.makeAnswer(transcriptAnswer.getUser(), AnswerSpec
         .builder(question.getWdkModel())
         .setQuestionFullName(XFORM_QUESTION_NAME)
-        .setParamValues(transformParams)
-        .setAssignedWeight(10)
+        .setQueryInstanceSpec(QueryInstanceSpec.builder()
+          .putAll(transformParams)
+          .setAssignedWeight(10)
+        )
         .buildRunnable(transcriptAnswer.getUser(), new ListStepContainer(step.get())));
 
     // make sure gene answer uses same page size as transcript answer
