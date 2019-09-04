@@ -106,8 +106,36 @@
                           
         	</ul>
         	<br>
-        	          
-                   
+        
+        <h4>Whole genome sequence of isolates for SNP analysis:</h4>
+           <ul>
+             <li><a href="/a/app/record/dataset/DS_4477b85a6c">Aligned genome sequence reads - <i>C. neoformans</i> Zambian environmental and clinical isolates</a> &ndash;
+                 Forty five isolates were sequenced using Illumina HiSeq 2000 technology.
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/27862555">Vanhove et al. 2017</a>.
+             </li>
+             
+           </ul>
+           <br>	          
+              
+        <h4>Proteomics</h4>
+           <ul>
+             <li><a href="/a/app/record/dataset/DS_64eb488423">Adaptive mechanisms of conidia to nutrient restriction in <i.A. fumigatus</i></a> &ndash; 
+                 A clinical strain was grown for 3, 15, and 30 days to follow the changes associated with conidia adaptation to nutrient limitation.
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/28365406" target="_blank">Anjo et al. 2017</a>.
+             </li>
+        	</ul>
+        <br>
+        
+        <h4>DAP-Seq data</h4>
+           <ul>
+             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_08d2dc7307">DAP-Seq performed on ADV-1 and PP-1 proteins in <i>Neurospora crassa</i></a> &ndash;
+             To identify genes that were regulated and bound by ADV-1 or PP-1, DNA-affinity purification sequencing (DAP-seq) was used to identify transcription factor binding sites in <i>N. crassa</i>.  
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/29678830" target="_blank">Fischer et al. 2018</a>.
+             </li>
+
+           </ul>  
+            <br>
+            
         <h4>Phenotype data</h4>
            <ul>
              <li><a href="/a/app/record/dataset/DS_43c139682a">Manually curated <i>Cryptococcus</i> Phenotypes</a> &ndash; 
@@ -195,21 +223,7 @@
           </div> 
              
            <br>
-           
-             
-             <ul>
-             <li><a href="/a/app/record/dataset/DS_e51cb08950">PHI-base phenotypes</a> &ndash; 
-             PHI-base is a web-accessible database that 
-             catalogues experimentally verified pathogenicity, 
-             virulence and effector genes from fungal, oomycete and bacterial pathogens, 
-             which infect animal, plant, fungal and insect hosts. The pathogen-host interactions (PHI) phenotypes 
-             and pathogen-specific phenotypes from PHI-base were integrated for 18 different genomes 
-             available in FungiDB in this release. 
-             This dataset is current with PHI-base version 4.6. 
-             We have integrated 2,633 phenotypic annotations mapping to 1,636 genes in total.
-             </li>
-             </ul>
-             <br>
+                      
              
       <h4>Updated Functional Annotation</h4>
                <div style="margin-left: 3em;">

@@ -1196,6 +1196,20 @@ sub init {
 
 1;
 
+package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_57b027468b;
+use vars qw( @ISA );
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::Templates::Expression );
+use ApiCommonWebsite::View::GraphPackage::Templates::Expression;
+
+use strict;
+sub finalProfileAdjustments {
+  my ($self, $profile) = @_;
+  $self->setPlotWidth(500);
+
+  return $self;
+}
+1;
+
 
 # package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_4582562a4b;
 # use base qw( ApiCommonWebsite::View::GraphPackage::Templates::Expression );

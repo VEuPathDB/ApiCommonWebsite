@@ -69,7 +69,8 @@ sub run {
 
 
    #retrieve and display results  
-    print "Location: https://ihg.gsf.de/cgi-bin/paolo/mitofilter?seq=$seq&seqname="."\n\n";
+    #print "Location: https://ihg.gsf.de/cgi-bin/paolo/mitofilter?seq=$seq&seqname="."\n\n";
+    print "Location: https://ihg.helmholtz-muenchen.de/cgi-bin/paolo/mitofilter?seq=$seq&seqname="."\n\n";
 
 }
 
