@@ -43,8 +43,8 @@
 
 <record>
   <attribute name="headline">TriTrypDB 45 Released</attribute>
-  <attribute name="date">25 Aug 2019 13:00</attribute>
-  <attribute name="tag">TriTrypDB8_19_release</attribute>
+  <attribute name="date">5 Sept 2019 13:00</attribute>
+  <attribute name="tag">TriTrypDB9_19_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
