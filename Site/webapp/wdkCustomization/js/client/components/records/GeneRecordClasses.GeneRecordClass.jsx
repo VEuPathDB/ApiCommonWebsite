@@ -85,8 +85,8 @@ export const RecordHeading = connect(
 
     let transcriptomicsThumbnail = {
       displayName: 'Transcriptomics',
-      element: <img src={webAppUrl + '/wdkCustomization/images/transcriptomics.jpg'}/>,
-      anchor: 'ExpressionGraphs'
+      element: <img src={webAppUrl + '/wdkCustomization/images/transcription_summary.png'}/>,
+      anchor: 'TranscriptionSummary'
     };
 
     let phenotypeThumbnail = {
@@ -921,7 +921,7 @@ class TranscriptionSummaryForm extends SortKeyTable {
             <p><em>No data available</em></p>
           );
         } else {
-	  if (((this.props.value.length * 50) + 100) > 700) {
+	  if (((this.props.value.length * 50) + 150) > 700) {
 	    height = (this.props.value.length * 50) + 150;
 	  } 
 	}
