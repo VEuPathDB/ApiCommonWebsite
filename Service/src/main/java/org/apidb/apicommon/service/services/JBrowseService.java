@@ -4,7 +4,6 @@ import static org.gusdb.wdk.service.FileRanges.getFileChunkResponse;
 import static org.gusdb.wdk.service.FileRanges.parseRangeHeaderValue;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +22,6 @@ import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
-import org.apache.log4j.Logger;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.service.service.AbstractWdkService;
 import org.json.JSONObject;
@@ -31,17 +29,12 @@ import org.json.JSONObject;
 @Path("/jbrowse")
 public class JBrowseService extends AbstractWdkService {
 
-    private static final Logger LOG = Logger.getLogger(JBrowseService.class);
-
     @GET
     @Path("stats/global")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getJbrowseGlobalStats(@SuppressWarnings("unused") @QueryParam("feature") String feature) {
         return Response.ok(new JSONObject().put("featureDensity", 0.0002).toString()).build();
     }
-
-
-    
 
     @GET
     @Path("stats/regionFeatureDensities/{refseq_name}")
@@ -51,11 +44,8 @@ public class JBrowseService extends AbstractWdkService {
                                                      @QueryParam("feature") String feature,
                                                      @QueryParam("start") String start,
                                                      @QueryParam("end") String end)  throws IOException {
-
         return featuresAndRegionStats(refseqName, uriInfo, feature, start, end);
     }
-
-
 
     @GET
     @Path("features/{refseq_name}")
@@ -65,11 +55,8 @@ public class JBrowseService extends AbstractWdkService {
                                        @QueryParam("feature") String feature,
                                        @QueryParam("start") String start,
                                        @QueryParam("end") String end)  throws IOException {
-
-
         return featuresAndRegionStats(refseqName, uriInfo, feature, start, end);
     }
-
 
     @GET
     @Path("dnaseq/{organismAbbrev}")
@@ -87,7 +74,6 @@ public class JBrowseService extends AbstractWdkService {
         return responseFromCommand(command);
     }
 
-
     @GET
     @Path("rnaseqJunctions/{organismAbbrev}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -103,7 +89,6 @@ public class JBrowseService extends AbstractWdkService {
 
         return responseFromCommand(command);
     }
-
 
     @GET
     @Path("{tracks}/{organismAbbrev}/aa/trackList.json")
@@ -124,7 +109,6 @@ public class JBrowseService extends AbstractWdkService {
         return responseFromCommand(command);
     }
 
-
     @GET
     @Path("{tracks}/{organismAbbrev}/trackList.json")
     @Produces(MediaType.APPLICATION_JSON)
@@ -144,8 +128,6 @@ public class JBrowseService extends AbstractWdkService {
 
         return responseFromCommand(command);
     }
-
-
 
     @GET
     @Path("organismSpecific/{organismAbbrev}")
@@ -179,8 +161,6 @@ public class JBrowseService extends AbstractWdkService {
         return responseFromCommand(command);
     }
 
-
-
     @GET
     @Path("organismList")
     @Produces(MediaType.APPLICATION_JSON)
@@ -195,9 +175,6 @@ public class JBrowseService extends AbstractWdkService {
 
         return responseFromCommand(command);
     }
-
-
-
 
     @GET
     @Path("rnaseq/{organismAbbrev}")
@@ -241,7 +218,6 @@ public class JBrowseService extends AbstractWdkService {
         return responseFromCommand(command);
     }
 
-
     @GET
     @Path("store")
     @Produces(MediaType.APPLICATION_OCTET_STREAM)
@@ -261,7 +237,6 @@ public class JBrowseService extends AbstractWdkService {
         return getFileChunkResponse(Paths.get(path), parseRangeHeaderValue(fileRange));
     }
 
-
     @GET
     @Path("auxiliary")
     @Produces(MediaType.APPLICATION_OCTET_STREAM)
@@ -278,7 +253,6 @@ public class JBrowseService extends AbstractWdkService {
 
         return getFileChunkResponse(Paths.get(path), parseRangeHeaderValue(fileRange));
     }
-
 
     private String checkPath(String fileSystemPath) {
       // TODO: think about whether other checks belong here
@@ -306,7 +280,6 @@ public class JBrowseService extends AbstractWdkService {
         return responseFromCommand(command);
     }
 
-
     @GET
     @Path("aaseq/{organismAbbrev}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -324,8 +297,6 @@ public class JBrowseService extends AbstractWdkService {
 
         return responseFromCommand(command);
     }
-
-
 
     @GET
     @Path("names/{organismAbbrev}")
@@ -356,7 +327,6 @@ public class JBrowseService extends AbstractWdkService {
         return responseFromCommand(command);
     }
 
-
     @GET
     @Path("aanames/{organismAbbrev}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -385,9 +355,6 @@ public class JBrowseService extends AbstractWdkService {
         return responseFromCommand(command);
     }
 
-
-
-    
     public Response featuresAndRegionStats (String refseqName, UriInfo uriInfo, String feature, String start, String end)  throws IOException {
 
         String gusHome = getWdkModel().getGusHome();
@@ -413,16 +380,11 @@ public class JBrowseService extends AbstractWdkService {
     }
 
     public Response responseFromCommand(List<String> command) throws IOException {
-
         ProcessBuilder pb = new ProcessBuilder(command);
         Map<String, String> env = pb.environment();
         env.put("GUS_HOME", getWdkModel().getGusHome());
-
         pb.redirectErrorStream(true);
-
         Process p = pb.start();
-        InputStream processInputStream = p.getInputStream();
-
-        return Response.ok(getStreamingOutput(processInputStream)).build();
+        return Response.ok(getStreamingStandardOutput(p, String.join(" ", command))).build();
     }
 }
