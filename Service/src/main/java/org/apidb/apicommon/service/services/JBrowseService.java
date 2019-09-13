@@ -1,6 +1,5 @@
 package org.apidb.apicommon.service.services;
 
-import static org.gusdb.fgputil.FormatUtil.join;
 import static org.gusdb.wdk.service.FileRanges.getFileChunkResponse;
 import static org.gusdb.wdk.service.FileRanges.parseRangeHeaderValue;
 
@@ -424,31 +423,6 @@ public class JBrowseService extends AbstractWdkService {
         Process p = pb.start();
         InputStream processInputStream = p.getInputStream();
 
-        // wrap process's input stream so we can log any problems
-        InputStream resultInputStream = new InputStream() {
-
-          @Override
-          public int read() throws IOException {
-            return processInputStream.read();
-          }
-
-          @Override
-          public void close() {
-            try {
-              p.waitFor();
-            }
-            catch (InterruptedException e) {
-              LOG.warn("JBrowse process interrupted before completion. " +
-                  "Command line: " + join(command, " "));
-            }
-            int exitValue = p.exitValue();
-            if (exitValue != 0) {
-              LOG.error("JBrowse process did not complete successfully " +
-                  "(exitValue=" + exitValue + "). Command line: " + join(command, " "));
-            }
-          }
-        };
-
-        return Response.ok(getStreamingOutput(resultInputStream)).build();
+        return Response.ok(getStreamingOutput(processInputStream)).build();
     }
 }
