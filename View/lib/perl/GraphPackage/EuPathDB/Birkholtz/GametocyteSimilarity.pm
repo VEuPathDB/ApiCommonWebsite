@@ -41,6 +41,13 @@ sub init {
   $similarity->setSampleLabels(\@sampleNames);
   $similarity->setXaxisLabel("");
 
+  my $adjust = "
+profile.is.numeric <- FALSE
+profile.df.full\$ELEMENT_NAMES <- factor(profile.df.full\$ELEMENT_NAMES, levels = c('2-day pre-induction','1-day pre-induction','0-day pre-induction','1-day post induction','2-day post induction','3-day post induction','4-day post induction','5-day post induction','6-day post induction','7-day post induction','8-day post induction','9-day post induction','10-day post induction','11-day post induction','12-day post induction','13-day post induction'))
+";
+
+  $similarity->addAdjustProfile($adjust);
+
   $self->setGraphObjects($similarity);
 
   return $self;

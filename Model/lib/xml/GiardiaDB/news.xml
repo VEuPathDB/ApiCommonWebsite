@@ -53,8 +53,8 @@
 
 <record>
   <attribute name="headline">GiardiaDB 45 Released</attribute>
-  <attribute name="date">25 Aug 2019 13:00</attribute>
-  <attribute name="tag">GiardiaDB8_19_release</attribute>
+  <attribute name="date">05 Sep 2019 13:00</attribute>
+  <attribute name="tag">GiardiaDB9_19_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
@@ -84,10 +84,7 @@
                   Three <i>Giardia Assemblage A</i> isolate WB lines that are resistant to metranidazole, WB MtzR, 106 MtzR and 713 MtzR, were analyzed by quantitative proteomics and for post-translational modifications.
                   <a href="http://www.ncbi.nlm.nih.gov/pubmed/29688452" target="_blank">Emery et al.</a>
               </li>
-              <li><a href="/a/app/record/dataset/DS_587864765f">Nitro drug-resistant strains and wild type proteomics</a> &ndash;   
-                  MS shotgun analysis of three resistant strains separately grown in the presence of two nitro drugs and compared to wild-types.
-                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/30889439" target="_blank">Muller et al.</a>
-              </li>
+          
             </ul>
      
       </div>

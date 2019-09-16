@@ -67,6 +67,16 @@ sub finalProfileAdjustments {
 1;
 
 
+package ApiCommonWebsite::View::GraphPackage::Templates::Proteomics::LogRatio::DS_1dec15a9c9;
+
+sub finalProfileAdjustments {
+  my ($self, $profile) = @_;
+  $profile->setYaxisLabel('Resistant to Sensitive ratio');
+
+}
+1;
+
+
 
 
 #package ApiCommonWebsite::View::GraphPackage::Templates::Proteomics::LogRatio::DS_8e133ba94b;
