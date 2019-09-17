@@ -11,122 +11,53 @@
 
 
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
-  <!-- oooooooooooooooooooooooooo    Checkout    oooooooooooooooooooooooooo -->
-  <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
-
-  <target name="ApiCommonWebsite-ChildCheckout">
-    <available file="${projectsDir}/GBrowse" type="dir" property="GBrowse.present" />
-    <available file="${projectsDir}/JBrowse" type="dir" property="JBrowse.present" />
-    <available file="${projectsDir}/EbrcWebSvcCommon" type="dir"  property="EbrcWebSvcCommon.present" />
-    <available file="${projectsDir}/ApiCommonModel" type="dir"  property="ApiCommonModel.present" />
-    <antcall target="GBrowse-Checkout"/>
-    <antcall target="JBrowse-Checkout"/>
-    <antcall target="EbrcWebSvcCommon-Checkout"/>
-    <antcall target="ApiCommonModel-Checkout"/>
-  </target>
-  
-  
-  <target name="GBrowse-Checkout" unless="GBrowse.present">
-    <ant target="defaultProjectCheckout" inheritAll="false">
-      <property name="svnurl" value="https://cbilsvn.pmacs.upenn.edu/svn/apidb/GBrowse"/>
-      <property name="project" value="GBrowse"/>
-      <property name="version" value="??"/>
-    </ant>
-  </target>
-
-  <target name="JBrowse-Checkout" unless="JBrowse.present">
-    <ant target="defaultProjectCheckout" inheritAll="false">
-      <property name="svnurl" value="https://cbilsvn.pmacs.upenn.edu/svn/apidb/JBrowse"/>
-      <property name="project" value="JBrowse"/>
-      <property name="version" value="??"/>
-    </ant>
-  </target>
-
-  <target name="EbrcWebSvcCommon-Checkout" unless="EbrcWebSvcCommon.present">
-    <ant target="defaultProjectCheckout" inheritAll="false">
-      <property name="svnurl" value="https://cbilsvn.pmacs.upenn.edu/svn/apidb/EbrcWebSvcCommon"/>
-      <property name="project" value="EbrcWebSvcCommon"/>
-      <property name="version" value="??"/>
-    </ant>
-  </target>
-
-
-  <target name="ApiCommonModel-Checkout" unless="ApiCommonModel.present">
-    <ant target="defaultProjectCheckout" inheritAll="false">
-      <property name="svnurl" value="https://cbilsvn.pmacs.upenn.edu/svn/apidb/ApiCommonModel"/>
-      <property name="project" value="ApiCommonModel"/>
-      <property name="version" value="api-build-9"/>
-    </ant>
-  </target>
-
-
-  <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
-  <!-- oooooooooooooooooooooooooo    Update    oooooooooooooooooooooooooo -->
-  <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
-
-  <target name="ApiCommonWebsite-ChildUpdate" >
-    <ant target="defaultProjectUpdate">
-      <property name="project" value="GBrowse"/>
-    </ant>
-    <ant target="defaultProjectUpdate">
-      <property name="project" value="JBrowse"/>
-    </ant>
-    <ant target="defaultProjectUpdate">
-      <property name="project" value="EbrcWebSvcCommon"/>
-    </ant>
-     <ant target="defaultProjectUpdate">
-      <property name="project" value="ApiCommonModel"/>
-    </ant>
-  </target>
-
-
-  <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
   <!-- oooooooooooooooooooooooooo  Installation  oooooooooooooooooooooooooo -->
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
 
- <target name="ApiCommonWebsite-Installation" depends="EbrcWebSvcCommon-Installation,
+  <target name="ApiCommonWebsite-Installation" depends="EbrcWebSvcCommon-Installation,
                                                        ApiCommonModel-Installation,
                                                        GBrowse-Installation,
                                                        JBrowse-Installation,
- 	                                                     ApiCommonWebsite-MavenInstallation,
+                                                       ApiCommonWebsite-MavenInstallation,
                                                        ApiCommonWebsite/Model-Installation,
                                                        ApiCommonWebsite/View-Installation,
                                                        ApiCommonWebsite/Site-Installation,
                                                        ApiCommonWebsite/Service-Installation">
 
     <ant target="defaultProjectInstall">
-      <property name="project" value="ApiCommonWebsite"/>
+      <property name="project" value="ApiCommonWebsite" />
     </ant>
-    
-    <antcall target="ApiCommonWebsite-Glossary"/>
+
+    <antcall target="ApiCommonWebsite-Glossary" />
 
   </target>
 
 
- <target name="ApiCommonWebsite-Glossary">
-    <mapper id="glossmapper" type="glob" from="*.txt" to="${targetDir}/lib/xml/*.xml"/>
+  <target name="ApiCommonWebsite-Glossary">
+    <mapper id="glossmapper" type="glob" from="*.txt"
+            to="${targetDir}/lib/xml/*.xml" />
 
-    <echo message="Running glossaryTextToXml glossary.txt > glossary.xml"/>
+    <echo message="Running glossaryTextToXml glossary.txt > glossary.xml" />
     <apply executable="${targetDir}/bin/glossaryTextToXml" verbose="true">
-        <filelist dir="${targetDir}/lib/xml" files="glossary.txt"/>
-        <redirector>
-            <outputmapper refid="glossmapper"/>
-        </redirector>
+      <filelist dir="${targetDir}/lib/xml" files="glossary.txt" />
+      <redirector>
+        <outputmapper refid="glossmapper" />
+      </redirector>
     </apply>
   </target>
 
-	<target name="ApiCommonWebsite-MavenInstallation">
-	  <ant target="mavenBuildProject">
-	    <property name="project" value="ApiCommonWebsite"/>
-	  </ant>
-	  <property name="alreadyBuilt" value="true"/>
-	</target>
+  <target name="ApiCommonWebsite-MavenInstallation">
+    <ant target="mavenBuildProject">
+      <property name="project" value="ApiCommonWebsite" />
+    </ant>
+    <property name="alreadyBuilt" value="true" />
+  </target>
 
- <!-- ooooooooooooooooooooooo  Install Components  ooooooooooooooooooooooo -->
+  <!-- ooooooooooooooooooooooo  Install Components  ooooooooooooooooooooooo -->
   <target name="ApiCommonWebsite/Model-Installation">
     <ant target="defaultComponentInstall">
-      <property name="project" value="ApiCommonWebsite"/>
-      <property name="component" value="Model"/>
+      <property name="project" value="ApiCommonWebsite" />
+      <property name="component" value="Model" />
     </ant>
 
     <!-- remove conflicting jar file -->
@@ -135,28 +66,30 @@
     <delete file="${targetDir}/lib/java/servlet-api-2.4.jar" />
     <delete file="${targetDir}/lib/java/jsp-api-2.0.jar" />
     -->
-  </target>  
+  </target>
 
   <target name="ApiCommonWebsite/Site-Installation">
     <ant target="defaultComponentInstall">
-      <property name="project" value="ApiCommonWebsite"/>
-      <property name="component" value="Site"/>
+      <property name="project" value="ApiCommonWebsite" />
+      <property name="component" value="Site" />
     </ant>
-    <mkdir dir="${htdocsTargetDir}/plasmoap/tmp"/>
-    <chmod dir="${htdocsTargetDir}/plasmoap/tmp" perm="ugo+rwx"/>
+    <mkdir dir="${htdocsTargetDir}/plasmoap/tmp" />
+    <chmod dir="${htdocsTargetDir}/plasmoap/tmp" perm="ugo+rwx" />
   </target>
 
-  <target name="ApiCommonWebsite/View-Installation" depends="ApiCommonWebsite/Model-Installation">
+  <target name="ApiCommonWebsite/View-Installation"
+          depends="ApiCommonWebsite/Model-Installation">
     <ant target="defaultComponentInstall">
-      <property name="project" value="ApiCommonWebsite"/>
-      <property name="component" value="View"/>
+      <property name="project" value="ApiCommonWebsite" />
+      <property name="component" value="View" />
     </ant>
   </target>
 
-  <target name="ApiCommonWebsite/Service-Installation" depends="ApiCommonWebsite/Model-Installation">
+  <target name="ApiCommonWebsite/Service-Installation"
+          depends="ApiCommonWebsite/Model-Installation">
     <ant target="defaultComponentInstall">
-      <property name="project" value="ApiCommonWebsite"/>
-      <property name="component" value="Service"/>
+      <property name="project" value="ApiCommonWebsite" />
+      <property name="component" value="Service" />
     </ant>
   </target>
 
@@ -164,12 +97,12 @@
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
   <!-- oooooooooooooooooooooooo  Web Installation  oooooooooooooooooooooooo -->
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
-<!--
-  <target name="ApiCommonWebsite-WebInstallation" depends="ApiCommonWebsite-Installation,
-                                                           WDK-WebInstallation,
-                                                           ApiCommonWebsite/Site-WebInstallation">
- </target>
--->
+  <!--
+    <target name="ApiCommonWebsite-WebInstallation" depends="ApiCommonWebsite-Installation,
+                                                             WDK-WebInstallation,
+                                                             ApiCommonWebsite/Site-WebInstallation">
+   </target>
+  -->
   <target name="ApiCommonWebsite-WebInstallation" depends="EbrcWebSvcCommon-WebInstallation,
                                                            GBrowse-WebInstallation,
                                                            JBrowse-WebInstallation,
@@ -177,8 +110,10 @@
                                                            ApiCommonWebsite/View-WebInstallation,
                                                            ApiCommonWebsite/Site-WebInstallation">
     <!-- JBrowse Stuff -->
-    <symlink link="${webappTargetDir}/jbrowse/tracks" resource="${targetDir}/lib/jbrowse/auto_generated"/>
-    <symlink link="${webappTargetDir}/jbrowse/common_tracks" resource="${targetDir}/lib/jbrowse/common"/>
+    <symlink link="${webappTargetDir}/jbrowse/tracks"
+             resource="${targetDir}/lib/jbrowse/auto_generated" />
+    <symlink link="${webappTargetDir}/jbrowse/common_tracks"
+             resource="${targetDir}/lib/jbrowse/common" />
 
   </target>
 
@@ -186,29 +121,32 @@
   <target name="ApiCommonWebsite/Site-WebInstallation">
 
     <ant target="eupathWebComponentInstall">
-      <property name="project" value="ApiCommonWebsite"/>
-      <property name="component" value="Site"/>
+      <property name="project" value="ApiCommonWebsite" />
+      <property name="component" value="Site" />
     </ant>
 
     <!--JBrowse stuff -->
-    <delete file="${webappTargetDir}/jbrowse/jbrowse.conf"/>
-    <delete file="${webappTargetDir}/jbrowse/functions.conf"/>
-    <delete file="${webappTargetDir}/jbrowse/index.html"/>
-    <delete dir="${webappTargetDir}/jbrowse/node_modules"/>
-    <copy file="${projectsDir}/ApiCommonModel/Model/lib/jbrowse/jbrowse.conf" tofile="${webappTargetDir}/jbrowse/jbrowse.conf"/>
-    <copy file="${projectsDir}/ApiCommonModel/Model/lib/jbrowse/functions.conf" tofile="${webappTargetDir}/jbrowse/functions.conf"/>
-    <copy file="${projectsDir}/ApiCommonModel/Model/lib/jbrowse/index.html" tofile="${webappTargetDir}/jbrowse/index.html"/>
-    <copy file="${projectsDir}/ApiCommonModel/Model/lib/jbrowse/apiJBrowse.js" tofile="${webappTargetDir}/jbrowse/apiJBrowse.js"/>
-
+    <delete file="${webappTargetDir}/jbrowse/jbrowse.conf" />
+    <delete file="${webappTargetDir}/jbrowse/functions.conf" />
+    <delete file="${webappTargetDir}/jbrowse/index.html" />
+    <delete dir="${webappTargetDir}/jbrowse/node_modules" />
+    <copy file="${projectsDir}/ApiCommonModel/Model/lib/jbrowse/jbrowse.conf"
+          tofile="${webappTargetDir}/jbrowse/jbrowse.conf" />
+    <copy file="${projectsDir}/ApiCommonModel/Model/lib/jbrowse/functions.conf"
+          tofile="${webappTargetDir}/jbrowse/functions.conf" />
+    <copy file="${projectsDir}/ApiCommonModel/Model/lib/jbrowse/index.html"
+          tofile="${webappTargetDir}/jbrowse/index.html" />
+    <copy file="${projectsDir}/ApiCommonModel/Model/lib/jbrowse/apiJBrowse.js"
+          tofile="${webappTargetDir}/jbrowse/apiJBrowse.js" />
 
 
     <!-- replacement for dataPlotter file used to do expression graph -->
-    <replace file="${cgibinTargetDir}/dataPlotter.pl" 
-      token="@rProgram@" 
-      value="${rProgram}"/>
-    <replace file="${cgibinTargetDir}/dataPlotter.pl" 
-      token="@cgilibTargetDir@" 
-      value="${cgilibTargetDir}"/>
+    <replace file="${cgibinTargetDir}/dataPlotter.pl"
+             token="@rProgram@"
+             value="${rProgram}" />
+    <replace file="${cgibinTargetDir}/dataPlotter.pl"
+             token="@cgilibTargetDir@"
+             value="${cgilibTargetDir}" />
 
   </target>
 
@@ -216,27 +154,27 @@
   <target name="ApiCommonWebsite/View-WebInstallation">
 
     <ant target="defaultComponentInstall">
-      <property name="project" value="ApiCommonWebsite"/>
-      <property name="component" value="View"/>
+      <property name="project" value="ApiCommonWebsite" />
+      <property name="component" value="View" />
     </ant>
-    
+
     <ant target="defaultWebComponentInstall">
-      <property name="project" value="ApiCommonWebsite"/>
-      <property name="component" value="View"/>
+      <property name="project" value="ApiCommonWebsite" />
+      <property name="component" value="View" />
     </ant>
-    
+
   </target>
 
   <target name="ApiCommonWebsite/Service-WebInstallation">
 
     <ant target="defaultComponentInstall">
-      <property name="project" value="ApiCommonWebsite"/>
-      <property name="component" value="Service"/>
+      <property name="project" value="ApiCommonWebsite" />
+      <property name="component" value="Service" />
     </ant>
 
     <ant target="defaultWebComponentInstall">
-      <property name="project" value="ApiCommonWebsite"/>
-      <property name="component" value="Service"/>
+      <property name="project" value="ApiCommonWebsite" />
+      <property name="component" value="Service" />
     </ant>
 
   </target>
@@ -246,11 +184,11 @@
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
 
   <target name="ApiCommonWebsite-Release">
-    
+
     <ant target="defaultProjectRelease">
-      <property name="cvsroot" value=":ext:cvs.sanger.ac.uk:/cvsroot/GUS"/>
+      <property name="cvsroot" value=":ext:cvs.sanger.ac.uk:/cvsroot/GUS" />
     </ant>
-  </target>  
+  </target>
 
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
   <!-- oooooooooooooooooooooooooo  Distributable  ooooooooooooooooooooooooo -->
@@ -259,11 +197,11 @@
   <target name="ApiCommonWebsite-Distributable">
 
     <copy todir="${targetDir}">
-      <fileset dir="${projectsDir}" >
+      <fileset dir="${projectsDir}">
         <exclude name="**/CVS/*" />
       </fileset>
-    </copy>  
-  </target>  
+    </copy>
+  </target>
 
 </project>
 
