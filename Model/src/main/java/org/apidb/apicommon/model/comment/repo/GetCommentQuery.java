@@ -105,6 +105,8 @@ public class GetCommentQuery extends BaseCommentQuery<Optional<Comment>> {
       rs2Category(rs).map(Category::getName).ifPresent(out::addCategory);
     } while(rs.next());
 
+    out.getRelatedStableIds().remove(out.getTarget().getId());
+
     return Optional.of(out);
   }
 
