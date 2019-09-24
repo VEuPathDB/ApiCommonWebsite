@@ -170,6 +170,8 @@ public class FindCommentQuery extends BaseCommentQuery<Collection<Comment>> {
       rs2Reference(rs).ifPresent(t -> appendReference(com, t));
       rs2Attachment(rs).ifPresent(com::addAttachment);
       rs2Category(rs).map(Category::getName).ifPresent(com::addCategory);
+
+      com.getRelatedStableIds().remove(com.getTarget().getId());
     }
 
     return out.values();

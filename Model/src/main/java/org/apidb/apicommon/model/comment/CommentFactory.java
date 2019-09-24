@@ -229,7 +229,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
 
         new InsertCommentQuery(schema, commentId, com, user, _project).run(con);
 
-        new InsertStableIdQuery(schema, commentId, joinStableIds(com),
+        new InsertStableIdQuery(schema, commentId, filterStableIds(com),
             this::getNextId).run(con);
 
         final InsertReferencesQuery refQuery = new InsertReferencesQuery(schema,
@@ -399,19 +399,16 @@ public class CommentFactory implements Manageable<CommentFactory> {
   }
 
   /**
-   * Create a new set containing the additional targets as well as primary
-   * target record.
+   * Create a new set containing the related stable ids excluding the target
+   * stable id for the comment.
    *
-   * Comments have a target link in the COMMENTS table in addition to a link to
-   * the same target in the COMMENTSTABLEID table.
+   * @param com Comment for which to get a filtered list of related stable ids
    *
-   * @param com Comment for which to get a full list of target stable ids.
-   *
-   * @return A merged list of all target stable ids.
+   * @return A filtered list of stable ids, excluding the comment target id
    */
-  private Set<String> joinStableIds(CommentRequest com) {
+  private Set<String> filterStableIds(CommentRequest com) {
     final Set<String> set = new HashSet<>(com.getRelatedStableIds());
-    set.add(com.getTarget().getId());
+    set.remove(com.getTarget().getId());
     return set;
   }
 
