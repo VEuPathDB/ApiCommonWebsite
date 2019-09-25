@@ -912,32 +912,56 @@ class OrthologsForm extends SortKeyTable {
   }
 }
 
-class TranscriptionSummaryForm extends SortKeyTable {
-  render() {
-      let { source_id } = this.props.record.attributes;
+function TranscriptionSummaryForm(props) {
+  let { source_id } = props.record.attributes;
+  const firefoxVersion = getFirefoxVersion();
 
-	var height = 700;
-        if (this.props.value.length === 0) {
-          return (
-            <p><em>No data available</em></p>
-          );
-        } else {
-	  if (((this.props.value.length * 50) + 150) > 700) {
-	    height = (this.props.value.length * 50) + 150;
-	  } 
-	}
+  var height = 700;
+  if (props.value.length === 0) {
+    return (
+      <p><em>No data available</em></p>
+    );
+  } else {
+    if (((props.value.length * 50) + 150) > 700) {
+      height = (props.value.length * 50) + 150;
+    } 
+  }
 
-        return (
-          <div id="transcriptionSummary">
-            <p><b>Help</b></p>
-            <p>The Transcript Expression Summary will help identify experiments in which the current gene is highly regulated. Experiments are separated across the y-axis. The FPKM values of each sample within an experiment are displayed across the x-axis, which is by default Log Scale but can be changed to Linear Scale by pressing the button to the left of the graph. Log scale values are log2(FPKM+1) for two reasons: FPKM+1 in order to de-emphasize low noisy FPKM values (i.e., &lt;1), and log2 so that each unit on the x-axis represents a 2-fold difference. Samples are represented by points and summary statistics are represented by the box plot. The sample names and FPKM values for an individual experiment can be toggled on and off by pressing anywhere across a boxplot; all names and values can be removed by pressing the "Remove Sample Labels" button to the left of the graph. All samples names and FPKM values appear in a box when hovering over an experiment name. To navigate, use the buttons to the top right of the graph, explained in more detail <a href="https://help.plot.ly/getting-to-know-the-plotly-modebar/" target="_blank">here</a>. Easily zoom in by dragging horizontally in the graph, which allows visualization of adjacent samples or smaller fold-changes. Zoom out by double-clicking within the graph.</p>
-            <p><b>Plot</b></p>
+  return (
+    <div id="transcriptionSummary">
+      <p><b>Help</b></p>
+      <p>The Transcript Expression Summary will help identify experiments in which the current gene is highly regulated. Experiments are separated across the y-axis. The FPKM values of each sample within an experiment are displayed across the x-axis, which is by default Log Scale but can be changed to Linear Scale by pressing the button to the left of the graph. Log scale values are log2(FPKM+1) for two reasons: FPKM+1 in order to de-emphasize low noisy FPKM values (i.e., &lt;1), and log2 so that each unit on the x-axis represents a 2-fold difference. Samples are represented by points and summary statistics are represented by the box plot. The sample names and FPKM values for an individual experiment can be toggled on and off by pressing anywhere across a boxplot; all names and values can be removed by pressing the "Remove Sample Labels" button to the left of the graph. All samples names and FPKM values appear in a box when hovering over an experiment name. To navigate, use the buttons to the top right of the graph, explained in more detail <a href="https://help.plot.ly/getting-to-know-the-plotly-modebar/" target="_blank">here</a>. Easily zoom in by dragging horizontally in the graph, which allows visualization of adjacent samples or smaller fold-changes. Zoom out by double-clicking within the graph.</p>
+      <p><b>Plot</b></p>
+      {/* Don't show plot for Firefox 69 since it causes the browser to consume gigabytes of memory */}
+      { firefoxVersion == null || firefoxVersion !== 69
+          ? (
             <ExternalResource>
               <iframe src={"/cgi-bin/dataPlotter.pl?project_id=" + projectId + "&id=" + source_id + "&type=RNASeqTranscriptionSummary&template=1&datasetId=All&wl=0&facet=na&contXAxis=na&fmt=html"} height={height} width="1100" frameBorder="0"></iframe>
             </ExternalResource>
-          </div>
-        );
-  }
+          )
+          : (
+            <div style={{
+              background: '#00000012',
+              padding: '2em',
+              fontSize: '1.5em',
+              color: 'darkred',
+              borderRadius: '.25em',
+              display: 'flex',
+              justifyContent: 'center',
+              boxShadow: ' 0 0 4px #00000038'
+            }}>
+              <em>This tool does not currently work well with this browser. Until we can address this, please use another browser to view this tool.</em>
+            </div>
+          )
+      }
+    </div>
+    );
+}
+
+/** Returns the version or null if not firefox */
+function getFirefoxVersion() {
+  const match = navigator.userAgent.match(/Firefox\/(.+)$/)
+  return match && Number(match[1]);
 }
 
 const UserCommentsTable = addCommentLink(props => props.record.attributes.user_comment_link_url);
