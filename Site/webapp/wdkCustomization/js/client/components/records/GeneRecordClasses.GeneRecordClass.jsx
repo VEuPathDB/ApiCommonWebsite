@@ -950,7 +950,7 @@ function TranscriptionSummaryForm(props) {
               justifyContent: 'center',
               boxShadow: ' 0 0 4px #00000038'
             }}>
-              <em>This tool does not currently work well with this browser. Until we can address this, please use another browser to view this tool.</em>
+              <em>We are sorry.  The RNASeq Transcription Summary graphic is not compatible with Firefox 69.0.  We are working to resolve this issue.  In the meantime, please use a different browser (eg, Chrome or Safari) to view this graphic.</em>
             </div>
           )
       }
