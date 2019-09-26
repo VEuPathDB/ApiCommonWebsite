@@ -5,19 +5,28 @@ import static org.apidb.apicommon.model.TranscriptUtil.isGeneRecordClass;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.sql.DataSource;
 import javax.ws.rs.PathParam;
 
+import org.apidb.apicommon.model.TranscriptUtil;
 import org.gusdb.fgputil.db.SqlUtils;
+import org.gusdb.fgputil.validation.ValidationLevel;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkRuntimeException;
 import org.gusdb.wdk.model.record.PrimaryKeyDefinition;
 import org.gusdb.wdk.model.record.PrimaryKeyValue;
 import org.gusdb.wdk.model.record.RecordClass;
+import org.gusdb.wdk.model.user.Step;
 import org.gusdb.wdk.service.request.exception.DataValidationException;
+import org.gusdb.wdk.service.request.user.BasketRequests.ActionType;
 import org.gusdb.wdk.service.request.user.BasketRequests.BasketActions;
 import org.gusdb.wdk.service.service.user.BasketService;
 
@@ -38,13 +47,28 @@ public class ApiBasketService extends BasketService {
   protected RevisedRequest<BasketActions> translatePatchRequest(
       RecordClass recordClass, BasketActions actions) throws
       DataValidationException, WdkModelException {
-    return isGeneRecordClass(recordClass.getFullName())
-      // convert gene IDs to transcript IDs
-      ? new RevisedRequest<>(getTranscriptRecordClass(getWdkModel()),
-        new BasketActions(actions.getAction(),
-          getTranscriptRecords(actions.getIdentifiers(), recordClass)))
-      // otherwise use default
-      : super.translatePatchRequest(recordClass, actions);
+
+    // custom behavior only if gene record class
+    if (!isGeneRecordClass(recordClass.getFullName())) {
+      return super.translatePatchRequest(recordClass, actions);
+    }
+
+    // convert gene IDs to transcript IDs if not adding from step
+    if (!actions.getAction().equals(ActionType.ADD_FROM_STEP_ID)) {
+      return new RevisedRequest<>(
+          getTranscriptRecordClass(getWdkModel()),
+          new BasketActions(actions.getAction(),
+              getTranscriptRecords(actions.getIdentifiers(), recordClass)));
+    }
+
+    // request to add IDs from a gene step; transform to transcript step
+    Step geneStep = getStepForCurrentUser(actions.getRequestedStepId(), ValidationLevel.RUNNABLE);
+
+    return new RevisedRequest<>(
+        getTranscriptRecordClass(getWdkModel()),
+        new BasketActions(actions.getAction(), Collections.emptyList())
+          .setRunnableAnswerSpec(TranscriptUtil.transformToRunnableGeneAnswerSpec(
+              getWdkModel(), getSessionUser(), geneStep)));
   }
 
   /**
