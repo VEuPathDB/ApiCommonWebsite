@@ -183,6 +183,13 @@ sub sortKeys {
 
 }
 
+sub orderPlotProfiles {
+  my ($self, $plotProfiles) = @_;
+  my @sortedPlotProfiles = sort {$a->{profileName}.$a->{profileType} cmp $b->{profileName}.$b->{profileType}} @$plotProfiles;
+  return \@sortedPlotProfiles;
+}
+
+
 sub makeAndSetPlots {
   my ($self, $plotParts, $hasStdError) = @_;
   my @rv;
@@ -196,9 +203,9 @@ sub makeAndSetPlots {
     my @plotProfiles =  @{$plotParts->{$key} };
     my @profileSetsArray;
 
-    my @sortedPlotProfiles = sort {$a->{profileName}.$a->{profileType} cmp $b->{profileName}.$b->{profileType}} @plotProfiles;
+    my $sortedPlotProfiles = $self->orderPlotProfiles(\@plotProfiles);
 
-    foreach my $p (@sortedPlotProfiles) {
+    foreach my $p (@$sortedPlotProfiles) {
       if ($hasStdError->{ $p->{profileName}} && !($key=~/percentile/)) {
 	push @profileSetsArray, [$p->{profileName}, $p->{profileType}, $p->{profileName}, 'standard_error'];
       } else {
