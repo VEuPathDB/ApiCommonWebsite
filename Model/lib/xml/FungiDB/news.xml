@@ -25,7 +25,7 @@
     <p><strong>We are pleased to announce the release of FungiDB 46</strong></p>
     
     <section>
-    <h3><b>Release 45 Webinar</b></h3>
+    <h3><b>Release 46 Webinar</b></h3>
     <div style="margin-left: 3em;">
       Join us on September 11, 2019 at 10:00 am (EST) for our Release 46 Highlights webinar where we will discuss and 
       demonstrate new features and data available in release 45 of EuPathDB sites. 
@@ -40,26 +40,30 @@
 
         <h4>Genome Sequence and Annotation: these annotated genomes appear for the first time in FungiDB.</h4>
            <ul>
-             
+
+	    <li><a href="/a/app/record/dataset/DS_53617fed03"><i>Candida haemulonis</i> B11899</a> &ndash;
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/30559369">Mu&ntilde;oz et al. 2014</a>.  
+             </li>
+
              <li><a href="/a/app/record/dataset/DS_ff0eea2c3e"><i>Cyphellophora europaea</i> CBS 101466</a> &ndash;
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/28187150">Moreno et al. 2017</a>.  
              </li>
-             
-            <li><a href="/a/app/record/dataset/DS_39745663c5"><i>Phytophthora palmivora</i> var. <i>palmivora</i> sbr112.9 </a> &ndash;
-             <a href="http://www.ncbi.nlm.nih.gov/pubmed/28186564">Ali et al. 2017</a>.  
-             </li>
-             
-            <li><a href="/a/app/record/dataset/DS_20c3a83941"><i>Malassezia restricta</i> KCTC 27527</a> &ndash;
+
+	     <li><a href="/a/app/record/dataset/DS_20c3a83941"><i>Malassezia restricta</i> KCTC 27527</a> &ndash;
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/27882618">Park et al. 2017</a>.  
              </li>
              
             <li><a href="/a/app/record/dataset/DS_8b08c1c31d"><i>Mucor circinelloides</i> f. <i>circinelloides</i> 1006PhL</a> &ndash;
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/25006230">Lee et al. 2014</a>.  
              </li>
-
-	    <li><a href="/a/app/record/dataset/DS_53617fed03"><i>Candida haemulonis</i> B11899</a> &ndash;
-             <a href="http://www.ncbi.nlm.nih.gov/pubmed/30559369">Mu&ntilde;oz et al. 2014</a>.  
+             
+            <li><a href="/a/app/record/dataset/DS_39745663c5"><i>Phytophthora palmivora</i> var. <i>palmivora</i> sbr112.9 </a> &ndash;
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/28186564">Ali et al. 2017</a>.  
              </li>
+             
+            
+
+
             
             </ul>
            <br>
