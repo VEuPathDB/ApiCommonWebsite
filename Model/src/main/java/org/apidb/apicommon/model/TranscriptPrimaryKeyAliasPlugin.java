@@ -14,8 +14,8 @@ import javax.sql.DataSource;
 import org.apache.log4j.Logger;
 import org.gusdb.fgputil.db.SqlUtils;
 import org.gusdb.wdk.model.WdkModelException;
-import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.record.PrimaryKeyAliasPlugin;
+import org.gusdb.wdk.model.record.RecordNotFoundException;
 import org.gusdb.wdk.model.user.User;
 
 /**
@@ -34,10 +34,10 @@ public class TranscriptPrimaryKeyAliasPlugin implements PrimaryKeyAliasPlugin {
 
   @Override
   public List<Map<String, Object>> getPrimaryKey(User user, Map<String, Object> inputPkValues)
-      throws WdkModelException, WdkUserException {
+      throws WdkModelException, RecordNotFoundException {
 
     if (!inputPkValues.containsKey("gene_source_id")) {
-      throw new WdkUserException("Requesting Gene page, but no Gene Id supplied");
+      throw new WdkModelException("Requesting Gene page, but no Gene Id supplied");
     }
 
     String inputGeneId = (String) inputPkValues.get("gene_source_id");
