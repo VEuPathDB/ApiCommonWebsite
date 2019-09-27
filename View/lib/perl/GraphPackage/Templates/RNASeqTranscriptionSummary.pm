@@ -17,27 +17,35 @@ sub getAllProfileSetNames {
   my $unionStr = join "\n", @unionStr;
 
   my $id = $self->getId();
-  my $sql = "select distinct profile_set_name,
+  my $sql = "select distinct p.profile_set_name,
                     dsp.display_name || decode(p.profile_set_suffix, null, '', ' - ' || p.profile_set_suffix) || ', ' || dsp.short_attribution as display_name,
                     dsp.dataset_presenter_id as presenter_id, 
 		    ds.order_num
-                from apidbtuning.profile p, 
-                     apidbtuning.profilesamples ps, 
-                     apidbtuning.expressiongraphsdata d,
-                     apidbtuning.datasetpresenter dsp,
-                    (select '' as dataset_name, 1 as order_num from dual
+                from apidbTuning.Profile p,
+                     apidbTuning.ProfileSamples ps,
+                     study.ProtocolAppNode pan,
+                     apidbTuning.DatasetPresenter dsp,
+                     (select *
+                      from apidbTuning.DatasetProperty
+                      where property = 'switchStrandsProfiles') dprop,
+                     (select '' as dataset_name, 1 as order_num from dual
 	$unionStr
-                    ) ds
+                     ) ds
                 where p.dataset_type = 'transcript_expression' 
                 and p.dataset_subtype = 'rnaseq' 
                 and p.profile_type = 'values' 
                 and p.source_id = '$id'
-                and d.sample_name not like '%antisense%'
-                and d.sample_name like '%unique%'
+                and ((dprop.value = 'false'
+                      and pan.name like '%firststrand%')
+                     or (dprop.value = 'true'
+                         and pan.name like '%secondstrand%')
+                     or pan.name like '%unstranded%')
+                and p.profile_set_name not like '%nonunique%'
                 and p.profile_set_name = ps.study_name
-                and ps.protocol_app_node_id = d.protocol_app_node_id
+                and ps.protocol_app_node_id = pan.protocol_app_node_id
                 and p.dataset_name = dsp.name
                 and dsp.name = ds.dataset_name
+                and dsp.dataset_presenter_id = dprop.dataset_presenter_id(+)
                 order by ds.order_num";
 
   my $dbh = $self->getQueryHandle();
