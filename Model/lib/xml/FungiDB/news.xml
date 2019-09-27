@@ -61,10 +61,6 @@
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/28186564">Ali et al. 2017</a>.  
              </li>
              
-            
-
-
-            
             </ul>
            <br>
            
@@ -72,33 +68,37 @@
         <h4>Transcriptomics</h4>
            <ul>
                           
-             <li><a href="/a/app/record/dataset/DS_c37910b5b2">Transcriptome analysis of the col-26 mutant and its wild type parental strain</a> &ndash;
-             <i>Neurospora crassa</i>: mRNA profiles after 4 hours of exposure to various carbon sources.
-             <a href="http://www.ncbi.nlm.nih.gov/pubmed/28467421 " target="_blank">Xiong et al. 2017</a>.
+             <li><a href="/a/app/record/dataset/DS_de2b36b6b9">Transcriptomic response to the two industrial feedstocks, corn stover and soybean hulls</a> &ndash;
+             <i>Trichoderma reesei</i>: mRNA samples were collected from WT, delta xyr1, delta ara1, and delta xki1 strains at 4 , 24 and 48 hr.
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/31007715" target="_blank">Benocci et al. 2019</a>.
              </li>
              
                          
-            <li><a href="/a/app/record/dataset/DS_0a988118ee">WT and DAMT3 mutant transcriptomes</a> &ndash;
+            <li><a href="/a/app/record/dataset/DS_f6f06b66fb">WT and DAMT3 mutant transcriptomes</a> &ndash;
              <i>Phytophthora sojae</i>: RNA-Seq analysis of the mycelium stage.
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/24625133" target="_blank">Zhao et al. 2014</a>.
              </li>
              
-             <li><a href="/a/app/record/dataset/DS_cac42e08eb">Genome-wide gene expression analysis of spores and mycelium</a> &ndash;
+             <li><a href="/a/app/record/dataset/DS_cb9172b44e">Genome-wide gene expression analysis of spores and mycelium</a> &ndash;
              <i>Fusarium graminearum</i>: Examination of gene expression in two developmental stages.
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/23050232" target="_blank">Anderson et al. 2012</a>.
              </li>
              
-             <li><a href="/a/app/record/dataset/DS_9916d7089f">Global transcriptional analysis of wild-type and cuf1delta cells</a> &ndash;
+             <li><a href="/a/app/record/dataset/DS_bedbb89fe9">Global transcriptional analysis of wild-type and cuf1delta cells</a> &ndash;
              <i>Cryptococcus neoformans</i>: Genome-wide assessment of the Cu-responsive, Cuf1-dependent transcriptome.
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/29608794" target="_blank">Garcia-Santamarina et al. 2018</a>.
              </li>
              
              
-            <li><a href="/a/app/record/dataset/DS_086cc94697">Transcriptional analysis of sorted subpopulations of macrophages infected with <i>Candida albicans</i></a> &ndash;
+            <li><a href="/a/app/record/dataset/DS_6b7a3d90e0">Transcriptional analysis of sorted subpopulations of macrophages infected with <i>Candida albicans</i></a> &ndash;
              RNA-Seq of C57BL6J macrophages infected with the CAI4 strain of <i>Candida albicans</i>.
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/30962448" target="_blank">Mu&ntilde;oz et al. 2019</a>.
              </li>
-             
+      
+             <li><a href="/a/app/record/dataset/DS_c7880e8308">Transcriptional analysis of sorted subpopulations of macrophages infected with <i>Candida albicans</i></a> &ndash;
+             RNA-Seq of C57BL6J macrophages infected with the CAI4 strain of <i>Candida albicans</i>.
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/30962448" target="_blank">Mu&ntilde;oz et al. 2019</a>.
+             </li>
                           
         	</ul>
         	<br>
