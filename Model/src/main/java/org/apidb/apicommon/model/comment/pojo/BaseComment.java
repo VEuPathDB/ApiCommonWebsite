@@ -121,7 +121,7 @@ public class BaseComment {
   }
 
   public Set<String> getRelatedStableIds() {
-    return Collections.unmodifiableSet(_relatedStableIds);
+    return _relatedStableIds;
   }
 
   protected BaseComment addRelatedStableId(String id) {
