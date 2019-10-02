@@ -68,35 +68,35 @@
         <h4>Transcriptomics</h4>
            <ul>
                           
-             <li><a href="/a/app/record/dataset/DS_de2b36b6b9">Transcriptomic response to the two industrial feedstocks, corn stover and soybean hulls</a> &ndash;
-             <i>Trichoderma reesei</i>: mRNA samples were collected from WT, delta xyr1, delta ara1, and delta xki1 strains at 4 , 24 and 48 hr.
+             <li><i>Trichoderma reesei</i>: <a href="/a/app/record/dataset/DS_de2b36b6b9">Transcriptomic response to the two industrial feedstocks, corn stover and soybean hulls</a> &ndash;
+             mRNA samples were collected from WT, delta xyr1, delta ara1, and delta xki1 strains at 4 , 24 and 48 hr.
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/31007715" target="_blank">Benocci et al. 2019</a>.
              </li>
              
                          
-            <li><a href="/a/app/record/dataset/DS_6b7a3d90e0">Transcriptional profile of cells exposed to argentilactone</a> &ndash;
-             <i>Paracoccidioides lutzii Pb01</i>: Investigation of the antifungal potential of argentilactone via RNA-Seq of fungal cells.
+            <li><i>Paracoccidioides lutzii Pb01</i>: <a href="/a/app/record/dataset/DS_6b7a3d90e0">Transcriptional profile of cells exposed to argentilactone</a> &ndash;
+             Investigation of the antifungal potential of argentilactone via RNA-Seq of fungal cells.
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/26734764" target="_blank">Ara&uacute;jo et al. 20146/a>.
              </li>
              
-	     <li><a href="/a/app/record/dataset/DS_f6f06b66fb">:Comparative transcriptomics of dormant and germinating conidia</a> &ndash;
-             <i>Aspergillus oryzae</i>: Examination of gene expression in two developmental stages.
+	     <li> <i>Aspergillus oryzae</i>: <a href="/a/app/record/dataset/DS_f6f06b66fb">Comparative transcriptomics of dormant and germinating conidia</a> &ndash;
+             Examination of gene expression in two developmental stages.
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/27185182" target="_blank">Hagiwara et al. 2016</a>.
              </li>
              
-             <li><a href="/a/app/record/dataset/DS_bedbb89fe9">:Comparative transcriptomics of dormant and germinating conidia</a> &ndash;
-             <i>Aspergillus niger</i>: Examination of gene expression in two developmental stages.
+             <li><i>Aspergillus niger</i>: <a href="/a/app/record/dataset/DS_bedbb89fe9">Comparative transcriptomics of dormant and germinating conidia</a> &ndash;
+             Examination of gene expression in two developmental stages.
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/27185182" target="_blank">Hagiwara et al. 2016</a>.
              </li>
              
              
-            <li><a href="/a/app/record/dataset/DS_cb9172b44e">:Comparative transcriptomics of dormant and germinating conidia</a> &ndash;
-             <i>Aspergillus fumigatus</i>: Examination of gene expression in two developmental stages.
+            <li><i>Aspergillus fumigatus</i>: <a href="/a/app/record/dataset/DS_cb9172b44e">:Comparative transcriptomics of dormant and germinating conidia</a> &ndash;
+             Examination of gene expression in two developmental stages.
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/27185182" target="_blank">Hagiwara et al. 2016</a>.
              </li>
 
-             <li><a href="/a/app/record/dataset/DS_c7880e8308">:RNA sequencing of cells treated with eltrombopag</a> &ndash;
-             <i>Cryptotoccus neoformans</i>: Eltrombopag was investigated for suitability as an anticryptococcal agent.
+             <li><i>Cryptotoccus neoformans</i>: <a href="/a/app/record/dataset/DS_c7880e8308">:RNA sequencing of cells treated with eltrombopag</a> &ndash;
+             Eltrombopag was investigated for suitability as an anticryptococcal agent.
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/31297540" target="_blank">Ko et al. 2019</a>.
              </li>         
         	</ul>
@@ -104,9 +104,21 @@
         
         <h4>Whole genome sequence of isolates for SNP analysis:</h4>
            <ul>
-             <li><a href="/a/app/record/dataset/DS_4477b85a6c">Aligned genome sequence reads - <i>C. neoformans</i> Zambian environmental and clinical isolates</a> &ndash;
-                 Forty five isolates were sequenced using Illumina HiSeq 2000 technology.
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/27862555">Vanhove et al. 2017</a>.
+             <li><i>Aspergillus fumigatus</i>: <a href="/a/app/record/dataset/DS_012298da2c">SNP calls on strains isolated from patients with PA and CNPA</a> &ndash;
+                 WGS analyses of 17 strains isolated from patients in Japan with pulmonary aspergilloma and chronic necrotizing pulmonary aspergillosis.
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/25851262">Takahashi-Nakaguchi et al. 2015</a>.
+             </li>
+
+            <ul>
+             <li><a href="/a/app/record/dataset/DS_ef6f0a52dc">SNP calls on <i>Batrachochytrium dendrobatidis</i> WGS (Hammersmith)</a> &ndash;
+                 Isolates from various continents were sequenced using Illumina HiSeq 2000 technology.
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/23966879">Farrer et al. 2013</a>.
+             </li>
+
+            <ul>
+             <li><a href="/a/app/record/dataset/DS_5cc278b3c9">SNP calls on <i>Batrachochytrium dendrobatidis</i> WGS (BGI)</a> &ndash;
+                 Isolates from various continents were sequenced using Illumina HiSeq 2000 technology.
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/23966879">Vanhove et al. 2017</a>.
              </li>
              
            </ul>
@@ -114,23 +126,14 @@
               
         <h4>Proteomics</h4>
            <ul>
-             <li><a href="/a/app/record/dataset/DS_64eb488423">Adaptive mechanisms of conidia to nutrient restriction in <i.A. fumigatus</i></a> &ndash; 
-                 A clinical strain was grown for 3, 15, and 30 days to follow the changes associated with conidia adaptation to nutrient limitation.
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/28365406" target="_blank">Anjo et al. 2017</a>.
+             <li><i>Neurospora crassa</i>: <a href="/a/app/record/dataset/DS_64eb488423">Circadian proteomics time course in wild type and delta <i>csp-1</i></a> &ndash; 
+                 Protein levels were accessed every 2 hr over 4hr time course and analyzed using tandem mass tag mass spectrometry (TMT-MS).
+                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/30553726" target="_blank">Hurley et al. 2018</a>.
              </li>
         	</ul>
         <br>
         
-        <h4>DAP-Seq data</h4>
-           <ul>
-             <li><a href="http://fungidb.org/fungidb/app/record/dataset/DS_08d2dc7307">DAP-Seq performed on ADV-1 and PP-1 proteins in <i>Neurospora crassa</i></a> &ndash;
-             To identify genes that were regulated and bound by ADV-1 or PP-1, DNA-affinity purification sequencing (DAP-seq) was used to identify transcription factor binding sites in <i>N. crassa</i>.  
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/29678830" target="_blank">Fischer et al. 2018</a>.
-             </li>
-
-           </ul>  
-            <br>
-            
+           
         <h4>Phenotype data</h4>
            <ul>
              <li><a href="/a/app/record/dataset/DS_43c139682a">Manually curated <i>Cryptococcus</i> Phenotypes</a> &ndash; 
@@ -383,23 +386,7 @@
            
        </div>    
        </section>
-       
-       <section>
-      <h3><b>New features in FungiDB 45</b></h3>
-      <div style="margin-left: 3em;">
-         <ul>
-           <li>
-             All EuPathDB sites now offer the <a href="https://jbrowse.org/" target="_blank">JBrowse Genome Browser</a>.  GBrowse will be phased out in coming releases.  Please 
-             <a href="https://eupathdb.org/eupathdb/app/contact-us">Contact Us</a> with comments and suggestions for the genome browser. 
-           </li>
-           <li>
-             The new RNASeq Transcript Summary tool on gene pages helps reveal experiments in which the gene is highly 
-             regulated. The tool displays the gene's FPKM values for all experiments in FungiDB and offers features such as 
-             log/linear scaling, zoom and pan to explore the gene's expression in each experiment.
-           </li>
-         </ul>
-       </div> 
-      </section>
+
        
        <section>
      <aside>
