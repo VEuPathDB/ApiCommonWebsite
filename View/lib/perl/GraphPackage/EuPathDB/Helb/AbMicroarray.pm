@@ -26,9 +26,7 @@ sub init {
   }
 
   my $needXLab = 0;
-  print STDERR "First\n";
   if (!(defined $contXAxis) || $contXAxis eq 'na') {
-      print STDERR "Here\n";
     $contXAxis = 'EUPATH_0005029';
     $needXLab = 1;
   }
