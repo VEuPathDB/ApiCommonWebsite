@@ -1,9 +1,7 @@
 package org.apidb.apicommon.model.report.summaryview;
 
-import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Arrays;
@@ -49,7 +47,7 @@ public class IsolateViewReporter extends AbstractReporter {
 
   @Override
   protected void write(OutputStream out) throws WdkModelException {
-    try (JsonWriter writer = new JsonWriter(new BufferedWriter(new OutputStreamWriter(out)))) {
+    try (JsonWriter writer = new JsonWriter(out)) {
       writeJson(_baseAnswer, writer);
     }
     catch (IOException e) {
