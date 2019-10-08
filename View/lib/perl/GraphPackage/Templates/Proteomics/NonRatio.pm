@@ -41,7 +41,6 @@ use Data::Dumper;
 sub getRemainderRegex {
   return qr/T\. ?gondii ?(.+) timecourse/;
 }
-
 sub keepSingleLegend {1}
 
 sub finalProfileAdjustments {
@@ -220,6 +219,34 @@ sub makeProfileSets {
 
 1;
 
+
+# for FungiDB
+package ApiCommonWebsite::View::GraphPackage::Templates::Proteomics::NonRatio::DS_b500b22788;
+use Data::Dumper;
+
+sub init {
+  my $self = shift;
+  $self->SUPER::init(@_);
+  $self->setPlotWidth(700);
+}
+
+sub finalProfileAdjustments {
+  my ($self, $profile) = @_;
+
+  $profile->setHasExtraLegend(1);
+print STDERR Dumper($profile->getLegendLabels());
+  if($profile->getLegendLabels()) {
+    my @legendLabels = map {s/Circadian proteomic analysis - //;$_} @{$profile->getLegendLabels()};
+    @legendLabels = map {s/time course /tc/;$_} @{$profile->getLegendLabels()};
+    $profile->setLegendLabels(\@legendLabels);
+    my $colorMap = "c(\"Wild Type tc1\" = \"#144BE5\", \"Wild Type tc2\" = \"#70598F\", \"Wild Type tc3\" = \"#5B984D\", \"delta csp-1 tc1\" = \"#FA9B83\", \"delta csp-1 tc2\" = \"#EF724E\", \"delta csp-1 tc3\" = \"#E1451A\")";
+
+    $profile->setColorVals($colorMap);
+  }
+
+  return $self;
+}
+1;
 
 
 #--------------------------------------------------------------------------------
