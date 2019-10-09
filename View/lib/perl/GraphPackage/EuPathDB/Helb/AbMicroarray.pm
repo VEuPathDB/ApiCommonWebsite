@@ -21,12 +21,12 @@ sub init {
 
   my $colors = ['blue'];
 
-  if (!(defined $facet) | $facet->[0] eq 'na') {
+  if (!(defined $facet) || $facet->[0] eq 'na') {
     $facet->[0] = 'none';
   }
 
   my $needXLab = 0;
-  if (!(defined $contXAxis) | $contXAxis eq 'na') {
+  if (!(defined $contXAxis) || $contXAxis eq 'na') {
     $contXAxis = 'EUPATH_0005029';
     $needXLab = 1;
   }
