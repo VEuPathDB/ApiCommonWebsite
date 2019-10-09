@@ -90,11 +90,11 @@ public class TranscriptBooleanQuery extends BooleanQuery {
     Column column = new Column();
     column.setName(LEFT_MATCH_COLUMN);
     column.setQuery(this);
-    columnMap.put(LEFT_MATCH_COLUMN, column);
+    _columnMap.put(LEFT_MATCH_COLUMN, column);
     column = new Column();
     column.setName(RIGHT_MATCH_COLUMN);
     column.setQuery(this);
-    columnMap.put(RIGHT_MATCH_COLUMN, column);
+    _columnMap.put(RIGHT_MATCH_COLUMN, column);
   }
 
   @Override
