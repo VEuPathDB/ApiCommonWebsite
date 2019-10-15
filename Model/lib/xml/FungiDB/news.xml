@@ -120,7 +120,6 @@
 
              <li><i>Batrachochytrium dendrobatidis</i>: <a href="/a/app/record/dataset/DS_5cc278b3c9">SNP calls on <i>Batrachochytrium dendrobatidis</i> WGS (BGI)</a> &ndash;
                  Isolates from various continents were sequenced using Illumina HiSeq 2000 technology.
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/23966879">Vanhove et al. 2017</a>.
              </li>
              
            </ul>
@@ -129,7 +128,7 @@
         <h4>Proteomics</h4>
            <ul>
              <li><i>Neurospora crassa</i>: <a href="/a/app/record/dataset/DS_64eb488423">Circadian proteomics time course in wild type and delta <i>csp-1</i></a> &ndash; 
-                 Protein levels were accessed every 2 hr over 4hr time course and analyzed using tandem mass tag mass spectrometry (TMT-MS).
+                 Protein levels were accessed every 2 hr over 48hr time course and analyzed using tandem mass tag mass spectrometry (TMT-MS).
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/30553726" target="_blank">Hurley et al. 2018</a>.
              </li>
         	</ul>
