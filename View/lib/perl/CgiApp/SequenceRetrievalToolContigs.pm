@@ -82,6 +82,9 @@ EOSQL
 				  -alphabet => "dna");
       my $maxEnd = $$ends[$i];
 
+      # needed for the sequence retrieval from reporter jsx
+      $$revComps[$i] = '' if ($$revComps[$i] eq 'false');
+
       # NOT USED, as this error is caught on validation
       # catch error if start is larger $maxEnd
       # &error("Start is larger than the length of the Sequence ($maxEnd)") if ($$starts[$i] > $maxEnd);
