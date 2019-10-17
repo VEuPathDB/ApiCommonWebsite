@@ -57,8 +57,12 @@
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/25006230">Lee et al. 2014</a>.  
              </li>
              
-            <li><a href="/a/app/record/dataset/DS_39745663c5"><i>Phytophthora palmivora</i> var. <i>palmivora</i> sbr112.9 </a> &ndash;
+            <li><a href="/a/app/record/dataset/DS_39745663c5"><i>Phytophthora palmivora</i> var. <i>palmivora</i> sbr112.9</a> &ndash;
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/28186564">Ali et al. 2017</a>.  
+             </li>
+
+		<li><a href="/a/app/record/dataset/DS_39745663c5"><i>Rhizophagus irregularis</i> A1 (DAOM-664342)</a> &ndash;
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/27572831">Ropas et al. 2016</a>.  
              </li>
              
             </ul>
@@ -74,12 +78,12 @@
              </li>
              
                          
-            <li><i>Paracoccidioides lutzii Pb01</i>: <a href="/a/app/record/dataset/DS_6b7a3d90e0">Transcriptional profile of cells exposed to argentilactone</a> &ndash;
+            <li><i>Paracoccidioides lutzii</i>: <a href="/a/app/record/dataset/DS_6b7a3d90e0">Transcriptional profile of cells exposed to argentilactone</a> &ndash;
              Investigation of the antifungal potential of argentilactone via RNA-Seq of fungal cells.
-             <a href="http://www.ncbi.nlm.nih.gov/pubmed/26734764" target="_blank">Ara&uacute;jo et al. 20146/a>.
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/26734764" target="_blank">Ara&uacute;jo et al. 2014</a>.
              </li>
              
-	     <li> <i>Aspergillus oryzae</i>: <a href="/a/app/record/dataset/DS_f6f06b66fb">Comparative transcriptomics of dormant and germinating conidia</a> &ndash;
+	     <li><i>Aspergillus oryzae</i>: <a href="/a/app/record/dataset/DS_f6f06b66fb">Comparative transcriptomics of dormant and germinating conidia</a> &ndash;
              Examination of gene expression in two developmental stages.
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/27185182" target="_blank">Hagiwara et al. 2016</a>.
              </li>
@@ -109,14 +113,13 @@
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/25851262">Takahashi-Nakaguchi et al. 2015</a>.
              </li>
 
-             <li><a href="/a/app/record/dataset/DS_ef6f0a52dc">SNP calls on <i>Batrachochytrium dendrobatidis</i> WGS (Hammersmith)</a> &ndash;
+             <li><i>Batrachochytrium dendrobatidis</i>: <a href="/a/app/record/dataset/DS_ef6f0a52dc">SNP calls on <i>Batrachochytrium dendrobatidis</i> WGS (Hammersmith)</a> &ndash;
                  Isolates from various continents were sequenced using Illumina HiSeq 2000 technology.
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/23966879">Farrer et al. 2013</a>.
              </li>
 
-             <li><a href="/a/app/record/dataset/DS_5cc278b3c9">SNP calls on <i>Batrachochytrium dendrobatidis</i> WGS (BGI)</a> &ndash;
+             <li><i>Batrachochytrium dendrobatidis</i>: <a href="/a/app/record/dataset/DS_5cc278b3c9">SNP calls on <i>Batrachochytrium dendrobatidis</i> WGS (BGI)</a> &ndash;
                  Isolates from various continents were sequenced using Illumina HiSeq 2000 technology.
-                 <a href="http://www.ncbi.nlm.nih.gov/pubmed/23966879">Vanhove et al. 2017</a>.
              </li>
              
            </ul>
@@ -125,7 +128,7 @@
         <h4>Proteomics</h4>
            <ul>
              <li><i>Neurospora crassa</i>: <a href="/a/app/record/dataset/DS_64eb488423">Circadian proteomics time course in wild type and delta <i>csp-1</i></a> &ndash; 
-                 Protein levels were accessed every 2 hr over 4hr time course and analyzed using tandem mass tag mass spectrometry (TMT-MS).
+                 Protein levels were accessed every 2 hr over 48hr time course and analyzed using tandem mass tag mass spectrometry (TMT-MS).
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/30553726" target="_blank">Hurley et al. 2018</a>.
              </li>
         	</ul>
@@ -182,7 +185,8 @@
                  <a href="http://www.phi-base.org/" target="_blank">PHI-base</a> is a web-accessible database that catalogues experimentally verified pathogenicity, virulence and effector genes from fungal, 
                  Oomycete and bacterial pathogens, which infect animal, plant, fungal and insect hosts. The pathogen-host interactions (PHI) phenotypes and pathogen-specific phenotypes from PHI-base were 
                  integrated for 36 different genomes available in FungiDB in this release. This dataset is current with PHI-base version 4.8. We have integrated 3,438 phenotypic annotations mapping to 2,089 
-                 genes in total. The original data file from PHI-base can be found in their GitHub site linked <a href="https://github.com/PHI-base/data/blob/master/releases/phi-base_v4-8_2019-09-16.csv" target="_blank">here</a>.
+                 genes in total. The original data file from PHI-base can be found in their GitHub site linked <a href="https://github.com/PHI-base/data/blob/master/releases/phi-base_v4-8_2019-09-16.csv" target="_blank">here</a>. 
+                 In addition, we have also updated the links to the PHI-base database in the linkouts section of gene pages. There are 2,307 PHI-base entries mapping to 2,089 genes in the current release.
              </li>
              </ul> 
            
