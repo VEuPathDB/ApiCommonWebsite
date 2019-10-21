@@ -33,6 +33,87 @@
 --> 
 
 <record>
+  <attribute name="headline">ToxoDB 46 Released</attribute>
+  <attribute name="date">29 Oct 2019 13:00</attribute>
+  <attribute name="tag">ToxoDB10_19_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of ToxoDB 46</strong></p>
+    
+    <section>
+    <h3><b>Release 45 Webinar</b></h3>
+    <div style="margin-left: 3em;">
+      Join us on xxx, 2019 at 10:00 am (EST) for our Release 46 Highlights webinar where we will discuss and 
+      demonstrate new features and data available in release 46 of EuPathDB sites. 
+      <a href="xxx" target="_blank">Register here</a>
+    </div>
+    </section>
+      
+      <section>
+      <h3><b>New data in ToxoDB 46</b></h3>
+      <div style="margin-left: 3em;">
+        <h4>Genome Annotation</h4>
+		Genome annotation appears for the first time in ToxoDB for the following genomes. 
+         <ul>
+           <li><a href="/a/app/record/dataset/DS_3b71c59a12"><i>Toxoplasma gondii </i>strain CAST</a> &mdash; <br>
+               <a href="http://www.ncbi.nlm.nih.gov/pubmed/26738725" target="_blank">Lorenzi et al</a>.
+           </li>
+		   <li><a href="/a/app/record/dataset/DS_01c6cee55d"><i>Toxoplasma gondii </i>strain COUG</a> &mdash; <br>
+               <a href="http://www.ncbi.nlm.nih.gov/pubmed/26738725" target="_blank">Lorenzi et al</a>.
+           </li>
+		   <li><a href="/a/app/record/dataset/DS_c76af7a843"><i>Toxoplasma gondii </i>strain TgCATBr9</a> &mdash; <br>
+               <a href="http://www.ncbi.nlm.nih.gov/pubmed/26738725" target="_blank">Lorenzi et al</a>.
+           </li>
+         </ul> 
+	   <h4>Proteomics</h4>
+         <ul>
+           <li><a href="/a/app/record/dataset/DS_8ab03f0b79">Mouse brain bradyzoite proteomics time course</a> &mdash; <br>
+               Proteomic analysis of bradyzoites purified from mouse brain cysts at 21 days, 28 days, 3 months, 4 months and 5 months post infection.  The 
+			   data are provided pre-publication from the lab or Laura Knoll, University of Wisconsin.
+           </li>
+         </ul> 
+	   <h4>RNA Sequence</h4>
+         <ul>
+           <li><a href="/a/app/record/dataset/DS_7eee2cd55f">Mouse brain bradyzoite transcriptomes at 28, 90, 120 days post infection</a> &mdash; <br>
+               Transcriptome of bradyzoites from mouse brain cysts via RNA sequence at 28, 90 and 120 days post-infection.  <a href="http://www.ncbi.nlm.nih.gov/pubmed/30858341" target="_blank">Garfoot et al. 2019</a>.   The parasite component of this data set is available on ToxoDB: 
+			<a href="https://toxodb.org/toxo/app/record/dataset/DS_7eee2cd55f">Mouse brain bradyzoite transcriptomes at 28, 90, 120 days post infection</a>.
+           </li>
+         </ul>
+         </div>
+      </section>
+      
+      <section>
+      <h3><b>New features in ToxoDB 46</b></h3>
+      <div style="margin-left: 3em;">
+         <ul>
+           <li>
+             All EuPathDB sites now offer the <a href="https://jbrowse.org/" target="_blank">JBrowse Genome Browser</a>.  GBrowse will be phased out in coming releases.  Please 
+             <a href="https://eupathdb.org/eupathdb/app/contact-us">Contact Us</a> with comments and suggestions for the genome browser. 
+           </li>
+           <li>
+             The new RNASeq Transcript Summary tool on gene pages helps reveal experiments in which the gene is highly 
+             regulated. The tool displays the gene's FPKM values for all experiments in ToxoDB and offers features such as 
+             log/linear scaling, zoom and pan to explore the gene's expression in each experiment.
+           </li>
+         </ul>
+       </div> 
+      </section>
+      
+      <section>
+         <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+
+    ]]>
+  </attribute>
+</record>
+
+<record>
   <attribute name="headline">ToxoDB 45 Released</attribute>
   <attribute name="date">05 Sep 2019 13:00</attribute>
   <attribute name="tag">ToxoDB9_19_release</attribute>
