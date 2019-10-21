@@ -52,37 +52,38 @@
 --> 
 
 <record>
-  <attribute name="headline">GiardiaDB 45 Released</attribute>
-  <attribute name="date">05 Sep 2019 13:00</attribute>
-  <attribute name="tag">GiardiaDB9_19_release</attribute>
+  <attribute name="headline">GiardiaDB 46 Released</attribute>
+  <attribute name="date">29 Oct 2019 13:00</attribute>
+  <attribute name="tag">GiardiaDB10_19_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of GiardiaDB 45</strong></p>
+    <p><strong>We are pleased to announce the release of GiardiaDB 46</strong></p>
     
     <section>
-    <h3><b>Release 45 Webinar</b></h3>
+    <h3><b>Release 46 Webinar</b></h3>
     <div style="margin-left: 3em;">
-      Join us on September 11, 2019 at 10:00 am (EST) for our Release 45 Highlights webinar where we will discuss and 
-      demonstrate new features and data available in release 45 of EuPathDB sites. 
-      <a href="https://attendee.gotowebinar.com/register/5757077368783897612" target="_blank">Register here</a>
+      Join us on XXX, 2019 at 10:00 am (EST) for our Release 46 Highlights webinar where we will discuss and 
+      demonstrate new features and data available in release 46 of EuPathDB sites. 
+      <a href="XXXX" target="_blank">Register here</a>
     </div>
     </section>
       
       <section>
-      <h3><b>New data in GiardiaDB 45</b></h3>
+      <h3><b>New data in GiardiaDB 46</b></h3>
       <div style="margin-left: 3em;">
       <h4>Annotated Genomes</h4>
             <ul>
-              <li><a href="/a/app/record/dataset/DS_cf6ec570dd"><i>Giardia muris</i> strain Roberts-Thomson</a> &ndash; 
-                  <a href="http://www.ncbi.nlm.nih.gov/bioproject/PRJNA524057" target="_blank">NCBI Bioproject home page</a>, Xu et al.
+              <li><a href="/a/app/record/dataset/DS_3a6ccbfbcf"><i>Monocercomonoides exilis</i> strain PA203</a> &ndash; 
+                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/27185558" target="_blank">Karnkowska et al. 2016</a> and 
+				  <a href="http://www.ncbi.nlm.nih.gov/pubmed/31387118" target="_blank">Karnkowska et al. 2019</a> 
               </li>
             </ul>      
-      <h4>Proteomics</h4>
+      <h4>Quantitative Proteomics</h4>
             <ul>
-              <li><a href="/a/app/record/dataset/DS_1dec15a9c9">Metranidazone-resistant Giardia proteomes and post-translational modifications</a> &ndash;   
+              <li><a href="/a/app/record/dataset/DS_1dec15a9c9">Nitro drug-resistant strains and wild type proteomics</a> &ndash;   
                   Three <i>Giardia Assemblage A</i> isolate WB lines that are resistant to metranidazole, WB MtzR, 106 MtzR and 713 MtzR, were analyzed by quantitative proteomics and for post-translational modifications.
-                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/29688452" target="_blank">Emery et al.</a>
+                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/30889439" target="_blank">Muller et al.</a>
               </li>
           
             </ul>
@@ -91,7 +92,7 @@
       </section>
       
       <section>
-      <h3><b>New features in GiardiaDB 45</b></h3>
+      <h3><b>New features in GiardiaDB 46</b></h3>
       <div style="margin-left: 3em;">
          <ul>
            <li>
