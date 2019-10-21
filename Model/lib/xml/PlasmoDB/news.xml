@@ -56,59 +56,62 @@
          <ul>
            <li>
              <a href="/a/app/record/dataset/xx">dataset 1</a> &ndash; 
-             xxx.
+             Not Ready (Oct 21).
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/xxx" target="_blank">xxx et al.</a>
            </li>
 		   <li>
              <a href="/a/app/record/dataset/xx">dataset 2</a> &ndash; 
-             xxx.
+             Not Ready (Oct 21).
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/xxx" target="_blank">xxx et al.</a>
            </li>
 		   <li>
              <a href="/a/app/record/dataset/xx">dataset 3</a> &ndash; 
-             xxx.
+             Not Ready (Oct 21).
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/xxx" target="_blank">xxx et al.</a>
            </li>
          </ul>
 	  <h4>ChIP Seq</h4>
          <ul>
            <li>
-             <a href="/a/app/record/dataset/xx">dataset 1</a> &ndash; 
-             xxx.
-             <a href="http://www.ncbi.nlm.nih.gov/pubmed/xxx" target="_blank">xxx et al.</a>
+             <a href="/a/app/record/dataset/DS_bb5383f4c8">ATAC-seq of the <P. falciparum</i> intraerythrocytic development cycle</a> &ndash; 
+             ATAC-seq analysis of tightly synchronized parasites (Pfal3D7 10G and 1.2B subclones) at four different developmental stages 
+			 during the IDC: early rings (10–15 h, T10), late rings (20–25 h, T20), trophozoites (30–35 h, T30) and schizonts (40–45 h, T40).
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/30016465" target="_blank">Ruiz et al.</a>
            </li>
 		   <li>
-             <a href="/a/app/record/dataset/xx">dataset 2</a> &ndash; 
-             xxx.
-             <a href="http://www.ncbi.nlm.nih.gov/pubmed/xxx" target="_blank">xxx et al.</a>
+             <a href="/a/app/record/dataset/DS_20d81deb91">Midgut oocysts and salivary gland sporozoite epigenetics</a> &ndash; 
+             ChIP-seq analyses of histone modifications, including H3K9ac, H3K27ac, H3K4me3, and H3K9me3, at the oocyst and sporozoite stages..
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/28091569" target="_blank">Gomez-Diaz et al.</a>
            </li>
 		   <li>
-             <a href="/a/app/record/dataset/xx">dataset 3</a> &ndash; 
-             xxx.
-             <a href="http://www.ncbi.nlm.nih.gov/pubmed/xxx" target="_blank">xxx et al.</a>
+             <a href="/a/app/record/dataset/DS_941b6ce4a6">Histone epigenome of <i>Plasmodium vivax</i> salivary-gland sporozoites</a> &ndash; 
+             Histone epigenome of <i>Plasmodium vivax</i> salivary-gland sporozoites determined by ChIP Seq analysis via H3K9me3, H3K4me3, H3K9ac, H4K16ac chromatin precipitations..
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/31071319" target="_blank">Vivax Sporozoite Consortium et al.</a>
            </li>
          </ul>
       <h4>RNA Sequence</h4>
          <ul>
            <li>
-             <a href="/a/app/record/dataset/xx">dataset 1</a> &ndash; 
-             xxx.
-             <a href="http://www.ncbi.nlm.nih.gov/pubmed/xxx" target="_blank">xxx et al.</a>
+             <a href="/a/app/record/dataset/DS_a966e260dd">Dual transcriptomes of malaria-infected Gambian children</a> &ndash; 
+             Parasite portion of a dual transcriptomic analysis of human and <i>Plasmodium</i> from blood of 46 Gambian children diagnosed with malaria.
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/29950443" target="_blank">Lee et al.</a>  The host component of this data set is available on HostDB: 
+			<a href="https://hostdb.org/hostdb/app/record/dataset/DS_7d14c45975">Transcriptomes of 46 malaria-infected Gambian children</a>.
            </li>
 		   <li>
-             <a href="/a/app/record/dataset/xx">dataset 2</a> &ndash; 
-             xxx.
-             <a href="http://www.ncbi.nlm.nih.gov/pubmed/xxx" target="_blank">xxx et al.</a>
+             <a href="/a/app/record/dataset/DS_9791fb90ff"><i>P. berghei</i> transcriptome during inducible gametocytogenesis</a> &ndash; 
+			 A chart of the sequence of transcriptional changes through gametocyte development, including the observation that gender-specific 
+			 transcription occurred within 6 h of induction. 
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/30177743" target="_blank">Kent et al.</a>
            </li>
 		   <li>
-             <a href="/a/app/record/dataset/xx">dataset 3</a> &ndash; 
-             xxx.
-             <a href="http://www.ncbi.nlm.nih.gov/pubmed/xxx" target="_blank">xxx et al.</a>
+             <a href="/a/app/record/dataset/DS_f69a4f0749">Transcriptomes of PcAS and PcCB from mosquito transmitted or serial blood passaged mouse infections.</a> &ndash; 
+             Transcriptomes of P. chabaudi AS or CB isolates at the trophozoite stage from mice infected via serial blood passage or mosquito transmission determined by RNA sequence.
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/30542666" target="_blank">Lin et al.</a>
            </li>
 		   <li>
-             <a href="/a/app/record/dataset/xx">dataset 4</a> &ndash; 
-             xxx.
-             <a href="http://www.ncbi.nlm.nih.gov/pubmed/xxx" target="_blank">xxx et al.</a>
+             <a href="/a/app/record/dataset/DS_337c46b0f0">Transcriptome of <i>P. vivax</i> salivary gland sporozoites</a> &ndash; 
+             Transcriptomic analysis via RNA sequencing of <i>P. vivax</i> salivary gland sporozoites from isolates of symptomatic blood-stage malaria infections.
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/31071319" target="_blank">Vivax Sporozoite Consortium et al.</a>
            </li>
          </ul>
       </div>
