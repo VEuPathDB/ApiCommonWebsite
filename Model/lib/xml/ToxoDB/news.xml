@@ -69,15 +69,21 @@
 	   <h4>Proteomics</h4>
          <ul>
            <li><a href="/a/app/record/dataset/DS_8ab03f0b79">Mouse brain bradyzoite proteomics time course</a> &mdash; <br>
-               Proteomic analysis of bradyzoites purified from mouse brain cysts at 21 days, 28 days, 3 months, 4 months and 5 months post infection.  The 
-			   data are provided pre-publication from the lab or Laura Knoll, University of Wisconsin.
+               Proteomic analysis of bradyzoites purified from mouse brain cysts at 21 days, 28 days, 3 months, 4 months and 5 months post infection.  
+			   <a href="http://www.ncbi.nlm.nih.gov/pubmed/30858341" target="_blank">Garfoot et al. 2019</a><br><br>
+			   Also available from this study are:<br>
+                ToxoDB RNA seq: <a href="/a/app/record/dataset/DS_7eee2cd55f">Mouse brain bradyzoite transcriptomes at 28, 90, 120 days post infection</a><br>
+                HostDB RNA seq: 	<a href="https://hostdb.org/host/app/record/dataset/DS_7184e7fdbf">Mouse brain bradyzoite transcriptomes at 28, 90, 120 days post infection</a>.
            </li>
          </ul> 
 	   <h4>RNA Sequence</h4>
          <ul>
            <li><a href="/a/app/record/dataset/DS_7eee2cd55f">Mouse brain bradyzoite transcriptomes at 28, 90, 120 days post infection</a> &mdash; <br>
-               Transcriptome of bradyzoites from mouse brain cysts via RNA sequence at 28, 90 and 120 days post-infection.  <a href="http://www.ncbi.nlm.nih.gov/pubmed/30858341" target="_blank">Garfoot et al. 2019</a>.   The parasite component of this data set is available on ToxoDB: 
-			<a href="https://toxodb.org/toxo/app/record/dataset/DS_7eee2cd55f">Mouse brain bradyzoite transcriptomes at 28, 90, 120 days post infection</a>.
+               Transcriptome of bradyzoites from mouse brain cysts via RNA sequence at 28, 90 and 120 days post-infection.  
+			   <a href="http://www.ncbi.nlm.nih.gov/pubmed/30858341" target="_blank">Garfoot et al. 2019</a>.   <br><br>
+			   Also available from this study are:<br>
+                ToxoDB proteomics: <a href="/a/app/record/dataset/DS_8ab03f0b79">Mouse brain bradyzoite proteomics time course</a><br>
+                HostDB RNA seq: 	<a href="https://hostdb.org/host/app/record/dataset/DS_7184e7fdbf">Mouse brain bradyzoite transcriptomes at 28, 90, 120 days post infection</a>.
            </li>
          </ul>
          </div>

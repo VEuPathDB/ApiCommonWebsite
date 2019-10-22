@@ -61,8 +61,11 @@
           <li>
             <a href="/a/app/record/dataset/DS_7184e7fdbf">Mouse transcriptome during early and late chronic infection with <i>T. gondii</i></a> &mdash;
             Male and female host RNA seq transcriptional profile time course from very early to chronic infection with <i>T. gondii</i>.  
-            <a href="http://www.ncbi.nlm.nih.gov/pubmed/30858341" target="_blank">Garfoot et al. 2019</a>.   The parasite component of this data set is available on ToxoDB: 
-			<a href="https://toxodb.org/toxo/app/record/dataset/DS_7eee2cd55f">Mouse brain bradyzoite transcriptomes at 28, 90, 120 days post infection</a>.
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/30858341" target="_blank">Garfoot et al. 2019</a>.   <br><br>
+			
+			Also available from this study are:<br>
+                ToxoDB proteomics: <a href="https://toxodb.org/toxo/app/record/dataset/DS_8ab03f0b79">Mouse brain bradyzoite proteomics time course</a><br>
+                ToxoDB RNA seq: 	<a href="https://toxodb.org/toxo/app/record/dataset/DS_7eee2cd55f">Mouse brain bradyzoite transcriptomes at 28, 90, 120 days post infection</a>.
            </li>
 		  <li>
             <a href="/a/app/record/dataset/DS_7d14c45975">Transcriptomes of 46 malaria-infected Gambian children</a> &mdash;

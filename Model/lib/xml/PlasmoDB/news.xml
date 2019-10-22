@@ -57,23 +57,23 @@
            <li>
              <a href="/a/app/record/dataset/xx">dataset 1</a> &ndash; 
              Not Ready (Oct 21).
-             <a href="http://www.ncbi.nlm.nih.gov/pubmed/xxx" target="_blank">xxx et al.</a>
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/30630936" target="_blank">Jaenisch et al.</a>
            </li>
 		   <li>
              <a href="/a/app/record/dataset/xx">dataset 2</a> &ndash; 
              Not Ready (Oct 21).
-             <a href="http://www.ncbi.nlm.nih.gov/pubmed/xxx" target="_blank">xxx et al.</a>
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/30630936" target="_blank">Jaenisch et al.</a>
            </li>
 		   <li>
              <a href="/a/app/record/dataset/xx">dataset 3</a> &ndash; 
              Not Ready (Oct 21).
-             <a href="http://www.ncbi.nlm.nih.gov/pubmed/xxx" target="_blank">xxx et al.</a>
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/30630936" target="_blank">Jaenisch et al.</a>
            </li>
          </ul>
 	  <h4>ChIP Seq</h4>
          <ul>
            <li>
-             <a href="/a/app/record/dataset/DS_bb5383f4c8">ATAC-seq of the <P. falciparum</i> intraerythrocytic development cycle</a> &ndash; 
+             <a href="https://plasmodb.org/plasmo/app/record/dataset/DS_bb5383f4c8">ATAC-seq of the <P. falciparum</i> intraerythrocytic development cycle</a> &ndash; 
              ATAC-seq analysis of tightly synchronized parasites (Pfal3D7 10G and 1.2B subclones) at four different developmental stages 
 			 during the IDC: early rings (10–15 h, T10), late rings (20–25 h, T20), trophozoites (30–35 h, T30) and schizonts (40–45 h, T40).
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/30016465" target="_blank">Ruiz et al.</a>
