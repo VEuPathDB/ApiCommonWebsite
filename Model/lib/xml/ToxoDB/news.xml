@@ -56,13 +56,13 @@
         <h4>Genome Annotation</h4>
 		Genome annotation appears for the first time in ToxoDB for the following genomes. 
          <ul>
-           <li><a href="/a/app/record/dataset/DS_3b71c59a12"><i>Toxoplasma gondii </i>strain CAST</a> &mdash; <br>
+           <li><a href="/a/app/record/dataset/DS_3b71c59a12"><i>Toxoplasma gondii </i>strain CAST</a> &mdash;  
                <a href="http://www.ncbi.nlm.nih.gov/pubmed/26738725" target="_blank">Lorenzi et al</a>.
            </li>
-		   <li><a href="/a/app/record/dataset/DS_01c6cee55d"><i>Toxoplasma gondii </i>strain COUG</a> &mdash; <br>
+		   <li><a href="/a/app/record/dataset/DS_01c6cee55d"><i>Toxoplasma gondii </i>strain COUG</a> &mdash;  
                <a href="http://www.ncbi.nlm.nih.gov/pubmed/26738725" target="_blank">Lorenzi et al</a>.
            </li>
-		   <li><a href="/a/app/record/dataset/DS_c76af7a843"><i>Toxoplasma gondii </i>strain TgCATBr9</a> &mdash; <br>
+		   <li><a href="/a/app/record/dataset/DS_c76af7a843"><i>Toxoplasma gondii </i>strain TgCATBr9</a> &mdash;  
                <a href="http://www.ncbi.nlm.nih.gov/pubmed/26738725" target="_blank">Lorenzi et al</a>.
            </li>
          </ul> 
@@ -72,7 +72,7 @@
                Proteomic analysis of bradyzoites purified from mouse brain cysts at 21 days, 28 days, 3 months, 4 months and 5 months post infection.  
 			   <a href="https://www.researchsquare.com/article/9dd84566-1663-49a2-ab52-a359b9aa4224/v1" target="_blank">Garfoot et al. Preprint</a><br><br>
 			   Also available from this study are ToxoDB RNA seq: <a href="/a/app/record/dataset/DS_7eee2cd55f">Mouse brain bradyzoite transcriptomes at 28, 90, 120 days post infection</a>.  
-			   And a similar study by the same authors procuded HostDB RNA seq: 	<a href="https://hostdb.org/host/app/record/dataset/DS_7184e7fdbf">Mouse brain bradyzoite transcriptomes at 28, 90, 120 days post infection</a>.
+			   And a similar study by the same authors procuded HostDB RNA seq: 	<a href="https://hostdb.org/host/app/record/dataset/DS_7184e7fdbf">Mouse brain bradyzoite transcriptomes at 28, 90, 120 days post infection</a>.<br><br>
            </li>
 		   <li><a href="/a/app/record/dataset/DS_c3d46a8b93">Mouse brain bradyzoite proteomics time course - quantitative</a> &mdash; <br>
                Proteomic analysis of bradyzoites purified from mouse brain cysts at 21 days, 28 days, 3 months, 4 months and 5 months post infection.  
