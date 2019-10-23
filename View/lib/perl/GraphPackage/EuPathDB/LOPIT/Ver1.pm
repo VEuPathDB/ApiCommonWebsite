@@ -15,7 +15,7 @@ sub init {
 
   $self->SUPER::init(@_);
 
-
+  $self->setPlotWidth(515);
   my $colors = ['#4682B4', '#B22222'];
 
   my @profileSetsArray = (['LOPIT - MAP', 'values', '', ''],
