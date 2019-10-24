@@ -227,7 +227,18 @@
                 <br>    
                 </div>
 
-                       
+         <section>
+      <h3><b>New features in FungiDB 46</b></h3>
+      <div style="margin-left: 3em;">
+         <ul>
+           <li>
+             New Searches:  Two new searches that return genes based on copy number data are available in the Genetic Variation section of FungiDB 46.  The Copy Number search 
+			 returns genes with a copy number in a resequenced strain that is within a range that you specify.  The Copy Number Comparison search returns genes by comparing the 
+			 gene copy number in one or more resequenced strains to its copy number in the reference genome.  
+           </li>
+         </ul>
+       </div> 
+      </section>              
  
        <section>
      <aside>
