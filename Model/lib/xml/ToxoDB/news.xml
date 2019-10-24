@@ -68,13 +68,13 @@
          </ul> 
 	   <h4>Proteomics</h4>
          <ul>
-           <li><a href="/a/app/record/dataset/DS_8ab03f0b79">Mouse brain bradyzoite proteomics time course</a> &mdash; <br>
+           <li><a href="/a/app/record/dataset/DS_8ab03f0b79">Mouse brain bradyzoite proteomics time course</a> &mdash;
                Proteomic analysis of bradyzoites purified from mouse brain cysts at 21 days, 28 days, 3 months, 4 months and 5 months post infection.  
 			   <a href="https://www.researchsquare.com/article/9dd84566-1663-49a2-ab52-a359b9aa4224/v1" target="_blank">Garfoot et al. Preprint</a><br><br>
 			   Also available from this study are ToxoDB RNA seq: <a href="/a/app/record/dataset/DS_7eee2cd55f">Mouse brain bradyzoite transcriptomes at 28, 90, 120 days post infection</a>.  
 			   And a similar study by the same authors procuded HostDB RNA seq: 	<a href="https://hostdb.org/host/app/record/dataset/DS_7184e7fdbf">Mouse brain bradyzoite transcriptomes at 28, 90, 120 days post infection</a>.<br><br>
            </li>
-		   <li><a href="/a/app/record/dataset/DS_c3d46a8b93">Mouse brain bradyzoite proteomics time course - quantitative</a> &mdash; <br>
+		   <li><a href="/a/app/record/dataset/DS_c3d46a8b93">Mouse brain bradyzoite proteomics time course - quantitative</a> &mdash;
                Proteomic analysis of bradyzoites purified from mouse brain cysts at 21 days, 28 days, 3 months, 4 months and 5 months post infection.  
 			   <a href="https://www.researchsquare.com/article/9dd84566-1663-49a2-ab52-a359b9aa4224/v1" target="_blank">Garfoot et al. Preprint</a><br><br>
 			   Also available from this study are ToxoDB RNA seq: <a href="/a/app/record/dataset/DS_7eee2cd55f">Mouse brain bradyzoite transcriptomes at 28, 90, 120 days post infection</a>.  
@@ -83,13 +83,22 @@
          </ul> 
 	   <h4>RNA Sequence</h4>
          <ul>
-           <li><a href="/a/app/record/dataset/DS_7eee2cd55f">Mouse brain bradyzoite transcriptomes at 28, 90, 120 days post infection</a> &mdash; <br>
+           <li><a href="/a/app/record/dataset/DS_7eee2cd55f">Mouse brain bradyzoite transcriptomes at 28, 90, 120 days post infection</a> &mdash;
                Transcriptome of bradyzoites from mouse brain cysts via RNA sequence at 28, 90 and 120 days post-infection.  
 			   <a href="http://www.ncbi.nlm.nih.gov/pubmed/30858341" target="_blank">Garfoot et al. 2019</a>.   <br><br>
 			   Also available from this study are ToxoDB proteomics: <a href="/a/app/record/dataset/DS_8ab03f0b79">Mouse brain bradyzoite proteomics time course</a>.  
                And a similar study by the same authors procuded HostDB RNA seq: 	<a href="https://hostdb.org/host/app/record/dataset/DS_7184e7fdbf">Mouse brain bradyzoite transcriptomes at 28, 90, 120 days post infection</a>.
            </li>
          </ul>
+	   <h4>Spacial Proteomics - hyperLOPIT</h4>
+         <ul>
+           <li><a href="/a/app/record/dataset/DS_eda79f81b5">Mouse brain bradyzoite transcriptomes at 28, 90, 120 days post infection</a> &mdash;
+               HyperLOPIT spacial proteomics was used to simultaneously capture the steady-state subcellular association of thousands of proteins in the apicomplexan <i>Toxoplasma</i>.
+			   Provided pre-publication from the lab of Ross Waller, University of Cambridge <a href="https://proteome.shinyapps.io/toxolopittzex/>author website for LOPIT analysis</a>.  
+			   A data specific search is available (Search for genes, Protein targeting and localization, Localization by LOPIT Mass Spec).  The Protein targeting and localization 
+			   section of gene pages contains a table that displays probabilities that the protein is localized in each of 26 cellular compartments, based on LOPIT analysis. 
+           </li>
+         </ul>	 		 
          </div>
       </section>
       
