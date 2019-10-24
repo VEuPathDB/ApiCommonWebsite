@@ -90,7 +90,7 @@
            annotations are current with GeneDB October2019 GFF versions.
         <br><br>
         Functional annotations in TriTrypDB 46 have been updated for the <i>Trypanosoma brucei</i> 927 genome:
-        <br>
+        <br><br>
         <style>
            #FunctAnnot_Bld46 table, #FunctAnnot_Bld46 td, #FunctAnnot_Bld46 th, #FunctAnnot_Bld46 tr {
            text-align : center;
@@ -116,6 +116,7 @@
              <td>30 genes</td>
            </tr>
            </table>
+		   </div>
            <br><br>
            
 		   
