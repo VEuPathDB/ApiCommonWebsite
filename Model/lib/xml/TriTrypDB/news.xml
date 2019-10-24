@@ -65,6 +65,12 @@
 		   </li>
 		 </ul> 
 		 
+		<h4>Genome updated with maxicircle data</h4>
+		 <ul>
+		   <li><a href="/a/app/record/dataset/DS_7015be16ab"><i>Leishmania donovani</i> strain LV9 </a>  &mdash; 
+		      This Pacbio and Illumina sequenced genome was updated with maxicircle data provided by James Cotton of the Wellcome Sanger Institute. </li>
+         </ul>  
+		 
 		<h4>Maxicircle data JBrowse tracks</h4>
 		 <ul>
 		   <li><a href="/a/app/record/dataset/DS_5f1d75aac8">Maxicircle gene structural annotation</a> for <i>L. braziliensis</i> MHOM/BR/75/M2904 2019 &mdash; 
@@ -79,11 +85,11 @@
            
         <div style="margin-left: 3em;">
         
-        <a href="https://docs.google.com/spreadsheets/d/1NeswTsGO1kPHUjsUbNpFkmip5jrB-iD_SNq9OU_HYP0/edit?usp=sharing" target="_blank">Summary of annotation updates</a> 
-           which include products, GO terms, EC numbers, gene names, synonyms, publications, external database references and notes from curators. These functional 
-           annotations are current with GeneDB August 2019 GFF versions.
+        <a href="https://docs.google.com/spreadsheets/d/1LIhFpRPzPwygkFarBwmoTCYcAycHjXGxd4mCqU_yYzY/edit?usp=sharing" target="_blank">Summary of annotation updates</a> 
+           which include products, GO terms, gene names, synonyms, publications, external database references and notes from curators. These functional 
+           annotations are current with GeneDB October2019 GFF versions.
         <br><br>
-        Functional annotations in TriTrypDB 46 have been updated for the following genomes:
+        Functional annotations in TriTrypDB 46 have been updated for the <i>Trypanosoma brucei</i> 927 genome:
         <br>
         <style>
            #FunctAnnot_Bld46 table, #FunctAnnot_Bld46 td, #FunctAnnot_Bld46 th, #FunctAnnot_Bld46 tr {
@@ -106,12 +112,42 @@
            </tr>           
            <tr>
              <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_31282613b1"><i>Trypanosoma brucei </i>927</a></td>
-             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/genedb/releases/2019-08/Tbruceibrucei927/Tbruceibrucei927.gff.gz" target="_blank">GeneDB version Aug 2019</a></td> 
-             <td>135 genes</td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/genedb/releases/2019-10/Tbruceibrucei927/Tbruceibrucei927.gff.gz" target="_blank">GeneDB version October 2019</a></td> 
+             <td>30 genes</td>
            </tr>
            </table>
            <br><br>
            
+		   
+		 <h4>Curated User Comments</h4>
+       <div style="margin-left: 3em;">
+       
+          Gene page comments that are entered by users are curated at GeneDB and regularly integrated as functional 
+          annotations in TriTrypDB. Ten user comments (unique) have been integrated in this release.<br><br>
+          
+      <style>
+           #UComment_Bld46 table, #UComment_Bld46 td, #UComment_Bld46 th, #UComment_Bld46 tr {
+           text-align : center;
+           padding-left: 5px;
+           padding-right: 5px;
+           padding-top: 5px;
+           padding-bottom: 5px;
+           border: 1px solid black;
+           }
+           #UComment_Bld46 {
+           margin-left : 5 em;
+           }
+         </style> 
+           <table id="UComment_Bld46"> 
+           <tr>
+             <th>TriTrypDB Genome Version</th>
+             <th>Comments Integrated</th>
+           </tr>
+           <tr>
+             <td><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_31282613b1"><i>Trypanosoma brucei</i> 927</a></td>
+             <td>10</td>
+           </tr>
+          </table>  
         </div>
          </div>
       </section>  
