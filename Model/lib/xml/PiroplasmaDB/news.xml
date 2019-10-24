@@ -54,16 +54,12 @@
       <div style="margin-left: 3em;">
          <ul>
            <li>
-             All EuPathDB sites now offer the <a href="https://jbrowse.org/" target="_blank">JBrowse Genome Browser</a>.  GBrowse will be phased out in coming releases.  Please 
-             <a href="https://eupathdb.org/eupathdb/app/contact-us">Contact Us</a> with comments and suggestions for the genome browser. 
-           </li>
-           <li>
-             The new RNASeq Transcript Summary tool on gene pages helps reveal experiments in which the gene is highly 
-             regulated. The tool displays the gene's FPKM values for all experiments in PiroplasmaDB and offers features such as 
-             log/linear scaling, zoom and pan to explore the gene's expression in each experiment.
+             Copy Number Variation Pipeline Bug Fix:  To correct skewed copy number predictions, we changed the method for counting reads in our 
+			 CNV pipeline from Cufflinks to HTSeq-Count.  In our new pipeline we calculate FPKM manually.  Please note - saved strategies 
+			 that include CNV searches will likely produce different results in Release 46. 
            </li>
          </ul>
-       </div> 
+       </div>
       </section>
       
       <section>
