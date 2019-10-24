@@ -47,6 +47,8 @@
            </li>
 		   <li><a href="/a/app/record/dataset/DS_45f8906ea2"><i>Trypanosoma congolense</i> strain IL3000 2019</a> &mdash; This PacBio genome appears for the first time in TriTrypDB.  <a href="http://www.ncbi.nlm.nih.gov/pubmed/30165630"  target="_blank">Abbas et al.</a>  The previous version of this genome <a href="https://tritrypdb.org/tritrypdb/app/record/dataset/DS_26f6be1159><i>Trypanosoma congolense</i> IL3000</a> is still available and fully supported.
            </li>
+		   <li><a href="/a/app/record/dataset/DS_45f8906ea2"><i>Trypanosoma cruzi</i> strain IL3000 2019</a> &mdash; This PacBio genome appears for the first time in TriTrypDB.  <a href="http://www.ncbi.nlm.nih.gov/pubmed/30165630"  target="_blank">Abbas et al.</a>  The previous version of this genome <a href="https://tritrypdb.org/tritrypdb/app/record/dataset/DS_26f6be1159><i>Trypanosoma congolense</i> IL3000</a> is still available and fully supported.
+           </li>
 		   
 		 </ul> 
 		 
