@@ -43,13 +43,24 @@
       <div style="margin-left: 3em;">
         <h4>Newly integrated genome sequence and annotation</h4>
          <ul>
-           <li><a href="/a/app/record/dataset/DS_7015be16ab"><i>Leishmania braziliensis</i> strain MHOM/BR/75/M2904 2019</a> &mdash; This PacBio genome with maxicircle contigs appears for the first time in TriTrypDB.  These data were produced by the <a> href="https://www.sanger.ac.uk/science/groups/berriman-group>Parasite Genomics Group</a> at Wellcome Sanger Institute. The previous version of this genome <a href="https://tritrypdb.org/tritrypdb/app/record/dataset/DS_7015be16ab><i>Leishmania braziliensis</i> strain MHOM/BR/75/M2904</a> is still available and fully supported.
+           <li><a href="/a/app/record/dataset/DS_7015be16ab"><i>Leishmania braziliensis</i> strain MHOM/BR/75/M2904 2019</a> &mdash; 
+		     This PacBio genome with maxicircle contigs appears for the first time in TriTrypDB.  These data were produced by the 
+			 <a href="https://www.sanger.ac.uk/science/groups/berriman-group>Parasite Genomics Group</a> at Wellcome Sanger Institute. 
+			 The previous version of this genome 
+			 <a href="https://tritrypdb.org/tritrypdb/app/record/dataset/DS_7015be16ab><i>Leishmania braziliensis</i> strain MHOM/BR/75/M2904</a> 
+			 is still available and fully supported.
            </li>
-		   <li><a href="/a/app/record/dataset/DS_45f8906ea2"><i>Trypanosoma congolense</i> strain IL3000 2019</a> &mdash; This PacBio genome appears for the first time in TriTrypDB.  <a href="http://www.ncbi.nlm.nih.gov/pubmed/30165630"  target="_blank">Abbas et al.</a>  The previous version of this genome <a href="https://tritrypdb.org/tritrypdb/app/record/dataset/DS_26f6be1159><i>Trypanosoma congolense</i> IL3000</a> is still available and fully supported.
+		   <li><a href="/a/app/record/dataset/DS_45f8906ea2"><i>Trypanosoma congolense</i> strain IL3000 2019</a> &mdash; 
+		     This PacBio genome appears for the first time in TriTrypDB.  <a href="http://www.ncbi.nlm.nih.gov/pubmed/30165630"  target="_blank">Abbas et al.</a>  
+		     The previous version of this genome <a href="https://tritrypdb.org/tritrypdb/app/record/dataset/DS_26f6be1159><i>Trypanosoma congolense</i> IL3000</a> 
+		     is still available and fully supported.
            </li>
-		   <li><a href="/a/app/record/dataset/DS_45f8906ea2"><i>Trypanosoma cruzi</i> strain IL3000 2019</a> &mdash; This PacBio genome appears for the first time in TriTrypDB.  <a href="http://www.ncbi.nlm.nih.gov/pubmed/30165630"  target="_blank">Abbas et al.</a>  The previous version of this genome <a href="https://tritrypdb.org/tritrypdb/app/record/dataset/DS_26f6be1159><i>Trypanosoma congolense</i> IL3000</a> is still available and fully supported.
-           </li>
-		   
+		   <li><a href="/a/app/record/dataset/DS_45f8906ea2"><i>Trypanosoma cruzi</i> Brazil A4</a> &mdash; 
+		     This PacBio genome appears for the first time in TriTrypDB.  <a href="http://www.ncbi.nlm.nih.gov/pubmed/30165630"  target="_blank">Abbas et al.</a>  
+		   </li>	   
+		   <li><a href="/a/app/record/dataset/DS_45f8906ea2"><i>Trypanosoma cruzi</i> YC6</a> &mdash; 
+		     This PacBio genome appears for the first time in TriTrypDB.  <a href="http://www.ncbi.nlm.nih.gov/pubmed/30165630"  target="_blank">Abbas et al.</a>  
+		   </li>
 		 </ul> 
 		 
 		<h4>Maxicircle data added</h4>
