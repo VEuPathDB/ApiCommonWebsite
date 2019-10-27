@@ -17,29 +17,167 @@
           ]]>
        </attribute>
     </record>
-    
-     <h4>RNA Sequence</h4>
-          <ul>
-           <li>
-            <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_0ccdb3a6ec">Transcriptome of <i>T. brucei</i> rhodesiense from human, rodent, culture</a> &mdash; 
-            <a href="http://www.ncbi.nlm.nih.gov/pubmed/29474390">Mulindwa et al.</a>  
-            </li>
-          </ul>
-          
-             <div style="margin-left: 3em;">
-         <h4>New Gene Result Analysis tool</h4>
-         <ul>
-           <li>A new tool to find 'Experiments with Similar Results' is available for any gene result.  Use the blue 'Analysis 
-           Result' tab on any gene result page to access the tool.  The tool compares the genes in your current result to 
-           gene lists generated from each transcriptomic data set based on GSEA. The tool returns a list of @PROJECT_ID@ data sets whose 
-           gene lists are statistically similar and may be worth investigating. For more information, see this 
-           <a href="/assets/XXXX">Experiments with Similar Results tutorial</a>.
-           </li>
-         </ul><br>
-       </div> 
-<a href="/assets/MapProteinsOrthoMCL.pdf">OrthoMCL proteome upload tutorial</a>         
-             Generic Genome Browser version 2.48  
+ 
 -->
+
+<record>
+  <attribute name="headline">TriTrypDB 46 Released</attribute>
+  <attribute name="date">29 Oct 2019 13:00</attribute>
+  <attribute name="tag">TriTrypDB10_19_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of TriTrypDB 46</strong></p>
+    
+    <section>
+    <h3><b>Release 46 Webinar</b></h3>
+    <div style="margin-left: 3em;">
+      Join us on December 3, 2019 at 10:00 am (EST) for our Release 46 Highlights webinar where we will discuss and 
+      demonstrate new features and data available in release 46 of EuPathDB sites. 
+      <a href="https://attendee.gotowebinar.com/register/1533745455884630285" target="_blank">Register here</a>
+    </div>
+    </section>
+      
+      <section>
+      <h3><b>New data in TriTrypDB 46</b></h3>
+      <div style="margin-left: 3em;">
+        <h4>Newly integrated genome sequence and annotation</h4>
+         <ul>
+           <li><a href="/a/app/record/dataset/DS_7015be16ab"><i>Leishmania braziliensis</i> strain MHOM/BR/75/M2904 2019</a> &mdash; 
+		     This PacBio genome with maxicircle contigs appears for the first time in TriTrypDB.  These data were produced by the 
+			 <a href="https://www.sanger.ac.uk/science/groups/berriman-group>Parasite Genomics Group</a> at Wellcome Sanger Institute. 
+			 The previous version of this genome 
+			 <a href="https://tritrypdb.org/tritrypdb/app/record/dataset/DS_7015be16ab><i>Leishmania braziliensis</i> strain MHOM/BR/75/M2904</a> 
+			 is still available and fully supported.
+           </li>
+		   <li><a href="/a/app/record/dataset/DS_45f8906ea2"><i>Trypanosoma congolense</i> strain IL3000 2019</a> &mdash; 
+		     This PacBio genome appears for the first time in TriTrypDB.  <a href="http://www.ncbi.nlm.nih.gov/pubmed/30165630"  target="_blank">Abbas et al.</a>  
+		     The previous version of this genome <a href="https://tritrypdb.org/tritrypdb/app/record/dataset/DS_26f6be1159><i>Trypanosoma congolense</i> IL3000</a> 
+		     is still available and fully supported.
+           </li>
+		   <li><a href="/a/app/record/dataset/DS_610b8f99b0"><i>Trypanosoma cruzi</i> Brazil A4</a> &mdash; 
+		     This PacBio and Illumina sequenced genome appears for the first time in TriTrypDB and is offered pre-publication 
+			 from the <a href="https://ctegd.uga.edu/about/directory/rick-tarleton/"  target="_blank">Rick Tarleton Lab</a>. 
+		   </li>	   
+		   <li><a href="/a/app/record/dataset/DS_9540582c52"><i>Trypanosoma cruzi</i> YC6</a> &mdash; 
+		     This PacBio and Illumina sequenced genome appears for the first time in TriTrypDB and is offered pre-publication 
+			 from the <a href="https://ctegd.uga.edu/about/directory/rick-tarleton/"  target="_blank">Rick Tarleton Lab</a>. 
+		   </li>
+		 </ul> 
+		 
+		<h4>Genome updated with maxicircle data</h4>
+		 <ul>
+		   <li><a href="/a/app/record/dataset/DS_7015be16ab"><i>Leishmania donovani</i> strain LV9 </a>  &mdash; 
+		      This Pacbio and Illumina sequenced genome was updated with maxicircle data provided by James Cotton of the Wellcome Sanger Institute. </li>
+         </ul>  
+		 
+		<h4>Maxicircle data JBrowse tracks</h4>
+		 <ul>
+		   <li><a href="/a/app/record/dataset/DS_5f1d75aac8">Maxicircle gene structural annotation</a> for <i>L. braziliensis</i> MHOM/BR/75/M2904 2019 &mdash; 
+		      <a href="/a/jbrowse/index.html?data=%2Fa%2Fservice%2Fjbrowse%2Ftracks%2FlbraMHOMBR75M2904_2019&loc=Lbraziliensis_M2904_2019_maxicircle%3A2769..27701&tracks=lbraMHOMBR75M2904_2019_maxicircle_gene_model_transcript_sequences_RSRC%2Cgene&highlight=> View L bra 2409-2019 maxicircle data in JBrowse</a>
+			  </li>
+		   <li><a href="/a/app/record/dataset/DS_730be80396">Maxicircle gene structural annotation</a>  for <i>L. donovani</i> strain LV9 &mdash;
+		      <a href="/a/jbrowse/index.html?data=%2Fa%2Fservice%2Fjbrowse%2Ftracks%2FldonLV9&loc=LdLV9_maxicircle_v1%3A3299..29690&tracks=gene%2CldonLV9_maxicircle_gene_model_transcript_sequences_RSRC&highlight=> View L don LV9 maxicircle data in JBrowse</a>
+			  </li>
+         </ul> 
+         
+       <h4>Updated Functional Annotation</h4>
+           
+        <div style="margin-left: 3em;">
+        
+        <a href="https://docs.google.com/spreadsheets/d/1LIhFpRPzPwygkFarBwmoTCYcAycHjXGxd4mCqU_yYzY/edit?usp=sharing" target="_blank">Summary of annotation updates</a> 
+           which include products, GO terms, gene names, synonyms, publications, external database references and notes from curators. These functional 
+           annotations are current with GeneDB October2019 GFF versions.
+        <br><br>
+        Functional annotations in TriTrypDB 46 have been updated for the <i>Trypanosoma brucei</i> 927 genome:
+        <br><br>
+        <style>
+           #FunctAnnot_Bld46 table, #FunctAnnot_Bld46 td, #FunctAnnot_Bld46 th, #FunctAnnot_Bld46 tr {
+           text-align : center;
+           padding-left: 5px;
+           padding-right: 5px;
+           padding-top: 5px;
+           padding-bottom: 5px;
+           border: 1px solid black;
+           }
+           #FunctAnnot_Bld46 {
+           margin-left : 5 em;
+           }
+         </style> 
+           <table id="FunctAnnot_Bld46"> 
+           <tr>
+             <th>TriTrypDB Genome Version</th>
+             <th>Download GeneDB GFF file</th>
+             <th>Genes Updated</th>
+           </tr>           
+           <tr>
+             <td title="Click here to view this genome's full description and a list of associated searches and GBrowse tracks on TriTrypDB."><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_31282613b1"><i>Trypanosoma brucei </i>927</a></td>
+             <td title="Click here to download GeneDB's GFF file for this genome."><a href="ftp://ftp.sanger.ac.uk/pub/genedb/releases/2019-10/Tbruceibrucei927/Tbruceibrucei927.gff.gz" target="_blank">GeneDB version October 2019</a></td> 
+             <td>30 genes</td>
+           </tr>
+           </table>
+		   </div>
+           <br><br>
+           
+		   
+		 <h4>Curated User Comments</h4>
+       <div style="margin-left: 3em;">
+       
+          Gene page comments that are entered by users are curated at GeneDB and regularly integrated as functional 
+          annotations in TriTrypDB. Ten user comments (unique) have been integrated in this release.<br><br>
+          
+      <style>
+           #UComment_Bld46 table, #UComment_Bld46 td, #UComment_Bld46 th, #UComment_Bld46 tr {
+           text-align : center;
+           padding-left: 5px;
+           padding-right: 5px;
+           padding-top: 5px;
+           padding-bottom: 5px;
+           border: 1px solid black;
+           }
+           #UComment_Bld46 {
+           margin-left : 5 em;
+           }
+         </style> 
+           <table id="UComment_Bld46"> 
+           <tr>
+             <th>TriTrypDB Genome Version</th>
+             <th>Comments Integrated</th>
+           </tr>
+           <tr>
+             <td><a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_31282613b1"><i>Trypanosoma brucei</i> 927</a></td>
+             <td>10</td>
+           </tr>
+          </table>  
+        </div>
+         </div>
+      </section>  
+      
+      <section>
+      <h3><b>New features in TriTrypDB 46</b></h3>
+      <div style="margin-left: 3em;">
+         <ul>
+           <li>
+             Copy Number Variation Pipeline Bug Fix:  To correct skewed copy number predictions, we changed the method for counting reads in our 
+			 CNV pipeline from Cufflinks to HTSeq-Count.  In our new pipeline we calculate FPKM manually.  Please note - saved strategies 
+			 that include CNV searches will likely produce different results in Release 46. 
+           </li>
+         </ul>
+       </div> 
+      </section>
+      
+      <section>
+         <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+
+    ]]>
+  </attribute>
+</record>
 
 <record>
   <attribute name="headline">TriTrypDB 45 Released</attribute>

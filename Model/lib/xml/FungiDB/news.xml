@@ -27,9 +27,9 @@
     <section>
     <h3><b>Release 46 Webinar</b></h3>
     <div style="margin-left: 3em;">
-      Join us on September 11, 2019 at 10:00 am (EST) for our Release 46 Highlights webinar where we will discuss and 
+      Join us on December 3, 2019 at 10:00 am (EST) for our Release 46 Highlights webinar where we will discuss and 
       demonstrate new features and data available in release 46 of EuPathDB sites. 
-      <a href="https://attendee.gotowebinar.com/register/5757077368783897612" target="_blank">Register here</a>
+      <a href="https://attendee.gotowebinar.com/register/1533745455884630285" target="_blank">Register here</a>
     </div>
     </section>
       
@@ -94,12 +94,12 @@
              </li>
              
              
-            <li><i>Aspergillus fumigatus</i>: <a href="/a/app/record/dataset/DS_cb9172b44e">:Comparative transcriptomics of dormant and germinating conidia</a> &ndash;
+            <li><i>Aspergillus fumigatus</i>: <a href="/a/app/record/dataset/DS_cb9172b44e">Comparative transcriptomics of dormant and germinating conidia</a> &ndash;
              Examination of gene expression in two developmental stages.
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/27185182" target="_blank">Hagiwara et al. 2016</a>.
              </li>
 
-             <li><i>Cryptotoccus neoformans</i>: <a href="/a/app/record/dataset/DS_c7880e8308">:RNA sequencing of cells treated with eltrombopag</a> &ndash;
+             <li><i>Cryptotoccus neoformans</i>: <a href="/a/app/record/dataset/DS_c7880e8308">RNA sequencing of cells treated with eltrombopag</a> &ndash;
              Eltrombopag was investigated for suitability as an anticryptococcal agent.
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/31297540" target="_blank">Ko et al. 2019</a>.
              </li>         
@@ -227,7 +227,18 @@
                 <br>    
                 </div>
 
-                       
+         <section>
+      <h3><b>New features in FungiDB 46</b></h3>
+      <div style="margin-left: 3em;">
+         <ul>
+           <li>
+             New Searches:  Two new searches that return genes based on copy number data are available in the Genetic Variation section of FungiDB 46.  The Copy Number search 
+			 returns genes with a copy number in a resequenced strain that is within a range that you specify.  The Copy Number Comparison search returns genes by comparing the 
+			 gene copy number in one or more resequenced strains to its copy number in the reference genome.  
+           </li>
+         </ul>
+       </div> 
+      </section>              
  
        <section>
      <aside>

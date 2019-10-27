@@ -548,6 +548,19 @@ sub init {
 
 1;
 
+#fungi treeQM6a_Benocci_Plant_Biomass_rnaSeq_RSRC
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_de2b36b6b9;
+sub init {
+  my $self = shift;
+  $self->SUPER::init(@_);
+
+  $self->setPlotWidth(800);
+
+  return $self;
+}
+
+1;
+
 
 # ToxoDB tgonME49_Saeij_Jeroen_strains_rnaSeq_RSRC
 package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_485e6e94e3;

@@ -33,6 +33,79 @@
        
        href="/a/showQuestion.do?questionFullName=InternalGeneDatasetQuestions.GenesByRNASeqEvidence
 -->
+
+<record>
+  <attribute name="headline">HostDB 46 Released</attribute>
+  <attribute name="date">29 Oct 2019 13:00</attribute>
+  <attribute name="tag">HostDB10_19_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of HostDB 46</strong></p>
+    
+     <section>
+    <h3><b>Release 46 Webinar</b></h3>
+    <div style="margin-left: 3em;">
+      Join us on XXX, 2019 at 10:00 am (EST) for our Release 46 Highlights webinar where we will discuss and 
+      demonstrate new features and data available in release 46 of EuPathDB sites. 
+      <a href="XXXX" target="_blank">Register here</a>
+    </div>
+    </section>
+      
+      <section>
+      <h3><b>New data in HostDB 46</b></h3>
+      <div style="margin-left: 3em;">
+        
+       <h4>Transcriptomics</h4>
+          <ul>
+          <li>
+            <a href="/a/app/record/dataset/DS_7184e7fdbf">Mouse transcriptome during early and late chronic infection with <i>T. gondii</i></a> &mdash;
+            Male and female host RNA seq transcriptional profile time course from very early to chronic infection with <i>T. gondii</i>.  
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/30858341" target="_blank">Garfoot et al. 2019</a>.   <br><br>
+			
+			A similar study from the same authors produced: <br>
+                ToxoDB proteomics: <a href="https://toxodb.org/toxo/app/record/dataset/DS_8ab03f0b79">Mouse brain bradyzoite proteomics time course</a><br>
+                ToxoDB RNA seq: 	<a href="https://toxodb.org/toxo/app/record/dataset/DS_7eee2cd55f">Mouse brain bradyzoite transcriptomes at 28, 90, 120 days post infection</a>.<br><br>
+           </li>
+		  <li>
+            <a href="/a/app/record/dataset/DS_7d14c45975">Transcriptomes of 46 malaria-infected Gambian children</a> &mdash;
+            Dual transcriptomic analysis of human and <i>Plasmodium</i> from blood of 46 Gambian children diagnosed with malaria.
+            <a href="http://www.ncbi.nlm.nih.gov/pubmed/29950443" target="_blank">Lee et al. 2019</a>.   The parasite component of this data set is available on PlasmoDB: 
+			<a href="https://plasmodb.org/plasmo/app/record/dataset/DS_a966e260dd">Dual transcriptomes of malaria-infected Gambian children</a>.
+           </li>
+         </ul>   
+      </section>
+      
+            <section>
+      <h3><b>New features in HostDB 46</b></h3>
+      <div style="margin-left: 3em;">
+         <ul>
+           <li>
+             All EuPathDB sites now offer the <a href="https://jbrowse.org/" target="_blank">JBrowse Genome Browser</a>.  GBrowse will be phased out in coming releases.  Please 
+             <a href="https://eupathdb.org/eupathdb/app/contact-us">Contact Us</a> with comments and suggestions for the genome browser. 
+           </li>
+           <li>
+             The new RNASeq Transcript Summary tool on gene pages helps reveal experiments in which the gene is highly 
+             regulated. The tool displays the gene's FPKM values for all experiments in HostDB and offers features such as 
+             log/linear scaling, zoom and pan to explore the gene's expression in each experiment.
+           </li>
+         </ul>
+       </div> 
+      </section>
+      
+      <section>
+         <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+
+    ]]>
+  </attribute>
+</record>
+
 <record>
   <attribute name="headline">HostDB 45 Released</attribute>
   <attribute name="date">05 Sep 2019 13:00</attribute>

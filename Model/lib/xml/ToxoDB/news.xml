@@ -33,6 +33,103 @@
 --> 
 
 <record>
+  <attribute name="headline">ToxoDB 46 Released</attribute>
+  <attribute name="date">29 Oct 2019 13:00</attribute>
+  <attribute name="tag">ToxoDB10_19_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of ToxoDB 46</strong></p>
+    
+    <section>
+    <h3><b>Release 46 Webinar</b></h3>
+    <div style="margin-left: 3em;">
+      Join us on December 3, 2019 at 10:00 am (EST) for our Release 46 Highlights webinar where we will discuss and 
+      demonstrate new features and data available in release 46 of EuPathDB sites. 
+      <a href="https://attendee.gotowebinar.com/register/1533745455884630285" target="_blank">Register here</a>
+    </div>
+    </section>
+      
+      <section>
+      <h3><b>New data in ToxoDB 46</b></h3>
+      <div style="margin-left: 3em;">
+        <h4>Genome Annotation</h4>
+		Genome annotation appears for the first time in ToxoDB for the following genomes. 
+         <ul>
+           <li><a href="/a/app/record/dataset/DS_3b71c59a12"><i>Toxoplasma gondii </i>strain CAST</a> &mdash;  
+               <a href="http://www.ncbi.nlm.nih.gov/pubmed/26738725" target="_blank">Lorenzi et al</a>.
+           </li>
+		   <li><a href="/a/app/record/dataset/DS_01c6cee55d"><i>Toxoplasma gondii </i>strain COUG</a> &mdash;  
+               <a href="http://www.ncbi.nlm.nih.gov/pubmed/26738725" target="_blank">Lorenzi et al</a>.
+           </li>
+		   <li><a href="/a/app/record/dataset/DS_c76af7a843"><i>Toxoplasma gondii </i>strain TgCATBr9</a> &mdash;  
+               <a href="http://www.ncbi.nlm.nih.gov/pubmed/26738725" target="_blank">Lorenzi et al</a>.
+           </li>
+         </ul> 
+	   <h4>Proteomics</h4>
+         <ul>
+           <li><a href="/a/app/record/dataset/DS_8ab03f0b79">Mouse brain bradyzoite proteomics time course</a> &mdash;
+               Proteomic analysis of bradyzoites purified from mouse brain cysts at 21 days, 28 days, 3 months, 4 months and 5 months post infection.  
+			   <a href="https://www.researchsquare.com/article/9dd84566-1663-49a2-ab52-a359b9aa4224/v1" target="_blank">Garfoot et al. Preprint</a><br><br>
+			   Also available from this study are ToxoDB RNA seq: <a href="/a/app/record/dataset/DS_7eee2cd55f">Mouse brain bradyzoite transcriptomes at 28, 90, 120 days post infection</a>.  
+			   And a similar study by the same authors procuded HostDB RNA seq: 	<a href="https://hostdb.org/host/app/record/dataset/DS_7184e7fdbf">Mouse brain bradyzoite transcriptomes at 28, 90, 120 days post infection</a>.<br><br>
+           </li>
+		   <li><a href="/a/app/record/dataset/DS_c3d46a8b93">Mouse brain bradyzoite proteomics time course - quantitative</a> &mdash;
+               Proteomic analysis of bradyzoites purified from mouse brain cysts at 21 days, 28 days, 3 months, 4 months and 5 months post infection.  
+			   <a href="https://www.researchsquare.com/article/9dd84566-1663-49a2-ab52-a359b9aa4224/v1" target="_blank">Garfoot et al. Preprint</a><br><br>
+			   Also available from this study are ToxoDB RNA seq: <a href="/a/app/record/dataset/DS_7eee2cd55f">Mouse brain bradyzoite transcriptomes at 28, 90, 120 days post infection</a>.  
+			   And a similar study by the same authors procuded HostDB RNA seq: 	<a href="https://hostdb.org/host/app/record/dataset/DS_7184e7fdbf">Mouse brain bradyzoite transcriptomes at 28, 90, 120 days post infection</a>.
+           </li>
+         </ul> 
+	   <h4>RNA Sequence</h4>
+         <ul>
+           <li><a href="/a/app/record/dataset/DS_7eee2cd55f">Mouse brain bradyzoite transcriptomes at 28, 90, 120 days post infection</a> &mdash;
+               Transcriptome of bradyzoites from mouse brain cysts via RNA sequence at 28, 90 and 120 days post-infection.  
+			   <a href="http://www.ncbi.nlm.nih.gov/pubmed/30858341" target="_blank">Garfoot et al. 2019</a>.   <br><br>
+			   Also available from this study are ToxoDB proteomics (<a href="/a/app/record/dataset/DS_8ab03f0b79">Mouse brain bradyzoite proteomics time course</a>) 
+			   and Quantitative proteomics (<a href="/a/app/record/dataset/DS_c3d46a8b93">Mouse brain bradyzoite proteomics time course - quantitative</a>)
+               A similar study by the same authors produced HostDB RNA seq: 	<a href="https://hostdb.org/host/app/record/dataset/DS_7184e7fdbf">Mouse brain bradyzoite transcriptomes at 28, 90, 120 days post infection</a>.
+           </li>
+         </ul>
+	   <h4>Spacial Proteomics - hyperLOPIT</h4>
+         <ul>
+           <li><a href="/a/app/record/dataset/DS_eda79f81b5">Mouse brain bradyzoite transcriptomes at 28, 90, 120 days post infection</a> &mdash;
+               HyperLOPIT spacial proteomics was used to simultaneously capture the steady-state subcellular association of thousands of proteins in the apicomplexan <i>Toxoplasma</i>.
+			   Provided pre-publication from the lab of Ross Waller, University of Cambridge <a href="https://proteome.shinyapps.io/toxolopittzex/>author website for LOPIT analysis</a>.  
+			   A data specific search is available (Search for genes, Protein targeting and localization, Localization by LOPIT Mass Spec).  The Protein targeting and localization 
+			   section of gene pages contains a table that displays probabilities that the protein is localized in each of 26 cellular compartments, based on LOPIT analysis. 
+           </li>
+         </ul>	 		 
+         </div>
+      </section>
+      
+      <section>
+      <h3><b>New features in ToxoDB 46</b></h3>
+      <div style="margin-left: 3em;">
+         <ul>
+           <li>
+             Copy Number Variation Pipeline Bug Fix:  To correct skewed copy number predictions, we changed the method for counting reads in our 
+			 CNV pipeline from Cufflinks to HTSeq-Count.  In our new pipeline we calculate FPKM manually.  Please note - saved strategies 
+			 that include CNV searches will likely produce different results in Release 46. 
+           </li>
+         </ul>
+       </div> 
+      </section>
+      
+      <section>
+         <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+
+    ]]>
+  </attribute>
+</record>
+
+<record>
   <attribute name="headline">ToxoDB 45 Released</attribute>
   <attribute name="date">05 Sep 2019 13:00</attribute>
   <attribute name="tag">ToxoDB9_19_release</attribute>

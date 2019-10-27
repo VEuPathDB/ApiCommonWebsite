@@ -18,6 +18,16 @@
           ]]>
        </attribute>
     </record>
+	
+	<div style="margin-left: 3em;">
+         <ul>
+           <li>
+             Copy Number Variation Pipeline Bug Fix:  To correct skewed copy number predictions, we changed the method for counting reads in our 
+			 CNV pipeline from Cufflinks to HTSeq-Count.  In our new pipeline we calculate FPKM manually.  Please note - saved strategies 
+			 that include CNV searches will likely produce different results in Release 46. 
+           </li>
+         </ul>
+       </div>
     
       <div style="margin-left: 3em;">
          <h4>New Gene Result Analysis tool</h4>
@@ -33,6 +43,53 @@
 -->
 
 <record>
+  <attribute name="headline">TrichDB 46 Released</attribute>
+  <attribute name="date">29 Oct 2019 13:00</attribute>
+  <attribute name="tag">TrichDB10_19_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of TrichDB 46</strong></p>
+    
+    <section>
+    <h3><b>Release 46 Webinar</b></h3>
+    <div style="margin-left: 3em;">
+      Join us on December 3, 2019 at 10:00 am (EST) for our Release 46 Highlights webinar where we will discuss and 
+      demonstrate new features and data available in release 46 of EuPathDB sites. 
+      <a href="https://attendee.gotowebinar.com/register/1533745455884630285" target="_blank">Register here</a>
+    </div>
+    </section>
+      
+      <section>
+      <h3><b>No new data in TrichDB 46</b></h3>
+      
+      <section>
+      <h3><b>New features in TrichDB 46</b></h3>
+      <div style="margin-left: 3em;">
+         <ul>
+           <li>
+             Copy Number Variation Pipeline Bug Fix:  To correct skewed copy number predictions, we changed the method for counting reads in our 
+			 CNV pipeline from Cufflinks to HTSeq-Count.  In our new pipeline we calculate FPKM manually.  Please note - saved strategies 
+			 that include CNV searches will likely produce different results in Release 46. 
+           </li>
+         </ul>
+       </div>
+      </section>
+      
+      <section>
+         <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+
+    ]]>
+  </attribute>
+</record>
+
+<record>
   <attribute name="headline">TrichDB 45 Released</attribute>
   <attribute name="date">05 Sep 2019 13:00</attribute>
   <attribute name="tag">TrichDB9_19_release</attribute>
@@ -41,14 +98,7 @@
     <![CDATA[
     <p><strong>We are pleased to announce the release of TrichDB 45</strong></p>
     
-    <section>
-    <h3><b>Release 45 Webinar</b></h3>
-    <div style="margin-left: 3em;">
-      Join us on September 11, 2019 at 10:00 am (EST) for our Release 45 Highlights webinar where we will discuss and 
-      demonstrate new features and data available in release 45 of EuPathDB sites. 
-      <a href="https://attendee.gotowebinar.com/register/5757077368783897612" target="_blank">Register here</a>
-    </div>
-    </section>
+    
       
       <section>
       <h3><b>No new data in TrichDB 45</b></h3>

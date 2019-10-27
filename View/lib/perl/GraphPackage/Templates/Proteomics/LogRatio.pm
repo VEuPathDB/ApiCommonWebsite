@@ -77,6 +77,17 @@ sub finalProfileAdjustments {
 1;
 
 
+package ApiCommonWebsite::View::GraphPackage::Templates::Proteomics::LogRatio::DS_b500b22788;
+
+sub finalProfileAdjustments {
+  my ($self, $profile) = @_;
+
+  my $legend = ['Wild Type', 'delta csp-1'];
+  $profile->setLegendLabels($legend);
+}
+
+1;
+
 
 
 #package ApiCommonWebsite::View::GraphPackage::Templates::Proteomics::LogRatio::DS_8e133ba94b;
