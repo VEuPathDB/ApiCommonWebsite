@@ -74,7 +74,7 @@
 		<h4>Maxicircle data JBrowse tracks</h4>
 		 <ul>
 		   <li><a href="/a/app/record/dataset/DS_5f1d75aac8">Maxicircle gene structural annotation</a> for <i>L. braziliensis</i> MHOM/BR/75/M2904 2019 &mdash; 
-		      <a href="https://tritrypdb.org/tritrypdb/"> View L bra 2409-2019 maxicircle data in JBrowse</a>
+		      <a href="/a/jbrowse/index.html?data=%2Fa%2Fservice%2Fjbrowse%2Ftracks%2FlbraMHOMBR75M2904_2019&loc=Lbraziliensis_M2904_2019_maxicircle%3A2766..24926&tracks=lbraMHOMBR75M2904_2019_maxicircle_gene_model_transcript_sequences_RSRC%2Cgene&highlight="> View L bra 2409-2019 maxicircle data in JBrowse</a>
 			  </li>
 		   <li><a href="/a/app/record/dataset/DS_730be80396">Maxicircle gene structural annotation</a> for <i>L. donovani</i> strain LV9 &mdash;
 		      <a href="/a/jbrowse/index.html?data=%2Fa%2Fservice%2Fjbrowse%2Ftracks%2FldonLV9&loc=LdLV9_maxicircle_v1%3A3299..29690&tracks=gene%2CldonLV9_maxicircle_gene_model_transcript_sequences_RSRC&highlight="> View L don LV9 maxicircle data in JBrowse</a>
