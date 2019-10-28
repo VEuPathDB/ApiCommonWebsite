@@ -1020,6 +1020,22 @@ sub init {
 }
 1;
 
+# pberANKA_Kent_Induce_Gameto_rnaSeq_RSRC
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_9791fb90ff;
+
+
+# @Override
+sub finalProfileAdjustments {
+  my ($self, $profile) = @_;
+
+  $profile->setColors(["grey", "brown"]);
+  $profile->setXaxisLabel("Hours");
+  $profile->setSmoothLines(0);
+  $profile->setForceNoLines(1);
+}
+
+1;
+
 # pfal3D7_Bartfai_time_series_rnaSeq_RSRC
 package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_715bf2deda;
 
