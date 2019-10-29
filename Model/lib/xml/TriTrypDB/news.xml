@@ -43,11 +43,11 @@
       <div style="margin-left: 3em;">
         <h4>Newly integrated genome sequence and annotation</h4>
          <ul>
-           <li><a href="/a/app/record/dataset/DS_7015be16ab"><i>Leishmania braziliensis</i> strain MHOM/BR/75/M2904 2019</a> &mdash; 
+           <li><a href="/a/app/record/dataset/DS_89b7f58707"><i>Leishmania braziliensis</i> strain MHOM/BR/75/M2904 2019</a> &mdash; 
 		     This PacBio genome with maxicircle contigs appears for the first time in TriTrypDB.  These data were produced by the 
 			 <a href="https://www.sanger.ac.uk/science/groups/berriman-group">Parasite Genomics Group</a> at Wellcome Sanger Institute. 
 			 The previous version of this genome 
-			 <a href="https://tritrypdb.org/tritrypdb/app/record/dataset/DS_7015be16ab"><i>Leishmania braziliensis</i> strain MHOM/BR/75/M2904</a> 
+			 <a href="https://tritrypdb.org/tritrypdb/app/record/dataset/DS_3b2d78a053"><i>Leishmania braziliensis</i> strain MHOM/BR/75/M2904</a> 
 			 is still available and fully supported.
            </li>
 		   <li><a href="/a/app/record/dataset/DS_45f8906ea2"><i>Trypanosoma congolense</i> strain IL3000 2019</a> &mdash; 
@@ -87,7 +87,7 @@
         
         <a href="https://docs.google.com/spreadsheets/d/1LIhFpRPzPwygkFarBwmoTCYcAycHjXGxd4mCqU_yYzY/edit?usp=sharing" target="_blank">Summary of annotation updates</a> 
            which include products, GO terms, gene names, synonyms, publications, external database references and notes from curators. These functional 
-           annotations are current with GeneDB October2019 GFF versions.
+           annotations are current with GeneDB October 2019 GFF versions.
         <br><br>
         Functional annotations in TriTrypDB 46 have been updated for the <i>Trypanosoma brucei</i> 927 genome:
         <br><br>
