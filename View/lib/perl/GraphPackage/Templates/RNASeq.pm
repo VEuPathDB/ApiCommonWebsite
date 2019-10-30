@@ -932,8 +932,8 @@ sub init {
   my $colors = ['#F08080', '#7CFC00' ];
   my $legend = ['Control', 'Induced' ];
 
-  my $control = ['0','6','12','18','24','30','','','','','',''];
-  my $induced = ['','','','','','','0','6','12','18','24','30'];
+  my $control = ['0hr','6','12','18','24','30','','','','','',''];
+  my $induced = ['','','','','','','0hr','6','12','18','24','30'];
   my $id = $self->getId();
 
   # Sense
@@ -966,7 +966,37 @@ sub init {
   $line2->setYaxisLabel("FPKM");
   $line2->setPlotTitle("fpkm_antisense - $id");
 
-  $self->setGraphObjects($line, $line2);
+  #percentile_sense
+  my $percentileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets
+    ([['P. berghei transcriptome during inducible gametocytogenesis [htseq-union - firststrand - fpkm - unique]', 'channel1_percentiles', '', '', $control],
+      ['P. berghei transcriptome during inducible gametocytogenesis [htseq-union - firststrand - fpkm - unique]', 'channel1_percentiles', '', '', $induced]]);
+
+  my $percentile = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot::Percentile->new(@_);
+  $percentile->setPartName('percentile_sense');
+  $percentile->setProfileSets($percentileSets);
+  $percentile->setColors($colors);
+  $percentile->setHasExtraLegend(1);
+  $percentile->setLegendLabels(['Conrol', 'Induced']);
+  $percentile->setXaxisLabel("Hours");
+  $percentile->setYaxisLabel("Percentile");
+  $percentile->setPlotTitle("pct_sense - $id");
+
+  #percentile_antisense
+  my $percentileSets2 = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets
+    ([['P. berghei transcriptome during inducible gametocytogenesis [htseq-union - secondstrand - fpkm - unique]', 'channel1_percentiles', '', '', $control],
+     ['P. berghei transcriptome during inducible gametocytogenesis [htseq-union - secondstrand - fpkm - unique]', 'channel1_percentiles', '', '', $induced]]);
+
+  my $percentile2 = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot::Percentile->new(@_);
+  $percentile2->setPartName('percentile_antisense');
+  $percentile2->setProfileSets($percentileSets2);
+  $percentile2->setColors($colors);
+  $percentile2->setHasExtraLegend(1);
+  $percentile2->setLegendLabels(['Conrol', 'Induced']);
+  $percentile2->setXaxisLabel("Hours");
+  $percentile2->setYaxisLabel("Percentile");
+  $percentile2->setPlotTitle("pct_antisense - $id");
+
+  $self->setGraphObjects($line, $line2, $percentile, $percentile2);
   return $self;
 }
 
