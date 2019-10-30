@@ -42,12 +42,5 @@ fisherExactTest-config:
   src: 'ApiCommonWebsite/fisherExactTest-config.xml.j2'
   dest: '{{ gus_home }}/config/fisherExactTest-config.xml'
 robots.txt:
-  src: 'ApiCommonWebsite/robots.txt.j2'
+  src: 'EbrcWebsiteCommon/robots.txt.j2'
   dest: '{{ gus_home }}/../html/robots.txt'
-sitemap.txt:
-  src: 'ApiCommonWebsite/sitemap.txt.j2'
-  dest: '{{ gus_home }}/../html/sitemap.txt'
-sitemap.xml:
-  src: 'ApiCommonWebsite/sitemap.xml.j2'
-  dest: '{{ gus_home}}/../html/sitemap.xml'
-  

@@ -920,6 +920,103 @@ sub makeProfileSets {
 
 1;
 
+
+# pberANKA_Kent_Induce_Gameto_rnaSeq_RSRC
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_9791fb90ff;
+use Data::Dumper;
+
+sub init {
+  my $self = shift;
+  $self->SUPER::init(@_);
+
+  my $colors = ['#F08080', '#7CFC00' ];
+  my $legend = ['Control', 'Induced' ];
+
+  my $control = ['0hr','6','12','18','24','30','','','','','',''];
+  my $induced = ['','','','','','','0hr','6','12','18','24','30'];
+  my $id = $self->getId();
+
+  # Sense
+  my @profileArray = (['P. berghei transcriptome during inducible gametocytogenesis [htseq-union - firststrand - fpkm - unique]', 'values', '', '', $control],
+                      ['P. berghei transcriptome during inducible gametocytogenesis [htseq-union - firststrand - fpkm - unique]', 'values', '', '', $induced]);
+
+  my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileArray);
+  my $line = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot->new(@_);
+  $line->setPartName('fpkm_sense');
+  $line->setProfileSets($profileSets);
+  $line->setColors($colors);
+  $line->setHasExtraLegend(1);
+  $line->setLegendLabels(['Conrol', 'Induced']);
+  $line->setXaxisLabel("Hours");
+  $line->setYaxisLabel("FPKM");
+  $line->setPlotTitle("fpkm_sense - $id");
+
+  # AntiSense
+  my @profileArray2 = (['P. berghei transcriptome during inducible gametocytogenesis [htseq-union - secondstrand - fpkm - unique]', 'values', '', '', $control],
+                      ['P. berghei transcriptome during inducible gametocytogenesis [htseq-union - secondstrand - fpkm - unique]', 'values', '', '', $induced]);
+
+  my $profileSets2 = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileArray2);
+  my $line2 = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot->new(@_);
+  $line2->setPartName('fpkm_antisense');
+  $line2->setProfileSets($profileSets2);
+  $line2->setColors($colors);
+  $line2->setHasExtraLegend(1);
+  $line2->setLegendLabels(['Conrol', 'Induced']);
+  $line2->setXaxisLabel("Hours");
+  $line2->setYaxisLabel("FPKM");
+  $line2->setPlotTitle("fpkm_antisense - $id");
+
+  #percentile_sense
+  my $percentileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets
+    ([['P. berghei transcriptome during inducible gametocytogenesis [htseq-union - firststrand - fpkm - unique]', 'channel1_percentiles', '', '', $control],
+      ['P. berghei transcriptome during inducible gametocytogenesis [htseq-union - firststrand - fpkm - unique]', 'channel1_percentiles', '', '', $induced]]);
+
+  my $percentile = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot::Percentile->new(@_);
+  $percentile->setPartName('percentile_sense');
+  $percentile->setProfileSets($percentileSets);
+  $percentile->setColors($colors);
+  $percentile->setHasExtraLegend(1);
+  $percentile->setLegendLabels(['Conrol', 'Induced']);
+  $percentile->setXaxisLabel("Hours");
+  $percentile->setYaxisLabel("Percentile");
+  $percentile->setPlotTitle("pct_sense - $id");
+
+  #percentile_antisense
+  my $percentileSets2 = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets
+    ([['P. berghei transcriptome during inducible gametocytogenesis [htseq-union - secondstrand - fpkm - unique]', 'channel1_percentiles', '', '', $control],
+     ['P. berghei transcriptome during inducible gametocytogenesis [htseq-union - secondstrand - fpkm - unique]', 'channel1_percentiles', '', '', $induced]]);
+
+  my $percentile2 = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot::Percentile->new(@_);
+  $percentile2->setPartName('percentile_antisense');
+  $percentile2->setProfileSets($percentileSets2);
+  $percentile2->setColors($colors);
+  $percentile2->setHasExtraLegend(1);
+  $percentile2->setLegendLabels(['Conrol', 'Induced']);
+  $percentile2->setXaxisLabel("Hours");
+  $percentile2->setYaxisLabel("Percentile");
+  $percentile2->setPlotTitle("pct_antisense - $id");
+
+  $self->setGraphObjects($line, $line2, $percentile, $percentile2);
+  return $self;
+}
+
+sub isExcludedProfileSet {
+  my ($self, $psName) = @_;
+
+  foreach(@{$self->excludedProfileSetsArray()}) {
+    print STDERR Dumper($_);
+    return 1 if($_ eq $psName);
+  }
+  if ($psName =~ /nonunique/){
+    return 1;
+  }
+  return 0;
+}
+
+1;
+
+
+
 package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_af621bdb28;
 
 sub init {
@@ -1020,21 +1117,6 @@ sub init {
 }
 1;
 
-# pberANKA_Kent_Induce_Gameto_rnaSeq_RSRC
-package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_9791fb90ff;
-
-
-# @Override
-sub finalProfileAdjustments {
-  my ($self, $profile) = @_;
-
-  $profile->setColors(["grey", "brown"]);
-  $profile->setXaxisLabel("Hours");
-  $profile->setSmoothLines(0);
-  $profile->setForceNoLines(1);
-}
-
-1;
 
 # pfal3D7_Bartfai_time_series_rnaSeq_RSRC
 package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_715bf2deda;

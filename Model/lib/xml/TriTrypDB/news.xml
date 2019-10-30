@@ -43,25 +43,25 @@
       <div style="margin-left: 3em;">
         <h4>Newly integrated genome sequence and annotation</h4>
          <ul>
-           <li><a href="/a/app/record/dataset/DS_7015be16ab"><i>Leishmania braziliensis</i> strain MHOM/BR/75/M2904 2019</a> &mdash; 
+           <li><a href="/a/app/record/dataset/DS_89b7f58707"><i>Leishmania braziliensis</i> strain MHOM/BR/75/M2904 2019</a> &mdash; 
 		     This PacBio genome with maxicircle contigs appears for the first time in TriTrypDB.  These data were produced by the 
-			 <a href="https://www.sanger.ac.uk/science/groups/berriman-group>Parasite Genomics Group</a> at Wellcome Sanger Institute. 
+			 <a href="https://www.sanger.ac.uk/science/groups/berriman-group">Parasite Genomics Group</a> at Wellcome Sanger Institute. 
 			 The previous version of this genome 
-			 <a href="https://tritrypdb.org/tritrypdb/app/record/dataset/DS_7015be16ab><i>Leishmania braziliensis</i> strain MHOM/BR/75/M2904</a> 
+			 <a href="https://tritrypdb.org/tritrypdb/app/record/dataset/DS_3b2d78a053"><i>Leishmania braziliensis</i> strain MHOM/BR/75/M2904</a> 
 			 is still available and fully supported.
            </li>
 		   <li><a href="/a/app/record/dataset/DS_45f8906ea2"><i>Trypanosoma congolense</i> strain IL3000 2019</a> &mdash; 
 		     This PacBio genome appears for the first time in TriTrypDB.  <a href="http://www.ncbi.nlm.nih.gov/pubmed/30165630"  target="_blank">Abbas et al.</a>  
-		     The previous version of this genome <a href="https://tritrypdb.org/tritrypdb/app/record/dataset/DS_26f6be1159><i>Trypanosoma congolense</i> IL3000</a> 
+		     The previous version of this genome <a href="https://tritrypdb.org/tritrypdb/app/record/dataset/DS_26f6be1159"><i>Trypanosoma congolense</i> IL3000</a> 
 		     is still available and fully supported.
            </li>
 		   <li><a href="/a/app/record/dataset/DS_610b8f99b0"><i>Trypanosoma cruzi</i> Brazil A4</a> &mdash; 
 		     This PacBio and Illumina sequenced genome appears for the first time in TriTrypDB and is offered pre-publication 
-			 from the <a href="https://ctegd.uga.edu/about/directory/rick-tarleton/"  target="_blank">Rick Tarleton Lab</a>. 
+			 from the <a href="https://ctegd.uga.edu/about/directory/rick-tarleton/" target="_blank">Rick Tarleton Lab</a>. 
 		   </li>	   
 		   <li><a href="/a/app/record/dataset/DS_9540582c52"><i>Trypanosoma cruzi</i> YC6</a> &mdash; 
 		     This PacBio and Illumina sequenced genome appears for the first time in TriTrypDB and is offered pre-publication 
-			 from the <a href="https://ctegd.uga.edu/about/directory/rick-tarleton/"  target="_blank">Rick Tarleton Lab</a>. 
+			 from the <a href="https://ctegd.uga.edu/about/directory/rick-tarleton/" target="_blank">Rick Tarleton Lab</a>. 
 		   </li>
 		 </ul> 
 		 
@@ -74,10 +74,10 @@
 		<h4>Maxicircle data JBrowse tracks</h4>
 		 <ul>
 		   <li><a href="/a/app/record/dataset/DS_5f1d75aac8">Maxicircle gene structural annotation</a> for <i>L. braziliensis</i> MHOM/BR/75/M2904 2019 &mdash; 
-		      <a href="/a/jbrowse/index.html?data=%2Fa%2Fservice%2Fjbrowse%2Ftracks%2FlbraMHOMBR75M2904_2019&loc=Lbraziliensis_M2904_2019_maxicircle%3A2769..27701&tracks=lbraMHOMBR75M2904_2019_maxicircle_gene_model_transcript_sequences_RSRC%2Cgene&highlight=> View L bra 2409-2019 maxicircle data in JBrowse</a>
+		      <a href="/a/jbrowse/index.html?data=%2Fa%2Fservice%2Fjbrowse%2Ftracks%2FlbraMHOMBR75M2904_2019&loc=Lbraziliensis_M2904_2019_maxicircle%3A2766..24926&tracks=lbraMHOMBR75M2904_2019_maxicircle_gene_model_transcript_sequences_RSRC%2Cgene&highlight="> View L bra 2409-2019 maxicircle data in JBrowse</a>
 			  </li>
-		   <li><a href="/a/app/record/dataset/DS_730be80396">Maxicircle gene structural annotation</a>  for <i>L. donovani</i> strain LV9 &mdash;
-		      <a href="/a/jbrowse/index.html?data=%2Fa%2Fservice%2Fjbrowse%2Ftracks%2FldonLV9&loc=LdLV9_maxicircle_v1%3A3299..29690&tracks=gene%2CldonLV9_maxicircle_gene_model_transcript_sequences_RSRC&highlight=> View L don LV9 maxicircle data in JBrowse</a>
+		   <li><a href="/a/app/record/dataset/DS_730be80396">Maxicircle gene structural annotation</a> for <i>L. donovani</i> strain LV9 &mdash;
+		      <a href="/a/jbrowse/index.html?data=%2Fa%2Fservice%2Fjbrowse%2Ftracks%2FldonLV9&loc=LdLV9_maxicircle_v1%3A3299..29690&tracks=gene%2CldonLV9_maxicircle_gene_model_transcript_sequences_RSRC&highlight="> View L don LV9 maxicircle data in JBrowse</a>
 			  </li>
          </ul> 
          
@@ -87,7 +87,7 @@
         
         <a href="https://docs.google.com/spreadsheets/d/1LIhFpRPzPwygkFarBwmoTCYcAycHjXGxd4mCqU_yYzY/edit?usp=sharing" target="_blank">Summary of annotation updates</a> 
            which include products, GO terms, gene names, synonyms, publications, external database references and notes from curators. These functional 
-           annotations are current with GeneDB October2019 GFF versions.
+           annotations are current with GeneDB October 2019 GFF versions.
         <br><br>
         Functional annotations in TriTrypDB 46 have been updated for the <i>Trypanosoma brucei</i> 927 genome:
         <br><br>
