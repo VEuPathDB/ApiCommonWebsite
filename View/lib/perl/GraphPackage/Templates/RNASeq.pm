@@ -920,6 +920,73 @@ sub makeProfileSets {
 
 1;
 
+
+# pberANKA_Kent_Induce_Gameto_rnaSeq_RSRC
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_9791fb90ff;
+use Data::Dumper;
+
+sub init {
+  my $self = shift;
+  $self->SUPER::init(@_);
+
+  my $colors = ['#F08080', '#7CFC00' ];
+  my $legend = ['Control', 'Induced' ];
+
+  my $control = ['0','6','12','18','24','30','','','','','',''];
+  my $induced = ['','','','','','','0','6','12','18','24','30'];
+  my $id = $self->getId();
+
+  # Sense
+  my @profileArray = (['P. berghei transcriptome during inducible gametocytogenesis [htseq-union - firststrand - fpkm - unique]', 'values', '', '', $control],
+                      ['P. berghei transcriptome during inducible gametocytogenesis [htseq-union - firststrand - fpkm - unique]', 'values', '', '', $induced]);
+
+  my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileArray);
+  my $line = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot->new(@_);
+  $line->setPartName('fpkm_sense');
+  $line->setProfileSets($profileSets);
+  $line->setColors($colors);
+  $line->setHasExtraLegend(1);
+  $line->setLegendLabels(['Conrol', 'Induced']);
+  $line->setXaxisLabel("Hours");
+  $line->setYaxisLabel("FPKM");
+  $line->setPlotTitle("fpkm_sense - $id");
+
+  # AntiSense
+  my @profileArray2 = (['P. berghei transcriptome during inducible gametocytogenesis [htseq-union - secondstrand - fpkm - unique]', 'values', '', '', $control],
+                      ['P. berghei transcriptome during inducible gametocytogenesis [htseq-union - secondstrand - fpkm - unique]', 'values', '', '', $induced]);
+
+  my $profileSets2 = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileArray2);
+  my $line2 = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot->new(@_);
+  $line2->setPartName('fpkm_antisense');
+  $line2->setProfileSets($profileSets2);
+  $line2->setColors($colors);
+  $line2->setHasExtraLegend(1);
+  $line2->setLegendLabels(['Conrol', 'Induced']);
+  $line2->setXaxisLabel("Hours");
+  $line2->setYaxisLabel("FPKM");
+  $line2->setPlotTitle("fpkm_antisense - $id");
+
+  $self->setGraphObjects($line, $line2);
+  return $self;
+}
+
+sub isExcludedProfileSet {
+  my ($self, $psName) = @_;
+
+  foreach(@{$self->excludedProfileSetsArray()}) {
+    print STDERR Dumper($_);
+    return 1 if($_ eq $psName);
+  }
+  if ($psName =~ /nonunique/){
+    return 1;
+  }
+  return 0;
+}
+
+1;
+
+
+
 package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_af621bdb28;
 
 sub init {
