@@ -55,17 +55,7 @@
 	  <h4>Antibody Array</h4>
          <ul>
            <li>
-             <a href="/a/app/record/dataset/xx">dataset 1</a> &ndash; 
-             Not Ready (Oct 21).
-             <a href="http://www.ncbi.nlm.nih.gov/pubmed/30630936" target="_blank">Jaenisch et al.</a>
-           </li>
-		   <li>
-             <a href="/a/app/record/dataset/xx">dataset 2</a> &ndash; 
-             Not Ready (Oct 21).
-             <a href="http://www.ncbi.nlm.nih.gov/pubmed/30630936" target="_blank">Jaenisch et al.</a>
-           </li>
-		   <li>
-             <a href="/a/app/record/dataset/xx">dataset 3</a> &ndash; 
+             <a href="/a/app/record/dataset/DS_8422fbca1c">Peptide arrays of individuals naturally exposed to <i>Plasmodium</i></a> &ndash; 
              Not Ready (Oct 21).
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/30630936" target="_blank">Jaenisch et al.</a>
            </li>
