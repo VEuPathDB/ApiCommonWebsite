@@ -65,7 +65,7 @@
            <li>
              <a href="https://plasmodb.org/plasmo/app/record/dataset/DS_bb5383f4c8">ATAC-seq of the <P. falciparum</i> intraerythrocytic development cycle</a> &ndash; 
              ATAC-seq analysis of tightly synchronized parasites (Pfal3D7 10G and 1.2B subclones) at four different developmental stages 
-			 during the IDC: early rings (10–15 h, T10), late rings (20–25 h, T20), trophozoites (30–35 h, T30) and schizonts (40–45 h, T40).
+			 during the IDC: early rings (10-15 h, T10), late rings (20-25 h, T20), trophozoites (30-35 h, T30) and schizonts (40-45 h, T40).
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/30016465" target="_blank">Ruiz et al.</a>
            </li>
 		   <li>
@@ -92,11 +92,6 @@
 			 A chart of the sequence of transcriptional changes through gametocyte development, including the observation that gender-specific 
 			 transcription occurred within 6 h of induction. 
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/30177743" target="_blank">Kent et al.</a>
-           </li>
-		   <li>
-             <a href="/a/app/record/dataset/DS_f69a4f0749">Transcriptomes of PcAS and PcCB from mosquito transmitted or serial blood passaged mouse infections.</a> &ndash; 
-             Transcriptomes of P. chabaudi AS or CB isolates at the trophozoite stage from mice infected via serial blood passage or mosquito transmission determined by RNA sequence.
-             <a href="http://www.ncbi.nlm.nih.gov/pubmed/30542666" target="_blank">Lin et al.</a>
            </li>
 		   <li>
              <a href="/a/app/record/dataset/DS_337c46b0f0">Transcriptome of <i>P. vivax</i> salivary gland sporozoites</a> &ndash; 
