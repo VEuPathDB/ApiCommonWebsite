@@ -57,8 +57,9 @@
         <h4>Genome Sequence and Annotation</h4>
          <ul>
            <li><a href="/a/app/record/dataset/DS_8bd21e94e1"><i>Cryptosporidium parvum</i> strain IOWA ATCC</a> &mdash; <br>
-              Based on PacBio and Illumina sequencing of strain IOWA ATCC by the Wellcome Trust Sanger Center with annotation from the Kissinger group at University of Georgia. 
-			  Provided pre-publication.
+              Based on PacBio and Illumina sequencing of strain IOWA ATCC by the Wellcome Trust Sanger Center with annotation from the 
+			  Kissinger group at University of Georgia.  The sequence and annotation has been submitted to the NCBI GenBank under accession 
+			  numbers (Bioproject: PRJNA573722, Biosample: SAMN12822784, WGS: CP044415-CP044422)  The data is provided to CryptoDB pre-publication.
            </li>
          </ul> 
 		 <h4>Whole Genome Sequencing of Isolates (Genetic Variation)</h4>
@@ -81,9 +82,9 @@
 			 that include CNV searches will likely produce different results in Release 46. 
            </li>
 		   <li>
-             Our pipeline of genomic analyses includes predicting open reading frames (ORFs) in addition to loading gene models from the annotation.  
-			 Based on EuPathDB data usage patterns, in our next release (47), predicted ORFs will be available as a genome-scale fasta file from our downloads section and removed 
-			 from the searches and genome browser.  Please <a href="https://eupathdb.org/eupathdb/app/contact-us" target ="_blank"> Contact Us</a> 
+             Our pipeline of genomic analyses includes open reading frames (ORFs) prediction in addition to loading gene models from the official annotation.  
+			 Because data usage analysis showed low ORF usage, in our next release (47) predicted ORFs will be available as a genome-scale fasta file from 
+			 our downloads section and removed  from the searches and genome browser.  Please <a href="https://eupathdb.org/eupathdb/app/contact-us" target ="_blank"> Contact Us</a> 
 			 with questions or suggestions. 
            </li>
          </ul>

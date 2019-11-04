@@ -237,9 +237,9 @@
 			 gene copy number in one or more resequenced strains to its copy number in the reference genome.  
            </li>
 		   <li>
-             Our pipeline of genomic analyses includes predicting open reading frames (ORFs) in addition to loading gene models from the annotation.  
-			 Based on EuPathDB data usage patterns, in our next release (47), predicted ORFs will be available as a genome-scale fasta file from our downloads section and removed 
-			 from the searches and genome browser.  Please < href="https://eupathdb.org/eupathdb/app/contact-us" target ="_blank"> Contact Us</a> 
+             Our pipeline of genomic analyses includes open reading frames (ORFs) prediction in addition to loading gene models from the official annotation.  
+			 Because data usage analysis showed low ORF usage, in our next release (47) predicted ORFs will be available as a genome-scale fasta file from 
+			 our downloads section and removed  from the searches and genome browser.  Please <a href="https://eupathdb.org/eupathdb/app/contact-us" target ="_blank"> Contact Us</a> 
 			 with questions or suggestions. 
            </li>
          </ul>
