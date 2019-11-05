@@ -95,7 +95,7 @@
          <ul>
            <li><a href="/a/app/record/dataset/DS_eda79f81b5">Hyper LOPIT Global mapping of protein subcellular location</a> &mdash;
                HyperLOPIT spacial proteomics was used to simultaneously capture the steady-state subcellular association of thousands of proteins in the apicomplexan <i>Toxoplasma</i>.
-			   Provided pre-publication from the lab of Ross Waller, University of Cambridge <a href="https://proteome.shinyapps.io/toxolopittzex/>author website for LOPIT analysis</a>.  
+			   Provided pre-publication from the lab of Ross Waller, University of Cambridge <a href="https://proteome.shinyapps.io/toxolopittzex/">author website for LOPIT analysis</a>.  
 			   A data specific search is available (Search for genes, Protein targeting and localization, Localization by LOPIT Mass Spec).  The Protein targeting and localization 
 			   section of gene pages contains a table that displays probabilities that the protein is localized in each of 26 cellular compartments, based on LOPIT analysis. 
            </li>
