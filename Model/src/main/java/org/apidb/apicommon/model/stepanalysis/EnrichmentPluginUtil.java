@@ -124,4 +124,8 @@ public class EnrichmentPluginUtil {
         return orgNames;
       });
   }
+
+  public static String formatSearchLinkHtml(String ids, String numRecs) {
+    return String.format("<a href='/a/app/search/transcript/GeneByLocusTag?param.ds_gene_ids.idList=%s&autoRun=1'>%s</a>", ids, numRecs);
+  }
 }

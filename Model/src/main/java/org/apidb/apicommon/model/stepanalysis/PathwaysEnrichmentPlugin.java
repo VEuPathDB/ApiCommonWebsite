@@ -178,7 +178,7 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
         String line = buffer.readLine();
         String[] columns = line.split(TAB);
         String[] primaryKeys = columns[0].split("__PK__");  // source_id and pathway_source (eg, KEGG)
-	String val = "<a href=\"/a/showQuestion.do?questionFullName=GeneQuestions.GeneByLocusTag&ds_gene_ids_data=" + columns[4] + "\">" + columns[3] + "</a>";
+        String val = EnrichmentPluginUtil.formatSearchLinkHtml(columns[4], columns[3]);
         if (primaryKeys.length != 2) throw new WdkModelException ("invalid compbined primary key: " + columns[0]);
         results.add(new ResultRow(primaryKeys[0], columns[1], primaryKeys[1], columns[2], val, columns[5], columns[6], columns[7], columns[8], columns[9], columns[10]));
       }
