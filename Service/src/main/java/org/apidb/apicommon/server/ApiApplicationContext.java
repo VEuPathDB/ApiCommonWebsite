@@ -15,8 +15,7 @@ public class ApiApplicationContext extends WdkApplicationContext {
     super(
         // basically the replacement for config contained in web.xml; set init parameters
         config.getString(GUS_HOME_KEY),
-        config.getString(PROJECT_ID_KEY),
-        "/service"
+        config.getString(PROJECT_ID_KEY)
     );
   }
 
