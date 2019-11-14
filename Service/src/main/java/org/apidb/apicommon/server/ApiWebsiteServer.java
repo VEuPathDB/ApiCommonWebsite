@@ -27,4 +27,9 @@ public class ApiWebsiteServer extends RESTServer {
     return new ApiApplicationContext(config);
   }
 
+  @Override
+  protected boolean requiresConfigFile() {
+    return true;
+  }
+
 }
