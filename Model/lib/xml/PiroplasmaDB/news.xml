@@ -30,8 +30,8 @@
 
 <record>
   <attribute name="headline">PiroplasmaDB 46 Released</attribute>
-  <attribute name="date">29 Oct 2019 13:00</attribute>
-  <attribute name="tag">PiroplasmaDB10_19_release</attribute>
+  <attribute name="date">6 Nov 2019 13:00</attribute>
+  <attribute name="tag">PiroplasmaDB11_19_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
@@ -58,6 +58,12 @@
              Copy Number Variation Pipeline Bug Fix:  To correct skewed copy number predictions, we changed the method for counting reads in our 
 			 CNV pipeline from Cufflinks to HTSeq-Count.  In our new pipeline we calculate FPKM manually.  Please note - saved strategies 
 			 that include CNV searches will likely produce different results in Release 46. 
+           </li>
+		   <li>
+             Our pipeline of genomic analyses includes open reading frames (ORFs) prediction in addition to loading gene models from the official annotation.  
+			 Because data usage analysis showed low ORF usage, in our next release (47) predicted ORFs will be available as a genome-scale fasta file from 
+			 our downloads section and removed  from the searches and genome browser.  Please <a href="https://eupathdb.org/eupathdb/app/contact-us" target ="_blank"> Contact Us</a> 
+			 with questions or suggestions. 
            </li>
          </ul>
        </div>

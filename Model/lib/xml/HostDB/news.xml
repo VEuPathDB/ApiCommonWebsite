@@ -36,19 +36,19 @@
 
 <record>
   <attribute name="headline">HostDB 46 Released</attribute>
-  <attribute name="date">29 Oct 2019 13:00</attribute>
-  <attribute name="tag">HostDB10_19_release</attribute>
+  <attribute name="date">6 Nov 2019 13:00</attribute>
+  <attribute name="tag">HostDB11_19_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
     <p><strong>We are pleased to announce the release of HostDB 46</strong></p>
     
-     <section>
+    <section>
     <h3><b>Release 46 Webinar</b></h3>
     <div style="margin-left: 3em;">
-      Join us on XXX, 2019 at 10:00 am (EST) for our Release 46 Highlights webinar where we will discuss and 
+      Join us on December 3, 2019 at 10:00 am (EST) for our Release 46 Highlights webinar where we will discuss and 
       demonstrate new features and data available in release 46 of EuPathDB sites. 
-      <a href="XXXX" target="_blank">Register here</a>
+      <a href="https://attendee.gotowebinar.com/register/1533745455884630285" target="_blank">Register here</a>
     </div>
     </section>
       
@@ -81,13 +81,15 @@
       <div style="margin-left: 3em;">
          <ul>
            <li>
-             All EuPathDB sites now offer the <a href="https://jbrowse.org/" target="_blank">JBrowse Genome Browser</a>.  GBrowse will be phased out in coming releases.  Please 
-             <a href="https://eupathdb.org/eupathdb/app/contact-us">Contact Us</a> with comments and suggestions for the genome browser. 
+             Copy Number Variation Pipeline Bug Fix:  To correct skewed copy number predictions, we changed the method for counting reads in our 
+			 CNV pipeline from Cufflinks to HTSeq-Count.  In our new pipeline we calculate FPKM manually.  Please note - saved strategies 
+			 that include CNV searches will likely produce different results in Release 46. 
            </li>
-           <li>
-             The new RNASeq Transcript Summary tool on gene pages helps reveal experiments in which the gene is highly 
-             regulated. The tool displays the gene's FPKM values for all experiments in HostDB and offers features such as 
-             log/linear scaling, zoom and pan to explore the gene's expression in each experiment.
+		   <li>
+             Our pipeline of genomic analyses includes open reading frames (ORFs) prediction in addition to loading gene models from the official annotation.  
+			 Because data usage analysis showed low ORF usage, in our next release (47) predicted ORFs will be available as a genome-scale fasta file from 
+			 our downloads section and removed  from the searches and genome browser.  Please <a href="https://eupathdb.org/eupathdb/app/contact-us" target ="_blank"> Contact Us</a> 
+			 with questions or suggestions. 
            </li>
          </ul>
        </div> 

@@ -33,8 +33,8 @@
 
 <record>
   <attribute name="headline">PlasmoDB 46 Released</attribute>
-  <attribute name="date">29 Oct 2019 13:00</attribute>
-  <attribute name="tag">PlasmoDB10_19_release</attribute>
+  <attribute name="date">6 Nov 2019 13:00</attribute>
+  <attribute name="tag">PlasmoDB11_19_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
@@ -55,17 +55,7 @@
 	  <h4>Antibody Array</h4>
          <ul>
            <li>
-             <a href="/a/app/record/dataset/xx">dataset 1</a> &ndash; 
-             Not Ready (Oct 21).
-             <a href="http://www.ncbi.nlm.nih.gov/pubmed/30630936" target="_blank">Jaenisch et al.</a>
-           </li>
-		   <li>
-             <a href="/a/app/record/dataset/xx">dataset 2</a> &ndash; 
-             Not Ready (Oct 21).
-             <a href="http://www.ncbi.nlm.nih.gov/pubmed/30630936" target="_blank">Jaenisch et al.</a>
-           </li>
-		   <li>
-             <a href="/a/app/record/dataset/xx">dataset 3</a> &ndash; 
+             <a href="/a/app/record/dataset/DS_8422fbca1c">Peptide arrays of individuals naturally exposed to <i>Plasmodium</i></a> &ndash; 
              Not Ready (Oct 21).
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/30630936" target="_blank">Jaenisch et al.</a>
            </li>
@@ -75,7 +65,7 @@
            <li>
              <a href="https://plasmodb.org/plasmo/app/record/dataset/DS_bb5383f4c8">ATAC-seq of the <P. falciparum</i> intraerythrocytic development cycle</a> &ndash; 
              ATAC-seq analysis of tightly synchronized parasites (Pfal3D7 10G and 1.2B subclones) at four different developmental stages 
-			 during the IDC: early rings (10–15 h, T10), late rings (20–25 h, T20), trophozoites (30–35 h, T30) and schizonts (40–45 h, T40).
+			 during the IDC: early rings (10-15 h, T10), late rings (20-25 h, T20), trophozoites (30-35 h, T30) and schizonts (40-45 h, T40).
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/30016465" target="_blank">Ruiz et al.</a>
            </li>
 		   <li>
@@ -104,11 +94,6 @@
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/30177743" target="_blank">Kent et al.</a>
            </li>
 		   <li>
-             <a href="/a/app/record/dataset/DS_f69a4f0749">Transcriptomes of PcAS and PcCB from mosquito transmitted or serial blood passaged mouse infections.</a> &ndash; 
-             Transcriptomes of P. chabaudi AS or CB isolates at the trophozoite stage from mice infected via serial blood passage or mosquito transmission determined by RNA sequence.
-             <a href="http://www.ncbi.nlm.nih.gov/pubmed/30542666" target="_blank">Lin et al.</a>
-           </li>
-		   <li>
              <a href="/a/app/record/dataset/DS_337c46b0f0">Transcriptome of <i>P. vivax</i> salivary gland sporozoites</a> &ndash; 
              Transcriptomic analysis via RNA sequencing of <i>P. vivax</i> salivary gland sporozoites from isolates of symptomatic blood-stage malaria infections.
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/31071319" target="_blank">Vivax Sporozoite Consortium et al.</a>
@@ -125,6 +110,12 @@
              Copy Number Variation Pipeline Bug Fix:  To correct skewed copy number predictions, we changed the method for counting reads in our 
 			 CNV pipeline from Cufflinks to HTSeq-Count.  In our new pipeline we calculate FPKM manually.  Please note - saved strategies 
 			 that include CNV searches will likely produce different results in Release 46. 
+           </li>
+		   <li>
+             Our pipeline of genomic analyses includes open reading frames (ORFs) prediction in addition to loading gene models from the official annotation.  
+			 Because data usage analysis showed low ORF usage, in our next release (47) predicted ORFs will be available as a genome-scale fasta file from 
+			 our downloads section and removed  from the searches and genome browser.  Please <a href="https://eupathdb.org/eupathdb/app/contact-us" target ="_blank"> Contact Us</a> 
+			 with questions or suggestions. 
            </li>
          </ul>
        </div>
