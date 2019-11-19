@@ -1,5 +1,7 @@
 package org.apidb.apicommon.server;
 
+import java.net.URI;
+
 import org.apidb.apicommon.service.ApiWebServiceApplication;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.gusdb.fgputil.server.RESTServer;
@@ -23,8 +25,8 @@ public class ApiWebsiteServer extends RESTServer {
   }
 
   @Override
-  protected ApplicationContext createApplicationContext(JSONObject config) {
-    return new ApiApplicationContext(config);
+  protected ApplicationContext createApplicationContext(URI serviceUri, JSONObject config) {
+    return new ApiApplicationContext(serviceUri, config);
   }
 
 }

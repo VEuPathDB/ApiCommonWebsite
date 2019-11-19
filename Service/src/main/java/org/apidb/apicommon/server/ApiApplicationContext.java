@@ -1,6 +1,7 @@
 package org.apidb.apicommon.server;
 
 import java.io.IOException;
+import java.net.URI;
 
 import org.apidb.apicommon.controller.ApiSiteInitializer;
 import org.gusdb.wdk.controller.WdkApplicationContext;
@@ -11,11 +12,12 @@ public class ApiApplicationContext extends WdkApplicationContext {
   private static final String GUS_HOME_KEY = "gusHome";
   private static final String PROJECT_ID_KEY = "projectId";
 
-  public ApiApplicationContext(JSONObject config) {
+  public ApiApplicationContext(URI serviceUri, JSONObject config) {
     super(
         // basically the replacement for config contained in web.xml; set init parameters
         config.getString(GUS_HOME_KEY),
-        config.getString(PROJECT_ID_KEY)
+        config.getString(PROJECT_ID_KEY),
+        serviceUri
     );
   }
 
