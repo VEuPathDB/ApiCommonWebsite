@@ -1,9 +1,7 @@
 package org.apidb.apicommon.model.report.summaryview;
 
-import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Arrays;
@@ -16,7 +14,6 @@ import org.apache.log4j.Logger;
 import org.gusdb.fgputil.db.SqlUtils;
 import org.gusdb.fgputil.json.JsonWriter;
 import org.gusdb.wdk.model.WdkModelException;
-import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.answer.AnswerValue;
 import org.gusdb.wdk.model.report.AbstractReporter;
 import org.gusdb.wdk.model.report.Reporter;
@@ -50,7 +47,7 @@ public class IsolateViewReporter extends AbstractReporter {
 
   @Override
   protected void write(OutputStream out) throws WdkModelException {
-    try (JsonWriter writer = new JsonWriter(new BufferedWriter(new OutputStreamWriter(out)))) {
+    try (JsonWriter writer = new JsonWriter(out)) {
       writeJson(_baseAnswer, writer);
     }
     catch (IOException e) {
@@ -77,9 +74,9 @@ public class IsolateViewReporter extends AbstractReporter {
     ResultSet resultSet = null;
     try {
       String sql = prepareSql(answerValue.getIdSql());
-      DataSource dataSource = answerValue.getQuestion().getWdkModel().getAppDb().getDataSource();
+      DataSource dataSource = answerValue.getWdkModel().getAppDb().getDataSource();
       resultSet = SqlUtils.executeQuery(dataSource, sql,
-          answerValue.getQuestion().getQuery().getFullName() + "__isolate-view", 2000);
+          answerValue.getAnswerSpec().getQuestion().getQuery().getFullName() + "__isolate-view", 2000);
 
       int maxLength = 0;
       Map<String, Isolate> isolates = new HashMap<String, Isolate>();
@@ -114,7 +111,7 @@ public class IsolateViewReporter extends AbstractReporter {
       writer.endObject();
       logger.debug("Leaving IsolateViewHandler...");
     }
-    catch (SQLException | WdkUserException ex) {
+    catch (SQLException ex) {
       throw new WdkModelException(ex);
     }
     finally {

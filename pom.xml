@@ -19,12 +19,17 @@
     <dependencies>
       <dependency>
         <groupId>org.gusdb</groupId>
-        <artifactId>fpgutil-util</artifactId>
+        <artifactId>fgputil-util</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>org.gusdb</groupId>
-        <artifactId>fpgutil-accountdb</artifactId>
+        <artifactId>fgputil-accountdb</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.gusdb</groupId>
+        <artifactId>fgputil-server</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>

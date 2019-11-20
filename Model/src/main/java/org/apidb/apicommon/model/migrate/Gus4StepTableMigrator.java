@@ -9,7 +9,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Function;
 
 import org.apache.log4j.Logger;
 import org.apidb.apicommon.model.TranscriptUtil;
@@ -21,11 +23,10 @@ import org.gusdb.fgputil.FormatUtil;
 import org.gusdb.fgputil.ListBuilder;
 import org.gusdb.fgputil.MapBuilder;
 import org.gusdb.fgputil.Tuples.ThreeTuple;
-import org.gusdb.fgputil.functional.FunctionalInterfaces.Function;
 import org.gusdb.fgputil.functional.Functions;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
-import org.gusdb.wdk.model.filter.FilterOption;
+import org.gusdb.wdk.model.answer.spec.ParamsAndFiltersDbColumnFormat;
 import org.gusdb.wdk.model.fix.table.TableRowInterfaces.RowResult;
 import org.gusdb.wdk.model.fix.table.TableRowInterfaces.TableRowUpdaterPlugin;
 import org.gusdb.wdk.model.fix.table.TableRowInterfaces.TableRowWriter;
@@ -38,7 +39,6 @@ import org.gusdb.wdk.model.fix.table.steps.StepQuestionUpdater;
 import org.gusdb.wdk.model.query.BooleanQuery;
 import org.gusdb.wdk.model.question.Question;
 import org.gusdb.wdk.model.record.RecordClass;
-import org.gusdb.wdk.model.user.Step;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -155,8 +155,8 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
     if (NonApiGus4StepMigrationPlugin.updateParamsProperty(step)) mods.add(UpdateType.updateParams);
 
     // 4. Add "filters" property if not present and convert any found objects to filter array
-    if (NonApiGus4StepMigrationPlugin.updateFiltersProperty(step, Step.KEY_FILTERS)) mods.add(UpdateType.fixFilters);
-    if (NonApiGus4StepMigrationPlugin.updateFiltersProperty(step, Step.KEY_VIEW_FILTERS)) mods.add(UpdateType.addViewFilters);
+    if (NonApiGus4StepMigrationPlugin.updateFiltersProperty(step, ParamsAndFiltersDbColumnFormat.KEY_FILTERS)) mods.add(UpdateType.fixFilters);
+    if (NonApiGus4StepMigrationPlugin.updateFiltersProperty(step, ParamsAndFiltersDbColumnFormat.KEY_VIEW_FILTERS)) mods.add(UpdateType.addViewFilters);
 
     // 5. Remove use_boolean_filter param when found
     if (NonApiGus4StepMigrationPlugin.removeUseBooleanFilterParam(step)) mods.add(UpdateType.useBoolFilter);
@@ -167,21 +167,19 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
     // Look up some WDK model data needed by the remaining sections.  Doing it AFTER the above steps since
     //   question names will have been updated and we won't kick out as many invalid steps whose question
     //   names are missing from the current model.
-    Question question;
-    try {
-      // use (possibly already modified) question name to look up question in the current model
-      question = _wdkModel.getQuestion(step.getQuestionName());
-    }
-    catch (WdkModelException e) {
+    // use (possibly already modified) question name to look up question in the current model
+    Optional<Question> questionOpt = _wdkModel.getQuestionByFullName(step.getQuestionName());
+    if (!questionOpt.isPresent()) {
       int invalidStepsByQuestion = INVALID_STEP_COUNT_QUESTION.incrementAndGet();
       if (LOG_INVALID_STEPS)
         LOG.warn("Question name " + step.getQuestionName() + " does not appear in the WDK model (" +
             invalidStepsByQuestion + " total invalid steps by question).");
       return new RowResult<StepData>(step).setShouldWrite(!mods.isEmpty());
     }
+    Question question = questionOpt.get();
     RecordClass recordClass = question.getRecordClass();
     boolean isBoolean = question.getQuery().isBoolean();
-    boolean isLeaf = !question.getQuery().isCombined();
+    boolean isLeaf = question.getQuery().getAnswerParamCount() == 0;
 
     // 7. Add matched transcript filter to all leaf transcript steps
     if (addMatchedTranscriptFilter(step, isLeaf, recordClass)) mods.add(UpdateType.matchedTxFilter);
@@ -211,11 +209,11 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
     return result;
   }
 
-  private static boolean addGeneBooleanFilter(StepData step, boolean isBoolean, RecordClass recordClass) throws WdkModelException, JSONException {
+  private static boolean addGeneBooleanFilter(StepData step, boolean isBoolean, RecordClass recordClass) throws JSONException {
     if (!isBoolean) return false;
     if (!isTranscriptRecordClass(recordClass)) return false;
     // figure out default value based on boolean param
-    JSONObject params = step.getParamFilters().getJSONObject(Step.KEY_PARAMS);
+    JSONObject params = step.getParamFilters().getJSONObject(ParamsAndFiltersDbColumnFormat.KEY_PARAMS);
     boolean isWdkSetOperation = params.has(BooleanQuery.OPERATOR_PARAM);
     if (!isWdkSetOperation) {
       LOG.warn("Found boolean step (ID " + step.getStepId() + ") that does not have param " + BooleanQuery.OPERATOR_PARAM);
@@ -240,10 +238,10 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
   }
 
   private static boolean addFilterValueArray(StepData step, String name, JSONObject value) {
-    JSONArray filters = step.getParamFilters().getJSONArray(Step.KEY_FILTERS);
+    JSONArray filters = step.getParamFilters().getJSONArray(ParamsAndFiltersDbColumnFormat.KEY_FILTERS);
     for (int i = 0; i < filters.length(); i++) {
       JSONObject filterData = filters.getJSONObject(i);
-      if (filterData.getString(FilterOption.KEY_NAME).equals(name)) {
+      if (filterData.getString(ParamsAndFiltersDbColumnFormat.KEY_NAME).equals(name)) {
         // filter already present; doesn't need to be added
         return false;
       }
@@ -257,9 +255,9 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
     }
     // create filter object
     JSONObject filterObject = new JSONObject();
-    filterObject.put(FilterOption.KEY_NAME, name);
-    filterObject.put(FilterOption.KEY_VALUE, value);
-    filterObject.put(FilterOption.KEY_DISABLED, false);
+    filterObject.put(ParamsAndFiltersDbColumnFormat.KEY_NAME, name);
+    filterObject.put(ParamsAndFiltersDbColumnFormat.KEY_VALUE, value);
+    filterObject.put(ParamsAndFiltersDbColumnFormat.KEY_DISABLED, false);
     filters.put(0, filterObject);
     return true;
   }
@@ -375,10 +373,10 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
     boolean modified = false;
     if (!TranscriptUtil.isTranscriptQuestion(question)) {
       JSONObject displayParams = step.getParamFilters();
-      JSONArray filters = displayParams.getJSONArray(Step.KEY_FILTERS);
+      JSONArray filters = displayParams.getJSONArray(ParamsAndFiltersDbColumnFormat.KEY_FILTERS);
       for (int i = 0; i < filters.length(); i++) {
         JSONObject filter = filters.getJSONObject(i);
-        String name = filter.getString(FilterOption.KEY_NAME);
+        String name = filter.getString(ParamsAndFiltersDbColumnFormat.KEY_NAME);
         if (MatchedTranscriptFilter.MATCHED_TRANSCRIPT_FILTER_ARRAY_KEY.equals(name)) {
           // illegal; this filter should not be here
           filters.remove(i);

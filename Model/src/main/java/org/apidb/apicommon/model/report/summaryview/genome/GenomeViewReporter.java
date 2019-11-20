@@ -3,10 +3,8 @@
  */
 package org.apidb.apicommon.model.report.summaryview.genome;
 
-import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
@@ -74,7 +72,7 @@ public abstract class GenomeViewReporter extends AbstractReporter {
   
   @Override
   protected void write(OutputStream out) throws WdkModelException {
-    try (JsonWriter writer = new JsonWriter(new BufferedWriter(new OutputStreamWriter(out)))) {
+    try (JsonWriter writer = new JsonWriter(out)) {
       writeJson(_baseAnswer, writer);
     } catch (IOException e) {
       throw new WdkModelException("Unable to write reporter result to output stream", e);
@@ -111,7 +109,7 @@ public abstract class GenomeViewReporter extends AbstractReporter {
       Sequence[] sequences;
       ResultSet resultSet = null;
       try {
-        DataSource dataSource = answerValue.getQuestion().getWdkModel().getAppDb().getDataSource();
+        DataSource dataSource = answerValue.getAnswerSpec().getQuestion().getWdkModel().getAppDb().getDataSource();
 
         // compose an sql to get all sequences from the feature id query.
         String idSql = answerValue.getIdSql();

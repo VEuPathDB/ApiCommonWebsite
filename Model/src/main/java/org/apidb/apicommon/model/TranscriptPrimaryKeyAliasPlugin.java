@@ -14,7 +14,8 @@ import javax.sql.DataSource;
 import org.apache.log4j.Logger;
 import org.gusdb.fgputil.db.SqlUtils;
 import org.gusdb.wdk.model.WdkModelException;
-import org.gusdb.wdk.model.WdkUserException;
+import org.gusdb.wdk.model.record.PrimaryKeyAliasPlugin;
+import org.gusdb.wdk.model.record.RecordNotFoundException;
 import org.gusdb.wdk.model.user.User;
 
 /**
@@ -22,20 +23,21 @@ import org.gusdb.wdk.model.user.User;
  * by:
  *   1) mapping old gene ID to new gene IDs
  *   2) if an invalid transcript ID is provided, replace it with an arbitrary valid one per new gene ID
+ *   
  * @author steve
  *
  */
-public class TranscriptPrimaryKeyAliasPlugin implements org.gusdb.wdk.model.record.PrimaryKeyAliasPlugin {
+public class TranscriptPrimaryKeyAliasPlugin implements PrimaryKeyAliasPlugin {
 
   @SuppressWarnings("unused")
   private static final Logger logger = Logger.getLogger(TranscriptPrimaryKeyAliasPlugin.class);
 
   @Override
   public List<Map<String, Object>> getPrimaryKey(User user, Map<String, Object> inputPkValues)
-      throws WdkModelException, WdkUserException {
+      throws WdkModelException, RecordNotFoundException {
 
     if (!inputPkValues.containsKey("gene_source_id")) {
-      throw new WdkUserException("Requesting Gene page, but no Gene Id supplied");
+      throw new WdkModelException("Requesting Gene page, but no Gene Id supplied");
     }
 
     String inputGeneId = (String) inputPkValues.get("gene_source_id");

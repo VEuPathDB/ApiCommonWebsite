@@ -20,11 +20,13 @@ import org.gusdb.fgputil.FormatUtil;
 import org.gusdb.fgputil.db.runner.BasicResultSetHandler;
 import org.gusdb.fgputil.db.runner.SQLRunner;
 import org.gusdb.fgputil.runtime.GusHome;
+import org.gusdb.fgputil.validation.ValidationBundle;
+import org.gusdb.fgputil.validation.ValidationBundle.ValidationBundleBuilder;
+import org.gusdb.fgputil.validation.ValidationLevel;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.analysis.AbstractSimpleProcessAnalyzer;
-import org.gusdb.wdk.model.analysis.ValidationErrors;
 import org.gusdb.wdk.model.answer.AnswerValue;
 import org.gusdb.wdk.model.user.analysis.IllegalAnswerValueException;
 import org.json.JSONArray;
@@ -58,10 +60,11 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
       "Bonferroni adjusted p-value"
   );
 
-  @Override
-  public ValidationErrors validateFormParamValues(Map<String, String[]> formParams) throws WdkModelException {
+  // TODO: verify that validation is being performed here (i.e. that these params live in the model
+  @SuppressWarnings("unused")
+  private ValidationBundle validateFormParamValues(Map<String, String[]> formParams) throws WdkModelException {
 
-    ValidationErrors errors = new ValidationErrors();
+    ValidationBundleBuilder errors = ValidationBundle.builder(ValidationLevel.SEMANTIC);
 
     // validate pValueCutoff
     EnrichmentPluginUtil.validatePValue(formParams, errors);
@@ -73,16 +76,15 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     EnrichmentPluginUtil.getArrayParamValueAsString(PATHWAYS_SRC_PARAM_KEY, formParams, errors);
 
     // only validate further if the above pass
-    if (errors.isEmpty()) {
+    if (!errors.hasErrors()) {
       validateFilteredPathways(errors);
     }
 
-    return errors;
+    return errors.build();
   }
 
-  private void validateFilteredPathways(ValidationErrors errors)
+  private void validateFilteredPathways(ValidationBundleBuilder errors)
         throws WdkModelException {
-
     String countColumn = "CNT";
     String idSql = EnrichmentPluginUtil.getOrgSpecificIdSql(getAnswerValue(), getFormParams());
     String sql =
@@ -103,14 +105,14 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     BigDecimal count = (BigDecimal)result.get(countColumn);
 
     if (count.intValue() < 1) {
-      errors.addMessage("Your result has no genes with Pathways that satisfy the parameter choices you have made.  Please try adjusting the parameters.");
+      errors.addError("Your result has no genes with Pathways that satisfy the parameter choices you have made.  Please try adjusting the parameters.");
     }
   }
 
   @Override
   protected String[] getCommand(AnswerValue answerValue) throws WdkModelException, WdkUserException {
 
-    WdkModel wdkModel = answerValue.getQuestion().getWdkModel();
+    WdkModel wdkModel = answerValue.getAnswerSpec().getQuestion().getWdkModel();
     Map<String,String[]> params = getFormParams();
 
     String idSql = EnrichmentPluginUtil.getOrgSpecificIdSql(answerValue, params);
@@ -162,12 +164,6 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   }
 
   @Override
-  public JSONObject getFormViewModelJson() throws WdkModelException {
-    // this is now declared in the model xml
-    return null;
-  }
-
-  @Override
   public JSONObject getResultViewModelJson() throws WdkModelException {
     return createResultViewModel().toJson();
   }
@@ -182,7 +178,7 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
         String line = buffer.readLine();
         String[] columns = line.split(TAB);
         String[] primaryKeys = columns[0].split("__PK__");  // source_id and pathway_source (eg, KEGG)
-	String val = "<a href=\"/a/showQuestion.do?questionFullName=GeneQuestions.GeneByLocusTag&ds_gene_ids_data=" + columns[4] + "\">" + columns[3] + "</a>";
+        String val = EnrichmentPluginUtil.formatSearchLinkHtml(columns[4], columns[3]);
         if (primaryKeys.length != 2) throw new WdkModelException ("invalid compbined primary key: " + columns[0]);
         results.add(new ResultRow(primaryKeys[0], columns[1], primaryKeys[1], columns[2], val, columns[5], columns[6], columns[7], columns[8], columns[9], columns[10]));
       }
