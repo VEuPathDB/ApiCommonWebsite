@@ -1,7 +1,6 @@
 package org.apidb.apicommon.model.filter;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,6 +21,7 @@ import org.gusdb.wdk.model.answer.AnswerValue;
 import org.gusdb.wdk.model.answer.spec.SimpleAnswerSpec;
 import org.gusdb.wdk.model.filter.StepFilter;
 import org.gusdb.wdk.model.query.SqlQuery;
+import org.gusdb.wdk.model.query.param.AbstractEnumParam;
 import org.gusdb.wdk.model.question.Question;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -47,9 +47,9 @@ public class OrganismFilter extends StepFilter {
    */
   @Override
   public JSONObject getSummaryJson(AnswerValue answer, String idSql) throws WdkModelException {
-	String sql = "(" + getFullSql(answer, idSql) + ")";	
-    String organismList = answer.getIdsQueryInstance().getParamStableValues().get(ORGANISM);
-    List<String> selectedOrganisms = Arrays.asList(organismList.split(","));
+    String sql = "(" + getFullSql(answer, idSql) + ")";	
+    String organismStableValue = answer.getIdsQueryInstance().getParamStableValues().get(ORGANISM);
+    List<String> selectedOrganisms = AbstractEnumParam.convertToTerms(organismStableValue);
     Map<String, Integer> counts = getCounts(answer, sql);
     JSONArray jsonArray = new JSONArray();
     for(String selectedOrganism : counts.keySet()) {

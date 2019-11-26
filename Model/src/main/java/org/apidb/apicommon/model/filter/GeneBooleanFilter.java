@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 import javax.sql.DataSource;
@@ -164,9 +165,8 @@ public class GeneBooleanFilter extends StepFilter {
     }
   }
 
-  public static JSONObject getDefaultValue(String booleanOperatorValue) {
-    BooleanOperator op = BooleanOperator.parse(booleanOperatorValue);
-    switch (op) {
+  public static JSONObject getDefaultValue(BooleanOperator booleanOperatorValue) {
+    switch (booleanOperatorValue) {
       case UNION: return getFilterValueArray(Value.YY.name(), Value.YN.name(), Value.NY.name());
       case INTERSECT: return getFilterValueArray(Value.YY.name());
       case LEFT_MINUS: return getFilterValueArray(Value.YN.name());
@@ -179,11 +179,9 @@ public class GeneBooleanFilter extends StepFilter {
 
   @Override
   public JSONObject getDefaultValue(SimpleAnswerSpec spec) {
-    // TODO: check whether intersection or union and apply
-    Map<String,String> paramValues = spec.getQueryInstanceSpec().toMap();
-    boolean isWdkSetOperation = paramValues.containsKey(BooleanQuery.OPERATOR_PARAM);
+    boolean isWdkSetOperation = spec.getQueryInstanceSpec().containsKey(BooleanQuery.OPERATOR_PARAM);
     if (isWdkSetOperation) {
-      return getDefaultValue(paramValues.get(BooleanQuery.OPERATOR_PARAM));
+      return getDefaultValue(BooleanQuery.getOperator(spec.getQueryInstanceSpec(), Optional.empty()));
     }
     return null;
   }
