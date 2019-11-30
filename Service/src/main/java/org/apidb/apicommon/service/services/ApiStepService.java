@@ -2,6 +2,8 @@ package org.apidb.apicommon.service.services;
 
 import static org.apidb.apicommon.model.TranscriptUtil.isTranscriptRecordClass;
 
+import java.util.Optional;
+
 import javax.ws.rs.PathParam;
 
 import org.apache.log4j.Logger;
@@ -10,6 +12,7 @@ import org.gusdb.fgputil.validation.ValidationLevel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.answer.spec.FilterOption;
 import org.gusdb.wdk.model.answer.spec.SimpleAnswerSpec;
+import org.gusdb.wdk.model.query.BooleanOperator;
 import org.gusdb.wdk.model.query.BooleanQuery;
 import org.gusdb.wdk.model.user.Step;
 import org.gusdb.wdk.model.user.Step.StepBuilder;
@@ -45,9 +48,9 @@ public class ApiStepService extends StepService {
     }
 
     // transcript boolean step was revised; make sure it was an operator change
-    String newOperator = getOperator(replacementBuilder);
-    String oldOperator = getOperator(Step.builder(existingStep));
-    if (newOperator.equalsIgnoreCase(oldOperator)) {
+    BooleanOperator newOperator = BooleanQuery.getOperator(replacementBuilder.getAnswerSpec().getQueryInstanceSpecBuilder(), Optional.of(replacementBuilder.getStepId()));
+    BooleanOperator oldOperator = BooleanQuery.getOperator(existingStep.getAnswerSpec().getQueryInstanceSpec(), Optional.of(existingStep.getStepId()));
+    if (newOperator.equals(oldOperator)) {
       // only modify default filter value if operator changed
       return;
     }
@@ -75,14 +78,5 @@ public class ApiStepService extends StepService {
           GeneBooleanFilter.GENE_BOOLEAN_FILTER_ARRAY_KEY,
           option -> option.setValue(newValue));
     }
-  }
-
-  private String getOperator(StepBuilder step) throws WdkModelException {
-    String operator = step.getAnswerSpec().getParamValue(BooleanQuery.OPERATOR_PARAM);
-    if (operator == null) {
-      throw new WdkModelException("Found transcript boolen step " +
-          step.getStepId() + " without " + BooleanQuery.OPERATOR_PARAM + " parameter.");
-    }
-    return operator;
   }
 }

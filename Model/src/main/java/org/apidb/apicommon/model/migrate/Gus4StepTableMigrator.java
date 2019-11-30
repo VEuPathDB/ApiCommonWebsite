@@ -36,6 +36,7 @@ import org.gusdb.wdk.model.fix.table.steps.StepDataFactory;
 import org.gusdb.wdk.model.fix.table.steps.StepDataTestWriter;
 import org.gusdb.wdk.model.fix.table.steps.StepDataWriter;
 import org.gusdb.wdk.model.fix.table.steps.StepQuestionUpdater;
+import org.gusdb.wdk.model.query.BooleanOperator;
 import org.gusdb.wdk.model.query.BooleanQuery;
 import org.gusdb.wdk.model.question.Question;
 import org.gusdb.wdk.model.record.RecordClass;
@@ -219,7 +220,8 @@ public class Gus4StepTableMigrator implements TableRowUpdaterPlugin<StepData> {
       LOG.warn("Found boolean step (ID " + step.getStepId() + ") that does not have param " + BooleanQuery.OPERATOR_PARAM);
       return false;
     }
-    JSONObject defaultValue = GeneBooleanFilter.getDefaultValue(params.getString(BooleanQuery.OPERATOR_PARAM));
+    BooleanOperator operator = BooleanOperator.parse(params.getString(BooleanQuery.OPERATOR_PARAM));
+    JSONObject defaultValue = GeneBooleanFilter.getDefaultValue(operator);
     if (defaultValue == null) return false;
     return addFilterValueArray(step, GeneBooleanFilter.GENE_BOOLEAN_FILTER_ARRAY_KEY, defaultValue);
   }
