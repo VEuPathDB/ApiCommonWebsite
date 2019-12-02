@@ -59,7 +59,7 @@
        <h4>Transcriptomics</h4>
           <ul>
           <li>
-            <a href="/a/app/record/dataset/DS_7184e7fdbf">Mouse transcriptome during early and late chronic infection with <i>T. gondii</i></a> &mdash;
+            <a href="https://hostdb.org/hostdb/app/record/dataset/DS_7184e7fdbf">Mouse transcriptome during early and late chronic infection with <i>T. gondii</i></a> &mdash;
             Male and female host RNA seq transcriptional profile time course from very early to chronic infection with <i>T. gondii</i>.  
             <a href="http://www.ncbi.nlm.nih.gov/pubmed/30858341" target="_blank">Garfoot et al. 2019</a>.   <br><br>
 			
@@ -68,7 +68,7 @@
                 ToxoDB RNA seq: 	<a href="https://toxodb.org/toxo/app/record/dataset/DS_7eee2cd55f">Mouse brain bradyzoite transcriptomes at 28, 90, 120 days post infection</a>.<br><br>
            </li>
 		  <li>
-            <a href="/a/app/record/dataset/DS_7d14c45975">Transcriptomes of 46 malaria-infected Gambian children</a> &mdash;
+            <a href="https://hostdb.org/hostdb/app/record/dataset/DS_7d14c45975">Transcriptomes of 46 malaria-infected Gambian children</a> &mdash;
             Dual transcriptomic analysis of human and <i>Plasmodium</i> from blood of 46 Gambian children diagnosed with malaria.
             <a href="http://www.ncbi.nlm.nih.gov/pubmed/29950443" target="_blank">Lee et al. 2019</a>.   The parasite component of this data set is available on PlasmoDB: 
 			<a href="https://plasmodb.org/plasmo/app/record/dataset/DS_a966e260dd">Dual transcriptomes of malaria-infected Gambian children</a>.
