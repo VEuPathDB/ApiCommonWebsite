@@ -18,7 +18,6 @@ import org.apache.log4j.Logger;
 import org.gusdb.fgputil.IoUtil;
 import org.gusdb.fgputil.json.JsonUtil;
 import org.gusdb.wdk.model.WdkModelException;
-import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.answer.AnswerValue;
 import org.gusdb.wdk.model.report.AbstractReporter;
 import org.gusdb.wdk.model.report.ReporterConfigException;
@@ -65,7 +64,7 @@ public abstract class FastaReporter extends AbstractReporter {
      //LOG.debug("\n\n\n**************" + FormatUtil.prettyPrint(inputFields, Style.MULTI_LINE));
      transferFormResult(inputFields, out);
     }
-    catch (IOException | WdkUserException e) {
+    catch (IOException e) {
       throw new WdkModelException("Cannot output FASTA reporter data", e);
     }
   }
@@ -102,7 +101,7 @@ public abstract class FastaReporter extends AbstractReporter {
   }
 
   private static Map<String, String> buildFormData(JSONObject configuration, String projectId, AnswerValue answer)
-      throws WdkModelException, WdkUserException {
+      throws WdkModelException {
     Map<String,String> formInputs = new HashMap<>();
     formInputs.put("project_id", projectId);
     for (String key : JsonUtil.getKeys(configuration)) {

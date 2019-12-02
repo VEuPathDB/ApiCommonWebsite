@@ -107,6 +107,10 @@ public class CommentFactory implements Manageable<CommentFactory> {
 
       final String host = wdkModel.getProperties().get("LOCALHOST");
 
+      if (host == null) {
+        throw new WdkModelException("model.prop must contain the 'LOCALHOST' property");
+      }
+
       factory.initialize(wdkModel, db, config, isReusingUserDb,
           new Project(projectId, wdkModel.getVersion()), host.endsWith("/")
               ? host.substring(0, host.lastIndexOf("/")) : host);

@@ -1,10 +1,9 @@
 package org.apidb.apicommon.controller;
 
-import javax.servlet.ServletContext;
-
 import org.apache.log4j.Logger;
 import org.apidb.apicommon.model.comment.CommentFactory;
 import org.gusdb.fgputil.runtime.InstanceManager;
+import org.gusdb.fgputil.web.ApplicationContext;
 import org.gusdb.wdk.controller.WdkInitializer;
 import org.gusdb.wdk.model.MDCUtil;
 import org.gusdb.wdk.model.Utilities;
@@ -24,16 +23,16 @@ public class CommentFactoryManager {
     return InstanceManager.getInstance(CommentFactory.class, projectId);
   }
 
-  public static CommentFactory getCommentFactory(ServletContext context) {
-    CommentFactory factory = (CommentFactory) context.getAttribute(COMMENT_FACTORY_KEY);
+  public static CommentFactory getCommentFactory(ApplicationContext context) {
+    CommentFactory factory = (CommentFactory) context.get(COMMENT_FACTORY_KEY);
     if (factory == null) {
       factory = getCommentFactory(context.getInitParameter(Utilities.ARGUMENT_PROJECT_ID));
-      context.setAttribute(COMMENT_FACTORY_KEY, factory);
+      context.put(COMMENT_FACTORY_KEY, factory);
     }
     return factory;
   }
 
-  public static void initializeCommentFactory(ServletContext context) {
+  public static void initializeCommentFactory(ApplicationContext context) {
     // can only open comment factory if model successfully initialized
     if (WdkInitializer.getWdkModel(context) != null) {
       MDCUtil.setNonRequestThreadVars("cmnt");
@@ -46,7 +45,7 @@ public class CommentFactoryManager {
     }
   }
 
-  public static void terminateCommentFactory(ServletContext context) {
+  public static void terminateCommentFactory(ApplicationContext context) {
     // can only close comment factory if model successfully initialized
     if (WdkInitializer.getWdkModel(context) != null) {
       MDCUtil.setNonRequestThreadVars("cmnt");

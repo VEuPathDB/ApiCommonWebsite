@@ -1,7 +1,5 @@
 package org.apidb.apicommon.model.stepanalysis;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -10,11 +8,9 @@ import javax.sql.DataSource;
 
 import org.gusdb.fgputil.FormatUtil;
 import org.gusdb.fgputil.db.runner.SQLRunner;
-import org.gusdb.fgputil.db.runner.SQLRunner.ResultSetHandler;
+import org.gusdb.fgputil.validation.ValidationBundle.ValidationBundleBuilder;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
-import org.gusdb.wdk.model.WdkUserException;
-import org.gusdb.wdk.model.analysis.ValidationErrors;
 import org.gusdb.wdk.model.answer.AnswerValue;
 
 public class EnrichmentPluginUtil {
@@ -28,16 +24,17 @@ public class EnrichmentPluginUtil {
   public static final String DISPLAY_KEY = "display";
 
   public static void validateOrganism(Map<String, String[]> formParams, AnswerValue answerValue,
-      WdkModel wdkModel, ValidationErrors errors) throws WdkModelException {
+      WdkModel wdkModel, ValidationBundleBuilder errors) throws WdkModelException {
+
     String organism = getSingleAllowableValueParam(ORGANISM_PARAM_KEY, formParams, errors);
     if (!getDistinctOrgsInAnswer(answerValue, wdkModel).contains(organism)) {
-      errors.addParamMessage(ORGANISM_PARAM_KEY, "Invalid value passed for Organism: '" + organism + "' does not appear in this result.");
+      errors.addError(ORGANISM_PARAM_KEY, "Invalid value passed for Organism: '" + organism + "' does not appear in this result.");
     }
   }
 
-  public static void validatePValue(Map<String, String[]> formParams, ValidationErrors errors) {
+  public static void validatePValue(Map<String, String[]> formParams, ValidationBundleBuilder errors) {
     if (!formParams.containsKey(PVALUE_PARAM_KEY)) {
-      errors.addParamMessage(PVALUE_PARAM_KEY, "Missing required parameter.");
+      errors.addError(PVALUE_PARAM_KEY, "Missing required parameter.");
     }
     else {
       try {
@@ -45,7 +42,7 @@ public class EnrichmentPluginUtil {
         if (pValueCutoff <= 0 || pValueCutoff > 1) throw new NumberFormatException();
       }
       catch (NumberFormatException e) {
-        errors.addParamMessage(PVALUE_PARAM_KEY, "Must be a number greater than 0 and less than or equal to 1.");
+        errors.addError(PVALUE_PARAM_KEY, "Must be a number greater than 0 and less than or equal to 1.");
       }
     }
   }
@@ -59,10 +56,10 @@ public class EnrichmentPluginUtil {
    * @return valid param value as String, or null if errors occurred
    */
   // @param errors may be null if the sources have been previously validated.
-  public static String getSingleAllowableValueParam(String paramKey, Map<String, String[]> formParams, ValidationErrors errors) {
+  public static String getSingleAllowableValueParam(String paramKey, Map<String, String[]> formParams, ValidationBundleBuilder errors) {
     String[] values = formParams.get(paramKey);
     if ((values == null || values.length != 1) && errors != null) {
-      errors.addParamMessage(paramKey, "Missing required parameter, or more than one provided.");
+      errors.addError(paramKey, "Missing required parameter, or more than one provided.");
       return null;
     }
     return values[0];
@@ -80,27 +77,22 @@ public class EnrichmentPluginUtil {
    * @return SQL compatible list string
    */
   public static String getArrayParamValueAsString(String paramKey,
-      Map<String, String[]> formParams, ValidationErrors errors) {
+      Map<String, String[]> formParams, ValidationBundleBuilder errors) {
     String[] values = formParams.get(paramKey);
     if ((values == null || values.length == 0) && errors != null) {
-      errors.addParamMessage(paramKey, "Missing required parameter.");
+      errors.addError(paramKey, "Missing required parameter.");
     }
     return "'" + FormatUtil.join(values, "','") + "'";
   }
 
-  public static String getOrgSpecificIdSql(AnswerValue answerValue, Map<String,
-      String[]> params) throws WdkModelException {
-    try {
-      // must wrap idSql with code that filters by the passed organism param
-      return "SELECT ga.source_id " +
-          "FROM ApidbTuning.GeneAttributes ga, " +
-          "(" + answerValue.getIdSql() + ") r " +
-          "where ga.source_id = r.gene_source_id " +
-          "and  ga.organism = '" + params.get(ORGANISM_PARAM_KEY)[0] + "'";
-    }
-    catch (WdkUserException e) {
-      throw new WdkModelException(e);
-    }
+  public static String getOrgSpecificIdSql(AnswerValue answerValue,
+      Map<String,String[]> params) throws WdkModelException {
+    // must wrap idSql with code that filters by the passed organism param
+    return "SELECT ga.source_id " +
+        "FROM ApidbTuning.GeneAttributes ga, " +
+        "(" + answerValue.getIdSql() + ") r " +
+        "where ga.source_id = r.gene_source_id " +
+        "and  ga.organism = '" + params.get(ORGANISM_PARAM_KEY)[0] + "'";
   }
 
   public static String getPvalueCutoff(Map<String, String[]> params) {
@@ -117,25 +109,23 @@ public class EnrichmentPluginUtil {
    */
   public static List<String> getDistinctOrgsInAnswer(AnswerValue answerValue,
       WdkModel wdkModel) throws WdkModelException {
-    try {
-      final List<String> orgNames = new ArrayList<>();
-      String sql = "SELECT distinct ga.organism " +
-          "FROM ApidbTuning.GeneAttributes ga, " +
-          "(" + answerValue.getIdSql() + ") r " +
-          "where ga.source_id = r.gene_source_id " +
-          "order by ga.organism asc";
-      DataSource ds = wdkModel.getAppDb().getDataSource();
-      new SQLRunner(ds, sql, "select-distinct-orgs-in-result").executeQuery(new ResultSetHandler() {
-        @Override
-        public void handleResult(ResultSet rs) throws SQLException {
-          while (rs.next()) {
-            orgNames.add(rs.getString(1));
-          }}});
-      return orgNames;
-    }
-    catch (Exception e) {
-      return WdkModelException.unwrap(e, List.class);
-    }
+    String sql = "SELECT distinct ga.organism " +
+        "FROM ApidbTuning.GeneAttributes ga, " +
+        "(" + answerValue.getIdSql() + ") r " +
+        "where ga.source_id = r.gene_source_id " +
+        "order by ga.organism asc";
+    DataSource ds = wdkModel.getAppDb().getDataSource();
+    return new SQLRunner(ds, sql, "select-distinct-orgs-in-result")
+      .executeQuery(rs -> {
+        List<String> orgNames = new ArrayList<>();
+        while (rs.next()) {
+          orgNames.add(rs.getString(1));
+        }
+        return orgNames;
+      });
   }
 
+  public static String formatSearchLinkHtml(String ids, String numRecs) {
+    return String.format("<a href='/a/app/search/transcript/GeneByLocusTag?param.ds_gene_ids.idList=%s&autoRun=1'>%s</a>", ids, numRecs);
+  }
 }
