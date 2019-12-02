@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
+import {Component} from 'react';
 import {CollapsibleSection} from 'wdk-client/Components';
-import {pure} from 'wdk-client/Utils/ComponentUtils';
+import {pure} from 'wdk-client/ComponentUtils';
 import {CompoundStructure} from '../common/Compound';
 import DatasetGraph from 'ebrc-client/components/DatasetGraph';
 

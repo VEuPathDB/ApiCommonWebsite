@@ -1,23 +1,29 @@
 package org.apidb.apicommon.model;
 
+import java.util.Map;
 import java.util.Set;
 
 import org.apidb.apicommon.model.filter.GeneBooleanFilter;
 import org.apidb.apicommon.model.filter.MatchedTranscriptFilter;
-import org.gusdb.fgputil.validation.ValidObjectFactory.RunnableObj;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
+import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.query.BooleanQuery;
+import org.gusdb.wdk.model.query.BooleanQueryInstance;
 import org.gusdb.wdk.model.query.Column;
-import org.gusdb.wdk.model.query.spec.QueryInstanceSpec;
+import org.gusdb.wdk.model.query.Query;
 import org.gusdb.wdk.model.question.DynamicAttributeSet;
 import org.gusdb.wdk.model.question.Question;
 import org.gusdb.wdk.model.record.RecordClass;
 import org.gusdb.wdk.model.record.attribute.ColumnAttributeField;
 import org.gusdb.wdk.model.record.attribute.QueryColumnAttributeField;
+// import org.apache.log4j.Logger;
+import org.gusdb.wdk.model.user.User;
 
 
 public class TranscriptBooleanQuery extends BooleanQuery {
+
+//  private static final Logger logger = Logger.getLogger(TranscriptBooleanQuery.class);
 
   public static final String LEFT_MATCH_COLUMN_TITLE = "Transcript Returned by Previous Search";
   public static final String RIGHT_MATCH_COLUMN_TITLE = "Transcript Returned by Latest Search";
@@ -52,9 +58,17 @@ public class TranscriptBooleanQuery extends BooleanQuery {
     das.addAttributeField(right_af);
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.gusdb.wdk.model.query.Query#makeInstance()
+   */
   @Override
-  protected TranscriptBooleanQueryInstance makeInstance(RunnableObj<QueryInstanceSpec> spec) {
-    return new TranscriptBooleanQueryInstance(spec);
+  public BooleanQueryInstance makeInstance(User user, Map<String, String> values,
+    boolean validate, int assignedWeight, Map<String, String> context)
+    throws WdkModelException, WdkUserException {
+      return new TranscriptBooleanQueryInstance(user, this, values, validate,
+        assignedWeight, context);
   } 
 
   @Override
@@ -90,16 +104,22 @@ public class TranscriptBooleanQuery extends BooleanQuery {
     Column column = new Column();
     column.setName(LEFT_MATCH_COLUMN);
     column.setQuery(this);
-    _columnMap.put(LEFT_MATCH_COLUMN, column);
+    columnMap.put(LEFT_MATCH_COLUMN, column);
     column = new Column();
     column.setName(RIGHT_MATCH_COLUMN);
     column.setQuery(this);
-    _columnMap.put(RIGHT_MATCH_COLUMN, column);
+    columnMap.put(RIGHT_MATCH_COLUMN, column);
   }
-
+  
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.gusdb.wdk.model.query.Query#clone()
+   */
   @Override
-  public TranscriptBooleanQuery clone() {
+  public Query clone() {
     return new TranscriptBooleanQuery(this);
   }
+
 
 }

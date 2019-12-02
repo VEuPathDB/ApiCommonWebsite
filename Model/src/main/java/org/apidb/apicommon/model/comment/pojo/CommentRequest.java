@@ -1,9 +1,6 @@
 package org.apidb.apicommon.model.comment.pojo;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * POJO representing a request for a the creation of a new comment.

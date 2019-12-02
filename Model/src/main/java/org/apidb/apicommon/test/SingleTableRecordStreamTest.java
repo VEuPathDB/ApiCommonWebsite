@@ -11,29 +11,21 @@ import static org.gusdb.fgputil.runtime.GusHome.getGusHome;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.util.Map;
-import java.util.Optional;
-import java.util.function.Function;
 
 import org.gusdb.fgputil.MapBuilder;
-import org.gusdb.fgputil.validation.ValidObjectFactory.RunnableObj;
+import org.gusdb.fgputil.functional.FunctionalInterfaces.Function;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.answer.AnswerValue;
-import org.gusdb.wdk.model.answer.factory.AnswerValueFactory;
-import org.gusdb.wdk.model.answer.spec.AnswerSpec;
-import org.gusdb.wdk.model.answer.spec.FilterOption;
-import org.gusdb.wdk.model.answer.spec.FilterOptionList;
-import org.gusdb.wdk.model.answer.spec.FilterOptionList.FilterOptionListBuilder;
 import org.gusdb.wdk.model.answer.stream.RecordStream;
 import org.gusdb.wdk.model.answer.stream.SingleTableRecordStream;
+import org.gusdb.wdk.model.filter.FilterOptionList;
 import org.gusdb.wdk.model.record.RecordInstance;
 import org.gusdb.wdk.model.record.TableField;
 import org.gusdb.wdk.model.record.attribute.AttributeField;
 import org.gusdb.wdk.model.record.attribute.AttributeValue;
-import org.gusdb.wdk.model.user.Step;
 import org.gusdb.wdk.model.user.UnregisteredUser.UnregisteredUserType;
-import org.gusdb.wdk.model.user.User;
-import org.gusdb.wdk.model.user.UserCache;
+import org.gusdb.wdk.model.user.Step;
 import org.json.JSONObject;
 
 /** Testing "GeneTranscripts" table using the following step:
@@ -71,11 +63,9 @@ public class SingleTableRecordStreamTest {
       .put("scope", "Gene")
       .toMap();
 
-  private static final FilterOptionListBuilder FILTERS =
-      FilterOptionList.builder()
-          .addFilterOption(FilterOption.builder()
-              .setFilterName("matched_transcript_filter_array")
-              .setValue(new JSONObject("{\"values\": [\"Y\"]}")));
+  private static final FilterOptionList FILTERS(WdkModel model) throws WdkModelException {
+    return new FilterOptionList(model, QUESTION_NAME)
+        .addFilterOption("matched_transcript_filter_array", new JSONObject("{\"values\": [\"Y\"]}")); }
 
   private static final String TABLE_NAME = "GeneTranscripts";
 
@@ -84,13 +74,11 @@ public class SingleTableRecordStreamTest {
   public static void main(String[] args) throws Exception {
     try (WdkModel model = WdkModel.construct(PROJECT_ID, getGusHome());
          PrintStream out = (args.length == 0 ? System.out : new PrintStream(new FileOutputStream(args[0])))) {
-      RunnableObj<Step> step = createStep(model);
-      AnswerValue answer = 
-          isTranscriptQuestion(step.get().getAnswerSpec().getQuestion()) ?
-          transformToGeneAnswer(AnswerValueFactory.makeAnswer(step)) :
-          AnswerValueFactory.makeAnswer(step);
-      answer = answer.cloneWithNewPaging(0, -1); // want full results
-      TableField tableField = answer.getAnswerSpec().getQuestion().getRecordClass().getTableFieldMap().get(TABLE_NAME);
+      Step step = createStep(model);
+      AnswerValue answer = (isTranscriptQuestion(step.getQuestion()) ?
+          transformToGeneAnswer(step.getAnswerValue(), step.getStepId()) : step.getAnswerValue())
+          .cloneWithNewPaging(0, -1); // want full results
+      TableField tableField = answer.getQuestion().getRecordClass().getTableFieldMap().get(TABLE_NAME);
 
       try (RecordStream recordStream = new SingleTableRecordStream(answer, tableField)) {
         writeFields(out, tableField, getFieldHeader);
@@ -105,26 +93,26 @@ public class SingleTableRecordStreamTest {
 
   /*%%%%%%%%%%%%%%%%%%%%%%%%%%% helper functions %%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
-  private static RunnableObj<Step> createStep(WdkModel model) throws WdkModelException {
-    User user = model.getUserFactory().createUnregistedUser(UnregisteredUserType.GUEST);
-    return Step.builder(model, user.getUserId(), model.getStepFactory().getNewStepId())
-        .setAnswerSpec(AnswerSpec.builder(model)
-            .setQuestionFullName(QUESTION_NAME)
-            .setParamValues(PARAMETERS)
-            .setFilterOptions(FILTERS))
-        .buildRunnable(new UserCache(user), Optional.empty());
+  private static Step createStep(WdkModel model) throws WdkModelException {
+    return model.getStepFactory().createStep(
+        model.getUserFactory().createUnregistedUser(UnregisteredUserType.GUEST),
+        -1L, model.getQuestion(QUESTION_NAME), PARAMETERS, null, false, true, 0, FILTERS(model));
   }
 
   private static Function<AttributeField, String> getFieldValue(final Map<String, AttributeValue> row) {
     return new Function<AttributeField,String>() {
       @Override public String apply(AttributeField field) {
-        try { return row.get(field.getName()).getValue(); }
+        try { return (String)row.get(field.getName()).getValue(); }
         catch (Exception e) { return "ERR"; }
       }
     };
   }
 
-  private static Function<AttributeField,String> getFieldHeader = field -> field.getName();
+  private static Function<AttributeField,String> getFieldHeader = new Function<AttributeField,String>(){
+    @Override public String apply(AttributeField field) {
+      return field.getName();
+    }
+  };
 
   private static void writeFields(PrintStream out, TableField tableField, Function<AttributeField, String> function) {
     out.println(join(mapToList(asList(tableField.getAttributeFields()), function).toArray(), TAB));

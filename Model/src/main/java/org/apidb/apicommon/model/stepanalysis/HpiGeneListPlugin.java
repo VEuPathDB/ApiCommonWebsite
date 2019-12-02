@@ -2,13 +2,11 @@ package org.apidb.apicommon.model.stepanalysis;
 
 import org.apache.log4j.Logger;
 import org.gusdb.fgputil.runtime.GusHome;
-import org.gusdb.fgputil.validation.ValidationBundle;
-import org.gusdb.fgputil.validation.ValidationBundle.ValidationBundleBuilder;
-import org.gusdb.fgputil.validation.ValidationLevel;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.analysis.AbstractSimpleProcessAnalyzer;
+import org.gusdb.wdk.model.analysis.ValidationErrors;
 import org.gusdb.wdk.model.answer.AnswerValue;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -52,6 +50,7 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
 
   private static final String TABBED_RESULT_FILE_PATH = "hpiGeneListResult.tab";
 
+
   private Map<String, String> serverEndpoints = new HashMap<>();
 
   @Override
@@ -63,42 +62,41 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
     // TODO ... Add more for other BRCs
   }
 
-  // TODO: verify that validation is being performed here (i.e. that these params live in the model
-  @SuppressWarnings("unused")
-  private ValidationBundle validateFormParamValues(Map<String, String[]> formParams) {
+  @Override
+  public ValidationErrors validateFormParamValues(Map<String, String[]> formParams) {
 
-    ValidationBundleBuilder errors = ValidationBundle.builder(ValidationLevel.SEMANTIC);
+    ValidationErrors errors = new ValidationErrors();
 
     if (!formParams.containsKey(THRESHOLD_PARAM_KEY)) {
-      errors.addError(THRESHOLD_PARAM_KEY, "Missing required parameter.");
+      errors.addParamMessage(THRESHOLD_PARAM_KEY, "Missing required parameter.");
     } else {
       try {
         double thresholdCutoff = Double.parseDouble(formParams.get(THRESHOLD_PARAM_KEY)[0]);
         if (thresholdCutoff <= 0) throw new NumberFormatException();
       } catch (NumberFormatException e) {
-        errors.addError(THRESHOLD_PARAM_KEY, "Must be a number greater than 0.");
+        errors.addParamMessage(THRESHOLD_PARAM_KEY, "Must be a number greater than 0.");
       }
     }
 
     if (!formParams.containsKey(DS_CUTOFF_PARAM_KEY)) {
-      errors.addError(DS_CUTOFF_PARAM_KEY, "Missing required parameter.");
-    }
-    else {
+      errors.addParamMessage(DS_CUTOFF_PARAM_KEY, "Missing required parameter.");
+    } else {
       try {
         double datasetCutoff = Double.parseDouble(formParams.get(DS_CUTOFF_PARAM_KEY)[0]);
         if (datasetCutoff <= 0) throw new NumberFormatException();
       } catch (NumberFormatException e) {
-        errors.addError(DS_CUTOFF_PARAM_KEY, "Must be a number greater than 0.");
+        errors.addParamMessage(DS_CUTOFF_PARAM_KEY, "Must be a number greater than 0.");
       }
     }
 
-    return errors.build();
+
+    return errors;
   }
 
   @Override
   protected String[] getCommand(AnswerValue answerValue) throws WdkModelException, WdkUserException {
 
-    WdkModel wdkModel = answerValue.getAnswerSpec().getQuestion().getWdkModel();
+    WdkModel wdkModel = answerValue.getQuestion().getWdkModel();
     Map<String, String[]> params = getFormParams();
 
     String type = "gene";
@@ -140,6 +138,12 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
 
     //TODO:  Add server endpoint
     return new String[]{qualifiedExe, idSql, thresholdType, threshold, datasetCutoffType, datasetCutoff, useOrthology, type, idSource, resultFilePath.toString(), wdkModel.getProjectId(), searchServerEndpoint};
+  }
+
+  @Override
+  public JSONObject getFormViewModelJson() throws WdkModelException {
+    // This is now declared as parameters in the model xml
+    return null;
   }
 
   @Override
@@ -293,6 +297,7 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
       this.significance = significance;
       this.serverEndpoint = serverEndpoint;
     }
+
 
     //	@Override
     @Override

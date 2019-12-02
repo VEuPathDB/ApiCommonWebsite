@@ -1,4 +1,4 @@
-// import { compose, curryN, set, update } from 'lodash/fp';
+import { compose, curryN, set, update } from 'lodash/fp';
 
 import * as globalData from './storeModules/GlobalData';
 import * as record from './storeModules/Record';
@@ -8,27 +8,16 @@ import * as record from './storeModules/Record';
  * last reducer provided is called first, the second to last is called
  * second, and so on.
  */
-// const composeReducers = (...reducers) => (state, action) =>
-// reducers.reduceRight((state, reducer) => reducer(state, action), state);
+const composeReducers = (...reducers) => (state, action) =>
+  reducers.reduceRight((state, reducer) => reducer(state, action), state);
 
 /**
  * Curried with fixed size of two arguments.
  */
-// const composeReducerWith = curryN(2, composeReducers);
+const composeReducerWith = curryN(2, composeReducers);
 
-export default storeModules => ({
-  ...storeModules,
-  record,
-  globalData: {
-    ...storeModules.globalData,
-    reduce: (state, action) => {
-      state = storeModules.globalData.reduce(state, action);
-      return globalData.reduce(state, action);
-    }
-  }
-})
+export default compose(
 
-// export default compose(
-//   update('globalData.reduce', composeReducerWith(globalData.reduce)),
-//   set('record', record),
-// );
+  update('globalData.reduce', composeReducerWith(globalData.reduce)),
+  set('record', record),
+);

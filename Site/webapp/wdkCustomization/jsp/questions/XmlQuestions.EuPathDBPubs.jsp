@@ -1,5 +1,7 @@
 <%@ taglib prefix="imp" tagdir="/WEB-INF/tags/imp" %>
 
+<c:set var="wdkModel" value="${applicationScope.wdkModel}"/>
+
 <imp:pageFrame title="${wdkModel.displayName} : EuPathDB Publications"
                  banner="EuPathDB Publications"
                  parentDivision="${wdkModel.displayName}"

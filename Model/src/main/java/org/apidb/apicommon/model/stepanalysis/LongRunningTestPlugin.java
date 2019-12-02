@@ -47,4 +47,9 @@ public class LongRunningTestPlugin extends AbstractStepAnalyzer {
     return getPersistentCharData();
   }
 
+  @Override
+  public JSONObject getFormViewModelJson() {
+    return new JSONObject();
+  }
+
 }

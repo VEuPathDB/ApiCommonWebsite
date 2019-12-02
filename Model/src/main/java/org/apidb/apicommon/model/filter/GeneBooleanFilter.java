@@ -7,25 +7,21 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Set;
 
 import javax.sql.DataSource;
 
 import org.apidb.apicommon.model.TranscriptBooleanQuery;
 import org.gusdb.fgputil.db.SqlUtils;
-import org.gusdb.fgputil.validation.ValidationBundle;
-import org.gusdb.fgputil.validation.ValidationBundle.ValidationBundleBuilder;
-import org.gusdb.fgputil.validation.ValidationLevel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.answer.AnswerValue;
-import org.gusdb.wdk.model.answer.spec.SimpleAnswerSpec;
+import org.gusdb.wdk.model.filter.FilterSummary;
 import org.gusdb.wdk.model.filter.ListColumnFilterSummary;
 import org.gusdb.wdk.model.filter.StepFilter;
 import org.gusdb.wdk.model.query.BooleanOperator;
 import org.gusdb.wdk.model.query.BooleanQuery;
-import org.gusdb.wdk.model.question.Question;
+import org.gusdb.wdk.model.user.Step;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -48,7 +44,17 @@ public class GeneBooleanFilter extends StepFilter {
   }
 
   @Override
-  public JSONObject getSummaryJson(AnswerValue answer, String idSql) throws WdkModelException {
+  public FilterSummary getSummary(AnswerValue answer, String idSql) throws WdkModelException,
+      WdkUserException {
+    return new ListColumnFilterSummary(getSummaryCounts(answer, idSql));
+  }
+
+  @Override
+  public JSONObject getSummaryJson(AnswerValue answer, String idSql) throws WdkModelException, WdkUserException {
+    return new JSONObject(getSummaryCounts(answer, idSql));
+  }
+
+  private Map<String, Integer> getSummaryCounts(AnswerValue answer, String idSql) throws WdkModelException, WdkUserException {
     Map<String, Integer> counts = new LinkedHashMap<>();
     for (Value value: Value.values()) {
       counts.put(value.name(), 0);
@@ -63,7 +69,7 @@ public class GeneBooleanFilter extends StepFilter {
     String sql = getSummarySql(fullIdSql);
 
     ResultSet resultSet = null;
-    DataSource dataSource = answer.getWdkModel().getAppDb().getDataSource();
+    DataSource dataSource = answer.getQuestion().getWdkModel().getAppDb().getDataSource();
     try {
       resultSet = SqlUtils.executeQuery(dataSource, sql, getKey() + "-summary");
       while (resultSet.next()) {
@@ -79,7 +85,7 @@ public class GeneBooleanFilter extends StepFilter {
     finally {
       SqlUtils.closeResultSetAndStatement(resultSet, null);
     }
-    return new ListColumnFilterSummary(counts).toJson();
+    return counts;
   }
 
   private String getSummarySql(String idSql) {
@@ -97,7 +103,8 @@ public class GeneBooleanFilter extends StepFilter {
   }
 
   @Override
-  public String getDisplayValue(AnswerValue answer, JSONObject jsValue) throws WdkModelException {
+  public String getDisplayValue(AnswerValue answer, JSONObject jsValue) throws WdkModelException,
+      WdkUserException {
     return "dont care";
   }
 
@@ -105,7 +112,8 @@ public class GeneBooleanFilter extends StepFilter {
    * Expected JSON is: { values:["10", "01", "11"] }
    */
   @Override
-  public String getSql(AnswerValue answer, String idSql, JSONObject jsValue) throws WdkModelException {
+  public String getSql(AnswerValue answer, String idSql, JSONObject jsValue) throws WdkModelException,
+      WdkUserException {
 
     // the input idSql has filters applied, and they might strip off dyn columns. join those back in using the
     // original id sql
@@ -138,7 +146,7 @@ public class GeneBooleanFilter extends StepFilter {
    * @throws WdkUserException
    * @throws WdkModelException
    */
-  private String getFullSql(AnswerValue answer, String idSql) throws WdkModelException {
+  private String getFullSql(AnswerValue answer, String idSql) throws WdkModelException, WdkUserException {
     String originalIdSql = answer.getIdsQueryInstance().getSql();
 
     return "select idsql.* from (" + originalIdSql + ") idsql, (" + idSql + ") filteredIdSql" +
@@ -151,8 +159,8 @@ public class GeneBooleanFilter extends StepFilter {
   }
 
   @Override
-  public boolean defaultValueEquals(SimpleAnswerSpec spec, JSONObject jsValue) throws WdkModelException {
-    JSONObject defaultValue = getDefaultValue(spec);
+  public boolean defaultValueEquals(Step step, JSONObject jsValue) throws WdkModelException {
+    JSONObject defaultValue = getDefaultValue(step);
     if (defaultValue == null && jsValue == null) return true;
     if (defaultValue == null || jsValue == null) return false;
     try {
@@ -165,8 +173,9 @@ public class GeneBooleanFilter extends StepFilter {
     }
   }
 
-  public static JSONObject getDefaultValue(BooleanOperator booleanOperatorValue) {
-    switch (booleanOperatorValue) {
+  public static JSONObject getDefaultValue(String booleanOperatorValue) throws WdkModelException {
+    BooleanOperator op = BooleanOperator.parse(booleanOperatorValue);
+    switch (op) {
       case UNION: return getFilterValueArray(Value.YY.name(), Value.YN.name(), Value.NY.name());
       case INTERSECT: return getFilterValueArray(Value.YY.name());
       case LEFT_MINUS: return getFilterValueArray(Value.YN.name());
@@ -178,18 +187,13 @@ public class GeneBooleanFilter extends StepFilter {
   }
 
   @Override
-  public JSONObject getDefaultValue(SimpleAnswerSpec spec) {
-    boolean isWdkSetOperation = spec.getQueryInstanceSpec().containsKey(BooleanQuery.OPERATOR_PARAM);
+  public JSONObject getDefaultValue(Step step) throws WdkModelException {
+    // TODO: check whether intersection or union and apply
+    Map<String,String> paramValues = step.getParamValues();
+    boolean isWdkSetOperation = paramValues.containsKey(BooleanQuery.OPERATOR_PARAM);
     if (isWdkSetOperation) {
-      return getDefaultValue(BooleanQuery.getOperator(spec.getQueryInstanceSpec(), Optional.empty()));
+      return getDefaultValue(paramValues.get(BooleanQuery.OPERATOR_PARAM));
     }
     return null;
-  }
-
-  @Override
-  public ValidationBundle validate(Question question, JSONObject value, ValidationLevel validationLevel) {
-    ValidationBundleBuilder validation = ValidationBundle.builder(validationLevel);
-    // TODO Validate!!
-    return validation.build();
   }
 }

@@ -1,13 +1,11 @@
 import { get } from 'lodash';
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 
 import {
   isTranscripFilterEnabled,
   requestTranscriptFilterUpdate
 } from '../../util/transcriptFilters';
-import {useWdkEffect} from 'wdk-client/Service/WdkService';
-import {alert} from 'wdk-client/Utils/Platform';
 
 // --------------
 // GeneRecordLink
@@ -26,7 +24,7 @@ function GeneRecordLink(props) {
 
 const mapStateToGeneRecordLinkProps = state => ({
   geneRecordClass: state.globalData.recordClasses
-    .find(recordClass => recordClass.fullName === 'GeneRecordClasses.GeneRecordClass')
+    .find(recordClass => recordClass.name === 'GeneRecordClasses.GeneRecordClass')
 });
 
 export const RecordLink = connect(mapStateToGeneRecordLinkProps)(GeneRecordLink);
@@ -73,13 +71,15 @@ function TranscriptViewFilter({
   )
 }
 
+// FIXME Need to access viewId from Controller...
+const viewId = 'strategy';
 const ConnectedTranscriptViewFilter = connect(
   (state, props) => ({
-    isEnabled: isTranscripFilterEnabled(state, { viewId: props.viewId }),
-    globalViewFilters: get(state, ['resultTableSummaryView', props.viewId, 'globalViewFilters'], {})
+    isEnabled: isTranscripFilterEnabled(state, { viewId }),
+    globalViewFilters: get(state, ['resultTableSummaryView', viewId, 'globalViewFilters'], {})
   }),
   (dispatch, props) => ({
-    requestTranscriptFilterUpdate: (...args) => dispatch(requestTranscriptFilterUpdate(props.viewId, ...args))
+    requestTranscriptFilterUpdate: (...args) => dispatch(requestTranscriptFilterUpdate(viewId, ...args))
   })
 )(TranscriptViewFilter);
 
@@ -88,44 +88,4 @@ export function ResultTable(props) {
     <ConnectedTranscriptViewFilter {...props}/>
     <props.DefaultComponent {...props}/>
   </React.Fragment>
-}
-
-export function ResultPanelHeader(props) {
-  return (
-    <OrthologCount {...props}/>
-  );
-}
-
-const ORTHOLOG_COLUMN_FILTER_NAME = 'gene_orthomcl_name';
-const ORTHOLOG_COLUMN_FILTER_TOOL = 'byValue';
-
-function OrthologCount(props) {
-  const { step, DefaultComponent } = props;
-  const [ uniqueOrthologValues, setUniqueOrthologValues ] = useState(null);
-  useWdkEffect(wdkService => {
-    wdkService.getStepColumnReport(
-      step.id,
-      ORTHOLOG_COLUMN_FILTER_NAME,
-      ORTHOLOG_COLUMN_FILTER_TOOL,
-      { maxValues: 0 }
-    ).then(
-      result => {
-        const { uniqueValues } = result;
-        setUniqueOrthologValues(uniqueValues);
-      },
-      error => {
-        alert('Oops... something went wrong', 'An error was encountered.');
-        wdkService.submitError(error);
-      }
-    );
-  }, [step]);
-
-  return uniqueOrthologValues == null ? null : (
-    <React.Fragment>
-      <DefaultComponent {...props}/>
-      <div style={{ order: 1, fontSize: '1.4em', marginLeft: '.5em' }}>
-        ({uniqueOrthologValues.toLocaleString()} ortholog groups)
-      </div>
-    </React.Fragment>
-  );
 }

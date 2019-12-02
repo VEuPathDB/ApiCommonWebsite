@@ -13,13 +13,11 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.gusdb.fgputil.runtime.GusHome;
-import org.gusdb.fgputil.validation.ValidationBundle;
-import org.gusdb.fgputil.validation.ValidationLevel;
-import org.gusdb.fgputil.validation.ValidationBundle.ValidationBundleBuilder;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.analysis.AbstractSimpleProcessAnalyzer;
+import org.gusdb.wdk.model.analysis.ValidationErrors;
 import org.gusdb.wdk.model.answer.AnswerValue;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -46,9 +44,9 @@ public class WordEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
       "Bonferroni adjusted p-value"
   );
 
-  public ValidationBundle validateFormParams(Map<String, String[]> formParams) throws WdkModelException {
+  public ValidationErrors validateFormParams(Map<String, String[]> formParams) throws WdkModelException {
 
-    ValidationBundleBuilder errors = ValidationBundle.builder(ValidationLevel.SEMANTIC);
+    ValidationErrors errors = new ValidationErrors();
 
     // validate pValueCutoff
     EnrichmentPluginUtil.validatePValue(formParams, errors);
@@ -56,13 +54,13 @@ public class WordEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     // validate organism
     EnrichmentPluginUtil.validateOrganism(formParams, getAnswerValue(), getWdkModel(), errors);
 
-    return errors.build();
+    return errors;
   }
 
   @Override
   protected String[] getCommand(AnswerValue answerValue) throws WdkModelException, WdkUserException {
 
-    WdkModel wdkModel = answerValue.getAnswerSpec().getQuestion().getWdkModel();
+    WdkModel wdkModel = answerValue.getQuestion().getWdkModel();
     Map<String,String[]> params = getFormParams();
 
     String idSql = EnrichmentPluginUtil.getOrgSpecificIdSql(answerValue, params);
@@ -73,6 +71,12 @@ public class WordEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     LOG.info(qualifiedExe + " " + resultFilePath.toString() + " " + idSql + " " +
         wdkModel.getProjectId() + " " + pValueCutoff);
     return new String[]{ qualifiedExe, resultFilePath.toString(), idSql, wdkModel.getProjectId(), pValueCutoff};
+  }
+
+  @Override
+  public JSONObject getFormViewModelJson() throws WdkModelException {
+    // this is now declared in the model xml
+    return null;
   }
 
   @Override

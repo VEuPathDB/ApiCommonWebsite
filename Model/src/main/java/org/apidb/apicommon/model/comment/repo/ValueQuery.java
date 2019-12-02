@@ -29,9 +29,8 @@ public abstract class ValueQuery<T> extends Query {
     return _value;
   }
 
-  private Void handle(ResultSet rs) throws SQLException {
+  private void handle(ResultSet rs) throws SQLException {
     _value = parseResults(rs);
-    return null;
   }
 
   protected abstract T parseResults(ResultSet rs) throws SQLException;

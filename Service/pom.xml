@@ -22,11 +22,6 @@
 
     <dependency>
       <groupId>org.gusdb</groupId>
-      <artifactId>fgputil-server</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.gusdb</groupId>
       <artifactId>wdk-model</artifactId>
     </dependency>
 
@@ -69,11 +64,6 @@
     <dependency>
       <groupId>org.glassfish.jersey.media</groupId>
       <artifactId>jersey-media-multipart</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.glassfish.jersey.core</groupId>
-      <artifactId>jersey-server</artifactId>
     </dependency>
 
     <dependency>

@@ -1,15 +1,14 @@
 package org.apidb.apicommon.model.filter;
 
+
 import org.apache.log4j.Logger;
-import org.gusdb.fgputil.validation.ValidationBundle;
-import org.gusdb.fgputil.validation.ValidationBundle.ValidationBundleBuilder;
-import org.gusdb.fgputil.validation.ValidationLevel;
+
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.answer.AnswerValue;
-import org.gusdb.wdk.model.answer.spec.SimpleAnswerSpec;
+import org.gusdb.wdk.model.filter.FilterSummary;
 import org.gusdb.wdk.model.filter.StepFilter;
-import org.gusdb.wdk.model.question.Question;
+import org.gusdb.wdk.model.user.Step;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -40,10 +39,10 @@ public class GenesByPathwayFilter extends StepFilter {
 
   @Override
   public String getSql(AnswerValue answer, String idSql, JSONObject jsValue)
-      throws WdkModelException {
-    try {
-      Config config = parseConfig(jsValue);
-      String rv = FILTER_SQL
+      throws WdkModelException, WdkUserException {
+    Config config = parseConfig(jsValue);
+
+    String rv = FILTER_SQL
         .replace("@PROJECT_ID@", answer.getUser().getWdkModel().getProjectId())
         .replace("$$id_sql$$", idSql)
         .replace("$$pathway_source$$", config.getPathwaySource())
@@ -51,13 +50,8 @@ public class GenesByPathwayFilter extends StepFilter {
         .replace("$$exact_match_only$$", config.getExactMatchOnly())
         .replace("$$pathway_source_id$$", config.getPathwayId());
 
-      logger.debug("SQL=" + rv);
-      return rv;
-    }
-    catch (WdkUserException e) {
-      // should already be validated by validate method below so should never get here
-      throw new WdkModelException(e);
-    }
+    logger.debug("SQL=" + rv);
+    return rv;
   }
 
   private Config parseConfig(JSONObject jsValue) throws WdkUserException {
@@ -80,20 +74,20 @@ public class GenesByPathwayFilter extends StepFilter {
 
   @Override
   public String getDisplayValue(AnswerValue answer, JSONObject jsValue)
-      throws WdkModelException {
+      throws WdkModelException, WdkUserException {
     // this filter should never be displayed
     return null;
   }
 
   @Override
-  public JSONObject getSummaryJson(AnswerValue answer, String idSql)
-      throws WdkModelException {
+  public FilterSummary getSummary(AnswerValue answer, String idSql)
+      throws WdkModelException, WdkUserException {
     // the inputs to this filter are discrete but not small; not feasible to provide summary
     return null;
   }
 
   @Override
-  public boolean defaultValueEquals(SimpleAnswerSpec spec, JSONObject value) throws WdkModelException {
+  public boolean defaultValueEquals(Step step, JSONObject value) throws WdkModelException {
     // there is no default value for this filter
     return false;
   }
@@ -117,18 +111,6 @@ public class GenesByPathwayFilter extends StepFilter {
     public String getExcludeIncomplateEc() { return _excludeIncompleteEc; }
     public String getExactMatchOnly() { return _exactMatchOnly; }
 
-  }
-
-  @Override
-  public ValidationBundle validate(Question question, JSONObject value, ValidationLevel validationLevel) {
-    ValidationBundleBuilder validation = ValidationBundle.builder(validationLevel);
-    try {
-      parseConfig(value);
-    }
-    catch (WdkUserException e) {
-      validation.addError(e.toString());
-    }
-    return validation.build();
   }
 
 }

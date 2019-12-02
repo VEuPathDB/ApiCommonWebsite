@@ -20,14 +20,13 @@ import org.gusdb.fgputil.FormatUtil;
 import org.gusdb.fgputil.db.runner.BasicResultSetHandler;
 import org.gusdb.fgputil.db.runner.SQLRunner;
 import org.gusdb.fgputil.db.runner.SingleLongResultSetHandler;
+import org.gusdb.fgputil.db.runner.SingleLongResultSetHandler.Status;
 import org.gusdb.fgputil.runtime.GusHome;
-import org.gusdb.fgputil.validation.ValidationBundle;
-import org.gusdb.fgputil.validation.ValidationBundle.ValidationBundleBuilder;
-import org.gusdb.fgputil.validation.ValidationLevel;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.analysis.AbstractSimpleProcessAnalyzer;
+import org.gusdb.wdk.model.analysis.ValidationErrors;
 import org.gusdb.wdk.model.answer.AnswerValue;
 import org.gusdb.wdk.model.user.analysis.IllegalAnswerValueException;
 import org.json.JSONArray;
@@ -65,9 +64,9 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
       "Bonferroni adjusted p-value"
   );
 
-  public ValidationBundle validateFormParams(Map<String, String[]> formParams) throws WdkModelException {
+  public ValidationErrors validateFormParams(Map<String, String[]> formParams) throws WdkModelException {
 
-    ValidationBundleBuilder errors = ValidationBundle.builder(ValidationLevel.SEMANTIC);
+    ValidationErrors errors = new ValidationErrors();
 
     // validate pValueCutoff
     EnrichmentPluginUtil.validatePValue(formParams, errors);
@@ -89,17 +88,17 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
     //validate GOSubset
     String goSubset = EnrichmentPluginUtil.getArrayParamValueAsString(
-        GO_SUBSET_PARAM_KEY, formParams, errors);
+    	GO_SUBSET_PARAM_KEY, formParams, errors);
 
     // only validate further if the above pass
-    if (!errors.hasErrors()) {
+    if (errors.isEmpty()) {
         validateFilteredGoTerms(/*sourcesStr,*/  evidCodesStr, ontology, goSubset, errors);
     }
 
-    return errors.build();
+    return errors;
   }
 
-  private void validateFilteredGoTerms(/*String sourcesStr,*/ String evidCodesStr, String ontology, String goSubset, ValidationBundleBuilder errors)
+    private void validateFilteredGoTerms(/*String sourcesStr,*/ String evidCodesStr, String ontology, String goSubset, ValidationErrors errors)
       throws WdkModelException {
 
     String idSql =  EnrichmentPluginUtil.getOrgSpecificIdSql(getAnswerValue(), getFormParams());
@@ -110,22 +109,27 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
         "  where gts.gene_source_id = r.source_id" + NL +
         "    and gts.ontology = '" + ontology + "'" + NL +
         "    AND gts.evidence_category in (" + evidCodesStr + ")" + NL +
-        "  and ("+ goSubset +" = 'No' or gts.is_go_slim = '1')" + NL ;
+	" and ("+ goSubset +" = 'No' or gts.is_go_slim = '1')" + NL ;
+
 
     DataSource ds = getWdkModel().getAppDb().getDataSource();
-    long result = new SQLRunner(ds, sql, "count-filtered-go-terms")
-        .executeQuery(new SingleLongResultSetHandler())
-        .orElseThrow(() -> new WdkModelException("No result found in count query: " + sql));
+    SingleLongResultSetHandler result =
+        new SQLRunner(ds, sql, "count-filtered-go-terms")
+          .executeQuery(new SingleLongResultSetHandler());
 
-    if (result < 1) {
-      errors.addError("Your result has no genes with GO Terms that satisfy the parameter choices you have made.  Please try adjusting the parameters.");
+    if (!Status.NON_NULL_VALUE.equals(result.getStatus())) {
+      throw new WdkModelException("No result found in count query: " + sql);
+    }
+
+    if (result.getRetrievedValue() < 1) {
+      errors.addMessage("Your result has no genes with GO Terms that satisfy the parameter choices you have made.  Please try adjusting the parameters.");
     }
   }
 
   @Override
   protected String[] getCommand(AnswerValue answerValue) throws WdkModelException, WdkUserException {
 
-    WdkModel wdkModel = answerValue.getAnswerSpec().getQuestion().getWdkModel();
+    WdkModel wdkModel = answerValue.getQuestion().getWdkModel();
     Map<String,String[]> params = getFormParams();
 
     String idSql = EnrichmentPluginUtil.getOrgSpecificIdSql(answerValue, params);
@@ -182,6 +186,12 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     }
   }
 
+  @Override
+  public JSONObject getFormViewModelJson() throws WdkModelException {
+    // This is now declared as parameters in the model xml
+    return null;
+  }
+
   private ResultViewModel createResultViewModel() throws WdkModelException {
     Path inputPath = Paths.get(getStorageDirectory().toString(), HIDDEN_TABBED_RESULT_FILE_PATH);
     //    Path inputPath = Paths.get(getStorageDirectory().toString(), HIDDEN_TABBED_RESULT_FILE_PATH);
@@ -195,7 +205,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
         String line = buffer.readLine();
         String[] columns = line.split(TAB);
         String revigo = columns[0] + " " + columns[8] + "\n";
-        String val = EnrichmentPluginUtil.formatSearchLinkHtml(columns[4], columns[3]);
+        String val = "<a href=\"/a/processQuestion.do?questionFullName=GeneQuestions.GeneByLocusTag&questionSubmit=Get+Answer&ds_gene_ids_data=" + columns[4] + "\">" + columns[3] + "</a>";
         results.add(new ResultRow(columns[0], columns[1], columns[2], val, columns[5], columns[6], columns[7], columns[8], columns[9], columns[10]));
         revigoInputLists.append(revigo);
      }

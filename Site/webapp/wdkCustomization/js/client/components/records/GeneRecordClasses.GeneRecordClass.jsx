@@ -4,11 +4,12 @@ import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 
 import { RecordActions } from 'wdk-client/Actions';
-import * as Category from 'wdk-client/Utils/CategoryUtils';
-import { CollapsibleSection, CategoriesCheckboxTree, RecordTable as WdkRecordTable } from 'wdk-client/Components';
-import { renderAttributeValue, pure } from 'wdk-client/Utils/ComponentUtils';
-import {Seq} from 'wdk-client/Utils/IterableUtils';
-import {preorderSeq} from 'wdk-client/Utils/TreeUtils';
+import * as Category from 'wdk-client/CategoryUtils';
+import { CategoriesCheckboxTree, RecordTable as WdkRecordTable } from 'wdk-client/Components';
+import {CollapsibleSection} from 'wdk-client/Components';
+import { renderAttributeValue, pure } from 'wdk-client/ComponentUtils';
+import {Seq} from 'wdk-client/IterableUtils';
+import {preorderSeq} from 'wdk-client/TreeUtils';
 
 import DatasetGraph from 'ebrc-client/components/DatasetGraph';
 import ExternalResource from 'ebrc-client/components/ExternalResource';
@@ -896,7 +897,7 @@ class OrthologsForm extends SortKeyTable {
               <input type="radio" name="sequence_Type" value="protein" defaultChecked={true} /> Protein
               <input type="radio" name="sequence_Type" value="CDS" /> CDS (spliced)
               <input type="radio" name="sequence_Type" value="genomic" /> Genomic
-              <span className="genomic">
+              <span class="genomic">
                 <input type="number" id="oneOffset" name="oneOffset" placeholder="0" size="4" pattern='[0-9]+' min="0" max="2500"/> nt upstream (max 2500)
                 <input type="number" id="twoOffset" name="twoOffset" placeholder="0" size="4" pattern='[0-9]+' min="0" max="2500"/> nt downstream (max 2500)
               </span>

@@ -1,23 +1,13 @@
 package org.apidb.apicommon.model.filter;
 
-import static org.gusdb.fgputil.functional.Functions.contains;
-
 import org.apache.log4j.Logger;
-import org.gusdb.fgputil.Named;
-import org.gusdb.fgputil.validation.ValidObjectFactory.RunnableObj;
-import org.gusdb.fgputil.validation.ValidationBundle;
-import org.gusdb.fgputil.validation.ValidationLevel;
 import org.gusdb.wdk.model.WdkModelException;
+import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.answer.AnswerValue;
-import org.gusdb.wdk.model.answer.factory.AnswerValueFactory;
-import org.gusdb.wdk.model.answer.spec.AnswerSpec;
-import org.gusdb.wdk.model.answer.spec.AnswerSpecBuilder;
-import org.gusdb.wdk.model.answer.spec.FilterOption;
-import org.gusdb.wdk.model.answer.spec.FilterOptionList;
-import org.gusdb.wdk.model.answer.spec.FilterOptionList.FilterOptionListBuilder;
-import org.gusdb.wdk.model.answer.spec.SimpleAnswerSpec;
+import org.gusdb.wdk.model.filter.FilterOptionList;
+import org.gusdb.wdk.model.filter.FilterSummary;
 import org.gusdb.wdk.model.filter.StepFilter;
-import org.gusdb.wdk.model.question.Question;
+import org.gusdb.wdk.model.user.Step;
 import org.gusdb.wdk.model.user.User;
 import org.json.JSONObject;
 
@@ -92,17 +82,20 @@ public class RepresentativeTranscriptFilter extends StepFilter {
   }
 
   @Override
-  public String getDisplayValue(AnswerValue answer, JSONObject jsValue) throws WdkModelException {
+  public String getDisplayValue(AnswerValue answer, JSONObject jsValue) throws WdkModelException,
+      WdkUserException {
     return "Shows only a representative transcript for each gene.";
   }
 
   @Override
-  public JSONObject getSummaryJson(AnswerValue answer, String idSql) throws WdkModelException {
+  public FilterSummary getSummary(AnswerValue answer, String idSql) throws WdkModelException,
+      WdkUserException {
     throw new UnsupportedOperationException("This filter does not provide a FilterSummary");
   }
 
   @Override
-  public String getSql(AnswerValue answer, String idSql, JSONObject jsValue) throws WdkModelException {
+  public String getSql(AnswerValue answer, String idSql, JSONObject jsValue) throws WdkModelException,
+      WdkUserException {
     //LOG.debug("Applying Representative Transcript Filter to SQL: " + idSql);
     //LOG.debug("RESULTING IN: " + FILTER_SQL.replace(ORIG_SQL_PARAM, idSql) );
 
@@ -110,7 +103,7 @@ public class RepresentativeTranscriptFilter extends StepFilter {
   }
 
   @Override
-  public boolean defaultValueEquals(SimpleAnswerSpec answerSpec, JSONObject value) throws WdkModelException {
+  public boolean defaultValueEquals(Step step, JSONObject value) throws WdkModelException {
     return false;
   }
 
@@ -120,62 +113,56 @@ public class RepresentativeTranscriptFilter extends StepFilter {
     return (prefValue == null ? REPRESENTATIVE_TRANSCRIPT_FILTER_ON_BY_DEFAULT : Boolean.valueOf(prefValue));
   }
 
-  public static RunnableObj<AnswerSpec> applyToStepFromUserPreference(RunnableObj<AnswerSpec> answerSpec, User user) throws WdkModelException {
+  public static Step applyToStepFromUserPreference(Step step, User user) throws WdkModelException {
     // read from step if transcript-only filter is turned on...
-    boolean filterOnInStep = contains(answerSpec.get().getViewFilterOptions(), option ->
-        option.getKey().equals(RepresentativeTranscriptFilter.FILTER_NAME));
+    boolean filterOnInStep = (step.getViewFilterOptions()
+        .getFilterOption(RepresentativeTranscriptFilter.FILTER_NAME) != null);
 
     boolean shouldEngageFilter = shouldEngageFilter(user);
 
     // use passed step value if matches preference; otherwise toggle
     if (filterOnInStep == shouldEngageFilter) {
-      return answerSpec;
+      return step;
     }
 
-    AnswerSpecBuilder newSpec = AnswerSpec.builder(answerSpec.get());
+    Step stepCopy = new Step(step);
     if (shouldEngageFilter) {
       // add view filter
-      newSpec.getViewFilterOptions().addFilterOption(FilterOption.builder()
-          .setFilterName(RepresentativeTranscriptFilter.FILTER_NAME));
+      stepCopy.addViewFilterOption(RepresentativeTranscriptFilter.FILTER_NAME, new JSONObject());
     }
     else {
       // remove view filter (already present)
-      newSpec.getViewFilterOptions().removeAll(option ->
-          option.getFilterName().equals(RepresentativeTranscriptFilter.FILTER_NAME));
+      stepCopy.removeViewFilterOption(RepresentativeTranscriptFilter.FILTER_NAME);
     }
 
-    return newSpec.buildRunnable(user, answerSpec.get().getStepContainer());
+    return stepCopy;
   }
 
-  @Override
-  public ValidationBundle validate(Question question, JSONObject value, ValidationLevel validationLevel) {
-    // No validation needed since this filter has no configuration. Its presence is all that is required.
-    return ValidationBundle.builder(validationLevel).build();
-  }
-
-  public static AnswerValue getReplacementAnswerValue(AnswerValue answerValue, Boolean shouldEngageFilter) throws WdkModelException {
-    FilterOptionList viewFilters = answerValue.getAnswerSpec().getViewFilterOptions();
+  public static AnswerValue updateAnswerValue(AnswerValue answerValue, Boolean shouldEngageFilter) throws WdkModelException {
+    FilterOptionList viewFilters = answerValue.getViewFilterOptions();
     boolean filterOnInAnswer =
-        viewFilters.getFirst(Named.nameMatches(RepresentativeTranscriptFilter.FILTER_NAME)).isPresent();
+        viewFilters.getFilterOption(RepresentativeTranscriptFilter.FILTER_NAME) != null;
 
     if (filterOnInAnswer == shouldEngageFilter) {
       return answerValue;
     }
 
     // Create a copy of answerValue and modify view filters appropriately
-    AnswerSpecBuilder newAnswerSpec = AnswerSpec.builder(answerValue.getAnswerSpec());
-    FilterOptionListBuilder newViewFilters = newAnswerSpec.getViewFilterOptions();
+    AnswerValue newAnswerValue = new AnswerValue(answerValue);
+    FilterOptionList newViewFilters = new FilterOptionList(viewFilters);
 
     if (shouldEngageFilter) {
       // add view filter
-      newViewFilters.addFilterOption(FilterOption.builder().setFilterName(RepresentativeTranscriptFilter.FILTER_NAME));
+      newViewFilters.addFilterOption(RepresentativeTranscriptFilter.FILTER_NAME, new JSONObject());
     }
     else {
       // remove view filter (already present)
-      newViewFilters.removeAll(filter -> filter.getFilterName().equals(RepresentativeTranscriptFilter.FILTER_NAME));
+      newViewFilters.removeFilterOption(RepresentativeTranscriptFilter.FILTER_NAME);
     }
 
-    return AnswerValueFactory.makeAnswer(answerValue, newAnswerSpec.buildRunnable(
-        answerValue.getUser(), answerValue.getAnswerSpec().getStepContainer()));
+    newAnswerValue.setViewFilterOptions(newViewFilters);
+
+    return newAnswerValue;
   }
+
 }

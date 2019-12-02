@@ -4,7 +4,7 @@ import { ResultTableSummaryViewActions } from "wdk-client/Actions";
 const REPRESENTATIVE_TRANSCRIPT_FILTER_NAME =
   "representativeTranscriptOnly";
 const TRANSCRIPT_RECORD_CLASS_NAME =
-  "transcript";
+  "TranscriptRecordClasses.TranscriptRecordClass";
 
 const isFilter = filter =>
   filter.name === REPRESENTATIVE_TRANSCRIPT_FILTER_NAME;

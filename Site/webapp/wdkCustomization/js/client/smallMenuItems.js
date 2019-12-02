@@ -3,19 +3,17 @@
  * @return {Array<Entry>}
  */
 export default function smallMenuEntries({ siteConfig: { projectId } }, defaultEntries) {
-  const aboutRoute = `/community/${projectId}/about.html`;
-  const aboutAllRoute = '/community/embedded/help/general/index.html';
   return [
     {
       text: `About ${projectId}`,
       children: [
         {
           text: `What is ${projectId}?`,
-          route: aboutRoute
+          webAppUrl: '/wdkCustomization/jsp/questions/XmlQuestions.About.jsp'
         },
         {
           text: 'Publications on EuPathDB sites',
-          route: '/community/veupathPubs.html'
+          webAppUrl: '/wdkCustomization/jsp/questions/XmlQuestions.EuPathDBPubs.jsp'
         },
         {
           liClassName: 'eupathdb-SmallMenuDivider',
@@ -23,11 +21,11 @@ export default function smallMenuEntries({ siteConfig: { projectId } }, defaultE
         },
         {
           text: 'Organisms',
-          route: '/search/organism/GenomeDataTypes/results'
+          webAppUrl: '/processQuestion.do?questionFullName=OrganismQuestions.GenomeDataTypes'
         },
         {
           text: `${projectId} Gene Metrics`,
-          route: '/search/organism/GeneMetrics/results'
+          webAppUrl: '/processQuestion.do?questionFullName=OrganismQuestions.GeneMetrics'
         },
         {
           liClassName: 'eupathdb-SmallMenuDivider',
@@ -47,11 +45,11 @@ export default function smallMenuEntries({ siteConfig: { projectId } }, defaultE
         },
         {
           text: 'How to cite us',
-          route: `${aboutRoute}#citing`
+          webAppUrl: '/wdkCustomization/jsp/questions/XmlQuestions.About.jsp#citing'
         },
         {
           text: 'Citing Data Providers',
-          route: `${aboutRoute}#citingproviders`
+          webAppUrl: '/wdkCustomization/jsp/questions/XmlQuestions.About.jsp#citingproviders'
         },
         {
           text: 'Publications that Use our Resources',
@@ -59,7 +57,7 @@ export default function smallMenuEntries({ siteConfig: { projectId } }, defaultE
         },
         {
           text: 'Data Access Policy',
-          route: `${aboutRoute}#use`
+          webAppUrl: '/wdkCustomization/jsp/questions/XmlQuestions.About.jsp#use'
         },
         {
           text: 'Website Privacy Policy',
@@ -71,19 +69,19 @@ export default function smallMenuEntries({ siteConfig: { projectId } }, defaultE
         },
         {
           text: 'Scientific Working Group',
-          route: `${aboutAllRoute}#swg`
+          webAppUrl: '/wdkCustomization/jsp/questions/XmlQuestions.AboutAll.jsp#swg'
         },
         {
           text: 'Scientific Advisory Team',
-          route: `${aboutRoute}#advisors`
+          webAppUrl: '/wdkCustomization/jsp/questions/XmlQuestions.About.jsp#advisors'
         },
         {
           text: 'Acknowledgements',
-          route: `${aboutAllRoute}#acks`
+          webAppUrl: '/wdkCustomization/jsp/questions/XmlQuestions.AboutAll.jsp#acks'
         },
         {
           text: 'Funding',
-          route: `${aboutRoute}#funding`
+          webAppUrl: '/wdkCustomization/jsp/questions/XmlQuestions.About.jsp#funding'
         },
         {
           text: 'EuPathDB Brochure',
@@ -103,7 +101,7 @@ export default function smallMenuEntries({ siteConfig: { projectId } }, defaultE
         },
         {
           text: 'EuPathDB Infrastructure',
-          route: '/community/infrastructure.html'
+          webAppUrl: '/wdkCustomization/jsp/questions/XmlQuestions.Infrastructure.jsp'
         },
         {
           text: 'Website Usage Statistics',
@@ -125,7 +123,7 @@ export default function smallMenuEntries({ siteConfig: { projectId } }, defaultE
         },
         {
           text: 'Web Tutorials',
-          route: '/community/tutorials.html'
+          webAppUrl: '/wdkCustomization/jsp/questions/XmlQuestions.Tutorials.jsp'
         },
         {
           text: 'EuPathDB Workshop',
@@ -141,11 +139,11 @@ export default function smallMenuEntries({ siteConfig: { projectId } }, defaultE
         },
         {
           text: `Our Glossary`,
-          route: '/community/glossary.html'
+          webAppUrl: '/wdkCustomization/jsp/questions/XmlQuestions.Glossary.jsp'
         },
         {
           text: 'Contact Us',
-          route: '/contact-us',
+          url: '/a/app/contact-us',
           target: '_blank'
         }
       ]

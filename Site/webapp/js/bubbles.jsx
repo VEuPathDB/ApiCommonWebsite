@@ -1,41 +1,57 @@
 /* global ebrc, wdk */
 import {negate} from 'lodash';
-import React, { useState } from 'react';
-import { connect } from 'react-redux';
-import {getTargetType, getDisplayName, getRecordClassUrlSegment, getTooltipContent} from 'wdk-client/Utils/CategoryUtils';
-import {CategoriesCheckboxTree, Tooltip, Icon, Link} from 'wdk-client/Components';
+import {render} from 'react-dom';
+import {getTargetType, getDisplayName, getRefName, getTooltipContent} from 'wdk-client/CategoryUtils';
+import {CategoriesCheckboxTree, Tooltip, Icon} from 'wdk-client/Components';
+
+wdk.namespace('apidb.bubble', ns => {
+  const { store } = ebrc.context;
+
+  ns.initialize = ($el, attrs) => {
+    const unsubscribe = store.subscribe(() => {
+      const { searchTree } = store.getState().globalData;
+      if (searchTree) {
+        unsubscribe();
+        const tree = attrs.isTranscript
+          ? searchTree.children.find(isTranscriptNode)
+          : {
+            ...searchTree,
+            children: searchTree.children.filter(negate(isTranscriptNode))
+          };
+        renderBubble({ tree }, $el[0]);
+      }
+    });
+  };
+});
 
 function isTranscriptNode(node) {
   return node.properties.label[0] === 'TranscriptRecordClasses.TranscriptRecordClass';
 }
 
-function Bubble({ tree }) {
-  const [ expandedBranches, setExpandedBranches ] = useState(undefined);
-  const [ searchTerm, setSearchTerm ] = useState(undefined);
-
-  if (tree == null) return null;
-  
-  return (
+function renderBubble(props, el) {
+  render((
     <CategoriesCheckboxTree
-      tree={tree}
-      expandedBranches={expandedBranches}
-      searchTerm={searchTerm}
+      {...props}
       isSelectable={false}
       searchBoxPlaceholder="Find a search..."
       leafType="search"
       renderNode={renderBubbleNode}
       renderNoResults={renderNoResults}
-      onUiChange={setExpandedBranches}
-      onSearchTermChange={setSearchTerm}
+      onUiChange={expandedBranches => renderBubble(merge(props, {expandedBranches}), el)}
+      onSearchTermChange={searchTerm => renderBubble(merge(props, {searchTerm}), el)}
     />
-  );
+  ), el);
+}
+
+function merge(source, props) {
+  return Object.assign({}, source, props);
 }
 
 function renderBubbleNode(node) {
   let displayElement = getTargetType(node) === 'search'
-    ? <Link to={`/search/${getRecordClassUrlSegment(node)}/${node.wdkReference.urlSegment}`}>
+    ? <a href={'showQuestion.do?questionFullName=' + getRefName(node)}>
         {getDisplayName(node)}
-      </Link>
+      </a>
     : <span>{getDisplayName(node)}</span>
   return (
     <Tooltip content={getTooltipContent(node)}>
@@ -64,20 +80,3 @@ function renderNoResults(searchTerm) {
     </div>
   )
 }
-
-const SearchBubble = connect(
-  (state, props) => {
-    const { searchTree } = state.globalData;
-    const tree = searchTree == null ? undefined 
-    : props.isTranscript ? searchTree.children.find(isTranscriptNode)
-    : {
-      ...searchTree,
-      children: searchTree.children.filter(negate(isTranscriptNode))
-    };
-    return { tree };
-  }
-)(Bubble);
-
-wdk.namespace('apidb.bubble', ns => {
-  ns.resolver = name => name === 'SearchBubble' ? SearchBubble : undefined;
-});

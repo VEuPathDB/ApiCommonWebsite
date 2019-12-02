@@ -1,7 +1,13 @@
 <%@ taglib prefix="imp" tagdir="/WEB-INF/tags/imp" %>
 
+<c:set var="wdkModel" value="${applicationScope.wdkModel}"/>
+
 <imp:pageFrame title="${wdkModel.displayName} : Infrastructure"
-               banner="Infrastructure">
+                 banner="Infrastructure"
+                 parentDivision="${wdkModel.displayName}"
+                 parentUrl="/home.jsp"
+                 divisionName="Infrastructure"
+                 division="Infrastructure">
 
 <div id="includedContent"></div>
 

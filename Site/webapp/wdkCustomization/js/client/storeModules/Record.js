@@ -1,10 +1,9 @@
 import { empty, of, merge } from 'rxjs';
 import { filter, map, mergeMap, switchMap } from 'rxjs/operators';
-import * as RecordStoreModule from 'wdk-client/StoreModules/RecordStoreModule';
+import { record as RecordStoreModule } from 'wdk-client/StoreModules';
 import { QuestionActions, RecordActions } from 'wdk-client/Actions';
 import { get } from 'lodash';
-import * as tree from 'wdk-client/Utils/TreeUtils';
-import * as cat from 'wdk-client/Utils/CategoryUtils';
+import { TreeUtils as tree, CategoryUtils as cat } from 'wdk-client';
 import * as persistence from 'ebrc-client/util/persistence';
 import { TABLE_STATE_UPDATED, PATHWAY_DYN_COLS_LOADED } from '../actioncreators/RecordViewActionCreators';
 
@@ -269,7 +268,7 @@ function observeSnpsAlignment(action$) {
           : empty()),
     map(organismSinglePick => {
       return QuestionActions.updateActiveQuestion({
-        searchName: 'SnpAlignmentForm',
+        questionName: 'SnpAlignmentForm',
         paramValues: {
           organismSinglePick,
           ngsSnp_strain_meta: JSON.stringify({ filters: [] })
