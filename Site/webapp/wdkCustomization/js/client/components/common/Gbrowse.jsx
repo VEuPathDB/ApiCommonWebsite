@@ -1,6 +1,6 @@
 import {once, debounce} from 'lodash';
 import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 import { httpGet } from 'ebrc-client/util/http';
 import $ from 'jquery';
 import { Loading } from 'wdk-client/Components';
@@ -167,9 +167,11 @@ export function GbrowseContext(props) {
     }
     if (attribute.name == 'BlatAlignmentsGbrowseUrl'){ 
         jbrowseUrlMinimal = record.attributes.blatJbrowseUrl;
+        jbrowseUrlFull = record.attributes.blatJbrowseFullUrl;
     }
     if (attribute.name == 'SnpsGbrowseUrl'){ 
       jbrowseUrlMinimal = record.attributes.snpsJbrowseUrl;
+      jbrowseUrlFull = record.attributes.snpsJbrowseFullUrl;
     }
     return (
         <div>

@@ -2,19 +2,20 @@ package org.apidb.apicommon.service;
 
 import java.util.Set;
 
+import org.apidb.apicommon.service.services.ApiBasketService;
 import org.apidb.apicommon.service.services.ApiSessionService;
+import org.apidb.apicommon.service.services.ApiStepService;
 import org.apidb.apicommon.service.services.BigWigTrackService;
-import org.apidb.apicommon.service.services.CustomBasketService;
 import org.apidb.apicommon.service.services.JBrowseService;
-import org.apidb.apicommon.service.services.JBrowseUserDatasetsService;
 import org.apidb.apicommon.service.services.TranscriptToggleService;
 import org.apidb.apicommon.service.services.UserCommentsService;
+import org.apidb.apicommon.service.services.JBrowseUserDatasetsService;
 import org.apidb.apicommon.service.services.comments.AttachmentsService;
 import org.eupathdb.common.service.EuPathServiceApplication;
 import org.gusdb.fgputil.SetBuilder;
 import org.gusdb.wdk.service.service.SessionService;
 import org.gusdb.wdk.service.service.user.BasketService;
-
+import org.gusdb.wdk.service.service.user.StepService;
 public class ApiWebServiceApplication extends EuPathServiceApplication {
 
   @Override
@@ -26,7 +27,8 @@ public class ApiWebServiceApplication extends EuPathServiceApplication {
 
       // replace overridden services with ApiCommon versions
       .replace(SessionService.class, ApiSessionService.class)
-      .replace(BasketService.class, CustomBasketService.class)
+      .replace(BasketService.class, ApiBasketService.class)
+      .replace(StepService.class, ApiStepService.class)
 
       // add ApiCommon-specific services
       .add(AttachmentsService.class)

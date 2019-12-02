@@ -1,7 +1,5 @@
 package org.apidb.apicommon.model.migrate;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +12,6 @@ import org.gusdb.fgputil.db.pool.DatabaseInstance;
 import org.gusdb.fgputil.db.pool.SimpleDbConfig;
 import org.gusdb.fgputil.db.runner.BasicArgumentBatch;
 import org.gusdb.fgputil.db.runner.SQLRunner;
-import org.gusdb.fgputil.db.runner.SQLRunner.ResultSetHandler;
 
 public class B19_To_B20_Migration {
 
@@ -75,43 +72,41 @@ public class B19_To_B20_Migration {
 
   private static void migrateGBrowseIds(DataSource ds) {
 
-    final List<UserMapping> users = new ArrayList<>();
     final BasicArgumentBatch updateParams = new BasicArgumentBatch();
     final BasicArgumentBatch userIdsToRemove = new BasicArgumentBatch();
     final BasicArgumentBatch sessionIdsToRemove = new BasicArgumentBatch();
 
     // get current list of usernames from GBrowse sessions table
-    new SQLRunner(ds, SELECT_GB_USERNAMES_SQL, "select-b19-gbrowse-usernames").executeQuery(
-        new ResultSetHandler() {
-          @Override
-          public void handleResult(ResultSet rs) throws SQLException {
-            while (rs.next())
-              users.add(new UserMapping(rs.getInt(1), rs.getString(2), rs.getString(3)));
+
+    List<UserMapping> users = new SQLRunner(ds, SELECT_GB_USERNAMES_SQL, "select-b19-gbrowse-usernames")
+        .executeQuery(rs -> {
+          List<UserMapping> userList = new ArrayList<>();
+          while (rs.next()) {
+            userList.add(new UserMapping(rs.getInt(1), rs.getString(2), rs.getString(3)));
           }
+          return userList;
         });
 
     // create new gbrowse id by fetching uid from email and add to update params; no, this is not very
     // efficient
     SQLRunner querier = new SQLRunner(ds, GET_WDK_UID_BY_EMAIL_SQL, "select-b19-wdk-id-to-email");
-    for (final UserMapping user : users) {
-      final String username = user.username;
-      final String email = username.substring(0, username.lastIndexOf("-"));
+    for (UserMapping user : users) {
+      String username = user.username;
+      String email = username.substring(0, username.lastIndexOf("-"));
       if (FormatUtil.isInteger(email))
         continue; // already been converted
-      querier.executeQuery(new String[] { email }, new ResultSetHandler() {
-        @Override
-        public void handleResult(ResultSet rs) throws SQLException {
-          if (rs.next()) {
-            updateParams.add(
-                new Object[] { username.replace(email, String.valueOf(rs.getInt(1))), username });
-          }
-          else {
-            // this user is out of date; remove user, session, and any uploads
-            LOG.warn("Unable to convert GBrowse user: " + user);
-            userIdsToRemove.add(new Object[] { user.userid });
-            sessionIdsToRemove.add(new Object[] { user.sessionid });
-          }
+      querier.executeQuery(new String[] { email }, rs -> {
+        if (rs.next()) {
+          updateParams.add(
+              new Object[] { username.replace(email, String.valueOf(rs.getInt(1))), username });
         }
+        else {
+          // this user is out of date; remove user, session, and any uploads
+          LOG.warn("Unable to convert GBrowse user: " + user);
+          userIdsToRemove.add(new Object[] { user.userid });
+          sessionIdsToRemove.add(new Object[] { user.sessionid });
+        }
+        return null; // nothing to return
       });
     }
 
