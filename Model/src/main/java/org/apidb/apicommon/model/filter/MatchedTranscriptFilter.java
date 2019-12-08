@@ -81,20 +81,9 @@ public class MatchedTranscriptFilter extends StepFilter {
     return sql;
   }
 
-  /**
-   * Start CWL 28JUN2016
-   * Commented out because actual display name is an element in the transcriptFilters.xml entry for this filter.
-   *
-  @Override
-  public String getDisplay() {
-    return "dont care"; // custom view will take care of this
-  }
-  * End CWL
-  */
-
   @Override
   public String getDisplayValue(AnswerValue answer, JSONObject jsValue) throws WdkModelException {
-    return "dont care";
+    return "don't care";
   }
 
   /**
