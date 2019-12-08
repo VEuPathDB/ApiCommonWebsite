@@ -34,6 +34,10 @@ body.vpdb-Body {
         padding: 10px 20px;
         box-shadow: 0 2px 4px #00000066;
 
+        @media screen and (max-width: 767px) {
+          height: auto;
+        }
+
         .ebrc-HeaderBranding {
           font-size: 25px;
           color: white;
@@ -146,21 +150,23 @@ body.vpdb-Body {
       }
     }
 
-    &.VEuPathDB {
+    &.VEuPathDB, &.EuPathDB {
       .vpdb-Header {
-        background-color: slategray;
+        background-image: url('~site/images/VEuPathDB/veupathdb-banner.jpg');
+        background-size: cover;
 
         .ebrc-HeaderBranding {
           position: relative;
-          bottom: 10px;
-          height: 72px;
-          content: url('~site/images/VEuPathDB/title_s.png');
+          bottom: 20px;
+          height: calc(72px * 1.2);
+          content: url('~site/images/VEuPathDB/veupath-logo-long.png');
         }
 
         &__collapsed {
           .ebrc-HeaderBranding {
             bottom: 0px;
-            height: 48px;
+            height: calc(48px * 1.15);
+            content: url('~site/images/VEuPathDB/veupath-logo-no-tag.png');
           }
         }
       }
