@@ -2,7 +2,7 @@ import { empty, of, merge } from 'rxjs';
 import { filter, map, mergeMap, switchMap } from 'rxjs/operators';
 import { record as RecordStoreModule } from 'wdk-client/StoreModules';
 import { QuestionActions, RecordActions } from 'wdk-client/Actions';
-import { get } from 'lodash';
+import { difference, get } from 'lodash';
 import { TreeUtils as tree, CategoryUtils as cat } from 'wdk-client';
 import * as persistence from 'ebrc-client/util/persistence';
 import { TABLE_STATE_UPDATED, PATHWAY_DYN_COLS_LOADED } from '../actioncreators/RecordViewActionCreators';
@@ -16,6 +16,11 @@ const storageItems = {
   },
   collapsedSections: {
     path: 'collapsedSections',
+    isRecordScoped: false
+  },
+  expandedSections: {
+    path: 'expandedSections',
+    getValue: state => difference(RecordStoreModule.getAllFields(state), state.collapsedSections),
     isRecordScoped: false
   },
   navigationVisible: {
@@ -35,7 +40,13 @@ export function reduce(state, action) {
   });
   switch (action.type) {
     case RecordActions.RECORD_RECEIVED:
-      return pruneCategories(state);
+      return {
+        ...pruneCategories(state),
+        // collapse all sections by default. later we will read state from localStorage.
+        collapsedSections: action.payload.recordClass.urlSegment === 'gene'
+          ? RecordStoreModule.getAllFields(state).filter(a => a !== 'GeneModelGbrowseUrl')
+          : state.collapsedSections
+      };
     default:
       return state;
   }
@@ -43,7 +54,7 @@ export function reduce(state, action) {
 
 export function observe(action$, state$, services) {
   return merge(
-    // RecordStoreModule.observe(action$, state$, services),
+    RecordStoreModule.observe(action$, state$, services),
     // QuestionStoreModule.observe(action$, state$, services),
     observeSnpsAlignment(action$, state$, services),
     observeUserSettings(action$, state$, services),
@@ -204,12 +215,17 @@ function observeUserSettings(action$, state$) {
         isGeneRecord(state.record)
       );
 
-      /** merge stored collapsedSections */
-      let collapsedSections = getStateFromStorage(
-        storageItems.collapsedSections,
-        state,
-        []
+      let allFields = RecordStoreModule.getAllFields(state);
+
+      /** merge stored visibleSections */
+      let expandedSections = getStateFromStorage(
+        storageItems.expandedSections,
+        state
       );
+
+      let collapsedSections = expandedSections
+        ? difference(allFields, expandedSections)
+        : state.collapsedSections;
 
       let tableStates = getStateFromStorage(
         storageItems.tables,
@@ -219,14 +235,8 @@ function observeUserSettings(action$, state$) {
 
       return merge(
         of(
-          {
-            type: RecordActions.NAVIGATION_VISIBILITY,
-            payload: { isVisible: navigationVisible }
-          },
-          ...collapsedSections.map(name => ({
-            type: RecordActions.SECTION_VISIBILITY,
-            payload: { name, isVisible: false }
-          })),
+          RecordActions.updateNavigationVisibility(navigationVisible),
+          RecordActions.setCollapsedSections(collapsedSections),
           ...Object.entries(tableStates).map(([tableName, tableState]) => ({
             type: TABLE_STATE_UPDATED,
             payload: { tableName, tableState }
@@ -237,7 +247,7 @@ function observeUserSettings(action$, state$) {
             switch (action.type) {
               case RecordActions.SECTION_VISIBILITY:
               case RecordActions.ALL_FIELD_VISIBILITY:
-                setStateInStorage(storageItems.collapsedSections, state$.value[key]);
+                setStateInStorage(storageItems.expandedSections, state$.value[key]);
                 break;
               case RecordActions.NAVIGATION_VISIBILITY:
                 setStateInStorage(storageItems.navigationVisible, state$.value[key]);
@@ -298,7 +308,7 @@ function getStateFromStorage(descriptor, state, defaultValue) {
 function setStateInStorage(descriptor, state) {
   try {
     let key = getStorageKey(descriptor, state.record);
-    persistence.set(key, get(state, descriptor.path));
+    persistence.set(key, typeof descriptor.getValue === 'function' ? descriptor.getValue(state) : get(state, descriptor.path));
   }
   catch (error) {
     console.error('Warning: Could not set %s to local storage.', descriptor.path, error);
