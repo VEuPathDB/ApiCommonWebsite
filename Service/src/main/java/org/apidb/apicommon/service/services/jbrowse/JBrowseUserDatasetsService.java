@@ -1,4 +1,4 @@
-package org.apidb.apicommon.service.services;
+package org.apidb.apicommon.service.services.jbrowse;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

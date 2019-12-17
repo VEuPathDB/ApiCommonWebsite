@@ -7,8 +7,6 @@ import org.apidb.apicommon.model.comment.pojo.Comment;
 import org.apidb.apicommon.model.userfile.UserFile;
 import org.apidb.apicommon.model.userfile.UserFileFactory;
 import org.apidb.apicommon.model.userfile.UserFileUploadException;
-import org.apidb.apicommon.service.services.AbstractUserCommentService;
-import org.apidb.apicommon.service.services.UserCommentsService;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.FormDataParam;
 import org.gusdb.fgputil.IoUtil;

@@ -1,4 +1,4 @@
-package org.apidb.apicommon.service.services;
+package org.apidb.apicommon.service.services.jbrowse;
 
 import static org.gusdb.wdk.service.FileRanges.getFileChunkResponse;
 import static org.gusdb.wdk.service.FileRanges.parseRangeHeaderValue;

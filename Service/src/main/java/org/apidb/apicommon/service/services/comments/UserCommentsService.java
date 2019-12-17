@@ -1,4 +1,4 @@
-package org.apidb.apicommon.service.services;
+package org.apidb.apicommon.service.services.comments;
 
 import java.net.URI;
 import java.util.Collection;

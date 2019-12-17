@@ -1,4 +1,4 @@
-package org.apidb.apicommon.service.services;
+package org.apidb.apicommon.service.services.comments;
 
 import org.apidb.apicommon.controller.CommentFactoryManager;
 import org.apidb.apicommon.model.comment.CommentFactory;
