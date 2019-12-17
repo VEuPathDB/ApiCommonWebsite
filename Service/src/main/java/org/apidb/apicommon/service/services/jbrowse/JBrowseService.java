@@ -22,6 +22,9 @@ import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
+import org.apidb.apicommon.model.JBrowseQueries;
+import org.apidb.apicommon.model.JBrowseQueries.Category;
+import org.gusdb.fgputil.db.runner.SQLRunner;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.service.service.AbstractWdkService;
 import org.json.JSONObject;
@@ -359,6 +362,20 @@ public class JBrowseService extends AbstractWdkService {
 
         String gusHome = getWdkModel().getGusHome();
         String projectId = getWdkModel().getProjectId();
+
+        /* FIXME RRD sample usage of queries loaded from XML
+        String sql = JBrowseQueries.getQueryMap(projectId, Category.GENOME).get(feature);
+        // ...replace macros in SQL...
+        String entity = new SQLRunner(getWdkModel().getAppDb().getDataSource(), sql).executeQuery(rs -> {
+          JSONObject json = new JSONObject();
+          while (rs.next()) {
+            // build out JSON based on result set rows
+            json.put("feature", rs.getString("someColumn"));
+          }
+          return json.toString();
+        });
+        return Response.ok(entity).build();
+        */
 
         List<String> command = new ArrayList<String>();
         command.add(gusHome + "/bin/jbrowseFeatures");
