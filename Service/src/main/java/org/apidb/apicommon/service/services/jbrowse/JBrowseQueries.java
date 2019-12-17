@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -28,43 +29,55 @@ import org.xml.sax.SAXException;
  */
 public class JBrowseQueries {
 
-  private static final String RNG_LOCATION = "/lib/rng/jbrowseQueries.rng";
+  private static final String RNG_FILE_LOCATION = "/lib/rng/jbrowseQueries.rng";
+  private static final String XML_FILE_LOCATION = "/lib/xml/jbrowse";
 
-  private static final String XML_FILES_LOCATION = "/lib/xml/jbrowse";
+  public enum Category {
+    GENOME("genomeQueries.xml"),
+    PROTEIN("proteinQueries.xml");
 
-  private static final String[] XML_FILES = { "genomeQueries.xml", "proteinQueries.xml" };
+    private String _sourceFile;
 
-  private static List<WdkModelText> _queryList;
+    private Category(String sourceFile) {
+      _sourceFile = sourceFile;
+    }
 
-  public static Map<String,String> getQueryMap(String projectId) {
-    if (_queryList == null) {
+    public String getSourceFile() {
+      return _sourceFile;
+    }
+  }
+
+  private static Map<Category,List<WdkModelText>> _queries;
+
+  public static Map<String,String> getQueryMap(String projectId, Category category) {
+    if (_queries == null) {
       synchronized(JBrowseQueries.class) {
-        if (_queryList == null) {
-          _queryList = loadQueryList();
+        if (_queries == null) {
+          _queries = loadQueries();
         }
       }
     }
-    return _queryList.stream()
+    return _queries.get(category).stream()
       .filter(entry -> entry.include(projectId))
       .collect(toMap(WdkModelText::getName, WdkModelText::getText));
   }
 
-  private static List<WdkModelText> loadQueryList() {
+  private static Map<Category,List<WdkModelText>> loadQueries() {
     try {
-      URL rngFileUrl = makeURL(Paths.get(GusHome.getGusHome(), RNG_LOCATION).toString());
+      URL rngFileUrl = makeURL(Paths.get(GusHome.getGusHome(), RNG_FILE_LOCATION).toString());
       XmlValidator validator = new XmlValidator(rngFileUrl);
       Digester digester = configureDigester();
-      List<WdkModelText> queryList = new ArrayList<>();
-      for (String xmlFileName : XML_FILES) {
-        URL xmlFileUrl = makeURL(Paths.get(GusHome.getGusHome(), XML_FILES_LOCATION, xmlFileName).toString());
+      Map<Category,List<WdkModelText>> queryMap = new HashMap<>();
+      for (Category category : Category.values()) {
+        URL xmlFileUrl = makeURL(Paths.get(GusHome.getGusHome(), XML_FILE_LOCATION, category.getSourceFile()).toString());
         if (!validator.validate(xmlFileUrl)) {
           throw new WdkRuntimeException("RNG Validation failed for file: " + xmlFileUrl.toExternalForm());
         }
         @SuppressWarnings("unchecked")
         List<WdkModelText> queries = (List<WdkModelText>)digester.parse(xmlFileUrl.openStream());
-        queryList.addAll(queries);
+        queryMap.put(category, queries);
       }
-      return queryList;
+      return queryMap;
     }
     catch (IOException | SAXException e) {
       throw new WdkRuntimeException("Unable to load JBrowse queries", e);
@@ -85,7 +98,10 @@ public class JBrowseQueries {
       System.err.println("USAGE: fgpJava " + JBrowseQueries.class.getName() + " <projectId>");
       System.exit(1);
     }
-    System.out.println(FormatUtil.prettyPrint(getQueryMap(args[0]), Style.MULTI_LINE));
+    for (Category category : Category.values()) {
+      System.out.println("Category: " + category + FormatUtil.NL +
+          FormatUtil.prettyPrint(getQueryMap(args[0], category), Style.MULTI_LINE));
+    }
   }
 
 }
