@@ -1,5 +1,6 @@
 package org.apidb.apicommon.controller;
 
+import org.apidb.apicommon.model.JBrowseQueries;
 import org.eupathdb.common.controller.EuPathSiteSetup;
 import org.gusdb.fgputil.web.ApplicationContext;
 import org.gusdb.wdk.controller.WdkInitializer;
@@ -13,6 +14,7 @@ public class ApiSiteInitializer {
     WdkModel wdkModel = WdkInitializer.getWdkModel(context);
     EuPathSiteSetup.initialize(wdkModel);
     ApiSiteSetup.initialize(wdkModel);
+    JBrowseQueries.getComprehensiveQueryMap(wdkModel.getProjectId());
   }
 
   public static void shutDown(ApplicationContext context) {

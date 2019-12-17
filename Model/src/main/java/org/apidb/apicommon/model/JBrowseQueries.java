@@ -1,6 +1,8 @@
-package org.apidb.apicommon.service.services.jbrowse;
+package org.apidb.apicommon.model;
 
+import static java.util.Arrays.asList;
 import static java.util.stream.Collectors.toMap;
+import static org.gusdb.fgputil.functional.Functions.getMapFromKeys;
 import static org.gusdb.fgputil.xml.XmlParser.configureNode;
 import static org.gusdb.fgputil.xml.XmlParser.makeURL;
 
@@ -49,6 +51,11 @@ public class JBrowseQueries {
 
   private static Map<Category,List<WdkModelText>> _queries;
 
+  /**
+   * @param projectId project ID of queries to include
+   * @param category category of queries to return
+   * @return a map from query name to its SQL
+   */
   public static Map<String,String> getQueryMap(String projectId, Category category) {
     if (_queries == null) {
       synchronized(JBrowseQueries.class) {
@@ -60,6 +67,14 @@ public class JBrowseQueries {
     return _queries.get(category).stream()
       .filter(entry -> entry.include(projectId))
       .collect(toMap(WdkModelText::getName, WdkModelText::getText));
+  }
+
+  /**
+   * @param projectId project ID of queries to include
+   * @return all JBrowse query maps by category
+   */
+  public static Map<Category, Map<String, String>> getComprehensiveQueryMap(String projectId) {
+    return getMapFromKeys(asList(Category.values()), category -> getQueryMap(projectId, category));
   }
 
   private static Map<Category,List<WdkModelText>> loadQueries() {
