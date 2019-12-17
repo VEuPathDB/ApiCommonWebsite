@@ -44,3 +44,6 @@ fisherExactTest-config:
 robots.txt:
   src: 'EbrcWebsiteCommon/robots.txt.j2'
   dest: '{{ gus_home }}/../html/robots.txt'
+siteConfig.js:
+  src: 'EbrcWebsiteCommon/siteConfig.js.j2'
+  dest: '{{ gus_home }}/../webapp/siteConfig.js'
