@@ -1,6 +1,6 @@
 package org.apidb.apicommon.service.services.jbrowse;
 
-import static org.gusdb.fgputil.functional.Functions.getMapFromList;
+import static java.util.stream.Collectors.toMap;
 import static org.gusdb.fgputil.xml.XmlParser.configureNode;
 import static org.gusdb.fgputil.xml.XmlParser.makeURL;
 
@@ -8,14 +8,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.digester.Digester;
 import org.gusdb.fgputil.FormatUtil;
 import org.gusdb.fgputil.FormatUtil.Style;
-import org.gusdb.fgputil.Tuples.TwoTuple;
 import org.gusdb.fgputil.runtime.GusHome;
 import org.gusdb.fgputil.xml.XmlValidator;
 import org.gusdb.wdk.model.WdkModelText;
@@ -36,27 +34,27 @@ public class JBrowseQueries {
 
   private static final String[] XML_FILES = { "genomeQueries.xml", "proteinQueries.xml" };
 
-  private static Map<String,String> _queryMap;
+  private static List<WdkModelText> _queryList;
 
-  public static Map<String,String> getQueryMap() {
-    if (_queryMap == null) {
-      assignQueryMap();
+  public static Map<String,String> getQueryMap(String projectId) {
+    if (_queryList == null) {
+      synchronized(JBrowseQueries.class) {
+        if (_queryList == null) {
+          _queryList = loadQueryList();
+        }
+      }
     }
-    return _queryMap;
+    return _queryList.stream()
+      .filter(entry -> entry.include(projectId))
+      .collect(toMap(WdkModelText::getName, WdkModelText::getText));
   }
 
-  private static synchronized void assignQueryMap() {
-    if (_queryMap == null) {
-      _queryMap = loadQueryMap();
-    }
-  }
-
-  private static Map<String,String> loadQueryMap() {
+  private static List<WdkModelText> loadQueryList() {
     try {
       URL rngFileUrl = makeURL(Paths.get(GusHome.getGusHome(), RNG_LOCATION).toString());
       XmlValidator validator = new XmlValidator(rngFileUrl);
       Digester digester = configureDigester();
-      Map<String,String> aggregateMap = new HashMap<>();
+      List<WdkModelText> queryList = new ArrayList<>();
       for (String xmlFileName : XML_FILES) {
         URL xmlFileUrl = makeURL(Paths.get(GusHome.getGusHome(), XML_FILES_LOCATION, xmlFileName).toString());
         if (!validator.validate(xmlFileUrl)) {
@@ -64,9 +62,9 @@ public class JBrowseQueries {
         }
         @SuppressWarnings("unchecked")
         List<WdkModelText> queries = (List<WdkModelText>)digester.parse(xmlFileUrl.openStream());
-        aggregateMap.putAll(getMapFromList(queries, query -> new TwoTuple<>(query.getName(), query.getText())));
+        queryList.addAll(queries);
       }
-      return aggregateMap;
+      return queryList;
     }
     catch (IOException | SAXException e) {
       throw new WdkRuntimeException("Unable to load JBrowse queries", e);
@@ -83,7 +81,11 @@ public class JBrowseQueries {
   }
 
   public static void main(String[] args) {
-    System.out.println(FormatUtil.prettyPrint(getQueryMap(), Style.MULTI_LINE));
+    if (args.length != 1) {
+      System.err.println("USAGE: fgpJava " + JBrowseQueries.class.getName() + " <projectId>");
+      System.exit(1);
+    }
+    System.out.println(FormatUtil.prettyPrint(getQueryMap(args[0]), Style.MULTI_LINE));
   }
 
 }
