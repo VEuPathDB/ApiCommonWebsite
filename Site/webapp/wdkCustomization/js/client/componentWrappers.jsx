@@ -47,15 +47,10 @@ export function RecordController(WdkRecordController) {
           attributes: requestOptions[0].attributes,
           tables: requestOptions[0].tables
             .concat(['MetaTable'])
+            .concat('TranscriptionSummary' in recordClass.tablesMap ? ['TranscriptionSummary'] : [])
+            .concat('PhenotypeGraphs' in recordClass.tablesMap ? ['PhenotypeGraphs'] : [])
+            .concat('CrisprPhenotypeGraphs' in recordClass.tablesMap ? ['CrisprPhenotypeGraphs'] : [])
             .concat('FungiOrgLinkoutsTable' in recordClass.attributesMap ? ['FungiOrgLinkoutsTable'] : [])
-        },
-        {
-          attributes: [],
-          tables: requestOptions[1].tables.slice(0, requestOptions[1].tables.length / 2)
-        },
-        {
-          attributes: [],
-          tables: requestOptions[1].tables.slice(requestOptions[1].tables.length / 2)
         }
       ]
     }
@@ -159,6 +154,7 @@ export function RecordTableSection(DefaultComponent) {
         downloadRecordTable(record, table.name);
       };
 
+      // FIXME Revise this since we now lazy load tables...
       let showDownload = (
         record.tables[table.name] &&
         record.tables[table.name].length > 0 &&

@@ -1,5 +1,5 @@
 import lodash from 'lodash';
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 
@@ -21,6 +21,7 @@ import {OverviewThumbnails} from '../common/OverviewThumbnails';
 import Sequence from '../common/Sequence';
 import {SnpsAlignmentForm} from '../common/Snps';
 import { addCommentLink } from '../common/UserComments';
+import { withRequestFields } from './utils';
 
 /**
  * Render thumbnails at eupathdb-GeneThumbnailsContainer
@@ -140,6 +141,7 @@ export const RecordHeading = connect(
   }
 
   render() {
+    // FungiOrgLinkoutsTable is requested in componentWrappers
     return (
       <React.Fragment>
         <div ref={node => this.node = node}>
@@ -151,6 +153,22 @@ export const RecordHeading = connect(
   }
 
 });
+
+export const RecordMainSection = connect(null)(({ DefaultComponent, dispatch, ...props }) => {
+  return (
+    <React.Fragment>
+      {props.depth == null && (
+        <div style={{ position: 'absolute', right: '3em' }}>
+          <i className="fa fa-exclamation-triangle"/>&nbsp;
+          <button className="link" onClick={() => dispatch(RecordActions.updateAllFieldVisibility(false))}>
+            Collapse all sections for better performance
+          </button>
+        </div>
+      )}
+      <DefaultComponent {...props}/>
+    </React.Fragment>
+  );
+  });
 
 function FungiOrgLinkoutsTable(props) {
   if (props.value == null || props.value.length === 0) return null;
@@ -336,7 +354,20 @@ function makeDatasetGraphChildRow(dataTableName, facetMetadataTableName, contXAx
     };
 
     return { dataTable, facetMetadataTable, contXAxisMetadataTable };
-  })(DatasetGraph);
+  })(withRequestFields(Wrapper));
+
+  function Wrapper({ requestFields, ...props }) {
+    useEffect(() => {
+      requestFields({
+        tables: [
+          dataTableName,
+          facetMetadataTableName,
+          contXAxisMetadataTableName
+        ].filter(tableName => tableName != null)
+      })
+    }, []);
+    return <DatasetGraph {...props}/>;
+  }
 }
 
 // SequenceTable Components
