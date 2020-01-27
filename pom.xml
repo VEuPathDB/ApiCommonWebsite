@@ -12,6 +12,7 @@
     <module>Model</module>
     <module>Site</module>
     <module>Service</module>
+    <module>CommentUpdater</module>
     <module>Test</module>
   </modules>
 
