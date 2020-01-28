@@ -1,8 +1,11 @@
 package org.eupathdb.sitesearch.data.comments;
 
-import java.util.LinkedHashMap;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -16,8 +19,6 @@ import javax.ws.rs.core.Response.Status.Family;
 import org.apache.log4j.Logger;
 import org.gusdb.fgputil.db.pool.DatabaseInstance;
 import org.gusdb.fgputil.db.runner.SQLRunner;
-import org.gusdb.fgputil.solr.Solr;
-import org.gusdb.fgputil.solr.SolrResponse;
 import org.gusdb.fgputil.solr.SolrRuntimeException;
 import org.json.JSONObject;
 
@@ -37,46 +38,46 @@ public class CommentUpdater {
 
   public void performSync() {
 
-    // read comment IDs already in SOLR
-    Map<String,List<Long>> commentsInSolr = loadFromSolr();
-
-    // read comment IDs from comment DB
-    Map<String,List<Long>> commentsInDb = loadFromCommentDb();
-
     // compare maps and insert changes into SOLR
-    List<String> genesToReload = getGenesToReload(commentsInSolr, commentsInDb);
+    List<String> genesToReload = findGenesToReload();
 
     // reload genes' comments
     reloadGeneComments(genesToReload);
   }
 
-  private Map<String, List<Long>> loadFromSolr() {
-    Solr solr = new Solr(_solrUrl);
-    String searchUrlSubpath = ""; // TODO: create search URL
-    return solr
-      .executeQuery(searchUrlSubpath, true, resp -> {
-        SolrResponse response = Solr.parseResponse(searchUrlSubpath, resp);
-        Map<String,List<Long>> map = new LinkedHashMap<>();
-        // TODO: populate map from search results
-        return map;
-      });
-  }
-
-  private Map<String, List<Long>> loadFromCommentDb() {
+  private List<String> findGenesToReload() {
     String sqlSelect = ""; // TODO: create search SQL
     return new SQLRunner(_commentDb.getDataSource(), sqlSelect)
       .executeQuery(rs -> {
-        Map<String,List<Long>> map = new LinkedHashMap<>();
-        // TODO: populate map from query results
-        return map;
+        Response solrResponse = null;
+        try {
+          solrResponse = getSolrResponse();
+          BufferedReader solrData = new BufferedReader(new InputStreamReader((InputStream)solrResponse.getEntity()));
+          return findBadGenes(solrData, rs);
+        }
+        finally {
+          if (solrResponse != null) solrResponse.close();
+        }
       });
   }
 
-  private List<String> getGenesToReload(
-      Map<String, List<Long>> commentsInSolr,
-      Map<String, List<Long>> commentsInDb) {
-    // TODO: find differences
-    return null;
+  private List<String> findBadGenes(BufferedReader solrData, ResultSet rs) {
+    
+    return new ArrayList<>();
+  }
+
+  private Response getSolrResponse() {
+    String searchUrlSubpath = ""; // TODO: create search URL
+    Client client = ClientBuilder.newClient();
+    String finalUrl = _solrUrl + searchUrlSubpath;
+    LOG.info("Querying SOLR with: " + finalUrl);
+    WebTarget webTarget = client.target(finalUrl);
+    Invocation.Builder invocationBuilder = webTarget.request(MediaType.APPLICATION_JSON);
+    Response response = invocationBuilder.get();
+    if (!response.getStatusInfo().getFamily().equals(Family.SUCCESSFUL)) {
+      throw new RuntimeException("SOLR responded with error");
+    }
+    return response;
   }
 
   private void reloadGeneComments(List<String> genesToReload) {
