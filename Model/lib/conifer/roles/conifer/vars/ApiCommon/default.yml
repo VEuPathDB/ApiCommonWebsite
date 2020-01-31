@@ -24,7 +24,6 @@ modelprop:
   COMMENT_DBLINK: '@{{ modelconfig_appDb_userDbLink }}'
   COMMENT_SCHEMA: '{{ commentconfig_commentSchema }}.'
   FACEBOOK_URL: https://facebook.com/pages/EuPathDB/133123003429972
-  GOOGLE_ANALYTICS_ID: none
   LEGACY_WEBAPP_BASE_URL: "/{{ webapp_ctx }}"
   PROJECT_ID: '{{ project }}'
   STEP_ANALYSIS_JOB_DIR: '{{ _wdkStepAnalysisJobsDir }}'
