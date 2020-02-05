@@ -33,6 +33,7 @@ modelprop:
   WEBAPP_BASE_URL: "/{{ webapp_ctx }}/app"
   WEBSERVICEMIRROR: /var/www/Common/apiSiteFilesMirror/webServices/
   YOUTUBE_URL: https://youtube.com/user/EuPathDB/videos?sort=dd&flow=list&view=1
+  SITE_SEARCH_SERVICE_URL: /site-search
 
 commentconfig_login: '{{ modelconfig_userDb_login }}'
 commentconfig_password: '{{ modelconfig_userDb_password }}'
