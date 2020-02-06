@@ -37,7 +37,7 @@ public class ApiBasketService extends BasketService {
   }
 
   private static RecordClass getTranscriptRecordClass(WdkModel wdkModel) {
-    return wdkModel.getRecordClassByName(TRANSCRIPT_RECORDCLASS)
+    return wdkModel.getRecordClassByFullName(TRANSCRIPT_RECORDCLASS)
         .orElseThrow(() -> new WdkRuntimeException(TRANSCRIPT_RECORDCLASS + " does not exist in this model."));
   }
   /**

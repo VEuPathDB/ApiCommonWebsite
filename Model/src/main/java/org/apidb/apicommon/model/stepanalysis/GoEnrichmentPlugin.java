@@ -187,12 +187,10 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     //    Path inputPath = Paths.get(getStorageDirectory().toString(), HIDDEN_TABBED_RESULT_FILE_PATH);
     //    Path imageResultFilePath = Paths.get(getStorageDirectory().toString(), IMAGE_RESULT_FILE_PATH);
     List<ResultRow> results = new ArrayList<>();
-    try (FileReader fileIn = new FileReader(inputPath.toFile());
-         BufferedReader buffer = new BufferedReader(fileIn)) {
-      if (buffer.ready()) buffer.readLine();  // throw away header line
+    try (BufferedReader buffer = new BufferedReader(new FileReader(inputPath.toFile()))) {
+      String line = buffer.readLine();  // throw away header line
       StringBuilder revigoInputLists = new StringBuilder();
-      while (buffer.ready()) {
-        String line = buffer.readLine();
+      while ((line = buffer.readLine()) != null) {
         String[] columns = line.split(TAB);
         String revigo = columns[0] + " " + columns[8] + "\n";
         String val = EnrichmentPluginUtil.formatSearchLinkHtml(columns[4], columns[3]);
