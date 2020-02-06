@@ -112,17 +112,13 @@ public class GBrowseSchemaCreator {
   }
 
   private String getAlteredScript(File scriptPath, String schemaName) throws IOException {
-    BufferedReader br = null;
-    try {
-      br = new BufferedReader(new FileReader(scriptPath));
+    try (BufferedReader br = new BufferedReader(new FileReader(scriptPath))) {
       StringBuilder alteredFile = new StringBuilder();
-      while (br.ready()) {
-        alteredFile.append(br.readLine().replace(USER_SCHEMA_KEY, schemaName)).append(NL);
+      String line;
+      while ((line = br.readLine()) != null) {
+        alteredFile.append(line.replace(USER_SCHEMA_KEY, schemaName)).append(NL);
       }
       return alteredFile.toString();
-    }
-    finally {
-      IoUtil.closeQuietly(br);
     }
   }
 

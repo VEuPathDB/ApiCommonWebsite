@@ -50,11 +50,8 @@ public class LargeFileWriteTest {
       }
     }
     System.out.println("File written.  Took " + t.getElapsedStringAndRestart());
-    try (FileReader fReader = new FileReader(testFileName);
-         BufferedReader reader = new BufferedReader(fReader, bufferSize)) {
-      while (reader.ready()) {
-        reader.read();
-      }
+    try (BufferedReader reader = new BufferedReader(new FileReader(testFileName), bufferSize)) {
+      while (reader.read() != -1) { }
     }
     System.out.println("File read.  Took " + t.getElapsedStringAndRestart());
     if (CLEAN_UP_FILES) {

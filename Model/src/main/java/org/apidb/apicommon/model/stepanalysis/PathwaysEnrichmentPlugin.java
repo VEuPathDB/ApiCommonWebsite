@@ -171,11 +171,9 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   private ResultViewModel createResultViewModel() throws WdkModelException {
     Path inputPath = Paths.get(getStorageDirectory().toString(), HIDDEN_TABBED_RESULT_FILE_PATH);
     List<ResultRow> results = new ArrayList<>();
-    try (FileReader fileIn = new FileReader(inputPath.toFile());
-         BufferedReader buffer = new BufferedReader(fileIn)) {
-      if (buffer.ready()) buffer.readLine();  // throw away header line
-      while (buffer.ready()) {
-        String line = buffer.readLine();
+    try (BufferedReader buffer = new BufferedReader(new FileReader(inputPath.toFile()))) {
+      String line = buffer.readLine();  // throw away header line
+      while ((line = buffer.readLine()) != null) {
         String[] columns = line.split(TAB);
         String[] primaryKeys = columns[0].split("__PK__");  // source_id and pathway_source (eg, KEGG)
         String val = EnrichmentPluginUtil.formatSearchLinkHtml(columns[4], columns[3]);

@@ -153,10 +153,9 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
 
     //String brcValue = getFormParams().get(BRC_PARAM_KEY)[0];
     List<ResultRow> results = new ArrayList<>();
-    try (FileReader fileIn = new FileReader(inputPath.toFile());
-         BufferedReader buffer = new BufferedReader(fileIn)) {
-      while (buffer.ready()) {
-        String line = buffer.readLine();
+    try (BufferedReader buffer = new BufferedReader(new FileReader(inputPath.toFile()))) {
+      String line;
+      while ((line = buffer.readLine()) != null) {
         //LOG.info("LINE = " + line);
         String[] columns = line.split(TAB);
 
