@@ -7,6 +7,7 @@ import org.gusdb.fgputil.MapBuilder;
 import org.gusdb.fgputil.validation.ValidObjectFactory.RunnableObj;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
+import org.gusdb.wdk.model.WdkRuntimeException;
 import org.gusdb.wdk.model.answer.AnswerValue;
 import org.gusdb.wdk.model.answer.factory.AnswerValueFactory;
 import org.gusdb.wdk.model.answer.spec.AnswerSpec;
@@ -84,5 +85,10 @@ public class TranscriptUtil {
 
     // make sure gene answer uses same page size as transcript answer
     return geneAnswer.cloneWithNewPaging(transcriptAnswer.getStartIndex(), transcriptAnswer.getEndIndex());
+  }
+
+  public static RecordClass getGeneRecordClass(WdkModel wdkModel) {
+    return wdkModel.getRecordClassByFullName(GENE_RECORDCLASS)
+      .orElseThrow(() -> new WdkRuntimeException("This model does not contain a gene recordclass."));
   }
 }
