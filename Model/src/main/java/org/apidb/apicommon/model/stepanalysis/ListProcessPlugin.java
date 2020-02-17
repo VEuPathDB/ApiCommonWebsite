@@ -47,10 +47,10 @@ public class ListProcessPlugin extends AbstractSimpleProcessAnalyzer {
 
   private String createResultViewModel() {
     StringBuilder result = new StringBuilder();
-    try(FileReader fr = new FileReader(getStdoutFilePath().toFile());
-        BufferedReader br = new BufferedReader(fr)) {
-      while(br.ready()) {
-        result.append(br.readLine()).append(FormatUtil.NL);
+    try(BufferedReader br = new BufferedReader(new FileReader(getStdoutFilePath().toFile()))) {
+      String line;
+      while((line = br.readLine()) != null) {
+        result.append(line).append(FormatUtil.NL);
       }
       return result.toString();
     }
