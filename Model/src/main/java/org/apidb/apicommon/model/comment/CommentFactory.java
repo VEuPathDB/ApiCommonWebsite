@@ -133,10 +133,6 @@ public class CommentFactory implements Manageable<CommentFactory> {
     }
   }
 
-  public CommentConfig getCommentConfig() {
-    return _config;
-  }
-
   public DataSource getCommentDataSource() {
     return _commentDs;
   }
