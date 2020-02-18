@@ -25,7 +25,8 @@ public class FindCommentQuery extends BaseCommentQuery<Collection<Comment>> {
     "    a." + Column.Comment.ID + "\n" +
     "  FROM\n" +
     "    %1$s." + Table.COMMENTS + " a\n" +
-    "    LEFT JOIN %1$s." + Table.COMMENT_TO_STABLE_ID + " b\n" +
+    "    LEFT JOIN %1$s." + Table.COMMENT_TO_TARGET
+    + " b\n" +
     "      ON a." + Column.Comment.ID + " = b." + CommentStableId.COMMENT_ID + "\n" +
     "  WHERE\n" +
     "    %2$s\n" +
@@ -69,7 +70,8 @@ public class FindCommentQuery extends BaseCommentQuery<Collection<Comment>> {
     "    ON ids.COMMENT_ID = co." + Column.Comment.ID + "\n" +
     "  INNER JOIN %1$s." + Table.COMMENT_USERS + " us\n" +
     "    ON co." + Column.Comment.USER_ID + " = us." + CommentUser.ID + "\n" +
-    "  LEFT JOIN %1$s." + Table.COMMENT_TO_STABLE_ID + " id\n" +
+    "  LEFT JOIN %1$s." + Table.COMMENT_TO_TARGET
+    + " id\n" +
     "    ON co." + Column.Comment.ID + " = id." + CommentStableId.COMMENT_ID + "\n" +
     "  LEFT JOIN %1$s." + Table.COMMENT_TO_SEQUENCE + " se\n" +
     "    ON co." + Column.Comment.ID + " = se." + CommentSequence.COMMENT_ID + "\n" +

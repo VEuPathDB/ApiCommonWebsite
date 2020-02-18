@@ -26,7 +26,7 @@ public class InsertStableIdQuery extends InsertQuery {
   public InsertStableIdQuery(String schema, long commentId,
       Collection<String> stableId,
       IdSupplier idProvider) {
-    super(schema, Table.COMMENT_TO_STABLE_ID, idProvider);
+    super(schema, Table.COMMENT_TO_TARGET, idProvider);
     _commentId = commentId;
     _stableId = stableId;
   }

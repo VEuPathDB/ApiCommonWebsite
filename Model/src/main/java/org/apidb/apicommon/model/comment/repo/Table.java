@@ -3,7 +3,7 @@ package org.apidb.apicommon.model.comment.repo;
 public interface Table {
   String COMMENT_TO_EXT_DB    = "comment_external_database";
   String COMMENT_TO_REFERENCE = "comment_reference";
-  String COMMENT_TO_STABLE_ID = "comment_target";
+  String COMMENT_TO_TARGET    = "comment_target";
   String COMMENT_TO_SEQUENCE  = "comment_sequence";
   String COMMENT_TO_CATEGORY  = "comment_comment_target_category";
   String COMMENT_TO_LOCATION  = "locations";
