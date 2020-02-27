@@ -381,6 +381,19 @@ sub forceXLabelsHorizontal {
 1;
 
 
+## VectorBase ##
+package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_38a3c29f33;
+sub finalProfileAdjustments {
+  my ($self, $profile) = @_;
+
+  my $rAdjustString = << 'RADJUST';
+  profile.is.numeric <- FALSE
+RADJUST
+
+  $profile->addAdjustProfile($rAdjustString);
+}
+1;
+
 
 ### PlasmoDB ###
 package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_6d6cf09eae;
