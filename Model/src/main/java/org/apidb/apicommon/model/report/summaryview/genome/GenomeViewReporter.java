@@ -46,6 +46,7 @@ public abstract class GenomeViewReporter extends AbstractReporter {
   protected static final String COLUMN_SEQUENCE_ID = "sequence_id";
   protected static final String COLUMN_CHROMOSOME = "chromosome";
   protected static final String COLUMN_ORGANISM = "organism";
+  protected static final String COLUMN_ORGANISM_ABBREV = "organism_abbrev";
   protected static final String COLUMN_SEQUENCE_LENGTH = "sequence_length";
   protected static final String COLUMN_CONTEXT = "context";
   protected static final String COLUMN_STRAND = "strand";
@@ -195,6 +196,7 @@ public abstract class GenomeViewReporter extends AbstractReporter {
     sequence.setLength(resultSet.getInt(COLUMN_SEQUENCE_LENGTH));
     sequence.setChromosome(resultSet.getString(COLUMN_CHROMOSOME));
     sequence.setOrganism(resultSet.getString(COLUMN_ORGANISM));
+    sequence.setOrganismAbbrev(resultSet.getString(COLUMN_ORGANISM_ABBREV));
 
     return sequence;
   }
@@ -258,8 +260,11 @@ public abstract class GenomeViewReporter extends AbstractReporter {
     Map<String, Sequence> chromosomes = new HashMap<>();
     sql = "SELECT source_id AS " + COLUMN_SEQUENCE_ID + ", length AS " + COLUMN_SEQUENCE_LENGTH 
         + ", chromosome AS " + COLUMN_CHROMOSOME + ", organism AS " + COLUMN_ORGANISM 
-        + " FROM ApidbTuning.GenomicSeqAttributes "
+        + ", o.public_abbrev AS " + COLUMN_ORGANISM_ABBREV
+        + " FROM ApidbTuning.GenomicSeqAttributes sa, "
+        + " apidb.organism o"
         + " WHERE chromosome IS NOT NULL "
+        + " AND o.taxon_id = sa.taxon_id "
         + "   AND organism IN (SELECT organism FROM (" + sql + "))";
     ResultSet resultSet = null;
     try {

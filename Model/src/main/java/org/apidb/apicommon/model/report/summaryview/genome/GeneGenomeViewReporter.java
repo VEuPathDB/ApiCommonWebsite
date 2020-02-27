@@ -22,6 +22,7 @@ public class GeneGenomeViewReporter extends GenomeViewReporter {
         sql.append("    sa.length AS " + COLUMN_SEQUENCE_LENGTH + ", ");
         sql.append("    sa.chromosome AS " + COLUMN_CHROMOSOME + ", ");
         sql.append("    sa.organism AS " + COLUMN_ORGANISM + ", ");
+        sql.append("    o.public_abbrev AS " + COLUMN_ORGANISM_ABBREV + ", ");
         sql.append("    ga.gene_start_min AS " + COLUMN_START + ", ");
         sql.append("    ga.gene_end_max AS " + COLUMN_END + ", ");
         sql.append("    ga.gene_product AS " + COLUMN_DESCRIPTION + ", ");
@@ -29,9 +30,11 @@ public class GeneGenomeViewReporter extends GenomeViewReporter {
         sql.append("    CASE ga.strand WHEN 'forward' THEN 1 ELSE 0 END AS " + COLUMN_STRAND);
         sql.append(" FROM ApidbTuning.TranscriptAttributes ga, ");
         sql.append("      ApidbTuning.GenomicSeqAttributes sa, ");
+        sql.append("      apidb.organism o, ");
         sql.append("      (" + idSql + ") idq ");
         sql.append(" WHERE ga.sequence_id = sa.source_id ");
         sql.append("  AND ga.gene_source_id = idq.gene_source_id ");
+        sql.append("  AND ga.taxon_id = o.taxon_id ");
 
         return sql.toString();
     }
