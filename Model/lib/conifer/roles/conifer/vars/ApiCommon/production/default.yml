@@ -26,8 +26,8 @@ modelprop:
 # really feels like a bad idea.  please don't let this cancer spread.  Find a
 # generalized way to do this in the future... 
 community_env_map:
-  w_prefix: community.eupathdb.org/
-  default: qa.community.eupathdb.org/
+  w_prefix: static-content.veupathdb.org/
+  default: qa.static-content.veupathdb.org/
 
 # this mapping allow different configs based on hostname.  Mainly used to give
 # different configs to qN.sitedb.org sites, it could be extended to others
