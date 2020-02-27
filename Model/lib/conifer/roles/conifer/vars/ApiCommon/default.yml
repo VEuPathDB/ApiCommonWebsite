@@ -31,9 +31,13 @@ modelprop:
   TWITTER_WIDGET_ID: 344817818073714691
   USE_LEGACY_RECORD_PAGE: 'false'
   WEBAPP_BASE_URL: "/{{ webapp_ctx }}/app"
+  SERVICE_BASE_URL: "/{{ webapp_ctx }}/service"
   WEBSERVICEMIRROR: /var/www/Common/apiSiteFilesMirror/webServices/
   YOUTUBE_URL: https://youtube.com/user/EuPathDB/videos?sort=dd&flow=list&view=1
   SITE_SEARCH_SERVICE_URL: /site-search
+  JBROWSE_WEBPAGE_URL: "/{{ webapp_ctx }}/app/jbrowse"
+  JBROWSE_SERVICE_URL: "/{{ webapp_ctx }}/service/jbrowse"
+  
 
 commentconfig_login: '{{ modelconfig_userDb_login }}'
 commentconfig_password: '{{ modelconfig_userDb_password }}'
