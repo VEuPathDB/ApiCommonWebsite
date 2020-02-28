@@ -1,9 +1,8 @@
 // FIXME: Come to a consensus on the font weights we'd like to provide for Roboto
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,500,600,700&display=swap');
 
-$small-mobile-width: 415px;
 $mobile-width: 1200px;
-$desktop-width: 1201px;
+$small-mobile-width: 415px;
 
 $large-branding-height: 7em;
 $small-branding-height: 4em;
@@ -57,10 +56,12 @@ body.vpdb-Body {
     }
 
     .vpdb-SearchPane {
-      @media screen and (min-width: $desktop-width) {
-        .wdk-CheckboxTree {
-          > .wdk-CheckboxTreeList {
-            border-bottom: 0.0625rem solid $primary-color;
+      .wdk-CheckboxTree {
+        > .wdk-CheckboxTreeList {
+          border-bottom: 0.0625rem solid $primary-color;
+
+          @media screen and (max-width: $mobile-width) {
+            border-bottom: none;
           }
         }
       }
@@ -101,9 +102,11 @@ body.vpdb-Body {
 
     .vpdb-Header {
       grid-area: header;
+      position: relative;
 
       &__collapsed {
         display: grid;
+        position: fixed;
         height: auto;
         padding: 0.5em 0.75em;
         box-shadow: 0 2px 4px #00000066;
@@ -134,17 +137,18 @@ body.vpdb-Body {
           align-self: flex-end;
         }
 
-        @media screen and (min-width: $desktop-width) {
-          grid-gap: 0.5em;
+        .ebrc-HeaderMenuBar > .ebrc-HeaderMenuItemGroup > .ebrc-HeaderMenuItemContent {
+          row-gap: 0.5em;
+          padding: 0 0.5em;
 
-          .ebrc-HeaderMenuBar > .ebrc-HeaderMenuItemGroup > .ebrc-HeaderMenuItemContent {
-            padding: 0 0.5em;
+          @media screen and (max-width: $mobile-width) {
+            padding: 0.5em;
           }
         }
       }
 
       .vpdb-SubmenuDivider {
-        padding: 0.5rem 0.125rem;
+        padding: 0.5em 0.125em;
         border-top: 0.0625rem solid gray;
         border-bottom: 0.0625rem solid gray;
         font-weight: bold;
@@ -172,6 +176,10 @@ body.vpdb-Body {
         }
       }
 
+      .wdk-CheckboxTree {
+        min-width: 18.75em;
+      }
+
       .wdk-CheckboxTreeLinks {
         margin-left: 0;
       }
@@ -188,6 +196,8 @@ body.vpdb-Body {
       }
 
       @media screen and (max-width: $mobile-width) {
+        position: relative;
+
         grid-template-areas:
           "site-branding site-branding     social    login"
           "hamburger     searchbar         searchbar searchbar"
@@ -231,17 +241,15 @@ body.vpdb-Body {
     .vpdb-SearchPane {
       grid-area: nav;
 
-      @media screen and (min-width: $desktop-width) {
-        border-right: 0.0625rem solid;
-        padding-right: 0.1em;
+      border-right: 0.0625rem solid;
+      padding-right: 0.1em;
 
-        .wdk-CheckboxTree {
-          > .wdk-CheckboxTreeList {
-            position: relative;
-            max-height: 65vh;
-            overflow-y: auto;
-            padding-right: 0.5em;
-          }
+      .wdk-CheckboxTree {
+        > .wdk-CheckboxTreeList {
+          position: relative;
+          max-height: 65vh;
+          overflow-y: auto;
+          padding-right: 0.5em;
         }
       }
       
@@ -264,10 +272,21 @@ body.vpdb-Body {
       }
 
       .wdk-CheckboxTreeList .wdk-CheckboxTreeItem__leaf .wdk-CheckboxTreeNodeContent i {
-        //margin-left: 0.8em;
         font-size: 0.7em;
         color: grey;
-      } 
+      }
+
+      @media screen and (max-width: $mobile-width) {
+        border-right: none;
+        padding-right: 1rem;
+
+        .wdk-CheckboxTree {
+          > .wdk-CheckboxTreeList {
+            max-height: none;
+            padding-right: 1rem;
+          }
+        }
+      }
     }
 
     .vpdb-Main {
@@ -285,15 +304,21 @@ body.vpdb-Body {
     .vpdb-NewsPane {
       grid-area: side;
 
-      @media screen and (min-width: $desktop-width) {
-        border-left: 0.0625rem solid;
+      border-left: 0.0625rem solid;
 
-        &__news-collapsed {
-          border-left-style: hidden;
-        }
+      &__news-collapsed {
+        border-left-style: hidden;
+      }
+
+      .wdk-Showcase-HeadingRow {
+        display: none;
+      }
+
+      @media screen and (max-width: $mobile-width) {
+        border-left: none;
 
         .wdk-Showcase-HeadingRow {
-          display: none;
+          display: flex;
         }
       }
     }
@@ -309,10 +334,8 @@ body.vpdb-Body {
       }
     }
 
-    @media screen and (min-width: $desktop-width) {
-      &__header-collapsed {
-        grid-template-rows: 5.5em auto 1fr auto;
-      }
+    &__header-collapsed {
+      grid-template-rows: 5.5em auto 1fr auto;
     }
 
     /**** VEUPATH SITES ***/
