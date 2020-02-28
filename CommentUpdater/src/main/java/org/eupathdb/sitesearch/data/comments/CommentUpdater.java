@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.sql.DataSource;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
@@ -37,23 +38,27 @@ public class CommentUpdater {
   }
 
   public void performSync() {
-
-    // compare maps and insert changes into SOLR
-    List<String> genesToReload = findGenesToReload();
-
-    // reload genes' comments
-    reloadGeneComments(genesToReload);
+    findDocumentsToUpdate().forEach( (idTuple) -> updateDocumentComment(idTuple) );
   }
 
-  private List<String> findGenesToReload() {
-    String sqlSelect = ""; // TODO: create search SQL
+  private List<RecordIdTuple> findDocumentsToUpdate() {
+    
+    // sql to find sorted (source_id, comment_id) tuples from userdb
+    String sqlSelect = "select source_id, comment_target_id as record_type, comment_id " +
+        "from apidb.textsearchablecomment tsc, " + _commentSchema + ".comments c " +
+        "where tsc.comment_id = c.comment_id" +
+        "order by record_type asc, source_id asc, comment_id asc"; 
+    
     return new SQLRunner(_commentDb.getDataSource(), sqlSelect)
       .executeQuery(rs -> {
         Response solrResponse = null;
         try {
+          // get similar info from solr
           solrResponse = getSolrResponse();
           BufferedReader solrData = new BufferedReader(new InputStreamReader((InputStream)solrResponse.getEntity()));
-          return findBadGenes(solrData, rs);
+
+          // compare the streams to find differences
+          return findStaleDocuments(solrData, rs);
         }
         finally {
           if (solrResponse != null) solrResponse.close();
@@ -61,13 +66,18 @@ public class CommentUpdater {
       });
   }
 
-  private List<String> findBadGenes(BufferedReader solrData, ResultSet rs) {
+  private List<RecordIdTuple> findStaleDocuments(BufferedReader solrData, ResultSet rs) {
     
     return new ArrayList<>();
   }
 
   private Response getSolrResponse() {
-    String searchUrlSubpath = ""; // TODO: create search URL
+    String searchUrlSubpath = "/select" +
+        "?q=MULTITEXT__gene_UserCommentContent:*" +    // any document with user comments
+        "&fl=id,wdkPrimaryKeyString,userCommentIds" +  // output fields
+        "&rows=1000000" +                              // row count: infinite
+        "&wt=csv" +                                    // output format csv
+        "&sort=wdkPrimaryKeyString desc";              // sorting
     Client client = ClientBuilder.newClient();
     String finalUrl = _solrUrl + searchUrlSubpath;
     LOG.info("Querying SOLR with: " + finalUrl);
@@ -80,16 +90,41 @@ public class CommentUpdater {
     return response;
   }
 
-  private void reloadGeneComments(List<String> genesToReload) {
+  private void updateDocumentComment(RecordIdTuple idTuple) {
+    DocumentCommentsInfo comments = getCorrectCommentsForOneDocument(idTuple, _commentDb.getDataSource());
+    JSONObject updateJson = new JSONObject(); 
+    updateJson.put("id", idTuple.recordType + "__" + idTuple.sourceId);
+    updateJson.put("userCommentIds", comments.commentIds);
+    updateJson.put("UserCommentContent", comments.commentContents);
+    updateSolrDocument(updateJson);
+  }
+  
+  private DocumentCommentsInfo getCorrectCommentsForOneDocument(RecordIdTuple idTuple, DataSource commentDbDataSource) {
+    
+    String sqlSelect = "select comment_id, content " +
+        "from apidb.textsearchablecomment " +
+        "where source_id = '" + idTuple.sourceId + "'"; 
+    
+    return new SQLRunner(commentDbDataSource, sqlSelect)
+      .executeQuery(rs -> {
+        DocumentCommentsInfo comments = new DocumentCommentsInfo();
+        while (rs.next()) {
+          comments.commentIds.add(rs.getInt("comment_id"));
+          comments.commentContents.add(rs.getString("content"));
+        }
+        return comments;
+      });
+  }
+
+  private void updateSolrDocument(JSONObject jsonBody) {
     Response response = null;
     try {
-      String urlSubpath = ""; // TODO: add POST endpoint
+      String urlSubpath = "/update";  
       Client client = ClientBuilder.newClient();
       String finalUrl = _solrUrl + urlSubpath;
       WebTarget webTarget = client.target(finalUrl);
       Invocation.Builder invocationBuilder = webTarget.request(MediaType.APPLICATION_JSON);
-      JSONObject json = new JSONObject(); // TODO: fill in with POST payload
-      response = invocationBuilder.post(Entity.entity(json.toString(), MediaType.APPLICATION_JSON));
+      response = invocationBuilder.post(Entity.entity(jsonBody.toString(), MediaType.APPLICATION_JSON));
       if (!response.getStatusInfo().getFamily().equals(Family.SUCCESSFUL)) {
         throw new SolrRuntimeException("Failed to execute SOLR update. " + response.getEntity().toString());
       }
@@ -98,5 +133,18 @@ public class CommentUpdater {
       if (response != null) response.close();
     }
   }
-
+  
+  public class RecordIdTuple {
+    String recordType;
+    String sourceId;
+  }
+  
+  public class DocumentCommentsInfo { 
+    public DocumentCommentsInfo() {
+      commentIds = new ArrayList<Integer>();
+      commentContents = new ArrayList<String>();
+    }
+    List<Integer> commentIds;
+    List<String> commentContents;
+  }
 }
