@@ -394,6 +394,18 @@ RADJUST
 }
 1;
 
+package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_54e6673e59;
+sub finalProfileAdjustments {
+  my ($self, $profile) = @_;
+
+  my $rAdjustString = << 'RADJUST';
+  profile.df.full$ELEMENT_NAMES_NUMERIC <- c('0','10','20','30','0','10','20','30')
+  profile.is.numeric <- TRUE
+RADJUST
+
+  $profile->addAdjustProfile($rAdjustString);
+}
+1;
 
 ### PlasmoDB ###
 package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_6d6cf09eae;
