@@ -100,6 +100,10 @@ public class CommentUpdater {
    * 
    * The rows from the database are one per (recordId, commentId) tuple and are already sorted.
    * 
+   * We assume that Solr and the database have the same set of records (they better!).  
+   * Documents missing from the Solr stream are therefore assumed to be present in Solr, 
+   * but have no comments, and are therefore in need of updating.
+   * 
    * @param solrData
    * @param rs
    * @return
@@ -112,7 +116,9 @@ public class CommentUpdater {
   /**
    * 
    * Get a csv response from Solr.  The 3 columns are docId, wdkPrimaryKeyString,  and comma-delimited list of commentIDs.
-   * Rows are sorted by wdkPrimaryKeyString
+   * Rows are sorted by wdkPrimaryKeyString.
+   * 
+   * TODO: tune the solr query to omit documents that have empty user comment fields.
    */
   private Response getSolrResponse() {
     String searchUrlSubpath = "/select" +
@@ -137,8 +143,9 @@ public class CommentUpdater {
    * For a given record, get up-to-date comment info from the database.  Format into JSON
    * to be submitted as a document update to solr.
    * 
-   * TODO: this method formats a solr document ID.  Might be better to get it from solr in the 
-   * csv output, and remember it.
+   * This method formats a solr document ID, rather than getting it from Solr.  We do this
+   * because the Solr stream might not include documents without comments, and so would
+   * not provide those IDs.  
    * 
    * @param idTuple
    */
