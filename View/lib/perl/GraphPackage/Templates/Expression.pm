@@ -104,6 +104,20 @@ sub excludedProfileSetsString { }
 # Template subclasses should override if we want to change the sample names
 sub getSampleLabelsString { [] }
 
+# Template subclasses should override if required
+sub getExprMetric {}
+
+sub setExpressionMetric {
+    my ($self, $exprMetric) = @_;
+    $self->{_expr_metric} = $exprMetric;
+}
+
+sub getExpressionMetric {
+    my $self = shift;   
+    my $exprMetric = $self->{_expr_metric};
+    return $exprMetric;
+}
+
 
 sub init {
   my $self = shift;
@@ -220,6 +234,10 @@ sub makeAndSetPlots {
     my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileSetsArray);
 
     my $xAxisLabel;
+    my $exprMetric = $self->getExprMetric();
+    if ($exprMetric) {
+        $self->setExpressionMetric($exprMetric);
+    }
     my $plotObj;
     my $plotPartModule = $key=~/percentile/? 'Percentile': $self->getExprPlotPartModuleString();
     
@@ -267,6 +285,7 @@ sub makeAndSetPlots {
           $profile->setLegendLabels(\@legendNames);
        }
     }
+    
 
     my $profile_part_name = $profile->getPartName(); # percentile / rma
     $key =~s/values/$profile_part_name/;
@@ -287,6 +306,7 @@ sub makeAndSetPlots {
     if($xAxisLabel) {
       $profile->setXaxisLabel($xAxisLabel);
     }
+  
 
     if(@$sampleLabels) {
       $profile->setSampleLabels($sampleLabels);
@@ -376,7 +396,6 @@ sub forceXLabelsHorizontal {
   }
   return 0;
 }
-
 
 1;
 
