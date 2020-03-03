@@ -68,10 +68,11 @@ public class CommentUpdater {
   private List<RecordIdTuple> findDocumentsToUpdate() {
 
     // sql to find sorted (source_id, comment_id) tuples from userdb
-    var sqlSelect = "select source_id, comment_target_id as record_type, comment_id " +
-        "from apidb.textsearchablecomment tsc, " + _commentSchema + ".comments c " +
-        "where tsc.comment_id = c.comment_id" +
-        "order by record_type asc, source_id asc, comment_id asc";
+    var sqlSelect = "SELECT source_id, comment_target_type as record_type, comment_id"
+      + " FROM apidb.textsearchablecomment tsc,"
+      + " " + _commentSchema + ".comments c "
+      + " WHERE tsc.comment_id = c.comment_id"
+      + " ORDER BY record_type, source_id, comment_id";
 
     return new SQLRunner(_commentDb.getDataSource(), sqlSelect)
       .executeQuery(rs -> {
