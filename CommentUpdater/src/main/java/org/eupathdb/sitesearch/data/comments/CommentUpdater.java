@@ -215,7 +215,7 @@ public class CommentUpdater {
    *
    * @author Steve
    */
-  public class RecordIdTuple {
+  public static class RecordIdTuple {
     String recordType;
     String sourceId;
   }
@@ -225,7 +225,7 @@ public class CommentUpdater {
    *
    * @author Steve
    */
-  public class DocumentCommentsInfo {
+  public static class DocumentCommentsInfo {
     List<Integer> commentIds;
     List<String> commentContents;
 
