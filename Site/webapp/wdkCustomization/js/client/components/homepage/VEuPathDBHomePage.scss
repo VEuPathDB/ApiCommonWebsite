@@ -1,8 +1,17 @@
 // FIXME: Come to a consensus on the font weights we'd like to provide for Roboto
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,500,600,700&display=swap');
 
-$mobile-width: 1200px;
+// Header breakpoints
+$cramped-header-width: 1100px;
+$hamburger-width: 960px;
+
+// Search Pane + Main + News breakpoints
+$tablet-width: 1000px;
+$mobile-width: 900px;
 $small-mobile-width: 415px;
+
+$expanded-header-height: 11em;
+$collapsed-header-height: 5.5em;
 
 $large-branding-height: 7em;
 $small-branding-height: 4em;
@@ -46,9 +55,7 @@ body.vpdb-Body {
         }
       }
 
-      @media screen and (max-width: $mobile-width) {
-        background-color: $primary-color;
-
+      @media screen and (max-width: $cramped-header-width) {
         .ebrc-HeaderBranding {
           height: $small-branding-height;
         }
@@ -102,14 +109,27 @@ body.vpdb-Body {
 
     .vpdb-Header {
       grid-area: header;
-      position: relative;
+      box-shadow: 0 2px 4px #00000066;
+
+      &__expanded {
+        @media screen and (max-width: $cramped-header-width) {
+          grid-template-areas:
+            "site-branding .         project-branding project-branding "
+            "site-branding searchbar .                .                "
+            ".             menubar   social           login            ";
+
+          .ebrc-HeaderBrandingContainer {
+            align-self: flex-start;
+            margin-top: 0.5em;
+          }
+        }
+      }
 
       &__collapsed {
         display: grid;
         position: fixed;
         height: auto;
         padding: 0.5em 0.75em;
-        box-shadow: 0 2px 4px #00000066;
         grid-template-areas:
           "site-branding searchbar social login"
           "site-branding menubar social login";
@@ -141,7 +161,7 @@ body.vpdb-Body {
           row-gap: 0.5em;
           padding: 0 0.5em;
 
-          @media screen and (max-width: $mobile-width) {
+          @media screen and (max-width: $hamburger-width) {
             padding: 0.5em;
           }
         }
@@ -195,7 +215,7 @@ body.vpdb-Body {
         }
       }
 
-      @media screen and (max-width: $mobile-width) {
+      @media screen and (max-width: $hamburger-width) {
         position: relative;
 
         grid-template-areas:
@@ -314,7 +334,7 @@ body.vpdb-Body {
         display: none;
       }
 
-      @media screen and (max-width: $mobile-width) {
+      @media screen and (max-width: $tablet-width) {
         border-left: none;
 
         .wdk-Showcase-HeadingRow {
@@ -334,8 +354,12 @@ body.vpdb-Body {
       }
     }
 
+    &__header-expanded {
+      grid-template-rows: $expanded-header-height auto 1fr auto;
+    }
+
     &__header-collapsed {
-      grid-template-rows: 5.5em auto 1fr auto;
+      grid-template-rows: $collapsed-header-height auto 1fr auto;
     }
 
     /**** VEUPATH SITES ***/
@@ -496,10 +520,24 @@ body.vpdb-Body {
         "nav content side"
         "footer footer footer";
 
-      grid-template-rows: 12em auto 1fr auto;
+      grid-template-rows: $expanded-header-height auto 1fr auto;
 
       .vpdb-Main {
         overflow: hidden;
+      }
+
+      @media screen and (max-width: $hamburger-width) {
+        grid-template-rows: auto auto 1fr auto;
+      }
+
+      @media screen and (max-width: $tablet-width) {
+        grid-template-areas:
+          "header header header"
+          "banner banner banner"
+          "nav content content"
+          "nav content content"
+          "nav side side"
+          "footer footer footer"
       }
     }
 
@@ -509,7 +547,7 @@ body.vpdb-Body {
 
     &__home.vpdb-RootContainer__news-collapsed {
       grid-template-columns: 31em 1fr 3em;
-    }    
+    }
 
     @media screen and (max-width: $mobile-width) {
       // FIXME: Should also provide fallback styling for IE11,
@@ -542,9 +580,9 @@ body.vpdb-Body {
 
   // Fix for question page sticky header
   .wdk-QuestionFormQuestionHeader {
-    top: 5.5em;
+    top: $expanded-header-height;
 
-    @media screen and (max-width: $mobile-width) {
+    @media screen and (max-width: $hamburger-width) {
       top: 0;
     }
   }

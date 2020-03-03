@@ -55,7 +55,7 @@ const VEuPathDBHomePageView: FunctionComponent<Props> = props => {
   const { isHomePage, classNameModifier } = props;
   const [ siteSearchSuggestions, setSiteSearchSuggestions ] = useState<string[] | undefined>(undefined);
   const [ additionalSuggestions, setAdditionalSuggestions ] = useState<{ key: string, display: ReactNode }[]>([]);
-  const [ headerExpanded, setHeaderExpanded ] = useState(isHomePage);
+  const [ headerExpanded, setHeaderExpanded ] = useState(true);
 
   const [ isNewsExpanded, setIsNewsExpanded ] = useSessionBackedState(
     false,
@@ -97,7 +97,7 @@ const VEuPathDBHomePageView: FunctionComponent<Props> = props => {
   const updateHeaderExpanded = useCallback(() => {
     // FIXME - find a better way to update the header height - this resizing is "jerky" when 
     // the scroll bar is left near the scroll threshold
-    setHeaderExpanded(isHomePage && document.body.scrollTop <= 80 && document.documentElement.scrollTop <= 80);
+    setHeaderExpanded(!isHomePage || document.body.scrollTop <= 80 && document.documentElement.scrollTop <= 80);
   }, [ isHomePage ]);
   
   useEffect(() => {
@@ -311,35 +311,7 @@ const useHeaderMenuItems = (
           type: 'reactRoute',
           url: '/search/transcript/UnifiedBlast'
         },
-        {
-          key: 'analysis',
-          display: 'Results analysis',
-          type: 'reactRoute',
-          url: makeStaticPageRoute('/analysisTools.html')
-        },
         { 
-          key: 'PopBio map',
-          display: 'Population Biology map',
-          type: 'externalLink',
-          url: '/popbio-map/web/vb_geohashes_mean.html',
-          target: '_blank',
-          metadata: {
-            include: [ VectorBase ]
-         }
-        },
-        {
-          key: 'srt',
-          display: 'Sequence Retrieval',
-          type: 'webAppRoute',
-          url: '/srt.jsp'
-        },
-        {
-          key: 'galaxy',
-          display: 'Analyze my experiment',
-          type: 'reactRoute',
-          url: '/galaxy-orientation'
-        },
-        {
           key: 'companion',
           display: 'Companion',
           type: 'externalLink',
@@ -350,7 +322,7 @@ const useHeaderMenuItems = (
             exclude: [ FungiDB ]
           }
         },
-        {
+        { 
           key: 'companion--fungi',
           display: 'Companion',
           type: 'externalLink',
@@ -359,6 +331,39 @@ const useHeaderMenuItems = (
           target: '_blank',
           metadata: {
             include: [ FungiDB ]
+          }
+        },
+        { 
+          key: 'EuPaGDT',
+          display: 'EuPaGDT',
+          type: 'externalLink',
+          tooltip: 'Eukaryotic Pathogen CRISPR guide RNA/DNA Design Tool',
+          url: 'http://grna.ctegd.uga.edu',
+          target: '_blank'
+        },
+        { 
+          key: 'galaxy',
+          display: 'Galaxy',
+          type: 'reactRoute',
+          url: '/galaxy-orientation'
+        },
+        { 
+          key: 'jbrowse',
+          display: 'Genome browser',
+          type: 'reactRoute',
+          url: '/jbrowse?data=/a/service/jbrowse/tracks/default&tracks=gene',
+          metadata: {
+            exclude: [ EuPathDB ]
+          }
+        },
+        { 
+          key: 'ancillary-genome-browser',
+          display: 'Ancillary genome browser',
+          type: 'externalLink',
+          url: 'http://ancillary.toxodb.org',
+          target: '_blank',
+          metadata: {
+            include: [ ToxoDB ]
           }
         },
         {
@@ -370,29 +375,6 @@ const useHeaderMenuItems = (
           target: '_blank',
           metadata: {
             include: [ TriTrypDB ]
-          }
-        },
-        {
-          key: 'EuPaGDT',
-          display: 'EuPaGDT',
-          type: 'externalLink',
-          tooltip: 'Eukaryotic Pathogen CRISPR guide RNA/DNA Design Tool',
-          url: 'http://grna.ctegd.uga.edu',
-          target: '_blank'
-        },
-        {
-          key: 'pubcrawler',
-          display: 'PubMed and Entrez',
-          type: 'externalLink',
-          url: `/pubcrawler/${projectId}`
-        },
-        {
-          key: 'jbrowse',
-          display: 'Genome Browser',
-          type: 'reactRoute',
-          url: '/jbrowse?data=/a/service/jbrowse/tracks/default&tracks=gene',
-          metadata: {
-            exclude: [ EuPathDB ]
           }
         },
         {
@@ -414,19 +396,37 @@ const useHeaderMenuItems = (
             include: [ PlasmoDB ]
           }
         },
-        {
-          key: 'ancillary-genome-browser',
-          display: 'Ancillary Genome Browser',
+        { 
+          key: 'PopBio map',
+          display: 'Population Biology map',
           type: 'externalLink',
-          url: 'http://ancillary.toxodb.org',
+          url: '/popbio-map/web/vb_geohashes_mean.html',
           target: '_blank',
           metadata: {
-            include: [ ToxoDB ]
-          }
+            include: [ VectorBase ]
+         }
+        },
+        {
+          key: 'pubcrawler',
+          display: 'PubMed and Entrez',
+          type: 'externalLink',
+          url: `/pubcrawler/${projectId}`
+        },
+        { 
+          key: 'analysis',
+          display: 'Results analysis',
+          type: 'reactRoute',
+          url: makeStaticPageRoute('/analysisTools.html')
+        },
+        { 
+          key: 'srt',
+          display: 'Sequence retrieval',
+          type: 'webAppRoute',
+          url: '/srt.jsp'
         },
         {
           key: 'webservices',
-          display: 'Searches via Web Services',
+	  display: 'Web services',
           type: 'reactRoute',
           url: makeStaticPageRoute('/webServices.html')
         }
@@ -437,11 +437,17 @@ const useHeaderMenuItems = (
       display: 'My Workspace',
       type: 'subMenu',
       items: [
-        {
-          key: 'user-data-sets',
-          display: 'Data sets',
+        { 
+          key: 'galaxy-analyses',
+          display: 'Analyze my data (Galaxy)',
           type: 'reactRoute',
-          url: '/workspace/datasets'
+          url: '/galaxy-orientation'
+        },
+        {
+          key: 'analysis',
+          display: 'Analyze my strategy results',
+          type: 'reactRoute',
+          url: makeStaticPageRoute('/analysisTools.html')
         },
         {
           key: 'basket',
@@ -449,17 +455,17 @@ const useHeaderMenuItems = (
           type: 'reactRoute',
           url: '/workspace/basket'
         },
+        {
+          key: 'user-data-sets',
+          display: 'Data sets',
+          type: 'reactRoute',
+          url: '/workspace/datasets'
+        },
         {   
           key: 'favorites',
           display: 'Favorites',
           type: 'reactRoute',
           url: '/workspace/favorites'
-        },
-        {
-          key: 'galaxy-analyses',
-          display: 'Analyze my data (Galaxy)',
-          type: 'reactRoute',
-          url: '/galaxy-orientation'
         }
       ]
     },
@@ -475,19 +481,29 @@ const useHeaderMenuItems = (
           url: '/search/dataset/AllDatasets/result'
         },
         {
+          key: 'data-files-eupathdb',
+          display: 'Download data files',
+          type: 'reactRoute',
+          url: '/downloads/',
+          metadata: {
+            exclude: [ EuPathDB ]
+          }
+        },
+        {
+          key: 'mahpic-data',
+          display: 'MaHPIC',
+          type: 'webAppRoute',
+          tooltip: 'Access MaHPIC Data',
+          url: '/mahpic.jsp',
+          metadata: {
+            include: [ PlasmoDB ]
+          }
+        },
+        {
           key: 'analysis-methods',
           display: 'Methods',
           type: 'reactRoute',
           url: makeStaticPageRoute('/methods.html')
-        },
-        {
-          key: 'annotation-sops',
-          display: <>SOPs for <i>C.parvum</i> Annotation</>,
-          type: 'externalLink',
-          url: 'http://cryptodb.org/static/SOP/',
-          metadata: {
-            include: [ CryptoDB ],
-          }
         },
         {
           key: 'genomes-and-data-types',
@@ -503,116 +519,23 @@ const useHeaderMenuItems = (
           type: 'reactRoute',
           url: '/search/organism/GeneMetrics/result'
         },
-        {
-          key: 'data-files-eupathdb',
-          display: 'Download data files',
-          type: 'reactRoute',
-          url: '/downloads/',
+        { 
+          key: 'annotation-sops',
+          display: <>SOPs for <i>C.parvum</i> Annotation</>,
+          type: 'externalLink',
+          url: 'http://cryptodb.org/static/SOP/',
           metadata: {
-            exclude: [ EuPathDB ]
+            include: [ CryptoDB ],
           }
-        }
-      ]
-    },
-    {
-      key: 'community',
-      display: 'Community',
-      type: 'subMenu',
-      items: [
-        {
-          key: 'twitter',
-          display: (
-            <a 
-              className={vpdbCx('CommunitySocialMediaLink')} 
-              href={twitterUrl}
-              target="_blank"
-            >
-              <Twitter />{' '}
-              Follow us on Twitter!
-            </a>
-          ),
-          type: 'custom'
-        },
-        {
-          key: 'facebook',
-          display: (
-            <a 
-              className={vpdbCx('CommunitySocialMediaLink')} 
-              href={facebookUrl}
-              target="_blank"
-            >
-              <Facebook />{' '}
-              Follow us on Facebook!
-            </a>
-          ),
-          type: 'custom'
-        },
-        {
-          key: 'youtube',
-          display: (
-            <a 
-              className={vpdbCx('CommunitySocialMediaLink', 'wide')} 
-              href={youtubeUrl}
-              target="_blank"
-            >
-              <YouTube />{' '}
-              Follow us on YouTube!
-            </a>
-          ),
-          type: 'custom'
-        },
-        {
-          key: 'comments',
-          display: `Genes with comments from the ${projectId} community`,
-          tooltip: 'Add your comments to your gene of interest: start at the gene page',
-          type: 'reactRoute',
-          url: '/search/transcript/GenesWithUserComments?autoRun',
-          metadata: {
-            exclude: [ EuPathDB ]
-          }
-        },
-        {
-          key: 'public-strategies',
-          display: 'Public strategies',
-          type: 'reactRoute',
-          url: '/workspace/strategies/public'
         },
         {
           key: 'community-download',
-          display: 'Community files',
+          display: 'User uploaded files',
           type: 'reactRoute',
           url: '/search/file/UserFileUploads/result',
           metadata: {
             exclude: [ EuPathDB ]
           }
-        },
-        {
-          key: 'release-policy',
-          display: 'VEuPathDB data submission & release policies',
-          type: 'externalLink',
-          url: '/EuPathDB_datasubm_SOP.pdf'
-        },
-        {
-          key: 'related-sites',
-          display: 'Related sites',
-          type: 'reactRoute',
-          url: makeStaticPageRoute(`/${projectId}/externalLinks.html`)
-        },
-        {
-          key: 'mahpic-data',
-          display: 'MaHPIC',
-          type: 'webAppRoute',
-          tooltip: 'Access MaHPIC Data',
-          url: '/mahpic.jsp',
-          metadata: {
-            include: [ PlasmoDB ]
-          }
-        },
-        { 
-          key: 'news',
-          display: 'News',
-          type: 'reactRoute',
-          url: makeStaticPageRoute(`/${projectId}/news.html`)
         }
       ]
     },
@@ -632,6 +555,33 @@ const useHeaderMenuItems = (
           display: 'Publications on VEuPathDB sites',
           type: 'reactRoute',
           url: makeStaticPageRoute('/veupathPubs.html')
+        },
+        {
+          key: 'submitting-divider',
+          display: (
+            <SubmenuDivider>
+              Community
+            </SubmenuDivider>
+          ),
+          type: 'custom'
+        },
+        { 
+          key: 'news',
+          display: 'News',
+          type: 'reactRoute',
+          url: makeStaticPageRoute(`/${projectId}/news.html`)
+        },
+        {
+          key: 'related-sites',
+          display: 'Related sites',
+          type: 'reactRoute',
+          url: makeStaticPageRoute(`/${projectId}/externalLinks.html`)
+        },
+        {
+          key: 'public-strategies',
+          display: 'Public strategies',
+          type: 'reactRoute',
+          url: '/workspace/strategies/public'
         },
         {
           key: 'submitting-divider',
@@ -772,32 +722,6 @@ const useHeaderMenuItems = (
       display: 'Help',
       type: 'subMenu',
       items: [
-        { 
-          key: 'contact-us',
-          display: 'Contact us',
-          type: 'reactRoute',
-          url: '/contact-us',
-          target: '_blank'
-        }, 
-        {
-          key: 'reset-session',
-          display: `Reset ${projectId} Session`,
-          tooltip: 'Login first to keep your work',
-          type: 'webAppRoute',
-          url: '/resetSession.jsp',
-        },
-        {
-          key: 'youtube-tutorials',
-          display: 'YouTube tutorials',
-          type: 'externalLink',
-          url: 'http://www.youtube.com/user/EuPathDB/videos?sort=dd&flow=list&view=1'
-        },
-        {
-          key: 'web-tutorials',
-          display: 'Web tutorials',
-          type: 'reactRoute',
-          url: makeStaticPageRoute('/tutorials.html')
-        },
         {
           key: 'eupathdb-workshop',
           display: 'EuPathDB workshop',
@@ -821,6 +745,19 @@ const useHeaderMenuItems = (
           display: `Our glossary`,
           type: 'reactRoute',
           url: makeStaticPageRoute('/glossary.html')
+        },
+        {
+          key: 'reset-session',
+          display: `Reset ${projectId} Session`,
+          tooltip: 'Login first to keep your work',
+          type: 'webAppRoute',
+          url: '/resetSession.jsp',
+        },
+        {
+          key: 'youtube-tutorials',
+          display: 'YouTube tutorials',
+          type: 'externalLink',
+          url: 'http://www.youtube.com/user/EuPathDB/videos?sort=dd&flow=list&view=1'
         }
       ]
     },
