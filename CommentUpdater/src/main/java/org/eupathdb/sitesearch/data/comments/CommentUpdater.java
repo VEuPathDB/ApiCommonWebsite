@@ -12,9 +12,11 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status.Family;
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,7 +70,7 @@ public class CommentUpdater {
   private List<RecordIdTuple> findDocumentsToUpdate() {
 
     // sql to find sorted (source_id, comment_id) tuples from userdb
-    var sqlSelect = "SELECT source_id, comment_target_type as record_type, comment_id"
+    var sqlSelect = "SELECT source_id, comment_target_type as record_type, c.comment_id"
       + " FROM apidb.textsearchablecomment tsc,"
       + " " + _commentSchema + ".comments c "
       + " WHERE tsc.comment_id = c.comment_id"
@@ -99,8 +101,29 @@ public class CommentUpdater {
    * The rows from solr are one per document, sorted by wdkPrimaryKey, with the
    * comment IDs in a single cell.  Those comments to be serialized and sorted.
    *
+   * Example Result:
+   * <code>
+   *   id,wdkPrimaryKeyString,userCommentIds
+   *   gene__mal_mito_3,mal_mito_3,"102190,1137,1203"
+   *   gene__mal_mito_2,mal_mito_2,102180
+   *   gene__mal_mito_1,mal_mito_1,102170
+   *   gene__PY17X_1464400,PY17X_1464400,100062223
+   *   gene__PY17X_1463500,PY17X_1463500,79950
+   * </code>
+   *
    * The rows from the database are one per (recordId, commentId) tuple and are
    * already sorted.
+   *
+   * Example Result:
+   * <code>
+   *   SOURCE_ID,RECORD_TYPE,COMMENT_ID
+   *   1MB.524,gene,19863
+   *   AAEL01000103,gene,62820
+   *   ACA1_086420,gene,100189863
+   *   ACA1_171110,gene,100189943
+   *   ACA1_175560,gene,100189873
+   *   ACA1_182400,gene,100189823
+   * </code>
    *
    * We assume that Solr and the database have the same set of records
    * (they better!).  Documents missing from the Solr stream are therefore
@@ -108,6 +131,12 @@ public class CommentUpdater {
    * in need of updating.
    */
   private List<RecordIdTuple> findStaleDocuments(BufferedReader solrData, ResultSet rs) {
+    try {
+//      solrData.readLine();
+//      var tuple = RecordIdTuple.fromRs(rs);
+    } catch (IOException | SQLException e) {
+      e.printStackTrace();
+    }
     // TODO: write this method
     return new ArrayList<>();
   }
@@ -215,9 +244,16 @@ public class CommentUpdater {
    *
    * @author Steve
    */
-  public static class RecordIdTuple {
+  static class RecordIdTuple {
     String recordType;
     String sourceId;
+
+    static RecordIdTuple fromRs(ResultSet rs) throws SQLException {
+      var out = new RecordIdTuple();
+      out.recordType = rs.getString(1);
+      out.sourceId = rs.getString(2);
+      return out;
+    }
   }
 
   /**
@@ -226,12 +262,7 @@ public class CommentUpdater {
    * @author Steve
    */
   public static class DocumentCommentsInfo {
-    List<Integer> commentIds;
-    List<String> commentContents;
-
-    public DocumentCommentsInfo() {
-      commentIds = new ArrayList<>();
-      commentContents = new ArrayList<>();
-    }
+    List<Integer> commentIds = new ArrayList<>();
+    List<String> commentContents = new ArrayList<>();
   }
 }
