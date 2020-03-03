@@ -131,13 +131,13 @@ public class CommentUpdater {
    * in need of updating.
    */
   private List<RecordIdTuple> findStaleDocuments(BufferedReader solrData, ResultSet rs) {
-    try {
+//    try {
 //      solrData.readLine();
 //      var tuple = RecordIdTuple.fromRs(rs);
-    } catch (IOException | SQLException e) {
-      e.printStackTrace();
-    }
-    // TODO: write this method
+//    } catch (IOException | SQLException e) {
+//      e.printStackTrace();
+//    }
+//     TODO: write this method
     return new ArrayList<>();
   }
 
