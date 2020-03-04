@@ -426,6 +426,21 @@ RADJUST
 }
 1;
 
+package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_27ce39853f;
+
+sub finalProfileAdjustments {
+  my ($self, $profile) = @_;
+
+  my $rAdjustString = << 'RADJUST';
+  profile.df.full$NAME <- gsub("gravid female:", "", profile.df.full$NAME, fixed=T)
+  profile.df.full$NAME <- gsub("virgin female:", "", profile.df.full$NAME, fixed=T)
+  profile.df.full$NAME <- gsub("4th instar larvae:", "", profile.df.full$NAME, fixed=T)
+RADJUST
+
+  $profile->addAdjustProfile($rAdjustString);
+}
+1;
+
 ### PlasmoDB ###
 package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_6d6cf09eae;
 sub getGroupRegex {
