@@ -441,6 +441,20 @@ RADJUST
 }
 1;
 
+package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_d4fcd31fd0;
+
+sub finalProfileAdjustments {
+  my ($self, $profile) = @_;
+
+  my $rAdjustString = << 'RADJUST';
+  profile.df.full$ELEMENT_NAMES_NUMERIC <- as.numeric(gsub("h mosquito embryo", "", profile.df.full$ELEMENT_NAMES))
+  profile.is.numeric <- TRUE
+RADJUST
+
+  $profile->addAdjustProfile($rAdjustString);
+}
+1;
+
 ### PlasmoDB ###
 package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_6d6cf09eae;
 sub getGroupRegex {
