@@ -455,6 +455,23 @@ RADJUST
 }
 1;
 
+#package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_2110a8010e;
+#
+#sub finalProfileAdjustments {
+#  my ($self, $profile) = @_;
+#
+#  my $rAdjustString = << 'RADJUST';
+#  profile.df.full$LEGEND <- unlist(lapply(strsplit(as.character(profile.df.full$NAME), "_"), "[", 1))
+#  profile.df.full$NAME <- gsub("Mated_", "", profile.df.full$NAME)
+#  profile.df.full$NAME <- gsub("Virgin_", "", profile.df.full$NAME)
+#  hide
+#RADJUST
+#
+#  $profile->addAdjustProfile($rAdjustString);
+#}
+#1;
+#
+
 ### PlasmoDB ###
 package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_6d6cf09eae;
 sub getGroupRegex {
