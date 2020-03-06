@@ -138,7 +138,7 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
    */
   @Override
   public void validateAnswerValue(AnswerValue answerValue)
-      throws IllegalAnswerValueException, WdkModelException, WdkUserException {
+      throws IllegalAnswerValueException, WdkModelException {
 
     String countColumn = "CNT";
     String idSql = answerValue.getIdSql();
@@ -158,7 +158,9 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     BigDecimal count = (BigDecimal)result.get(countColumn);
 
     if (count.intValue() == 0 ) {
-      throw new IllegalAnswerValueException("Your result has no genes that are in pathways, so you can't use this tool on this result. " +
+      throw new IllegalAnswerValueException(
+          "Your result has no genes that are in pathways, " +
+          "so you can't use this tool on this result. " +
           "Please revise your search and try again.");
     }
   }
