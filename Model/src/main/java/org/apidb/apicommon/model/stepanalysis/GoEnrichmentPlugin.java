@@ -151,11 +151,10 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
    * Make sure only one organism is represented in the results of this step
    *
    * @param answerValue answerValue that will be passed to this step
-   * @throws WdkUserException
    */
   @Override
   public void validateAnswerValue(AnswerValue answerValue)
-      throws IllegalAnswerValueException, WdkModelException, WdkUserException {
+      throws IllegalAnswerValueException, WdkModelException {
 
     String countColumn = "CNT";
     String idSql = answerValue.getIdSql();
