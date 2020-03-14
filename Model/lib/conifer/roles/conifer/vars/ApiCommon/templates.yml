@@ -44,6 +44,24 @@ fisherExactTest-config:
 robots.txt:
   src: 'EbrcWebsiteCommon/robots.txt.j2'
   dest: '{{ gus_home }}/../html/robots.txt'
-siteConfig.js:
-  src: 'EbrcWebsiteCommon/siteConfig.js.j2'
-  dest: '{{ gus_home }}/../webapp/siteConfig.js'
+401.shtml:
+  src: 'EbrcWebsiteCommon/401.html.j2'
+  dest: '{{ gus_home }}/../html/401.shtml'
+404.shtml:
+  src: 'EbrcWebsiteCommon/404.html.j2'
+  dest: '{{ gus_home }}/../html/404.shtml'
+500.shtml:
+  src: 'EbrcWebsiteCommon/500.html.j2'
+  dest: '{{ gus_home }}/../html/500.shtml'
+401.html:
+  src: 'EbrcWebsiteCommon/401.html.j2'
+  dest: '{{ gus_home }}/../webapp/401.html'
+404.html:
+  src: 'EbrcWebsiteCommon/404.html.j2'
+  dest: '{{ gus_home }}/../webapp/404.html'
+500.html:
+  src: 'EbrcWebsiteCommon/500.html.j2'
+  dest: '{{ gus_home }}/../webapp/500.html'
+index.html:
+  src: 'EbrcWebsiteCommon/appBase.html.j2'
+  dest: '{{ gus_home }}/../webapp/WEB-INF/includes/client.html'
