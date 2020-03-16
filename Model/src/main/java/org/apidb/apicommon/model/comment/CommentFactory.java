@@ -1,51 +1,9 @@
 package org.apidb.apicommon.model.comment;
 
-import static org.apidb.apicommon.model.comment.ReferenceType.ACCESSION;
-import static org.apidb.apicommon.model.comment.ReferenceType.AUTHOR;
-import static org.apidb.apicommon.model.comment.ReferenceType.DIGITAL_OBJECT_ID;
-import static org.apidb.apicommon.model.comment.ReferenceType.PUB_MED;
-
-import java.io.IOException;
-import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.*;
-
-import javax.sql.DataSource;
-
-import org.apidb.apicommon.model.comment.pojo.Attachment;
-import org.apidb.apicommon.model.comment.pojo.Author;
-import org.apidb.apicommon.model.comment.pojo.Category;
-import org.apidb.apicommon.model.comment.pojo.Comment;
-import org.apidb.apicommon.model.comment.pojo.CommentRequest;
-import org.apidb.apicommon.model.comment.pojo.ExternalDatabase;
-import org.apidb.apicommon.model.comment.pojo.Project;
-import org.apidb.apicommon.model.comment.pojo.PubMedReference;
-import org.apidb.apicommon.model.comment.repo.DeleteAttachmentQuery;
-import org.apidb.apicommon.model.comment.repo.FindCommentQuery;
-import org.apidb.apicommon.model.comment.repo.GetAllAttachmentsQuery;
-import org.apidb.apicommon.model.comment.repo.GetAttachmentQuery;
-import org.apidb.apicommon.model.comment.repo.GetAuthorQuery;
-import org.apidb.apicommon.model.comment.repo.GetCategoriesQuery;
-import org.apidb.apicommon.model.comment.repo.GetCommentExistsQuery;
-import org.apidb.apicommon.model.comment.repo.GetCommentQuery;
-import org.apidb.apicommon.model.comment.repo.GetExternalDatabaseQuery;
-import org.apidb.apicommon.model.comment.repo.HideCommentQuery;
-import org.apidb.apicommon.model.comment.repo.InsertAttachmentQuery;
-import org.apidb.apicommon.model.comment.repo.InsertAuthorQuery;
-import org.apidb.apicommon.model.comment.repo.InsertCategoryQuery;
-import org.apidb.apicommon.model.comment.repo.InsertCommentQuery;
-import org.apidb.apicommon.model.comment.repo.InsertExternalDatabaseLinkQuery;
-import org.apidb.apicommon.model.comment.repo.InsertExternalDatabaseQuery;
-import org.apidb.apicommon.model.comment.repo.InsertLocationQuery;
-import org.apidb.apicommon.model.comment.repo.InsertReferencesQuery;
-import org.apidb.apicommon.model.comment.repo.InsertSequenceQuery;
-import org.apidb.apicommon.model.comment.repo.InsertStableIdQuery;
-import org.apidb.apicommon.model.comment.repo.Table;
-import org.apidb.apicommon.model.comment.repo.UpdateAttachmentQuery;
-import org.apidb.apicommon.model.comment.repo.UpdateAuthorQuery;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apidb.apicommon.model.comment.pojo.*;
+import org.apidb.apicommon.model.comment.repo.*;
 import org.gusdb.fgputil.db.pool.DatabaseInstance;
 import org.gusdb.fgputil.runtime.InstanceManager;
 import org.gusdb.fgputil.runtime.Manageable;
@@ -54,8 +12,17 @@ import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.config.ModelConfigUserDB;
 import org.gusdb.wdk.model.user.User;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import javax.sql.DataSource;
+import java.io.IOException;
+import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.*;
+import org.eupathdb.sitesearch.data.comments.CommentUpdater;
+
+import static org.apidb.apicommon.model.comment.ReferenceType.*;
 
 /**
  * Manages user comments on WDK records
@@ -263,6 +230,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
       }
 
       con.commit();
+      new CommentUpdater(_config.getSolrUrl(), _commentDb, _config.getCommentSchema()).updateSingle(commentId);
     }
     catch (SQLException e) {
       throw new WdkModelException(e);
@@ -274,6 +242,8 @@ public class CommentFactory implements Manageable<CommentFactory> {
   public void deleteComment(long commentId) throws WdkModelException {
     try(Connection con = _commentDs.getConnection()) {
       new HideCommentQuery(_config.getCommentSchema(), commentId).run(con);
+      new CommentUpdater(_config.getSolrUrl(), _commentDb, _config.getCommentSchema())
+        .updateSingle(commentId);
     } catch (SQLException e) {
       throw new WdkModelException(e);
     }

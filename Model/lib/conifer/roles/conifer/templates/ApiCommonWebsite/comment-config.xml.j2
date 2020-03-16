@@ -47,5 +47,7 @@ site_vars file: {{ site_vars }}
     {% if commentconfig_userFileUploadDir is defined -%}
     userFileUploadDir="{{ commentconfig_userFileUploadDir }}"
     {%- endif %}
-
+    {% if commentconfig_solrUrl is defined -%}
+    solrUrl="{{ commentconfig_solrUrl }}"
+    {% endif %}
 />

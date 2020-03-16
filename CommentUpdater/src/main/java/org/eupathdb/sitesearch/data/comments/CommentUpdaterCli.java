@@ -8,31 +8,60 @@ import org.gusdb.fgputil.db.pool.SimpleDbConfig;
 
 public class CommentUpdaterCli {
 
+  private static final String
+    ENV_DB_CONNECT = "USERDB_CONNECT",
+    ENV_DB_USER    = "USERDB_LOGIN",
+    ENV_DB_PASS    = "USERDB_PASSWORD",
+    ENV_DB_SCHEMA  = "USERDB_SCHEMA",
+    ENV_SOLR_URL   = "SOLR_URL";
+
+  private static final String
+    ERR_BAD_ENV = "Comment updater requires the following environment variables:\n"
+      + "    " + ENV_DB_CONNECT + ": User database connection string\n"
+      + "    " + ENV_DB_USER    + ": User database credentials username\n"
+      + "    " + ENV_DB_PASS    + ": User database credentials password\n"
+      + "    " + ENV_DB_SCHEMA  + ": User database comment schema\n"
+      + "    " + ENV_SOLR_URL   + ": Solr URL";
+
   private static class Config extends ThreeTuple<String,ConnectionPoolConfig,String> {
-    public Config(String solrUrl, ConnectionPoolConfig commentDbConfig, String commentDbSchema) {
+    Config(String solrUrl, ConnectionPoolConfig commentDbConfig, String commentDbSchema) {
       super(solrUrl, commentDbConfig, commentDbSchema);
     }
-    public String getSolrUrl() { return getFirst(); }
-    public ConnectionPoolConfig getDbConfig() { return getSecond(); }
-    public String getCommentSchema() { return getThird(); }
+    String getSolrUrl() { return getFirst(); }
+    ConnectionPoolConfig getDbConfig() { return getSecond(); }
+    String getCommentSchema() { return getThird(); }
   }
 
   public static void main(String[] args) throws Exception {
-    Config config = parseArgs(args);
+    Config config = parseEnv();
     try (DatabaseInstance commentDb = new DatabaseInstance(config.getDbConfig())) {
       CommentUpdater updater = new CommentUpdater(config.getSolrUrl(), commentDb, config.getCommentSchema());
-      updater.performSync();
+      updater.syncAll();
     }
   }
 
-  private static Config parseArgs(String[] args) {
-    if (args.length != 5) {
-      System.err.println("\nUSAGE: fgpJava " + CommentUpdaterCli.class.getName() +
-          " <solrUrl> <commentDbConnectionString> <commentDbUser> <commentDbPassword> <commentDbSchema>\n");
+  private static Config parseEnv() {
+    final var env = System.getenv();
+
+    if (!(env.containsKey(ENV_DB_CONNECT) && env.containsKey(ENV_DB_PASS)
+        && env.containsKey(ENV_DB_SCHEMA) && env.containsKey(ENV_DB_USER)
+        && env.containsKey(ENV_SOLR_URL))
+    ) {
+      System.err.println(ERR_BAD_ENV);
       System.exit(1);
     }
-    String schema = args[4].endsWith(".") ? args[4] : args[4] + ".";
-    return new Config(args[0], SimpleDbConfig.create(SupportedPlatform.ORACLE, args[1], args[2], args[3]), schema);
+
+    final var schema = env.get(ENV_DB_SCHEMA);
+    return new Config(
+      env.get(ENV_SOLR_URL),
+      SimpleDbConfig.create(
+        SupportedPlatform.ORACLE,
+        env.get(ENV_DB_CONNECT),
+        env.get(ENV_DB_USER),
+        env.get(ENV_DB_PASS)
+      ),
+      schema.endsWith(".") ? schema : schema + "."
+    );
   }
 
 }

@@ -1,9 +1,12 @@
 package org.eupathdb.sitesearch.data.comments;
 
 import org.apache.log4j.Logger;
+import org.eupathdb.sitesearch.data.comments.solr.FormatType;
+import org.eupathdb.sitesearch.data.comments.solr.SolrTermQueryBuilder;
+import org.eupathdb.sitesearch.data.comments.solr.SolrUrlQueryBuilder;
 import org.gusdb.fgputil.db.pool.DatabaseInstance;
 import org.gusdb.fgputil.db.runner.SQLRunner;
-import org.gusdb.fgputil.solr.SolrRuntimeException;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import javax.sql.DataSource;
@@ -17,8 +20,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.Types;
+import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /***
  * Find all documents in Solr with out-of-date user comment fields relative to
@@ -49,67 +54,74 @@ public class CommentUpdater {
   private static final Logger LOG = Logger.getLogger(CommentUpdater.class);
 
   private final String _solrUrl;
+
   private final DatabaseInstance _commentDb;
+
   private final String _commentSchema;
 
-  public CommentUpdater(String solrUrl, DatabaseInstance commentDb, String commentSchema) {
+  public CommentUpdater(
+    final String           solrUrl,
+    final DatabaseInstance commentDb,
+    final String           commentSchema
+  ) {
     _solrUrl = solrUrl;
     _commentDb = commentDb;
     _commentSchema = commentSchema;
   }
 
-  public void performSync() {
-    findDocumentsToUpdate()
-      .forEach(this::updateDocumentComment);
+  public void syncAll() {
+    try {
+      findDocumentsToUpdate().forEach(this::updateDocumentComment);
+    } finally {
+      fetchDocuments(_solrUrl + (_solrUrl.endsWith("/") ? "" : "/") + "update?commit=true", null);
+    }
+  }
+
+  public void updateSingle(final long commentId) {
+    var select = "SELECT source_id FROM apidb.textsearchablecomment WHERE comment_id = ?";
+    var genes  = new SQLRunner(_commentDb.getDataSource(), select)
+      .executeQuery(new Object[] {commentId}, new Integer[] {Types.BIGINT}, rs -> {
+        var tmp = new ArrayList<String>();
+        while (rs.next()) {
+          tmp.add(rs.getString(1));
+        }
+        return tmp.toArray(new String[0]);
+      });
+    try {
+      fetchDocumentsById(genes).values().forEach(this::updateDocumentComment);
+    } finally {
+      fetchDocuments(_solrUrl + (_solrUrl.endsWith("/") ? "" : "/") + "update?commit=true", null);
+    }
   }
 
   /**
-   * Get an in-memory list of record IDs for those records that are out of date in Solr
-   * @return
+   * Get an in-memory list of record IDs for those records that are out of date
+   * in Solr
    */
-  private List<RecordIdTuple> findDocumentsToUpdate() {
+  private List<DocumentInfo> findDocumentsToUpdate() {
 
     // sql to find sorted (source_id, comment_id) tuples from userdb
     var sqlSelect = "SELECT source_id, comment_target_type as record_type, c.comment_id"
       + " FROM apidb.textsearchablecomment tsc,"
-      + " " + _commentSchema + ".comments c "
+      + " " + _commentSchema + "comments c "
       + " WHERE tsc.comment_id = c.comment_id"
-      + " ORDER BY record_type, source_id, comment_id";
+      + "   AND project_id = 'PlasmoDB'"
+      + " ORDER BY source_id DESC, c.comment_id";
 
-    return new SQLRunner(_commentDb.getDataSource(), sqlSelect)
-      .executeQuery(rs -> {
-        Response solrResponse = null;
-        try {
-          // get similar info from solr
-          solrResponse = getSolrResponse();
-          var solrData = new BufferedReader(new InputStreamReader(
-            (InputStream)solrResponse.getEntity()));
+    var results = new SQLRunner(_commentDb.getDataSource(), sqlSelect)
+      .executeQuery(rs -> findStaleDocuments(fetchCommentedRecords(), rs));
 
-          // compare the streams to find differences
-          return findStaleDocuments(solrData, rs);
-        }
-        finally {
-          if (solrResponse != null)
-            solrResponse.close();
-        }
-      });
+    results.toUpdate.addAll(
+      fetchDocumentsById(results.toPostProcess
+        .stream()
+        .map(RecordInfo::toSolrId)
+        .toArray(String[]::new)).values());
+
+    return results.toUpdate;
   }
 
   /**
    * Iterate through parallel streams, comparing them.
-   *
-   * The rows from solr are one per document, sorted by wdkPrimaryKey, with the
-   * comment IDs in a single cell.  Those comments to be serialized and sorted.
-   *
-   * Example Result:
-   * <code>
-   *   id,wdkPrimaryKeyString,userCommentIds
-   *   gene__mal_mito_3,mal_mito_3,"102190,1137,1203"
-   *   gene__mal_mito_2,mal_mito_2,102180
-   *   gene__mal_mito_1,mal_mito_1,102170
-   *   gene__PY17X_1464400,PY17X_1464400,100062223
-   *   gene__PY17X_1463500,PY17X_1463500,79950
-   * </code>
    *
    * The rows from the database are one per (recordId, commentId) tuple and are
    * already sorted.
@@ -130,48 +142,90 @@ public class CommentUpdater {
    * assumed to be present in Solr, but have no comments, and are therefore
    * in need of updating.
    */
-  private List<RecordIdTuple> findStaleDocuments(BufferedReader solrData, ResultSet rs) {
-//    try {
-//      solrData.readLine();
-//      var tuple = RecordIdTuple.fromRs(rs);
-//    } catch (IOException | SQLException e) {
-//      e.printStackTrace();
-//    }
-//     TODO: write this method
-    return new ArrayList<>();
+  private ProcessingResult findStaleDocuments(
+    final Map<String, DocumentInfo> solrData,
+    final ResultSet      rs
+  ) {
+    var dbRow = new RecordInfo();
+    var out   = new ProcessingResult();
+
+    // Set of already invalidated source ids.  Used to skip
+    // rows when possible
+    var tmp = new HashSet<String>();
+    try {
+      outer:
+      while (rs.next()) {
+        dbRow.readRs(rs);
+
+        // if the current source id was added to the tmp map
+        // then we don't need to bother with any of it's
+        // other rows.
+        while (tmp.contains(dbRow.sourceId)) {
+          if (!rs.next())
+            break outer;
+          dbRow.readRs(rs);
+        }
+
+        if (!solrData.containsKey(dbRow.sourceId)) {
+          out.toPostProcess.add(dbRow.copy());
+          tmp.add(dbRow.sourceId);
+          continue;
+        }
+
+        var doc = solrData.get(dbRow.sourceId);
+        if (!doc.hasCommentId(dbRow.commentId))
+          out.toUpdate.add(doc);
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+
+    solrData.values()
+      // For each document
+      .stream()
+      // that is not already queued for update
+      .filter(d -> !tmp.contains(d.getSourceId()))
+      // that has referenced comments not appearing in the db
+      .filter(DocumentInfo::hasUnhitComments)
+      // queue for update
+      .forEach(out.toUpdate::add);
+
+    return out;
   }
 
   /**
-   * Get a csv response from Solr.
+   * Retrieves documents from Solr with id values matching
+   * the given input ids.
    *
-   * The 3 columns are docId, wdkPrimaryKeyString,  and comma-delimited list of
-   * commentIDs.
+   * @param ids Solr IDs for documents to lookup
    *
-   * Rows are sorted by wdkPrimaryKeyString.
-   *
-   * TODO: tune the solr query to omit documents that have empty user comment
-   *       fields.
+   * @return Map of WDK SourceID to Solr {@link DocumentInfo}
    */
-  private Response getSolrResponse() {
-    var searchUrl = _solrUrl + "/select" +
-        "?q=MULTITEXT__gene_UserCommentContent:*" +    // any document with user comments
-        "&fl=id,wdkPrimaryKeyString,userCommentIds" +  // output fields
-        "&rows=1000000" +                              // row count: infinite
-        "&wt=csv" +                                    // output format csv
-        "&sort=wdkPrimaryKeyString desc";              // sorting
+  private Map<String, DocumentInfo> fetchDocumentsById(final String[] ids) {
+    var q = new SolrTermQueryBuilder(Field.ID)
+      .values(ids)
+      .resultFields(DocumentInfo.REQUIRED_FIELDS)
+      .maxRows(1000000)
+      .resultFormat(FormatType.CSV);
+    return fetchDocuments(
+      _solrUrl + (_solrUrl.endsWith("/") ? "select" : "/select"),
+      Entity.entity(q.toString(), MediaType.APPLICATION_FORM_URLENCODED_TYPE)
+    );
+  }
 
-    LOG.info("Querying SOLR with: " + searchUrl);
-
-    var response = ClientBuilder.newClient()
-      .target(searchUrl)
-      .request(MediaType.APPLICATION_JSON)
-      .get();
-
-    if (!response.getStatusInfo().getFamily().equals(Family.SUCCESSFUL)) {
-      throw new RuntimeException("SOLR responded with error");
-    }
-
-    return response;
+  /**
+   * Retrieves documents from Solr that have existing
+   * comment content data.
+   *
+   * @return Map of WDK SourceID to Solr {@link DocumentInfo}
+   */
+  private Map<String, DocumentInfo> fetchCommentedRecords() {
+    return fetchDocuments(SolrUrlQueryBuilder.select(_solrUrl)
+      .filterAndAllOf(Field.COMMENT_TXT)
+      .resultFields(DocumentInfo.REQUIRED_FIELDS)
+      .maxRows(1000000)
+      .resultFormat(FormatType.CSV)
+      .buildQuery(), null);
   }
 
   /**
@@ -182,13 +236,20 @@ public class CommentUpdater {
    * We do this because the Solr stream might not include documents without
    * comments, and so would not provide those IDs.
    */
-  private void updateDocumentComment(RecordIdTuple idTuple) {
-    var comments = getCorrectCommentsForOneDocument(idTuple, _commentDb.getDataSource());
+  private void updateDocumentComment(DocumentInfo doc) {
+    var comments = getCorrectCommentsForOneDocument(doc, _commentDb.getDataSource());
 
-    var updateJson = new JSONObject()
-      .put("id", idTuple.recordType + "__" + idTuple.sourceId) // concoct a valid solr unique ID
-      .put("userCommentIds", comments.commentIds)
-      .put("UserCommentContent", comments.commentContents);
+    var updateJson = new JSONArray().put(
+      new JSONObject()
+        .put(Field.ID, doc.getSolrId()) // concoct a valid solr unique ID
+        .put(Field.DOC_TYPE, doc.getDocumentType())
+        .put(Field.BATCH_ID, doc.getBatchId())
+        .put(Field.BATCH_NAME, doc.getBatchName())
+        .put(Field.BATCH_TYPE, doc.getBatchType())
+        .put(Field.BATCH_TIME, doc.getBatchTime())
+        .put(Field.COMMENT_ID, new JSONObject().put("set", comments.commentIds))
+        .put(Field.COMMENT_TXT, new JSONObject().put("set", comments.commentContents))
+    );
 
     updateSolrDocument(updateJson);
   }
@@ -197,11 +258,14 @@ public class CommentUpdater {
    * Get the up-to-date comments info from the database, for the provided wdk
    * record
    */
-  private DocumentCommentsInfo getCorrectCommentsForOneDocument(RecordIdTuple idTuple, DataSource commentDbDataSource) {
+  private DocumentCommentsInfo getCorrectCommentsForOneDocument(
+    final DocumentInfo doc,
+    final DataSource commentDbDataSource
+  ) {
 
-    var sqlSelect = "select comment_id, content " +
-        "from apidb.textsearchablecomment " +
-        "where source_id = '" + idTuple.sourceId + "'";
+    var sqlSelect = " SELECT comment_id, content"
+      + " FROM apidb.textsearchablecomment"
+      + " WHERE source_id = '" + doc.getSourceId() + "'";
 
     return new SQLRunner(commentDbDataSource, sqlSelect)
       .executeQuery(rs -> {
@@ -219,19 +283,14 @@ public class CommentUpdater {
   /***
    * Apply a JSON update to Solr
    */
-  private void updateSolrDocument(JSONObject jsonBody) {
+  private void updateSolrDocument(JSONArray jsonBody) {
     Response response = null;
     try {
-      var finalUrl = _solrUrl + "/update";
+      var finalUrl = _solrUrl + (_solrUrl.endsWith("/")
+        ? "" : "/") + "update";
 
-      response = ClientBuilder.newClient()
-        .target(finalUrl)
-        .request(MediaType.APPLICATION_JSON)
-        .post(Entity.entity(jsonBody.toString(), MediaType.APPLICATION_JSON));
+      response = sendSolrRequest(finalUrl, Entity.entity(jsonBody.toString(), MediaType.APPLICATION_JSON));
 
-      if (!response.getStatusInfo().getFamily().equals(Family.SUCCESSFUL)) {
-        throw new SolrRuntimeException("Failed to execute SOLR update. " + response.getEntity().toString());
-      }
     }
     finally {
       if (response != null)
@@ -239,21 +298,57 @@ public class CommentUpdater {
     }
   }
 
-  /**
-   * A tuple holding a record ID from the database (eg a Gene ID)
-   *
-   * @author Steve
-   */
-  static class RecordIdTuple {
-    String recordType;
-    String sourceId;
+  private static Map<String, DocumentInfo> fetchDocuments(String url, Entity<?> body) {
+    Response res = null;
+    try {
+      res = sendSolrRequest(url, body);
 
-    static RecordIdTuple fromRs(ResultSet rs) throws SQLException {
-      var out = new RecordIdTuple();
-      out.recordType = rs.getString(1);
-      out.sourceId = rs.getString(2);
-      return out;
+      var read = entityReader(res);
+      if (!read.ready())
+        return Collections.emptyMap();
+
+      // Skip first line (headers)
+      read.readLine();
+
+      return read.lines()
+        .map(DocumentInfo::readCsvRow)
+        .collect(Collectors.toMap(DocumentInfo::getSourceId, Function.identity()));
+
+    } catch (IOException e) {
+      throw new RuntimeException("Failed to read Solr response body", e);
+    } finally {
+      if (res != null)
+        res.close();
     }
+  }
+
+  private static BufferedReader entityReader(final Response rs) {
+    return new BufferedReader(new InputStreamReader(
+      (InputStream)rs.getEntity()
+    ));
+  }
+
+  private static Response sendSolrRequest(final String url, final Entity<?> payload) {
+    Response out;
+
+    var req = ClientBuilder.newClient()
+      .target(url)
+      .request();
+
+    LOG.info(String.format("Making %s request to Solr at %s",
+      payload == null ? "GET" : "POST", url));
+
+    if (payload != null)
+      out = req.post(payload);
+    else
+      out = req.get();
+
+    if (!out.getStatusInfo().getFamily().equals(Family.SUCCESSFUL)) {
+      throw new RuntimeException("SOLR responded with an error: "
+        + out.getStatus() + out.readEntity(String.class));
+    }
+
+    return out;
   }
 
   /**
@@ -261,7 +356,7 @@ public class CommentUpdater {
    *
    * @author Steve
    */
-  public static class DocumentCommentsInfo {
+  static class DocumentCommentsInfo {
     List<Integer> commentIds = new ArrayList<>();
     List<String> commentContents = new ArrayList<>();
   }

@@ -14,11 +14,12 @@
             <optional>
               <attribute name="userFileUploadDir" />
             </optional>
-            
+
             <!-- common properties, exact copy from DBBaseContent -->
             <attribute name="login" />
             <attribute name="password" />
             <attribute name="connectionUrl" />
+            <attribute name="solrUrl" />
             <attribute name="platform">
                <choice>
                   <value>Oracle</value>

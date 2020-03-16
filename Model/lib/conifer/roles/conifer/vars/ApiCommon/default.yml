@@ -37,7 +37,7 @@ modelprop:
   SITE_SEARCH_SERVICE_URL: /site-search
   JBROWSE_WEBPAGE_URL: "/{{ webapp_ctx }}/app/jbrowse"
   JBROWSE_SERVICE_URL: "/{{ webapp_ctx }}/service/jbrowse"
-  
+
 
 commentconfig_login: '{{ modelconfig_userDb_login }}'
 commentconfig_password: '{{ modelconfig_userDb_password }}'
@@ -53,6 +53,7 @@ commentconfig_userLoginSchema: userlogins5
 commentconfig_userLoginDbLink: '{{ modelconfig_appDb_userDbLink }}'
 commentconfig_userFileSchema: uploads
 commentconfig_userFileUploadDir: /var/www/Common/communityFilesMirror
+commentconfig_solrUrl: https://solr-sitesearch-dev.local.apidb.org:8443/solr/site_search/
 
 
 blastconfig_blastPath: '/opt/ncbi-blast+/bin/'
@@ -81,4 +82,3 @@ fisherexacttestconfig_dbLogin: '{{ modelconfig_appDb_login }}'
 fisherexacttestconfig_dbPassword: '{{ modelconfig_appDb_password }}'
 fisherexacttestconfig_perlExec: /usr/bin/perl
 fisherexacttestconfig_connectionUrl: "{{ '' if modelconfig_userDb_connectionUrl.startswith('=c=') else modelconfig_appDb_connectionUrl|jdbc2Dbi }}"
-

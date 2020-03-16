@@ -68,6 +68,11 @@
         <artifactId>api-common-website-model</artifactId>
         <version>${project.version}</version>
       </dependency>
+      <dependency>
+        <groupId>org.eupathdb</groupId>
+        <artifactId>api-common-website-commentupdater</artifactId>
+        <version>${project.version}</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 

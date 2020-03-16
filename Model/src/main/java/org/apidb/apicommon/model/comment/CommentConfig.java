@@ -14,6 +14,7 @@ public class CommentConfig extends ModelConfigDB {
   private String userLoginDbLink = "";
   private String userFileSchema = "";
   private String userFileUploadDir = "";
+  private String solrUrl = "";
 
   /**
    * @return Returns the commentSchema.
@@ -77,4 +78,11 @@ public class CommentConfig extends ModelConfigDB {
     this.userFileUploadDir = userFileUploadDir;
   }
 
+  public String getSolrUrl() {
+    return solrUrl;
+  }
+
+  public void setSolrUrl(String solrUrl) {
+    this.solrUrl = solrUrl;
+  }
 }
