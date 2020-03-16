@@ -73,24 +73,35 @@ public class CommentUpdater {
     try {
       findDocumentsToUpdate().forEach(this::updateDocumentComment);
     } finally {
-      fetchDocuments(_solrUrl + (_solrUrl.endsWith("/") ? "" : "/") + "update?commit=true", null);
+      solrCommit();
     }
   }
 
   public void updateSingle(final long commentId) {
-    var select = "SELECT source_id FROM apidb.textsearchablecomment WHERE comment_id = ?";
+    var schema = _commentSchema + (_commentSchema.endsWith(".") ? "" : ".");
+    // Intentionally selecting dead comments for comment delete case.
+    var select = "SELECT stable_id "
+      + "FROM " + schema + "comments "
+      + "WHERE comment_id = ?"
+      + "UNION "
+      + "SELECT stable_id "
+      + "FROM " + schema + "commentstableid "
+      + "WHERE comment_id = ?";
     var genes  = new SQLRunner(_commentDb.getDataSource(), select)
-      .executeQuery(new Object[] {commentId}, new Integer[] {Types.BIGINT}, rs -> {
-        var tmp = new ArrayList<String>();
-        while (rs.next()) {
-          tmp.add(rs.getString(1));
-        }
-        return tmp.toArray(new String[0]);
-      });
+      .executeQuery(
+        new Object[] {commentId, commentId},
+        new Integer[] {Types.BIGINT, Types.BIGINT},
+        rs -> {
+          var tmp = new ArrayList<String>();
+          while (rs.next()) {
+            tmp.add("gene__" + rs.getString(1));
+          }
+          return tmp.toArray(new String[0]);
+        });
     try {
       fetchDocumentsById(genes).values().forEach(this::updateDocumentComment);
     } finally {
-      fetchDocuments(_solrUrl + (_solrUrl.endsWith("/") ? "" : "/") + "update?commit=true", null);
+      solrCommit();
     }
   }
 
@@ -295,6 +306,16 @@ public class CommentUpdater {
     finally {
       if (response != null)
         response.close();
+    }
+  }
+
+  private void solrCommit() {
+    Response res = null;
+    try {
+      res = sendSolrRequest(_solrUrl + (_solrUrl.endsWith("/") ? "" : "/") + "update?commit=true", null);
+    } finally {
+      if (res != null)
+        res.close();
     }
   }
 
