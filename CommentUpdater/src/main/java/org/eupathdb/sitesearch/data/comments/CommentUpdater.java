@@ -116,7 +116,6 @@ public class CommentUpdater {
       + " FROM apidb.textsearchablecomment tsc,"
       + " " + _commentSchema + "comments c "
       + " WHERE tsc.comment_id = c.comment_id"
-      + "   AND project_id = 'PlasmoDB'"
       + " ORDER BY source_id DESC, c.comment_id";
 
     var results = new SQLRunner(_commentDb.getDataSource(), sqlSelect)
