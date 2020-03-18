@@ -148,6 +148,19 @@ RADJUST
 1;
 
 
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_cb6310bab8;
+
+sub finalProfileAdjustments {
+  my ($self, $profile) = @_;
+
+  my $rAdjustString = << 'RADJUST';
+profile.df.full <- profile.df.full[!grepl("hr_after_laying_eggs", profile.df.full$NAME),]
+
+RADJUST
+
+  $profile->addAdjustProfile($rAdjustString);
+}
+1;
 
 package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_f101fb2669;
 
