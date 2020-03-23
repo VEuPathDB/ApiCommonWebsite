@@ -143,8 +143,6 @@ sub init {
     }
   }
 
-
-
   $self->makeAndSetPlots(\%plotParts, \%hasStdError);
 
   return $self;
@@ -401,6 +399,81 @@ sub forceXLabelsHorizontal {
 
 
 ## VectorBase ##
+package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_f6d53b7d28;
+# @Override
+sub getKeys{
+  my ($self, $profileSetName, $profileType) = @_;
+
+#  if ($profileType eq 'standard_error') {
+#    return([]);
+#  }
+
+  $profileType = 'percentile' if ($profileType eq 'channel1_percentiles');
+  $profileType = 'percentile' if ($profileType eq 'channel2_percentiles');
+
+  my $mainKey = ["_${profileType}"];
+  if ($profileType eq 'amplitude' || $profileType eq 'period' || $profileType eq 'pvalue') {
+    $mainKey = ["_values", "_percentile"];
+  }
+
+  return($mainKey);
+}
+
+sub finalProfileAdjustments {
+  my ($self, $profile) = @_;
+
+  my $rAdjustString = << 'RADJUST';
+annotation.df <- profile.df.full[!profile.df.full$PROFILE_TYPE %in% c('values', 'channel1_percentiles'),]
+profile.df.full <- profile.df.full[profile.df.full$PROFILE_TYPE %in% c('values', 'channel1_percentiles'),]
+profile.df.full$GROUP <- unlist(lapply(strsplit(profile.df.full$ELEMENT_NAMES, " "), function(x){paste(x[1],x[2])}))
+profile.df.full$PROFILE_FILE = profile.df.full$GROUP
+profile.df.full$LEGEND = profile.df.full$GROUP
+profile.df.full$ELEMENT_NAMES_NUMERIC <- unlist(lapply(strsplit(profile.df.full$ELEMENT_NAMES, " "), "[", 3))
+profile.df.full$ELEMENT_NAMES_NUMERIC <- gsub("ZT", "", profile.df.full$ELEMENT_NAMES_NUMERIC)
+profile.df.full$ELEMENT_NAMES_NUMERIC <- gsub("CT", "", profile.df.full$ELEMENT_NAMES_NUMERIC)
+
+if (nrow(annotation.df) > 0) {
+  annotation.df <- transform(annotation.df, "VALUE"=ifelse(VALUE < .05 & PROFILE_TYPE == "pvalue", "<0.05", VALUE))
+  annotation.df$LEGEND <- trimws(tolower(gsub("circadian", "", annotation.df$LEGEND)))
+  annotation.df$LINETEXT <- paste0(substr(annotation.df$ELEMENT_NAMES, 1,3), " ", annotation.df$PROFILE_TYPE, ": ", annotation.df$VALUE)
+  annotation.df <- group_by(annotation.df, LEGEND)
+  annotation.df <- summarize(annotation.df, LINETEXT = paste(LINETEXT, collapse="||"))
+  annotation.df$LINETEXT <- paste0(annotation.df$LEGEND, "||", annotation.df$LINETEXT)
+  profile.df.full <- merge(profile.df.full, annotation.df, by = "LEGEND") 
+  profile.is.numeric <- TRUE
+}
+RADJUST
+
+  my $rPostscript = << 'RPOST';
+  if ("LINETEXT" %in% colnames(profile.df.full)) {  
+    remove_geom <- function(ggplot2_object, geom_type) {
+      layers <- lapply(ggplot2_object$layers, 
+        function(x) {
+          if (class(x$geom)[1] == geom_type) {
+            NULL
+          } else {
+            x
+          }
+        }
+      )
+      layers <- layers[!sapply(layers, is.null)]
+      ggplot2_object$layers <- layers
+      ggplot2_object
+    }
+  
+    gp <- remove_geom(gp, "GeomLine")
+ 
+    gp = gp + aes(group=GROUP)
+    gp = gp + geom_tooltip(aes(tooltip=LINETEXT), real.geom=geom_line)
+  }
+RPOST
+
+  $profile->addAdjustProfile($rAdjustString);
+  $profile->setRPostscript($rPostscript);
+}
+
+1;
+
 package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_38a3c29f33;
 sub finalProfileAdjustments {
   my ($self, $profile) = @_;
