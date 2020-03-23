@@ -56,6 +56,19 @@
     <url-pattern>/*</url-pattern>
   </filter-mapping>
 
+  <filter>
+    <filter-name>BetaLegacyFilter</filter-name>
+    <filter-class>org.eupathdb.common.controller.BetaLegacyFilter</filter-class>
+    <init-param>
+      <param-name>beta</param-name>
+      <!-- switch to false if in the prod branch -->
+      <param-value>false</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>BetaLegacyFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
 
   <!-- Replace /-PROJECT-/ in the request URL with the WDK Project ID -->
   <filter>
