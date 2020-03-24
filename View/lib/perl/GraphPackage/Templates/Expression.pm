@@ -399,14 +399,23 @@ sub forceXLabelsHorizontal {
 
 
 ## VectorBase ##
+package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_1b7a4b6253;
+
+sub getKeys{
+  my ($self, $profileSetName, $profileType) = @_;
+
+  $profileType = 'percentile' if ($profileType eq 'channel1_percentiles');
+  $profileType = 'percentile' if ($profileType eq 'channel2_percentiles');
+
+  return ["${profileSetName}_${profileType}"]; 
+}
+
+1;
+
 package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_f6d53b7d28;
 # @Override
 sub getKeys{
   my ($self, $profileSetName, $profileType) = @_;
-
-#  if ($profileType eq 'standard_error') {
-#    return([]);
-#  }
 
   $profileType = 'percentile' if ($profileType eq 'channel1_percentiles');
   $profileType = 'percentile' if ($profileType eq 'channel2_percentiles');
