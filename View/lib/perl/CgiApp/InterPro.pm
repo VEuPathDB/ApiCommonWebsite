@@ -8,6 +8,11 @@ use LWP::UserAgent;
 use HTTP::Request::Common qw(POST);
 use EbrcWebsiteCommon::View::CgiApp;
 
+
+use File::Temp qw/ tempfile tempdir /;
+
+
+
 use Data::Dumper;
 
 sub run {
@@ -38,25 +43,33 @@ sub run {
 
     $sh->finish();
 
-    my $filename1 = '/var/www/linxu123.plasmodb.org/cgi-bin/test.fa';
-    open(FH, '>', $filename1) or die $!;
-    print FH $seq;
-    close(FH);
 
-    
-    my $command = "perl /var/www/linxu123.plasmodb.org/cgi-bin/test.pl --email null\@gmail.com  /var/www/linxu123.plasmodb.org/cgi-bin/test.fa > /var/www/linxu123.plasmodb.org/cgi-bin/myFile.txt";
+    my ($FH, $File) = tempfile(SUFFIX => '.fa');
+    print $FH  $seq;
+    close ($FH);
+
+    my ($fh, $file) = tempfile(SUFFIX => '.txt');
+
+####### Download InterPro source code: InterproScan5.pl from  'https://www.ebi.ac.uk/seqdb/confluence/display/JDSAT/InterProScan+5+Help+and+Documentation'
+
+    my $command = "perl /var/www/linxu123.plasmodb.org/project_home/ApiCommonWebsite/Site/cgi-bin/InterproScan5.pl  --email null\@gmail.com  $File &> $file";
     my $Interapro_Result  =  `$command`;
+
+###### We regex $jobID from the outputs that returned from the above command line.
 
     my $jobID;
 
-    my $job_id_file = '/var/www/linxu123.plasmodb.org/cgi-bin/JobID.txt';
-    open( FH1, "<$job_id_file" ) or die "Couldn't open file $job_id_file for reading, $!"; 
-    while ( my $linedata = <FH1> ) {                                       
-	$jobID = $linedata;
-    }
+    open($fh,"<$file" ) or die "Couldn't open file $file for reading, $!"; 
 
+    my $jobID = <$fh>;
+    
+    close($fh);
 
     
+    if($jobID =~ /^JobId:\S*\s+(\S+)/){
+	$jobID = $1;
+    }
+
 
    # retrieve and display results  
     print "Location: https://www.ebi.ac.uk/interpro/result/InterProScan/$jobID"."\n\n";
@@ -71,4 +84,3 @@ sub run {
 
 	
  
-

@@ -61,6 +61,11 @@ use File::Basename;
 use Data::Dumper;
 use Time::HiRes qw(usleep);
 
+
+use File::Temp qw/ tempfile tempdir /;
+
+
+
 # Base URL for service
 my $baseUrl = 'https://www.ebi.ac.uk/Tools/services/rest/iprscan5';
 my $version = '2020-02-28 14:43';
@@ -1039,7 +1044,15 @@ sub get_results {
     my $jobid = shift;
 
 ######### Lin add here...
-    my $filename2 = '/var/www/linxu123.plasmodb.org/cgi-bin/JobID.txt';                                                  
+=head
+    my ($FH, $File) = tempfile(SUFFIX => '.txt');
+    print $FH  $jobid;
+    close ($FH);
+=cut
+
+###################### how to get jobID???????????????????????????????????????????????????????????????????????
+
+    my $filename2 = '/var/www/linxu123.plasmodb.org/tmp/JobID.txt';    
     open(FHH, '>', $filename2) or die $!;                                                                                          
     print FHH $jobid;                                                                                                       
     close(FHH);   
