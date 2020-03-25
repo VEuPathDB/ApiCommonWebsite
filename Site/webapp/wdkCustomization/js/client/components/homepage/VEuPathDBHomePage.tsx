@@ -9,6 +9,7 @@ import { CategoryTreeNode } from 'wdk-client/Utils/CategoryUtils';
 import { arrayOf, decode, string } from 'wdk-client/Utils/Json';
 
 import Announcements from 'ebrc-client/components/Announcements';
+import CookieBanner from 'ebrc-client/components/CookieBanner';
 import { Footer } from 'ebrc-client/components/homepage/Footer';
 import { Header, HeaderMenuItem } from 'ebrc-client/components/homepage/Header';
 import { Main } from 'ebrc-client/components/homepage/Main';
@@ -188,6 +189,9 @@ const VEuPathDBHomePageView: FunctionComponent<Props> = props => {
         >
           <PageDescription />
         </Footer>
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <CookieBanner/>
       </ErrorBoundary>
     </div>
   );
