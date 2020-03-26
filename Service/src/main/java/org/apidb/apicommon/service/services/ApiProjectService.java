@@ -1,6 +1,5 @@
 package org.apidb.apicommon.service.services;
 
-import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -48,12 +47,7 @@ public class ApiProjectService extends ProjectService {
       // add mapping of organism to project ID
       JSONObject mappedOrganisms = new JSONObject();
       for (String organism : organisms) {
-        try {
-          mappedOrganisms.put(organism, mapper.getProjectByOrganism(organism));
-        }
-        catch (SQLException e) {
-          throw new WdkModelException("Unable to look up project for organism '" + organism + "'.", e);
-        }
+        mappedOrganisms.put(organism, mapper.getProjectByOrganism(organism));
       }
       projectJson.put(ORG_TO_PROJECT_KEY, mappedOrganisms);
     }
