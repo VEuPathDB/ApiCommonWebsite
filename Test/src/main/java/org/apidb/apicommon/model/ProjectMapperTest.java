@@ -1,7 +1,5 @@
 package org.apidb.apicommon.model;
 
-import java.sql.SQLException;
-
 import org.eupathdb.common.model.ProjectMapper;
 import org.gusdb.fgputil.runtime.GusHome;
 import org.gusdb.wdk.model.WdkModel;
@@ -26,7 +24,7 @@ public class ProjectMapperTest {
   }
 
   @Test
-  public void testGetProjectByOrganism() throws WdkModelException, SQLException {
+  public void testGetProjectByOrganism() throws WdkModelException {
     try (WdkModel wdkModel = WdkModel.construct("EuPathDB", GusHome.getGusHome())) {
       ProjectMapper mapper = ProjectMapper.getMapper(wdkModel);
       Assert.assertEquals("PlasmoDB",

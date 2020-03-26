@@ -7,6 +7,7 @@ import QueryString from 'querystring';
 import { emptyAction } from 'wdk-client/Core/WdkMiddleware';
 import { projectId } from 'ebrc-client/config';
 import { CollapsibleSection, Link } from 'wdk-client/Components';
+import { useProjectUrls } from 'ebrc-client/hooks/projectUrls';
 import { submitAsForm } from 'wdk-client/Utils/FormSubmitter';
 import { makeDynamicWrapper, findComponent } from './components/records';
 import * as Gbrowse from './components/common/Gbrowse';
@@ -108,35 +109,16 @@ function makePortalRecordLink(WdkRecordLink) {
   return function PortalRecordLink(props) {
     const { recordId, recordClass } = props;
     const projectIdPart = recordId.find(part => part.name === 'project_id');
+    const projectUrls = useProjectUrls();
 
-    if (projectIdPart == null || projectIdPart.value === 'EuPathDB') return <WdkRecordLink {...props}/>;
+    if (projectUrls == null || projectIdPart == null || projectIdPart.value === 'EuPathDB' || projectUrls[projectIdPart.value] == null ) return <WdkRecordLink {...props}/>;
 
-    const baseUrl = getBaseUrl(projectIdPart && projectIdPart.value);
+    const baseUrl = projectUrls[projectIdPart.value];
     const pkValues = recordId.filter(p => p.name !== 'project_id').map(p => p.value).join('/');
-
+    const url = new URL(`app/record/${recordClass.urlSegment}/${pkValues}`, baseUrl);
     return (
-      <a href={`${baseUrl}/app/record/${recordClass.urlSegment}/${pkValues}`} target="_blank">{props.children}</a>
+      <a href={url} target="_blank">{props.children}</a>
     );
-  }
-}
-
-function getBaseUrl(projectId) {
-  const hostPrefix = window.location.hostname.replace('veupathdb.org', '');
-  switch(projectId) {
-    case 'AmoebaDB': return `https://${hostPrefix}amoebadb.org/amoeba`;
-    case 'CryptoDB': return `https://${hostPrefix}cryptodb.org/cryptodb`;
-    case 'FungiDB': return `https://${hostPrefix}fungidb.org/fungidb`;
-    case 'GiardiaDB': return `https://${hostPrefix}giardiadb.org/giardiadb`;
-    case 'HostDB': return `https://${hostPrefix}hostdb.org/hostdb`;
-    case 'MicrosporidiaDB': return `https://${hostPrefix}microsporidiadb.org/micro`;
-    case 'PiroplasmaDB': return `https://${hostPrefix}piroplasmadb.org/piro`;
-    case 'PlasmoDB': return `https://${hostPrefix}plasmodb.org/plasmo`;
-    case 'ToxoDB': return `https://${hostPrefix}toxodb.org/toxo`;
-    case 'TrichDB': return `https://${hostPrefix}trichdb.org/trichdb`;
-    case 'TriTrypDB': return `https://${hostPrefix}tritrypdb.org/tritrypdb`;
-    case 'VectorBase': return `https://${hostPrefix}vectorbase.org/vectorbase`;
-    case 'OrthoMCL': return `https://${hostPrefix}orthomcl.org/orthomcl`;
-    default: return `https://${hostPrefix}veupathdb.org/veupathdb`;
   }
 }
 
