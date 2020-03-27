@@ -770,7 +770,7 @@ sub init {
   $go->addAdjustProfile('
 profile.df.full$NUM <- round(profile.df.full$NUM, digits = 2)
 profile.df.full$DENOM <- round(profile.df.full$DENOM, digits = 2)
-profile.df.full$TOOLTIP <- paste0(profile.df.full$NUM, " : ", profile.df.full$DENOM)
+profile.df.full$TOOLTIP <- paste0("Ratio ", profile.df.full$NUM, " : ", profile.df.full$DENOM)
 #profile.df.full$TOOLTIP <- paste0(profile.df.full$NUM, " : ", profile.df.full$DENOM, "|", unlist(lapply(strsplit(profile.df.full$PROFILE_FILE, "_"),"[",2)))
 profile.df.full$FACET <- as.factor(paste0(unlist(lapply(strsplit(profile.df.full$PROFILE_FILE, "_"),"[",2)), " / NoTet"))
 profile.df.full$LEGEND[!grepl("ALL", profile.df.full$PROFILE_FILE)] <- unlist(lapply(strsplit(profile.df.full$PROFILE_FILE[!grepl("ALL", profile.df.full$PROFILE_FILE)], "-"),"[",2))
