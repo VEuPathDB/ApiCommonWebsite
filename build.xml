@@ -135,12 +135,15 @@
     <!--JBrowse stuff -->
     <delete file="${webappTargetDir}/jbrowse/jbrowse.conf" />
     <delete file="${webappTargetDir}/jbrowse/functions.conf" />
+    <delete file="${webappTargetDir}/jbrowse/apollo_gene_tracks.conf" />
     <delete file="${webappTargetDir}/jbrowse/index.html" />
     <delete dir="${webappTargetDir}/jbrowse/node_modules" />
     <copy file="${projectsDir}/ApiCommonModel/Model/lib/jbrowse/jbrowse.conf"
           tofile="${webappTargetDir}/jbrowse/jbrowse.conf" />
     <copy file="${projectsDir}/ApiCommonModel/Model/lib/jbrowse/functions.conf"
           tofile="${webappTargetDir}/jbrowse/functions.conf" />
+    <copy file="${projectsDir}/ApiCommonModel/Model/lib/jbrowse/apollo_gene_tracks.conf"
+          tofile="${webappTargetDir}/jbrowse/apollo_gene_tracks.conf" />
     <copy file="${projectsDir}/ApiCommonModel/Model/lib/jbrowse/index.html"
           tofile="${webappTargetDir}/jbrowse/index.html" />
     <copy file="${projectsDir}/ApiCommonModel/Model/lib/jbrowse/apiJBrowse.js"
