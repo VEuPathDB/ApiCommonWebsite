@@ -80,7 +80,7 @@ public class JBrowseService extends AbstractWdkService {
     @GET
     @Path("rnaseqJunctions/{organismAbbrev}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getJbrowseRNASeqJunctionTracks(@PathParam("organismAbbrev") String organismAbbrev)  throws IOException {
+    public Response getJbrowseRNASeqJunctionTracks(@PathParam("organismAbbrev") String organismAbbrev, @QueryParam("isApollo") String isApollo)  throws IOException {
 
         String gusHome = getWdkModel().getGusHome();
         String projectId = getWdkModel().getProjectId();
@@ -89,6 +89,7 @@ public class JBrowseService extends AbstractWdkService {
         command.add(gusHome + "/bin/jbrowseRNASeqJunctionTracks");
         command.add(organismAbbrev);
         command.add(projectId);
+        command.add(isApollo);
 
         return responseFromCommand(command);
     }
