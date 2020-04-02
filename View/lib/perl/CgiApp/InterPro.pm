@@ -14,12 +14,12 @@ use Data::Dumper;
 
 
 $|=1;
-print "Content-type: text/html\n\n<head><body>\n<p>Your job is currently running...please be patient";
+print "Content-type: text/html\n\n<head><body>\n<p><b><font size='5' color='DarkCyan'>Your job is currently running...please be patient</font></b>";
 my $time = 0;
- while($time < 10)
+ while($time < 5)
      {
 	 print ' 'x1024;
-	 sleep 2; # or do something other
+	 sleep 0; # or do something other
 	 $time++;
 	 }
 print "</body></html>\n";
