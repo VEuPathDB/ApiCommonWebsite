@@ -16,6 +16,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.DefaultValue;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
@@ -80,7 +81,7 @@ public class JBrowseService extends AbstractWdkService {
     @GET
     @Path("rnaseqJunctions/{organismAbbrev}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getJbrowseRNASeqJunctionTracks(@PathParam("organismAbbrev") String organismAbbrev)  throws IOException {
+    public Response getJbrowseRNASeqJunctionTracks(@PathParam("organismAbbrev") String organismAbbrev, @DefaultValue("0") @QueryParam("isApollo") String isApollo)  throws IOException {
 
         String gusHome = getWdkModel().getGusHome();
         String projectId = getWdkModel().getProjectId();
@@ -89,6 +90,7 @@ public class JBrowseService extends AbstractWdkService {
         command.add(gusHome + "/bin/jbrowseRNASeqJunctionTracks");
         command.add(organismAbbrev);
         command.add(projectId);
+        command.add(isApollo);
 
         return responseFromCommand(command);
     }
