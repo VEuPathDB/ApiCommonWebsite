@@ -440,6 +440,7 @@ profile.df.full$LEGEND = profile.df.full$GROUP
 profile.df.full$ELEMENT_NAMES_NUMERIC <- unlist(lapply(strsplit(profile.df.full$ELEMENT_NAMES, " "), "[", 3))
 profile.df.full$ELEMENT_NAMES_NUMERIC <- gsub("ZT", "", profile.df.full$ELEMENT_NAMES_NUMERIC)
 profile.df.full$ELEMENT_NAMES_NUMERIC <- gsub("CT", "", profile.df.full$ELEMENT_NAMES_NUMERIC)
+profile.df.full$ELEMENT_NAMES_NUMERIC <- as.numeric(profile.df.full$ELEMENT_NAMES_NUMERIC)
 
 if (nrow(annotation.df) > 0) {
   annotation.df <- transform(annotation.df, "VALUE"=ifelse(VALUE < .05 & PROFILE_TYPE == "pvalue", "<0.05", VALUE))
