@@ -1,4 +1,3 @@
-
 package ApiCommonWebsite::View::CgiApp::InterPro;
 @ISA = qw( EbrcWebsiteCommon::View::CgiApp );
 
@@ -8,12 +7,23 @@ use LWP::UserAgent;
 use HTTP::Request::Common qw(POST);
 use EbrcWebsiteCommon::View::CgiApp;
 
+use CGI;
 
 use File::Temp qw/ tempfile tempdir /;
-
-
-
 use Data::Dumper;
+
+
+$|=1;
+print "Content-type: text/html\n\n<head><body>\n<p>Your job is currently running...please be patient";
+my $time = 0;
+ while($time < 10)
+     {
+	 print ' 'x1024;
+	 sleep 2; # or do something other
+	 $time++;
+	 }
+print "</body></html>\n";
+
 
 sub run {
 
@@ -44,13 +54,16 @@ sub run {
     $sh->finish();
 
 
+
     my ($FH, $File) = tempfile(SUFFIX => '.fa');
     print $FH  $seq;
     close ($FH);
 
+
     my ($fh, $file) = tempfile(SUFFIX => '.txt');
 
 ####### Download InterPro source code: InterproScan5.pl from  'https://www.ebi.ac.uk/seqdb/confluence/display/JDSAT/InterProScan+5+Help+and+Documentation'
+
 
     my $command = "perl InterproScan5.pl  --email null\@gmail.com  $File &> $file";
     my $Interapro_Result  =  `$command`;
@@ -71,8 +84,11 @@ sub run {
     }
 
 
+
+    print "<META HTTP-EQUIV=refresh CONTENT=\"1;URL=https://www.ebi.ac.uk/interpro/result/InterProScan/$jobID\">\n";
+    #print "Location: https://www.ebi.ac.uk/interpro/result/InterProScan/$jobID</body></html>\n";;         
    # retrieve and display results  
-    print "Location: https://www.ebi.ac.uk/interpro/result/InterProScan/$jobID"."\n\n";
+    #print "Location: https://www.ebi.ac.uk/interpro/result/InterProScan/$jobID"."\n\n";
 
 }
 
