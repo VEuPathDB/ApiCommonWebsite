@@ -14,7 +14,60 @@
        </attribute>
     </record>
 -->
+<record>
+  <attribute name="headline">FungiDB 47 Released</attribute>
+  <attribute name="date">7 Apr 2020 13:00</attribute>
+  <attribute name="tag">FungiDB04_20_release</attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <p><strong>We are pleased to announce the release of FungiDB 47</strong></p>
+    
+    <section>
+    <h3><b>Release 47 Webinar</b></h3>
+    <div style="margin-left: 3em;">
+      Join us on December 3, 2019 at 10:00 am (EST) for our Release 46 Highlights webinar where we will discuss and 
+      demonstrate new features and data available in release 46 of EuPathDB sites. 
+      <a href="https://attendee.gotowebinar.com/register/1533745455884630285" target="_blank">Register here</a>
+    </div>
+    </section>
+      
+      <section>
+        <h3><b>New data in FungiDB 47</b></h3>
+        <div style="margin-left: 3em;">
+                   
+        <h4>Transcriptomics</h4>
+           <ul>
+                          
+             <li><i>Fusarium graminearum</i>: <a href="/a/app/record/dataset/DS_644b01ef2b">RNA-seq analysis of transcriptomes 
+		at 1 day after sexual induction
+		<a href="http://www.ncbi.nlm.nih.gov/pubmed/27175901" target="_blank">Son et al. 2016</a>.
+             </li>
+             
+                         
+            <li><i>Neurospora crassa</i>: <a href="/a/app/record/dataset/DS_61dc8b7a8d">Transcriptomic investigation of 
+		the role of the SREBP pathway in the secretion of lignocellulolytic enzymes
+             <a href="http://www.ncbi.nlm.nih.gov/pubmed/28420736" target="_blank">Qin et al. 2017</a>.
+             </li>
+	  </ul>
+        <br>
+
+       <section>
+     <aside>
+           Note: Our bimonthly database releases incorporate new data and correct old data when necessary.
+           Changes in annotation and new experimental data may slightly alter your search results by increasing or decreasing the number of hits.
+           When search parameters change with a new release, we invalidate (Ø) the search and ask you to rerun it.
+           When IDs are updated or removed, we map the old IDs to the new ones, remove the old IDs from your Basket, and leave your Favorites page alone.
+         </aside>
+      </section>
+
+    ]]>
+  </attribute>
+</record>
+
 	
+
+		
 <record>
   <attribute name="headline">FungiDB 46 Released</attribute>
   <attribute name="date">6 Nov 2019 13:00</attribute>
