@@ -15,16 +15,16 @@
     </record>
 -->
 <record>
-  <attribute name="headline">FungiDB 46 Released</attribute>
-  <attribute name="date">6 Nov 2019 13:00</attribute>
-  <attribute name="tag">FungiDB11_19_release</attribute>
+  <attribute name="headline">FungiDB 47 Released</attribute>
+  <attribute name="date">7 Apr 2020 13:00</attribute>
+  <attribute name="tag">FungiDB04_20_release</attribute>
   <attribute name="category">release</attribute>
   <attribute name="item">
     <![CDATA[
-    <p><strong>We are pleased to announce the release of FungiDB 46</strong></p>
+    <p><strong>We are pleased to announce the release of FungiDB 47</strong></p>
     
     <section>
-    <h3><b>Release 46 Webinar</b></h3>
+    <h3><b>Release 47 Webinar</b></h3>
     <div style="margin-left: 3em;">
       Join us on December 3, 2019 at 10:00 am (EST) for our Release 46 Highlights webinar where we will discuss and 
       demonstrate new features and data available in release 46 of EuPathDB sites. 
@@ -33,7 +33,7 @@
     </section>
       
       <section>
-        <h3><b>New data in FungiDB 46</b></h3>
+        <h3><b>New data in FungiDB 47</b></h3>
         <div style="margin-left: 3em;">
                    
         <h4>Transcriptomics</h4>
