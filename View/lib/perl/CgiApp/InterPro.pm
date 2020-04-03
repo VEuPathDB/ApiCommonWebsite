@@ -19,7 +19,7 @@ my $time = 0;
  while($time < 5)
      {
 	 print ' 'x1024;
-	 sleep 0; # or do something other
+	 sleep 0.5; # or do something other
 	 $time++;
 	 }
 print "</body></html>\n";
@@ -84,10 +84,9 @@ sub run {
     }
 
 
-
     print "<META HTTP-EQUIV=refresh CONTENT=\"1;URL=https://www.ebi.ac.uk/interpro/result/InterProScan/$jobID\">\n";
     #print "Location: https://www.ebi.ac.uk/interpro/result/InterProScan/$jobID</body></html>\n";;         
-   # retrieve and display results  
+    #retrieve and display results  
     #print "Location: https://www.ebi.ac.uk/interpro/result/InterProScan/$jobID"."\n\n";
 
 }
