@@ -14,7 +14,6 @@ public class Sequence implements Comparable<Sequence> {
   private double percentLength;
   private String chromosome;
   private String organism;
-  private String organismAbbrev;
   
   /**
    * serialize this region to a json writer
@@ -27,7 +26,6 @@ public class Sequence implements Comparable<Sequence> {
     writer.key("length").value(length);
     writer.key("chromosome").value(chromosome);
     writer.key("organism").value(organism);
-    writer.key("organismAbbrev").value(organismAbbrev);
     writer.key("features").array();
     for (Feature feature : features) {
       feature.writeJson(writer);
@@ -122,14 +120,6 @@ public class Sequence implements Comparable<Sequence> {
 
   public void setOrganism(String organism) {
     this.organism = organism;
-  }
-
-  public String getOrganismAbbrev() {
-    return organismAbbrev;
-  }
-
-  public void setOrganismAbbrev(String organismAbbrev) {
-    this.organismAbbrev = organismAbbrev;
   }
 
   @Override
