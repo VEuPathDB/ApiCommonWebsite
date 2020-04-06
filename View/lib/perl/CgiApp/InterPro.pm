@@ -54,18 +54,18 @@ sub run {
     $sh->finish();
 
 
-
+=head
     my ($FH, $File) = tempfile(SUFFIX => '.fa');
     print $FH  $seq;
     close ($FH);
-
+=cut
 
     my ($fh, $file) = tempfile(SUFFIX => '.txt');
 
 ####### Download InterPro source code: InterproScan5.pl from  'https://www.ebi.ac.uk/seqdb/confluence/display/JDSAT/InterProScan+5+Help+and+Documentation'
 
 
-    my $command = "perl InterproScan5.pl  --email null\@gmail.com  $File &> $file";
+    my $command = "perl InterproScan5.pl  --email null\@gmail.com  $seq &> $file";
     my $Interapro_Result  =  `$command`;
 
 ###### We regex $jobID from the outputs that returned from the above command line.
