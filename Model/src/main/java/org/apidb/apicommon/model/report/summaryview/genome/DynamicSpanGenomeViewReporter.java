@@ -21,7 +21,6 @@ public class DynamicSpanGenomeViewReporter extends GenomeViewReporter {
     sql.append("    sa.length AS " + COLUMN_SEQUENCE_LENGTH + ", ");
     sql.append("    sa.chromosome AS " + COLUMN_CHROMOSOME + ", ");
     sql.append("    sa.organism AS " + COLUMN_ORGANISM + ", ");
-    sql.append("    o.public_abbrev AS " + COLUMN_ORGANISM_ABBREV + ", ");
     sql.append("    ids.start_min AS " + COLUMN_START + ", ");
     sql.append("    ids.end_max AS " + COLUMN_END + ", ");
     sql.append("    '' AS " + COLUMN_DESCRIPTION + ", ");
@@ -34,9 +33,7 @@ public class DynamicSpanGenomeViewReporter extends GenomeViewReporter {
     sql.append("            CASE regexp_substr(source_id, '[^:]+', 1, 3) WHEN 'f' THEN 1 ELSE 0 END AS strand ");
     sql.append("       FROM (" + idSql + ") ");
     sql.append("      ) ids, ApidbTuning.GenomicSeqAttributes sa");
-    sql.append(", apidb.organism o");
     sql.append(" WHERE ids.sequence_id = sa.source_id");
-    sql.append(" AND sa.taxon_id = o.taxon_id");
 
     return sql.toString();
   }

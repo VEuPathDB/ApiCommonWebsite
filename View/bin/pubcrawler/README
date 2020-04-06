@@ -23,6 +23,10 @@ to install pubcrawler in an Api site:
           00 3 * * * root my_web_dir/Common/pubcrawler/pubcrawlerMYPROJECT.sh
 
 
+config file for a new website 
+- config files are located in /etc/pubcrawler
+
+
 options:
 
     * use the 'header' option in the config file to override the default html 

@@ -5,6 +5,7 @@ import { get, memoize } from 'lodash';
 
 import { ErrorBoundary } from 'wdk-client/Controllers';
 import { RootState } from 'wdk-client/Core/State/Types';
+import { useWdkService } from 'wdk-client/Hooks/WdkServiceHook';
 import { CategoryTreeNode } from 'wdk-client/Utils/CategoryUtils';
 import { arrayOf, decode, string } from 'wdk-client/Utils/Json';
 
@@ -19,9 +20,7 @@ import { combineClassNames, useAlphabetizedSearchTree } from 'ebrc-client/compon
 import { useAnnouncementsState } from 'ebrc-client/hooks/announcements';
 
 import { PageDescription } from './PageDescription';
-import { makeVpdbClassNameHelper } from './Utils';
-
-import { projectId } from 'ebrc-client/config';
+import { makeVpdbClassNameHelper, useCommunitySiteUrl } from './Utils';
 
 import { useSessionBackedState } from 'wdk-client/Hooks/SessionBackedState';
 import { STATIC_ROUTE_PATH } from 'ebrc-client/routes';
@@ -37,9 +36,6 @@ type OwnProps = {
 
 type StateProps = {
   searchTree?: CategoryTreeNode,
-  twitterUrl?: string,
-  facebookUrl?: string,
-  youtubeUrl?: string,
   buildNumber?: string,
   releaseDate?: string,
   displayName?: string
@@ -80,16 +76,17 @@ const VEuPathDBHomePageView: FunctionComponent<Props> = props => {
     parseExpandedBranches
   );
 
-  const projectId = useProjectId();
+  const config = useWdkService(wdkService => wdkService.getConfig(), []);
+  const { projectId, displayName } = config || {};
+
   const headerMenuItems = useHeaderMenuItems(
     props.searchTree, 
     searchTerm, 
     expandedBranches, 
     setSearchTerm, 
     setExpandedBranches,
-    props.twitterUrl,
-    props.facebookUrl,
-    props.youtubeUrl,
+    projectId,
+    displayName
   );
 
   const updateHeaderExpanded = useCallback(() => {
@@ -221,10 +218,9 @@ function makeStaticPageRoute(subPath: string) {
   return `${STATIC_ROUTE_PATH}${subPath}`;
 }
 
-const useProjectId = (): string => {
-  // FIXME: Pull this from global data
-  return projectId;
-};
+function makeExternalStaticPageUrl(communitySiteUrl: string | undefined, subPath: string) {
+  return `https://${communitySiteUrl}${subPath}`;
+}
 
 type HeaderMenuItemEntry = HeaderMenuItem<{
   include?: string[],
@@ -237,15 +233,15 @@ const useHeaderMenuItems = (
   expandedBranches: string[],
   setSearchTerm: (newSearchTerm: string) => void,
   setExpandedBranches: (newExpandedBranches: string[]) => void,
-  twitterUrl?: string,
-  facebookUrl?: string,
-  youtubeUrl?: string
+  projectId: string | undefined,
+  displayName: string | undefined
 ): HeaderMenuItem[] => {
-  const projectId = useProjectId();
   const alphabetizedSearchTree = useAlphabetizedSearchTree(searchTree);
+  const communitySite = useCommunitySiteUrl();
   const aboutRoute = makeStaticPageRoute(`/${projectId}/about.html`);
   const aboutAllRoute = makeStaticPageRoute('/aboutall.html');
 
+  // type: reactRoute, webAppRoute, externalLink, subMenu, custom
   const menuItemEntries: HeaderMenuItemEntry[] = [
     {
       key: 'search-strategies',
@@ -370,7 +366,7 @@ const useHeaderMenuItems = (
             include: [ PlasmoDB ]
           }
         },
-        {
+      /*  {
           key: 'pats',
           display: 'PATS',
           type: 'externalLink',
@@ -379,7 +375,7 @@ const useHeaderMenuItems = (
           metadata: {
             include: [ PlasmoDB ]
           }
-        },
+        },*/
         { 
           key: 'mapveu',
           display: 'MapVEu',
@@ -456,7 +452,7 @@ const useHeaderMenuItems = (
       items: [
         {
           key: 'datasets',
-          display: `Data sets in ${projectId}`,
+          display: `Data sets in ${displayName}`,
           type: 'reactRoute',
           url: '/search/dataset/AllDatasets/result'
         },
@@ -472,9 +468,9 @@ const useHeaderMenuItems = (
         {
           key: 'mahpic-data',
           display: 'MaHPIC',
-          type: 'webAppRoute',
+          type: 'reactRoute',
           tooltip: 'Access MaHPIC Data',
-          url: '/mahpic.jsp',
+          url: makeStaticPageRoute(`/${projectId}/mahpic.html`),
           metadata: {
             include: [ PlasmoDB ]
           }
@@ -488,7 +484,7 @@ const useHeaderMenuItems = (
         {
           key: 'genomes-and-data-types',
           display: 'Organisms - Data type summary',
-          tooltip: `Table summarizing all the genomes and their different data types available in ${projectId}`,
+          tooltip: `Table summarizing all the genomes and their different data types available in ${displayName}`,
           type: 'reactRoute',
           url: '/search/organism/GenomeDataTypes/result'
         },
@@ -526,9 +522,9 @@ const useHeaderMenuItems = (
       items: [
         {
           key: 'what-is',
-          display: `What is ${projectId}?`,
+          display: `What is ${displayName}?`,
           type: 'reactRoute',
-          url: aboutRoute
+          url: makeStaticPageRoute('/about.html')
         },
         { 
           key: 'community',
@@ -536,16 +532,16 @@ const useHeaderMenuItems = (
           display: 'Community',
           items: [
             { 
+              key: 'scientific-advisory-team',
+              display: 'Community advisors',
+              type: 'reactRoute',
+              url: `${aboutRoute}#advisors`
+            },
+            { 
               key: 'news',
               display: 'News',
               type: 'reactRoute',
               url: makeStaticPageRoute(`/${projectId}/news.html`)
-            },
-            { 
-              key: 'related-sites',
-              display: 'Related sites',
-              type: 'reactRoute',
-              url: makeStaticPageRoute(`/${projectId}/externalLinks.html`)
             },
             { 
               key: 'public-strategies',
@@ -554,10 +550,16 @@ const useHeaderMenuItems = (
               url: '/workspace/strategies/public'
             },
             { 
-              key: 'workshops-events',
-              display: 'Workshops, webinars and meetings',
+              key: 'related-sites',
+              display: 'Related sites',
               type: 'reactRoute',
-              url: makeStaticPageRoute(`/${projectId}/events.md`)
+              url: makeStaticPageRoute(`/${projectId}/externalLinks.html`)
+            },
+            { 
+              key: 'workshops-events',
+              display: 'Workshops and training',
+              type: 'reactRoute',
+              url: makeStaticPageRoute('/webinars_workshops.html')
             }
           ]
         },
@@ -576,7 +578,7 @@ const useHeaderMenuItems = (
               key: 'citations',
               display: 'Publications that use our resources',
               type: 'externalLink',
-              url: 'http://scholar.google.com/scholar?as_q=&num=10&as_epq=&as_oq=OrthoMCL+PlasmoDB+ToxoDB+CryptoDB+TrichDB+GiardiaDB+TriTrypDB+AmoebaDB+MicrosporidiaDB+%22FungiDB%22+PiroplasmaDB+ApiDB+EuPathDB&as_eq=encrypt+cryptography+hymenoptera&as_occt=any&as_sauthors=&as_publication=&as_ylo=&as_yhi=&as_sdt=1.&as_sdtp=on&as_sdtf=&as_sdts=39&btnG=Search+Scholar&hl=en',
+              url: 'https://scholar.google.com/scholar?hl=en&as_sdt=0,39&q=OrthoMCL+OR+PlasmoDB+OR+ToxoDB+OR+CryptoDB+OR+TrichDB+OR+GiardiaDB+OR+TriTrypDB+OR+AmoebaDB+OR+MicrosporidiaDB+OR+%22FungiDB%22+OR+PiroplasmaDB+OR+%22vectorbase%22+OR+veupathdb+OR+ApiDB+OR+EuPathDB+-encrypt+-cryptography+-hymenoptera&scisbd=1',
               target: '_blank'
             }
           ]
@@ -596,8 +598,11 @@ const useHeaderMenuItems = (
               key: 'submission-policy',
               display: 'Data submission and release policies',
               type: 'externalLink',
-              url: '/EuPathDB_datasubm_SOP.pdf'
-            },
+              url: makeExternalStaticPageUrl(
+                communitySite,
+                '/assets/documents/VEuPathDB_Data_Sub_Release_policy_rev_02April2020.pdf'
+              )
+            }
           ]
         },
         {
@@ -606,16 +611,10 @@ const useHeaderMenuItems = (
           type: 'subMenu',
           items: [
             {
-              key: 'cite-us',
-              display: 'How to cite us',
+              key: 'cite',
+              display: 'Citing VEuPathDB in Publications and Presentations',
               type: 'reactRoute',
               url: `${aboutRoute}#citing`
-            },
-            {
-              key: 'cite-data-provide',
-              display: 'Citing data providers',
-              type: 'reactRoute',
-              url: `${aboutRoute}#citingproviders`
             },
             {
               key: 'data-access-policy',
@@ -626,28 +625,16 @@ const useHeaderMenuItems = (
             {
               key: 'website-privacy-policy',
               display: 'Website privacy policy',
-              type: 'externalLink',
-              url: '/documents/EuPathDB_Website_Privacy_Policy.shtml'
+              type: 'reactRoute',
+              url: makeStaticPageRoute('/privacyPolicy.html')
             }
           ]
         },
         {
           key: 'who-are-we',
-          display: 'Who are we?',
+          display: 'Who we are',
           type: 'subMenu',
           items: [
-            {
-              key: 'scientific-working-group',
-              display: 'Scientific working group',
-              type: 'reactRoute',
-              url: `${aboutAllRoute}#swg`
-            },
-            {
-              key: 'scientific-advisory-team',
-              display: 'Scientific advisory team',
-              type: 'reactRoute',
-              url: `${aboutRoute}#advisors`
-            },
             {
               key: 'personnel',
               display: 'Personnel',
@@ -664,7 +651,7 @@ const useHeaderMenuItems = (
               key: 'funding',
               display: 'Funding',
               type: 'reactRoute',
-              url: `${aboutRoute}#funding`
+              url: `${aboutRoute}#about_funding`
             }
           ],
         },
@@ -702,11 +689,17 @@ const useHeaderMenuItems = (
       type: 'subMenu',
       items: [
         {
-          key: 'workshop-exercises',
-          display: 'Exercises from workshop',
+          key: 'youtube-tutorials',
+          display: 'YouTube tutorials',
           type: 'externalLink',
-          url: 'http://workshop.eupathdb.org/current/index.php?page=schedule',
+          url: 'http://www.youtube.com/user/EuPathDB/videos?sort=dd&flow=list&view=1',
           target: '_blank'
+        },
+        { 
+          key: 'eupathdb-workshop',
+          display: 'VEuPathDB workshops',
+          type: 'reactRoute',
+          url: makeStaticPageRoute('/webinars_workshops.html')
         },
         {
           key: 'our-glossary',
@@ -715,32 +708,18 @@ const useHeaderMenuItems = (
           url: makeStaticPageRoute('/glossary.html')
         },
         { 
-          key: 'eupathdb-workshop',
-          display: 'VEuPathDB workshop',
-          type: 'externalLink',
-          url: 'http://workshop.eupathdb.org/current/',
-          target: '_blank'
-        },
-        {
-          key: 'youtube-tutorials',
-          display: 'YouTube tutorials',
-          type: 'externalLink',
-          url: 'http://www.youtube.com/user/EuPathDB/videos?sort=dd&flow=list&view=1',
-          target: '_blank'
-        },
-        { 
           key: 'reset-session',
-          display: `Reset ${projectId} session`,
+          display: `Reset ${displayName} session`,
           tooltip: 'Login first to keep your work',
           type: 'reactRoute',
           url: '/reset-session',
         },
         {
           key: 'back-to-main',
-          display: 'Return to main site',
+          display: 'Return to legacy site',
           tooltip: 'Opt out of the beta site',
           type: 'externalLink',
-          url: `https://${projectId.toLowerCase()}.org`,
+          url: `https://${projectId?.toLowerCase()}.${projectId === 'SchistoDB' ? 'net' : 'org'}?useBetaSite=0`
         }
       ]
     },
@@ -760,16 +739,16 @@ const useHeaderMenuItems = (
 
 const filterMenuItemEntry = (
   menuItemEntry: HeaderMenuItemEntry, 
-  projectId: string
+  projectId: string | undefined
 ): HeaderMenuItemEntry[] => 
   (
     menuItemEntry.metadata && 
     (
       (
-        menuItemEntry.metadata.include && !menuItemEntry.metadata.include.includes(projectId)
+        projectId != null && menuItemEntry.metadata.include && !menuItemEntry.metadata.include.includes(projectId)
       ) ||
       ( 
-        menuItemEntry.metadata.exclude && menuItemEntry.metadata.exclude.includes(projectId)        
+        projectId != null && menuItemEntry.metadata.exclude && menuItemEntry.metadata.exclude.includes(projectId)
       )
     )
   ) 
@@ -789,9 +768,6 @@ const filterMenuItemEntry = (
 const mapStateToProps = (state: RootState) => ({
   // FIXME: This is not typesafe.
   searchTree: get(state.globalData, 'searchTree') as CategoryTreeNode,
-  twitterUrl: state.globalData.siteConfig?.twitterUrl,
-  facebookUrl: state.globalData.siteConfig?.facebookUrl,
-  youtubeUrl: state.globalData.siteConfig?.youtubeUrl,
   buildNumber: state.globalData.config?.buildNumber,
   releaseDate: state.globalData.config?.releaseDate,
   displayName: state.globalData.config?.displayName,
