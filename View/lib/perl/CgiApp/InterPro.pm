@@ -1,7 +1,3 @@
-# Test module for CgiApp                                                                                                            
-# returns Protein Prediction and reports if                                                                      
-# running in  cgi or Apache::Registry environment                                                                                   
-
 package ApiCommonWebsite::View::CgiApp::InterPro;
 @ISA = qw( EbrcWebsiteCommon::View::CgiApp );
 
@@ -11,7 +7,22 @@ use LWP::UserAgent;
 use HTTP::Request::Common qw(POST);
 use EbrcWebsiteCommon::View::CgiApp;
 
+use CGI;
+
+use File::Temp qw/ tempfile tempdir /;
 use Data::Dumper;
+
+
+$|=1;
+print "Content-type: text/html\n\n<head><body>\n<p><b><font size='5' color='DarkCyan'>Your job is currently running...please be patient</font></b>";
+my $time = 0;
+ while($time < 5)
+{
+    print ' 'x1024;
+    sleep 0.5; # or do something other
+    $time++;
+}
+print "</body></html>\n";
 
 
 sub run {
@@ -19,7 +30,6 @@ sub run {
     my ($self,$cgi) = @_;
 
     my $project_id = $cgi->param('project_id');
-    #my $queryString = $cgi->param('queryString');
     my $source_ID = $cgi->param('source_ID');
     my $id_type = $cgi->param('id_type');
 
@@ -43,34 +53,44 @@ sub run {
 
     $sh->finish();
 
-    my $ua = LWP::UserAgent->new;
+
+=head
+    my ($FH, $File) = tempfile(SUFFIX => '.fa');
+    print $FH  $seq;
+    close ($FH);
+=cut
+
+    my ($fh, $file) = tempfile(SUFFIX => '.txt');
+
+####### Download InterPro source code: InterproScan5.pl from  'https://www.ebi.ac.uk/seqdb/confluence/display/JDSAT/InterProScan+5+Help+and+Documentation'
 
 
-    # get the response                                                                                                             
- 
-    my $response =
-        $ua->post('https://www.ebi.ac.uk/interpro/',
-		  { "queryString" => "$seq",
-                         "leaveIt" => ""
-		  }
-        );
+    my $command = "perl InterproScan5.pl  --email null\@gmail.com  $seq &> $file";
+    my $Interapro_Result  =  `$command`;
 
-    #print STDERR Dumper $response;
+###### We regex $jobID from the outputs that returned from the above command line.
 
-    print "Location: ". $response->headers->{location}."\n\n";
+    my $jobID;
+
+    open($fh,"<$file" ) or die "Couldn't open file $file for reading, $!"; 
+
+    my $jobID = <$fh>;
     
-    #exit;
-
+    close($fh);
 
     
+    if($jobID =~ /^JobId:\S*\s+(\S+)/){
+	$jobID = $1;
+    }
+
+
+    print "<META HTTP-EQUIV=refresh CONTENT=\"1;URL=https://www.ebi.ac.uk/interpro/result/InterProScan/$jobID\">\n";
+    #print "Location: https://www.ebi.ac.uk/interpro/result/InterProScan/$jobID</body></html>\n";;         
+    #retrieve and display results  
+    #print "Location: https://www.ebi.ac.uk/interpro/result/InterProScan/$jobID"."\n\n";
 
 }
+
 1;
 
 
-
-
-
-
-	
- 
