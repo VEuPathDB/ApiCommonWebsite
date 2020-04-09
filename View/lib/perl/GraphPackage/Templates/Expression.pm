@@ -410,6 +410,19 @@ sub getKeys{
   return ["${profileSetName}_${profileType}"]; 
 }
 
+sub declareParts {
+  my ($self) = @_;
+
+  my $arrayRef = $self->SUPER::declareParts();
+  my $width = @{$arrayRef}[0]->{width};
+  my $height = @{$arrayRef}[0]->{height} * 5;
+
+  my @newParts = ({height => $height, width => $width, visible_part => "bloodmeal_time_series_rma,blood_fed_adult_female_rma,male_versus_female_rma,larval_and_adult_stages_rma,consecutive_blood_meals_rma"},
+		  {height => $height, width => $width, visible_part => "bloodmeal_time_series_percentile,blood_fed_adult_female_percentile,male_versus_female_percentile,larval_and_adult_stages_percentile,consecutive_blood_meals_percentile"});
+
+  return \@newParts;
+}
+
 1;
 
 package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_f6d53b7d28;
