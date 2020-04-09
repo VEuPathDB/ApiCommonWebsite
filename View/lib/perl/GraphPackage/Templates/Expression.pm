@@ -423,6 +423,19 @@ sub declareParts {
   return \@newParts;
 }
 
+sub init {
+  my $self = shift;
+  $self->SUPER::init(@_);
+
+  my $graphObjects = $self->getGraphObjects();
+
+  my @newGraphObjects;
+  my @newOrder = (7,6,8,9,1,0,3,2,5,4);
+  @newGraphObjects = @$graphObjects[@newOrder];
+
+  $self->setGraphObjects(@newGraphObjects);
+}
+
 1;
 
 package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_f6d53b7d28;
