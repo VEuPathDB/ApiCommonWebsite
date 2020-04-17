@@ -147,6 +147,21 @@ RADJUST
 
 1;
 
+#vectorbase
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_9800ad244a;
+
+sub finalProfileAdjustments {
+  my ($self, $profile) = @_;
+
+  my $rAdjustString = << 'RADJUST';
+profile.df.full$NAME <- gsub("Larvae_resistant_to_", "", profile.df.full$NAME)
+profile.df.full$NAME <- gsub("_strain", "", profile.df.full$NAME)
+
+RADJUST
+
+  $profile->addAdjustProfile($rAdjustString);
+}
+1;
 
 package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_cb6310bab8;
 
