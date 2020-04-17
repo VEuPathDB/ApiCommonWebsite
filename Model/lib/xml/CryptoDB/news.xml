@@ -512,7 +512,7 @@
            'Get started with pre-configured workflows'. The workflow employs three tools which can be accessed 
            separately in the EuPathDB Galaxy tools menu under EuPathDB OrthoMCL Tools. This workflow duplicates 
            and replaces the 'Assign your proteins to groups' function in the Tools menu of the 
-           <a href="http://orthomcl.org/orthomcl/" target="_blank">OrthoMCL site</a>.
+           <a href="https://beta.orthomcl.org/orthomcl/" target="_blank">OrthoMCL site</a>.
            For more information see this 
            <a href="/assets/MapProteinsOrthoMCL.pdf">OrthoMCL proteome upload tutorial</a>.
            </li>

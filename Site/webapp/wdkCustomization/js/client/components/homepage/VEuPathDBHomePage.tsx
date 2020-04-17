@@ -51,6 +51,12 @@ const VEuPathDBHomePageView: FunctionComponent<Props> = props => {
   const { isHomePage, classNameModifier } = props;
   const [ headerExpanded, setHeaderExpanded ] = useState(true);
 
+  useEffect(() => {
+    if (isHomePage && props.displayName) {
+      document.title = props.displayName;
+    }
+  }, [ isHomePage, props.displayName ]);
+
   const [ isNewsExpanded, setIsNewsExpanded ] = useSessionBackedState(
     false,
     IS_NEWS_EXPANDED_SESSION_KEY,
@@ -558,7 +564,7 @@ const useHeaderMenuItems = (
               key: 'related-sites',
               display: 'Related sites',
               type: 'reactRoute',
-              url: makeStaticPageRoute(`/${projectId}/externalLinks.html`)
+              url: makeStaticPageRoute(`/${displayName}/externalLinks.html`)
             },
             { 
               key: 'workshops-events',
@@ -718,13 +724,6 @@ const useHeaderMenuItems = (
           tooltip: 'Login first to keep your work',
           type: 'reactRoute',
           url: '/reset-session',
-        },
-        {
-          key: 'back-to-main',
-          display: 'Return to legacy site',
-          tooltip: 'Opt out of the beta site',
-          type: 'externalLink',
-          url: `https://${projectId?.toLowerCase()}.${projectId === 'SchistoDB' ? 'net' : 'org'}`
         }
       ]
     },
