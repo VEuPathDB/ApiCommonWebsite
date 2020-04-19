@@ -33,7 +33,7 @@ modelprop:
   WEBAPP_BASE_URL: "/{{ webapp_ctx }}/app"
   SERVICE_BASE_URL: "/{{ webapp_ctx }}/service"
   WEBSERVICEMIRROR: /var/www/Common/apiSiteFilesMirror/webServices/
-  YOUTUBE_URL: https://youtube.com/user/EuPathDB/videos?sort=dd&flow=list&view=1
+  YOUTUBE_URL: https://youtube.com/user/EuPathDB/playlist
   SITE_SEARCH_SERVICE_URL: /site-search
   JBROWSE_WEBPAGE_URL: "/{{ webapp_ctx }}/app/jbrowse"
   JBROWSE_SERVICE_URL: "/{{ webapp_ctx }}/service/jbrowse"
