@@ -23,12 +23,12 @@ sub init {
 
   my $elementNames = ['Pregnant Women', 'Children', '3D7'];
 
-  my @profileArray = (['P.falciparum duffy mRNA Seq data', '', $elementNames],
-                      ['P.falciparum duffy mRNA Seq data-diff', '', $elementNames],
+  my @profileArray = (['P.falciparum duffy mRNA-Seq data', '', $elementNames],
+                      ['P.falciparum duffy mRNA-Seq data-diff', '', $elementNames],
                      );
 
   my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileArray);
-  my $percentileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets([['percentile - P.falciparum duffy mRNA Seq data', '', $elementNames]]);
+  my $percentileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets([['percentile - P.falciparum duffy mRNA-Seq data', '', $elementNames]]);
 
   my $stacked = EbrcWebsiteCommon::View::GraphPackage::BarPlot::RNASeqStacked->new(@_);
   $stacked->setProfileSets($profileSets);
