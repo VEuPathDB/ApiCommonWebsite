@@ -6,11 +6,13 @@ import static org.apidb.apicommon.model.TranscriptUtil.isGeneRecordClass;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.sql.DataSource;
 import javax.ws.rs.PathParam;
@@ -96,22 +98,7 @@ public class ApiBasketService extends BasketService {
       throws WdkModelException {
 
     WdkModel wdkModel = geneRecordClass.getWdkModel();
-    RecordClass transcriptRecordClass = getTranscriptRecordClass(wdkModel);
-    PrimaryKeyDefinition transcriptPkDef =  transcriptRecordClass.getPrimaryKeyDefinition();
-    String[] genePkColumns = geneRecordClass.getPrimaryKeyDefinition().getColumnRefs();
-    List<String[]> geneRecords = new ArrayList<>();
-    String[] values = new String[genePkColumns.length];
-    for (PrimaryKeyValue genePkValue : genePkValues) {
-      Map<String,String> genePkMap = genePkValue.getValues();
-      for (int j = 0; j < values.length; j++) {
-        values[j] = genePkMap.get(genePkColumns[j]);
-      }
-      geneRecords.add(values);
-    }
-
-    // construct a comma delimited string of the primary key columns for this record class
-    StringBuilder pkString = new StringBuilder();
-    int sourceIdColumn = getPrimaryKeyColString(pkString, transcriptRecordClass);
+    PrimaryKeyDefinition transcriptPkDef = getTranscriptRecordClass(wdkModel).getPrimaryKeyDefinition();
 
     List<PrimaryKeyValue> transcriptRecords = new ArrayList<>();
     DataSource dataSource = wdkModel.getAppDb().getDataSource();
@@ -119,14 +106,16 @@ public class ApiBasketService extends BasketService {
     // for up to 1000 gene IDs per batch, assemble a comma delimited string of gene IDs for an IN clause
     // for each batch, run the query to expand the transcripts
     StringBuilder geneIdsString = null;
+    String pkString = Arrays.stream(transcriptPkDef.getColumnRefs()).collect(Collectors.joining(", "));
     String sql1 = "select " + pkString + " from ApiDBTuning.TranscriptAttributes where gene_source_id in (";
     String sql2 = ")";
     int count = 0;
-    for (String[] geneRecord : geneRecords) {
+    for (PrimaryKeyValue genePkValue : genePkValues) {
+      String geneSourceId = genePkValue.getValues().get("source_id");
       if (count == 0)
-        geneIdsString = new StringBuilder("'" + geneRecord[sourceIdColumn] + "'");
+        geneIdsString = new StringBuilder("'" + geneSourceId + "'");
       else
-        geneIdsString.append(", '" + geneRecord[sourceIdColumn] + "'");
+        geneIdsString.append(", '" + geneSourceId + "'");
 
       // run the query for this batch
       if (count++ == 1000) {
@@ -140,21 +129,10 @@ public class ApiBasketService extends BasketService {
     return transcriptRecords;
   }
 
-  private static int getPrimaryKeyColString(StringBuilder pkString, RecordClass recordClass) throws WdkModelException {
-    String[] pkColumns = recordClass.getPrimaryKeyDefinition().getColumnRefs();
-    int geneSourceIdIndex =  -1;
-    for (int i=0; i<pkColumns.length; i++) {
-      pkString.append((i==0? "" :", ") + pkColumns[i]);
-      if (pkColumns[i].toLowerCase().equals("gene_source_id")) geneSourceIdIndex = i;
-    }
-    if (geneSourceIdIndex == -1) throw new WdkModelException("Can't find primary key column 'source_id' when trying to expand basket from genes to transcripts");
-    return geneSourceIdIndex;
-  }
-
-  private static void runBatch(DataSource dataSource, String sql, PrimaryKeyDefinition pkDef, List<PrimaryKeyValue> expandedRecords)
+  private static void runBatch(DataSource dataSource, String sql, PrimaryKeyDefinition transcriptPkDef, List<PrimaryKeyValue> expandedRecords)
       throws WdkModelException {
     ResultSet resultSet = null;
-    String[] pkColumns = pkDef.getColumnRefs();
+    String[] pkColumns = transcriptPkDef.getColumnRefs();
     try {
       resultSet = SqlUtils.executeQuery(dataSource, sql, "expand-basket-to-transcripts");
       while (resultSet.next()) {
@@ -162,7 +140,7 @@ public class ApiBasketService extends BasketService {
         for (int i = 0; i < pkColumns.length; i++) {
           pkValues.put(pkColumns[i], resultSet.getString(pkColumns[i]));
         }
-        expandedRecords.add(new PrimaryKeyValue(pkDef, pkValues));
+        expandedRecords.add(new PrimaryKeyValue(transcriptPkDef, pkValues));
       }
     }
     catch (SQLException e) {
