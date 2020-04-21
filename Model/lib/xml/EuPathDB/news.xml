@@ -242,7 +242,7 @@ Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-far
         metabolomic datasets</li>
       <li>better support for orthology-based queries and cross-species inference</li>
       <li>implementation of workspaces enabling users to upload and analyze
-        their own data (e.g. RNA-seq results)</li>
+        their own data (e.g. RNA-Seq results)</li>
     </ul>
     <p><br>
       The scope of this renewal extends beyond our previous mandate, which

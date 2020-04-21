@@ -13,14 +13,14 @@ sub init {
 
   $self->SUPER::init(@_);
 
-  $self->setMinSenseRpkmProfileSet("P. falciparum Su Strand Specific RNA Seq data - sense strand");
-  $self->setMinAntisenseRpkmProfileSet("P. falciparum Su Strand Specific RNA Seq data - antisense strand");
+  $self->setMinSenseRpkmProfileSet("P. falciparum Su Strand Specific RNA-Seq data - sense strand");
+  $self->setMinAntisenseRpkmProfileSet("P. falciparum Su Strand Specific RNA-Seq data - antisense strand");
 
-  $self->setDiffSenseRpkmProfileSet("P. falciparum Su Strand Specific RNA Seq data - sense strand - diff");
-  $self->setDiffAntisenseRpkmProfileSet("P. falciparum Su Strand Specific RNA Seq data - antisense strand - diff");
+  $self->setDiffSenseRpkmProfileSet("P. falciparum Su Strand Specific RNA-Seq data - sense strand - diff");
+  $self->setDiffAntisenseRpkmProfileSet("P. falciparum Su Strand Specific RNA-Seq data - antisense strand - diff");
 
-  $self->setPctSenseProfileSet("percentile - P. falciparum Su Strand Specific RNA Seq data - sense strand");
-  $self->setPctAntisenseProfileSet("percentile - P. falciparum Su Strand Specific RNA Seq data - antisense strand");
+  $self->setPctSenseProfileSet("percentile - P. falciparum Su Strand Specific RNA-Seq data - sense strand");
+  $self->setPctAntisenseProfileSet("percentile - P. falciparum Su Strand Specific RNA-Seq data - antisense strand");
 
   $self->setIsPairedEnd(1);
   $self->setColor("#8F006B");
