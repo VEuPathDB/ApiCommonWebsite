@@ -117,43 +117,46 @@ sub processParams {
   &error("'$self->{type}' is an invalid type") 
     unless grep {$self->{type} eq $_} @validTypes;
 
-  # check anchors
-  my @validAnchors = ($START, $CODESTART, $CODEEND, $END);
-  #my @validAnchors = ($START, $END);
-  &error("'$self->{upstreamAnchor}' is an invalid anchor")
-    unless grep {$self->{upstreamAnchor} eq $_} @validAnchors;
-  &error("'$self->{downstreamAnchor}' is an invalid anchor")
-    unless grep {$self->{downstreamAnchor} eq $_} @validAnchors;
-  &error("Illegal anchor combination: stop before start")
-      if ((($self->{upstreamAnchor} eq $END || $self->{upstreamAnchor} eq $CODEEND) && ($self->{downstreamAnchor} eq $START || $self->{downstreamAnchor} eq $CODESTART)) || ($self->{upstreamAnchor} eq $CODESTART && $self->{downstreamAnchor} eq $START) || ($self->{upstreamAnchor} eq $END && $self->{downstreamAnchor} eq $CODEEND));
+  if($self->{type} eq 'genomic') {
+    # check anchors
+    my @validAnchors = ($START, $CODESTART, $CODEEND, $END);
+    #my @validAnchors = ($START, $END);
+    &error("'$self->{upstreamAnchor}' is an invalid upstream anchor")
+        unless grep {$self->{upstreamAnchor} eq $_} @validAnchors;
+    &error("'$self->{downstreamAnchor}' is an invalid downstream anchor")
+        unless grep {$self->{downstreamAnchor} eq $_} @validAnchors;
+    &error("Illegal anchor combination: stop before start")
+        if ((($self->{upstreamAnchor} eq $END || $self->{upstreamAnchor} eq $CODEEND) && ($self->{downstreamAnchor} eq $START || $self->{downstreamAnchor} eq $CODESTART)) || ($self->{upstreamAnchor} eq $CODESTART && $self->{downstreamAnchor} eq $START) || ($self->{upstreamAnchor} eq $END && $self->{downstreamAnchor} eq $CODEEND));
       #if ($self->{upstreamAnchor} eq $END && $self->{downstreamAnchor} eq $START);
 
 #  &error("'$self->{startAnchor3}' is an invalid anchor")
 #    unless grep {$self->{startAnchor3} eq $_} @validAnchors;
 #  &error("'$self->{endAnchor3}' is an invalid anchor")
 #    unless grep {$self->{endAnchor3} eq $_} @validAnchors;
-  &error("Illegal anchor combination: stop before start codest andcodeend: $START AND $END ")
-      if ((($self->{startAnchor3} eq $END || $self->{startAnchor3} eq $CODEEND) && ($self->{endAnchor3} eq $START || $self->{endAnchor3} eq $CODESTART)) || ($self->{startAnchor3} eq $CODESTART && $self->{endAnchor3} eq $START) || ($self->{startAnchor3} eq $END && $self->{downstreamAnchor3} eq $CODEEND));
+    &error("Illegal anchor combination: stop before start codest andcodeend: $START AND $END ")
+        if ((($self->{startAnchor3} eq $END || $self->{startAnchor3} eq $CODEEND) && ($self->{endAnchor3} eq $START || $self->{endAnchor3} eq $CODESTART)) || ($self->{startAnchor3} eq $CODESTART && $self->{endAnchor3} eq $START) || ($self->{startAnchor3} eq $END && $self->{downstreamAnchor3} eq $CODEEND));
+  }
 
+  else {
+    # check offsets
+    $self->{upstreamOffset} = 0
+        if (!$self->{upstreamOffset} || $self->{upstreamOffset} !~/\S/);
+    $self->{downstreamOffset} = 0
+        if (!$self->{downstreamOffset} || $self->{downstreamOffset} !~ /\S/);
+    &error("UpstreamOffset '$self->{upstreamOffset}' must be a number")
+        unless $self->{upstreamOffset} =~ /^-?\d+$/;
+    &error("DownstreamOffset '$self->{downstreamOffset}' must be a number")
+        unless $self->{downstreamOffset} =~ /^-?\d+$/;
 
-  # check offsets
-  $self->{upstreamOffset} = 0
-    if (!$self->{upstreamOffset} || $self->{upstreamOffset} !~/\S/);
-  $self->{downstreamOffset} = 0
-    if (!$self->{downstreamOffset} || $self->{downstreamOffset} !~ /\S/);
-  &error("UpstreamOffset '$self->{upstreamOffset}' must be a number")
-    unless $self->{upstreamOffset} =~ /^-?\d+$/;
-  &error("DownstreamOffset '$self->{downstreamOffset}' must be a number")
-    unless $self->{downstreamOffset} =~ /^-?\d+$/;
-
-  $self->{startOffset3} = 0
-    if (!$self->{startOffset3} || $self->{startOffset3} !~/\S/);
-  $self->{endOffset3} = 0
-    if (!$self->{endOffset3} || $self->{endOffset3} !~ /\S/);
-  &error("UpstreamOffset '$self->{startOffset3}' must be a number")
-    unless $self->{startOffset3} =~ /^-?\d+$/;
-  &error("DownstreamOffset '$self->{endOffset3}' must be a number")
-    unless $self->{endOffset3} =~ /^-?\d+$/;
+    $self->{startOffset3} = 0
+        if (!$self->{startOffset3} || $self->{startOffset3} !~/\S/);
+    $self->{endOffset3} = 0
+        if (!$self->{endOffset3} || $self->{endOffset3} !~ /\S/);
+    &error("UpstreamOffset '$self->{startOffset3}' must be a number")
+        unless $self->{startOffset3} =~ /^-?\d+$/;
+    &error("DownstreamOffset '$self->{endOffset3}' must be a number")
+        unless $self->{endOffset3} =~ /^-?\d+$/;
+  }
 
 }
 
