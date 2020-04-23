@@ -1,14 +1,15 @@
 package org.apidb.apicommon.service.services;
 
-import static org.apidb.apicommon.model.TranscriptUtil.TRANSCRIPT_RECORDCLASS;
+import static org.apidb.apicommon.model.TranscriptUtil.getTranscriptRecordClass;
 import static org.apidb.apicommon.model.TranscriptUtil.isGeneRecordClass;
+import static org.apidb.apicommon.model.TranscriptUtil.isTranscriptRecordClass;
+import static org.gusdb.fgputil.functional.Functions.fSwallow;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,15 +19,13 @@ import javax.sql.DataSource;
 import javax.ws.rs.PathParam;
 
 import org.apidb.apicommon.model.TranscriptUtil;
+import org.gusdb.fgputil.MapBuilder;
 import org.gusdb.fgputil.db.SqlUtils;
-import org.gusdb.fgputil.validation.ValidationLevel;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
-import org.gusdb.wdk.model.WdkRuntimeException;
 import org.gusdb.wdk.model.record.PrimaryKeyDefinition;
 import org.gusdb.wdk.model.record.PrimaryKeyValue;
 import org.gusdb.wdk.model.record.RecordClass;
-import org.gusdb.wdk.model.user.Step;
 import org.gusdb.wdk.service.request.exception.DataValidationException;
 import org.gusdb.wdk.service.request.user.BasketRequests.ActionType;
 import org.gusdb.wdk.service.request.user.BasketRequests.BasketActions;
@@ -38,10 +37,6 @@ public class ApiBasketService extends BasketService {
     super(userIdStr);
   }
 
-  private static RecordClass getTranscriptRecordClass(WdkModel wdkModel) {
-    return wdkModel.getRecordClassByFullName(TRANSCRIPT_RECORDCLASS)
-        .orElseThrow(() -> new WdkRuntimeException(TRANSCRIPT_RECORDCLASS + " does not exist in this model."));
-  }
   /**
    * Convert gene requests to transcript requests
    */
@@ -50,28 +45,72 @@ public class ApiBasketService extends BasketService {
       RecordClass recordClass, BasketActions actions) throws
       DataValidationException, WdkModelException {
 
-    // custom behavior only if gene record class
-    if (!isGeneRecordClass(recordClass.getFullName())) {
+    // check for the two special cases of basket requests
+    boolean isGeneBasket = isGeneRecordClass(recordClass);
+    boolean isTranscriptBasket = isTranscriptRecordClass(recordClass);
+
+    // custom behavior only if gene or transcript record class
+    if (!(isGeneBasket || isTranscriptBasket)) {
       return super.translatePatchRequest(recordClass, actions);
     }
 
     // convert gene IDs to transcript IDs if not adding from step
-    if (!actions.getAction().equals(ActionType.ADD_FROM_STEP_ID)) {
+    if (actions.getAction().equals(ActionType.ADD_FROM_STEP_ID)) {
+
+      // FIXME: the code below is incomplete; for now, disallow on genes and use regular RC logic for transcripts
+      if (isGeneBasket) {
+        throw new DataValidationException("Add-Step-To-Basket is not yet supported for gene steps");
+      }
+      // will add only transcripts in the result to basket, not other transcripts of those transcripts' genes
+      return super.translatePatchRequest(recordClass, actions);
+      
+      // TODO: write code that will:
+      //   For transcripts: use code below to convert to gene result (will get all genes in the result), then follow gene logic
+      //                    OR (preferable!!!) write(?) a transform from transcript -> transcript that expands to all tx of all genes
+      //   For genes: transform gene -> transcript generating all transcripts for all genes in the gene result and add to transcript basket
+      /*
+      // get the step and make sure it returns transcripts
+      RunnableObj<Step> step = getRunnableStepForCurrentUser(actions.getRequestedStepId());
+      RecordClass stepRecordClass = step.get().getAnswerSpec().getQuestion().getRecordClass();
+      checkStepType(step.get().getStepId(), recordClass, stepRecordClass);
+
       return new RevisedRequest<>(
           getTranscriptRecordClass(getWdkModel()),
-          new BasketActions(actions.getAction(),
-              getTranscriptRecords(actions.getIdentifiers(), recordClass)));
+          new BasketActions(actions.getAction(), Collections.emptyList())
+          .setRunnableAnswerSpec(TranscriptUtil.transformToRunnableGeneAnswerSpec(
+              getWdkModel(), getSessionUser(), step)));
+      */
     }
 
-    // request to add IDs from a gene step; transform to transcript step
-    Step geneStep = getStepForCurrentUser(actions.getRequestedStepId(), ValidationLevel.RUNNABLE);
+    // translate IDs to gene PKs if necessary
+    Collection<PrimaryKeyValue> genePrimaryKeys = isGeneBasket ? actions.getIdentifiers() :
+      convertTranscriptPksToGenePks(actions.getIdentifiers());
 
+    // now convert gene PKs into transcript PKs (all transcripts for each gene)
     return new RevisedRequest<>(
         getTranscriptRecordClass(getWdkModel()),
-        new BasketActions(actions.getAction(), Collections.emptyList())
-          .setRunnableAnswerSpec(TranscriptUtil.transformToRunnableGeneAnswerSpec(
-              getWdkModel(), getSessionUser(), geneStep)));
+        new BasketActions(actions.getAction(),
+            getTranscriptRecords(genePrimaryKeys, recordClass)));
   }
+
+  private Collection<PrimaryKeyValue> convertTranscriptPksToGenePks(Collection<PrimaryKeyValue> transcriptPks) {
+    RecordClass geneRecordClass = TranscriptUtil.getGeneRecordClass(getWdkModel());
+    return transcriptPks.stream().map(fSwallow(transcriptPk -> new PrimaryKeyValue(
+        geneRecordClass.getPrimaryKeyDefinition(),
+        new MapBuilder<String,Object>()
+          .put("source_id", transcriptPk.getRawValues().get("gene_source_id"))
+          .put("project_id", transcriptPk.getRawValues().get("project_id"))
+          .toMap()))).collect(Collectors.toSet());
+  }
+
+  @SuppressWarnings("unused") // used in commented code above
+  private static void checkStepType(long stepId, RecordClass expectedRecordClass, RecordClass currentRecordClass) throws DataValidationException {
+    if (!currentRecordClass.getFullName().equals(expectedRecordClass.getFullName())) {
+      throw new DataValidationException("Step with ID " + stepId +
+          " returns records of type " + currentRecordClass.getUrlSegment() +
+          ", but must return type " + expectedRecordClass.getUrlSegment());
+    }
+}
 
   /**
    * Convert gene requests to transcript requests
