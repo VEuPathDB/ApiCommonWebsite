@@ -21,8 +21,8 @@ import org.gusdb.wdk.model.user.UserCache;
 
 public class TranscriptUtil {
 
-  public static final String GENE_RECORDCLASS = "GeneRecordClasses.GeneRecordClass";
-  public static final String TRANSCRIPT_RECORDCLASS = "TranscriptRecordClasses.TranscriptRecordClass";
+  static final String GENE_RECORDCLASS = "GeneRecordClasses.GeneRecordClass";
+  static final String TRANSCRIPT_RECORDCLASS = "TranscriptRecordClasses.TranscriptRecordClass";
 
   private static final String XFORM_QUESTION_NAME = "GeneRecordQuestions.GenesFromTranscripts";
   private static final String XFORM_STEP_ID_PARAM_NAME = "gene_result";
@@ -47,8 +47,22 @@ public class TranscriptUtil {
     return isTranscriptRecordClass(question.getRecordClass());
   }
 
+  /**
+   * Takes a runnable transcript step and returns an answer spec of a transform
+   * that will return the genes of the transcripts returned by the step.
+   *
+   * @param wdkModel
+   * @param user user 
+   * @param transcriptStep step that returns transcripts
+   * @return answer spec that will return genes
+   * @throws WdkModelException if error occurs or caller sends bad args
+   */
   public static RunnableObj<AnswerSpec> transformToRunnableGeneAnswerSpec(
-      WdkModel wdkModel, User user, Step transcriptStep) throws WdkModelException {
+      WdkModel wdkModel, User user, RunnableObj<Step> transcriptStep) throws WdkModelException {
+
+    if (!isTranscriptQuestion(transcriptStep.get().getAnswerSpec().getQuestion())) {
+      throw new WdkModelException("Step to be transformed to genes must return transcripts");
+    }
 
     Question question = wdkModel.getQuestionByFullName(XFORM_QUESTION_NAME)
         .orElseThrow(() -> new WdkModelException("Can't find xform with name: " + XFORM_QUESTION_NAME));
@@ -59,7 +73,7 @@ public class TranscriptUtil {
     }
 
     Map<String, String> transformParams = new MapBuilder<String, String>(
-        XFORM_STEP_ID_PARAM_NAME, String.valueOf(transcriptStep.getStepId())).toMap();
+        XFORM_STEP_ID_PARAM_NAME, String.valueOf(transcriptStep.get().getStepId())).toMap();
 
     return AnswerSpec
         .builder(wdkModel)
@@ -68,7 +82,7 @@ public class TranscriptUtil {
             .putAll(transformParams)
             .setAssignedWeight(10)
         )
-        .buildRunnable(user, new ListStepContainer(transcriptStep));
+        .buildRunnable(user, new ListStepContainer(transcriptStep.get()));
   }
 
   public static AnswerValue transformToGeneAnswer(AnswerValue transcriptAnswer) throws WdkModelException {
@@ -81,7 +95,7 @@ public class TranscriptUtil {
         .buildRunnable(new UserCache(user), Optional.empty());
 
     AnswerValue geneAnswer = AnswerValueFactory.makeAnswer(transcriptAnswer.getUser(),
-        transformToRunnableGeneAnswerSpec(model, user, step.get()));
+        transformToRunnableGeneAnswerSpec(model, user, step));
 
     // make sure gene answer uses same page size as transcript answer
     return geneAnswer.cloneWithNewPaging(transcriptAnswer.getStartIndex(), transcriptAnswer.getEndIndex());
@@ -89,6 +103,11 @@ public class TranscriptUtil {
 
   public static RecordClass getGeneRecordClass(WdkModel wdkModel) {
     return wdkModel.getRecordClassByFullName(GENE_RECORDCLASS)
-      .orElseThrow(() -> new WdkRuntimeException("This model does not contain a gene recordclass."));
+      .orElseThrow(() -> new WdkRuntimeException(GENE_RECORDCLASS + " does not exist in this model."));
+  }
+
+  public static RecordClass getTranscriptRecordClass(WdkModel wdkModel) {
+    return wdkModel.getRecordClassByFullName(TRANSCRIPT_RECORDCLASS)
+      .orElseThrow(() -> new WdkRuntimeException(TRANSCRIPT_RECORDCLASS + " does not exist in this model."));
   }
 }
