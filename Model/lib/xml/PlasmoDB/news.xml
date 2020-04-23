@@ -95,7 +95,7 @@
            </li>
 		   <li>
              <a href="/a/app/record/dataset/DS_337c46b0f0">Transcriptome of <i>P. vivax</i> salivary gland sporozoites</a> &ndash; 
-             Transcriptomic analysis via RNA sequencing of <i>P. vivax</i> salivary gland sporozoites from isolates of symptomatic blood-stage malaria infections.
+             Transcriptomic analysis via RNA-Seq of <i>P. vivax</i> salivary gland sporozoites from isolates of symptomatic blood-stage malaria infections.
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/31071319" target="_blank">Vivax Sporozoite Consortium et al.</a>
            </li>
          </ul>
@@ -183,7 +183,7 @@
              <a href="https://eupathdb.org/eupathdb/app/contact-us">Contact Us</a> with comments and suggestions for the genome browser. 
            </li>
            <li>
-             The new RNASeq Transcript Summary tool on gene pages helps reveal experiments in which the gene is highly 
+             The new RNA-Seq Transcript Summary tool on gene pages helps reveal experiments in which the gene is highly 
              regulated. The tool displays the gene's FPKM values for all experiments in PlasmoDB and offers features such as 
              log/linear scaling, zoom and pan to explore the gene's expression in each experiment.
            </li>
@@ -230,7 +230,7 @@
          <ul>
            <li>
              <a href="/a/app/record/dataset/DS_b1c60e998b">Intraerythrocytic development cycle transcriptome (2018)</a> &ndash; 
-             Strand specific RNA-seq analysis of 8 time points during the <i>P. falciparum</i> 3D7 intraerythrocytic development cycle.
+             Strand specific RNA-Seq analysis of 8 time points during the <i>P. falciparum</i> 3D7 intraerythrocytic development cycle.
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/29649445" target="_blank">Toenhake et al</a>.
            </li>
            <li>
@@ -260,7 +260,7 @@
              <a href="https://jbrowse.org/" target="_blank">JBrowse Genome Browser</a>. 
            </li>
            <li>
-             New EuPathDB RNA Seq Tool. The EuPathDB Galaxy Workspace now offers a tool that converts 
+             New EuPathDB RNA-Seq Tool. The EuPathDB Galaxy Workspace now offers a tool that converts 
              read counts from HTSeq-count output to FPKM values. 
            </li>
            <li>
@@ -310,12 +310,12 @@
          <ul>
            <li>
              <a href="/a/app/record/dataset/DS_5d989bb8e4">Strand specific transcriptome of the intraerythrocytic developmental cycle</a> &ndash; 
-             Strand specific RNA seq analysis of intraerythrocytic cycle (10, 20, 30, 40 hpi). 
+             Strand specific RNA-Seq analysis of intraerythrocytic cycle (10, 20, 30, 40 hpi). 
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/24559473" target="_blank">Siegel et al</a>.
            </li>
            <li>
              <a href="/a/app/record/dataset/DS_84fb1047ea">Hypnozoite, schizont and blood stage transcriptomes (laser microdissection)</a> &ndash; 
-             <i>Plasmodium cynomolgi</i> hypnozoites and schizonts were isolated by laser capture microdissection from infected monkey hepatocytes. These samples were analyzed by RNA seq along with RNA extracted from frozen, infected <i>M. fascicularis</i> blood samples.
+             <i>Plasmodium cynomolgi</i> hypnozoites and schizonts were isolated by laser capture microdissection from infected monkey hepatocytes. These samples were analyzed by RNA-Seq along with RNA extracted from frozen, infected <i>M. fascicularis</i> blood samples.
              <a href="http://www.ncbi.nlm.nih.gov/pubmed/28256794" target="_blank">Cubi et al</a>.
            </li>
           </ul>
@@ -764,7 +764,7 @@
       <section>
       <h3><b>New features in PlasmoDB 40</b></h3>
         <div style="margin-left: 3em;">
-        <h4>New Sense/Antisense RNA seq search</h4>
+        <h4>New Sense/Antisense RNA-Seq search</h4>
          <ul>
            <li><a href="/a/showQuestion.do?questionFullName=InternalGeneDatasetQuestions.GenesByRNASeqEvidence">RNA Seq searches</a> &mdash; <br>
            A new Sense/Antisense search for exploring strand specific transcription is available for any strand specific RNA sequence data set.  
@@ -834,7 +834,7 @@
            <a href="/assets/MapProteinsOrthoMCL.pdf">OrthoMCL proteome upload tutorial</a>.
            </li>
            <li>RNA-Seq to EuPathDB export tool &mdash; <br>
-           EuPathDB Galaxy now includes a tool for exporting the results of your RNA seq analysis to any EuPathDB site. The tool transfers 
+           EuPathDB Galaxy now includes a tool for exporting the results of your RNA-Seq analysis to any EuPathDB site. The tool transfers 
            bigwig and FPKM text files to your private My Data Sets page on EuPathDB. From the My Data Sets page the files 
            are available for GBrowse visualization and the Search Strategy system.
            For more information see this 
@@ -917,7 +917,7 @@
            misleading fold change values generated by dividing with very small numbers, we set very low FPKM values to a default <b>FPKM floor</b> which represents
            10 mapped reads. The new parameter offers a range of floor values for raising or lowering the expression threshold of the search 
            depending on the user's objectives. For more information use the parameter help (blue question mark icon) on the search page or read the 
-           <a href="/assets/Fold_Change_Help.pdf">detailed RNA seq search help</a>.
+           <a href="/assets/Fold_Change_Help.pdf">detailed RNA-Seq search help</a>.
            </li>
          </ul>  
        </div> 
@@ -962,8 +962,8 @@
        
        <h4>RNA Sequence</h4>
            <ul>
-            <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_e764c70e8e">Hypnozoite RNAseq</a> &ndash; 
-              <i>P. vivax</i> hypnozoite RNAseq
+            <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_e764c70e8e">Hypnozoite RNA-Seq</a> &ndash; 
+              <i>P. vivax</i> hypnozoite RNA-Seq
               <a href="http://www.ncbi.nlm.nih.gov/pubmed/29478773">Gural et al.</a> 
               </li>
             <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_8eeacbc46e">Ring, Oocyst and Sporozoite Transcriptomes</a> &ndash; 
@@ -1331,7 +1331,7 @@
        <h4>RNA Sequence</h4>
            <ul>
             <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_6301d619de">Female and male gametocyte transcriptomes</a> &ndash; 
-              RNAseq data comparing transcript abundance for FACS sorted male and female <i>P. berghei</i> gametocytes 
+              RNA-Seq data comparing transcript abundance for FACS sorted male and female <i>P. berghei</i> gametocytes 
               compared these to a mixed asexual population.
               <a href="https://www.ncbi.nlm.nih.gov/pubmed/28923023">Yeoh et al.</a>
               </li>
@@ -2335,10 +2335,10 @@ Arial">Join our international team of 30+ software developers and biologists,
            </li>
           </ul>
           
-          <h4>RNA Sequencing</h4>
+          <h4>RNA-Seq</h4>
           <ul>
             <li><a href="http://plasmodb.org/plasmo/app/record/dataset/DS_f223d2037c">Female and Male Gametocyte Transcriptomes</a> &ndash; 
-                Directional RNA-seq data from <i>P. falciparum</i>.  This transcriptomics data set has a corresponding proteomics data set called 
+                Directional RNA-Seq data from <i>P. falciparum</i>.  This transcriptomics data set has a corresponding proteomics data set called 
                 <a href ="http://plasmodb.org/plasmo/app/record/dataset/DS_6c7d1a3134">Male and Female Gametocyte Proteomes</a>. 
                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/27298255">Lasonder et al.</a> 
              </li>
@@ -2443,7 +2443,7 @@ Arial">Join our international team of 30+ software developers and biologists,
              an improved design that reflects the new ontological data categories and offers the ability to download 
              all transcripts per gene when downloading gene results.
              </li><br>
-             <li>RNA Sequencing Workflow - We updated our RNA sequencing analysis. The new workflow aligns 
+             <li>RNA-Seq Workflow - We updated our RNA-Seq analysis. The new workflow aligns 
              reads with GSNAP, calculates FPKM/RPKM from HT-Seq counts and determines differential expression with DESeq2.
              </li>
            </ul>
@@ -2459,7 +2459,7 @@ Arial">Join our international team of 30+ software developers and biologists,
         <ul>
           <li>
             <a href="http://plasmodb.org/plasmo/app/record/dataset/DS_94a7108bd5">Trophozoite transcriptomes after mosquito transmission or direct injection into mice</a> &mdash; 
-            Illumina mRNA sequencing of <i>P. chabaudi chabaudi</i> AS trophozoites isolated from mice that were infected with serial blood passaged 
+            Illumina mRNA-Seq of <i>P. chabaudi chabaudi</i> AS trophozoites isolated from mice that were infected with serial blood passaged 
             parasites via mosquito bite or direct injection of parasitized erythrocytes.
             <a href="http://www.ncbi.nlm.nih.gov/pubmed/23719378">Spence et al.</a>.
           </li>
@@ -2599,8 +2599,8 @@ Arial">Join our international team of 30+ software developers and biologists,
           </li>
           <li>
           <a href="http://plasmodb.org/plasmo/app/record/dataset/DS_5bb820a874">
-                   Ribosome profiling and mRNA sequencing of asexual cell cycle stages</a> &mdash;
-                   RNA sequencing of total and polysome-associated mRNA during 5 stages of the <i>P. falciparum</i> 
+                   Ribosome profiling and mRNA-Seq of asexual cell cycle stages</a> &mdash;
+                   RNA-Seq of total and polysome-associated mRNA during 5 stages of the <i>P. falciparum</i> 
                    blood phase developmental cycle. RNA from W2 strain asexual stages were aligned to 
                    <i>P. falciparum</i> 3D7.
                    <a href="http://www.ncbi.nlm.nih.gov/pubmed/25493618">Caro et al.</a>
@@ -3105,7 +3105,7 @@ phosphoproteome
         metabolomic datasets</li>
       <li>better support for orthology-based queries and cross-species inference</li>
       <li>implementation of workspaces enabling users to upload and analyze
-        their own data (e.g. RNA-seq results)</li>
+        their own data (e.g. RNA-Seq results)</li>
     </ul>
     <p><br>
       The scope of this renewal extends beyond our previous mandate, which
@@ -3187,7 +3187,7 @@ normal">Genomes:<o:p></o:p></b></p>
     <p class="MsoNoSpacing" style="margin-left:.5in;text-indent:-.25in"><a href="/a/getDataset.do?datasets=pfal3D7_Bartfai_time_series_rnaSeq_RSRC"><span
           class="SpellE">Intraerythrocytic</span>
         cycle <span class="SpellE">transcriptome</span> (3D7)(<span class="SpellE">Hoeijmakers</span>
-        et al.)</a> - RNA sequencing analysis of 8 time points during the <i style="mso-bidi-font-style:normal">P.
+        et al.)</a> - RNA-Seq analysis of 8 time points during the <i style="mso-bidi-font-style:normal">P.
         falciparum</i> 3D7 <span class="SpellE">intraerythrocytic</span> cycle.
       This dataset forms a pair with the previously integrated dataset "<em>P.
         falciparum
@@ -3525,7 +3525,7 @@ normal">Genomes:<o:p></o:p></b></p>
         </span> </div>
       <ul style="margin-left: 40px;">
         <li><span style="font-family: Helvetica,Arial,sans-serif;"><a href="http://youtu.be/yKIKD8LEU-M">Inferring
-              UTR length using RNA sequencing data</a></span></li>
+              UTR length using RNA-Seq data</a></span></li>
       </ul>
       <div style="margin-left: 40px;"><span style="font-family: Helvetica,Arial,sans-serif;"><br>
         </span> </div>
@@ -5080,7 +5080,7 @@ sequence data.&nbsp; boundary determination was performed using the <a
 style="font-weight: bold;"
 href="http://www.ncbi.nlm.nih.gov/pubmed/21775302">RNA-Seq Unified
 Mapper (RUM)</a>. To view intron/exon boundary calls, turn on the
-"RNA-seq alignments RUM Intron" track in the genome browser.&nbsp; <a
+"RNA-Seq alignments RUM Intron" track in the genome browser.&nbsp; <a
 style="font-weight: bold;"
 href="http://plasmodb.org/cgi-bin/gbrowse/plasmodb/?start=1430000;stop=1439999;ref=Pf3D7_11;width=800;version=100;cache=0;show_tooltips=on;grid=on;id=5f6c1beeb1b94b24ea6ed5148ba1d93c;label=Gene-RUMIntronDuffy-RUMIntronNewbold-RUMIntronStunnenberg">Here
 is a link to a gene</a>
@@ -5440,17 +5440,17 @@ href="http://plasmodb.org/cgi-bin/gbrowse/plasmodb/?start=883339;stop=917361;ref
 </ul>
 <ul>
 <li><span style="font-style: italic;">P. falciparum</span>
-RNA-sequence data from the intraerythrocytic life cycle.&nbsp; This
+RNA-Seq data from the intraerythrocytic life cycle.&nbsp; This
 data was graciously provided prepublication to the community via
 PlasmoDB by Dr. Richárd Bártfai, Wieteke A.M. Hoeijmakers and Dr.
 Hendrik G. Stunnenberg.&nbsp; Searches against this data may be
 accessed from the <a
 href="http://plasmodb.org/plasmo/showQuestion.do?questionFullName=InternalQuestions.GenesByRNASeqEvidence">RNA-seq
 evidence section</a> in the Transcript Expression section
-of PlasmoDB.&nbsp; RNA-seq data may also be viewed on individual gene
+of PlasmoDB.&nbsp; RNA-Seq data may also be viewed on individual gene
 pages where a graphical representation of the gene's expression profile
 throughout the time points of this study is presented.&nbsp;&nbsp; In
-addition,&nbsp; RNA-seq coverage graphs can be viewed through the
+addition,&nbsp; RNA-Seq coverage graphs can be viewed through the
 PlasmoDB <a
 href="http://plasmodb.org/cgi-bin/gbrowse/plasmodb/?start=840000;stop=910000;ref=Pf3D7_06;width=800;version=100;cache=on;show_tooltips=on;grid=on;id=5e34fc82bb97015347ac950c4404cf72;label=Gene-RnaSeqStunnenberg5Cont-RnaSeqStunnenberg10Cont-RnaSeqStunnenberg15Cont-RnaSeqStunnenberg20Cont-RnaSeqStunnenberg25Cont-RnaSeqStunnenberg30Cont-RnaSeqStunnenberg35Cont-RnaSeqStunnenberg40Cont;h_feat=pff1065c%40thistle">genome
 browser</a>.<br>
@@ -5469,7 +5469,7 @@ browser</a>.</li>
 </ul>
 <ul>
 <li><span style="font-style: italic;">P. falciparum</span>
-RNA-sequence data of lab-adapted field parasites from malaria-infected
+RNA-Seq data of lab-adapted field parasites from malaria-infected
 pregnant women and children.&nbsp; This data was graciously provided
 prepublication to the community via PlasmoDB by Drs. Marissa Vignali
 and Patrick E. Duffy.&nbsp; Searches against this data may be accessed
@@ -5477,12 +5477,12 @@ from the <a
 href="http://plasmodb.org/plasmo/showQuestion.do?questionFullName=InternalQuestions.GenesByRNASeqEvidence">RNA-seq
 evidence section</a> in the Transcript
 Expression section
-of PlasmoDB.&nbsp; RNA-seq data may also be viewed on individual gene
+of PlasmoDB.&nbsp; RNA-Seq data may also be viewed on individual gene
 pages
 where a graphical representation of the gene's expression profile
 throughout the time points of this study is presented.&nbsp;&nbsp; In
 addition,&nbsp;
-RNA-seq coverage graphs can be viewed through the PlasmoDB <a
+RNA-Seq coverage graphs can be viewed through the PlasmoDB <a
 href="http://plasmodb.org/cgi-bin/gbrowse/plasmodb/?start=2100000;stop=2270000;ref=Pf3D7_12;width=800;version=100;cache=on;show_tooltips=on;grid=on;id=5e34fc82bb97015347ac950c4404cf72;label=Gene-RnaSeqDuffCont-RnaSeqDuffPL01-RnaSeqDuffPL02;h_feat=pfl0010c@yellow">genome
 browser</a>.</li>
 </ul>
@@ -5837,7 +5837,7 @@ datasets and features:<br>
 New Data:<br>
 <ul>
   <li><span style="font-style: italic;">P.
-falciparum </span>transcriptome sequencing (RNA-seq) profiles.
+falciparum </span>transcriptome sequencing (RNA-Seq) profiles.
 &nbsp;This data was graciously provided to PlasmoDB prepublication
 and will soon appear in press: New insights into the blood stage
 transcriptome of Plasmodium falciparum using RNA-Seq. &nbsp;Thomas
@@ -5848,7 +5848,7 @@ Microbiology (in press). &nbsp;You can search for genes based on
 this data by going to the "<a
  href="http://plasmodb.org/plasmo6.3/showQuestion.do?questionFullName=GeneQuestions.GenesByRNASeqExpressionTiming&amp;target=GENE"><span
  style="font-style: italic;">P. falciparum </span>transcriptome
-sequencing (RNA-seq) profiles</a>" search under "Transcript
+sequencing (RNA-Seq) profiles</a>" search under "Transcript
 Expression" in PlasmoDB.</li>
 </ul>
 <ul>

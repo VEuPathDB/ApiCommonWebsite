@@ -105,7 +105,7 @@ foreach my $key (keys %$data) {
 
        print STDOUT $cgi->h3("Message Body:");
 
-    print STDOUT $cgi->p("Your Data set named \"$displayName\" has been successfully integrated into EuPathDB and is scheduled for immediate release.  Please log in to our password protected qa site to verify the accuracy of the data and related descriptions.  We will not make this data publicly available until you have given us the \"ok\" but please review this as soon as possible so we can make any needed changes in our current release cycle.  If we don\'t hear back or if substantial changes are needed we may choose to move this data set to our next scheduled release (> 6weeks away).");
+    print STDOUT $cgi->p("Your Data set named \"$displayName\" has been successfully integrated into VEuPathDB and is scheduled for immediate release.  Please log in to our password protected qa site to verify the accuracy of the data and related descriptions.  We will not make this data publicly available until you have given us the \"ok\" but please review this as soon as possible so we can make any needed changes in our current release cycle.  If we don\'t hear back or if substantial changes are needed we may choose to move this data set to our next scheduled release (> 6weeks away).");
 
 
     print STDOUT $cgi->p("Your Data set(s) can be accessed here:");
@@ -115,7 +115,7 @@ foreach my $key (keys %$data) {
 
     print STDOUT $cgi->p("username:  TODO <br /> password:  TODO");
 
-    print STDOUT $cgi->p("The page above contains all text which is specific to your dataset.  We can easily add descriptions, contacts, or links to external sites which are specific to this dataset.  Please click through the \"Links\" section on this page to ensure they are accurate (links should contain helpful text when you mouseover them).  Some of the links will be to external sites and some will provide specific examples of this data on EuPathDB.  Also notice the \"Searches using these Data\" links.  These links are all EuPathDB internal and allow various ways to mine this data set. Many of these will require you to choose your dataset from a drop down list (ie. They may not be specific to your data set)");
+    print STDOUT $cgi->p("The page above contains all text which is specific to your dataset.  We can easily add descriptions, contacts, or links to external sites which are specific to this dataset.  Please click through the \"Links\" section on this page to ensure they are accurate (links should contain helpful text when you mouseover them).  Some of the links will be to external sites and some will provide specific examples of this data on VEuPathDB.  Also notice the \"Searches using these Data\" links.  These links are all VEuPathDB internal and allow various ways to mine this data set. Many of these will require you to choose your dataset from a drop down list (ie. They may not be specific to your data set)");
 
     print STDOUT $cgi->p("Note that the QA site is under active development so please forgive broken links or periods of slowness/lack of connectivity.");
 

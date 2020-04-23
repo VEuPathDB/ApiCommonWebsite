@@ -20,7 +20,7 @@ sub init {
   $self->setMainLegend({colors => $colors, short_names => $legend});
 
   $self->setProfileSetsHash
-    ({rpkm => {profiles => ['RNASeq Spliced Leader Sites from Myler uniqProfile - lmajFriedlin','RNASeq Spliced Leader Sites from Myler nonUniqProfile - lmajFriedlin'],
+    ({rpkm => {profiles => ['RNA-Seq Spliced Leader Sites from Myler uniqProfile - lmajFriedlin','RNA-Seq Spliced Leader Sites from Myler nonUniqProfile - lmajFriedlin'],
                    y_axis_label => 'log 2 (normalized tag count)',
                    x_axis_labels => $xAxisLabels,
                    colors => $colors,
@@ -28,7 +28,7 @@ sub init {
                    r_adjust_profile => 'profile=profile + 1; profile = log2(profile);',
                    stack_bars => 1,
                   },
-      pct => {profiles => ['RNASeq Spliced Leader Sites from Myler percentile - lmajFriedlin'],
+      pct => {profiles => ['RNA-Seq Spliced Leader Sites from Myler percentile - lmajFriedlin'],
               y_axis_label => 'Percentile',
               x_axis_labels => $xAxisLabels,
               default_y_max => 50,
