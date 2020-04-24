@@ -165,7 +165,7 @@ sub setSqls {
 
   my $sourceIdAndClause = "(bfmv.gene_source_id = ? OR bfmv.source_id = ?)";
   $sourceIdAndClause = "bfmv.representative_transcript =  bfmv.source_id and bfmv.gene_source_id = ?" if $self->{sourceIdFilter} eq 'genesOnly';
-  $sourceIdAndClause = "bfmv.source_id = ?" if $self->{sourceIdFilter} eq 'transcriptsOnly';
+  $sourceIdAndClause = "bfmv.gene_source_id = ?" if $self->{sourceIdFilter} eq 'transcriptsOnly';
   my $sourceId = $self->{sourceIdFilter} eq 'genesOnly'? "bfmv.gene_source_id" : "bfmv.source_id";
 
   $self->{sqlQueries}->{geneProteinSql} = <<EOSQL;
@@ -250,7 +250,7 @@ sub handleNonGenomic {
 
     my $sourceIdAndClause = "(bfmv.gene_source_id = ? OR bfmv.source_id = ?)";
     $sourceIdAndClause = "bfmv.representative_transcript =  bfmv.source_id and bfmv.gene_source_id = ?" if $self->{sourceIdFilter} eq 'genesOnly';
-    $sourceIdAndClause = "bfmv.source_id = ?" if $self->{sourceIdFilter} eq 'transcriptsOnly';
+    $sourceIdAndClause = "bfmv.gene_source_id = ?" if $self->{sourceIdFilter} eq 'transcriptsOnly';
     my $sourceId = $self->{sourceIdFilter} eq 'genesOnly'? "bfmv.gene_source_id" : "bfmv.source_id";
 
 
@@ -278,7 +278,6 @@ EOSQL
   }
 
   &error("No id provided could be mapped to valid source ids") unless(scalar @$ids > 0);
-
 
   my @invalidIds;
   my $sth = $dbh->prepare($sql);
