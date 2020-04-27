@@ -3,8 +3,8 @@
 @import 'ebrc-client/styles/themes.scss';
 
 // Header breakpoints
-$cramped-header-width: 1100px;
-$hamburger-width: 960px;
+$cramped-header-width: 1215px;
+$hamburger-width: 1013px;
 
 // Search Pane + Main + News breakpoints
 $tablet-width: 1000px;
@@ -165,6 +165,11 @@ body.vpdb-Body {
       "footer";
     
     grid-template-rows: $expanded-header-height auto 1fr auto;
+
+    @media screen and (max-width: $hamburger-width) {
+      grid-template-rows: auto auto 1fr auto;
+    }
+
     grid-template-columns: 100%;
   
     min-height: 100vh;
@@ -183,6 +188,12 @@ body.vpdb-Body {
 
           .ebrc-HeaderBrandingContainer {
             align-self: flex-start;
+            margin-top: 1.5em;
+          }
+        }
+
+        @media screen and (max-width: $hamburger-width) {
+          .ebrc-HeaderBrandingContainer {
             margin-top: 0.5em;
           }
         }
@@ -447,10 +458,6 @@ body.vpdb-Body {
 
       .vpdb-Main {
         overflow: hidden;
-      }
-
-      @media screen and (max-width: $hamburger-width) {
-        grid-template-rows: auto auto 1fr auto;
       }
 
       @media screen and (max-width: $tablet-width) {

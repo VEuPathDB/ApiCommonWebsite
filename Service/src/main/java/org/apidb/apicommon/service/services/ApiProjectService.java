@@ -19,7 +19,7 @@ public class ApiProjectService extends ProjectService {
   private static final String PROJECT_URLS_KEY = "projectUrls";
   private static final String ORG_TO_PROJECT_KEY = "organismToProject";
 
-  private static final String TAXON_QUESTION_NAME = "GenesByTaxon";
+  private static final String TAXON_QUESTION_NAME = "SequencesByTaxon"; //"GenesByTaxon";
   private static final String ORGANISM_PARAM_NAME = "organism";
 
   private static final String[] PORTAL_PROJECT_IDS = new String[] { "EuPathDB", "VEuPathDB" };

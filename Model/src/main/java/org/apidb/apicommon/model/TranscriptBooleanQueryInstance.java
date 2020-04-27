@@ -25,6 +25,7 @@ public class TranscriptBooleanQueryInstance extends BooleanQueryInstance {
     String booleanGenesSql = genebqi.getUncachedSql();
 
     String sql = 
+        "SELECT DISTINCT gene_source_id, source_id, project_id, sum(wdk_weight) as wdk_weight, max(left_match) as left_match, max(right_match) as right_match FROM ( " + NL +
         " -- boolean of genes " + NL +
         "WITH genes as (" + booleanGenesSql + ")" + NL +
         " -- major select " + NL +
@@ -43,7 +44,8 @@ public class TranscriptBooleanQueryInstance extends BooleanQueryInstance {
         "  select ta.gene_source_id, ta.source_id, genes.project_id, genes.wdk_weight, 0 as left_match, 0 as right_match" + NL +
         "  from genes, apidbtuning.transcriptattributes ta" + NL +
         "  where genes.gene_source_id = ta.gene_source_id) big" + NL +
-        "group by (gene_source_id, source_id, project_id, wdk_weight)";
+        "group by (gene_source_id, source_id, project_id, wdk_weight)" +
+        ") group by (gene_source_id, source_id, project_id)";
     return sql;	
 
   }
