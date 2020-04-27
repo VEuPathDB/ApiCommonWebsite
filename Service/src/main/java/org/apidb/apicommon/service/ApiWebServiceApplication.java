@@ -12,6 +12,7 @@ import org.apidb.apicommon.service.services.comments.AttachmentsService;
 import org.apidb.apicommon.service.services.comments.UserCommentsService;
 import org.apidb.apicommon.service.services.jbrowse.JBrowseService;
 import org.apidb.apicommon.service.services.jbrowse.JBrowseUserDatasetsService;
+import org.apidb.apicommon.service.services.dataPlotter.ProfileSetService;
 import org.eupathdb.common.service.EuPathServiceApplication;
 import org.gusdb.fgputil.SetBuilder;
 import org.gusdb.wdk.service.service.ProjectService;
@@ -40,6 +41,7 @@ public class ApiWebServiceApplication extends EuPathServiceApplication {
       .add(BigWigTrackService.class)
       .add(JBrowseService.class)
       .add(JBrowseUserDatasetsService.class)
+      .add(ProfileSetService.class)
 
       .toSet();
   }
