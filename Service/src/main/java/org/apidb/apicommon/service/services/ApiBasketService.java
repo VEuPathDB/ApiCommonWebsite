@@ -59,7 +59,7 @@ public class ApiBasketService extends BasketService {
 
       // FIXME: the code below is incomplete; for now, disallow on genes and use regular RC logic for transcripts
       if (isGeneBasket) {
-        throw new DataValidationException("Add-Step-To-Basket is not yet supported for gene steps");
+        throw new DataValidationException("Add-Step-To-Basket is not supported for gene steps.  There should be no gene basket.");
       }
       // will add only transcripts in the result to basket, not other transcripts of those transcripts' genes
       return super.translatePatchRequest(recordClass, actions);
