@@ -118,7 +118,7 @@
              <a href="https://eupathdb.org/eupathdb/app/contact-us">Contact Us</a> with comments and suggestions for the genome browser. 
            </li>
            <li>
-             The new RNASeq Transcript Summary tool on gene pages helps reveal experiments in which the gene is highly 
+             The new RNA-Seq Transcript Summary tool on gene pages helps reveal experiments in which the gene is highly 
              regulated. The tool displays the gene's FPKM values for all experiments in TrichDB and offers features such as 
              log/linear scaling, zoom and pan to explore the gene's expression in each experiment.
            </li>
@@ -171,7 +171,7 @@
              <a href="https://jbrowse.org/" target="_blank">JBrowse Genome Browser</a>. 
            </li>
            <li>
-             New EuPathDB RNA Seq Tool. The EuPathDB Galaxy Workspace now offers a tool that converts 
+             New EuPathDB RNA-Seq Tool. The EuPathDB Galaxy Workspace now offers a tool that converts 
              read counts from HTSeq-count output to FPKM values. 
            </li>
            <li>
@@ -387,7 +387,7 @@
       <section>
       <h3><b>New features in TrichDB 40</b></h3>
         <div style="margin-left: 3em;">
-        <h4>New Sense/Antisense RNA seq search</h4>
+        <h4>New Sense/Antisense RNA-Seq search</h4>
          <ul>
            <li><a href="/a/showQuestion.do?questionFullName=InternalGeneDatasetQuestions.GenesByRNASeqEvidence">RNA Seq searches</a> &mdash; <br>
            A new Sense/Antisense search for exploring strand specific transcription is available for any strand specific RNA sequence data set.  
@@ -452,12 +452,12 @@
            'Get started with pre-configured workflows'. The workflow employs three tools which can be accessed 
            separately in the EuPathDB Galaxy tools menu under EuPathDB OrthoMCL Tools. This workflow duplicates 
            and replaces the 'Assign your proteins to groups' function in the Tools menu of the 
-           <a href="http://orthomcl.org/orthomcl/" target="_blank">OrthoMCL site</a>.
+           <a href="https://beta.orthomcl.org/orthomcl/" target="_blank">OrthoMCL site</a>.
            For more information see this 
            <a href="/assets/MapProteinsOrthoMCL.pdf">OrthoMCL proteome upload tutorial</a>.
            </li>
            <li>RNA-Seq to EuPathDB export tool &mdash; <br>
-           EuPathDB Galaxy now includes a tool for exporting the results of your RNA seq analysis to any EuPathDB site. The tool transfers 
+           EuPathDB Galaxy now includes a tool for exporting the results of your RNA-Seqanalysis to any EuPathDB site. The tool transfers 
            bigwig and FPKM text files to your private My Data Sets page on EuPathDB. From the My Data Sets page the files 
            are available for GBrowse visualization and the Search Strategy system.
            For more information see this 
@@ -1438,7 +1438,7 @@ Arial">Join our international team of 30+ software developers and biologists,
              an improved design that reflects the new ontological data categories and offers the ability to download 
              all transcripts per gene when downloading gene results.
              </li><br>
-             <li>RNA Sequencing Workflow - We updated our RNA sequencing analysis. The new workflow aligns 
+             <li>RNA-Seq Workflow - We updated our RNA-Seq analysis. The new workflow aligns 
              reads with GSNAP, calculates FPKM/RPKM from HT-Seq counts and determines differential expression with DESeq2.
              </li>
            </ul>
@@ -1753,7 +1753,7 @@ Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-far
         metabolomic datasets</li>
       <li>better support for orthology-based queries and cross-species inference</li>
       <li>implementation of workspaces enabling users to upload and analyze
-        their own data (e.g. RNA-seq results)</li>
+        their own data (e.g. RNA-Seq results)</li>
     </ul>
     <p><br>
       The scope of this renewal extends beyond our previous mandate, which
@@ -1885,7 +1885,7 @@ normal">Genome:<o:p></o:p></b></p>
         </span> </div>
       <ul style="margin-left: 40px;">
         <li><span style="font-family: Helvetica,Arial,sans-serif;"><a href="http://youtu.be/yKIKD8LEU-M">Inferring
-              UTR length using RNA sequencing data</a></span></li>
+              UTR length using RNA-Seq data</a></span></li>
       </ul>
       <div style="margin-left: 40px;"><span style="font-family: Helvetica,Arial,sans-serif;"><br>
         </span> </div>

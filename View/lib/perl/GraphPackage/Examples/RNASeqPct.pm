@@ -32,7 +32,7 @@ sub init {
   $GO1->setPlotTitle('This is a test of the emergency graph generation system');
 
   my $GO2 = EbrcWebsiteCommon::View::GraphPackage::LinePlot->new();
-  $GO2->setProfileSetNames(['Profiles of P.falciparum Newbold mRNA Seq data']);
+  $GO2->setProfileSetNames(['Profiles of P.falciparum Newbold mRNA-Seq data']);
   $GO2->setColors(['#000080']);
   $GO2->setPartName('line');
   $GO2->setPlotTitle('This is a test of the emergency graph generation system');

@@ -71,14 +71,14 @@
            <li><a href="/a/app/record/dataset/DS_8ab03f0b79">Mouse brain bradyzoite proteomics time course</a> &mdash;
                Proteomic analysis of bradyzoites purified from mouse brain cysts at 21 days, 28 days, 3 months, 4 months and 5 months post infection.  
 			   <a href="https://www.researchsquare.com/article/9dd84566-1663-49a2-ab52-a359b9aa4224/v1" target="_blank">Garfoot et al. Preprint</a><br><br>
-			   Also available from this study are ToxoDB RNA seq: <a href="/a/app/record/dataset/DS_7eee2cd55f">Mouse brain bradyzoite transcriptomes at 28, 90, 120 days post infection</a>.  
-			   And a similar study by the same authors produced HostDB RNA seq: 	<a href="https://hostdb.org/host/app/record/dataset/DS_7184e7fdbf">Mouse brain bradyzoite transcriptomes at 28, 90, 120 days post infection</a>.<br><br>
+			   Also available from this study are ToxoDB RNA-Seq: <a href="/a/app/record/dataset/DS_7eee2cd55f">Mouse brain bradyzoite transcriptomes at 28, 90, 120 days post infection</a>.  
+			   And a similar study by the same authors produced HostDB RNA-Seq: 	<a href="https://hostdb.org/host/app/record/dataset/DS_7184e7fdbf">Mouse brain bradyzoite transcriptomes at 28, 90, 120 days post infection</a>.<br><br>
            </li>
 		   <li><a href="/a/app/record/dataset/DS_c3d46a8b93">Mouse brain bradyzoite proteomics time course - quantitative</a> &mdash;
                Proteomic analysis of bradyzoites purified from mouse brain cysts at 21 days, 28 days, 3 months, 4 months and 5 months post infection.  
 			   <a href="https://www.researchsquare.com/article/9dd84566-1663-49a2-ab52-a359b9aa4224/v1" target="_blank">Garfoot et al. Preprint</a><br><br>
-			   Also available from this study are ToxoDB RNA seq: <a href="/a/app/record/dataset/DS_7eee2cd55f">Mouse brain bradyzoite transcriptomes at 28, 90, 120 days post infection</a>.  
-			   And a similar study by the same authors produced HostDB RNA seq: 	<a href="https://hostdb.org/host/app/record/dataset/DS_7184e7fdbf">Mouse brain bradyzoite transcriptomes at 28, 90, 120 days post infection</a>.
+			   Also available from this study are ToxoDB RNA-Seq: <a href="/a/app/record/dataset/DS_7eee2cd55f">Mouse brain bradyzoite transcriptomes at 28, 90, 120 days post infection</a>.  
+			   And a similar study by the same authors produced HostDB RNA-Seq: 	<a href="https://hostdb.org/host/app/record/dataset/DS_7184e7fdbf">Mouse brain bradyzoite transcriptomes at 28, 90, 120 days post infection</a>.
            </li>
          </ul> 
 	   <h4>RNA Sequence</h4>
@@ -88,7 +88,7 @@
 			   <a href="http://www.ncbi.nlm.nih.gov/pubmed/30858341" target="_blank">Garfoot et al. 2019</a>.   <br><br>
 			   Also available from this study are ToxoDB proteomics (<a href="/a/app/record/dataset/DS_8ab03f0b79">Mouse brain bradyzoite proteomics time course</a>) 
 			   and Quantitative proteomics (<a href="/a/app/record/dataset/DS_c3d46a8b93">Mouse brain bradyzoite proteomics time course - quantitative</a>)
-               A similar study by the same authors produced HostDB RNA seq: 	<a href="https://hostdb.org/host/app/record/dataset/DS_7184e7fdbf">Mouse transcriptome during early and late chronic infection with T. gondii</a>.
+               A similar study by the same authors produced HostDB RNA-Seq: 	<a href="https://hostdb.org/host/app/record/dataset/DS_7184e7fdbf">Mouse transcriptome during early and late chronic infection with T. gondii</a>.
            </li>
          </ul>
 	   <h4>Spacial Proteomics - hyperLOPIT</h4>
@@ -181,7 +181,7 @@
              <a href="https://eupathdb.org/eupathdb/app/contact-us">Contact Us</a> with comments and suggestions for the genome browser. 
            </li>
            <li>
-             The new RNASeq Transcript Summary tool on gene pages helps reveal experiments in which the gene is highly 
+             The new RNA-Seq Transcript Summary tool on gene pages helps reveal experiments in which the gene is highly 
              regulated. The tool displays the gene's FPKM values for all experiments in ToxoDB and offers features such as 
              log/linear scaling, zoom and pan to explore the gene's expression in each experiment.
            </li>
@@ -249,7 +249,7 @@
              <a href="https://jbrowse.org/" target="_blank">JBrowse Genome Browser</a>. 
            </li>
            <li>
-             New EuPathDB RNA Seq Tool. The EuPathDB Galaxy Workspace now offers a tool that converts 
+             New EuPathDB RNA-Seq Tool. The EuPathDB Galaxy Workspace now offers a tool that converts 
              read counts from HTSeq-count output to FPKM values. 
            </li>
            <li>
@@ -533,7 +533,7 @@
       <section>
       <h3><b>New features in ToxoDB 40</b></h3>
         <div style="margin-left: 3em;">
-        <h4>New Sense/Antisense RNA seq search</h4>
+        <h4>New Sense/Antisense RNA-Seq search</h4>
          <ul>
            <li><a href="/a/showQuestion.do?questionFullName=InternalGeneDatasetQuestions.GenesByRNASeqEvidence">RNA Seq searches</a> &mdash; <br>
            A new Sense/Antisense search for exploring strand specific transcription is available for any strand specific RNA sequence data set.  
@@ -598,12 +598,12 @@
            'Get started with pre-configured workflows'. The workflow employs three tools which can be accessed 
            separately in the EuPathDB Galaxy tools menu under EuPathDB OrthoMCL Tools. This workflow duplicates 
            and replaces the 'Assign your proteins to groups' function in the Tools menu of the 
-           <a href="http://orthomcl.org/orthomcl/" target="_blank">OrthoMCL site</a>.
+           <a href="https://beta.orthomcl.org/orthomcl/" target="_blank">OrthoMCL site</a>.
            For more information see this 
            <a href="/assets/MapProteinsOrthoMCL.pdf">OrthoMCL proteome upload tutorial</a>.
            </li>
            <li>RNA-Seq to EuPathDB export tool &mdash; <br>
-           EuPathDB Galaxy now includes a tool for exporting the results of your RNA seq analysis to any EuPathDB site. The tool transfers 
+           EuPathDB Galaxy now includes a tool for exporting the results of your RNA-Seq analysis to any EuPathDB site. The tool transfers 
            bigwig and FPKM text files to your private My Data Sets page on EuPathDB. From the My Data Sets page the files 
            are available for GBrowse visualization and the Search Strategy system.
            For more information see this 
@@ -658,7 +658,7 @@
            misleading fold change values generated by dividing with very small numbers, we set very low FPKM values to a default <b>FPKM floor</b> which represents
            10 mapped reads. The new parameter offers a range of floor values for raising or lowering the expression threshold of the search 
            depending on the user's objectives. For more information use the parameter help (blue question mark icon) on the search page or read the 
-           <a href="/assets/Fold_Change_Help.pdf">detailed RNA seq search help</a>.
+           <a href="/assets/Fold_Change_Help.pdf">detailed RNA-Seq search help</a>.
            </li>
          </ul>  
        </div> 
@@ -1799,7 +1799,7 @@ Arial">Join our international team of 30+ software developers and biologists,
              an improved design that reflects the new ontological data categories and offers the ability to download 
              all transcripts per gene when downloading gene results.
              </li><br>
-             <li>RNA Sequencing Workflow - We updated our RNA sequencing analysis. The new workflow aligns 
+             <li>RNA-Seq Workflow - We updated our RNA-Seq analysis. The new workflow aligns 
              reads with GSNAP, calculates FPKM/RPKM from HT-Seq counts and determines differential expression with DESeq2.
              </li>
            </ul>
@@ -1855,12 +1855,12 @@ Arial">Join our international team of 30+ software developers and biologists,
       </aside>
     
        <section>
-        <h4>RNA sequencing</h4>
+        <h4>RNA-Seq</h4>
         <ul>
           <li>
             <a href="http://toxodb.org/toxo/app/record/dataset/DS_0d0de5d7c3">
              Gametocytes vs 2 Asexual Stages </a> &mdash; 
-            Tanscriptomes of <i>Eimeria tenella</i> Houghton gametocytes compared to sporozoites and merozoites, determined by RNA sequencing
+            Tanscriptomes of <i>Eimeria tenella</i> Houghton gametocytes compared to sporozoites and merozoites, determined by RNA-Seq
             <a href="http://www.ncbi.nlm.nih.gov/pubmed/25765081">Walker et al.</a> 
           </li>
       </section>
@@ -2284,7 +2284,7 @@ hammondi
         metabolomic datasets</li>
       <li>better support for orthology-based queries and cross-species inference</li>
       <li>implementation of workspaces enabling users to upload and analyze
-        their own data (e.g. RNA-seq results)</li>
+        their own data (e.g. RNA-Seq results)</li>
     </ul>
     <p><br>
       The scope of this renewal extends beyond our previous mandate, which
@@ -2337,7 +2337,7 @@ hammondi
       and list of associated searches and GBrowse tracks.</p>
     <p class="MsoNoSpacing"><o:p>&nbsp;</o:p></p>
     <p class="MsoNoSpacing" style="margin-left:.25in"><b style="mso-bidi-font-weight:
-normal">RNA Sequencing:<o:p></o:p></b></p>
+normal">RNA-Seq:<o:p></o:p></b></p>
     <p class="MsoNoSpacing" style="margin-left:.5in;text-indent:-.25in"><a href="/a/getDataset.do?datasets=tgonME49_TgSR3_Overexpression_Time_Series_rnaSeq_RSRC"><em>T.
           gondii</em> ME49 <span class="SpellE">Transcriptome</span> during
         overexpression of alternative-splicing factor TgSR3</a><span class="MsoHyperlink">
@@ -2803,7 +2803,7 @@ normal">RNA Sequencing:<o:p></o:p></b></p>
         </span> </div>
       <ul style="margin-left: 40px;">
         <li><span style="font-family: Helvetica,Arial,sans-serif;"><a href="http://youtu.be/yKIKD8LEU-M">Inferring
-              UTR length using RNA sequencing data</a></span></li>
+              UTR length using RNA-Seq data</a></span></li>
       </ul>
       <div style="margin-left: 40px;"><span style="font-family: Helvetica,Arial,sans-serif;"><br>
         </span> </div>
@@ -2895,7 +2895,7 @@ normal">RNA Sequencing:<o:p></o:p></b></p>
     <ul style="text-align: justify;">
       <li>The transcriptomes of 25 <em>Toxoplasma gondii</em> strains during
         infection of primary murine macrophages (already available in ToxoDB)
-        now has the matched murine RNAseq data available for searches in HostDB
+        now has the matched murine RNA-Seq data available for searches in HostDB
         (<strong><a href="http://www.ncbi.nlm.nih.gov/pubmed/22847430">Minot <em>et
               al.</em></a></strong>): <strong><a href="http://beta.hostdb.org">http://beta.hostdb.org</a></strong></li>
     </ul>
@@ -3076,7 +3076,7 @@ normal">RNA Sequencing:<o:p></o:p></b></p>
     </ul>
     <br>
     <ul>
-      <li>RNA sequencing of <em>Eimeria tenella</em> Houghton life cycle stages
+      <li>RNA-Seq of <em>Eimeria tenella</em> Houghton life cycle stages
         (unsporulated oocyst, sporulated oocyst, sporozoite and 2nd generation
         merozoite stages) graciously provided prepublication (Reid <em>et al.</em>).&nbsp;&nbsp;</li>
     </ul>
@@ -3084,7 +3084,7 @@ normal">RNA Sequencing:<o:p></o:p></b></p>
     <ul>
       <ul>
         <li>Go to the <a href="http://toxodb.org/toxo/showQuestion.do?questionFullName=InternalGeneDatasetQuestions.GenesByRNASeqEvidence"><strong>ToxoDB
-              RNA Seq Evidence search page</strong></a> to search for genes that
+              RNA-Seq Evidence search page</strong></a> to search for genes that
           are differentially expressed between the life cycle stages. View
           sequencing read coverage using the GBrowse track - E.t. mRNAseq
           Transcriptome of Life Cycle Stages Coverage (Reid). </li>
@@ -3138,7 +3138,7 @@ normal">RNA Sequencing:<o:p></o:p></b></p>
     </ul>
     <br>
     <ul>
-      <li>RNA sequencing of <em>Toxoplasma gondii</em> ME49 during acute or
+      <li>RNA-Seq of <em>Toxoplasma gondii</em> ME49 during acute or
         chronic infection in mouse brain. This data was graciously
         provided&nbsp; prepublication (Pittman, Aliota and Knoll).&nbsp; </li>
     </ul>
@@ -3146,7 +3146,7 @@ normal">RNA Sequencing:<o:p></o:p></b></p>
     <ul>
       <ul>
         <li>Search this data using the <strong><a href="http://toxodb.org/toxo/showQuestion.do?questionFullName=InternalGeneDatasetQuestions.GenesByRNASeqEvidence">ToxoDB
-              RNA Seq Evidence</a></strong> search page to compare the gene
+              RNA-Seq Evidence</a></strong> search page to compare the gene
           expression for parasites in 10 and 28 day old infections in
           mice.&nbsp; This example search strategy identifies genes that are
           upregulated by at least 30-fold in chronically infected mice:</li>
@@ -3176,7 +3176,7 @@ normal">RNA Sequencing:<o:p></o:p></b></p>
     </ul>
     <br>
     <ul>
-      <li>RNA sequencing of 25 <em>Toxoplasma gondii </em>strains during mouse
+      <li>RNA-Seq of 25 <em>Toxoplasma gondii </em>strains during mouse
         macrophage infection (<strong><a href="http://www.ncbi.nlm.nih.gov/pubmed/22847430">Minot
             <em>et al.</em></a></strong>).&nbsp; </li>
     </ul>
@@ -3666,7 +3666,7 @@ following new datasets: </span><br>
 <br>
 </div>
 <ul style="text-align: justify; font-family: Arial;">
-<li>Strand-specific RNA-sequence data from <span
+<li>Strand-specific RNA-Seq data from <span
 style="font-style: italic;">T. gondii</span> ME49 oocyst stages
 provided prepublication by the John Boothroyd and Brian Gregory
 groups.&nbsp; These data are <a
@@ -3679,7 +3679,7 @@ style="font-weight: bold;">available as genome browser tracks</span>.</a>&nbsp;
 </div>
 <ul style="text-align: justify; font-family: Arial;">
 <ul>
-<li>Note:&nbsp; RNA-sequence data is also used to
+<li>Note:&nbsp; RNA-Seq data is also used to
 visualize intron/exon boundaries (based on intron-spanning
 reads).&nbsp; Data specific or <a
 href="/cgi-bin/gbrowse/toxodb/?start=435135;stop=475134;ref=TGME49_chrVI;width=800;version=100;flip=0;grid=1;id=41b73827e4dc9e6dd5617c2b8af53509;l=Gene%1ERUMIntronUnified"><span
@@ -4044,7 +4044,7 @@ tracks:&nbsp;&nbsp;</li>
 <ul>
 <li>&nbsp;"<span style="font-style: italic;">T.gondii</span>
 VEG
-mRNA RNAseq - Unique Aligners - (log2 Coverage) (Gregory)" which
+mRNA RNA-Seq - Unique Aligners - (log2 Coverage) (Gregory)" which
 includes strand-specific coverage plots (Blue for the forward strand
 and red for the reverse strand). </li>
 </ul>
@@ -4057,7 +4057,7 @@ and red for the reverse strand). </li>
 <ul>
 <li>"<span style="font-style: italic;">T.gondii </span>VEG
 mRNA
-RNAseq - Nonunique Aligners - (log2 Coverage) (Gregory)" which shows
+RNA-Seq - Nonunique Aligners - (log2 Coverage) (Gregory)" which shows
 coverage plots for regions where probes did not uniquely align (ie.
 gives and indication of possible repetitive regions).</li>
 </ul>
@@ -4077,7 +4077,7 @@ missing genes or alternative gene models. <a
 href="http://toxodb.org/cgi-bin/gbrowse/toxodb/?start=2654898;stop=2694897;ref=TGME49_chrVI;width=800;version=100;cache=0;show_tooltips=on;grid=on;id=9c4180ebae94066bac7a2db3234310ac;label=Scaffolds:overview-Gene-ORF300-ChIPEinsteinME1-ChIPEinsteinPLK-mRNA_VEG-mRNA_VEG_NU"><span
 style="font-weight: bold;">Here is an example of a
 region with H3K4Me3, H3K4Me1,
-ORF and RNA-seq tracks loaded</span></a>.&nbsp; Notice the region
+ORF and RNA-Seq tracks loaded</span></a>.&nbsp; Notice the region
 between
 TGME49_043540 and TGME49_043550.</span><br>
 </div>
@@ -4162,7 +4162,7 @@ sequence data.&nbsp; boundary determination was performed using the <a
 style="font-weight: bold;"
 href="http://www.ncbi.nlm.nih.gov/pubmed/21775302">RNA-Seq Unified
 Mapper (RUM)</a>. To view intron/exon boundary calls, turn on the
-"RNA-seq alignments RUM Intron" track in the genome browser.&nbsp; <a
+"RNA-Seq alignments RUM Intron" track in the genome browser.&nbsp; <a
 style="font-weight: bold;"
 href="http://toxodb.org/cgi-bin/gbrowse/toxodb/?start=3392361;stop=3432360;ref=TGME49_chrIX;width=800;version=100;cache=0;show_tooltips=on;grid=on;id=9c4180ebae94066bac7a2db3234310ac;label=Scaffolds:overview-Gene-RUMIntronTgVEGmRNAGreg-RUMIntronTgVEGReid;h_feat=tgme49_089570@beige">Here
 is a link to a gene</a>
@@ -4365,7 +4365,7 @@ style="font-weight: bold;">here</span></a>.</li>
 <ul>
 <li><span style="font-style: italic;">T. gondii </span>(VEG) and <span
 style="font-style: italic;">N. caninum</span> (Liverpool) tachyzoite
-RNA-sequence data.&nbsp; This data was generated by Adam Reid, Mandy
+RNA-Seq data.&nbsp; This data was generated by Adam Reid, Mandy
 Sanders, Mike Quail, Matthew Berriman, Arnab Pain (Wellcome Trust
 Sanger Institute) Rebecca Norton, Dong Xia, Sarah Vermont and Jonathan
 Wastling (University of Liverpool).&nbsp; This data was graciously
@@ -4390,7 +4390,7 @@ style="font-weight: bold;">gene pages</span></a>.&nbsp; <br>
 </ul>
 <ul>
 <ul>
-<li>RNA-sequence coverage graphs may also be visualized in the <a
+<li>RNA-Seq coverage graphs may also be visualized in the <a
 style="font-weight: bold;"
 href="http://toxodb.org/cgi-bin/gbrowse/toxodb/?start=3130000;stop=3190000;ref=TGME49_chrVI;width=800;version=100;cache=on;show_tooltips=on;grid=on;id=f9ebe7ea4d4813ccd23969a47ad80cb0;label=Scaffolds:overview-Gene-RnaSeqTgVEGTachyzoiteReidDay3-RnaSeqTgVEGTachyzoiteReidDay4">genome
 browser</a>.&nbsp; Data has been mapped to both the VEG and ME49

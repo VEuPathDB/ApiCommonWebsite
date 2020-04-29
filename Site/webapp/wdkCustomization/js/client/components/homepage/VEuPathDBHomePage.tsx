@@ -19,8 +19,10 @@ import { SearchPane, SearchCheckboxTree } from 'ebrc-client/components/homepage/
 import { combineClassNames, useAlphabetizedSearchTree } from 'ebrc-client/components/homepage/Utils';
 import { useAnnouncementsState } from 'ebrc-client/hooks/announcements';
 
+import { useCommunitySiteUrl } from 'ebrc-client/hooks/staticData';
+
 import { PageDescription } from './PageDescription';
-import { makeVpdbClassNameHelper, useCommunitySiteUrl } from './Utils';
+import { makeVpdbClassNameHelper } from './Utils';
 
 import { useSessionBackedState } from 'wdk-client/Hooks/SessionBackedState';
 import { STATIC_ROUTE_PATH } from 'ebrc-client/routes';
@@ -242,8 +244,6 @@ const useHeaderMenuItems = (
 ): HeaderMenuItem[] => {
   const alphabetizedSearchTree = useAlphabetizedSearchTree(searchTree);
   const communitySite = useCommunitySiteUrl();
-  const aboutRoute = makeStaticPageRoute(`/${projectId}/about.html`);
-  const aboutAllRoute = makeStaticPageRoute('/aboutall.html');
 
   // type: reactRoute, webAppRoute, externalLink, subMenu, custom
   const fullMenuItemEntries: HeaderMenuItemEntry[] = [
@@ -354,11 +354,10 @@ const useHeaderMenuItems = (
           key: 'vb-images',
           display: 'Image gallery',
           tooltip: 'Free to use pictures of vectors',
-          type: 'externalLink',
-          url: 'https://www.vectorbase.org/image-gallery',
-          target: '_blank',
+          type: 'reactRoute',
+          url: makeStaticPageRoute('/VectorBase/imageGallery.html'),
           metadata: {
-            include: [ EuPathDB,VectorBase ]
+            include: [ VectorBase ]
           }
         },
         {
@@ -410,12 +409,6 @@ const useHeaderMenuItems = (
           target: '_blank'
         },
         { 
-          key: 'analysis',
-          display: 'Results analysis',
-          type: 'reactRoute',
-          url: makeStaticPageRoute('/analysisTools.html')
-        },
-        { 
           key: 'srt',
           display: 'Sequence retrieval',
           type: 'reactRoute',
@@ -423,9 +416,9 @@ const useHeaderMenuItems = (
         },
         {
           key: 'webservices',
-	        display: 'Web services',
+          display: 'Web services',
           type: 'reactRoute',
-          url: makeStaticPageRoute('/webServices.html')
+          url: makeStaticPageRoute(`/content/${displayName}/webServices.html`)
         }
       ]
     },
@@ -450,7 +443,10 @@ const useHeaderMenuItems = (
           key: 'favorites',
           display: 'Favorites',
           type: 'reactRoute',
-          url: '/workspace/favorites'
+          url: '/workspace/favorites',
+          metadata: {
+            exclude: [ EuPathDB ]
+          }
         },
         {
           key: 'user-data-sets',
@@ -494,12 +490,6 @@ const useHeaderMenuItems = (
           }
         },
         {
-          key: 'analysis-methods',
-          display: 'Methods',
-          type: 'reactRoute',
-          url: makeStaticPageRoute('/methods.html')
-        },
-        {
           key: 'genomes-and-data-types',
           display: 'Organisms - Data type summary',
           tooltip: `Table summarizing all the genomes and their different data types available in ${displayName}`,
@@ -513,20 +503,11 @@ const useHeaderMenuItems = (
           type: 'reactRoute',
           url: '/search/organism/GeneMetrics/result'
         },
-        { 
-          key: 'annotation-sops',
-          display: <>SOPs for <i>C.parvum</i> Annotation</>,
-          type: 'externalLink',
-          url: 'http://cryptodb.org/static/SOP/',
-          metadata: {
-            include: [ CryptoDB ],
-          }
-        },
         {
           key: 'community-download',
           display: 'User uploaded files',
           type: 'reactRoute',
-          url: '/search/file/UserFileUploads/result',
+          url: '/search/file/UserFileUploads?autoRun=1',
           metadata: {
             exclude: [ EuPathDB ]
           }
@@ -543,6 +524,111 @@ const useHeaderMenuItems = (
           display: `What is ${displayName}?`,
           type: 'reactRoute',
           url: makeStaticPageRoute('/about.html')
+        },
+        { 
+          key: 'switchsites',
+          display: 'VEuPathDB sites',
+          type: 'subMenu',
+          items: [
+            { 
+              key: 'veupathdb',
+              display: 'VEuPathDB',
+              type: 'externalLink',
+              url: 'https://veupathdb.org',
+              target: '_blank'
+            },
+            { 
+              key: 'amoebadb',
+              display: 'AmoebaDB',
+              type: 'externalLink',
+              url: 'https://amoebadb.org',
+              target: '_blank'
+            },
+            {
+              key: 'cryptodb',
+              display: 'CryptoDB',
+              type: 'externalLink',
+              url: 'https://cryptodb.org',
+              target: '_blank'
+            },
+            {
+              key: 'fungidb',
+              display: 'FungiDB',
+              type: 'externalLink',
+              url: 'https://fungidb.org',
+              target: '_blank'
+            },
+            {
+              key: 'giardiadb',
+              display: 'GiardiaDB',
+              type: 'externalLink',
+              url: 'https://giardiadb.org',
+              target: '_blank'
+            },
+            {
+              key: 'hostdb',
+              display: 'HostDB',
+              type: 'externalLink',
+              url: 'https://hostdb.org',
+              target: '_blank'
+            },
+            {
+              key: 'microsporidiadb',
+              display: 'MicrosporidiaDB',
+              type: 'externalLink',
+              url: 'https://microsporidiadb.org',
+              target: '_blank'
+            },
+            {
+              key: 'piroplasmadb',
+              display: 'PiroplasmaDB',
+              type: 'externalLink',
+              url: 'https://piroplasmadb.org',
+              target: '_blank'
+            },
+            {
+              key: 'plasmodb',
+              display: 'PlasmoDB',
+              type: 'externalLink',
+              url: 'https://plasmodb.org',
+              target: '_blank'
+            },
+            {
+              key: 'toxodb',
+              display: 'ToxoDB',
+              type: 'externalLink',
+              url: 'https://toxodb.org',
+              target: '_blank'
+            },
+            {
+              key: 'trichdb',
+              display: 'TrichDB',
+              type: 'externalLink',
+              url: 'https://trichdb.org',
+              target: '_blank'
+            },
+            {
+              key: 'tritrypdb',
+              display: 'TriTrypDB',
+              type: 'externalLink',
+              url: 'https://tritrypdb.org',
+              target: '_blank'
+            },
+            {
+              key: 'vectorbase',
+              display: 'VectorBase',
+              type: 'externalLink',
+              url: 'https://vectorbase.org',
+              target: '_blank'
+            },
+            {
+              key: 'orthomcl',
+              display: 'OrthoMCL',
+              type: 'externalLink',
+              url: 'https://orthomcl.org',
+              target: '_blank'
+            }
+          ]
         },
         { 
           key: 'community',
@@ -571,7 +657,7 @@ const useHeaderMenuItems = (
               key: 'related-sites',
               display: 'Related sites',
               type: 'reactRoute',
-              url: makeStaticPageRoute(`/${projectId}/externalLinks.html`)
+              url: makeStaticPageRoute(`/${displayName}/externalLinks.html`)
             },
             { 
               key: 'workshops-events',
@@ -710,7 +796,7 @@ const useHeaderMenuItems = (
           key: 'youtube-tutorials',
           display: 'YouTube tutorials',
           type: 'externalLink',
-          url: 'http://www.youtube.com/user/EuPathDB/videos?sort=dd&flow=list&view=1',
+          url: 'http://www.youtube.com/user/EuPathDB/playlists',
           target: '_blank'
         },
         { 
@@ -731,13 +817,6 @@ const useHeaderMenuItems = (
           tooltip: 'Login first to keep your work',
           type: 'reactRoute',
           url: '/reset-session',
-        },
-        {
-          key: 'back-to-main',
-          display: 'Return to legacy site',
-          tooltip: 'Opt out of the beta site',
-          type: 'externalLink',
-          url: `https://${projectId?.toLowerCase()}.${projectId === 'SchistoDB' ? 'net' : 'org'}`
         }
       ]
     },

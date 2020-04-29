@@ -33,9 +33,9 @@ sub init {
 
 
 
-  $transcript->setMinRpkmProfileSet('T.brucei paired end RNA Seq data from Horn');
-  $transcript->setDiffRpkmProfileSet('T.brucei paired end RNA Seq data from Horn - diff');
-  $transcript->setPctProfileSet('percentile - T.brucei paired end RNA Seq data from Horn');
+  $transcript->setMinRpkmProfileSet('T.brucei paired end RNA-Seq data from Horn');
+  $transcript->setDiffRpkmProfileSet('T.brucei paired end RNA-Seq data from Horn - diff');
+  $transcript->setPctProfileSet('percentile - T.brucei paired end RNA-Seq data from Horn');
   $transcript->setColor($colors0->[0]);
   $transcript->setIsPairedEnd(1);
   $transcript->makeGraphs(@_);
@@ -52,9 +52,9 @@ sub init {
 
   my $cds = EbrcWebsiteCommon::View::GraphPackage::SimpleRNASeq->new(@_);
 
-  $cds->setMinRpkmProfileSet('T.brucei paired end RNA Seq data from Horn aligned with cds coordinates');
-  $cds->setDiffRpkmProfileSet('T.brucei paired end RNA Seq data from Horn aligned with cds coordinates - diff');
-  $cds->setPctProfileSet('percentile - T.brucei paired end RNA Seq data from Horn aligned with cds coordinates');
+  $cds->setMinRpkmProfileSet('T.brucei paired end RNA-Seq data from Horn aligned with cds coordinates');
+  $cds->setDiffRpkmProfileSet('T.brucei paired end RNA-Seq data from Horn aligned with cds coordinates - diff');
+  $cds->setPctProfileSet('percentile - T.brucei paired end RNA-Seq data from Horn aligned with cds coordinates');
   $cds->setColor($colors1->[0]);
   $cds->setIsPairedEnd(1);
   $cds->makeGraphs(@_);
