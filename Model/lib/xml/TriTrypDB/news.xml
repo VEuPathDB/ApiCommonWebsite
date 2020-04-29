@@ -263,7 +263,7 @@
              <a href="https://eupathdb.org/eupathdb/app/contact-us">Contact Us</a> with comments and suggestions for the genome browser. 
            </li>
            <li>
-             The new RNASeq Transcript Summary tool on gene pages helps reveal experiments in which the gene is highly 
+             The new RNA-Seq Transcript Summary tool on gene pages helps reveal experiments in which the gene is highly 
              regulated. The tool displays the gene's FPKM values for all experiments in TriTrypDB and offers features such as 
              log/linear scaling, zoom and pan to explore the gene's expression in each experiment.
            </li>
@@ -308,7 +308,7 @@
        <h4>RNA Sequence</h4>
          <ul>
            <li><a href="/a/app/record/dataset/DS_cf6d4532c7">Influence of glucose on transcriptome of SS, LS, PC</a> &ndash; 
-                  RNA seq analysis of long slender, short stumpy (with or without added glucose and proline/threonine) and procyclic form cells differentiated from SS in very low glucose. 
+                  RNA-Seq analysis of long slender, short stumpy (with or without added glucose and proline/threonine) and procyclic form cells differentiated from SS in very low glucose. 
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/30381351" target="_blank">Qiu et al.</a> 
            </li>
          </ul>
@@ -439,7 +439,7 @@
              <a href="https://jbrowse.org/" target="_blank">JBrowse Genome Browser</a>. 
            </li>
            <li>
-             New EuPathDB RNA Seq Tool. The EuPathDB Galaxy Workspace now offers a tool that converts 
+             New EuPathDB RNA-Seq Tool. The EuPathDB Galaxy Workspace now offers a tool that converts 
              read counts from HTSeq-count output to FPKM values. 
            </li>
            <li>
@@ -734,8 +734,8 @@
                  Transcriptomes of <i>T brucei</i> parasites isolated from mouse blood on day 4 pi and gonadal fat on day 6 pi. 
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/27237364" target="_blank">Trindade et al</a>. 
              </li>
-             <li><a href="/a/app/record/dataset/DS_917e265ce7"><i>Leishmania amazonensis</i> RNAseq during human macrophage infection</a> &ndash; 
-                  RNAseq analysis of transcriptomes of human macrophage and Leishmania amazonensis during an infection time course. This study 
+             <li><a href="/a/app/record/dataset/DS_917e265ce7"><i>Leishmania amazonensis</i> RNA-Seq during human macrophage infection</a> &ndash; 
+                  RNA-Seq analysis of transcriptomes of human macrophage and Leishmania amazonensis during an infection time course. This study 
                   was performed on mixed parasite/host samples and has associated data sets for <i>L. major</i> in TriTrypDB and human in HostDB 
                   (<a href="http://hostdb.org/hostdb/showQuestion.do?questionFullName=InternalGeneDatasetQuestions.GenesByRNASeqEvidence" target="_blank">Leishmania major and Leishmania amazonensis RNAseq during human macrophage infection</a>).
                  <a href="http://www.ncbi.nlm.nih.gov/pubmed/27165796" target="_blank">Fernandes et al</a>. 
@@ -917,32 +917,32 @@
       <h3><b>New data in TriTrypDB 41</b></h3>
       <div style="margin-left: 3em;">
                  
-         <h4>RNA Sequencing</h4>
+         <h4>RNA-Seq</h4>
           <ul>
            <li>
             <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_f3315ea663">Comparative transcriptomes of virulent and avirulent <i>T. cruzi</i> (CLBrener aligned)</a> &mdash;<br> 
-            Transcriptomes of virulent and avirulent <i>T. cruzi</i> determined by RNA sequencing.
+            Transcriptomes of virulent and avirulent <i>T. cruzi</i> determined by RNA-Seq.
             <a href="http://www.ncbi.nlm.nih.gov/pubmed/29240831" target="_blank">Belew et al.</a>  
             This data set has corresponding host data at HostDB: 
             <a href="http://hostdb.org/hostdb/app/record/dataset/DS_c3d58a9aae" target="_blank">HFF transcriptional response to virulent and avirulent <i>T. cruzi</i></a>.
            </li>
            <li>
             <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_7809e9bef4">Comparative transcriptomes of virulent and avirulent <i>T. cruzi</i> (Esmo aligned)</a> &mdash; <br>
-            Transcriptomes of virulent and avirulent <i>T. cruzi</i> determined by RNA sequencing.
+            Transcriptomes of virulent and avirulent <i>T. cruzi</i> determined by RNA-Seq.
             <a href="http://www.ncbi.nlm.nih.gov/pubmed/29240831" target="_blank">Belew et al.</a>  
             This data set has corresponding host data at HostDB: 
             <a href="http://hostdb.org/hostdb/app/record/dataset/DS_c3d58a9aae" target="_blank">HFF transcriptional response to virulent and avirulent <i>T. cruzi</i></a>.
            </li>
            <li>
             <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_c09dab28a7">Comparative transcriptomes of virulent and avirulent <i>T. cruzi</i> (Non-Esmo aligned)</a> &mdash; <br>
-            Transcriptomes of virulent and avirulent <i>T. cruzi</i> determined by RNA sequencing.
+            Transcriptomes of virulent and avirulent <i>T. cruzi</i> determined by RNA-Seq.
             <a href="http://www.ncbi.nlm.nih.gov/pubmed/29240831" target="_blank">Belew et al.</a>  
             This data set has corresponding host data at HostDB: 
             <a href="http://hostdb.org/hostdb/app/record/dataset/DS_c3d58a9aae" target="_blank">HFF transcriptional response to virulent and avirulent <i>T. cruzi</i></a>.
            </li>
            <li>
             <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_0ccdb3a6ec">Transcriptome of <i>T. brucei</i> rhodesiense from human, rodent, culture</a> &mdash; 
-            Transcriptome of <i>T. brucei</i> rhodesiense from humans and rodents determined by RNA sequencing.
+            Transcriptome of <i>T. brucei</i> rhodesiense from humans and rodents determined by RNA-Seq.
             <a href="http://www.ncbi.nlm.nih.gov/pubmed/29474390" target="_blank">Mulindwa et al.</a>  
             
            </li>
@@ -1158,7 +1158,7 @@
       <section>
       <h3><b>New features in TriTrypDB 40</b></h3>
         <div style="margin-left: 3em;">
-        <h4>New Sense/Antisense RNA seq search</h4>
+        <h4>New Sense/Antisense RNA-Seq search</h4>
          <ul>
            <li><a href="/a/showQuestion.do?questionFullName=InternalGeneDatasetQuestions.GenesByRNASeqEvidence">RNA Seq searches</a> &mdash; <br>
            A new Sense/Antisense search for exploring strand specific transcription is available for any strand specific RNA sequence data set.  
@@ -1223,12 +1223,12 @@
            'Get started with pre-configured workflows'. The workflow employs three tools which can be accessed 
            separately in the EuPathDB Galaxy tools menu under EuPathDB OrthoMCL Tools. This workflow duplicates 
            and replaces the 'Assign your proteins to groups' function in the Tools menu of the 
-           <a href="http://orthomcl.org/orthomcl/" target="_blank">OrthoMCL site</a>.
+           <a href="https://beta.orthomcl.org/orthomcl/" target="_blank">OrthoMCL site</a>.
            For more information see this 
            <a href="/assets/MapProteinsOrthoMCL.pdf">OrthoMCL proteome upload tutorial</a>.
            </li>
            <li>RNA-Seq to EuPathDB export tool &mdash; <br>
-           EuPathDB Galaxy now includes a tool for exporting the results of your RNA seq analysis to any EuPathDB site. The tool transfers 
+           EuPathDB Galaxy now includes a tool for exporting the results of your RNA-Seq analysis to any EuPathDB site. The tool transfers 
            bigwig and FPKM text files to your private My Data Sets page on EuPathDB. From the My Data Sets page the files 
            are available for GBrowse visualization and the Search Strategy system.
            For more information see this 
@@ -1406,7 +1406,7 @@
            misleading fold change values generated by dividing with very small numbers, we set very low FPKM values to a default <b>FPKM floor</b> which represents
            10 mapped reads. The new parameter offers a range of floor values for raising or lowering the expression threshold of the search 
            depending on the user's objectives. For more information use the parameter help (blue question mark icon) on the search page or read the 
-           <a href="/assets/Fold_Change_Help.pdf">detailed RNA seq search help</a>.
+           <a href="/assets/Fold_Change_Help.pdf">detailed RNA-Seq search help</a>.
            </li>
          </ul>  
        </div> 
@@ -1595,14 +1595,14 @@
            </li>
           </ul>
          
-         <h4>RNA Sequencing</h4>
+         <h4>RNA-Seq</h4>
           <ul>
            <li>
-            <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_d18599afa8"><i>Leishmania major</i> RNAseq during human macrophage infection</a> &mdash; 
-            RNAseq analysis of transcriptomes of human macrophage and parasite during an infection time course. Human macrophage were infected with <i>Leishmania major</i> and <i>Leishmania amazonensis</i>.
+            <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_d18599afa8"><i>Leishmania major</i> RNA-Seq during human macrophage infection</a> &mdash; 
+            RNA-Seq analysis of transcriptomes of human macrophage and parasite during an infection time course. Human macrophage were infected with <i>Leishmania major</i> and <i>Leishmania amazonensis</i>.
             <a href="http://www.ncbi.nlm.nih.gov/pubmed/27165796">Fernandes et al.</a>  
             This data set has corresponding host data at HostDB: 
-            <a href="http://hostdb.org/hostdb/app/record/dataset/DS_2202e54a9e"><i>Leishmania major</i> and <i>Leishmania amazonensis</i> RNAseq during human macrophage infection</a>
+            <a href="http://hostdb.org/hostdb/app/record/dataset/DS_2202e54a9e"><i>Leishmania major</i> and <i>Leishmania amazonensis</i> RNA-Seq during human macrophage infection</a>
            </li>
           </ul>
           
@@ -2222,7 +2222,7 @@
       <section>
         <h3><b>New data in TriTrypDB 34</b></h3> 
         
-        <h4>RNA Sequencing</h4>
+        <h4>RNA-Seq</h4>
          <ul>
            <li>
             Transcriptome and Translatome of epimastigote and metacyclic stages in <i>T. cruzi</i> Dm28c strain &mdash; 
@@ -2680,7 +2680,7 @@
         </div>
 
 
-     <h4>RNA Sequencing</h4>
+     <h4>RNA-Seq</h4>
        <ul>
            <li>
             <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_10d28f3e4f">Promastigote, Axenic Amastigote and Intracellular Amastigote Transcriptomes</a> &mdash; 
@@ -3400,7 +3400,7 @@ Arial">Join our international team of 30+ software developers and biologists,
              an improved design that reflects the new ontological data categories and offers the ability to download 
              all transcripts per gene when downloading gene results.
              </li><br>
-             <li>RNA Sequencing Workflow - We updated our RNA sequencing analysis. The new workflow aligns 
+             <li>RNA-Seq Workflow - We updated our RNA-Seq analysis. The new workflow aligns 
              reads with GSNAP, calculates FPKM/RPKM from HT-Seq counts and determines differential expression with DESeq2.
              </li>
            </ul>
@@ -3639,7 +3639,7 @@ Arial">Join our international team of 30+ software developers and biologists,
       <h3>New data in this release</h3>
       
       <section>
-        <h4>New RNA Sequencing data</h4>
+        <h4>New RNA-Seq data</h4>
         <ul>
           <li>
             <a href="http://tritrypdb.org/tritrypdb/app/record/dataset/DS_fd602b26e6">
@@ -4032,12 +4032,12 @@ Arial">Join our international team of 30+ software developers and biologists,
       </section>
       
       <section>
-        <h4>RNA Sequencing</h4>
+        <h4>RNA-Seq</h4>
         <ul>
           <li>
             <a href="http://TriTrypDB.org/a/getDataset.do?datasets=lpyrH10_Flegontov_Transcriptome_rnaSeq_RSRC">
             Transcriptome of total- and polyA RNA fraction (LpyrH10)</a> &mdash; 
-            Illumina RNA sequencing of total- and polyA-RNA fractions from <i>Leptomonas pyrrhocoris</i> H10.  Provided 
+            Illumina RNA-Seq of total- and polyA-RNA fractions from <i>Leptomonas pyrrhocoris</i> H10.  Provided 
             pre-publication by Julius Lukes, Czech Academy of Sciences. 
           </li>
           <li>
@@ -4278,7 +4278,7 @@ Arial">Join our international team of 30+ software developers and biologists,
       <p class="MsoNoSpacing" style="margin-left:.5in;text-indent:-.25in">
         &nbsp;</p>
       <p class="MsoNoSpacing" style="font-weight: bold; margin-left: .5in; mso-bidi-font-weight: normal; text-indent: -.25in">
-        RNA Sequencing:</p>
+        RNA-Seq:</p>
       <div style="margin-left: 40px;"><a href="http://tritrypdb.org/a/getDataset.do?datasets=tbruTREU927_PF_BF_Ribosome_Profiling_rnaSeq_RSRC">Procyclic
           and bloodstream form mRNA transcriptome and ribosome profiling</a> -
         Ribosome profile and mRNA transcriptome of the <i>T. brucei</i> Lister
@@ -4289,7 +4289,7 @@ Arial">Join our international team of 30+ software developers and biologists,
         &nbsp;</p>
       <div style="margin-left: 40px;"><a href="http://TriTrypDB.org/a/getDataset.do?datasets=tbruTREU927_Gowthaman_Spliced_Leaders_rnaSeqSplicedLeaderAndPolyASites_RSRC">Bloodstream
           and Procyclic for spliced leader transcriptomes (927, 427)(2014)</a> -
-        Spliced leader sites determined by RNA sequencing of SL sequence-primed
+        Spliced leader sites determined by RNA-Seq of SL sequence-primed
         cDNA libraries from <em>in vivo</em> <em>T. brucei</em> 927 procyclic
         and slender forms as well as a cultured <em>T. brucei</em> 427
         bloodstream form.<span style="mso-spacerun:yes">&nbsp;</span> <a href="http://www.ncbi.nlm.nih.gov/pubmed/25331479">Jensen
@@ -4396,7 +4396,7 @@ Arial">Join our international team of 30+ software developers and biologists,
         metabolomic datasets</li>
       <li>better support for orthology-based queries and cross-species inference</li>
       <li>implementation of workspaces enabling users to upload and analyze
-        their own data (e.g. RNA-seq results)</li>
+        their own data (e.g. RNA-Seq results)</li>
     </ul>
     <p><br>
       The scope of this renewal extends beyond our previous mandate, which
@@ -4465,7 +4465,7 @@ Arial">Join our international team of 30+ software developers and biologists,
 <p><a href="http://tritrypdb.org/a/getDataset.do?datasets=tcruCLBrener_primary_genome_RSRC"><em>Trypanosoma</em><em> cruzi </em>CL Brener</a>&nbsp;-- updated (<a href="ftp://ftp.sanger.ac.uk/pathogens/gff3/2014-12">GeneDB version Nov 20, 2014</a>) 1549 genes with <a href="http://www.genedb.org/rss/Tcruzi/since/4/months">updated annotations</a>.</p>
 <p><a href="http://tritrypdb.org/a/getDataset.do?datasets=tvivY486_primary_genome_RSRC"><em>Trypanosoma</em><em> vivax</em> Y486</a>&nbsp;- updated (<a href="ftp://ftp.sanger.ac.uk/pathogens/gff3/2014-12">GeneDB version Nov 20, 2014</a>) 233 genes with <a href="http://www.genedb.org/rss/Tvivax/since/4/months">updated annotations</a>.</p>
 <p>&nbsp;</p>
-<p><strong>RNA Sequencing:</strong></p>
+<p><strong>RNA-Seq:</strong></p>
 <p><a href="a/getDataset.do?datasets=tbruTREU927_Gowthaman_mRNA_rnaSeq_RSRC">Procyclic and bloodstream form transcriptomes and ribosome profiling (Jensen et al.)</a> &ndash; Ribosome profiling and mRNA sequencing in animal-derived slender bloodstream forms (<em>T. brucei</em> 927) and insect midgut cultured procyclic forms (<em>T. brucei</em> Lister 427).</p>
 <p>&nbsp;</p>
 <p><strong>Improvements and updates:</strong></p>
@@ -4664,7 +4664,7 @@ Arial">Join our international team of 30+ software developers and biologists,
       <li><span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold; color: #666666;"><em>Trypanosoma
               brucei </em>TREU927 transcriptome during RNAi knockdown of
             Orc1/Cdc6:</span> RNAi knockdown of Orc1/Cdc6 was performed and
-          RNA-seq used to measure transcript abundance (<a href="http://www.ncbi.nlm.nih.gov/pubmed/22840408">Tiengwe
+          RNA-Seq used to measure transcript abundance (<a href="http://www.ncbi.nlm.nih.gov/pubmed/22840408">Tiengwe
             <em>et al.</em></a>). <span style="font-weight: normal;">View
             experimental details </span><span style="font-weight: normal;"><span
               style="font-weight: normal;">and
@@ -5025,7 +5025,7 @@ Arial">Join our international team of 30+ software developers and biologists,
         </span> </div>
       <ul style="margin-left: 40px;">
         <li><span style="font-family: Helvetica,Arial,sans-serif;"><a href="http://youtu.be/yKIKD8LEU-M">Inferring
-              UTR length using RNA sequencing data</a></span></li>
+              UTR length using RNA-Seq data</a></span></li>
       </ul>
       <div style="margin-left: 40px;"><span style="font-family: Helvetica,Arial,sans-serif;"><br>
         </span> </div>
@@ -6141,7 +6141,7 @@ New Data:</span><span style="font-weight: bold;"> </span><br>
 <br>
 </div>
 <ul style="text-align: justify;">
-<li><span style="font-style: italic;">T. brucei</span> RNA sequencing
+<li><span style="font-style: italic;">T. brucei</span> RNA-Seq
 Data (<a style="font-weight: bold;"
 href="http://www.plosone.org/article/info%3Adoi%2F10.1371%2Fjournal.pone.0018425">Archer
 <span style="font-style: italic;">et. al.</span></a>)</li>
@@ -6151,7 +6151,7 @@ href="http://www.plosone.org/article/info%3Adoi%2F10.1371%2Fjournal.pone.0018425
 <ul>
 <li>To search this data, go to the "<a style="font-weight: bold;"
 href="http://tritrypdb.org/tritrypdb/showQuestion.do?questionFullName=InternalQuestions.GenesByRNASeqEvidence">Identify
-Genes based on RNA Seq Evidence</a>" and select either fold change
+Genes based on RNA-Seq Evidence</a>" and select either fold change
 (with or without P value) or percentile searches under the heading
 "Cell Cycle (Archer)".</li>
 </ul>
@@ -6167,7 +6167,7 @@ percentile values for individual genes are available in the
 <ul>
 <li><a style="font-weight: bold;"
 href="http://tritrypdb.org/cgi-bin/gbrowse/tritrypdb/?start=210712;stop=244749;ref=Tb927_11_01_v4;width=800;version=100;cache=0;show_tooltips=on;grid=on;id=073d784020f7b5bc1fc42a3aad001e93;label=Gene-RnaSeqEarlyG1-RnaSeqLateG1-RnaSeqSPhase-RnaSeqG2Phase;h_feat=tb11.03.0240@yellow">Genome
-browser tracks</a> are available that show RNA-seq coverage plots
+browser tracks</a> are available that show RNA-Seq coverage plots
 throughout the cell cycle.&nbsp; <br>
 </li>
 </ul>
@@ -6221,7 +6221,7 @@ New Data:</span><span style="font-weight: bold;"> </span><br>
 <br>
 </div>
 <ul style="text-align: justify;">
-<li><span style="font-style: italic;">T. brucei</span> RNA sequencing
+<li><span style="font-style: italic;">T. brucei</span> RNA-Seq
 spliced leader expression data (<a style="font-weight: bold;"
 href="http://www.ncbi.nlm.nih.gov/pubmed/20700444">Nilsson <span
 style="font-style: italic;">et. al.</span></a>).</li>
@@ -6231,7 +6231,7 @@ style="font-style: italic;">et. al.</span></a>).</li>
 <ul>
 <li>To search this data, go to the "<a style="font-weight: bold;"
 href="http://tritrypdb.org/tritrypdb/showQuestion.do?questionFullName=InternalQuestions.GenesByRNASeqEvidence">Identify
-Genes based on RNA Seq Evidence</a>" and select either fold change or
+Genes based on RNA-Seq Evidence</a>" and select either fold change or
 percentile searches under the heading "Splice Sites (Nilsson)".</li>
 </ul>
 </ul>
@@ -7206,7 +7206,7 @@ please see the publication&nbsp;
 <ul>
  <li>RNA sequence data provided pre-publication by George Cross
      of blood and procyclic forms of <span style="font-style: italic;">T.
-      brucei</span>. &nbsp;Expression profiles based on RNA-seq
+      brucei</span>. &nbsp;Expression profiles based on RNA-Seq
       data can be viewed in the genome browser, on gene pages or searched
       in the <a href="http://tritrypdb.org/tritrypdb/showQuestion.do?questionFullName=InternalQuestions.GenesByRNASeqEvidence">
      Genes by RNA-Seq</a> page.
@@ -7466,7 +7466,7 @@ proteomics data set from Dr. Marc Ouellette's group (provided
 prepublication).</li>
   <li>Genome-wide analysis of mRNA abundance in two life-cycle
 stages of <i>T. brucei </i>and
-identification of trans-splicing and polyadenylation sites. RNA-seq (T.
+identification of trans-splicing and polyadenylation sites. RNA-Seq (T.
 Nicolai Siegel, Doeke R. Hekstra, Xuning Wang, Scott Dewell and George
 A. M. Cross, provided prepublication) -- this data can be viewed as
 tracks in the genome browser, click here for an example.</li>

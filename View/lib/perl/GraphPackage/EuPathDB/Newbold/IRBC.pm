@@ -20,14 +20,14 @@ sub init {
 
   $self->setMainLegend({colors => \@colors, short_names => \@legend, cols => 2});
 
-  my @profileArray = (['P. falciparum Newbold mRNA Seq data'],
-                      ['P. falciparum Newbold mRNA Seq data-diff'],
+  my @profileArray = (['P. falciparum Newbold mRNA-Seq data'],
+                      ['P. falciparum Newbold mRNA-Seq data-diff'],
                      );
 
   my @sampleNames = (0,8,16,24,32,40,48);
 
   my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileArray);
-  my $percentileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets([['percentile - P. falciparum Newbold mRNA Seq data']]);
+  my $percentileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets([['percentile - P. falciparum Newbold mRNA-Seq data']]);
 
 
   my $line = EbrcWebsiteCommon::View::GraphPackage::LinePlot->new(@_);

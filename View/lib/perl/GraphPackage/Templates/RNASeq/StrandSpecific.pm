@@ -3,7 +3,7 @@ package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::StrandSpecific;
 use strict;
 use vars qw( @ISA );
 
-# TODO: Update so we can create multiple rnaseq profile sets (See StransNonSpecific module)
+# TODO: Update so we can create multiple RNA-Seq profile sets (See StransNonSpecific module)
 
 @ISA = qw( EbrcWebsiteCommon::View::GraphPackage::SimpleStrandSpecificRNASeq );
 use EbrcWebsiteCommon::View::GraphPackage::SimpleStrandSpecificRNASeq;

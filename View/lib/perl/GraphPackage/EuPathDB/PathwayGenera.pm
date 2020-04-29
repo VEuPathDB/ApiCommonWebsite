@@ -113,8 +113,23 @@ sub makeListOfLists {
 
                   ['Homo', 'HostDB', '#00FFFF'],
                   ['Macaca', 'HostDB', '#00FFFF'],
-                  ['Mus', 'HostDB', '#00FFFF']
+                  ['Mus', 'HostDB', '#00FFFF'],
 
+                  ['Lutzomyia', 'VectorBase', '#228B22'],
+                  ['Leptotrombidium', 'VectorBase', '#228B22'],
+                  ['Cimex', 'VectorBase', '#228B22'],
+                  ['Pediculus', 'VectorBase', '#228B22'],
+                  ['Culex', 'VectorBase', '#228B22'],
+                  ['Glossina', 'VectorBase', '#228B22'],
+                  ['Anopheles', 'VectorBase', '#228B22'],
+                  ['Aedes', 'VectorBase', '#228B22'],
+                  ['Musca', 'VectorBase', '#228B22'],
+                  ['Rhodnius', 'VectorBase', '#228B22'],
+                  ['Stomoxys', 'VectorBase', '#228B22'],
+                  ['Phlebotomus', 'VectorBase', '#228B22'],
+                  ['Sarcoptes', 'VectorBase', '#228B22'],
+                  ['Biomphalaria', 'VectorBase', '#228B22'],
+                  ['Ixodes', 'VectorBase', '#228B22'],
 
       );
 
