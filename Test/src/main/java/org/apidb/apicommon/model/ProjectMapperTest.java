@@ -4,8 +4,8 @@ import org.eupathdb.common.model.ProjectMapper;
 import org.gusdb.fgputil.runtime.GusHome;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class ProjectMapperTest {
 
@@ -19,7 +19,7 @@ public class ProjectMapperTest {
       String geneSourceId = "PF11_0344";
       String url = mapper.getRecordUrl(recordClass, projectId, sourceId, geneSourceId);
       String expected = "http://plasmodb.org/plasmo/app/record/gene/" + geneSourceId;
-      Assert.assertEquals(expected, url);
+      Assertions.assertEquals(expected, url);
     }
   }
 
@@ -27,13 +27,13 @@ public class ProjectMapperTest {
   public void testGetProjectByOrganism() throws WdkModelException {
     try (WdkModel wdkModel = WdkModel.construct("EuPathDB", GusHome.getGusHome())) {
       ProjectMapper mapper = ProjectMapper.getMapper(wdkModel);
-      Assert.assertEquals("PlasmoDB",
+      Assertions.assertEquals("PlasmoDB",
           mapper.getProjectByOrganism("Plasmodium falciparum"));
-      Assert.assertEquals("PlasmoDB",
+      Assertions.assertEquals("PlasmoDB",
           mapper.getProjectByOrganism("Plasmodium knowlesi strain H"));
-      Assert.assertEquals("CryptoDB",
+      Assertions.assertEquals("CryptoDB",
           mapper.getProjectByOrganism("Cryptosporidium muris"));
-      Assert.assertEquals("CryptoDB",
+      Assertions.assertEquals("CryptoDB",
           mapper.getProjectByOrganism("Cryptosporidium parvum Chr. 6"));
     }
   }

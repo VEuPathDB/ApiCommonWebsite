@@ -1,20 +1,18 @@
-/**
- * 
- */
 package org.apidb.apicommon.model;
-
-import static org.junit.Assert.assertTrue;
 
 import org.apidb.apicommon.model.comment.CommentConfig;
 import org.apidb.apicommon.model.comment.CommentConfigParser;
 import org.apidb.apicommon.model.comment.CommentModelException;
 import org.gusdb.wdk.model.Utilities;
 import org.gusdb.wdk.model.WdkModelException;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * @author xingao
- * 
+ *
  */
 public class CommentConfigTest {
 
@@ -27,13 +25,13 @@ public class CommentConfigTest {
     CommentConfig config = parser.parseConfig(projectId);
 
     // validate the content of the the config
-    assertTrue("connectionUrl", config.getConnectionUrl().length() > 0);
-    assertTrue("login", config.getLogin().length() > 0);
-    assertTrue("password", config.getPassword().length() > 0);
-    assertTrue("platformClass", config.getPlatform() != null);
-    assertTrue("minIdle", config.getMinIdle() >= 0);
-    assertTrue("maxIdle", config.getMaxIdle() >= config.getMinIdle());
-    assertTrue("maxActive", config.getMaxActive() > 0);
-    assertTrue("maxWait", config.getMaxWait() >= 0);
+    assertTrue(config.getConnectionUrl().length() > 0, "connectionUrl");
+    assertTrue(config.getLogin().length() > 0, "login");
+    assertTrue(config.getPassword().length() > 0, "password");
+    assertNotNull(config.getPlatform(), "platformClass");
+    assertTrue(config.getMinIdle() >= 0, "minIdle");
+    assertTrue(config.getMaxIdle() >= config.getMinIdle(), "maxIdle");
+    assertTrue(config.getMaxActive() > 0, "maxActive");
+    assertTrue(config.getMaxWait() >= 0, "maxWait");
   }
 }

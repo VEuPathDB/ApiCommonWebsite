@@ -9,7 +9,7 @@ import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.fix.table.TableRowInterfaces.RowResult;
 import org.gusdb.wdk.model.fix.table.steps.StepData;
 import org.json.JSONObject;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class TestGus4UnknownFix {
 
