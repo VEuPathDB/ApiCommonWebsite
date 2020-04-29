@@ -8,9 +8,10 @@ use EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet;
 
 use EbrcWebsiteCommon::View::GraphPackage::Util;
 
-use EbrcWebsiteCommon::View::GraphPackage::BarPlot;
-use EbrcWebsiteCommon::View::GraphPackage::LinePlot;
-use EbrcWebsiteCommon::View::GraphPackage::ScatterPlot;
+use EbrcWebsiteCommon::View::GraphPackage::LegacyGGBarPlot;
+use EbrcWebsiteCommon::View::GraphPackage::LegacyGGLinePlot;
+use EbrcWebsiteCommon::View::GraphPackage::LegacyGGScatterPlot;
+use EbrcWebsiteCommon::View::GraphPackage::LegacyGGPiePlot;
 use EbrcWebsiteCommon::View::GraphPackage::GGScatterPlot;
 use EbrcWebsiteCommon::View::GraphPackage::GGLinePlot;
 use EbrcWebsiteCommon::View::GraphPackage::GGBarPlot;
@@ -240,7 +241,7 @@ sub makeAndSetPlots {
     my $plotPartModule = $key=~/percentile/? 'Percentile': $self->getExprPlotPartModuleString();
     
     if((lc($self->getGraphType()) eq 'bar' || ($key=~/percentile/ && blessed($self) =~/TwoChannel/)) && $self->useLegacy() ) {
-      $plotObj = "EbrcWebsiteCommon::View::GraphPackage::BarPlot::$plotPartModule";
+      $plotObj = "EbrcWebsiteCommon::View::GraphPackage::LegacyGGBarPlot::$plotPartModule";
     } elsif($key=~/Both_strands/ && $plotPartModule eq 'RNASeq') {
 	$self->setWantLogged(1);
 	if(lc($self->getGraphType()) eq 'bar') {
@@ -252,13 +253,12 @@ sub makeAndSetPlots {
     } elsif((lc($self->getGraphType()) eq 'bar' || ($key=~/percentile/ && blessed($self) =~/TwoChannel/)) && !$self->useLegacy() ) {
       $plotObj = "EbrcWebsiteCommon::View::GraphPackage::GGBarPlot::$plotPartModule";
     } elsif(lc($self->getGraphType()) eq 'line' && $self->useLegacy()) {
-      $plotObj = "EbrcWebsiteCommon::View::GraphPackage::LinePlot::$plotPartModule";
+      $plotObj = "EbrcWebsiteCommon::View::GraphPackage::LegacyGGLinePlot::$plotPartModule";
       $xAxisLabel= $self->getXAxisLabel();
     } elsif(lc($self->getGraphType()) eq 'line' && !$self->useLegacy()) {
       $plotObj = "EbrcWebsiteCommon::View::GraphPackage::GGLinePlot::$plotPartModule";
       $xAxisLabel= $self->getXAxisLabel();
     } elsif(lc($self->getGraphType()) eq 'scatter') {
-      # TODO: handle two channel graphs in a different module
       $plotObj = "EbrcWebsiteCommon::View::GraphPackage::GGScatterPlot::LogRatio";
       $xAxisLabel= $self->getXAxisLabel();
     } else {
@@ -843,20 +843,14 @@ sub init {
   $self->SUPER::init(@_);
 
   my $colors = ['#F08080', '#7CFCB0' ];
-
   my $legend = ['untreated', 'chloroquine'];
-  my $pch = [22];
 
-  my $untreated = ['106/1','','106/1 (76I)','', '106/1 (76I_352K)', ''];
-  my $treated = ['', '106/1','','106/1 (76I)','', '106/1 (76I_352K)'];
-
-
-  my @profileArray = (['E-GEOD-10022 array from Su','values', '', '', $untreated],
-                      ['E-GEOD-10022 array from Su', 'values', '', '', $treated]
+  my @profileArray = (['E-GEOD-10022 array from Su','values'],
+                      ['E-GEOD-10022 array from Su', 'values']
                      );
 
-  my @percentileArray = (['E-GEOD-10022 array from Su', 'channel1_percentiles', '', '', $untreated],
-                         ['E-GEOD-10022 array from Su', 'channel1_percentiles', '', '', $treated],
+  my @percentileArray = (['E-GEOD-10022 array from Su', 'channel1_percentiles'],
+                         ['E-GEOD-10022 array from Su', 'channel1_percentiles'],
                         );
 
   my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileArray);
@@ -875,6 +869,16 @@ sub init {
   $percentile->setForceHorizontalXAxis(1);
   $percentile->setHasExtraLegend(1); 
   $percentile->setLegendLabels($legend);
+
+  my $rAdjustString = << 'RADJUST';
+profile.df.full$NAME <- gsub(" no CQ", "", profile.df.full$NAME)
+profile.df.full$NAME <- gsub(" CQ", "", profile.df.full$NAME)
+profile.df.full$NAME <- gsub("106-1", "106/1", profile.df.full$NAME)
+
+RADJUST
+
+  $rma->addAdjustProfile($rAdjustString);
+  $percentile->addAdjustProfile($rAdjustString);
 
   $self->setGraphObjects($rma, $percentile);
 
@@ -896,18 +900,14 @@ sub init {
   my $colors = ['#6495ED', '#E9967A', '#2F4F4F' ];
   my $legend = ['Wild Type', 'sir2A', 'sir2B'];
 
-  my $wildTypeSamples = ['ring','trophozoite','schizont','','','','','',''];
-  my $sir2ASamples = ['','','','ring','trophozoite','schizont','','',''];
-  my $sir2BSamples = ['','','', '','','', 'ring','trophozoite','schizont'];
-
-  my @profileArray = (['Profiles of E-TABM-438 from Cowman', 'values', '', '', $wildTypeSamples ],
-                      ['Profiles of E-TABM-438 from Cowman', 'values', '', '', $sir2ASamples ],
-                      ['Profiles of E-TABM-438 from Cowman', 'values', '', '', $sir2BSamples ],
+  my @profileArray = (['Profiles of E-TABM-438 from Cowman', 'values'],
+                      ['Profiles of E-TABM-438 from Cowman', 'values'],
+                      ['Profiles of E-TABM-438 from Cowman', 'values'],
                      );
 
-  my @percentileArray = (['Profiles of E-TABM-438 from Cowman', 'channel1_percentiles', '', '', $wildTypeSamples],
-                         ['Profiles of E-TABM-438 from Cowman', 'channel1_percentiles', '', '', $sir2ASamples],
-                         ['Profiles of E-TABM-438 from Cowman', 'channel1_percentiles', '', '', $sir2BSamples],
+  my @percentileArray = (['Profiles of E-TABM-438 from Cowman', 'channel1_percentiles'],
+                         ['Profiles of E-TABM-438 from Cowman', 'channel1_percentiles'],
+                         ['Profiles of E-TABM-438 from Cowman', 'channel1_percentiles'],
                         );
 
   my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileArray);
@@ -927,11 +927,20 @@ sub init {
   $percentile->setHasExtraLegend(1); 
   $percentile->setLegendLabels($legend);
 
+  my $rAdjustString = << 'RADJUST';
+profile.df.full$NAME <- gsub("wild type - ", "", profile.df.full$NAME)
+profile.df.full$NAME <- gsub("sir2a KO - ", "", profile.df.full$NAME)
+profile.df.full$NAME <- gsub("sir2b KO - ", "", profile.df.full$NAME)
+
+RADJUST
+
+  $rma->addAdjustProfile($rAdjustString);
+  $percentile->addAdjustProfile($rAdjustString);
+
   $self->setGraphObjects($rma, $percentile);
 
   return $self;
 }
-
 1;
 
 package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_c6622915ff;
@@ -1231,25 +1240,6 @@ sub init {
   my $colors = ['#CD853F'];
   my $graphs;
   my $id = $self->getId();
-  #this below for useLegacy
-  my $cellCycleTopMargin = "
-lines(c(2,5.75), c(y.max + (y.max - y.min)*0.1, y.max + (y.max - y.min)*0.1)); 
-text(4, y.max + (y.max - y.min)*0.16, 'S(1)');
-
-lines(c(5,6.9), c(y.max + (y.max - y.min)*0.125, y.max + (y.max - y.min)*0.125));
-text(5.3, y.max + (y.max - y.min)*0.2, 'M');
-text(6.3, y.max + (y.max - y.min)*0.2, 'C');
-
-lines(c(6.1,10.4), c(y.max + (y.max - y.min)*0.1, y.max + (y.max - y.min)*0.1));
-text(8.5, y.max + (y.max - y.min)*0.16, 'G1');
-
-lines(c(10,13.2), c(y.max + (y.max - y.min)*0.125, y.max + (y.max - y.min)*0.125));
-text(11.25, y.max + (y.max - y.min)*0.2, 'S(2)');
-
-lines(c(12,14), c(y.max + (y.max - y.min)*0.15, y.max + (y.max - y.min)*0.15));
-text(12.3, y.max + (y.max - y.min)*0.22, 'M');
-text(13.3, y.max + (y.max - y.min)*0.22, 'C');
-";
  #this for ggplot with straight lines
   my $cellCycleAnnotation = "
 gp = gp + annotate(\"segment\", x = 2, xend = 5.75, y = min(profile.df.full\$VALUE) - 1, yend = min(profile.df.full\$VALUE) - 1 , colour = '#d3883f');
