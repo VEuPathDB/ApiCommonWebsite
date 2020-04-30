@@ -18,7 +18,7 @@ public class SolrTermQueryBuilder {
     PARAM_ROWS    = "rows",
     PARAM_FORMAT  = "wt";
 
-  private final Map<String, SortDirection> sort = new HashMap<>();
+  private final Map<String, SortDirection> sort = new LinkedHashMap<>();
   private final String field;
 
   private String[] filters;

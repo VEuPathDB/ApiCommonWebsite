@@ -19,7 +19,7 @@ public class SolrUrlQueryBuilder {
     PARAM_FORMAT  = "wt";
 
   final private List<Filter> filters = new ArrayList<>();
-  final private Map<String, SortDirection> sort = new HashMap<>();
+  final private Map<String, SortDirection> sort = new LinkedHashMap<>();
   final private String url;
 
   private int rows;
@@ -394,7 +394,7 @@ public class SolrUrlQueryBuilder {
       if (filters.length == 1)
         return field + ":\"" + filters[0] + "\"";
 
-      var out = new StringBuilder(field).append(":(").append(filters[0]);
+      var out = new StringBuilder(field).append(":(\"").append(filters[0]).append('"');
 
       for (var i = 1; i < filters.length; i++)
         out.append(op).append('"').append(filters[i]).append('"');

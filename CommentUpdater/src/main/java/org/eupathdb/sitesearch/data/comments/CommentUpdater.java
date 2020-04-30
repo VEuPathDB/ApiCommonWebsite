@@ -10,7 +10,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import javax.sql.DataSource;
-import javax.ws.rs.client.*;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status.Family;
@@ -48,6 +49,7 @@ import java.util.stream.Collectors;
  * It is not intended to support large cardinality updates.
  *
  * @author Steve
+ * @author Elizabeth Harper
  */
 public class CommentUpdater {
 
@@ -64,10 +66,11 @@ public class CommentUpdater {
     final DatabaseInstance commentDb,
     final String           commentSchema
   ) {
-    _solrUrl = solrUrl;
+    _solrUrl = solrUrl.endsWith("/") ? solrUrl : solrUrl + "/";
     _commentDb = commentDb;
     _commentSchema = commentSchema;
   }
+
 
   public void syncAll() {
     try {
@@ -80,24 +83,12 @@ public class CommentUpdater {
   public void updateSingle(final long commentId) {
     var schema = _commentSchema + (_commentSchema.endsWith(".") ? "" : ".");
     // Intentionally selecting dead comments for comment delete case.
-    var select = "SELECT stable_id "
-      + "FROM " + schema + "comments "
-      + "WHERE comment_id = ?"
-      + "UNION "
-      + "SELECT stable_id "
-      + "FROM " + schema + "commentstableid "
-      + "WHERE comment_id = ?";
+    var select = buildUpdateSingleSql(schema);
     var genes  = new SQLRunner(_commentDb.getDataSource(), select)
       .executeQuery(
         new Object[] {commentId, commentId},
         new Integer[] {Types.BIGINT, Types.BIGINT},
-        rs -> {
-          var tmp = new ArrayList<String>();
-          while (rs.next()) {
-            tmp.add("gene__" + rs.getString(1));
-          }
-          return tmp.toArray(new String[0]);
-        });
+        CommentUpdater::handleSingle);
     try {
       fetchDocumentsById(genes).values().forEach(this::updateDocumentComment);
     } finally {
@@ -112,11 +103,7 @@ public class CommentUpdater {
   private List<DocumentInfo> findDocumentsToUpdate() {
 
     // sql to find sorted (source_id, comment_id) tuples from userdb
-    var sqlSelect = "SELECT source_id, comment_target_type as record_type, c.comment_id"
-      + " FROM apidb.textsearchablecomment tsc,"
-      + " " + _commentSchema + "comments c "
-      + " WHERE tsc.comment_id = c.comment_id"
-      + " ORDER BY source_id DESC, c.comment_id";
+    var sqlSelect = buildFindUpdatableCommentsSql(_commentSchema);
 
     var results = new SQLRunner(_commentDb.getDataSource(), sqlSelect)
       .executeQuery(rs -> findStaleDocuments(fetchCommentedRecords(), rs));
@@ -212,14 +199,9 @@ public class CommentUpdater {
    * @return Map of WDK SourceID to Solr {@link DocumentInfo}
    */
   private Map<String, DocumentInfo> fetchDocumentsById(final String[] ids) {
-    var q = new SolrTermQueryBuilder(Field.ID)
-      .values(ids)
-      .resultFields(DocumentInfo.REQUIRED_FIELDS)
-      .maxRows(1000000)
-      .resultFormat(FormatType.CSV);
     return fetchDocuments(
-      _solrUrl + (_solrUrl.endsWith("/") ? "select" : "/select"),
-      Entity.entity(q.toString(), MediaType.APPLICATION_FORM_URLENCODED_TYPE)
+      _solrUrl + "select",
+      Entity.entity(buildDocumentByIdSolr(ids), MediaType.APPLICATION_FORM_URLENCODED_TYPE)
     );
   }
 
@@ -230,12 +212,7 @@ public class CommentUpdater {
    * @return Map of WDK SourceID to Solr {@link DocumentInfo}
    */
   private Map<String, DocumentInfo> fetchCommentedRecords() {
-    return fetchDocuments(SolrUrlQueryBuilder.select(_solrUrl)
-      .filterAndAllOf(Field.COMMENT_TXT)
-      .resultFields(DocumentInfo.REQUIRED_FIELDS)
-      .maxRows(1000000)
-      .resultFormat(FormatType.CSV)
-      .buildQuery(), null);
+    return fetchDocuments(buildCommentedRecordsSolr(_solrUrl), null);
   }
 
   /**
@@ -247,22 +224,10 @@ public class CommentUpdater {
    * comments, and so would not provide those IDs.
    */
   private void updateDocumentComment(DocumentInfo doc) {
-    var comments = getCorrectCommentsForOneDocument(doc, _commentDb.getDataSource());
-
-    var updateJson = new JSONArray().put(
-      new JSONObject()
-        .put(Field.ID, doc.getSolrId()) // concoct a valid solr unique ID
-        .put(Field.DOC_TYPE, doc.getDocumentType())
-        .put(Field.BATCH_ID, doc.getBatchId())
-        .put(Field.BATCH_NAME, doc.getBatchName())
-        .put(Field.BATCH_TYPE, doc.getBatchType())
-        .put(Field.BATCH_TIME, doc.getBatchTime())
-        .put(Field.COMMENT_ID, new JSONObject().put("set", comments.commentIds))
-        .put(Field.COMMENT_TXT, new JSONObject().put("set", comments.commentContents))
-    );
-
-    updateSolrDocument(updateJson);
+    updateSolrDocument(buildUpdateJson(doc,
+      getCorrectCommentsForOneDocument(doc, _commentDb.getDataSource())));
   }
+
 
   /**
    * Get the up-to-date comments info from the database, for the provided wdk
@@ -272,22 +237,11 @@ public class CommentUpdater {
     final DocumentInfo doc,
     final DataSource commentDbDataSource
   ) {
-
-    var sqlSelect = " SELECT comment_id, content"
-      + " FROM apidb.textsearchablecomment"
-      + " WHERE source_id = '" + doc.getSourceId() + "'";
-
-    return new SQLRunner(commentDbDataSource, sqlSelect)
-      .executeQuery(rs -> {
-        var comments = new DocumentCommentsInfo();
-
-        while (rs.next()) {
-          comments.commentIds.add(rs.getInt("comment_id"));
-          comments.commentContents.add(rs.getString("content"));
-        }
-
-        return comments;
-      });
+    return new SQLRunner(
+      commentDbDataSource,
+      buildCommentLookupQuery(doc.getSourceId())
+    )
+      .executeQuery(CommentUpdater::handleResult);
   }
 
   /***
@@ -296,8 +250,7 @@ public class CommentUpdater {
   private void updateSolrDocument(JSONArray jsonBody) {
     Response response = null;
     try {
-      var finalUrl = _solrUrl + (_solrUrl.endsWith("/")
-        ? "" : "/") + "update";
+      var finalUrl = _solrUrl + "update";
 
       response = sendSolrRequest(finalUrl, Entity.entity(jsonBody.toString(), MediaType.APPLICATION_JSON));
 
@@ -311,7 +264,7 @@ public class CommentUpdater {
   private void solrCommit() {
     Response res = null;
     try {
-      res = sendSolrRequest(_solrUrl + (_solrUrl.endsWith("/") ? "" : "/") + "update?commit=true", null);
+      res = sendSolrRequest(_solrUrl + "update?commit=true", null);
     } finally {
       if (res != null)
         res.close();
@@ -342,18 +295,14 @@ public class CommentUpdater {
     }
   }
 
-  private static BufferedReader entityReader(final Response rs) {
-    return new BufferedReader(new InputStreamReader(
-      (InputStream)rs.getEntity()
-    ));
+  static BufferedReader entityReader(final Response rs) {
+    return new BufferedReader(new InputStreamReader((InputStream)rs.getEntity()));
   }
 
   private static Response sendSolrRequest(final String url, final Entity<?> payload) {
     Response out;
 
-    var req = ClientBuilder.newClient()
-      .target(url)
-      .request();
+    var req = ClientBuilder.newClient().target(url).request();
 
     LOG.info(String.format("Making %s request to Solr at %s",
       payload == null ? "GET" : "POST", url));
@@ -379,5 +328,86 @@ public class CommentUpdater {
   static class DocumentCommentsInfo {
     List<Integer> commentIds = new ArrayList<>();
     List<String> commentContents = new ArrayList<>();
+  }
+
+  //
+  // Non-external resource code
+  //
+  // These are package private for unit-testing
+  //
+
+  static String buildCommentLookupQuery(String sourceId) {
+    return " SELECT comment_id, content"
+      + " FROM apidb.textsearchablecomment"
+      + " WHERE source_id = '" + sourceId + "'";
+  }
+
+  static String buildFindUpdatableCommentsSql(String schema) {
+    return "SELECT source_id, comment_target_type as record_type, c.comment_id"
+      + " FROM apidb.textsearchablecomment tsc,"
+      + " " + schema + "comments c "
+      + " WHERE tsc.comment_id = c.comment_id"
+      + " ORDER BY source_id DESC, c.comment_id";
+  }
+
+  static String buildUpdateSingleSql(String schema) {
+    return "SELECT stable_id "
+      + "FROM " + schema + "comments "
+      + "WHERE comment_id = ?"
+      + "UNION "
+      + "SELECT stable_id "
+      + "FROM " + schema + "commentstableid "
+      + "WHERE comment_id = ?";
+  }
+
+  static String buildDocumentByIdSolr(String[] ids) {
+    return new SolrTermQueryBuilder(Field.ID)
+      .values(ids)
+      .resultFields(DocumentInfo.REQUIRED_FIELDS)
+      .maxRows(1000000)
+      .resultFormat(FormatType.CSV)
+      .toString();
+  }
+
+  static DocumentCommentsInfo handleResult(ResultSet rs) throws SQLException {
+    var comments = new DocumentCommentsInfo();
+
+    while (rs.next()) {
+      comments.commentIds.add(rs.getInt("comment_id"));
+      comments.commentContents.add(rs.getString("content"));
+    }
+
+    return comments;
+  }
+
+  static String buildCommentedRecordsSolr(String solrUrl) {
+    return SolrUrlQueryBuilder.select(solrUrl)
+      .filterAndAllOf(Field.COMMENT_TXT)
+      .resultFields(DocumentInfo.REQUIRED_FIELDS)
+      .maxRows(1000000)
+      .resultFormat(FormatType.CSV)
+      .buildQuery();
+  }
+
+  static JSONArray buildUpdateJson(DocumentInfo doc, DocumentCommentsInfo comments) {
+    return new JSONArray().put(
+      new JSONObject()
+        .put(Field.ID, doc.getSolrId()) // concoct a valid solr unique ID
+        .put(Field.DOC_TYPE, doc.getDocumentType())
+        .put(Field.BATCH_ID, doc.getBatchId())
+        .put(Field.BATCH_NAME, doc.getBatchName())
+        .put(Field.BATCH_TYPE, doc.getBatchType())
+        .put(Field.BATCH_TIME, doc.getBatchTime())
+        .put(Field.COMMENT_ID, new JSONObject().put("set", comments.commentIds))
+        .put(Field.COMMENT_TXT, new JSONObject().put("set", comments.commentContents))
+    );
+  }
+
+  static String[] handleSingle(ResultSet rs) throws SQLException {
+    var tmp = new ArrayList<String>();
+    while (rs.next()) {
+      tmp.add("gene__" + rs.getString(1));
+    }
+    return tmp.toArray(new String[0]);
   }
 }
