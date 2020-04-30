@@ -34,6 +34,8 @@ public class MatchedTranscriptFilter extends StepFilter {
   public static final String MATCHED_RESULT_COLUMN = "matched_result";
   public static final String MATCHED_TRANSCRIPT_FILTER_ARRAY_KEY = "matched_transcript_filter_array";
 
+  public static final JSONObject ALL_ROWS_VALUE = new JSONObject().put("values", new JSONArray(Value.values()));
+
   private static enum Value { Y, N }
 
   @Override

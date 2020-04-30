@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,13 +20,18 @@ import javax.sql.DataSource;
 import javax.ws.rs.PathParam;
 
 import org.apidb.apicommon.model.TranscriptUtil;
+import org.apidb.apicommon.model.filter.MatchedTranscriptFilter;
 import org.gusdb.fgputil.MapBuilder;
 import org.gusdb.fgputil.db.SqlUtils;
+import org.gusdb.fgputil.validation.ValidObjectFactory.RunnableObj;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
+import org.gusdb.wdk.model.answer.spec.AnswerSpec;
+import org.gusdb.wdk.model.answer.spec.AnswerSpecBuilder;
 import org.gusdb.wdk.model.record.PrimaryKeyDefinition;
 import org.gusdb.wdk.model.record.PrimaryKeyValue;
 import org.gusdb.wdk.model.record.RecordClass;
+import org.gusdb.wdk.model.user.Step;
 import org.gusdb.wdk.service.request.exception.DataValidationException;
 import org.gusdb.wdk.service.request.user.BasketRequests.ActionType;
 import org.gusdb.wdk.service.request.user.BasketRequests.BasketActions;
@@ -57,29 +63,30 @@ public class ApiBasketService extends BasketService {
     // convert gene IDs to transcript IDs if not adding from step
     if (actions.getAction().equals(ActionType.ADD_FROM_STEP_ID)) {
 
-      // FIXME: the code below is incomplete; for now, disallow on genes and use regular RC logic for transcripts
+      // only allow if step is a transcript step
       if (isGeneBasket) {
-        throw new DataValidationException("Add-Step-To-Basket is not yet supported for gene steps");
+        throw new DataValidationException("Add-Step-To-Basket is not supported for gene steps.  Please try a transcript search.");
       }
-      // will add only transcripts in the result to basket, not other transcripts of those transcripts' genes
-      return super.translatePatchRequest(recordClass, actions);
-      
-      // TODO: write code that will:
-      //   For transcripts: use code below to convert to gene result (will get all genes in the result), then follow gene logic
-      //                    OR (preferable!!!) write(?) a transform from transcript -> transcript that expands to all tx of all genes
-      //   For genes: transform gene -> transcript generating all transcripts for all genes in the gene result and add to transcript basket
-      /*
+
       // get the step and make sure it returns transcripts
       RunnableObj<Step> step = getRunnableStepForCurrentUser(actions.getRequestedStepId());
       RecordClass stepRecordClass = step.get().getAnswerSpec().getQuestion().getRecordClass();
       checkStepType(step.get().getStepId(), recordClass, stepRecordClass);
 
+      // All transcript steps cache all transcripts of all genes of the
+      // transcript results, with the matched_transcript column indicating if
+      // row is an original result or supplemental result.  Since it is an
+      // always-on filter we cannot remove it, so we must set the value to Y, N
+      AnswerSpecBuilder newSpec = AnswerSpec.builder(Step.getRunnableAnswerSpec(step));
+      newSpec.getFilterOptions().forEach(filter -> {
+        if (filter.getFilterName().equals(MatchedTranscriptFilter.MATCHED_TRANSCRIPT_FILTER_ARRAY_KEY)) {
+          filter.setValue(MatchedTranscriptFilter.ALL_ROWS_VALUE);
+        }
+      });
       return new RevisedRequest<>(
           getTranscriptRecordClass(getWdkModel()),
           new BasketActions(actions.getAction(), Collections.emptyList())
-          .setRunnableAnswerSpec(TranscriptUtil.transformToRunnableGeneAnswerSpec(
-              getWdkModel(), getSessionUser(), step)));
-      */
+            .setRunnableAnswerSpec(newSpec.buildRunnable(getSessionUser(), step.get().getContainer())));
     }
 
     // translate IDs to gene PKs if necessary
@@ -103,14 +110,13 @@ public class ApiBasketService extends BasketService {
           .toMap()))).collect(Collectors.toSet());
   }
 
-  @SuppressWarnings("unused") // used in commented code above
   private static void checkStepType(long stepId, RecordClass expectedRecordClass, RecordClass currentRecordClass) throws DataValidationException {
     if (!currentRecordClass.getFullName().equals(expectedRecordClass.getFullName())) {
       throw new DataValidationException("Step with ID " + stepId +
           " returns records of type " + currentRecordClass.getUrlSegment() +
           ", but must return type " + expectedRecordClass.getUrlSegment());
     }
-}
+  }
 
   /**
    * Convert gene requests to transcript requests
