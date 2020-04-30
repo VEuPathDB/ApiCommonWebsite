@@ -27,6 +27,7 @@ modelprop:
 # generalized way to do this in the future... 
 community_env_map:
   w_prefix: static-content.veupathdb.org/
+  b_prefix: static-content.veupathdb.org/
   default: qa.static-content.veupathdb.org/
 
 # this mapping allow different configs based on hostname.  Mainly used to give
@@ -37,6 +38,17 @@ community_env_map:
 # (it can't be flat and still be a map)
 
 workspace_env_map:
+  b_prefix:
+    host: irods.eupathdb.org
+    login: wrkspuser
+    password: "{{ lookup('euparc',
+      'attr=password xpath=workspaces/irods[@user=\"{}\"]'.format('wrkspuser')
+      )
+    }}"
+    resource: ebrcResc
+    rootPath: /ebrc/workspaces/users
+    zone: ebrc
+    port: 1247
   w_prefix:
     host: irods.eupathdb.org
     login: wrkspuser
