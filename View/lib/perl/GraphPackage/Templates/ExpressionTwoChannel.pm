@@ -25,12 +25,6 @@ sub finalProfileAdjustments {
 }
 1;
 
-package ApiCommonWebsite::View::GraphPackage::Templates::ExpressionTwoChannel::DS_708520717e;
-
-#sub useLegacy {return 1;}
-
-1;
-
 #PlasmoDB eQTL
 package ApiCommonWebsite::View::GraphPackage::Templates::ExpressionTwoChannel::DS_dd1931c47a;
 
@@ -311,18 +305,18 @@ sub init {
 
   my $combined = $self->makeCombinedGraph();
 
-  my @pieProfileSetNames = (['DeRisi HB3 Smoothed', 'values'],
-                            ['DeRisi HB3 non-smoothed', 'values']
-                           );
-
-  my $pieProfileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@pieProfileSetNames);
-
-  my $hb3Pie = EbrcWebsiteCommon::View::GraphPackage::GGPiePlot->new(@_);
-  $hb3Pie->setProfileSets($pieProfileSets);
-  $hb3Pie->setPartName("expr_val_pie_HB3");
-  my $pieTitle = $hb3Pie->getPlotTitle();
-  $hb3Pie->setPlotTitle("HB3 - $pieTitle");
-  $hb3Pie->setXaxisLabel('');
+#  my @pieProfileSetNames = (['DeRisi HB3 Smoothed', 'values'],
+#                            ['DeRisi HB3 non-smoothed', 'values']
+#                           );
+#
+#  my $pieProfileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@pieProfileSetNames);
+#
+#  my $hb3Pie = EbrcWebsiteCommon::View::GraphPackage::GGPiePlot->new(@_);
+#  $hb3Pie->setProfileSets($pieProfileSets);
+#  $hb3Pie->setPartName("expr_val_pie_HB3");
+#  my $pieTitle = $hb3Pie->getPlotTitle();
+#  $hb3Pie->setPlotTitle("HB3 - $pieTitle");
+#  $hb3Pie->setXaxisLabel('');
 
   my $scalingFactor = $self->getScalingFactor();
 
@@ -331,9 +325,9 @@ sub init {
     $size = 4;
   }
 
-  $hb3Pie->setRPostscript("gp = gp + annotate(\"text\", x = 0, y = 0, label = profile.df.full\$ELEMENT_NAMES_NUMERIC[profile.df.full\$VALUE == max(profile.df.full\$VALUE)][1], size = $size)");
-
-  $self->setGraphObjects($combined, @hb3Graphs, @_3D7Graphs, @dd2Graphs, $hb3Pie);
+#  $hb3Pie->setRPostscript("gp = gp + annotate(\"text\", x = 0, y = 0, label = profile.df.full\$ELEMENT_NAMES_NUMERIC[profile.df.full\$VALUE == max(profile.df.full\$VALUE)][1], size = $size)");
+#
+  $self->setGraphObjects($combined, @hb3Graphs, @_3D7Graphs, @dd2Graphs);
 
   return $self;
 }
