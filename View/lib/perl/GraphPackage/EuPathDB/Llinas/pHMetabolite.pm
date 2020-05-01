@@ -5,7 +5,7 @@ use vars qw( @ISA);
 
 @ISA = qw( EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet);
 use EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet;
-use EbrcWebsiteCommon::View::GraphPackage::GGBarPlot;
+use EbrcWebsiteCommon::View::GraphPackage::LegacyGGBarPlot;
 use Data::Dumper;
 
 sub init {
@@ -63,7 +63,7 @@ sub init {
     
   my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileSetNames);
 
-  my $massSpec = EbrcWebsiteCommon::View::GraphPackage::GGBarPlot::MassSpec->new(@_);
+  my $massSpec = EbrcWebsiteCommon::View::GraphPackage::LegacyGGBarPlot::MassSpec->new(@_);
   my $rAdjustString = <<'RADJUST';
     profile.df.full$LEGEND=matrix(unlist(strsplit(as.character(profile.df.full$NAME), fixed=T, split=c("|"))), ncol=2, byrow=T)[,1];
     profile.df.full$pH=matrix(unlist(strsplit(as.character(profile.df.full$NAME), fixed=T, split=c("|"))), ncol=2, byrow=T)[,2];
