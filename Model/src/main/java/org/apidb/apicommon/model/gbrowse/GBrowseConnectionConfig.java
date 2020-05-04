@@ -33,9 +33,9 @@ public class GBrowseConnectionConfig implements ConnectionPoolConfig {
   @Override public String getPassword() { return _password; }
   @Override public String getConnectionUrl() { return _connectionString; }
   @Override public SupportedPlatform getPlatformEnum() { return _dbType; }
-  @Override public short getMaxActive() { return 1; }
-  @Override public short getMaxIdle() { return 5; }
-  @Override public short getMinIdle() { return 0; }
+  @Override public int getMaxActive() { return 1; }
+  @Override public int getMaxIdle() { return 5; }
+  @Override public int getMinIdle() { return 0; }
   @Override public long getMaxWait() { return 100; }
   @Override public int getDefaultFetchSize() { return 100; }
   @Override public boolean isShowConnections() { return false; }
