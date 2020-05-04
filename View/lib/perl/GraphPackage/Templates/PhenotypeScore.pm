@@ -5,7 +5,7 @@ use vars qw( @ISA );
 
 @ISA = qw( EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet );
 use EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet;
-use EbrcWebsiteCommon::View::GraphPackage::GGLinePlot;
+use EbrcWebsiteCommon::View::GraphPackage::LegacyGGLinePlot;
 
 use EbrcWebsiteCommon::View::GraphPackage::ProfileSet;
 
@@ -61,7 +61,7 @@ sub makePhenotypeGraphObject {
   $goProfileSetCurve->setProfileCannedQuery($goValuesCannedQueryCurve);
   $goProfileSetCurve->setProfileNamesCannedQuery($goNamesCannedQueryCurve);
 
-  my $go = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot->new(@_);
+  my $go = EbrcWebsiteCommon::View::GraphPackage::LegacyGGLinePlot->new(@_);
 
   $go->setDefaultYMin(0);
   $go->setProfileSets([$goProfileSetCurve, $goProfileSetGene]);

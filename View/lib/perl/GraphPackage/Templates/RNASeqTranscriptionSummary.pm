@@ -88,5 +88,6 @@ use strict;
   sub getBottomMarginSize { 0 }
   sub getExprPlotPartModuleString { 'RNASeqTranscriptionSummary' }
   sub getXAxisLabel { 'FPKM - Sample 1' }
+  sub useLegacy { return 1; }
 
 1;
