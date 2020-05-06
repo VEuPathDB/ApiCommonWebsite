@@ -241,7 +241,7 @@ sub init {
 
   my $profileSet = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileArray);
 
-  my $line = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot->new(@_);
+  my $line = EbrcWebsiteCommon::View::GraphPackage::LegacyGGLinePlot->new(@_);
   #print STDERR Dumper($line);
   $line->setPartName('parasitemia');
   $line->setProfileSets($profileSet);
@@ -409,7 +409,7 @@ sub init {
 
   my $profileSet = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileArray);
 
-  my $line = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot->new(@_);
+  my $line = EbrcWebsiteCommon::View::GraphPackage::LegacyGGLinePlot->new(@_);
   #print STDERR Dumper($line);
   $line->setPartName('parasitemia');
   $line->setProfileSets($profileSet);

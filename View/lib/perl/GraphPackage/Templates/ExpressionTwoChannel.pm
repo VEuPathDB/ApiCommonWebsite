@@ -25,11 +25,6 @@ sub finalProfileAdjustments {
 }
 1;
 
-package ApiCommonWebsite::View::GraphPackage::Templates::ExpressionTwoChannel::DS_708520717e;
-
-#sub useLegacy {return 1;}
-
-1;
 
 #PlasmoDB eQTL
 package ApiCommonWebsite::View::GraphPackage::Templates::ExpressionTwoChannel::DS_dd1931c47a;
@@ -478,33 +473,33 @@ sub init {
 
   my $clnClbProfileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets([['Cln/Clb experiments','values']]);
 
-  my $clnClbPlot = EbrcWebsiteCommon::View::GraphPackage::GGBarPlot::LogRatio->new(@_);
+  my $clnClbPlot = EbrcWebsiteCommon::View::GraphPackage::LegacyGGBarPlot::LogRatio->new(@_);
   $clnClbPlot->setProfileSets($clnClbProfileSets);
   $clnClbPlot->setPartName('Cln_Clb');
   $clnClbPlot->setForceHorizontalXAxis(1);
 
 
   my $pheromoneProfileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets([['pheromone experiments','values']]);
-  my $pheromonePlot = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot::LogRatio->new(@_);
+  my $pheromonePlot = EbrcWebsiteCommon::View::GraphPackage::LegacyGGLinePlot::LogRatio->new(@_);
   $pheromonePlot->setProfileSets($pheromoneProfileSets);
   $pheromonePlot->setXaxisLabel('');
   $pheromonePlot->setPartName('pheromone');
 
   my $elutriationProfileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets([['elutriation experiments','values']]);
-  my $elutriationPlot = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot::LogRatio->new(@_);
+  my $elutriationPlot = EbrcWebsiteCommon::View::GraphPackage::LegacyGGLinePlot::LogRatio->new(@_);
   $elutriationPlot->setProfileSets($elutriationProfileSets);
   $elutriationPlot->setXaxisLabel('');
   $elutriationPlot->setPartName('elutriation');
   
   my $cdc15ProfileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets([['cdc15 experiments','values']]);
-  my $cdc15Plot = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot::LogRatio->new(@_);
+  my $cdc15Plot = EbrcWebsiteCommon::View::GraphPackage::LegacyGGLinePlot::LogRatio->new(@_);
   $cdc15Plot->setProfileSets($cdc15ProfileSets);
   $cdc15Plot->setPartName('cdc15');
   $cdc15Plot->setXaxisLabel('');
   $cdc15Plot->setRemoveNaN('TRUE');
 
   my $cdc28ProfileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets([['Cho et al','values']]);
-  my $cdc28Plot = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot::LogRatio->new(@_);
+  my $cdc28Plot = EbrcWebsiteCommon::View::GraphPackage::LegacyGGLinePlot::LogRatio->new(@_);
   $cdc28Plot->setProfileSets($cdc28ProfileSets);
   $cdc28Plot->setPartName('cdc28');
   $cdc28Plot->setXaxisLabel('');

@@ -119,7 +119,7 @@ sub init {
     my @profileSet = $self->makeProfileSets($ps->{query}, $ps->{abbrev}, $ps->{name});
     push @profileSets, @profileSet;
   }
-  my $go = EbrcWebsiteCommon::View::GraphPackage::GGScatterPlot->new(@_);
+  my $go = EbrcWebsiteCommon::View::GraphPackage::LegacyGGScatterPlot->new(@_);
   $go->setProfileSets(\@profileSets);
   $go->setYaxisLabel("Apicoplast Abundance");
   $go->setPartName("apico.er");
