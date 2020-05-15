@@ -390,7 +390,7 @@ public class ProfileSetService extends AbstractWdkService {
            "             from dat order by value) t)" +
            " where ('" + sourceId + "' = 'ALL'" +
            "        AND (rn = 1 or rn = (select ct.m from ct)" +
-           "             or mod(rn, round((select ct.m from ct)/" +                                        N + ",0)) = 0))" +
+           "             or mod(rn, round((select ct.m from ct)/" + N + ",0)) = 0))" +
            " OR '" + sourceId + "' = source_id";
   }
 
@@ -412,7 +412,7 @@ public class ProfileSetService extends AbstractWdkService {
   }
 
   private static String getSenseAntisenseSql(DataType dataType, String profileSetId, String sourceId, String floor) {
-    String columnsToReturn = dataType.equals("SenseAntisenseX") ? "value as contxaxis, name" : "value";
+    String columnsToReturn = dataType.equals(DataType.SenseAntisenseX) ? "value as contxaxis, name" : "value";
     return " with comp as (select ps.node_order_num" +
            "                    , ps.protocol_app_node_name" +
            "                    , na.value" +
