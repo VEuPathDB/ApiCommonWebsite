@@ -3,7 +3,7 @@ package org.apidb.apicommon.model.comment;
 import java.io.IOException;
 import java.net.URL;
 
-import org.apache.commons.digester.Digester;
+import org.apache.commons.digester3.Digester;
 import org.gusdb.fgputil.xml.XmlParser;
 import org.gusdb.fgputil.xml.XmlValidator;
 import org.gusdb.wdk.model.WdkModelException;
