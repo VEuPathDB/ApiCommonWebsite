@@ -23,15 +23,16 @@ sub init {
   my $datasetId = $self->getDatasetId();
 
   my $dbh = $self->getQueryHandle();
-  my $sql = "select profile_set_id, name from apidbuserdatasets.ud_profileset where user_dataset_id = $datasetId";
+  my $sql = "select profile_set_id, name, unit from apidbuserdatasets.ud_profileset where user_dataset_id = $datasetId";
   my $sh = $dbh->prepare($sql);
   $sh->execute();
 
   my @profileSets;
-  while(my ($psId, $psName) = $sh->fetchrow_array()) {
+  my %units;
+  while(my ($psId, $psName, $psUnit) = $sh->fetchrow_array()) {
     my $udValuesQuery = EbrcWebsiteCommon::Model::CannedQuery::UDProfileValues->new(Id => $id, ProfileSetId => $psId, Name => $psName);
     my $udNamesQuery = EbrcWebsiteCommon::Model::CannedQuery::UDProfileNames->new(ProfileSetId => $psId, Name => $psName);
-
+    $units{$psUnit}=1;
     my $profileSet = EbrcWebsiteCommon::View::GraphPackage::ProfileSet->new("DUMMY");
     $profileSet->setProfileCannedQuery($udValuesQuery);
     $profileSet->setProfileNamesCannedQuery($udNamesQuery);
@@ -40,12 +41,14 @@ sub init {
   }
   $sh->finish();
 
+  die "Graph error: There is more than one unit type for dataset $datasetId\n" if (scalar keys %units > 1);
+  my $yAxisUnit = (keys %units)[0];
   my $bar = EbrcWebsiteCommon::View::GraphPackage::GGBarPlot->new(@_);
 
   $bar->setDefaultYMin(0);
   $bar->setProfileSets(\@profileSets);
-  $bar->setYaxisLabel("fpkm");
-  $bar->setPartName("fpkm");
+  $bar->setYaxisLabel($yAxisUnit);
+  $bar->setPartName($yAxisUnit);
   $bar->setPlotTitle("$id - UserDataset $datasetId");
   $bar->addAdjustProfile('
 profile.df.full$NAME <- abbreviate(profile.df.full$NAME, 10)
@@ -62,7 +65,8 @@ gp = gp + scale_colour_manual(values=viridis(numColors, begin=.2, end=.8), break
   my $wantLogged = $bar->getWantLogged();
   if($wantLogged) {
     $bar->addAdjustProfile('profile.df.full$VALUE = log2(profile.df.full$VALUE + 1);');
-    $bar->setYaxisLabel('log2(FPKM + 1)');
+    my $yAxisUnitLogged = "log2(".$yAxisUnit." + 1)";
+    $bar->setYaxisLabel($yAxisUnitLogged);
     $bar->setIsLogged(1);
     $bar->setDefaultYMax(4);
     $bar->setSkipStdErr(1);
