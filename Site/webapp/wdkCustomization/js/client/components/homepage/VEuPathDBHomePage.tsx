@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { get, memoize } from 'lodash';
 
-import { Loading } from 'wdk-client/Components';
+import { Loading, Link } from 'wdk-client/Components';
 import { ErrorBoundary } from 'wdk-client/Controllers';
 import { RootState } from 'wdk-client/Core/State/Types';
 import { CategoryTreeNode } from 'wdk-client/Utils/CategoryUtils';
@@ -20,6 +20,8 @@ import { combineClassNames, useAlphabetizedSearchTree } from 'ebrc-client/compon
 import { useAnnouncementsState } from 'ebrc-client/hooks/announcements';
 
 import { useCommunitySiteUrl } from 'ebrc-client/hooks/staticData';
+
+import { formatReleaseDate } from 'ebrc-client/util/formatters';
 
 import { PageDescription } from './PageDescription';
 import { makeVpdbClassNameHelper } from './Utils';
@@ -150,6 +152,20 @@ const VEuPathDBHomePageView: FunctionComponent<Props> = props => {
     });
   }, [ setClosedBanners ]);
 
+  const branding = (
+    <>
+      <Link to="/">
+        <div className={vpdbCx('HeaderBranding')}>
+        </div>
+      </Link>
+      <div className={vpdbCx('HeaderBrandingSuperscript')}>
+        {props.buildNumber && `Release ${props.buildNumber}`}
+        <br />
+        {props.releaseDate && formatReleaseDate(props.releaseDate)}
+      </div>
+    </>
+  );
+
   return (
     <div className={rootContainerClassName}>
       <ErrorBoundary>
@@ -158,6 +174,7 @@ const VEuPathDBHomePageView: FunctionComponent<Props> = props => {
           containerClassName={headerClassName} 
           onShowAnnouncements={onShowAnnouncements}
           showAnnouncementsToggle={isHomePage && closedBanners.length > 0}
+          branding={branding}
         />
       </ErrorBoundary>
       <div className={vpdbCx('Announcements')}>

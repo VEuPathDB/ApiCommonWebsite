@@ -14,13 +14,13 @@
   $bckgrnd-img: themed('bckgrnd-img');
   $logo: themed('logo');
   $small-logo: themed('small-logo');
-  /* TODO Remove when we're out of beta */
-  $beta-position-top: themed('beta-position-top');
-  $beta-position-left: themed('beta-position-left');
-  $beta-font-size: themed('beta-font-size');
-  $beta-position-top-small: themed('beta-position-top-small');
-  $beta-position-left-small: themed('beta-position-left-small');
-  $beta-font-size-small: themed('beta-font-size-small');
+
+  $superscript-position-top: themed('superscript-position-top');
+  $superscript-position-left: themed('superscript-position-left');
+  $superscript-font-size: themed('superscript-font-size');
+  $superscript-position-top-small: themed('superscript-position-top-small');
+  $superscript-position-left-small: themed('superscript-position-left-small');
+  $superscript-font-size-small: themed('superscript-font-size-small');
 
   .vpdb-BgDark {
     background-color: $primary-color;
@@ -38,54 +38,53 @@
     .ebrc-HeaderBrandingContainer {
       position: relative;
 
-      a::after {
-        content: "beta";
-        font-style: italic;
+      .vpdb-HeaderBrandingSuperscript {
         position: absolute;
-        @if ($beta-position-top) {
-          top: $beta-position-top;
+        @if ($superscript-position-top) {
+          top: $superscript-position-top;
         } @else {
-          top: 0.8em;
+          top: 0.5em;
         }
-        left: $beta-position-left;
-        @if ($beta-font-size) {
-          font-size: $beta-font-size;
+        left: $superscript-position-left;
+        @if ($superscript-font-size) {
+          font-size: $superscript-font-size;
         } @else {
-          font-size: 1.4em;
+          font-size: 1em;
         }
         font-weight: 500;
         color: white;
+        white-space: nowrap;
       }
     }
 
-    .ebrc-HeaderBranding {
+    .vpdb-HeaderBranding {
       content: $logo;
     }
 
     &__collapsed {
       .ebrc-HeaderBrandingContainer {
-        a::after {
-          top: $beta-position-top-small;
-          left: $beta-position-left-small;
-          font-size: $beta-font-size-small;
+        .vpdb-HeaderBrandingSuperscript {
+          top: $superscript-position-top-small;
+          left: $superscript-position-left-small;
+          font-size: $superscript-font-size-small;
         }
       }
 
-      .ebrc-HeaderBranding {
+      .vpdb-HeaderBranding {
         content: $small-logo;
       }
     }
     
     @media screen and (max-width: $cramped-header-width) {
       .ebrc-HeaderBrandingContainer {
-        a::after {
-          top: $beta-position-top-small;
-          left: $beta-position-left-small;
-          font-size: $beta-font-size-small;
+        .vpdb-HeaderBrandingSuperscript {
+          top: $superscript-position-top-small;
+          left: $superscript-position-left-small;
+          font-size: $superscript-font-size-small;
         }
       }
 
-      .ebrc-HeaderBranding {
+      .vpdb-HeaderBranding {
         content: $small-logo;
       }
     }
