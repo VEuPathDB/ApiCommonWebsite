@@ -10,7 +10,6 @@
 
   <modules>
     <module>Model</module>
-    <module>Site</module>
     <module>Service</module>
     <module>CommentUpdater</module>
     <module>Test</module>
@@ -18,21 +17,6 @@
 
   <dependencyManagement>
     <dependencies>
-      <dependency>
-        <groupId>org.gusdb</groupId>
-        <artifactId>fgputil-util</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.gusdb</groupId>
-        <artifactId>fgputil-accountdb</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.gusdb</groupId>
-        <artifactId>fgputil-server</artifactId>
-        <version>${project.version}</version>
-      </dependency>
       <dependency>
         <groupId>org.gusdb</groupId>
         <artifactId>wdk-website-controller</artifactId>
