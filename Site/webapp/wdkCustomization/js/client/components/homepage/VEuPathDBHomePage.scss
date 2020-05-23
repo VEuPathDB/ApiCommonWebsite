@@ -416,6 +416,30 @@ body.vpdb-Body {
       grid-area: footer;
     }
 
+    @media screen and (min-width: $hamburger-width + 1) {
+      &__home {
+        .vpdb-SearchPane, .vpdb-Main, .vpdb-NewsPane {
+          padding-bottom: 12em;
+        }
+
+        .vpdb-Footer {
+          position: fixed;
+          bottom: 0;
+          width: 100%;
+        }
+
+        .vpdb-Footer__thin {
+          .ebrc-FooterPageDescriptionRow {
+            display: none;
+          }
+
+          .ebrc-FooterCopyright {
+            bottom: 0;
+          }
+        }
+      }
+    }
+
     @media screen and (max-width: $mobile-width) {
       &__home {
         display: flex;
