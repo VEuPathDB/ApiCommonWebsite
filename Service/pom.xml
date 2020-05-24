@@ -27,6 +27,16 @@
 
     <dependency>
       <groupId>org.gusdb</groupId>
+      <artifactId>fgputil-web</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.gusdb</groupId>
+      <artifactId>fgputil-db</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.gusdb</groupId>
       <artifactId>wdk-model</artifactId>
     </dependency>
 
