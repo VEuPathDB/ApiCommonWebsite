@@ -7,7 +7,7 @@ use Data::Dumper;
 
 @ISA = qw( EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet );
 use EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet;
-use EbrcWebsiteCommon::View::GraphPackage::GGBarPlot;
+use EbrcWebsiteCommon::View::GraphPackage::LegacyGGBarPlot;
 
 use EbrcWebsiteCommon::View::GraphPackage::ProfileSet;
 
