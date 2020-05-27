@@ -43,7 +43,7 @@ sub init {
 
   die "Graph error: There is more than one unit type for dataset $datasetId\n" if (scalar keys %units > 1);
   my $yAxisUnit = (keys %units)[0];
-  my $bar = EbrcWebsiteCommon::View::GraphPackage::GGBarPlot->new(@_);
+  my $bar = EbrcWebsiteCommon::View::GraphPackage::LegacyGGBarPlot->new(@_);
 
   $bar->setDefaultYMin(0);
   $bar->setProfileSets(\@profileSets);
