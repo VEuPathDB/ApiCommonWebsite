@@ -5,7 +5,7 @@ use vars qw( @ISA);
 
 @ISA = qw( EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet);
 use EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet;
-use EbrcWebsiteCommon::View::GraphPackage::GGScatterPlot;
+use EbrcWebsiteCommon::View::GraphPackage::LegacyGGScatterPlot;
 use Data::Dumper;
 
 sub init {
@@ -34,7 +34,7 @@ sub init {
   my @profileSetArray = (['Recent exposure AB array profiles','values', '', '', '', '', '', $facet, '', '', $contXAxis]);
   my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileSetArray);
 
-  my $scatter = EbrcWebsiteCommon::View::GraphPackage::GGScatterPlot::LogRatio->new(@_);
+  my $scatter = EbrcWebsiteCommon::View::GraphPackage::LegacyGGScatterPlot::LogRatio->new(@_);
   $scatter->setProfileSets($profileSets);
   $scatter->setColors($colors);
 
