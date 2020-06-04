@@ -286,8 +286,9 @@ use Data::Dumper;
 
 use EbrcWebsiteCommon::View::GraphPackage::GGPiePlot;
 
-# @Override
+sub useLegacy { return 1; }
 
+# @Override
 sub init {
   my $self = shift;
 
@@ -458,6 +459,8 @@ sub defineGraphs {
 #--------------------------------------------------------------------------------
 
 package ApiCommonWebsite::View::GraphPackage::Templates::ExpressionTwoChannel::DS_b7cf547d33;
+
+sub useLegacy { return 1; }
 
 sub init {
   my $self = shift;

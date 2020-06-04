@@ -7,6 +7,8 @@ use vars qw( @ISA );
 use ApiCommonWebsite::View::GraphPackage::Templates::Expression;
 use Data::Dumper;
 
+sub useLegacy { return 1; }
+
 # @Override
 sub getAllProfileSetNames {
   my ($self) = @_;

@@ -9,6 +9,8 @@ use Data::Dumper;
 use EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet;
 use EbrcWebsiteCommon::View::GraphPackage::LegacyGGScatterPlot;
 
+sub useLegacy { return 1; }
+
 sub init {
   my $self = shift;
 

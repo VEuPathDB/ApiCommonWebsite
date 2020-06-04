@@ -224,6 +224,8 @@ sub getProfileColors {
 #host
 package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_4585d065bf;
 
+sub useLegacy { return 1; }
+
 sub init {
   my $self = shift;
   use Data::Dumper; 
@@ -391,6 +393,8 @@ sub declareParts {
 
 #plasmo
 package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_c35d971a20;
+
+sub useLegacy { return 1; }
 
 sub init {
   my $self = shift;
@@ -767,6 +771,7 @@ use EbrcWebsiteCommon::Model::CannedQuery::RankedNthRatioValues;
 use EbrcWebsiteCommon::Model::CannedQuery::PhenotypeRankedNthNames;
 use Data::Dumper;
 
+sub useLegacy { return 1; }
 
 # @Override
 sub init {

@@ -14,6 +14,8 @@ use EbrcWebsiteCommon::View::GraphPackage::ProfileSet;
 use EbrcWebsiteCommon::Model::CannedQuery::UDProfileValues;
 use EbrcWebsiteCommon::Model::CannedQuery::UDProfileNames;
 
+sub useLegacy { return 1; }
+
 sub init {
   my $self = shift;
 
