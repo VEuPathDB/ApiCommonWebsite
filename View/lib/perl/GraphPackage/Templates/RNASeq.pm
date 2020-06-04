@@ -820,7 +820,7 @@ sub getSpecs {
                       AND pan.protocol_app_node_id = sl.protocol_app_node_id
                       AND nafe.protocol_app_node_id = sl.protocol_app_node_id
                       AND sl.study_id = s.study_id
-                      AND s.NAME = 'T.brucei paired end RNA-Seq data from Horn aligned with cds coordinates [htseq-union - unstranded - fpkm - unique]'
+                      AND s.NAME = 'T.brucei paired end RNA Seq data from Horn aligned with cds coordinates [htseq-union - unstranded - fpkm - unique]'
                       AND pan.NAME LIKE '%BFD3%') bfd3
          left join (            
             SELECT ga.source_id, CASE WHEN (nafe.value = 0) THEN 0.019
@@ -831,7 +831,7 @@ sub getSpecs {
                       AND pan.protocol_app_node_id = sl.protocol_app_node_id
                       AND nafe.protocol_app_node_id = sl.protocol_app_node_id
                       AND sl.study_id = s.study_id
-                      AND s.NAME = 'T.brucei paired end RNA-Seq data from Horn aligned with cds coordinates [htseq-union - unstranded - fpkm - unique]'
+                      AND s.NAME = 'T.brucei paired end RNA Seq data from Horn aligned with cds coordinates [htseq-union - unstranded - fpkm - unique]'
                       AND pan.NAME LIKE '%Tet%') notet
           on bfd3.source_id = notet.source_id"
 	  },
@@ -847,7 +847,7 @@ sub getSpecs {
                       AND pan.protocol_app_node_id = sl.protocol_app_node_id
                       AND nafe.protocol_app_node_id = sl.protocol_app_node_id
                       AND sl.study_id = s.study_id
-                      AND s.NAME = 'T.brucei paired end RNA-Seq data from Horn aligned with cds coordinates [htseq-union - unstranded - fpkm - unique]'
+                      AND s.NAME = 'T.brucei paired end RNA Seq data from Horn aligned with cds coordinates [htseq-union - unstranded - fpkm - unique]'
                       AND pan.NAME LIKE '%BFD6%') bfd3
          left join (            
             SELECT ga.source_id, CASE WHEN (nafe.value = 0) THEN 0.019
@@ -858,7 +858,7 @@ sub getSpecs {
                       AND pan.protocol_app_node_id = sl.protocol_app_node_id
                       AND nafe.protocol_app_node_id = sl.protocol_app_node_id
                       AND sl.study_id = s.study_id
-                      AND s.NAME = 'T.brucei paired end RNA-Seq data from Horn aligned with cds coordinates [htseq-union - unstranded - fpkm - unique]'
+                      AND s.NAME = 'T.brucei paired end RNA Seq data from Horn aligned with cds coordinates [htseq-union - unstranded - fpkm - unique]'
                       AND pan.NAME LIKE '%Tet%') notet
           on bfd3.source_id = notet.source_id"
 	  },
@@ -874,7 +874,7 @@ sub getSpecs {
                       AND pan.protocol_app_node_id = sl.protocol_app_node_id
                       AND nafe.protocol_app_node_id = sl.protocol_app_node_id
                       AND sl.study_id = s.study_id
-                      AND s.NAME = 'T.brucei paired end RNA-Seq data from Horn aligned with cds coordinates [htseq-union - unstranded - fpkm - unique]'
+                      AND s.NAME = 'T.brucei paired end RNA Seq data from Horn aligned with cds coordinates [htseq-union - unstranded - fpkm - unique]'
                       AND pan.NAME LIKE '%PF%') bfd3
          left join (            
             SELECT ga.source_id, CASE WHEN (nafe.value = 0) THEN 0.019
@@ -885,7 +885,7 @@ sub getSpecs {
                       AND pan.protocol_app_node_id = sl.protocol_app_node_id
                       AND nafe.protocol_app_node_id = sl.protocol_app_node_id
                       AND sl.study_id = s.study_id
-                      AND s.NAME = 'T.brucei paired end RNA-Seq data from Horn aligned with cds coordinates [htseq-union - unstranded - fpkm - unique]'
+                      AND s.NAME = 'T.brucei paired end RNA Seq data from Horn aligned with cds coordinates [htseq-union - unstranded - fpkm - unique]'
                       AND pan.NAME LIKE '%Tet%') notet
           on bfd3.source_id = notet.source_id"
 	  },
@@ -901,7 +901,7 @@ sub getSpecs {
                       AND pan.protocol_app_node_id = sl.protocol_app_node_id
                       AND nafe.protocol_app_node_id = sl.protocol_app_node_id
                       AND sl.study_id = s.study_id
-                      AND s.NAME = 'T.brucei paired end RNA-Seq data from Horn aligned with cds coordinates [htseq-union - unstranded - fpkm - unique]'
+                      AND s.NAME = 'T.brucei paired end RNA Seq data from Horn aligned with cds coordinates [htseq-union - unstranded - fpkm - unique]'
                       AND pan.NAME LIKE '%DIF%') bfd3
          left join (            
             SELECT ga.source_id, CASE WHEN (nafe.value = 0) THEN 0.019
@@ -912,7 +912,7 @@ sub getSpecs {
                       AND pan.protocol_app_node_id = sl.protocol_app_node_id
                       AND nafe.protocol_app_node_id = sl.protocol_app_node_id
                       AND sl.study_id = s.study_id
-                      AND s.NAME = 'T.brucei paired end RNA-Seq data from Horn aligned with cds coordinates [htseq-union - unstranded - fpkm - unique]'
+                      AND s.NAME = 'T.brucei paired end RNA Seq data from Horn aligned with cds coordinates [htseq-union - unstranded - fpkm - unique]'
                       AND pan.NAME LIKE '%Tet%') notet
           on bfd3.source_id = notet.source_id"
 	  } ];
