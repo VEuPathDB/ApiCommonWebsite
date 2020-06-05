@@ -121,24 +121,28 @@ sub getProfileColors {
 
   my @colors =  @{$self->getColors()};
   unshift ( @colors, 'gray');
-  return \@colors;
+  return \@colors; 
 }
 
 # @Override
 sub finalProfileAdjustments {
   my ($self, $profile) = @_;
 
+  my $switchStrands = $self->switchStrands();
   my $rAdjustString = << 'RADJUST';
   if ('NAME' %in% colnames(profile.df.full) & 'LEGEND' %in% colnames(profile.df.full)) {
     newVals <- aggregate(VALUE ~ NAME, with(profile.df.full, data.frame(NAME=NAME, VALUE=ifelse(LEGEND=="nonunique", 1, -1)*VALUE)), sum);
-    profile.df.full$VALUE[profile.df.full$LEGEND == "nonunique" & profile.df.full$NAME == newVals$NAME] <- newVals$VALUE;
+    profile.df.full$VALUE[profile.df.full$LEGEND == "nonunique" & profile.df.full$NAME %in% newVals$NAME] <- newVals$VALUE;
     profile.df.full$VALUE[profile.df.full$VALUE < 0] <- 0;
     profile.df.full$STACK <- paste0(profile.df.full$NAME, "- ", profile.df.full$LEGEND, " reads");
-    #profile.df.full$LEGEND <- factor(profile.df.full$LEGEND, levels = rev(levels(as.factor(profile.df.full$LEGEND))));
     profile.df.full$STDERR[profile.df.full$LEGEND == 'nonunique'] <- NA
     profile.df.full$MAX_ERR[profile.df.full$LEGEND == 'nonunique'] <- NA
     profile.df.full$MIN_ERR[profile.df.full$LEGEND == 'nonunique'] <- NA
+    if (c('unique', 'nonunique') %in% profile.df.full$LEGEND) {
+      profile.df.full$LEGEND <- factor(profile.df.full$LEGEND, levels=c('nonunique', 'unique'))
+    }
   }
+
 RADJUST
 
   $profile->addAdjustProfile($rAdjustString);
@@ -146,6 +150,7 @@ RADJUST
 }
 
 1;
+
 
 #vectorbase
 package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_9800ad244a;
@@ -218,6 +223,8 @@ sub getProfileColors {
 
 #host
 package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_4585d065bf;
+
+sub useLegacy { return 1; }
 
 sub init {
   my $self = shift;
@@ -386,6 +393,8 @@ sub declareParts {
 
 #plasmo
 package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_c35d971a20;
+
+sub useLegacy { return 1; }
 
 sub init {
   my $self = shift;
@@ -687,7 +696,7 @@ sub finalProfileAdjustments {
 RADJUST
 
   my $rPostscript = << 'RPOST';
-  if ("LINETEXT" %in% colnames(profile.df.full)) {  
+  if ("LINETEXT" %in% colnames(profile.df.full) & useTooltips) {  
     remove_geom <- function(ggplot2_object, geom_type) {
       layers <- lapply(ggplot2_object$layers, 
         function(x) {
@@ -731,13 +740,17 @@ sub finalProfileAdjustments {
   my $rAdjustString = << 'RADJUST';
   if ('NAME' %in% colnames(profile.df.full) & 'LEGEND' %in% colnames(profile.df.full)) {
     newVals <- aggregate(VALUE ~ NAME, with(profile.df.full, data.frame(NAME=NAME, VALUE=ifelse(LEGEND=="nonunique", 1, -1)*VALUE)), sum);
-    profile.df.full$VALUE[profile.df.full$LEGEND == "nonunique" & profile.df.full$NAME == newVals$NAME] <- newVals$VALUE;
+    profile.df.full$VALUE[profile.df.full$LEGEND == "nonunique" & profile.df.full$NAME %in% newVals$NAME] <- newVals$VALUE;
     profile.df.full$VALUE[profile.df.full$VALUE < 0] <- 0;
     profile.df.full$STACK <- paste0(profile.df.full$NAME, "- ", profile.df.full$LEGEND, " reads");
     #profile.df.full$LEGEND <- factor(profile.df.full$LEGEND, levels = rev(levels(as.factor(profile.df.full$LEGEND))));
     profile.df.full$STDERR[profile.df.full$LEGEND == 'nonunique'] <- NA
     profile.df.full$MAX_ERR[profile.df.full$LEGEND == 'nonunique'] <- NA
     profile.df.full$MIN_ERR[profile.df.full$LEGEND == 'nonunique'] <- NA
+
+    if (c('unique', 'nonunique') %in% profile.df.full$LEGEND) {
+      profile.df.full$LEGEND <- factor(profile.df.full$LEGEND, levels=c('nonunique', 'unique'))
+    }
   }
 RADJUST
 
@@ -758,6 +771,7 @@ use EbrcWebsiteCommon::Model::CannedQuery::RankedNthRatioValues;
 use EbrcWebsiteCommon::Model::CannedQuery::PhenotypeRankedNthNames;
 use Data::Dumper;
 
+sub useLegacy { return 1; }
 
 # @Override
 sub init {
@@ -773,7 +787,7 @@ sub init {
     my @profileSet = $self->makeProfileSets($ps->{query}, $ps->{abbrev}, $ps->{name});
     push @profileSets, @profileSet;
   }
-  my $go = EbrcWebsiteCommon::View::GraphPackage::GGScatterPlot->new(@_);
+  my $go = EbrcWebsiteCommon::View::GraphPackage::LegacyGGScatterPlot->new(@_);
 
   $go->setProfileSets(\@profileSets);
   $go->setXaxisLabel("");
@@ -820,7 +834,7 @@ sub getSpecs {
                       AND pan.protocol_app_node_id = sl.protocol_app_node_id
                       AND nafe.protocol_app_node_id = sl.protocol_app_node_id
                       AND sl.study_id = s.study_id
-                      AND s.NAME = 'T.brucei paired end RNA-Seq data from Horn aligned with cds coordinates [htseq-union - unstranded - fpkm - unique]'
+                      AND s.NAME = 'T.brucei paired end RNA Seq data from Horn aligned with cds coordinates [htseq-union - unstranded - fpkm - unique]'
                       AND pan.NAME LIKE '%BFD3%') bfd3
          left join (            
             SELECT ga.source_id, CASE WHEN (nafe.value = 0) THEN 0.019
@@ -831,7 +845,7 @@ sub getSpecs {
                       AND pan.protocol_app_node_id = sl.protocol_app_node_id
                       AND nafe.protocol_app_node_id = sl.protocol_app_node_id
                       AND sl.study_id = s.study_id
-                      AND s.NAME = 'T.brucei paired end RNA-Seq data from Horn aligned with cds coordinates [htseq-union - unstranded - fpkm - unique]'
+                      AND s.NAME = 'T.brucei paired end RNA Seq data from Horn aligned with cds coordinates [htseq-union - unstranded - fpkm - unique]'
                       AND pan.NAME LIKE '%Tet%') notet
           on bfd3.source_id = notet.source_id"
 	  },
@@ -847,7 +861,7 @@ sub getSpecs {
                       AND pan.protocol_app_node_id = sl.protocol_app_node_id
                       AND nafe.protocol_app_node_id = sl.protocol_app_node_id
                       AND sl.study_id = s.study_id
-                      AND s.NAME = 'T.brucei paired end RNA-Seq data from Horn aligned with cds coordinates [htseq-union - unstranded - fpkm - unique]'
+                      AND s.NAME = 'T.brucei paired end RNA Seq data from Horn aligned with cds coordinates [htseq-union - unstranded - fpkm - unique]'
                       AND pan.NAME LIKE '%BFD6%') bfd3
          left join (            
             SELECT ga.source_id, CASE WHEN (nafe.value = 0) THEN 0.019
@@ -858,7 +872,7 @@ sub getSpecs {
                       AND pan.protocol_app_node_id = sl.protocol_app_node_id
                       AND nafe.protocol_app_node_id = sl.protocol_app_node_id
                       AND sl.study_id = s.study_id
-                      AND s.NAME = 'T.brucei paired end RNA-Seq data from Horn aligned with cds coordinates [htseq-union - unstranded - fpkm - unique]'
+                      AND s.NAME = 'T.brucei paired end RNA Seq data from Horn aligned with cds coordinates [htseq-union - unstranded - fpkm - unique]'
                       AND pan.NAME LIKE '%Tet%') notet
           on bfd3.source_id = notet.source_id"
 	  },
@@ -874,7 +888,7 @@ sub getSpecs {
                       AND pan.protocol_app_node_id = sl.protocol_app_node_id
                       AND nafe.protocol_app_node_id = sl.protocol_app_node_id
                       AND sl.study_id = s.study_id
-                      AND s.NAME = 'T.brucei paired end RNA-Seq data from Horn aligned with cds coordinates [htseq-union - unstranded - fpkm - unique]'
+                      AND s.NAME = 'T.brucei paired end RNA Seq data from Horn aligned with cds coordinates [htseq-union - unstranded - fpkm - unique]'
                       AND pan.NAME LIKE '%PF%') bfd3
          left join (            
             SELECT ga.source_id, CASE WHEN (nafe.value = 0) THEN 0.019
@@ -885,7 +899,7 @@ sub getSpecs {
                       AND pan.protocol_app_node_id = sl.protocol_app_node_id
                       AND nafe.protocol_app_node_id = sl.protocol_app_node_id
                       AND sl.study_id = s.study_id
-                      AND s.NAME = 'T.brucei paired end RNA-Seq data from Horn aligned with cds coordinates [htseq-union - unstranded - fpkm - unique]'
+                      AND s.NAME = 'T.brucei paired end RNA Seq data from Horn aligned with cds coordinates [htseq-union - unstranded - fpkm - unique]'
                       AND pan.NAME LIKE '%Tet%') notet
           on bfd3.source_id = notet.source_id"
 	  },
@@ -901,7 +915,7 @@ sub getSpecs {
                       AND pan.protocol_app_node_id = sl.protocol_app_node_id
                       AND nafe.protocol_app_node_id = sl.protocol_app_node_id
                       AND sl.study_id = s.study_id
-                      AND s.NAME = 'T.brucei paired end RNA-Seq data from Horn aligned with cds coordinates [htseq-union - unstranded - fpkm - unique]'
+                      AND s.NAME = 'T.brucei paired end RNA Seq data from Horn aligned with cds coordinates [htseq-union - unstranded - fpkm - unique]'
                       AND pan.NAME LIKE '%DIF%') bfd3
          left join (            
             SELECT ga.source_id, CASE WHEN (nafe.value = 0) THEN 0.019
@@ -912,7 +926,7 @@ sub getSpecs {
                       AND pan.protocol_app_node_id = sl.protocol_app_node_id
                       AND nafe.protocol_app_node_id = sl.protocol_app_node_id
                       AND sl.study_id = s.study_id
-                      AND s.NAME = 'T.brucei paired end RNA-Seq data from Horn aligned with cds coordinates [htseq-union - unstranded - fpkm - unique]'
+                      AND s.NAME = 'T.brucei paired end RNA Seq data from Horn aligned with cds coordinates [htseq-union - unstranded - fpkm - unique]'
                       AND pan.NAME LIKE '%Tet%') notet
           on bfd3.source_id = notet.source_id"
 	  } ];
@@ -958,15 +972,17 @@ sub init {
   $self->SUPER::init(@_);
 
   my $colors = ['#F08080', '#7CFC00' ];
-  my $legend = ['Control', 'Induced' ];
+ # my $legend = ['Control', 'Induced' ];
 
-  my $control = ['0hr','6','12','18','24','30','','','','','',''];
-  my $induced = ['','','','','','','0hr','6','12','18','24','30'];
   my $id = $self->getId();
 
+  my $rAdjustString = << 'RADJUST';
+  profile.df.full$LEGEND <- unlist(lapply(strsplit(as.character(profile.df.full$ELEMENT_NAMES), " "), "[", 1))
+  profile.df.full$GROUP <- profile.df.full$LEGEND
+RADJUST
+
   # Sense
-  my @profileArray = (['P. berghei transcriptome during inducible gametocytogenesis [htseq-union - firststrand - fpkm - unique]', 'values', '', '', $control],
-                      ['P. berghei transcriptome during inducible gametocytogenesis [htseq-union - firststrand - fpkm - unique]', 'values', '', '', $induced]);
+  my @profileArray = (['P. berghei transcriptome during inducible gametocytogenesis [htseq-union - firststrand - fpkm - unique]', 'values']);
 
   my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileArray);
   my $line = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot->new(@_);
@@ -974,14 +990,13 @@ sub init {
   $line->setProfileSets($profileSets);
   $line->setColors($colors);
   $line->setHasExtraLegend(1);
-  $line->setLegendLabels(['Conrol', 'Induced']);
   $line->setXaxisLabel("Hours");
   $line->setYaxisLabel("FPKM");
   $line->setPlotTitle("fpkm_sense - $id");
+  $line->addAdjustProfile($rAdjustString);
 
   # AntiSense
-  my @profileArray2 = (['P. berghei transcriptome during inducible gametocytogenesis [htseq-union - secondstrand - fpkm - unique]', 'values', '', '', $control],
-                      ['P. berghei transcriptome during inducible gametocytogenesis [htseq-union - secondstrand - fpkm - unique]', 'values', '', '', $induced]);
+  my @profileArray2 = (['P. berghei transcriptome during inducible gametocytogenesis [htseq-union - secondstrand - fpkm - unique]', 'values']);
 
   my $profileSets2 = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileArray2);
   my $line2 = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot->new(@_);
@@ -989,40 +1004,38 @@ sub init {
   $line2->setProfileSets($profileSets2);
   $line2->setColors($colors);
   $line2->setHasExtraLegend(1);
-  $line2->setLegendLabels(['Conrol', 'Induced']);
   $line2->setXaxisLabel("Hours");
   $line2->setYaxisLabel("FPKM");
   $line2->setPlotTitle("fpkm_antisense - $id");
+  $line2->addAdjustProfile($rAdjustString);
 
   #percentile_sense
   my $percentileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets
-    ([['P. berghei transcriptome during inducible gametocytogenesis [htseq-union - firststrand - fpkm - unique]', 'channel1_percentiles', '', '', $control],
-      ['P. berghei transcriptome during inducible gametocytogenesis [htseq-union - firststrand - fpkm - unique]', 'channel1_percentiles', '', '', $induced]]);
+    ([['P. berghei transcriptome during inducible gametocytogenesis [htseq-union - firststrand - fpkm - unique]', 'channel1_percentiles']]);
 
   my $percentile = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot::Percentile->new(@_);
   $percentile->setPartName('percentile_sense');
   $percentile->setProfileSets($percentileSets);
   $percentile->setColors($colors);
   $percentile->setHasExtraLegend(1);
-  $percentile->setLegendLabels(['Conrol', 'Induced']);
   $percentile->setXaxisLabel("Hours");
   $percentile->setYaxisLabel("Percentile");
   $percentile->setPlotTitle("pct_sense - $id");
+  $percentile->addAdjustProfile($rAdjustString);
 
   #percentile_antisense
   my $percentileSets2 = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets
-    ([['P. berghei transcriptome during inducible gametocytogenesis [htseq-union - secondstrand - fpkm - unique]', 'channel1_percentiles', '', '', $control],
-     ['P. berghei transcriptome during inducible gametocytogenesis [htseq-union - secondstrand - fpkm - unique]', 'channel1_percentiles', '', '', $induced]]);
+    ([['P. berghei transcriptome during inducible gametocytogenesis [htseq-union - secondstrand - fpkm - unique]', 'channel1_percentiles']]);
 
   my $percentile2 = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot::Percentile->new(@_);
   $percentile2->setPartName('percentile_antisense');
   $percentile2->setProfileSets($percentileSets2);
   $percentile2->setColors($colors);
   $percentile2->setHasExtraLegend(1);
-  $percentile2->setLegendLabels(['Conrol', 'Induced']);
   $percentile2->setXaxisLabel("Hours");
   $percentile2->setYaxisLabel("Percentile");
   $percentile2->setPlotTitle("pct_antisense - $id");
+  $percentile2->addAdjustProfile($rAdjustString);
 
   $self->setGraphObjects($line, $line2, $percentile, $percentile2);
   return $self;
@@ -1032,7 +1045,7 @@ sub isExcludedProfileSet {
   my ($self, $psName) = @_;
 
   foreach(@{$self->excludedProfileSetsArray()}) {
-    print STDERR Dumper($_);
+#    print STDERR Dumper($_);
     return 1 if($_ eq $psName);
   }
   if ($psName =~ /nonunique/){

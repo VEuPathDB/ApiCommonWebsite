@@ -165,10 +165,10 @@ sub init {
   my $profileBase = 'Profiles of transcriptional variation in Plasmodium falciparum';
 
   my @colorSet = ('#FF0000','#FF6600','#FFFF00','#009900','#0000CC','#660033',);
-  my $_3d7strains = ['3D7A','10G','1_2B','3D7B','W41'];
-  my $_7g8strains = ['KG7','7G8','LD10', 'WE5', 'ZF8'];
-  my $hb3strains = ['HB3B','AB10','HB3A','AB6','BB8','BC4'];
-  my $d10strains = ['E3','F1','G2','D10','G4'];
+  my $_3d7strains = ['3D7B','1_2B','3D7A','10G','W41'];
+  my $_7g8strains = ['ZF8','WE5','KG7','7G8','LD10'];
+  my $hb3strains = ['AB6','AB10','HB3A','HB3B','BC4','BB8'];
+  my $d10strains = ['G4','E3','G2','D10','F1'];
   my $parent_strains = ['3D7','7G8','HB3A','D10'];
   my @parental_strains = @$parent_strains[1..3];
 
@@ -286,8 +286,9 @@ use Data::Dumper;
 
 use EbrcWebsiteCommon::View::GraphPackage::GGPiePlot;
 
-# @Override
+sub useLegacy { return 1; }
 
+# @Override
 sub init {
   my $self = shift;
 
@@ -312,7 +313,7 @@ sub init {
 
   my $pieProfileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@pieProfileSetNames);
 
-  my $hb3Pie = EbrcWebsiteCommon::View::GraphPackage::GGPiePlot->new(@_);
+  my $hb3Pie = EbrcWebsiteCommon::View::GraphPackage::LegacyGGPiePlot->new(@_);
   $hb3Pie->setProfileSets($pieProfileSets);
   $hb3Pie->setPartName("expr_val_pie_HB3");
   my $pieTitle = $hb3Pie->getPlotTitle();
@@ -378,7 +379,7 @@ sub makeCombinedGraph {
 
   my @colors = ('blue', 'red', 'orange', 'cyan', 'purple' );
 
-  my $derisi = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot::LogRatio->new(@_);
+  my $derisi = EbrcWebsiteCommon::View::GraphPackage::LegacyGGLinePlot::LogRatio->new(@_);
   $derisi->setProfileSets($derisiProfileSets);
   $derisi->setColors([@colors[0..2]]);
   $derisi->setPointsPch([15,15,15]);
@@ -405,7 +406,7 @@ sub defineGraphs {
 
   my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileSetNames);
 
-  my $line = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot::LogRatio->new(@_);
+  my $line = EbrcWebsiteCommon::View::GraphPackage::LegacyGGLinePlot::LogRatio->new(@_);
   $line->setProfileSets($profileSets);
   $line->setColors([$color, 'gray']);
   $line->setPointsPch(\@pch);
@@ -415,7 +416,7 @@ sub defineGraphs {
   $line->setXaxisLabel('');
 
    my $percentileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets([[$smoothed, 'channel1_percentiles']]);
-   my $percentile = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot::Percentile->new(@_);
+   my $percentile = EbrcWebsiteCommon::View::GraphPackage::LegacyGGLinePlot::Percentile->new(@_);
    $percentile->setProfileSets($percentileSets);
    $percentile->setPointsPch(['NA']);
    $percentile->setIsFilled(1);
@@ -440,7 +441,7 @@ sub defineGraphs {
  #";
 
    my @colors = ('#E9967A', '#4169E1', '#FF69B4');
-   my $lifeStages = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot::Filled->new(@_);
+   my $lifeStages = EbrcWebsiteCommon::View::GraphPackage::LegacyGGLinePlot::Filled->new(@_);
    $lifeStages->setProfileSets($fractionSets);
    $lifeStages->setPlotTitle("$name - Life Stage Population Percentages");
    $lifeStages->setYaxisLabel("%");
@@ -458,6 +459,8 @@ sub defineGraphs {
 #--------------------------------------------------------------------------------
 
 package ApiCommonWebsite::View::GraphPackage::Templates::ExpressionTwoChannel::DS_b7cf547d33;
+
+sub useLegacy { return 1; }
 
 sub init {
   my $self = shift;

@@ -19,6 +19,8 @@ use EbrcWebsiteCommon::View::GraphPackage::GGPiePlot;
 
 use Scalar::Util qw /blessed/;
 use Data::Dumper;
+use LWP::Simple;
+use JSON;
 
 # Subclasses can adjust the RCode but we won't let the templates do this
 sub getPercentileRAdjust {}
@@ -162,25 +164,38 @@ sub getAllProfileSetNames {
   my ($self) = @_;
 
   my $datasetId = $self->getDatasetId();
-
   my $id = $self->getId();
-
-  my $dbh = $self->getQueryHandle();
-
   my $restrictProfileSetsBySourceId = $self->restrictProfileSetsBySourceId();
-  my $sql = EbrcWebsiteCommon::View::GraphPackage::Util::getProfileSetsSql($restrictProfileSetsBySourceId, $self->getId());
-
-  my $sh = $dbh->prepare($sql);
-  $sh->execute($datasetId);
 
   my @rv = ();
 
-  while(my ($profileName, $profileType) = $sh->fetchrow_array()) {
-    next if($self->isExcludedProfileSet($profileName));
-    my $p = {profileName=>$profileName, profileType=>$profileType};
-    push @rv, $p;
+  if ($self->useLegacy()) {
+    my $dbh = $self->getQueryHandle();
+    my $sql = EbrcWebsiteCommon::View::GraphPackage::Util::getProfileSetsSql($restrictProfileSetsBySourceId, $self->getId());
+    my $sh = $dbh->prepare($sql);
+    $sh->execute($datasetId);
+  
+    while(my ($profileName, $profileType) = $sh->fetchrow_array()) {
+      next if($self->isExcludedProfileSet($profileName));
+      my $p = {profileName=>$profileName, profileType=>$profileType};
+      push @rv, $p;
+    }
+    $sh->finish();
+  } else {
+    my $url = $self->getBaseUrl() . '/a/service/profileSet/ProfileSetNames/' . $datasetId;
+    $url = $restrictProfileSetsBySourceId ? $url . '?sourceId=' . $id : $url;
+    my $content = get($url);
+    my $json = from_json($content);
+    print STDERR Dumper("json: " . $json);
+    foreach my $profile (@$json) {
+      my $profileName = $profile->{'PROFILE_SET_NAME'};
+      my $profileType = $profile->{'PROFILE_TYPE'};
+      next if($self->isExcludedProfileSet($profileName));
+      my $p = {profileName=>$profileName, profileType=>$profileType};
+      push @rv, $p;
+    }
   }
-  $sh->finish();
+
   return \@rv;
 }
 
@@ -315,7 +330,7 @@ sub makeAndSetPlots {
       $profile->setColors($pctColors);
     } 
     elsif ($key=~/Both_strands/) {
-	my @colorArray = reverse(@{$colors});
+      my @colorArray = reverse(@{$colors});
 	if (scalar @colorArray == 1) {
 	    push @colorArray, "gray";
 	}
@@ -399,6 +414,20 @@ sub forceXLabelsHorizontal {
 
 
 ## VectorBase ##
+package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_787e6c5a6f;
+sub finalProfileAdjustments {
+  my ($self, $profile) = @_;
+
+  my $rAdjustString = << 'RADJUST';
+  profile.df.full$LEGEND <- as.factor(profile.df.full$NAME)
+  hideLegend = FALSE
+RADJUST
+
+  $profile->addAdjustProfile($rAdjustString);
+}
+1;
+
+
 package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_1b7a4b6253;
 
 sub getKeys{
@@ -460,10 +489,10 @@ sub finalProfileAdjustments {
   my $rAdjustString = << 'RADJUST';
 annotation.df <- profile.df.full[!profile.df.full$PROFILE_TYPE %in% c('values', 'channel1_percentiles'),]
 profile.df.full <- profile.df.full[profile.df.full$PROFILE_TYPE %in% c('values', 'channel1_percentiles'),]
-profile.df.full$GROUP <- unlist(lapply(strsplit(profile.df.full$ELEMENT_NAMES, " "), function(x){paste(x[1],x[2])}))
+profile.df.full$GROUP <- unlist(lapply(strsplit(as.character(profile.df.full$ELEMENT_NAMES), " "), function(x){paste(x[1],x[2])}))
 profile.df.full$PROFILE_FILE = profile.df.full$GROUP
 profile.df.full$LEGEND = profile.df.full$GROUP
-profile.df.full$ELEMENT_NAMES_NUMERIC <- unlist(lapply(strsplit(profile.df.full$ELEMENT_NAMES, " "), "[", 3))
+profile.df.full$ELEMENT_NAMES_NUMERIC <- unlist(lapply(strsplit(as.character(profile.df.full$ELEMENT_NAMES), " "), "[", 3))
 profile.df.full$ELEMENT_NAMES_NUMERIC <- gsub("ZT", "", profile.df.full$ELEMENT_NAMES_NUMERIC)
 profile.df.full$ELEMENT_NAMES_NUMERIC <- gsub("CT", "", profile.df.full$ELEMENT_NAMES_NUMERIC)
 profile.df.full$ELEMENT_NAMES_NUMERIC <- as.numeric(profile.df.full$ELEMENT_NAMES_NUMERIC)
@@ -481,7 +510,7 @@ if (nrow(annotation.df) > 0) {
 RADJUST
 
   my $rPostscript = << 'RPOST';
-  if ("LINETEXT" %in% colnames(profile.df.full)) {  
+  if ("LINETEXT" %in% colnames(profile.df.full) && useTooltips) {  
     remove_geom <- function(ggplot2_object, geom_type) {
       layers <- lapply(ggplot2_object$layers, 
         function(x) {
@@ -733,20 +762,10 @@ sub finalProfileAdjustments {
 
 }
 
-
 1;
 
 
 package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_4582562a4b;
-
-#this from legacy
-#sub finalProfileAdjustments {
-#  my ($self, $profile) = @_;
-#  $profile->addAdjustProfile('profile.df = cbind(profile.df[,1], profile.df[,3:9], profile.df[,2]);');
-
-#  my @winzelerNames = ("S", "ER","LR", "ET", "LT","ES", "LS", "M", "G"); 
-#  $profile->setSampleLabels(\@winzelerNames);
-#}
 
 sub finalProfileAdjustments {                                                                                
   my ($self, $profile) = @_;
@@ -762,16 +781,12 @@ sub init {
   my $self = shift;
   $self->SUPER::init(@_);
 
-  my @tempSorbNames = (2..7, "M");
-
-  my @winzelerNames = ("S", "ER","LR", "ET", "LT","ES", "LS", "M", "G"); 
-
-  my @winzelerProfileArray = (['winzeler_cc_sorbExp','values', '', '', \@tempSorbNames],
-                              ['winzeler_cc_tempExp', 'values', '', '', \@tempSorbNames],
-                              ['winzeler_cc_sexExp', 'values', '','', [1, 'G']]
+  my @winzelerProfileArray = (['winzeler_cc_sorbExp','values'],
+                              ['winzeler_cc_tempExp', 'values'],
+                              ['winzeler_cc_sexExp', 'values']
                              );
 
-  my @colors = ('cyan', 'purple', 'brown' );
+  my @colors = ('brown', 'cyan', 'purple' );
 
   my $winzelerProfileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@winzelerProfileArray);
 
@@ -780,14 +795,11 @@ sub init {
   $winzeler->setColors(\@colors);
   $winzeler->setPartName('line');
   $winzeler->setPointsPch([15,15,15]);
-#this from legacy
- # $winzeler->setAdjustProfile('points.df = points.df - mean(points.df[points.df > 0], na.rm=T);lines.df = lines.df - mean(lines.df[lines.df > 0], na.rm=T)');
   $winzeler->setArePointsLast(1);
-  $winzeler->setSampleLabels(\@winzelerNames);
   $winzeler->setAdjustProfile('
-     profile.df.full$ELEMENT_NAMES = c("Early Ring","Late Ring","Early Trophozoite","Late Trophozoite","Early Schizogony","Late Schizogony","Merozoite","Early Ring","Late Ring","Early Trophozoite","Late Trophozoite","Early Schizogony","Late Schizogony","Merozoite","Sporozoite","Gametocyte");
-     profile.df.full$ELEMENT_NAMES = factor(profile.df.full$ELEMENT_NAMES, levels = c("Sporozoite","Early Ring","Late Ring","Early Trophozoite","Late Trophozoite","Early Schizogony","Late Schizogony","Merozoite","Gametocyte"));
-     profile.df.full$GROUP = c("C","C","C","C","C","C","D","E","E","E","E","E","E","F","A","B"); ');
+     profile.df.full$ELEMENT_NAMES = factor(c("Early Ring","Late Ring","Early Trophozoite","Late Trophozoite","Early Schizogony","Late Schizogony","Merozoite","Early Ring","Late Ring","Early Trophozoite","Late Trophozoite","Early Schizogony","Late Schizogony","Merozoite","Sporozoite","Gametocyte"), levels = c("Sporozoite","Early Ring","Late Ring","Early Trophozoite","Late Trophozoite","Early Schizogony","Late Schizogony","Merozoite","Gametocyte"))
+     profile.df.full$GROUP = factor(c("C","C","C","C","C","C","D","E","E","E","E","E","E","F","A","B"), levels=c("A", "B", "C", "D", "E", "F")) ');
+     
   $winzeler->setXaxisLabel('');
 
   my $graphObjects = $self->getGraphObjects();
@@ -901,13 +913,9 @@ sub init {
   my $legend = ['Wild Type', 'sir2A', 'sir2B'];
 
   my @profileArray = (['Profiles of E-TABM-438 from Cowman', 'values'],
-                      ['Profiles of E-TABM-438 from Cowman', 'values'],
-                      ['Profiles of E-TABM-438 from Cowman', 'values'],
                      );
 
   my @percentileArray = (['Profiles of E-TABM-438 from Cowman', 'channel1_percentiles'],
-                         ['Profiles of E-TABM-438 from Cowman', 'channel1_percentiles'],
-                         ['Profiles of E-TABM-438 from Cowman', 'channel1_percentiles'],
                         );
 
   my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileArray);
@@ -931,6 +939,13 @@ sub init {
 profile.df.full$NAME <- gsub("wild type - ", "", profile.df.full$NAME)
 profile.df.full$NAME <- gsub("sir2a KO - ", "", profile.df.full$NAME)
 profile.df.full$NAME <- gsub("sir2b KO - ", "", profile.df.full$NAME)
+profile.df.full$NAME <- factor(profile.df.full$NAME, levels=unique(profile.df.full$NAME))
+profile.df.full$LEGEND <- gsub(" - trophozoite", "", profile.df.full$LEGEND)
+profile.df.full$LEGEND <- gsub(" - schizont", "", profile.df.full$LEGEND)
+profile.df.full$LEGEND <- gsub(" - ring", "", profile.df.full$LEGEND)
+profile.df.full$LEGEND <- gsub(" KO", "", profile.df.full$LEGEND)
+profile.df.full$LEGEND <- factor(profile.df.full$LEGEND, levels=unique(profile.df.full$LEGEND))
+hideLegend = FALSE
 
 RADJUST
 
@@ -1026,9 +1041,6 @@ sub finalProfileAdjustments {
 1;
 
 package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_2daab8c933;
-# LAST RESORT IS TO OVERRIDE THE INIT METHOD
-
-
 
 sub init {
   my $self = shift;
@@ -1037,20 +1049,20 @@ sub init {
   my $colors = ['#B22222','#6A5ACD','#87CEEB' ];
   my $legend = ['GT1', 'ME49', 'CTGara'];
 
-  my $gt1Samples = ['Tachyzoite','Compound 1','pH=8.2','','','','','',''];
-  my $me49Samples = ['','','','Tachyzoite','Compound 1','pH=8.2','','',''];
-  my $ctgSamples = ['','','', '','','', 'Tachyzoite','Compound 1','pH=8.2'];
+  my $rAdjustString = << 'RADJUST';
+  profile.df.full$LEGEND <- unlist(lapply(strsplit(as.character(profile.df.full$NAME), " "), "[", 1))
+  profile.df.full$LEGEND <- as.factor(profile.df.full$LEGEND)
+  profile.df.full$NAME <- gsub("GT1 ", "", profile.df.full$NAME)
+  profile.df.full$NAME <- gsub("ME49 ", "", profile.df.full$NAME)
+  profile.df.full$NAME <- gsub("CTGara ", "", profile.df.full$NAME)
+  hideLegend = FALSE
+RADJUST
+
   my $profileName ="three Tgondii strains under both normal-tachyzoite and induced-bradyzoite conditions";
 
-  my @profileArray = (["$profileName", "values", "$profileName", "standard_error", $gt1Samples ],
-                      ["$profileName", "values", "$profileName", "standard_error", $me49Samples ],
-                      ["$profileName", "values", "$profileName", "standard_error", $ctgSamples ],
-                     );
+  my @profileArray = (["$profileName", "values", "$profileName", "standard_error"]);
 
-  my @percentileArray = (["$profileName", "channel1_percentiles", "", "", $gt1Samples],
-                         ["$profileName", "channel1_percentiles", "", "", $me49Samples],
-                         ["$profileName", "channel1_percentiles", "", "", $ctgSamples],
-                        );
+  my @percentileArray = (["$profileName", "channel1_percentiles"]);
 
   my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileArray);
   my $percentileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@percentileArray);
@@ -1061,6 +1073,7 @@ sub init {
   $rma->setForceHorizontalXAxis(1);
   $rma->setHasExtraLegend(1); 
   $rma->setLegendLabels($legend);
+  $rma->addAdjustProfile($rAdjustString);
 
   my $percentile = EbrcWebsiteCommon::View::GraphPackage::GGBarPlot::Percentile->new(@_);
   $percentile->setProfileSets($percentileSets);
@@ -1068,7 +1081,8 @@ sub init {
   $percentile->setForceHorizontalXAxis(1);
   $percentile->setHasExtraLegend(1);
   $percentile->setLegendLabels($legend);
-
+  $percentile->addAdjustProfile($rAdjustString);
+ 
   $self->setGraphObjects($rma, $percentile);
 
   return $self;
@@ -1084,6 +1098,7 @@ sub finalProfileAdjustments {
   #my $legend = ['oocyst','oocyst','oocyst', 'tachyzoite','bradyzoite','bradyzoite','bradyzoite'];
   my $rAdjustString = << 'RADJUST';
   profile.df.full$LEGEND <- c("oocyst", "oocyst", "oocyst", "tachyzoite", "bradyzoite", "bradyzoite", "bradyzoite");
+  profile.df.full$LEGEND <- as.factor(profile.df.full$LEGEND)
   hideLegend = FALSE;
 RADJUST
 
@@ -1201,7 +1216,7 @@ sub init {
 package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_35bb13db5b;
 sub finalProfileAdjustments {
   my ($self, $profile) = @_;
-  my $legend = ['WildType_V_Mutant','Time_Series', '11hr_Egress'];
+  my $legend = ['11hr_Egress','Time_Series','WildType_V_Mutant'];
 
   $profile->setHasExtraLegend(1);
   $profile->setLegendLabels($legend);

@@ -8,9 +8,12 @@ import static org.gusdb.fgputil.functional.Functions.executesWithoutException;
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.*;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -23,12 +26,15 @@ import org.gusdb.fgputil.Timer;
 import org.gusdb.fgputil.db.ResultSetColumnInfo;
 import org.gusdb.fgputil.db.runner.SQLRunner;
 import org.gusdb.fgputil.db.stream.ResultSetInputStream.ResultSetRowConverter;
-import org.gusdb.fgputil.db.stream.ResultSetToNdJsonConverter;
+import org.gusdb.fgputil.db.stream.ResultSetToJsonConverter;
 import org.gusdb.fgputil.functional.Functions;
 import org.gusdb.fgputil.runtime.GusHome;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.service.service.AbstractWdkService;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 @Path("/profileSet")
@@ -65,7 +71,7 @@ public class ProfileSetService extends AbstractWdkService {
         Functions.mapException(
           () -> getResultSetStream(sql, queryName,
               getWdkModel().getAppDb().getDataSource(),
-              FETCH_SIZE, new ResultSetToNdJsonConverter()),
+              FETCH_SIZE, new ResultSetToJsonConverter()),
           e -> new WdkModelException(errorMsgOnFail + " SQL: " + sql, e)
         )
       )
@@ -105,7 +111,7 @@ public class ProfileSetService extends AbstractWdkService {
       try (WdkModel wdkModel = WdkModel.construct(args[1], GusHome.getGusHome());
            BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(args[7]), 10240)) {
         Timer t = new Timer();
-        ResultSetRowConverter rowConverter = new ResultSetToNdJsonConverter();
+        ResultSetRowConverter rowConverter = new ResultSetToJsonConverter();
         new SQLRunner(wdkModel.getAppDb().getDataSource(), sql)
           .executeQuery(rs -> {
             try {
@@ -128,6 +134,55 @@ public class ProfileSetService extends AbstractWdkService {
         System.out.println("Wrote file in " + t.getElapsedString());
       }
     }
+  }
+
+  //TODO incorporate this into getSql 
+  @POST
+  @Path("PlotData/{sourceId}")
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  public Response getPlotData(
+	@PathParam("sourceId") String sourceId, String body)
+          throws WdkModelException {
+    JSONObject jsonObj = new JSONObject(body);
+    JSONArray profileSets = jsonObj.getJSONArray("profileSets");
+
+    String plotDataSql = new String();
+    for (int i = 0; i < profileSets.length(); i++) {
+      JSONObject profileSet = profileSets.getJSONObject(i);
+      String profileSetName = profileSet.getString("profileSetName");
+      String profileType = profileSet.getString("profileType");
+      if (plotDataSql.isEmpty()) {
+        plotDataSql = getProfileSetSql(profileSetName, profileType, sourceId, i);
+      } else {
+        plotDataSql = plotDataSql + " UNION " + getProfileSetSql(profileSetName, profileType, sourceId, i);
+      }
+    }
+    plotDataSql = plotDataSql + " order by profile_order, element_order";
+
+    return getStreamingResponse(plotDataSql,
+        "plotData", "Failed running SQL to fetch plot data.");
+  }
+
+  private static String getProfileSetSql(String profileSetName, String profileType, String sourceId, int order) {
+
+    return " select " + order + " as profile_order, name, value, samplenames.profile_set_name, samplenames.profile_type, samplenames.element_order " +
+    " from (select rownum as element_order, ps.*  " +
+    "                 FROM (SELECT protocol_app_node_name AS name, study_name as profile_set_name, profile_type " +
+    "                     FROM  apidbtuning.ProfileSamples " +
+    "                     WHERE  study_name = '" + profileSetName + "'" +
+    "                     AND profile_type = '" + profileType + "'" +
+    "                     ORDER  BY node_order_num) ps) samplenames, " +
+    "     (select distinct rownum as element_order " +
+    "                     , trim(regexp_substr(t.profile_as_string, '[^' || CHR(9) || ']+', 1, levels.column_value))  as value, profile_set_name, profile_type " +
+    "                      from (SELECT profile_AS_STRING, profile_set_name, profile_type " +
+    "                             FROM apidbtuning.Profile  p " +
+    "                             WHERE p.source_id  = '" + sourceId + "' " +
+    "                             AND p.profile_set_name = '" + profileSetName + "'" +
+    "                             AND p.profile_type = '" + profileType + "') t " +
+    "                     , table(cast(multiset(select level from dual connect by  level <= length (regexp_replace(t.profile_as_string, '[^' || CHR(9) || ']+'))  + 1) as sys.OdciNumberList)) levels) samplevalues " +
+    " where samplenames.element_order = samplevalues.element_order " +
+    " and value is not null";
   }
 
   @GET
