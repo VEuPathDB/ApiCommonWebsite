@@ -12,6 +12,7 @@ use EbrcWebsiteCommon::View::GraphPackage::ProfileSet;
 use EbrcWebsiteCommon::Model::CannedQuery::PhenotypeRankedNthValues;
 use EbrcWebsiteCommon::Model::CannedQuery::PhenotypeRankedNthNames;
 
+sub useLegacy { return 1; }
 
 sub getPhenotypeSpecs { }
 

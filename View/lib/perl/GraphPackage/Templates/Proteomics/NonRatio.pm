@@ -105,6 +105,8 @@ use EbrcWebsiteCommon::Model::CannedQuery::PhenotypeRankedNthValues;
 use EbrcWebsiteCommon::Model::CannedQuery::PhenotypeRankedNthSourceIdNames;
 use Data::Dumper;
 
+sub useLegacy { return 1; }
+
 # @Override
 sub init {
   my $self = shift;

@@ -7,7 +7,9 @@ use Data::Dumper;
 
 @ISA = qw( EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet);
 use EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet;
-use EbrcWebsiteCommon::View::GraphPackage::GGScatterPlot;
+use EbrcWebsiteCommon::View::GraphPackage::LegacyGGScatterPlot;
+
+sub useLegacy { return 1; }
 
 sub init {
   my $self = shift;
@@ -32,7 +34,7 @@ sub init {
   my @profileSetArray = (['Crompton Ab Microarray Profiles','values', '', '', '', '', '', $facet, '', '', $contXAxis]);
   my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileSetArray);
 
-  my $scatter = EbrcWebsiteCommon::View::GraphPackage::GGScatterPlot::LogRatio->new(@_);
+  my $scatter = EbrcWebsiteCommon::View::GraphPackage::LegacyGGScatterPlot::LogRatio->new(@_);
   $scatter->setProfileSets($profileSets);
   $scatter->setColors($colors);
 
