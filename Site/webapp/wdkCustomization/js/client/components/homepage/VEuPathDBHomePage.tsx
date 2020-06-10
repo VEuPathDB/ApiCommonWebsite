@@ -656,12 +656,6 @@ const useHeaderMenuItems = (
               display: 'Related sites',
               type: 'reactRoute',
               url: makeStaticPageRoute(`/${displayName}/externalLinks.html`)
-            },
-            { 
-              key: 'workshops-events',
-              display: 'Workshops and training',
-              type: 'reactRoute',
-              url: makeStaticPageRoute('/webinars_workshops.html')
             }
           ]
         },
@@ -790,20 +784,12 @@ const useHeaderMenuItems = (
       display: 'Help',
       type: 'subMenu',
       items: [
-        {
-          key: 'youtube-tutorials',
-          display: 'YouTube tutorials',
-          type: 'externalLink',
-          url: 'http://www.youtube.com/user/EuPathDB/playlists',
-          target: '_blank'
-        },
-        { 
-          key: 'eupathdb-workshop',
-          display: 'VEuPathDB workshops',
+         {
+          key: 'landing',
+          display: 'Learn how to use VEuPathDB',
           type: 'reactRoute',
-          url: makeStaticPageRoute('/webinars_workshops.html')
-        },
-        {
+          url: makeStaticPageRoute('/landing.html')
+        },{
           key: 'our-glossary',
           display: `VEuPathDB glossary`,
           type: 'reactRoute',
