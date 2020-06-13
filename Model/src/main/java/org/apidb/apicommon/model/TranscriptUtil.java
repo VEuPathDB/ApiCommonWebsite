@@ -16,6 +16,7 @@ import org.gusdb.wdk.model.question.Question;
 import org.gusdb.wdk.model.record.RecordClass;
 import org.gusdb.wdk.model.user.Step;
 import org.gusdb.wdk.model.user.StepContainer.ListStepContainer;
+import org.gusdb.wdk.model.user.Strategy;
 import org.gusdb.wdk.model.user.User;
 import org.gusdb.wdk.model.user.UserCache;
 
@@ -57,7 +58,7 @@ public class TranscriptUtil {
    * @return answer spec that will return genes
    * @throws WdkModelException if error occurs or caller sends bad args
    */
-  public static RunnableObj<AnswerSpec> transformToRunnableGeneAnswerSpec(
+  private static RunnableObj<AnswerSpec> transformToRunnableGeneAnswerSpec(
       WdkModel wdkModel, User user, RunnableObj<Step> transcriptStep) throws WdkModelException {
 
     if (!isTranscriptQuestion(transcriptStep.get().getAnswerSpec().getQuestion())) {
@@ -89,12 +90,17 @@ public class TranscriptUtil {
 
     WdkModel model = transcriptAnswer.getWdkModel();
     User user = transcriptAnswer.getUser();
+    AnswerSpec transcriptSpec = transcriptAnswer.getAnswerSpec();
+
+    Optional<Strategy> strategy = transcriptSpec.getStepContainer() instanceof Strategy ?
+        Optional.of((Strategy)transcriptSpec.getStepContainer()) : Optional.empty();
 
     RunnableObj<Step> step = Step.builder(model, user.getUserId(), model.getStepFactory().getNewStepId())
         .setAnswerSpec(AnswerSpec.builder(transcriptAnswer.getAnswerSpec()))
-        .buildRunnable(new UserCache(user), Optional.empty());
+        .setStrategyId(strategy.map(strat -> strat.getStrategyId()))
+        .buildRunnable(new UserCache(user), strategy);
 
-    AnswerValue geneAnswer = AnswerValueFactory.makeAnswer(transcriptAnswer.getUser(),
+    AnswerValue geneAnswer = AnswerValueFactory.makeAnswer(user,
         transformToRunnableGeneAnswerSpec(model, user, step));
 
     // make sure gene answer uses same page size as transcript answer
