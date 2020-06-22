@@ -11,7 +11,7 @@
 
 <script> 
     $(function(){
-     $("#includedContent").load("${wdkModel.model.properties.COMMUNITY_SITE}/webinars.html"); 
+     $("#includedContent").load("https://static-content.veupathdb.org/webinars.html"); 
     });
 </script> 
 
