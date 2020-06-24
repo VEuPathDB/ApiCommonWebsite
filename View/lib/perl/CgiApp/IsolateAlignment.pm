@@ -287,7 +287,7 @@ sub createHTML {
       print $cgi->pre("Clustal 2.1 Multiple Sequence Alignments\n");
       next;
     }
-    next if (/^\s+$/ || /\*{1,}+/);
+    next if (/^\s+$/);
     my ($id, $seq) = split /\s+/, $_;
     $id =~ s/\s+//g;
     next if $id eq ""; # not sure why empty ids are not skipped.
