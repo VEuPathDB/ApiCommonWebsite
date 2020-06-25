@@ -24,7 +24,16 @@ sub getProfileRAdjust { return 'profile.df = log2(profile.df);'}
 
 1;
 
+package ApiCommonWebsite::View::GraphPackage::Templates::Proteomics::LogRatio::DS_41f3775146;
 
+sub finalProfileAdjustments {
+  my ($self, $profile) = @_;
+
+  my $xaxisLabel = ['PCF vs BSF'];
+  $profile->setSampleLabels($xaxisLabel);
+}
+
+1;
 
 package ApiCommonWebsite::View::GraphPackage::Templates::Proteomics::LogRatio::DS_aef92040c6;
 
