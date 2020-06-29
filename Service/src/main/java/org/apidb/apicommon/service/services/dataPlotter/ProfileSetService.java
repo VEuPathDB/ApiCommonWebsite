@@ -45,26 +45,6 @@ public class ProfileSetService extends AbstractWdkService {
 
   private static final int FETCH_SIZE = 10000;
 
-  private enum Mode {
-    PrintSql,
-    RunQuery;
-  }
-
-  private enum DataType {
-    ProfileSetNames,
-    Profile,
-    ElementNames,
-    PhenotypeRankedNthNames,
-    PhenotypeRankedNthSourceIdNames,
-    PhenotypeRankedNthValues,
-    RankedNthRatioValues,
-    UserDatasets,
-    SenseAntisenseX,
-    SenseAntisenseY,
-    ProfileByEC,
-    PathwayGenera;
-  }
-
   private Response getStreamingResponse(String sql, String queryName, String errorMsgOnFail) throws WdkModelException {
     return Response.ok(
       getStreamingOutput(
@@ -77,66 +57,22 @@ public class ProfileSetService extends AbstractWdkService {
       )
     ).build();
   }
-
-  public static void main(String[] args) throws WdkModelException, IOException {
-    if (args.length != 8 ||
-        !executesWithoutException(Mode::valueOf, args[0]) ||
-        !executesWithoutException(DataType::valueOf, args[2])) {
-      System.err.println(NL +
-          "USAGE: fgpJava " + ProfileSetService.class.getName() +
-          " <mode> <projectId> <dataType> <param1> <param2> <param3> <param4> <outputFile>" + NL + NL +
-          "Notes:" + NL +
-          "  mode must be one of " + enumValuesAsString(Mode.values()) + NL +
-          "  dataType must be one of " + enumValuesAsString(DataType.values()) + NL +
-          "  valid params for each dataType are " + NL + 
-          "    ProfileSetNames: <datasetPresenterId> <sourceId> null null" + NL +
-          "    ElementNames: <profileSetName> <profileType> <facet> <xAxis>" + NL +
-          "    Profile: <sourceId> <profileSetName> <profileType> null" + NL +
-          "    ProfileByEC: <sourceId> <profileSetName> <profileType> null" + NL +
-          "    PhenotypeRankedNthSourceIdNames: <sourceIdValueQuery> <sourceId> <N> null" + NL +
-          "    PhenotypeRankedNthNames: <sourceIdValueQuery> <sourceId> <N> null" + NL +
-          "    PhenotypeRankedNthValues: <sourceIdValueQuery> <sourceId> <N> null" + NL +
-          "    RankedNthRatioValues: <sourceIdValueQuery> <sourceId> <N> null" + NL +
-          "    SenseAntisenseX: <profileSetId> <sourceId> <floor> null" + NL +
-          "    SenseAntisenseY: <profileSetId> <sourceId> <floor> null" + NL +
-          "    UserDatasets: <profileSetId> <sourceId> null null" + NL +
-          "    PathwayGenera: <generaList> <sourceId> null null" + NL + NL);
-      System.exit(1);
-    }
-
-    String sql = getSql(DataType.valueOf(args[2]), args[3], args[4], args[5], args[6]);
-    System.out.println("Using SQL: " + sql);
-
-    if (Mode.valueOf(args[0]).equals(Mode.RunQuery)) {
-      try (WdkModel wdkModel = WdkModel.construct(args[1], GusHome.getGusHome());
-           BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(args[7]), 10240)) {
-        Timer t = new Timer();
-        ResultSetRowConverter rowConverter = new ResultSetToJsonConverter();
-        new SQLRunner(wdkModel.getAppDb().getDataSource(), sql)
-          .executeQuery(rs -> {
-            try {
-              ResultSetColumnInfo metadata = new ResultSetColumnInfo(rs);
-              out.write(rowConverter.getHeader());
-              if (rs.next()) {
-                out.write(rowConverter.getRow(rs, metadata));
-              }
-              while (rs.next()) {
-                out.write(rowConverter.getRowDelimiter());
-                out.write(rowConverter.getRow(rs, metadata));
-              }
-              out.write(rowConverter.getFooter());
-              return null;
-            }
-            catch (IOException e) {
-              throw new RuntimeException(e);
-            }
-          });
-        System.out.println("Wrote file in " + t.getElapsedString());
-      }
-    }
+  
+  @GET
+  @Path("ProfileSetNames/{datasetPresenterId}")
+  @Produces(MediaType.APPLICATION_JSON)
+  public Response getProfileSetNames(
+      @PathParam("datasetPresenterId") String datasetPresenterId,
+      @DefaultValue("none") @QueryParam("sourceId") String sourceId)
+          throws WdkModelException {
+    return getStreamingResponse(getSql("ProfileSetNames", datasetPresenterId, sourceId, null, null, null, 0),
+        "getProfileSetNames", "Failed running SQL to fetch profile set names.");
   }
 
-  //TODO incorporate this into getSql 
+  //TODO decide how many of these we need, what they'll be called
+  //possible we'll want a separate one to handle cases which provide their own sql?
+  //how to handle the transcription summary, pathway genera?
+  //currently this should handle profile and profilebyec 
   @POST
   @Path("PlotData/{sourceId}")
   @Consumes(MediaType.APPLICATION_JSON)
@@ -146,6 +82,7 @@ public class ProfileSetService extends AbstractWdkService {
           throws WdkModelException {
     JSONObject jsonObj = new JSONObject(body);
     JSONArray profileSets = jsonObj.getJSONArray("profileSets");
+    String sqlName = jsonObj.getString("sqlName");
 
     String plotDataSql = new String();
     for (int i = 0; i < profileSets.length(); i++) {
@@ -153,9 +90,9 @@ public class ProfileSetService extends AbstractWdkService {
       String profileSetName = profileSet.getString("profileSetName");
       String profileType = profileSet.getString("profileType");
       if (plotDataSql.isEmpty()) {
-        plotDataSql = getProfileSetSql(profileSetName, profileType, sourceId, i);
+        plotDataSql = getSql(sqlName, profileSetName, profileType, sourceId, null, null, i);
       } else {
-        plotDataSql = plotDataSql + " UNION " + getProfileSetSql(profileSetName, profileType, sourceId, i);
+        plotDataSql = plotDataSql + " UNION " + getSql(sqlName, profileSetName, profileType, sourceId, null, null, i);
       }
     }
     plotDataSql = plotDataSql + " order by profile_order, element_order";
@@ -164,6 +101,7 @@ public class ProfileSetService extends AbstractWdkService {
         "plotData", "Failed running SQL to fetch plot data.");
   }
 
+  //TODO refactor all sql into xml files like we do for jbrowse
   private static String getProfileSetSql(String profileSetName, String profileType, String sourceId, int order) {
 
     return " select " + order + " as profile_order, name, value, samplenames.profile_set_name, samplenames.profile_type, samplenames.element_order " +
@@ -185,148 +123,63 @@ public class ProfileSetService extends AbstractWdkService {
     " and value is not null";
   }
 
-  @GET
-  @Path("ProfileSetNames/{datasetPresenterId}")
-  @Produces(MediaType.APPLICATION_JSON)
-  public Response getProfileSetNames(
-      @PathParam("datasetPresenterId") String datasetPresenterId,
-      @DefaultValue("none") @QueryParam("sourceId") String sourceId)
-          throws WdkModelException {
-    return getStreamingResponse(getSql(DataType.ProfileSetNames, datasetPresenterId, sourceId, null, null),
-        "getProfileSetNames", "Failed running SQL to fetch profile set names.");
+  private static String getProfileSetByECSql(String profileSetName, String profileType, String sourceId, int order) {
+
+    return " select " + order + " as profile_order, name, value, samplenames.profile_set_name, samplenames.profile_type, samplenames.element_order " +
+    " from (select  rownum as element_order, ps.* FROM (" +
+          " SELECT protocol_app_node_name AS name, study_name as profile_set_name, profile_type" +
+          " FROM  apidbtuning.ProfileSamples" +
+          " WHERE  study_name = '" + profileSetName + "'" +
+          " AND profile_type = '" + profileType + "'" +
+          " ORDER  BY node_order_num) ps) samplenames, " +
+    "     (select distinct rownum as element_order " +
+    "                     , trim(regexp_substr(t.profile_as_string, '[^' || CHR(9) || ']+', 1, levels.column_value))  as value, profile_set_name, profile_type " +
+    "                      from(select p.source_id, ec.ec_number, p.profile_as_string, p.profile_set_name, p.profile_type" +
+                " from apidbtuning.profile p," +
+                " (SELECT DISTINCT ta.gene_source_id, ec.ec_number" +
+                "  FROM  dots.aaSequenceEnzymeClass asec" +
+                "      , sres.enzymeClass ec" +
+                "      , ApidbTuning.TranscriptAttributes ta" +
+                "  WHERE ta.aa_sequence_id = asec.aa_sequence_id" +
+                "  AND asec.enzyme_class_id = ec.enzyme_class_id" +                    "  AND ec.ec_number LIKE REPLACE(REPLACE(REPLACE(REPLACE(lower('" + sourceId + "'),' ',''),'-', '%'),'*','%'),'any','%')" +
+                " ) ec" +
+                " WHERE p.profile_set_name = '" + profileSetName + "'" +
+                " AND p.profile_type = '" + profileType + "'" +
+                " AND p.source_id = ec.gene_source_id) t " +
+    "                     , table(cast(multiset(select level from dual connect by  level <= length (regexp_replace(t.profile_as_string, '[^' || CHR(9) || ']+'))  + 1) as sys.OdciNumberList)) levels) samplevalues " +
+    " where samplenames.element_order = samplevalues.element_order " +
+    " and value is not null";
   }
 
-  @GET
-  @Path("ElementNames/{profileSetName}/{profileType}")
-  @Produces(MediaType.APPLICATION_JSON)
-  public Response getElementNames(
-      @PathParam("profileSetName") String profileSetName,
-      @PathParam("profileType") String profileType,
-      @DefaultValue("none") @QueryParam("facet") String facet,
-      @DefaultValue("none") @QueryParam("xAxis") String xAxis)
-          throws WdkModelException {
-    return getStreamingResponse(getSql(DataType.ElementNames, profileSetName, profileType, facet, xAxis),
-        "getElementNames", "Failed running SQL to fetch element names.");
-  }
+  //TODO figure how to call this through plotData service. add conditions to look for facet and xaxis
+  private static String getProfileSetWithMetadataSql(String profileSetName, String profileType, String facet, String xAxis, String sourceId, int order) {
 
-  @GET
-  @Path("Profile/{sourceId}/{profileSetName}/{profileType}")
-  @Produces(MediaType.APPLICATION_JSON)
-  public Response getProfile(
-      @PathParam("sourceId") String sourceId,
-      @PathParam("profileSetName") String profileSetName,
-      @PathParam("profileType") String profileType)
-          throws WdkModelException {
-    return getStreamingResponse(getSql(DataType.Profile, sourceId, profileSetName, profileType, null),
-        "getProfile", "Failed running SQL to fetch profiles.");
-  }
-
-  @GET  
-  @Path("ProfileByEC/{sourceId}/{profileSetName}/{profileType}")
-  @Produces(MediaType.APPLICATION_JSON)
-  public Response getProfileByEC(
-      @PathParam("sourceId") String sourceId,
-      @PathParam("profileSetName") String profileSetName,
-      @PathParam("profileType") String profileType)
-          throws WdkModelException {
-    return getStreamingResponse(getSql(DataType.ProfileByEC, sourceId, profileSetName, profileType, null),
-        "getProfileByEC", "Failed running SQL to fetch profiles.");
-  }
-
-  //TODO sourceIdValueQuery means passing sql in the service url.. :(
-  @GET
-  @Path("PhenotypeRankedNthNames/{sourceIdValueQuery}/{sourceId}/{N}")
-  @Produces(MediaType.APPLICATION_JSON)
-  public Response getPhenotypeRankedNthNames(
-      @PathParam("sourceIdValueQuery") String sourceIdValueQuery,
-      @PathParam("sourceId") String sourceId,
-      @PathParam("N") String N)
-          throws WdkModelException {
-    return getStreamingResponse(getSql(DataType.PhenotypeRankedNthNames, sourceIdValueQuery, sourceId, N, null),
-        "getPhenotypeRankedNthNames", "Failed running SQL to fetch phenotype ranked names.");
-  }
-
-  @GET
-  @Path("PhenotypeRankedNthSourceIdNames/{sourceIdValueQuery}/{sourceId}/{N}")
-  @Produces(MediaType.APPLICATION_JSON)
-  public Response getPhenotypeRankedNthSourceIdNames(
-      @PathParam("sourceIdValueQuery") String sourceIdValueQuery,
-      @PathParam("sourceId") String sourceId,
-      @PathParam("N") String N)
-          throws WdkModelException {
-    return getStreamingResponse(getSql(DataType.PhenotypeRankedNthSourceIdNames, sourceIdValueQuery, sourceId, N, null),
-        "getPhenotypeRankedNthSourceIdNames", "Failed running SQL to fetch phenotype ranked source id names.");
-  }
-
-  @GET
-  @Path("PhenotypeRankedNthValues/{sourceIdValueQuery}/{sourceId}/{N}")
-  @Produces(MediaType.APPLICATION_JSON)
-  public Response getPhenotypeRankedNthValues(
-      @PathParam("sourceIdValueQuery") String sourceIdValueQuery,
-      @PathParam("sourceId") String sourceId,
-      @PathParam("N") String N)
-          throws WdkModelException {
-    return getStreamingResponse(getSql(DataType.PhenotypeRankedNthValues, sourceIdValueQuery, sourceId, N, null),
-        "getPhenotypeRankedNthValues", "Failed running SQL to fetch phenotype ranked values.");
-  }
-
-  @GET
-  @Path("RankedNthRatioValues/{sourceIdValueQuery}/{sourceId}/{N}")
-  @Produces(MediaType.APPLICATION_JSON)
-  public Response getRankedNthRatioValues(
-      @PathParam("sourceIdValueQuery") String sourceIdValueQuery,
-      @PathParam("sourceId") String sourceId,
-      @PathParam("N") String N)
-          throws WdkModelException {
-    return getStreamingResponse(getSql(DataType.RankedNthRatioValues, sourceIdValueQuery, sourceId, N, null),
-        "getRankedNthRatioValues", "Failed running SQL to fetch ranked values.");
-  }
-
-  @GET
-  @Path("UserDatasets/{profileSetId}")
-  @Produces(MediaType.APPLICATION_JSON)
-  public Response getUserDatasets(
-      @PathParam("profileSetId") String profileSetId,
-      @DefaultValue("none") @QueryParam("sourceId") String sourceId)
-          throws WdkModelException {
-    return getStreamingResponse(getSql(DataType.UserDatasets, profileSetId, sourceId, null, null),
-        "getUserDatasets", "Failed running SQL to fetch user datasets.");
-  }
-
-  //TODO consider changing profileSetId -> profileSetName for consistency
-  @GET
-  @Path("SenseAntisenseX/{profileSetId}/{sourceId}/{floor}")
-  @Produces(MediaType.APPLICATION_JSON)
-  public Response getSenseAntisenseX(
-      @PathParam("profileSetId") String profileSetId,
-      @PathParam("sourceId") String sourceId,
-      @PathParam("floor") String floor)
-          throws WdkModelException {
-    return getStreamingResponse(getSql(DataType.SenseAntisenseX, profileSetId, sourceId, floor, null),
-        "getSenseAntisenseX", "Failed running SQL to fetch sense antisense x axis.");
-  }
-
-  @GET
-  @Path("SenseAntisenseY/{profileSetId}/{sourceId}/{floor}")
-  @Produces(MediaType.APPLICATION_JSON)
-  public Response getSenseAntisenseY(
-      @PathParam("profileSetId") String profileSetId,
-      @PathParam("sourceId") String sourceId,
-      @PathParam("floor") String floor)
-          throws WdkModelException {
-    return getStreamingResponse(getSql(DataType.SenseAntisenseY, profileSetId, sourceId, floor, null),
-        "getSenseAntisenseY", "Failed running SQL to fetch sense antisense y axis.");
-  }
-
-  @GET
-  @Path("PathwayGenera/{generaList}")
-  @Produces(MediaType.APPLICATION_JSON)
-  public Response getPathwayGenera(
-      @PathParam("generaList") String generaList,
-      @DefaultValue("none") @QueryParam("sourceId") String sourceId)
-          throws WdkModelException {
-    return getStreamingResponse(getSql(DataType.PathwayGenera, generaList, sourceId, null, null),
-        "getPathwayGenera", "Failed running SQL to fetch pathway genera.");
+    return " select " + order + " as profile_order, name, value, samplenames.profile_set_name, samplenames.profile_type, samplenames.element_order " +
+    " from (select  rownum as element_order, ps.NAME, ps.FACET" +
+          "       , ps.CONTXAXIS FROM (" +
+          "  SELECT distinct s.protocol_app_node_name AS name" +
+          "       , s.NODE_ORDER_NUM, m1.string_value as facet" +
+          "       , m2.string_value as contXAxis" +
+          "  FROM  apidbtuning.ProfileSamples s" +
+          "      , apidbtuning.metadata m1" +
+          "      , apidbtuning.metadata m2" +
+          "  WHERE  s.study_name = '" + profileSetName + "'" +
+          "  AND s.profile_type = '" + profileType + "'" +
+          "  and m1.PAN_ID(+) = s.PROTOCOL_APP_NODE_ID" +
+          "  and m1.property_source_id(+) = '" + facet + "'" +
+          "  and m2.PAN_ID(+) = s.PROTOCOL_APP_NODE_ID" +
+          "  and m2.property_source_id(+) = '" + xAxis + "'" +
+          "  ORDER  BY s.node_order_num) ps) samplenames, " +
+    "     (select distinct rownum as element_order " +
+    "                     , trim(regexp_substr(t.profile_as_string, '[^' || CHR(9) || ']+', 1, levels.column_value))  as value, profile_set_name, profile_type " +
+    "                      from (SELECT profile_AS_STRING, profile_set_name, profile_type " +
+    "                             FROM apidbtuning.Profile  p " +
+    "                             WHERE p.source_id  = '" + sourceId + "' " +
+    "                             AND p.profile_set_name = '" + profileSetName + "'" +
+    "                             AND p.profile_type = '" + profileType + "') t " +
+    "                     , table(cast(multiset(select level from dual connect by  level <= length (regexp_replace(t.profile_as_string, '[^' || CHR(9) || ']+'))  + 1) as sys.OdciNumberList)) levels) samplevalues " +
+    " where samplenames.element_order = samplevalues.element_order " +
+    " and value is not null";
   }
 
   private static String getProfileSetNamesSql(String datasetPresenterId, String sourceId) {
@@ -359,82 +212,22 @@ public class ProfileSetService extends AbstractWdkService {
         " and p.source_id = '" + sourceId + "'";
 
   }
- 
-  private static String getElementNamesSql(String profileSetName, String profileType, String facet, String xAxis) {
-    return facet.equals("none") || xAxis.equals("none")
-        ? " select  rownum as element_order, ps.* FROM (" +
-          " SELECT protocol_app_node_name AS name" +
-          " FROM  apidbtuning.ProfileSamples" +
-          " WHERE  study_name            = '" + profileSetName + "'" +
-          " AND profile_type = '" + profileType + "'" +
-          " ORDER  BY node_order_num" +
-          ") ps"
-        : " select  rownum as element_order, ps.NAME, ps.FACET" +
-          "       , ps.CONTXAXIS FROM (" +
-          "  SELECT distinct s.protocol_app_node_name AS name" +
-          "       , s.NODE_ORDER_NUM, m1.string_value as facet" +
-          "       , m2.string_value as contXAxis" +
-          "  FROM  apidbtuning.ProfileSamples s" +
-          "      , apidbtuning.metadata m1" +
-          "      , apidbtuning.metadata m2" +
-          "  WHERE  s.study_name = '" + profileSetName + "'" +
-          "  AND s.profile_type = '" + profileType + "'" +
-          "  and m1.PAN_ID(+) = s.PROTOCOL_APP_NODE_ID" +
-          "  and m1.property_source_id(+) = '" + facet + "'" + 
-          "  and m2.PAN_ID(+) = s.PROTOCOL_APP_NODE_ID" +
-          "  and m2.property_source_id(+) = '" + xAxis + "'" +
-          "  ORDER  BY s.node_order_num" +
-          " ) ps";
- 
-  }
 
-  private static String getProfileSql(DataType dataType, String sourceId, String profileSetName, String profileType) {
-    String profile = "";
-    if (dataType == DataType.Profile) {
-      profile = " SELECT profile_AS_STRING" +
-                " FROM apidbtuning.Profile  p" +
-                " WHERE p.source_id  = '" + sourceId + "'" +
-                " AND p.profile_set_name  = '" + profileSetName + "'" +
-                " AND p.profile_type = '" + profileType + "'";
-    } else if (dataType == DataType.ProfileByEC) {
-      profile = " select p.source_id, ec.ec_number, p.profile_as_string" +
-                " from apidbtuning.profile p," +
-                " (SELECT DISTINCT ta.gene_source_id, ec.ec_number" +
-                "  FROM  dots.aaSequenceEnzymeClass asec" +
-                "      , sres.enzymeClass ec" +
-                "      , ApidbTuning.TranscriptAttributes ta" +
-                "  WHERE ta.aa_sequence_id = asec.aa_sequence_id" +
-                "  AND asec.enzyme_class_id = ec.enzyme_class_id" +                    "  AND ec.ec_number LIKE REPLACE(REPLACE(REPLACE(REPLACE(lower('" + sourceId + "'),' ',''),'-', '%'),'*','%'),'any','%')" +  
-                " ) ec" +
-                " WHERE p.profile_set_name = '" + profileSetName + "'" +
-                " AND p.profile_type = '" + profileType + "'" +
-                " AND p.source_id = ec.gene_source_id";
-    } else {
-      throw new IllegalArgumentException("Unsupported data type: " + dataType);
-    } 
-
-    return " with temp as (" + profile + ")" +
-           " select distinct rownum as element_order" +
-           "      , trim(regexp_substr(t.profile_as_string, '[^' || CHR(9) || ']+', 1, levels.column_value))  as value" +
-           " from temp t" +
-           "    , table(cast(multiset(select level from dual connect by  level <= length (regexp_replace(t.profile_as_string, '[^' || CHR(9) || ']+'))  + 1) as sys.OdciNumberList)) levels";
-
-  }
-
-  private static String getRankedValuesSql(DataType dataType, String sourceIdValueQuery, String sourceId, String N) {
+  //TODO further refactor the following sql to provide plot ready data and incorporate into plotData call through getSql properly
+  private static String getRankedValuesSql(String sqlName, String sourceIdValueQuery, String sourceId, String N) {
     String columnsToReturn = "";
     String columnsInDat = "source_id, value";
-    if (dataType == DataType.PhenotypeRankedNthNames) {
+    if (sqlName.equals("PhenotypeRankedNthNames")) {
         columnsToReturn = "rn as name";
-    } else if (dataType == DataType.PhenotypeRankedNthSourceIdNames) {
+    } else if (sqlName.equals("PhenotypeRankedNthSourceIdNames")) {
         columnsToReturn = "source_id as name";
-    } else if (dataType == DataType.PhenotypeRankedNthValues) {
+    } else if (sqlName.equals("PhenotypeRankedNthValues")) {
         columnsToReturn = "value";
-    } else if (dataType == DataType.RankedNthRatioValues) {
+    } else if (sqlName.equals("RankedNthRatioValues")) {
         columnsToReturn = "value, num, denom";
         columnsInDat = "source_id, value, num, denom";
     } else {
-          throw new IllegalArgumentException("Unsupported data type: " + dataType);
+          throw new IllegalArgumentException("Unsupported named query: " + sqlName);
     }
     return " with dat as" +
            " ( " + sourceIdValueQuery + ")," +
@@ -450,31 +243,27 @@ public class ProfileSetService extends AbstractWdkService {
   }
 
   private static String getUserDatasetsSql(String profileSetId, String sourceId) {
-    return sourceId.equals("none")
-        ? " select name, node_order_num as element_order" +
-          " from apidbuserdatasets.ud_protocolappnode" +
-          " where profile_set_id = '" + profileSetId + "'" +
-          " order by node_order_num, protocol_app_node_id"
-        : " select e.value, pan.node_order_num as element_order" +
-          " from apidbuserdatasets.ud_protocolappnode pan" +
-          "    , apidbuserdatasets.ud_nafeatureexpression e" +
-          "    , apidbtuning.geneattributes ga" +
-          " where pan.profile_set_id = '" + profileSetId + "'" +
-          " and pan.protocol_app_node_id = e.protocol_app_node_id" +
-          " and ga.na_feature_id = e.na_feature_id" +
-          " and ga.source_id = '" + sourceId + "'" +
-          " order by pan.node_order_num, pan.protocol_app_node_id";
+   return  " select pan.name, e.value, pan.node_order_num as element_order" +
+           " from apidbuserdatasets.ud_protocolappnode pan" +
+           "    , apidbuserdatasets.ud_nafeatureexpression e" +
+           "    , apidbtuning.geneattributes ga" +
+           " where pan.profile_set_id = '" + profileSetId + "'" +
+           " and pan.protocol_app_node_id = e.protocol_app_node_id" +
+           " and ga.na_feature_id = e.na_feature_id" +
+           " and ga.source_id = '" + sourceId + "'" +
+           " order by pan.node_order_num, pan.protocol_app_node_id";
   }
 
-  private static String getSenseAntisenseSql(DataType dataType, String profileSetId, String sourceId, String floor) {
-    String columnsToReturn = dataType.equals(DataType.SenseAntisenseX) ? "value as contxaxis, name" : "value";
+  //TODO figure adding antisense result to return plot ready data
+  private static String getSenseAntisenseSql(String sqlName, String senseProfileSetId, String antisenseProfileSetId, String sourceId, String floor) {
+    String columnsToReturn = sqlName.equals("SenseAntisenseX") ? "value as contxaxis, name" : "value";
     return " with comp as (select ps.node_order_num" +
            "                    , ps.protocol_app_node_name" +
            "                    , na.value" +
            "               from apidbtuning.ProfileSamples ps" +
            "                  , results.nafeatureexpression na" +
            "                  , apidbtuning.geneattributes ga" +
-           "               where ps.study_name = '" + profileSetId + "'" +
+           "               where ps.study_name = '" + senseProfileSetId + "'" +
            "               and ps.profile_type = 'values'" +
            "               and ps.protocol_app_node_id = na.protocol_app_node_id" +
            "               and na.na_feature_id = ga.na_feature_id" +
@@ -485,7 +274,7 @@ public class ProfileSetService extends AbstractWdkService {
            "              from apidbtuning.ProfileSamples ps" +
            "                 , results.nafeatureexpression na" +
            "                 , apidbtuning.geneattributes ga" +
-           "              where ps.study_name = '" + profileSetId + "'" +
+           "              where ps.study_name = '" + senseProfileSetId + "'" +
            "              and ps.profile_type = 'values'" +
            "              and ps.protocol_app_node_id =  na.protocol_app_node_id" +
            "              and na.na_feature_id = ga.na_feature_id" +
@@ -526,34 +315,32 @@ public class ProfileSetService extends AbstractWdkService {
   }
 
   //some of these nameless params may be null.. consider better ways to do this
-  private static String getSql(DataType dataType, String param1, String param2, String param3, String param4) {
-    switch(dataType) {
-      case ProfileSetNames:
+  private static String getSql(String sqlName, String param1, String param2, String param3, String param4, String param5, int order) {
+    switch(sqlName) {
+      case "ProfileSetNames":
         return getProfileSetNamesSql(param1, param2);
-      case Profile:
-        return getProfileSql(dataType, param1, param2, param3);
-      case ElementNames:
-        return getElementNamesSql(param1, param2, param3, param4);
-      case PhenotypeRankedNthNames:
-        return getRankedValuesSql(dataType, param1, param2, param3);
-      case PhenotypeRankedNthSourceIdNames:
-        return getRankedValuesSql(dataType, param1, param2, param3);
-      case PhenotypeRankedNthValues:
-        return getRankedValuesSql(dataType, param1, param2, param3);
-      case RankedNthRatioValues:
-        return getRankedValuesSql(dataType, param1, param2, param3);
-      case UserDatasets:
+      case "Profile":
+        return getProfileSetSql(param1, param2, param3, order);
+      case "ProfileWithMetadata":
+        return getProfileSetWithMetadataSql(param1, param2, param3, param4, param5, order);
+      case "PhenotypeRankedNthNames":
+        return getRankedValuesSql(sqlName, param1, param2, param3);
+      case "PhenotypeRankedNthSourceIdNames":
+        return getRankedValuesSql(sqlName, param1, param2, param3);
+      case "PhenotypeRankedNthValues":
+        return getRankedValuesSql(sqlName, param1, param2, param3);
+      case "RankedNthRatioValues":
+        return getRankedValuesSql(sqlName, param1, param2, param3);
+      case "UserDatasets":
         return getUserDatasetsSql(param1, param2);
-      case SenseAntisenseX:
-        return getSenseAntisenseSql(dataType, param1, param2, param3);
-      case SenseAntisenseY:
-        return getSenseAntisenseSql(dataType, param1, param2, param3);
-      case ProfileByEC:
-        return getProfileSql(dataType, param1, param2, param3);
-      case PathwayGenera:
+      case "SenseAntisense":
+        return getSenseAntisenseSql(sqlName, param1, param2, param3, param4);
+      case "ProfileByEC":
+        return getProfileSetByECSql(param1, param2, param3, order);
+      case "PathwayGenera":
         return getPathwayGeneraSql(param1, param2);
       default:
-          throw new IllegalArgumentException("Unsupported data type: " + dataType);
+          throw new IllegalArgumentException("Unsupported named query: " + sqlName);
     }
   }
 
