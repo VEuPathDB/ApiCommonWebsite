@@ -81,18 +81,46 @@ public class ProfileSetService extends AbstractWdkService {
 	@PathParam("sourceId") String sourceId, String body)
           throws WdkModelException {
     JSONObject jsonObj = new JSONObject(body);
-    JSONArray profileSets = jsonObj.getJSONArray("profileSets");
     String sqlName = jsonObj.getString("sqlName");
-
     String plotDataSql = new String();
+
+    JSONArray profileSets = jsonObj.getJSONArray("profileSets");
     for (int i = 0; i < profileSets.length(); i++) {
       JSONObject profileSet = profileSets.getJSONObject(i);
-      String profileSetName = profileSet.getString("profileSetName");
-      String profileType = profileSet.getString("profileType");
-      if (plotDataSql.isEmpty()) {
-        plotDataSql = getSql(sqlName, profileSetName, profileType, sourceId, null, null, i);
+      if (profileSet.has("profileSetName")) {
+        String profileSetName = profileSet.getString("profileSetName");
+        String profileType = profileSet.getString("profileType");
+        if (profileSet.has("facet") || profileSet.has("xAxis")) {
+          String facet = profileSet.getString("facet");
+          String xAxis = profileSet.getString("xAxis");
+          if (plotDataSql.isEmpty()) {
+            plotDataSql = getSql(sqlName, profileSetName, profileType, facet, xAxis, sourceId, i);
+          } else {
+            plotDataSql = plotDataSql + " UNION " + getSql(sqlName, profileSetName, profileType, facet, xAxis, sourceId, i);
+          }
+        } else {
+          if (plotDataSql.isEmpty()) {
+            plotDataSql = getSql(sqlName, profileSetName, profileType, sourceId, null, null, i);
+          } else {
+            plotDataSql = plotDataSql + " UNION " + getSql(sqlName, profileSetName, profileType, sourceId, null, null, i);
+          }
+        }
       } else {
-        plotDataSql = plotDataSql + " UNION " + getSql(sqlName, profileSetName, profileType, sourceId, null, null, i);
+        String sourceIdValueQuery = profileSet.getString("sourceIdValueQuery");
+        String N = profileSet.getString("N");
+        if (profileSet.has("idOverride")) {
+          if (plotDataSql.isEmpty()) {
+            plotDataSql = getSql(sqlName, sourceIdValueQuery, profileSet.getString("idOverride"), N, null, null, i);
+          } else {
+            plotDataSql = plotDataSql + " UNION " + getSql(sqlName, sourceIdValueQuery, profileSet.getString("idOverride"), N, null, null, i);
+          }
+        } else {
+          if (plotDataSql.isEmpty()) {
+            plotDataSql = getSql(sqlName, sourceIdValueQuery, sourceId, N, null, null, i);
+          } else {
+            plotDataSql = plotDataSql + " UNION " + getSql(sqlName, sourceIdValueQuery, sourceId, N, null, null, i);
+          }
+        }
       }
     }
     plotDataSql = plotDataSql + " order by profile_order, element_order";
@@ -151,15 +179,15 @@ public class ProfileSetService extends AbstractWdkService {
     " and value is not null";
   }
 
-  //TODO figure how to call this through plotData service. add conditions to look for facet and xaxis
   private static String getProfileSetWithMetadataSql(String profileSetName, String profileType, String facet, String xAxis, String sourceId, int order) {
 
-    return " select " + order + " as profile_order, name, value, samplenames.profile_set_name, samplenames.profile_type, samplenames.element_order " +
+    return " select " + order + " as profile_order, name, value, samplenames.profile_set_name, samplenames.profile_type, samplenames.element_order, samplenames.facet, samplenames.contxaxis " +
     " from (select  rownum as element_order, ps.NAME, ps.FACET" +
-          "       , ps.CONTXAXIS FROM (" +
+          "       , ps.CONTXAXIS, ps.profile_type, ps.profile_set_name FROM (" +
           "  SELECT distinct s.protocol_app_node_name AS name" +
           "       , s.NODE_ORDER_NUM, m1.string_value as facet" +
           "       , m2.string_value as contXAxis" +
+          "       , s.profile_type, s.study_name profile_set_name" +
           "  FROM  apidbtuning.ProfileSamples s" +
           "      , apidbtuning.metadata m1" +
           "      , apidbtuning.metadata m2" +
@@ -213,19 +241,17 @@ public class ProfileSetService extends AbstractWdkService {
 
   }
 
-  //TODO further refactor the following sql to provide plot ready data and incorporate into plotData call through getSql properly
-  private static String getRankedValuesSql(String sqlName, String sourceIdValueQuery, String sourceId, String N) {
+  //TODO double check the sql here.. probably wrong
+  private static String getRankedValuesSql(String sqlName, String sourceIdValueQuery, String sourceId, String N, int order) {
     String columnsToReturn = "";
-    String columnsInDat = "source_id, value";
-    if (sqlName.equals("PhenotypeRankedNthNames")) {
-        columnsToReturn = "rn as name";
-    } else if (sqlName.equals("PhenotypeRankedNthSourceIdNames")) {
-        columnsToReturn = "source_id as name";
-    } else if (sqlName.equals("PhenotypeRankedNthValues")) {
-        columnsToReturn = "value";
+    String columnsInDat = "source_id, value, name, profile_order";
+    if (sqlName.equals("RankedNthSourceIdNames")) {
+        columnsToReturn = "value, source_id as name, " + order + " as profile_order";
+    } else if (sqlName.equals("RankedNthValues")) {
+        columnsToReturn = "value, rn as name, " + order + " as profile_order";
     } else if (sqlName.equals("RankedNthRatioValues")) {
-        columnsToReturn = "value, num, denom";
-        columnsInDat = "source_id, value, num, denom";
+        columnsToReturn = "value, num, denom, rn as name, " + order + " as profile_order";
+        columnsInDat = "source_id, value, num, denom, name, order";
     } else {
           throw new IllegalArgumentException("Unsupported named query: " + sqlName);
     }
@@ -323,14 +349,12 @@ public class ProfileSetService extends AbstractWdkService {
         return getProfileSetSql(param1, param2, param3, order);
       case "ProfileWithMetadata":
         return getProfileSetWithMetadataSql(param1, param2, param3, param4, param5, order);
-      case "PhenotypeRankedNthNames":
-        return getRankedValuesSql(sqlName, param1, param2, param3);
-      case "PhenotypeRankedNthSourceIdNames":
-        return getRankedValuesSql(sqlName, param1, param2, param3);
-      case "PhenotypeRankedNthValues":
-        return getRankedValuesSql(sqlName, param1, param2, param3);
+      case "RankedNthSourceIdNames":
+        return getRankedValuesSql(sqlName, param1, param2, param3, order);
+      case "RankedNthValues":
+        return getRankedValuesSql(sqlName, param1, param2, param3, order);
       case "RankedNthRatioValues":
-        return getRankedValuesSql(sqlName, param1, param2, param3);
+        return getRankedValuesSql(sqlName, param1, param2, param3, order);
       case "UserDatasets":
         return getUserDatasetsSql(param1, param2);
       case "SenseAntisense":
