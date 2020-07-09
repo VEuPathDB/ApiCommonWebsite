@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
  * Helper for building Solr queries.
  */
 public class SolrUrlQueryBuilder {
+
   private static final String
     PARAM_FILTER  = "q",
     PARAM_COLUMNS = "fl",
@@ -18,16 +19,16 @@ public class SolrUrlQueryBuilder {
     PARAM_ROWS    = "rows",
     PARAM_FORMAT  = "wt";
 
-  final private List<Filter> filters = new ArrayList<>();
-  final private Map<String, SortDirection> sort = new HashMap<>();
-  final private String url;
+  final private List<Filter> _filters = new ArrayList<>();
+  final private Map<String, SortDirection> _sort = new HashMap<>();
+  final private String _url;
 
-  private int rows;
-  private String[] resultFields = {};
-  private FormatType format;
+  private int _rows;
+  private String[] _resultFields = {};
+  private FormatType _format;
 
   private SolrUrlQueryBuilder(final String url) {
-    this.url = url;
+    _url = url;
   }
 
   public static SolrUrlQueryBuilder select(String url) {
@@ -35,7 +36,7 @@ public class SolrUrlQueryBuilder {
   }
 
   public String getUrl() {
-    return this.url;
+    return _url;
   }
 
   /**
@@ -68,7 +69,7 @@ public class SolrUrlQueryBuilder {
    * @return this builder
    */
   public SolrUrlQueryBuilder filter(Op join, Op op, String field, String... filters) {
-    this.filters.add(new Filter(join, op, field, filters));
+    _filters.add(new Filter(join, op, field, filters));
     return this;
   }
 
@@ -252,31 +253,31 @@ public class SolrUrlQueryBuilder {
 
   @SuppressWarnings("unused")
   public SolrUrlQueryBuilder maxRows(int rows) {
-    this.rows = rows;
+    _rows = rows;
     return this;
   }
 
   @SuppressWarnings("unused")
   public SolrUrlQueryBuilder resultFields(String... fields) {
-    this.resultFields = fields;
+    _resultFields = fields;
     return this;
   }
 
   @SuppressWarnings("unused")
   public SolrUrlQueryBuilder resultFormat(FormatType ft) {
-    this.format = ft;
+    _format = ft;
     return this;
   }
 
   @SuppressWarnings("unused")
   public SolrUrlQueryBuilder sortBy(String field, SortDirection dir) {
-    this.sort.put(field, dir);
+    _sort.put(field, dir);
     return this;
   }
 
   @SuppressWarnings("unused")
   public String buildQuery() {
-    return this.toString();
+    return toString();
   }
 
   /**
@@ -287,35 +288,35 @@ public class SolrUrlQueryBuilder {
   public String queryString() {
     var query = new StringBuilder();
 
-    this.filterString(query);
-    this.resultFieldsString(query);
-    this.resultRowsString(query);
-    this.resultFormatString(query);
-    this.resultSortString(query);
+    filterString(query);
+    resultFieldsString(query);
+    resultRowsString(query);
+    resultFormatString(query);
+    resultSortString(query);
 
     return query.toString();
   }
 
   @Override
   public String toString() {
-    var query = new StringBuilder(this.url).append('?');
+    var query = new StringBuilder(_url).append('?');
 
-    this.filterString(query);
-    this.resultFieldsString(query);
-    this.resultRowsString(query);
-    this.resultFormatString(query);
-    this.resultSortString(query);
+    filterString(query);
+    resultFieldsString(query);
+    resultRowsString(query);
+    resultFormatString(query);
+    resultSortString(query);
 
     return query.toString();
   }
 
   private void resultSortString(final StringBuilder sb) {
-    if (!sort.isEmpty()) {
+    if (!_sort.isEmpty()) {
       sb.append('&')
         .append(PARAM_SORT)
         .append('=')
         .append(URLEncoder.encode(
-          sort.entrySet().stream()
+          _sort.entrySet().stream()
             .map(e -> String.format("%s %s",
               e.getKey(), e.getValue().name().toLowerCase()))
             .collect(Collectors.joining(",")),
@@ -326,30 +327,30 @@ public class SolrUrlQueryBuilder {
   }
 
   private void resultFormatString(final StringBuilder sb) {
-    if (format != null) {
+    if (_format != null) {
       sb.append('&')
         .append(PARAM_FORMAT)
         .append('=')
-        .append(format.name().toLowerCase());
+        .append(_format.name().toLowerCase());
     }
   }
 
   private void resultRowsString(final StringBuilder sb) {
-    if (rows > 0) {
+    if (_rows > 0) {
       sb.append('&')
         .append(PARAM_ROWS)
         .append('=')
-        .append(rows);
+        .append(_rows);
     }
   }
 
   private void resultFieldsString(final StringBuilder sb) {
-    if (resultFields.length > 0) {
+    if (_resultFields.length > 0) {
       sb.append('&')
         .append(PARAM_COLUMNS)
         .append('=')
         .append(URLEncoder.encode(
-          String.join(",", List.of(this.resultFields)),
+          String.join(",", List.of(_resultFields)),
           StandardCharsets.UTF_8
         ));
     }
@@ -360,16 +361,16 @@ public class SolrUrlQueryBuilder {
 
     var query = new StringBuilder();
 
-    if (filters.isEmpty()) {
+    if (_filters.isEmpty()) {
       query.append("*:*");
       return;
     }
 
-    var len = filters.size();
-    query.append(filters.get(0).toString());
+    var len = _filters.size();
+    query.append(_filters.get(0).toString());
 
     for (var i = 1; i < len; i++)
-      query.append(filters.get(i).topOp).append(filters.get(i));
+      query.append(_filters.get(i).topOp).append(_filters.get(i));
 
     sb.append(URLEncoder.encode(query.toString(), StandardCharsets.UTF_8));
   }

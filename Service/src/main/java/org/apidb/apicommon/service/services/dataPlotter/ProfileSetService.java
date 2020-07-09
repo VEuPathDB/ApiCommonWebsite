@@ -1,14 +1,6 @@
 package org.apidb.apicommon.service.services.dataPlotter;
 
-import static org.gusdb.fgputil.FormatUtil.NL;
-import static org.gusdb.fgputil.FormatUtil.enumValuesAsString;
 import static org.gusdb.fgputil.db.stream.ResultSetInputStream.getResultSetStream;
-import static org.gusdb.fgputil.functional.Functions.executesWithoutException;
-
-import java.io.BufferedOutputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.*;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DefaultValue;
@@ -22,18 +14,11 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.apache.log4j.Logger;
-import org.gusdb.fgputil.Timer;
-import org.gusdb.fgputil.db.ResultSetColumnInfo;
-import org.gusdb.fgputil.db.runner.SQLRunner;
-import org.gusdb.fgputil.db.stream.ResultSetInputStream.ResultSetRowConverter;
 import org.gusdb.fgputil.db.stream.ResultSetToJsonConverter;
 import org.gusdb.fgputil.functional.Functions;
-import org.gusdb.fgputil.runtime.GusHome;
-import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.service.service.AbstractWdkService;
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 

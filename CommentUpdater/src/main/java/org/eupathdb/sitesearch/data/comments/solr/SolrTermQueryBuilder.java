@@ -1,16 +1,19 @@
 package org.eupathdb.sitesearch.data.comments.solr;
 
-import org.gusdb.fgputil.SortDirection;
-
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
+
+import org.gusdb.fgputil.SortDirection;
 
 /**
  * Helper for building Solr queries.
  */
 public class SolrTermQueryBuilder {
+
   private static final String
     PARAM_FILTER  = "q",
     PARAM_COLUMNS = "fl",
@@ -18,73 +21,72 @@ public class SolrTermQueryBuilder {
     PARAM_ROWS    = "rows",
     PARAM_FORMAT  = "wt";
 
-  private final Map<String, SortDirection> sort = new HashMap<>();
-  private final String field;
+  private final Map<String, SortDirection> _sort = new HashMap<>();
+  private final String _field;
 
-  private String[] filters;
-  private int rows;
-  private String[] resultFields = {};
-  private FormatType format;
-
+  private String[] _filters;
+  private int _rows;
+  private String[] _resultFields = {};
+  private FormatType _format;
 
   public SolrTermQueryBuilder(String field) {
-    this.field = field;
+    _field = field;
   }
 
   public SolrTermQueryBuilder values(String... vals) {
-    filters = vals;
+    _filters = vals;
     return this;
   }
 
   @SuppressWarnings("unused")
   public SolrTermQueryBuilder maxRows(int rows) {
-    this.rows = rows;
+    _rows = rows;
     return this;
   }
 
   @SuppressWarnings("unused")
   public SolrTermQueryBuilder resultFields(String... fields) {
-    this.resultFields = fields;
+    _resultFields = fields;
     return this;
   }
 
   @SuppressWarnings("unused")
   public SolrTermQueryBuilder resultFormat(FormatType ft) {
-    this.format = ft;
+    _format = ft;
     return this;
   }
 
   @SuppressWarnings("unused")
   public SolrTermQueryBuilder sortBy(String field, SortDirection dir) {
-    this.sort.put(field, dir);
+    _sort.put(field, dir);
     return this;
   }
 
   @SuppressWarnings("unused")
   public String buildQuery() {
-    return this.toString();
+    return toString();
   }
 
   @Override
   public String toString() {
     var query = new StringBuilder();
 
-    this.filterString(query);
-    this.resultFieldsString(query);
-    this.resultRowsString(query);
-    this.resultFormatString(query);
-    this.resultSortString(query);
+    filterString(query);
+    resultFieldsString(query);
+    resultRowsString(query);
+    resultFormatString(query);
+    resultSortString(query);
 
     return query.toString();
   }
 
   private void resultSortString(final StringBuilder sb) {
-    if (!sort.isEmpty()) {
+    if (!_sort.isEmpty()) {
       sb.append('&')
         .append(PARAM_SORT)
         .append('=')
         .append(URLEncoder.encode(
-          sort.entrySet().stream()
+          _sort.entrySet().stream()
             .map(e -> String.format("%s %s",
               e.getKey(), e.getValue().name().toLowerCase()))
             .collect(Collectors.joining(",")),
@@ -95,30 +97,30 @@ public class SolrTermQueryBuilder {
   }
 
   private void resultFormatString(final StringBuilder sb) {
-    if (format != null) {
+    if (_format != null) {
       sb.append('&')
         .append(PARAM_FORMAT)
         .append('=')
-        .append(format.name().toLowerCase());
+        .append(_format.name().toLowerCase());
     }
   }
 
   private void resultRowsString(final StringBuilder sb) {
-    if (rows > 0) {
+    if (_rows > 0) {
       sb.append('&')
         .append(PARAM_ROWS)
         .append('=')
-        .append(rows);
+        .append(_rows);
     }
   }
 
   private void resultFieldsString(final StringBuilder sb) {
-    if (resultFields.length > 0) {
+    if (_resultFields.length > 0) {
       sb.append('&')
         .append(PARAM_COLUMNS)
         .append('=')
         .append(URLEncoder.encode(
-          String.join(",", List.of(this.resultFields)),
+          String.join(",", List.of(_resultFields)),
           StandardCharsets.UTF_8
         ));
     }
@@ -127,17 +129,17 @@ public class SolrTermQueryBuilder {
   private void filterString(final StringBuilder sb) {
     sb.append(PARAM_FILTER).append('=');
 
-    var query = new StringBuilder("{!terms f=").append(field).append('}');
+    var query = new StringBuilder("{!terms f=").append(_field).append('}');
 
-    if (filters.length == 0) {
+    if (_filters.length == 0) {
       query.append("*");
       return;
     }
 
-    query.append(filters[0]);
+    query.append(_filters[0]);
 
-    for (var i = 1; i < filters.length; i++)
-      query.append(',').append(filters[i]);
+    for (var i = 1; i < _filters.length; i++)
+      query.append(',').append(_filters[i]);
 
     sb.append(URLEncoder.encode(query.toString(), StandardCharsets.UTF_8));
   }

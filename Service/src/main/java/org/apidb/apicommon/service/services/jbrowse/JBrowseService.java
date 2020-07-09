@@ -5,15 +5,15 @@ import static org.gusdb.wdk.service.FileRanges.parseRangeHeaderValue;
 
 import java.io.IOException;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
 import javax.ws.rs.NotFoundException;
@@ -21,7 +21,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
-import javax.ws.rs.DefaultValue;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
@@ -33,8 +32,8 @@ import org.apidb.apicommon.model.JBrowseQueries.Category;
 import org.gusdb.fgputil.db.runner.SQLRunner;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.service.service.AbstractWdkService;
-import org.json.JSONObject;
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 @Path("/jbrowse")
 public class JBrowseService extends AbstractWdkService {
@@ -53,7 +52,7 @@ public class JBrowseService extends AbstractWdkService {
                                                      @Context UriInfo uriInfo,
                                                      @QueryParam("feature") String feature,
                                                      @QueryParam("start") String start,
-                                                     @QueryParam("end") String end)  throws IOException {
+                                                     @QueryParam("end") String end) {
         return featuresAndRegionStats(refseqName, uriInfo, feature, Integer.valueOf(start), Integer.valueOf(end));
     }
 
@@ -64,7 +63,7 @@ public class JBrowseService extends AbstractWdkService {
                                        @Context UriInfo uriInfo,
                                        @QueryParam("feature") String feature,
                                        @QueryParam("start") String start,
-                                       @QueryParam("end") String end)  throws IOException {
+                                       @QueryParam("end") String end) {
         return featuresAndRegionStats(refseqName, uriInfo, feature, Integer.valueOf(start), Integer.valueOf(end));
     }
 
@@ -366,7 +365,7 @@ public class JBrowseService extends AbstractWdkService {
         return responseFromCommand(command);
     }
 
-    public Response featuresAndRegionStats (String refseqName, UriInfo uriInfo, String feature, Integer start, Integer end)  throws IOException {
+    public Response featuresAndRegionStats (String refseqName, UriInfo uriInfo, String feature, Integer start, Integer end) {
 
         String projectId = getWdkModel().getProjectId();
         HashMap<String, String> qp = toSingleValueMap(uriInfo.getQueryParameters());
@@ -455,8 +454,8 @@ public class JBrowseService extends AbstractWdkService {
            return features; 
         });
 
-        Integer minStart = new Integer(-9);
-        Integer maxEnd = new Integer(-9);
+        Integer minStart = -9;
+        Integer maxEnd = -9;
         for (JSONObject myFeature : featureMap.values()) {
           Integer featureStart = myFeature.getInt("start");
           Integer featureEnd = myFeature.getInt("end");
@@ -581,12 +580,12 @@ public class JBrowseService extends AbstractWdkService {
         Map<Integer, Integer> bins = new HashMap<Integer, Integer>();
         if (qp.containsKey("basesPerBin")) {
           int basesPerBin = Integer.parseInt(qp.get("basesPerBin"));
-          int binCount = (int)((end - start) / basesPerBin);
+          int binCount = (end - start) / basesPerBin;
           JSONArray featuresArr = features.getJSONArray("features");
           for (int i = 0; i < featuresArr.length(); i++) {
             JSONObject currentFeature = featuresArr.getJSONObject(i);
-            int startBin = (int)((currentFeature.getInt("start") - start) / basesPerBin);
-            int endBin = (int)((currentFeature.getInt("end") - start) / basesPerBin);
+            int startBin = (currentFeature.getInt("start") - start) / basesPerBin;
+            int endBin = (currentFeature.getInt("end") - start) / basesPerBin;
             int count = bins.containsKey(startBin) ? bins.get(startBin) : 0;
             bins.put(startBin, count + 1);
             if (startBin != endBin) {
@@ -596,7 +595,7 @@ public class JBrowseService extends AbstractWdkService {
           }
 
           int maxBin = 0;
-          ArrayList sortedBinValues = new ArrayList();
+          ArrayList<Integer> sortedBinValues = new ArrayList<>();
           for (int i = 0; i < binCount; i++) {
             int value = bins.containsKey(i) ? bins.get(i) : 0;
             maxBin = value > maxBin ? value : maxBin;
