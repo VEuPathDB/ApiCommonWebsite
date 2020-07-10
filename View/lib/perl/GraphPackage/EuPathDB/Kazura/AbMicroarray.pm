@@ -5,10 +5,8 @@ use vars qw( @ISA);
 
 @ISA = qw( EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet);
 use EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet;
-use EbrcWebsiteCommon::View::GraphPackage::LegacyGGScatterPlot;
+use EbrcWebsiteCommon::View::GraphPackage::GGScatterPlot;
 use Data::Dumper;
-
-sub useLegacy { return 1; }
 
 sub init {
   my $self = shift;
@@ -35,7 +33,7 @@ sub init {
   my @profileSetArray = (['Kazura Reinfection Ab Microarray Profiles','values', '', '', '', '', '', $facet, '', '', $contXAxis]);
   my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileSetArray);
 
-  my $scatter = EbrcWebsiteCommon::View::GraphPackage::LegacyGGScatterPlot::LogRatio->new(@_);
+  my $scatter = EbrcWebsiteCommon::View::GraphPackage::GGScatterPlot::LogRatio->new(@_);
   $scatter->setProfileSets($profileSets);
   $scatter->setColors($colors);
 
