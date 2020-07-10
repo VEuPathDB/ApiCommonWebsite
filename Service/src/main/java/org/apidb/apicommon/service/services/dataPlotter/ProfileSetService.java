@@ -54,10 +54,7 @@ public class ProfileSetService extends AbstractWdkService {
         "getProfileSetNames", "Failed running SQL to fetch profile set names.");
   }
 
-  //TODO decide how many of these we need, what they'll be called
-  //possible we'll want a separate one to handle cases which provide their own sql?
-  //how to handle the transcription summary, pathway genera?
-  //currently this should handle profile and profilebyec 
+  //TODO how to handle the transcription summary, pathway genera?
   @POST
   @Path("PlotData/{sourceId}")
   @Consumes(MediaType.APPLICATION_JSON)
@@ -93,17 +90,18 @@ public class ProfileSetService extends AbstractWdkService {
       } else {
         String sourceIdValueQuery = profileSet.getString("sourceIdValueQuery");
         String N = profileSet.getString("N");
+        String name = profileSet.getString("name");
         if (profileSet.has("idOverride")) {
           if (plotDataSql.isEmpty()) {
-            plotDataSql = getSql(sqlName, sourceIdValueQuery, profileSet.getString("idOverride"), N, null, null, i);
+           plotDataSql = getSql(sqlName, sourceIdValueQuery, profileSet.getString("idOverride"), N, name, null, i);
           } else {
-            plotDataSql = plotDataSql + " UNION " + getSql(sqlName, sourceIdValueQuery, profileSet.getString("idOverride"), N, null, null, i);
+            plotDataSql = plotDataSql + " UNION " + getSql(sqlName, sourceIdValueQuery, profileSet.getString("idOverride"), N, name, null, i);
           }
         } else {
           if (plotDataSql.isEmpty()) {
-            plotDataSql = getSql(sqlName, sourceIdValueQuery, sourceId, N, null, null, i);
+            plotDataSql = getSql(sqlName, sourceIdValueQuery, sourceId, N, name, null, i);
           } else {
-            plotDataSql = plotDataSql + " UNION " + getSql(sqlName, sourceIdValueQuery, sourceId, N, null, null, i);
+            plotDataSql = plotDataSql + " UNION " + getSql(sqlName, sourceIdValueQuery, sourceId, N, name, null, i);
           }
         }
       }
@@ -226,31 +224,30 @@ public class ProfileSetService extends AbstractWdkService {
 
   }
 
-  //TODO double check the sql here.. probably wrong
-  private static String getRankedValuesSql(String sqlName, String sourceIdValueQuery, String sourceId, String N, int order) {
+  private static String getRankedValuesSql(String sqlName, String sourceIdValueQuery, String sourceId, String N, String name, int order) {
     String columnsToReturn = "";
-    String columnsInDat = "source_id, value, name, profile_order";
+    String columnsInDat = "source_id, value";
     if (sqlName.equals("RankedNthSourceIdNames")) {
-        columnsToReturn = "value, source_id as name, " + order + " as profile_order";
+        columnsToReturn = "value, source_id as name";
     } else if (sqlName.equals("RankedNthValues")) {
-        columnsToReturn = "value, rn as name, " + order + " as profile_order";
+        columnsToReturn = "value, rn as name";
     } else if (sqlName.equals("RankedNthRatioValues")) {
-        columnsToReturn = "value, num, denom, rn as name, " + order + " as profile_order";
-        columnsInDat = "source_id, value, num, denom, name, order";
+        columnsToReturn = "value, num, denom, rn as name";
+        columnsInDat = "source_id, value, num, denom";
     } else {
           throw new IllegalArgumentException("Unsupported named query: " + sqlName);
     }
-    return " with dat as" +
-           " ( " + sourceIdValueQuery + ")," +
-           " ct as (select max(rownum) as m from dat)" +
-           " select " + columnsToReturn + ", rn as element_order" +
-           " from (select " + columnsInDat + ", rownum rn" +
-           "       from (select " + columnsInDat +
-           "             from dat order by value) t)" +
-           " where ('" + sourceId + "' = 'ALL'" +
-           "        AND (rn = 1 or rn = (select ct.m from ct)" +
-           "             or mod(rn, round((select ct.m from ct)/" + N + ",0)) = 0))" +
-           " OR '" + sourceId + "' = source_id";
+    
+    return " select " + columnsToReturn + ", rn as element_order, " + 
+             order + " as profile_order, '" + name + "' as profile_set" +
+           " from (select " + columnsInDat + ", rownum as rn" +
+           "       from (" + sourceIdValueQuery + " order by value)) t," + 
+           " (select max(rownum) as m " + 
+           "  from(" + sourceIdValueQuery + ")) ct" + 
+           " where ('" + sourceId + "' = 'ALL' " + 
+           "          AND (rn = 1 or rn = ct.m " + 
+           "               or mod(rn, round(ct.m/" + N + ",0)) = 0)" +
+           ") OR '" + sourceId + "' = source_id";
   }
 
   private static String getUserDatasetsSql(String profileSetId, String sourceId) {
@@ -335,11 +332,11 @@ public class ProfileSetService extends AbstractWdkService {
       case "ProfileWithMetadata":
         return getProfileSetWithMetadataSql(param1, param2, param3, param4, param5, order);
       case "RankedNthSourceIdNames":
-        return getRankedValuesSql(sqlName, param1, param2, param3, order);
+        return getRankedValuesSql(sqlName, param1, param2, param3, param4, order);
       case "RankedNthValues":
-        return getRankedValuesSql(sqlName, param1, param2, param3, order);
+        return getRankedValuesSql(sqlName, param1, param2, param3, param4, order);
       case "RankedNthRatioValues":
-        return getRankedValuesSql(sqlName, param1, param2, param3, order);
+        return getRankedValuesSql(sqlName, param1, param2, param3, param4, order);
       case "UserDatasets":
         return getUserDatasetsSql(param1, param2);
       case "SenseAntisense":
