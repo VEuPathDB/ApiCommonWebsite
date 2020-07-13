@@ -445,8 +445,10 @@ public class JBrowseService extends AbstractWdkService {
                  }
                }
              }
-
-             String uniqueID = rs.getString("FEATURE_ID");
+             String uniqueID = Integer.toString(featureStart);
+             if (hasColumn(rs, "FEATURE_ID")) {
+               uniqueID = rs.getString("FEATURE_ID");
+             }
              myFeature.put("uniqueID", uniqueID);
              myFeature.put("subfeatures", new JSONArray());
              features.put(uniqueID, myFeature);
