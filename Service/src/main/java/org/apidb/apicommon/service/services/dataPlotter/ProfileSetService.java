@@ -14,6 +14,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.apache.log4j.Logger;
+import org.apidb.apicommon.model.DataPlotterQueries;
+import org.apidb.apicommon.model.DataPlotterQueries.Category;
 import org.gusdb.fgputil.db.stream.ResultSetToJsonConverter;
 import org.gusdb.fgputil.functional.Functions;
 import org.gusdb.wdk.model.WdkModelException;
@@ -41,6 +43,20 @@ public class ProfileSetService extends AbstractWdkService {
         )
       )
     ).build();
+  }
+
+  @GET
+  @Path("TranscriptionSummaryProfiles/{sourceId}")
+  @Produces(MediaType.APPLICATION_JSON)
+  public Response getTranscriptionSummaryProfiles(
+      @PathParam("sourceId") String sourceId)
+          throws WdkModelException {
+    //TODO refactor into getSql
+    String projectId = getWdkModel().getProjectId();
+    String sql = DataPlotterQueries.getQueryMap(projectId, Category.ALL).get("transcription_summary_profiles");
+    sql = sql.replaceAll("\\$id", sourceId);
+    return getStreamingResponse(sql,
+        "getTranscriptionSummaryProfiles", "Failed running SQL to fetch transcription summary profile set names.");
   }
  
   @GET
@@ -91,6 +107,13 @@ public class ProfileSetService extends AbstractWdkService {
           } else {
             plotDataSql = plotDataSql + " UNION " + getSql(sqlName, profileSetName, profileType, facet, xAxis, sourceId, i);
           }
+        } else if (profileSet.has("name")) {
+          String name = profileSet.getString("name");
+          if (plotDataSql.isEmpty()) {
+            plotDataSql = getSql(sqlName, profileSetName, profileType, sourceId, name, null, i);
+          } else {
+            plotDataSql = plotDataSql + " UNION " + getSql(sqlName, profileSetName, profileType, sourceId, name, null, i);
+          }
         } else {
           if (plotDataSql.isEmpty()) {
             plotDataSql = getSql(sqlName, profileSetName, profileType, sourceId, null, null, i);
@@ -132,9 +155,14 @@ public class ProfileSetService extends AbstractWdkService {
   }
 
   //TODO refactor all sql into xml files like we do for jbrowse
-  private static String getProfileSetSql(String profileSetName, String profileType, String sourceId, int order) {
+  private static String getProfileSetSql(String profileSetName, String profileType, String sourceId, String displayName, int order) {
 
-    return " select " + order + " as profile_order, name, value, samplenames.profile_set_name, samplenames.profile_type, samplenames.element_order " +
+    String colsToReturn = order + " as profile_order, name, value, samplenames.profile_set_name, samplenames.profile_type, samplenames.element_order";
+    if (displayName != null) {
+      colsToReturn = order + " as profile_order, '" + displayName + "' as display_name, name, value, samplenames.profile_set_name, samplenames.profile_type, samplenames.element_order";
+    }
+
+    return " select " + colsToReturn +
     " from (select rownum as element_order, ps.*  " +
     "                 FROM (SELECT protocol_app_node_name AS name, study_name as profile_set_name, profile_type " +
     "                     FROM  apidbtuning.ProfileSamples " +
@@ -346,7 +374,7 @@ public class ProfileSetService extends AbstractWdkService {
       case "ProfileSetNames":
         return getProfileSetNamesSql(param1, param2);
       case "Profile":
-        return getProfileSetSql(param1, param2, param3, order);
+        return getProfileSetSql(param1, param2, param3, param4, order);
       case "ProfileWithMetadata":
         return getProfileSetWithMetadataSql(param1, param2, param3, param4, param5, order);
       case "RankedNthSourceIdNames":
