@@ -7,14 +7,12 @@ use Data::Dumper;
 
 @ISA = qw( EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet );
 use EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet;
-use EbrcWebsiteCommon::View::GraphPackage::LegacyGGBarPlot;
+use EbrcWebsiteCommon::View::GraphPackage::GGBarPlot;
 
 use EbrcWebsiteCommon::View::GraphPackage::ProfileSet;
 
-use EbrcWebsiteCommon::Model::CannedQuery::UDProfileValues;
-use EbrcWebsiteCommon::Model::CannedQuery::UDProfileNames;
-
-sub useLegacy { return 1; }
+use LWP::Simple;
+use JSON;
 
 sub init {
   my $self = shift;
@@ -25,27 +23,29 @@ sub init {
   my $datasetId = $self->getDatasetId();
 
   my $dbh = $self->getQueryHandle();
+  my $url = $self->getBaseUrl() . '/a/service/profileSet/ProfileSetIds/' . $datasetId;
+  my $content = get($url);
+  my $json = from_json($content);
+
   my $sql = "select profile_set_id, name, unit from apidbuserdatasets.ud_profileset where user_dataset_id = $datasetId";
-  my $sh = $dbh->prepare($sql);
-  $sh->execute();
 
   my @profileSets;
   my %units;
-  while(my ($psId, $psName, $psUnit) = $sh->fetchrow_array()) {
-    my $udValuesQuery = EbrcWebsiteCommon::Model::CannedQuery::UDProfileValues->new(Id => $id, ProfileSetId => $psId, Name => $psName);
-    my $udNamesQuery = EbrcWebsiteCommon::Model::CannedQuery::UDProfileNames->new(ProfileSetId => $psId, Name => $psName);
+  foreach my $profile (@$json) {
+    my $psId = $profile->{'PROFILE_SET_ID'};
+    my $psName = $profile->{'NAME'};
+    my $psUnit = $profile->{'UNIT'};
     $units{$psUnit}=1;
     my $profileSet = EbrcWebsiteCommon::View::GraphPackage::ProfileSet->new("DUMMY");
-    $profileSet->setProfileCannedQuery($udValuesQuery);
-    $profileSet->setProfileNamesCannedQuery($udNamesQuery);
+    $profileSet->setJsonForService("{\"profileSetId\":\"$psId\",\"name\":\"$psName\"}");
+    $profileSet->setSqlName("UserDatasets");
 
     push @profileSets, $profileSet;
   }
-  $sh->finish();
 
   die "Graph error: There is more than one unit type for dataset $datasetId\n" if (scalar keys %units > 1);
   my $yAxisUnit = (keys %units)[0];
-  my $bar = EbrcWebsiteCommon::View::GraphPackage::LegacyGGBarPlot->new(@_);
+  my $bar = EbrcWebsiteCommon::View::GraphPackage::GGBarPlot->new(@_);
 
   $bar->setDefaultYMin(0);
   $bar->setProfileSets(\@profileSets);
@@ -54,8 +54,7 @@ sub init {
   $bar->setPlotTitle("$id - UserDataset $datasetId");
   $bar->addAdjustProfile('
 profile.df.full$NAME <- abbreviate(profile.df.full$NAME, 10)
-profile.df.full$LEGEND <- sapply(strsplit(profile.df.full$PROFILE_FILE, "-", fixed = TRUE), "[[", 3)
-profile.df.full$LEGEND <- gsub(".tab", "", profile.df.full$LEGEND)
+profile.df.full$LEGEND <- profile.df.full$PROFILE_SET
 hideLegend = FALSE
 ');
   $bar->setRPostscript('

@@ -116,11 +116,7 @@ use vars qw( @ISA );
 sub getPhenotypeSpecs {
   return [ {abbrev => "rel_growth_rate",
             name => "Relative Growth Rate",
-            query => "select ga.source_id
-                           , r.relative_growth_rate as value
-                      from APIDB.PHENOTYPEGROWTHRATE r
-                         , apidbtuning.geneattributes ga 
-                      where r.na_feature_id = ga.na_feature_id"
+            query => "select ga.source_id, r.relative_growth_rate as value from APIDB.PHENOTYPEGROWTHRATE r, apidbtuning.geneattributes ga where r.na_feature_id = ga.na_feature_id"
            },
       ];
 }
@@ -137,10 +133,7 @@ use vars qw( @ISA );
 sub getPhenotypeSpecs {
   return [ {abbrev => "phenotype_score",
             name => "Phenotype Score",
-            query => "select ga.source_id, r.mean_phenotype as value
-                      from APIDB.CRISPRPHENOTYPE r,
-                           apidbtuning.geneattributes ga
-                      where ga.na_feature_id = r.na_feature_id",
+            query => "select ga.source_id, r.mean_phenotype as value from APIDB.CRISPRPHENOTYPE r, apidbtuning.geneattributes ga where ga.na_feature_id = r.na_feature_id", 
             postscript => "gp = gp + annotate(\"text\", x = 1500, y = -6, label = \"Fitness Conferring\", colour = 'red');
 gp = gp + annotate(\"text\", x = 7000, y = 2.5, label = \"Dispensable\", colour = '#d3883f');"
            },
