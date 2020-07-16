@@ -132,6 +132,9 @@ public class ProfileSetService extends AbstractWdkService {
           } else {
             plotDataSql = plotDataSql + " UNION " + getSql(projectId, sqlName, profileSetId, sourceId, name, null, null, i);
           }
+      } else if (profileSet.has("generaSql")) {
+        String generaSql = profileSet.getString("generaSql");
+        plotDataSql = getSql(projectId, sqlName, generaSql, sourceId, null, null, null, i);
       } else {
         String sourceIdValueQuery = profileSet.getString("sourceIdValueQuery");
         String N = profileSet.getString("N");
@@ -151,7 +154,10 @@ public class ProfileSetService extends AbstractWdkService {
         }
       }
     }
-    plotDataSql = plotDataSql + " order by profile_order, element_order";
+    
+    if (!sqlName.equals("PathwayGenera")) {
+      plotDataSql = plotDataSql + " order by profile_order, element_order";
+    }
 
     return getStreamingResponse(plotDataSql,
         "plotData", "Failed running SQL to fetch plot data.");
@@ -277,32 +283,13 @@ public class ProfileSetService extends AbstractWdkService {
            "       where comp.protocol_app_node_name != ref.protocol_app_node_name)";
   }
 
-//TODO the canned query does some work w genera that we'll have to replicate, probably best to do in data plotter
-//TODO decide which option to take 1) the way the query wo sourceid works assuming we get a comma delim string of genera or 2) the way the query w sourceid works assuming we get some sql that makes rows out of the genera
-//TODO currently leaning toward option 2, though similar to the phenotype stuff idk how we feel about sql in a service url
-  private static String getPathwayGeneraSql(String generaList, String sourceId) {
-    return sourceId.equals("none")
-        ? " with temp as" +
-          "      (select '" + generaList + "' genera  from dual)" +
-          " select rownum as element_order," +
-          "        trim(regexp_substr(t.genera, '[^,]+', 1, levels.column_value))  as name" +
-          " from temp t," +
-          "      table(cast(multiset(select level from dual connect by  level <= length (regexp_replace(t.genera, '[^,]+'))  + 1) as sys.OdciNumberList)) levels" +
-          " order by genera"
-        : " select case when ec.genus is null then 0 else 1 end as value" +
-          "      , orgs.o as element_order" +
-          " from (select distinct genus" +
-          "       from apidb.ecnumbergenus" +
-          "       where ec_number LIKE REPLACE(REPLACE(REPLACE(REPLACE(lower('" + sourceId + "'),' ',''),'-', '%'),'*','%'),'any','%')" +
-          "  UNION" +
-          " select distinct 'Plasmodium' as genus" +
-          " from dots.AaSequenceEnzymeClass asec, sres.EnzymeClass ec" +
-          " where ec.enzyme_class_id = asec.enzyme_class_id" +
-          " and ec.ec_number LIKE REPLACE(REPLACE(REPLACE(REPLACE(lower('<<Id>>'),' ',''),'-', '%'),'*','%'),'any','%')" +
-          " ) ec," +
-          "  (" + generaList + ") orgs" +
-          " where orgs.genus = ec.genus (+)" +
-          " order by orgs.o asc";
+  private static String getPathwayGeneraSql(String projectId, String generaSql, String sourceId) {
+
+        String sql = DataPlotterQueries.getQueryMap(projectId, Category.ALL).get("pathway_genera");
+        sql = sql.replaceAll("\\$generaSql", generaSql);
+        sql = sql.replaceAll("\\$sourceId", sourceId);
+
+        return sql;
   }
 
   //some of these nameless params may be null.. consider better ways to do this
@@ -327,7 +314,7 @@ public class ProfileSetService extends AbstractWdkService {
       case "ProfileByEC":
         return getProfileSetByECSql(projectId, param1, param2, param3, order);
       case "PathwayGenera":
-        return getPathwayGeneraSql(param1, param2);
+        return getPathwayGeneraSql(projectId, param1, param2);
       default:
           throw new IllegalArgumentException("Unsupported named query: " + sqlName);
     }
