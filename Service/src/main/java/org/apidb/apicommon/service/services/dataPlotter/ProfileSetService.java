@@ -51,7 +51,6 @@ public class ProfileSetService extends AbstractWdkService {
   public Response getTranscriptionSummaryProfiles(
       @PathParam("sourceId") String sourceId)
           throws WdkModelException {
-    //TODO refactor into getSql
     String projectId = getWdkModel().getProjectId();
     String sql = DataPlotterQueries.getQueryMap(projectId, Category.ALL).get("transcription_summary_profiles");
     sql = sql.replaceAll("\\$id", sourceId);
@@ -65,7 +64,9 @@ public class ProfileSetService extends AbstractWdkService {
   public Response getProfileSetIds(
       @PathParam("datasetId") String datasetId)
           throws WdkModelException {
-    String sql = "select profile_set_id, name, unit from apidbuserdatasets.ud_profileset where user_dataset_id = " + datasetId;
+    String projectId = getWdkModel().getProjectId();
+    String sql = DataPlotterQueries.getQueryMap(projectId, Category.ALL).get("profile_set_ids");
+    sql = sql.replaceAll("\\$datasetId", datasetId);
     return getStreamingResponse(sql,
         "getProfileSetIds", "Failed running SQL to fetch user dataset profile set ids.");
   }
@@ -77,11 +78,12 @@ public class ProfileSetService extends AbstractWdkService {
       @PathParam("datasetPresenterId") String datasetPresenterId,
       @DefaultValue("none") @QueryParam("sourceId") String sourceId)
           throws WdkModelException {
-    return getStreamingResponse(getSql("ProfileSetNames", datasetPresenterId, sourceId, null, null, null, 0),
+    String projectId = getWdkModel().getProjectId();
+    String sql = getSql(projectId, "ProfileSetNames", datasetPresenterId, sourceId, null, null, null, 0);
+    return getStreamingResponse(sql,
         "getProfileSetNames", "Failed running SQL to fetch profile set names.");
   }
 
-  //TODO how to handle the transcription summary, pathway genera?
   @POST
   @Path("PlotData/{sourceId}")
   @Consumes(MediaType.APPLICATION_JSON)
@@ -89,6 +91,7 @@ public class ProfileSetService extends AbstractWdkService {
   public Response getPlotData(
 	@PathParam("sourceId") String sourceId, String body)
           throws WdkModelException {
+    String projectId = getWdkModel().getProjectId();
     JSONObject jsonObj = new JSONObject(body);
     String sqlName = jsonObj.getString("sqlName");
     String plotDataSql = new String();
@@ -103,31 +106,31 @@ public class ProfileSetService extends AbstractWdkService {
           String facet = profileSet.getString("facet");
           String xAxis = profileSet.getString("xAxis");
           if (plotDataSql.isEmpty()) {
-            plotDataSql = getSql(sqlName, profileSetName, profileType, facet, xAxis, sourceId, i);
+            plotDataSql = getSql(projectId, sqlName, profileSetName, profileType, facet, xAxis, sourceId, i);
           } else {
-            plotDataSql = plotDataSql + " UNION " + getSql(sqlName, profileSetName, profileType, facet, xAxis, sourceId, i);
+            plotDataSql = plotDataSql + " UNION " + getSql(projectId, sqlName, profileSetName, profileType, facet, xAxis, sourceId, i);
           }
         } else if (profileSet.has("name")) {
           String name = profileSet.getString("name");
           if (plotDataSql.isEmpty()) {
-            plotDataSql = getSql(sqlName, profileSetName, profileType, sourceId, name, null, i);
+            plotDataSql = getSql(projectId, sqlName, profileSetName, profileType, sourceId, name, null, i);
           } else {
-            plotDataSql = plotDataSql + " UNION " + getSql(sqlName, profileSetName, profileType, sourceId, name, null, i);
+            plotDataSql = plotDataSql + " UNION " + getSql(projectId, sqlName, profileSetName, profileType, sourceId, name, null, i);
           }
         } else {
           if (plotDataSql.isEmpty()) {
-            plotDataSql = getSql(sqlName, profileSetName, profileType, sourceId, null, null, i);
+            plotDataSql = getSql(projectId, sqlName, profileSetName, profileType, sourceId, null, null, i);
           } else {
-            plotDataSql = plotDataSql + " UNION " + getSql(sqlName, profileSetName, profileType, sourceId, null, null, i);
+            plotDataSql = plotDataSql + " UNION " + getSql(projectId, sqlName, profileSetName, profileType, sourceId, null, null, i);
           }
         }
       } else if (profileSet.has("profileSetId")) {
         String profileSetId = profileSet.getString("profileSetId");
         String name = profileSet.getString("name");
         if (plotDataSql.isEmpty()) {
-            plotDataSql = getSql(sqlName, profileSetId, sourceId, name, null, null, i);
+            plotDataSql = getSql(projectId, sqlName, profileSetId, sourceId, name, null, null, i);
           } else {
-            plotDataSql = plotDataSql + " UNION " + getSql(sqlName, profileSetId, sourceId, name, null, null, i);
+            plotDataSql = plotDataSql + " UNION " + getSql(projectId, sqlName, profileSetId, sourceId, name, null, null, i);
           }
       } else {
         String sourceIdValueQuery = profileSet.getString("sourceIdValueQuery");
@@ -135,15 +138,15 @@ public class ProfileSetService extends AbstractWdkService {
         String name = profileSet.getString("name");
         if (profileSet.has("idOverride")) {
           if (plotDataSql.isEmpty()) {
-           plotDataSql = getSql(sqlName, sourceIdValueQuery, profileSet.getString("idOverride"), N, name, null, i);
+           plotDataSql = getSql(projectId, sqlName, sourceIdValueQuery, profileSet.getString("idOverride"), N, name, null, i);
           } else {
-            plotDataSql = plotDataSql + " UNION " + getSql(sqlName, sourceIdValueQuery, profileSet.getString("idOverride"), N, name, null, i);
+            plotDataSql = plotDataSql + " UNION " + getSql(projectId, sqlName, sourceIdValueQuery, profileSet.getString("idOverride"), N, name, null, i);
           }
         } else {
           if (plotDataSql.isEmpty()) {
-            plotDataSql = getSql(sqlName, sourceIdValueQuery, sourceId, N, name, null, i);
+            plotDataSql = getSql(projectId, sqlName, sourceIdValueQuery, sourceId, N, name, null, i);
           } else {
-            plotDataSql = plotDataSql + " UNION " + getSql(sqlName, sourceIdValueQuery, sourceId, N, name, null, i);
+            plotDataSql = plotDataSql + " UNION " + getSql(projectId, sqlName, sourceIdValueQuery, sourceId, N, name, null, i);
           }
         }
       }
@@ -154,124 +157,58 @@ public class ProfileSetService extends AbstractWdkService {
         "plotData", "Failed running SQL to fetch plot data.");
   }
 
-  //TODO refactor all sql into xml files like we do for jbrowse
-  private static String getProfileSetSql(String profileSetName, String profileType, String sourceId, String displayName, int order) {
+  private static String getProfileSetSql(String projectId, String profileSetName, String profileType, String sourceId, String displayName, int order) {
 
     String colsToReturn = order + " as profile_order, name, value, samplenames.profile_set_name, samplenames.profile_type, samplenames.element_order";
     if (displayName != null) {
       colsToReturn = order + " as profile_order, '" + displayName + "' as display_name, name, value, samplenames.profile_set_name, samplenames.profile_type, samplenames.element_order";
     }
 
-    return " select " + colsToReturn +
-    " from (select rownum as element_order, ps.*  " +
-    "                 FROM (SELECT protocol_app_node_name AS name, study_name as profile_set_name, profile_type " +
-    "                     FROM  apidbtuning.ProfileSamples " +
-    "                     WHERE  study_name = '" + profileSetName + "'" +
-    "                     AND profile_type = '" + profileType + "'" +
-    "                     ORDER  BY node_order_num) ps) samplenames, " +
-    "     (select distinct rownum as element_order " +
-    "                     , trim(regexp_substr(t.profile_as_string, '[^' || CHR(9) || ']+', 1, levels.column_value))  as value, profile_set_name, profile_type " +
-    "                      from (SELECT profile_AS_STRING, profile_set_name, profile_type " +
-    "                             FROM apidbtuning.Profile  p " +
-    "                             WHERE p.source_id  = '" + sourceId + "' " +
-    "                             AND p.profile_set_name = '" + profileSetName + "'" +
-    "                             AND p.profile_type = '" + profileType + "') t " +
-    "                     , table(cast(multiset(select level from dual connect by  level <= length (regexp_replace(t.profile_as_string, '[^' || CHR(9) || ']+'))  + 1) as sys.OdciNumberList)) levels) samplevalues " +
-    " where samplenames.element_order = samplevalues.element_order " +
-    " and value is not null";
+    String sql = DataPlotterQueries.getQueryMap(projectId, Category.ALL).get("profile_set");
+    sql = sql.replaceAll("\\$colsToReturn", colsToReturn);
+    sql = sql.replaceAll("\\$profileSetName", profileSetName);
+    sql = sql.replaceAll("\\$profileType", profileType);
+    sql = sql.replaceAll("\\$sourceId", sourceId);
+
+    return sql;
   }
 
-  private static String getProfileSetByECSql(String profileSetName, String profileType, String sourceId, int order) {
+  private static String getProfileSetByECSql(String projectId, String profileSetName, String profileType, String sourceId, int order) {
 
-    return " select " + order + " as profile_order, name, value, samplenames.profile_set_name, samplenames.profile_type, samplenames.element_order " +
-    " from (select  rownum as element_order, ps.* FROM (" +
-          " SELECT protocol_app_node_name AS name, study_name as profile_set_name, profile_type" +
-          " FROM  apidbtuning.ProfileSamples" +
-          " WHERE  study_name = '" + profileSetName + "'" +
-          " AND profile_type = '" + profileType + "'" +
-          " ORDER  BY node_order_num) ps) samplenames, " +
-    "     (select distinct rownum as element_order " +
-    "                     , trim(regexp_substr(t.profile_as_string, '[^' || CHR(9) || ']+', 1, levels.column_value))  as value, profile_set_name, profile_type " +
-    "                      from(select p.source_id, ec.ec_number, p.profile_as_string, p.profile_set_name, p.profile_type" +
-                " from apidbtuning.profile p," +
-                " (SELECT DISTINCT ta.gene_source_id, ec.ec_number" +
-                "  FROM  dots.aaSequenceEnzymeClass asec" +
-                "      , sres.enzymeClass ec" +
-                "      , ApidbTuning.TranscriptAttributes ta" +
-                "  WHERE ta.aa_sequence_id = asec.aa_sequence_id" +
-                "  AND asec.enzyme_class_id = ec.enzyme_class_id" +                    "  AND ec.ec_number LIKE REPLACE(REPLACE(REPLACE(REPLACE(lower('" + sourceId + "'),' ',''),'-', '%'),'*','%'),'any','%')" +
-                " ) ec" +
-                " WHERE p.profile_set_name = '" + profileSetName + "'" +
-                " AND p.profile_type = '" + profileType + "'" +
-                " AND p.source_id = ec.gene_source_id) t " +
-    "                     , table(cast(multiset(select level from dual connect by  level <= length (regexp_replace(t.profile_as_string, '[^' || CHR(9) || ']+'))  + 1) as sys.OdciNumberList)) levels) samplevalues " +
-    " where samplenames.element_order = samplevalues.element_order " +
-    " and value is not null";
+    String sql = DataPlotterQueries.getQueryMap(projectId, Category.ALL).get("profile_set_by_ec");
+    sql = sql.replaceAll("\\$order", Integer.toString(order));
+    sql = sql.replaceAll("\\$profileSetName", profileSetName);
+    sql = sql.replaceAll("\\$profileType", profileType);
+    sql = sql.replaceAll("\\$sourceId", sourceId);
+
+    return sql;
   }
 
-  private static String getProfileSetWithMetadataSql(String profileSetName, String profileType, String facet, String xAxis, String sourceId, int order) {
+  private static String getProfileSetWithMetadataSql(String projectId, String profileSetName, String profileType, String facet, String xAxis, String sourceId, int order) {
 
-    return " select " + order + " as profile_order, name, value, samplenames.profile_set_name, samplenames.profile_type, samplenames.element_order, samplenames.facet, samplenames.contxaxis " +
-    " from (select  rownum as element_order, ps.NAME, ps.FACET" +
-          "       , ps.CONTXAXIS, ps.profile_type, ps.profile_set_name FROM (" +
-          "  SELECT distinct s.protocol_app_node_name AS name" +
-          "       , s.NODE_ORDER_NUM, m1.string_value as facet" +
-          "       , m2.string_value as contXAxis" +
-          "       , s.profile_type, s.study_name profile_set_name" +
-          "  FROM  apidbtuning.ProfileSamples s" +
-          "      , apidbtuning.metadata m1" +
-          "      , apidbtuning.metadata m2" +
-          "  WHERE  s.study_name = '" + profileSetName + "'" +
-          "  AND s.profile_type = '" + profileType + "'" +
-          "  and m1.PAN_ID(+) = s.PROTOCOL_APP_NODE_ID" +
-          "  and m1.property_source_id(+) = '" + facet + "'" +
-          "  and m2.PAN_ID(+) = s.PROTOCOL_APP_NODE_ID" +
-          "  and m2.property_source_id(+) = '" + xAxis + "'" +
-          "  ORDER  BY s.node_order_num) ps) samplenames, " +
-    "     (select distinct rownum as element_order " +
-    "                     , trim(regexp_substr(t.profile_as_string, '[^' || CHR(9) || ']+', 1, levels.column_value))  as value, profile_set_name, profile_type " +
-    "                      from (SELECT profile_AS_STRING, profile_set_name, profile_type " +
-    "                             FROM apidbtuning.Profile  p " +
-    "                             WHERE p.source_id  = '" + sourceId + "' " +
-    "                             AND p.profile_set_name = '" + profileSetName + "'" +
-    "                             AND p.profile_type = '" + profileType + "') t " +
-    "                     , table(cast(multiset(select level from dual connect by  level <= length (regexp_replace(t.profile_as_string, '[^' || CHR(9) || ']+'))  + 1) as sys.OdciNumberList)) levels) samplevalues " +
-    " where samplenames.element_order = samplevalues.element_order " +
-    " and value is not null";
+    String sql = DataPlotterQueries.getQueryMap(projectId, Category.ALL).get("profile_set_with_metadata");
+    sql = sql.replaceAll("\\$order", Integer.toString(order));
+    sql = sql.replaceAll("\\$profileSetName", profileSetName);
+    sql = sql.replaceAll("\\$profileType", profileType);
+    sql = sql.replaceAll("\\$sourceId", sourceId);
+    sql = sql.replaceAll("\\$facet", facet);
+    sql = sql.replaceAll("\\$xAxis", xAxis);
+
+    return sql;
   }
 
-  private static String getProfileSetNamesSql(String datasetPresenterId, String sourceId) {
-    return sourceId.equals("none")
-      ? " select DISTINCT pt.profile_set_name, pt.profile_type" +
-        " from apidbtuning.profiletype pt" +
-        "   ,  (select distinct sl.study_id" +
-        "       from study.studylink sl, apidbtuning.PanResults panr" +
-        "       where sl.protocol_app_node_id = panr.pan_id" +
-        "       and panr.result_table =" +
-        "           'Results::NAFeatureDiffResult') dr" +
-        "   , apidbtuning.DatasetNameTaxon dnt" +
-        " where dnt.dataset_presenter_id = '" + datasetPresenterId + "'" +
-        " and pt.dataset_name = dnt.name" +
-        " and pt.profile_study_id = dr.study_id (+)" +
-        " and dr.study_id is null"
-      : " select DISTINCT pt.profile_set_name, pt.profile_type" +
-        " from apidbtuning.profiletype pt, apidbtuning.profile p" +
-        "   ,  (select distinct sl.study_id " +
-        "       from study.studylink sl, apidbtuning.PanResults panr" +
-        "       where sl.protocol_app_node_id = panr.pan_id" +
-        "       and panr.result_table = 'Results::NAFeatureDiffResult') dr" +
-        "  , apidbtuning.DatasetNameTaxon dnt" +
-        " where dnt.dataset_presenter_id = '" + datasetPresenterId + "'" +
-        " and pt.dataset_name = dnt.name" +
-        " and pt.profile_study_id = dr.study_id (+)" +
-        " and dr.study_id is null" +
-        " and p.profile_study_id = pt.profile_study_id" +
-        " and p.profile_type = pt.profile_type" +
-        " and p.source_id = '" + sourceId + "'";
+  private static String getProfileSetNamesSql(String projectId, String datasetPresenterId, String sourceId) {
+    String sql = sourceId.equals("none")
+      ? DataPlotterQueries.getQueryMap(projectId, Category.ALL).get("profile_set_names")
+      : DataPlotterQueries.getQueryMap(projectId, Category.ALL).get("profile_set_names_by_source_id");
 
+    sql = sql.replaceAll("\\$datasetPresenterId", datasetPresenterId);
+    sql = sql.replaceAll("\\$sourceId", sourceId);
+
+    return sql;
   }
 
-  private static String getRankedValuesSql(String sqlName, String sourceIdValueQuery, String sourceId, String N, String name, int order) {
+  private static String getRankedValuesSql(String projectId, String sqlName, String sourceIdValueQuery, String sourceId, String N, String name, int order) {
     String columnsToReturn = "";
     String columnsInDat = "source_id, value";
     if (sqlName.equals("RankedNthSourceIdNames")) {
@@ -285,27 +222,27 @@ public class ProfileSetService extends AbstractWdkService {
           throw new IllegalArgumentException("Unsupported named query: " + sqlName);
     }
     
-    return " select " + columnsToReturn + ", rn as element_order, " + 
-             order + " as profile_order, '" + name + "' as profile_set" +
-           " from (select " + columnsInDat + ", rownum as rn" +
-           "       from (" + sourceIdValueQuery + " order by value)) t," + 
-           " (select max(rownum) as m " + 
-           "  from(" + sourceIdValueQuery + ")) ct" + 
-           " where ('" + sourceId + "' = 'ALL' " + 
-           "          AND (rn = 1 or rn = ct.m " + 
-           "               or mod(rn, round(ct.m/" + N + ",0)) = 0)" +
-           ") OR '" + sourceId + "' = source_id";
+    String sql = DataPlotterQueries.getQueryMap(projectId, Category.ALL).get("ranked_values");
+    sql = sql.replaceAll("\\$columnsToReturn", columnsToReturn);
+    sql = sql.replaceAll("\\$columnsInDat", columnsInDat);
+    sql = sql.replaceAll("\\$sourceIdValueQuery", sourceIdValueQuery);
+    sql = sql.replaceAll("\\$sourceId", sourceId);
+    sql = sql.replaceAll("\\$order", Integer.toString(order));
+    sql = sql.replaceAll("\\$name", name);
+    sql = sql.replaceAll("\\$N", N);   
+ 
+    return sql; 
   }
 
-  private static String getUserDatasetsSql(String profileSetId, String sourceId, String name, int order) {
-   return  " select pan.name, e.value, pan.node_order_num as element_order, " + order + " as profile_order, '" + name + "' as profile_set" +
-           " from apidbuserdatasets.ud_protocolappnode pan" +
-           "    , apidbuserdatasets.ud_nafeatureexpression e" +
-           "    , apidbtuning.geneattributes ga" +
-           " where pan.profile_set_id = '" + profileSetId + "'" +
-           " and pan.protocol_app_node_id = e.protocol_app_node_id" +
-           " and ga.na_feature_id = e.na_feature_id" +
-           " and ga.source_id = '" + sourceId + "'";
+  private static String getUserDatasetsSql(String projectId, String profileSetId, String sourceId, String name, int order) {
+
+    String sql = DataPlotterQueries.getQueryMap(projectId, Category.ALL).get("user_datasets");
+    sql = sql.replaceAll("\\$order", Integer.toString(order));
+    sql = sql.replaceAll("\\$name", name);
+    sql = sql.replaceAll("\\$sourceId", sourceId);
+    sql = sql.replaceAll("\\$profileSetId", profileSetId);
+  
+    return sql;
   }
 
   //TODO figure adding antisense result to return plot ready data
@@ -369,26 +306,26 @@ public class ProfileSetService extends AbstractWdkService {
   }
 
   //some of these nameless params may be null.. consider better ways to do this
-  private static String getSql(String sqlName, String param1, String param2, String param3, String param4, String param5, int order) {
+  private static String getSql(String projectId, String sqlName, String param1, String param2, String param3, String param4, String param5, int order) {
     switch(sqlName) {
       case "ProfileSetNames":
-        return getProfileSetNamesSql(param1, param2);
+        return getProfileSetNamesSql(projectId, param1, param2);
       case "Profile":
-        return getProfileSetSql(param1, param2, param3, param4, order);
+        return getProfileSetSql(projectId, param1, param2, param3, param4, order);
       case "ProfileWithMetadata":
-        return getProfileSetWithMetadataSql(param1, param2, param3, param4, param5, order);
+        return getProfileSetWithMetadataSql(projectId, param1, param2, param3, param4, param5, order);
       case "RankedNthSourceIdNames":
-        return getRankedValuesSql(sqlName, param1, param2, param3, param4, order);
+        return getRankedValuesSql(projectId, sqlName, param1, param2, param3, param4, order);
       case "RankedNthValues":
-        return getRankedValuesSql(sqlName, param1, param2, param3, param4, order);
+        return getRankedValuesSql(projectId, sqlName, param1, param2, param3, param4, order);
       case "RankedNthRatioValues":
-        return getRankedValuesSql(sqlName, param1, param2, param3, param4, order);
+        return getRankedValuesSql(projectId, sqlName, param1, param2, param3, param4, order);
       case "UserDatasets":
-        return getUserDatasetsSql(param1, param2, param3, order);
+        return getUserDatasetsSql(projectId, param1, param2, param3, order);
       case "SenseAntisense":
         return getSenseAntisenseSql(sqlName, param1, param2, param3, param4);
       case "ProfileByEC":
-        return getProfileSetByECSql(param1, param2, param3, order);
+        return getProfileSetByECSql(projectId, param1, param2, param3, order);
       case "PathwayGenera":
         return getPathwayGeneraSql(param1, param2);
       default:
