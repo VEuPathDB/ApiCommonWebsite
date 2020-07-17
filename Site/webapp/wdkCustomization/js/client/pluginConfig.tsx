@@ -10,6 +10,7 @@ import {
   StepAnalysisEupathExternalResult,
   StepAnalysisHpiGeneListResults,
 } from 'wdk-client/Plugins';
+import { ClientPluginRegistryEntry } from 'wdk-client/Utils/ClientPlugin';
 
 import { ByGenotypeNumberCheckbox } from './components/questions/ByGenotypeNumberCheckbox';
 
@@ -22,10 +23,8 @@ import { CompoundsByFoldChangeForm, GenericFoldChangeForm } from './components/q
 import { GenesByBindingSiteFeature } from './components/questions/GenesByBindingSiteFeature';
 import { GenesByOrthologPattern } from './components/questions/GenesByOrthologPattern';
 import { InternalGeneDataset } from './components/questions/InternalGeneDataset';
-import { RadioParams } from './components/questions/RadioParams';
 
-
-export default [
+const apiPluginConfig: ClientPluginRegistryEntry<any>[] = [
   {
     type: 'summaryView',
     name: '_default',
@@ -80,15 +79,6 @@ export default [
       question.properties.datasetSubtype
     ),    
     component: InternalGeneDataset
-  },
-  {
-    type: 'questionForm',
-    test: ({ question }) => !!(
-      question && 
-      question.properties && 
-      question.properties['radio-params']
-    ),
-    component: RadioParams
   },
   {
     type: 'questionForm',
@@ -187,3 +177,5 @@ export default [
     component: StepAnalysisHpiGeneListResults
   },
 ];
+
+export default apiPluginConfig;
