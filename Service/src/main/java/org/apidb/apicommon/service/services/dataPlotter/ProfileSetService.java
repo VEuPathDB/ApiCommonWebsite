@@ -132,6 +132,11 @@ public class ProfileSetService extends AbstractWdkService {
           } else {
             plotDataSql = plotDataSql + " UNION " + getSql(projectId, sqlName, profileSetId, sourceId, name, null, null, i);
           }
+      } else if (profileSet.has("senseProfileSetId")) {
+        String senseProfileSetId = profileSet.getString("senseProfileSetId");
+        String antisenseProfileSetId = profileSet.getString("antisenseProfileSetId");
+        String floor = profileSet.getString("floor");
+        plotDataSql = getSql(projectId, sqlName, senseProfileSetId, antisenseProfileSetId, sourceId, floor, null, i);
       } else if (profileSet.has("generaSql")) {
         String generaSql = profileSet.getString("generaSql");
         plotDataSql = getSql(projectId, sqlName, generaSql, sourceId, null, null, null, i);
@@ -155,7 +160,7 @@ public class ProfileSetService extends AbstractWdkService {
       }
     }
     
-    if (!sqlName.equals("PathwayGenera")) {
+    if (!sqlName.equals("PathwayGenera") && !sqlName.equals("SenseAntisense")) {
       plotDataSql = plotDataSql + " order by profile_order, element_order";
     }
 
@@ -252,35 +257,16 @@ public class ProfileSetService extends AbstractWdkService {
   }
 
   //TODO figure adding antisense result to return plot ready data
-  private static String getSenseAntisenseSql(String sqlName, String senseProfileSetId, String antisenseProfileSetId, String sourceId, String floor) {
-    String columnsToReturn = sqlName.equals("SenseAntisenseX") ? "value as contxaxis, name" : "value";
-    return " with comp as (select ps.node_order_num" +
-           "                    , ps.protocol_app_node_name" +
-           "                    , na.value" +
-           "               from apidbtuning.ProfileSamples ps" +
-           "                  , results.nafeatureexpression na" +
-           "                  , apidbtuning.geneattributes ga" +
-           "               where ps.study_name = '" + senseProfileSetId + "'" +
-           "               and ps.profile_type = 'values'" +
-           "               and ps.protocol_app_node_id = na.protocol_app_node_id" +
-           "               and na.na_feature_id = ga.na_feature_id" +
-           "               and ga.source_id='" + sourceId + "')" +
-           "    , ref as (select ps.node_order_num" +
-           "                   , ps.protocol_app_node_name" +
-           "                   , na.value" +
-           "              from apidbtuning.ProfileSamples ps" +
-           "                 , results.nafeatureexpression na" +
-           "                 , apidbtuning.geneattributes ga" +
-           "              where ps.study_name = '" + senseProfileSetId + "'" +
-           "              and ps.profile_type = 'values'" +
-           "              and ps.protocol_app_node_id =  na.protocol_app_node_id" +
-           "              and na.na_feature_id = ga.na_feature_id" +
-           "              and ga.source_id='" + sourceId + "')" +
-           " select " + columnsToReturn + ", ROW_NUMBER() OVER (order by NAME) as element_order" +
-           " from (select ref.protocol_app_node_name || '->' || comp.protocol_app_node_name as NAME" +
-           "            , round(log(2,greatest(comp.value," + floor + ") / greatest(ref.value," + floor + ")),1) as value" +
-           "       from comp, ref" +
-           "       where comp.protocol_app_node_name != ref.protocol_app_node_name)";
+  private static String getSenseAntisenseSql(String projectId, String sqlName, String senseProfileSetId, String antisenseProfileSetId, String sourceId, String floor) {
+
+    String sql = DataPlotterQueries.getQueryMap(projectId, Category.ALL).get("sense_antisense");
+    sql = sql.replaceAll("\\$floor", floor);
+    sql = sql.replaceAll("\\$antisenseProfileSetId", antisenseProfileSetId);
+    sql = sql.replaceAll("\\$sourceId", sourceId);
+    sql = sql.replaceAll("\\$senseProfileSetId", senseProfileSetId);
+ 
+    return sql;
+
   }
 
   private static String getPathwayGeneraSql(String projectId, String generaSql, String sourceId) {
@@ -310,7 +296,7 @@ public class ProfileSetService extends AbstractWdkService {
       case "UserDatasets":
         return getUserDatasetsSql(projectId, param1, param2, param3, order);
       case "SenseAntisense":
-        return getSenseAntisenseSql(sqlName, param1, param2, param3, param4);
+        return getSenseAntisenseSql(projectId, sqlName, param1, param2, param3, param4);
       case "ProfileByEC":
         return getProfileSetByECSql(projectId, param1, param2, param3, order);
       case "PathwayGenera":

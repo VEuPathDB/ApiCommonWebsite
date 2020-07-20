@@ -37,14 +37,9 @@ sub init {
 	      $antisenseId = $profileSetNames[0]; 
 	  }
  
-         my $valuesQuery = EbrcWebsiteCommon::Model::CannedQuery::SenseAntisenseY->new(Name => "values_SenseAntisense", Id => $id, ProfileSetId => $antisenseId, AntisenseFloor => $floor);
-
-	 my $namesQuery = EbrcWebsiteCommon::Model::CannedQuery::SenseAntisenseX->new(Name => "names_SenseAntisense", Id => $id, ProfileSetId => $senseId, AntisenseFloor => $floor);
-
 	 my $profileSet = EbrcWebsiteCommon::View::GraphPackage::ProfileSet->new("DUMMY");
-	 $profileSet->setProfileCannedQuery($valuesQuery);
-
-	 $profileSet->setProfileNamesCannedQuery($namesQuery);
+	 $profileSet->setJsonForService("{\"senseProfileSetId\":\"$senseId\",\"antisenseProfileSetId\":\"$antisenseId\",\"floor\":\"$floor\"}"); 
+	 $profileSet->setSqlName("SenseAntisense");
 
 	 push @profileSets, $profileSet;
       }   
