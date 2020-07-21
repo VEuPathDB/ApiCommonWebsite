@@ -35,7 +35,7 @@ public class ListProcessPlugin extends AbstractSimpleProcessAnalyzer {
   
   @Override
   protected String[] getCommand(AnswerValue answerValue) {
-    return new String[]{ LIST_EXECUTABLE, LIST_OPTIONS, getFormParams().get(LOCATION_PARAM)[0] };
+    return new String[]{ LIST_EXECUTABLE, LIST_OPTIONS, getFormParams().get(LOCATION_PARAM) };
   }
 
   @Override

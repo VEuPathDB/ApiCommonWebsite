@@ -16,7 +16,6 @@ import java.util.Map;
 import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
-import org.gusdb.fgputil.FormatUtil;
 import org.gusdb.fgputil.db.runner.BasicResultSetHandler;
 import org.gusdb.fgputil.db.runner.SQLRunner;
 import org.gusdb.fgputil.db.runner.SingleLongResultSetHandler;
@@ -65,7 +64,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
       "Bonferroni adjusted p-value"
   );
 
-  public ValidationBundle validateFormParams(Map<String, String[]> formParams) throws WdkModelException {
+  public ValidationBundle validateFormParams(Map<String, String> formParams) throws WdkModelException {
 
     ValidationBundleBuilder errors = ValidationBundle.builder(ValidationLevel.SEMANTIC);
 
@@ -126,14 +125,14 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   protected String[] getCommand(AnswerValue answerValue) throws WdkModelException, WdkUserException {
 
     WdkModel wdkModel = answerValue.getAnswerSpec().getQuestion().getWdkModel();
-    Map<String,String[]> params = getFormParams();
+    Map<String,String> params = getFormParams();
 
     String idSql = EnrichmentPluginUtil.getOrgSpecificIdSql(answerValue, params);
     String pValueCutoff = EnrichmentPluginUtil.getPvalueCutoff(params);
 
     String evidCodesStr = EnrichmentPluginUtil.getArrayParamValueAsString(
         GO_EVID_CODE_PARAM_KEY, params, null); // in sql format
-    String ontology = params.get(GO_ASSOC_ONTOLOGY_PARAM_KEY)[0];
+    String ontology = params.get(GO_ASSOC_ONTOLOGY_PARAM_KEY);
     String goSubset = EnrichmentPluginUtil.getArrayParamValueAsString(
         GO_SUBSET_PARAM_KEY, params, null); // in sql format
     // create another path here for the image word cloud JP LOOK HERE name it like imageFilePath
@@ -206,7 +205,6 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
   @Override
   public JSONObject getResultViewModelJson() throws WdkModelException {
-
       return createResultViewModel().toJson();
   }
 
@@ -214,14 +212,14 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
     private List<ResultRow> _resultData;
     private String _downloadPath;
-    private Map<String, String[]> _formParams;
+    private Map<String, String> _formParams;
     private String _goTermBaseUrl;
     private String _imageDownloadPath;
     private String _hiddenDownloadPath;
     private String _revigoInputList;
 
     public ResultViewModel(String downloadPath, List<ResultRow> resultData,
-        Map<String, String[]> formParams, String goTermBaseUrl, String imageDownloadPath,
+        Map<String, String> formParams, String goTermBaseUrl, String imageDownloadPath,
         String hiddenDownloadPath, String revigoInputList) {
       this._downloadPath = downloadPath;
       this._formParams = formParams;
@@ -239,9 +237,6 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     public String getImageDownloadPath() { return _imageDownloadPath; }
     public String gethiddenDownloadPath() { return _hiddenDownloadPath; }
     public String getPvalueCutoff() { return EnrichmentPluginUtil.getPvalueCutoff(_formParams); }
-    public String getEvidCodes() { return FormatUtil.join(_formParams.get(GoEnrichmentPlugin.GO_EVID_CODE_PARAM_KEY), ", "); }
-    public String getGoOntologies() { return FormatUtil.join(_formParams.get(GoEnrichmentPlugin.GO_ASSOC_ONTOLOGY_PARAM_KEY), ", "); }
-    public String getGoSubset() { return FormatUtil.join(_formParams.get(GoEnrichmentPlugin.GO_SUBSET_PARAM_KEY), ", "); }
     public String getGoTermBaseUrl() { return _goTermBaseUrl; }
     public String getRevigoInputList() {return _revigoInputList; }
 

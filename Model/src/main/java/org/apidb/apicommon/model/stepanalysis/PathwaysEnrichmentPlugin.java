@@ -16,7 +16,6 @@ import java.util.Map;
 import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
-import org.gusdb.fgputil.FormatUtil;
 import org.gusdb.fgputil.db.runner.BasicResultSetHandler;
 import org.gusdb.fgputil.db.runner.SQLRunner;
 import org.gusdb.fgputil.runtime.GusHome;
@@ -62,7 +61,7 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
   // TODO: verify that validation is being performed here (i.e. that these params live in the model
   @SuppressWarnings("unused")
-  private ValidationBundle validateFormParamValues(Map<String, String[]> formParams) throws WdkModelException {
+  private ValidationBundle validateFormParamValues(Map<String, String> formParams) throws WdkModelException {
 
     ValidationBundleBuilder errors = ValidationBundle.builder(ValidationLevel.SEMANTIC);
 
@@ -113,7 +112,7 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   protected String[] getCommand(AnswerValue answerValue) throws WdkModelException, WdkUserException {
 
     WdkModel wdkModel = answerValue.getAnswerSpec().getQuestion().getWdkModel();
-    Map<String,String[]> params = getFormParams();
+    Map<String,String> params = getFormParams();
 
     String idSql = EnrichmentPluginUtil.getOrgSpecificIdSql(answerValue, params);
     String pValueCutoff = EnrichmentPluginUtil.getPvalueCutoff(params);
@@ -193,13 +192,13 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
     private List<ResultRow> _resultData;
     private String _downloadPath;
-    private Map<String, String[]> _formParams;
+    private Map<String, String> _formParams;
     private String _pathwayBaseUrl;
       private String _imageDownloadPath;
       private String _hiddenDownloadPath;
 
     public ResultViewModel(String downloadPath, List<ResultRow> resultData,
-			   Map<String, String[]> formParams, String pathwayBaseUrl, String imageDownloadPath, String hiddenDownloadPath) {
+			   Map<String, String> formParams, String pathwayBaseUrl, String imageDownloadPath, String hiddenDownloadPath) {
       _downloadPath = downloadPath;
       _formParams = formParams;
       _resultData = resultData;
@@ -213,10 +212,9 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     public ResultRow getHeaderDescription() { return PathwaysEnrichmentPlugin.COLUMN_HELP; }
     public List<ResultRow> getResultData() { return _resultData; }
     public String getDownloadPath() { return _downloadPath; }
-      public String getImageDownloadPath() { return _imageDownloadPath; }
-      public String gethiddenDownloadPath() { return _hiddenDownloadPath; }
+    public String getImageDownloadPath() { return _imageDownloadPath; }
+    public String gethiddenDownloadPath() { return _hiddenDownloadPath; }
     public String getPvalueCutoff() { return EnrichmentPluginUtil.getPvalueCutoff(_formParams); }
-    public String getPathwaysSources() { return FormatUtil.join(_formParams.get(PathwaysEnrichmentPlugin.PATHWAYS_SRC_PARAM_KEY), ", "); }
     public String getPathwayBaseUrl() { return _pathwayBaseUrl; }
 
     JSONObject toJson() {

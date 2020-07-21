@@ -12,6 +12,7 @@ import org.gusdb.fgputil.validation.ValidationBundle.ValidationBundleBuilder;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.answer.AnswerValue;
+import org.gusdb.wdk.model.query.param.AbstractEnumParam;
 
 public class EnrichmentPluginUtil {
 
@@ -23,7 +24,7 @@ public class EnrichmentPluginUtil {
   public static final String TERM_KEY = "term";
   public static final String DISPLAY_KEY = "display";
 
-  public static void validateOrganism(Map<String, String[]> formParams, AnswerValue answerValue,
+  public static void validateOrganism(Map<String, String> formParams, AnswerValue answerValue,
       WdkModel wdkModel, ValidationBundleBuilder errors) throws WdkModelException {
 
     String organism = getSingleAllowableValueParam(ORGANISM_PARAM_KEY, formParams, errors);
@@ -32,13 +33,13 @@ public class EnrichmentPluginUtil {
     }
   }
 
-  public static void validatePValue(Map<String, String[]> formParams, ValidationBundleBuilder errors) {
+  public static void validatePValue(Map<String, String> formParams, ValidationBundleBuilder errors) {
     if (!formParams.containsKey(PVALUE_PARAM_KEY)) {
       errors.addError(PVALUE_PARAM_KEY, "Missing required parameter.");
     }
     else {
       try {
-        float pValueCutoff = Float.parseFloat(formParams.get(PVALUE_PARAM_KEY)[0]);
+        float pValueCutoff = Float.parseFloat(formParams.get(PVALUE_PARAM_KEY));
         if (pValueCutoff <= 0 || pValueCutoff > 1) throw new NumberFormatException();
       }
       catch (NumberFormatException e) {
@@ -56,13 +57,19 @@ public class EnrichmentPluginUtil {
    * @return valid param value as String, or null if errors occurred
    */
   // @param errors may be null if the sources have been previously validated.
-  public static String getSingleAllowableValueParam(String paramKey, Map<String, String[]> formParams, ValidationBundleBuilder errors) {
-    String[] values = formParams.get(paramKey);
-    if ((values == null || values.length != 1) && errors != null) {
-      errors.addError(paramKey, "Missing required parameter, or more than one provided.");
+  public static String getSingleAllowableValueParam(String paramKey, Map<String, String> formParams, ValidationBundleBuilder errors) {
+    // use this method to parse both string and enum params
+    String stableValue = AbstractEnumParam.standardizeStableValue(formParams.get(paramKey), true);
+    List<String> values = AbstractEnumParam.convertToTerms(stableValue);
+    if (values.isEmpty()) {
+      errors.addError(paramKey, "Missing required parameter.");
       return null;
     }
-    return values[0];
+    if (values.size() > 1) {
+      errors.addError(paramKey, "Only one value allowed for this parameter.");
+      return null;
+    }
+    return values.get(0);
   }
 
   /**
@@ -77,26 +84,26 @@ public class EnrichmentPluginUtil {
    * @return SQL compatible list string
    */
   public static String getArrayParamValueAsString(String paramKey,
-      Map<String, String[]> formParams, ValidationBundleBuilder errors) {
-    String[] values = formParams.get(paramKey);
-    if ((values == null || values.length == 0) && errors != null) {
+      Map<String, String> formParams, ValidationBundleBuilder errors) {
+    List<String> values = AbstractEnumParam.convertToTerms(formParams.get(paramKey));
+    if (values.isEmpty()) {
       errors.addError(paramKey, "Missing required parameter.");
     }
     return "'" + FormatUtil.join(values, "','") + "'";
   }
 
   public static String getOrgSpecificIdSql(AnswerValue answerValue,
-      Map<String,String[]> params) throws WdkModelException {
+      Map<String,String> params) throws WdkModelException {
     // must wrap idSql with code that filters by the passed organism param
     return "SELECT ga.source_id " +
         "FROM ApidbTuning.GeneAttributes ga, " +
         "(" + answerValue.getIdSql() + ") r " +
         "where ga.source_id = r.gene_source_id " +
-        "and  ga.organism = '" + params.get(ORGANISM_PARAM_KEY)[0] + "'";
+        "and  ga.organism = '" + params.get(ORGANISM_PARAM_KEY) + "'";
   }
 
-  public static String getPvalueCutoff(Map<String, String[]> params) {
-    return params.get(PVALUE_PARAM_KEY)[0];
+  public static String getPvalueCutoff(Map<String, String> params) {
+    return params.get(PVALUE_PARAM_KEY);
   }
 
   /**

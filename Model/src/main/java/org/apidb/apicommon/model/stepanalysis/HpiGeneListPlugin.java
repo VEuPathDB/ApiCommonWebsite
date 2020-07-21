@@ -99,7 +99,7 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
   protected String[] getCommand(AnswerValue answerValue) throws WdkModelException, WdkUserException {
 
     WdkModel wdkModel = answerValue.getAnswerSpec().getQuestion().getWdkModel();
-    Map<String, String[]> params = getFormParams();
+    Map<String, String> params = getFormParams();
 
     String type = "gene";
 
@@ -107,16 +107,16 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
 
     String idSql = "select distinct gene_source_id from (" + answerValue.getIdSql() + ")";
 
-    String threshold = params.get(THRESHOLD_PARAM_KEY)[0];
+    String threshold = params.get(THRESHOLD_PARAM_KEY);
 
-    String brcValue = params.get(BRC_PARAM_KEY)[0];
+    String brcValue = params.get(BRC_PARAM_KEY);
     String searchServerEndpoint = this.serverEndpoints.get(brcValue);
 
-    String thresholdType = params.get(THRESHOLD_TYPE_PARAM_KEY)[0];
-    String useOrthology = params.get(USE_ORTHOLOGY_PARAM_KEY)[0];
+    String thresholdType = params.get(THRESHOLD_TYPE_PARAM_KEY);
+    String useOrthology = params.get(USE_ORTHOLOGY_PARAM_KEY);
 
-    String datasetCutoff = params.get(DS_CUTOFF_PARAM_KEY)[0];
-    String datasetCutoffType = params.get(DS_CUTOFF_TYPE_PARAM_KEY)[0];
+    String datasetCutoff = params.get(DS_CUTOFF_PARAM_KEY);
+    String datasetCutoffType = params.get(DS_CUTOFF_TYPE_PARAM_KEY);
 
 
     // create another path here for the image word cloud JP LOOK HERE name it like imageFilePath
@@ -216,9 +216,9 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
 
     private List<ResultRow> resultData;
     private String downloadPath;
-    private Map<String, String[]> formParams;
+    private Map<String, String> formParams;
 
-    public ResultViewModel(String downloadPath, List<ResultRow> resultData, Map<String, String[]> formParams)
+    public ResultViewModel(String downloadPath, List<ResultRow> resultData, Map<String, String> formParams)
       {
 	  this.downloadPath = downloadPath;
 	  this.formParams = formParams;
@@ -244,7 +244,7 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
       public String getDownloadPath() {
           return this.downloadPath;
       }
-      public Map<String,String[]> getFormParams() {
+      public Map<String,String> getFormParams() {
           return this.formParams;
       }
 

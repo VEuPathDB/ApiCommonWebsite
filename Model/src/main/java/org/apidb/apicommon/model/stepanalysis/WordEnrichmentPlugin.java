@@ -46,7 +46,7 @@ public class WordEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
       "Bonferroni adjusted p-value"
   );
 
-  public ValidationBundle validateFormParams(Map<String, String[]> formParams) throws WdkModelException {
+  public ValidationBundle validateFormParams(Map<String, String> formParams) throws WdkModelException {
 
     ValidationBundleBuilder errors = ValidationBundle.builder(ValidationLevel.SEMANTIC);
 
@@ -63,7 +63,7 @@ public class WordEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   protected String[] getCommand(AnswerValue answerValue) throws WdkModelException, WdkUserException {
 
     WdkModel wdkModel = answerValue.getAnswerSpec().getQuestion().getWdkModel();
-    Map<String,String[]> params = getFormParams();
+    Map<String,String> params = getFormParams();
 
     String idSql = EnrichmentPluginUtil.getOrgSpecificIdSql(answerValue, params);
     String pValueCutoff = EnrichmentPluginUtil.getPvalueCutoff(params);
@@ -100,10 +100,10 @@ public class WordEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
     private List<ResultRow> _resultData;
     private String _downloadPath;
-    private Map<String, String[]> _formParams;
+    private Map<String, String> _formParams;
 
     public ResultViewModel(String downloadPath, List<ResultRow> resultData,
-        Map<String, String[]> formParams) {
+        Map<String, String> formParams) {
       _downloadPath = downloadPath;
       _formParams = formParams;
       _resultData = resultData;
