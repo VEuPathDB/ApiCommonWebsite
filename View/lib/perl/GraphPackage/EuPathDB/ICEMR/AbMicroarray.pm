@@ -7,9 +7,7 @@ use Data::Dumper;
 
 @ISA = qw( EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet);
 use EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet;
-use EbrcWebsiteCommon::View::GraphPackage::LegacyGGScatterPlot;
-
-sub useLegacy { return 1; }
+use EbrcWebsiteCommon::View::GraphPackage::GGScatterPlot;
 
 sub init {
   my $self = shift;
@@ -47,7 +45,7 @@ sub init {
                          ['Southeast Asia ICEMR Profiles','values', '', '', '', '', '', $facet, '', '', $contXAxis]);
   my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileSetArray);
 
-  my $scatter = EbrcWebsiteCommon::View::GraphPackage::LegacyGGScatterPlot::LogRatio->new(@_);
+  my $scatter = EbrcWebsiteCommon::View::GraphPackage::GGScatterPlot::LogRatio->new(@_);
   $scatter->setProfileSets($profileSets);
   $scatter->setColors($colors);
   $scatter->setLegendLabels(['Uganda East Africa ICEMR Profiles',

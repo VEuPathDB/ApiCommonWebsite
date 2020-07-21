@@ -9,7 +9,8 @@ use EbrcWebsiteCommon::Model::CannedQuery::PathwayGeneraData;
 @ISA = qw( EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet );
 use EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet;
 use EbrcWebsiteCommon::View::GraphPackage::GGBarPlot;
-
+ 
+use Data::Dumper;
 
 sub init {
   my $self = shift;
@@ -22,20 +23,13 @@ sub init {
   my @generaList = map { $_->[0] } @$listOfLists;
   my @colorList = map { $_->[2] } @$listOfLists;
 
-  my $names = EbrcWebsiteCommon::Model::CannedQuery::PathwayGeneraNames->new
-      ( Name         => "_names",
-        Genera => \@generaList,
-      );
+  my $i = 1;
+  my $generaSql = join (" union ", map { "select '$_' as genus, " . $i++ . " as o from dual"  } @generaList);
+  print STDERR Dumper("genera sql: " . $generaSql);
 
-  my $data = EbrcWebsiteCommon::Model::CannedQuery::PathwayGeneraData->new
-        ( Name         => "_data",
-          Genera => \@generaList,
-          Id => $self->getId(),
-        );
-
-  my $profileSet = EbrcWebsiteCommon::View::GraphPackage::ProfileSet->new("INTERNAL", [], undef, undef, undef, "Display Name");
-  $profileSet->setProfileCannedQuery($data);
-  $profileSet->setProfileNamesCannedQuery($names);
+  my $profileSet = EbrcWebsiteCommon::View::GraphPackage::ProfileSet->new("DUMMY");
+  $profileSet->setJsonForService("{\"generaSql\":\"$generaSql\"}");
+  $profileSet->setSqlName("PathwayGenera");
 
   my $profileSets = [$profileSet];
 

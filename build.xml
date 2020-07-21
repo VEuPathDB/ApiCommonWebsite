@@ -119,8 +119,12 @@
     <!-- JBrowse Stuff -->
     <symlink link="${webappTargetDir}/jbrowse/tracks"
              resource="${targetDir}/lib/jbrowse/auto_generated" />
+
     <symlink link="${webappTargetDir}/jbrowse/common_tracks"
              resource="${targetDir}/lib/jbrowse/common" />
+
+    <symlink link="${webappTargetDir}/WEB-INF/wdk-model/lib/jbrowse"
+             resource="${targetDir}/lib/jbrowse" />
 
   </target>
 
