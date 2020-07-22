@@ -132,7 +132,8 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
     String evidCodesStr = EnrichmentPluginUtil.getArrayParamValueAsString(
         GO_EVID_CODE_PARAM_KEY, params, null); // in sql format
-    String ontology = params.get(GO_ASSOC_ONTOLOGY_PARAM_KEY);
+    String ontology = EnrichmentPluginUtil.getSingleAllowableValueParam(
+        GO_ASSOC_ONTOLOGY_PARAM_KEY, params, null); // only get first (and only) value
     String goSubset = EnrichmentPluginUtil.getArrayParamValueAsString(
         GO_SUBSET_PARAM_KEY, params, null); // in sql format
     // create another path here for the image word cloud JP LOOK HERE name it like imageFilePath
@@ -140,10 +141,28 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     Path hiddenResultFilePath = Paths.get(getStorageDirectory().toString(), HIDDEN_TABBED_RESULT_FILE_PATH);
     Path imageResultFilePath = Paths.get(getStorageDirectory().toString(), IMAGE_RESULT_FILE_PATH);
     String qualifiedExe = Paths.get(GusHome.getGusHome(), "bin", "apiGoEnrichment").toString();
-    LOG.info(qualifiedExe + " " + resultFilePath.toString() + " " + idSql + " " +
-	     wdkModel.getProjectId() + " " + pValueCutoff + " " + ontology + " " + evidCodesStr + " " + goSubset + " " + imageResultFilePath.toString() + hiddenResultFilePath.toString());
-    return new String[]{ qualifiedExe, resultFilePath.toString(), idSql,
-                         wdkModel.getProjectId(), pValueCutoff, ontology, /*sourcesStr */ evidCodesStr, goSubset,  imageResultFilePath.toString(), hiddenResultFilePath.toString() };
+    LOG.info(qualifiedExe +
+        " " + resultFilePath.toString() +
+        " " + idSql +
+        " " + wdkModel.getProjectId() +
+        " " + pValueCutoff +
+        " " + ontology +
+        " " + evidCodesStr +
+        " " + goSubset +
+        " " + imageResultFilePath.toString() +
+        " " + hiddenResultFilePath.toString());
+    return new String[] {
+        qualifiedExe,
+        resultFilePath.toString(),
+        idSql,
+        wdkModel.getProjectId(),
+        pValueCutoff,
+        ontology,
+        evidCodesStr,
+        goSubset,
+        imageResultFilePath.toString(),
+        hiddenResultFilePath.toString()
+    };
   }
 
   /**
