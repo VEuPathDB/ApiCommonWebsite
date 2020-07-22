@@ -58,9 +58,7 @@ public class EnrichmentPluginUtil {
    */
   // @param errors may be null if the sources have been previously validated.
   public static String getSingleAllowableValueParam(String paramKey, Map<String, String> formParams, ValidationBundleBuilder errors) {
-    // use this method to parse both string and enum params
-    String stableValue = AbstractEnumParam.standardizeStableValue(formParams.get(paramKey), true);
-    List<String> values = AbstractEnumParam.convertToTerms(stableValue);
+    List<String> values = AbstractEnumParam.convertToTerms(formParams.get(paramKey));
     if (values.isEmpty()) {
       errors.addError(paramKey, "Missing required parameter.");
       return null;
@@ -95,11 +93,12 @@ public class EnrichmentPluginUtil {
   public static String getOrgSpecificIdSql(AnswerValue answerValue,
       Map<String,String> params) throws WdkModelException {
     // must wrap idSql with code that filters by the passed organism param
+    String singleOrg = AbstractEnumParam.convertToTerms(params.get(ORGANISM_PARAM_KEY)).get(0);
     return "SELECT ga.source_id " +
         "FROM ApidbTuning.GeneAttributes ga, " +
         "(" + answerValue.getIdSql() + ") r " +
         "where ga.source_id = r.gene_source_id " +
-        "and  ga.organism = '" + params.get(ORGANISM_PARAM_KEY) + "'";
+        "and  ga.organism = '" + singleOrg + "'";
   }
 
   public static String getPvalueCutoff(Map<String, String> params) {
