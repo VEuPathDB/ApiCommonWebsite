@@ -224,34 +224,20 @@ sub getProfileColors {
 #host
 package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_4585d065bf;
 
-sub useLegacy { return 1; }
-
 sub init {
   my $self = shift;
   use Data::Dumper; 
 
   $self->SUPER::init(@_);
 
-  #bit hackish but it was a quick solution and i dont suspect ill have to do this more than this once.
-  my @elementNames_RMe14 = ['Day 0', 'Day 1', 'Day 100', 'Day 2', 'Day 23', 'Day 24', 'Day 27', 'Day 28', 'Day 29', 'Day 3', 'Day 30', 'Day 31', 'Day 32', 'Day 33', 'Day 34', 'Day 35', 'Day 36', 'Day 37', 'Day 38', 'Day 39', 'Day 4', 'Day 40', 'Day 41', 'Day 42', 'Day 43', 'Day 44', 'Day 45', 'Day 46', 'Day 47', 'Day 48', 'Day 49', 'Day 5', 'Day 50', 'Day 51', 'Day 52', 'Day 53', 'Day 54', 'Day 55', 'Day 56', 'Day 57', 'Day 58', 'Day 59', 'Day 6', 'Day 60', 'Day 61', 'Day 62', 'Day 63', 'Day 64', 'Day 65', 'Day 66', 'Day 67', 'Day 68', 'Day 69', 'Day 7', 'Day 70', 'Day 71', 'Day 72', 'Day 73', 'Day 74', 'Day 75', 'Day 76', 'Day 77', 'Day 78', 'Day 79', 'Day 8', 'Day 9', 'Day 90', 'Day 93', 'Day 94', 'Day 95', 'Day 96', 'Day 97', 'Day 98', 'Day 99', 'Day 91', 'Day 11', 'Day 82', 'Day 17', 'Day 85', 'Day 80', 'Day 83', 'Day 22', 'Day 15', 'Day 18', 'Day 88', 'Day 92', 'Day 20', 'Day 26', 'Day 12', 'Day 19', 'Day 13', 'Day 21', 'Day 25', 'Day 10', 'Day 87', 'Day 89', 'Day 16', 'Day 14', 'Day 86', 'Day 84', 'Day 81'];
-  my @elementNames_RFv13 = ['Day 0', 'Day 1', 'Day 10', 'Day 11', 'Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6', 'Day 7', 'Day 8', 'Day 9', 'Day 19', 'Day 12', 'Day 22', 'Day 13', 'Day 16', 'Day 14', 'Day 15', 'Day 17', 'Day 21', 'Day 20', 'Day 18'];
-  my @elementNames_RIc14 = ['Day 0', 'Day 1', 'Day 10', 'Day 100', 'Day 2', 'Day 27', 'Day 28', 'Day 29', 'Day 3', 'Day 30', 'Day 31', 'Day 32', 'Day 33', 'Day 34', 'Day 35', 'Day 36', 'Day 37', 'Day 38', 'Day 39', 'Day 4', 'Day 40', 'Day 41', 'Day 42', 'Day 43', 'Day 44', 'Day 45', 'Day 46', 'Day 47', 'Day 48', 'Day 49', 'Day 5', 'Day 50', 'Day 51', 'Day 52', 'Day 6', 'Day 61', 'Day 62', 'Day 63', 'Day 64', 'Day 65', 'Day 66', 'Day 67', 'Day 68', 'Day 69', 'Day 7', 'Day 70', 'Day 71', 'Day 72', 'Day 73', 'Day 74', 'Day 75', 'Day 76', 'Day 77', 'Day 78', 'Day 79', 'Day 8', 'Day 80', 'Day 81', 'Day 82', 'Day 89', 'Day 9', 'Day 90', 'Day 91', 'Day 92', 'Day 93', 'Day 94', 'Day 95', 'Day 96', 'Day 97', 'Day 98', 'Day 99', 'Day 54', 'Day 83', 'Day 24', 'Day 25', 'Day 23', 'Day 87', 'Day 26', 'Day 20', 'Day 88', 'Day 17', 'Day 16', 'Day 84', 'Day 55', 'Day 60', 'Day 12', 'Day 19', 'Day 53', 'Day 11', 'Day 13', 'Day 18', 'Day 58', 'Day 21', 'Day 59', 'Day 15', 'Day 57', 'Day 85', 'Day 86', 'Day 14', 'Day 22', 'Day 56'];
-  my @elementNames_RSb14 = ['Day 0', 'Day 1', 'Day 10', 'Day 100', 'Day 2', 'Day 27', 'Day 28', 'Day 29', 'Day 3', 'Day 30', 'Day 31', 'Day 32', 'Day 33', 'Day 34', 'Day 35', 'Day 36', 'Day 37', 'Day 38', 'Day 39', 'Day 4', 'Day 40', 'Day 41', 'Day 42', 'Day 43', 'Day 44', 'Day 45', 'Day 46', 'Day 47', 'Day 48', 'Day 49', 'Day 5', 'Day 50', 'Day 51', 'Day 52', 'Day 53', 'Day 54', 'Day 55', 'Day 56', 'Day 57', 'Day 58', 'Day 59', 'Day 6', 'Day 64', 'Day 65', 'Day 66', 'Day 67', 'Day 68', 'Day 69', 'Day 7', 'Day 70', 'Day 71', 'Day 72', 'Day 73', 'Day 74', 'Day 75', 'Day 76', 'Day 77', 'Day 78', 'Day 79', 'Day 8', 'Day 80', 'Day 81', 'Day 82', 'Day 83', 'Day 84', 'Day 85', 'Day 86', 'Day 87', 'Day 9', 'Day 94', 'Day 95', 'Day 96', 'Day 97', 'Day 98', 'Day 99', 'Day 16', 'Day 18', 'Day 25', 'Day 63', 'Day 60', 'Day 89', 'Day 61', 'Day 20', 'Day 62', 'Day 12', 'Day 24', 'Day 19', 'Day 93', 'Day 92', 'Day 88', 'Day 11', 'Day 23', 'Day 14', 'Day 15', 'Day 13', 'Day 90', 'Day 91', 'Day 26', 'Day 21', 'Day 17', 'Day 22'];
-  my @elementNames_RFa14 = ['Day 0', 'Day 1', 'Day 10', 'Day 11', 'Day 2', 'Day 21', 'Day 22', 'Day 23', 'Day 28', 'Day 29', 'Day 3', 'Day 30', 'Day 31', 'Day 32', 'Day 33', 'Day 34', 'Day 35', 'Day 36', 'Day 37', 'Day 38', 'Day 39', 'Day 4', 'Day 40', 'Day 41', 'Day 42', 'Day 43', 'Day 44', 'Day 45', 'Day 46', 'Day 47', 'Day 48', 'Day 49', 'Day 5', 'Day 50', 'Day 51', 'Day 52', 'Day 53', 'Day 54', 'Day 55', 'Day 56', 'Day 57', 'Day 58', 'Day 59', 'Day 6', 'Day 60', 'Day 61', 'Day 62', 'Day 63', 'Day 64', 'Day 65', 'Day 66', 'Day 67', 'Day 68', 'Day 69', 'Day 7', 'Day 70', 'Day 71', 'Day 72', 'Day 73', 'Day 74', 'Day 75', 'Day 76', 'Day 77', 'Day 78', 'Day 79', 'Day 8', 'Day 80', 'Day 81', 'Day 82', 'Day 83', 'Day 84', 'Day 85', 'Day 86', 'Day 87', 'Day 88', 'Day 89', 'Day 9', 'Day 90', 'Day 91', 'Day 92', 'Day 93', 'Day 94', 'Day 19', 'Day 99', 'Day 27', 'Day 24', 'Day 16', 'Day 97', 'Day 96', 'Day 12', 'Day 98', 'Day 17', 'Day 18', 'Day 15', 'Day 95', 'Day 13', 'Day 14', 'Day 26', 'Day 20', 'Day 25', 'Day 100'];
+  my $profileSet = EbrcWebsiteCommon::View::GraphPackage::ProfileSet->new("DUMMY");
+  $profileSet->setJsonForService("{\"profileSetName\":\"Parasitemia over 100 days in five monkeys\",\"profileType\":\"values\",\"idOverride\":\"RMe14\",\"name\":\"RMe14\"},{\"profileSetName\":\"Parasitemia over 100 days in five monkeys\",\"profileType\":\"values\",\"idOverride\":\"RFv13\",\"name\":\"RFv13\"},{\"profileSetName\":\"Parasitemia over 100 days in five monkeys\",\"profileType\":\"values\",\"idOverride\":\"RIc14\",\"name\":\"RIc14\"},{\"profileSetName\":\"Parasitemia over 100 days in five monkeys\",\"profileType\":\"values\",\"idOverride\":\"RSb14\",\"name\":\"RSb14\"},{\"profileSetName\":\"Parasitemia over 100 days in five monkeys\",\"profileType\":\"values\",\"idOverride\":\"RFa14\",\"name\":\"RFa14\"}");
+  $profileSet->setSqlName("Profile");
 
-  my @profileArray = (['Parasitemia over 100 days in five monkeys', 'values', '', '', @elementNames_RMe14, '', '', '', '', '', '', 'RMe14'],
-                      ['Parasitemia over 100 days in five monkeys', 'values', '', '', @elementNames_RFv13, '', '', '', '', '', '', 'RFv13'],
-                      ['Parasitemia over 100 days in five monkeys', 'values', '', '', @elementNames_RIc14, '', '', '', '', '', '', 'RIc14'],
-                      ['Parasitemia over 100 days in five monkeys', 'values', '', '', @elementNames_RSb14, '', '', '', '', '', '', 'RSb14'],
-                      ['Parasitemia over 100 days in five monkeys', 'values', '', '', @elementNames_RFa14, '', '', '', '', '', '', 'RFa14'],  
-                   );
-
-  my $profileSet = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileArray);
-
-  my $line = EbrcWebsiteCommon::View::GraphPackage::LegacyGGLinePlot->new(@_);
+  my $line = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot->new(@_);
   #print STDERR Dumper($line);
   $line->setPartName('parasitemia');
-  $line->setProfileSets($profileSet);
+  $line->setProfileSets([$profileSet]);
   $line->setYaxisLabel("Log 10 Parasites / uL");
   $line->setXaxisLabel("Day");
   $line->setPlotTitle("Parasitemia Summary - 100 Days");
@@ -260,11 +246,8 @@ sub init {
 
   profile.df.full$VALUE <- log10(profile.df.full$VALUE)
   profile.df.full$VALUE[is.infinite(profile.df.full$VALUE)] <- 0
-  profile.df.full <- separate(profile.df.full, PROFILE_FILE, c("trash", "FACET", "trash2"), "-")
-  profile.df.full$FACET <- as.factor(profile.df.full$FACET) 
-  profile.df.full$PROFILE_FILE <- profile.df.full$FACET
-  profile.df.full$trash <- NULL
-  profile.df.full$trash2 <- NULL
+  profile.df.full$FACET <- as.factor(profile.df.full$DISPLAY_NAME) 
+  profile.df.full$PROFILE_SET <- profile.df.full$FACET
   profile.df.full$TOOLTIP <- NA
   profile.df.full$TOOLTIP[profile.df.full$FACET == 'RIc14' & profile.df.full$ELEMENT_NAMES == 'Day 1'] <- "TP1"
   profile.df.full$TOOLTIP[profile.df.full$FACET == 'RSb14' & profile.df.full$ELEMENT_NAMES == 'Day 1'] <- "TP1"
@@ -394,34 +377,20 @@ sub declareParts {
 #plasmo
 package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_c35d971a20;
 
-sub useLegacy { return 1; }
-
 sub init {
   my $self = shift;
   use Data::Dumper; 
 
   $self->SUPER::init(@_);
 
-  #bit hackish but it was a quick solution and i dont suspect ill have to do this more than this once.
-  my @elementNames_RMe14 = ['Day 0', 'Day 1', 'Day 100', 'Day 2', 'Day 23', 'Day 24', 'Day 27', 'Day 28', 'Day 29', 'Day 3', 'Day 30', 'Day 31', 'Day 32', 'Day 33', 'Day 34', 'Day 35', 'Day 36', 'Day 37', 'Day 38', 'Day 39', 'Day 4', 'Day 40', 'Day 41', 'Day 42', 'Day 43', 'Day 44', 'Day 45', 'Day 46', 'Day 47', 'Day 48', 'Day 49', 'Day 5', 'Day 50', 'Day 51', 'Day 52', 'Day 53', 'Day 54', 'Day 55', 'Day 56', 'Day 57', 'Day 58', 'Day 59', 'Day 6', 'Day 60', 'Day 61', 'Day 62', 'Day 63', 'Day 64', 'Day 65', 'Day 66', 'Day 67', 'Day 68', 'Day 69', 'Day 7', 'Day 70', 'Day 71', 'Day 72', 'Day 73', 'Day 74', 'Day 75', 'Day 76', 'Day 77', 'Day 78', 'Day 79', 'Day 8', 'Day 9', 'Day 90', 'Day 93', 'Day 94', 'Day 95', 'Day 96', 'Day 97', 'Day 98', 'Day 99', 'Day 91', 'Day 11', 'Day 82', 'Day 17', 'Day 85', 'Day 80', 'Day 83', 'Day 22', 'Day 15', 'Day 18', 'Day 88', 'Day 92', 'Day 20', 'Day 26', 'Day 12', 'Day 19', 'Day 13', 'Day 21', 'Day 25', 'Day 10', 'Day 87', 'Day 89', 'Day 16', 'Day 14', 'Day 86', 'Day 84', 'Day 81'];
-  my @elementNames_RFv13 = ['Day 0', 'Day 1', 'Day 10', 'Day 11', 'Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6', 'Day 7', 'Day 8', 'Day 9', 'Day 19', 'Day 12', 'Day 22', 'Day 13', 'Day 16', 'Day 14', 'Day 15', 'Day 17', 'Day 21', 'Day 20', 'Day 18'];
-  my @elementNames_RIc14 = ['Day 0', 'Day 1', 'Day 10', 'Day 100', 'Day 2', 'Day 27', 'Day 28', 'Day 29', 'Day 3', 'Day 30', 'Day 31', 'Day 32', 'Day 33', 'Day 34', 'Day 35', 'Day 36', 'Day 37', 'Day 38', 'Day 39', 'Day 4', 'Day 40', 'Day 41', 'Day 42', 'Day 43', 'Day 44', 'Day 45', 'Day 46', 'Day 47', 'Day 48', 'Day 49', 'Day 5', 'Day 50', 'Day 51', 'Day 52', 'Day 6', 'Day 61', 'Day 62', 'Day 63', 'Day 64', 'Day 65', 'Day 66', 'Day 67', 'Day 68', 'Day 69', 'Day 7', 'Day 70', 'Day 71', 'Day 72', 'Day 73', 'Day 74', 'Day 75', 'Day 76', 'Day 77', 'Day 78', 'Day 79', 'Day 8', 'Day 80', 'Day 81', 'Day 82', 'Day 89', 'Day 9', 'Day 90', 'Day 91', 'Day 92', 'Day 93', 'Day 94', 'Day 95', 'Day 96', 'Day 97', 'Day 98', 'Day 99', 'Day 54', 'Day 83', 'Day 24', 'Day 25', 'Day 23', 'Day 87', 'Day 26', 'Day 20', 'Day 88', 'Day 17', 'Day 16', 'Day 84', 'Day 55', 'Day 60', 'Day 12', 'Day 19', 'Day 53', 'Day 11', 'Day 13', 'Day 18', 'Day 58', 'Day 21', 'Day 59', 'Day 15', 'Day 57', 'Day 85', 'Day 86', 'Day 14', 'Day 22', 'Day 56'];
-  my @elementNames_RSb14 = ['Day 0', 'Day 1', 'Day 10', 'Day 100', 'Day 2', 'Day 27', 'Day 28', 'Day 29', 'Day 3', 'Day 30', 'Day 31', 'Day 32', 'Day 33', 'Day 34', 'Day 35', 'Day 36', 'Day 37', 'Day 38', 'Day 39', 'Day 4', 'Day 40', 'Day 41', 'Day 42', 'Day 43', 'Day 44', 'Day 45', 'Day 46', 'Day 47', 'Day 48', 'Day 49', 'Day 5', 'Day 50', 'Day 51', 'Day 52', 'Day 53', 'Day 54', 'Day 55', 'Day 56', 'Day 57', 'Day 58', 'Day 59', 'Day 6', 'Day 64', 'Day 65', 'Day 66', 'Day 67', 'Day 68', 'Day 69', 'Day 7', 'Day 70', 'Day 71', 'Day 72', 'Day 73', 'Day 74', 'Day 75', 'Day 76', 'Day 77', 'Day 78', 'Day 79', 'Day 8', 'Day 80', 'Day 81', 'Day 82', 'Day 83', 'Day 84', 'Day 85', 'Day 86', 'Day 87', 'Day 9', 'Day 94', 'Day 95', 'Day 96', 'Day 97', 'Day 98', 'Day 99', 'Day 16', 'Day 18', 'Day 25', 'Day 63', 'Day 60', 'Day 89', 'Day 61', 'Day 20', 'Day 62', 'Day 12', 'Day 24', 'Day 19', 'Day 93', 'Day 92', 'Day 88', 'Day 11', 'Day 23', 'Day 14', 'Day 15', 'Day 13', 'Day 90', 'Day 91', 'Day 26', 'Day 21', 'Day 17', 'Day 22'];
-  my @elementNames_RFa14 = ['Day 0', 'Day 1', 'Day 10', 'Day 11', 'Day 2', 'Day 21', 'Day 22', 'Day 23', 'Day 28', 'Day 29', 'Day 3', 'Day 30', 'Day 31', 'Day 32', 'Day 33', 'Day 34', 'Day 35', 'Day 36', 'Day 37', 'Day 38', 'Day 39', 'Day 4', 'Day 40', 'Day 41', 'Day 42', 'Day 43', 'Day 44', 'Day 45', 'Day 46', 'Day 47', 'Day 48', 'Day 49', 'Day 5', 'Day 50', 'Day 51', 'Day 52', 'Day 53', 'Day 54', 'Day 55', 'Day 56', 'Day 57', 'Day 58', 'Day 59', 'Day 6', 'Day 60', 'Day 61', 'Day 62', 'Day 63', 'Day 64', 'Day 65', 'Day 66', 'Day 67', 'Day 68', 'Day 69', 'Day 7', 'Day 70', 'Day 71', 'Day 72', 'Day 73', 'Day 74', 'Day 75', 'Day 76', 'Day 77', 'Day 78', 'Day 79', 'Day 8', 'Day 80', 'Day 81', 'Day 82', 'Day 83', 'Day 84', 'Day 85', 'Day 86', 'Day 87', 'Day 88', 'Day 89', 'Day 9', 'Day 90', 'Day 91', 'Day 92', 'Day 93', 'Day 94', 'Day 19', 'Day 99', 'Day 27', 'Day 24', 'Day 16', 'Day 97', 'Day 96', 'Day 12', 'Day 98', 'Day 17', 'Day 18', 'Day 15', 'Day 95', 'Day 13', 'Day 14', 'Day 26', 'Day 20', 'Day 25', 'Day 100'];
+  my $profileSet = EbrcWebsiteCommon::View::GraphPackage::ProfileSet->new("DUMMY");
+  $profileSet->setJsonForService("{\"profileSetName\":\"Parasitemia over 100 days in five monkeys\",\"profileType\":\"values\",\"idOverride\":\"RMe14\",\"name\":\"RMe14\"},{\"profileSetName\":\"Parasitemia over 100 days in five monkeys\",\"profileType\":\"values\",\"idOverride\":\"RFv13\",\"name\":\"RFv13\"},{\"profileSetName\":\"Parasitemia over 100 days in five monkeys\",\"profileType\":\"values\",\"idOverride\":\"RIc14\",\"name\":\"RIc14\"},{\"profileSetName\":\"Parasitemia over 100 days in five monkeys\",\"profileType\":\"values\",\"idOverride\":\"RSb14\",\"name\":\"RSb14\"},{\"profileSetName\":\"Parasitemia over 100 days in five monkeys\",\"profileType\":\"values\",\"idOverride\":\"RFa14\",\"name\":\"RFa14\"}");
+   $profileSet->setSqlName("Profile");
 
-  my @profileArray = (['Parasitemia over 100 days in five monkeys', 'values', '', '', @elementNames_RMe14, '', '', '', '', '', '', 'RMe14'],
-                      ['Parasitemia over 100 days in five monkeys', 'values', '', '', @elementNames_RFv13, '', '', '', '', '', '', 'RFv13'],
-                      ['Parasitemia over 100 days in five monkeys', 'values', '', '', @elementNames_RIc14, '', '', '', '', '', '', 'RIc14'],
-                      ['Parasitemia over 100 days in five monkeys', 'values', '', '', @elementNames_RSb14, '', '', '', '', '', '', 'RSb14'],
-                      ['Parasitemia over 100 days in five monkeys', 'values', '', '', @elementNames_RFa14, '', '', '', '', '', '', 'RFa14'],  
-                   );
-
-  my $profileSet = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileArray);
-
-  my $line = EbrcWebsiteCommon::View::GraphPackage::LegacyGGLinePlot->new(@_);
+  my $line = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot->new(@_);
   #print STDERR Dumper($line);
   $line->setPartName('parasitemia');
-  $line->setProfileSets($profileSet);
+  $line->setProfileSets([$profileSet]);
   $line->setYaxisLabel("Log 10 Parasites / uL");
   $line->setXaxisLabel("Day");
   $line->setPlotTitle("Parasitemia Summary - 100 Days");
@@ -430,11 +399,8 @@ sub init {
 
   profile.df.full$VALUE <- log10(profile.df.full$VALUE)
   profile.df.full$VALUE[is.infinite(profile.df.full$VALUE)] <- 0
-  profile.df.full <- separate(profile.df.full, PROFILE_FILE, c("trash", "FACET", "trash2"), "-")
-  profile.df.full$FACET <- as.factor(profile.df.full$FACET) 
-  profile.df.full$PROFILE_FILE <- profile.df.full$FACET
-  profile.df.full$trash <- NULL
-  profile.df.full$trash2 <- NULL
+  profile.df.full$FACET <- as.factor(profile.df.full$DISPLAY_NAME) 
+  profile.df.full$PROFILE_SET <- profile.df.full$FACET
   profile.df.full$LEGEND <- "Sample\nResults\nNot Loaded"
   profile.df.full$LEGEND[profile.df.full$FACET == 'RIc14' & profile.df.full$ELEMENT_NAMES == 'Day 21'] <- "Sample\nResults\nLoaded"
   profile.df.full$LEGEND[profile.df.full$FACET == 'RSb14' & profile.df.full$ELEMENT_NAMES == 'Day 21'] <- "Sample\nResults\nLoaded"
@@ -681,7 +647,7 @@ sub finalProfileAdjustments {
   annotation.df <- profile.df.full[!profile.df.full$PROFILE_TYPE %in% c('values', 'channel1_percentiles'),]
   profile.df.full <- profile.df.full[profile.df.full$PROFILE_TYPE %in% c('values', 'channel1_percentiles'),]
   profile.df.full$GROUP <- gsub("([0-9]+)...", "", profile.df.full$ELEMENT_NAMES)
-  profile.df.full$PROFILE_FILE = profile.df.full$GROUP
+  profile.df.full$PROFILE_SET = profile.df.full$GROUP
   profile.df.full$LEGEND = profile.df.full$GROUP
 
   if (nrow(annotation.df) > 0) {  

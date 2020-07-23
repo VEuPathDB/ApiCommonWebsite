@@ -84,6 +84,17 @@ public class ProfileSetService extends AbstractWdkService {
         "getProfileSetNames", "Failed running SQL to fetch profile set names.");
   }
 
+  @GET
+  @Path("TimePointMapping/{profileSetName}")
+  @Produces(MediaType.APPLICATION_JSON)
+  public Response getTimePointMapping(
+      @PathParam("profileSetName") String profileSetName)
+          throws WdkModelException {
+    String sql = "select profile_as_string from apidbtuning.profile where source_id = 'timepoint' and profile_set_name = '" + profileSetName + "'";
+    return getStreamingResponse(sql,
+        "getTimePointMapping", "Failed running SQL to fetch time point mapping.");
+  }
+
   @POST
   @Path("PlotData/{sourceId}")
   @Consumes(MediaType.APPLICATION_JSON)
@@ -99,6 +110,9 @@ public class ProfileSetService extends AbstractWdkService {
     JSONArray profileSets = jsonObj.getJSONArray("profileSets");
     for (int i = 0; i < profileSets.length(); i++) {
       JSONObject profileSet = profileSets.getJSONObject(i);
+      if (profileSet.has("idOverride")) {
+        sourceId = profileSet.getString("idOverride");
+      }
       if (profileSet.has("profileSetName")) {
         String profileSetName = profileSet.getString("profileSetName");
         String profileType = profileSet.getString("profileType");
@@ -144,18 +158,10 @@ public class ProfileSetService extends AbstractWdkService {
         String sourceIdValueQuery = profileSet.getString("sourceIdValueQuery");
         String N = profileSet.getString("N");
         String name = profileSet.getString("name");
-        if (profileSet.has("idOverride")) {
-          if (plotDataSql.isEmpty()) {
-           plotDataSql = getSql(projectId, sqlName, sourceIdValueQuery, profileSet.getString("idOverride"), N, name, null, i);
-          } else {
-            plotDataSql = plotDataSql + " UNION " + getSql(projectId, sqlName, sourceIdValueQuery, profileSet.getString("idOverride"), N, name, null, i);
-          }
+        if (plotDataSql.isEmpty()) {
+          plotDataSql = getSql(projectId, sqlName, sourceIdValueQuery, sourceId, N, name, null, i);
         } else {
-          if (plotDataSql.isEmpty()) {
-            plotDataSql = getSql(projectId, sqlName, sourceIdValueQuery, sourceId, N, name, null, i);
-          } else {
-            plotDataSql = plotDataSql + " UNION " + getSql(projectId, sqlName, sourceIdValueQuery, sourceId, N, name, null, i);
-          }
+          plotDataSql = plotDataSql + " UNION " + getSql(projectId, sqlName, sourceIdValueQuery, sourceId, N, name, null, i);
         }
       }
     }
