@@ -16,13 +16,22 @@ import { ByGenotypeNumberCheckbox } from './components/questions/ByGenotypeNumbe
 
 import PopsetResultSummaryViewTableController from './components/controllers/PopsetResultSummaryViewTableController';
 import { ByGenotypeNumber } from './components/questions/ByGenotypeNumber';
-import { ByLocation } from './components/questions/ByLocation';
+import { ByLocationForm, ByLocationStepDetails } from './components/questions/ByLocation';
 import { BlastQuestionForm } from './components/questions/BlastQuestionForm';
 import { DynSpansBySourceId } from './components/questions/DynSpansBySourceId';
 import { CompoundsByFoldChangeForm, GenericFoldChangeForm } from './components/questions/foldChange';
 import { GenesByBindingSiteFeature } from './components/questions/GenesByBindingSiteFeature';
 import { GenesByOrthologPattern } from './components/questions/GenesByOrthologPattern';
 import { InternalGeneDataset } from './components/questions/InternalGeneDataset';
+
+const isInternalGeneDatasetQuestion: ClientPluginRegistryEntry<any>['test'] =
+  ({ question }) => (
+    question?.properties?.datasetCategory != null &&
+    question?.properties?.datasetSubtype != null
+  );
+
+const isMutuallyExclusiveParamQuestion: ClientPluginRegistryEntry<any>['test'] =
+  ({ question }) => question?.urlSegment.endsWith('ByLocation') ?? false;
 
 const apiPluginConfig: ClientPluginRegistryEntry<any>[] = [
   {
@@ -72,35 +81,22 @@ const apiPluginConfig: ClientPluginRegistryEntry<any>[] = [
   },
   {
     type: 'questionController',
-    test: ({ question }) => !!(
-      question && 
-      question.properties && 
-      question.properties.datasetCategory &&
-      question.properties.datasetSubtype
-    ),    
+    test: isInternalGeneDatasetQuestion,
     component: InternalGeneDataset
   },
   {
     type: 'questionForm',
-    searchName: 'ByGenotypeNumber',
+    name: 'ByGenotypeNumber',
     component: ByGenotypeNumber
   },
   {
     type: 'questionForm',
-    test: ({ question }) => !!(
-      question && 
-      question.urlSegment.endsWith('ByLocation')
-    ),
-    component: ByLocation
+    test: isMutuallyExclusiveParamQuestion,
+    component: ByLocationForm
   },
   {
     type: 'questionForm',
-    test: ({ question }) => !!(
-      question && 
-      question.properties && 
-      question.properties.datasetCategory &&
-      question.properties.datasetSubtype
-    ),
+    test: isInternalGeneDatasetQuestion,
     component: InternalGeneDataset
   },
   {
@@ -110,13 +106,11 @@ const apiPluginConfig: ClientPluginRegistryEntry<any>[] = [
   },
   {
     type: 'questionForm',
-    test: ({ question }) => 
-      !!question && 
-      (
-        question.queryName === 'GenesByGenericFoldChange' ||
-	question.queryName === 'GenesByRnaSeqFoldChange' ||
-        question.queryName === 'GenesByUserDatasetRnaSeq'
-      ),
+    test: ({ question }) => (
+      question?.queryName === 'GenesByGenericFoldChange' ||
+      question?.queryName === 'GenesByRnaSeqFoldChange' ||
+      question?.queryName === 'GenesByUserDatasetRnaSeq'
+    ),
     component: GenericFoldChangeForm,
   },
   {
@@ -133,11 +127,8 @@ const apiPluginConfig: ClientPluginRegistryEntry<any>[] = [
   {
     type: 'questionForm',
     test: ({ question }) => 
-      !!question && 
-      (
-        question.urlSegment.endsWith('BySimilarity') ||
-        question.urlSegment === 'UnifiedBlast'
-      ),
+      question?.urlSegment.endsWith('BySimilarity') ||
+      question?.urlSegment === 'UnifiedBlast',
     component: BlastQuestionForm
   },
   {
@@ -175,6 +166,11 @@ const apiPluginConfig: ClientPluginRegistryEntry<any>[] = [
     type: 'stepAnalysisResult',
     name: 'datasetGeneList',
     component: StepAnalysisHpiGeneListResults
+  },
+  {
+    type: 'stepDetails',
+    test: isMutuallyExclusiveParamQuestion,
+    component: ByLocationStepDetails
   },
 ];
 
