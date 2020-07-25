@@ -84,6 +84,7 @@ public class ProfileSetService extends AbstractWdkService {
         "getProfileSetNames", "Failed running SQL to fetch profile set names.");
   }
 
+  //TODO move these sql into xml file
   @GET
   @Path("TimePointMapping/{profileSetName}")
   @Produces(MediaType.APPLICATION_JSON)
@@ -93,6 +94,30 @@ public class ProfileSetService extends AbstractWdkService {
     String sql = "select profile_as_string from apidbtuning.profile where source_id = 'timepoint' and profile_set_name = '" + profileSetName + "'";
     return getStreamingResponse(sql,
         "getTimePointMapping", "Failed running SQL to fetch time point mapping.");
+  }
+
+  @GET
+  @Path("Isotopomers/{compoundId}")
+  @Produces(MediaType.APPLICATION_JSON)
+  public Response getIsotopomers(
+      @PathParam("compoundId") String compoundId)
+          throws WdkModelException {
+     String sql = "WITH iso AS (" +
+                  " SELECT DISTINCT cms.isotopomer" +
+                  " FROM results.compoundmassspec cms" +
+                  " , study.protocolappnode pan" +
+                  " , chebi.compounds c" +
+                  " WHERE c.chebi_accession = '" + compoundId + "'" +
+                  " AND cms.compound_id = c.id" +
+                  " AND cms.protocol_app_node_id = pan.protocol_app_node_id)" +
+                  " SELECT DISTINCT" +
+                  " CASE WHEN 'C12' in (SELECT * from iso)" +
+                  "  THEN nvl(isotopomer, 'C12')" +
+                  "  ELSE isotopomer" +
+                  "  END AS isotopomer" +
+                  " FROM (SELECT * FROM iso)";
+     return getStreamingResponse(sql,
+        "getIsotopomers", "Failed running SQL to fetch isotopomers.");
   }
 
   @POST
