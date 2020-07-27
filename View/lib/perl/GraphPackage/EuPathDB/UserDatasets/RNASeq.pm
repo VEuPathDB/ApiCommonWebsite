@@ -22,7 +22,6 @@ sub init {
   my $id = $self->getId();
   my $datasetId = $self->getDatasetId();
 
-  my $dbh = $self->getQueryHandle();
   my $url = $self->getBaseUrl() . '/a/service/profileSet/ProfileSetIds/' . $datasetId;
   my $content = get($url);
   my $json = from_json($content);
