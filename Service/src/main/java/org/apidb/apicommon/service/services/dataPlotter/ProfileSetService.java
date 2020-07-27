@@ -120,6 +120,34 @@ public class ProfileSetService extends AbstractWdkService {
         "getIsotopomers", "Failed running SQL to fetch isotopomers.");
   }
 
+  @GET
+  @Path("GutherCategory/{sourceId}")
+  @Produces(MediaType.APPLICATION_JSON)
+  public Response getGutherCategory(
+      @PathParam("sourceId") String sourceId)
+          throws WdkModelException {
+     String sql = " SELECT nfe.categorical_value AS cat_val" +
+                  " FROM results.nafeatureexpression nfe" +
+                  "    , apidbtuning.transcriptattributes ga" +
+                  "    , study.protocolappnode pan" +
+                  "    , study.studylink sl" +
+                  "    , study.study ps" +
+                  "    , study.study i" +
+                  "    , sres.externaldatabaserelease r" +
+                  "    , sres.externaldatabase d" +
+                  " WHERE ga.gene_na_feature_id = nfe.na_feature_id" +
+                  " AND nfe.protocol_app_node_id = pan.protocol_app_node_id" +
+                  " AND pan.protocol_app_node_id = sl.protocol_app_node_id" +
+                  " AND sl.study_id = ps.study_id" +
+                  " AND ps.investigation_id = i.study_id" +
+                  " AND i.external_database_release_id = r.external_database_release_id" +
+                  " AND r.external_database_id = d.external_database_id" +
+                  " AND d.NAME ='tbruTREU927_quantitative_massSpec_Guther_glycosomal_proteome_RSRC'" +
+                  " AND ga.gene_source_id = '" + sourceId + "'";
+     return getStreamingResponse(sql,
+        "getGutherCategory", "Failed running SQL to fetch Guther dataset category.");
+  }
+
   @POST
   @Path("PlotData/{sourceId}")
   @Consumes(MediaType.APPLICATION_JSON)
