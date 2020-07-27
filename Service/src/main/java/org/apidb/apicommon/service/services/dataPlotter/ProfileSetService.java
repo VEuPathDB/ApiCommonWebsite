@@ -84,6 +84,70 @@ public class ProfileSetService extends AbstractWdkService {
         "getProfileSetNames", "Failed running SQL to fetch profile set names.");
   }
 
+  //TODO move these sql into xml file
+  @GET
+  @Path("TimePointMapping/{profileSetName}")
+  @Produces(MediaType.APPLICATION_JSON)
+  public Response getTimePointMapping(
+      @PathParam("profileSetName") String profileSetName)
+          throws WdkModelException {
+    String sql = "select profile_as_string from apidbtuning.profile where source_id = 'timepoint' and profile_set_name = '" + profileSetName + "'";
+    return getStreamingResponse(sql,
+        "getTimePointMapping", "Failed running SQL to fetch time point mapping.");
+  }
+
+  @GET
+  @Path("Isotopomers/{compoundId}")
+  @Produces(MediaType.APPLICATION_JSON)
+  public Response getIsotopomers(
+      @PathParam("compoundId") String compoundId)
+          throws WdkModelException {
+     String sql = "WITH iso AS (" +
+                  " SELECT DISTINCT cms.isotopomer" +
+                  " FROM results.compoundmassspec cms" +
+                  " , study.protocolappnode pan" +
+                  " , chebi.compounds c" +
+                  " WHERE c.chebi_accession = '" + compoundId + "'" +
+                  " AND cms.compound_id = c.id" +
+                  " AND cms.protocol_app_node_id = pan.protocol_app_node_id)" +
+                  " SELECT DISTINCT" +
+                  " CASE WHEN 'C12' in (SELECT * from iso)" +
+                  "  THEN nvl(isotopomer, 'C12')" +
+                  "  ELSE isotopomer" +
+                  "  END AS isotopomer" +
+                  " FROM (SELECT * FROM iso)";
+     return getStreamingResponse(sql,
+        "getIsotopomers", "Failed running SQL to fetch isotopomers.");
+  }
+
+  @GET
+  @Path("GutherCategory/{sourceId}")
+  @Produces(MediaType.APPLICATION_JSON)
+  public Response getGutherCategory(
+      @PathParam("sourceId") String sourceId)
+          throws WdkModelException {
+     String sql = " SELECT nfe.categorical_value AS cat_val" +
+                  " FROM results.nafeatureexpression nfe" +
+                  "    , apidbtuning.transcriptattributes ga" +
+                  "    , study.protocolappnode pan" +
+                  "    , study.studylink sl" +
+                  "    , study.study ps" +
+                  "    , study.study i" +
+                  "    , sres.externaldatabaserelease r" +
+                  "    , sres.externaldatabase d" +
+                  " WHERE ga.gene_na_feature_id = nfe.na_feature_id" +
+                  " AND nfe.protocol_app_node_id = pan.protocol_app_node_id" +
+                  " AND pan.protocol_app_node_id = sl.protocol_app_node_id" +
+                  " AND sl.study_id = ps.study_id" +
+                  " AND ps.investigation_id = i.study_id" +
+                  " AND i.external_database_release_id = r.external_database_release_id" +
+                  " AND r.external_database_id = d.external_database_id" +
+                  " AND d.NAME ='tbruTREU927_quantitative_massSpec_Guther_glycosomal_proteome_RSRC'" +
+                  " AND ga.gene_source_id = '" + sourceId + "'";
+     return getStreamingResponse(sql,
+        "getGutherCategory", "Failed running SQL to fetch Guther dataset category.");
+  }
+
   @POST
   @Path("PlotData/{sourceId}")
   @Consumes(MediaType.APPLICATION_JSON)
@@ -99,6 +163,9 @@ public class ProfileSetService extends AbstractWdkService {
     JSONArray profileSets = jsonObj.getJSONArray("profileSets");
     for (int i = 0; i < profileSets.length(); i++) {
       JSONObject profileSet = profileSets.getJSONObject(i);
+      if (profileSet.has("idOverride")) {
+        sourceId = profileSet.getString("idOverride");
+      }
       if (profileSet.has("profileSetName")) {
         String profileSetName = profileSet.getString("profileSetName");
         String profileType = profileSet.getString("profileType");
@@ -144,18 +211,10 @@ public class ProfileSetService extends AbstractWdkService {
         String sourceIdValueQuery = profileSet.getString("sourceIdValueQuery");
         String N = profileSet.getString("N");
         String name = profileSet.getString("name");
-        if (profileSet.has("idOverride")) {
-          if (plotDataSql.isEmpty()) {
-           plotDataSql = getSql(projectId, sqlName, sourceIdValueQuery, profileSet.getString("idOverride"), N, name, null, i);
-          } else {
-            plotDataSql = plotDataSql + " UNION " + getSql(projectId, sqlName, sourceIdValueQuery, profileSet.getString("idOverride"), N, name, null, i);
-          }
+        if (plotDataSql.isEmpty()) {
+          plotDataSql = getSql(projectId, sqlName, sourceIdValueQuery, sourceId, N, name, null, i);
         } else {
-          if (plotDataSql.isEmpty()) {
-            plotDataSql = getSql(projectId, sqlName, sourceIdValueQuery, sourceId, N, name, null, i);
-          } else {
-            plotDataSql = plotDataSql + " UNION " + getSql(projectId, sqlName, sourceIdValueQuery, sourceId, N, name, null, i);
-          }
+          plotDataSql = plotDataSql + " UNION " + getSql(projectId, sqlName, sourceIdValueQuery, sourceId, N, name, null, i);
         }
       }
     }

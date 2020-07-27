@@ -285,8 +285,8 @@ package ApiCommonWebsite::View::GraphPackage::Templates::ExpressionTwoChannel::D
 use Data::Dumper;
 
 use EbrcWebsiteCommon::View::GraphPackage::GGPiePlot;
-
-sub useLegacy { return 1; }
+use LWP::Simple;
+use JSON;
 
 # @Override
 sub init {
@@ -307,18 +307,17 @@ sub init {
 
   my $combined = $self->makeCombinedGraph();
 
-  my @pieProfileSetNames = (['DeRisi HB3 Smoothed', 'values'],
-                            ['DeRisi HB3 non-smoothed', 'values']
-                           );
+  my @pieProfileSetNames = (['DeRisi HB3 Smoothed', 'values']);
 
   my $pieProfileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@pieProfileSetNames);
 
-  my $hb3Pie = EbrcWebsiteCommon::View::GraphPackage::LegacyGGPiePlot->new(@_);
+  my $hb3Pie = EbrcWebsiteCommon::View::GraphPackage::GGPiePlot->new(@_);
   $hb3Pie->setProfileSets($pieProfileSets);
   $hb3Pie->setPartName("expr_val_pie_HB3");
   my $pieTitle = $hb3Pie->getPlotTitle();
   $hb3Pie->setPlotTitle("HB3 - $pieTitle");
   $hb3Pie->setXaxisLabel('');
+  $hb3Pie->setIsDonut(1);
 
   my $scalingFactor = $self->getScalingFactor();
 
@@ -327,7 +326,9 @@ sub init {
     $size = 4;
   }
 
-  $hb3Pie->setRPostscript("gp = gp + annotate(\"text\", x = 0, y = 0, label = profile.df.full\$ELEMENT_NAMES_NUMERIC[profile.df.full\$VALUE == max(profile.df.full\$VALUE)][1], size = $size)");
+  $hb3Pie->addAdjustProfile("profile.df.full <- profile.df.full[!is.na(profile.df.full\$VALUE),]");
+
+  $hb3Pie->setRPostscript("gp = gp + annotate(\"text\", x = .5, y = .5, label = profile.df.full\$ELEMENT_NAMES_NUMERIC[profile.df.full\$VALUE == max(profile.df.full\$VALUE)][1], size = $size)");
 
   $self->setGraphObjects($combined, @hb3Graphs, @_3D7Graphs, @dd2Graphs, $hb3Pie);
 
@@ -335,22 +336,13 @@ sub init {
 }
 
 sub getTimePointMapping {
-  my ($self, $timePointProfileSetName) = @_;
+  my ($self, $timePointProfileSetName) = @_;  
 
+  my $url = $self->getBaseUrl() . '/a/service/profileSet/TimePointMapping/' . $timePointProfileSetName;
+  my $content = get($url);
+  my $json = from_json($content);
+  my $profileAsString = @$json[0]->{'PROFILE_AS_STRING'};
 
-  my $sql = "select profile_as_string 
-from apidbtuning.profile
-where source_id = 'timepoint'
-and profile_set_name = ?";
-
-  my $qh = $self->getQueryHandle();
-
-  my $sh = $qh->prepare($sql);
-
-  $sh->execute($timePointProfileSetName);
-
-  my ($profileAsString) = $sh->fetchrow_array();
-  $sh->finish();
   my @rv = split(/\t/, $profileAsString);
 
 
@@ -379,7 +371,7 @@ sub makeCombinedGraph {
 
   my @colors = ('blue', 'red', 'orange', 'cyan', 'purple' );
 
-  my $derisi = EbrcWebsiteCommon::View::GraphPackage::LegacyGGLinePlot::LogRatio->new(@_);
+  my $derisi = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot::LogRatio->new(@_);
   $derisi->setProfileSets($derisiProfileSets);
   $derisi->setColors([@colors[0..2]]);
   $derisi->setPointsPch([15,15,15]);
@@ -406,7 +398,7 @@ sub defineGraphs {
 
   my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileSetNames);
 
-  my $line = EbrcWebsiteCommon::View::GraphPackage::LegacyGGLinePlot::LogRatio->new(@_);
+  my $line = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot::LogRatio->new(@_);
   $line->setProfileSets($profileSets);
   $line->setColors([$color, 'gray']);
   $line->setPointsPch(\@pch);
@@ -416,7 +408,7 @@ sub defineGraphs {
   $line->setXaxisLabel('');
 
    my $percentileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets([[$smoothed, 'channel1_percentiles']]);
-   my $percentile = EbrcWebsiteCommon::View::GraphPackage::LegacyGGLinePlot::Percentile->new(@_);
+   my $percentile = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot::Percentile->new(@_);
    $percentile->setProfileSets($percentileSets);
    $percentile->setPointsPch(['NA']);
    $percentile->setIsFilled(1);
@@ -427,30 +419,21 @@ sub defineGraphs {
    $percentile->setFillBelowLine('TRUE');
    $percentile->setXaxisLabel('');
 
-   my @fractions = ([$fraction, 'value', '', '', '', 'erythrocytic ring trophozoite stage', $scale],
-                    [$fraction, 'value', '', '', '', 'schizont stage', $scale],
-                    [$fraction, 'value', '', '', '', 'trophozoite stage', $scale],
-                   );
-
-   my $fractionSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@fractions);
-
-  # my $postscript = "
- #text(8,  50, col=\"white\", labels=c(\"Ring\"));
- #text(23, 50, col=\"white\", labels=c(\"Trophozoite\"));
- #text(40, 50, col=\"white\", labels=c(\"Schizont\"));
- #";
+   my $fractionSets = EbrcWebsiteCommon::View::GraphPackage::ProfileSet->new("DUMMY");
+   $fractionSets->setJsonForService("{\"profileSetName\":\"$fraction\",\"profileType\":\"value\",\"idOverride\":\"erythrocytic ring trophozoite stage\",\"name\":\"erythrocytic ring trophozoite stage\"},{\"profileSetName\":\"$fraction\",\"profileType\":\"value\",\"idOverride\":\"schizont stage\",\"name\":\"schizont stage\"},{\"profileSetName\":\"$fraction\",\"profileType\":\"value\",\"idOverride\":\"trophozoite stage\",\"name\":\"trophozoite stage\"}");
+   $fractionSets->setSqlName("Profile");
 
    my @colors = ('#E9967A', '#4169E1', '#FF69B4');
-   my $lifeStages = EbrcWebsiteCommon::View::GraphPackage::LegacyGGLinePlot::Filled->new(@_);
-   $lifeStages->setProfileSets($fractionSets);
+   my $lifeStages = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot::Filled->new(@_);
+   $lifeStages->setProfileSets([$fractionSets]);
    $lifeStages->setPlotTitle("$name - Life Stage Population Percentages");
    $lifeStages->setYaxisLabel("%");
    $lifeStages->setColors(\@colors);
-  # $lifeStages->setRPostscript($postscript);
    $lifeStages->setPointsPch(['NA', 'NA', 'NA']);
    $lifeStages->setPartName("lifeStages_" . $name);
    $lifeStages->setFillBelowLine('TRUE');
    $lifeStages->setLegendLabels(["Ring", "Schizont", "Trophozoite"]);
+   $lifeStages->addAdjustProfile('profile.df.full$PROFILE_SET <- profile.df.full$DISPLAY_NAME');
    $lifeStages->setXaxisLabel('');
 
   return($line, $percentile, $lifeStages);
@@ -459,8 +442,6 @@ sub defineGraphs {
 #--------------------------------------------------------------------------------
 
 package ApiCommonWebsite::View::GraphPackage::Templates::ExpressionTwoChannel::DS_b7cf547d33;
-
-sub useLegacy { return 1; }
 
 sub init {
   my $self = shift;
@@ -476,33 +457,33 @@ sub init {
 
   my $clnClbProfileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets([['Cln/Clb experiments','values']]);
 
-  my $clnClbPlot = EbrcWebsiteCommon::View::GraphPackage::LegacyGGBarPlot::LogRatio->new(@_);
+  my $clnClbPlot = EbrcWebsiteCommon::View::GraphPackage::GGBarPlot::LogRatio->new(@_);
   $clnClbPlot->setProfileSets($clnClbProfileSets);
   $clnClbPlot->setPartName('Cln_Clb');
   $clnClbPlot->setForceHorizontalXAxis(1);
 
 
   my $pheromoneProfileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets([['pheromone experiments','values']]);
-  my $pheromonePlot = EbrcWebsiteCommon::View::GraphPackage::LegacyGGLinePlot::LogRatio->new(@_);
+  my $pheromonePlot = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot::LogRatio->new(@_);
   $pheromonePlot->setProfileSets($pheromoneProfileSets);
   $pheromonePlot->setXaxisLabel('');
   $pheromonePlot->setPartName('pheromone');
 
   my $elutriationProfileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets([['elutriation experiments','values']]);
-  my $elutriationPlot = EbrcWebsiteCommon::View::GraphPackage::LegacyGGLinePlot::LogRatio->new(@_);
+  my $elutriationPlot = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot::LogRatio->new(@_);
   $elutriationPlot->setProfileSets($elutriationProfileSets);
   $elutriationPlot->setXaxisLabel('');
   $elutriationPlot->setPartName('elutriation');
   
   my $cdc15ProfileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets([['cdc15 experiments','values']]);
-  my $cdc15Plot = EbrcWebsiteCommon::View::GraphPackage::LegacyGGLinePlot::LogRatio->new(@_);
+  my $cdc15Plot = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot::LogRatio->new(@_);
   $cdc15Plot->setProfileSets($cdc15ProfileSets);
   $cdc15Plot->setPartName('cdc15');
   $cdc15Plot->setXaxisLabel('');
   $cdc15Plot->setRemoveNaN('TRUE');
 
   my $cdc28ProfileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets([['Cho et al','values']]);
-  my $cdc28Plot = EbrcWebsiteCommon::View::GraphPackage::LegacyGGLinePlot::LogRatio->new(@_);
+  my $cdc28Plot = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot::LogRatio->new(@_);
   $cdc28Plot->setProfileSets($cdc28ProfileSets);
   $cdc28Plot->setPartName('cdc28');
   $cdc28Plot->setXaxisLabel('');
