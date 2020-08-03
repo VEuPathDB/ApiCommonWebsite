@@ -15,7 +15,6 @@ import javax.ws.rs.core.Response;
 
 import org.apache.log4j.Logger;
 import org.apidb.apicommon.model.DataPlotterQueries;
-import org.apidb.apicommon.model.DataPlotterQueries.Category;
 import org.gusdb.fgputil.db.stream.ResultSetToJsonConverter;
 import org.gusdb.fgputil.functional.Functions;
 import org.gusdb.wdk.model.WdkModelException;
@@ -52,7 +51,7 @@ public class ProfileSetService extends AbstractWdkService {
       @PathParam("sourceId") String sourceId)
           throws WdkModelException {
     String projectId = getWdkModel().getProjectId();
-    String sql = DataPlotterQueries.getQueryMap(projectId, Category.ALL).get("transcription_summary_profiles");
+    String sql = DataPlotterQueries.getQueryMap(projectId).get("transcription_summary_profiles");
     sql = sql.replaceAll("\\$id", sourceId);
     return getStreamingResponse(sql,
         "getTranscriptionSummaryProfiles", "Failed running SQL to fetch transcription summary profile set names.");
@@ -65,7 +64,7 @@ public class ProfileSetService extends AbstractWdkService {
       @PathParam("datasetId") String datasetId)
           throws WdkModelException {
     String projectId = getWdkModel().getProjectId();
-    String sql = DataPlotterQueries.getQueryMap(projectId, Category.ALL).get("profile_set_ids");
+    String sql = DataPlotterQueries.getQueryMap(projectId).get("profile_set_ids");
     sql = sql.replaceAll("\\$datasetId", datasetId);
     return getStreamingResponse(sql,
         "getProfileSetIds", "Failed running SQL to fetch user dataset profile set ids.");
@@ -234,7 +233,7 @@ public class ProfileSetService extends AbstractWdkService {
       colsToReturn = order + " as profile_order, '" + displayName + "' as display_name, name, value, samplenames.profile_set_name, samplenames.profile_type, samplenames.element_order";
     }
 
-    String sql = DataPlotterQueries.getQueryMap(projectId, Category.ALL).get("profile_set");
+    String sql = DataPlotterQueries.getQueryMap(projectId).get("profile_set");
     sql = sql.replaceAll("\\$colsToReturn", colsToReturn);
     sql = sql.replaceAll("\\$profileSetName", profileSetName);
     sql = sql.replaceAll("\\$profileType", profileType);
@@ -245,7 +244,7 @@ public class ProfileSetService extends AbstractWdkService {
 
   private static String getProfileSetByECSql(String projectId, String profileSetName, String profileType, String sourceId, int order) {
 
-    String sql = DataPlotterQueries.getQueryMap(projectId, Category.ALL).get("profile_set_by_ec");
+    String sql = DataPlotterQueries.getQueryMap(projectId).get("profile_set_by_ec");
     sql = sql.replaceAll("\\$order", Integer.toString(order));
     sql = sql.replaceAll("\\$profileSetName", profileSetName);
     sql = sql.replaceAll("\\$profileType", profileType);
@@ -256,7 +255,7 @@ public class ProfileSetService extends AbstractWdkService {
 
   private static String getProfileSetWithMetadataSql(String projectId, String profileSetName, String profileType, String facet, String xAxis, String sourceId, int order) {
 
-    String sql = DataPlotterQueries.getQueryMap(projectId, Category.ALL).get("profile_set_with_metadata");
+    String sql = DataPlotterQueries.getQueryMap(projectId).get("profile_set_with_metadata");
     sql = sql.replaceAll("\\$order", Integer.toString(order));
     sql = sql.replaceAll("\\$profileSetName", profileSetName);
     sql = sql.replaceAll("\\$profileType", profileType);
@@ -269,8 +268,8 @@ public class ProfileSetService extends AbstractWdkService {
 
   private static String getProfileSetNamesSql(String projectId, String datasetPresenterId, String sourceId) {
     String sql = sourceId.equals("none")
-      ? DataPlotterQueries.getQueryMap(projectId, Category.ALL).get("profile_set_names")
-      : DataPlotterQueries.getQueryMap(projectId, Category.ALL).get("profile_set_names_by_source_id");
+      ? DataPlotterQueries.getQueryMap(projectId).get("profile_set_names")
+      : DataPlotterQueries.getQueryMap(projectId).get("profile_set_names_by_source_id");
 
     sql = sql.replaceAll("\\$datasetPresenterId", datasetPresenterId);
     sql = sql.replaceAll("\\$sourceId", sourceId);
@@ -292,7 +291,7 @@ public class ProfileSetService extends AbstractWdkService {
           throw new IllegalArgumentException("Unsupported named query: " + sqlName);
     }
     
-    String sql = DataPlotterQueries.getQueryMap(projectId, Category.ALL).get("ranked_values");
+    String sql = DataPlotterQueries.getQueryMap(projectId).get("ranked_values");
     sql = sql.replaceAll("\\$columnsToReturn", columnsToReturn);
     sql = sql.replaceAll("\\$columnsInDat", columnsInDat);
     sql = sql.replaceAll("\\$sourceIdValueQuery", sourceIdValueQuery);
@@ -306,7 +305,7 @@ public class ProfileSetService extends AbstractWdkService {
 
   private static String getUserDatasetsSql(String projectId, String profileSetId, String sourceId, String name, int order) {
 
-    String sql = DataPlotterQueries.getQueryMap(projectId, Category.ALL).get("user_datasets");
+    String sql = DataPlotterQueries.getQueryMap(projectId).get("user_datasets");
     sql = sql.replaceAll("\\$order", Integer.toString(order));
     sql = sql.replaceAll("\\$name", name);
     sql = sql.replaceAll("\\$sourceId", sourceId);
@@ -316,9 +315,9 @@ public class ProfileSetService extends AbstractWdkService {
   }
 
   //TODO figure adding antisense result to return plot ready data
-  private static String getSenseAntisenseSql(String projectId, String sqlName, String senseProfileSetId, String antisenseProfileSetId, String sourceId, String floor) {
+  private static String getSenseAntisenseSql(String projectId, String senseProfileSetId, String antisenseProfileSetId, String sourceId, String floor) {
 
-    String sql = DataPlotterQueries.getQueryMap(projectId, Category.ALL).get("sense_antisense");
+    String sql = DataPlotterQueries.getQueryMap(projectId).get("sense_antisense");
     sql = sql.replaceAll("\\$floor", floor);
     sql = sql.replaceAll("\\$antisenseProfileSetId", antisenseProfileSetId);
     sql = sql.replaceAll("\\$sourceId", sourceId);
@@ -330,7 +329,7 @@ public class ProfileSetService extends AbstractWdkService {
 
   private static String getPathwayGeneraSql(String projectId, String generaSql, String sourceId) {
 
-        String sql = DataPlotterQueries.getQueryMap(projectId, Category.ALL).get("pathway_genera");
+        String sql = DataPlotterQueries.getQueryMap(projectId).get("pathway_genera");
         sql = sql.replaceAll("\\$generaSql", generaSql);
         sql = sql.replaceAll("\\$sourceId", sourceId);
 
@@ -355,7 +354,7 @@ public class ProfileSetService extends AbstractWdkService {
       case "UserDatasets":
         return getUserDatasetsSql(projectId, param1, param2, param3, order);
       case "SenseAntisense":
-        return getSenseAntisenseSql(projectId, sqlName, param1, param2, param3, param4);
+        return getSenseAntisenseSql(projectId, param1, param2, param3, param4);
       case "ProfileByEC":
         return getProfileSetByECSql(projectId, param1, param2, param3, order);
       case "PathwayGenera":
