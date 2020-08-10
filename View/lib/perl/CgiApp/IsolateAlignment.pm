@@ -51,7 +51,6 @@ sub processParams {
 sub handleIsolates {
   my ($self, $dbh, $cgi) = @_;
 
-  my $ROOT = $ENV{'DOCUMENT_ROOT'};
   my $GUS_HOME = $ENV{'GUS_HOME'};
 
   my $ids = $self->{ids};
@@ -64,119 +63,129 @@ sub handleIsolates {
 
   # Used to determine the SQL query for the gene page clustalo.
   my $clustalQueryType = $cgi->param('sequence_Type');
-    if ((! defined $clustalQueryType) || ($clustalQueryType eq "")){
-    $clustalQueryType = "protein";
-    }
+  if ((! defined $clustalQueryType) || ($clustalQueryType eq "")){
+      $clustalQueryType = "protein";
+  }
 
   $start =~ s/,//g;
   $end =~ s/,//g;
 
   if($end !~  /\d/) {
-    $end   = $start + 50;
-    $start = $start - 50;
+      $end   = $start + 50;
+      $start = $start - 50;
   }
   my $sql = "";  #NOTE - the sql needs to return an array of 3 values. Only the gene page Clustal Omega uses 3 values, beware the order of values [id, strand, seq]. Strand is only used for the genomic query, so a dummy value is used elsewhere.
 
   if($type =~ /htsSNP/i) {
-    $ids =~ s/'(\w)/'$sid\.$1/g;
-    $ids .= ",'$sid'";   # always compare with reference isolate
-    $sql = <<EOSQL;
+      $ids =~ s/'(\w)/'$sid\.$1/g;
+      $ids .= ",'$sid'";   # always compare with reference isolate
+      $sql = <<EOSQL;
 SELECT source_id,
 	   source_id
        substr(nas.sequence, $start,$end-$start+1) as sequence,
 FROM   dots.nasequence nas
 WHERE  nas.source_id in ($ids)
 EOSQL
-  } elsif($type eq 'geneOrthologs') {
-    $ids = join(',', map { "'$_'" } split(',', $ids));
+   } elsif($type eq 'geneOrthologs') {
+      $ids = join(',', map { "'$_'" } split(',', $ids));
 
-	  if($clustalQueryType eq 'protein' ){
-      $sql = <<EOSQL;
-      select ps.source_id, ps.source_id,  ps.sequence
-      from apidbtuning.proteinsequence ps, apidbtuning.transcriptattributes ta
-      where ta.protein_source_id = ps.source_id
-      and ta.project_id = ps.project_id
-      and ta.gene_source_id in ($ids)
-EOSQL
-    }
-	  elsif($clustalQueryType eq 'CDS'){
+      if($clustalQueryType eq 'protein' ){
 	  $sql = <<EOSQL;
-      with geneDetails as (
-      select ta.gene_start_min - 0 as min
-      , ta.gene_end_max + 0 as max
-      , ta.coding_start
-      , ta.coding_end
-      , ta.strand
-      , ta.source_id
-      , ta.gene_source_id
-      , ta.cds_length
-      from APIDBTUNING.transcriptattributes ta
-      where ta.gene_source_id in ($ids)
-      )
-      select ts.source_id, gd.strand,
-      CASE
-          WHEN gd.strand = 'forward' then SUBSTR(ts.sequence, (gd.coding_start - gd.min+1) , gd.cds_length)
-          WHEN gd.strand = 'reverse' then SUBSTR(ts.sequence, (gd.max - gd.coding_end+1) , (gd.cds_length))
-      END
-      from apidbtuning.transcriptsequence ts
-      , geneDetails gd
-      where gd.source_id = ts.source_id
+	  select ps.source_id, ps.source_id,  ps.sequence
+	      from apidbtuning.proteinsequence ps, apidbtuning.transcriptattributes ta
+	      where ta.protein_source_id = ps.source_id
+	      and ta.project_id = ps.project_id
+	      and ta.gene_source_id in ($ids)
 EOSQL
-    }
-	  elsif($clustalQueryType eq 'genomic'){
-	    my ($fwdSQL, $revSQL); # SQLis currently the same, but depending on function two queries may be needed.
-
-	    # Offset values of the two above postions, the 3s make the values not inclusive of ATG/Stop codon.
-      my $oneOffset = $cgi->param('oneOffset');
-      my $absOneOffset = abs($oneOffset); #This is for the 5' offset
-      my $twoOffset = $cgi->param('twoOffset');
-      my $absTwoOffset = abs($twoOffset); #This is for the 3' offset
-
-  		# Validates user input. Alters if user happens to select >2500 nt down to 2500nt.
-  		if ($absOneOffset > 2500) {$absOneOffset = 2500}
-  		else{}
-  		if ($absTwoOffset > 2500) {$absTwoOffset = 2500}
-  		else{}
-
-  		$fwdSQL = "WHEN gd.strand = 'forward' then substr(gs.sequence, gd.coding_start - $absOneOffset, (gd.coding_end - gd.coding_start) +1 + $absOneOffset + $absTwoOffset)";
-  		$revSQL = "WHEN gd.strand = 'reverse' then substr(gs.sequence, gd.coding_start - $absTwoOffset, (gd.coding_end - gd.coding_start ) +1 + $absOneOffset + $absTwoOffset)";
-
-      $sql = <<EOSQL;
-	  --Query for genomic.
+      } elsif($clustalQueryType eq 'CDS'){
+	  $sql = <<EOSQL;
 	  with geneDetails as (
-	  select ta.gene_start_min - 0 as min
-	  , ta.gene_end_max + 0 as max
-	  , ta.coding_start
-	  , ta.coding_end
-	  , ta.strand
-	  , ta.source_id
-	  , ta.gene_source_id
-	  , ta.cds_length
-	  , ta.sequence_id as chsmid
-	  from APIDBTUNING.transcriptattributes ta
-	  where ta.gene_source_id in ($ids)
-	  )
-	  SELECT gd.gene_source_id, gd.strand,
-	  CASE
-	  	  $fwdSQL
-		  $revSQL
-	  END
-	  FROM ApidbTuning.GenomicSequenceSequence gs,
-	  geneDetails gd
-      where gs.source_id = gd.chsmid
+	      select ta.gene_start_min as min
+	      , ta.gene_end_max as max
+	      , ta.coding_start
+	      , ta.coding_end
+	      , ta.strand
+	      , ta.source_id
+	      , ta.gene_source_id
+	      , ta.cds_length
+	      from APIDBTUNING.transcriptattributes ta
+	      where ta.gene_source_id in ($ids)
+	      )
+	      select ts.source_id, gd.strand,
+	      CASE
+	      WHEN gd.strand = 'forward' then SUBSTR(ts.sequence, (gd.coding_start - gd.min+1) , gd.cds_length)
+	      WHEN gd.strand = 'reverse' then SUBSTR(ts.sequence, (gd.max - gd.coding_end+1) , (gd.cds_length))
+	      END
+	      from apidbtuning.transcriptsequence ts
+	      , geneDetails gd
+	      where gd.source_id = ts.source_id
 EOSQL
-    }
-  }
-  else {  # regular isolates
-    $sql = <<EOSQL;
+      } elsif($clustalQueryType eq 'genomic'){
+
+	      my $areProteins = proteinTest($dbh,$ids);
+
+	      my $upstreamOffset = $cgi->param('oneOffset');
+	      $upstreamOffset = abs($upstreamOffset);
+	      my $downstreamOffset = $cgi->param('twoOffset');
+	      $downstreamOffset = abs($downstreamOffset);
+
+	      # Alters user input if user selects >2500 nt.
+	      if ($upstreamOffset > 2500) {$upstreamOffset = 2500;}
+	      if ($downstreamOffset > 2500) {$downstreamOffset = 2500;}
+
+	      if ($areProteins) {
+		  $sql = <<EOSQL;
+		      with geneDetails as (
+			  select ta.coding_start
+			  , ta.coding_end
+			  , ta.strand
+			  , ta.source_id
+			  , ta.gene_source_id
+			  , ta.cds_length
+			  , ta.sequence_id as chsmid
+			  from APIDBTUNING.transcriptattributes ta
+			  where ta.gene_source_id in ($ids)
+			  )
+			  SELECT gd.gene_source_id, gd.strand,
+			  CASE WHEN gd.strand = 'forward' THEN substr(gs.sequence, gd.coding_start - $upstreamOffset, (gd.coding_end - gd.coding_start) +1 + $upstreamOffset + $downstreamOffset) 
+			  WHEN gd.strand = 'reverse' THEN substr(gs.sequence, gd.coding_start - $downstreamOffset, (gd.coding_end - gd.coding_start ) +1 + $upstreamOffset + $downstreamOffset)
+			  END
+			  FROM ApidbTuning.GenomicSequenceSequence gs,
+			  geneDetails gd
+			  where gs.source_id = gd.chsmid
+EOSQL
+	      } else {            # not protein encoding
+                  $sql = <<EOSQL;
+		          with geneDetails as (
+			      select ta.gene_start_min
+			      , ta.gene_end_max
+			      , ta.strand
+			      , ta.source_id
+			      , ta.gene_source_id
+			      , ta.sequence_id as chsmid
+			      from APIDBTUNING.transcriptattributes ta
+			      where ta.gene_source_id in ($ids)
+			      )
+			  SELECT gd.gene_source_id, gd.strand,
+                          CASE WHEN gd.strand = 'forward' THEN substr(gs.sequence, gd.gene_start_min - $upstreamOffset, gd.gene_end_max - gd.gene_start_min + 1 + $upstreamOffset + $downstreamOffset)
+                          WHEN gd.strand = 'reverse' THEN substr(gs.sequence, gd.gene_start_min - $downstreamOffset, gd.gene_end_max - gd.gene_start_min + 1 + $upstreamOffset + $downstreamOffset)
+                          END
+                          FROM ApidbTuning.GenomicSequenceSequence gs,
+                               geneDetails gd
+                          WHERE gs.source_id = gd.chsmid
+EOSQL
+	     }
+        } else {  # regular isolates
+	    $sql = <<EOSQL;
 SELECT etn.source_id, etn.source_id, etn.sequence
 FROM   ApidbTuning.PopsetSequence etn
 WHERE etn.source_id in ($ids)
 EOSQL
+        }
   }
-
   my $sequence;
   my $sth = $dbh->prepare($sql);
+
   $sth->execute();
   while(my ($id, $strand, $seq) = $sth->fetchrow_array()) {
     # print STDERR $seq;
@@ -194,6 +203,10 @@ EOSQL
     next if length($noN) == length($seq);
     $sequence .= ">$id\n$seq\n";
   }
+
+#  my $test = "echo 'Hello' > /mark.txt";
+#  system($test);
+
 
   my $range = 10000000;
   my $random = int(rand($range));
@@ -323,6 +336,21 @@ sub createHTML {
     print $cgi->pre($alignmentElse);
   }
    close O;
+}
+
+sub proteinTest {
+    my ($dbh,$ids) = @_;
+    
+    my $areProteins = 0;
+    my $sql = "SELECT gene_type FROM apidbTuning.TranscriptAttributes
+               WHERE gene_source_id in ($ids)";
+    my $sth = $dbh->prepare($sql);
+    $sth->execute();
+    while(my ($geneType) = $sth->fetchrow_array()) {
+	$areProteins = 1 if ($geneType eq "protein coding" || $geneType eq "protein coding gene");
+    }
+    $sth->finish();
+    return $areProteins;
 }
 
 1;
