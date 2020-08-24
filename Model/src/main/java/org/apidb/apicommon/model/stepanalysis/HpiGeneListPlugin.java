@@ -1,17 +1,6 @@
 package org.apidb.apicommon.model.stepanalysis;
 
-import org.apache.log4j.Logger;
-import org.gusdb.fgputil.runtime.GusHome;
-import org.gusdb.fgputil.validation.ValidationBundle;
-import org.gusdb.fgputil.validation.ValidationBundle.ValidationBundleBuilder;
-import org.gusdb.fgputil.validation.ValidationLevel;
-import org.gusdb.wdk.model.WdkModel;
-import org.gusdb.wdk.model.WdkModelException;
-import org.gusdb.wdk.model.WdkUserException;
-import org.gusdb.wdk.model.analysis.AbstractSimpleProcessAnalyzer;
-import org.gusdb.wdk.model.answer.AnswerValue;
-import org.json.JSONArray;
-import org.json.JSONObject;
+import static org.gusdb.fgputil.FormatUtil.TAB;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -24,7 +13,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.gusdb.fgputil.FormatUtil.TAB;
+import org.apache.log4j.Logger;
+import org.gusdb.fgputil.runtime.GusHome;
+import org.gusdb.fgputil.validation.ValidationBundle;
+import org.gusdb.fgputil.validation.ValidationBundle.ValidationBundleBuilder;
+import org.gusdb.fgputil.validation.ValidationLevel;
+import org.gusdb.wdk.model.WdkModel;
+import org.gusdb.wdk.model.WdkModelException;
+import org.gusdb.wdk.model.WdkUserException;
+import org.gusdb.wdk.model.analysis.AbstractSimpleProcessAnalyzer;
+import org.gusdb.wdk.model.answer.AnswerValue;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
 
@@ -107,17 +107,17 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
 
     String idSql = "select distinct gene_source_id from (" + answerValue.getIdSql() + ")";
 
-    String threshold = params.get(THRESHOLD_PARAM_KEY);
 
-    String brcValue = params.get(BRC_PARAM_KEY);
+    String brcValue = getSingleValue(params, BRC_PARAM_KEY);
     String searchServerEndpoint = this.serverEndpoints.get(brcValue);
 
-    String thresholdType = params.get(THRESHOLD_TYPE_PARAM_KEY);
-    String useOrthology = params.get(USE_ORTHOLOGY_PARAM_KEY);
+    String threshold = params.get(THRESHOLD_PARAM_KEY);
+    String thresholdType = getSingleValue(params, THRESHOLD_TYPE_PARAM_KEY);
 
     String datasetCutoff = params.get(DS_CUTOFF_PARAM_KEY);
-    String datasetCutoffType = params.get(DS_CUTOFF_TYPE_PARAM_KEY);
+    String datasetCutoffType = getSingleValue(params, DS_CUTOFF_TYPE_PARAM_KEY);
 
+    String useOrthology = getSingleValue(params, USE_ORTHOLOGY_PARAM_KEY);
 
     // create another path here for the image word cloud JP LOOK HERE name it like imageFilePath
     Path resultFilePath = Paths.get(getStorageDirectory().toString(), TABBED_RESULT_FILE_PATH);
