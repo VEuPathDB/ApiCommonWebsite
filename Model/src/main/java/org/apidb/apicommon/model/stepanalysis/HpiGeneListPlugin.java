@@ -42,6 +42,9 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
   private static final String EUPATH_PORTAL_SEARCH_SERVER_ENDPOINT_PROP_KEY = "eupathSearchPortalEndpoint";
 
   private static final String BRC_PARAM_KEY = "brcParam";
+
+  private static final String DS_SELECTION_PARAM_KEY  = "datasetSelectionParam";
+
   private static final String THRESHOLD_TYPE_PARAM_KEY = "thresholdTypeParam";
   private static final String THRESHOLD_PARAM_KEY = "thresholdParam";
 
@@ -111,6 +114,8 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
     String brcValue = getSingleValue(params, BRC_PARAM_KEY);
     String searchServerEndpoint = this.serverEndpoints.get(brcValue);
 
+    String datasetSelection  = getSingleValue(params, DS_SELECTION_PARAM_KEY);
+
     String threshold = params.get(THRESHOLD_PARAM_KEY);
     String thresholdType = getSingleValue(params, THRESHOLD_TYPE_PARAM_KEY);
 
@@ -125,6 +130,7 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
     String qualifiedExe = Paths.get(GusHome.getGusHome(), "bin", "hpiGeneList.pl").toString();
     LOG.info(qualifiedExe + " "
             + idSql + " "
+            + datasetSelection + " "
             + thresholdType + " "
             + threshold + " "
             + datasetCutoffType + " "
@@ -139,7 +145,7 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
     );
 
     //TODO:  Add server endpoint
-    return new String[]{qualifiedExe, idSql, thresholdType, threshold, datasetCutoffType, datasetCutoff, useOrthology, type, idSource, resultFilePath.toString(), wdkModel.getProjectId(), searchServerEndpoint};
+    return new String[]{qualifiedExe, idSql, thresholdType, threshold, datasetCutoffType, datasetCutoff, useOrthology, datasetSelection, type, idSource, resultFilePath.toString(), wdkModel.getProjectId(), searchServerEndpoint};
   }
 
   @Override
