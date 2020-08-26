@@ -18,7 +18,7 @@ sub new {
 }
 
 sub run {
-  my ($self, $idSql, $thresholdType, $threshold, $datasetCutoffType, $datasetCutoff, $useOrthology, $type, $idSource, $outputFile, $modelName, $server_endpoint) = @_;;
+  my ($self, $idSql, $thresholdType, $threshold, $datasetCutoffType, $datasetCutoff, $useOrthology, $datasetSelection, $type, $idSource, $outputFile, $modelName, $server_endpoint) = @_;;
 
   print STDERR join("\n", @_) . "\n";
   
@@ -48,6 +48,7 @@ sub run {
     \"ids\": [ $geneList ],
     \"threshold\": \"$threshold\",
     \"thresholdType\": \"$thresholdType\",
+    \"datasetSelection\": \"$datasetSelection\",
     \"additionalFlags\": {
     \"useOrthology\": \"$useOrthology\",
     \"datasetCutoffType\": \"$datasetCutoffType\",
