@@ -30,7 +30,9 @@ node_modules/
 
 
 # Other version control
-.svn/
+.svn
+.DS_Store
+
 
 #
 # Exported from svn:ignore
