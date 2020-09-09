@@ -406,7 +406,7 @@ public class JBrowseService extends AbstractWdkService {
           bulksubfeatureSql = JBrowseQueries.getQueryMap(projectId, Category.GENOME).get(bulksubfeature);
         }
 
-        System.err.println("features sql: " + featureSql);
+        //System.err.println("features sql: " + featureSql);
         //get features
         Map<String, JSONObject> featureMap = new SQLRunner(getWdkModel().getAppDb().getDataSource(), featureSql).executeQuery(rs -> {
            Map<String, JSONObject> features = new HashMap<String, JSONObject>();
@@ -467,7 +467,7 @@ public class JBrowseService extends AbstractWdkService {
 
         if (featureMap.size() > 0 && bulksubfeatureSql != null) {
           bulksubfeatureSql = replaceSqlMacros(bulksubfeatureSql, minStart.toString(), maxEnd.toString(), seqId, qp);
-          System.err.println("subfeatures sql: " + bulksubfeatureSql);
+          //System.err.println("subfeatures sql: " + bulksubfeatureSql);
           //get subfeatures
           Map<String, JSONObject> subfeatureMap = new SQLRunner(getWdkModel().getAppDb().getDataSource(), bulksubfeatureSql).executeQuery(rs -> {
              Map<String, JSONObject> subfeatures = new HashMap<String, JSONObject>();
@@ -537,23 +537,20 @@ public class JBrowseService extends AbstractWdkService {
                  }
   
                } else {
-                 if (hasThirdTierSubfeatures) {
-                   boolean hasChildren = rs.getInt("HAS_CHILDREN") == 1 ? true : false;
-                   if (hasChildren) {
-                     String uniqueID = rs.getString("FEATURE_ID");
-                     mySubfeature.put("uniqueID", uniqueID);
-                     mySubfeature.put("subfeatures", new JSONArray());
-                     mySubfeature.put("parentId", parentId);
-                     subfeatures.put(uniqueID, mySubfeature);
+                   if (hasThirdTierSubfeatures && rs.getInt("HAS_CHILDREN") == 1) {
+                       String uniqueID = rs.getString("FEATURE_ID");
+                       mySubfeature.put("uniqueID", uniqueID);
+                       mySubfeature.put("subfeatures", new JSONArray());
+                       mySubfeature.put("parentId", parentId);
+                       subfeatures.put(uniqueID, mySubfeature);
                    } else {
-                     parent.append("subfeatures", mySubfeature);
-                     if (featureMap.containsKey(parentId)) {
-                       featureMap.put(parentId, parent);
-                     } else {
-                       subfeatures.put(parentId, parent);
-                     }
+                       parent.append("subfeatures", mySubfeature);
+                       if (featureMap.containsKey(parentId)) {
+                           featureMap.put(parentId, parent);
+                       } else {
+                           subfeatures.put(parentId, parent);
+                       }
                    }
-                 }
                }
  
             }
