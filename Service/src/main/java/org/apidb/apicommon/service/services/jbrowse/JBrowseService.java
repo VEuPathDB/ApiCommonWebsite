@@ -492,7 +492,11 @@ public class JBrowseService extends AbstractWdkService {
                } else {
                  parent = subfeatures.get(parentId);
                }
-    
+   
+               if (parent == null) {
+                   continue;
+               }
+
                ArrayList<String> skipMe = new ArrayList<String>() {
                  {
                    add("atts");
@@ -508,7 +512,7 @@ public class JBrowseService extends AbstractWdkService {
                  mySubfeature.put(colLabel, rs.getString(i));
                }
 
-               if (hasAtts) {
+               if (hasAtts && rs.getString("ATTS") != null) {
                  String attrs[] = rs.getString("ATTS").split(";");
                  for (int i = 0; i < attrs.length; i++) {
                    String attr[] = attrs[i].split("=");
