@@ -1,17 +1,27 @@
 package org.apidb.apicommon.service.services.jbrowse;
 
+import static org.gusdb.fgputil.FormatUtil.NL;
 import static org.gusdb.wdk.service.FileRanges.getFileChunkResponse;
 import static org.gusdb.wdk.service.FileRanges.parseRangeHeaderValue;
 
+import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.nio.file.Paths;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.text.Collator;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
+import java.util.Optional;
+import java.util.function.Function;
 
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
@@ -25,11 +35,17 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.StreamingOutput;
 import javax.ws.rs.core.UriInfo;
 
+import org.apache.log4j.Logger;
 import org.apidb.apicommon.model.JBrowseQueries;
 import org.apidb.apicommon.model.JBrowseQueries.Category;
+import org.gusdb.fgputil.Range;
+import org.gusdb.fgputil.Tuples.TwoTuple;
 import org.gusdb.fgputil.db.runner.SQLRunner;
+import org.gusdb.fgputil.db.runner.SQLRunnerException;
+import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.service.service.AbstractWdkService;
 import org.json.JSONArray;
@@ -37,6 +53,8 @@ import org.json.JSONObject;
 
 @Path("/jbrowse")
 public class JBrowseService extends AbstractWdkService {
+
+    private static final Logger LOG = Logger.getLogger(JBrowseService.class);
 
     @GET
     @Path("stats/global")
@@ -53,7 +71,7 @@ public class JBrowseService extends AbstractWdkService {
                                                      @QueryParam("feature") String feature,
                                                      @QueryParam("start") String start,
                                                      @QueryParam("end") String end) {
-        return featuresAndRegionStats(refseqName, uriInfo, feature, Integer.valueOf(start), Integer.valueOf(end));
+        return featuresAndRegionStats(refseqName, uriInfo, feature, Long.valueOf(start), Long.valueOf(end));
     }
 
     @GET
@@ -64,7 +82,7 @@ public class JBrowseService extends AbstractWdkService {
                                        @QueryParam("feature") String feature,
                                        @QueryParam("start") String start,
                                        @QueryParam("end") String end) {
-        return featuresAndRegionStats(refseqName, uriInfo, feature, Integer.valueOf(start), Integer.valueOf(end));
+        return featuresAndRegionStats(refseqName, uriInfo, feature, Long.valueOf(start), Long.valueOf(end));
     }
 
     @GET
@@ -264,7 +282,7 @@ public class JBrowseService extends AbstractWdkService {
         return getFileChunkResponse(Paths.get(path), parseRangeHeaderValue(fileRange));
     }
 
-    private String checkPath(String fileSystemPath) {
+    private static String checkPath(String fileSystemPath) {
       // TODO: think about whether other checks belong here
       if (fileSystemPath.contains("..") || fileSystemPath.contains("$")) {
         throw new NotFoundException(formatNotFound("*"));
@@ -333,7 +351,6 @@ public class JBrowseService extends AbstractWdkService {
         command.add(String.valueOf(isPartial));
         command.add(sourceId);
 
-
         return responseFromCommand(command);
     }
 
@@ -365,276 +382,435 @@ public class JBrowseService extends AbstractWdkService {
         return responseFromCommand(command);
     }
 
-    public Response featuresAndRegionStats (String refseqName, UriInfo uriInfo, String feature, Integer start, Integer end) {
+    public Response featuresAndRegionStats(String refseqName, UriInfo uriInfo, String feature, Long start, Long end) {
 
-        String projectId = getWdkModel().getProjectId();
-        HashMap<String, String> qp = toSingleValueMap(uriInfo.getQueryParameters());
-        String bulksubfeature = feature + ":bulksubfeatures";
-        String featureSql = new String();
-        String bulksubfeatureSql = new String();
-        String seqId = new String();
-        boolean isProtein = false;
-        if (qp.containsKey("seqType")) {
-          if (qp.get("seqType").equals("protein")) {
-            isProtein = true;
-          }
-       }
+      WdkModel wdkModel = getWdkModel();
+      String projectId = wdkModel.getProjectId();
+      Map<String, String> qp = toSingleValueMap(uriInfo.getQueryParameters());
 
-        if (isProtein) {
-          String seqIdSql = "select aa_sequence_id from apidbtuning.proteinattributes where source_id = '" + refseqName + "'";
-          seqId = getSingleQueryResult(seqIdSql); 
-          if (feature.equals("ReferenceSequenceAa")) {
-            Integer length = end - start;
-            start = (start < 0) ? 0 : start;
-            featureSql = "select substr(sequence, " + start.toString() + ", " + length.toString() + ") as seq, " + start.toString() + " as startm, " + end.toString() + " as end, '" + refseqName + "' as feature_id from apidbtuning.proteinsequence where source_id = '" + refseqName + "'";
-          } else {
-            featureSql = JBrowseQueries.getQueryMap(projectId, Category.PROTEIN).get(feature);
-            featureSql = replaceSqlMacros(featureSql, start.toString(), end.toString(), seqId, qp);
+      // determine if protein vs genome request
+      boolean isProtein = qp.containsKey("seqType") && qp.get("seqType").equals("protein");
+
+      // determine if reference feature is requested
+      boolean isReferenceFeature =
+          (isProtein && "ReferenceSequenceAa".equals(feature)) ||
+          (!isProtein && "ReferenceSequence".equals(feature));
+
+      String seqId = isProtein ?
+          getSequenceId("aa_sequence_id", "apidbtuning.proteinattributes", refseqName) :
+          getSequenceId("na_sequence_id", "apidbtuning.genomicseqattributes", refseqName);
+
+      String featureSql = isProtein ?
+          getFeatureSql(projectId, refseqName, feature, start, end, qp, isReferenceFeature,
+              "apidbtuning.proteinsequence", Category.PROTEIN, seqId) :
+          getFeatureSql(projectId, refseqName, feature, start, end, qp, isReferenceFeature,
+              "apidbtuning.genomicsequencesequence", Category.GENOME, seqId);
+
+      // determine if stats vs feature data request (basesPerBin present = stats request)
+      boolean isStatsRequest = qp.containsKey("basesPerBin");
+
+      // return an ok result if no exception thrown; entity returned will be one of
+      if (isStatsRequest) {
+        // 1. region statistics JSON object
+        int basesPerBin = Integer.parseInt(qp.get("basesPerBin"));
+        return Response.ok(getRegionStatsOutput(featureSql, basesPerBin, start, end).toString()).build();
+      }
+      else {
+        // 2. feature and subfeature JSON stream
+        if (isReferenceFeature) {
+          return Response.ok(getFeaturesOutput(featureSql)).build();
+        }
+        else {
+          Optional<String> bulkSubfeatureSql = getBulkSubfeatureSql(projectId, feature, seqId, featureSql, qp, isProtein ? Category.PROTEIN : Category.GENOME);
+          return Response.ok(
+            bulkSubfeatureSql.isPresent() ?
+              getFeaturesOutput(featureSql, bulkSubfeatureSql.get()) :
+              getFeaturesOutput(featureSql)
+          ).build();
+        }
+      }
+    }
+
+    private JSONObject getRegionStatsOutput(String featureSql, int basesPerBin, Long start, Long end) {
+      return new SQLRunner(getWdkModel().getAppDb().getDataSource(), featureSql).executeQuery(rs -> {
+
+        // define the bin array size and initialize
+        int binCount = Long.valueOf(((end - start) / basesPerBin) + ((end - start) % basesPerBin == 0 ? 0 : 1)).intValue();
+        int[] bins = new int[binCount];
+        Arrays.fill(bins, 0);
+
+        // getBinIndex assigns a location to a bin
+        Function<Long,Long> getBinIndex = location ->
+          location < start ? 0 :
+            location > end ? binCount - 1 :
+              (location - start) / basesPerBin;
+
+        while (rs.next()) {
+          // basic feature json has only start and end properties
+          JSONObject featureJson = getFeatureRangeJson(rs);
+          Long startBinIndex = getBinIndex.apply(featureJson.getLong("start"));
+          Long endBinIndex = getBinIndex.apply(featureJson.getLong("end"));
+
+          // add one to each bin this feature crosses
+          for (Long i = startBinIndex; i <= endBinIndex; i++) {
+            bins[i.intValue()]++;
           }
-          bulksubfeatureSql = JBrowseQueries.getQueryMap(projectId, Category.PROTEIN).get(bulksubfeature);
-        } else {
-          String seqIdSql = "select na_sequence_id from apidbtuning.genomicseqattributes where source_id = '" + refseqName + "'";
-          seqId = getSingleQueryResult(seqIdSql);
-          if (feature.equals("ReferenceSequence")) {
-            Integer length = end - start;
-            start = (start < 0) ? 0 : start;
-            featureSql = "select substr(sequence, " + start.toString() + ", " + length.toString() + ") as seq, " + start.toString() + " as startm, " + end.toString() + " as end, '" + refseqName + "' as feature_id from apidbtuning.genomicsequencesequence where source_id = '" + refseqName + "'";
-          } else {
-            featureSql = JBrowseQueries.getQueryMap(projectId, Category.GENOME).get(feature);
-            featureSql = replaceSqlMacros(featureSql, start.toString(), end.toString(), seqId, qp); 
-          }
-          bulksubfeatureSql = JBrowseQueries.getQueryMap(projectId, Category.GENOME).get(bulksubfeature);
         }
 
-        //System.err.println("features sql: " + featureSql);
-        //get features
-        Map<String, JSONObject> featureMap = new SQLRunner(getWdkModel().getAppDb().getDataSource(), featureSql).executeQuery(rs -> {
-           Map<String, JSONObject> features = new HashMap<String, JSONObject>();
-           ResultSetMetaData rsmd = rs.getMetaData();
-           int columnCount = rsmd.getColumnCount();
-     
-           while (rs.next()) {
-             JSONObject myFeature = new JSONObject();
-             int startm = rs.getInt("STARTM");
-             int featureStart = startm - 1;
-             int featureEnd = rs.getInt("END");
-             myFeature.put("start", featureStart);
-             myFeature.put("end", featureEnd);
-  
-             ArrayList<String> skipMe = new ArrayList<String>() {
-               {
-                 add("atts");
-                 add("end");
-                 add("feature_id");
-               }
-             }; 
+        // stats JSON should look like this: {
+        //   bins: int[],
+        //   stats: {
+        //     basesPerBin: int,
+        //     max: int
+        //   }
+        // }
+        return new JSONObject()
+          .put("bins", bins)
+          .put("stats", new JSONObject()
+            .put("basesPerBin", basesPerBin)
+            .put("max", Arrays.stream(bins).max().orElse(0))
+          );
+      });
+    }
 
-             for (int i = 1; i <= columnCount; i++) {
-               String colLabel = rsmd.getColumnLabel(i).toLowerCase();  
-               if (skipMe.contains(colLabel)) { continue; }
-               myFeature.put(colLabel, rs.getString(i));          
-             } 
- 
-             boolean hasAtts = hasColumn(rs, "ATTS");
-             if (hasAtts) {
-               String attrs[] = rs.getString("ATTS").split(";");
-               for (int i = 0; i < attrs.length; i++) {
-                 String attr[] = attrs[i].split("=");
-                 if (attr.length > 1) {    
-                   myFeature.put(attr[0].toLowerCase(), attr[1]);
-                 }
-               }
-             }
-             String uniqueID = Integer.toString(featureStart);
-             if (hasColumn(rs, "FEATURE_ID")) {
-               uniqueID = rs.getString("FEATURE_ID");
-             }
-             myFeature.put("uniqueID", uniqueID);
-             myFeature.put("subfeatures", new JSONArray());
-             features.put(uniqueID, myFeature);
-           }
-           return features; 
-        });
+    private static class Subfeature {
+      public String topParentId;
+      public String parentId;
+      public String featureId;
+      public JSONObject properties = new JSONObject();
+      public List<TwoTuple<Long,Long>> tranges = new ArrayList<>();
+      public List<Subfeature> children = new ArrayList<>();
 
-        Integer minStart = -9;
-        Integer maxEnd = -9;
-        for (JSONObject myFeature : featureMap.values()) {
-          Integer featureStart = myFeature.getInt("start");
-          Integer featureEnd = myFeature.getInt("end");
-          minStart = minStart == -9 || featureStart < minStart ? featureStart : minStart;
-          maxEnd = maxEnd == -9 || featureEnd > maxEnd ? featureEnd : maxEnd;
+      public List<JSONObject> getSubfeatureObjects() {
+
+        JSONObject thisSubfeature = new JSONObject(properties, JSONObject.getNames(properties))
+            .put("subfeatures", getChildrenJson(children));
+
+        List<JSONObject> subfeatureObjects = new ArrayList<>();
+        subfeatureObjects.add(thisSubfeature);
+
+        // add copies for tblocks
+        for (int i = 0; i < tranges.size(); i++) {
+          // make a copy for each with modified start and end values, and suffixed names
+          JSONObject tmp = new JSONObject(properties, JSONObject.getNames(properties))
+            .put("feature_id", featureId + "_" + i)
+            .put("start", tranges.get(i).getFirst())
+            .put("end", tranges.get(i).getSecond());
+          if (tmp.has("name")) {
+            tmp.put("name", tmp.getString("name") + "_" + i);
+          }
+          subfeatureObjects.add(tmp);
         }
 
-        if (featureMap.size() > 0 && bulksubfeatureSql != null) {
-          bulksubfeatureSql = replaceSqlMacros(bulksubfeatureSql, minStart.toString(), maxEnd.toString(), seqId, qp);
-          //System.err.println("subfeatures sql: " + bulksubfeatureSql);
-          //get subfeatures
-          Map<String, JSONObject> subfeatureMap = new SQLRunner(getWdkModel().getAppDb().getDataSource(), bulksubfeatureSql).executeQuery(rs -> {
-             Map<String, JSONObject> subfeatures = new HashMap<String, JSONObject>();
-             ResultSetMetaData rsmd = rs.getMetaData();
-             int columnCount = rsmd.getColumnCount();
+        return subfeatureObjects;
+      }
+    }
 
-             boolean hasAtts = hasColumn(rs, "ATTS");
-             boolean hasTStarts = hasColumn(rs, "TSTARTS");
-             boolean hasThirdTierSubfeatures = hasColumn(rs, "HAS_CHILDREN");
-  
-             while (rs.next()) {
-               JSONObject mySubfeature = new JSONObject();
-               Integer startm = rs.getInt("STARTM");
-               Integer featureEnd = rs.getInt("END");
-               mySubfeature.put("start", startm - 1);
-               mySubfeature.put("end", featureEnd);
-
-               String parentId = rs.getString("PARENT_ID");
-               JSONObject parent = new JSONObject();
-               if (featureMap.containsKey(parentId)) {
-                 parent = featureMap.get(parentId);
-               } else {
-                 parent = subfeatures.get(parentId);
-               }
-    
-               ArrayList<String> skipMe = new ArrayList<String>() {
-                 {
-                   add("atts");
-                   add("feature_id");
-                   add("parent_id");
-                   add("end");
-                 }
-               };
-
-               for (int i = 1; i <= columnCount; i++) {
-                 String colLabel = rsmd.getColumnLabel(i).toLowerCase(); 
-                 if (skipMe.contains(colLabel)) { continue; }
-                 mySubfeature.put(colLabel, rs.getString(i));
-               }
-
-               if (hasAtts) {
-                 String attrs[] = rs.getString("ATTS").split(";");
-                 for (int i = 0; i < attrs.length; i++) {
-                   String attr[] = attrs[i].split("=");
-                   if (attr.length > 1) {
-                     mySubfeature.put(attr[0].toLowerCase(), attr[1]);
-                   }
-                 }
-               }
-   
-               if (hasTStarts) {
-                 String[] tstarts = rs.getString("TSTARTS").split(",");
-                 String[] blocksizes = rs.getString("BLOCKSIZES").split(",");
-                 for (int i = 0; i < tstarts.length; i++) {
-                   int tstart = Integer.valueOf(tstarts[i]) - 1;
-                   int tend = tstart + Integer.valueOf(blocksizes[i]);
-    
-                   JSONObject tmp = new JSONObject(mySubfeature, JSONObject.getNames(mySubfeature));
-                   tmp.put("feature_id", rs.getString("FEATURE_ID") + "_" + i);
-                   tmp.put("name", rs.getString("NAME") + "_" + i);
-                   tmp.put("start", tstart);
-                   tmp.put("end", tend);
-                   if (parent != null) {
-                     parent.append("subfeatures", tmp);
-                     featureMap.put(parentId, parent);  
-                   }
-                 }
-  
-               } else {
-                   if (hasThirdTierSubfeatures && rs.getInt("HAS_CHILDREN") == 1) {
-                       String uniqueID = rs.getString("FEATURE_ID");
-                       mySubfeature.put("uniqueID", uniqueID);
-                       mySubfeature.put("subfeatures", new JSONArray());
-                       mySubfeature.put("parentId", parentId);
-                       subfeatures.put(uniqueID, mySubfeature);
-                   } else {
-                       parent.append("subfeatures", mySubfeature);
-                       if (featureMap.containsKey(parentId)) {
-                           featureMap.put(parentId, parent);
-                       } else {
-                           subfeatures.put(parentId, parent);
-                       }
-                   }
-               }
- 
+    private StreamingOutput getFeaturesOutput(String featureSql) {
+      return outputStream -> {
+        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream));
+        writer.write("{\"features\":[");
+        new SQLRunner(getWdkModel().getAppDb().getDataSource(), featureSql).executeQuery(featureRs -> {
+          try {
+            boolean featureHasAtts = hasColumn(featureRs, "ATTS");
+            boolean firstRow = true;
+            while (featureRs.next()) {
+              JSONObject featureJson = getFeatureRangeJson(featureRs);
+              appendColumnValues(featureJson, featureRs);
+              if (featureHasAtts) appendAttributes(featureJson, featureRs);
+              featureJson.put("uniqueID", featureRs.getString("FEATURE_ID"));
+              featureJson.put("subfeatures", new JSONArray());
+              if (firstRow) firstRow = false; else writer.write(",");
+              writer.write(featureJson.toString());
             }
-            return subfeatures;
+            return null;
+          }
+          catch (IOException e) {
+            throw new SQLRunnerException(e);
+          }
+        });
+        writer.write("]}");
+        writer.flush();
+      };
+    }
+
+    private StreamingOutput getFeaturesOutput(String featureSql, String bulkSubfeatureSql) {
+
+      // wrap feature SQL with an order by
+      String sortedFeatureSql = "select * from ( " + featureSql + NL + " ) order by feature_id asc";
+
+      // build subfeature SQL that orders all subfeatures by their top-level parent's feature_id
+      String wrappedSubfeatureSql = "( select * from ( " + bulkSubfeatureSql + NL +" ) )";
+      String sortedSubfeatureSql =
+          " select * from (" +
+          "   select a.*," +
+          "     (case when b.parent_id is null then to_char(a.parent_id) else to_char(b.parent_id) end) as top_parent_id" +
+          "   from " + wrappedSubfeatureSql + " a" +
+          "   left join " + wrappedSubfeatureSql + " b on to_char(a.parent_id) = b.feature_id" +
+          " )" +
+          " order by top_parent_id asc";
+
+      LOG.debug("Subfeature SQL!!!\n" + bulkSubfeatureSql);
+      LOG.debug("Sorted subfeature SQL!!!\n" + sortedSubfeatureSql);
+
+      return outputStream -> {
+        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream));
+        writer.write("{\"features\":[");
+        try (Connection conn = getWdkModel().getAppDb().getDataSource().getConnection()) {
+          new SQLRunner(conn, sortedFeatureSql).executeQuery(featureRs -> {
+            return new SQLRunner(conn, sortedSubfeatureSql).executeQuery(subfeatureRs -> {
+              try {
+                boolean featureHasAtts = hasColumn(featureRs, "ATTS");
+                boolean subfeatureHasAtts = hasColumn(subfeatureRs, "ATTS");
+                boolean subfeatureHasTStarts = hasColumn(subfeatureRs, "TSTARTS");
+                List<Subfeature> currentSubfeatures = new ArrayList<>();
+                Subfeature nextSubfeature = null;
+                boolean firstRow = true;
+                // TODO: figure out if this is a sufficient collator!  May have different sorting than Oracle's default
+                //    Need this one? https://docs.oracle.com/database/121/JVGDK/oracle/i18n/text/OraCollator.html
+                Collator collator = Collator.getInstance(Locale.US);
+                while (featureRs.next()) {
+
+                  // build feature JSON object
+                  JSONObject featureJson = getFeatureRangeJson(featureRs);
+                  appendColumnValues(featureJson, featureRs);
+                  if (featureHasAtts) appendAttributes(featureJson, featureRs);
+                  String featureId = featureRs.getString("FEATURE_ID");
+                  featureJson.put("uniqueID", featureId);
+
+                  // reads subfeatures until the top_parent_id does not match the current feature_id
+                  nextSubfeature = populateCurrentSubfeatures(featureId, currentSubfeatures,
+                      nextSubfeature, subfeatureRs, subfeatureHasAtts, subfeatureHasTStarts, collator);
+
+                  // add any matching subfeatures found to the feature JSON
+                  featureJson.put("subfeatures", combineSubfeatures(featureId, currentSubfeatures));
+
+                  // write this feature to the output stream
+                  if (firstRow) firstRow = false; else writer.write(",");
+                  writer.write(featureJson.toString());
+                }
+                return null;
+              }
+              catch (IOException e) {
+                throw new SQLRunnerException(e);
+              }
+            });
           });
-          
-          for (String key : subfeatureMap.keySet()) {
-            JSONObject subfeature = subfeatureMap.get(key);
-            String parentId = subfeature.getString("parentId");
-            JSONObject parent = featureMap.get(parentId);
-            //subfeature.put(parentId, JSONObject.NULL);
-            if (parent != null) { 
-              parent.append("subfeatures", subfeature);
-              featureMap.put(parentId, parent);
-            }
-          }
         }
-
-        JSONObject features = new JSONObject();
-        features.put("features", new JSONArray());
-        for (String key : featureMap.keySet()) {
-          JSONObject myFeature = featureMap.get(key);
-          features.append("features", myFeature);
+        catch (SQLException e) {
+          throw new RuntimeException("Unable to connect to database", e);
         }
-
-        Map<Integer, Integer> bins = new HashMap<Integer, Integer>();
-        if (qp.containsKey("basesPerBin")) {
-          int basesPerBin = Integer.parseInt(qp.get("basesPerBin"));
-          int binCount = (end - start) / basesPerBin;
-          JSONArray featuresArr = features.getJSONArray("features");
-          for (int i = 0; i < featuresArr.length(); i++) {
-            JSONObject currentFeature = featuresArr.getJSONObject(i);
-            int startBin = (currentFeature.getInt("start") - start) / basesPerBin;
-            int endBin = (currentFeature.getInt("end") - start) / basesPerBin;
-            int count = bins.containsKey(startBin) ? bins.get(startBin) : 0;
-            bins.put(startBin, count + 1);
-            if (startBin != endBin) {
-              count = bins.containsKey(endBin) ? bins.get(endBin) : 0;
-              bins.put(endBin, count + 1);
-            }
-          }
-
-          int maxBin = 0;
-          ArrayList<Integer> sortedBinValues = new ArrayList<>();
-          for (int i = 0; i < binCount; i++) {
-            int value = bins.containsKey(i) ? bins.get(i) : 0;
-            maxBin = value > maxBin ? value : maxBin;
-            sortedBinValues.add(value);
-          }
-           
-          features.put("bins", sortedBinValues);
-          Map<String, Integer> stats = new HashMap<String, Integer>();
-          stats.put("basesPerBin", basesPerBin);
-          stats.put("max", maxBin);
-          features.put("stats", stats);
-          features.remove("features");
-        }        
-
-      //TODO make sure its a stream
-      return Response.ok(features.toString()).build(); 
+        writer.write("]}");
+        writer.flush();
+      };
     }
 
-    public String getSingleQueryResult(String sql) {
-        String entity = new SQLRunner(getWdkModel().getAppDb().getDataSource(), sql).executeQuery(rs -> {
-          return rs.next() ? rs.getString(1) : null;
-        });
-        return entity;
+    private static JSONArray combineSubfeatures(String featureId, List<Subfeature> subfeatures) {
+      // build map of 2nd tier subfeatures (direct children of the feature)
+      Map<String, Subfeature> secondTierSubfeatures = new HashMap<>();
+      for (Subfeature subfeature : subfeatures) {
+        if (subfeature.parentId.equals(featureId)) {
+          secondTierSubfeatures.put(subfeature.featureId, subfeature);
+        }
+      }
+      // assign feature's grandchildren to their parents, logging if parents cannot be found
+      for (Subfeature subfeature : subfeatures) {
+        if (!subfeature.parentId.equals(featureId)) {
+          Subfeature secondTierSubfeature = secondTierSubfeatures.get(subfeature.parentId);
+          if (secondTierSubfeature == null) {
+            LOG.warn("Subfeature SQL produced 3rd tier subfeature that did not belong to any 2nd tier subfeatures of feature with ID " + featureId);
+          }
+          else {
+            secondTierSubfeature.children.add(subfeature);
+          }
+        }
+      }
+      return getChildrenJson(secondTierSubfeatures.values());
     }
 
-    public String replaceSqlMacros(String sql, String start, String end, String seqId, HashMap<String, String> qp) {
+    private static JSONArray getChildrenJson(Collection<Subfeature> children) {
+      List<JSONObject> subfeatureList = new ArrayList<>();
+      for (Subfeature child : children) {
+        subfeatureList.addAll(child.getSubfeatureObjects());
+      }
+      return new JSONArray(subfeatureList);
+    }
+
+    private static Subfeature populateCurrentSubfeatures(String featureId, List<Subfeature> currentSubfeatures,
+        Subfeature nextSubfeature, ResultSet subfeatureRs, boolean subfeatureHasAtts, boolean subfeatureHasTStarts, Collator collator) throws SQLException {
+      currentSubfeatures.clear();
+      // If this is the first time this method is called; need to load a "base" subfeature
+      if (nextSubfeature == null) {
+        if (subfeatureRs.next()) {
+          nextSubfeature = readSubfeature(subfeatureRs, subfeatureHasAtts, subfeatureHasTStarts);
+        }
+        else {
+          // no more subfeatures in the result
+          return null;
+        }
+      }
+
+      // The feature and subfeature result sets are sorted by feature_id ascending;
+      // some subfeaures included in result may not match features in the feature result
+      // if the subfeature's top parent is "lower" than the feature_id, then
+      //    need to throw away subfeatures until we find one greater than or equal to
+      while (collator.compare(nextSubfeature.topParentId, featureId) < 0) {
+        // subfeature's top parent ID is less than current feature ID; load next
+        if (subfeatureRs.next()) {
+          nextSubfeature = readSubfeature(subfeatureRs, subfeatureHasAtts, subfeatureHasTStarts);
+        }
+        else {
+          // no more subfeatures in the result; the rest of the features do not have subfeatures
+          return null;
+        }
+      }
+
+      // next subfeature's top parent ID is equal to or greater than current feature ID
+      while (collator.compare(nextSubfeature.topParentId, featureId) == 0) {
+        // this subfeature matches current feature; add to list and load next
+        currentSubfeatures.add(nextSubfeature);
+        if (subfeatureRs.next()) {
+          nextSubfeature = readSubfeature(subfeatureRs, subfeatureHasAtts, subfeatureHasTStarts);
+        }
+        else {
+          // no more subfeatures in the result; the rest of the features do not have subfeatures
+          return null;
+        }
+      }
+
+      // current subfeature does not belong to current feature; no more subfeatures for this feature
+      return nextSubfeature;
+    }
+
+
+    private static Subfeature readSubfeature(ResultSet subfeatureRs, boolean hasAtts, boolean hasTStarts) throws SQLException {
+      Subfeature subfeature = new Subfeature();
+      subfeature.topParentId = subfeatureRs.getString("top_parent_id");
+      subfeature.parentId = subfeatureRs.getString("parent_id");
+      subfeature.featureId = subfeatureRs.getString("feature_id");
+      subfeature.properties = getFeatureRangeJson(subfeatureRs);
+      appendColumnValues(subfeature.properties, subfeatureRs);
+      if (hasAtts) {
+        appendAttributes(subfeature.properties, subfeatureRs);
+      }
+      if (hasTStarts) {
+        String[] tstarts = subfeatureRs.getString("TSTARTS").split(",");
+        String[] blocksizes = subfeatureRs.getString("BLOCKSIZES").split(",");
+        for (int i = 0; i < tstarts.length; i++) {
+          long tstart = Long.valueOf(tstarts[i]) - 1;
+          long tend = tstart + Long.valueOf(blocksizes[i]);
+          subfeature.tranges.add(new TwoTuple<>(tstart, tend));
+        }
+      }
+      return subfeature;
+    }
+
+    // NOTE: locations have shown to be larger than MAX_INT so use longs here
+    private static JSONObject getFeatureRangeJson(ResultSet featureRs) throws SQLException {
+      long startm = featureRs.getLong("STARTM");
+      long featureStart = startm - 1;
+      long featureEnd = featureRs.getLong("END");
+      return new JSONObject()
+        .put("start", featureStart)
+        .put("end", featureEnd);
+    }
+
+    private static List<String> INTERNAL_ATTR_NAMES = Arrays.asList(new String[]{
+      "parent_id",
+      "grandparent_id",
+      "top_parent_id",
+      "atts",
+      "tstarts",
+      "blocksizes"
+    });
+
+    private static void appendColumnValues(JSONObject myFeature, ResultSet featureRs) throws SQLException {
+      ResultSetMetaData rsmd = featureRs.getMetaData();
+      int columnCount = rsmd.getColumnCount();
+      for (int i = 1; i <= columnCount; i++) {
+        String colLabel = rsmd.getColumnLabel(i).toLowerCase();
+        if (!INTERNAL_ATTR_NAMES.contains(colLabel)) {
+          myFeature.put(colLabel, featureRs.getString(i));
+        }
+      } 
+    }
+
+    private Optional<String> getBulkSubfeatureSql(String projectId, String feature,
+        String seqId, String featureSql, Map<String, String> qp, Category category) {
+      String bulksubfeature = feature + ":bulksubfeatures";
+      String subfeatureSql = JBrowseQueries.getQueryMap(projectId, category).get(bulksubfeature);
+      if (subfeatureSql == null) {
+        return Optional.empty();
+      }
+      return findFeatureRange(featureSql).map(featureRange ->
+        replaceSqlMacros(subfeatureSql,
+          featureRange.getBegin().toString(),
+          featureRange.getEnd().toString(), seqId, qp));
+    }
+
+    private static void appendAttributes(JSONObject json, ResultSet rs) throws SQLException {
+      String attrsStr = rs.getString("ATTS");
+      if (rs.wasNull()) return;
+      String attrs[] = attrsStr.split(";");
+      for (int i = 0; i < attrs.length; i++) {
+        String attr[] = attrs[i].split("=");
+        if (attr.length > 1) {
+          json.put(attr[0].toLowerCase(), attr[1]);
+        }
+      }
+    }
+
+    private Optional<Range<Integer>> findFeatureRange(String featureSql) {
+      // find range of selected features
+      String rangeSql = "select min(startm) as min_start, max(end) as max_end from ( " + featureSql + " )";
+      return new SQLRunner(getWdkModel().getAppDb().getDataSource(), rangeSql).executeQuery(rs -> {
+        if (!rs.next()) return Optional.empty();
+        int minStart = rs.getInt("min_start");
+        if (rs.wasNull()) return Optional.empty();
+        int maxEnd = rs.getInt("max_end");
+        if (rs.wasNull()) return Optional.empty();
+        return Optional.of(new Range<Integer>(minStart - 1, maxEnd));
+      });
+    }
+
+    private String getFeatureSql(String projectId, String refseqName, String feature,
+        Long start, Long end, Map<String, String> qp, boolean isReferenceFeature,
+        String sequenceTableName, Category category, String seqId) {
+      if (isReferenceFeature) {
+        Long length = end - start;
+        start = (start < 0) ? 0 : start;
+        return "select substr(sequence, " + start.toString() + ", " + length.toString() + ") as seq, " + start.toString() + " as startm, " + end.toString() + " as end, '" + refseqName + "' as feature_id from " + sequenceTableName + " where source_id = '" + refseqName + "'";
+      }
+      else {
+        String baseSql = JBrowseQueries.getQueryMap(projectId, category).get(feature);
+        if (baseSql == null) {
+          throw new NotFoundException("Cannot find feature query for projectId=" +
+            projectId + ", category=" + category + ", feature=" + feature);
+        }
+        return replaceSqlMacros(baseSql, start.toString(), end.toString(), seqId, qp);
+      }
+    }
+
+    private String getSequenceId(String idColName, String attrsTableName, String refseqName) {
+      String seqIdSql = "select " + idColName + " from " + attrsTableName + " where source_id = '" + refseqName + "'";
+      return new SQLRunner(getWdkModel().getAppDb().getDataSource(), seqIdSql)
+          .executeQuery(rs -> rs.next() ? rs.getString(1) : null);
+    }
+
+    private static String replaceSqlMacros(String sql, String start, String end, String seqId, Map<String, String> qp) {
       sql = sql.replaceAll("\\$base_start", start);
       sql = sql.replaceAll("\\$rend", end);
       sql = sql.replaceAll("\\$dlm",";");
       sql = sql.replaceAll("\\$srcfeature_id", seqId);
 
-      ArrayList<String> skipMe = new ArrayList<String>() { 
-            { 
-                add("feature"); 
-                add("start"); 
-                add("end");
-                add("seqType"); 
-            } 
-      };
-      
+      // TODO: add comment to explain why these are skipped
+      List<String> skipMe = new ArrayList<>() {{
+        add("feature");
+        add("start");
+        add("end");
+        add("seqType");
+      }};
+
       for (Map.Entry<String, String> entry : qp.entrySet()) {
         if (skipMe.contains(entry.getKey())) { continue; }
         sql = sql.replaceAll("\\$\\$" + entry.getKey() + "\\$\\$", entry.getValue());
@@ -643,26 +819,24 @@ public class JBrowseService extends AbstractWdkService {
       return sql;
     }
 
-    public HashMap<String, String> toSingleValueMap(MultivaluedMap<String, String> mMap) {
-      HashMap<String, String> svMap = new HashMap<String, String>();
-
+    public static Map<String, String> toSingleValueMap(MultivaluedMap<String, String> mMap) {
+      Map<String, String> svMap = new HashMap<>();
       for (String key : mMap.keySet()) {
         svMap.put(key, mMap.getFirst(key));
       }
-    
       return svMap; 
     }
 
-    public boolean hasColumn(ResultSet rs, String columnName) throws SQLException {
-    ResultSetMetaData rsmd = rs.getMetaData();
-    int columns = rsmd.getColumnCount();
-    for (int x = 1; x <= columns; x++) {
-        if (columnName.equals(rsmd.getColumnName(x))) {
-            return true;
+    public static boolean hasColumn(ResultSet rs, String columnName) throws SQLException {
+      ResultSetMetaData rsmd = rs.getMetaData();
+      int columns = rsmd.getColumnCount();
+      for (int x = 1; x <= columns; x++) {
+        if (columnName.equals(rsmd.getColumnLabel(x))) {
+          return true;
         }
+      }
+      return false;
     }
-    return false;
-}
 
     public Response responseFromCommand(List<String> command) throws IOException {
         ProcessBuilder pb = new ProcessBuilder(command);
