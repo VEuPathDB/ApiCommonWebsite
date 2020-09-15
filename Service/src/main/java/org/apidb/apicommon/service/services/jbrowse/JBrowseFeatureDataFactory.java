@@ -35,6 +35,7 @@ import org.gusdb.fgputil.Tuples.TwoTuple;
 import org.gusdb.fgputil.db.runner.SQLRunner;
 import org.gusdb.fgputil.db.runner.SQLRunnerException;
 import org.gusdb.wdk.model.WdkModel;
+import org.gusdb.wdk.model.WdkRuntimeException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -152,8 +153,16 @@ public class JBrowseFeatureDataFactory {
       JSONObject thisSubfeature = new JSONObject(properties, JSONObject.getNames(properties))
           .put("subfeatures", getChildrenJson(children));
 
+      if (!children.isEmpty() && !tranges.isEmpty()) {
+        throw new WdkRuntimeException("Subfeature '" + featureId +
+            "', child of '" + parentId + "' has both child subfeatures and tblocks.");
+      }
+
       List<JSONObject> subfeatureObjects = new ArrayList<>();
-      subfeatureObjects.add(thisSubfeature);
+      if (tranges.isEmpty()) {
+        // no tranges; need to add single object for this subfeature (may contain children)
+        subfeatureObjects.add(thisSubfeature);
+      }
 
       // add copies for tblocks
       for (int i = 0; i < tranges.size(); i++) {
@@ -381,9 +390,8 @@ public class JBrowseFeatureDataFactory {
       .put("end", featureEnd);
   }
 
-  private static List<String> INTERNAL_ATTR_NAMES = Arrays.asList(new String[]{
+  private static List<String> INTERNAL_COLUMN_NAMES = Arrays.asList(new String[]{
     "parent_id",
-    "grandparent_id",
     "top_parent_id",
     "atts",
     "tstarts",
@@ -395,7 +403,7 @@ public class JBrowseFeatureDataFactory {
     int columnCount = rsmd.getColumnCount();
     for (int i = 1; i <= columnCount; i++) {
       String colLabel = rsmd.getColumnLabel(i).toLowerCase();
-      if (!INTERNAL_ATTR_NAMES.contains(colLabel)) {
+      if (!INTERNAL_COLUMN_NAMES.contains(colLabel)) {
         myFeature.put(colLabel, featureRs.getString(i));
       }
     } 
@@ -445,7 +453,13 @@ public class JBrowseFeatureDataFactory {
     if (isReferenceFeature) {
       Long length = end - start;
       start = (start < 0) ? 0 : start;
-      return "select substr(sequence, " + start.toString() + ", " + length.toString() + ") as seq, " + start.toString() + " as startm, " + end.toString() + " as end, '" + refseqName + "' as feature_id from " + sequenceTableName + " where source_id = '" + refseqName + "'";
+      return "select " +
+          "substr(sequence, " + start.toString() + ", " + length.toString() + ") as seq, " +
+          start.toString() + " as startm, " +
+          end.toString() + " as end, '" +
+          refseqName + "' as feature_id " +
+          "from " + sequenceTableName +
+          " where source_id = '" + refseqName + "'";
     }
     else {
       String baseSql = JBrowseQueries.getQueryMap(_projectId, category).get(feature);
@@ -469,7 +483,7 @@ public class JBrowseFeatureDataFactory {
     sql = sql.replaceAll("\\$dlm",";");
     sql = sql.replaceAll("\\$srcfeature_id", seqId);
 
-    // TODO: add comment to explain why these are skipped
+    // skip query params we know are used for "control" purposes (not SQL macros)
     List<String> skipMe = new ArrayList<>() {{
       add("feature");
       add("start");
@@ -478,8 +492,9 @@ public class JBrowseFeatureDataFactory {
     }};
 
     for (Map.Entry<String, String> entry : qp.entrySet()) {
-      if (skipMe.contains(entry.getKey())) { continue; }
-      sql = sql.replaceAll("\\$\\$" + entry.getKey() + "\\$\\$", entry.getValue());
+      if (!skipMe.contains(entry.getKey())) {
+        sql = sql.replaceAll("\\$\\$" + entry.getKey() + "\\$\\$", entry.getValue());
+      }
     }
 
     return sql;
