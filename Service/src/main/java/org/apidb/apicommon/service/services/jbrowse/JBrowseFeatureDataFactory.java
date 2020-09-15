@@ -1,6 +1,7 @@
 package org.apidb.apicommon.service.services.jbrowse;
 
 import static org.gusdb.fgputil.FormatUtil.NL;
+import static org.gusdb.fgputil.functional.Functions.getMapFromKeys;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -53,7 +54,9 @@ public class JBrowseFeatureDataFactory {
   
   public Response featuresAndRegionStats(String refseqName, UriInfo uriInfo, String feature, Long start, Long end) {
 
-    Map<String, String> qp = toSingleValueMap(uriInfo.getQueryParameters());
+    // use only first instance of each query param
+    MultivaluedMap<String,String> rawQp = uriInfo.getQueryParameters();
+    Map<String, String> qp = getMapFromKeys(rawQp.keySet(), key -> rawQp.getFirst(key));
 
     // determine if protein vs genome request
     boolean isProtein = qp.containsKey("seqType") && qp.get("seqType").equals("protein");
@@ -498,14 +501,6 @@ public class JBrowseFeatureDataFactory {
     }
 
     return sql;
-  }
-
-  private static Map<String, String> toSingleValueMap(MultivaluedMap<String, String> mMap) {
-    Map<String, String> svMap = new HashMap<>();
-    for (String key : mMap.keySet()) {
-      svMap.put(key, mMap.getFirst(key));
-    }
-    return svMap; 
   }
 
   private static boolean hasColumn(ResultSet rs, String columnName) throws SQLException {
