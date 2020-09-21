@@ -32,15 +32,15 @@ sub init {
     my $isotopomer = $result->{'ISOTOPOMER'};
     if ($isotopomer) {
       if (defined $jsonForService) {
-        $jsonForService = $jsonForService . ",{\"profileSetName\":\"Profiles of Metabolites from Llinas\",\"profileType\":\"values\",\"idOverride\":\"$compoundId|$isotopomer\",\"name\":\"$compoundId|$isotopomer\"}";
+        $jsonForService = $jsonForService . ",{\"profileSetName\":\"Llinas [metaboliteProfiles]\",\"profileType\":\"values\",\"idOverride\":\"$compoundId|$isotopomer\",\"name\":\"$compoundId|$isotopomer\"}";
       } else {
-        $jsonForService = "{\"profileSetName\":\"Profiles of Metabolites from Llinas\",\"profileType\":\"values\",\"idOverride\":\"$compoundId|$isotopomer\",\"name\":\"$compoundId|$isotopomer\"}";
+        $jsonForService = "{\"profileSetName\":\"Llinas [metaboliteProfiles]\",\"profileType\":\"values\",\"idOverride\":\"$compoundId|$isotopomer\",\"name\":\"$compoundId|$isotopomer\"}";
       }
     }
   }
 
   if (!defined $jsonForService) {
-    $jsonForService = "{\"profileSetName\":\"Profiles of Metabolites from Llinas\",\"profileType\":\"values\",\"name\":\"$compoundId\"}";
+    $jsonForService = "{\"profileSetName\":\"Llinas [metaboliteProfiles]\",\"profileType\":\"values\",\"name\":\"$compoundId\"}";
   }
     
   my $profileSets = EbrcWebsiteCommon::View::GraphPackage::ProfileSet->new("DUMMY");
