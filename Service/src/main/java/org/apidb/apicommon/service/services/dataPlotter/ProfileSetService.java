@@ -102,19 +102,21 @@ public class ProfileSetService extends AbstractWdkService {
       @PathParam("compoundId") String compoundId)
           throws WdkModelException {
      String sql = "WITH iso AS (" +
-                  " SELECT DISTINCT cms.isotopomer" +
-                  " FROM results.compoundmassspec cms" +
+                  " SELECT DISTINCT chebi.isotopomer" +
+                  " FROM apidb.CompoundPeaksChEBI chebi" +
                   " , study.protocolappnode pan" +
                   " , chebi.compounds c" +
+	          " , apidb.CompoundMassSpecResult cms" +
                   " WHERE c.chebi_accession = '" + compoundId + "'" +
-                  " AND cms.compound_id = c.id" +
-                  " AND cms.protocol_app_node_id = pan.protocol_app_node_id)" +
-                  " SELECT DISTINCT" +
-                  " CASE WHEN 'C12' in (SELECT * from iso)" +
+	          " AND chebi.compound_id = c.id " +
+                  " AND cms.protocol_app_node_id = pan.protocol_app_node_id" + 
+                  " AND cms.compound_peaks_id = chebi.compound_peaks_id)" +
+	          " SELECT DISTINCT" +
+	          " CASE WHEN 'C12' in (SELECT * from iso)" +
                   "  THEN nvl(isotopomer, 'C12')" +
                   "  ELSE isotopomer" +
                   "  END AS isotopomer" +
-                  " FROM (SELECT * FROM iso)";
+	          " FROM (SELECT * FROM iso)";
      return getStreamingResponse(sql,
         "getIsotopomers", "Failed running SQL to fetch isotopomers.");
   }
@@ -162,8 +164,11 @@ public class ProfileSetService extends AbstractWdkService {
     JSONArray profileSets = jsonObj.getJSONArray("profileSets");
     for (int i = 0; i < profileSets.length(); i++) {
       JSONObject profileSet = profileSets.getJSONObject(i);
+      String id = new String();
       if (profileSet.has("idOverride")) {
-        sourceId = profileSet.getString("idOverride");
+        id = profileSet.getString("idOverride");
+      } else {
+        id = sourceId;
       }
       if (profileSet.has("profileSetName")) {
         String profileSetName = profileSet.getString("profileSetName");
@@ -172,48 +177,48 @@ public class ProfileSetService extends AbstractWdkService {
           String facet = profileSet.getString("facet");
           String xAxis = profileSet.getString("xAxis");
           if (plotDataSql.isEmpty()) {
-            plotDataSql = getSql(projectId, sqlName, profileSetName, profileType, facet, xAxis, sourceId, i);
+            plotDataSql = getSql(projectId, sqlName, profileSetName, profileType, facet, xAxis, id, i);
           } else {
-            plotDataSql = plotDataSql + " UNION " + getSql(projectId, sqlName, profileSetName, profileType, facet, xAxis, sourceId, i);
+            plotDataSql = plotDataSql + " UNION " + getSql(projectId, sqlName, profileSetName, profileType, facet, xAxis, id, i);
           }
         } else if (profileSet.has("name")) {
           String name = profileSet.getString("name");
           if (plotDataSql.isEmpty()) {
-            plotDataSql = getSql(projectId, sqlName, profileSetName, profileType, sourceId, name, null, i);
+            plotDataSql = getSql(projectId, sqlName, profileSetName, profileType, id, name, null, i);
           } else {
-            plotDataSql = plotDataSql + " UNION " + getSql(projectId, sqlName, profileSetName, profileType, sourceId, name, null, i);
+            plotDataSql = plotDataSql + " UNION " + getSql(projectId, sqlName, profileSetName, profileType, id, name, null, i);
           }
         } else {
           if (plotDataSql.isEmpty()) {
-            plotDataSql = getSql(projectId, sqlName, profileSetName, profileType, sourceId, null, null, i);
+            plotDataSql = getSql(projectId, sqlName, profileSetName, profileType, id, null, null, i);
           } else {
-            plotDataSql = plotDataSql + " UNION " + getSql(projectId, sqlName, profileSetName, profileType, sourceId, null, null, i);
+            plotDataSql = plotDataSql + " UNION " + getSql(projectId, sqlName, profileSetName, profileType, id, null, null, i);
           }
         }
       } else if (profileSet.has("profileSetId")) {
         String profileSetId = profileSet.getString("profileSetId");
         String name = profileSet.getString("name");
         if (plotDataSql.isEmpty()) {
-            plotDataSql = getSql(projectId, sqlName, profileSetId, sourceId, name, null, null, i);
+            plotDataSql = getSql(projectId, sqlName, profileSetId, id, name, null, null, i);
           } else {
-            plotDataSql = plotDataSql + " UNION " + getSql(projectId, sqlName, profileSetId, sourceId, name, null, null, i);
+            plotDataSql = plotDataSql + " UNION " + getSql(projectId, sqlName, profileSetId, id, name, null, null, i);
           }
       } else if (profileSet.has("senseProfileSetId")) {
         String senseProfileSetId = profileSet.getString("senseProfileSetId");
         String antisenseProfileSetId = profileSet.getString("antisenseProfileSetId");
         String floor = profileSet.getString("floor");
-        plotDataSql = getSql(projectId, sqlName, senseProfileSetId, antisenseProfileSetId, sourceId, floor, null, i);
+        plotDataSql = getSql(projectId, sqlName, senseProfileSetId, antisenseProfileSetId, id, floor, null, i);
       } else if (profileSet.has("generaSql")) {
         String generaSql = profileSet.getString("generaSql");
-        plotDataSql = getSql(projectId, sqlName, generaSql, sourceId, null, null, null, i);
+        plotDataSql = getSql(projectId, sqlName, generaSql, id, null, null, null, i);
       } else {
         String sourceIdValueQuery = profileSet.getString("sourceIdValueQuery");
         String N = profileSet.getString("N");
         String name = profileSet.getString("name");
         if (plotDataSql.isEmpty()) {
-          plotDataSql = getSql(projectId, sqlName, sourceIdValueQuery, sourceId, N, name, null, i);
+          plotDataSql = getSql(projectId, sqlName, sourceIdValueQuery, id, N, name, null, i);
         } else {
-          plotDataSql = plotDataSql + " UNION " + getSql(projectId, sqlName, sourceIdValueQuery, sourceId, N, name, null, i);
+          plotDataSql = plotDataSql + " UNION " + getSql(projectId, sqlName, sourceIdValueQuery, id, N, name, null, i);
         }
       }
     }

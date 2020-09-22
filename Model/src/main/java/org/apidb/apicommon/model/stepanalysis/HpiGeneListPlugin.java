@@ -1,17 +1,6 @@
 package org.apidb.apicommon.model.stepanalysis;
 
-import org.apache.log4j.Logger;
-import org.gusdb.fgputil.runtime.GusHome;
-import org.gusdb.fgputil.validation.ValidationBundle;
-import org.gusdb.fgputil.validation.ValidationBundle.ValidationBundleBuilder;
-import org.gusdb.fgputil.validation.ValidationLevel;
-import org.gusdb.wdk.model.WdkModel;
-import org.gusdb.wdk.model.WdkModelException;
-import org.gusdb.wdk.model.WdkUserException;
-import org.gusdb.wdk.model.analysis.AbstractSimpleProcessAnalyzer;
-import org.gusdb.wdk.model.answer.AnswerValue;
-import org.json.JSONArray;
-import org.json.JSONObject;
+import static org.gusdb.fgputil.FormatUtil.TAB;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -24,7 +13,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.gusdb.fgputil.FormatUtil.TAB;
+import org.apache.log4j.Logger;
+import org.gusdb.fgputil.runtime.GusHome;
+import org.gusdb.fgputil.validation.ValidationBundle;
+import org.gusdb.fgputil.validation.ValidationBundle.ValidationBundleBuilder;
+import org.gusdb.fgputil.validation.ValidationLevel;
+import org.gusdb.wdk.model.WdkModel;
+import org.gusdb.wdk.model.WdkModelException;
+import org.gusdb.wdk.model.WdkUserException;
+import org.gusdb.wdk.model.analysis.AbstractSimpleProcessAnalyzer;
+import org.gusdb.wdk.model.answer.AnswerValue;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
 
@@ -42,11 +42,15 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
   private static final String EUPATH_PORTAL_SEARCH_SERVER_ENDPOINT_PROP_KEY = "eupathSearchPortalEndpoint";
 
   private static final String BRC_PARAM_KEY = "brcParam";
+
+  private static final String DS_SELECTION_PARAM_KEY  = "datasetSelectionParam";
+  private static final String ENRICHMENT_TYPE_PARAM_KEY  = "enrichmentTypeParam";
+
   private static final String THRESHOLD_TYPE_PARAM_KEY = "thresholdTypeParam";
   private static final String THRESHOLD_PARAM_KEY = "thresholdParam";
 
-  private static final String DS_CUTOFF_TYPE_PARAM_KEY = "datasetCutoffTypeParam";
-  private static final String DS_CUTOFF_PARAM_KEY = "datasetCutoffParam";
+    //  private static final String DS_CUTOFF_TYPE_PARAM_KEY = "datasetCutoffTypeParam";
+    //private static final String DS_CUTOFF_PARAM_KEY = "datasetCutoffParam";
 
   private static final String USE_ORTHOLOGY_PARAM_KEY = "useOrthologyParam";
 
@@ -80,17 +84,17 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
       }
     }
 
-    if (!formParams.containsKey(DS_CUTOFF_PARAM_KEY)) {
-      errors.addError(DS_CUTOFF_PARAM_KEY, "Missing required parameter.");
-    }
-    else {
-      try {
-        double datasetCutoff = Double.parseDouble(formParams.get(DS_CUTOFF_PARAM_KEY)[0]);
-        if (datasetCutoff <= 0) throw new NumberFormatException();
-      } catch (NumberFormatException e) {
-        errors.addError(DS_CUTOFF_PARAM_KEY, "Must be a number greater than 0.");
-      }
-    }
+    //    if (!formParams.containsKey(DS_CUTOFF_PARAM_KEY)) {
+    // errors.addError(DS_CUTOFF_PARAM_KEY, "Missing required parameter.");
+    // }
+    //else {
+    //try {
+    //  double datasetCutoff = Double.parseDouble(formParams.get(DS_CUTOFF_PARAM_KEY)[0]);
+    //  if (datasetCutoff <= 0) throw new NumberFormatException();
+    //} catch (NumberFormatException e) {
+    //  errors.addError(DS_CUTOFF_PARAM_KEY, "Must be a number greater than 0.");
+    //}
+    //}
 
     return errors.build();
   }
@@ -107,17 +111,20 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
 
     String idSql = "select distinct gene_source_id from (" + answerValue.getIdSql() + ")";
 
-    String threshold = params.get(THRESHOLD_PARAM_KEY);
 
-    String brcValue = params.get(BRC_PARAM_KEY);
+    String brcValue = getSingleValue(params, BRC_PARAM_KEY);
     String searchServerEndpoint = this.serverEndpoints.get(brcValue);
 
-    String thresholdType = params.get(THRESHOLD_TYPE_PARAM_KEY);
-    String useOrthology = params.get(USE_ORTHOLOGY_PARAM_KEY);
+    String datasetSelection  = getSingleValue(params, DS_SELECTION_PARAM_KEY);
+    String enrichmentType  = getSingleValue(params, ENRICHMENT_TYPE_PARAM_KEY);
 
-    String datasetCutoff = params.get(DS_CUTOFF_PARAM_KEY);
-    String datasetCutoffType = params.get(DS_CUTOFF_TYPE_PARAM_KEY);
+    String threshold = params.get(THRESHOLD_PARAM_KEY);
+    String thresholdType = getSingleValue(params, THRESHOLD_TYPE_PARAM_KEY);
 
+    // String datasetCutoff = params.get(DS_CUTOFF_PARAM_KEY);
+    //String datasetCutoffType = getSingleValue(params, DS_CUTOFF_TYPE_PARAM_KEY);
+
+    String useOrthology = getSingleValue(params, USE_ORTHOLOGY_PARAM_KEY);
 
     // create another path here for the image word cloud JP LOOK HERE name it like imageFilePath
     Path resultFilePath = Paths.get(getStorageDirectory().toString(), TABBED_RESULT_FILE_PATH);
@@ -125,10 +132,12 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
     String qualifiedExe = Paths.get(GusHome.getGusHome(), "bin", "hpiGeneList.pl").toString();
     LOG.info(qualifiedExe + " "
             + idSql + " "
+            + datasetSelection + " "
+            + enrichmentType + " "
             + thresholdType + " "
             + threshold + " "
-            + datasetCutoffType + " "
-            + datasetCutoff + " "
+	     //+ datasetCutoffType + " "
+	     //+ datasetCutoff + " "
             + useOrthology + " "
             + type + " "
             + idSource + " "
@@ -139,7 +148,7 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
     );
 
     //TODO:  Add server endpoint
-    return new String[]{qualifiedExe, idSql, thresholdType, threshold, datasetCutoffType, datasetCutoff, useOrthology, type, idSource, resultFilePath.toString(), wdkModel.getProjectId(), searchServerEndpoint};
+    return new String[]{qualifiedExe, idSql, thresholdType, threshold, useOrthology, datasetSelection, enrichmentType, type, idSource, resultFilePath.toString(), wdkModel.getProjectId(), searchServerEndpoint};
   }
 
   @Override
