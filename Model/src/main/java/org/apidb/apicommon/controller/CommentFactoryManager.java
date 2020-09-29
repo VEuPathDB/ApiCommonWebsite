@@ -2,10 +2,10 @@ package org.apidb.apicommon.controller;
 
 import org.apache.log4j.Logger;
 import org.apidb.apicommon.model.comment.CommentFactory;
+import org.gusdb.fgputil.logging.MDCUtil;
 import org.gusdb.fgputil.runtime.InstanceManager;
 import org.gusdb.fgputil.web.ApplicationContext;
 import org.gusdb.wdk.controller.WdkInitializer;
-import org.gusdb.wdk.model.MDCUtil;
 import org.gusdb.wdk.model.Utilities;
 
 /**
