@@ -118,8 +118,48 @@ public class ProfileSetService extends AbstractWdkService {
                   "  END AS isotopomer" +
 	          " FROM (SELECT * FROM iso)";
      return getStreamingResponse(sql,
-        "getIsotopomers", "Failed running SQL to fetch isotopomers.");
+				 "getIsotopomers", "Failed running SQL to fetch isotopomers.");
   }
+
+
+
+  @GET
+  @Path("CompoundPeaksIdentifier/{compoundId}")
+  @Produces(MediaType.APPLICATION_JSON)
+  public Response getCompoundPeaksIdentifier(
+      @PathParam("compoundId") String compoundId)
+          throws WdkModelException {
+     String sql = " SELECT Substr(source_id, Instr(source_id, '|') + 1) as CompoundPeaksIdentifier " +
+                  " FROM apidbtuning.profile" +
+                  " , chebi.compounds c" +
+                  " WHERE c.chebi_accession = '" + compoundId + "'" +
+	          " AND profile_set_name = 'Barrett_PurineStarvation [metaboliteProfiles]' " +
+                  " AND source_id like '" + compoundId + "%'" + 
+	          " AND profile_type ='values'" ;
+     return getStreamingResponse(sql,
+				 "getCompoundPeaksIdentifier", "Failed running SQL to fetch compound peaks identifier.");
+  }
+
+
+  @GET
+  @Path("CompoundPeaksIdentifierAmoB/{compoundId}")
+  @Produces(MediaType.APPLICATION_JSON)
+  public Response getCompoundPeaksIdentifierAmoB(
+      @PathParam("compoundId") String compoundId)
+          throws WdkModelException {
+     String sql = " SELECT Substr(source_id, Instr(source_id, '|') + 1) as CompoundPeaksIdentifier " +
+                  " FROM apidbtuning.profile" +
+                  " , chebi.compounds c" +
+                  " WHERE c.chebi_accession = '" + compoundId + "'" +
+	          " AND profile_set_name = 'Barrett_AmphotericinB_Resistant [metaboliteProfiles]' " +
+                  " AND source_id like '" + compoundId + "%'" + 
+	          " AND profile_type ='values'" ;
+     return getStreamingResponse(sql,
+				 "getCompoundPeaksIdentifierAmoB", "Failed running SQL to fetch compound peaks identifier.");
+  }
+
+
+
 
   @GET
   @Path("GutherCategory/{sourceId}")
