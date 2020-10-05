@@ -178,7 +178,9 @@ public class AttachmentsService extends AbstractUserCommentService {
   }
 
   private String mimeTypeOf(String name) {
-    return MimeTypes.getMimeType(name.substring(name.lastIndexOf('.')));
+    final var ext = name.substring(name.lastIndexOf('.') + 1);
+
+    return MimeTypes.getMimeType(ext);
   }
 
   private void checkFileId(long fileId) throws WdkModelException {
