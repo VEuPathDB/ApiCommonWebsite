@@ -1,6 +1,8 @@
 package org.apidb.apicommon.model.comment.pojo;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+
+import org.apidb.apicommon.controller.MimeTypes;
 import org.apidb.apicommon.model.userfile.UserFile;
 
 import java.util.Objects;
@@ -48,6 +50,15 @@ public class Attachment {
 
   public void setPreview(String preview) {
     _preview = preview;
+  }
+
+  public String getMimeType() {
+    if (_name == null)
+      return null;
+
+    final var ext = _name.substring(_name.lastIndexOf('.') + 1);
+
+    return MimeTypes.getMimeType(ext);
   }
 
   @Override
