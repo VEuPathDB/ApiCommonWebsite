@@ -142,7 +142,7 @@ public class AttachmentsService extends AbstractUserCommentService {
 
     return Response.ok(
         (StreamingOutput) outputStream -> IOUtils.copy(data, outputStream),
-        mimeTypeOf(att.getName()))
+        att.getMimeType())
         .header("Content-Disposition", "attachment; filename=" + att.getName())
         .build();
   }
@@ -175,12 +175,6 @@ public class AttachmentsService extends AbstractUserCommentService {
     userFile.setProjectVersion(wdk.getVersion());
 
     return userFile;
-  }
-
-  private String mimeTypeOf(String name) {
-    final var ext = name.substring(name.lastIndexOf('.') + 1);
-
-    return MimeTypes.getMimeType(ext);
   }
 
   private void checkFileId(long fileId) throws WdkModelException {

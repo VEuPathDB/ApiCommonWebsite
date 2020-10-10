@@ -20,12 +20,17 @@
     "preview": {
       "description": "URL attachment preview (for image attachments only)",
       "type": "string"
+    },
+    "mimeType": {
+      "description": "Attachment MIME type",
+      "type": "string"
     }
   },
   "additionalProperties": false,
   "required": [
     "id",
     "name",
-    "description"
+    "description",
+    "mimeType"
   ]
 }
