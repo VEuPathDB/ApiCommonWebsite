@@ -1,5 +1,5 @@
 # ApiCommonWebsite
-Frontend pages (js, css, images, html) common to all VEuPathDB genomic sites. Api stands for Apicomplexan whis was the first types of organisms our websites addressed.
+Frontend pages (js, css, images, html) common to all VEuPathDB genomic sites. Api stands for 'Apicomplexan'. These are the first organisms our websites on their first public release as ApiDB BRC (Bioinformatics Resource Center), back in 2002.
 
 Our frontend code stored in this repo has evolved in the last few years from a Struts based framework (jsx pages) to a modern REST-based architecture with a javascript/typescript React client as frontend. We plan to rename eventually this project as ApiClientCommon.
 
