@@ -439,6 +439,21 @@ sub defineGraphs {
   return($line, $percentile, $lifeStages);
 }
 
+sub declareParts {
+  my ($self) = @_;
+
+  my $arrayRef = $self->SUPER::declareParts();
+
+  my @newParts;
+  foreach my $plotPart (@{$arrayRef}) {
+    if ($plotPart->{visible_part} ne 'expr_val_pie_HB3') {
+      push @newParts, $plotPart;
+    }
+  }
+
+  return \@newParts;
+}
+
 #--------------------------------------------------------------------------------
 
 package ApiCommonWebsite::View::GraphPackage::Templates::ExpressionTwoChannel::DS_b7cf547d33;
