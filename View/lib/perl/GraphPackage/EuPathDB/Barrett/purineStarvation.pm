@@ -51,7 +51,7 @@ RADJUST
     $massSpec->setAdjustProfile($rAdjustString);
     $massSpec->setProfileSets([$profileSets]);
     $massSpec->setColors($colors);
-    $massSpec->setDefaultYMax(100);
+    $massSpec->setDefaultYMax(5500000);
   
     $massSpec->setIsStacked(1);
     $massSpec->setHideXAxisLabels(1);
