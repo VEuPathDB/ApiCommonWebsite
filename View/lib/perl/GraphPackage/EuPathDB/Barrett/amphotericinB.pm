@@ -57,7 +57,7 @@ RADJUST
   
     $massSpec->setPartName('mass_spec_' . $compoundpeak);
     my @peakInfo = split('\|', $compoundpeak);
-    $massSpec->setPlotTitle("Profile - $compoundId; mass - @peakInfo[0]; ret time - @peakInfo[1]");
+    $massSpec->setPlotTitle("Profile - $compoundId; mass: @peakInfo[0]; ret time: @peakInfo[1]");
     push @graphObjects, $massSpec;
   }
  
