@@ -15,22 +15,24 @@ sub init {
   $self->SUPER::init(@_);
 
   my @colors = ('blue', 'grey');
-  my @legend = ('Match', 'Query');
-
-  $self->setMainLegend({colors => \@colors, short_names => \@legend, cols => 2});
   $self->setPlotWidth(450);
 
-  # Need to make 2 Profiles ... one for the primaryID and one for the Secondary
-  my @profileArray = (['DeRisi HB3 Smoothed','values'],
-                      ['DeRisi HB3 Smoothed','values'],
-                     );
+  my $secId = $self->getSecondaryId();
+  my $jsonForService = "{\"profileSetName\":\"DeRisi HB3 Smoothed\",\"profileType\":\"values\"},{\"profileSetName\":\"DeRisi HB3 Smoothed\",\"profileType\":\"values\",\"idOverride\":\"$secId\"}";
 
-  my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileArray);
+  my $profileSets = EbrcWebsiteCommon::View::GraphPackage::ProfileSet->new("DUMMY");
+  $profileSets->setJsonForService($jsonForService);
+  $profileSets->setSqlName("Profile");
 
   my $similarity = EbrcWebsiteCommon::View::GraphPackage::SimilarityPlot::LogRatio->new(@_);
-  $similarity->setProfileSets($profileSets);
+  $similarity->setProfileSets([$profileSets]);
   $similarity->setColors(\@colors);
-  $similarity->setPointsPch([15,15]);
+  $similarity->setLegendLabels(['Match', 'Query']);
+
+  my $rAdjustString = <<'RADJUST';
+  profile.df.full$GROUP <- profile.df.full$LEGEND
+RADJUST
+  $similarity->setAdjustProfile($rAdjustString);
 
   $self->setGraphObjects($similarity);
 

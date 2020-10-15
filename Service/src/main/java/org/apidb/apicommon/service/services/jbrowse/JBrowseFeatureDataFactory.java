@@ -191,12 +191,15 @@ public class JBrowseFeatureDataFactory {
       new SQLRunner(_appDs, featureSql).executeQuery(featureRs -> {
         try {
           boolean featureHasAtts = hasColumn(featureRs, "ATTS");
+          boolean featureHasUniqueId = hasColumn(featureRs, "FEATURE_ID");
           boolean firstRow = true;
           while (featureRs.next()) {
             JSONObject featureJson = getFeatureRangeJson(featureRs);
             appendColumnValues(featureJson, featureRs);
             if (featureHasAtts) appendAttributes(featureJson, featureRs);
-            featureJson.put("uniqueID", featureRs.getString("FEATURE_ID"));
+            String uniqueId = null;
+            if (featureHasUniqueId) uniqueId = featureRs.getString("FEATURE_ID");
+            featureJson.put("uniqueID", uniqueId);
             featureJson.put("subfeatures", new JSONArray());
             if (firstRow) firstRow = false; else writer.write(",");
             writer.write(featureJson.toString());

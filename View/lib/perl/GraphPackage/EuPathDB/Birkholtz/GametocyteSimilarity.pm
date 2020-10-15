@@ -17,26 +17,20 @@ sub init {
   $self->SUPER::init(@_);
 
   my @colors = ('blue', 'grey');
-  my @legend = ('Match', 'Query');
   my @sampleNames = ('2-day pre-induction','1-day pre-induction','0-day pre-induction','1-day post induction','2-day post induction','3-day post induction','4-day post induction','5-day post induction','6-day post induction','7-day post induction','8-day post induction','9-day post induction','10-day post induction','11-day post induction','12-day post induction','13-day post induction');
-
- 
-
-  $self->setMainLegend({colors => \@colors, short_names => \@legend, cols => 2});
   $self->setPlotWidth(450);
 
-  # Need to make 2 Profiles ... one for the primaryID and one for the Secondary
-  my @profileArray = (['Pfal3D7 Gametocyte time course','values'],
-                      ['Pfal3D7 Gametocyte time course','values'],
-                     );
+  my $secId = $self->getSecondaryId();
+  my $jsonForService = "{\"profileSetName\":\"Pfal3D7 Gametocyte time course\",\"profileType\":\"values\"},{\"profileSetName\":\"Pfal3D7 Gametocyte time course\",\"profileType\":\"values\",\"idOverride\":\"$secId\"}";
 
-
-  my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileArray);
+  my $profileSets = EbrcWebsiteCommon::View::GraphPackage::ProfileSet->new("DUMMY");
+  $profileSets->setJsonForService($jsonForService);
+  $profileSets->setSqlName("Profile");  
 
   my $similarity = EbrcWebsiteCommon::View::GraphPackage::SimilarityPlot::LogRatio->new(@_);
   $similarity->setProfileSets($profileSets);
   $similarity->setColors(\@colors);
-  $similarity->setPointsPch([15,15]);
+  $similarity->setLegendLabels(['Match', 'Query']);
   $similarity->setElementNameMarginSize(5);
   $similarity->setSampleLabels(\@sampleNames);
   $similarity->setXaxisLabel("");
@@ -44,7 +38,7 @@ sub init {
   my $adjust = "
 profile.is.numeric <- FALSE
 profile.df.full\$ELEMENT_NAMES <- factor(profile.df.full\$ELEMENT_NAMES, levels = c('2-day pre-induction','1-day pre-induction','0-day pre-induction','1-day post induction','2-day post induction','3-day post induction','4-day post induction','5-day post induction','6-day post induction','7-day post induction','8-day post induction','9-day post induction','10-day post induction','11-day post induction','12-day post induction','13-day post induction'))
-";
+profile.df.full\$GROUP <- profile.df.full\$LEGEND";
 
   $similarity->addAdjustProfile($adjust);
 
