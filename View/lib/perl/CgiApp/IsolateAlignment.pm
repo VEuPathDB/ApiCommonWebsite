@@ -6,10 +6,13 @@ use Tie::IxHash;
 use EbrcWebsiteCommon::View::CgiApp;
 use Data::Dumper;
 use Bio::Seq;
-use Bio::Graphics::Browser2::PadAlignment;
 use LWP::UserAgent;
 use HTTP::Request::Common;
 use HTTP::Request::Common qw(POST);
+
+use File::Temp qw/ tempfile /;
+
+
 
 sub run {
   my ($self, $cgi) = @_;
@@ -204,28 +207,20 @@ EOSQL
     $sequence .= ">$id\n$seq\n";
   }
 
-#  my $test = "echo 'Hello' > /mark.txt";
-#  system($test);
+  my ($infh, $infile)  = tempfile();
+  my ($outfh, $outfile) = tempfile();
+  my ($dndfh, $dndfile) = tempfile();
+  my ($tmpfh, $tmpfile) = tempfile();
 
-
-  my $range = 10000000;
-  my $random = int(rand($range));
-
-  my $infile  = "/tmp/isolate_clustalo_tmp$random.fas";
-  my $outfile = "/tmp/isolate_clustalo_tmp$random.aln";
-  my $dndfile = "/tmp/isolate_clustalo_tmp$random.dnd";
-  my $tmpfile = "/tmp/isolate_clustalo_tmp$random.tmp";
-
-  open(OUT, ">$infile");
-  print OUT $sequence;
-  close OUT;
+  print $infh $sequence;
+  close $infh;
 
   my $userOutFormat = $cgi->param('clustalOutFormat');
   if ((! defined $userOutFormat) || ($userOutFormat eq "")){
 	     $userOutFormat = "clu";
   }
 
-  my $cmd = "/usr/bin/clustalo -v --infile=$infile --outfile=$outfile --outfmt=$userOutFormat --output-order=tree-order --guidetree-out=$dndfile --force > $tmpfile";
+  my $cmd = "clustalo -v --residuenumber --infile=$infile --outfile=$outfile --outfmt=$userOutFormat --output-order=tree-order --guidetree-out=$dndfile --force > $tmpfile";
   system($cmd);
   my %origins = ();
   my @alignments = ();
@@ -283,59 +278,19 @@ sub createHTML {
   if ((! defined $userOutFormat) || ($userOutFormat eq "")){
     $userOutFormat = "clu";
   }
-  my $alignmentElse = "";
 
- if ($userOutFormat eq "clu"){
-  my %hash;
-  tie %hash, "Tie::IxHash";
-
-  while(<O>) {
-    chomp;
-    if ($_ =~/CLUSTAL O/) {
-      print $cgi->pre("<h3>Clustal Omega 1.2.3 Multiple Sequence Alignments</h3>");
-      print $cgi->pre($iTOLLINK);
-	  next;
+  print "<pre>";
+    while(<O>) {
+      if(/CLUSTAL O/ && $userOutFormat eq "clu") {
+        print $cgi->h3($_);
+        print $cgi->pre($iTOLLINK);
+      }
+      else {
+        print;
+      }
     }
-    elsif($_=~/^CLUSTAL/) {
-      print $cgi->pre("Clustal 2.1 Multiple Sequence Alignments\n");
-      next;
-    }
-    next if (/^\s+$/);
-    my ($id, $seq) = split /\s+/, $_;
-    $id =~ s/\s+//g;
-    next if $id eq ""; # not sure why empty ids are not skipped.
-    push @{$hash{$id}}, $seq;
-  }
-  close O;
-
-  my @dnas;
-
-  my @alignments2;
-  while(my ($id, $seqs) = each %hash) {
-    my $seq = join '', @{$hash{$id}};
-    my $new_seq = $seq;
-    $new_seq =~ s/_//g;
-    my $length = length($new_seq);
-    push @alignments2, [$id, 0, $length, 0, $length];
-    push @dnas, $id, $seq;
-  }
-
-  my $align = Bio::Graphics::Browser2::PadAlignment->new(\@dnas,\@alignments2);
-#  my %origins = ();
-#  print $cgi->pre("CLUSTAL 2.1 Multiple Sequence Alignments\n");
-  print $cgi->pre($align->alignment( \%origins, { show_mismatches   => 1,
-                                                   show_similarities => 1,
-                                                   show_matches      => 1}));
-
-  }
- else{
-   while(<O>){
-     $alignmentElse = $alignmentElse . $_;
-	    #print $_;  #the linespacing is incorrect with this.
-    }
-    print $cgi->pre($alignmentElse);
-  }
    close O;
+  print "</pre>";
 }
 
 sub proteinTest {
