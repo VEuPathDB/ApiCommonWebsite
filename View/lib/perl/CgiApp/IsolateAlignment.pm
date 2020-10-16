@@ -223,7 +223,6 @@ EOSQL
   my $cmd = "clustalo -v --residuenumber --infile=$infile --outfile=$outfile --outfmt=$userOutFormat --output-order=tree-order --guidetree-out=$dndfile --force > $tmpfile";
   system($cmd);
   my %origins = ();
-  my @alignments = ();
   my $dndData = "";
 
   open(D, "$dndfile"); #This is for the iTOL input. 
