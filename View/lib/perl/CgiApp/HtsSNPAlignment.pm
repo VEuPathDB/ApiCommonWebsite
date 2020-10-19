@@ -6,11 +6,11 @@ use strict;
 use EbrcWebsiteCommon::View::CgiApp;
 
 use CGI::Session;
-use Bio::Graphics::Browser2::PadAlignment;
 use Bio::SeqIO;
 use Bio::Seq;
 
 use JSON;
+use File::Temp qw/ tempfile /;
 
 use Data::Dumper;
 
@@ -26,7 +26,6 @@ sub run {
     print $cgi->header('text/html');
   }
 
-
   $self->processParams($cgi, $dbh);
   $self->handleIsolates($dbh, $cgi, $type);
 
@@ -39,14 +38,14 @@ sub processParams {
   my $fpv = $cgi->param('filter_param_value');
 
   my $fpvArray = decode_json $fpv;
-  
+
   my @predicates;
   foreach my $filter (@{$fpvArray->{filters}}) {
     my $filterType = $filter->{type};
     my $isRange = $filter->{isRange};
     my $field = $filter->{field};
     my $values = $filter->{value};
-    
+
     next unless $values;
 
     if($filterType ne 'string' && $isRange) {
@@ -59,27 +58,9 @@ sub processParams {
       push @predicates, "(property = '$field' and string_value in ($valuesString))";
     }
   }
-
-  # $p =~ s/,$//;
-  # my @ids = split /,/, $p;
-  # my $list;
-  # foreach my $id (@ids){
-  #   $id =~ s/ \(.+\)$//;
-  #   $list = $list.  "'" . $id. "',";
-  # }
-  # $list =~ s/\,$//;
-
-#  $self->{ids} = $list;
-
  $self->{filter_predicates} = \@predicates;
 
 }
-
-
-
-
-
-
 
 
 sub handleIsolates {
@@ -142,16 +123,15 @@ EOSQL
 	#print Dumper %data; 
 
   if ($metadata) {
-    
-	print "### Metadata for the Strains: $newline"; # $tab $tab (Sequences are below)$newline";
-	foreach my $key (sort keys %data) {
+
+    print "### Metadata for the Strains: $newline"; # $tab $tab (Sequences are below)$newline";
+    foreach my $key (sort keys %data) {
       print "#Isolate=$key :  ";
       foreach my $ca (sort keys  ($data{$key})) {
 	print "$ca= ". $data{$key}->{$ca} . "$tab" ;
       }
       print "$newline";
     }
-
     print "$newline$newline";
   }
 
@@ -199,7 +179,7 @@ EOSQL
 
 
   if ($type =~ /htsSNP/i){
-    my @sequences;
+    my $sequence;
     my %origins = ();
 
     while(my ($id, $seq) = $sth->fetchrow_array()) {
@@ -207,29 +187,64 @@ EOSQL
       $noN =~ s/[ACGT]//g;
       next if length($noN) == length($seq);
       $id =~ s/^$sid\.// unless ($id eq $sid);
-      push @sequences, ($id => $seq);
+      $sequence .= ">$id\n$seq\n";
     }
 
-    my @segments;
-    my $align = Bio::Graphics::Browser2::PadAlignment->new(\@sequences,\@segments);
+  my ($infh, $infile)  = tempfile();
+  my ($outfh, $outfile) = tempfile();
+  my ($dndfh, $dndfile) = tempfile();
+  my ($tmpfh, $tmpfile) = tempfile();
 
-     foreach my $id (split /,/, $ids) {
-        $id =~ s/'//g;
-        $id =~ s/^$sid\.// unless ($id eq $sid);
-        $origins{$id} = $start;
-     }
+  print $infh $sequence;
+  close $infh;
 
-  print "<table align=center width=800>";
-  print "<tr><td>";
-  print "<pre>";
-  print $cgi->pre($align->alignment( \%origins, { show_mismatches   => 1,
-						  show_similarities => 1, 
-						  show_matches      => 1}));
-
-  print "</pre>";
-  print "</td></tr>";
-  print "</table>";
+  my $userOutFormat = $cgi->param('clustalOutFormat');
+  if ((! defined $userOutFormat) || ($userOutFormat eq "")){
+	     $userOutFormat = "clu";
   }
+
+  my $cmd = "clustalo -v --residuenumber --infile=$infile --outfile=$outfile --outfmt=$userOutFormat --output-order=tree-order --guidetree-out=$dndfile --force > $tmpfile";
+  system($cmd);
+  my %origins = ();
+
+  ## Interacting with iTOL to make a tree.
+  ## NOTE - check elsewhere this is used when done. SNP etc.
+  ## This uses the dnd file out put.
+
+  my $ua = LWP::UserAgent->new;
+  my $request = HTTP::Request::Common::POST( 'https://itol.embl.de/upload.cgi',
+     Content_Type => 'form-data',
+     Content      => [
+                      # ttext => $dndData,
+                     ]);
+  my $response = $ua->request($request);
+  my $iTOLLink =  "https://itol.embl.de/" . $response->{'_headers'}->{'location'};
+  my $iTOLHTML = "";
+  &createHTML($iTOLHTML,$outfile,$cgi,%origins);
+  }
+}
+
+sub createHTML {
+  my ($iTOLLINK, $outfile, $cgi, %origins) = @_;
+  open(O, "$outfile") or die "can't open $outfile for reading:$!";
+
+  my $userOutFormat = $cgi->param('clustalOutFormat');
+  if ((! defined $userOutFormat) || ($userOutFormat eq "")){
+    $userOutFormat = "clu";
+  }
+
+  print "<pre>";
+    while(<O>) {
+      if(/CLUSTAL O/ && $userOutFormat eq "clu") {
+        print $cgi->h3($_);
+        print $cgi->pre($iTOLLINK);
+      }
+      else {
+        print;
+      }
+    }
+   close O;
+  print "</pre>";
 }
 
 1;
