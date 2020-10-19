@@ -20,7 +20,9 @@ or gi.database_name like '%dbxref_gene2Uniprot_RSRC'
 or gi.database_name like '%dbxref_uniprot_linkout_RSRC'
 or gi.database_name like '%dbxref_uniprotkb_from_annotation_RSRC'
 or gi.database_name like '%dbxref_simple_gene2Uniprot_RSRC'
-or gi.database_name = 'Links to Uniprot Genes')";
+or gi.database_name = 'Links to Uniprot Genes'
+or gi.database_name like 'Uniprot%'
+)";
   
   my $sth = $dbh->prepare($sql);
   $sth->execute();
