@@ -2,14 +2,30 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { uniqueId } from 'lodash';
+import { cloneDeep, uniqueId } from 'lodash';
 import $ from 'jquery';
 import { safeHtml } from 'wdk-client/Utils/ComponentUtils';
 import { loadChemDoodleWeb } from '../common/Compound';
-import { CategoriesCheckboxTree, CollapsibleSection, Link, Loading, Dialog, HelpIcon } from 'wdk-client/Components';
+import {
+  CategoriesCheckboxTree,
+  Checkbox,
+  CollapsibleSection,
+  Dialog,
+  HelpIcon,
+  Link,
+  Loading
+} from 'wdk-client/Components';
 import * as Ontology from 'wdk-client/Utils/OntologyUtils';
 import * as Category from 'wdk-client/Utils/CategoryUtils';
 import Menu from 'ebrc-client/components/Menu';
+
+import { PathwaySearchById } from './PathwaySearchById';
+import {
+  clearHighlighting,
+  filterNodes,
+  highlightNodes
+} from './pathway-utils';
+import { renderNodeLabelMarkup } from './utils';
 
 // include menu bar files
 import 'site/wdkCustomization/css/pathway.css';
@@ -23,6 +39,9 @@ const EC_NUMBER_SEARCH_PREFIX = '/app/search/transcript/' +
 
 const ORTHOMCL_LINK = 'https://beta.orthomcl.org/orthomcl/processQuestion.do?questionFullName=' +
   'GroupQuestions.ByEcNumber&questionSubmit=Get+Answer&ec_number_type_ahead=N/A&ec_wildcard=';
+
+const clearFoundNodes = clearHighlighting('veupathdb-CytoscapeFoundNode');
+const highlightFoundNodes = highlightNodes('veupathdb-CytoscapeFoundNode');
 
 function loadCytoscapeJs() {
   return new Promise(function(resolve, reject) {
@@ -41,7 +60,8 @@ function loadCytoscapeJs() {
 
 
 // transform wdk row into Cyto Node
-function makeNode(obj) {
+function makeNode(oldObj) {
+    const obj = cloneDeep(oldObj);
 
     if(obj.node_type == 'molecular entity' && obj.default_structure) {
         let structure = ChemDoodle.readMOL(obj.default_structure);
@@ -355,7 +375,7 @@ function addCellularLocation (node, cellularLocationNode) {
 
 
 
-function makeCy(container, pathwayId, pathwaySource, PathwayNodes, PathwayEdges, name) {
+function makeCy(container, pathwayId, pathwaySource, PathwayNodes, PathwayEdges, name, userZoomingEnabled) {
 
   return Promise.all([loadCytoscapeJs(), loadChemDoodleWeb()])
     .then(function([ cytoscape ]) {
@@ -450,7 +470,7 @@ function makeCy(container, pathwayId, pathwaySource, PathwayNodes, PathwayEdges,
                   'font-size':12,
                   'background-image':'data(smallImage)',
                   'background-fit':'contain',
-                  label:null,
+                  label: null,
               },
             },
 
@@ -469,7 +489,7 @@ function makeCy(container, pathwayId, pathwaySource, PathwayNodes, PathwayEdges,
                 style: {
                     visibility:'visible',
                    'font-size':6,
-                    label: 'data(display_label)',
+                    label: renderNodeLabelMarkup('display_label'),
                     width:'label',
                     height:'label',
 
@@ -495,7 +515,7 @@ function makeCy(container, pathwayId, pathwaySource, PathwayNodes, PathwayEdges,
                'background-color':'white',
                'border-width':1,
                'background-image-opacity':0,
-               label:null,
+               label: null,
                }
                },
 
@@ -517,7 +537,7 @@ function makeCy(container, pathwayId, pathwaySource, PathwayNodes, PathwayEdges,
                width:'label',
                height:'label',
                'border-width':0,
-               label:'data(name)',
+               label: renderNodeLabelMarkup('name'),
                padding:'2px',
                'font-size':6,
                }
@@ -537,7 +557,7 @@ function makeCy(container, pathwayId, pathwaySource, PathwayNodes, PathwayEdges,
                width:'label',
                height:'label',
                'border-width':0,
-               label:'data(name)',
+               label: renderNodeLabelMarkup('name'),
                'font-size':12,
                },
                },
@@ -554,7 +574,7 @@ function makeCy(container, pathwayId, pathwaySource, PathwayNodes, PathwayEdges,
                'background-color': 'white',
                'background-image':'data(image)',
                'background-fit':'contain',
-               label:null,
+               label: null,
 
                },
                },
@@ -564,7 +584,7 @@ function makeCy(container, pathwayId, pathwaySource, PathwayNodes, PathwayEdges,
             {
                selector: 'node[node_type= "molecular entity"][?image][zoomLevel > 1.4][!side]',
                style: {
-                   label:'data(name)',
+                   label: renderNodeLabelMarkup('name'),
                    'border-width':0,
                    'text-valign': 'bottom',
                    'text-halign': 'center',
@@ -613,7 +633,7 @@ function makeCy(container, pathwayId, pathwaySource, PathwayNodes, PathwayEdges,
                     'background-color': '#ccffff',
                     width:'label',
                     height:'label',
-                    label: 'data(display_label)',
+                    label: renderNodeLabelMarkup('display_label'),
                     'border-width':0,
                     'font-size':30,
                 },
@@ -638,7 +658,7 @@ function makeCy(container, pathwayId, pathwaySource, PathwayNodes, PathwayEdges,
                     'text-background-color': 'data(color)',
                     'text-background-opacity': 0.1,
                     'background-opacity' : 0.1,
-                    label: 'data(display_label)',
+                    label: renderNodeLabelMarkup('display_label'),
                     padding:'5%',
                     'text-valign': 'top',
                     'text-halign': 'center',
@@ -652,6 +672,15 @@ function makeCy(container, pathwayId, pathwaySource, PathwayNodes, PathwayEdges,
                     'border-color': 'purple',
                     'border-width': '4px'
                 },
+            },
+
+
+            {
+              selector: 'node.veupathdb-CytoscapeFoundNode',
+              style: {
+                'border-color': 'green',
+                'border-width': '4px'
+              },
             },
 
             {
@@ -672,37 +701,14 @@ function makeCy(container, pathwayId, pathwaySource, PathwayNodes, PathwayEdges,
 
         ],
         layout:myLayout,
-        zoom:1
+        zoom:1,
+        userZoomingEnabled
     });
 
 
 
 
         cy.ready(function () {
-
-            cy.changeLayout = function (val) {
-
-                cy.zoom(1);
-                cy.reset();
-
-                // Null out all positions or the compound nodes are not being set correctly
-                cy.nodes().map(function(node){node.position({x:null, y:null});node.renderedPosition({x:null, y:null});});
-
-                if (val === 'preset') {
-                    cy.layout({name:val,
-                               fit:true,
-                               positions:function(node){return{'x':Number(node.data("x")), 'y':Number(node.data("y"))}}
-                    }).run();
-                }
-
-                else if (val === 'dagre') {
-                    cy.layout({name:val, rankDir:'LR'}).run();
-                }
-
-                else {
-                    cy.layout({name:val}).run();
-                }
-            };
 
             cy.changeExperiment = function (linkPrefix, xaxis, doAllNodes) {
 
@@ -939,7 +945,7 @@ function makeCy(container, pathwayId, pathwaySource, PathwayNodes, PathwayEdges,
 //        initialAnimation(nodesWithCellularLocation);
 
         if (nodes.allAre('[!x]')) {
-            cy.layout({name: 'cose'}).run();
+          cy.layout({ name: 'cose' }).run();
         }
         return cy;
 
@@ -1021,10 +1027,15 @@ const CytoscapeDrawing = enhance(class CytoscapeDrawing extends React.Component 
     super(props, context);
     this.state = {
       openSelector: null,
+      searchCriteria: undefined,
+      userZoomingEnabled: false,
     };
     this.clearActiveNodeData = this.clearActiveNodeData.bind(this);
+    this.resetVis = this.resetVis.bind(this);
     this.onGeneraChange = this.onGeneraChange.bind(this);
     this.onExperimentChange = this.onExperimentChange.bind(this);
+    this.onClickUserZoomingToggle = this.onClickUserZoomingToggle.bind(this);
+    this.onSearchCriteriaChange = this.onSearchCriteriaChange.bind(this);
   }
 
   componentDidMount() {
@@ -1033,10 +1044,18 @@ const CytoscapeDrawing = enhance(class CytoscapeDrawing extends React.Component 
     if (this.props.nodeList) this.initVis();
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
     // if geneStepId is defined, and nodeList changes from not defined to defined, call initVis
     if (this.props.geneStepId && this.props.nodeList && !prevProps.nodeList) {
       this.initVis();
+    }
+
+    if (prevState.userZoomingEnabled !== this.state.userZoomingEnabled) {
+      this.updateUserZooming(this.state.userZoomingEnabled);
+    }
+
+    if (prevState.searchCriteria !== this.state.searchCriteria) {
+      this.updateFoundNodes(this.state.searchCriteria);
     }
   }
 
@@ -1044,7 +1063,7 @@ const CytoscapeDrawing = enhance(class CytoscapeDrawing extends React.Component 
     let { primary_key, source, name } = this.props.record.attributes;
     let { PathwayNodes, PathwayEdges } = this.props.record.tables;
 
-    makeCy(this.refs.cytoContainer, primary_key, source, PathwayNodes, PathwayEdges, name)
+    makeCy(this.refs.cytoContainer, primary_key, source, PathwayNodes, PathwayEdges, name, this.state.userZoomingEnabled)
       .then(cy => {
 
         // listener for when nodes and edges are clicked
@@ -1163,8 +1182,27 @@ const CytoscapeDrawing = enhance(class CytoscapeDrawing extends React.Component 
       });
   }
 
+  resetVis() {
+    if (this.state.cy != null) {
+      this.state.cy.destroy();
+      this.initVis();
+    }
+  }
+
+  updateUserZooming(isEnabled) {
+    if (this.state.cy != null) {
+      this.state.cy.userZoomingEnabled(isEnabled);
+    }
+  }
+
   clearActiveNodeData() {
     this.props.setActiveNodeData(null);
+  }
+
+  onClickUserZoomingToggle(newValue) {
+    this.setState({
+      userZoomingEnabled: newValue
+    });
   }
 
   onExperimentChange(graph) {
@@ -1178,6 +1216,32 @@ const CytoscapeDrawing = enhance(class CytoscapeDrawing extends React.Component 
     let imageLink = "/cgi-bin/dataPlotter.pl?idType=ec&fmt=png&type=PathwayGenera&project_id=" + projectId + "&sid=" + sid + "&id=";
     this.state.cy.changeExperiment( imageLink, 'genus' , '1');
     this.setState({ openSelector: null });
+  }
+
+  onSearchCriteriaChange(searchCriteria) {
+    this.setState({
+      searchCriteria
+    });
+  }
+
+  updateFoundNodes(searchCriteria) {
+    if (this.state.cy != null) {
+      const cy = this.state.cy;
+      const nodes = cy.nodes();
+
+      clearFoundNodes(nodes);
+
+      if (searchCriteria != null) {
+        const foundNodes = filterNodes(
+          searchCriteria,
+          nodes
+        );
+
+        highlightFoundNodes(foundNodes);
+
+        cy.center(foundNodes);
+      }
+    }
   }
 
   renderError() {
@@ -1246,21 +1310,45 @@ const CytoscapeDrawing = enhance(class CytoscapeDrawing extends React.Component 
 
             <br />
         </div>
-        <VisMenu
-          source={source}
-          webAppUrl={this.props.siteConfig.webAppUrl}
-          primary_key={primary_key}
-          projectId={projectId}
-          onGeneraSelectorClick={() => this.setState({ openSelector: SELECTORS.GENERA })}
-          onGraphSelectorClick={() => this.setState({ openSelector: SELECTORS.GRAPH })}
-          cy={this.state.cy}
-        />
-        <div className="eupathdb-PathwayRecord-cytoscapeIcon">
-            <a href="http://js.cytoscape.org/">
-
-              <img src={this.props.siteConfig.webAppUrl + "/images/cytoscape-logo.png"} alt="Cytoscape JS" width="28" height="28"/>
-          </a>
-          Cytoscape JS
+        <div className="veupathdb-PathwayRecord-menuContainer">
+          <div className="veupathdb-PathwayRecord-menuItemsContainer">
+            <VisMenu
+              source={source}
+              webAppUrl={this.props.siteConfig.webAppUrl}
+              primary_key={primary_key}
+              projectId={projectId}
+              onGeneraSelectorClick={() => this.setState({ openSelector: SELECTORS.GENERA })}
+              onGraphSelectorClick={() => this.setState({ openSelector: SELECTORS.GRAPH })}
+              cy={this.state.cy}
+            />
+          </div>
+          {this.state.cy && (
+            <PathwaySearchById
+              onSearchCriteriaChange={this.onSearchCriteriaChange}
+              nodes={this.state.cy.nodes()}
+            />
+          )}
+          <div className="veupathdb-PathwayRecord-menuControls">
+            <label>
+              <Checkbox
+                value={this.state.userZoomingEnabled}
+                onChange={this.onClickUserZoomingToggle}
+              />
+              &nbsp;Enable Mouse Zooming
+            </label>
+            <button
+              className="btn veupathdb-PathwayRecord-ResetDisplayButton"
+              type="button"
+              onClick={this.resetVis}
+            >
+              Reset Layout
+            </button>
+            <div className="eupathdb-PathwayRecord-cytoscapeIcon">
+              <a href="http://js.cytoscape.org/">
+                <img src={this.props.siteConfig.webAppUrl + "/images/cytoscape-logo.png"} alt="Cytoscape JS" width="28" height="28"/>
+              </a>
+            </div>
+          </div>
         </div>
         <div style={{ position: 'relative', zIndex: 1 }}>
           <div ref="cytoContainer" className="eupathdb-PathwayRecord-CytoscapeContainer" />
@@ -1279,8 +1367,14 @@ const CytoscapeDrawing = enhance(class CytoscapeDrawing extends React.Component 
 });
 
 function VisMenu(props) {
-  let { cy, source, primary_key, onGeneraSelectorClick, onGraphSelectorClick } = props;
+  let {
+    cy,
+    primary_key,
+    onGeneraSelectorClick,
+    onGraphSelectorClick,
+  } = props;
   let jsonKeys = ['elements', 'nodes', 'data', 'id', 'display_label', 'parent', 'cellular_location', 'node_type', 'x', 'y', 'name', 'node_identifier', 'position', 'edges', 'is_reversible', 'source', 'target', 'reaction_source_id'];
+
   return(
     <Menu
       webAppUrl={props.webAppUrl}
@@ -1313,45 +1407,8 @@ function VisMenu(props) {
               }
             }
           ]
-        }, {
-          text: (
-            <>
-              Layout <HelpIcon>Choose a Layout for the Pathway Map</HelpIcon>
-            </>
-          ),
-          children: [
-            source === 'KEGG' ? {
-              text: 'KEGG',
-              url: '#kegg',
-              onClick(event) {
-                event.preventDefault();
-                cy.changeLayout('preset');
-              }
-            } : null,
-            {
-              text: 'Directed Graph',
-              url: '#dag',
-              onClick(event) {
-                event.preventDefault();
-                cy.changeLayout('dagre');
-              }
-            }, {
-              text: 'Compound Spring Embedder',
-              url: '#cse',
-              onClick(event) {
-                event.preventDefault();
-                cy.changeLayout('cose');
-              }
-            }, {
-              text: 'Grid',
-              url: '#grid',
-              onClick(event) {
-                event.preventDefault();
-                cy.changeLayout('grid');
-              }
-            }
-          ]
-        }, {
+        },
+        {
           text: (
             <>
               Paint Enzymes <HelpIcon>
