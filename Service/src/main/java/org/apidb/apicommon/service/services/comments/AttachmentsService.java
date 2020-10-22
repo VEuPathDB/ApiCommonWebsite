@@ -1,7 +1,25 @@
 package org.apidb.apicommon.service.services.comments;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Collection;
+
+import javax.ws.rs.BadRequestException;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.NotFoundException;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.StreamingOutput;
+import javax.ws.rs.core.UriInfo;
+
 import org.apache.commons.io.IOUtils;
-import org.apidb.apicommon.controller.MimeTypes;
 import org.apidb.apicommon.model.comment.pojo.Attachment;
 import org.apidb.apicommon.model.comment.pojo.Comment;
 import org.apidb.apicommon.model.userfile.UserFile;
@@ -16,12 +34,6 @@ import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.user.User;
 import org.json.JSONObject;
-
-import javax.ws.rs.*;
-import javax.ws.rs.core.*;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Collection;
 
 @Path(AttachmentsService.BASE_PATH)
 public class AttachmentsService extends AbstractUserCommentService {
