@@ -32,7 +32,7 @@ public class StaticQueries {
 
   public static class QueryCache<T extends SourceFileProvider> extends HashMap<T,List<WdkModelText>> { }
 
-  public static <T extends SourceFileProvider> Map<String, String> filterByProject(List<WdkModelText> queries, String projectId) {
+  public static Map<String, String> filterByProject(List<WdkModelText> queries, String projectId) {
     return queries.stream()
       .filter(entry -> entry.include(projectId))
       .collect(toMap(WdkModelText::getName, WdkModelText::getText));
