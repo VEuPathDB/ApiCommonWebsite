@@ -102,15 +102,13 @@ public class ProfileSetService extends AbstractWdkService {
       @PathParam("compoundId") String compoundId)
           throws WdkModelException {
      String sql = "WITH iso AS (" +
-                  " SELECT DISTINCT chebi.isotopomer" +
-                  " FROM apidb.CompoundPeaksChEBI chebi" +
+                  " SELECT DISTINCT cms.isotopomer" +
+                  " FROM results.compoundmassspec cms" +
                   " , study.protocolappnode pan" +
                   " , chebi.compounds c" +
-	          " , apidb.CompoundMassSpecResult cms" +
                   " WHERE c.chebi_accession = '" + compoundId + "'" +
-	          " AND chebi.compound_id = c.id " +
-                  " AND cms.protocol_app_node_id = pan.protocol_app_node_id" + 
-                  " AND cms.compound_peaks_id = chebi.compound_peaks_id)" +
+	              " AND cms.compound_id = c.id" +
+                  " AND cms.protocol_app_node_id = pan.protocol_app_node_id)" + 
 	          " SELECT DISTINCT" +
 	          " CASE WHEN 'C12' in (SELECT * from iso)" +
                   "  THEN nvl(isotopomer, 'C12')" +
