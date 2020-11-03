@@ -538,6 +538,19 @@ sub declareParts {
 
 1;
 
+#plasmo
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_a966e260dd;
+sub init {
+  my $self = shift;
+  $self->SUPER::init(@_);
+
+  $self->setPlotWidth(800);
+
+  return $self;
+}
+
+1;
+
 #fungi 
 package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_a2d28b5866;
 sub init {
