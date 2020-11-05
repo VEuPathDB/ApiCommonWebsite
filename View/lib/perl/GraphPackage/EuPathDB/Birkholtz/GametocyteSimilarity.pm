@@ -28,7 +28,7 @@ sub init {
   $profileSets->setSqlName("Profile");  
 
   my $similarity = EbrcWebsiteCommon::View::GraphPackage::SimilarityPlot::LogRatio->new(@_);
-  $similarity->setProfileSets($profileSets);
+  $similarity->setProfileSets([$profileSets]);
   $similarity->setColors(\@colors);
   $similarity->setLegendLabels(['Match', 'Query']);
   $similarity->setElementNameMarginSize(5);
