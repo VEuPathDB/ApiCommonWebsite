@@ -16,24 +16,27 @@ sub init {
   $self->SUPER::init(@_);
 
   my @colors = ('blue', 'grey');
-  my @legend = ('Match', 'Query');
 
-  $self->setMainLegend({colors => \@colors, short_names => \@legend, cols => 2});
-
-  # Need to make 2 Profiles ... one for the primaryID and one for the Secondary
   my $profile = $self->getProfile;
-  my @profileArray = (["$profile","values"],
-                      ["$profile","values"],
-                     );
+  my $secId = $self->getSecondaryId();
+  my $jsonForService = "{\"profileSetName\":\"$profile\",\"profileType\":\"values\"},{\"profileSetName\":\"$profile\",\"profileType\":\"values\",\"idOverride\":\"$secId\"}";
 
-  my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileArray);
+  my $profileSets = EbrcWebsiteCommon::View::GraphPackage::ProfileSet->new("DUMMY");
+  $profileSets->setJsonForService($jsonForService);
+  $profileSets->setSqlName("Profile");
+
   my $similarity = EbrcWebsiteCommon::View::GraphPackage::SimilarityPlot::LogRatio->new(@_);
-  $similarity->setProfileSets($profileSets);
+  $similarity->setProfileSets([$profileSets]);
   $similarity->setColors(\@colors);
-  $similarity->setPointsPch([15,15]);
+  $similarity->setLegendLabels(['Match', 'Query']);
   $similarity->setElementNameMarginSize(6.5);
   $similarity->setXaxisLabel($self->getXAxisLabel());
   $self->setGraphObjects($similarity);
+
+  my $rAdjustString = <<'RADJUST';
+  profile.df.full$GROUP <- profile.df.full$LEGEND
+RADJUST
+  $similarity->setAdjustProfile($rAdjustString);
 
   return $similarity;
 }
@@ -52,7 +55,7 @@ sub getProfile {
 package ApiCommonWebsite::View::GraphPackage::Templates::Similarity::DS_4b0e1b490a;
 sub getProfile {
   my ($self) = @_;
-  my $pset = 'C. neoformans cell-cycle RNA-Seq [htseq-union - firststrand - fpkm - unique]';
+  my $pset = 'C. neoformans cell-cycle RNAseq [htseq-union - firststrand - fpkm - unique]';
 
   return $pset;
 }
@@ -63,7 +66,7 @@ sub getProfile {
 package ApiCommonWebsite::View::GraphPackage::Templates::Similarity::DS_f101fb2669;
 sub getProfile {
   my ($self) = @_;
-  my $pset = 'S. cerevisiae cell-cycle RNA-Seq [htseq-union - firststrand - fpkm - unique]';
+  my $pset = 'S. cerevisiae cell-cycle RNAseq [htseq-union - firststrand - fpkm - unique]';
 
   return $pset;
 }

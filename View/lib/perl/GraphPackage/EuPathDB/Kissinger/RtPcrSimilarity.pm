@@ -1,4 +1,4 @@
-package ApiCommonWebsite::View::GraphPackage::CryptoDB::Kissinger::RtPcrSimilarity;
+package ApiCommonWebsite::View::GraphPackage::EuPathDB::Kissinger::RtPcrSimilarity;
 
 
 use strict;
@@ -26,7 +26,7 @@ sub init {
   $profileSets->setSqlName("Profile");  
 
   my $similarity = EbrcWebsiteCommon::View::GraphPackage::SimilarityPlot::LogRatio->new(@_);
-  $similarity->setProfileSets($profileSets);
+  $similarity->setProfileSets([$profileSets]);
   $similarity->setColors(\@colors);
   $similarity->setLegendLabels(['Match', 'Query']);
 
