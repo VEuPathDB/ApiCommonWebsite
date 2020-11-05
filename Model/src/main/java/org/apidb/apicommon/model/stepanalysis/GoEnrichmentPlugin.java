@@ -37,16 +37,16 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   private static final Logger LOG = Logger.getLogger(GoEnrichmentPlugin.class);
 
   private static final String GO_TERM_BASE_URL_PROP_KEY = "goTermPageUrl";
-    //  private static final String GENE_SEARCH_BASE_URL_PROP_KEY = "geneSearchUrl";
+  //private static final String GENE_SEARCH_BASE_URL_PROP_KEY = "geneSearchUrl";
   private static final String GO_EVID_CODE_PARAM_KEY = "goEvidenceCodes";
-    //private static final String GO_ASSOC_SRC_PARAM_KEY = "goAssociationsSources";
+  //private static final String GO_ASSOC_SRC_PARAM_KEY = "goAssociationsSources";
   private static final String GO_ASSOC_ONTOLOGY_PARAM_KEY = "goAssociationsOntologies";
   private static final String GO_SUBSET_PARAM_KEY = "goSubset";
 
-  private static final String TABBED_RESULT_FILE_PATH = "goEnrichmentResult.tab";
-  private static final String HIDDEN_TABBED_RESULT_FILE_PATH = "hiddenGoEnrichmentResult.tab";
+  private static final String TABBED_RESULT_FILE_PATH = "goEnrichmentResult.csv";
+  private static final String HIDDEN_TABBED_RESULT_FILE_PATH = "hiddenGoEnrichmentResult.csv";
   private static final String IMAGE_RESULT_FILE_PATH = "goCloud.png";
-    //we would create another one here for the word cloud file
+  //we would create another one here for the word cloud file
 
   public static final ResultRow HEADER_ROW = new ResultRow(
       "GO ID", "GO Term", "Genes in the bkgd with this term", "Genes in your result with this term", "Percent of bkgd Genes in your result", "Fold enrichment", "Odds ratio", "P-value", "Benjamini", "Bonferroni");
