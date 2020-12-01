@@ -17,8 +17,7 @@ sub init {
 
   $self->setPlotWidth(515);
 
-  my @profileSetsArray = (['TAGM-MCMC-Joint-Probability', 'lower_CI', '', ''],
-                          ['TAGM-MCMC-Joint-Probability', 'upper_CI', '', ''],
+  my @profileSetsArray = (['TAGM-MCMC-Joint-Probability', 'sd', '', ''],
                           ['TAGM-MCMC-Joint-Probability', 'probability_mean', '', '']);
 
   my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileSetsArray);
@@ -28,15 +27,17 @@ sub init {
   $cl->setForceNoLines(1);
 
   my $rAdjustString = <<'RADJUST';
-  max.err <- profile.df.full[profile.df.full$PROFILE_SET == 'TAGM-MCMC-Joint-Probability - upper_CI',]
-  names(max.err)[names(max.err) == 'VALUE'] <- 'MAX_ERR'
-  max.err <- max.err[, c('MAX_ERR', 'ELEMENT_NAMES')]
-  min.err <- profile.df.full[profile.df.full$PROFILE_SET == 'TAGM-MCMC-Joint-Probability - lower_CI',]
-  names(min.err)[names(min.err) == 'VALUE'] <- 'MIN_ERR'
-  min.err <- min.err[, c('MIN_ERR', 'ELEMENT_NAMES')]
-  profile.df.full <- profile.df.full[profile.df.full$PROFILE_SET == 'TAGM-MCMC-Joint-Probability - probability_mean',]
-  profile.df.full <- merge(profile.df.full, min.err, by = "ELEMENT_NAMES")
-  profile.df.full <- merge(profile.df.full, max.err, by = "ELEMENT_NAMES")
+  profile.values <- profile.df.full[profile.df.full$PROFILE_TYPE != 'sd',]
+  profile.sd <- profile.df.full[profile.df.full$PROFILE_TYPE == 'sd',]
+  profile.sd$PROFILE_TYPE <- NULL
+  profile.sd$PROFILE_ORDER <- NULL
+  names(profile.sd)[names(profile.sd) == 'VALUE'] <- 'SD'
+  profile.sd <- profile.sd[, c('SD', 'ELEMENT_NAMES')]
+  profile.df.full <- merge(profile.values, profile.sd, by = 'ELEMENT_NAMES', all.x = TRUE)
+  profile.df.full <- profile.df.full[order(profile.df.full$PROFILE_ORDER, profile.df.full$ELEMENT_ORDER),]
+  profile.df.full$SD <- as.numeric(profile.df.full$SD)
+  profile.df.full$MIN_ERR = profile.df.full$VALUE - profile.df.full$SD
+  profile.df.full$MAX_ERR = profile.df.full$VALUE + profile.df.full$SD
   outlier <- profile.df.full$VALUE[profile.df.full$ELEMENT_NAMES == "outlier"]
   profile.df.full <- profile.df.full[profile.df.full$ELEMENT_NAMES != "outlier",]
 RADJUST
