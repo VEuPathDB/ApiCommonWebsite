@@ -46,7 +46,7 @@ RADJUST
   my $rPostscript = <<'RPOST';
   gp = gp + geom_errorbar(aes(ymin = MIN_ERR, ymax = MAX_ERR), colour = "black", width = .1, position = position_dodge(.9))
   gp = gp + geom_hline(aes(yintercept=outlier), colour = "red") 
-  gp = gp + labs(subtitle="Red lines represent outlier probability")
+  gp = gp + labs(subtitle="Red line represents outlier probability")
   gp = gp + theme(plot.subtitle = element_text(color="darkred"))
 RPOST
   $cl->setRPostscript($rPostscript);
