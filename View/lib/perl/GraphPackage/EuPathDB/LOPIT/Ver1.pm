@@ -40,14 +40,13 @@ sub init {
   profile.df.full$MAX_ERR = profile.df.full$VALUE + profile.df.full$SD
   outlier <- profile.df.full$VALUE[profile.df.full$ELEMENT_NAMES == "outlier"]
   profile.df.full <- profile.df.full[profile.df.full$ELEMENT_NAMES != "outlier",]
+  profile.df.full$TOOLTIP <- paste0("x: ", profile.df.full$ELEMENT_NAMES, ", y: ", profile.df.full$VALUE, ", sd: ", profile.df.full$SD)
 RADJUST
   $cl->setAdjustProfile($rAdjustString);
 
   my $rPostscript = <<'RPOST';
   gp = gp + geom_errorbar(aes(ymin = MIN_ERR, ymax = MAX_ERR), colour = "black", width = .1, position = position_dodge(.9))
-  gp = gp + geom_hline(aes(yintercept=outlier), colour = "red") 
-  gp = gp + labs(subtitle="Red line represents outlier probability")
-  gp = gp + theme(plot.subtitle = element_text(color="darkred"))
+  gp = gp + geom_hline(aes(yintercept=outlier), colour = "red")
 RPOST
   $cl->setRPostscript($rPostscript);
 
