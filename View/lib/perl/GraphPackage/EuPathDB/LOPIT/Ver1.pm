@@ -41,6 +41,8 @@ sub init {
   outlier <- profile.df.full$VALUE[profile.df.full$ELEMENT_NAMES == "outlier"]
   profile.df.full <- profile.df.full[profile.df.full$ELEMENT_NAMES != "outlier",]
   profile.df.full$TOOLTIP <- paste0("x: ", profile.df.full$ELEMENT_NAMES, ", y: ", profile.df.full$VALUE, ", sd: ", profile.df.full$SD)
+  y.max = max(c(y.max, profile.df.full$VALUE, profile.df.full$MAX_ERR), na.rm=TRUE)
+    y.min = min(c(y.min, profile.df.full$VALUE, profile.df.full$MIN_ERR), na.rm=TRUE)
 RADJUST
   $cl->setAdjustProfile($rAdjustString);
 
