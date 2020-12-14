@@ -54,7 +54,7 @@ public class HpiGeneListPlugin extends AbstractSimpleProcessAnalyzer {
 
   private static final String USE_ORTHOLOGY_PARAM_KEY = "useOrthologyParam";
 
-  private static final String TABBED_RESULT_FILE_PATH = "hpiGeneListResult.csv";
+  private static final String TABBED_RESULT_FILE_PATH = "hpiGeneListResult.tsv";
 
   private Map<String, String> serverEndpoints = new HashMap<>();
 

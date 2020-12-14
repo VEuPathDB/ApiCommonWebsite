@@ -28,7 +28,7 @@ public class WordEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
   private static final Logger LOG = Logger.getLogger(WordEnrichmentPlugin.class);
 
-  public static final String TABBED_RESULT_FILE_PATH = "wordEnrichmentResult.csv";
+  public static final String TABBED_RESULT_FILE_PATH = "wordEnrichmentResult.tsv";
 
   public static final ResultRow HEADER_ROW = new ResultRow(
       "Word", "Description", "Genes in the bkgd with this word", "Genes in your result with this word", "Percent of bkgd Genes in your result", "Fold enrichment", "Odds ratio", "P-value", "Benjamini", "Bonferroni");
