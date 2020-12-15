@@ -11,9 +11,6 @@ model.prop:
 comment-config.xml:
   src: 'ApiCommonWebsite/comment-config.xml.j2'
   dest: '{{ gus_home }}/config/{{ project }}/comment-config.xml'
-container_env:
-  src: 'ApiCommonWebsite/container_env.j2'
-  dest: '{{ gus_home }}/config/{{ project }}/container_env'
 profileSimilarity-config:
   src: 'ApiCommonWebsite/profileSimilarity-config.xml.j2'
   dest: '{{ gus_home }}/config//profileSimilarity-config.xml'
@@ -29,6 +26,9 @@ highSpeedChipSnpSearch-config.xml:
 motifSearch-config.xml:
   src: 'ApiCommonWebService/motifSearch-config.xml.j2'
   dest: '{{ gus_home }}/config/motifSearch-config.xml'
+container_env:
+  src: 'EbrcWebsiteCommon/container_env.j2'
+  dest: '{{ gus_home }}/config/{{ project }}/container_env'
 projects.xml:
   src: 'EbrcWebsiteCommon/projects.xml.j2'
   dest: '{{ gus_home }}/config/projects.xml'
