@@ -9,8 +9,8 @@ modelconfig_adminEmail:
   - "{{ 'jtlong$upenn.edu'|replace('$', '@') }}"
   - "{{ 'robert.belnap$uga.edu'|replace('$', '@') }}"
 
-modelconfig_appDb_maxIdle: 10
-modelconfig_appDb_maxActive: 40
+modelconfig_appDb_maxIdle: 1
+modelconfig_appDb_maxActive: 20
 modelconfig_userDb_maxIdle: 10
 modelconfig_commentdb.maxIdle: 10
 commentconfig_solrUrl: "https://solr-sitesearch-{{ sitesearchsolr_env_map[prefix]|default(sitesearchsolr_env_map['default']) }}.local.apidb.org:8443/solr/site_search/"
