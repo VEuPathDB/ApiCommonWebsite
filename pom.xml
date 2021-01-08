@@ -39,11 +39,6 @@
       </dependency>
       <dependency>
         <groupId>org.eupathdb</groupId>
-        <artifactId>ebrc-model-common-model</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.eupathdb</groupId>
         <artifactId>ebrc-website-common-model</artifactId>
         <version>${project.version}</version>
       </dependency>

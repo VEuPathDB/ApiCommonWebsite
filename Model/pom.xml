@@ -71,11 +71,6 @@
 
     <dependency>
       <groupId>org.eupathdb</groupId>
-      <artifactId>ebrc-model-common-model</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.eupathdb</groupId>
       <artifactId>ebrc-website-common-model</artifactId>
     </dependency>
 
