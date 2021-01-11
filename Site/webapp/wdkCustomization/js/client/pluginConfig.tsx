@@ -23,7 +23,9 @@ import { GenesByBindingSiteFeature } from './components/questions/GenesByBinding
 import { GenesByOrthologPattern } from './components/questions/GenesByOrthologPattern';
 import { InternalGeneDataset } from './components/questions/InternalGeneDataset';
 import { hasChromosomeAndSequenceIDXorGroup } from './components/questions/MutuallyExclusiveParams/utils';
+import { OrganismParam, isOrganismParam } from './components/questions/OrganismParam';
 import { CompoundsByFoldChangeForm, GenericFoldChangeForm } from './components/questions/foldChange';
+
 
 const isInternalGeneDatasetQuestion: ClientPluginRegistryEntry<any>['test'] =
   ({ question }) => (
@@ -148,6 +150,14 @@ const apiPluginConfig: ClientPluginRegistryEntry<any>[] = [
     name: 'genotype',
     searchName: 'ByGenotypeNumber',
     component: ByGenotypeNumberCheckbox
+  },
+  {
+    type: 'questionFormParameter',
+    test: ({ parameter }) => (
+      parameter != null &&
+      isOrganismParam(parameter)
+    ),
+    component: OrganismParam
   },
   {
     type: 'stepAnalysisResult',
