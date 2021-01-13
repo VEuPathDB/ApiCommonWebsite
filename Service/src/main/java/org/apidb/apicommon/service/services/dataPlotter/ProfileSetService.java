@@ -210,6 +210,7 @@ public class ProfileSetService extends AbstractWdkService {
       }
       if (profileSet.has("profileSetName")) {
         String profileSetName = profileSet.getString("profileSetName");
+        profileSetName = profileSetName.replace("'", "''");
         String profileType = profileSet.getString("profileType");
         if (profileSet.has("facet") || profileSet.has("xAxis")) {
           String facet = profileSet.getString("facet");
