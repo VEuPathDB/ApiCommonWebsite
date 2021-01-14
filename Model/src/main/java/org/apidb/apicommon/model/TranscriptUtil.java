@@ -1,25 +1,12 @@
 package org.apidb.apicommon.model;
 
-import java.util.Map;
-import java.util.Optional;
-
-import org.gusdb.fgputil.MapBuilder;
-import org.gusdb.fgputil.validation.ValidObjectFactory.RunnableObj;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkRuntimeException;
 import org.gusdb.wdk.model.answer.AnswerValue;
 import org.gusdb.wdk.model.answer.TransformUtil;
-import org.gusdb.wdk.model.answer.factory.AnswerValueFactory;
-import org.gusdb.wdk.model.answer.spec.AnswerSpec;
-import org.gusdb.wdk.model.query.spec.QueryInstanceSpec;
 import org.gusdb.wdk.model.question.Question;
 import org.gusdb.wdk.model.record.RecordClass;
-import org.gusdb.wdk.model.user.Step;
-import org.gusdb.wdk.model.user.StepContainer.ListStepContainer;
-import org.gusdb.wdk.model.user.Strategy;
-import org.gusdb.wdk.model.user.User;
-import org.gusdb.wdk.model.user.UserCache;
 
 public class TranscriptUtil {
 
