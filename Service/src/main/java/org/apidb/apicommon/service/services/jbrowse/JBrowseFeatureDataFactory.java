@@ -66,9 +66,10 @@ public class JBrowseFeatureDataFactory {
         (isProtein && "ReferenceSequenceAa".equals(feature)) ||
         (!isProtein && "ReferenceSequence".equals(feature));
 
-    String seqId = isProtein ?
+    String seqId = (isProtein ?
         getSequenceId("aa_sequence_id", "apidbtuning.proteinattributes", refseqName) :
-        getSequenceId("na_sequence_id", "apidbtuning.genomicseqattributes", refseqName);
+        getSequenceId("na_sequence_id", "apidbtuning.genomicseqattributes", refseqName))
+        .orElseThrow(() -> new NotFoundException("Unable to look up sequence with ref name " + refseqName + " (isProtein=" + isProtein + ")."));
 
     String featureSql = isProtein ?
         getFeatureSql(refseqName, feature, start, end, qp, isReferenceFeature,
@@ -101,18 +102,22 @@ public class JBrowseFeatureDataFactory {
     }
   }
 
-  private JSONObject getRegionStatsOutput(String featureSql, int basesPerBin, Long start, Long end) {
+  private JSONObject getRegionStatsOutput(String featureSql, int basesPerBin, Long start, Long inclusiveEnd) {
     return new SQLRunner(_appDs, featureSql).executeQuery(rs -> {
 
+      // for the purpose of binning, set 'end' to 1 beyond the inclusive end to make 'end' exclusive (eases calculations)
+      long end = inclusiveEnd + 1;
+
       // define the bin array size and initialize
-      int binCount = Long.valueOf(((end - start) / basesPerBin) + ((end - start) % basesPerBin == 0 ? 0 : 1)).intValue();
+      long rangeLength = end - start; // number of values
+      int binCount = Long.valueOf((rangeLength / basesPerBin) + (rangeLength % basesPerBin == 0 ? 0 : 1)).intValue();
       int[] bins = new int[binCount];
       Arrays.fill(bins, 0);
 
       // getBinIndex assigns a location to a bin
       Function<Long,Long> getBinIndex = location ->
         location < start ? 0 :
-          location > end ? binCount - 1 :
+          location >= end ? binCount - 1 :
             (location - start) / basesPerBin;
 
       while (rs.next()) {
@@ -477,10 +482,10 @@ public class JBrowseFeatureDataFactory {
     }
   }
 
-  private String getSequenceId(String idColName, String attrsTableName, String refseqName) {
+  private Optional<String> getSequenceId(String idColName, String attrsTableName, String refseqName) {
     String seqIdSql = "select " + idColName + " from " + attrsTableName + " where source_id = '" + refseqName + "'";
     return new SQLRunner(_appDs, seqIdSql)
-        .executeQuery(rs -> rs.next() ? rs.getString(1) : null);
+        .executeQuery(rs -> rs.next() ? Optional.ofNullable(rs.getString(1)) : Optional.empty());
   }
 
   private static String replaceSqlMacros(String sql, String start, String end, String seqId, Map<String, String> qp) {
