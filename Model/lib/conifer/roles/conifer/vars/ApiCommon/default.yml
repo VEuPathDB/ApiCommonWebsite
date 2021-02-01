@@ -35,6 +35,7 @@ modelprop:
   WEBSERVICEMIRROR: /var/www/Common/apiSiteFilesMirror/webServices/
   YOUTUBE_URL: https://youtube.com/user/EuPathDB/playlists
   SITE_SEARCH_SERVICE_URL: /site-search
+  MULTI_BLAST_SERVICE_URL: /multi-blast
   JBROWSE_WEBPAGE_URL: "/{{ webapp_ctx }}/app/jbrowse"
   JBROWSE_SERVICE_URL: "/{{ webapp_ctx }}/service/jbrowse"
 

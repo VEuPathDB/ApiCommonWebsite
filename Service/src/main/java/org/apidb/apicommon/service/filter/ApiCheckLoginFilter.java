@@ -8,11 +8,11 @@ import javax.ws.rs.container.PreMatching;
 
 import org.gusdb.fgputil.web.RequestData;
 import org.gusdb.wdk.controller.ContextLookup;
-import org.gusdb.wdk.service.filter.CheckLoginRequestFilter;
+import org.gusdb.wdk.service.filter.CheckLoginFilter;
 
 @PreMatching
 @Priority(200)
-public class ApiCheckLoginRequestFilter extends CheckLoginRequestFilter {
+public class ApiCheckLoginFilter extends CheckLoginFilter {
 
   @Override
   public void filter(ContainerRequestContext requestContext) throws IOException {
