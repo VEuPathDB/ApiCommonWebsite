@@ -17,6 +17,9 @@ profileSimilarity-config:
 blast-config.xml:
   src: 'EbrcWebSvcCommon/blast-config.xml.j2'
   dest: '{{ gus_home }}/config/blast-config.xml'
+multiblast-config.xml:
+  src: 'EbrcWebSvcCommon/multiblast-config.xml.j2'
+  dest: '{{ gus_home }}/config/multiblast-config.xml'
 highSpeedSnpSearch-config.xml:
   src: 'ApiCommonWebService/highSpeedSnpSearch-config.xml.j2'
   dest: '{{ gus_home }}/config/highSpeedSnpSearch-config.xml'
