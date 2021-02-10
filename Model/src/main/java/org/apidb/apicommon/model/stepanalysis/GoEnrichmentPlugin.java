@@ -175,10 +175,11 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     String idSql = answerValue.getIdSql();
     DataSource ds = getWdkModel().getAppDb().getDataSource();
 
-    // check for non-zero count of genes with GO associations
+    // check for non-zero count of genes with GO associations (ontology must be non-null)
     String sql = "select count(distinct gts.gene_source_id)" + NL +
       " from apidbtuning.GoTermSummary gts, (" + idSql + ") r" + NL +
-      " where gts.gene_source_id = r.gene_source_id";
+      " where gts.gene_source_id = r.gene_source_id" + NL +
+      " and gts.ontology is not null";
 
     LOG.info("Executing the following SQL: " + sql);
 
