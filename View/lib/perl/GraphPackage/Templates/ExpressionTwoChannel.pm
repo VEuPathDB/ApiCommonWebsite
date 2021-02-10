@@ -280,7 +280,7 @@ sub defineGraphs {
 
 #--------------------------------------------------------------------------------
 
-package ApiCommonWebsite::View::GraphPackage::Templates::ExpressionTwoChannel::DS_a8800cfd76;
+package ApiCommonWebsite::View::GraphPackage::Templates::ExpressionTwoChannel::DS_28ef9b0494;
 
 use Data::Dumper;
 

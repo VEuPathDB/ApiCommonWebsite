@@ -5,7 +5,7 @@ use vars qw( @ISA );
 
 @ISA = qw( EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet );
 use EbrcWebsiteCommon::View::GraphPackage::MixedPlotSet;
-use EbrcWebsiteCommon::View::GraphPackage::GGBarPlot;
+use EbrcWebsiteCommon::View::GraphPackage::GGLinePlot;
 
 
 use EbrcWebsiteCommon::View::GraphPackage::Util;
@@ -16,20 +16,41 @@ sub init {
   $self->SUPER::init(@_);
 
   $self->setPlotWidth(515);
-  my $colors = ['#4682B4', '#B22222'];
 
-  my @profileSetsArray = (['LOPIT - MAP', 'values', '', ''],
-                          ['LOPIT - MCMC', 'values', '', '']);
+  my @profileSetsArray = (['TAGM-MCMC-Joint-Probability', 'sd', '', ''],
+                          ['TAGM-MCMC-Joint-Probability', 'probability_mean', '', '']);
 
   my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileSetsArray);
 
-  my $cl = EbrcWebsiteCommon::View::GraphPackage::GGBarPlot::LOPIT->new(@_);
+  my $cl = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot::LOPIT->new(@_);
   $cl->setProfileSets($profileSets);
-  $cl->setColors($colors);
+  $cl->setForceNoLines(1);
 
-  $cl->setLegendColors($colors);
-  $cl->setLegendLabels(["MAP", "MCMC"]);
+  my $rAdjustString = <<'RADJUST';
+  profile.values <- profile.df.full[profile.df.full$PROFILE_TYPE != 'sd',]
+  profile.sd <- profile.df.full[profile.df.full$PROFILE_TYPE == 'sd',]
+  profile.sd$PROFILE_TYPE <- NULL
+  profile.sd$PROFILE_ORDER <- NULL
+  names(profile.sd)[names(profile.sd) == 'VALUE'] <- 'SD'
+  profile.sd <- profile.sd[, c('SD', 'ELEMENT_NAMES')]
+  profile.df.full <- merge(profile.values, profile.sd, by = 'ELEMENT_NAMES', all.x = TRUE)
+  profile.df.full <- profile.df.full[order(profile.df.full$PROFILE_ORDER, profile.df.full$ELEMENT_ORDER),]
+  profile.df.full$SD <- as.numeric(profile.df.full$SD)
+  profile.df.full$MIN_ERR = profile.df.full$VALUE - profile.df.full$SD
+  profile.df.full$MAX_ERR = profile.df.full$VALUE + profile.df.full$SD
+  outlier <- profile.df.full$VALUE[profile.df.full$ELEMENT_NAMES == "outlier"]
+  profile.df.full <- profile.df.full[profile.df.full$ELEMENT_NAMES != "outlier",]
+  profile.df.full$TOOLTIP <- paste0("x: ", profile.df.full$ELEMENT_NAMES, ", y: ", profile.df.full$VALUE, ", sd: ", profile.df.full$SD)
+  y.max = max(c(y.max, profile.df.full$VALUE, profile.df.full$MAX_ERR), na.rm=TRUE)
+    y.min = min(c(y.min, profile.df.full$VALUE, profile.df.full$MIN_ERR), na.rm=TRUE)
+RADJUST
+  $cl->setAdjustProfile($rAdjustString);
 
+  my $rPostscript = <<'RPOST';
+  gp = gp + geom_errorbar(aes(ymin = MIN_ERR, ymax = MAX_ERR), colour = "black", width = .1, position = position_dodge(.9))
+  gp = gp + geom_hline(aes(yintercept=outlier), colour = "red")
+RPOST
+  $cl->setRPostscript($rPostscript);
 
   $self->setGraphObjects($cl);
 

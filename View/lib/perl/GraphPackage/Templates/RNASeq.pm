@@ -11,7 +11,6 @@ use Data::Dumper;
 # @Override
 sub getKeys{
   my ($self, $profileSetName, $profileType) = @_;
-  #print STDERR Dumper($profileSetName);
   my ($groupName) = $self->getGroupNameFromProfileSetName($profileSetName);
 
   my ($strand) = $profileSetName =~ /\[.+ \- (.+) \- .+ \- /;
@@ -97,7 +96,6 @@ sub isExcludedProfileSet {
   my ($self, $psName) = @_;
   my ($strand) = $psName =~ /\[.+ \- (.+) \- /;
   $strand = $self->getStrandDictionary()->{$strand};
-
   my ($isCufflinks) = ($psName =~/\[cuff \-/)? 1: 0;
 
   my $val =   $self->SUPER::isExcludedProfileSet($self, $psName);
@@ -151,6 +149,53 @@ RADJUST
 
 1;
 
+#plasmo, unidb
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_a966e260dd;
+sub init {
+  my $self = shift;
+  $self->SUPER::init(@_);
+
+  $self->setPlotWidth(800);
+
+  return $self;
+}
+
+sub isExcludedProfileSet {
+  my ($self, $psName) = @_;
+
+  foreach(@{$self->excludedProfileSetsArray()}) {
+    return 1 if($_ eq $psName);
+  }
+  if ($psName =~ /iterativeWGCNA Dual transcriptomes of malaria-infected Gambian children/){
+    return 1;
+  }
+  return 0;
+}
+
+sub getKeys{
+  my ($self, $profileSetName, $profileType) = @_;
+  my ($groupName) = $self->getGroupNameFromProfileSetName($profileSetName);
+
+  my ($strand) = $profileSetName =~ /\[.+ \- (.+) \- .+ \- /;
+  ($strand) = $profileSetName =~ /\[.+ \- (.+) \- / if  (!$strand);
+
+  $groupName = '' if (!$groupName);
+  $profileType = 'percentile' if ($profileType eq 'channel1_percentiles');
+
+  if (!$strand) {return ''};
+  $strand = '_' . $self->getStrandDictionary()->{$strand};
+  if ($groupName eq 'Non Unique') {
+    $groupName = '';
+  }
+  my $mainKey =  "${groupName}_${profileType}${strand}";
+  if ($profileType ne 'values' || $profileSetName =~ / \- nonunique\]/ || $groupName || $strand eq '') {
+      return([$mainKey])
+  }
+  # capital letter B in Both so that this graph is sorted after antisense (reverse sort)
+   my $bothStrandsKey = "${groupName}_${profileType}_Both_strands";
+   return([$mainKey,$bothStrandsKey]);
+}
+1;
 
 #vectorbase
 package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_9800ad244a;
@@ -375,7 +420,7 @@ sub declareParts {
 1;
 
 #plasmo
-package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_c35d971a20;
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_a2967e5664;
 
 sub init {
   my $self = shift;
@@ -534,19 +579,6 @@ sub declareParts {
   }
   print STDERR Dumper($arrayRef);
   return $arrayRef;
-}
-
-1;
-
-#plasmo
-package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_a966e260dd;
-sub init {
-  my $self = shift;
-  $self->SUPER::init(@_);
-
-  $self->setPlotWidth(800);
-
-  return $self;
 }
 
 1;

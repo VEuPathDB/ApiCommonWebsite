@@ -43,8 +43,8 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   private static final String GO_ASSOC_ONTOLOGY_PARAM_KEY = "goAssociationsOntologies";
   private static final String GO_SUBSET_PARAM_KEY = "goSubset";
 
-  private static final String TABBED_RESULT_FILE_PATH = "goEnrichmentResult.csv";
-  private static final String HIDDEN_TABBED_RESULT_FILE_PATH = "hiddenGoEnrichmentResult.csv";
+  private static final String TABBED_RESULT_FILE_PATH = "goEnrichmentResult.tsv";
+  private static final String HIDDEN_TABBED_RESULT_FILE_PATH = "hiddenGoEnrichmentResult.tsv";
   private static final String IMAGE_RESULT_FILE_PATH = "goCloud.png";
   //we would create another one here for the word cloud file
 

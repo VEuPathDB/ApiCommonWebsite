@@ -9,10 +9,12 @@ modelconfig_adminEmail:
   - "{{ 'jtlong$upenn.edu'|replace('$', '@') }}"
   - "{{ 'robert.belnap$uga.edu'|replace('$', '@') }}"
 
-modelconfig_appDb_maxIdle: 10
-modelconfig_appDb_maxActive: 40
+modelconfig_appDb_maxIdle: 1
+modelconfig_appDb_maxActive: 20
 modelconfig_userDb_maxIdle: 10
 modelconfig_commentdb.maxIdle: 10
+commentconfig_solrUrl: "https://solr-sitesearch-{{ sitesearchsolr_env_map[prefix]|default(sitesearchsolr_env_map['default']) }}.local.apidb.org:8443/solr/site_search/"
+
 
 modelprop:
   GOOGLE_ANALYTICS_ID:  "{{ lookup('euparc',
@@ -22,13 +24,21 @@ modelprop:
   GOOGLE_MAPS_API_KEY: "{{ lookup('euparc', 'attr=api_key xpath=sites/google_maps default=NOKEY') }}"
   COMMUNITY_SITE: "//{{ community_env_map[prefix]|default(community_env_map['default']) }}"
 
+
 # the below extends the w_ q_ prefix pattern used for workspace_env_map, which
 # really feels like a bad idea.  please don't let this cancer spread.  Find a
 # generalized way to do this in the future... 
+sitesearchsolr_env_map:
+  w_prefix: prod
+  default: dev
+
+# the below extends the w_ q_ prefix pattern used for workspace_env_map, which
+# # really feels like a bad idea.  please don't let this cancer spread.  Find a
+# # generalized way to do this in the future... 
 community_env_map:
-  w_prefix: static-content.veupathdb.org/
-  b_prefix: static-content.veupathdb.org/
-  default: qa.static-content.veupathdb.org/
+   w_prefix: static-content.veupathdb.org/
+   b_prefix: static-content.veupathdb.org/
+   default: qa.static-content.veupathdb.org/
 
 # this mapping allow different configs based on hostname.  Mainly used to give
 # different configs to qN.sitedb.org sites, it could be extended to others

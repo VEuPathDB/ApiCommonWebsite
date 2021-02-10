@@ -2,7 +2,7 @@ package org.apidb.apicommon.controller;
 
 import org.apache.log4j.Logger;
 import org.apidb.apicommon.model.comment.CommentFactory;
-import org.gusdb.fgputil.logging.MDCUtil;
+import org.gusdb.fgputil.logging.ThreadLocalLoggingVars;
 import org.gusdb.fgputil.runtime.InstanceManager;
 import org.gusdb.fgputil.web.ApplicationContext;
 import org.gusdb.wdk.controller.WdkInitializer;
@@ -35,7 +35,7 @@ public class CommentFactoryManager {
   public static void initializeCommentFactory(ApplicationContext context) {
     // can only open comment factory if model successfully initialized
     if (WdkInitializer.getWdkModel(context) != null) {
-      MDCUtil.setNonRequestThreadVars("cmnt");
+      ThreadLocalLoggingVars.setNonRequestThreadVars("cmnt");
       try {
         getCommentFactory(context);
       }
@@ -48,7 +48,7 @@ public class CommentFactoryManager {
   public static void terminateCommentFactory(ApplicationContext context) {
     // can only close comment factory if model successfully initialized
     if (WdkInitializer.getWdkModel(context) != null) {
-      MDCUtil.setNonRequestThreadVars("cmnt");
+      ThreadLocalLoggingVars.setNonRequestThreadVars("cmnt");
       try {
         getCommentFactory(context).close();
       }

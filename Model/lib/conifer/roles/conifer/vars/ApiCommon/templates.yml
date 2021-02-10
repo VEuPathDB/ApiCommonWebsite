@@ -11,15 +11,15 @@ model.prop:
 comment-config.xml:
   src: 'ApiCommonWebsite/comment-config.xml.j2'
   dest: '{{ gus_home }}/config/{{ project }}/comment-config.xml'
-container_env:
-  src: 'ApiCommonWebsite/container_env.j2'
-  dest: '{{ gus_home }}/config/{{ project }}/container_env'
 profileSimilarity-config:
   src: 'ApiCommonWebsite/profileSimilarity-config.xml.j2'
   dest: '{{ gus_home }}/config//profileSimilarity-config.xml'
 blast-config.xml:
   src: 'EbrcWebSvcCommon/blast-config.xml.j2'
   dest: '{{ gus_home }}/config/blast-config.xml'
+multiblast-config.xml:
+  src: 'EbrcWebSvcCommon/multiblast-config.xml.j2'
+  dest: '{{ gus_home }}/config/multiblast-config.xml'
 highSpeedSnpSearch-config.xml:
   src: 'ApiCommonWebService/highSpeedSnpSearch-config.xml.j2'
   dest: '{{ gus_home }}/config/highSpeedSnpSearch-config.xml'
@@ -29,6 +29,9 @@ highSpeedChipSnpSearch-config.xml:
 motifSearch-config.xml:
   src: 'ApiCommonWebService/motifSearch-config.xml.j2'
   dest: '{{ gus_home }}/config/motifSearch-config.xml'
+container_env:
+  src: 'EbrcWebsiteCommon/container_env.j2'
+  dest: '{{ gus_home }}/config/{{ project }}/container_env'
 projects.xml:
   src: 'EbrcWebsiteCommon/projects.xml.j2'
   dest: '{{ gus_home }}/config/projects.xml'

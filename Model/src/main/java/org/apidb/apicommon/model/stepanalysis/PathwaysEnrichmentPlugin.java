@@ -38,8 +38,8 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   private static final String PATHWAY_BASE_URL_PROP_KEY = "pathwayPageUrl";
   private static final String PATHWAYS_SRC_PARAM_KEY = "pathwaysSources";
 
-  private static final String TABBED_RESULT_FILE_PATH = "pathwaysEnrichmentResult.csv";
-  private static final String HIDDEN_TABBED_RESULT_FILE_PATH = "hiddenPathwaysEnrichmentResult.csv";
+  private static final String TABBED_RESULT_FILE_PATH = "pathwaysEnrichmentResult.tsv";
+  private static final String HIDDEN_TABBED_RESULT_FILE_PATH = "hiddenPathwaysEnrichmentResult.tsv";
   private static final String IMAGE_RESULT_FILE_PATH = "goCloud.png";
 
   private static final ResultRow HEADER_ROW = new ResultRow(
