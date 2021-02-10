@@ -6,7 +6,6 @@ import static org.gusdb.fgputil.FormatUtil.TAB;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -16,7 +15,6 @@ import java.util.Map;
 import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
-import org.gusdb.fgputil.db.runner.BasicResultSetHandler;
 import org.gusdb.fgputil.db.runner.SQLRunner;
 import org.gusdb.fgputil.db.runner.SingleLongResultSetHandler;
 import org.gusdb.fgputil.runtime.GusHome;
@@ -174,24 +172,22 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   public void validateAnswerValue(AnswerValue answerValue)
       throws IllegalAnswerValueException, WdkModelException {
 
-    String countColumn = "CNT";
     String idSql = answerValue.getIdSql();
     DataSource ds = getWdkModel().getAppDb().getDataSource();
-    BasicResultSetHandler handler = new BasicResultSetHandler();
 
     // check for non-zero count of genes with GO associations
-    String sql = "select count(distinct gts.gene_source_id) as " + countColumn + NL +
-      "from apidbtuning.GoTermSummary gts, (" + idSql + ") r" + NL +
-      "where gts.gene_source_id = r.gene_source_id";
+    String sql = "select count(distinct gts.gene_source_id)" + NL +
+      " from apidbtuning.GoTermSummary gts, (" + idSql + ") r" + NL +
+      " where gts.gene_source_id = r.gene_source_id";
 
-    new SQLRunner(ds, sql, "count-go-genes").executeQuery(handler);
+    LOG.info("Executing the following SQL: " + sql);
 
-    if (handler.getNumRows() == 0) throw new WdkModelException("No result found in count query: " + sql);
+    long count = new SQLRunner(ds, sql, "count-go-genes").executeQuery(new SingleLongResultSetHandler())
+        .orElseThrow(() -> new WdkModelException("No result found in count query: " + sql));
 
-    Map<String, Object> result = handler.getResults().get(0);
-    BigDecimal count = (BigDecimal)result.get(countColumn);
+    LOG.info("Returned " + count);
 
-    if (count.intValue() == 0 ) {
+    if (count == 0) {
       throw new IllegalAnswerValueException(
           "Your result has no genes with GO terms, " +
           "so you can't use this tool on this result. " +
