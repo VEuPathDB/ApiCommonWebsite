@@ -246,7 +246,7 @@ sub getProfileColors {
 }
 1;
 
-package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_4b0e1b490a;
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_6393f11883;
 
 sub isExcludedProfileSet {
   my ($self, $psName) = @_;
@@ -1014,7 +1014,7 @@ sub init {
 
 
 # pfal3D7_Stunnenberg_rnaSeq_RSRC
-package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_d57671ced8;
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_a239464cb4;
 
 sub init {
   my $self = shift;
