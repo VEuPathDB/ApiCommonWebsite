@@ -1024,17 +1024,17 @@ sub init {
   my $pch = [19,24];
   my $colors = ['#E9967A', '#4682B4', '#DDDDDD'];
 
-  my @profileArray = (['pfal3D7_Stunnenberg_pi_time_series [htseq-union - unstranded - fpkm - unique]', 'values'],
-                      ['pfal3D7_Stunnenberg_pi_time_series - scaled [htseq-union - unstranded - fpkm - unique]', 'values'],
+  my @profileArray = (['pfal3D7_Stunnenberg_pi_time_series [htseq-union - unstranded - tpm - unique]', 'values'],
+                      ['pfal3D7_Stunnenberg_pi_time_series - scaled [htseq-union - unstranded - tpm - unique]', 'values'],
                      );
 
   my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileArray);
 
   my $line = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot->new(@_);
   $line->setProfileSets($profileSets);
-  $line->setPartName('fpkm_line');
+  $line->setPartName('tpm_line');
   $line->setAdjustProfile('profile.df.full$VALUE = log2(profile.df.full$VALUE + 1);');
-  $line->setYaxisLabel('log2(FPKM + 1)');
+  $line->setYaxisLabel('log2(TPM + 1)');
   $line->setPointsPch($pch);
   $line->setXaxisLabel("Timepoint");
   $line->setColors([$colors->[0], $colors->[1]]);
@@ -1042,11 +1042,11 @@ sub init {
   $line->setLegendLabels(['Normal', 'Scaled']);
 
   my $id = $self->getId();
-  $line->setPlotTitle("FPKM - $id");
+  $line->setPlotTitle("TPM - $id");
 
   my $graphObjects = $self->getGraphObjects();
   my $barProfile = $graphObjects->[0];
-  $barProfile->setPartName('fpkm');
+  $barProfile->setPartName('tpm');
 
   my $scaledProfile = $graphObjects->[1];
   $scaledProfile->setColors([$colors->[1]]);
