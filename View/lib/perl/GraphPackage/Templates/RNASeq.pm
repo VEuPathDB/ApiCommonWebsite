@@ -11,7 +11,6 @@ use Data::Dumper;
 # @Override
 sub getKeys{
   my ($self, $profileSetName, $profileType) = @_;
-  #print STDERR Dumper($profileSetName);
   my ($groupName) = $self->getGroupNameFromProfileSetName($profileSetName);
 
   my ($strand) = $profileSetName =~ /\[.+ \- (.+) \- .+ \- /;
@@ -97,7 +96,6 @@ sub isExcludedProfileSet {
   my ($self, $psName) = @_;
   my ($strand) = $psName =~ /\[.+ \- (.+) \- /;
   $strand = $self->getStrandDictionary()->{$strand};
-
   my ($isCufflinks) = ($psName =~/\[cuff \-/)? 1: 0;
 
   my $val =   $self->SUPER::isExcludedProfileSet($self, $psName);
@@ -151,6 +149,53 @@ RADJUST
 
 1;
 
+#plasmo, unidb
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_a966e260dd;
+sub init {
+  my $self = shift;
+  $self->SUPER::init(@_);
+
+  $self->setPlotWidth(800);
+
+  return $self;
+}
+
+sub isExcludedProfileSet {
+  my ($self, $psName) = @_;
+
+  foreach(@{$self->excludedProfileSetsArray()}) {
+    return 1 if($_ eq $psName);
+  }
+  if ($psName =~ /iterativeWGCNA Dual transcriptomes of malaria-infected Gambian children/){
+    return 1;
+  }
+  return 0;
+}
+
+sub getKeys{
+  my ($self, $profileSetName, $profileType) = @_;
+  my ($groupName) = $self->getGroupNameFromProfileSetName($profileSetName);
+
+  my ($strand) = $profileSetName =~ /\[.+ \- (.+) \- .+ \- /;
+  ($strand) = $profileSetName =~ /\[.+ \- (.+) \- / if  (!$strand);
+
+  $groupName = '' if (!$groupName);
+  $profileType = 'percentile' if ($profileType eq 'channel1_percentiles');
+
+  if (!$strand) {return ''};
+  $strand = '_' . $self->getStrandDictionary()->{$strand};
+  if ($groupName eq 'Non Unique') {
+    $groupName = '';
+  }
+  my $mainKey =  "${groupName}_${profileType}${strand}";
+  if ($profileType ne 'values' || $profileSetName =~ / \- nonunique\]/ || $groupName || $strand eq '') {
+      return([$mainKey])
+  }
+  # capital letter B in Both so that this graph is sorted after antisense (reverse sort)
+   my $bothStrandsKey = "${groupName}_${profileType}_Both_strands";
+   return([$mainKey,$bothStrandsKey]);
+}
+1;
 
 #vectorbase
 package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_9800ad244a;
@@ -201,7 +246,7 @@ sub getProfileColors {
 }
 1;
 
-package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_4b0e1b490a;
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_6393f11883;
 
 sub isExcludedProfileSet {
   my ($self, $psName) = @_;
@@ -375,7 +420,7 @@ sub declareParts {
 1;
 
 #plasmo
-package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_c35d971a20;
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_a2967e5664;
 
 sub init {
   my $self = shift;
@@ -534,19 +579,6 @@ sub declareParts {
   }
   print STDERR Dumper($arrayRef);
   return $arrayRef;
-}
-
-1;
-
-#plasmo
-package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_a966e260dd;
-sub init {
-  my $self = shift;
-  $self->SUPER::init(@_);
-
-  $self->setPlotWidth(800);
-
-  return $self;
 }
 
 1;
@@ -982,7 +1014,7 @@ sub init {
 
 
 # pfal3D7_Stunnenberg_rnaSeq_RSRC
-package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_d57671ced8;
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_a239464cb4;
 
 sub init {
   my $self = shift;
@@ -992,17 +1024,17 @@ sub init {
   my $pch = [19,24];
   my $colors = ['#E9967A', '#4682B4', '#DDDDDD'];
 
-  my @profileArray = (['pfal3D7_Stunnenberg_pi_time_series [htseq-union - unstranded - fpkm - unique]', 'values'],
-                      ['pfal3D7_Stunnenberg_pi_time_series - scaled [htseq-union - unstranded - fpkm - unique]', 'values'],
+  my @profileArray = (['pfal3D7_Stunnenberg_pi_time_series [htseq-union - unstranded - tpm - unique]', 'values'],
+                      ['pfal3D7_Stunnenberg_pi_time_series - scaled [htseq-union - unstranded - tpm - unique]', 'values'],
                      );
 
   my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileArray);
 
   my $line = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot->new(@_);
   $line->setProfileSets($profileSets);
-  $line->setPartName('fpkm_line');
+  $line->setPartName('tpm_line');
   $line->setAdjustProfile('profile.df.full$VALUE = log2(profile.df.full$VALUE + 1);');
-  $line->setYaxisLabel('log2(FPKM + 1)');
+  $line->setYaxisLabel('log2(TPM + 1)');
   $line->setPointsPch($pch);
   $line->setXaxisLabel("Timepoint");
   $line->setColors([$colors->[0], $colors->[1]]);
@@ -1010,11 +1042,11 @@ sub init {
   $line->setLegendLabels(['Normal', 'Scaled']);
 
   my $id = $self->getId();
-  $line->setPlotTitle("FPKM - $id");
+  $line->setPlotTitle("TPM - $id");
 
   my $graphObjects = $self->getGraphObjects();
   my $barProfile = $graphObjects->[0];
-  $barProfile->setPartName('fpkm');
+  $barProfile->setPartName('tpm');
 
   my $scaledProfile = $graphObjects->[1];
   $scaledProfile->setColors([$colors->[1]]);

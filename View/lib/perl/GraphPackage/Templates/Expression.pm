@@ -186,7 +186,6 @@ sub getAllProfileSetNames {
     $url = $restrictProfileSetsBySourceId ? $url . '?sourceId=' . $id : $url;
     my $content = get($url);
     my $json = from_json($content);
-    print STDERR Dumper("json: " . $json);
     foreach my $profile (@$json) {
       my $profileName = $profile->{'PROFILE_SET_NAME'};
       my $profileType = $profile->{'PROFILE_TYPE'};
