@@ -149,6 +149,17 @@ RADJUST
 
 1;
 
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_7ce8a791f1;
+sub init {
+  my $self = shift;
+  $self->SUPER::init(@_);
+
+  $self->setPlotWidth(800);
+
+  return $self;
+}
+1;
+
 #plasmo, unidb
 package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_a966e260dd;
 sub init {
