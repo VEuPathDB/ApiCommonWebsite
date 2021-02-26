@@ -139,12 +139,14 @@ public class JBrowseService extends AbstractWdkService {
 
         String gusHome = getWdkModel().getGusHome();
         String projectId = getWdkModel().getProjectId();
+        String buildNumber = getWdkModel().getBuildNumber();
 
         List<String> command = new ArrayList<String>();
         command.add(gusHome + "/bin/jbrowseOrganismSpecificTracks");
         command.add(organismAbbrev);
         command.add(projectId);
         command.add(isApollo);
+        command.add(buildNumber);
 
         return responseFromCommand(command);
     }
