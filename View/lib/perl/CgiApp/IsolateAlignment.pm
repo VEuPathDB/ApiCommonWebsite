@@ -177,15 +177,16 @@ EOSQL
                                geneDetails gd
                           WHERE gs.source_id = gd.chsmid
 EOSQL
-	     }
-        } else {  # regular isolates
+	  }
+  }
+  } else {  # regular isolates
 	    $sql = <<EOSQL;
 SELECT etn.source_id, etn.source_id, etn.sequence
 FROM   ApidbTuning.PopsetSequence etn
 WHERE etn.source_id in ($ids)
 EOSQL
         }
-  }
+
   my $sequence;
   my $sth = $dbh->prepare($sql);
 
