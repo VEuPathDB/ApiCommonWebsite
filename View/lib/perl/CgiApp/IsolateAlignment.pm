@@ -82,130 +82,54 @@ sub handleIsolates {
   if($type =~ /htsSNP/i) {
       $ids =~ s/'(\w)/'$sid\.$1/g;
       $ids .= ",'$sid'";   # always compare with reference isolate
-      $sql = <<EOSQL;
-SELECT source_id,
-	   source_id
-       substr(nas.sequence, $start,$end-$start+1) as sequence,
-FROM   dots.nasequence nas
-WHERE  nas.source_id in ($ids)
-EOSQL
+      $sql = getHtsSnpSql($ids,$start,$end);
    } elsif($type eq 'geneOrthologs') {
       $ids = join(',', map { "'$_'" } split(',', $ids));
 
       if($clustalQueryType eq 'protein' ){
-	  $sql = <<EOSQL;
-	  select ps.source_id, ps.source_id,  ps.sequence
-	      from apidbtuning.proteinsequence ps, apidbtuning.transcriptattributes ta
-	      where ta.protein_source_id = ps.source_id
-	      and ta.project_id = ps.project_id
-	      and ta.gene_source_id in ($ids)
-EOSQL
+	  $sql = getOrthoProteinSql($ids);
       } elsif($clustalQueryType eq 'CDS'){
-	  $sql = <<EOSQL;
-	  with geneDetails as (
-	      select ta.gene_start_min as min
-	      , ta.gene_end_max as max
-	      , ta.coding_start
-	      , ta.coding_end
-	      , ta.strand
-	      , ta.source_id
-	      , ta.gene_source_id
-	      , ta.cds_length
-	      from APIDBTUNING.transcriptattributes ta
-	      where ta.gene_source_id in ($ids)
-	      )
-	      select ts.source_id, gd.strand,
-	      CASE
-	      WHEN gd.strand = 'forward' then SUBSTR(ts.sequence, (gd.coding_start - gd.min+1) , gd.cds_length)
-	      WHEN gd.strand = 'reverse' then SUBSTR(ts.sequence, (gd.max - gd.coding_end+1) , (gd.cds_length))
-	      END
-	      from apidbtuning.transcriptsequence ts
-	      , geneDetails gd
-	      where gd.source_id = ts.source_id
-EOSQL
+	  $sql = getOrthoCdsSql($ids);
       } elsif($clustalQueryType eq 'genomic'){
+	  my $areProteins = proteinTest($dbh,$ids);
+	  my $upstreamOffset = $cgi->param('oneOffset');
+	  $upstreamOffset = abs($upstreamOffset);
+	  my $downstreamOffset = $cgi->param('twoOffset');
+	  $downstreamOffset = abs($downstreamOffset);
 
-	      my $areProteins = proteinTest($dbh,$ids);
+	  # Alters user input if user selects >2500 nt.
+	  if ($upstreamOffset > 2500) {$upstreamOffset = 2500;}
+	  if ($downstreamOffset > 2500) {$downstreamOffset = 2500;}
 
-	      my $upstreamOffset = $cgi->param('oneOffset');
-	      $upstreamOffset = abs($upstreamOffset);
-	      my $downstreamOffset = $cgi->param('twoOffset');
-	      $downstreamOffset = abs($downstreamOffset);
-
-	      # Alters user input if user selects >2500 nt.
-	      if ($upstreamOffset > 2500) {$upstreamOffset = 2500;}
-	      if ($downstreamOffset > 2500) {$downstreamOffset = 2500;}
-
-	      if ($areProteins) {
-		  $sql = <<EOSQL;
-		      with geneDetails as (
-			  select ta.coding_start
-			  , ta.coding_end
-			  , ta.strand
-			  , ta.source_id
-			  , ta.gene_source_id
-			  , ta.cds_length
-			  , ta.sequence_id as chsmid
-			  from APIDBTUNING.transcriptattributes ta
-			  where ta.gene_source_id in ($ids)
-			  )
-			  SELECT gd.gene_source_id, gd.strand,
-			  CASE WHEN gd.strand = 'forward' THEN substr(gs.sequence, gd.coding_start - $upstreamOffset, (gd.coding_end - gd.coding_start) +1 + $upstreamOffset + $downstreamOffset) 
-			  WHEN gd.strand = 'reverse' THEN substr(gs.sequence, gd.coding_start - $downstreamOffset, (gd.coding_end - gd.coding_start ) +1 + $upstreamOffset + $downstreamOffset)
-			  END
-			  FROM ApidbTuning.GenomicSequenceSequence gs,
-			  geneDetails gd
-			  where gs.source_id = gd.chsmid
-EOSQL
-	      } else {            # not protein encoding
-                  $sql = <<EOSQL;
-		          with geneDetails as (
-			      select ta.gene_start_min
-			      , ta.gene_end_max
-			      , ta.strand
-			      , ta.source_id
-			      , ta.gene_source_id
-			      , ta.sequence_id as chsmid
-			      from APIDBTUNING.transcriptattributes ta
-			      where ta.gene_source_id in ($ids)
-			      )
-			  SELECT gd.gene_source_id, gd.strand,
-                          CASE WHEN gd.strand = 'forward' THEN substr(gs.sequence, gd.gene_start_min - $upstreamOffset, gd.gene_end_max - gd.gene_start_min + 1 + $upstreamOffset + $downstreamOffset)
-                          WHEN gd.strand = 'reverse' THEN substr(gs.sequence, gd.gene_start_min - $downstreamOffset, gd.gene_end_max - gd.gene_start_min + 1 + $upstreamOffset + $downstreamOffset)
-                          END
-                          FROM ApidbTuning.GenomicSequenceSequence gs,
-                               geneDetails gd
-                          WHERE gs.source_id = gd.chsmid
-EOSQL
+	  if ($areProteins) {
+	      $sql = getOrthoGenomicIsProteinSql($ids,$upstreamOffset,$downstreamOffset);
+	  } else {            # not protein encoding
+	      $sql = getOrthoGenomicNotProteinSql($ids,$upstreamOffset,$downstreamOffset);
 	  }
-  }
-  } else {  # regular isolates
-	    $sql = <<EOSQL;
-SELECT etn.source_id, etn.source_id, etn.sequence
-FROM   ApidbTuning.PopsetSequence etn
-WHERE etn.source_id in ($ids)
-EOSQL
-        }
+      }
+   } else {  # regular isolates
+       $sql = getPopsetSql($ids);
+   }
 
   my $sequence;
   my $sth = $dbh->prepare($sql);
 
   $sth->execute();
   while(my ($id, $strand, $seq) = $sth->fetchrow_array()) {
-    # print STDERR $seq;
-  	if ($strand eq 'reverse' && $clustalQueryType eq "genomic"){
-  	    my $seqR = Bio::Seq->new(-seq => $seq, alphabet => 'dna');
-  	    $seqR = $seqR->revcom();
-  		$seq = $seqR->seq;
-  	}
-  	elsif($strand eq 'forward' && $clustalQueryType eq "genomic"){;}
-    else{;} # For protein/CDS there is no need to check the strand, so this should pass the seq through for whatever is the other value returned by the SQL query.
-
-    $id =~ s/^$sid\.// unless ($id eq $sid);
-    my $noN = $seq;
-    $noN =~ s/[ACGT]//g;
-    next if length($noN) == length($seq);
-    $sequence .= ">$id\n$seq\n";
+      # print STDERR $seq;
+      if ($strand eq 'reverse' && $clustalQueryType eq "genomic"){
+	  my $seqR = Bio::Seq->new(-seq => $seq, alphabet => 'dna');
+	  $seqR = $seqR->revcom();
+	  $seq = $seqR->seq;
+      }
+      elsif($strand eq 'forward' && $clustalQueryType eq "genomic"){;}
+      else{;} # For protein/CDS there is no need to check the strand, so this should pass the seq through for whatever is the other value returned by the SQL query.
+      
+      $id =~ s/^$sid\.// unless ($id eq $sid);
+      my $noN = $seq;
+      $noN =~ s/[ACGT]//g;
+      next if length($noN) == length($seq);
+      $sequence .= ">$id\n$seq\n";
   }
 
   my ($infh, $infile)  = tempfile();
@@ -306,6 +230,115 @@ sub proteinTest {
     }
     $sth->finish();
     return $areProteins;
+}
+
+sub getHtsSnpSql {
+    my ($ids,$start,$end) = @_;
+    my $sql = <<EOSQL;
+SELECT source_id, source_id,
+       substr(nas.sequence, $start,$end-$start+1) as sequence
+FROM   dots.nasequence nas
+WHERE  nas.source_id in ($ids)
+EOSQL
+    return $sql;
+}
+
+sub getOrthoProteinSql {
+    my ($ids) = @_;
+    my $sql = <<EOSQL;
+select ps.source_id, ps.source_id, ps.sequence
+from apidbtuning.proteinsequence ps, apidbtuning.transcriptattributes ta
+where ta.protein_source_id = ps.source_id
+      and ta.project_id = ps.project_id
+      and ta.gene_source_id in ($ids)
+EOSQL
+    return $sql;
+}
+
+sub getOrthoCdsSql {
+    my ($ids) = @_;
+    my $sql = <<EOSQL;
+	  with geneDetails as (
+	      select ta.gene_start_min as min
+	      , ta.gene_end_max as max
+	      , ta.coding_start
+	      , ta.coding_end
+	      , ta.strand
+	      , ta.source_id
+	      , ta.gene_source_id
+	      , ta.cds_length
+	      from APIDBTUNING.transcriptattributes ta
+	      where ta.gene_source_id in ($ids)
+	      )
+	      select ts.source_id, gd.strand,
+	      CASE
+	      WHEN gd.strand = 'forward' then SUBSTR(ts.sequence, (gd.coding_start - gd.min+1) , gd.cds_length)
+	      WHEN gd.strand = 'reverse' then SUBSTR(ts.sequence, (gd.max - gd.coding_end+1) , (gd.cds_length))
+	      END
+	      from apidbtuning.transcriptsequence ts
+	      , geneDetails gd
+	      where gd.source_id = ts.source_id
+EOSQL
+    return $sql;
+}
+
+sub getOrthoGenomicIsProteinSql {
+    my ($ids,$upstreamOffset,$downstreamOffset) = @_;
+    my $sql = <<EOSQL;
+    with geneDetails as (
+	select ta.coding_start
+	, ta.coding_end
+	, ta.strand
+	, ta.source_id
+	, ta.gene_source_id
+	, ta.cds_length
+	, ta.sequence_id as chsmid
+	from APIDBTUNING.transcriptattributes ta
+	where ta.gene_source_id in ($ids)
+	)
+	SELECT gd.gene_source_id, gd.strand,
+	CASE WHEN gd.strand = 'forward' THEN substr(gs.sequence, gd.coding_start - $upstreamOffset, (gd.coding_end - gd.coding_start) +1 + $upstreamOffset + $downstreamOffset) 
+	WHEN gd.strand = 'reverse' THEN substr(gs.sequence, gd.coding_start - $downstreamOffset, (gd.coding_end - gd.coding_start ) +1 + $upstreamOffset + $downstreamOffset)
+	END
+	FROM ApidbTuning.GenomicSequenceSequence gs,
+	geneDetails gd
+	where gs.source_id = gd.chsmid
+EOSQL
+    return $sql;
+}
+
+sub getOrthoGenomicNotProteinSql {
+    my ($ids,$upstreamOffset,$downstreamOffset) = @_;
+    my $sql = <<EOSQL;
+    with geneDetails as (
+	select ta.gene_start_min
+	, ta.gene_end_max
+	, ta.strand
+	, ta.source_id
+	, ta.gene_source_id
+	, ta.sequence_id as chsmid
+	from APIDBTUNING.transcriptattributes ta
+	where ta.gene_source_id in ($ids)
+	)
+	SELECT gd.gene_source_id, gd.strand,
+	CASE WHEN gd.strand = 'forward' THEN substr(gs.sequence, gd.gene_start_min - $upstreamOffset, gd.gene_end_max - gd.gene_start_min + 1 + $upstreamOffset + $downstreamOffset)
+	WHEN gd.strand = 'reverse' THEN substr(gs.sequence, gd.gene_start_min - $downstreamOffset, gd.gene_end_max - gd.gene_start_min + 1 + $upstreamOffset + $downstreamOffset)
+	END
+	FROM ApidbTuning.GenomicSequenceSequence gs,
+	geneDetails gd
+	WHERE gs.source_id = gd.chsmid
+EOSQL
+    return $sql;
+}
+
+sub getPopsetSql {
+    my ($ids) = @_;
+    my $sql = <<EOSQL;
+SELECT etn.source_id, etn.source_id, etn.sequence
+FROM   ApidbTuning.PopsetSequence etn
+WHERE etn.source_id in ($ids)
+EOSQL
+    return $sql;
 }
 
 1;
