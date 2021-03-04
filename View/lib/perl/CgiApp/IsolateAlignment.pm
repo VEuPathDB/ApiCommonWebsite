@@ -12,179 +12,196 @@ use HTTP::Request::Common qw(POST);
 
 use File::Temp qw/ tempfile /;
 
-
-
 sub run {
   my ($self, $cgi) = @_;
-
   my $dbh = $self->getQueryHandle($cgi);
 
-  print $cgi->header('text/html');
+  my ($ids,$sid,$type,$start,$end,$clustalQueryType,$userOutFormat) = $self->getParams($cgi);
 
-  $self->processParams($cgi, $dbh);
-  $self->handleIsolates($dbh, $cgi);
+  my $sql = $self->getSql($cgi,$dbh,$type,$clustalQueryType,$ids,$sid,$start,$end);  #NOTE - the sql needs to return an array of 3 values. Only the gene page Clustal Omega uses 3 values, beware the order of values [id, strand, seq]. Strand is only used for the genomic query, so a dummy value is used elsewhere.
+
+  my $sequences = getSequencesFromDatabase($dbh,$sql,$clustalQueryType,$sid);
+
+  my $inFile = writeSequencesToFile($sequences);
+
+  my ($outFile,$dndFile) = runClustalO($inFile,$userOutFormat);
+
+  my $dndData = getDndData($dndFile);
+
+  my $itolLink = getItolLink($dndData);
+     # NOTE: check where else this is used (e.g., SNP etc). This uses the dnd file output.
+
+  &createHTML($itolLink,$outFile,$cgi,$userOutFormat,$dndFile);
 
   exit();
 }
 
-sub processParams {
-  my ($self, $cgi, $dbh) = @_;
-  my $type  = $cgi->param('type');
 
-  # print DUMPER $type;
-  if($type eq 'geneOrthologs') {
-    my @ids = $cgi->param('gene_ids');
-    $self->{ids} = join(',', @ids);
-  }
+sub getParams {
+    my ($self, $cgi) = @_;
 
-  # JB: not sure why this is splitting then concatenating.  Seems like all this is doing is stripping the trailing comma
-  else {
-    my $p = $cgi->param('isolate_ids');
-    $p =~ s/,$//;
-    my @ids = split /,/, $p;
-    my $list;
-    foreach my $id (@ids){
-      $list = $list.  "'" . $id. "',";
-    }
-    $list =~ s/\,$//;
-    $self->{ids} = $list;
-  }
+    my $type  = $cgi->param('type');
+    my $ids = $self->getIds($cgi,$type);
+    my ($start,$end) = $self->getStartAndEnd($cgi);
+    my $clustalQueryType = $self->getClustalQueryType($cgi);
+    my $sid   = $cgi->param('sid');
+    my $userOutFormat = $self->getUserOutFormat($cgi);
+    return ($ids,$sid,$type,$start,$end,$clustalQueryType,$userOutFormat);
 }
 
-sub handleIsolates {
-  my ($self, $dbh, $cgi) = @_;
+sub getUserOutFormat {
+    my ($self,$cgi) = @_; 
+    my $userOutFormat = $cgi->param('clustalOutFormat');
+    if ((! defined $userOutFormat) || ($userOutFormat eq "")){
+	$userOutFormat = "clu";
+    }
+    return $userOutFormat;
+}
 
-  my $GUS_HOME = $ENV{'GUS_HOME'};
+sub getClustalQueryType {
+    my ($self,$cgi) = @_;
+    my $clustalQueryType = $cgi->param('sequence_Type');
+    if ((! defined $clustalQueryType) || ($clustalQueryType eq "")) {
+	$clustalQueryType = "protein";
+    }
+    return $clustalQueryType;
+}
 
-  my $ids = $self->{ids};
+sub getStartAndEnd {
+    my ($self,$cgi) = @_;
 
-  my $type  = $cgi->param('type');
-  my $start = $cgi->param('start');
-  my $end   = $cgi->param('end');
-  my $sid   = $cgi->param('sid');
-  my $project_id = $cgi->param('project_id');
+    my $start = $cgi->param('start');
+    $start =~ s/,//g;
+    my $end   = $cgi->param('end');
+    $end =~ s/,//g;
+    if ($end !~ /\d/) {
+	$end   = $start + 50;
+	$start = $start - 50;
+    }
+    return ($start,$end);
+}
 
-  # Used to determine the SQL query for the gene page clustalo.
-  my $clustalQueryType = $cgi->param('sequence_Type');
-  if ((! defined $clustalQueryType) || ($clustalQueryType eq "")){
-      $clustalQueryType = "protein";
-  }
+sub getIds {
+    my ($self,$cgi,$type) = @_;
+    my @idArray;
+    if ($type eq 'geneOrthologs') {
+	@idArray = $cgi->param('gene_ids');
+    } else {
+	my $ids = $cgi->param('isolate_ids');
+	$ids =~ s/,$//;
+	@idArray = split(',', $ids);
+    }
+    return join(',', map { "'$_'" } @idArray);
+}
 
-  $start =~ s/,//g;
-  $end =~ s/,//g;
+sub getSql {
+    my ($self,$cgi,$dbh,$type,$clustalQueryType,$ids,$sid,$start,$end) = @_;
+    my $sql="";
+    if($type =~ /htsSNP/i) {
+	$sql = getHtsSnpSql($ids,$sid,$start,$end);
+    } elsif($type eq 'geneOrthologs') {
+	if($clustalQueryType eq 'protein' ){
+	    $sql = getOrthoProteinSql($ids);
+	} elsif($clustalQueryType eq 'CDS'){
+	    $sql = getOrthoCdsSql($ids);
+	} elsif($clustalQueryType eq 'genomic'){
+	    my ($upstreamOffset,$downstreamOffset) = $self->getOffsets($cgi);
+	    my $areProteins = proteinTest($dbh,$ids);
+	    if ($areProteins) {
+		$sql = getOrthoGenomicIsProteinSql($ids,$upstreamOffset,$downstreamOffset);
+	    } else {            # not protein encoding
+		$sql = getOrthoGenomicNotProteinSql($ids,$upstreamOffset,$downstreamOffset);
+	    }
+	}
+    } else {  # regular isolates
+	$sql = getPopsetSql($ids);
+    }
+    return $sql;
+}
 
-  if($end !~  /\d/) {
-      $end   = $start + 50;
-      $start = $start - 50;
-  }
-  my $sql = "";  #NOTE - the sql needs to return an array of 3 values. Only the gene page Clustal Omega uses 3 values, beware the order of values [id, strand, seq]. Strand is only used for the genomic query, so a dummy value is used elsewhere.
+sub getOffsets {
+    my ($self,$cgi) = @_;
+    my $upstreamOffset = $cgi->param('oneOffset');
+    $upstreamOffset = abs($upstreamOffset);
+    my $downstreamOffset = $cgi->param('twoOffset');
+    $downstreamOffset = abs($downstreamOffset);
+    
+    # Alters user input if user selects >2500 nt.  
+    if ($upstreamOffset > 2500) {$upstreamOffset = 2500;}
+    if ($downstreamOffset > 2500) {$downstreamOffset = 2500;}
 
-  if($type =~ /htsSNP/i) {
-      $ids =~ s/'(\w)/'$sid\.$1/g;
-      $ids .= ",'$sid'";   # always compare with reference isolate
-      $sql = getHtsSnpSql($ids,$start,$end);
-   } elsif($type eq 'geneOrthologs') {
-      $ids = join(',', map { "'$_'" } split(',', $ids));
+    return ($upstreamOffset,$downstreamOffset);
+}
 
-      if($clustalQueryType eq 'protein' ){
-	  $sql = getOrthoProteinSql($ids);
-      } elsif($clustalQueryType eq 'CDS'){
-	  $sql = getOrthoCdsSql($ids);
-      } elsif($clustalQueryType eq 'genomic'){
-	  my $areProteins = proteinTest($dbh,$ids);
-	  my $upstreamOffset = $cgi->param('oneOffset');
-	  $upstreamOffset = abs($upstreamOffset);
-	  my $downstreamOffset = $cgi->param('twoOffset');
-	  $downstreamOffset = abs($downstreamOffset);
+sub getSequencesFromDatabase {
+    my ($dbh,$sql,$clustalQueryType,$sid) = @_;
 
-	  # Alters user input if user selects >2500 nt.
-	  if ($upstreamOffset > 2500) {$upstreamOffset = 2500;}
-	  if ($downstreamOffset > 2500) {$downstreamOffset = 2500;}
-
-	  if ($areProteins) {
-	      $sql = getOrthoGenomicIsProteinSql($ids,$upstreamOffset,$downstreamOffset);
-	  } else {            # not protein encoding
-	      $sql = getOrthoGenomicNotProteinSql($ids,$upstreamOffset,$downstreamOffset);
-	  }
-      }
-   } else {  # regular isolates
-       $sql = getPopsetSql($ids);
-   }
-
-  my $sequence;
-  my $sth = $dbh->prepare($sql);
-
-  $sth->execute();
-  while(my ($id, $strand, $seq) = $sth->fetchrow_array()) {
-      # print STDERR $seq;
-      if ($strand eq 'reverse' && $clustalQueryType eq "genomic"){
-	  my $seqR = Bio::Seq->new(-seq => $seq, alphabet => 'dna');
-	  $seqR = $seqR->revcom();
-	  $seq = $seqR->seq;
-      }
-      elsif($strand eq 'forward' && $clustalQueryType eq "genomic"){;}
-      else{;} # For protein/CDS there is no need to check the strand, so this should pass the seq through for whatever is the other value returned by the SQL query.
+    my $sequences = "";
+    my $sth = $dbh->prepare($sql);
+    $sth->execute();
+    while(my ($id, $strand, $seq) = $sth->fetchrow_array()) {
+	if ($strand eq 'reverse' && $clustalQueryType eq "genomic"){
+	    my $seqR = Bio::Seq->new(-seq => $seq, alphabet => 'dna');
+	    $seqR = $seqR->revcom();
+	    $seq = $seqR->seq;
+	}
+	elsif($strand eq 'forward' && $clustalQueryType eq "genomic"){;}
+	else{;} # For protein/CDS there is no need to check the strand, so this should pass the seq through for whatever is the other value returned by the SQL query.
       
-      $id =~ s/^$sid\.// unless ($id eq $sid);
-      my $noN = $seq;
-      $noN =~ s/[ACGT]//g;
-      next if length($noN) == length($seq);
-      $sequence .= ">$id\n$seq\n";
-  }
+	$id =~ s/^$sid\.// unless ($id eq $sid);
+	my $noN = $seq;
+	$noN =~ s/[ACGT]//g;
+	next if length($noN) == length($seq);
+	$sequences .= ">$id\n$seq\n";
+    }
+    return $sequences;
+}
 
-  my ($infh, $infile)  = tempfile();
-  my ($outfh, $outfile) = tempfile();
-  my ($dndfh, $dndfile) = tempfile();
-  my ($tmpfh, $tmpfile) = tempfile();
+sub writeSequencesToFile {
+    my ($sequences) = @_;
+    my ($inFh, $inFile)  = tempfile();
+    print $inFh $sequences;
+    close $inFh;
+    return $inFile;
+}
 
-  print $infh $sequence;
-  close $infh;
+sub runClustalO {
+    my ($inFile,$userOutFormat) = @_;
+    my ($outFh, $outFile) = tempfile();
+    my ($dndFh, $dndFile) = tempfile();
+    my ($tmpFh, $tmpFile) = tempfile();
+    my $cmd = "clustalo -v --residuenumber --infile=$inFile --outfile=$outFile --outfmt=$userOutFormat --output-order=tree-order --guidetree-out=$dndFile --force > $tmpFile";
+    system($cmd);
+    close $outFh; close $dndFh; close $tmpFh;
+    return ($outFile,$dndFile);
+}
 
-  my $userOutFormat = $cgi->param('clustalOutFormat');
-  if ((! defined $userOutFormat) || ($userOutFormat eq "")){
-	     $userOutFormat = "clu";
-  }
+sub getDndData {
+    my ($dndFile) = @_;
+    my $dndData = "";
+    open(D, "$dndFile"); #This is for the iTOL input. 
+    while(<D>) {
+	my $revData = reverse($_);
+	$revData =~ s/:/%/;
+	$revData =~ s/:/_/;
+	$revData = reverse($revData);
+	$revData =~ s/%/:/;
+	$dndData .= "$revData\n";
+    }
+    close D;
+    return $dndData;
+}
 
-  my $cmd = "clustalo -v --residuenumber --infile=$infile --outfile=$outfile --outfmt=$userOutFormat --output-order=tree-order --guidetree-out=$dndfile --force > $tmpfile";
-  system($cmd);
-  my %origins = ();
-  my $dndData = "";
-
-  open(D, "$dndfile"); #This is for the iTOL input. 
-  while(<D>) {
-	#  print $_;
-    my $revData = reverse($_);
-    $revData =~ s/:/%/;
-    $revData =~ s/:/_/;
-    $revData = reverse($revData);
-    $revData =~ s/%/:/;
-    $dndData = $dndData . $revData . "\n";
-  }
-  close D;
-
-  ## Interacting with iTOL to make a tree.
-  ## NOTE - check elsewhere this is used when done. SNP etc.
-  ## This uses the dnd file out put.
-
-  my $ua = LWP::UserAgent->new;
-  my $request = HTTP::Request::Common::POST( 'https://itol.embl.de/upload.cgi',
-     Content_Type => 'form-data',
-     Content      => [
-                       ttext => $dndData,
-                     ]);
-  my $response = $ua->request($request);
-  # print Dumper $response->{'_headers'}->{'location'};
-  # print Dumper $response->content;
-  my $iTOLLink =  "https://itol.embl.de/" . $response->{'_headers'}->{'location'};
-  my $iTOLHTML = "<a href='$iTOLLink' target='_blank'><h4>Click here to view a phylogenetic tree of the alignment.</h4></a>";
-  &createHTML($iTOLHTML,$outfile,$cgi,%origins);
-
-  open(D, "$dndfile"); # Printing the dendrogram on the results page.
-  print "<pre>";
-  print "<hr>.dnd file\n\n";
-  while(<D>) {
-	print $_;
-  }
+sub getItolLink {
+    my ($dndData) = @_;    
+    my $ua = LWP::UserAgent->new;
+    my $request = HTTP::Request::Common::POST( 'https://itol.embl.de/upload.cgi',
+                                               Content_Type => 'form-data',
+					       Content      => [ ttext => $dndData, ]
+	);
+    my $response = $ua->request($request);
+    my $itolLink = "https://itol.embl.de/" . $response->{'_headers'}->{'location'};
+    return $itolLink;
 }
 
 sub error {
@@ -193,28 +210,43 @@ sub error {
   exit(1);
 }
 
-
 sub createHTML {
-  my ($iTOLLINK, $outfile, $cgi, %origins) = @_;
-  open(O, "$outfile") or die "can't open $outfile for reading:$!";
+  my ($itolLink,$outFile,$cgi,$userOutFormat,$dndFile) = @_;
 
-  my $userOutFormat = $cgi->param('clustalOutFormat');
-  if ((! defined $userOutFormat) || ($userOutFormat eq "")){
-    $userOutFormat = "clu";
-  }
+  my $itolHtml = "<a href='$itolLink' target='_blank'><h4>Click here to view a phylogenetic tree of the alignment.</h4></a>";
 
+  print $cgi->header('text/html');
   print "<pre>";
-    while(<O>) {
-      if(/CLUSTAL O/ && $userOutFormat eq "clu") {
-        print $cgi->h3($_);
-        print $cgi->pre($iTOLLINK);
-      }
-      else {
-        print;
-      }
-    }
-   close O;
+  &printOutput($cgi,$outFile,$userOutFormat,$itolHtml);
+
+  print "<hr>.dnd file\n\n";
+  &printDnd($dndFile);
+
   print "</pre>";
+}
+
+sub printOutput {
+    my ($cgi,$outFile,$userOutFormat,$itolHtml) = @_;
+
+    open(O, "$outFile") or die "can't open $outFile for reading:$!";
+    while(<O>) {
+	if(/CLUSTAL O/ && $userOutFormat eq "clu") {
+	    print $cgi->h3($_);
+	    print $cgi->pre($itolHtml);
+	} else {
+	    print;
+	}
+    }
+    close O;
+}
+
+sub printDnd {
+    my ($dndFile) = @_;
+    open(D, "$dndFile") or die "can't open $dndFile for reading:$!"; # Printing the dendrogram on the results page.
+    while(<D>) {
+	print $_;
+    }
+    close D;
 }
 
 sub proteinTest {
@@ -233,7 +265,9 @@ sub proteinTest {
 }
 
 sub getHtsSnpSql {
-    my ($ids,$start,$end) = @_;
+    my ($ids,$sid,$start,$end) = @_;
+      $ids =~ s/'(\w)/'$sid\.$1/g;
+      $ids .= ",'$sid'";   # always compare with reference isolate
     my $sql = <<EOSQL;
 SELECT source_id, source_id,
        substr(nas.sequence, $start,$end-$start+1) as sequence
