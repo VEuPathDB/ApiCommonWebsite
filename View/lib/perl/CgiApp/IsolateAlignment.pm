@@ -14,13 +14,10 @@ use File::Temp qw/ tempfile /;
 
 sub run {
   my ($self, $cgi) = @_;
-  my $dbh = $self->getQueryHandle($cgi);
 
   my ($ids,$sid,$type,$start,$end,$clustalQueryType,$userOutFormat) = $self->getParams($cgi);
 
-  my $sql = $self->getSql($cgi,$dbh,$type,$clustalQueryType,$ids,$sid,$start,$end);  #NOTE - the sql needs to return an array of 3 values. Only the gene page Clustal Omega uses 3 values, beware the order of values [id, strand, seq]. Strand is only used for the genomic query, so a dummy value is used elsewhere.
-
-  my $sequences = getSequencesFromDatabase($dbh,$sql,$clustalQueryType,$sid);
+  my $sequences = $self->getSequencesFromDatabase($cgi,$type,$clustalQueryType,$ids,$sid,$start,$end);
 
   my $inFile = writeSequencesToFile($sequences);
 
@@ -97,24 +94,28 @@ sub getIds {
 sub getSql {
     my ($self,$cgi,$dbh,$type,$clustalQueryType,$ids,$sid,$start,$end) = @_;
     my $sql="";
-    if($type =~ /htsSNP/i) {
+    if ($type =~ /htsSNP/i) {
 	$sql = getHtsSnpSql($ids,$sid,$start,$end);
-    } elsif($type eq 'geneOrthologs') {
-	if($clustalQueryType eq 'protein' ){
-	    $sql = getOrthoProteinSql($ids);
-	} elsif($clustalQueryType eq 'CDS'){
-	    $sql = getOrthoCdsSql($ids);
-	} elsif($clustalQueryType eq 'genomic'){
-	    my ($upstreamOffset,$downstreamOffset) = $self->getOffsets($cgi);
-	    my $areProteins = proteinTest($dbh,$ids);
-	    if ($areProteins) {
-		$sql = getOrthoGenomicIsProteinSql($ids,$upstreamOffset,$downstreamOffset);
-	    } else {            # not protein encoding
-		$sql = getOrthoGenomicNotProteinSql($ids,$upstreamOffset,$downstreamOffset);
-	    }
-	}
+    } elsif ($type eq 'geneOrthologs') {
+	$sql = $self->getOrthoSql($cgi,$dbh,$ids,$clustalQueryType);
     } else {  # regular isolates
 	$sql = getPopsetSql($ids);
+    }
+    return $sql;
+}
+
+sub getOrthoSql {
+    my ($self,$cgi,$dbh,$ids,$clustalQueryType) = @_;
+    my $sql="";
+    if ($clustalQueryType eq 'protein' ){
+	$sql = getOrthoProteinSql($ids);
+    } elsif ($clustalQueryType eq 'CDS'){
+	$sql = getOrthoCdsSql($ids);
+    } elsif ($clustalQueryType eq 'genomic'){
+	my ($upstreamOffset,$downstreamOffset) = $self->getOffsets($cgi);
+	my $areProteins = proteinTest($dbh,$ids);
+	$sql = $areProteins ? getOrthoGenomicIsProteinSql($ids,$upstreamOffset,$downstreamOffset)
+	                    : getOrthoGenomicNotProteinSql($ids,$upstreamOffset,$downstreamOffset);
     }
     return $sql;
 }
@@ -134,27 +135,31 @@ sub getOffsets {
 }
 
 sub getSequencesFromDatabase {
-    my ($dbh,$sql,$clustalQueryType,$sid) = @_;
+    my ($self,$cgi,$dbh,$type,$clustalQueryType,$ids,$sid,$start,$end) = @_;
+
+    my $dbh = $self->getQueryHandle($cgi);
+    my $sql = $self->getSql($cgi,$dbh,$type,$clustalQueryType,$ids,$sid,$start,$end);
+              # NOTE: sql needs to return array of 3 values. Only the gene page Clustal Omega uses 3 values.
+              # Beware the order of values [id, strand, seq]. Strand is only used for the genomic query, so a dummy value is used elsewhere.
 
     my $sequences = "";
     my $sth = $dbh->prepare($sql);
     $sth->execute();
     while(my ($id, $strand, $seq) = $sth->fetchrow_array()) {
-	if ($strand eq 'reverse' && $clustalQueryType eq "genomic"){
-	    my $seqR = Bio::Seq->new(-seq => $seq, alphabet => 'dna');
-	    $seqR = $seqR->revcom();
-	    $seq = $seqR->seq;
-	}
-	elsif($strand eq 'forward' && $clustalQueryType eq "genomic"){;}
-	else{;} # For protein/CDS there is no need to check the strand, so this should pass the seq through for whatever is the other value returned by the SQL query.
-      
-	$id =~ s/^$sid\.// unless ($id eq $sid);
-	my $noN = $seq;
-	$noN =~ s/[ACGT]//g;
-	next if length($noN) == length($seq);
+	next if ($seq !~ /[ACGT]/);   # there are no nucleotides
+	$seq = reverseComplement($seq) if ($strand eq 'reverse' && $clustalQueryType eq "genomic");
+	$id =~ s/^$sid\.// unless ($id eq $sid);    # remove reference gene name for other isolates
 	$sequences .= ">$id\n$seq\n";
     }
     return $sequences;
+}
+
+sub reverseComplement {
+    my ($seq) = @_;
+    my $seqR = Bio::Seq->new(-seq => $seq, alphabet => 'dna');
+    $seqR = $seqR->revcom();
+    $seq = $seqR->seq;
+    return $seq;
 }
 
 sub writeSequencesToFile {
