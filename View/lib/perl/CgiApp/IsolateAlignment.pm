@@ -135,7 +135,7 @@ sub getOffsets {
 }
 
 sub getSequencesFromDatabase {
-    my ($self,$cgi,$dbh,$type,$clustalQueryType,$ids,$sid,$start,$end) = @_;
+    my ($self,$cgi,$type,$clustalQueryType,$ids,$sid,$start,$end) = @_;
 
     my $dbh = $self->getQueryHandle($cgi);
     my $sql = $self->getSql($cgi,$dbh,$type,$clustalQueryType,$ids,$sid,$start,$end);
