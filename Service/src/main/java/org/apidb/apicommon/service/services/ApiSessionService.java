@@ -1,5 +1,7 @@
 package org.apidb.apicommon.service.services;
 
+import static org.gusdb.fgputil.FormatUtil.NL;
+
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;
@@ -8,6 +10,7 @@ import javax.ws.rs.core.Response.Status.Family;
 import org.apache.log4j.Logger;
 import org.eupathdb.common.model.MultiBlastServiceUtil;
 import org.gusdb.fgputil.Tuples.TwoTuple;
+import org.gusdb.fgputil.client.ClientUtil;
 import org.gusdb.fgputil.client.CloseableResponse;
 import org.gusdb.fgputil.events.Events;
 import org.gusdb.wdk.errors.ErrorContext.ErrorLocation;
@@ -51,11 +54,15 @@ public class ApiSessionService extends SessionService {
     // request body to merge guest's jobs to newly logged in user
     String body = new JSONObject()
         .put("guestID", oldUser.getUserId())
-        .put("userID", newUser.getUserId())
         .toString();
 
     // auth header for new user
     TwoTuple<String,String> authHeader = MultiBlastServiceUtil.getAuthHeader(wdkModel, newUser);
+
+    LOG.debug("Making request to copy mblast jobs:" + NL +
+        "POST to " + jobMergerUrl + NL +
+        "Header: " + authHeader.getKey() + ":" + authHeader.getValue() + NL +
+        "Body: " + body);
 
     // make request and check result
     try (CloseableResponse response = new CloseableResponse(
@@ -67,10 +74,12 @@ public class ApiSessionService extends SessionService {
 
       // this is a non-fatal error (should not keep user from logging in), but make every effort to alert QA
       if (!response.getStatusInfo().getFamily().equals(Family.SUCCESSFUL)) {
+        String error = ClientUtil.readSmallResponseBody(response);
         handleMultiBlastException(new WdkModelException(
             "Unable to merge multi-blast jobs from guest user " +
             oldUser.getUserId() + " to registered user " + newUser.getUserId() +
-            ". Service at " + jobMergerUrl + " returned " + response.getStatus()));
+            ". Service at " + jobMergerUrl + " returned " + response.getStatus() +
+            " with error: " + error));
       }
     }
     catch (Exception e) {
