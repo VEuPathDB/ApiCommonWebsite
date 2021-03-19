@@ -1,6 +1,5 @@
 package org.apidb.apicommon.test;
 
-import static java.util.Arrays.asList;
 import static org.apidb.apicommon.model.TranscriptUtil.isTranscriptQuestion;
 import static org.apidb.apicommon.model.TranscriptUtil.transformToGeneAnswer;
 import static org.gusdb.fgputil.FormatUtil.TAB;
@@ -127,6 +126,6 @@ public class SingleTableRecordStreamTest {
   private static Function<AttributeField,String> getFieldHeader = field -> field.getName();
 
   private static void writeFields(PrintStream out, TableField tableField, Function<AttributeField, String> function) {
-    out.println(join(mapToList(asList(tableField.getAttributeFields()), function).toArray(), TAB));
+    out.println(join(mapToList(tableField.getAttributeFieldMap().values(), function).toArray(), TAB));
   }
 }
