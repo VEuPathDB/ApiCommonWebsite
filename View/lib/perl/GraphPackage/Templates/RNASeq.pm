@@ -892,34 +892,63 @@ sub init {
   profile.df.full$GROUP <- profile.df.full$LEGEND
 RADJUST
 
-  my @profileArray = (['P. berghei transcriptome during inducible gametocytogenesis [htseq-union - unstranded - tpm - unique]', 'values']);
+  # Sense
+  my @profileArray = (['P. berghei transcriptome during inducible gametocytogenesis [htseq-union - firststrand - tpm - unique]', 'values']);
 
   my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileArray);
   my $line = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot->new(@_);
-  $line->setPartName('tpm');
+  $line->setPartName('tpm_sense');
   $line->setProfileSets($profileSets);
   $line->setColors($colors);
   $line->setHasExtraLegend(1);
   $line->setXaxisLabel("Hours");
   $line->setYaxisLabel("TPM");
-  $line->setPlotTitle("tpm - $id");
+  $line->setPlotTitle("tpm_sense - $id");
   $line->addAdjustProfile($rAdjustString);
 
-  #percentile
+  # AntiSense
+  my @profileArray2 = (['P. berghei transcriptome during inducible gametocytogenesis [htseq-union - secondstrand - tpm - unique]', 'values']);
+
+  my $profileSets2 = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileArray2);
+  my $line2 = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot->new(@_);
+  $line2->setPartName('tpm_antisense');
+  $line2->setProfileSets($profileSets2);
+  $line2->setColors($colors);
+  $line2->setHasExtraLegend(1);
+  $line2->setXaxisLabel("Hours");
+  $line2->setYaxisLabel("TPM");
+  $line2->setPlotTitle("tpm_antisense - $id");
+  $line2->addAdjustProfile($rAdjustString);
+
+  #percentile_sense
   my $percentileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets
-    ([['P. berghei transcriptome during inducible gametocytogenesis [htseq-union - unstranded - tpm - unique]', 'channel1_percentiles']]);
+    ([['P. berghei transcriptome during inducible gametocytogenesis [htseq-union - firststrand - tpm - unique]', 'channel1_percentiles']]);
 
   my $percentile = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot::Percentile->new(@_);
-  $percentile->setPartName('percentile');
+  $percentile->setPartName('percentile_sense');
   $percentile->setProfileSets($percentileSets);
   $percentile->setColors($colors);
   $percentile->setHasExtraLegend(1);
   $percentile->setXaxisLabel("Hours");
   $percentile->setYaxisLabel("Percentile");
-  $percentile->setPlotTitle("pct - $id");
+  $percentile->setPlotTitle("pct_sense - $id");
   $percentile->addAdjustProfile($rAdjustString);
 
-  $self->setGraphObjects($line, $percentile);
+  #percentile_antisense
+  my $percentileSets2 = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets
+    ([['P. berghei transcriptome during inducible gametocytogenesis [htseq-union - secondstrand - tpm - unique]', 'channel1_percentiles']]);
+
+  my $percentile2 = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot::Percentile->new(@_);
+  $percentile2->setPartName('percentile_antisense');
+  $percentile2->setProfileSets($percentileSets2);
+  $percentile2->setColors($colors);
+  $percentile2->setHasExtraLegend(1);
+  $percentile2->setXaxisLabel("Hours");
+  $percentile2->setYaxisLabel("Percentile");
+  $percentile2->setPlotTitle("pct_antisense - $id");
+  $percentile2->addAdjustProfile($rAdjustString);
+
+  $self->setGraphObjects($line, $line2, $percentile, $percentile2);
   return $self;
 }
 
