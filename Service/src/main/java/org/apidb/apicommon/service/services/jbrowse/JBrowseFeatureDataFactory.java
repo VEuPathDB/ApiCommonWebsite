@@ -232,7 +232,7 @@ public class JBrowseFeatureDataFactory {
         "   select a.*," +
         "     (case when b.parent_id is null then to_char(a.parent_id) else to_char(b.parent_id) end) as top_parent_id" +
         "   from " + wrappedSubfeatureSql + " a" +
-        "   left join " + wrappedSubfeatureSql + " b on to_char(a.parent_id) = b.feature_id" +
+        "   left join " + wrappedSubfeatureSql + " b on to_char(a.parent_id) = to_char(b.feature_id)" +
         " )" +
         " order by top_parent_id asc";
 
