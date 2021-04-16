@@ -50,9 +50,8 @@ sub run {
 
     my $args = "CMD=Put&LSet=$LSet&Sequence=" . $seq;
 
-    my $req = new HTTP::Request POST => 'http://mendel.imp.ac.at/sat/gpi/cgi-bin/gpi_pred.cgi';
-
-    $req->content_type('application/x-www-form-urlencoded');                                                                        
+    my $req = new HTTP::Request POST => 'https://mendel.imp.ac.at/gpi/cgi-bin/gpi_pred.cgi';
+    $req->content_type('application/x-www-form-urlencoded');                                                                      
     $req->content($args);  
 
 
@@ -64,7 +63,7 @@ sub run {
 
 	<BODY>
           <H4>The results are taken from Glycosylphosphatidylinositol (GPI) Lipid Anchor Project</H4>     
-          <p>For more information about this tool <a href='http://mendel.imp.ac.at/sat/gpi/gpi_server.html' target='_top'>Click here!</a></p>
+          <p>For more information about this tool <a href='https://mendel.imp.ac.at/gpi/gpi_server.html' target='_top'>Click here!</a></p>
 
 	</BODY>
 
