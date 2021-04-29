@@ -43,7 +43,9 @@ sub run {
     my $ua = LWP::UserAgent->new(agent => 'Mozilla');
     
 
-    print "Location: http://string-db.org/newstring_cgi/show_network_section.pl?sequence=$seq&species_text_single_sequence=$organism&amp;external_payload_URL=http://your-server.org/ext.json" . "\n\n";
+   # print "Location: http://string-db.org/newstring_cgi/show_network_section.pl?sequence=$seq&species_text_single_sequence=$organism&amp;external_payload_URL=http://your-server.org/ext.json" . "\n\n";
+
+    print "Location: https://string-db.org/cgi/network?sequence=$seq&species=$organism" . "\n\n";
 
 
 =head
