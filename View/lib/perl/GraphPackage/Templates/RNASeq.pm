@@ -224,6 +224,57 @@ RADJUST
 }
 1;
 
+#vectorbase
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_6ecf1af578;
+
+sub finalProfileAdjustments {
+  my ($self, $profile) = @_;
+
+  my $rAdjustString = << 'RADJUST';
+profile.df.full$NAME <- gsub("A. gambiae G3 ", "", profile.df.full$NAME)
+profile.df.full$NAME <- gsub(" BR", "", profile.df.full$NAME)
+profile.df.full$NAME <- gsub("fat body and abdo wall", "FB-enriched abdominal wall", profile.df.full$NAME)
+
+RADJUST
+
+  $profile->addAdjustProfile($rAdjustString);
+}
+1;
+
+#vectorbase
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_827aa45cff;
+
+sub finalProfileAdjustments {
+  my ($self, $profile) = @_;
+
+  my $rAdjustString = << 'RADJUST';
+profile.df.full$NAME <- gsub("A. gambiae G3 ", "", profile.df.full$NAME)
+profile.df.full$NAME <- gsub(" BR", "", profile.df.full$NAME)
+profile.df.full$NAME <- gsub("fat body and abdo wall", "FB-enriched abdominal wall", profile.df.full$NAME)
+
+RADJUST
+
+  $profile->addAdjustProfile($rAdjustString);
+}
+1;
+
+#vectorbase
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_a92b4db713;
+
+sub finalProfileAdjustments {
+  my ($self, $profile) = @_;
+
+  my $rAdjustString = << 'RADJUST';
+profile.df.full$NAME <- gsub("A. gambiae G3 ", "", profile.df.full$NAME)
+profile.df.full$NAME <- gsub(" BR", "", profile.df.full$NAME)
+profile.df.full$NAME <- gsub("fat body and abdo wall", "FB-enriched abdominal wall", profile.df.full$NAME)
+
+RADJUST
+
+  $profile->addAdjustProfile($rAdjustString);
+}
+1;
+
 package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_cb6310bab8;
 
 sub finalProfileAdjustments {
