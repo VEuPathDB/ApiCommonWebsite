@@ -7,7 +7,6 @@ import org.apidb.apicommon.service.services.ApiBasketService;
 import org.apidb.apicommon.service.services.ApiProjectService;
 import org.apidb.apicommon.service.services.ApiSessionService;
 import org.apidb.apicommon.service.services.ApiStepService;
-import org.apidb.apicommon.service.services.BigWigTrackService;
 import org.apidb.apicommon.service.services.TranscriptToggleService;
 import org.apidb.apicommon.service.services.comments.AttachmentsService;
 import org.apidb.apicommon.service.services.comments.UserCommentsService;
@@ -42,7 +41,6 @@ public class ApiWebServiceApplication extends EuPathServiceApplication {
       .add(AttachmentsService.class)
       .add(UserCommentsService.class)
       .add(TranscriptToggleService.class)
-      .add(BigWigTrackService.class)
       .add(JBrowseService.class)
       .add(JBrowseUserDatasetsService.class)
       .add(ProfileSetService.class)
