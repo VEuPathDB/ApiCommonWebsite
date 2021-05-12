@@ -329,7 +329,7 @@ sub getProfileColors {
 1;
 
 #host
-package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_4585d065bf;
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_6abf688526;
 
 sub init {
   my $self = shift;
