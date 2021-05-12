@@ -23,6 +23,14 @@ sub run {
 
   my ($outFile,$dndFile) = runClustalO($inFile,$userOutFormat);
 
+  unless (-z "e.txt") {
+  print $cgi->header('text/html');
+  print "<pre>";
+  print "<h3>This sequence alignment job timed out. <br>Try this again with fewer sequences.</h3>";
+  print "</div>";
+    exit;
+  }
+
   my $dndData = getDndData($dndFile);
 
   my $itolLink = getItolLink($dndData);
@@ -175,7 +183,8 @@ sub runClustalO {
     my ($outFh, $outFile) = tempfile();
     my ($dndFh, $dndFile) = tempfile();
     my ($tmpFh, $tmpFile) = tempfile();
-    my $cmd = "clustalo -v --residuenumber --infile=$inFile --outfile=$outFile --outfmt=$userOutFormat --output-order=tree-order --guidetree-out=$dndFile --force > $tmpFile";
+    my $cmd = "clustalo --residuenumber --infile=$inFile --outfile=$outFile --outfmt=$userOutFormat --output-order=tree-order --guidetree-out=$dndFile --force > $tmpFile";
+
     system($cmd);
     close $outFh; close $dndFh; close $tmpFh;
     return ($outFile,$dndFile);
