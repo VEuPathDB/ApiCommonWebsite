@@ -23,7 +23,8 @@ sub run {
 
   my ($outFile,$dndFile) = runClustalO($inFile,$userOutFormat);
 
-  unless (-z "e.txt") {
+  # if Clustal alignment times out
+  if (-z $outFile) {
   print $cgi->header('text/html');
   print "<pre>";
   print "<h3>This sequence alignment job timed out. <br>Try this again with fewer sequences.</h3>";
