@@ -338,7 +338,7 @@ sub init {
   $self->SUPER::init(@_);
 
   my $profileSet = EbrcWebsiteCommon::View::GraphPackage::ProfileSet->new("DUMMY");
-  $profileSet->setJsonForService("{\"profileSetName\":\"Parasitemia over 100 days in five monkeys\",\"profileType\":\"values\",\"idOverride\":\"RMe14\",\"name\":\"RMe14\"},{\"profileSetName\":\"Parasitemia over 100 days in five monkeys\",\"profileType\":\"values\",\"idOverride\":\"RFv13\",\"name\":\"RFv13\"},{\"profileSetName\":\"Parasitemia over 100 days in five monkeys\",\"profileType\":\"values\",\"idOverride\":\"RIc14\",\"name\":\"RIc14\"},{\"profileSetName\":\"Parasitemia over 100 days in five monkeys\",\"profileType\":\"values\",\"idOverride\":\"RSb14\",\"name\":\"RSb14\"},{\"profileSetName\":\"Parasitemia over 100 days in five monkeys\",\"profileType\":\"values\",\"idOverride\":\"RFa14\",\"name\":\"RFa14\"}");
+  $profileSet->setJsonForService("{\"profileSetName\":\"Parasitemia over 100 days in five mice\",\"profileType\":\"values\",\"idOverride\":\"RMe14\",\"name\":\"RMe14\"},{\"profileSetName\":\"Parasitemia over 100 days in five mice\",\"profileType\":\"values\",\"idOverride\":\"RFv13\",\"name\":\"RFv13\"},{\"profileSetName\":\"Parasitemia over 100 days in five mice\",\"profileType\":\"values\",\"idOverride\":\"RIc14\",\"name\":\"RIc14\"},{\"profileSetName\":\"Parasitemia over 100 days in five mice\",\"profileType\":\"values\",\"idOverride\":\"RSb14\",\"name\":\"RSb14\"},{\"profileSetName\":\"Parasitemia over 100 days in five mice\",\"profileType\":\"values\",\"idOverride\":\"RFa14\",\"name\":\"RFa14\"}");
   $profileSet->setSqlName("Profile");
 
   my $line = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot->new(@_);
