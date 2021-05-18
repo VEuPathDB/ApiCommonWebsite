@@ -62,8 +62,6 @@
     }
 
     &__collapsed {
-      box-shadow: unset;
-
       .ebrc-HeaderBrandingContainer {
         .vpdb-HeaderBrandingSuperscript {
           top: $superscript-position-top-small;
@@ -93,6 +91,7 @@
   }
 
   .vpdb-SubHeader {
+    display: none !important;
     grid-area: subheader;
     z-index: 99;
     background: white;
@@ -116,7 +115,6 @@
     @media screen and (max-width: $hamburger-width) {
       position: relative;
       top: 0;
-      box-shadow: unset;
     }
   }
 
@@ -158,12 +156,12 @@
 
 // Fix for question page sticky header
 body.vpdb-Body .wdk-QuestionFormQuestionHeader {
-  top: 8.5em;
+  top: 5.5em;
 }
 
 // Fix for All Datasets sticky header
 body.vpdb-Body .wdk-Answer .MesaComponent .DataTable .DataTable-Sticky .DataTable-Header {
-  top: 103px;
+  top: 68px;
 }
 
 // Fix for Preferred Organisms config page header
@@ -182,19 +180,19 @@ body.vpdb-Body .wdk-RecordAttributeSectionItem:before,
 body.vpdb-Body .wdk-RecordTableContainer:before,
 body.vpdb-Body .wdk-RecordSubsection:before,
 body.vpdb-Body .wdk-RecordSection:before {
-  height: 103px;
-  margin-top: -103px;
+  height: 68px;
+  margin-top: -68px;
 }
 
 // Offset for header on static content pages {
 body.vpdb-Body .ExternalContentController a[name]::before {
-  height: 139px;
-  margin-top: -139px;
+  height: 68px;
+  margin-top: -68px;
 }
 
 // Fix for RecordSidebar sticky container
 body.vpdb-Body .wdk-RecordSidebarContainer {
-  top: 2em;
+  top: 0;
 }
 
 body.vpdb-Body .vpdb-RootContainer {

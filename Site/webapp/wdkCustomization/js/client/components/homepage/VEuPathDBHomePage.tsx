@@ -24,6 +24,7 @@ import { useCommunitySiteRootUrl } from '@veupathdb/web-common/lib/hooks/staticD
 import { formatReleaseDate } from '@veupathdb/web-common/lib/util/formatters';
 
 import { PreferredOrganismsSummary } from '@veupathdb/preferred-organisms/lib/components/PreferredOrganismsSummary';
+import { usePreferredOrganismsEnabledState } from '@veupathdb/preferred-organisms/lib/hooks/preferredOrganisms';
 
 import { PageDescription } from './PageDescription';
 import { makeVpdbClassNameHelper } from './Utils';
@@ -100,8 +101,14 @@ const VEuPathDBHomePageView: FunctionComponent<Props> = props => {
     props.displayName
   );
 
+  const [ , setPreferredOrganismsState ] = usePreferredOrganismsEnabledState();
+
+  useEffect(() => {
+    setPreferredOrganismsState(false);
+  }, []);
+
   const updateHeaderAndFooter = useCallback(() => {
-    setHeaderExpanded(document.body.scrollTop <= 30 && document.documentElement.scrollTop <= 30);
+    setHeaderExpanded(document.body.scrollTop <= 80 && document.documentElement.scrollTop <= 80);
 
     // Modern adaptation of https://stackoverflow.com/a/22394544
     const scrollTop = document.documentElement?.scrollTop || document.body.scrollTop;
