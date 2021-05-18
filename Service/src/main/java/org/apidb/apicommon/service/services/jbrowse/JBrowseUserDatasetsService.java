@@ -51,11 +51,13 @@ public class JBrowseUserDatasetsService extends UserService {
     catch (ForbiddenException e) {
         tracks = new JSONArray();
     }
-    // if other exception occurs, log and send email, but return empty array so UI is not hosed
+    // if any other exception occurs, log and send email, but return empty array so UI is not hosed
     catch (Exception e) {
         tracks = new JSONArray();
-        LOG.error("Unable to load JBrowse user datasets for user with ID " + getSessionUser().getUserId(), e);
-        Events.trigger(new ErrorEvent(new ServerErrorBundle(e), getErrorContext(ErrorLocation.WDK_SERVICE)));
+        Exception e2 = new WdkModelException("Unable to load JBrowse user datasets for user with ID " +
+            getSessionUser().getUserId() + ", organism " + publicOrganismAbbrev, e);
+        LOG.error("Could not load JBrowse user datasets", e2);
+        Events.trigger(new ErrorEvent(new ServerErrorBundle(e2), getErrorContext(ErrorLocation.WDK_SERVICE)));
     }
 
     return new JSONObject().put("tracks", tracks);
