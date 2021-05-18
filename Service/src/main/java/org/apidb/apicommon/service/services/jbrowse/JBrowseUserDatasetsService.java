@@ -7,6 +7,10 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import org.apache.log4j.Logger;
+import org.gusdb.fgputil.events.Events;
+import org.gusdb.wdk.errors.ErrorContext.ErrorLocation;
+import org.gusdb.wdk.errors.ServerErrorBundle;
+import org.gusdb.wdk.events.ErrorEvent;
 import org.gusdb.wdk.model.WdkModelException;
 import javax.ws.rs.ForbiddenException;
 import org.gusdb.wdk.model.user.dataset.UserDataset;
@@ -44,12 +48,14 @@ public class JBrowseUserDatasetsService extends UserService {
                                                            new JBrowseUserDatasetFormatter(publicOrganismAbbrev));
     }
     // if the user isn't logged in, just return an empty array
-    catch(ForbiddenException e) {
+    catch (ForbiddenException e) {
         tracks = new JSONArray();
     }
-    catch(WdkModelException e) {
+    // if other exception occurs, log and send email, but return empty array so UI is not hosed
+    catch (Exception e) {
         tracks = new JSONArray();
-        LOG.info(e.toString());
+        LOG.error("Unable to load JBrowse user datasets for user with ID " + getSessionUser().getUserId(), e);
+        Events.trigger(new ErrorEvent(new ServerErrorBundle(e), getErrorContext(ErrorLocation.WDK_SERVICE)));
     }
 
     return new JSONObject().put("tracks", tracks);
