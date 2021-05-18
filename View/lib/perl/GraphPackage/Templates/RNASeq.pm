@@ -833,7 +833,7 @@ RADJUST
 1;
 
 # tbruTREU927_RNAi_Horn_*rnaSeq_RSRC
-package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_3f5188c7a8;
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_98fb258539;
 use strict;
 use vars qw( @ISA );
 
