@@ -63,11 +63,17 @@ sub makeListOfLists {
                   ['Chromera', 'CryptoDB', '#777777'], #
                   ['Vitrella', 'CryptoDB', '#777777'], #
 
+                  ['Besnoitia', 'ToxoDB', '#59E817'],
+                  ['Cyclospora', 'ToxoDB', '#59E817'],
+                  ['Cystoisospora', 'ToxoDB', '#59E817'],
                   ['Eimeria', 'ToxoDB', '#59E817',],
                   ['Gregarina', 'ToxoDB', '#59E817',],
+                  ['Hammondia', 'ToxoDB', '#59E817',],
                   ['Neospora', 'ToxoDB', '#59E817',],
+                  ['Sarcocystis', 'ToxoDB', '#59E817',],
                   ['Toxoplasma', 'ToxoDB', '#59E817',],
 
+                  ['Hepatocystis', 'PlasmoDB', '#A74AC7'],
                   ['Plasmodium', 'PlasmoDB', '#A74AC7'], #
 
                   ['Babesia','PiroplasmaDB', '#3BB9FF', ],  #
@@ -79,6 +85,11 @@ sub makeListOfLists {
                   ['Crithidia', 'TriTrypDB', '#F87217', ], #
                   ['Leishmania', 'TriTrypDB', '#F87217', ], #
                   ['Trypanosoma', 'TriTrypDB','#F87217', ], #
+                  ['Blechomonas', 'TriTrypDB','#F87217', ],
+                  ['Bodo', 'TriTrypDB','#F87217', ],
+                  ['Endotrypanum', 'TriTrypDB','#F87217', ],
+                  ['Leptomonas', 'TriTrypDB','#F87217', ],
+                  ['Paratrypanosoma', 'TriTrypDB','#F87217', ],
 
                   ['Anncaliia', 'MicrosporidiaDB', '#461B7E'],
                   ['Edhazardia', 'MicrosporidiaDB', '#461B7E'],
@@ -90,28 +101,53 @@ sub makeListOfLists {
                   ['Vavraia', 'MicrosporidiaDB', '#461B7E'],
                   ['Vittaforma', 'MicrosporidiaDB', '#461B7E'],
 
-                  ['Schistosoma', 'SchistoDB', '#2554C7', ],
-
-		  ['Aspergillus','FungiDB', '#2554C7'],
-		  ['Phytophthora','FungiDB', '#2554C7'],
-		  ['Pythium','FungiDB', '#2554C7'],
-		  ['Aphanomyces','FungiDB', '#2554C7'],
-		  ['Saprolegnia','FungiDB', '#2554C7'],
-		  ['Neurospora','FungiDB', '#2554C7'],
-		  ['Albugo','FungiDB', '#2554C7'],
-		  ['Fusarium','FungiDB', '#2554C7'],
-		  ['Coccidioides','FungiDB', '#2554C7'],
-		  ['Talaromyces','FungiDB', '#2554C7'],
+                  ['Aspergillus','FungiDB', '#2554C7'],
+                  ['Phytophthora','FungiDB', '#2554C7'],
+                  ['Pythium','FungiDB', '#2554C7'],
+                  ['Aphanomyces','FungiDB', '#2554C7'],
+                  ['Saprolegnia','FungiDB', '#2554C7'],
+                  ['Neurospora','FungiDB', '#2554C7'],
+                  ['Albugo','FungiDB', '#2554C7'],
+                  ['Fusarium','FungiDB', '#2554C7'],
+                  ['Coccidioides','FungiDB', '#2554C7'],
+                  ['Talaromyces','FungiDB', '#2554C7'],
+                  ['Mucor','FungiDB', '#2554C7'],
+                  ['Phycomyces','FungiDB', '#2554C7'],
+                  ['Rhizophagus','FungiDB', '#2554C7'],
+                  ['Candida','FungiDB', '#2554C7'],
+                  ['Clavispora','FungiDB', '#2554C7'],
+                  ['Hanseniaspora','FungiDB', '#2554C7'],
+                  ['Saccharomyces','FungiDB', '#2554C7'],
+                  ['Yarrowia','FungiDB', '#2554C7'],
+                  ['Schizosaccharomyces','FungiDB', '#2554C7'],
+                  ['Lomentospora','FungiDB', '#2554C7'],
+                  ['Pyricularia','FungiDB', '#2554C7'],
+                  ['Scedosporium','FungiDB', '#2554C7'],
+                  ['Sordaria','FungiDB', '#2554C7'],
+                  ['Sporothrix','FungiDB', '#2554C7'],
+                  ['Thermothelomyces','FungiDB', '#2554C7'],
+                  ['Trichoderma','FungiDB', '#2554C7'],
+                  ['Cryptococcus','FungiDB', '#2554C7'],
+                  ['Kwoniella','FungiDB', '#2554C7'],
+                  ['Tremella','FungiDB', '#2554C7'],
+                  ['Sporisorium','FungiDB', '#2554C7'],
+                  ['Ustilago','FungiDB', '#2554C7'],
+                  ['Hyaloperonospora','FungiDB', '#2554C7'],
+                  ['Globisporangium','FungiDB', '#2554C7'],
+                  ['Phytopythium','FungiDB', '#2554C7'],
 
                   ['Trichomonas', 'TrichDB', '#78866B'],
 
                   ['Homo', 'HostDB', '#00FFFF'],
                   ['Macaca', 'HostDB', '#00FFFF'],
                   ['Mus', 'HostDB', '#00FFFF'],
+                  ['Bos', 'HostDB', '#00FFFF'],
 
                   ['Lutzomyia', 'VectorBase', '#228B22'],
                   ['Leptotrombidium', 'VectorBase', '#228B22'],
                   ['Cimex', 'VectorBase', '#228B22'],
+                  ['Culicoides', 'VectorBase', '#228B22'],
+                  ['Drosophila', 'VectorBase', '#228B22'],
                   ['Pediculus', 'VectorBase', '#228B22'],
                   ['Culex', 'VectorBase', '#228B22'],
                   ['Glossina', 'VectorBase', '#228B22'],
