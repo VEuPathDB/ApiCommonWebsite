@@ -323,7 +323,7 @@ const useHeaderMenuItems = (
           type: 'reactRoute',
           url: makeStaticPageRoute(`/apollo_help.html`),
           metadata: {
-            exclude: [ VEuPathDB, EuPathDB, HostDB ]
+            exclude: [ HostDB ]
          }
         },
         { 
