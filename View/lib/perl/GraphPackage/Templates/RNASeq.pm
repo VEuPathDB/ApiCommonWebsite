@@ -700,6 +700,114 @@ sub init {
 
 1;
 
+# Fungi - ncraOR74A_Bharath_Circadian_Time_Course_ebi_rnaSeq_RSRC
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_c05fd37f3c;
+
+# @Override
+sub getKeys{
+  my ($self, $profileSetName, $profileType) = @_;
+
+  $profileType = 'percentile' if ($profileType eq 'channel1_percentiles');
+
+  my $metacycle = 0;
+  if (index($profileSetName, "MetaCycle") != -1) {
+    $metacycle = 1;
+  } 
+  my $mainKey =  ["_${profileType}"];
+
+  #trying to ignore dup values, but also pass everything else to same plot part as the main profile to use as annotation
+  if ($metacycle) {
+    if ($profileType eq 'values' || $profileType eq 'percentile') {
+      return([]);
+    } else {
+      $mainKey = ["_values", "_percentile"];
+    }
+  }
+
+  return($mainKey);
+}
+
+sub getProfileColors {
+  my ($self) = @_;
+
+  my @colors =  @{$self->getColors()};
+  return \@colors;
+}
+
+sub isExcludedProfileSet {
+  my ($self, $psName) = @_;
+
+  foreach(@{$self->excludedProfileSetsArray()}) {
+    return 1 if($_ eq $psName);
+  }
+  if ($psName =~ /RNA-sequencing of WT and ΔMSN1 strains of N. crassa over a circadian time course - / || $psName =~ /nonunique/){
+    return 1;
+  }
+  return 0;
+}
+
+sub finalProfileAdjustments {
+  my ($self, $profile) = @_;
+
+  my $rAdjustString = << 'RADJUST';
+  annotation.df <- profile.df.full[!profile.df.full$PROFILE_TYPE %in% c('values', 'channel1_percentiles'),]
+  profile.df.full <- profile.df.full[profile.df.full$PROFILE_TYPE %in% c('values', 'channel1_percentiles'),]
+  profile.df.full$GROUP <- NA
+  profile.df.full$GROUP[grepl('firststrand', profile.df.full$PROFILE_SET) & grepl('wt ', profile.df.full$ELEMENT_NAMES)] <- 'WT FirstStrand'
+  profile.df.full$GROUP[grepl('secondstrand', profile.df.full$PROFILE_SET) & grepl('wt ', profile.df.full$ELEMENT_NAMES)] <- 'WT SecondStrand'
+  profile.df.full$GROUP[grepl('firststrand', profile.df.full$PROFILE_SET) & grepl('MSN1 ', profile.df.full$ELEMENT_NAMES)] <- 'MSN FirstStrand'
+  profile.df.full$GROUP[grepl('secondstrand', profile.df.full$PROFILE_SET) & grepl('MSN1 ', profile.df.full$ELEMENT_NAMES)] <- 'MSN SecondStrand'
+  profile.df.full$LEGEND = profile.df.full$GROUP
+
+
+  if (nrow(annotation.df) > 0) {  
+    annotation.df <- transform(annotation.df, "VALUE"=ifelse(VALUE < .05 & PROFILE_TYPE == "pvalue", "<0.05", VALUE)) 
+    annotation.df$GROUP <- gsub("\\s-(.*)", "", annotation.df$PROFILE_SET)
+    annotation.df$GROUP <- gsub(' MetaCycle', '', annotation.df$GROUP)
+    annotation.df$LEGEND <- annotation.df$GROUP
+    annotation.df$LINETEXT <- paste0(substr(annotation.df$ELEMENT_NAMES, 1,3), " ", annotation.df$PROFILE_TYPE, ": ", annotation.df$VALUE)
+    annotation.df <- group_by(annotation.df, LEGEND)
+    annotation.df <- summarize(annotation.df, LINETEXT = paste(LINETEXT, collapse="||"))
+    annotation.df$LINETEXT <- paste0(annotation.df$LEGEND, "||", annotation.df$LINETEXT)
+    profile.df.full <- merge(profile.df.full, annotation.df, by = "LEGEND")
+  }
+
+  profile.is.numeric <- TRUE
+RADJUST
+
+  my $rPostscript = << 'RPOST';
+  if ("LINETEXT" %in% colnames(profile.df.full) & useTooltips) {  
+    remove_geom <- function(ggplot2_object, geom_type) {
+      layers <- lapply(ggplot2_object$layers, 
+        function(x) {
+          if (class(x$geom)[1] == geom_type) {
+   	    NULL
+    	  } else {
+    	    x
+   	  }
+        }
+      )
+      layers <- layers[!sapply(layers, is.null)]
+      ggplot2_object$layers <- layers
+      ggplot2_object
+    }
+  
+    gp <- remove_geom(gp, "GeomLine")
+ 
+    gp = gp + aes(group=GROUP)
+    gp = gp + geom_tooltip(aes(tooltip=LINETEXT), real.geom=geom_line)
+  }
+RPOST
+
+  $profile->setSmoothLines(0);
+  $profile->setXaxisLabel('Hours');
+  $profile->addAdjustProfile($rAdjustString);
+  $profile->setRPostscript($rPostscript);
+}
+
+1;
+
+
 # TriTryp - tbruTREU927_Rijo_Circadian_Regulation_rnaSeq_RSRC
 package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_77b994d105;
 use Data::Dumper;
@@ -716,7 +824,7 @@ sub getKeys{
   } 
   my $mainKey =  ["_${profileType}"];
 
-  #trying to ignore dup fpkm values, but also pass everything else to same plot part as the main profile to use as annotation
+  #trying to ignore dup values, but also pass everything else to same plot part as the main profile to use as annotation
   if ($metacycle) {
     if ($profileType eq 'values' || $profileType eq 'percentile') {
       return([]);
