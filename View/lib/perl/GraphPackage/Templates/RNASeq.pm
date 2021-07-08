@@ -160,6 +160,19 @@ sub init {
 }
 1;
 
+#fungi - hcapG217B_Rodriguez_Hcap_Trans_ebi_rnaSeq_RSRC
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_39a9b940c0;
+sub init {
+  my $self = shift;
+  $self->SUPER::init(@_);
+
+  $self->setPlotWidth(800);
+
+  return $self;
+}
+
+
+
 #plasmo, unidb
 package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_a966e260dd;
 sub init {
@@ -221,6 +234,41 @@ profile.df.full$NAME <- gsub("_strain", "", profile.df.full$NAME)
 RADJUST
 
   $profile->addAdjustProfile($rAdjustString);
+}
+1;
+
+#plasmo
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_416070059c;
+
+sub finalProfileAdjustments {
+  my ($self, $profile) = @_;
+
+  my $rAdjustString = << 'RADJUST';
+  if ("LEGEND" %in% names(profile.df.full)) {
+    profile.df.full <- profile.df.full[profile.df.full$LEGEND == 'unique',]
+    profile.df.full$LEGEND <- as.character(profile.df.full$LEGEND)
+  }
+  profile.df.full$LEGEND[grepl('3D7', profile.df.full$ELEMENT_NAMES)] <- '3D7'
+  profile.df.full$LEGEND[grepl('HB3', profile.df.full$ELEMENT_NAMES)] <- 'HB3'
+  profile.df.full$LEGEND[grepl('IT', profile.df.full$ELEMENT_NAMES)] <- 'IT'
+  profile.df.full$ELEMENT_NAMES <- gsub(' 3D7 DAFT-seq', '', profile.df.full$ELEMENT_NAMES, fixed=T)
+  profile.df.full$ELEMENT_NAMES <- gsub(' HB3 DAFT-seq', '', profile.df.full$ELEMENT_NAMES, fixed=T)
+  profile.df.full$ELEMENT_NAMES <- gsub(' IT DAFT-seq', '', profile.df.full$ELEMENT_NAMES, fixed=T)
+  profile.df.full$ELEMENT_NAMES_NUMERIC = as.numeric(gsub(" *[a-z-A-Z()+-]+ *", "", profile.df.full$ELEMENT_NAMES, perl=T))
+  profile.df.full$GROUP <- profile.df.full$LEGEND
+RADJUST
+
+  $profile->addAdjustProfile($rAdjustString);
+  $profile->setSmoothLines(0);
+  $profile->setXaxisLabel("Hours");
+}
+
+sub getProfileColors {
+  my ($self) = @_;
+
+  my @colors =  @{$self->getColors()};
+  unshift ( @colors);
+  return \@colors;
 }
 1;
 
@@ -753,10 +801,10 @@ sub finalProfileAdjustments {
   annotation.df <- profile.df.full[!profile.df.full$PROFILE_TYPE %in% c('values', 'channel1_percentiles'),]
   profile.df.full <- profile.df.full[profile.df.full$PROFILE_TYPE %in% c('values', 'channel1_percentiles'),]
   profile.df.full$GROUP <- NA
-  profile.df.full$GROUP[grepl('firststrand', profile.df.full$PROFILE_SET) & grepl('wt ', profile.df.full$ELEMENT_NAMES)] <- 'WT FirstStrand'
-  profile.df.full$GROUP[grepl('secondstrand', profile.df.full$PROFILE_SET) & grepl('wt ', profile.df.full$ELEMENT_NAMES)] <- 'WT SecondStrand'
-  profile.df.full$GROUP[grepl('firststrand', profile.df.full$PROFILE_SET) & grepl('MSN1 ', profile.df.full$ELEMENT_NAMES)] <- 'MSN FirstStrand'
-  profile.df.full$GROUP[grepl('secondstrand', profile.df.full$PROFILE_SET) & grepl('MSN1 ', profile.df.full$ELEMENT_NAMES)] <- 'MSN SecondStrand'
+  profile.df.full$GROUP[grepl('firststrand', profile.df.full$PROFILE_SET) & grepl('wt ', profile.df.full$ELEMENT_NAMES)] <- 'WT sense strand'
+  profile.df.full$GROUP[grepl('secondstrand', profile.df.full$PROFILE_SET) & grepl('wt ', profile.df.full$ELEMENT_NAMES)] <- 'WT antisense strand'
+  profile.df.full$GROUP[grepl('firststrand', profile.df.full$PROFILE_SET) & grepl('MSN1 ', profile.df.full$ELEMENT_NAMES)] <- 'MSN sense strand'
+  profile.df.full$GROUP[grepl('secondstrand', profile.df.full$PROFILE_SET) & grepl('MSN1 ', profile.df.full$ELEMENT_NAMES)] <- 'MSN antisense strand'
   profile.df.full$LEGEND = profile.df.full$GROUP
 
 
@@ -764,6 +812,8 @@ sub finalProfileAdjustments {
     annotation.df <- transform(annotation.df, "VALUE"=ifelse(VALUE < .05 & PROFILE_TYPE == "pvalue", "<0.05", VALUE)) 
     annotation.df$GROUP <- gsub("\\s-(.*)", "", annotation.df$PROFILE_SET)
     annotation.df$GROUP <- gsub(' MetaCycle', '', annotation.df$GROUP)
+    annotation.df$GROUP <- gsub('FirstStrand', 'sense strand', annotation.df$GROUP)
+    annotation.df$GROUP <- gsub('SecondStrand', 'antisense strand', annotation.df$GROUP)
     annotation.df$LEGEND <- annotation.df$GROUP
     annotation.df$LINETEXT <- paste0(substr(annotation.df$ELEMENT_NAMES, 1,3), " ", annotation.df$PROFILE_TYPE, ": ", annotation.df$VALUE)
     annotation.df <- group_by(annotation.df, LEGEND)
