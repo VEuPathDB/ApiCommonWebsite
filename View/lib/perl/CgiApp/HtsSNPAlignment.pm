@@ -86,9 +86,9 @@ sub handleIsolates {
 sub getLocation {
     my ($sid,$start,$end) = @_;
     my $extraText = "";
-    if (($end-$start) > 4999) {
-	$end = $start + 4999;
-	$extraText = "The first 5000 nucleotides were used for alignment.";
+    if (($end-$start) > 9999) {
+	$end = $start + 9999;
+	$extraText = "The first 10,000 nucleotides were used for alignment.";
     }
     my $locationText = " $extraText Genomic location: $sid $start to $end";
     return ($locationText,$end);
