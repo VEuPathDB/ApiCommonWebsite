@@ -34,6 +34,7 @@ modelprop:
   SERVICE_BASE_URL: "/{{ webapp_ctx }}/service"
   WEBSERVICEMIRROR: /var/www/Common/apiSiteFilesMirror/webServices/
   YOUTUBE_URL: https://youtube.com/user/EuPathDB/playlists
+  REDDIT_URL: https://www.reddit.com/r/BRC_users/
   SITE_SEARCH_SERVICE_URL: /site-search
   MULTI_BLAST_SERVICE_URL: /multi-blast
   JBROWSE_WEBPAGE_URL: "/{{ webapp_ctx }}/app/jbrowse"
