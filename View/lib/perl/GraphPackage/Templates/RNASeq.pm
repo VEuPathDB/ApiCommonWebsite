@@ -240,6 +240,32 @@ RADJUST
 #plasmo
 package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_416070059c;
 
+sub getKeys{
+  my ($self, $profileSetName, $profileType) = @_;
+  my ($groupName) = $self->getGroupNameFromProfileSetName($profileSetName);
+
+  my ($strand) = $profileSetName =~ /\[.+ \- (.+) \- .+ \- /;
+  ($strand) = $profileSetName =~ /\[.+ \- (.+) \- / if  (!$strand);
+
+  $groupName = '' if (!$groupName);
+  $profileType = 'percentile' if ($profileType eq 'channel1_percentiles');
+
+  die if (!$strand);
+  $strand = $strand eq 'unstranded'? ''  :  '_' . $self->getStrandDictionary()->{$strand};
+  if ($groupName eq 'Non Unique') {
+    $groupName = '';
+  } 
+  my $mainKey =  "${groupName}_${profileType}${strand}";
+  if ($profileType ne 'values' || $profileSetName =~ / \- nonunique\]/ || $groupName || $strand eq '') {
+      return([$mainKey])
+  }
+  return([$mainKey])
+}
+
+sub getGroupRegex {
+ return qr/DAFT/;
+}
+
 sub finalProfileAdjustments {
   my ($self, $profile) = @_;
 
