@@ -12,6 +12,7 @@ import java.util.Set;
 import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
+import org.apidb.apicommon.model.TranscriptUtil;
 import org.gusdb.fgputil.db.SqlUtils;
 import org.gusdb.fgputil.validation.ValidationBundle;
 import org.gusdb.fgputil.validation.ValidationBundle.ValidationBundleBuilder;
@@ -22,6 +23,7 @@ import org.gusdb.wdk.model.answer.spec.SimpleAnswerSpec;
 import org.gusdb.wdk.model.filter.ListColumnFilterSummary;
 import org.gusdb.wdk.model.filter.StepFilter;
 import org.gusdb.wdk.model.question.Question;
+import org.gusdb.wdk.model.record.PrimaryKeyValue;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -126,8 +128,9 @@ public class MatchedTranscriptFilter extends StepFilter {
   private String getFullSql(AnswerValue answer, String idSql) throws WdkModelException {
     String originalIdSql = answer.getIdsQueryInstance().getSql();
 
-    return "select idsql.* from (" + originalIdSql + ") idsql, (" + idSql + ") filteredIdSql" +
-        " where idSql.source_id = filteredIdSql.source_id and idSql.gene_source_id = filteredIdSql.gene_source_id and idSql.project_id = filteredIdSql.project_id";
+    return "select idsql.* from (" + originalIdSql + ") idsql, (" + idSql + ") filteredIdSql where " +
+      TranscriptUtil.getTranscriptRecordClass(answer.getWdkModel())
+          .getPrimaryKeyDefinition().createJoinClause("idsql", "filteredIdSql");
   }
 
   @Override
