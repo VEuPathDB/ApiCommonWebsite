@@ -141,8 +141,9 @@ public class GeneBooleanFilter extends StepFilter {
   private String getFullSql(AnswerValue answer, String idSql) throws WdkModelException {
     String originalIdSql = answer.getIdsQueryInstance().getSql();
 
-    return "select idsql.* from (" + originalIdSql + ") idsql, (" + idSql + ") filteredIdSql" +
-        " where idSql.source_id = filteredIdSql.source_id and idSql.gene_source_id = filteredIdSql.gene_source_id and idSql.project_id = filteredIdSql.project_id";
+    return "select idsql.* from (" + originalIdSql + ") idsql, (" + idSql + ") filteredIdSql where " +
+        TranscriptUtil.getTranscriptRecordClass(answer.getWdkModel())
+          .getPrimaryKeyDefinition().createJoinClause("idsql", "filteredIdSql");
   }
 
   @Override
