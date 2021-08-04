@@ -1,11 +1,13 @@
 package org.apidb.apicommon.model.filter;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import org.apidb.apicommon.model.TranscriptUtil;
 import org.gusdb.fgputil.FormatUtil;
 import org.gusdb.fgputil.db.runner.SQLRunner;
 import org.gusdb.fgputil.json.JsonIterators;
@@ -23,6 +25,7 @@ import org.gusdb.wdk.model.filter.StepFilter;
 import org.gusdb.wdk.model.query.SqlQuery;
 import org.gusdb.wdk.model.query.param.AbstractEnumParam;
 import org.gusdb.wdk.model.question.Question;
+import org.gusdb.wdk.model.record.PrimaryKeyDefinition;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -110,14 +113,18 @@ public class OrganismFilter extends StepFilter {
    */
   protected String getFullSql(AnswerValue answer, String idSql) throws WdkModelException {
     String originalIdSql = answer.getIdsQueryInstance().getSql();
+    PrimaryKeyDefinition transcriptPk = TranscriptUtil.getTranscriptRecordClass(answer.getWdkModel()).getPrimaryKeyDefinition();
+    PrimaryKeyDefinition genePk = TranscriptUtil.getGeneRecordClass(answer.getWdkModel()).getPrimaryKeyDefinition();
     return  "SELECT idsql.*, ga.organism AS " + ORGANISM +
         " FROM (" + originalIdSql + ") idsql, (" + idSql + ") filteredIdSql, " +
         "  (SELECT * FROM apidbTuning.GeneAttributes) ga " +
-        "   WHERE idSql.source_id = filteredIdSql.source_id " +
-        "    AND idSql.gene_source_id = filteredIdSql.gene_source_id " +
-        "    AND idSql.project_id = filteredIdSql.project_id " +
-        "    AND ga.source_id = idSql.gene_source_id " +
-        "    AND ga.project_id = idSql.project_id";
+        // join ID sql to filtered ID sql on transcript PK columns
+        "   WHERE " + transcriptPk.createJoinClause("idsql", "filteredIdSql") +
+        // join ID sql to gene attributes table on gene ID
+        "   AND ga.source_id = idSql.gene_source_id " +
+        // conditionally ALSO join to gene attributes on project_id if gene record contains it
+        (Arrays.asList(genePk.getColumnRefs()).contains("project_id")
+            ? " AND ga.project_id = idSql.project_id" : "");
   }
 
   @Override
