@@ -12,6 +12,7 @@ import java.util.Set;
 
 import javax.sql.DataSource;
 
+import org.apidb.apicommon.model.TranscriptUtil;
 import org.apidb.apicommon.model.TranscriptBooleanQuery;
 import org.gusdb.fgputil.db.SqlUtils;
 import org.gusdb.fgputil.validation.ValidationBundle;
