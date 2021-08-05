@@ -101,12 +101,13 @@ public class ApiBasketService extends BasketService {
   }
 
   private Collection<PrimaryKeyValue> convertTranscriptPksToGenePks(Collection<PrimaryKeyValue> transcriptPks) {
-    RecordClass geneRecordClass = TranscriptUtil.getGeneRecordClass(getWdkModel());
+    PrimaryKeyDefinition genePkDef = TranscriptUtil.getGeneRecordClass(getWdkModel()).getPrimaryKeyDefinition();
+    boolean genePkHasProjectId = Arrays.asList(genePkDef.getColumnRefs()).contains("project_id");
     return transcriptPks.stream().map(fSwallow(transcriptPk -> new PrimaryKeyValue(
-        geneRecordClass.getPrimaryKeyDefinition(),
+        genePkDef,
         new MapBuilder<String,Object>()
           .put("source_id", transcriptPk.getRawValues().get("gene_source_id"))
-          .put("project_id", transcriptPk.getRawValues().get("project_id"))
+          .putIf(genePkHasProjectId, "project_id", transcriptPk.getRawValues().get("project_id"))
           .toMap()))).collect(Collectors.toSet());
   }
 
