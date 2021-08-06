@@ -3,7 +3,6 @@ package org.apidb.apicommon.model;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.SortedMap;
@@ -12,7 +11,9 @@ import java.util.TreeMap;
 import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
+import org.gusdb.fgputil.MapBuilder;
 import org.gusdb.fgputil.db.SqlUtils;
+import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.record.PrimaryKeyAliasPlugin;
 import org.gusdb.wdk.model.record.RecordNotFoundException;
@@ -56,7 +57,7 @@ public class TranscriptPrimaryKeyAliasPlugin implements PrimaryKeyAliasPlugin {
       for (String transcript : transcriptToGene.keySet()) {
         String gene = transcriptToGene.get(transcript);
         if (!prevGene.equals(gene)) {
-          result.add(getPkMap(gene, transcript, user.getWdkModel().getProjectId()));
+          result.add(getPkMap(gene, transcript, user.getWdkModel()));
           prevGene = gene;
         }
       }
@@ -65,18 +66,18 @@ public class TranscriptPrimaryKeyAliasPlugin implements PrimaryKeyAliasPlugin {
     // otherwise, map the gene to new gene id, and go w/ the input transcript id (if it is old, it will cause user err)
     else {
       String gene = transcriptToGene.get(inputTranscriptId);
-      if (gene != null) result.add(getPkMap(gene, inputTranscriptId, user.getWdkModel().getProjectId()));
+      if (gene != null) result.add(getPkMap(gene, inputTranscriptId, user.getWdkModel()));
     }
 
     return result;
   }
   
-  private Map<String, Object> getPkMap(String gene, String transcript, String projectId) {
-    Map<String, Object> pk = new LinkedHashMap<String, Object>();
-    pk.put("gene_source_id", gene);
-    pk.put("source_id", transcript);
-    pk.put("project_id", projectId);
-    return pk;
+  private Map<String, Object> getPkMap(String gene, String transcript, WdkModel wdkModel) {
+    return new MapBuilder<String, Object>()
+      .put("gene_source_id", gene)
+      .put("source_id", transcript)
+      .putIf(TranscriptUtil.isProjectIdInPks(wdkModel), "project_id", wdkModel.getProjectId())
+      .toMap();
   }
   
   /**
