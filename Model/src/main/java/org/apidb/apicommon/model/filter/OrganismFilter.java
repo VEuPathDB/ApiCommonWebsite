@@ -1,7 +1,6 @@
 package org.apidb.apicommon.model.filter;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -112,9 +111,9 @@ public class OrganismFilter extends StepFilter {
    * @throws WdkModelException
    */
   protected String getFullSql(AnswerValue answer, String idSql) throws WdkModelException {
+    WdkModel wdkModel = answer.getWdkModel();
     String originalIdSql = answer.getIdsQueryInstance().getSql();
-    PrimaryKeyDefinition transcriptPk = TranscriptUtil.getTranscriptRecordClass(answer.getWdkModel()).getPrimaryKeyDefinition();
-    PrimaryKeyDefinition genePk = TranscriptUtil.getGeneRecordClass(answer.getWdkModel()).getPrimaryKeyDefinition();
+    PrimaryKeyDefinition transcriptPk = TranscriptUtil.getTranscriptRecordClass(wdkModel).getPrimaryKeyDefinition();
     return  "SELECT idsql.*, ga.organism AS " + ORGANISM +
         " FROM (" + originalIdSql + ") idsql, (" + idSql + ") filteredIdSql, " +
         "  (SELECT * FROM apidbTuning.GeneAttributes) ga " +
@@ -123,8 +122,7 @@ public class OrganismFilter extends StepFilter {
         // join ID sql to gene attributes table on gene ID
         "   AND ga.source_id = idSql.gene_source_id " +
         // conditionally ALSO join to gene attributes on project_id if gene record contains it
-        (Arrays.asList(genePk.getColumnRefs()).contains("project_id")
-            ? " AND ga.project_id = idSql.project_id" : "");
+        (TranscriptUtil.isProjectIdInPks(wdkModel) ? " AND ga.project_id = idSql.project_id" : "");
   }
 
   @Override

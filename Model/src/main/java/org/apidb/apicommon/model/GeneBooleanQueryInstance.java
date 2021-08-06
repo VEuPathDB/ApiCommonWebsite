@@ -22,10 +22,11 @@ public class GeneBooleanQueryInstance extends BooleanQueryInstance {
    */
   @Override
   protected String[] getPkColumns() {
-    String[] cols = { "gene_source_id", "project_id" };
-    return cols;
+    return TranscriptUtil.isProjectIdInPks(_wdkModel) ?
+      new String[]{ "gene_source_id", "project_id" } :
+      new String[]{ "gene_source_id" };
   }
-  
+
   /**
    * because we are using gene_source_id as primary key, and there are potentially multiple transcripts per gene,
    * we might have non-unique gene rows.  indicate this to the boolean query instance, so it can collapse them as needed

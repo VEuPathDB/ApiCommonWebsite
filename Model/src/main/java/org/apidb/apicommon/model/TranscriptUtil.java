@@ -1,5 +1,7 @@
 package org.apidb.apicommon.model;
 
+import java.util.Arrays;
+
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkRuntimeException;
@@ -61,5 +63,19 @@ public class TranscriptUtil {
   public static RecordClass getTranscriptRecordClass(WdkModel wdkModel) {
     return wdkModel.getRecordClassByFullName(TRANSCRIPT_RECORDCLASS)
       .orElseThrow(() -> new WdkRuntimeException(TRANSCRIPT_RECORDCLASS + " does not exist in this model."));
+  }
+
+  public static boolean isProjectIdInPks(WdkModel wdkModel) {
+    boolean transcriptPkHasProjectId = isProjectInPk(getTranscriptRecordClass(wdkModel));
+    boolean genePkHasProjectId = isProjectInPk(getGeneRecordClass(wdkModel));
+    if (transcriptPkHasProjectId != genePkHasProjectId) {
+      throw new WdkRuntimeException("One of [ gene, transcript ] record class primary key defs has " +
+          "project_id and one does not.  This will break many gene/transcript-specific logic coding.");
+    }
+    return transcriptPkHasProjectId;
+  }
+
+  private static boolean isProjectInPk(RecordClass recordClass) {
+    return Arrays.asList(recordClass.getPrimaryKeyDefinition().getColumnRefs()).contains("project_id");
   }
 }

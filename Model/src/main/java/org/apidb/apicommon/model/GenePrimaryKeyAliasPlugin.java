@@ -12,7 +12,9 @@ import java.util.TreeMap;
 import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
+import org.gusdb.fgputil.MapBuilder;
 import org.gusdb.fgputil.db.SqlUtils;
+import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.record.PrimaryKeyAliasPlugin;
 import org.gusdb.wdk.model.record.RecordNotFoundException;
@@ -44,7 +46,7 @@ public class GenePrimaryKeyAliasPlugin implements PrimaryKeyAliasPlugin {
     List<Map<String, Object>> result = new ArrayList<Map<String, Object>>();
 
     // TEMP.. just add my gene id here
-    result.add(getPkMap(inputGeneId, user.getWdkModel().getProjectId()));
+    result.add(getPkMap(inputGeneId, user.getWdkModel()));
 
     // get the mapped genes, keyed by their transcripts (sorted alphabetically)
     //SortedMap<String, String> transcriptToGene = findCurrentIds(inputGeneId, user.getWdkModel().getAppDb().getDataSource());
@@ -57,7 +59,7 @@ public class GenePrimaryKeyAliasPlugin implements PrimaryKeyAliasPlugin {
       for (String transcript : transcriptToGene.keySet()) {
         String gene = transcriptToGene.get(transcript);
         if (!prevGene.equals(gene)) {
-          result.add(getPkMap(gene, transcript, user.getWdkModel().getProjectId()));
+          result.add(getPkMap(gene, transcript, user.getWdkModel()));
           prevGene = gene;
         }
       }
@@ -72,11 +74,11 @@ public class GenePrimaryKeyAliasPlugin implements PrimaryKeyAliasPlugin {
     return result;
   }
   
-  private Map<String, Object> getPkMap(String gene, String projectId) {
-    Map<String, Object> pk = new LinkedHashMap<String, Object>();
-    pk.put("source_id", gene);
-    pk.put("project_id", projectId);
-    return pk;
+  private Map<String, Object> getPkMap(String gene, WdkModel wdkModel) {
+    return new MapBuilder<String, Object>()
+      .put("source_id", gene)
+      .putIf(TranscriptUtil.isProjectIdInPks(wdkModel), "project_id", wdkModel.getProjectId())
+      .toMap();
   }
   
   /**
