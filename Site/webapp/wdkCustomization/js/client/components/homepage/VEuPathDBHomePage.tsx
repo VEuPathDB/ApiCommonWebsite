@@ -245,6 +245,7 @@ const PlasmoDB = 'PlasmoDB';
 const ToxoDB = 'ToxoDB';
 const TrichDB = 'TrichDB';
 const TriTrypDB = 'TriTrypDB';
+const UniDB = 'UniDB';
 const VectorBase = 'VectorBase';
 const VEuPathDB = 'VEuPathDB';
 const DB = 'DB';
@@ -511,7 +512,7 @@ const useHeaderMenuItems = (
           type: 'reactRoute',
           url: '/workspace/datasets',
           metadata: {
-            exclude: [ EuPathDB ]
+            exclude: [ EuPathDB,UniDB ]
           }
         },
         {   
@@ -581,7 +582,7 @@ const useHeaderMenuItems = (
           type: 'reactRoute',
           url: '/search/file/UserFileUploads?autoRun=1',
           metadata: {
-            exclude: [ EuPathDB ]
+            exclude: [ EuPathDB,UniDB ]
           }
         }
       ]
