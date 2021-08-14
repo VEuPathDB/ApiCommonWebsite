@@ -23,7 +23,6 @@ import org.gusdb.wdk.model.answer.spec.SimpleAnswerSpec;
 import org.gusdb.wdk.model.filter.ListColumnFilterSummary;
 import org.gusdb.wdk.model.filter.StepFilter;
 import org.gusdb.wdk.model.question.Question;
-import org.gusdb.wdk.model.record.PrimaryKeyValue;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
