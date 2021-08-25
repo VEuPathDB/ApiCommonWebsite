@@ -248,6 +248,7 @@ const TriTrypDB = 'TriTrypDB';
 const UniDB = 'UniDB';
 const VectorBase = 'VectorBase';
 const VEuPathDB = 'VEuPathDB';
+const UniDB = 'UniDB';
 const DB = 'DB';
 
 
@@ -317,7 +318,7 @@ const useHeaderMenuItems = (
           type: 'reactRoute',
           url: makeStaticPageRoute(`/apollo_help.html`),
           metadata: {
-            include: [ AmoebaDB,CryptoDB,FungiDB,PlasmoDB,PiroplasmaDB,ToxoDB,VectorBase ]
+            include: [ AmoebaDB, CryptoDB, FungiDB, GiardiaDB, MicrosporidiaDB, PiroplasmaDB, PlasmoDB, ToxoDB, TrichDB, TriTrypDB, VectorBase, EuPathDB, VEuPathDB, UniDB ]
          }
         },
         { 
