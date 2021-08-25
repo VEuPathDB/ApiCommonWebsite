@@ -1,5 +1,6 @@
 package org.apidb.apicommon.controller;
 
+import org.apidb.apicommon.controller.SiteSpecificTmpFileCache.CacheNames;
 import org.apidb.apicommon.model.DataPlotterQueries;
 import org.apidb.apicommon.model.JBrowseQueries;
 import org.eupathdb.common.controller.EuPathSiteSetup;
@@ -17,6 +18,9 @@ public class ApiSiteInitializer {
     ApiSiteSetup.initialize(wdkModel);
     JBrowseQueries.preload();
     DataPlotterQueries.preload();
+
+    // site specific cache clears
+    SiteSpecificTmpFileCache.clear(wdkModel, CacheNames.ALL_RECORDS_EXPANDED.SUFFIX);
   }
 
   public static void shutDown(ApplicationContext context) {
