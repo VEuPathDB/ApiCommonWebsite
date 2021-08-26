@@ -245,7 +245,6 @@ const PlasmoDB = 'PlasmoDB';
 const ToxoDB = 'ToxoDB';
 const TrichDB = 'TrichDB';
 const TriTrypDB = 'TriTrypDB';
-const UniDB = 'UniDB';
 const VectorBase = 'VectorBase';
 const VEuPathDB = 'VEuPathDB';
 const UniDB = 'UniDB';
