@@ -51,7 +51,7 @@ public class ReporterStreamingTest {
 
       log("Creating answer service");
       String recordClassUrlSegment = question.getRecordClass().getUrlSegment();
-      AnswerService answerService = new AnswerService(recordClassUrlSegment, question.getName());
+      AnswerService answerService = new AnswerService(recordClassUrlSegment, question.getName(), false);
       answerService.testSetup(wdkModel);
 
       Path tmpFileDir = IoUtil.createOpenPermsTempDir("wdk_stream_test_" + new Date().getTime());
