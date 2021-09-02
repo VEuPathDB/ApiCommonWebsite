@@ -288,10 +288,10 @@
   resolved "https://registry.yarnpkg.com/@types/uuid/-/uuid-8.3.0.tgz#215c231dff736d5ba92410e6d602050cce7e273f"
   integrity sha512-eQ9qFW/fhfGJF8WKHGEHZEyVWfZxrT+6CLIJGBcZPfxUh/+BnEj+UCGYMlr9qZuX/2AltsvwrGqp0LhEW8D0zQ==
 
-"@veupathdb/multi-blast@^0.2.0-alpha.3":
-  version "0.2.0-alpha.3"
-  resolved "https://registry.yarnpkg.com/@veupathdb/multi-blast/-/multi-blast-0.2.0-alpha.3.tgz#78e9df91ae4d9a6f1b48f84bcb3d775347b490e3"
-  integrity sha512-mJ1mUbVHevjyRDuPflUQ8ouJGzNIttYfQuj4swIo+6vgwdr8T35iAp0d2vOSb9skWaGvmz2h1Uqpv84vi8Q8uQ==
+"@veupathdb/multi-blast@^0.1.4":
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/@veupathdb/multi-blast/-/multi-blast-0.1.4.tgz#afab415847b7dbdee1137ca55fd4dab96e93814a"
+  integrity sha512-z+pUC8iCTIA1G0p8A11A5rAxTX5SoyX5ngDXw6k0z114ZALGCmT0rrT+9RHfJTLQUgq73njeuewuYbNK+XrUVg==
   dependencies:
     "@types/react-redux" "^7.1.5"
     "@veupathdb/preferred-organisms" "^0.1.1-beta.8"
