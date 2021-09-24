@@ -557,6 +557,12 @@ const useHeaderMenuItems = (
           type: 'reactRoute',
           url: '/search/dataset/AllDatasets/result'
         },
+        { 
+              key: 'datasets-in-progress2',
+              display: 'Data sets we are working on',
+              type: 'reactRoute',
+              url: makeStaticPageRoute('/dataInprogress.html')
+        },
         {
           key: 'data-files-eupathdb',
           display: 'Download data files',
@@ -768,7 +774,7 @@ const useHeaderMenuItems = (
             },
             { 
               key: 'datasets-in-progress',
-              display: 'Datasets we are working on',
+              display: 'Data Sets we are working on',
               type: 'reactRoute',
               url: makeStaticPageRoute('/dataInprogress.html')
             },
