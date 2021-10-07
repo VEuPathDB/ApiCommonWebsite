@@ -39,6 +39,8 @@ sub init {
   if ($needXLab) {
     $scatter->setXaxisLabel("Age");
   }
+  $scatter->setYaxisLabel("Relative antigenicity");
+  $scatter->setPlotTitle("");
 
   $self->setGraphObjects($scatter);
 

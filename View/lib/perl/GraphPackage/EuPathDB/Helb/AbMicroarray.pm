@@ -41,6 +41,8 @@ sub init {
   if ($needXLab) {
     $scatter->setXaxisLabel("Malaria incidence in the previous 365 days, log transformed");
   }
+  $scatter->setYaxisLabel("Relative antigenicity");
+  $scatter->setPlotTitle("");
 
   $self->setGraphObjects($scatter);
 
