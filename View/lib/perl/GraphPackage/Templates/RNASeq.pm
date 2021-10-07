@@ -149,6 +149,34 @@ RADJUST
 
 1;
 
+#vb - gmorYale_SRP093552_ebi_rnaSeq_RSRC
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_2be66219b5;
+
+sub finalProfileAdjustments {
+  my ($self, $profile) = @_;
+
+  my $rAdjustString = << 'RADJUST';
+profile.df.full$NAME <- gsub("Proboscis_from__male_G__m__morsitans_control", "Control", profile.df.full$NAME)
+profile.df.full$NAME <- gsub("Proboscis_from__male_G__m__morsitans_infected_with_Trypanosome_congolense", "Infected", profile.df.full$NAME)
+
+RADJUST
+
+  $profile->addAdjustProfile($rAdjustString);
+}
+1;
+
+#vb - 
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_1cedd4bd46;
+sub init{
+  my $self = shift;
+  $self->SUPER::init(@_);
+
+  $self->setPlotWidth(800);
+
+  return $self;
+}
+1;
+
 package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_7ce8a791f1;
 sub init {
   my $self = shift;
