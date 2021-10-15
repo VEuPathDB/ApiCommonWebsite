@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.sql.DataSource;
+import java.sql.Types;
 
 import org.apache.log4j.Logger;
 import org.gusdb.fgputil.db.runner.BasicResultSetHandler;
@@ -37,6 +38,9 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
   private static final String PATHWAY_BASE_URL_PROP_KEY = "pathwayPageUrl";
   private static final String PATHWAYS_SRC_PARAM_KEY = "pathwaysSources";
+  private static final String EXACT_MATCH_PARAM_KEY = "exact_match_only";
+  private static final String EXCLUDE_INCOMPLETE_PARAM_KEY = "exclude_incomplete_ec";
+
 
   private static final String TABBED_RESULT_FILE_PATH = "pathwaysEnrichmentResult.tsv";
   private static final String HIDDEN_TABBED_RESULT_FILE_PATH = "hiddenPathwaysEnrichmentResult.tsv";
@@ -85,17 +89,32 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   private void validateFilteredPathways(ValidationBundleBuilder errors)
         throws WdkModelException {
     String countColumn = "CNT";
-    String idSql = EnrichmentPluginUtil.getOrgSpecificIdSql(getAnswerValue(), getFormParams());
+
+    Map<String, String> formParams = getFormParams();
+    if (!formParams.containsKey(EXCLUDE_INCOMPLETE_PARAM_KEY)) {
+      errors.addError(EXCLUDE_INCOMPLETE_PARAM_KEY, "Missing required parameter.");
+    }
+    if (!formParams.containsKey(EXACT_MATCH_PARAM_KEY)) {
+      errors.addError(EXACT_MATCH_PARAM_KEY, "Missing required parameter.");
+    }
+
+    String idSql = EnrichmentPluginUtil.getOrgSpecificIdSql(getAnswerValue(), formParams);
     String sql =
         "SELECT count (distinct tp.pathway_source_id) as " + countColumn + NL +
         "FROM   apidbtuning.transcriptPathway tp, " + NL +
         "(" + idSql + ") r" + NL +
-        "WhERe  tp.gene_source_id = r.source_id";
+        "WHERE  tp.gene_source_id = r.source_id" + NL +
+        "AND tp.complete_ec >= ?" + NL +
+        "AND tp.exact_match >= ?";
 
     LOG.info(sql);
     DataSource ds = getWdkModel().getAppDb().getDataSource();
     BasicResultSetHandler handler = new BasicResultSetHandler();
-    new SQLRunner(ds, sql, "count-filtered-pathways").executeQuery(handler);
+    new SQLRunner(ds, sql, "count-filtered-pathways").executeQuery(
+      new Object[]{ formParams.get(EXCLUDE_INCOMPLETE_PARAM_KEY), formParams.get(EXACT_MATCH_PARAM_KEY) },
+      new Integer[]{ Types.BINARY, Types.BINARY },
+      handler
+    );
 
     if (handler.getNumRows() == 0) throw new WdkModelException("No result found in count query: " + sql);
 
@@ -103,7 +122,7 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
     BigDecimal count = (BigDecimal)result.get(countColumn);
 
-    if (count.intValue() < 1) {
+    if (count.intValue() > 1) {
       errors.addError("Your result has no genes with Pathways that satisfy the parameter choices you have made.  Please try adjusting the parameters.");
     }
   }
