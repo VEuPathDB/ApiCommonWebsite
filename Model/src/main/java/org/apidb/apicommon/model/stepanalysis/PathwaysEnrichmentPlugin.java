@@ -88,6 +88,7 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
   private void validateFilteredPathways(ValidationBundleBuilder errors)
         throws WdkModelException {
+    // This method never seems to get called...
     LOG.info("SEE COMMENT IN redmine 41831");
     String countColumn = "CNT";
 
@@ -99,32 +100,38 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
       errors.addError(EXACT_MATCH_PARAM_KEY, "Missing required parameter.");
     }
 
-    String idSql = EnrichmentPluginUtil.getOrgSpecificIdSql(getAnswerValue(), formParams);
-    String sql =
-        "SELECT count (distinct tp.pathway_source_id) as " + countColumn + NL +
-        "FROM   apidbtuning.transcriptPathway tp, " + NL +
-        "(" + idSql + ") r" + NL +
-        "WHERE  tp.gene_source_id = r.source_id" + NL +
-        "AND tp.complete_ec >= ?" + NL +
-        "AND tp.exact_match >= ?";
+    if (!errors.hasErrors()) {
+      String idSql = EnrichmentPluginUtil.getOrgSpecificIdSql(getAnswerValue(), formParams);
+      String sql =
+	  "SELECT count (distinct tp.pathway_source_id) as " + countColumn + NL +
+	  "FROM   apidbtuning.transcriptPathway tp, " + NL +
+	  "(" + idSql + ") r" + NL +
+	  "WHERE  tp.gene_source_id = r.source_id" + NL +
+	  "AND tp.complete_ec >= ?" + NL +
+	  "AND tp.exact_match >= ?";
+      
+      LOG.info(sql);
 
-    LOG.info(sql);
-    DataSource ds = getWdkModel().getAppDb().getDataSource();
-    BasicResultSetHandler handler = new BasicResultSetHandler();
-    new SQLRunner(ds, sql, "count-filtered-pathways").executeQuery(
-      new Object[]{ formParams.get(EXCLUDE_INCOMPLETE_PARAM_KEY), formParams.get(EXACT_MATCH_PARAM_KEY) },
-      new Integer[]{ Types.BINARY, Types.BINARY },
-      handler
-    );
+      int excludeIncomplete = formParams.get(EXCLUDE_INCOMPLETE_PARAM_KEY).matches("(?i)yes") ? 1 : 0;
+      int exactMatch = formParams.get(EXACT_MATCH_PARAM_KEY).matches("(?i)yes") ? 1 : 0;
 
-    if (handler.getNumRows() == 0) throw new WdkModelException("No result found in count query: " + sql);
+      DataSource ds = getWdkModel().getAppDb().getDataSource();
+      BasicResultSetHandler handler = new BasicResultSetHandler();
+      new SQLRunner(ds, sql, "count-filtered-pathways").executeQuery(
+        new Object[]{ excludeIncomplete, exactMatch },
+	new Integer[]{ Types.INTEGER, Types.INTEGER },
+	handler
+      );
 
-    Map<String, Object> result = handler.getResults().get(0);
+      if (handler.getNumRows() == 0) throw new WdkModelException("No result found in count query: " + sql);
 
-    BigDecimal count = (BigDecimal)result.get(countColumn);
+      Map<String, Object> result = handler.getResults().get(0);
 
-    if (count.intValue() < 1) {
-      errors.addError("Your result has no genes with Pathways that satisfy the parameter choices you have made.  Please try adjusting the parameters.");
+      BigDecimal count = (BigDecimal)result.get(countColumn);
+
+      if (count.intValue() < 1) {
+	errors.addError("Your result has no genes with Pathways that satisfy the parameter choices you have made.  Please try adjusting the parameters.");
+      }
     }
   }
 
@@ -177,16 +184,11 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     // check for non-zero count of genes with Pathways
     String sql = "SELECT count (distinct gp.gene_source_id) as " + countColumn + NL +
       "from  apidbtuning.transcriptPathway gp, (" + idSql + ") r" + NL +
-      "WHERE  gp.gene_source_id = r.gene_source_id" + NL +
-        "AND gp.complete_ec >= ?" + NL +
-        "AND gp.exact_match >= ?";
+	"WHERE  gp.gene_source_id = r.gene_source_id";
+    // do not make the complete_ec and exact_match checks here
+    // because we don't know yet what the user will choose for those parameters
 
-    Map<String, String> formParams = getFormParams();
-    new SQLRunner(ds, sql, "count-pathway-genes").executeQuery(
-      new Object[]{ formParams.get(EXCLUDE_INCOMPLETE_PARAM_KEY), formParams.get(EXACT_MATCH_PARAM_KEY) },
-      new Integer[]{ Types.BINARY, Types.BINARY },
-      handler
-    );
+    new SQLRunner(ds, sql, "count-pathway-genes").executeQuery(handler);
 
     if (handler.getNumRows() == 0) throw new WdkModelException("No result found in count query: " + sql);
 
