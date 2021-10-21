@@ -34,6 +34,8 @@ SELECT count (distinct tp.gene_source_id)
          from    apidbtuning.transcriptPathway tp, ApidbTuning.GeneAttributes ga
         where  ga.taxon_id = $taxonId
         AND    tp.gene_source_id = ga.source_id
+        AND tp.complete_ec >= $self->{excludeIncomplete}
+        AND tp.exact_match >= $self->{exactMatchOnly}
 ";
 
   my $stmt = $self->runSql($dbh, $sql);
@@ -50,6 +52,8 @@ SELECT count (distinct tp.gene_source_id)
          from  apidbtuning.transcriptPathway tp,
                ($geneResultSql) r
         where  tp.gene_source_id = r.source_id
+        AND tp.complete_ec >= $self->{excludeIncomplete}
+        AND tp.exact_match >= $self->{exactMatchOnly}
 ";
 
   my $stmt = $self->runSql($dbh, $sql);
@@ -60,11 +64,15 @@ SELECT count (distinct tp.gene_source_id)
 sub getAnnotatedGenesListResult {
   my ($self, $dbh, $geneResultSql) = @_;
 
+  # note: prior to introducing the exact_match and complete_ec params to the UI
+  # the query below already had `tp.exact_match = 1`
+  # so we are currently retaining this (but should we?)
   my $sql = "
 SELECT distinct tp.gene_source_id
          from  apidbtuning.transcriptPathway tp,
                ($geneResultSql) r
         where  tp.gene_source_id = r.source_id
+          AND tp.complete_ec >= $self->{excludeIncomplete}
           and tp.exact_match = 1
           and tp.pathway_source in ($self->{source})
 ";
@@ -139,6 +147,8 @@ from
         , apidbtuning.pathwayreactions pr
         where  ga.taxon_id = $taxonId
         and   tp.gene_source_id = ga.source_id
+        AND tp.complete_ec >= $self->{excludeIncomplete}
+        AND tp.exact_match >= $self->{exactMatchOnly}
         and pc.pathway_id = tp.pathway_id
         and pr.reaction_id = pc.reaction_id
         and pr.ext_db_name = pc.ext_db_name
@@ -153,6 +163,8 @@ from
         , apidbtuning.pathwaycompounds pc
         , apidbtuning.pathwayreactions pr
         where  tp.gene_source_id = r.source_id
+        AND tp.complete_ec >= $self->{excludeIncomplete}
+        AND tp.exact_match >= $self->{exactMatchOnly}
         and tp.pathway_source in ($self->{source})
         and pc.pathway_id = tp.pathway_id
         and pr.reaction_id = pc.reaction_id
@@ -167,6 +179,8 @@ from
         , apidbtuning.pathwaycompounds pc
         , apidbtuning.pathwayreactions pr
         where  tp.gene_source_id = r.source_id
+        AND tp.complete_ec >= $self->{excludeIncomplete}
+        AND tp.exact_match >= $self->{exactMatchOnly}
         and tp.pathway_source in ($self->{source})
         and pc.pathway_id = tp.pathway_id
         and pr.reaction_id = pc.reaction_id
