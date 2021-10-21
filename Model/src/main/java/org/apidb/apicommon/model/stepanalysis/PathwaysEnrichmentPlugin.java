@@ -88,6 +88,7 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
   private void validateFilteredPathways(ValidationBundleBuilder errors)
         throws WdkModelException {
+    LOG.info("SEE COMMENT IN redmine 41831");
     String countColumn = "CNT";
 
     Map<String, String> formParams = getFormParams();
@@ -122,7 +123,7 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
     BigDecimal count = (BigDecimal)result.get(countColumn);
 
-    if (count.intValue() > 1) {
+    if (count.intValue() < 1) {
       errors.addError("Your result has no genes with Pathways that satisfy the parameter choices you have made.  Please try adjusting the parameters.");
     }
   }
@@ -133,6 +134,8 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     WdkModel wdkModel = answerValue.getAnswerSpec().getQuestion().getWdkModel();
     Map<String,String> params = getFormParams();
 
+    LOG.info(params.toString());
+
     String idSql = EnrichmentPluginUtil.getOrgSpecificIdSql(answerValue, params);
     String pValueCutoff = EnrichmentPluginUtil.getPvalueCutoff(params);
     String sourcesStr = EnrichmentPluginUtil.getArrayParamValueAsString(
@@ -142,11 +145,19 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     Path hiddenResultFilePath = Paths.get(getStorageDirectory().toString(), HIDDEN_TABBED_RESULT_FILE_PATH);
     Path imageResultFilePath = Paths.get(getStorageDirectory().toString(), IMAGE_RESULT_FILE_PATH);
 
+    String exactMatchOnly = EnrichmentPluginUtil.getArrayParamValueAsString(
+        EXACT_MATCH_PARAM_KEY, params, null);
+    String excludeIncomplete = EnrichmentPluginUtil.getArrayParamValueAsString(
+        EXCLUDE_INCOMPLETE_PARAM_KEY, params, null);
+
     String qualifiedExe = Paths.get(GusHome.getGusHome(), "bin", "apiPathwaysEnrichment").toString();
     LOG.info(qualifiedExe + " " + resultFilePath.toString() + " " + idSql + " " +
-        wdkModel.getProjectId() + " " + pValueCutoff + imageResultFilePath.toString() + hiddenResultFilePath.toString());
+        wdkModel.getProjectId() + " " + pValueCutoff + " " + sourcesStr + " " +
+        imageResultFilePath.toString() + " " + hiddenResultFilePath.toString() + " " +
+	     exactMatchOnly + " " + excludeIncomplete);
     return new String[]{ qualifiedExe, resultFilePath.toString(), idSql, wdkModel.getProjectId(), pValueCutoff,
-			 sourcesStr, imageResultFilePath.toString(), hiddenResultFilePath.toString()};
+			 sourcesStr, imageResultFilePath.toString(), hiddenResultFilePath.toString(),
+                         exactMatchOnly, excludeIncomplete };
   }
 
   /**
@@ -166,9 +177,16 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     // check for non-zero count of genes with Pathways
     String sql = "SELECT count (distinct gp.gene_source_id) as " + countColumn + NL +
       "from  apidbtuning.transcriptPathway gp, (" + idSql + ") r" + NL +
-      "WHERE  gp.gene_source_id = r.gene_source_id";
+      "WHERE  gp.gene_source_id = r.gene_source_id" + NL +
+        "AND gp.complete_ec >= ?" + NL +
+        "AND gp.exact_match >= ?";
 
-    new SQLRunner(ds, sql, "count-pathway-genes").executeQuery(handler);
+    Map<String, String> formParams = getFormParams();
+    new SQLRunner(ds, sql, "count-pathway-genes").executeQuery(
+      new Object[]{ formParams.get(EXCLUDE_INCOMPLETE_PARAM_KEY), formParams.get(EXACT_MATCH_PARAM_KEY) },
+      new Integer[]{ Types.BINARY, Types.BINARY },
+      handler
+    );
 
     if (handler.getNumRows() == 0) throw new WdkModelException("No result found in count query: " + sql);
 

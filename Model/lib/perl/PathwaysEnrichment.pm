@@ -15,12 +15,14 @@ sub new {
 }
 
 sub run {
-  my ($self, $outputFile, $geneResultSql, $modelName, $pValueCutoff, $source, $wordcloudFile, $secondOutputFile) = @_;
+  my ($self, $outputFile, $geneResultSql, $modelName, $pValueCutoff, $source, $wordcloudFile, $secondOutputFile, $exactMatchOnly, $excludeIncomplete) = @_;
 
   die "Second argument must be an SQL select statement that returns the Gene result\n" unless $geneResultSql =~ m/select/i;
   die "Fourth argument must be a p-value between 0 and 1\n" unless $pValueCutoff > 0 && $pValueCutoff <= 1;
 
-  $self->{source} = $source;
+  $self->{source} = $source; # not sure if this is taint-free
+  $self->{exactMatchOnly} = $exactMatchOnly =~ /yes/i ? 1 : 0; # taint-free
+  $self->{excludeIncomplete} = $excludeIncomplete =~ /yes/i ? 1 : 0; # taint-free
   $self->SUPER::run($outputFile, $geneResultSql, $modelName, $pValueCutoff, $secondOutputFile);
 }
 
