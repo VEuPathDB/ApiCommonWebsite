@@ -66,14 +66,14 @@ sub getAnnotatedGenesListResult {
 
   # note: prior to introducing the exact_match and complete_ec params to the UI
   # the query below already had `tp.exact_match = 1`
-  # so we are currently retaining this (but should we?)
+  # THIS HAS BEEN REPLACED WITH `tp.exact_match >= $self->{exactMatchOnly}`
   my $sql = "
 SELECT distinct tp.gene_source_id
          from  apidbtuning.transcriptPathway tp,
                ($geneResultSql) r
         where  tp.gene_source_id = r.source_id
           AND tp.complete_ec >= $self->{excludeIncomplete}
-          and tp.exact_match = 1
+          and tp.exact_match >= $self->{exactMatchOnly}
           and tp.pathway_source in ($self->{source})
 ";
 
