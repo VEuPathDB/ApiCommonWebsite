@@ -9,7 +9,7 @@ my $pathwaysEnrich = ApiCommonWebsite::Model::PathwaysEnrichment->new();
 print STDERR join("| ", @ARGV);
 my $length = scalar(@ARGV);
 print STDERR "argument length is $length\n";
-$pathwaysEnrich->usage() unless scalar(@ARGV) == 7;
+$pathwaysEnrich->usage() unless scalar(@ARGV) == 9;
 
 
 $pathwaysEnrich->run(@ARGV);

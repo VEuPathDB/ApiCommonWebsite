@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.sql.DataSource;
+import java.sql.Types;
 
 import org.apache.log4j.Logger;
 import org.gusdb.fgputil.db.runner.BasicResultSetHandler;
@@ -37,6 +38,9 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
   private static final String PATHWAY_BASE_URL_PROP_KEY = "pathwayPageUrl";
   private static final String PATHWAYS_SRC_PARAM_KEY = "pathwaysSources";
+  private static final String EXACT_MATCH_PARAM_KEY = "exact_match_only";
+  private static final String EXCLUDE_INCOMPLETE_PARAM_KEY = "exclude_incomplete_ec";
+
 
   private static final String TABBED_RESULT_FILE_PATH = "pathwaysEnrichmentResult.tsv";
   private static final String HIDDEN_TABBED_RESULT_FILE_PATH = "hiddenPathwaysEnrichmentResult.tsv";
@@ -84,27 +88,50 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
   private void validateFilteredPathways(ValidationBundleBuilder errors)
         throws WdkModelException {
+    // This method never seems to get called...
+    LOG.info("See comments in redmines 41831 and 46472");
     String countColumn = "CNT";
-    String idSql = EnrichmentPluginUtil.getOrgSpecificIdSql(getAnswerValue(), getFormParams());
-    String sql =
-        "SELECT count (distinct tp.pathway_source_id) as " + countColumn + NL +
-        "FROM   apidbtuning.transcriptPathway tp, " + NL +
-        "(" + idSql + ") r" + NL +
-        "WhERe  tp.gene_source_id = r.source_id";
 
-    LOG.info(sql);
-    DataSource ds = getWdkModel().getAppDb().getDataSource();
-    BasicResultSetHandler handler = new BasicResultSetHandler();
-    new SQLRunner(ds, sql, "count-filtered-pathways").executeQuery(handler);
+    Map<String, String> formParams = getFormParams();
+    if (!formParams.containsKey(EXCLUDE_INCOMPLETE_PARAM_KEY)) {
+      errors.addError(EXCLUDE_INCOMPLETE_PARAM_KEY, "Missing required parameter.");
+    }
+    if (!formParams.containsKey(EXACT_MATCH_PARAM_KEY)) {
+      errors.addError(EXACT_MATCH_PARAM_KEY, "Missing required parameter.");
+    }
 
-    if (handler.getNumRows() == 0) throw new WdkModelException("No result found in count query: " + sql);
+    if (!errors.hasErrors()) {
+      String idSql = EnrichmentPluginUtil.getOrgSpecificIdSql(getAnswerValue(), formParams);
+      String sql =
+	  "SELECT count (distinct tp.pathway_source_id) as " + countColumn + NL +
+	  "FROM   apidbtuning.transcriptPathway tp, " + NL +
+	  "(" + idSql + ") r" + NL +
+	  "WHERE  tp.gene_source_id = r.source_id" + NL +
+	  "AND tp.complete_ec >= ?" + NL +
+	  "AND tp.exact_match >= ?";
+      
+      LOG.info(sql);
 
-    Map<String, Object> result = handler.getResults().get(0);
+      int excludeIncomplete = formParams.get(EXCLUDE_INCOMPLETE_PARAM_KEY).matches("(?i)yes") ? 1 : 0;
+      int exactMatch = formParams.get(EXACT_MATCH_PARAM_KEY).matches("(?i)yes") ? 1 : 0;
 
-    BigDecimal count = (BigDecimal)result.get(countColumn);
+      DataSource ds = getWdkModel().getAppDb().getDataSource();
+      BasicResultSetHandler handler = new BasicResultSetHandler();
+      new SQLRunner(ds, sql, "count-filtered-pathways").executeQuery(
+        new Object[]{ excludeIncomplete, exactMatch },
+	new Integer[]{ Types.INTEGER, Types.INTEGER },
+	handler
+      );
 
-    if (count.intValue() < 1) {
-      errors.addError("Your result has no genes with Pathways that satisfy the parameter choices you have made.  Please try adjusting the parameters.");
+      if (handler.getNumRows() == 0) throw new WdkModelException("No result found in count query: " + sql);
+
+      Map<String, Object> result = handler.getResults().get(0);
+
+      BigDecimal count = (BigDecimal)result.get(countColumn);
+
+      if (count.intValue() < 1) {
+	errors.addError("Your result has no genes with Pathways that satisfy the parameter choices you have made.  Please try adjusting the parameters.");
+      }
     }
   }
 
@@ -113,6 +140,8 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
     WdkModel wdkModel = answerValue.getAnswerSpec().getQuestion().getWdkModel();
     Map<String,String> params = getFormParams();
+
+    LOG.info(params.toString());
 
     String idSql = EnrichmentPluginUtil.getOrgSpecificIdSql(answerValue, params);
     String pValueCutoff = EnrichmentPluginUtil.getPvalueCutoff(params);
@@ -123,11 +152,19 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     Path hiddenResultFilePath = Paths.get(getStorageDirectory().toString(), HIDDEN_TABBED_RESULT_FILE_PATH);
     Path imageResultFilePath = Paths.get(getStorageDirectory().toString(), IMAGE_RESULT_FILE_PATH);
 
+    String exactMatchOnly = EnrichmentPluginUtil.getArrayParamValueAsString(
+        EXACT_MATCH_PARAM_KEY, params, null);
+    String excludeIncomplete = EnrichmentPluginUtil.getArrayParamValueAsString(
+        EXCLUDE_INCOMPLETE_PARAM_KEY, params, null);
+
     String qualifiedExe = Paths.get(GusHome.getGusHome(), "bin", "apiPathwaysEnrichment").toString();
     LOG.info(qualifiedExe + " " + resultFilePath.toString() + " " + idSql + " " +
-        wdkModel.getProjectId() + " " + pValueCutoff + imageResultFilePath.toString() + hiddenResultFilePath.toString());
+        wdkModel.getProjectId() + " " + pValueCutoff + " " + sourcesStr + " " +
+        imageResultFilePath.toString() + " " + hiddenResultFilePath.toString() + " " +
+	     exactMatchOnly + " " + excludeIncomplete);
     return new String[]{ qualifiedExe, resultFilePath.toString(), idSql, wdkModel.getProjectId(), pValueCutoff,
-			 sourcesStr, imageResultFilePath.toString(), hiddenResultFilePath.toString()};
+			 sourcesStr, imageResultFilePath.toString(), hiddenResultFilePath.toString(),
+                         exactMatchOnly, excludeIncomplete };
   }
 
   /**
@@ -147,7 +184,9 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     // check for non-zero count of genes with Pathways
     String sql = "SELECT count (distinct gp.gene_source_id) as " + countColumn + NL +
       "from  apidbtuning.transcriptPathway gp, (" + idSql + ") r" + NL +
-      "WHERE  gp.gene_source_id = r.gene_source_id";
+	"WHERE  gp.gene_source_id = r.gene_source_id";
+    // do not make the complete_ec and exact_match checks here
+    // because we don't know yet what the user will choose for those parameters
 
     new SQLRunner(ds, sql, "count-pathway-genes").executeQuery(handler);
 
