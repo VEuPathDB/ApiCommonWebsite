@@ -89,7 +89,7 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   private void validateFilteredPathways(ValidationBundleBuilder errors)
         throws WdkModelException {
     // This method never seems to get called...
-    LOG.info("SEE COMMENT IN redmine 41831");
+    LOG.info("See comments in redmines 41831 and 46472");
     String countColumn = "CNT";
 
     Map<String, String> formParams = getFormParams();
