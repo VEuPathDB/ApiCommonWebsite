@@ -50,7 +50,7 @@ public class SingleGeneReporter extends AbstractReporter {
 
   private Format _format;
 
-  protected SingleGeneReporter(AnswerValue answerValue) {
+  public SingleGeneReporter(AnswerValue answerValue) {
     super(answerValue);
   }
 
