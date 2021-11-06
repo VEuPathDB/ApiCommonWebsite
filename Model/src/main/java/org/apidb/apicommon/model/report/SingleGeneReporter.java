@@ -1,5 +1,7 @@
 package org.apidb.apicommon.model.report;
 
+import static org.apidb.apicommon.model.report.singlegeneformats.Formats.FORMAT_MAP;
+
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
@@ -7,6 +9,8 @@ import java.util.Map;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
+import org.apidb.apicommon.model.TranscriptUtil;
+import org.gusdb.fgputil.FormatUtil;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.answer.AnswerValue;
@@ -22,30 +26,14 @@ import org.gusdb.wdk.model.report.ReporterConfigException;
 import org.gusdb.wdk.model.report.ReporterConfigException.ErrorType;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.apidb.apicommon.model.TranscriptUtil;
-import org.apidb.apicommon.model.report.singlegeneformats.ApolloGoTermFormat;
 
 public class SingleGeneReporter extends AbstractReporter {
 
   public interface Format {
+    //String getFormatName();
     List<String> getRequiredAttributeNames();
     List<String> getRequiredTableNames();
     JSONObject writeJson(RecordInstance recordInstance) throws WdkModelException, WdkUserException;
-  }
-
-  private static enum FormatType {
-
-    APOLLO_GO_TERM(() -> new ApolloGoTermFormat());
-
-    private Supplier<? extends Format> _formatProvider;
-
-    private FormatType(Supplier<? extends Format> formatProvider) {
-      _formatProvider = formatProvider;
-    }
-
-    public Format getFormat() {
-      return _formatProvider.get();
-    }
   }
 
   private Format _format;
@@ -63,13 +51,15 @@ public class SingleGeneReporter extends AbstractReporter {
             "results of size 1 (this result has size " + resultSize, ErrorType.DATA_VALIDATION);
       }
       String formatStr = config.getString("format");
-      _format = FormatType.valueOf(formatStr.toUpperCase()).getFormat();
+      Supplier<Format> supplier = FORMAT_MAP.get(formatStr);
+      if (supplier == null) {
+        throw new ReporterConfigException("Unrecognized format: " + formatStr +
+            "; must be one of: " + FormatUtil.join(FORMAT_MAP.keySet(), ", "), ErrorType.DATA_VALIDATION);
+      }
+      _format = supplier.get();
     }
     catch (JSONException e) {
       throw new ReporterConfigException(e.getMessage());
-    }
-    catch (IllegalArgumentException e) {
-      throw new ReporterConfigException(e.getMessage(), ErrorType.DATA_VALIDATION);
     }
     return this;
   }
@@ -94,4 +84,38 @@ public class SingleGeneReporter extends AbstractReporter {
     }
   }
 
+  /** TODO: Fix to avoid need for explicit format map; does not work :(
+  private static Map<String, Supplier<Format>> generateFormatMap() {
+    Map<String,Supplier<Format>> map = new ConcurrentHashMap<>();
+    List<Class<Format>> formatClasses = ClassFinder.getClassesBySubtype(Format.class, "org.apidb.apicommon.model.report.singlegeneformats");
+    for (Class<Format> formatClass : formatClasses) {
+      String ignoreMessagePrefix = "Ignoring Format class " + formatClass.getName() + ": ";
+      Supplier<Format> supplier = () -> {
+        try {
+          return formatClass.getConstructor().newInstance();
+        }
+        catch (NoSuchMethodException | SecurityException | InstantiationException |
+               IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+          return null;
+        }
+      };
+      Format test = supplier.get();
+      if (test == null) {
+        LOG.warn(ignoreMessagePrefix + "No no-arg constructor present.");
+      }
+      else {
+        // instantiation succeeded
+        String formatName = test.getFormatName();
+        Objects.nonNull(formatName);
+        if (map.containsKey(formatName)) {
+          LOG.warn(ignoreMessagePrefix + "Format name '" + formatName +
+              "' already taken by " + map.get(formatName).get().getClass().getName());
+        }
+        else {
+          map.put(formatName, supplier);
+        }
+      }
+    }
+    return map;
+  }*/
 }
