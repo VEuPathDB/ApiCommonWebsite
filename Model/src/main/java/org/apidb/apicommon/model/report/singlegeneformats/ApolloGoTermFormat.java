@@ -1,7 +1,9 @@
 package org.apidb.apicommon.model.report.singlegeneformats;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.apidb.apicommon.model.report.SingleGeneReporter.Format;
 import org.gusdb.wdk.model.WdkModelException;
@@ -29,6 +31,7 @@ public class ApolloGoTermFormat implements Format {
   @Override
   public JSONObject writeJson(RecordInstance recordInstance) throws WdkModelException, WdkUserException {
     JSONArray annotations = new JSONArray();
+    Set<String> seenKeys = new HashSet<>();
     for (TableValueRow row : recordInstance.getTableValue(GO_TERM_TABLE_NAME)) {
       String ontologyValue = row.getAttributeValue("ontology").getValue();
       String goId = row.getAttributeValue("go_id").getValue();
@@ -36,15 +39,18 @@ public class ApolloGoTermFormat implements Format {
       String negateValue = "false";
       String noteArray = "[]";
       String goLabel = row.getAttributeValue("go_term_name").getValue();
-      annotations.put(new JSONObject()
-        .put("goTerm", goId)
-        .put("goTermLabel", goLabel)
-        .put("aspect", getAspect(ontologyValue))
-        .put("geneRelationship", getRoValue(ontologyValue))
-        .put("evidenceCode", getEcCode(evidenceCode))
-        .put("evidenceCodeLabel", evidenceCode)
-        .put("negate", negateValue )
-        .put("notes", noteArray));
+      String key = String.join("|", goId, goLabel, ontologyValue, evidenceCode);
+      if (seenKeys.add(key)) {
+        annotations.put(new JSONObject()
+          .put("goTerm", goId)
+          .put("goTermLabel", goLabel)
+          .put("aspect", getAspect(ontologyValue))
+          .put("geneRelationship", getRoValue(ontologyValue))
+          .put("evidenceCode", getEcCode(evidenceCode))
+          .put("evidenceCodeLabel", evidenceCode)
+          .put("negate", negateValue )
+          .put("notes", noteArray));
+      }
     }
     return new JSONObject().put("go_annotations", annotations);
   }
