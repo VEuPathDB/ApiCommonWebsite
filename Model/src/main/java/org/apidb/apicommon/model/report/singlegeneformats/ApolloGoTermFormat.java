@@ -40,6 +40,7 @@ public class ApolloGoTermFormat implements Format {
       String noteArray = "[]";
       String goLabel = row.getAttributeValue("go_term_name").getValue();
       String key = String.join("|", goId, goLabel, ontologyValue, evidenceCode);
+      String transcriptIds =  row.getAttributeValue("transcript_ids").getValue();
       if (seenKeys.add(key)) {
         annotations.put(new JSONObject()
           .put("goTerm", goId)
@@ -49,7 +50,8 @@ public class ApolloGoTermFormat implements Format {
           .put("evidenceCode", getEcCode(evidenceCode))
           .put("evidenceCodeLabel", evidenceCode)
           .put("negate", negateValue )
-          .put("notes", noteArray));
+          .put("notes", noteArray)
+          .put("transcript", transcriptIds));
       }
     }
     return new JSONObject().put("go_annotations", annotations);
