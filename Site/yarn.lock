@@ -894,32 +894,20 @@
     react-transition-group "^4.4.1"
     shape2geohash "^1.2.5"
 
-"@veupathdb/http-utils@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@veupathdb/http-utils/-/http-utils-1.0.1.tgz#e3e2b616a43d82170c73e5ce44e80c740a960ee6"
-  integrity sha512-MURe3oXkK1ABOkVH94dK2NDBeh7KBphQUgjWNKAcn0ckT1+v5AUC8R7xkRd7P84wJT3inQE0vhEiItnoj6lYCg==
+"@veupathdb/multi-blast@^0.1.6":
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/@veupathdb/multi-blast/-/multi-blast-0.1.6.tgz#7ad22789226d83cb08f63fae36213d60945173c2"
+  integrity sha512-xX1E4+LNcKn/84LprJ+KgnFyw1zuZXJ9j+jEt9T7y/ru78kcwELg3CMMcdMlc9sVoUu+Io/G0vGxbJTNdyaPsQ==
   dependencies:
-    fp-ts "^2.11.5"
-    io-ts "^2.2.16"
-    lodash "^4.17.21"
-
-"@veupathdb/multi-blast@^0.4.3":
-  version "0.4.3"
-  resolved "https://registry.yarnpkg.com/@veupathdb/multi-blast/-/multi-blast-0.4.3.tgz#0d454464c40ba5018c577ba9a34cebfa4f999b1a"
-  integrity sha512-ak7DKkLZyu6vGVVx1rOgzRounbyCmJeyPzKUqrXPEqJ7Cx1u7UHNk66unn0btUO7ctMEYIKdq/0RAFUAG7dNjA==
-  dependencies:
-    "@veupathdb/http-utils" "^1.0.1"
+    "@types/react-redux" "^7.1.5"
     "@veupathdb/preferred-organisms" "^1.1.4"
     "@veupathdb/wdk-client" "^0.4.11"
     "@veupathdb/web-common" "^0.1.1-alpha.11"
-    fp-ts "^2.11.5"
-    io-ts "^2.2.16"
     lodash "^4.17.20"
     react "^17.0.1"
     react-dom "^17.0.1"
     react-redux "^7.1.5"
     react-select "^3.0.4"
-    redux "^4.0.0"
 
 "@veupathdb/preferred-organisms@^1.1.4":
   version "1.1.4"
@@ -2633,11 +2621,6 @@ foreach@^2.0.5:
   resolved "https://registry.yarnpkg.com/foreach/-/foreach-2.0.5.tgz#0bee005018aeb260d0a3af3ae658dd0136ec1b99"
   integrity sha1-C+4AUBiusmDQo6865ljdATbsG5k=
 
-fp-ts@^2.11.5:
-  version "2.11.5"
-  resolved "https://registry.yarnpkg.com/fp-ts/-/fp-ts-2.11.5.tgz#97cceb26655b1452d7088d6fb0864f84cceffbe4"
-  integrity sha512-OqlwJq1BdpB83BZXTqI+dNcA6uYk6qk4u9Cgnt64Y+XS7dwdbp/mobx8S2KXf2AXH+scNmA/UVK3SEFHR3vHZA==
-
 from2-array@0.0.4:
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/from2-array/-/from2-array-0.0.4.tgz#eafc16b65f6e2719bcd57fdc1869005ac1332cd6"
@@ -3465,11 +3448,6 @@ invert-permutation@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/invert-permutation/-/invert-permutation-1.0.0.tgz#a0a78042eadb36bc17551e787efd1439add54933"
   integrity sha1-oKeAQurbNrwXVR54fv0UOa3VSTM=
-
-io-ts@^2.2.16:
-  version "2.2.16"
-  resolved "https://registry.yarnpkg.com/io-ts/-/io-ts-2.2.16.tgz#597dffa03db1913fc318c9c6df6931cb4ed808b2"
-  integrity sha512-y5TTSa6VP6le0hhmIyN0dqEXkrZeJLeC5KApJq6VLci3UEKF80lZ+KuoUs02RhBxNWlrqSNxzfI7otLX1Euv8Q==
 
 iota-array@^1.0.0:
   version "1.0.0"
