@@ -34,7 +34,7 @@ import org.gusdb.wdk.service.service.AbstractWdkService;
 
 import io.prometheus.client.Counter;
 
-@Path("/system/metrics/organism")
+@Path("system/metrics/organism")
 public class OrganismMetricsService extends AbstractWdkService {
 
   private static final Logger LOG = Logger.getLogger(OrganismMetricsService.class);
