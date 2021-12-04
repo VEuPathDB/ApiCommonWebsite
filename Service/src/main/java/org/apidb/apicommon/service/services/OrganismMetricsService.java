@@ -63,6 +63,7 @@ public class OrganismMetricsService extends AbstractWdkService {
     // caller can specify organism directly or PK of a recordclass; if latter, look up organism for that record
     if (organism == null) {
       organism = resolveOrganism(recordClassUrlSegment, primaryKeyValues);
+      LOG.info("Found organism '" + organism + "' for " + recordClassUrlSegment + " record with PK " + primaryKeyValues);
     }
 
     // validate submitted or fetched organism name
@@ -71,7 +72,7 @@ public class OrganismMetricsService extends AbstractWdkService {
     }
 
     // found a valid organism name in this request; increment counter for that org
-    ORGANISM_COUNTER.labels("organism").inc();
+    ORGANISM_COUNTER.labels(organism).inc();
 
     return Response.ok().build();
   }
