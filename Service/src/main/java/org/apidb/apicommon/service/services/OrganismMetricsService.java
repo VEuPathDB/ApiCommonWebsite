@@ -43,7 +43,7 @@ public class OrganismMetricsService extends AbstractWdkService {
 
   private static final String ORGANISM_VALIDATION_ATTRIBUTE = "organism_full";
 
-  private static final String ORGANISM_ATTRIBUTE = "organism";
+  private static final String ORGANISM_ATTRIBUTE = "organism_full";
 
   private static final Counter ORGANISM_COUNTER = Counter.build()
       .name("page_access_by_organism")
