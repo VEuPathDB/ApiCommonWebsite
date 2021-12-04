@@ -89,7 +89,7 @@ public class OrganismMetricsService extends AbstractWdkService {
         for (RecordInstance record : records) {
           validOrgNames.add(record.getAttributeValue(ORGANISM_VALIDATION_ATTRIBUTE).getValue());
         }
-        VALID_ORGANISM_NAMES = new ArrayList<>();
+        VALID_ORGANISM_NAMES = validOrgNames;
         LOG.info("Loaded list of valid organisms for organism metrics: " + NL + String.join(NL, VALID_ORGANISM_NAMES));
       }
       catch (WdkUserException e) {
