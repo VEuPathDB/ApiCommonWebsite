@@ -802,6 +802,12 @@ sub init {
   $winzeler->setXaxisLabel('');
 
   my $graphObjects = $self->getGraphObjects();
+  my @legendNames = ('Mosquito and sexual stages','Sorbitol synchronized','Temperature synchronized');
+  foreach my $graphObject (@$graphObjects) {
+      $graphObject->setHasExtraLegend(1);
+      $graphObject->setLegendLabels(\@legendNames);
+  }
+
   push @$graphObjects, $winzeler;
 
   $self->setGraphObjects(@$graphObjects);
