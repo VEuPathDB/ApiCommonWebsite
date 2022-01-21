@@ -107,45 +107,6 @@ sub declareParts {
 1;
 
 
-
-package ApiCommonWebsite::View::GraphPackage::Templates::PhenotypeScore::DS_166e521549;
-use strict;
-use vars qw( @ISA );
-
-@ISA = qw(ApiCommonWebsite::View::GraphPackage::Templates::PhenotypeScore );
-
-sub getPhenotypeSpecs {
-  return [ {abbrev => "GROWTH",
-            name => "Fold Change Growth",
-            query => "select ga.source_id, r.score as value from apidb.phenotypescore r, apidbtuning.geneattributes ga where ga.na_feature_id = r.na_feature_id and r.score_type = 'fold change growth'",
-            postscript => "gp = gp + annotate(\"text\", x = 500, y = 0.05, label = \"Essential\", colour = 'red');
-gp = gp + annotate(\"text\", x = 5000, y = 0.9, label = \"Dispensable\", colour = '#d3883f');"
-
-           },
-           {abbrev => "HS",
-            name => "Fold Change Heat Shock",
-            query => "select ga.source_id, r.score as value from apidb.phenotypescore r, apidbtuning.geneattributes ga where ga.na_feature_id = r.na_feature_id and r.score_type = 'fold change heat shock'"
-           },
-      ];
-}
-
-sub declareParts {
-  my ($self) = @_;
-
-  my $myPlotParts = $self->SUPER::declareParts();
-  #my $oldNewPlotPart = @{$myPlotParts}[0];
-  #push @{$myPlotParts}, $oldNewPlotPart;
-  pop @{$myPlotParts};
-
-  @{$myPlotParts}[0]->{visible_part} = "GROWTH,HS";
-  @{$myPlotParts}[0]->{height} = @{$myPlotParts}[0]->{height} + 300;
-
-  return $myPlotParts;
-}
-
-1; 
-
-
 package ApiCommonWebsite::View::GraphPackage::Templates::PhenotypeScore::DS_90eea17ef6;
 use strict;
 use vars qw( @ISA );
