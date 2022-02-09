@@ -74,7 +74,7 @@ public class OrganismMetricsService extends AbstractWdkService {
     // found a valid organism name in this request; increment counter for that org
     ORGANISM_COUNTER.labels(organism).inc();
 
-    return Response.ok().build();
+    return Response.noContent().build();
   }
 
   private static synchronized List<String> getValidOrganismNames(WdkModel wdkModel) throws WdkModelException {
