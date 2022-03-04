@@ -1,6 +1,3 @@
-/**
- * 
- */
 package org.apidb.apicommon.model.report.summaryview.genome;
 
 import java.io.IOException;
@@ -33,10 +30,6 @@ import org.json.JSONWriter;
  * 
  */
 public abstract class GenomeViewReporter extends AbstractReporter {
-
-  protected GenomeViewReporter(AnswerValue answerValue) {
-    super(answerValue);
-  }
 
   public static final DecimalFormat FORMAT = new DecimalFormat("#,###");
 

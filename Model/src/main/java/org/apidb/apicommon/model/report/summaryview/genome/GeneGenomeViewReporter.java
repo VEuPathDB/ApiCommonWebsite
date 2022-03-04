@@ -2,16 +2,11 @@ package org.apidb.apicommon.model.report.summaryview.genome;
 
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
-import org.gusdb.wdk.model.answer.AnswerValue;
 
 /**
  * @author jerric
  */
 public class GeneGenomeViewReporter extends GenomeViewReporter {
-
-  public GeneGenomeViewReporter(AnswerValue answerValue) {
-    super(answerValue);
-  } 
 
     @Override
     public String prepareSql(String idSql) throws WdkModelException,
@@ -35,6 +30,5 @@ public class GeneGenomeViewReporter extends GenomeViewReporter {
 
         return sql.toString();
     }
-
 
 }
