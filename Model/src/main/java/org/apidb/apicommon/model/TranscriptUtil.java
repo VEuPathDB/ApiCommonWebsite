@@ -2,24 +2,13 @@ package org.apidb.apicommon.model;
 
 import java.util.Arrays;
 
-import org.apidb.apicommon.model.filter.RepresentativeTranscriptFilter;
-import org.gusdb.fgputil.validation.ValidObjectFactory.RunnableObj;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkRuntimeException;
 import org.gusdb.wdk.model.answer.AnswerValue;
 import org.gusdb.wdk.model.answer.TransformUtil;
-import org.gusdb.wdk.model.answer.factory.AnswerValueFactory;
-import org.gusdb.wdk.model.answer.spec.AnswerSpec;
-import org.gusdb.wdk.model.answer.spec.AnswerSpecBuilder;
-import org.gusdb.wdk.model.answer.spec.FilterOption;
-import org.gusdb.wdk.model.answer.spec.FilterOptionList;
-import org.gusdb.wdk.model.answer.spec.FilterOptionList.FilterOptionListBuilder;
 import org.gusdb.wdk.model.question.Question;
 import org.gusdb.wdk.model.record.RecordClass;
-import org.gusdb.wdk.service.request.exception.DataValidationException;
-import org.gusdb.wdk.service.service.AnswerService;
-import org.json.JSONObject;
 
 public class TranscriptUtil {
 
@@ -90,28 +79,4 @@ public class TranscriptUtil {
     return Arrays.asList(recordClass.getPrimaryKeyDefinition().getColumnRefs()).contains("project_id");
   }
 
-  /**
-   * get an answer value that applies the view-only filter that reduces the result to one
-   * transcript per gene
-   */
-  public static AnswerValue applyRepresentativeTranscriptFilter(AnswerValue originalAnswer) throws WdkModelException {
-    AnswerSpec originalAnswerSpec = originalAnswer.getAnswerSpec();
-    AnswerSpecBuilder specBuilder = AnswerSpec.builder(originalAnswerSpec);
-    FilterOptionListBuilder viewFiltersBuilder = FilterOptionList.builder()
-      .addAllFilters(originalAnswerSpec.getViewFilterOptions())
-      .addFilterOption(FilterOption.builder()
-        .setFilterName(RepresentativeTranscriptFilter.FILTER_NAME)
-        .setValue(new JSONObject())
-        .setDisabled(false));
-    specBuilder.setViewFilterOptions(viewFiltersBuilder);
-
-    try {
-      RunnableObj<AnswerSpec> runnableSpec = specBuilder.buildRunnable(originalAnswer.getUser(),
-          AnswerService.loadContainer(specBuilder, originalAnswer.getWdkModel(), originalAnswer.getUser()));
-      return AnswerValueFactory.makeAnswer(originalAnswer, runnableSpec);
-    }
-    catch (DataValidationException e) {
-      throw new WdkModelException(e);
-    }
-  }
 }
