@@ -6,7 +6,6 @@ import org.apache.log4j.Logger;
 import org.apidb.apicommon.model.filter.RepresentativeTranscriptFilter;
 import org.gusdb.fgputil.validation.ValidObjectFactory.RunnableObj;
 import org.gusdb.wdk.model.WdkModelException;
-import org.gusdb.wdk.model.answer.AnswerValue;
 import org.gusdb.wdk.model.answer.factory.AnswerValueFactory;
 import org.gusdb.wdk.model.answer.spec.AnswerSpec;
 import org.gusdb.wdk.model.answer.spec.FilterOptionList;
@@ -23,10 +22,6 @@ public class TranscriptAttributesReporter extends AttributesTabularReporter {
 
   public static final String PROP_APPLY_FILTER = "applyFilter";
   private Boolean applyFilter;
-
-  public TranscriptAttributesReporter(AnswerValue answerValue) {
-    super(answerValue);
-  } 
 
   @Override
   public TranscriptAttributesReporter configure(Map<String, String> config) {

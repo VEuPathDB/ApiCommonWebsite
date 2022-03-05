@@ -13,6 +13,15 @@ import org.gusdb.wdk.model.question.Question;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/**
+ * Filters genes based on their presence in a given pathway.  Configuring is:
+ *
+ * - pathway_source/pathway_source_id: the primary key of the desired pathway
+ * - exact_match_only
+ * - exclude_incomplete_ec
+ *
+ * @author rdoherty
+ */
 public class GenesByPathwayFilter extends StepFilter {
 
   private static final Logger logger = Logger.getLogger(GenesByPathwayFilter.class);

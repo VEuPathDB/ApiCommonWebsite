@@ -1,0 +1,5 @@
+# $SourceFileURL$
+---
+modelconfig_queryMonitor_baseline: 0.1
+modelconfig_queryMonitor_slow: 0.1
+

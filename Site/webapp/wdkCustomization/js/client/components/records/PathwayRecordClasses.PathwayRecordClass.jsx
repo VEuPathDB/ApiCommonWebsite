@@ -1,4 +1,3 @@
-/* global ChemDoodle */
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -35,7 +34,7 @@ import * as QueryString from 'querystring';
 export const RECORD_CLASS_NAME = 'PathwayRecordClasses.PathwayRecordClass';
 
 const EC_NUMBER_SEARCH_PREFIX = '/app/search/transcript/' +
-  'InternalGenesByEcNumber?param.organism=all&param.ec_source=all&param.ec_number_pattern=N/A&autoRun=1&param.ec_wildcard=';
+  'InternalGenesByEcNumber?autoRun=1&param.ec_wildcard=';
 
 const ORTHOMCL_LINK = 'https://orthomcl.org/orthomcl/app/search/group/GroupsByEcNumber?ec_number_type_ahead=N/A&autoRun=1&ec_wildcard=';
 
@@ -1372,6 +1371,7 @@ const CytoscapeDrawing = enhance(class CytoscapeDrawing extends React.Component 
               onClose={this.clearActiveNodeData}
               wdkConfig={this.props.siteConfig}
               nodeData={this.props.pathwayRecord.activeNodeData}
+              config={this.props.config}
               pathwaySource={source}
             />
           )}
@@ -1566,25 +1566,20 @@ NodeDetails.propTypes = {
 };
 
 function EnzymeNodeDetails(props) {
-  let { display_label, name, gene_count, image, cellular_location } = props.nodeData;
+  let { display_label, name, gene_count, image, cellular_location, url } = props.nodeData;
+  let { projectId } = props.config;
 
   var regex = /^[0-9]+\.[0-9]*-*\.[0-9]*-*\.[0-9]*-*$/;
-  var ec_url = display_label;
   var orthomcl_url = (<p></p>);
   if (regex.test(display_label)) {
-    var expasy_url = "http://enzyme.expasy.org/EC/";
-    var ec_url = (
-    	<a href={expasy_url + display_label}>{display_label}</a>
-    );
     var orthomcl_url = (
-      <p><a href={ORTHOMCL_LINK + display_label}>Search on OrthoMCL for groups with this EC Number</a></p>
+      <p><a href={ORTHOMCL_LINK + display_label} target="_blank">Explore this EC number in other taxa on OrthoMCL</a></p>
     );
-
   } 
 
   return (
     <div>
-        <p><b>EC Number or Reaction:</b> {ec_url}</p>
+        <p><b>EC Number or Reaction:</b> <a href={url} target="_blank">{display_label}</a></p>
 
       {name && (
            <p><b>Enzyme Name:</b> {name}</p>
@@ -1596,9 +1591,16 @@ function EnzymeNodeDetails(props) {
 
       {gene_count > 0 && (
         <div>
-            <a href={props.wdkConfig.webAppUrl + EC_NUMBER_SEARCH_PREFIX + display_label}>Show {gene_count} gene(s) which match this EC Number</a>
+            <a href={props.wdkConfig.webAppUrl + EC_NUMBER_SEARCH_PREFIX + display_label}>Show {gene_count} gene(s) which match this EC number in {projectId}</a>
         </div>
       )}
+
+      { (gene_count == 0 && regex.test(display_label)) && (
+        <div>
+            <p>There are <b>0</b> genes which match this EC number in {projectId}</p>
+        </div>
+      )}
+
 
       {orthomcl_url}
 

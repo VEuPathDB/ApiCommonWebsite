@@ -67,8 +67,8 @@ public class JBrowseFeatureDataFactory {
         (!isProtein && "ReferenceSequence".equals(feature));
 
     String seqId = (isProtein ?
-        getSequenceId("aa_sequence_id", "apidbtuning.proteinattributes", refseqName) :
-        getSequenceId("na_sequence_id", "apidbtuning.genomicseqattributes", refseqName))
+                    getSequenceId("aa_sequence_id", "apidbtuning.proteinattributes", refseqName, "aaseq_id_from_source_id") :
+                    getSequenceId("na_sequence_id", "apidbtuning.genomicseqattributes", refseqName, "naseq_id_from_source_id"))
         .orElseThrow(() -> new NotFoundException("Unable to look up sequence with ref name " + refseqName + " (isProtein=" + isProtein + ")."));
 
     String featureSql = isProtein ?
@@ -80,30 +80,35 @@ public class JBrowseFeatureDataFactory {
     // determine if stats vs feature data request (basesPerBin present = stats request)
     boolean isStatsRequest = qp.containsKey("basesPerBin");
 
+    String queryName = feature;
+    if(isStatsRequest) {
+        queryName = queryName + "_region_stats";
+    }
+
     // return an ok result if no exception thrown; entity returned will be one of
     if (isStatsRequest) {
       // 1. region statistics JSON object
       int basesPerBin = Integer.parseInt(qp.get("basesPerBin"));
-      return Response.ok(getRegionStatsOutput(featureSql, basesPerBin, start, end).toString()).build();
+      return Response.ok(getRegionStatsOutput(featureSql, basesPerBin, start, end, queryName).toString()).build();
     }
     else {
       // 2. feature and subfeature JSON stream
       if (isReferenceFeature) {
-        return Response.ok(getFeaturesOutput(featureSql)).build();
+          return Response.ok(getFeaturesOutput(featureSql, queryName)).build();
       }
       else {
         Optional<String> bulkSubfeatureSql = getBulkSubfeatureSql(feature, seqId, featureSql, qp, isProtein ? Category.PROTEIN : Category.GENOME);
         return Response.ok(
           bulkSubfeatureSql.isPresent() ?
-            getFeaturesOutput(featureSql, bulkSubfeatureSql.get()) :
-            getFeaturesOutput(featureSql)
+          getFeaturesOutput(featureSql, bulkSubfeatureSql.get(), queryName) :
+          getFeaturesOutput(featureSql, queryName)
         ).build();
       }
     }
   }
 
-  private JSONObject getRegionStatsOutput(String featureSql, int basesPerBin, Long start, Long inclusiveEnd) {
-    return new SQLRunner(_appDs, featureSql).executeQuery(rs -> {
+    private JSONObject getRegionStatsOutput(String featureSql, int basesPerBin, Long start, Long inclusiveEnd, String queryName) {
+        return new SQLRunner(_appDs, featureSql, queryName).executeQuery(rs -> {
 
       // for the purpose of binning, set 'end' to 1 beyond the inclusive end to make 'end' exclusive (eases calculations)
       long end = inclusiveEnd + 1;
@@ -145,7 +150,7 @@ public class JBrowseFeatureDataFactory {
           .put("basesPerBin", basesPerBin)
           .put("max", Arrays.stream(bins).max().orElse(0))
         );
-    });
+      });
   }
 
   private static class Subfeature {
@@ -189,11 +194,11 @@ public class JBrowseFeatureDataFactory {
     }
   }
 
-  private StreamingOutput getFeaturesOutput(String featureSql) {
+    private StreamingOutput getFeaturesOutput(String featureSql, String queryName) {
     return outputStream -> {
       BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream));
       writer.write("{\"features\":[");
-      new SQLRunner(_appDs, featureSql).executeQuery(featureRs -> {
+      new SQLRunner(_appDs, featureSql, queryName).executeQuery(featureRs -> {
         try {
           boolean featureHasAtts = hasColumn(featureRs, "ATTS");
           boolean featureHasUniqueId = hasColumn(featureRs, "FEATURE_ID");
@@ -220,7 +225,7 @@ public class JBrowseFeatureDataFactory {
     };
   }
 
-  private StreamingOutput getFeaturesOutput(String featureSql, String bulkSubfeatureSql) {
+    private StreamingOutput getFeaturesOutput(String featureSql, String bulkSubfeatureSql, String queryName) {
 
     // wrap feature SQL with an order by
     String sortedFeatureSql = "select * from ( " + featureSql + NL + " ) order by feature_id asc";
@@ -243,8 +248,8 @@ public class JBrowseFeatureDataFactory {
       BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream));
       writer.write("{\"features\":[");
       try (Connection conn = _appDs.getConnection()) {
-        new SQLRunner(conn, sortedFeatureSql).executeQuery(featureRs -> {
-          return new SQLRunner(conn, sortedSubfeatureSql).executeQuery(subfeatureRs -> {
+              new SQLRunner(conn, sortedFeatureSql, queryName).executeQuery(featureRs -> {
+                      return new SQLRunner(conn, sortedSubfeatureSql, queryName + "_bulk_sub_features").executeQuery(subfeatureRs -> {
             try {
               boolean featureHasAtts = hasColumn(featureRs, "ATTS");
               boolean subfeatureHasAtts = hasColumn(subfeatureRs, "ATTS");
@@ -427,7 +432,10 @@ public class JBrowseFeatureDataFactory {
     if (subfeatureSql == null) {
       return Optional.empty();
     }
-    return findFeatureRange(featureSql).map(featureRange ->
+
+    String queryName = feature + "_range";
+
+    return findFeatureRange(featureSql, queryName).map(featureRange ->
       replaceSqlMacros(subfeatureSql,
         featureRange.getBegin().toString(),
         featureRange.getEnd().toString(), seqId, qp));
@@ -445,10 +453,10 @@ public class JBrowseFeatureDataFactory {
     }
   }
 
-  private Optional<Range<Integer>> findFeatureRange(String featureSql) {
+    private Optional<Range<Integer>> findFeatureRange(String featureSql, String queryName) {
     // find range of selected features
     String rangeSql = "select min(startm) as min_start, max(end) as max_end from ( " + featureSql + " )";
-    return new SQLRunner(_appDs, rangeSql).executeQuery(rs -> {
+    return new SQLRunner(_appDs, rangeSql, queryName).executeQuery(rs -> {
       if (!rs.next()) return Optional.empty();
       int minStart = rs.getInt("min_start");
       if (rs.wasNull()) return Optional.empty();
@@ -482,9 +490,9 @@ public class JBrowseFeatureDataFactory {
     }
   }
 
-  private Optional<String> getSequenceId(String idColName, String attrsTableName, String refseqName) {
+    private Optional<String> getSequenceId(String idColName, String attrsTableName, String refseqName, String queryName) {
     String seqIdSql = "select " + idColName + " from " + attrsTableName + " where source_id = '" + refseqName + "'";
-    return new SQLRunner(_appDs, seqIdSql)
+    return new SQLRunner(_appDs, seqIdSql, queryName)
         .executeQuery(rs -> rs.next() ? Optional.ofNullable(rs.getString(1)) : Optional.empty());
   }
 

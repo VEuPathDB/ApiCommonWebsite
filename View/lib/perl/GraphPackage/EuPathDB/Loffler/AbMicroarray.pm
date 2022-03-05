@@ -41,6 +41,8 @@ sub init {
   my $scatter = EbrcWebsiteCommon::View::GraphPackage::GGScatterPlot::LogRatio->new(@_);
   $scatter->setProfileSets($profileSets);
   $scatter->setColors($colors);
+  $scatter->setYaxisLabel("Relative antigenicity");
+  $scatter->setPlotTitle("");
 
   $self->setGraphObjects($scatter);
 

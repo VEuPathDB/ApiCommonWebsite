@@ -320,15 +320,9 @@ const useHeaderMenuItems = (
             include: [ AmoebaDB, CryptoDB, FungiDB, GiardiaDB, MicrosporidiaDB, PiroplasmaDB, PlasmoDB, ToxoDB, TrichDB, TriTrypDB, VectorBase, EuPathDB, VEuPathDB, UniDB ]
          }
         },
-        { 
-          key: 'blast',
-          display: 'BLAST',
-          type: 'reactRoute',
-          url: '/search/transcript/UnifiedBlast'
-        },
         {
-          key: 'blast-beta',
-          display: <>BLAST<sup>{' '}<em>beta</em></sup> (multi-BLAST capable)</>,
+          key: 'blast',
+          display: 'BLAST (multi-query capable)',
           type: 'reactRoute',
           url: '/workspace/blast/new'
         },
@@ -356,7 +350,7 @@ const useHeaderMenuItems = (
         },
         {
           key: 'EuPaGDT',
-          display: 'CRISPR Guide Design Tool',
+          display: 'CRISPR guide design tool',
           type: 'externalLink',
           tooltip: 'CRISPR GuideXpress at DRSC/TRiP Functional Genomics Resources',
           url: 'https://www.flyrnai.org/tools/fly2mosquito/web/',
@@ -367,7 +361,7 @@ const useHeaderMenuItems = (
         },
         {
           key: 'EuPaGDT',
-          display: 'CRISPR Guide Design Tool',
+          display: 'CRISPR guide design tool',
           type: 'externalLink',
           tooltip: 'Eukaryotic Pathogen CRISPR guide RNA/DNA Design Tool',
           url: 'http://grna.ctegd.uga.edu',
@@ -502,7 +496,7 @@ const useHeaderMenuItems = (
         },
         {
           key: 'blasta',
-          display: <>My BLAST<sup>{' '}<em>beta</em></sup>{' '}jobs</>,
+          display: 'My BLAST jobs',
           type: 'reactRoute',
           url: '/workspace/blast/all'
         },
@@ -529,6 +523,12 @@ const useHeaderMenuItems = (
               display: 'Public search strategies',
               type: 'reactRoute',
               url: '/workspace/strategies/public'
+        },
+        { 
+          key: 'upload-genes',
+          display: 'Upload your gene list',
+          type: 'reactRoute',
+          url: '/search/transcript/GeneByLocusTag'
         }
       ]
     },
@@ -549,6 +549,12 @@ const useHeaderMenuItems = (
           display: `Data sets in ${displayName}`,
           type: 'reactRoute',
           url: '/search/dataset/AllDatasets/result'
+        },
+        { 
+              key: 'datasets-in-progress2',
+              display: 'Data sets we are working on',
+              type: 'reactRoute',
+              url: makeStaticPageRoute('/dataInprogress.html')
         },
         {
           key: 'data-files-eupathdb',
@@ -759,6 +765,12 @@ const useHeaderMenuItems = (
               type: 'reactRoute',
               url: makeStaticPageRoute('/dataSubmission.html')
             },
+            { 
+              key: 'datasets-in-progress',
+              display: 'Data Sets we are working on',
+              type: 'reactRoute',
+              url: makeStaticPageRoute('/dataInprogress.html')
+            },
             {
               key: 'submission-policy',
               display: 'Data submission and release policies',
@@ -848,19 +860,13 @@ const useHeaderMenuItems = (
               key: 'usage-metrics',
               display: 'Monthly Usage Metrics',
               type: 'externalLink',
-              url: makeExternalStaticPageUrl(
-                     communitySite,
-                     '/documents/VEuPathDB_BRC4_usage_metrics_report.pdf'
-                   )
+              url: '/reports/VEuPathDB_BRC4_usage_metrics_report.pdf'
             },
             {
               key: 'perf-metrics',
               display: 'Monthly Performance Metrics',
               type: 'externalLink',
-              url: makeExternalStaticPageUrl(
-                     communitySite,
-                     '/documents/VEuPathDB_BRC4_performance_metrics_report.pdf'
-                   )
+              url: '/reports/VEuPathDB_BRC4_performance_metrics_report.pdf'
             },
             {
               key: 'usage-statistics',
@@ -901,10 +907,7 @@ const useHeaderMenuItems = (
           key: 'user-doc',
           display: 'Downloadable User documentation',
           type: 'externalLink',
-          url: makeExternalStaticPageUrl(
-                 communitySite,
-                 '/documents/VEuPathDB_User_Documentation.pdf'
-               )
+          url: '/reports/VEuPathDB_User_Documentation.pdf'
         }
       ]
     },

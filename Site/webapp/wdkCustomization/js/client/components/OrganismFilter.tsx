@@ -12,6 +12,7 @@ import { ResultType } from '@veupathdb/wdk-client/lib/Utils/WdkResult';
 import {makeClassNameHelper} from '@veupathdb/wdk-client/lib/Utils/ComponentUtils';
 import { areTermsInString, makeSearchHelpText } from '@veupathdb/wdk-client/lib/Utils/SearchUtils';
 import { useWdkServiceWithRefresh } from '@veupathdb/wdk-client/lib/Hooks/WdkServiceHook';
+import { makeCommonErrorMessage } from '@veupathdb/wdk-client/lib/Utils/Errors';
 
 import { pruneNodesWithSingleExtendingChild } from '@veupathdb/web-common/lib/util/organisms';
 
@@ -33,7 +34,7 @@ const cx = makeClassNameHelper('OrganismFilter')
 const ALLOWABLE_RECORD_CLASS_NAME = 'transcript';
 const TAXON_QUESTION_NAME = 'GenesByTaxon';
 const ORGANISM_PARAM_NAME = 'organism';
-const ORGANISM_COLUMN_NAME = 'organism';
+const ORGANISM_COLUMN_NAME = 'organism_full';
 const HISTOGRAM_REPORTER_NAME = 'byValue';
 const HISTOGRAM_FILTER_NAME = 'byValue';
 
@@ -68,14 +69,22 @@ type OrgFilterConfig = NO_ORGANISM_FILTER_APPLIED | {
   values: Array<string>;
 }
 
+type OrgFilterStatistics = {
+  subsetSize: number;
+  numVarValues: number;
+  numDistinctValues: number;
+  numDistinctEntityRecords: number;
+  numMissingCases: number;
+}
+
 // type of the data returned by the filter summary (byValue reporter)
 type OrgFilterSummary = {
-  totalValues: number;
-  nullValues: number;
-  uniqueValues?: number;
-  values?: Array<{
-    value: string;
-    count: number;
+  statistics: OrgFilterStatistics
+  histogram: Array<{
+    value: number;
+    binStart: string;
+    binEnd: string;
+    binLabel: string;
   }>
 }
 
@@ -210,8 +219,8 @@ function OrganismFilterForStep({ step, requestUpdateStepSearchConfig }: Organism
   }
 
   // assign record counts and short display names to tree nodes, and trim zeroes if necessary
-  let taxonomyTreeWithCounts: TaxonomyNodeWithCount | undefined = taxonomyTree && filterSummary && stepQuestion
-    ? createDisplayableTree(taxonomyTree, filterSummary, stepQuestion, hideZeroes, preferredOrganismsEnabled, preferredOrganisms)
+  let taxonomyTreeWithCounts: TaxonomyNodeWithCount | undefined = taxonomyTree && filterSummary?.available && stepQuestion
+    ? createDisplayableTree(taxonomyTree, filterSummary.value, stepQuestion, hideZeroes, preferredOrganismsEnabled, preferredOrganisms)
     : undefined;
 
   // org filter config currently applied on the step (if any) - used for cancel button
@@ -280,9 +289,11 @@ function OrganismFilterForStep({ step, requestUpdateStepSearchConfig }: Organism
               ]}
             />
             )
-        : (
-          <Loading/>
-        )}
+        : filterSummary?.available === false
+        ? <p className={cx('--ErrorMessage')}>
+            {filterSummary.reason}
+          </p>
+        : <Loading />}
       </div>
       <ExpansionBar onClick={() => setExpandedAndPref(false)} message={'Hide ' + TITLE} arrow="&uArr;"/>
     </Container>
@@ -337,15 +348,15 @@ function createDisplayableTree(
   const taxonomyTreeWithCount: TaxonomyNodeWithCount = mapStructure(
     (node, mappedChildren) => {
       let count = 0;
-      if (filterSummary && filterSummary.values) {
+      if (filterSummary && filterSummary.histogram) {
         if (hideZeroes) {
           // don't show children with zeroes if currently hiding zeroes
           mappedChildren = mappedChildren.filter(child => child.count > 0);
         }
         // leaf nodes try to find their counts in the column reporter result
         if (mappedChildren.length == 0) {
-          let valueTuple = filterSummary.values.find(val => val.value === node.data.term);
-          count = valueTuple ? valueTuple.count : 0;
+          let bin = filterSummary.histogram.find(val => val.binLabel === node.data.term);
+          count = bin ? bin.value : 0;
         }
         // branch nodes sum the counts of their children
         else {
@@ -428,7 +439,18 @@ function fetchTaxonomyTree(wdkService: WdkService) {
 function fetchFilterSummary(wdkService: WdkService, stepId: number) {
   return wdkService.getStepColumnReport(stepId, ORGANISM_COLUMN_NAME, HISTOGRAM_REPORTER_NAME, {})
     .then(filterSummary => {
-      return filterSummary as OrgFilterSummary;
+      return ({
+        available: true,
+        value: filterSummary as OrgFilterSummary
+      }) as const;
+    })
+    .catch(error => {
+      wdkService.submitErrorIfUndelayedAndNot500(error);
+
+      return {
+        available: false,
+        reason: makeCommonErrorMessage(error)
+      } as const;
     });
 }
 

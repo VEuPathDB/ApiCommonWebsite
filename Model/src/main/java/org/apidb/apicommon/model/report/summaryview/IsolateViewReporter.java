@@ -23,10 +23,6 @@ import org.json.JSONWriter;
 
 public class IsolateViewReporter extends AbstractReporter {
 
-  public IsolateViewReporter(AnswerValue answerValue) {
-    super(answerValue);
-  }
-
   private static final String PROP_SEQUENCES = "isolates";
   private static final String PROP_MAX_LENGTH = "maxLength";
 
@@ -58,11 +54,6 @@ public class IsolateViewReporter extends AbstractReporter {
 
   @Override
   public Reporter configure(JSONObject config) throws ReporterConfigException, WdkModelException {
-    return this;
-  }
-
-  @Override
-  public Reporter configure(Map<String, String> config) throws ReporterConfigException, WdkModelException {
     return this;
   }
 

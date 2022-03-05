@@ -6,7 +6,6 @@ import org.apidb.apicommon.model.TranscriptUtil;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkRuntimeException;
 import org.gusdb.wdk.model.WdkUserException;
-import org.gusdb.wdk.model.answer.AnswerValue;
 import org.gusdb.wdk.model.report.ReporterConfigException;
 import org.gusdb.wdk.model.report.reporter.TableTabularReporter;
 import org.json.JSONObject;
@@ -14,10 +13,6 @@ import org.json.JSONObject;
 public class TranscriptTableReporter extends TableTabularReporter {
 
   private String _originalQuestionName;
-
-  public TranscriptTableReporter(AnswerValue answerValue) {
-    super(answerValue);
-  } 
 
   @Override
   public TranscriptTableReporter configure(Map<String, String> config) {
