@@ -13,7 +13,6 @@ import org.apidb.apicommon.model.TranscriptUtil;
 import org.gusdb.fgputil.FormatUtil;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
-import org.gusdb.wdk.model.answer.AnswerValue;
 import org.gusdb.wdk.model.answer.stream.RecordStream;
 import org.gusdb.wdk.model.answer.stream.RecordStreamFactory;
 import org.gusdb.wdk.model.record.RecordClass;
@@ -37,10 +36,6 @@ public class SingleGeneReporter extends AbstractReporter {
   }
 
   private Format _format;
-
-  public SingleGeneReporter(AnswerValue answerValue) {
-    super(answerValue);
-  }
 
   @Override
   public Reporter configure(JSONObject config) throws ReporterConfigException, WdkModelException {

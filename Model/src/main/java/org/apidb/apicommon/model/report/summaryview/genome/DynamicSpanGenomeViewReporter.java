@@ -2,16 +2,11 @@ package org.apidb.apicommon.model.report.summaryview.genome;
 
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
-import org.gusdb.wdk.model.answer.AnswerValue;
 
 /**
  * @author jerric
  */
 public class DynamicSpanGenomeViewReporter extends GenomeViewReporter {
-
-  public DynamicSpanGenomeViewReporter(AnswerValue answerValue) {
-    super(answerValue);
-  }
 
   @Override
   public String prepareSql(String idSql) throws WdkModelException, WdkUserException {

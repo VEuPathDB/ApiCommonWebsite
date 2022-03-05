@@ -20,7 +20,6 @@ import org.gusdb.fgputil.json.JsonUtil;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.answer.AnswerValue;
 import org.gusdb.wdk.model.report.AbstractReporter;
-import org.gusdb.wdk.model.report.ReporterConfigException;
 import org.gusdb.wdk.model.report.config.StandardConfig;
 import org.json.JSONObject;
 
@@ -30,21 +29,12 @@ public abstract class FastaReporter extends AbstractReporter {
 
   protected abstract String getSrtToolUri();
 
-  FastaReporter(AnswerValue answerValue) {
-    super(answerValue);
-  }
-
   private JSONObject _configuration;
 
   @Override
   public FastaReporter configure(JSONObject configuration) {
     _configuration = configuration;
     return this;
-  }
-
-  @Override
-  public FastaReporter configure(Map<String, String> config) throws ReporterConfigException, WdkModelException {
-    throw new UnsupportedOperationException("This reporter must be configured with JSON.");
   }
 
   @Override

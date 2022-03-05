@@ -78,4 +78,5 @@ public class TranscriptUtil {
   private static boolean isProjectInPk(RecordClass recordClass) {
     return Arrays.asList(recordClass.getPrimaryKeyDefinition().getColumnRefs()).contains("project_id");
   }
+
 }
