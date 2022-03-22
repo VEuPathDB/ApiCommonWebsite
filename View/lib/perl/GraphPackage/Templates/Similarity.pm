@@ -51,16 +51,28 @@ sub getProfile {
 # TEMPLATE_ANCHOR similarityGraph
 
 
-#cneoH99_Haase_Kelliher_Cell_Cycle_rnaSeq_RSRC
-package ApiCommonWebsite::View::GraphPackage::Templates::Similarity::DS_4b0e1b490a;
+#cneoH99_Haase_Kelliher_Cell_Cycle_ebi_rnaSeq_RSRC
+package ApiCommonWebsite::View::GraphPackage::Templates::Similarity::DS_6393f11883;
 sub getProfile {
   my ($self) = @_;
-  my $pset = 'C. neoformans cell-cycle RNAseq [htseq-union - firststrand - fpkm - unique]';
+  my $pset = 'C. neoformans cell-cycle RNAseq [htseq-union - firststrand - tpm - unique]';
 
   return $pset;
 }
 
 1;
+
+#scerS288c_Haase_Kelliher_Cell_Cycle_ebi_rnaSeq_RSRC
+package ApiCommonWebsite::View::GraphPackage::Templates::Similarity::DS_1a53359a85;
+sub getProfile {
+  my ($self) = @_;
+  my $pset = 'S. cerevisiae cell-cycle RNAseq [htseq-union - firststrand - tpm - unique]';
+
+  return $pset;
+}
+
+1;
+
 
 # scerS288c_microarrayExpression_Spellman_CellCycle_1998_RSRC
 package ApiCommonWebsite::View::GraphPackage::Templates::Similarity::DS_f101fb2669;
@@ -88,7 +100,7 @@ package ApiCommonWebsite::View::GraphPackage::Templates::Similarity::DS_b8755b33
 
 sub getProfile {
   my ($self) = @_;
-  my $pset = 'Murine macrophages infected by 29 different strains of T. gondii [htseq-union - unstranded - fpkm - unique]';
+  my $pset = 'Murine macrophages infected by 29 different strains of T. gondii [htseq-union - unstranded - tpm - unique]';
 
   return $pset;
 }
