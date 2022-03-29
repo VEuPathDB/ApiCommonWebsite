@@ -10,10 +10,10 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import javax.sql.DataSource;
-import javax.ws.rs.client.*;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status.Family;
+import jakarta.ws.rs.client.*;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response.Status.Family;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
