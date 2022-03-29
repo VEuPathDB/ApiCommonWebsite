@@ -22,11 +22,11 @@ import java.util.Optional;
 import java.util.function.Function;
 
 import javax.sql.DataSource;
-import javax.ws.rs.NotFoundException;
-import javax.ws.rs.core.MultivaluedMap;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.StreamingOutput;
-import javax.ws.rs.core.UriInfo;
+import jakarta.ws.rs.NotFoundException;
+import jakarta.ws.rs.core.MultivaluedMap;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.StreamingOutput;
+import jakarta.ws.rs.core.UriInfo;
 
 import org.apache.log4j.Logger;
 import org.apidb.apicommon.model.JBrowseQueries;

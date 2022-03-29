@@ -4,7 +4,7 @@ import static org.apidb.apicommon.model.TranscriptUtil.isTranscriptRecordClass;
 
 import java.util.Optional;
 
-import javax.ws.rs.PathParam;
+import jakarta.ws.rs.PathParam;
 
 import org.apache.log4j.Logger;
 import org.apidb.apicommon.model.filter.GeneBooleanFilter;
