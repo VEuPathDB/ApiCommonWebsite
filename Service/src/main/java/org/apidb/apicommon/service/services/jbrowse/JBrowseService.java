@@ -93,10 +93,13 @@ public class JBrowseService extends AbstractWdkService {
         return responseFromCommand(command);
     }
 
+
     @GET
-    @Path("{tracks}/{organismAbbrev}/aa/trackList.json")
+    @Path("{tracks}/{publicOrganismAbbrev}/aa/trackList.json")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getJbrowseAaTracks(@PathParam("organismAbbrev") String organismAbbrev, @PathParam("tracks") String tracks)  throws IOException {
+    public Response getJbrowseAaTracks(@PathParam("publicOrganismAbbrev") String publicOrganismAbbrev, @PathParam("tracks") String tracks)  throws IOException {
+
+        //NOTE:  this service call is public facing so we use the publicOrganismAbbrev here
 
         String gusHome = getWdkModel().getGusHome();
         String projectId = getWdkModel().getProjectId();
@@ -104,7 +107,7 @@ public class JBrowseService extends AbstractWdkService {
 
         List<String> command = new ArrayList<String>();
         command.add(gusHome + "/bin/jbrowseTracks");
-        command.add(organismAbbrev);
+        command.add(publicOrganismAbbrev);
         command.add(projectId);
         command.add(String.valueOf(isPbrowse));
         command.add(tracks);
@@ -113,9 +116,11 @@ public class JBrowseService extends AbstractWdkService {
     }
 
     @GET
-    @Path("{tracks}/{organismAbbrev}/trackList.json")
+    @Path("{tracks}/{publicOrganismAbbrev}/trackList.json")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getJbrowseTracks(@PathParam("organismAbbrev") String organismAbbrev, @PathParam("tracks") String tracks)  throws IOException {
+    public Response getJbrowseTracks(@PathParam("publicOrganismAbbrev") String publicOrganismAbbrev, @PathParam("tracks") String tracks)  throws IOException {
+
+        //NOTE:  this service call is public facing so we use the publicOrganismAbbrev here
 
         String gusHome = getWdkModel().getGusHome();
         String projectId = getWdkModel().getProjectId();
@@ -124,7 +129,7 @@ public class JBrowseService extends AbstractWdkService {
 
         List<String> command = new ArrayList<String>();
         command.add(gusHome + "/bin/jbrowseTracks");
-        command.add(organismAbbrev);
+        command.add(publicOrganismAbbrev);
         command.add(projectId);
         command.add(String.valueOf(isPbrowse));
         command.add(tracks);
