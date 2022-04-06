@@ -1426,6 +1426,22 @@ sub finalProfileAdjustments {
 }
 1;
 
+##VectorBase
+package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_f51b6797d0;
+use vars qw( @ISA );
+@ISA = qw( ApiCommonWebsite::View::GraphPackage::Templates::Expression );
+use ApiCommonWebsite::View::GraphPackage::Templates::Expression;
+
+use strict;
+sub finalProfileAdjustments {
+  my ($self, $profile) = @_;
+  $self->setPlotWidth(600);
+
+  return $self;
+}
+1;
+
+
 
 # package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_4582562a4b;
 # use base qw( ApiCommonWebsite::View::GraphPackage::Templates::Expression );
