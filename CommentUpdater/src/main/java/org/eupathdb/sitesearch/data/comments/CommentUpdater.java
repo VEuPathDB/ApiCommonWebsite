@@ -49,6 +49,8 @@ import java.util.stream.Collectors;
  *
  * @author Steve
  */
+
+// for apollo, make this class into AbstractCommentUpdater
 public class CommentUpdater {
 
   private static final Logger LOG = Logger.getLogger(CommentUpdater.class);
