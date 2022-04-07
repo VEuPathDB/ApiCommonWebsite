@@ -14,13 +14,21 @@ public abstract class CommentUpdaterCli {
   abstract String getEnvDbSchema();
   
   private static String getEnvSolrUrl() { return "SOLR_URL"; }
+  
+  private CommentSolrDocumentFields _docFields;
+  private CommentUpdaterSql _updaterSql;
+  
+  public CommentUpdaterCli(CommentSolrDocumentFields docFields, CommentUpdaterSql updaterSql) {
+    _docFields = docFields;
+    _updaterSql = updaterSql;
+  }
 
   private String getBadEnvMsg() {
     return "Comment updater requires the following environment variables:\n"
-      + "    " + getEnvDbConnect() + ": User database connection string\n"
-      + "    " + getEnvDbUser()    + ": User database credentials username\n"
-      + "    " + getEnvDbPass()    + ": User database credentials password\n"
-      + "    " + getEnvDbSchema()  + ": User database comment schema\n"
+      + "    " + getEnvDbConnect() + ": Database connection string\n"
+      + "    " + getEnvDbUser()    + ": Database credentials username\n"
+      + "    " + getEnvDbPass()    + ": Database credentials password\n"
+      + "    " + getEnvDbSchema()  + ": Database comment schema\n"
       + "    " + getEnvSolrUrl()   + ": Solr URL"; 
   }
 
@@ -33,12 +41,12 @@ public abstract class CommentUpdaterCli {
     String getCommentSchema() { return getThird(); }
   }
 
-  void init(CommentSolrDocumentFields docFields, CommentUpdaterSql updaterSql) throws Exception {
+  void execute() throws Exception {
     Config config = parseEnv();
     try (DatabaseInstance commentDb = new DatabaseInstance(config.getDbConfig())) {
       CommentUpdater updater = 
           new CommentUpdater(config.getSolrUrl(), commentDb, config.getCommentSchema(),
-              docFields, updaterSql );
+              _docFields, _updaterSql );
       updater.syncAll();
     }
   }

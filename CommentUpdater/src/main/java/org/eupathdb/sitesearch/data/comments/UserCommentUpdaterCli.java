@@ -2,9 +2,14 @@ package org.eupathdb.sitesearch.data.comments;
 
 public class UserCommentUpdaterCli extends CommentUpdaterCli {
   
+  public UserCommentUpdaterCli(CommentSolrDocumentFields docFields, CommentUpdaterSql updaterSql) {
+    super(docFields, updaterSql);
+  }
+  
   public static void main(String[] args) throws Exception {
-    UserCommentUpdaterCli cli = new UserCommentUpdaterCli();
-    cli.init(new UserCommentSolrDocumentFields(), new UserCommentUpdaterSql());
+    UserCommentUpdaterCli cli = 
+        new UserCommentUpdaterCli(new UserCommentSolrDocumentFields(), new UserCommentUpdaterSql());
+    cli.execute();
   }
   
   @Override
