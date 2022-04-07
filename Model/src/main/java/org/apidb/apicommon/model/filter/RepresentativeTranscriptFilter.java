@@ -102,8 +102,9 @@ public class RepresentativeTranscriptFilter extends StepFilter {
 
   @Override
   public String getSql(AnswerValue answer, String idSql, JSONObject jsValue) throws WdkModelException {
-    String filterSql = jsValue.optBoolean(LONGEST_TRANSCRIPT_REQUIRED_OPTION, true)
-        ? SELECT_LONGEST_TRANSCRIPT_SQL : SELECT_FIRST_TRANSCRIPT_SQL;
+    boolean findLongestTranscript = jsValue.optBoolean(LONGEST_TRANSCRIPT_REQUIRED_OPTION, true);
+    LOG.info("Using longest transcript in representative transcript filter? " + findLongestTranscript);
+    String filterSql = findLongestTranscript ? SELECT_LONGEST_TRANSCRIPT_SQL : SELECT_FIRST_TRANSCRIPT_SQL;
     return filterSql.replace(ORIG_SQL_PARAM, idSql);
   }
 
