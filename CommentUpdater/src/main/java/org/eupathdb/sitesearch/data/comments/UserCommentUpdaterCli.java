@@ -4,7 +4,7 @@ public class UserCommentUpdaterCli extends CommentUpdaterCli {
   
   public static void main(String[] args) throws Exception {
     UserCommentUpdaterCli cli = new UserCommentUpdaterCli();
-    cli.init();
+    cli.init(new UserCommentSolrDocumentFields(), new UserCommentUpdaterSql());
   }
   
   @Override

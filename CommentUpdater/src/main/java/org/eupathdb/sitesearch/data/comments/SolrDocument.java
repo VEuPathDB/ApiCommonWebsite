@@ -2,35 +2,8 @@ package org.eupathdb.sitesearch.data.comments;
 
 import java.util.Arrays;
 
-class Field {
-  static final String
-    ID          = "id",
-    WDK_ID      = "wdkPrimaryKeyString",
-    DOC_TYPE    = "document-type",
-    BATCH_ID    = "batch-id",
-    BATCH_NAME  = "batch-name",
-    BATCH_TYPE  = "batch-type",
-    BATCH_TIME  = "batch-timestamp",
-    COMMENT_ID  = "userCommentIds",
-    COMMENT_TXT = "MULTITEXT__gene_UserCommentContent";
-}
 
-class DocumentInfo {
-
-  /**
-   * If this is changed in any way, the implementation of
-   * {@link #readCsvRow(String)} must also be changed.
-   */
-  static final String[] REQUIRED_FIELDS = {
-    Field.ID,
-    Field.WDK_ID,
-    Field.DOC_TYPE,
-    Field.BATCH_ID,
-    Field.BATCH_NAME,
-    Field.BATCH_TYPE,
-    Field.BATCH_TIME,
-    Field.COMMENT_ID,
-  };
+class SolrDocument {
 
 
   private String    solrId;
@@ -43,8 +16,6 @@ class DocumentInfo {
   private int[]     commentIds;
   private boolean[] hits;
 
-  private DocumentInfo() {
-  }
 
   String getSourceId() {
     return sourceId;
@@ -117,11 +88,11 @@ class DocumentInfo {
    * @throws RuntimeException if the csv row was found to be shorter than the
    *         expected row length.
    */
-  static DocumentInfo readCsvRow(final String row) {
+  static SolrDocument readCsvRow(final String row) {
     var buf = new StringBuilder();
     var len = row.length();
     var field = 1;
-    var out = new DocumentInfo();
+    var out = new SolrDocument();
 
     // Pre-stretch buffer
     buf.setLength(128);

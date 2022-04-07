@@ -33,11 +33,12 @@ public abstract class CommentUpdaterCli {
     String getCommentSchema() { return getThird(); }
   }
 
-  
-  void init() throws Exception {
+  void init(CommentSolrDocumentFields docFields, CommentUpdaterSql updaterSql) throws Exception {
     Config config = parseEnv();
     try (DatabaseInstance commentDb = new DatabaseInstance(config.getDbConfig())) {
-      CommentUpdater updater = new CommentUpdater(config.getSolrUrl(), commentDb, config.getCommentSchema());
+      CommentUpdater updater = 
+          new CommentUpdater(config.getSolrUrl(), commentDb, config.getCommentSchema(),
+              docFields, updaterSql );
       updater.syncAll();
     }
   }

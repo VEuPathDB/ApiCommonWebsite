@@ -46,6 +46,9 @@ import java.util.stream.Collectors;
  * (having been written there when Solr was originally populated with documents).
  *
  * It is not intended to support large cardinality updates.
+ * 
+ * NOTE: this was updated to also deal with comments coming from Apollo.  Thus the
+ * abstraction.
  *
  * @author Steve
  */
@@ -60,15 +63,23 @@ public class CommentUpdater {
   private final DatabaseInstance _commentDb;
 
   private final String _commentSchema;
+  
+  private final CommentSolrDocumentFields _docFields;
+  
+  private final CommentUpdaterSql _updaterSql;
 
   public CommentUpdater(
     final String           solrUrl,
     final DatabaseInstance commentDb,
-    final String           commentSchema
+    final String           commentSchema,
+    final CommentSolrDocumentFields docFields,
+    final CommentUpdaterSql updaterSql
   ) {
     _solrUrl = solrUrl;
     _commentDb = commentDb;
-    _commentSchema = commentSchema;
+    _commentSchema = commentSchema + (commentSchema.endsWith(".") ? "" : ".");
+    _docFields = docFields;
+    _updaterSql = updaterSql;
   }
 
   public void syncAll() {
@@ -78,17 +89,10 @@ public class CommentUpdater {
       solrCommit();
     }
   }
-
+  
   public void updateSingle(final long commentId) {
-    var schema = _commentSchema + (_commentSchema.endsWith(".") ? "" : ".");
     // Intentionally selecting dead comments for comment delete case.
-    var select = "SELECT stable_id "
-      + "FROM " + schema + "comments "
-      + "WHERE comment_id = ?"
-      + "UNION "
-      + "SELECT stable_id "
-      + "FROM " + schema + "commentstableid "
-      + "WHERE comment_id = ?";
+    var select = _updaterSql.getGeneIdWithCommentIdSql(_commentSchema);
     var genes  = new SQLRunner(_commentDb.getDataSource(), select)
       .executeQuery(
         new Object[] {commentId, commentId},
@@ -111,14 +115,10 @@ public class CommentUpdater {
    * Get an in-memory list of record IDs for those records that are out of date
    * in Solr
    */
-  private List<DocumentInfo> findDocumentsToUpdate() {
+  private List<SolrDocument> findDocumentsToUpdate() {
 
     // sql to find sorted (source_id, comment_id) tuples from userdb
-    var sqlSelect = "SELECT source_id, comment_target_type as record_type, c.comment_id"
-      + " FROM apidb.textsearchablecomment tsc,"
-      + " " + _commentSchema + "comments c "
-      + " WHERE tsc.comment_id = c.comment_id"
-      + " ORDER BY source_id DESC, c.comment_id";
+    var sqlSelect = _updaterSql.getSortedCommentsSql(_commentSchema);
 
     var results = new SQLRunner(_commentDb.getDataSource(), sqlSelect)
       .executeQuery(rs -> findStaleDocuments(fetchCommentedRecords(), rs));
@@ -155,7 +155,7 @@ public class CommentUpdater {
    * in need of updating.
    */
   private ProcessingResult findStaleDocuments(
-    final Map<String, DocumentInfo> solrData,
+    final Map<String, SolrDocument> solrData,
     final ResultSet      rs
   ) {
     var dbRow = new RecordInfo();
@@ -198,7 +198,7 @@ public class CommentUpdater {
       // that is not already queued for update
       .filter(d -> !tmp.contains(d.getSourceId()))
       // that has referenced comments not appearing in the db
-      .filter(DocumentInfo::hasUnhitComments)
+      .filter(SolrDocument::hasUnhitComments)
       // queue for update
       .forEach(out.toUpdate::add);
 
@@ -211,12 +211,12 @@ public class CommentUpdater {
    *
    * @param ids Solr IDs for documents to lookup
    *
-   * @return Map of WDK SourceID to Solr {@link DocumentInfo}
+   * @return Map of WDK SourceID to Solr {@link SolrDocument}
    */
-  private Map<String, DocumentInfo> fetchDocumentsById(final String[] ids) {
-    var q = new SolrTermQueryBuilder(Field.ID)
+  private Map<String, SolrDocument> fetchDocumentsById(final String[] ids) {
+    var q = new SolrTermQueryBuilder(_docFields.getIdFieldName())
       .values(ids)
-      .resultFields(DocumentInfo.REQUIRED_FIELDS)
+      .resultFields(_docFields.getRequiredFields())
       .maxRows(1000000)
       .resultFormat(FormatType.CSV);
     return fetchDocuments(
@@ -229,12 +229,12 @@ public class CommentUpdater {
    * Retrieves documents from Solr that have existing
    * comment content data.
    *
-   * @return Map of WDK SourceID to Solr {@link DocumentInfo}
+   * @return Map of WDK SourceID to Solr {@link SolrDocument}
    */
-  private Map<String, DocumentInfo> fetchCommentedRecords() {
+  private Map<String, SolrDocument> fetchCommentedRecords() {
     return fetchDocuments(SolrUrlQueryBuilder.select(_solrUrl)
-      .filterAndAllOf(Field.COMMENT_TXT)
-      .resultFields(DocumentInfo.REQUIRED_FIELDS)
+      .filterAndAllOf(_docFields.getCommentContentFieldName())
+      .resultFields(_docFields.getRequiredFields())
       .maxRows(1000000)
       .resultFormat(FormatType.CSV)
       .buildQuery(), null);
@@ -248,19 +248,19 @@ public class CommentUpdater {
    * We do this because the Solr stream might not include documents without
    * comments, and so would not provide those IDs.
    */
-  private void updateDocumentComment(DocumentInfo doc) {
+  private void updateDocumentComment(SolrDocument doc) {
     var comments = getCorrectCommentsForOneDocument(doc, _commentDb.getDataSource());
 
     var updateJson = new JSONArray().put(
       new JSONObject()
-        .put(Field.ID, doc.getSolrId()) // concoct a valid solr unique ID
-        .put(Field.DOC_TYPE, doc.getDocumentType())
-        .put(Field.BATCH_ID, doc.getBatchId())
-        .put(Field.BATCH_NAME, doc.getBatchName())
-        .put(Field.BATCH_TYPE, doc.getBatchType())
-        .put(Field.BATCH_TIME, doc.getBatchTime())
-        .put(Field.COMMENT_ID, new JSONObject().put("set", comments.commentIds))
-        .put(Field.COMMENT_TXT, new JSONObject().put("set", comments.commentContents))
+        .put(_docFields.getIdFieldName(), doc.getSolrId()) // concoct a valid solr unique ID
+        .put(_docFields.getBatchTypeFieldName(), doc.getDocumentType())
+        .put(_docFields.getBatchIdFieldName(), doc.getBatchId())
+        .put(_docFields.getBatchNameFieldName(), doc.getBatchName())
+        .put(_docFields.getBatchTypeFieldName(), doc.getBatchType())
+        .put(_docFields.getBatchTimeFieldName(), doc.getBatchTime())
+        .put(_docFields.getCommentIdFieldName(), new JSONObject().put("set", comments.commentIds))
+        .put(_docFields.getCommentContentFieldName(), new JSONObject().put("set", comments.commentContents))
     );
 
     updateSolrDocument(updateJson);
@@ -271,7 +271,7 @@ public class CommentUpdater {
    * record
    */
   private DocumentCommentsInfo getCorrectCommentsForOneDocument(
-    final DocumentInfo doc,
+    final SolrDocument doc,
     final DataSource commentDbDataSource
   ) {
 
@@ -320,7 +320,7 @@ public class CommentUpdater {
     }
   }
 
-  private static Map<String, DocumentInfo> fetchDocuments(String url, Entity<?> body) {
+  private static Map<String, SolrDocument> fetchDocuments(String url, Entity<?> body) {
     Response res = null;
     try {
       res = sendSolrRequest(url, body);
@@ -333,8 +333,8 @@ public class CommentUpdater {
       read.readLine();
 
       return read.lines()
-        .map(DocumentInfo::readCsvRow)
-        .collect(Collectors.toMap(DocumentInfo::getSourceId, Function.identity()));
+        .map(SolrDocument::readCsvRow)
+        .collect(Collectors.toMap(SolrDocument::getSourceId, Function.identity()));
 
     } catch (IOException e) {
       throw new RuntimeException("Failed to read Solr response body", e);
