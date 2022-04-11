@@ -106,3 +106,11 @@ sub getProfile {
 }
 1;
 
+# PlasmoDB pfal3D7_ppfal3d7_kucharski_RBC_RNAseq_ebi_rnaSeq_RSRC
+package ApiCommonWebsite::View::GraphPackage::Templates::Similarity::DS_29940f3f82;
+sub getProfile {
+  my ($self) = @_;
+  my $pset = 'High resolution intraerythrocytic time course transcriptome by RNA-Seq [htseq-union - unstranded - tpm - unique]';
+  return $pset;
+}
+1;

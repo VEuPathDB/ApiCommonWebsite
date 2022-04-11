@@ -1409,6 +1409,37 @@ sub finalProfileAdjustments {
 
 1;
 
+
+# PlasmoDB pchachabaudi_pchachabaudi_SR10KOvWT_Subudhi_RSRC_ebi_rnaSeq_RSRC
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_ab772b084e;
+
+# @Override
+sub getProfileColors {
+  my ($self) = @_;
+  my @colors =  @{$self->getColors()};
+  return \@colors;
+}
+
+sub finalProfileAdjustments {
+  my ($self, $profile) = @_;
+
+  my $rAdjustString = << 'RADJUST';
+  profile.df.full <- profile.df.full[profile.df.full$LEGEND == 'unique',]
+  profile.df.full$LEGEND <- as.character(profile.df.full$LEGEND)
+  profile.df.full$LEGEND[grepl('WT', profile.df.full$ELEMENT_NAMES)] <- 'Wild Type'
+  profile.df.full$LEGEND[profile.df.full$LEGEND != 'Wild Type'] <- 'SR10 KO'
+  profile.df.full$ELEMENT_NAMES <- gsub('10KO', '', profile.df.full$ELEMENT_NAMES)
+  profile.df.full$ELEMENT_NAMES_NUMERIC = as.numeric(gsub(" *[a-z-A-Z()+-]+ *", "", profile.df.full$ELEMENT_NAMES, perl=T))
+  profile.df.full$GROUP <- profile.df.full$LEGEND
+RADJUST
+
+  $profile->setSmoothLines(0);
+  $profile->setXaxisLabel("Hours");
+  $profile->addAdjustProfile($rAdjustString);
+}
+
+1;
+
 #--------------------------------------------------------------------------------
 # TEMPLATE_ANCHOR rnaSeqGraph
 
