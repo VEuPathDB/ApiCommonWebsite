@@ -242,7 +242,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
   public void deleteComment(long commentId) throws WdkModelException {
     try(Connection con = _commentDs.getConnection()) {
       new HideCommentQuery(_config.getCommentSchema(), commentId).run(con);
-      new CommentUpdater(_config.getSolrUrl(), _commentDb, _config.getCommentSchema())
+      new UserCommentUpdater(_config.getSolrUrl(), _commentDb, _config.getCommentSchema())
         .updateSingle(commentId);
     } catch (SQLException e) {
       throw new WdkModelException(e);
