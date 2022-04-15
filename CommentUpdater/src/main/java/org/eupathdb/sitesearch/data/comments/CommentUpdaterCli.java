@@ -7,21 +7,17 @@ import org.gusdb.fgputil.db.pool.DatabaseInstance;
 import org.gusdb.fgputil.db.pool.SimpleDbConfig;
 
 public abstract class CommentUpdaterCli {
-  
-  abstract String getEnvDbConnect();
-  abstract String getEnvDbUser();
-  abstract String getEnvDbPass();
-  abstract String getEnvDbSchema();
-  
+
+  // subclass to provide implementation-specific comment updater
+  protected abstract CommentUpdater createCommentUpdater(Config config, DatabaseInstance commentDb);
+
+  // subclass to provide env vars used to configure DB
+  protected abstract String getEnvDbConnect();
+  protected abstract String getEnvDbUser();
+  protected abstract String getEnvDbPass();
+  protected abstract String getEnvDbSchema();
+
   private static String getEnvSolrUrl() { return "SOLR_URL"; }
-  
-  private CommentSolrDocumentFields _docFields;
-  private CommentUpdaterSql _updaterSql;
-  
-  public CommentUpdaterCli(CommentSolrDocumentFields docFields, CommentUpdaterSql updaterSql) {
-    _docFields = docFields;
-    _updaterSql = updaterSql;
-  }
 
   private String getBadEnvMsg() {
     return "Comment updater requires the following environment variables:\n"
@@ -32,7 +28,7 @@ public abstract class CommentUpdaterCli {
       + "    " + getEnvSolrUrl()   + ": Solr URL"; 
   }
 
-  private static class Config extends ThreeTuple<String,ConnectionPoolConfig,String> {
+  protected static class Config extends ThreeTuple<String,ConnectionPoolConfig,String> {
     Config(String solrUrl, ConnectionPoolConfig commentDbConfig, String commentDbSchema) {
       super(solrUrl, commentDbConfig, commentDbSchema);
     }
@@ -44,10 +40,7 @@ public abstract class CommentUpdaterCli {
   void execute() throws Exception {
     Config config = parseEnv();
     try (DatabaseInstance commentDb = new DatabaseInstance(config.getDbConfig())) {
-      CommentUpdater updater = 
-          new CommentUpdater(config.getSolrUrl(), commentDb, config.getCommentSchema(),
-              _docFields, _updaterSql );
-      updater.syncAll();
+      createCommentUpdater(config, commentDb).syncAll();
     }
   }
 

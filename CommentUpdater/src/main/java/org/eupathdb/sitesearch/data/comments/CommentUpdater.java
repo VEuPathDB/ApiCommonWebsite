@@ -53,7 +53,7 @@ import java.util.stream.Collectors;
  * @author Steve
  */
 
-public class CommentUpdater {
+public abstract class CommentUpdater {
 
   private static final Logger LOG = Logger.getLogger(CommentUpdater.class);
 
@@ -67,7 +67,7 @@ public class CommentUpdater {
   
   private final CommentUpdaterSql _updaterSql;
 
-  public CommentUpdater(
+  protected CommentUpdater(
     final String           solrUrl,
     final DatabaseInstance commentDb,
     final String           commentSchema,

@@ -1,34 +1,35 @@
 package org.eupathdb.sitesearch.data.comments;
 
+import org.gusdb.fgputil.db.pool.DatabaseInstance;
+
 public class ApolloCommentUpdaterCli extends CommentUpdaterCli {
 
-  public ApolloCommentUpdaterCli(CommentSolrDocumentFields docFields, CommentUpdaterSql updaterSql) {
-    super(docFields, updaterSql);
+  public static void main(String[] args) throws Exception {
+    new ApolloCommentUpdaterCli().execute();
   }
 
-  public static void main(String[] args) throws Exception {
-    ApolloCommentUpdaterCli cli = 
-        new ApolloCommentUpdaterCli(new ApolloCommentSolrDocumentFields(), new ApolloCommentUpdaterSql());
-    cli.execute();
-  }
-  
   @Override
-  String getEnvDbConnect() {
+  protected CommentUpdater createCommentUpdater(Config config, DatabaseInstance commentDb) {
+    return new ApolloCommentUpdater(config.getSolrUrl(), commentDb, config.getCommentSchema());
+  }
+
+  @Override
+  protected String getEnvDbConnect() {
     return "APPDB_CONNECT";
   }
 
   @Override
-  String getEnvDbUser() {
+  protected String getEnvDbUser() {
     return "APPDB_LOGIN";
   }
 
   @Override
-  String getEnvDbPass() {
+  protected String getEnvDbPass() {
     return "APPDB_PASSWORD";
   }
 
   @Override
-  String getEnvDbSchema() {
+  protected String getEnvDbSchema() {
     return "APPDB_SCHEMA";
   }
 }

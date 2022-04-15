@@ -28,5 +28,5 @@ public abstract class CommentSolrDocumentFields {
         getBatchTimeFieldName(),
         getCommentIdFieldName()};
       return flds;
-    };
+    }
 }
