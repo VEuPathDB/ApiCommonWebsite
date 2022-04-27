@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "browserslist": [
+    "extends @veupathdb/browserslist-config"
+  ],
   "dependencies": {
     "@emotion/react": "^11.7.0",
     "@material-ui/core": "^4.12.3",
