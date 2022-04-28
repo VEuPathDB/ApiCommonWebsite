@@ -21,7 +21,7 @@ Tests are written for the [jest](https://jestjs.io/) testing framework.
 
 === Local Development
 
-First, configure your local development environment by adding `.env` file in `ApiCommonWebsite/Site`. (We have provided a sample config in `.env.sample`.)
+First, configure your local development environment by adding a `.env` file in `ApiCommonWebsite/Site`. (We have provided a sample config in `.env.sample`.)
 
 Next, install dependencies from npm:
 
