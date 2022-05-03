@@ -14,14 +14,13 @@
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
 
   <target name="ApiCommonWebsite-Installation" depends="EbrcWebSvcCommon-Installation,
-                                                       ApiCommonModel-Installation,
-                                                       JBrowse-Installation,
-                                                       ApiCommonWebsite-MavenInstallation,
-                                                       ApiCommonWebsite/Model-Installation,
-                                                       ApiCommonWebsite/View-Installation,
-                                                       ApiCommonWebsite/Site-Installation,
-                                                       ApiCommonWebsite/Service-Installation,
-  	                                                   ApiCommonWebsite/CommentUpdater-Installation">
+                                                        ApiCommonModel-Installation,
+                                                        JBrowse-Installation,
+                                                        ApiCommonWebsite/Model-Installation,
+                                                        ApiCommonWebsite/View-Installation,
+                                                        ApiCommonWebsite/Site-Installation,
+                                                        ApiCommonWebsite/Service-Installation,
+  	                                                ApiCommonWebsite/CommentUpdater-Installation">
 
     <ant target="defaultProjectInstall">
       <property name="project" value="ApiCommonWebsite" />
@@ -45,26 +44,14 @@
     </apply>
   </target>
 
-  <target name="ApiCommonWebsite-MavenInstallation">
-    <ant target="mavenBuildProject">
-      <property name="project" value="ApiCommonWebsite" />
-    </ant>
-    <property name="alreadyBuilt" value="true" />
-  </target>
 
   <!-- ooooooooooooooooooooooo  Install Components  ooooooooooooooooooooooo -->
+
   <target name="ApiCommonWebsite/Model-Installation">
     <ant target="defaultComponentInstall">
       <property name="project" value="ApiCommonWebsite" />
       <property name="component" value="Model" />
     </ant>
-
-    <!-- remove conflicting jar file -->
-    <!-- Instead of deleting the conflicting jars, move them into not-deployed subfolder, so that they won't be loaded by tomcat -->
-    <!--
-    <delete file="${targetDir}/lib/java/servlet-api-2.4.jar" />
-    <delete file="${targetDir}/lib/java/jsp-api-2.0.jar" />
-    -->
   </target>
 
   <target name="ApiCommonWebsite/Site-Installation">
@@ -102,12 +89,7 @@
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
   <!-- oooooooooooooooooooooooo  Web Installation  oooooooooooooooooooooooo -->
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
-  <!--
-    <target name="ApiCommonWebsite-WebInstallation" depends="ApiCommonWebsite-Installation,
-                                                             WDK-WebInstallation,
-                                                             ApiCommonWebsite/Site-WebInstallation">
-   </target>
-  -->
+
   <target name="ApiCommonWebsite-WebInstallation" depends="EbrcWebSvcCommon-WebInstallation,
                                                            JBrowse-WebInstallation,
                                                            ApiCommonWebsite-Installation,
@@ -193,29 +175,4 @@
 
   </target>
 
-  <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
-  <!-- oooooooooooooooooooooooooooo  Release  ooooooooooooooooooooooooooooo -->
-  <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
-
-  <target name="ApiCommonWebsite-Release">
-
-    <ant target="defaultProjectRelease">
-      <property name="cvsroot" value=":ext:cvs.sanger.ac.uk:/cvsroot/GUS" />
-    </ant>
-  </target>
-
-  <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
-  <!-- oooooooooooooooooooooooooo  Distributable  ooooooooooooooooooooooooo -->
-  <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
-
-  <target name="ApiCommonWebsite-Distributable">
-
-    <copy todir="${targetDir}">
-      <fileset dir="${projectsDir}">
-        <exclude name="**/CVS/*" />
-      </fileset>
-    </copy>
-  </target>
-
 </project>
-
