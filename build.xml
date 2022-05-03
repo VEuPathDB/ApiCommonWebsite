@@ -95,15 +95,24 @@
                                                            ApiCommonWebsite-Installation,
                                                            ApiCommonWebsite/View-WebInstallation,
                                                            ApiCommonWebsite/Site-WebInstallation">
-    <!-- JBrowse Stuff -->
-    <symlink link="${webappTargetDir}/jbrowse/tracks"
-             resource="${targetDir}/lib/jbrowse/auto_generated" />
+    <!-- JBrowse Links -->
+    <ant target="symlink">
+      <property name="dir" value="${webappTargetDir}/jbrowse"/>
+      <property name="linkName" value="tracks"/>
+      <property name="linkTarget" value="../../gus_home/lib/jbrowse/auto_generated"/>
+    </ant>
 
-    <symlink link="${webappTargetDir}/jbrowse/common_tracks"
-             resource="${targetDir}/lib/jbrowse/common" />
+    <ant target="symlink">
+      <property name="dir" value="${webappTargetDir}/jbrowse"/>
+      <property name="linkName" value="common_tracks"/>
+      <property name="linkTarget" value="../../gus_home/lib/jbrowse/common"/>
+    </ant>
 
-    <symlink link="${webappTargetDir}/WEB-INF/wdk-model/lib/jbrowse"
-             resource="${targetDir}/lib/jbrowse" />
+    <ant target="symlink">
+      <property name="dir" value="${webappTargetDir}/WEB-INF/wdk-model/lib"/>
+      <property name="linkName" value="jbrowse"/>
+      <property name="linkTarget" value="../../gus_home/lib/jbrowse"/>
+    </ant>
 
   </target>
 
