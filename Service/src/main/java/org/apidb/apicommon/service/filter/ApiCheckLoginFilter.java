@@ -9,7 +9,9 @@ public class ApiCheckLoginFilter extends CheckLoginFilter {
 
   @Override
   protected boolean isPathToSkip(String path) {
-    return super.isPathToSkip(path) || path.startsWith("jbrowse");
+    return super.isPathToSkip(path)
+        || path.startsWith("jbrowse")
+        || path.startsWith("profileSet");
   }
 
 }
