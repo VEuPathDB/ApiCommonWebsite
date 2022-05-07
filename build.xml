@@ -146,9 +146,11 @@
     <replace file="${cgibinTargetDir}/dataPlotter.pl"
              token="@rProgram@"
              value="${rProgram}" />
+    <!-- Not sure what this will be until deploy time
     <replace file="${cgibinTargetDir}/dataPlotter.pl"
              token="@cgilibTargetDir@"
              value="${cgilibTargetDir}" />
+    -->
 
   </target>
 
