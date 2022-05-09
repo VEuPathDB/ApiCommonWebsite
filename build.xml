@@ -141,16 +141,10 @@
     <copy file="${projectsDir}/ApiCommonModel/Model/lib/jbrowse/apiJBrowse.js"
           tofile="${webappTargetDir}/jbrowse/apiJBrowse.js" />
 
-
     <!-- replacement for dataPlotter file used to do expression graph -->
     <replace file="${cgibinTargetDir}/dataPlotter.pl"
              token="@rProgram@"
              value="${rProgram}" />
-    <!-- Not sure what this will be until deploy time
-    <replace file="${cgibinTargetDir}/dataPlotter.pl"
-             token="@cgilibTargetDir@"
-             value="${cgilibTargetDir}" />
-    -->
 
   </target>
 
