@@ -40,6 +40,8 @@ modelprop:
   JBROWSE_WEBPAGE_URL: "/{{ webapp_ctx }}/app/jbrowse"
   JBROWSE_SERVICE_URL: "/{{ webapp_ctx }}/service/jbrowse"
 
+user_datasets_workspace:
+  enabled: "false"
 
 commentconfig_login: '{{ modelconfig_userDb_login }}'
 commentconfig_password: '{{ modelconfig_userDb_password }}'
