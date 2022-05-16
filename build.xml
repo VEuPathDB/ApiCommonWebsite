@@ -1,4 +1,4 @@
-<project name="ApiCommonWebsite" default="Installation" basedir=".">
+<project name="ApiCommonWebsite" basedir=".">
 
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
   <!-- oooooooooooooooooooooooooo  Dependencies  oooooooooooooooooooooooooo -->
@@ -7,7 +7,6 @@
   <import file="${projectsDir}/EbrcWebSvcCommon/build.xml" />
   <import file="${projectsDir}/JBrowse/build.xml" />
   <import file="${projectsDir}/ApiCommonModel/build.xml" />
-
 
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
   <!-- oooooooooooooooooooooooooo  Installation  oooooooooooooooooooooooooo -->
@@ -20,8 +19,7 @@
                                                         ApiCommonWebsite/View-Installation,
                                                         ApiCommonWebsite/Site-Installation,
                                                         ApiCommonWebsite/Service-Installation,
-  	                                                ApiCommonWebsite/CommentUpdater-Installation">
-
+  	                                                    ApiCommonWebsite/CommentUpdater-Installation">
     <ant target="defaultProjectInstall">
       <property name="project" value="ApiCommonWebsite" />
     </ant>
@@ -43,7 +41,6 @@
       </redirector>
     </apply>
   </target>
-
 
   <!-- ooooooooooooooooooooooo  Install Components  ooooooooooooooooooooooo -->
 
@@ -113,7 +110,6 @@
 
   </target>
 
-
   <target name="ApiCommonWebsite/Site-WebInstallation">
 
     <ant target="eupathWebComponentInstall">
@@ -147,7 +143,6 @@
              value="${rProgram}" />
 
   </target>
-
 
   <target name="ApiCommonWebsite/View-WebInstallation">
 
