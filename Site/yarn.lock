@@ -2217,10 +2217,10 @@
     io-ts "^2.2.16"
     lodash "^4.17.21"
 
-"@veupathdb/user-datasets@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@veupathdb/user-datasets/-/user-datasets-0.1.0.tgz#95a24f49ea7f6b0930b760447a5dfe60f51fc50c"
-  integrity sha512-xGuHqSQYPGDN1B44s6OCwe0te8wNo7HzlUcowdab5drPlCdyZGwjpOHj8kT17RWzUaTUEeAsWZok/tziDK9qbw==
+"@veupathdb/user-datasets@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@veupathdb/user-datasets/-/user-datasets-0.1.1.tgz#06eb1f8b9e7b586a547adf675df9fbdd9ee6074c"
+  integrity sha512-CvfYdBJjF+f0xfQrLyMpuelAJ5XpyLDeyvqLIYhSsTdY9BwddM4zv0UXzUpSRPzkvD533nU5p2Zt2SPirg3L0g==
   dependencies:
     lodash "^4.17.21"
     moment "^2.21.0"
