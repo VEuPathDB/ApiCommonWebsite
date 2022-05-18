@@ -1,34 +1,34 @@
-// import { compose, curryN, set, update } from 'lodash/fp';
+import { flowRight, identity } from 'lodash';
+
+import { useUserDatasetsWorkspace } from '@veupathdb/web-common/lib/config';
+
+import { wrapStoreModules as addUserDatasetStoreModules } from '@veupathdb/user-datasets/lib/StoreModules';
 
 import * as globalData from './storeModules/GlobalData';
 import * as record from './storeModules/Record';
+import * as userCommentForm from './storeModules/UserCommentFormStoreModule';
+import * as userCommentShow from './storeModules/UserCommentShowStoreModule';
+import * as blastSummaryView from './storeModules/BlastSummaryViewStoreModule';
+import * as genomeSummaryView from './storeModules/GenomeSummaryViewStoreModule';
 
-/**
- * Compose reducer functions from right to left. In other words, the
- * last reducer provided is called first, the second to last is called
- * second, and so on.
- */
-// const composeReducers = (...reducers) => (state, action) =>
-// reducers.reduceRight((state, reducer) => reducer(state, action), state);
 
-/**
- * Curried with fixed size of two arguments.
- */
-// const composeReducerWith = curryN(2, composeReducers);
-
-export default storeModules => ({
-  ...storeModules,
-  record,
-  globalData: {
-    ...storeModules.globalData,
-    reduce: (state, action) => {
-      state = storeModules.globalData.reduce(state, action);
-      return globalData.reduce(state, action);
-    }
-  }
-})
-
-// export default compose(
-//   update('globalData.reduce', composeReducerWith(globalData.reduce)),
-//   set('record', record),
-// );
+export default flowRight(
+  useUserDatasetsWorkspace
+    ? addUserDatasetStoreModules
+    : identity,
+  storeModules => ({
+    ...storeModules,
+    record,
+    globalData: {
+      ...storeModules.globalData,
+      reduce: (state, action) => {
+        state = storeModules.globalData.reduce(state, action);
+        return globalData.reduce(state, action);
+      }
+    },
+    userCommentForm,
+    userCommentShow,
+    blastSummaryView,
+    genomeSummaryView,
+  })
+);
