@@ -814,6 +814,21 @@ sub init {
 
 1;
 
+# FungiDB ncraOR74A_Ncrassa_plantbiomass_Wu_2021_ebi_rnaSeq_RSRC
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_1dd4f50bad;
+
+sub init {
+  my $self = shift;
+  $self->SUPER::init(@_);
+
+  $self->setPlotWidth(700);
+
+  return $self;
+}
+
+1;
+
+
 # Fungi - ncraOR74A_Bharath_Circadian_Time_Course_ebi_rnaSeq_RSRC
 package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_c05fd37f3c;
 
