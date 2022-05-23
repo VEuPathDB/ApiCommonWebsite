@@ -110,6 +110,7 @@ modelconfig_userDatasetStoreConfig: >
    <typeHandler type="GeneList" version="1.0"  implementation="org.apidb.apicommon.model.userdataset.GeneListTypeHandler"/>
    <typeHandler type="BigwigFiles" version="1.0"  implementation="org.apidb.apicommon.model.userdataset.BigwigFilesTypeHandler"/>
    <typeHandler type="RnaSeq" version="1.0"  implementation="org.apidb.apicommon.model.userdataset.RnaSeqTypeHandler"/>
-   <typeHandler type="BIOM" version="1.0, 2.0, or 2.1" implementation="org.apidb.apicommon.model.userdataset.BiomTypeHandler"/> 
+   <typeHandler type="BIOM" version="1.0, 2.0, or 2.1" implementation="org.apidb.apicommon.model.userdataset.BiomTypeHandler"/>
+   <typeHandler type="ISASimple" version="1.0" implementation="org.apidb.apicommon.model.userdataset.ISASimpleHandler"/>
  </userDatasetStore>
 
