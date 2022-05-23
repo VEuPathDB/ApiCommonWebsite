@@ -17,7 +17,7 @@ modelconfig_userDatasetStoreConfig: >
       implementation="org.gusdb.wdk.model.user.dataset.ExampleTypeHandler"/>
     <typeHandler type="GeneList" version="1.0"
       implementation="org.apidb.apicommon.model.userdataset.GeneListTypeHandler"/>
-    <typeHandler type="ISASimple" version="0.0"
+    <typeHandler type="ISA" version="0.0"
       implementation="org.apidb.apicommon.model.userdataset.ISASimpleTypeHandler"/>
   </userDatasetStore>
 
