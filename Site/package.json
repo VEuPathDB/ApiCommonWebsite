@@ -64,7 +64,7 @@
     "file-loader": "^3.0.1",
     "html-webpack-plugin": "^4.5.2",
     "ify-loader": "^1.1.0",
-    "jquery": "1.9.1",
+    "jquery": "3.5.0",
     "mini-css-extract-plugin": "^0.6.0",
     "popper.js": "^1.16.1",
     "react-spring": "^8.0.27",
