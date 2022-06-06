@@ -27,16 +27,17 @@ public class ApiProjectService extends ProjectService {
   @Override
   protected JSONObject addSupplementalProjectInfo(JSONObject projectJson) throws WdkModelException {
     WdkModel model = getWdkModel();
+
+    ProjectMapper mapper = ProjectMapper.getMapper(model);
+
+    // add mapping of project ID to webapp URL
+    JSONObject mappedProjects = new JSONObject();
+    for (String projectId : mapper.getFederatedProjects()) {
+      mappedProjects.put(projectId, mapper.getWebAppUrl(projectId));
+    }
+    projectJson.put(PROJECT_URLS_KEY, mappedProjects);
+
     if (Arrays.asList(PORTAL_PROJECT_IDS).contains(model.getProjectId())) {
-      ProjectMapper mapper = ProjectMapper.getMapper(model);
-
-      // add mapping of project ID to webapp URL
-      JSONObject mappedProjects = new JSONObject();
-      for (String projectId : mapper.getFederatedProjects()) {
-        mappedProjects.put(projectId, mapper.getWebAppUrl(projectId));
-      }
-      projectJson.put(PROJECT_URLS_KEY, mappedProjects);
-
       // get all organisms in vocabulary of org param of taxon question
       Question taxonQuestion = model.getQuestionByName(TAXON_QUESTION_NAME).get();
       DisplayablyValid<AnswerSpec> spec = QuestionService.getDisplayableAnswerSpec(
