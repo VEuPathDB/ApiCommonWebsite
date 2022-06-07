@@ -171,7 +171,18 @@ sub init{
   my $self = shift;
   $self->SUPER::init(@_);
 
-  $self->setPlotWidth(800);
+  $self->setPlotWidth(900);
+
+  return $self;
+}
+1;
+
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_24f2db6f66;
+sub init{
+  my $self = shift;
+  $self->SUPER::init(@_);
+
+  $self->setPlotWidth(900);
 
   return $self;
 }
