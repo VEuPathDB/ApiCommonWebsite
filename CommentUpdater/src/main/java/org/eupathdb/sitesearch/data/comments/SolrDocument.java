@@ -13,7 +13,7 @@ class SolrDocument {
   private String    batchName;
   private String    batchType;
   private long      batchTime;
-  private int[]     commentIds;
+  private String[]     commentIds;
   private boolean[] hits;
 
 
@@ -49,9 +49,9 @@ class SolrDocument {
     return batchTime;
   }
 
-  boolean hasCommentId(int commentId) {
+  boolean hasCommentId(String commentId) {
     for (var i = 0; i < commentIds.length; i++)
-      if (commentIds[i] == commentId) {
+      if (commentIds[i].equals(commentId)) {
         hits[i] = true;
         return true;
       }
@@ -131,15 +131,15 @@ class SolrDocument {
     return out;
   }
 
-  private static int[] splitCommentIds(String in) {
+  private static String[] splitCommentIds(String in) {
     if (in.isEmpty())
-      return new int[0];
+      return new String[0];
 
     var tmp = in.split(",");
-    var out = new int[tmp.length];
+    var out = new String[tmp.length];
 
     for (var i = 0; i < tmp.length; i++)
-      out[i] = Integer.parseInt(tmp[i]);
+      out[i] = tmp[i];
     Arrays.sort(out);
     return out;
   }
