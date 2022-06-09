@@ -20,7 +20,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Types;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -53,7 +52,7 @@ import java.util.stream.Collectors;
  * @author Steve
  */
 
-public abstract class CommentUpdater {
+public abstract class CommentUpdater<IDTYPE> {
 
   private static final Logger LOG = Logger.getLogger(CommentUpdater.class);
 
@@ -80,6 +79,9 @@ public abstract class CommentUpdater {
     _docFields = docFields;
     _updaterSql = updaterSql;
   }
+  
+  DatabaseInstance getCommentDb() { return _commentDb; }
+  String getCommentSchema() { return _commentSchema; }
 
   public void syncAll() {
     try {
@@ -89,27 +91,6 @@ public abstract class CommentUpdater {
     }
   }
   
-  public void updateSingle(final long commentId) {
-    // Intentionally selecting dead comments for comment delete case.
-    var select = _updaterSql.getGeneIdWithCommentIdSql(_commentSchema);
-    var genes  = new SQLRunner(_commentDb.getDataSource(), select)
-      .executeQuery(
-        new Object[] {commentId, commentId},
-        new Integer[] {Types.BIGINT, Types.BIGINT},
-        rs -> {
-          var tmp = new ArrayList<String>();
-          while (rs.next()) {
-            tmp.add("gene__" + rs.getString(1));
-          }
-          return tmp.toArray(new String[0]);
-        });
-    try {
-      fetchDocumentsById(genes).values().forEach(this::updateDocumentComment);
-    } finally {
-      solrCommit();
-    }
-  }
-
   /**
    * Get an in-memory list of record IDs for those records that are out of date
    * in Solr
@@ -212,7 +193,7 @@ public abstract class CommentUpdater {
    *
    * @return Map of WDK SourceID to Solr {@link SolrDocument}
    */
-  private Map<String, SolrDocument> fetchDocumentsById(final String[] ids) {
+  Map<String, SolrDocument> fetchDocumentsById(final String[] ids) {
     var q = new SolrTermQueryBuilder(_docFields.getIdFieldName())
       .values(ids)
       .resultFields(_docFields.getRequiredFields())
@@ -247,7 +228,7 @@ public abstract class CommentUpdater {
    * We do this because the Solr stream might not include documents without
    * comments, and so would not provide those IDs.
    */
-  private void updateDocumentComment(SolrDocument doc) {
+  void updateDocumentComment(SolrDocument doc) {
     var comments = getCorrectCommentsForOneDocument(doc, _commentDb.getDataSource());
 
     var updateJson = new JSONArray().put(
@@ -269,27 +250,10 @@ public abstract class CommentUpdater {
    * Get the up-to-date comments info from the database, for the provided wdk
    * record
    */
-  private DocumentCommentsInfo getCorrectCommentsForOneDocument(
+  abstract DocumentCommentsInfo<IDTYPE> getCorrectCommentsForOneDocument(
     final SolrDocument doc,
     final DataSource commentDbDataSource
-  ) {
-
-    var sqlSelect = " SELECT comment_id, content"
-      + " FROM apidb.textsearchablecomment"
-      + " WHERE source_id = '" + doc.getSourceId() + "'";
-
-    return new SQLRunner(commentDbDataSource, sqlSelect)
-      .executeQuery(rs -> {
-        var comments = new DocumentCommentsInfo();
-
-        while (rs.next()) {
-          comments.commentIds.add(rs.getInt("comment_id"));
-          comments.commentContents.add(rs.getString("content"));
-        }
-
-        return comments;
-      });
-  }
+  );
 
   /***
    * Apply a JSON update to Solr
@@ -309,7 +273,7 @@ public abstract class CommentUpdater {
     }
   }
 
-  private void solrCommit() {
+  void solrCommit() {
     Response res = null;
     try {
       res = sendSolrRequest(_solrUrl + (_solrUrl.endsWith("/") ? "" : "/") + "update?commit=true", null);
@@ -377,8 +341,8 @@ public abstract class CommentUpdater {
    *
    * @author Steve
    */
-  static class DocumentCommentsInfo {
-    List<Integer> commentIds = new ArrayList<>();
+  static class DocumentCommentsInfo<IDTYPE> {
+    List<IDTYPE> commentIds = new ArrayList<>();
     List<String> commentContents = new ArrayList<>();
   }
 }
