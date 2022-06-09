@@ -45,6 +45,9 @@ modelprop:
 user_datasets_workspace:
   enabled: "true"
 
+projectsxml:
+  EuPathDB: "https://{{ hostname|swap_sld('veupathdb.org')|swap_hostname(_host_frontends) }}/veupathdb/"
+
 commentconfig_login: '{{ modelconfig_userDb_login }}'
 commentconfig_password: '{{ modelconfig_userDb_password }}'
 commentconfig_connectionUrl: '{{ modelconfig_userDb_connectionUrl }}'
