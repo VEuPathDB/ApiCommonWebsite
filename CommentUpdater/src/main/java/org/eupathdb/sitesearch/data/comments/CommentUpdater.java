@@ -181,7 +181,7 @@ public abstract class CommentUpdater<IDTYPE> {
       .filter(SolrDocument::hasUnhitComments)
       // queue for update
       .forEach(out.toUpdate::add);
-
+    LOG.info("Processing result: \n" + out);
     return out;
   }
 

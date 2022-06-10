@@ -5,7 +5,8 @@ import java.util.Arrays;
 
 class SolrDocument {
 
-
+  private final static String NL = System.lineSeparator();  
+  
   private String    solrId;
   private String    sourceId;
   private String    documentType;
@@ -15,7 +16,6 @@ class SolrDocument {
   private long      batchTime;
   private String[]     commentIds;
   private boolean[] hits;
-
 
   String getSourceId() {
     return sourceId;
@@ -153,4 +153,14 @@ class SolrDocument {
     }
     return in;
   }
+  
+  public String toString() {
+    StringBuffer buf = new StringBuffer();
+    buf.append("Solr ID: " + solrId + NL);
+    buf.append("Source ID: " + sourceId + NL);
+    buf.append("Comment IDs: " + String.join(",", commentIds) + NL);    
+    return buf.toString();
+  }
+
+
 }

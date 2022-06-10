@@ -9,6 +9,8 @@ import java.sql.SQLException;
  * @author Steve
  */
 class RecordInfo {
+  
+  private final static String NL = System.lineSeparator();  
 
   String recordType;
 
@@ -37,4 +39,14 @@ class RecordInfo {
   String toSolrId() {
     return recordType + "__" + sourceId;
   }
+  
+  public String toString() {
+    StringBuffer buf = new StringBuffer();
+    buf.append("Record type: " + recordType + NL);
+    buf.append("Source ID: " + sourceId + NL);
+    buf.append("Comment ID: " + commentId + NL);    
+    return buf.toString();
+  }
+
+
 }
