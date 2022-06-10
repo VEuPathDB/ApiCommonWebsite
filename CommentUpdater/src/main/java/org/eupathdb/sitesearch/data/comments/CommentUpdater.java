@@ -103,6 +103,7 @@ public abstract class CommentUpdater<IDTYPE> {
     var results = new SQLRunner(_commentDb.getDataSource(), sqlSelect)
       .executeQuery(rs -> findStaleDocuments(fetchCommentedRecords(), rs));
 
+    // add to the list documents that need to have an empty list of comment IDs.
     results.toUpdate.addAll(
       fetchDocumentsById(results.toPostProcess
         .stream()
@@ -141,12 +142,16 @@ public abstract class CommentUpdater<IDTYPE> {
     var dbRow = new RecordInfo();
     var out   = new ProcessingResult();
 
+    LOG.info("Finding stale documents");
+
     // Set of already invalidated source ids.  Used to skip
     // rows when possible
     var tmp = new HashSet<String>();
+    int count = 0;
     try {
       outer:
       while (rs.next()) {
+        count++;
         dbRow.readRs(rs);
 
         // if the current source id was added to the tmp map
@@ -165,12 +170,15 @@ public abstract class CommentUpdater<IDTYPE> {
         }
 
         var doc = solrData.get(dbRow.sourceId);
-        if (!doc.hasCommentId(dbRow.commentId))
+        if (!doc.hasCommentId(dbRow.commentId)) {
           out.toUpdate.add(doc);
+        }
       }
     } catch (SQLException e) {
       e.printStackTrace();
     }
+
+    LOG.info("Read " + count + " rows from database");
 
     solrData.values()
       // For each document
@@ -181,7 +189,9 @@ public abstract class CommentUpdater<IDTYPE> {
       .filter(SolrDocument::hasUnhitComments)
       // queue for update
       .forEach(out.toUpdate::add);
-    LOG.info("Processing result: \n" + out);
+
+    LOG.info("Found " + out.toUpdate.size() + " documents to update and " + out.toPostProcess.size() + " documents to remove all comments from");
+
     return out;
   }
 
@@ -212,12 +222,17 @@ public abstract class CommentUpdater<IDTYPE> {
    * @return Map of WDK SourceID to Solr {@link SolrDocument}
    */
   private Map<String, SolrDocument> fetchCommentedRecords() {
-    return fetchDocuments(SolrUrlQueryBuilder.select(_solrUrl)
+
+    Map<String, SolrDocument> docs = fetchDocuments(SolrUrlQueryBuilder.select(_solrUrl)
       .filterAndAllOf(_docFields.getCommentContentFieldName())
       .resultFields(_docFields.getRequiredFields())
       .maxRows(1000000)
       .resultFormat(FormatType.CSV)
       .buildQuery(), null);
+
+    LOG.info("Found " + docs.size() + " solr documents that have existing comments");
+
+    return docs;
   }
 
   /**
@@ -230,6 +245,9 @@ public abstract class CommentUpdater<IDTYPE> {
    */
   void updateDocumentComment(SolrDocument doc) {
     var comments = getCorrectCommentsForOneDocument(doc, _commentDb.getDataSource());
+
+    LOG.info("Updating source ID '" + _commentDb.getDataSource() + "' to have comments with IDs: " + 
+        comments.commentIds.stream().map(IDTYPE::toString).collect(Collectors.joining(",")));
 
     var updateJson = new JSONArray().put(
       new JSONObject()

@@ -16,7 +16,7 @@ public class ApolloCommentUpdater extends CommentUpdater<String>{
 
     @Override
     String getCommentContentFieldName() {
-      return "MULTITEXT__gene_ApolloCommentContent";
+      return "MULTITEXT__gene_apolloCommentContent";
     }
 
   }
