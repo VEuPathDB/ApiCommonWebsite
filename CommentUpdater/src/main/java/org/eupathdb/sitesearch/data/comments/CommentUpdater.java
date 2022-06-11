@@ -103,12 +103,14 @@ public abstract class CommentUpdater<IDTYPE> {
     var results = new SQLRunner(_commentDb.getDataSource(), sqlSelect)
       .executeQuery(rs -> findStaleDocuments(fetchCommentedRecords(), rs));
 
-    // add to the list documents that need to have an empty list of comment IDs.
+    // add to the update list documents that didn't previously have a comment
     results.toUpdate.addAll(
       fetchDocumentsById(results.toPostProcess
         .stream()
         .map(RecordInfo::toSolrId)
         .toArray(String[]::new)).values());
+    
+    LOG.info("Total documents to update: " + results.toUpdate.size());
 
     return results.toUpdate;
   }
@@ -160,6 +162,7 @@ public abstract class CommentUpdater<IDTYPE> {
         while (tmp.contains(dbRow.sourceId)) {
           if (!rs.next())
             break outer;
+          count++;
           dbRow.readRs(rs);
         }
 
