@@ -246,7 +246,7 @@ public abstract class CommentUpdater<IDTYPE> {
   void updateDocumentComment(SolrDocument doc) {
     var comments = getCorrectCommentsForOneDocument(doc, _commentDb.getDataSource());
 
-    LOG.info("Updating source ID '" + _commentDb.getDataSource() + "' to have comments with IDs: " + 
+    LOG.info("Updating source ID '" + doc.getSourceId() + "' to have comments with IDs: " + 
         comments.commentIds.stream().map(IDTYPE::toString).collect(Collectors.joining(",")));
 
     var updateJson = new JSONArray().put(
