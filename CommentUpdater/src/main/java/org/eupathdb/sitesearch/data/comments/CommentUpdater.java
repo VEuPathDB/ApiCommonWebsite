@@ -190,7 +190,8 @@ public abstract class CommentUpdater<IDTYPE> {
       // queue for update
       .forEach(out.toUpdate::add);
 
-    LOG.info("Found " + out.toUpdate.size() + " documents to update and " + out.toPostProcess.size() + " documents to remove all comments from");
+    LOG.info("Found " + out.toPostProcess.size() + " documents to introduce comments to and " 
+    + out.toUpdate.size() + " documents that need updated comments");
 
     return out;
   }
