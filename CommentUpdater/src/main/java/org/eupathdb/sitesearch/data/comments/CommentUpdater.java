@@ -103,7 +103,10 @@ public abstract class CommentUpdater<IDTYPE> {
     var results = new SQLRunner(_commentDb.getDataSource(), sqlSelect)
       .executeQuery(rs -> findStaleDocuments(fetchCommentedRecords(), rs));
 
-    // add to the update list documents that didn't previously have a comment
+    // for source IDs that have comments, but for which no solr document that has comments was found,
+    // attempt to fetch the corresponding solr document.  (either the document exists, and does not
+    // have comments, or the document does not exist because the source ID is an alias).
+    // add the fetched documents to the update list
     results.toUpdate.addAll(
       fetchDocumentsById(results.toPostProcess
         .stream()
@@ -166,12 +169,16 @@ public abstract class CommentUpdater<IDTYPE> {
           dbRow.readRs(rs);
         }
 
+        // save for post-processing source IDs that did not have a parallel document with a comment
+        // (might possibly be on old source ID, ie, alias, for which no document exists)
+        // as a post-process we will synthesize a solr ID for these, based on source ID, fetch the doc, and add to update list
         if (!solrData.containsKey(dbRow.sourceId)) {
           out.toPostProcess.add(dbRow.copy());
           tmp.add(dbRow.sourceId);
           continue;
         }
 
+        // save for updating documents that do have comments, but are missing at least one
         var doc = solrData.get(dbRow.sourceId);
         if (!doc.hasCommentId(dbRow.commentId)) {
           out.toUpdate.add(doc);
@@ -181,8 +188,11 @@ public abstract class CommentUpdater<IDTYPE> {
       e.printStackTrace();
     }
 
+    int missing = out.toUpdate.size();
+
     LOG.info("Read " + count + " rows from database");
 
+    // add to update list solr documents that have comments that were deleted in db
     solrData.values()
       // For each document
       .stream()
@@ -193,8 +203,10 @@ public abstract class CommentUpdater<IDTYPE> {
       // queue for update
       .forEach(out.toUpdate::add);
 
-    LOG.info("Found " + out.toPostProcess.size() + " documents to introduce comments to and " 
-    + out.toUpdate.size() + " documents that need updated comments");
+    int delete = out.toUpdate.size() - missing;
+
+    LOG.info("Found " + out.toPostProcess.size() + " source IDs with no corresponding solr document having comments, " 
+    + missing + " documents that need updated comments and " + delete + " documents whose comments have all been deleted" );
 
     return out;
   }
@@ -208,15 +220,22 @@ public abstract class CommentUpdater<IDTYPE> {
    * @return Map of WDK SourceID to Solr {@link SolrDocument}
    */
   Map<String, SolrDocument> fetchDocumentsById(final String[] ids) {
+    LOG.info("Attempting to fetch " + ids.length + " solr documents by (putative) ID.  (Will not be found if ID is an alias)");
+
     var q = new SolrTermQueryBuilder(_docFields.getIdFieldName())
       .values(ids)
       .resultFields(_docFields.getRequiredFields())
       .maxRows(1000000)
       .resultFormat(FormatType.CSV);
-    return fetchDocuments(
+
+    Map<String, SolrDocument> docs = 
+    fetchDocuments(
       _solrUrl + (_solrUrl.endsWith("/") ? "select" : "/select"),
       Entity.entity(q.toString(), MediaType.APPLICATION_FORM_URLENCODED_TYPE)
     );
+    // LOG.info("Fetched " + docs.size() + " documents with query: " + q);
+
+    return docs;
   }
 
   /**
@@ -311,15 +330,22 @@ public abstract class CommentUpdater<IDTYPE> {
       res = sendSolrRequest(url, body);
 
       var read = entityReader(res);
-      if (!read.ready())
+      if (!read.ready()) {
+        LOG.info("Read not ready when attempting to fetch documents");
         return Collections.emptyMap();
+      }
 
       // Skip first line (headers)
       read.readLine();
 
-      return read.lines()
+      Map<String, SolrDocument> docMap = read.lines()
         .map(SolrDocument::readCsvRow)
         .collect(Collectors.toMap(SolrDocument::getSourceId, Function.identity()));
+      
+      LOG.info("Fetched " + docMap.size() + " documents from solr");
+      
+      return docMap;
+
 
     } catch (IOException e) {
       throw new RuntimeException("Failed to read Solr response body", e);
