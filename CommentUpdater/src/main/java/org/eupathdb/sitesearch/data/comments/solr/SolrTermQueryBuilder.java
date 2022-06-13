@@ -129,6 +129,7 @@ public class SolrTermQueryBuilder {
   private void filterString(final StringBuilder sb) {
     sb.append(PARAM_FILTER).append('=');
 
+    // uses the Terms Query Parser, which allows a list of terms to match against the field given to f=
     var query = new StringBuilder("{!terms f=").append(_field).append('}');
 
     if (_filters.length == 0) {
