@@ -11,6 +11,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.io.File;
 
 import javax.sql.DataSource;
 
@@ -120,7 +121,9 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   }
 
   @Override
-  protected String[] getCommand(AnswerValue answerValue) throws WdkModelException, WdkUserException {
+  protected String[] getCommand(AnswerValue answerValue) throws WdkModelException, WdkUserException, IllegalAnswerValueException {
+
+    ValidationBundleBuilder errors = ValidationBundle.builder(ValidationLevel.SEMANTIC);
 
     WdkModel wdkModel = answerValue.getAnswerSpec().getQuestion().getWdkModel();
     Map<String,String> params = getFormParams();
@@ -149,6 +152,14 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
         " " + goSubset +
         " " + imageResultFilePath.toString() +
         " " + hiddenResultFilePath.toString());
+
+    // Catch exception when the  *chosen* organism has no GO Terms hits
+    File file = new File(hiddenResultFilePath.toString());
+    boolean existFile = file.exists();    
+    if (!existFile){
+	errors.addError("Your result has no genes with GO Terms for this Organism. Please try changing the Organism parameter.");
+	 throw new  IllegalAnswerValueException("Your result has no genes with GO Terms for this Organism. Please try changing the Organism parameter.");
+    }
     return new String[] {
         qualifiedExe,
         resultFilePath.toString(),
