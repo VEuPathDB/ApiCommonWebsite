@@ -157,7 +157,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     File file = new File(hiddenResultFilePath.toString());
     boolean existFile = file.exists();    
     if (!existFile){
-	errors.addError("Your result has no genes with GO Terms for this Organism. Please try changing the Organism parameter.");
+	//errors.addError("Your result has no genes with GO Terms for this Organism. Please try changing the Organism parameter.");
 	 throw new  IllegalAnswerValueException("Your result has no genes with GO Terms for this Organism. Please try changing the Organism parameter.");
     }
     return new String[] {
