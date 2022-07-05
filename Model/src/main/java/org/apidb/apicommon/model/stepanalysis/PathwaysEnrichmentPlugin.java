@@ -12,6 +12,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.io.File;
 
 import javax.sql.DataSource;
 import java.sql.Types;
@@ -136,7 +137,7 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   }
 
   @Override
-  protected String[] getCommand(AnswerValue answerValue) throws WdkModelException, WdkUserException {
+  protected String[] getCommand(AnswerValue answerValue) throws WdkModelException, WdkUserException, IllegalAnswerValueException {
 
     WdkModel wdkModel = answerValue.getAnswerSpec().getQuestion().getWdkModel();
     Map<String,String> params = getFormParams();
@@ -162,6 +163,17 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
         wdkModel.getProjectId() + " " + pValueCutoff + " " + sourcesStr + " " +
         imageResultFilePath.toString() + " " + hiddenResultFilePath.toString() + " " +
 	     exactMatchOnly + " " + excludeIncomplete);
+
+    // Catch exception when the  *chosen* organism has no Pathway hits
+    File file = new File(hiddenResultFilePath.toString());
+    boolean existFile = file.exists();
+    if (!existFile){
+	//errors.addError("Your result has no genes with Pathways for this Organism. Please try changing the Organism parameter.");
+	 throw new  IllegalAnswerValueException("Your result has no genes with Pathways for this Organism. Please try changing the Organism parameter.");
+    }
+
+
+
     return new String[]{ qualifiedExe, resultFilePath.toString(), idSql, wdkModel.getProjectId(), pValueCutoff,
 			 sourcesStr, imageResultFilePath.toString(), hiddenResultFilePath.toString(),
                          exactMatchOnly, excludeIncomplete };
