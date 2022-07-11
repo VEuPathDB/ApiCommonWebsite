@@ -123,8 +123,6 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   @Override
   protected String[] getCommand(AnswerValue answerValue) throws WdkModelException, WdkUserException, IllegalAnswerValueException {
 
-    ValidationBundleBuilder errors = ValidationBundle.builder(ValidationLevel.SEMANTIC);
-
     WdkModel wdkModel = answerValue.getAnswerSpec().getQuestion().getWdkModel();
     Map<String,String> params = getFormParams();
 
