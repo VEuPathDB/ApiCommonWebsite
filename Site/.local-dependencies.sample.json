@@ -1,0 +1,5 @@
+{
+  "localDependencies": {
+    "@veupathdb/web-common": "../../EbrcWebsiteCommon/Client"
+  }
+}
