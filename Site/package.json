@@ -5,6 +5,9 @@
   "license": "MIT",
   "scripts": {
     "start": "veupathdb-react-scripts run-site-dev-server --config webpack.config.local.mjs --port 3000",
+    "install-local-deps": "veupathdb-local-deps",
+    "uninstall-local-deps": "veupathdb-local-deps uninstall",
+    "watch-local-deps": "veupathdb-local-deps watch",
     "prepare": "cd .. && husky install Site/.husky"
   },
   "browserslist": [
