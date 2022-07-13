@@ -19,6 +19,9 @@
 
 # Dependencies
 node_modules/
+.yalc/
+yalc.lock
+.local-dependencies.json
 
 
 # Gradle meta
