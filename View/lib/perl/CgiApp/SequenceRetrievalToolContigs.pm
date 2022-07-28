@@ -67,7 +67,7 @@ EOSQL
     }
 
     if (($$ends[$i] - $$starts[$i] +1) > $seqLengthLimit)  {
-      &error("Maximum length of the Sequence can be $seqLengthLimit nucleotides.\nPlease specify the nucleotide positions again.");
+      &error("Maximum length of the Sequence can be $seqLengthLimit  nucleotides. \nPlease specify the nucleotide positions again. \nLarge sequences, for example chromosomes or contigs, are also available from the downloads section (Header menu: Data -> Download data files)");
     }
 
     $dbh->{LongReadLen} = ( $$ends[$i] - $$starts[$i] +1 );
