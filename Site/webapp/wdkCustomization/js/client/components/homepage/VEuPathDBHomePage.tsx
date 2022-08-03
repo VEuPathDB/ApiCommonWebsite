@@ -109,7 +109,7 @@ const VEuPathDBHomePageView: FunctionComponent<Props> = props => {
   );
 
   const updateHeaderAndFooter = useCallback(() => {
-    setHeaderExpanded(document.body.scrollTop <= 30 && document.documentElement.scrollTop <= 30);
+    setHeaderExpanded(document.body.scrollTop <= 60 && document.documentElement.scrollTop <= 60);
 
     // Modern adaptation of https://stackoverflow.com/a/22394544
     const scrollTop = document.documentElement?.scrollTop || document.body.scrollTop;
@@ -472,6 +472,17 @@ const useHeaderMenuItems = (
           target: '_blank',
           metadata: {
             include: [ VectorBase ]
+         }
+        },
+        { 
+          key: 'mapveu',
+          display: 'MapVEu',
+          tooltip: 'Population Biology map',
+          type: 'externalLink',
+          url: 'https://vectorbase.org/popbio-map/web/',
+          target: '_blank',
+          metadata: {
+            include: [ EuPathDB,UniDB ]
          }
         },
         {
@@ -888,7 +899,20 @@ const useHeaderMenuItems = (
               display: 'Website usage statistics',
               type: 'externalLink',
               url: '/awstats/awstats.pl',
-              target: '_blank'
+              target: '_blank',
+              metadata: {
+                exclude: [ EuPathDB ]
+              }
+            },
+            { 
+              key: 'usage-statistics-portal',
+              display: 'All websites usage statistics',
+              type: 'externalLink',
+              url: '/awstats/awstats.pl?config=All_EBRC_Combined',
+              target: '_blank',
+              metadata: {
+                include: [ EuPathDB ]
+              }
             }
           ]
         }
