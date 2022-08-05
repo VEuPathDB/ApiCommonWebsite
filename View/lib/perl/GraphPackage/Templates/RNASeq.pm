@@ -105,6 +105,9 @@ sub isExcludedProfileSet {
   } elsif ($psName =~ /htseq-intersection/){
 #print STDERR "exclude intersection: $psName - return 1\n";
     return 1;
+  } elsif ($psName =~ /eigengene/){
+#print STDERR "exclude intersection: $psName - return 1\n";
+    return 1;
   } elsif ($isCufflinks){
     return 1;
   } else {
@@ -1482,3 +1485,9 @@ RADJUST
 # sub getXAxisLabel { '' }
 
 1; 
+
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_b1ac1e329c;
+
+sub getPlotWidth { return 800; }
+
+1;
