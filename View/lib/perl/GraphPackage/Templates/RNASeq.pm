@@ -214,6 +214,18 @@ sub init {
 }
 1;
 
+#fungi - ncraOR74A_Ncrassa_carbon_comp_Wu_2021_ebi_rnaSeq_RSRC
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_bb6e5ae0e5;
+sub init{
+  my $self = shift;
+  $self->SUPER::init(@_);
+
+  $self->setPlotWidth(800);
+
+  return $self;
+}
+1;
+
 #fungi - hcapG217B_Rodriguez_Hcap_Trans_ebi_rnaSeq_RSRC
 package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_39a9b940c0;
 sub init {
