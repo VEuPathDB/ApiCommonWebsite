@@ -105,6 +105,9 @@ sub isExcludedProfileSet {
   } elsif ($psName =~ /htseq-intersection/){
 #print STDERR "exclude intersection: $psName - return 1\n";
     return 1;
+  } elsif ($psName =~ /eigengene/){
+#print STDERR "exclude intersection: $psName - return 1\n";
+    return 1;
   } elsif ($isCufflinks){
     return 1;
   } else {
@@ -171,7 +174,18 @@ sub init{
   my $self = shift;
   $self->SUPER::init(@_);
 
-  $self->setPlotWidth(800);
+  $self->setPlotWidth(900);
+
+  return $self;
+}
+1;
+
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_24f2db6f66;
+sub init{
+  my $self = shift;
+  $self->SUPER::init(@_);
+
+  $self->setPlotWidth(900);
 
   return $self;
 }
@@ -191,6 +205,18 @@ sub init{
 
 package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_7ce8a791f1;
 sub init {
+  my $self = shift;
+  $self->SUPER::init(@_);
+
+  $self->setPlotWidth(800);
+
+  return $self;
+}
+1;
+
+#fungi - ncraOR74A_Ncrassa_carbon_comp_Wu_2021_ebi_rnaSeq_RSRC
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_bb6e5ae0e5;
+sub init{
   my $self = shift;
   $self->SUPER::init(@_);
 
@@ -813,6 +839,21 @@ sub init {
 }
 
 1;
+
+# FungiDB ncraOR74A_Ncrassa_plantbiomass_Wu_2021_ebi_rnaSeq_RSRC
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_1dd4f50bad;
+
+sub init {
+  my $self = shift;
+  $self->SUPER::init(@_);
+
+  $self->setPlotWidth(700);
+
+  return $self;
+}
+
+1;
+
 
 # Fungi - ncraOR74A_Bharath_Circadian_Time_Course_ebi_rnaSeq_RSRC
 package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_c05fd37f3c;
@@ -1456,3 +1497,9 @@ RADJUST
 # sub getXAxisLabel { '' }
 
 1; 
+
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_b1ac1e329c;
+
+sub getPlotWidth { return 800; }
+
+1;

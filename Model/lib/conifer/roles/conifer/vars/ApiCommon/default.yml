@@ -17,6 +17,8 @@ modelconfig_userDatasetStoreConfig: >
       implementation="org.gusdb.wdk.model.user.dataset.ExampleTypeHandler"/>
     <typeHandler type="GeneList" version="1.0"
       implementation="org.apidb.apicommon.model.userdataset.GeneListTypeHandler"/>
+    <typeHandler type="ISA" version="0.0"
+      implementation="org.apidb.apicommon.model.userdataset.ISASimpleTypeHandler"/>
   </userDatasetStore>
 
 modelprop:
@@ -42,6 +44,9 @@ modelprop:
 
 user_datasets_workspace:
   enabled: "true"
+
+projectsxml:
+  EuPathDB: "https://{{ hostname|swap_sld('veupathdb.org')|swap_hostname(_host_frontends) }}/veupathdb/"
 
 commentconfig_login: '{{ modelconfig_userDb_login }}'
 commentconfig_password: '{{ modelconfig_userDb_password }}'

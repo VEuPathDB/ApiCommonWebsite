@@ -71,3 +71,6 @@ robots.txt:
 index.html:
   src: 'EbrcWebsiteCommon/appBase.html.j2'
   dest: '{{ gus_home }}/../webapp/WEB-INF/includes/client.html'
+log4j2.json:
+  src: 'EbrcWebsiteCommon/log4j2.json.j2'
+  dest: '{{ gus_home }}/../webapp/WEB-INF/classes/log4j2.json'
