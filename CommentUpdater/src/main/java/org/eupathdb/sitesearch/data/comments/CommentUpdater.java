@@ -110,7 +110,7 @@ public abstract class CommentUpdater<IDTYPE> {
         .map(RecordInfo::toSolrId)
         .toArray(String[]::new)).values());
     
-    LOG.info("Total documents to update: " + results.toUpdate.size());
+    LOG.info("Total documents to update: " + results.toUpdate.size() + "To postprocess: " + results.toPostProcess.size());
 
     return results.toUpdate;
   }
@@ -208,8 +208,10 @@ public abstract class CommentUpdater<IDTYPE> {
    * @return Map of WDK SourceID to Solr {@link SolrDocument}
    */
   Map<String, SolrDocument> fetchDocumentsById(final String[] ids) {
+    LOG.info("Fetching " + ids.length + " solr documents to update.");
+    String [] tmp = {ids[0], ids[1]};  // strip away comment ID
     var q = new SolrTermQueryBuilder(_docFields.getIdFieldName())
-      .values(ids)
+      .values(tmp)
       .resultFields(_docFields.getRequiredFields())
       .maxRows(1000000)
       .resultFormat(FormatType.CSV);
@@ -309,6 +311,8 @@ public abstract class CommentUpdater<IDTYPE> {
     Response res = null;
     try {
       res = sendSolrRequest(url, body);
+      
+      LOG.info(body.toString());
 
       var read = entityReader(res);
       if (!read.ready())
@@ -317,9 +321,13 @@ public abstract class CommentUpdater<IDTYPE> {
       // Skip first line (headers)
       read.readLine();
 
-      return read.lines()
+      Map<String, SolrDocument> docMap = read.lines()
         .map(SolrDocument::readCsvRow)
         .collect(Collectors.toMap(SolrDocument::getSourceId, Function.identity()));
+      
+      LOG.info("Read " + docMap.size() + " documents from solr that will be updated");
+      
+      return docMap;
 
     } catch (IOException e) {
       throw new RuntimeException("Failed to read Solr response body", e);
