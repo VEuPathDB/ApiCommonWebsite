@@ -1,8 +1,9 @@
-import React, { Suspense, useMemo, useState, useEffect } from 'react';
+import React, { Suspense, useMemo, useState, useEffect, useCallback } from 'react';
 import { useSelector } from 'react-redux';
-import { useLocation } from 'react-router';
+import { useLocation, useHistory } from 'react-router';
 
-import { Loading, Link, Tooltip, HelpIcon, Tabs } from '@veupathdb/wdk-client/lib/Components';
+import { Loading, Link, Tooltip, HelpIcon } from '@veupathdb/wdk-client/lib/Components';
+import { TabbedDisplay } from '@veupathdb/coreui';
 import { CommonResultTable as InternalGeneDatasetTable } from '@veupathdb/wdk-client/lib/Components/Shared/CommonResultTable';
 import QuestionController, {
   useSetSearchDocumentTitle,
@@ -67,6 +68,7 @@ export function InternalGeneDataset(props: Props) {
 
 function InternalGeneDatasetContent(props: Props) {
   const location = useLocation();
+  const history = useHistory();
   const searchNameAnchorTag = location.hash.slice(1);
 
   const buildNumber = useSelector((state: RootState) => state.globalData?.config?.buildNumber);
@@ -159,6 +161,17 @@ function InternalGeneDatasetContent(props: Props) {
     shouldChangeDocumentTitle
   );
 
+  const changeTabHandler = useCallback(
+    (selectedTabKey: string) => {
+      if (
+        searchName === selectedTabKey
+        ) return;
+        setSelectedSearch(selectedTabKey);
+        if (submissionMetadata.type === 'create-strategy') {
+          history.push(location.pathname + '#' + selectedTabKey)
+        }
+  }, [searchName, submissionMetadata])
+
   return (
     (
       !questions ||
@@ -184,6 +197,38 @@ function InternalGeneDatasetContent(props: Props) {
               showHeader={submissionMetadata.type === 'create-strategy' || submissionMetadata.type === 'edit-step'}
               headerText={`Identify ${outputRecordClass.displayNamePlural} based on ${internalQuestion.displayName}`}
             />
+            <div className={cx('Legend')}>
+                <span style={{fontWeight: 'bold', fontSize: '13px'}}>
+                  Legend:
+                </span>
+                <div style={{display: 'flex', flexWrap: 'wrap', rowGap: '0.25rem'}}>
+                  {
+                    displayCategoryOrder.map(
+                      categoryName =>
+                        <Tooltip
+                          key={categoryName}
+                          content={
+                            <div>
+                              <h4>
+                                {displayCategoriesByName[categoryName].displayName}
+                              </h4>
+                              {displayCategoriesByName[categoryName].description}
+                            </div>
+                          }
+                        >
+                          <span key={categoryName}>
+                            <span className="bttn bttn-cyan bttn-legend">
+                              {displayCategoriesByName[categoryName].shortDisplayName}
+                            </span>
+                            <span>
+                              {displayCategoriesByName[categoryName].displayName}
+                            </span>
+                          </span>
+                        </Tooltip>
+                    )
+                  }
+                </div>
+              </div>
             <InternalGeneDatasetTable
               searchBoxHeader="Filter Data Sets:"
               emptyResultMessage={
@@ -192,7 +237,7 @@ function InternalGeneDatasetContent(props: Props) {
                   explanation="Your current preferences exclude all organisms used in this page's searches."
                 /> as any
               }
-              showCount={false}
+              showCount={true}
               rows={
                 showingOneRecord || preferredOrganismsEnabled
                   ? filteredDatasetRecords
@@ -309,36 +354,6 @@ function InternalGeneDatasetContent(props: Props) {
               initialSortColumnKey="organism_prefix"
               fixedTableHeader
             >
-              <div className={cx('Legend')}>
-                <span>
-                  Legend:
-              </span>
-                {
-                  displayCategoryOrder.map(
-                    categoryName =>
-                      <Tooltip
-                        key={categoryName}
-                        content={
-                          <div>
-                            <h4>
-                              {displayCategoriesByName[categoryName].displayName}
-                            </h4>
-                            {displayCategoriesByName[categoryName].description}
-                          </div>
-                        }
-                      >
-                        <span key={categoryName}>
-                          <span className="bttn bttn-cyan bttn-legend">
-                            {displayCategoriesByName[categoryName].shortDisplayName}
-                          </span>
-                          <span>
-                            {displayCategoriesByName[categoryName].displayName}
-                          </span>
-                        </span>
-                      </Tooltip>
-                  )
-                }
-              </div>
             </InternalGeneDatasetTable>
             {
               showingRecordToggle && (
@@ -374,62 +389,56 @@ function InternalGeneDatasetContent(props: Props) {
             }
             {
               selectedDataSetRecord && (
-                <Tabs
-                  tabs={
-                    displayCategoryOrder
-                      .filter(
-                        categoryName => getCategorySearchName(
-                          questionNamesByDatasetAndCategory,
-                          selectedDataSetRecord.dataset_name,
-                          categoryName
-                        )
+              <TabbedDisplay
+                styleOverrides={{
+                  container: {
+                    margin: '3rem 0 0 0'
+                  },
+                  active: {
+                    indicatorColor: '#2F96B4',
+                    backgroundColor: '#E8F3F7',
+                  },
+                  tabFontSize: '1.5em'
+                }}
+                tabs={displayCategoryOrder
+                  .filter(
+                    categoryName => getCategorySearchName(
+                        questionNamesByDatasetAndCategory,
+                        selectedDataSetRecord.dataset_name,
+                        categoryName
                       )
-                      .map(categoryName => {
-                        const categorySearchName = getCategorySearchName(
-                          questionNamesByDatasetAndCategory,
-                          selectedDataSetRecord.dataset_name,
-                          categoryName
-                        );
-
-                        return {
-                          key: categorySearchName,
-                          display: (
-                            <Link
-                              to={`${internalSearchName}#${categorySearchName}`}
-                              onClick={makeLinkClickHandler(
-                                submissionMetadata,
-                                categorySearchName,
-                                searchName,
-                                setSelectedSearch
-                              )}
-                            >
-                              {displayCategoriesByName[categoryName].displayName}
-                            </Link>
-                          ),
-                          content: (
-                            <Plugin
-                              context={{
-                                type: 'questionController',
-                                searchName,
-                                recordClassName: recordClass
-                              }}
-                              pluginProps={{
-                                ...props,
-                                question: searchName,
-                                shouldChangeDocumentTitle: false
-                              }}
-                              defaultComponent={QuestionController}
-                              fallback={<Loading />}
-                            />
-                          )
-                        };
-                      })
+                    )
+                  .map(categoryName => {
+                    const categorySearchName = getCategorySearchName(
+                      questionNamesByDatasetAndCategory,
+                      selectedDataSetRecord.dataset_name,
+                      categoryName
+                    );
+                    return {
+                      key: categorySearchName,
+                      displayName: displayCategoriesByName[categoryName].displayName,
+                      content: (
+                        <Plugin
+                          context={{
+                            type: 'questionController',
+                            searchName,
+                            recordClassName: recordClass
+                          }}
+                          pluginProps={{
+                            ...props,
+                            question: searchName,
+                            shouldChangeDocumentTitle: false
+                          }}
+                          defaultComponent={QuestionController}
+                          fallback={<Loading />}
+                        />
+                      )
+                    }
+                  })
                   }
-                  activeTab={searchName}
-                  onTabSelected={(tab) => {
-                    setSelectedSearch(tab);
-                  }}
-                />
+                onTabSelected={changeTabHandler}
+                activeTab={searchName}
+              />
               )
             }
           </div>

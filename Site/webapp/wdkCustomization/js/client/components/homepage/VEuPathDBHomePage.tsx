@@ -1,11 +1,22 @@
-import React, { FunctionComponent, useCallback, useEffect, useLayoutEffect, useState } from 'react';
+import React, {
+  FunctionComponent,
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useState,
+  useMemo
+} from 'react';
 import { connect } from 'react-redux';
 
 import { get, memoize } from 'lodash';
 
+import makeSnackbarProvider, { SnackbarStyleProps } from '@veupathdb/coreui/dist/components/notifications/SnackbarProvider';
+
 import { Loading, Link } from '@veupathdb/wdk-client/lib/Components';
+import { ReduxNotificationHandler } from '@veupathdb/wdk-client/lib/Components/Notifications';
 import { ErrorBoundary } from '@veupathdb/wdk-client/lib/Controllers';
 import { RootState } from '@veupathdb/wdk-client/lib/Core/State/Types';
+import { useSessionBackedState } from '@veupathdb/wdk-client/lib/Hooks/SessionBackedState';
 import { CategoryTreeNode } from '@veupathdb/wdk-client/lib/Utils/CategoryUtils';
 import { arrayOf, decode, string } from '@veupathdb/wdk-client/lib/Utils/Json';
 
@@ -17,19 +28,16 @@ import { Main } from '@veupathdb/web-common/lib/components/homepage/Main';
 import { NewsPane } from '@veupathdb/web-common/lib/components/homepage/NewsPane';
 import { SearchPane, SearchCheckboxTree } from '@veupathdb/web-common/lib/components/homepage/SearchPane';
 import { combineClassNames, useAlphabetizedSearchTree } from '@veupathdb/web-common/lib/components/homepage/Utils';
+import { useUserDatasetsWorkspace } from '@veupathdb/web-common/lib/config';
 import { useAnnouncementsState } from '@veupathdb/web-common/lib/hooks/announcements';
-
 import { useCommunitySiteRootUrl } from '@veupathdb/web-common/lib/hooks/staticData';
-
+import { STATIC_ROUTE_PATH } from '@veupathdb/web-common/lib/routes';
 import { formatReleaseDate } from '@veupathdb/web-common/lib/util/formatters';
 
 import { PreferredOrganismsSummary } from '@veupathdb/preferred-organisms/lib/components/PreferredOrganismsSummary';
 
 import { PageDescription } from './PageDescription';
 import { makeVpdbClassNameHelper } from './Utils';
-
-import { useSessionBackedState } from '@veupathdb/wdk-client/lib/Hooks/SessionBackedState';
-import { STATIC_ROUTE_PATH } from '@veupathdb/web-common/lib/routes';
 
 import './VEuPathDBHomePage.scss';
 
@@ -101,7 +109,7 @@ const VEuPathDBHomePageView: FunctionComponent<Props> = props => {
   );
 
   const updateHeaderAndFooter = useCallback(() => {
-    setHeaderExpanded(document.body.scrollTop <= 30 && document.documentElement.scrollTop <= 30);
+    setHeaderExpanded(document.body.scrollTop <= 60 && document.documentElement.scrollTop <= 60);
 
     // Modern adaptation of https://stackoverflow.com/a/22394544
     const scrollTop = document.documentElement?.scrollTop || document.body.scrollTop;
@@ -173,51 +181,60 @@ const VEuPathDBHomePageView: FunctionComponent<Props> = props => {
     </>
   );
 
+  const snackbarStyleProps = useMemo(
+    () => ({ headerExpanded }),
+    [headerExpanded]
+  );
+
   return (
-    <div className={rootContainerClassName}>
-      <ErrorBoundary>
-        <Header 
-          menuItems={headerMenuItems} 
-          containerClassName={headerClassName} 
-          onShowAnnouncements={onShowAnnouncements}
-          showAnnouncementsToggle={isHomePage && closedBanners.length > 0}
-          branding={branding}
-        />
-      </ErrorBoundary>
-      <div className={subHeaderClassName}>
-        <PreferredOrganismsSummary />
-      </div>
-      <div className={vpdbCx('Announcements')}>
-        <Announcements
-          closedBanners={closedBanners}
-          setClosedBanners={setClosedBanners}
-        />
-      </div>
-      {isHomePage &&
-        <ErrorBoundary>
-          <SearchPane 
-            containerClassName={searchPaneClassName} 
-            searchTree={props.searchTree}
-          />
-        </ErrorBoundary>
-      }
-      <Main containerClassName={mainClassName}>
-        {props.children}
-      </Main>
-      {isHomePage && 
-        <ErrorBoundary>
-          <NewsPane containerClassName={newsPaneClassName} isNewsExpanded={isNewsExpanded} toggleNews={toggleNews} />
-        </ErrorBoundary>
-      }
-      <ErrorBoundary>
-        <Footer containerClassName={footerClassName}>
-          <PageDescription />
-        </Footer>
-      </ErrorBoundary>
-      <ErrorBoundary>
-        <CookieBanner/>
-      </ErrorBoundary>
-    </div>
+    <VEuPathDBSnackbarProvider styleProps={snackbarStyleProps}>
+      <ReduxNotificationHandler>
+        <div className={rootContainerClassName}>
+          <ErrorBoundary>
+            <Header
+              menuItems={headerMenuItems}
+              containerClassName={headerClassName}
+              onShowAnnouncements={onShowAnnouncements}
+              showAnnouncementsToggle={isHomePage && closedBanners.length > 0}
+              branding={branding}
+            />
+          </ErrorBoundary>
+          <div className={subHeaderClassName}>
+            <PreferredOrganismsSummary />
+          </div>
+          <div className={vpdbCx('Announcements')}>
+            <Announcements
+              closedBanners={closedBanners}
+              setClosedBanners={setClosedBanners}
+            />
+          </div>
+          {isHomePage &&
+            <ErrorBoundary>
+              <SearchPane
+                containerClassName={searchPaneClassName}
+                searchTree={props.searchTree}
+              />
+            </ErrorBoundary>
+          }
+          <Main containerClassName={mainClassName}>
+            {props.children}
+          </Main>
+          {isHomePage &&
+            <ErrorBoundary>
+              <NewsPane containerClassName={newsPaneClassName} isNewsExpanded={isNewsExpanded} toggleNews={toggleNews} />
+            </ErrorBoundary>
+          }
+          <ErrorBoundary>
+            <Footer containerClassName={footerClassName}>
+              <PageDescription />
+            </Footer>
+          </ErrorBoundary>
+          <ErrorBoundary>
+            <CookieBanner/>
+          </ErrorBoundary>
+        </div>
+      </ReduxNotificationHandler>
+    </VEuPathDBSnackbarProvider>
   );
 }
 
@@ -262,7 +279,8 @@ function makeExternalStaticPageUrl(communitySiteUrl: string | undefined, subPath
 
 type HeaderMenuItemEntry = HeaderMenuItem<{
   include?: string[],
-  exclude?: string[]
+  exclude?: string[],
+  test?: () => boolean
 }>;
 
 const useHeaderMenuItems = (
@@ -456,6 +474,17 @@ const useHeaderMenuItems = (
             include: [ VectorBase ]
          }
         },
+        { 
+          key: 'mapveu',
+          display: 'MapVEu',
+          tooltip: 'Population Biology map',
+          type: 'externalLink',
+          url: 'https://vectorbase.org/popbio-map/web/',
+          target: '_blank',
+          metadata: {
+            include: [ EuPathDB,UniDB ]
+         }
+        },
         {
           key: 'pubcrawler',
           display: 'PubMed and Entrez',
@@ -506,7 +535,10 @@ const useHeaderMenuItems = (
           type: 'reactRoute',
           url: '/workspace/datasets',
           metadata: {
-            exclude: [ EuPathDB ]
+            exclude: [ EuPathDB ],
+            test: () => Boolean(
+              useUserDatasetsWorkspace
+            ),
           }
         },
         {   
@@ -523,12 +555,6 @@ const useHeaderMenuItems = (
               display: 'Public search strategies',
               type: 'reactRoute',
               url: '/workspace/strategies/public'
-        },
-        { 
-          key: 'upload-genes',
-          display: 'Upload your gene list',
-          type: 'reactRoute',
-          url: '/search/transcript/GeneByLocusTag'
         }
       ]
     },
@@ -873,7 +899,20 @@ const useHeaderMenuItems = (
               display: 'Website usage statistics',
               type: 'externalLink',
               url: '/awstats/awstats.pl',
-              target: '_blank'
+              target: '_blank',
+              metadata: {
+                exclude: [ EuPathDB ]
+              }
+            },
+            { 
+              key: 'usage-statistics-portal',
+              display: 'All websites usage statistics',
+              type: 'externalLink',
+              url: '/awstats/awstats.pl?config=All_EBRC_Combined',
+              target: '_blank',
+              metadata: {
+                include: [ EuPathDB ]
+              }
             }
           ]
         }
@@ -954,6 +993,9 @@ const filterMenuItemEntry = (
       ) ||
       ( 
         projectId != null && menuItemEntry.metadata.exclude && menuItemEntry.metadata.exclude.includes(projectId)
+      ) ||
+      (
+        menuItemEntry.metadata.test?.() === false
       )
     )
   ) 
@@ -978,5 +1020,26 @@ const mapStateToProps = (state: RootState) => ({
   displayName: state.globalData.config?.displayName,
   projectId: state.globalData.siteConfig?.projectId
 });
+
+function translateNotificationsOnTop({ headerExpanded }: SnackbarStyleProps<{ headerExpanded: boolean }>) {
+  return {
+    transform: headerExpanded
+      ? 'translateY(149px)'
+      : 'translateY(84px)'
+  };
+}
+
+const VEuPathDBSnackbarProvider = makeSnackbarProvider(
+  {
+    containerRoot: {
+      zIndex: 99
+    },
+    anchorOriginTopLeft: translateNotificationsOnTop,
+    anchorOriginTopCenter: translateNotificationsOnTop,
+    anchorOriginTopRight: translateNotificationsOnTop,
+  },
+  'VEuPathDBSnackbarProvider',
+);
+
 
 export const VEuPathDBHomePage = connect(mapStateToProps)(VEuPathDBHomePageView);

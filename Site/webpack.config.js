@@ -1,8 +1,13 @@
-var configure = require('../../EbrcWebsiteCommon/Site/site.webpack.config');
+var configure = require('@veupathdb/site-webpack-config');
 
-module.exports = configure({
+const additionalConfig = {
   entry: {
-    'site-client': __dirname + '/webapp/wdkCustomization/js/client/main.js'
+    'site-client': [
+      // suuport for <pdbe-molstar> custom element
+      './vendored/pdbe-molstar-light-3.0.0.css',
+      './vendored/pdbe-molstar-component-3.0.0',
+      __dirname + '/webapp/wdkCustomization/js/client/main.js',
+    ],
   },
   resolve: {
     // alias 'ciena-*' entries to '/lib' directory since the default
@@ -12,4 +17,7 @@ module.exports = configure({
       'ciena-graphlib': 'ciena-graphlib/lib'
     }
   }
-});
+};
+
+module.exports = configure(additionalConfig);
+module.exports.additionalConfig = additionalConfig;

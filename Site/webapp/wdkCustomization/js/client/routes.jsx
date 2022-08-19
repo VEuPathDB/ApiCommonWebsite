@@ -11,6 +11,7 @@ import { PlasmoApController } from './components/controllers/PlasmoApController'
 
 import { FeaturedTools } from '@veupathdb/web-common/lib/components/homepage/FeaturedTools';
 import { WorkshopExercises } from '@veupathdb/web-common/lib/components/homepage/WorkshopExercises';
+import { useUserDatasetsWorkspace } from '@veupathdb/web-common/lib/config';
 
 import {
   usePreferredOrganismsState,
@@ -24,6 +25,8 @@ import { projectId } from './config';
 
 import { blastRoutes } from './blastRoutes';
 import { preferredOrganismsRoutes } from './preferredOrganismRoutes';
+import { userCommentRoutes } from './userCommentRoutes';
+import { userDatasetRoutes } from './userDatasetRoutes';
 
 // Project id is not needed for these record classes.
 // Matches urlSegment.
@@ -110,6 +113,7 @@ export const wrapRoutes = ebrcRoutes => [
 
   {
     path: '/fasta-tool',
+    exact: false,
     component: () => <FastaConfigController/>
   },
 
@@ -155,6 +159,14 @@ export const wrapRoutes = ebrcRoutes => [
   ...blastRoutes,
 
   ...preferredOrganismsRoutes,
+
+  ...userCommentRoutes,
+
+  ...(
+    useUserDatasetsWorkspace
+      ? userDatasetRoutes
+      : []
+  ),
 
   ...ebrcRoutes.map(route => route.path.includes(':primaryKey+')
     ? { ...route, component: addProjectIdPkValueWrapper(route.component) }

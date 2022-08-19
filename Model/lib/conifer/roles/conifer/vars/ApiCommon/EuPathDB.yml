@@ -1,12 +1,16 @@
 # $SourceFileURL$
 ---
 
+user_datasets_workspace:
+  enabled: "false"
+
 # Given hostname == a1.eupathdb.org, swap_sld('amoebadb.org')
 # returns 'a1.amoebadb.org'. swap_hostname(_host_frontends) returns
 # 'alpha.amoebadb.org'.
 projectsxml:
   AmoebaDB: "https://{{ hostname|swap_sld('amoebadb.org')|swap_hostname(_host_frontends) }}/amoeba/"
   CryptoDB: "https://{{ hostname|swap_sld('cryptodb.org')|swap_hostname(_host_frontends) }}/cryptodb/"
+  EuPathDB: null
   FungiDB: "https://{{ hostname|swap_sld('fungidb.org')|swap_hostname(_host_frontends) }}/fungidb/"
   GiardiaDB: "https://{{ hostname|swap_sld('giardiadb.org')|swap_hostname(_host_frontends) }}/giardiadb/"
   HostDB: "https://{{ hostname|swap_sld('hostdb.org')|swap_hostname(_host_frontends) }}/hostdb/"

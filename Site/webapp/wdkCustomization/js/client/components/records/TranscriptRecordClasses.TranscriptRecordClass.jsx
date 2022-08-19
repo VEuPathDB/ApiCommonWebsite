@@ -1,13 +1,19 @@
 import { get } from 'lodash';
-import React, { useState } from 'react';
+import React, { useCallback } from 'react';
 import { connect } from 'react-redux';
 
-import { useWdkServiceWithRefresh } from '@veupathdb/wdk-client/lib/Hooks/WdkServiceHook';
+import {
+  useWdkServiceWithRefresh,
+  useWdkService,
+} from '@veupathdb/wdk-client/lib/Hooks/WdkServiceHook';
 
 import {
   isTranscripFilterEnabled,
   requestTranscriptFilterUpdate
 } from '../../util/transcriptFilters';
+
+import { ResultExportSelector } from './ResultExportSelector';
+import { useGeneListExportOptions } from './gene-list-export-utils';
 
 // --------------
 // GeneRecordLink
@@ -84,9 +90,46 @@ const ConnectedTranscriptViewFilter = connect(
 )(TranscriptViewFilter);
 
 export function ResultTable(props) {
+  const exportOptions = useGeneListExportOptions(props.resultType);
+
+  const renderToolbarContent = useCallback(({
+    addColumnsNode,
+    downloadLinkNode,
+  }) => (
+      <>
+        <span
+          className={
+            exportOptions.length > 0
+              ? 'TranscriptResultTableButton'
+              : undefined
+            }
+        >
+          {downloadLinkNode}
+        </span>
+        {
+          exportOptions.length > 0 &&
+          <ResultExportSelector options={exportOptions} />
+        }
+        <span
+          className={
+            exportOptions.length > 0
+              ? 'TranscriptResultTableButton'
+              : undefined
+            }
+        >
+          {addColumnsNode}
+        </span>
+      </>
+    ),
+    [exportOptions]
+  );
+
   return <React.Fragment>
     <ConnectedTranscriptViewFilter {...props}/>
-    <props.DefaultComponent {...props}/>
+    <props.DefaultComponent
+      {...props}
+      renderToolbarContent={renderToolbarContent}
+    />
   </React.Fragment>
 }
 

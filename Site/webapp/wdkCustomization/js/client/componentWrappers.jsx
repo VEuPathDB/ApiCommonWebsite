@@ -1,5 +1,5 @@
 import { isEqual } from 'lodash';
-import React from 'react';
+import React, { cloneElement } from 'react';
 import { connect } from 'react-redux';
 import { useLocation } from 'react-router';
 import { RecoilRoot } from 'recoil';
@@ -26,6 +26,7 @@ import { StepDetailsActionContext } from '@veupathdb/wdk-client/lib/Views/Strate
 import { apiActions } from './components/strategies/ApiStepDetailsActions';
 
 import { VEuPathDBHomePage } from './components/homepage/VEuPathDBHomePage';
+import { BlockRecordAttributeSection } from '@veupathdb/wdk-client/lib/Views/Records/RecordAttributes/RecordAttributeSection';
 
 export const SiteHeader = () => ApiSiteHeader;
 
@@ -98,8 +99,14 @@ export function RecordController(WdkRecordController) {
   return enhance(ApiRecordController);
 }
 
+function EnhancedRecordUIContainer(props) {
+  return (
+    cloneElement(props.children, { bottomOffset: 100 })
+  )
+}
+
 export const RecordHeading = makeDynamicWrapper('RecordHeading');
-export const RecordUI = makeDynamicWrapper('RecordUI');
+export const RecordUI = makeDynamicWrapper('RecordUI', EnhancedRecordUIContainer);
 export const RecordMainSection = makeDynamicWrapper('RecordMainSection');
 export const RecordTable = makeDynamicWrapper('RecordTable', RecordTableContainer);
 export const RecordTableDescription = makeDynamicWrapper('RecordTableDescription');
@@ -269,9 +276,21 @@ export function RecordTableSection(DefaultComponent) {
   });
 }
 
+function getGbrowseContext(attributeName) {
+  return Gbrowse.contexts.find(context => context.gbrowse_url === attributeName);
+}
+
 export const RecordAttribute = makeDynamicWrapper('RecordAttribute',
   function MaybeDyamicWrapper(props) {
-    let { attribute, record } = props;
+    const { attribute, record } = props;
+
+    const context = getGbrowseContext(attribute.name);
+
+    if (context) {
+      return (
+        <Gbrowse.GbrowseContext {...props} context={context} />
+      );
+    }
 
     // Render attribute as a Sequence if attribute name ends with "sequence".
     let sequenceRE = /sequence$/;
@@ -285,22 +304,12 @@ export const RecordAttribute = makeDynamicWrapper('RecordAttribute',
 
 export function RecordAttributeSection(DefaultComponent) {
   return function ApiRecordAttributeSection(props) {
-    let { attribute, record } = props;
+    const { attribute, record } = props;
+    const context = getGbrowseContext(attribute.name);
 
-    // render attribute as a GbrowseContext if attribute name is in Gbrowse.contextx
-    let context = Gbrowse.contexts.find(context => context.gbrowse_url === attribute.name);
-    if (context != null) {
+    if (context) {
       return (
-        <CollapsibleSection
-          id={attribute.name}
-          className="wdk-RecordAttributeSectionItem"
-          style={{display: 'block', width: '100%' }}
-          headerContent={attribute.displayName}
-          isCollapsed={props.isCollapsed}
-          onCollapsedChange={props.onCollapsedChange}
-        >
-          <Gbrowse.GbrowseContext {...props} context={context} />
-        </CollapsibleSection>
+        <BlockRecordAttributeSection {...props} />
       );
     }
 
