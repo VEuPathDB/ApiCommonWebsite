@@ -11,10 +11,11 @@ import {Seq} from '@veupathdb/wdk-client/lib/Utils/IterableUtils';
 import {preorderSeq} from '@veupathdb/wdk-client/lib/Utils/TreeUtils';
 
 import DatasetGraph from '@veupathdb/web-common/lib/components/DatasetGraph';
-import ExternalResource from '@veupathdb/web-common/lib/components/ExternalResource';
+import { ExternalResourceContainer } from '@veupathdb/web-common/lib/components/ExternalResource';
 import Sequence from '@veupathdb/web-common/lib/components/records/Sequence';
 import {findChildren, isNodeOverflowing} from '@veupathdb/web-common/lib/util/domUtils';
 
+import { updateTableState } from '../../actioncreators/RecordViewActionCreators';
 import { projectId, webAppUrl } from '../../config';
 import * as Gbrowse from '../common/Gbrowse';
 import {OverviewThumbnails} from '../common/OverviewThumbnails';
@@ -283,6 +284,10 @@ export function RecordTable(props) {
     case 'TranscriptionSummary':
       return <TranscriptionSummaryForm {...props}/>
 
+    case 'Cellxgene':
+      return <props.DefaultComponent {...props} childRow={CellxgeneTableChildRow} />
+
+
     default:
       return <props.DefaultComponent {...props} />
   }
@@ -341,6 +346,23 @@ const RodMalPhenotypeTableChildRow = pure(function RodMalPhenotypeTableChildRow(
     </div>
   )
 });
+
+
+const CellxgeneTableChildRow = pure(function CellxgeneTableChildRow(props) {
+  let {
+    source_id,source_ids,dataset_name,project_id
+  } = props.rowData;
+
+  return (
+    <CellxgeneIframe
+      source_id={source_id}
+      project_id={project_id}
+      source_ids={source_ids}
+      dataset_name={dataset_name}
+      />
+  )
+});
+
 
 function makeDatasetGraphChildRow(dataTableName, facetMetadataTableName, contXAxisMetadataTableName) {
   let DefaultComponent = WdkRecordTable;
@@ -1042,29 +1064,294 @@ class OrthologsForm extends SortKeyTable {
   }
 }
 
-class TranscriptionSummaryForm extends SortKeyTable {
-  render() {
-      let { source_id } = this.props.record.attributes;
-
-	var height = 700;
-        if (this.props.value.length === 0) {
-          return (
-            <p><em>No data available</em></p>
-          );
-        } else {
-	  if (((this.props.value.length + 1) * 40) > 700) {
-	    height = (this.props.value.length + 1) * 40;
-	  } 
-	}
-
-        return (
-          <div id="transcriptionSummary">
-            <ExternalResource>
-              <iframe src={"/cgi-bin/dataPlotter.pl?project_id=" + projectId + "&id=" + source_id + "&type=RNASeqTranscriptionSummary&template=1&datasetId=All&wl=0&facet=na&contXAxis=na&fmt=html"} height={height} width="1100" frameBorder="0"></iframe>
-            </ExternalResource>
-          </div>
-        );
+const TranscriptionSummaryForm = connect(
+  ({ record }) => ({
+    expressionGraphsTableState: record.eupathdb.tables?.ExpressionGraphs
+  }),
+  {
+    updateSectionVisibility: RecordActions.updateSectionVisibility,
+    updateTableState
   }
-}
+)(class TranscriptionSummaryFormPres extends SortKeyTable {
+  constructor(props) {
+    super(props);
+    this.state = {
+      summaryIframeState: {
+        isLoading: true,
+        isError: false,
+      },
+    };
+
+    this._makeIframeUrl = this._makeIframeUrl.bind(this);
+    this._handleIframeLoad = this._handleIframeLoad.bind(this);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (
+      this._makeIframeUrl(projectId, prevProps.record.attributes.source_id) !==
+      this._makeIframeUrl(projectId, this.props.record.attributes.source_id)
+    ) {
+      this.setState({
+        summaryIframeState: {
+          isLoading: true,
+          isError: false,
+        },
+      });
+    }
+  }
+
+  _makeIframeUrl(projectId, sourceId) {
+    return (
+      "/cgi-bin/dataPlotter.pl?project_id=" +
+      projectId +
+      "&id=" +
+      sourceId +
+      "&type=RNASeqTranscriptionSummary&template=1&datasetId=All&wl=0&facet=na&contXAxis=na&fmt=html"
+    );
+  }
+
+  _handleIframeLoad(loadEvent) {
+    loadEvent.target.contentDocument?.body.addEventListener('click', (e) => {
+      const { ExpressionGraphs } = this.props.record.tables;
+
+      if (ExpressionGraphs == null) {
+        return;
+      }
+
+      // If a dataset entry was clicked...
+      if (
+        e.target.classList.contains('annotation-text') &&
+        e.target.dataset.unformatted
+      ) {
+        // Find the associated expression graph row data
+        // FIXME: Look up the expression graph entry by dataset_id instead of display_name
+        // This will require adding the dataset_id as a data attribute
+        const expressionGraphIndex = ExpressionGraphs.findIndex(
+          ({ display_name }) => e.target.dataset.unformatted.startsWith(display_name)
+        );
+
+        const expressionGraphTableElement = document.getElementById('ExpressionGraphs');
+
+        // If the expression graph table is available...
+        if (
+          expressionGraphIndex !== -1 &&
+          expressionGraphTableElement != null
+        ) {
+          // Open the ExpressionGraphs record section
+          this.props.updateSectionVisibility('ExpressionGraphs', true);
+
+          // Scroll to the ExpressionGraphs record section
+          const position = expressionGraphTableElement.getBoundingClientRect();
+          scrollTo(
+            position.top + window.scrollY,
+            // When the scroll is complete, clear the table's search term
+            // and "select" the expresion graph row
+            () => {
+              this.props.updateTableState(
+                'ExpressionGraphs',
+                {
+                  ...this.props.expressionGraphsTableState,
+                  searchTerm: '',
+                  selectedRow: {
+                    index: expressionGraphIndex,
+                    id: `ExpressionGraphs__${ExpressionGraphs[expressionGraphIndex].dataset_id}`
+                  }
+                }
+              );
+            }
+          );
+        }
+      }
+    });
+
+    this.setState({
+      summaryIframeState: {
+        isLoading: false,
+        isError: false,
+      },
+    });
+  }
+
+  render() {
+    let { source_id } = this.props.record.attributes;
+
+    let height = 700;
+    if (this.props.value.length === 0) {
+      return (
+        <p><em>No data available</em></p>
+      );
+    } else {
+      if (((this.props.value.length + 1) * 40) > 700) {
+        height = (this.props.value.length + 1) * 40;
+      }
+    }
+
+    return (
+      <div id="transcriptionSummary">
+        <ExternalResourceContainer
+          isLoading={this.state.summaryIframeState.isLoading}
+          isError={this.state.summaryIframeState.isError}
+        >
+          <iframe
+            onError={() => {
+              this.setState({
+                summaryIframeState: {
+                  isLoading: false,
+                  isError: true,
+                },
+              });
+            }}
+            onLoad={this._handleIframeLoad}
+            src={this._makeIframeUrl(projectId, source_id)}
+            height={height}
+            width="1100"
+            frameBorder="0"
+          ></iframe>
+        </ExternalResourceContainer>
+      </div>
+    );
+  }
+});
 
 const UserCommentsTable = addCommentLink(props => props.record.attributes.user_comment_link_url);
+
+/**
+ * Adaptation of https://stackoverflow.com/a/55686711
+ *
+ * Native scrollTo with callback
+ * @param yOffset - vertical offset to scroll to
+ * @param callback - callback function
+ */
+ function scrollTo(yOffset, callback) {
+  const fixedYOffset = yOffset.toFixed();
+  const onScroll = function() {
+    if (
+      window.pageYOffset.toFixed() === fixedYOffset
+    ) {
+      window.removeEventListener('scroll', onScroll);
+      callback();
+    }
+  }
+
+  window.addEventListener('scroll', onScroll);
+  onScroll();
+  window.scrollTo({
+    top: yOffset,
+  });
+}
+
+
+class CellxgeneIframe extends SortKeyTable {
+  constructor(props) {
+    super(props);
+    this.state = {
+      CellxgeneIframeState: {
+        isLoading: true,
+        isError: false,
+      },
+    };
+
+    this._makeIframeUrl = this._makeIframeUrl.bind(this);
+    this._makeAppUrl = this._makeAppUrl.bind(this);
+    this._makeGeneAppUrl = this._makeGeneAppUrl.bind(this);
+    this._handleIframeLoad = this._handleIframeLoad.bind(this);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (
+      this._makeIframeUrl(prevProps.dataset_name, prevProps.source_ids) !==
+      this._makeIframeUrl(this.props.dataset_name, this.props.source_ids)
+    ) {
+      this.setState({
+        CellxgeneIframeState: {
+          isLoading: true,
+          isError: false,
+        },
+      });
+    }
+  }
+
+  _makeIframeUrl(dataset_name, sourceIds) {
+    const appUrl = this._makeGeneAppUrl(dataset_name, sourceIds);
+    return (
+        appUrl +
+        "&compact=1"
+    );
+  }
+
+  _makeAppUrl(dataset_name) {
+    return (
+        "/cellxgene/view/" + 
+        dataset_name + 
+        ".h5ad/"
+    );
+  }
+
+  _makeGeneAppUrl(dataset_name, sourceIds) {
+    const sourceIdAr = sourceIds.split(";");
+    const appUrl = this._makeAppUrl(dataset_name);
+    return (
+        appUrl +
+        "?gene=" + 
+        sourceIdAr[0]
+    );
+  }
+
+
+  _handleIframeLoad(loadEvent) {
+
+    this.setState({
+      CellxgeneIframeState: {
+        isLoading: false,
+        isError: false,
+      },
+    });
+  }
+
+  render() {
+    let { source_id, source_ids, dataset_name } = this.props;
+
+    let height = 350;
+    let width = 800;
+    console.log(this.props);
+    const sourceIdAr = source_ids.split(";");
+
+      /* if (this.props.value.length === 0) {
+         return (
+         <p><em>No data available</em></p>
+         );
+         }  */
+    return (
+      <div id="cellxgene">
+        <ExternalResourceContainer
+          isLoading={this.state.CellxgeneIframeState.isLoading}
+          isError={this.state.CellxgeneIframeState.isError}
+        >
+          <iframe
+            onError={() => {
+              this.setState({
+                CellxgeneIframeState: {
+                  isLoading: false,
+                  isError: true,
+                },
+              });
+            }}
+            onLoad={this._handleIframeLoad}
+            src={this._makeIframeUrl(dataset_name, sourceIdAr[0])}
+            height={height}
+            width={width}
+            frameBorder="0"
+          ></iframe>
+        </ExternalResourceContainer>
+        <div id="cellxgene_text">
+            The full dataset is availble in cellxgene <a target="_blank" href={this._makeAppUrl(dataset_name)}>here</a>.  The following identifiers are mapped to {source_id}:
+            <ul>
+            {sourceIdAr.map((id, i) => {     
+               return (<li><a target="_blank" href={this._makeGeneAppUrl(dataset_name, source_ids)}>{id}</a></li>)
+             })}
+            </ul>
+        </div>      
+      </div>
+    );
+  }
+}
