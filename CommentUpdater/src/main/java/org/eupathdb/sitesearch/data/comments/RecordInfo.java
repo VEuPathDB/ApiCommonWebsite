@@ -9,14 +9,16 @@ import java.sql.SQLException;
  * @author Steve
  */
 class RecordInfo {
+  
+  private final static String NL = System.lineSeparator();  
 
   String recordType;
 
   String sourceId;
 
-  int commentId;
+  String commentId;
 
-  RecordInfo(String sourceId, String recordType, int commentId) {
+  RecordInfo(String sourceId, String recordType, String commentId) {
     this.sourceId = sourceId;
     this.recordType = recordType;
     this.commentId = commentId;
@@ -27,7 +29,7 @@ class RecordInfo {
   void readRs(ResultSet rs) throws SQLException {
     this.sourceId   = rs.getString(1);
     this.recordType = rs.getString(2);
-    this.commentId  = rs.getInt(3);
+    this.commentId = rs.getObject(3).toString();
   }
 
   RecordInfo copy() {
@@ -37,4 +39,14 @@ class RecordInfo {
   String toSolrId() {
     return recordType + "__" + sourceId;
   }
+  
+  public String toString() {
+    StringBuffer buf = new StringBuffer();
+    buf.append("Record type: " + recordType + NL);
+    buf.append("Source ID: " + sourceId + NL);
+    buf.append("Comment ID: " + commentId + NL);    
+    return buf.toString();
+  }
+
+
 }

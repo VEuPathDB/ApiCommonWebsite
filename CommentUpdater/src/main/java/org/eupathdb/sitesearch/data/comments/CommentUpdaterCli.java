@@ -6,24 +6,29 @@ import org.gusdb.fgputil.db.pool.ConnectionPoolConfig;
 import org.gusdb.fgputil.db.pool.DatabaseInstance;
 import org.gusdb.fgputil.db.pool.SimpleDbConfig;
 
-public class CommentUpdaterCli {
+public abstract class CommentUpdaterCli {
 
-  private static final String
-    ENV_DB_CONNECT = "USERDB_CONNECT",
-    ENV_DB_USER    = "USERDB_LOGIN",
-    ENV_DB_PASS    = "USERDB_PASSWORD",
-    ENV_DB_SCHEMA  = "USERDB_SCHEMA",
-    ENV_SOLR_URL   = "SOLR_URL";
+  // subclass to provide implementation-specific comment updater
+  protected abstract CommentUpdater createCommentUpdater(Config config, DatabaseInstance commentDb);
 
-  private static final String
-    ERR_BAD_ENV = "Comment updater requires the following environment variables:\n"
-      + "    " + ENV_DB_CONNECT + ": User database connection string\n"
-      + "    " + ENV_DB_USER    + ": User database credentials username\n"
-      + "    " + ENV_DB_PASS    + ": User database credentials password\n"
-      + "    " + ENV_DB_SCHEMA  + ": User database comment schema\n"
-      + "    " + ENV_SOLR_URL   + ": Solr URL";
+  // subclass to provide env vars used to configure DB
+  protected abstract String getEnvDbConnect();
+  protected abstract String getEnvDbUser();
+  protected abstract String getEnvDbPass();
+  protected abstract String getEnvDbSchema();
 
-  private static class Config extends ThreeTuple<String,ConnectionPoolConfig,String> {
+  private static String getEnvSolrUrl() { return "SOLR_URL"; }
+
+  private String getBadEnvMsg() {
+    return "Comment updater requires the following environment variables:\n"
+      + "    " + getEnvDbConnect() + ": Database connection string\n"
+      + "    " + getEnvDbUser()    + ": Database credentials username\n"
+      + "    " + getEnvDbPass()    + ": Database credentials password\n"
+      + "    " + getEnvDbSchema()  + ": Database comment schema\n"
+      + "    " + getEnvSolrUrl()   + ": Solr URL"; 
+  }
+
+  protected static class Config extends ThreeTuple<String,ConnectionPoolConfig,String> {
     Config(String solrUrl, ConnectionPoolConfig commentDbConfig, String commentDbSchema) {
       super(solrUrl, commentDbConfig, commentDbSchema);
     }
@@ -32,33 +37,32 @@ public class CommentUpdaterCli {
     String getCommentSchema() { return getThird(); }
   }
 
-  public static void main(String[] args) throws Exception {
+  void execute() throws Exception {
     Config config = parseEnv();
     try (DatabaseInstance commentDb = new DatabaseInstance(config.getDbConfig())) {
-      CommentUpdater updater = new CommentUpdater(config.getSolrUrl(), commentDb, config.getCommentSchema());
-      updater.syncAll();
+      createCommentUpdater(config, commentDb).syncAll();
     }
   }
 
-  private static Config parseEnv() {
+  private Config parseEnv() {
     final var env = System.getenv();
 
-    if (!(env.containsKey(ENV_DB_CONNECT) && env.containsKey(ENV_DB_PASS)
-        && env.containsKey(ENV_DB_SCHEMA) && env.containsKey(ENV_DB_USER)
-        && env.containsKey(ENV_SOLR_URL))
+    if (!(env.containsKey(getEnvDbConnect()) && env.containsKey(getEnvDbPass())
+        && env.containsKey(getEnvDbSchema()) && env.containsKey(getEnvDbUser())
+        && env.containsKey(getEnvSolrUrl()))
     ) {
-      System.err.println(ERR_BAD_ENV);
+      System.err.println(getBadEnvMsg());
       System.exit(1);
     }
 
-    final var schema = env.get(ENV_DB_SCHEMA);
+    final var schema = env.get(getEnvDbSchema());
     return new Config(
-      env.get(ENV_SOLR_URL),
+      env.get(getEnvSolrUrl()),
       SimpleDbConfig.create(
         SupportedPlatform.ORACLE,
-        env.get(ENV_DB_CONNECT),
-        env.get(ENV_DB_USER),
-        env.get(ENV_DB_PASS)
+        env.get(getEnvDbConnect()),
+        env.get(getEnvDbUser()),
+        env.get(getEnvDbPass())
       ),
       schema.endsWith(".") ? schema : schema + "."
     );

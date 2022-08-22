@@ -2,37 +2,11 @@ package org.eupathdb.sitesearch.data.comments;
 
 import java.util.Arrays;
 
-class Field {
-  static final String
-    ID          = "id",
-    WDK_ID      = "wdkPrimaryKeyString",
-    DOC_TYPE    = "document-type",
-    BATCH_ID    = "batch-id",
-    BATCH_NAME  = "batch-name",
-    BATCH_TYPE  = "batch-type",
-    BATCH_TIME  = "batch-timestamp",
-    COMMENT_ID  = "userCommentIds",
-    COMMENT_TXT = "MULTITEXT__gene_UserCommentContent";
-}
 
-class DocumentInfo {
+class SolrDocument {
 
-  /**
-   * If this is changed in any way, the implementation of
-   * {@link #readCsvRow(String)} must also be changed.
-   */
-  static final String[] REQUIRED_FIELDS = {
-    Field.ID,
-    Field.WDK_ID,
-    Field.DOC_TYPE,
-    Field.BATCH_ID,
-    Field.BATCH_NAME,
-    Field.BATCH_TYPE,
-    Field.BATCH_TIME,
-    Field.COMMENT_ID,
-  };
-
-
+  private final static String NL = System.lineSeparator();  
+  
   private String    solrId;
   private String    sourceId;
   private String    documentType;
@@ -40,11 +14,8 @@ class DocumentInfo {
   private String    batchName;
   private String    batchType;
   private long      batchTime;
-  private int[]     commentIds;
+  private String[]     commentIds;
   private boolean[] hits;
-
-  private DocumentInfo() {
-  }
 
   String getSourceId() {
     return sourceId;
@@ -78,9 +49,9 @@ class DocumentInfo {
     return batchTime;
   }
 
-  boolean hasCommentId(int commentId) {
+  boolean hasCommentId(String commentId) {
     for (var i = 0; i < commentIds.length; i++)
-      if (commentIds[i] == commentId) {
+      if (commentIds[i].equals(commentId)) {
         hits[i] = true;
         return true;
       }
@@ -117,11 +88,11 @@ class DocumentInfo {
    * @throws RuntimeException if the csv row was found to be shorter than the
    *         expected row length.
    */
-  static DocumentInfo readCsvRow(final String row) {
+  static SolrDocument readCsvRow(final String row) {
     var buf = new StringBuilder();
     var len = row.length();
     var field = 1;
-    var out = new DocumentInfo();
+    var out = new SolrDocument();
 
     // Pre-stretch buffer
     buf.setLength(128);
@@ -160,15 +131,15 @@ class DocumentInfo {
     return out;
   }
 
-  private static int[] splitCommentIds(String in) {
+  private static String[] splitCommentIds(String in) {
     if (in.isEmpty())
-      return new int[0];
+      return new String[0];
 
     var tmp = in.split(",");
-    var out = new int[tmp.length];
+    var out = new String[tmp.length];
 
     for (var i = 0; i < tmp.length; i++)
-      out[i] = Integer.parseInt(tmp[i]);
+      out[i] = tmp[i];
     Arrays.sort(out);
     return out;
   }
@@ -182,4 +153,14 @@ class DocumentInfo {
     }
     return in;
   }
+  
+  public String toString() {
+    StringBuffer buf = new StringBuffer();
+    buf.append("Solr ID: " + solrId + NL);
+    buf.append("Source ID: " + sourceId + NL);
+    buf.append("Comment IDs: " + String.join(",", commentIds) + NL);    
+    return buf.toString();
+  }
+
+
 }

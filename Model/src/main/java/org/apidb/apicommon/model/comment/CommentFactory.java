@@ -20,7 +20,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
-import org.eupathdb.sitesearch.data.comments.CommentUpdater;
+import org.eupathdb.sitesearch.data.comments.UserCommentUpdater;
 
 import static org.apidb.apicommon.model.comment.ReferenceType.*;
 
@@ -230,7 +230,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
       }
 
       con.commit();
-      new CommentUpdater(_config.getSolrUrl(), _commentDb, _config.getCommentSchema()).updateSingle(commentId);
+      new UserCommentUpdater(_config.getSolrUrl(), _commentDb, _config.getCommentSchema()).updateSingle(commentId);
     }
     catch (SQLException e) {
       throw new WdkModelException(e);
@@ -242,7 +242,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
   public void deleteComment(long commentId) throws WdkModelException {
     try(Connection con = _commentDs.getConnection()) {
       new HideCommentQuery(_config.getCommentSchema(), commentId).run(con);
-      new CommentUpdater(_config.getSolrUrl(), _commentDb, _config.getCommentSchema())
+      new UserCommentUpdater(_config.getSolrUrl(), _commentDb, _config.getCommentSchema())
         .updateSingle(commentId);
     } catch (SQLException e) {
       throw new WdkModelException(e);
