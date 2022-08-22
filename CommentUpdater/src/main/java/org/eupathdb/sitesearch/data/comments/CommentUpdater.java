@@ -344,7 +344,7 @@ public abstract class CommentUpdater<IDTYPE> {
         .map(SolrDocument::readCsvRow)
         .collect(Collectors.toMap(SolrDocument::getSourceId, Function.identity()));
       
-      LOG.info("Fetched " + docMap.size() + " documents from solr");
+      LOG.info("Read " + docMap.size() + " documents from solr that will be updated");
       
       return docMap;
 
