@@ -344,16 +344,10 @@ public abstract class CommentUpdater<IDTYPE> {
         .map(SolrDocument::readCsvRow)
         .collect(Collectors.toMap(SolrDocument::getSourceId, Function.identity()));
       
-<<<<<<< HEAD
-      LOG.info("Read " + docMap.size() + " documents from solr that will be updated");
-      
-      return docMap;
-=======
       LOG.info("Fetched " + docMap.size() + " documents from solr");
       
       return docMap;
 
->>>>>>> 292901086e456adc4bcc3fab780ec321357e61fa
 
     } catch (IOException e) {
       throw new RuntimeException("Failed to read Solr response body", e);
