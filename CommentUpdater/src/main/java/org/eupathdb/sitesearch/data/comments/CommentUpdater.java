@@ -113,7 +113,7 @@ public abstract class CommentUpdater<IDTYPE> {
         .map(RecordInfo::toSolrId)
         .toArray(String[]::new)).values());
     
-    LOG.info("Total documents to update: " + results.toUpdate.size() + "To postprocess: " + results.toPostProcess.size());
+    LOG.info("Total documents to update: " + results.toUpdate.size() + "  To postprocess: " + results.toPostProcess.size());
 
     return results.toUpdate;
   }
