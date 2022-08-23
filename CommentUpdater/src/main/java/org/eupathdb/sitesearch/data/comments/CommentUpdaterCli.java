@@ -24,7 +24,7 @@ public abstract class CommentUpdaterCli {
       + "    " + getEnvDbConnect() + ": Database connection string\n"
       + "    " + getEnvDbUser()    + ": Database credentials username\n"
       + "    " + getEnvDbPass()    + ": Database credentials password\n"
-      + "    " + getEnvDbSchema()  + ": Database comment schema\n"
+      + "    " + getEnvDbSchema()  + ": Database comment schema (not needed for Apollo Comment Updater)\n"
       + "    " + getEnvSolrUrl()   + ": Solr URL"; 
   }
 
