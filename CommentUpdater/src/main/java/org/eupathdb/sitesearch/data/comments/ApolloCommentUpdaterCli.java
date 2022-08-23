@@ -30,6 +30,8 @@ public class ApolloCommentUpdaterCli extends CommentUpdaterCli {
 
   @Override
   protected String getEnvDbSchema() {
-    return "APPDB_SCHEMA";
+    // unlike user comments, apollo comments do not need a schema, nor a schema env var.  as a hack reuse an existing env var.  this will pass validation but is not ever used.
+    // @TODO factor this propertly in the super class to avoid this hack
+    return "APPDB_LOGIN"; 
   }
 }
