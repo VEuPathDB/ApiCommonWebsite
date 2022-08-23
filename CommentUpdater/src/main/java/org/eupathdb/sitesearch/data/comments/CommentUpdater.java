@@ -221,9 +221,9 @@ public abstract class CommentUpdater<IDTYPE> {
    */
   Map<String, SolrDocument> fetchDocumentsById(final String[] ids) {
     LOG.info("Attempting to fetch " + ids.length + " solr documents by (putative) ID.  (Will not be found if ID is an alias)");
-    String [] tmp = {ids[0], ids[1]};  // strip away comment ID
+
     var q = new SolrTermQueryBuilder(_docFields.getIdFieldName())
-      .values(tmp)
+      .values(ids)
       .resultFields(_docFields.getRequiredFields())
       .maxRows(1000000)
       .resultFormat(FormatType.CSV);
