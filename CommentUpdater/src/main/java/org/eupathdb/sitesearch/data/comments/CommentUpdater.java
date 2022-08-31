@@ -328,8 +328,6 @@ public abstract class CommentUpdater<IDTYPE> {
     Response res = null;
     try {
       res = sendSolrRequest(url, body);
-      
-      LOG.info(body.toString());
 
       var read = entityReader(res);
       if (!read.ready()) {
