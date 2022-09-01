@@ -9,13 +9,12 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.io.File;
 
 import javax.sql.DataSource;
-import java.sql.Types;
 
 import org.apache.log4j.Logger;
 import org.gusdb.fgputil.db.runner.BasicResultSetHandler;
@@ -137,7 +136,7 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   }
 
   @Override
-  protected String[] getCommand(AnswerValue answerValue) throws WdkModelException, WdkUserException, IllegalAnswerValueException {
+  protected String[] getCommand(AnswerValue answerValue) throws WdkModelException, WdkUserException {
 
     WdkModel wdkModel = answerValue.getAnswerSpec().getQuestion().getWdkModel();
     Map<String,String> params = getFormParams();
@@ -159,24 +158,23 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
         EXCLUDE_INCOMPLETE_PARAM_KEY, params, null);
 
     String qualifiedExe = Paths.get(GusHome.getGusHome(), "bin", "apiPathwaysEnrichment").toString();
+
     LOG.info(qualifiedExe + " " + resultFilePath.toString() + " " + idSql + " " +
         wdkModel.getProjectId() + " " + pValueCutoff + " " + sourcesStr + " " +
         imageResultFilePath.toString() + " " + hiddenResultFilePath.toString() + " " +
-	     exactMatchOnly + " " + excludeIncomplete);
+        exactMatchOnly + " " + excludeIncomplete);
 
     // Catch exception when the  *chosen* organism has no Pathway hits
-    File file = new File(hiddenResultFilePath.toString());
-    boolean existFile = file.exists();
-    if (!existFile){
-	//errors.addError("Your result has no genes with Pathways for this Organism. Please try changing the Organism parameter.");
-	 throw new  IllegalAnswerValueException("Your result has no genes with Pathways for this Organism. Please try changing the Organism parameter.");
-    }
-
-
+    //File file = new File(hiddenResultFilePath.toString());
+    //boolean existFile = file.exists();
+    //if (!existFile){
+    //  errors.addError("Your result has no genes with Pathways for this Organism. Please try changing the Organism parameter.");
+    //  throw new  IllegalAnswerValueException("Your result has no genes with Pathways for this Organism. Please try changing the Organism parameter.");
+    //}
 
     return new String[]{ qualifiedExe, resultFilePath.toString(), idSql, wdkModel.getProjectId(), pValueCutoff,
-			 sourcesStr, imageResultFilePath.toString(), hiddenResultFilePath.toString(),
-                         exactMatchOnly, excludeIncomplete };
+        sourcesStr, imageResultFilePath.toString(), hiddenResultFilePath.toString(),
+        exactMatchOnly, excludeIncomplete };
   }
 
   /**

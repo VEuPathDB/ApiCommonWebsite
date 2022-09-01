@@ -11,7 +11,6 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.io.File;
 
 import javax.sql.DataSource;
 
@@ -121,7 +120,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   }
 
   @Override
-  protected String[] getCommand(AnswerValue answerValue) throws WdkModelException, WdkUserException, IllegalAnswerValueException {
+  protected String[] getCommand(AnswerValue answerValue) throws WdkModelException, WdkUserException {
 
     WdkModel wdkModel = answerValue.getAnswerSpec().getQuestion().getWdkModel();
     Map<String,String> params = getFormParams();
@@ -135,11 +134,13 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
         GO_ASSOC_ONTOLOGY_PARAM_KEY, params, null); // only get first (and only) value
     String goSubset = EnrichmentPluginUtil.getArrayParamValueAsString(
         GO_SUBSET_PARAM_KEY, params, null); // in sql format
+
     // create another path here for the image word cloud JP LOOK HERE name it like imageFilePath
     Path resultFilePath = Paths.get(getStorageDirectory().toString(), TABBED_RESULT_FILE_PATH);
     Path hiddenResultFilePath = Paths.get(getStorageDirectory().toString(), HIDDEN_TABBED_RESULT_FILE_PATH);
     Path imageResultFilePath = Paths.get(getStorageDirectory().toString(), IMAGE_RESULT_FILE_PATH);
     String qualifiedExe = Paths.get(GusHome.getGusHome(), "bin", "apiGoEnrichment").toString();
+
     LOG.info(qualifiedExe +
         " " + resultFilePath.toString() +
         " " + idSql +
@@ -152,12 +153,13 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
         " " + hiddenResultFilePath.toString());
 
     // Catch exception when the  *chosen* organism has no GO Terms hits
-    File file = new File(hiddenResultFilePath.toString());
-    boolean existFile = file.exists();    
-    if (!existFile){
-	//errors.addError("Your result has no genes with GO Terms for this Organism. Please try changing the Organism parameter.");
-	 throw new  IllegalAnswerValueException("Your result has no genes with GO Terms for this Organism. Please try changing the Organism parameter.");
-    }
+    //File file = new File(hiddenResultFilePath.toString());
+    //boolean existFile = file.exists();    
+    //if (!existFile){
+    //  errors.addError("Your result has no genes with GO Terms for this Organism. Please try changing the Organism parameter.");
+    //  throw new  IllegalAnswerValueException("Your result has no genes with GO Terms for this Organism. Please try changing the Organism parameter.");
+    //}
+
     return new String[] {
         qualifiedExe,
         resultFilePath.toString(),
