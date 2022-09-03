@@ -192,7 +192,7 @@ public abstract class CommentUpdater<IDTYPE> {
 
     LOG.info("Read " + count + " rows from database");
 
-    /*
+    /* HACK: comment out code to add Solr documents to delete
     // add to update list solr documents that have comments that were deleted in db
     solrData.values()
       // For each document
