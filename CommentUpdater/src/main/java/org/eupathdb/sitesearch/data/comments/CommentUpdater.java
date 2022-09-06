@@ -192,6 +192,7 @@ public abstract class CommentUpdater<IDTYPE> {
 
     LOG.info("Read " + count + " rows from database");
 
+    /* HACK: avoid deleting documents
     // add to update list solr documents that have comments that were deleted in db
     solrData.values()
       // For each document
@@ -202,6 +203,7 @@ public abstract class CommentUpdater<IDTYPE> {
       .filter(SolrDocument::hasUnhitComments)
       // queue for update
       .forEach(out.toUpdate::add);
+     */ 
 
     int delete = out.toUpdate.size() - missing;
 
