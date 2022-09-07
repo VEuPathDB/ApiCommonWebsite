@@ -59,6 +59,7 @@ public class ApolloCommentUpdater extends CommentUpdater<String>{
     " and ga.na_sequence_id = au.na_sequence_id" +
     " and ga.start_min <= au.mapping_end" +
     " and ga.end_max >= au.mapping_start" +
+    " and ga.strand_plus_minus = au.strand" +
     " and source_id = '"  + doc.getSourceId() + "'";
 
     return new SQLRunner(commentDbDataSource, sqlSelect)
