@@ -4,6 +4,7 @@ import javax.sql.DataSource;
 
 import org.gusdb.fgputil.db.pool.DatabaseInstance;
 import org.gusdb.fgputil.db.runner.SQLRunner;
+import org.eupathdb.sitesearch.data.comments.solr.SolrUrlQueryBuilder;
 
 public class ApolloCommentUpdater extends CommentUpdater<String>{
 
@@ -40,6 +41,11 @@ public class ApolloCommentUpdater extends CommentUpdater<String>{
         new ApolloCommentSolrDocumentFields(),
         new ApolloCommentUpdaterSql());
   }
+
+   @Override
+   SolrUrlQueryBuilder applyOptionalSolrFilters(SolrUrlQueryBuilder builder) {
+     return builder.filterAndAllOf("projectAux", "ToxoDB");
+   }
   
   /**
    * Get the up-to-date comments info from the database, for the provided wdk
@@ -77,6 +83,4 @@ public class ApolloCommentUpdater extends CommentUpdater<String>{
         return comments;
       });
   }
-
-
 }

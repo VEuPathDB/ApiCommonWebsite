@@ -248,17 +248,22 @@ public abstract class CommentUpdater<IDTYPE> {
    */
   private Map<String, SolrDocument> fetchCommentedRecords() {
 
-    Map<String, SolrDocument> docs = fetchDocuments(SolrUrlQueryBuilder.select(_solrUrl)
-      .filterAndAllOf(_docFields.getCommentContentFieldName())
+    SolrUrlQueryBuilder builder = SolrUrlQueryBuilder.select(_solrUrl)
+      .filterAndAllOf(_docFields.getCommentContentFieldName());
+ 
+    builder = applyOptionalSolrFilters(builder)
       .resultFields(_docFields.getRequiredFields())
       .maxRows(1000000)
-      .resultFormat(FormatType.CSV)
-      .buildQuery(), null);
+      .resultFormat(FormatType.CSV);
+
+    Map<String, SolrDocument> docs = fetchDocuments(builder.buildQuery(), null);
 
     LOG.info("Found " + docs.size() + " solr documents that have existing comments");
 
     return docs;
   }
+
+  abstract SolrUrlQueryBuilder applyOptionalSolrFilters(SolrUrlQueryBuilder builder);
 
   /**
    * For a given record, get up-to-date comment info from the database.  Format
