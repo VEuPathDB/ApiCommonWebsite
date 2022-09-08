@@ -25,7 +25,7 @@ public class ApolloCommentUpdaterCli extends CommentUpdaterCli {
       );
     
     try (DatabaseInstance appDb = new DatabaseInstance(dbConf)) {
-      ApolloCommentUpdater commentUpdater = new ApolloCommentUpdater(env.get(SOLR_URL), appDb);
+      ApolloCommentUpdater commentUpdater = new ApolloCommentUpdater(env.get(SOLR_URL), appDb, env.get(PROJECT_ID));
       commentUpdater.syncAll();
     }
   }  

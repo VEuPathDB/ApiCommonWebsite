@@ -7,7 +7,9 @@ import org.gusdb.fgputil.db.runner.SQLRunner;
 import org.eupathdb.sitesearch.data.comments.solr.SolrUrlQueryBuilder;
 
 public class ApolloCommentUpdater extends CommentUpdater<String>{
-
+  private String projectId;
+  private static final String projectIdFieldName = "projecAux";  // field in Gene solr documents containting project ID
+  
   private static class ApolloCommentSolrDocumentFields extends CommentSolrDocumentFields {
 
     @Override
@@ -35,15 +37,18 @@ public class ApolloCommentUpdater extends CommentUpdater<String>{
 
   public ApolloCommentUpdater(
       String solrUrl,
-      DatabaseInstance commentDb) {
+      DatabaseInstance commentDb,
+      String projectId) {
+    
     super(solrUrl, commentDb, "dontcare",
         new ApolloCommentSolrDocumentFields(),
         new ApolloCommentUpdaterSql());
+    this.projectId = projectId;
   }
 
    @Override
    SolrUrlQueryBuilder applyOptionalSolrFilters(SolrUrlQueryBuilder builder) {
-     return builder.filterAndAllOf("projectAux", "ToxoDB");
+     return builder.filterAndAllOf(projectIdFieldName, projectId);
    }
   
   /**
