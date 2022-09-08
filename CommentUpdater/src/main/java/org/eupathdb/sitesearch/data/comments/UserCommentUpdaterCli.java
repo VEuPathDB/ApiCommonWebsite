@@ -9,7 +9,7 @@ public class UserCommentUpdaterCli extends CommentUpdaterCli {
   }
 
   @Override
-  protected CommentUpdater createCommentUpdater(Config config, DatabaseInstance commentDb) {
+  protected CommentUpdater<Integer> createCommentUpdater(Config config, DatabaseInstance commentDb) {
     return new UserCommentUpdater(config.getSolrUrl(), commentDb, config.getCommentSchema());
   }
   

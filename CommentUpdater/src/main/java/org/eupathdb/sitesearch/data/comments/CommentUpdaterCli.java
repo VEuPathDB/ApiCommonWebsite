@@ -9,7 +9,7 @@ import org.gusdb.fgputil.db.pool.SimpleDbConfig;
 public abstract class CommentUpdaterCli {
 
   // subclass to provide implementation-specific comment updater
-  protected abstract CommentUpdater createCommentUpdater(Config config, DatabaseInstance commentDb);
+  protected abstract CommentUpdater<?> createCommentUpdater(Config config, DatabaseInstance commentDb);
 
   // subclass to provide env vars used to configure DB
   protected abstract String getEnvDbConnect();

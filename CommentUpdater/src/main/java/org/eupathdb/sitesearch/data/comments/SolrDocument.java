@@ -154,6 +154,7 @@ class SolrDocument {
     return in;
   }
   
+  @Override
   public String toString() {
     StringBuffer buf = new StringBuffer();
     buf.append("Solr ID: " + solrId + NL);

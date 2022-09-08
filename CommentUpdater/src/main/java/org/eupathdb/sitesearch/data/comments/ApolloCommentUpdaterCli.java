@@ -9,7 +9,7 @@ public class ApolloCommentUpdaterCli extends CommentUpdaterCli {
   }
 
   @Override
-  protected CommentUpdater createCommentUpdater(Config config, DatabaseInstance commentDb) {
+  protected CommentUpdater<String> createCommentUpdater(Config config, DatabaseInstance commentDb) {
     return new ApolloCommentUpdater(config.getSolrUrl(), commentDb, config.getCommentSchema());
   }
 
