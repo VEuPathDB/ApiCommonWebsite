@@ -13,6 +13,7 @@ public class ApolloCommentUpdaterCli extends CommentUpdaterCli {
   private final static String PROJECT_ID = "PROJECT_ID";
  
   public static void main(String[] args) throws Exception {
+
     String[] envVarKeys = {DB_CONNECT, DB_LOGIN, DB_PASSWORD, SOLR_URL, PROJECT_ID};
     validateEnv(envVarKeys);
 

@@ -190,7 +190,7 @@ public abstract class CommentUpdater<IDTYPE> {
 
     int missing = out.toUpdate.size();
 
-    LOG.info("Read " + count + " rows from database");
+    LOG.info("Read " + count + " (source_id, record_type, comment_id) tuples from database");
 
      // add to update list solr documents that have comments that were deleted in db
     solrData.values()
@@ -256,7 +256,7 @@ public abstract class CommentUpdater<IDTYPE> {
 
     Map<String, SolrDocument> docs = fetchDocuments(builder.buildQuery(), null);
 
-    LOG.info("Found " + docs.size() + " solr documents that have existing comments");
+    LOG.info("Found " + docs.size() + " solr documents that have one or more existing comments");
 
     return docs;
   }
@@ -272,7 +272,7 @@ public abstract class CommentUpdater<IDTYPE> {
    * comments, and so would not provide those IDs.
    */
   void updateDocumentComment(SolrDocument doc) {
-    var comments = getCorrectCommentsForOneDocument(doc, _commentDb.getDataSource());
+    var comments = getCorrectCommentsForOneSourceId(doc.getSourceId(), _commentDb.getDataSource());
 
     LOG.info("Updating source ID '" + doc.getSourceId() + "' to have comments with IDs: " + 
         comments.commentIds.stream().map(IDTYPE::toString).collect(Collectors.joining(",")));
@@ -296,8 +296,8 @@ public abstract class CommentUpdater<IDTYPE> {
    * Get the up-to-date comments info from the database, for the provided wdk
    * record
    */
-  abstract DocumentCommentsInfo<IDTYPE> getCorrectCommentsForOneDocument(
-    final SolrDocument doc,
+  abstract DocumentCommentsInfo<IDTYPE> getCorrectCommentsForOneSourceId(
+    final String sourceId,
     final DataSource commentDbDataSource
   );
 
@@ -347,7 +347,7 @@ public abstract class CommentUpdater<IDTYPE> {
         .map(SolrDocument::readCsvRow)
         .collect(Collectors.toMap(SolrDocument::getSourceId, Function.identity()));
       
-      LOG.info("Read " + docMap.size() + " documents from solr that will be updated");
+      LOG.info("Read " + docMap.size() + " documents from solr");
       
       return docMap;
 
@@ -383,7 +383,7 @@ public abstract class CommentUpdater<IDTYPE> {
 
     if (!out.getStatusInfo().getFamily().equals(Family.SUCCESSFUL)) {
       throw new RuntimeException("SOLR responded with an error: "
-        + out.getStatus() + out.readEntity(String.class));
+        + out.getStatus() + " " + out.readEntity(String.class));
     }
 
     return out;

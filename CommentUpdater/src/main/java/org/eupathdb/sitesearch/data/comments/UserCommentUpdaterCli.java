@@ -13,6 +13,7 @@ public class UserCommentUpdaterCli extends CommentUpdaterCli {
   private final static String USERDB_SCHEMA = "USERDB_SCHEMA";
  
   public static void main(String[] args) throws Exception {
+
     String[] envVarKeys = {DB_CONNECT, DB_LOGIN, DB_PASSWORD, SOLR_URL, USERDB_SCHEMA};
     validateEnv(envVarKeys);
 

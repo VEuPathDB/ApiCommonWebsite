@@ -57,14 +57,14 @@ public class UserCommentUpdater extends CommentUpdater<Integer> {
    * record
    */
   @Override
-  DocumentCommentsInfo<Integer> getCorrectCommentsForOneDocument(
-    final SolrDocument doc,
+  DocumentCommentsInfo<Integer> getCorrectCommentsForOneSourceId(
+    final String sourceId,
     final DataSource commentDbDataSource
   ) {
 
     var sqlSelect = " SELECT comment_id, content"
       + " FROM apidb.textsearchablecomment"
-      + " WHERE source_id = '" + doc.getSourceId() + "'";
+      + " WHERE source_id = '" + sourceId + "'";
 
     return new SQLRunner(commentDbDataSource, sqlSelect)
       .executeQuery(rs -> {

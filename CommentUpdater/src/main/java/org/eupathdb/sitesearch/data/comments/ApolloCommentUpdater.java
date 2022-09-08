@@ -56,8 +56,8 @@ public class ApolloCommentUpdater extends CommentUpdater<String>{
    * record
    */
   @Override
-  DocumentCommentsInfo<String> getCorrectCommentsForOneDocument(
-    final SolrDocument doc,
+  DocumentCommentsInfo<String> getCorrectCommentsForOneSourceId(
+    final String sourceId,
     final DataSource commentDbDataSource
   ) {
 
@@ -69,7 +69,8 @@ public class ApolloCommentUpdater extends CommentUpdater<String>{
     " and ga.na_sequence_id = au.na_sequence_id" +
     " and ga.start_min <= au.mapping_end" +
     " and ga.end_max >= au.mapping_start" +
-    " and source_id = '"  + doc.getSourceId() + "'";
+    " and ga.strand_plus_minus = au.strand" +
+    " and source_id = '"  + sourceId + "'";
 
     return new SQLRunner(commentDbDataSource, sqlSelect)
       .executeQuery(rs -> {
