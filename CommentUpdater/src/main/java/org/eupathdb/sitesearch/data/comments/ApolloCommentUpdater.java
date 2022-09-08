@@ -8,7 +8,7 @@ import org.eupathdb.sitesearch.data.comments.solr.SolrUrlQueryBuilder;
 
 public class ApolloCommentUpdater extends CommentUpdater<String>{
   private String projectId;
-  private static final String projectIdFieldName = "projecAux";  // field in Gene solr documents containting project ID
+  private static final String projectIdFieldName = "projectAux";  // field in Gene solr documents containting project ID
   
   private static class ApolloCommentSolrDocumentFields extends CommentSolrDocumentFields {
 
