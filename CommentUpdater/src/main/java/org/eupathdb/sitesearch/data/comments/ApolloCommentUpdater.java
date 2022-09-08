@@ -35,9 +35,8 @@ public class ApolloCommentUpdater extends CommentUpdater<String>{
 
   public ApolloCommentUpdater(
       String solrUrl,
-      DatabaseInstance commentDb,
-      String commentSchema) {
-    super(solrUrl, commentDb, commentSchema,
+      DatabaseInstance commentDb) {
+    super(solrUrl, commentDb, "dontcare",
         new ApolloCommentSolrDocumentFields(),
         new ApolloCommentUpdaterSql());
   }
