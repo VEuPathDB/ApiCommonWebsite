@@ -192,8 +192,7 @@ public abstract class CommentUpdater<IDTYPE> {
 
     LOG.info("Read " + count + " rows from database");
 
-    /* HACK: comment out code to add Solr documents to delete
-    // add to update list solr documents that have comments that were deleted in db
+     // add to update list solr documents that have comments that were deleted in db
     solrData.values()
       // For each document
       .stream()
@@ -203,7 +202,6 @@ public abstract class CommentUpdater<IDTYPE> {
       .filter(SolrDocument::hasUnhitComments)
       // queue for update
       .forEach(out.toUpdate::add);
-    */
     
     int delete = out.toUpdate.size() - missing;
 
