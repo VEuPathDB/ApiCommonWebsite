@@ -4,9 +4,12 @@ import javax.sql.DataSource;
 
 import org.gusdb.fgputil.db.pool.DatabaseInstance;
 import org.gusdb.fgputil.db.runner.SQLRunner;
+import org.eupathdb.sitesearch.data.comments.solr.SolrUrlQueryBuilder;
 
 public class ApolloCommentUpdater extends CommentUpdater<String>{
-
+  private String projectId;
+  private static final String projectIdFieldName = "projectAux";  // field in Gene solr documents containting project ID
+  
   private static class ApolloCommentSolrDocumentFields extends CommentSolrDocumentFields {
 
     @Override
@@ -35,19 +38,26 @@ public class ApolloCommentUpdater extends CommentUpdater<String>{
   public ApolloCommentUpdater(
       String solrUrl,
       DatabaseInstance commentDb,
-      String commentSchema) {
-    super(solrUrl, commentDb, commentSchema,
+      String projectId) {
+    
+    super(solrUrl, commentDb, "dontcare",
         new ApolloCommentSolrDocumentFields(),
         new ApolloCommentUpdaterSql());
+    this.projectId = projectId;
   }
+
+   @Override
+   SolrUrlQueryBuilder applyOptionalSolrFilters(SolrUrlQueryBuilder builder) {
+     return builder.filterAndAllOf(projectIdFieldName, projectId);
+   }
   
   /**
    * Get the up-to-date comments info from the database, for the provided wdk
    * record
    */
   @Override
-  DocumentCommentsInfo<String> getCorrectCommentsForOneDocument(
-    final SolrDocument doc,
+  DocumentCommentsInfo<String> getCorrectCommentsForOneSourceId(
+    final String sourceId,
     final DataSource commentDbDataSource
   ) {
 
@@ -60,7 +70,7 @@ public class ApolloCommentUpdater extends CommentUpdater<String>{
     " and ga.start_min <= au.mapping_end" +
     " and ga.end_max >= au.mapping_start" +
     " and ga.strand_plus_minus = au.strand" +
-    " and source_id = '"  + doc.getSourceId() + "'";
+    " and source_id = '"  + sourceId + "'";
 
     return new SQLRunner(commentDbDataSource, sqlSelect)
       .executeQuery(rs -> {
@@ -78,6 +88,4 @@ public class ApolloCommentUpdater extends CommentUpdater<String>{
         return comments;
       });
   }
-
-
 }

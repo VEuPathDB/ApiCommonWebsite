@@ -7,6 +7,7 @@ import javax.sql.DataSource;
 
 import org.gusdb.fgputil.db.pool.DatabaseInstance;
 import org.gusdb.fgputil.db.runner.SQLRunner;
+import org.eupathdb.sitesearch.data.comments.solr.SolrUrlQueryBuilder;
 
 public class UserCommentUpdater extends CommentUpdater<Integer> {
 
@@ -46,19 +47,24 @@ public class UserCommentUpdater extends CommentUpdater<Integer> {
         new UserCommentUpdaterSql());
   }
   
+   @Override
+   SolrUrlQueryBuilder applyOptionalSolrFilters(SolrUrlQueryBuilder builder) {
+     return builder;
+   }
+
   /**
    * Get the up-to-date comments info from the database, for the provided wdk
    * record
    */
   @Override
-  DocumentCommentsInfo<Integer> getCorrectCommentsForOneDocument(
-    final SolrDocument doc,
+  DocumentCommentsInfo<Integer> getCorrectCommentsForOneSourceId(
+    final String sourceId,
     final DataSource commentDbDataSource
   ) {
 
     var sqlSelect = " SELECT comment_id, content"
       + " FROM apidb.textsearchablecomment"
-      + " WHERE source_id = '" + doc.getSourceId() + "'";
+      + " WHERE source_id = '" + sourceId + "'";
 
     return new SQLRunner(commentDbDataSource, sqlSelect)
       .executeQuery(rs -> {

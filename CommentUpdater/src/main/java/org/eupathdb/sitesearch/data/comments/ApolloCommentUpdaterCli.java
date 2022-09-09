@@ -1,37 +1,33 @@
 package org.eupathdb.sitesearch.data.comments;
 
+import org.gusdb.fgputil.db.platform.SupportedPlatform;
 import org.gusdb.fgputil.db.pool.DatabaseInstance;
+import org.gusdb.fgputil.db.pool.SimpleDbConfig;
 
 public class ApolloCommentUpdaterCli extends CommentUpdaterCli {
-
+  
+  private final static String DB_CONNECT = "APPDB_CONNECT";
+  private final static String DB_LOGIN = "APPDB_LOGIN";
+  private final static String DB_PASSWORD = "APPDB_PASSWORD";
+  private final static String SOLR_URL = "SOLR_URL";
+  private final static String PROJECT_ID = "PROJECT_ID";
+ 
   public static void main(String[] args) throws Exception {
-    new ApolloCommentUpdaterCli().execute();
-  }
 
-  @Override
-  protected CommentUpdater<String> createCommentUpdater(Config config, DatabaseInstance commentDb) {
-    return new ApolloCommentUpdater(config.getSolrUrl(), commentDb, config.getCommentSchema());
-  }
+    String[] envVarKeys = {DB_CONNECT, DB_LOGIN, DB_PASSWORD, SOLR_URL, PROJECT_ID};
+    validateEnv(envVarKeys);
 
-  @Override
-  protected String getEnvDbConnect() {
-    return "APPDB_CONNECT";
-  }
-
-  @Override
-  protected String getEnvDbUser() {
-    return "APPDB_LOGIN";
-  }
-
-  @Override
-  protected String getEnvDbPass() {
-    return "APPDB_PASSWORD";
-  }
-
-  @Override
-  protected String getEnvDbSchema() {
-    // unlike user comments, apollo comments do not need a schema, nor a schema env var.  as a hack reuse an existing env var.  this will pass validation but is not ever used.
-    // @TODO factor this propertly in the super class to avoid this hack
-    return "APPDB_LOGIN"; 
-  }
+    final var env = System.getenv();
+    SimpleDbConfig dbConf = SimpleDbConfig.create(
+        SupportedPlatform.ORACLE,
+        env.get(DB_CONNECT),
+        env.get(DB_LOGIN),
+        env.get(DB_PASSWORD)
+      );
+    
+    try (DatabaseInstance appDb = new DatabaseInstance(dbConf)) {
+      ApolloCommentUpdater commentUpdater = new ApolloCommentUpdater(env.get(SOLR_URL), appDb, env.get(PROJECT_ID));
+      commentUpdater.syncAll();
+    }
+  }  
 }

@@ -1,36 +1,33 @@
 package org.eupathdb.sitesearch.data.comments;
 
+import org.gusdb.fgputil.db.platform.SupportedPlatform;
 import org.gusdb.fgputil.db.pool.DatabaseInstance;
+import org.gusdb.fgputil.db.pool.SimpleDbConfig;
 
 public class UserCommentUpdaterCli extends CommentUpdaterCli {
   
+  private final static String DB_CONNECT = "USERDB_CONNECT";
+  private final static String DB_LOGIN = "USERDB_LOGIN";
+  private final static String DB_PASSWORD = "USERDB_PASSWORD";
+  private final static String SOLR_URL = "SOLR_URL";
+  private final static String USERDB_SCHEMA = "USERDB_SCHEMA";
+ 
   public static void main(String[] args) throws Exception {
-    new UserCommentUpdaterCli().execute();
-  }
 
-  @Override
-  protected CommentUpdater<Integer> createCommentUpdater(Config config, DatabaseInstance commentDb) {
-    return new UserCommentUpdater(config.getSolrUrl(), commentDb, config.getCommentSchema());
-  }
-  
-  @Override
-  protected String getEnvDbConnect() {
-    return "USERDB_CONNECT";
-  }
+    String[] envVarKeys = {DB_CONNECT, DB_LOGIN, DB_PASSWORD, SOLR_URL, USERDB_SCHEMA};
+    validateEnv(envVarKeys);
 
-  @Override
-  protected String getEnvDbUser() {
-    return "USERDB_LOGIN";
-  }
-
-  @Override
-  protected String getEnvDbPass() {
-    return "USERDB_PASSWORD";
-  }
-
-  @Override
-  protected String getEnvDbSchema() {
-    return "USERDB_SCHEMA";
-  }
-
+    final var env = System.getenv();    
+    SimpleDbConfig dbConf = SimpleDbConfig.create(
+        SupportedPlatform.ORACLE,
+        env.get(DB_CONNECT),
+        env.get(DB_LOGIN),
+        env.get(DB_PASSWORD)
+      );
+    
+    try (DatabaseInstance userDb = new DatabaseInstance(dbConf)) {
+      UserCommentUpdater commentUpdater = new UserCommentUpdater(env.get(SOLR_URL), userDb, env.get(USERDB_SCHEMA));
+      commentUpdater.syncAll();
+    }
+  }  
 }
