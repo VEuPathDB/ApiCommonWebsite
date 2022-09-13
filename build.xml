@@ -115,6 +115,8 @@
     <ant target="eupathWebComponentInstall">
       <property name="project" value="ApiCommonWebsite" />
       <property name="component" value="Site" />
+      <property name="workspaceName" value="@veupathdb/genomics-site" />
+      <property name="workspacePath" value="packages/genomics-site"/>
     </ant>
 
     <!--JBrowse stuff -->
