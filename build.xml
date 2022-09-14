@@ -111,12 +111,16 @@
   </target>
 
   <target name="ApiCommonWebsite/Site-WebInstallation">
+    <condition property="localAssetsPath" value="${webAssets.localAssetsPath}" else="${projectsDir}/web-monorepo-prototype">
+      <isset property="webAssets.localAssetsPath" />
+    </condition>
 
     <ant target="eupathWebComponentInstall">
       <property name="project" value="ApiCommonWebsite" />
       <property name="component" value="Site" />
       <property name="workspaceName" value="@veupathdb/genomics-site" />
-      <property name="workspacePath" value="packages/genomics-site"/>
+      <property name="workspacePath" value="${localAssetsPath}/packages/genomics-site" />
+      <property name="publishedAssetsVersion" value="latest" />
     </ant>
 
     <!--JBrowse stuff -->
