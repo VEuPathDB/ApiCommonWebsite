@@ -63,12 +63,13 @@ public class ApolloCommentUpdater extends CommentUpdater<String>{
 
     var sqlSelect = 
     " select distinct id_attr as comment_id, apolloproduct, apollosymbol, apolloowner, apollogoterm, apollopmid" + 
-    " from  apidbtuning.ApolloUpdate au, ApidbTuning.GeneAttributes ga" +
+    " from  apidbtuning.ApolloUpdate au, ApidbTuning.GeneAttributes ga, apidbtuning.transcriptattributes ta" +
     " where au.type = 'gene'" +
     " and (au.attr like '%gene_product=%' or au.attr like '%description=%')" +
     " and ga.na_sequence_id = au.na_sequence_id" +
     " and ga.start_min <= au.mapping_end" +
     " and ga.end_max >= au.mapping_start" +
+    " and ta.source_id = au.apolloTranscript" +
     " and ga.strand_plus_minus = au.strand" +
     " and source_id = '"  + sourceId + "'";
 
