@@ -40,8 +40,9 @@ class RecordInfo {
     return recordType + "__" + sourceId;
   }
   
+  @Override
   public String toString() {
-    StringBuffer buf = new StringBuffer();
+    StringBuilder buf = new StringBuilder();
     buf.append("Record type: " + recordType + NL);
     buf.append("Source ID: " + sourceId + NL);
     buf.append("Comment ID: " + commentId + NL);    

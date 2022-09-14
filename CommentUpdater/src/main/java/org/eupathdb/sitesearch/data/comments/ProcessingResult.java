@@ -11,8 +11,9 @@ class ProcessingResult {
   List<SolrDocument> toUpdate    = new ArrayList<>();
   List<RecordInfo> toPostProcess = new ArrayList<>();
   
+  @Override
   public String toString() {
-    StringBuffer buf = new StringBuffer();
+    StringBuilder buf = new StringBuilder();
     buf.append("Solr Documents:" + NL);
     buf.append(toUpdate.stream().map(SolrDocument::toString)
         .collect(Collectors.joining(NL)) + NL);
