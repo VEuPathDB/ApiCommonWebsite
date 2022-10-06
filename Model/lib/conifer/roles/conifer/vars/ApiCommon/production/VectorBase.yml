@@ -1,0 +1,8 @@
+# $SourceFileURL$
+# ---
+# modelconfig_appDb_maxIdle: 1
+# modelconfig_appDb_maxActive: 20
+# modelconfig_userDb_maxIdle: 20
+eda:
+  enabled: "false"
+
