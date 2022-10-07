@@ -1,10 +1,11 @@
 # $SourceFileURL$
-# ---
+# --
+# construct a prefix from hostname, like w_prefix, q_prefix
+prefix: "{{ hostname | regex_replace('^([a-z])[0-9].*','\\1_prefix') }}"-
 eda:
   enabled_map:
     w_prefix: "false" 
     q_prefix: "false"
     b_prefix: "true"
-    f_prefix: "true"
-    default: "false"
+    default: "true"
   enabled: "{{ enabled_map[prefix]|default(enabled_map['default']) }}"
