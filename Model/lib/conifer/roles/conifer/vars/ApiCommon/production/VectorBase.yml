@@ -1,7 +1,7 @@
 # $SourceFileURL$
 # ---
 eda:
-  enabled: "false"
+  enabled:
     w_prefix: "false" 
     q_prefix: "false"
     b_prefix: "true"
