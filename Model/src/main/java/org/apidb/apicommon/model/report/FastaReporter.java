@@ -112,17 +112,10 @@ public abstract class FastaReporter extends AbstractReporter {
           // SRT expects IDs in the following URL-encoded format:
           //   Each '\n'-delimited line contains one record, whose
           //   primary keys are joined and delimited by a comma
-          boolean firstRow = true;
           for (String[] pk : IteratorUtil.toIterable(ids)) {
             // write each PK
-            StringBuilder row = new StringBuilder(String.join(", ", pk));
-            if (firstRow) {
-              firstRow = false;
-            }
-            else {
-              row.append('\n');
-            }
-            writer.write(URLEncoder.encode(row.toString(), UTF_8));
+            String row = String.join(", ", pk) + '\n';
+            writer.write(URLEncoder.encode(row, UTF_8));
           }
         }
       }
