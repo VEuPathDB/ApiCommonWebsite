@@ -1,5 +1,10 @@
 # $SourceFileURL$
 # --
 eda:
-  enabled: "false"
+  enabled_map:
+    w_prefix: "false"
+    q_prefix: "false"
+    b_prefix: "true"
+    default: "true"
+  enabled: "{{ enabled_map[prefix]|default(enabled_map['default']) }}"
 
