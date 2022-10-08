@@ -1,10 +1,10 @@
-# $SourceFileURL$
-# --
+$SourceFileURL$
+---
+eda_enabled_env_map:
+  w_prefix: "false"
+  q_prefix: "false"
+  b_prefix: "true"
+  default: "true"
 eda:
-  enabled_env_map:
-    w_prefix: "false"
-    q_prefix: "false"
-    b_prefix: "true"
-    default: "true"
-  enabled: "{{ enabled_env_map[prefix]|default(enabled_env_map['default']) }}"
+  enabled: "{{ eda_enabled_env_map[prefix]|default(eda_enabled_env_map['default']) }}"
 
