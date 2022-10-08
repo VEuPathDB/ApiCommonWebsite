@@ -9,13 +9,3 @@ eda:
   single_app_mode: pass
 user_datasets_workspace:
   enabled: "true"
-prefix: "{{ hostname | regex_replace('^([a-z])[0-9].*','\\1_prefix') }}"-
-eda:
-  enabled_map:
-    w_prefix: "false"
-    q_prefix: "false"
-    b_prefix: "true"
-    default: "true"
-  enabled: "{{ enabled_map[prefix]|default(enabled_map['default']) }}"
-
-
