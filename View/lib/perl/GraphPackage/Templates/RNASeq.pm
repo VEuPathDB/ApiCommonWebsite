@@ -964,6 +964,21 @@ RPOST
 
 1;
 
+# FungiDB calbSC5314_Brown_Calbicans_2015_ebi_rnaSeq_RSRC
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_79549674a3;
+
+sub init {
+  my $self = shift;
+  $self->SUPER::init(@_);
+
+  $self->setPlotWidth(600);
+
+  return $self;
+}
+
+1;
+
+
 
 # TriTryp - tbruTREU927_Rijo_Circadian_Regulation_rnaSeq_RSRC
 package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_77b994d105;
