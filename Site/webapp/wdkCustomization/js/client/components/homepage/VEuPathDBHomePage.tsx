@@ -476,16 +476,6 @@ const useHeaderMenuItems = (
         },
         { 
           key: 'mapveu',
-          display: 'MapVEu Alpha',
-          tooltip: 'Population Biology map',
-          type: 'reactRoute',
-          url: '/workspace/analyses/studies',
-          metadata: {
-            include: [ VectorBase ]
-         }
-        },
-        { 
-          key: 'mapveu',
           display: 'MapVEu',
           tooltip: 'Population Biology map',
           type: 'externalLink',
