@@ -4,7 +4,7 @@ modelprop:
   TWITTER_URL_2: https://twitter.com/VectorBase
   FACEBOOK_URL: https://facebook.com/pages/VectorBase/189608142260
 eda:
-  enabled: "true"
+  enabled: "false"
   example_analyses_author: 854899613
   single_app_mode: pass
 user_datasets_workspace:
