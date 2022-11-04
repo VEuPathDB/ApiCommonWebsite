@@ -1,6 +1,7 @@
 # $SourceFileURL$
 ---
 eda_enabled_env_map:
+  b_prefix: "true" # beta site
   f_prefix: "true" # feature site
   default: "false"
 eda:
