@@ -1,5 +1,9 @@
 # $SourceFileURL$
 ---
+
+# construct a prefix from hostname, like w_prefix, q_prefix
+prefix: "{{ hostname | regex_replace('^([a-z])[0-9].*','\\1_prefix') }}"
+
 eda_enabled_env_map:
   b_prefix: "true" # beta site
   f_prefix: "true" # feature site
