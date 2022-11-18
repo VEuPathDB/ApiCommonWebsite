@@ -19,11 +19,27 @@ public class BedGeneReporter extends BedReporter {
 
   private enum SequenceType {
     genomic,
-    protein,
-    protein_features,
     genomic_features,
     cds,
-    transcript;
+    transcript,
+    protein,
+    protein_features;
+  }
+
+  public static boolean useCoordinatesOnProteinReference(JSONObject config) throws WdkModelException {
+    SequenceType type = SequenceType.valueOf(config.getString("type"));
+    switch(type){
+      case genomic:
+      case genomic_features:
+      case cds:
+      case transcript:
+        return false;
+      case protein:
+      case protein_features:
+        return true;
+      default:
+        throw new WdkModelException(String.format("Unsupported sequence type: %s", type.name()));
+    }
   }
 
   private enum ProteinFeature {
