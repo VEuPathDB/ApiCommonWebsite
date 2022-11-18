@@ -17,6 +17,7 @@ import org.gusdb.wdk.model.answer.request.AnswerFormatting;
 import org.gusdb.wdk.model.answer.request.AnswerRequest;
 import org.gusdb.wdk.model.answer.request.TemporaryResultFactory;
 import org.gusdb.wdk.model.report.AbstractReporter;
+import org.apidb.apicommon.model.report.bed.BedGeneReporter;
 import org.gusdb.wdk.model.report.ReporterConfigException;
 import org.json.JSONObject;
 
@@ -29,7 +30,9 @@ public class SequenceReporter extends AbstractReporter {
 
   private enum SequenceType {
     genomic,
-    protein;
+    protein,
+    est,
+    popset;
   }
 
   // data required to make sequence retrieval service request
@@ -55,8 +58,14 @@ public class SequenceReporter extends AbstractReporter {
     String localhost = modelProps.get("LOCALHOST");
     _bedFileUrl = localhost + modelProps.get("SERVICE_BASE_URL") + "/temporary-results/" + bedResultId;
 
+    SequenceType sequenceType;
+    try {
+      sequenceType = getSequenceTypeByRecordClassFullName(config, getQuestion().getRecordClass().getFullName());
+    } catch (WdkModelException e){
+      throw new ReporterConfigException("Could not configure reporter", e);
+    }
+
     // FIXME: starting here with synchronous API for proof of concept; convert to async
-    SequenceType sequenceType = getSequenceTypeByRecordClassFullName(config, getQuestion().getRecordClass().getFullName());
     _seqRetSvcRequestUrl = localhost + modelProps.get("SEQUENCE_RETRIEVAL_SERVICE_URL") +
         "/sequences/" + sequenceType.name() + "/bed?basesPerLine=" + basesPerLine; 
 
@@ -64,17 +73,24 @@ public class SequenceReporter extends AbstractReporter {
     return this;
   }
 
-  private static SequenceType getSequenceTypeByRecordClassFullName(JSONObject config, String recordClassFullName) {
-    // FIXME: put the correct mapping here; return protein where appropriate
+  private static SequenceType getSequenceTypeByRecordClassFullName(JSONObject config, String recordClassFullName)  throws WdkModelException {
     switch(recordClassFullName) {
       case TranscriptUtil.GENE_RECORDCLASS:
       case TranscriptUtil.TRANSCRIPT_RECORDCLASS:
-      case "DynSpanRecordClasses.DynSpanRecordClass":
+        if(BedGeneReporter.useCoordinatesOnProteinReference(config)){
+          return SequenceType.protein;
+        } else {
+          return SequenceType.genomic;
+        }
       case "EstRecordClasses.EstRecordClass":
-      case "SequenceRecordClasses.SequenceRecordClass":
+        return SequenceType.est;
       case "PopsetRecordClasses.PopsetRecordClass":
-      default:
+        return SequenceType.popset;
+      case "DynSpanRecordClasses.DynSpanRecordClass":
+      case "SequenceRecordClasses.SequenceRecordClass":
         return SequenceType.genomic;
+      default:
+        throw new WdkModelException(String.format("Unsupported record type: %s", recordClassFullName));
     }
   }
 
@@ -117,22 +133,4 @@ public class SequenceReporter extends AbstractReporter {
       IoUtil.closeQuietly(seqRetSvcRequestBody);
     }
   }
-
-  // Wojtek: leaving your notes here for your reference; I don't think we need any of this, however
-  /*
-   * TODO:
-   * create a new service abstracting the sequence retrieval service
-   * - set the URL in the startup config
-   * - make a class representing the service, init at start up, getter in in WdkModel
-   * - add observability on https://plasmodb.org/dashboard/?p=Configuration
-   */
-  /*
-   * TODO:
-   * write an API method for sequenceRetrievalService
-   * pass stuff that changes from request to request: sequence type, callback URL, and user-supplied options
-   * fix everything else. e.g. uploadMethod = "url"
-   * try sync endpoints first
-   */
-  //    InputStream in = sequenceRetrievalService.submitRequestWithCallbackUrl(sequenceType(), bedReporterUrl, _configuration);
-
 }
