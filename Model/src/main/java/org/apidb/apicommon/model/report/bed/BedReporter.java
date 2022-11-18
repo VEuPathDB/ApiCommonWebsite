@@ -1,62 +1,96 @@
-package org.gusdb.wdk.model.report.reporter.bed;
+package org.apidb.apicommon.model.report.bed;
 
-import java.util.List;
+import java.io.BufferedWriter;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+import java.util.function.BiFunction;
 
-import org.json.JSONObject;
 import org.apache.log4j.Logger;
-import org.gusdb.wdk.model.answer.stream.RecordStream;
-import org.gusdb.wdk.model.record.RecordInstance;
+import org.apidb.apicommon.model.report.bed.feature.BedFeatureProvider;
 import org.gusdb.wdk.model.WdkModelException;
-import org.gusdb.wdk.model.report.ReporterConfigException;
-import org.gusdb.wdk.model.report.reporter.StandardReporter;
+import org.gusdb.wdk.model.WdkRuntimeException;
+import org.gusdb.wdk.model.answer.stream.RecordStream;
+import org.gusdb.wdk.model.answer.stream.RecordStreamFactory;
+import org.gusdb.wdk.model.record.Field;
+import org.gusdb.wdk.model.record.RecordClass;
+import org.gusdb.wdk.model.record.RecordInstance;
+import org.gusdb.wdk.model.record.TableField;
+import org.gusdb.wdk.model.record.attribute.AttributeField;
+import org.gusdb.wdk.model.report.AbstractReporter;
+import org.gusdb.wdk.model.report.Reporter;
 
-public abstract class BedReporter extends StandardReporter {
+public abstract class BedReporter extends AbstractReporter {
 
   private static Logger LOG = Logger.getLogger(BedReporter.class);
 
-  private JSONObject _configuration;
+  private BedFeatureProvider _featureProvider;
+  private Collection<AttributeField> _requiredAttributes = Collections.emptyList();
+  private Collection<TableField> _requiredTables = Collections.emptyList();
 
-  @Override
-  public BedReporter configure(JSONObject configuration) throws ReporterConfigException {
-    super.configure(configuration);
-    _configuration = configuration;
+  protected Reporter configure(BedFeatureProvider featureProvider) {
+
+    // validate required record class matches the one in the answer value
+    RecordClass recordClass = getQuestion().getRecordClass();
+    if (!recordClass.getFullName().equals(featureProvider.getRequiredRecordClassFullName())) {
+      throw new IllegalStateException("The configured reporter " + getClass().getName() + " declared a required recordclass that does not match this answer");
+    }
+
+    // fetch and validate requested fields
+    _requiredAttributes = getFieldsByName(recordClass, featureProvider.getRequiredAttributeNames(), (rc,name) -> rc.getAttributeField(name));
+    _requiredTables = getFieldsByName(recordClass, featureProvider.getRequiredTableNames(), (rc,name) -> Optional.ofNullable(rc.getTableFieldMap().get(name)));
+
+    // save off feature provider to process records
+    _featureProvider = featureProvider;
+
     return this;
   }
 
   @Override
   public String getHttpContentType() {
-    if ("plain".equals(_configuration.getString("attachmentType"))) {
-      return "text/plain";
-    } else {
-      return "text/tsv";
-    }
+    return "text/x-bed";
   }
 
   @Override
   public String getDownloadFileName() {
-    return getQuestion().getName() + ".tsv";
+    return getQuestion().getName() + ".bed";
   }
-
-  //  spec: https://en.wikipedia.org/wiki/BED_(file_format)
-  //  return one or more lines
-  protected abstract List<List<String>> recordAsBedFields(JSONObject configuration, RecordInstance record);
 
   @Override
   public void write(OutputStream out) throws WdkModelException {
-    RecordStream records = getRecords();
-    int recordCount = 0;
-    PrintWriter writer = new PrintWriter(new OutputStreamWriter(out));
-    for (RecordInstance record : records) {
-      recordCount++;
-      for (List<String> line: recordAsBedFields(_configuration, record)){
-        writer.println(String.join("\t", line));
+    if (_featureProvider == null) {
+      throw new IllegalStateException("configure(BedFeatureProvider) method must be called by subclass during configuration");
+    }
+    try (RecordStream records = RecordStreamFactory.getRecordStream(_baseAnswer, _requiredAttributes, _requiredTables);
+         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(out))) {
+      int recordCount = 0;
+      for (RecordInstance record : records) {
+        recordCount++;
+        for (List<String> line: _featureProvider.getRecordAsBedFields(record)){
+          writer.write(String.join("\t", line));
+          writer.newLine();
+        }
       }
       writer.flush();
+      LOG.info("Wrote " + recordCount + " records");
     }
-    LOG.info("Wrote " + recordCount + " records");
+    catch (IOException e) {
+      throw new WdkModelException("Unable to complete delivery of bed report", e);
+    }
+  }
+
+  private <T extends Field> Collection<T> getFieldsByName(RecordClass recordClass, String[] names, BiFunction<RecordClass,String,Optional<T>> getter) {
+    List<T> attrs = new ArrayList<>();
+    for (String name : names) {
+      attrs.add(getter.apply(recordClass,name).orElseThrow(() -> new WdkRuntimeException(
+          "Subclass " + getClass().getName() + " declared a required field '" +
+          name + "' that does not exist on RecordClass " + recordClass.getFullName())));
+    }
+    return attrs;
   }
 }
-

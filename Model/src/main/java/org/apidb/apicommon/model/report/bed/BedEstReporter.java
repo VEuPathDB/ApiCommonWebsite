@@ -1,62 +1,63 @@
-package org.gusdb.wdk.model.report.reporter.bed;
+package org.apidb.apicommon.model.report.bed;
 
-import org.gusdb.wdk.model.report.reporter.bed.BedReporter;
 import java.util.List;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Map;
-import org.gusdb.wdk.model.record.RecordInstance;
-import org.gusdb.wdk.model.record.TableValue;
-import org.json.JSONObject;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
+import org.apidb.apicommon.model.report.bed.feature.BedFeatureProvider;
 import org.gusdb.wdk.model.WdkModelException;
-import org.gusdb.wdk.model.WdkUserException;
-import org.gusdb.wdk.model.WdkRuntimeException;
-import org.gusdb.wdk.model.record.attribute.AttributeValue;
+import org.gusdb.wdk.model.record.RecordInstance;
+import org.gusdb.wdk.model.report.Reporter;
+import org.gusdb.wdk.model.report.ReporterConfigException;
+import org.json.JSONObject;
 
 // BedEstReporter: the best reporter!
-public class BedEstReporter extends BedReporter {
+public class BedEstReporter extends BedReporter implements BedFeatureProvider {
 
-  protected List<List<String>> recordAsBedFields(JSONObject config, RecordInstance record){
-    return Arrays.asList(recordAsBedFieldsEst(config, record));
+  private static final String ATTR_LENGTH = "length";
+  private static final String ATTR_ORGANISM_TEXT = "organism_text";
+  private static final String ATTR_DBEST_NAME = "dbest_name";
+
+  private boolean _useShortDefline;
+
+  @Override
+  public Reporter configure(JSONObject config) throws ReporterConfigException, WdkModelException {
+    _useShortDefline = useShortDefline(config);
+    return configure(this);
   }
 
-  private static String stringValue(RecordInstance record, String key){
-    try {
-      return record.getAttributeValue(key).toString();
-    } catch (WdkModelException | WdkUserException e){
-      throw new WdkRuntimeException(e);
-    }
-  }
-  
-  private static String getSourceId(RecordInstance record){
-    return record.getPrimaryKey().getValues().get("source_id");
+  @Override
+  public String getRequiredRecordClassFullName() {
+    return "EstRecordClasses.EstRecordClass";
   }
 
-  private static List<String> recordAsBedFieldsEst(JSONObject config, RecordInstance record){
+  @Override
+  public String[] getRequiredAttributeNames() {
+    return new String[] { ATTR_LENGTH };
+  }
+
+  @Override
+  public String[] getRequiredTableNames() {
+    return new String[0];
+  }
+
+  @Override
+  public List<List<String>> getRecordAsBedFields(RecordInstance record) throws WdkModelException {
     String featureId = getSourceId(record);
     String chrom = featureId;
-
     String strand = ".";
-
-    Integer featureLength = Integer.valueOf(stringValue(record, "length").replaceAll(",", ""));
+    Integer featureLength = Integer.valueOf(stringValue(record, ATTR_LENGTH).replaceAll(",", ""));
     Integer segmentStart = 1;
     Integer segmentEnd = featureLength;
-    String defline;
-    StringBuilder sb = new StringBuilder(featureId);
-    if("short".equals(config.getString("deflineType"))){
-      defline = sb.toString();
-    } else {
-      sb.append("  | ");
-      sb.append(stringValue(record, "organism_text"));
-      sb.append(" | EST | ");
-      sb.append(stringValue(record, "dbest_name"));
-      sb.append(" | segment_length=");
-      sb.append(""+featureLength);
-      defline = sb.toString();
-    }
-    return Arrays.asList(chrom, "" + segmentStart, "" + segmentEnd, defline, ".", strand);
-  }
 
+    StringBuilder defline = new StringBuilder(featureId);
+    if (!_useShortDefline) {
+      defline.append("  | ");
+      defline.append(stringValue(record, ATTR_ORGANISM_TEXT));
+      defline.append(" | EST | ");
+      defline.append(stringValue(record, ATTR_DBEST_NAME));
+      defline.append(" | segment_length=");
+      defline.append(""+featureLength);
+    }
+
+    return List.of(List.of(chrom, "" + segmentStart, "" + segmentEnd, defline.toString(), ".", strand));
+  }
 }

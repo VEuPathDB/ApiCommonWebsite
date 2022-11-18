@@ -1,135 +1,63 @@
-package org.gusdb.wdk.model.report.reporter.bed;
+package org.apidb.apicommon.model.report.bed;
 
-import org.gusdb.wdk.model.report.reporter.bed.BedReporter;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Map;
-import org.gusdb.wdk.model.record.RecordInstance;
-import org.gusdb.wdk.model.record.TableValue;
-import org.json.JSONObject;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import org.apidb.apicommon.model.report.bed.feature.BedFeatureProvider;
+import org.apidb.apicommon.model.report.bed.feature.GenomicGenomicFeatureProvider;
+import org.apidb.apicommon.model.report.bed.feature.GenomicTableFieldFeatureProvider;
 import org.gusdb.wdk.model.WdkModelException;
-import org.gusdb.wdk.model.WdkUserException;
-import org.gusdb.wdk.model.WdkRuntimeException;
-import org.gusdb.wdk.model.record.attribute.AttributeValue;
+import org.gusdb.wdk.model.report.Reporter;
+import org.gusdb.wdk.model.report.ReporterConfigException;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class BedGenomicSequenceReporter extends BedReporter {
 
-  protected List<List<String>> recordAsBedFields(JSONObject config, RecordInstance record){
-    String sequenceFeature = config.getString("sequenceFeature");
+  private enum SequenceFeature {
+    whole_sequence,
+    low_complexity,
+    repeats,
+    tandem,
+    centromere;
+  }
+
+  public enum StrandDirection {
+    forward("+"),
+    reverse("-");
+
+    private final String _sign;
+    private StrandDirection(String sign) {
+      _sign = sign;
+    }
+    public String getSign() {
+      return _sign;
+    }
+  }
+
+  @Override
+  public Reporter configure(JSONObject config) throws ReporterConfigException, WdkModelException {
+    try {
+      return configure(createFeatureProvider(config));
+    }
+    // catch common configuration parsing runtime exceptions and convert for 400s
+    catch (JSONException | IllegalArgumentException e) {
+      throw new ReporterConfigException(e.getMessage());
+    }
+  }
+
+  private BedFeatureProvider createFeatureProvider(JSONObject config) throws WdkModelException {
+    SequenceFeature sequenceFeature = SequenceFeature.valueOf(config.getString("sequenceFeature"));
     switch (sequenceFeature){
-      case "whole_sequence":
-        return Arrays.asList(recordAsBedFieldsGenomicSequence(config, record));
-      case "low_complexity":
-        return featuresAsListOfBedFieldsTableQuery(config, record, "LowComplexity", "start_min", "end_max");
-      case "repeats":
-        return featuresAsListOfBedFieldsTableQuery(config, record, "Repeats", "start_min", "end_max");
-      case "tandem":
-        return featuresAsListOfBedFieldsTableQuery(config, record, "TandemRepeats", "start_min", "end_max");
-      case "centromere":
-        return featuresAsListOfBedFieldsTableQuery(config, record, "Centromere", "start_min", "end_max");
+      case whole_sequence:
+        return new GenomicGenomicFeatureProvider(config);
+      case low_complexity:
+        return new GenomicTableFieldFeatureProvider(config, "LowComplexity", "start_min", "end_max");
+      case repeats:
+        return new GenomicTableFieldFeatureProvider(config, "Repeats", "start_min", "end_max");
+      case tandem:
+        return new GenomicTableFieldFeatureProvider(config, "TandemRepeats", "start_min", "end_max");
+      case centromere:
+        return new GenomicTableFieldFeatureProvider(config, "Centromere", "start_min", "end_max");
       default:
-        throw new WdkRuntimeException(String.format("Unknown sequence feature: %s", sequenceFeature));
+        throw new WdkModelException(String.format("Unsupported sequence feature: %s", sequenceFeature.name()));
     }
   }
-
-  private static List<List<String>> featuresAsListOfBedFieldsTableQuery(JSONObject config, RecordInstance record, String tableQueryName, String startName, String endName){
-    List<List<String>> result = new ArrayList<>();
-    try {
-      String featureId = getSourceId(record);
-      String chrom = featureId;
-      String longStrand = config.getString("strand");
-      String strand = strandSign(longStrand);
-      String organism;
-      if("short".equals(config.getString("deflineType"))){
-        organism = "unused";
-      } else {
-        organism = stringValue(record, "organism");
-      }
-      TableValue rows = record.getTableValue(tableQueryName);
-      for (Map<String, AttributeValue> row : rows) {
-        Integer start = Integer.valueOf(row.get(startName).toString());
-        Integer end = Integer.valueOf(row.get(endName).toString());
-        String defline;
-        StringBuilder sb = new StringBuilder(chrom + "::" + start + "-" + end); 
-        if("short".equals(config.getString("deflineType"))){
-          defline = sb.toString();
-        } else {
-          sb.append("  | ");
-          sb.append(organism);
-          sb.append(" | ");
-          sb.append(tableQueryName); 
-          sb.append(" | ");
-          sb.append(chrom);
-          sb.append(", ");
-          sb.append(""+start);
-          sb.append(" to ");
-          sb.append(""+end);
-          sb.append(" | ");
-          sb.append("sequence of ");
-          sb.append(longStrand + " strand");
-          sb.append(" | segment_length=");
-          sb.append(""+(end - start + 1));
-          defline = sb.toString();
-        }
-        result.add(Arrays.asList(chrom, ""+ start,""+ end, defline, ".", strand));
-        }
-    } catch (WdkModelException | WdkUserException e){
-      throw new WdkRuntimeException(e);
-    }
-
-    return result;
-  }
-
-  private static String stringValue(RecordInstance record, String key){
-    try {
-      return record.getAttributeValue(key).toString();
-    } catch (WdkModelException | WdkUserException e){
-      throw new WdkRuntimeException(e);
-    }
-  }
-
-  private static String strandSign(String longStrand){
-    switch(longStrand){
-      case "forward":
-        return "+";
-      case "reverse":
-        return "-";
-      default:
-        throw new WdkRuntimeException(String.format("Unknown strand option: %s", longStrand));
-    }
-  }
-  
-  private static String getSourceId(RecordInstance record){
-    return record.getPrimaryKey().getValues().get("source_id");
-  }
-
-  private static List<String> recordAsBedFieldsGenomicSequence(JSONObject config, RecordInstance record){
-    String featureId = getSourceId(record);
-    String chrom = featureId;
-    String longStrand = config.getString("strand");
-    String strand = strandSign(longStrand);
-    Integer featureLength = Integer.valueOf(stringValue(record, "formatted_length").replaceAll(",", ""));
-    Integer segmentStart = 1;
-    Integer segmentEnd = featureLength;
-    String defline;
-    StringBuilder sb = new StringBuilder(featureId);
-    if("short".equals(config.getString("deflineType"))){
-      defline = sb.toString();
-    } else {
-      sb.append("  | ");
-      sb.append(stringValue(record, "organism"));
-      sb.append(" | genomic sequence | ");
-      sb.append(chrom);
-      sb.append(", ");
-      sb.append(longStrand + " strand");
-      sb.append(" | segment_length=");
-      sb.append(""+featureLength);
-      defline = sb.toString();
-    }
-    return Arrays.asList(chrom, "" + segmentStart, "" + segmentEnd, defline, ".", strand);
-  }
-
 }

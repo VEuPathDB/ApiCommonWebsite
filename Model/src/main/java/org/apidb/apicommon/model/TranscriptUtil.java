@@ -12,8 +12,8 @@ import org.gusdb.wdk.model.record.RecordClass;
 
 public class TranscriptUtil {
 
-  static final String GENE_RECORDCLASS = "GeneRecordClasses.GeneRecordClass";
-  static final String TRANSCRIPT_RECORDCLASS = "TranscriptRecordClasses.TranscriptRecordClass";
+  public static final String GENE_RECORDCLASS = "GeneRecordClasses.GeneRecordClass";
+  public static final String TRANSCRIPT_RECORDCLASS = "TranscriptRecordClasses.TranscriptRecordClass";
 
   private static final String XFORM_QUESTION_NAME = "GeneRecordQuestions.GenesFromTranscripts";
   private static final String XFORM_STEP_ID_PARAM_NAME = "gene_result";
