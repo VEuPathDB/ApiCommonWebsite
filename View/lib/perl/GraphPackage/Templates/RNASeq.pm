@@ -970,9 +970,19 @@ package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_79549674a3;
 sub init {
   my $self = shift;
   $self->SUPER::init(@_);
-
   $self->setPlotWidth(600);
+  return $self;
+}
 
+1;
+
+# FungiDB mory70-15_Oses-Ruiz_Mory_2020_ebi_rnaSeq_RSRC
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_db10ef088b;
+
+sub init {
+  my $self = shift;
+  $self->SUPER::init(@_);
+  $self->setPlotWidth(600);
   return $self;
 }
 
