@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 import org.apidb.apicommon.model.TranscriptUtil;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.record.RecordInstance;
+import org.apidb.apicommon.model.report.bed.util.StrandDirection;
 import org.json.JSONObject;
 
 public class GeneGenomicFeatureProvider implements BedFeatureProvider {
@@ -17,7 +18,7 @@ public class GeneGenomicFeatureProvider implements BedFeatureProvider {
   private static final String ATTR_LOCATION_TEXT = "location_text";
 
   private final boolean _useShortDefline;
-  private final boolean _reverseAndCompliment;
+  private final boolean _reverseAndComplement;
   private final int _upstreamOffset;
   private final OffsetSign _upstreamSign;
   private final Anchor _upstreamAnchor;
@@ -27,7 +28,7 @@ public class GeneGenomicFeatureProvider implements BedFeatureProvider {
 
   public GeneGenomicFeatureProvider(JSONObject config) {
     _useShortDefline = useShortDefline(config);
-    _reverseAndCompliment = config.getBoolean("reverseAndComplement");
+    _reverseAndComplement = config.getBoolean("reverseAndComplement");
 
     _upstreamOffset = config.getInt("upstreamOffset");
     _upstreamSign = OffsetSign.valueOf(config.getString("upstreamSign"));
@@ -63,9 +64,9 @@ public class GeneGenomicFeatureProvider implements BedFeatureProvider {
     int featureStart = Integer.valueOf(m.group(2));
     int featureEnd = Integer.valueOf(m.group(3));
 
-    String strand = m.group(4);
-    if(_reverseAndCompliment) {
-      strand = oppositeStrand(strand);
+    StrandDirection strand = StrandDirection.fromSign(m.group(4));
+    if(_reverseAndComplement) {
+      strand = strand.opposite();
     }
 
     Integer segmentStart = getPositionGenomic(featureStart, featureEnd, _upstreamOffset, _upstreamSign, _upstreamAnchor);
@@ -80,7 +81,7 @@ public class GeneGenomicFeatureProvider implements BedFeatureProvider {
       defline.append(" | locus sequence | ");
       defline.append(chrom);
       defline.append(", ");
-      defline.append(longStrand(strand) + " strand");
+      defline.append(strand + " strand");
       defline.append(", ");
       defline.append("" + segmentStart);
       defline.append(" to ");
@@ -93,7 +94,7 @@ public class GeneGenomicFeatureProvider implements BedFeatureProvider {
       defline.append(""+(segmentEnd - segmentStart + 1));
     }
 
-    return List.of(List.of(chrom, segmentStart.toString(), segmentEnd.toString(), defline.toString(), ".", strand));
+    return List.of(List.of(chrom, segmentStart.toString(), segmentEnd.toString(), defline.toString(), ".", strand.getSign()));
   }
 
   private Matcher matchLocationCoords(RecordInstance record, String key, Pattern p) throws WdkModelException{
@@ -121,39 +122,18 @@ public class GeneGenomicFeatureProvider implements BedFeatureProvider {
   private static String getPositionDescGenomic(int offset, OffsetSign sign, Anchor anchor) throws WdkModelException{
     return offset == 0
         ? anchor.name()
-        : anchor + strandOptionAsStrandSign(sign) + offset;
+        : anchor + offsetSignShort(sign) + offset;
   }
 
-  private static String strandOptionAsStrandSign(OffsetSign sign) throws WdkModelException{
+  private static String offsetSignShort(OffsetSign sign) throws WdkModelException{
     switch(sign){
       case plus:
         return "+";
       case minus:
         return "-";
       default:
-        throw new WdkModelException(String.format("Unknown strand option: %s", sign));
+        throw new WdkModelException(String.format("Unknown offset sign: %s", sign));
     }
   }
 
-  private static String longStrand(String shortSign){
-    switch(shortSign){
-      case "+":
-        return "forward";
-      case "-":
-        return "reverse";
-      default:
-        return shortSign;
-    }
-  }
-
-  private static String oppositeStrand(String shortSign){
-    switch(shortSign){
-      case "+":
-        return "-";
-      case "-":
-        return "+";
-      default:
-        return shortSign;
-    }
-  }
 }

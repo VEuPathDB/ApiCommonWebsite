@@ -9,6 +9,7 @@ import org.apidb.apicommon.model.report.bed.feature.GeneTableFieldFeatureProvide
 import org.apidb.apicommon.model.report.bed.feature.ProteinFeatureProvider;
 import org.apidb.apicommon.model.report.bed.feature.ProteinInterproFeatureProvider;
 import org.apidb.apicommon.model.report.bed.feature.TranscriptBlockFeaturesProvider;
+import org.apidb.apicommon.model.report.bed.feature.GeneComponentsFeatureProvider;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.report.Reporter;
 import org.gusdb.wdk.model.report.ReporterConfigException;
@@ -18,6 +19,7 @@ import org.json.JSONObject;
 public class BedGeneReporter extends BedReporter {
 
   private enum SequenceType {
+    gene_components,
     genomic,
     genomic_features,
     cds,
@@ -29,6 +31,7 @@ public class BedGeneReporter extends BedReporter {
   public static boolean useCoordinatesOnProteinReference(JSONObject config) throws WdkModelException {
     SequenceType type = SequenceType.valueOf(config.getString("type"));
     switch(type){
+      case gene_components:
       case genomic:
       case genomic_features:
       case cds:
@@ -98,6 +101,8 @@ public class BedGeneReporter extends BedReporter {
         return new TranscriptBlockFeaturesProvider(config, Set.of("CDS"), "cds");
       case transcript:
         return new TranscriptBlockFeaturesProvider(config, Set.of("CDS", "UTR"), "transcript");
+      case gene_components:
+        return new GeneComponentsFeatureProvider(config);
       default:
         throw new WdkModelException(String.format("Unsupported sequence type: %s", type.name()));
     }
