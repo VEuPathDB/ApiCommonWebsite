@@ -19,19 +19,6 @@ public class BedGenomicSequenceReporter extends BedReporter {
     centromere;
   }
 
-  public enum StrandDirection {
-    forward("+"),
-    reverse("-");
-
-    private final String _sign;
-    private StrandDirection(String sign) {
-      _sign = sign;
-    }
-    public String getSign() {
-      return _sign;
-    }
-  }
-
   @Override
   public Reporter configure(JSONObject config) throws ReporterConfigException, WdkModelException {
     try {

@@ -2,7 +2,7 @@ package org.apidb.apicommon.model.report.bed.feature;
 
 import java.util.List;
 
-import org.apidb.apicommon.model.report.bed.BedGenomicSequenceReporter.StrandDirection;
+import org.apidb.apicommon.model.report.bed.util.StrandDirection;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.record.RecordInstance;
 import org.json.JSONObject;
