@@ -26,6 +26,7 @@ public class SequenceReporter extends AbstractReporter {
   private static Logger LOG = Logger.getLogger(SequenceReporter.class);
 
   private static final String FASTA_MEDIA_TYPE = "text/x-fasta";
+  private static final String PLAIN_MEDIA_TYPE = "text/plain";
   private static final String BED_REPORTER_NAME = "bed";
 
   private enum SequenceType {
@@ -35,12 +36,15 @@ public class SequenceReporter extends AbstractReporter {
     popset;
   }
 
+  private boolean _showInBrowser = false;
   // data required to make sequence retrieval service request
   private String _seqRetSvcRequestUrl;
   private String _bedFileUrl;
 
   @Override
   public SequenceReporter configure(JSONObject config) throws ReporterConfigException {
+    _showInBrowser = "plain".equals(config.getString("attachmentType"));
+
 
     // extract any sequence retrieval service config from this config
     int basesPerLine = config.optInt("basesPerLine", 60);
@@ -96,7 +100,11 @@ public class SequenceReporter extends AbstractReporter {
 
   @Override
   public String getHttpContentType() {
-    return FASTA_MEDIA_TYPE;
+    if(_showInBrowser){
+      return PLAIN_MEDIA_TYPE;
+    } else {
+      return FASTA_MEDIA_TYPE;
+    }
   }
 
   @Override
