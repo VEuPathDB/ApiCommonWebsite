@@ -18,6 +18,9 @@ import org.gusdb.wdk.model.record.TableValue;
 import org.gusdb.wdk.model.record.attribute.AttributeValue;
 import org.json.JSONObject;
 import org.apidb.apicommon.model.report.bed.util.StrandDirection;
+import org.apidb.apicommon.model.report.bed.util.RequestedDeflineFields;
+import org.apidb.apicommon.model.report.bed.util.DeflineBuilder;
+import org.apidb.apicommon.model.report.bed.util.BedLine;
 
 public class GeneComponentsFeatureProvider implements BedFeatureProvider {
 
@@ -38,11 +41,11 @@ public class GeneComponentsFeatureProvider implements BedFeatureProvider {
   private static final String ATTR_ORGANISM = "organism";
   private static final String TABLE_GENE_MODEL_DUMP = "GeneModelDump";
 
-  private final boolean _useShortDefline;
+  private final RequestedDeflineFields _requestedDeflineFields;
   private final Set<GeneComponentAsRequested> _requestedComponents;
 
   public GeneComponentsFeatureProvider(JSONObject config){
-    _useShortDefline = useShortDefline(config);
+    _requestedDeflineFields = new RequestedDeflineFields(config);
     _requestedComponents = config.getJSONArray("geneComponents").toList().stream().map(o -> GeneComponentAsRequested.valueOf(o.toString())).collect(Collectors.toSet());
 
   }
@@ -95,35 +98,42 @@ public class GeneComponentsFeatureProvider implements BedFeatureProvider {
 
       for (Map<String, AttributeValue> geneModelDumpRow : geneModelDumpRows) {
         String sourceId = geneModelDumpRow.get("source_id").toString();
-        String sequenceId = geneModelDumpRow.get("sequence_id").toString();
+        String chrom = geneModelDumpRow.get("sequence_id").toString();
         GeneComponentAsStored geneComponentAsStored = GeneComponentAsStored.valueOf(geneModelDumpRow.get("type").toString());
-        Integer start = Integer.valueOf(geneModelDumpRow.get("gm_start").toString());
-        Integer end = Integer.valueOf(geneModelDumpRow.get("gm_end").toString());
-        Integer length = end - start;
+        Integer segmentStart = Integer.valueOf(geneModelDumpRow.get("gm_start").toString());
+        Integer segmentEnd = Integer.valueOf(geneModelDumpRow.get("gm_end").toString());
+
         StrandDirection strand = StrandDirection.fromSign(geneModelDumpRow.get("strand").toString());
 
         boolean startMatchesTranscriptStart = Arrays.asList(geneModelDumpRow.get("transcript_ids").toString().split(","))
           .stream()
-          .map(transcriptId -> tStartsByT.get(transcriptId).equals(start))
+          .map(transcriptId -> tStartsByT.get(transcriptId).equals(segmentStart))
           .reduce(Boolean.FALSE, Boolean::logicalOr);
 
         boolean endMatchesTranscriptEnd = Arrays.asList(geneModelDumpRow.get("transcript_ids").toString().split(","))
           .stream()
-          .map(transcriptId -> tEndsByT.get(transcriptId).equals(end))
+          .map(transcriptId -> tEndsByT.get(transcriptId).equals(segmentEnd))
           .reduce(Boolean.FALSE, Boolean::logicalOr);
 
         GeneComponentAsRequested geneComponent = asRequestedComponent(geneComponentAsStored, strand, startMatchesTranscriptStart, endMatchesTranscriptEnd);
         if(_requestedComponents.contains(geneComponent)){
-          StringBuilder defline = new StringBuilder(sourceId + "::" + geneComponent.toString());
-          if (!_useShortDefline) {
-            defline.append("  | ");
-            defline.append(stringValue(record, ATTR_ORGANISM));
-            defline.append(" | ");
-            defline.append(stringValue(record, "gene_product"));
-            defline.append(" | segment_length=");
-            defline.append("" + (end-start));
+          DeflineBuilder defline = new DeflineBuilder(sourceId + "::" + geneComponent.toString());
+          if(_requestedDeflineFields.contains("organism")){
+            defline.appendRecordAttribute(record, ATTR_ORGANISM);
           }
-        result.add(List.of(sequenceId, "" + start, "" + end, defline.toString(), ".", strand.getSign()));
+          if(_requestedDeflineFields.contains("description")){
+            defline.appendValue(geneComponent.toString() + " sequence");
+          }
+          if(_requestedDeflineFields.contains("position")){
+            defline.appendPosition(chrom, segmentStart, segmentEnd, strand);
+          }
+          if(_requestedDeflineFields.contains("ui_choice")){
+            defline.appendValue("Gene components: " + _requestedComponents.stream().map(x -> x.toString()).collect(Collectors.joining(", ")));
+          }
+          if(_requestedDeflineFields.contains("segment_length")){
+            defline.appendSegmentLength(segmentStart, segmentEnd);
+          }
+          result.add(BedLine.bed6(chrom, segmentStart, segmentEnd, defline, strand));
         }
       }
       return result;

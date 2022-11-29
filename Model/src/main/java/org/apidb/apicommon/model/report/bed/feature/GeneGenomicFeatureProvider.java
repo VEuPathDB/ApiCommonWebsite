@@ -8,6 +8,9 @@ import org.apidb.apicommon.model.TranscriptUtil;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.record.RecordInstance;
 import org.apidb.apicommon.model.report.bed.util.StrandDirection;
+import org.apidb.apicommon.model.report.bed.util.RequestedDeflineFields;
+import org.apidb.apicommon.model.report.bed.util.DeflineBuilder;
+import org.apidb.apicommon.model.report.bed.util.BedLine;
 import org.json.JSONObject;
 
 public class GeneGenomicFeatureProvider implements BedFeatureProvider {
@@ -16,8 +19,9 @@ public class GeneGenomicFeatureProvider implements BedFeatureProvider {
   private static final Pattern LOCATION_TEXT_PATTERN = Pattern.compile("^(.*):(\\d+)..(\\d+)\\((\\+|-)\\)$");
 
   private static final String ATTR_LOCATION_TEXT = "location_text";
+  private static final String ATTR_ORGANISM = "organism";
 
-  private final boolean _useShortDefline;
+  private final RequestedDeflineFields _requestedDeflineFields;
   private final boolean _reverseAndComplement;
   private final int _upstreamOffset;
   private final OffsetSign _upstreamSign;
@@ -27,7 +31,7 @@ public class GeneGenomicFeatureProvider implements BedFeatureProvider {
   private final Anchor _downstreamAnchor;
 
   public GeneGenomicFeatureProvider(JSONObject config) {
-    _useShortDefline = useShortDefline(config);
+    _requestedDeflineFields = new RequestedDeflineFields(config);
     _reverseAndComplement = config.getBoolean("reverseAndComplement");
 
     _upstreamOffset = config.getInt("upstreamOffset");
@@ -46,7 +50,7 @@ public class GeneGenomicFeatureProvider implements BedFeatureProvider {
 
   @Override
   public String[] getRequiredAttributeNames() {
-    return new String[] { ATTR_LOCATION_TEXT };
+    return new String[] { ATTR_LOCATION_TEXT , ATTR_ORGANISM};
   }
 
   @Override
@@ -72,29 +76,29 @@ public class GeneGenomicFeatureProvider implements BedFeatureProvider {
     Integer segmentStart = getPositionGenomic(featureStart, featureEnd, _upstreamOffset, _upstreamSign, _upstreamAnchor);
     Integer segmentEnd = getPositionGenomic(featureStart, featureEnd, _downstreamOffset, _downstreamSign, _downstreamAnchor);
 
-    StringBuilder defline = new StringBuilder(featureId);
-    if (!_useShortDefline){
-      defline.append("  | ");
-      defline.append(stringValue(record, "organism"));
-      defline.append(" | ");
-      defline.append(stringValue(record, "gene_product"));
-      defline.append(" | locus sequence | ");
-      defline.append(chrom);
-      defline.append(", ");
-      defline.append(strand + " strand");
-      defline.append(", ");
-      defline.append("" + segmentStart);
-      defline.append(" to ");
-      defline.append("" + segmentEnd);
-      defline.append(" (");
-      defline.append(getPositionDescGenomic(_upstreamOffset, _upstreamSign, _upstreamAnchor));
-      defline.append(" to ");
-      defline.append(getPositionDescGenomic(_downstreamOffset, _downstreamSign, _downstreamAnchor));
-      defline.append(") | segment_length=");
-      defline.append(""+(segmentEnd - segmentStart + 1));
+    DeflineBuilder defline = new DeflineBuilder(featureId);
+
+    if(_requestedDeflineFields.contains("organism")){
+      defline.appendRecordAttribute(record, ATTR_ORGANISM);
+    }
+    if(_requestedDeflineFields.contains("description")){
+      defline.appendValue("locus sequence");
+    }
+    if(_requestedDeflineFields.contains("position")){
+      defline.appendPosition(chrom, segmentStart, segmentEnd, strand);
+    }
+    if(_requestedDeflineFields.contains("ui_choice")){
+      defline.appendValue(
+        getPositionDescGenomic(_upstreamOffset, _upstreamSign, _upstreamAnchor)
+        + " to " 
+        + getPositionDescGenomic(_downstreamOffset, _downstreamSign, _downstreamAnchor)
+      );
+    }
+    if(_requestedDeflineFields.contains("segment_length")){
+      defline.appendSegmentLength(segmentStart, segmentEnd);
     }
 
-    return List.of(List.of(chrom, segmentStart.toString(), segmentEnd.toString(), defline.toString(), ".", strand.getSign()));
+    return List.of(BedLine.bed6(chrom, segmentStart, segmentEnd, defline, strand));
   }
 
   private Matcher matchLocationCoords(RecordInstance record, String key, Pattern p) throws WdkModelException{

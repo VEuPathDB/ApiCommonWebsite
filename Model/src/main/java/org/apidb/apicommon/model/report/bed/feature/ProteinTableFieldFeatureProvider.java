@@ -1,72 +1,66 @@
 package org.apidb.apicommon.model.report.bed.feature;
 
 import java.util.List;
+import java.util.Map;
 
+import org.apidb.apicommon.model.TranscriptUtil;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.record.RecordInstance;
+import org.gusdb.wdk.model.record.attribute.AttributeValue;
 import org.json.JSONObject;
 import org.apidb.apicommon.model.report.bed.util.StrandDirection;
 import org.apidb.apicommon.model.report.bed.util.RequestedDeflineFields;
 import org.apidb.apicommon.model.report.bed.util.DeflineBuilder;
 import org.apidb.apicommon.model.report.bed.util.BedLine;
 
-public class GenomicGenomicFeatureProvider implements BedFeatureProvider {
+public class ProteinTableFieldFeatureProvider extends TableFieldFeatureProvider {
 
-  private static final String ATTR_FORMATTED_LENGTH = "formatted_length";
   private static final String ATTR_ORGANISM = "organism";
 
   private final RequestedDeflineFields _requestedDeflineFields;
-  private final StrandDirection _strand;
+  private final String _tableFieldName;
 
-  public GenomicGenomicFeatureProvider(JSONObject config) {
+  public ProteinTableFieldFeatureProvider(JSONObject config,
+      String tableFieldName, String startTableAttributeName, String endTableAttributeName) {
+    super(tableFieldName, startTableAttributeName, endTableAttributeName);
     _requestedDeflineFields = new RequestedDeflineFields(config);
-    _strand = StrandDirection.valueOf(config.getString("_strand"));
+    _tableFieldName = tableFieldName;
+
   }
 
   @Override
   public String getRequiredRecordClassFullName() {
-    return "SequenceRecordClasses.SequenceRecordClass";
+    return TranscriptUtil.GENE_RECORDCLASS;
   }
 
   @Override
   public String[] getRequiredAttributeNames() {
-    return new String[] {
-        ATTR_FORMATTED_LENGTH,
-        ATTR_ORGANISM
-    };
+    return new String[] { ATTR_ORGANISM };
   }
 
   @Override
-  public String[] getRequiredTableNames() {
-    return new String[0];
-  }
+  protected List<String> createFeatureRow(RecordInstance record, Map<String, AttributeValue> tableRow, Integer segmentStart, Integer segmentEnd) throws WdkModelException {
+    String chrom = tableRow.get("transcript_id").toString();
+    StrandDirection strand = StrandDirection.none;
 
-  @Override
-  public List<List<String>> getRecordAsBedFields(RecordInstance record) throws WdkModelException {
-    String featureId = getSourceId(record);
-    String chrom = featureId;
-    Integer featureLength = Integer.valueOf(stringValue(record, ATTR_FORMATTED_LENGTH).replaceAll(",", ""));
-    Integer segmentStart = 1;
-    Integer segmentEnd = featureLength;
-
+    String featureId = chrom + "::" + segmentStart + "-" + segmentEnd;
     DeflineBuilder defline = new DeflineBuilder(featureId);
 
     if(_requestedDeflineFields.contains("organism")){
       defline.appendRecordAttribute(record, ATTR_ORGANISM);
     }
     if(_requestedDeflineFields.contains("description")){
-      defline.appendValue("genomic sequence");
+      defline.appendValue("protein");
     }
     if(_requestedDeflineFields.contains("position")){
-      defline.appendPosition(chrom, segmentStart, segmentEnd, _strand);
+      defline.appendPosition(chrom, segmentStart, segmentEnd, strand);
     }
     if(_requestedDeflineFields.contains("ui_choice")){
-      defline.appendValue("genomic sequence");
+      defline.appendValue("protein features: " + _tableFieldName);
     }
     if(_requestedDeflineFields.contains("segment_length")){
       defline.appendSegmentLength(segmentStart, segmentEnd);
     }
-    return List.of(BedLine.bed6(chrom, segmentStart, segmentEnd, defline, _strand));
+    return BedLine.bed6(chrom, segmentStart, segmentEnd, defline, strand);
   }
-
 }

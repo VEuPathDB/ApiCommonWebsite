@@ -5,7 +5,8 @@ import java.lang.IllegalStateException;
 public enum StrandDirection {
 
   forward("+"),
-  reverse("-");
+  reverse("-"),
+  none(".");
 
   private final String _sign;
   private StrandDirection(String sign) {
@@ -20,10 +21,23 @@ public enum StrandDirection {
       return StrandDirection.forward;
     } else if ("-".equals(sign)){
       return StrandDirection.reverse;
+    } else if (".".equals(sign)){
+      return StrandDirection.none;
     } else {
       throw new IllegalArgumentException(sign);
     }
   }
+
+  public static StrandDirection fromEfOrEr(String efOrEr) {
+    if("f".equals(efOrEr)){
+      return StrandDirection.forward;
+    } else if ("r".equals(efOrEr)){
+      return StrandDirection.reverse;
+    } else {
+      throw new IllegalArgumentException(efOrEr);
+    }
+  }
+
   public StrandDirection opposite(){
     switch(this){
       case forward:
@@ -33,4 +47,5 @@ public enum StrandDirection {
     }
     throw new IllegalStateException(this.toString());
   }
+
 }
