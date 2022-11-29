@@ -12,28 +12,19 @@ import org.json.JSONObject;
 
 public abstract class TableFieldFeatureProvider implements BedFeatureProvider {
 
-  private static final String ATTR_ORGANISM = "organism";
-
   protected abstract List<String> createFeatureRow(
-      RecordInstance record, Map<String,AttributeValue> tableRow, Integer start, Integer end, String organism) throws WdkModelException;
+      RecordInstance record, Map<String,AttributeValue> tableRow, Integer start, Integer end) throws WdkModelException;
 
-  protected final boolean _useShortDefline;
-  protected final String _tableFieldName;
+  private final String _tableFieldName;
 
   private final String _startTableAttributeName;
   private final String _endTableAttributeName;
 
-  protected TableFieldFeatureProvider(JSONObject config,
+  protected TableFieldFeatureProvider(
       String tableFieldName, String startTableAttributeName, String endTableAttributeName) {
-    _useShortDefline = useShortDefline(config);
     _tableFieldName = tableFieldName;
     _startTableAttributeName = startTableAttributeName;
     _endTableAttributeName = endTableAttributeName;
-  }
-
-  @Override
-  public String[] getRequiredAttributeNames() {
-    return new String[] { ATTR_ORGANISM };
   }
 
   @Override
@@ -48,8 +39,7 @@ public abstract class TableFieldFeatureProvider implements BedFeatureProvider {
       for (Map<String, AttributeValue> row : record.getTableValue(_tableFieldName)) {
         Integer start = Integer.valueOf(row.get(_startTableAttributeName).toString());
         Integer end = Integer.valueOf(row.get(_endTableAttributeName).toString());
-        String organism = stringValue(record, ATTR_ORGANISM);
-        result.add(createFeatureRow(record, row, start, end, organism));
+        result.add(createFeatureRow(record, row, start, end));
       }
       return result;
     }

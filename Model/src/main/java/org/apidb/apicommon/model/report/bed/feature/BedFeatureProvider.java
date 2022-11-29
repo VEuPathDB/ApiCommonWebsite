@@ -7,7 +7,6 @@ import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkRuntimeException;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.record.RecordInstance;
-import org.json.JSONObject;
 
 public interface BedFeatureProvider {
 
@@ -45,15 +44,6 @@ public interface BedFeatureProvider {
    */
   List<List<String>> getRecordAsBedFields(RecordInstance record) throws WdkModelException;
 
-  /**
-   * Returns whether to output short-format deflines; will use short if unspecified in config
-   *
-   * @param config bed reporter configuration
-   * @return whether to output short-format deflines
-   */
-  default boolean useShortDefline(JSONObject config) {
-    return config.optString("deflineType","short").equals("short");
-  }
 
   // convenience method to get the record's primary key's source_id column
   default String getSourceId(RecordInstance record) {

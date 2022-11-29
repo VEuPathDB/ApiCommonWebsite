@@ -10,6 +10,10 @@ import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.record.RecordInstance;
 import org.gusdb.wdk.model.record.TableValue;
 import org.gusdb.wdk.model.record.attribute.AttributeValue;
+import org.apidb.apicommon.model.report.bed.util.StrandDirection;
+import org.apidb.apicommon.model.report.bed.util.RequestedDeflineFields;
+import org.apidb.apicommon.model.report.bed.util.DeflineBuilder;
+import org.apidb.apicommon.model.report.bed.util.BedLine;
 import org.json.JSONObject;
 
 public class ProteinInterproFeatureProvider implements BedFeatureProvider {
@@ -17,10 +21,10 @@ public class ProteinInterproFeatureProvider implements BedFeatureProvider {
   private static final String ATTR_ORGANISM = "organism";
   private static final String TABLE_INTERPRO = "InterPro";
 
-  private final boolean _useShortDefline;
+  private final RequestedDeflineFields _requestedDeflineFields;
 
   public ProteinInterproFeatureProvider(JSONObject config) {
-    _useShortDefline = useShortDefline(config);
+    _requestedDeflineFields = new RequestedDeflineFields(config);
   }
 
   @Override
@@ -47,37 +51,35 @@ public class ProteinInterproFeatureProvider implements BedFeatureProvider {
     try {
       List<List<String>> result = new ArrayList<>();
       TableValue interproRows = record.getTableValue(TABLE_INTERPRO);
-      String organism = _useShortDefline ? "unused" : stringValue(record, ATTR_ORGANISM);
       for (Map<String, AttributeValue> interproRow : interproRows) {
-        Integer start = Integer.valueOf(interproRow.get("interpro_start_min").toString());
-        Integer end = Integer.valueOf(interproRow.get("interpro_end_min").toString());
+        Integer segmentStart = Integer.valueOf(interproRow.get("interpro_segmentStart_min").toString());
+        Integer segmentEnd = Integer.valueOf(interproRow.get("interpro_segmentEnd_min").toString());
+        StrandDirection strand = StrandDirection.none;
         /*
-         * The start and end coordinates are on the protein,
+         * The segmentStart and segmentEnd coordinates are on the protein,
          * but for identical positions, the rows get merged.
          * Hence 'transcript_ids' that we split.
          * Example: PF3D7_0108400
          */
         for (String transcriptId : interproRow.get("transcript_ids").toString().split(", ")){
           String chrom = transcriptId;
-          StringBuilder defline = new StringBuilder(transcriptId + "::" + interproRow.get("interpro_primary_id").toString());
-          if (!_useShortDefline) {
-            defline.append("  | ");
-            defline.append(organism);
-            defline.append(" | protein | ");
-            defline.append(interproRow.get("interpro_name").toString());
-            defline.append(" | ");
-            defline.append(interproRow.get("interpro_desc").toString());
-            defline.append(" | ");
-            defline.append(chrom);
-            defline.append(", ");
-            defline.append(""+start);
-            defline.append(" to ");
-            defline.append(""+end);
-            defline.append(" | segment_length=");
-            defline.append(""+(end - start + 1));
+          DeflineBuilder defline = new DeflineBuilder(chrom + "::" + segmentStart + "-" + segmentEnd);
+          if(_requestedDeflineFields.contains("organism")){
+            defline.appendRecordAttribute(record, ATTR_ORGANISM);
           }
-
-          result.add(List.of(chrom, ""+start, ""+end, defline.toString(), ".", "."));
+          if(_requestedDeflineFields.contains("description")){
+            defline.appendAttributeValue(interproRow.get("interpro_desc"));
+          }
+          if(_requestedDeflineFields.contains("position")){
+            defline.appendPosition(chrom, segmentStart, segmentEnd, strand);
+          }
+          if(_requestedDeflineFields.contains("ui_choice")){
+            defline.appendValue("protein features: InterPro");
+          }
+          if(_requestedDeflineFields.contains("segment_length")){
+            defline.appendSegmentLength(segmentStart, segmentEnd);
+          }
+          result.add(BedLine.bed6(chrom, segmentStart, segmentEnd, defline, strand));
         }
       }
 

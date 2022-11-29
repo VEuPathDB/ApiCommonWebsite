@@ -15,19 +15,24 @@ import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.record.RecordInstance;
 import org.gusdb.wdk.model.record.TableValue;
 import org.gusdb.wdk.model.record.attribute.AttributeValue;
+import org.apidb.apicommon.model.report.bed.util.StrandDirection;
+import org.apidb.apicommon.model.report.bed.util.RequestedDeflineFields;
+import org.apidb.apicommon.model.report.bed.util.DeflineBuilder;
+import org.apidb.apicommon.model.report.bed.util.BedLine;
 import org.json.JSONObject;
 
 public class TranscriptBlockFeaturesProvider implements BedFeatureProvider {
 
   private static final String ATTR_ORGANISM = "organism";
+  private static final String ATTR_GENE_PRODUCT = "gene_product";
   private static final String TABLE_GENE_MODEL_DUMP = "GeneModelDump";
 
-  private final boolean _useShortDefline;
+  private final RequestedDeflineFields _requestedDeflineFields;
   private final Set<String> _allowedFeatureTypes;
   private final String _blockFeatureType;
 
   public TranscriptBlockFeaturesProvider(JSONObject config, Set<String> allowedFeatureTypes, String blockFeatureType) {
-    _useShortDefline = useShortDefline(config);
+    _requestedDeflineFields = new RequestedDeflineFields(config);
     _allowedFeatureTypes = allowedFeatureTypes;
     _blockFeatureType = blockFeatureType;
   }
@@ -53,12 +58,10 @@ public class TranscriptBlockFeaturesProvider implements BedFeatureProvider {
       List<List<String>> result = new ArrayList<>();
 
       Map<String, Set<String>> sequencesByT = new HashMap<>();
-      Map<String, Set<String>> strandsByT = new HashMap<>();
+      Map<String, Set<StrandDirection>> strandsByT = new HashMap<>();
       Map<String, List<Integer>> startsByT = new HashMap<>();
-      Map<String, List<String>> startStringsByT = new HashMap<>();
       Map<String, List<Integer>> endsByT = new HashMap<>();
       Map<String, List<Integer>> lengthsByT = new HashMap<>();
-      Map<String, List<String>> lengthStringsByT = new HashMap<>();
 
       TableValue geneModelDumpRows = record.getTableValue(TABLE_GENE_MODEL_DUMP);
       for (Map<String, AttributeValue> geneModelDumpRow : geneModelDumpRows) {
@@ -70,24 +73,20 @@ public class TranscriptBlockFeaturesProvider implements BedFeatureProvider {
         Integer gmStart = Integer.valueOf(geneModelDumpRow.get("gm_start").toString());
         Integer gmEnd = Integer.valueOf(geneModelDumpRow.get("gm_end").toString());
         Integer length = gmEnd - gmStart;
-        String strand = geneModelDumpRow.get("strand").toString();
+        StrandDirection strand = StrandDirection.fromSign(geneModelDumpRow.get("strand").toString());
         for(String transcriptId: geneModelDumpRow.get("transcript_ids").toString().split(",")){
           if(!sequencesByT.containsKey(transcriptId)){
             sequencesByT.put(transcriptId, new HashSet<String>());
-            strandsByT.put(transcriptId, new HashSet<String>());
+            strandsByT.put(transcriptId, new HashSet<StrandDirection>());
             startsByT.put(transcriptId, new ArrayList<Integer>());
-            startStringsByT.put(transcriptId, new ArrayList<String>());
             endsByT.put(transcriptId, new ArrayList<Integer>());
             lengthsByT.put(transcriptId, new ArrayList<Integer>());
-            lengthStringsByT.put(transcriptId, new ArrayList<String>());
           }
           sequencesByT.get(transcriptId).add(sequenceId);
           strandsByT.get(transcriptId).add(strand);
           startsByT.get(transcriptId).add(gmStart);
-          startStringsByT.get(transcriptId).add(gmStart.toString());
           endsByT.get(transcriptId).add(gmEnd);
           lengthsByT.get(transcriptId).add(length);
-          lengthStringsByT.get(transcriptId).add(length.toString());
         }
       }
       for(String transcriptId: sequencesByT.keySet()){
@@ -98,25 +97,29 @@ public class TranscriptBlockFeaturesProvider implements BedFeatureProvider {
           throw new WdkRuntimeException(String.format("Non-unique strand for transcript: %s", transcriptId));
         }
         String chrom = sequencesByT.get(transcriptId).iterator().next();
-        String strand = strandsByT.get(transcriptId).iterator().next();
-
-        StringBuilder defline = new StringBuilder(transcriptId);
-        if (!_useShortDefline) {
-          defline.append("  | ");
-          defline.append(stringValue(record, ATTR_ORGANISM));
-          defline.append(" | ");
-          defline.append(_blockFeatureType);
-          defline.append(" | segment_length=");
-          // https://stackoverflow.com/a/17846520
-          defline.append(lengthsByT.get(transcriptId).stream().mapToInt(Integer::intValue).sum());
-        }
-
+        StrandDirection strand = strandsByT.get(transcriptId).iterator().next();
         Integer segmentStart = Collections.min(startsByT.get(transcriptId));
         Integer segmentEnd = Collections.max(endsByT.get(transcriptId));
-        Integer blockCount = startsByT.get(transcriptId).size();
-        String blockSizes = String.join(",", lengthStringsByT.get(transcriptId));
-        String blockStarts = String.join(",", startStringsByT.get(transcriptId));
-        result.add(List.of(chrom, "" + segmentStart, "" + segmentEnd, defline.toString(), ".", strand, ".", ".", ".", ""+blockCount, blockSizes, blockStarts));
+
+        DeflineBuilder defline = new DeflineBuilder(_blockFeatureType.toLowerCase() + "_" + transcriptId);
+
+        if(_requestedDeflineFields.contains("organism")){
+          defline.appendRecordAttribute(record, ATTR_ORGANISM);
+        }
+        if(_requestedDeflineFields.contains("description")){
+          defline.appendRecordAttribute(record, ATTR_GENE_PRODUCT);
+        }
+        if(_requestedDeflineFields.contains("position")){
+          defline.appendPosition(chrom, segmentStart, segmentEnd, strand);
+        }
+        if(_requestedDeflineFields.contains("ui_choice")){
+          defline.appendValue(_blockFeatureType);
+        }
+        if(_requestedDeflineFields.contains("segment_length")){
+          defline.appendTotalSegmentLength(lengthsByT.get(transcriptId));
+        }
+
+        result.add(BedLine.bed12(chrom, segmentStart, segmentEnd, defline, strand, lengthsByT.get(transcriptId), startsByT.get(transcriptId)));
       }
       return result;
     }
