@@ -1422,6 +1422,65 @@ sub init {
 }
 1;
 
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_173528b522;
+
+sub init {
+  my $self = shift;
+
+  $self->SUPER::init(@_);
+
+  my $colors = ['blue', 'gray'];
+
+  my @profileArray = (['TEST bld49 - toxo Transcriptomes of enteroepithelial stages [htseq-union - firststrand - nonunique.tpm - nonunique]', 'values'],
+                      ['TEST bld49 - toxo Transcriptomes of enteroepithelial stages [htseq-union - firststrand - nonunique.tpm - nonunique]', 'standard_error'],
+                      ['Unsporulated and sporulated T. gondii [htseq-union - firststrand - nonunique.tpm - nonunique]', 'values'],
+                      ['Unsporulated and sporulated T. gondii [htseq-union - firststrand - nonunique.tpm - nonunique]', 'standard_error'],
+                      ['TEST bld49 - toxo Transcriptomes of enteroepithelial stages [htseq-union - firststrand - tpm - unique]', 'values'],
+                      ['TEST bld49 - toxo Transcriptomes of enteroepithelial stages [htseq-union - firststrand - tpm - unique]', 'standard_error'],
+                      ['Unsporulated and sporulated T. gondii [htseq-union - firststrand - tpm - unique]', 'values'],
+                      ['Unsporulated and sporulated T. gondii [htseq-union - firststrand - tpm - unique]', 'standard_error'],
+                     );
+
+  my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileArray);
+
+  my $bar = EbrcWebsiteCommon::View::GraphPackage::GGBarPlot->new(@_);
+  $bar->setProfileSets($profileSets);
+  $bar->setPartName('tpm_combined_sense');
+  $bar->setYaxisLabel('TPM');
+  $bar->setColors([$colors->[1], $colors->[0]]);
+  $bar->setIsStacked(1);
+
+  my $rAdjustString = << 'RADJUST';
+    profile.df.full$LEGEND <- as.factor(ifelse(grepl('nonunique', profile.df.full$PROFILE_SET, fixed=T), 'nonunique', 'unique'))
+    newVals <- aggregate(VALUE ~ NAME, with(profile.df.full, data.frame(NAME=NAME, VALUE=ifelse(LEGEND=="nonunique", 1, -1)*VALUE)), sum);
+    profile.df.full$VALUE[profile.df.full$LEGEND == "nonunique" & profile.df.full$NAME %in% newVals$NAME] <- newVals$VALUE;
+    profile.df.full$VALUE[profile.df.full$VALUE < 0] <- 0;
+    profile.df.full$STACK <- paste0(profile.df.full$NAME, '- ', profile.df.full$LEGEND, ' reads')
+    profile.df.full$STDERR[profile.df.full$LEGEND == 'nonunique'] <- NA
+    profile.df.full$MAX_ERR[profile.df.full$LEGEND == 'nonunique'] <- NA
+    profile.df.full$MIN_ERR[profile.df.full$LEGEND == 'nonunique'] <- NA
+    if (c('unique', 'nonunique') %in% profile.df.full$LEGEND) {
+      profile.df.full$LEGEND <- factor(profile.df.full$LEGEND, levels=c('nonunique', 'unique'))
+    }
+    profile.df.full$FACET <- ifelse(grepl('enteroepithelial', profile.df.full$PROFILE_SET, fixed=T), 'Enteroepithelial', 'Sporulation')
+    profile.df.full$FACET <- factor(profile.df.full$FACET, levels=c('Sporulation','Enteroepithelial'))
+
+RADJUST
+  $bar->addAdjustProfile($rAdjustString);
+
+  $bar->setRPostscript("gp = gp + facet_grid('. ~ FACET', scales='free_x', space='free_x')");
+
+  my $id = $self->getId();
+  $bar->setPlotTitle("tpm_combined_sense - $id");
+
+  my $graphObjects = $self->getGraphObjects();
+
+  unshift (@$graphObjects, $bar);
+  $self->setGraphObjects(@$graphObjects);
+
+  return $self;
+}
+1;
 
 # pfal3D7_Bartfai_time_series_rnaSeq_RSRC
 package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_715bf2deda;
