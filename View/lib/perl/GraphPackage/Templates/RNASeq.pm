@@ -1431,6 +1431,7 @@ sub init {
 
   my $colors = ['blue', 'gray'];
 
+  #tpm sense combined
   my @profileArray = (['TEST bld49 - toxo Transcriptomes of enteroepithelial stages [htseq-union - firststrand - nonunique.tpm - nonunique]', 'values'],
                       ['TEST bld49 - toxo Transcriptomes of enteroepithelial stages [htseq-union - firststrand - nonunique.tpm - nonunique]', 'standard_error'],
                       ['Unsporulated and sporulated T. gondii [htseq-union - firststrand - nonunique.tpm - nonunique]', 'values'],
@@ -1449,7 +1450,6 @@ sub init {
   $bar->setYaxisLabel('TPM');
   $bar->setColors([$colors->[1], $colors->[0]]);
   $bar->setIsStacked(1);
-
   my $rAdjustString = << 'RADJUST';
     profile.df.full$LEGEND <- as.factor(ifelse(grepl('nonunique', profile.df.full$PROFILE_SET, fixed=T), 'nonunique', 'unique'))
     newVals <- aggregate(VALUE ~ NAME, with(profile.df.full, data.frame(NAME=NAME, VALUE=ifelse(LEGEND=="nonunique", 1, -1)*VALUE)), sum);
@@ -1467,14 +1467,72 @@ sub init {
 
 RADJUST
   $bar->addAdjustProfile($rAdjustString);
-
   $bar->setRPostscript("gp = gp + facet_grid('. ~ FACET', scales='free_x', space='free_x')");
-
   my $id = $self->getId();
   $bar->setPlotTitle("tpm_combined_sense - $id");
 
+  # tpm antisense combined
+  my @profileArrayAntisense = (['TEST bld49 - toxo Transcriptomes of enteroepithelial stages [htseq-union - secondstrand - nonunique.tpm - nonunique]', 'values'],
+                      ['TEST bld49 - toxo Transcriptomes of enteroepithelial stages [htseq-union - secondstrand - nonunique.tpm - nonunique]', 'standard_error'],
+                      ['Unsporulated and sporulated T. gondii [htseq-union - secondstrand - nonunique.tpm - nonunique]', 'values'],
+                      ['Unsporulated and sporulated T. gondii [htseq-union - secondstrand - nonunique.tpm - nonunique]', 'standard_error'],
+                      ['TEST bld49 - toxo Transcriptomes of enteroepithelial stages [htseq-union - secondstrand - tpm - unique]', 'values'],
+                      ['TEST bld49 - toxo Transcriptomes of enteroepithelial stages [htseq-union - secondstrand - tpm - unique]', 'standard_error'],
+                      ['Unsporulated and sporulated T. gondii [htseq-union - secondstrand - tpm - unique]', 'values'],
+                      ['Unsporulated and sporulated T. gondii [htseq-union - secondstrand - tpm - unique]', 'standard_error'],
+                     );
+
+  my $profileSetsAntisense = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileArrayAntisense);
+
+  my $barAntisense = EbrcWebsiteCommon::View::GraphPackage::GGBarPlot->new(@_);
+  $barAntisense->setProfileSets($profileSetsAntisense);
+  $barAntisense->setPartName('tpm_combined_antisense');
+  $barAntisense->setYaxisLabel('TPM');
+  $barAntisense->setColors([$colors->[1], $colors->[0]]);
+  $barAntisense->setIsStacked(1);
+  $barAntisense->addAdjustProfile($rAdjustString);
+  $barAntisense->setRPostscript("gp = gp + facet_grid('. ~ FACET', scales='free_x', space='free_x')");
+  $barAntisense->setPlotTitle("tpm_combined_antisense - $id");
+
+  # percentile sense combined
+  my @profileArrayPercentile = (['TEST bld49 - toxo Transcriptomes of enteroepithelial stages [htseq-union - firststrand - tpm - unique]', 'channel1_percentiles'],
+                      ['Unsporulated and sporulated T. gondii [htseq-union - firststrand - tpm - unique]', 'channel1_percentiles'],
+                     );
+
+  my $profileSetsPercentile = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileArrayPercentile);
+
+  my $barPercentile = EbrcWebsiteCommon::View::GraphPackage::GGBarPlot->new(@_);
+  $barPercentile->setProfileSets($profileSetsPercentile);
+  $barPercentile->setPartName('percentile_combined_sense');
+  $barPercentile->setYaxisLabel('Percentile');
+  $barPercentile->setColors([$colors->[0]]);
+  $barPercentile->addAdjustProfile($rAdjustString);
+  $barPercentile->setRPostscript("gp = gp + facet_grid('. ~ FACET', scales='free_x', space='free_x')");
+  $barPercentile->setPlotTitle("percentile_combined_sense - $id");
+  $barPercentile->setDefaultYMax(100);
+
+  # percentile antisense combined
+  my @profileArrayPercentileAntisense = (['TEST bld49 - toxo Transcriptomes of enteroepithelial stages [htseq-union - secondstrand - tpm - unique]', 'channel1_percentiles'],
+                      ['Unsporulated and sporulated T. gondii [htseq-union - secondstrand - tpm - unique]', 'channel1_percentiles'],
+                     );
+
+  my $profileSetsPercentileAntisense = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileArrayPercentileAntisense);
+
+  my $barPercentileAntisense = EbrcWebsiteCommon::View::GraphPackage::GGBarPlot->new(@_);
+  $barPercentileAntisense->setProfileSets($profileSetsPercentileAntisense);
+  $barPercentileAntisense->setPartName('percentile_combined_antisense');
+  $barPercentileAntisense->setYaxisLabel('Percentile');
+  $barPercentileAntisense->setColors([$colors->[0]]);
+  $barPercentileAntisense->addAdjustProfile($rAdjustString);
+  $barPercentileAntisense->setRPostscript("gp = gp + facet_grid('. ~ FACET', scales='free_x', space='free_x')");
+  $barPercentileAntisense->setPlotTitle("percentile_combined_antisense - $id");
+  $barPercentileAntisense->setDefaultYMax(100);  
+
   my $graphObjects = $self->getGraphObjects();
 
+  unshift (@$graphObjects, $barPercentileAntisense);
+  unshift (@$graphObjects, $barPercentile);
+  unshift (@$graphObjects, $barAntisense);
   unshift (@$graphObjects, $bar);
   $self->setGraphObjects(@$graphObjects);
 
