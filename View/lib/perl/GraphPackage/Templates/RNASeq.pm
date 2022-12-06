@@ -1446,7 +1446,7 @@ sub init {
 
   my $bar = EbrcWebsiteCommon::View::GraphPackage::GGBarPlot->new(@_);
   $bar->setProfileSets($profileSets);
-  $bar->setPartName('tpm_combined_sense');
+  $bar->setPartName('tpm_sense');
   $bar->setYaxisLabel('TPM');
   $bar->setColors([$colors->[1], $colors->[0]]);
   $bar->setIsStacked(1);
@@ -1469,7 +1469,7 @@ RADJUST
   $bar->addAdjustProfile($rAdjustString);
   $bar->setRPostscript("gp = gp + facet_grid('. ~ FACET', scales='free_x', space='free_x')");
   my $id = $self->getId();
-  $bar->setPlotTitle("tpm_combined_sense - $id");
+  $bar->setPlotTitle("tpm_sense - $id");
 
   # tpm antisense combined
   my @profileArrayAntisense = (['TEST bld49 - toxo Transcriptomes of enteroepithelial stages [htseq-union - secondstrand - nonunique.tpm - nonunique]', 'values'],
@@ -1486,13 +1486,13 @@ RADJUST
 
   my $barAntisense = EbrcWebsiteCommon::View::GraphPackage::GGBarPlot->new(@_);
   $barAntisense->setProfileSets($profileSetsAntisense);
-  $barAntisense->setPartName('tpm_combined_antisense');
+  $barAntisense->setPartName('tpm_antisense');
   $barAntisense->setYaxisLabel('TPM');
   $barAntisense->setColors([$colors->[1], $colors->[0]]);
   $barAntisense->setIsStacked(1);
   $barAntisense->addAdjustProfile($rAdjustString);
   $barAntisense->setRPostscript("gp = gp + facet_grid('. ~ FACET', scales='free_x', space='free_x')");
-  $barAntisense->setPlotTitle("tpm_combined_antisense - $id");
+  $barAntisense->setPlotTitle("tpm_antisense - $id");
 
   # percentile sense combined
   my @profileArrayPercentile = (['TEST bld49 - toxo Transcriptomes of enteroepithelial stages [htseq-union - firststrand - tpm - unique]', 'channel1_percentiles'],
@@ -1503,12 +1503,12 @@ RADJUST
 
   my $barPercentile = EbrcWebsiteCommon::View::GraphPackage::GGBarPlot->new(@_);
   $barPercentile->setProfileSets($profileSetsPercentile);
-  $barPercentile->setPartName('percentile_combined_sense');
+  $barPercentile->setPartName('percentile_sense');
   $barPercentile->setYaxisLabel('Percentile');
   $barPercentile->setColors([$colors->[0]]);
   $barPercentile->addAdjustProfile($rAdjustString);
   $barPercentile->setRPostscript("gp = gp + facet_grid('. ~ FACET', scales='free_x', space='free_x')");
-  $barPercentile->setPlotTitle("percentile_combined_sense - $id");
+  $barPercentile->setPlotTitle("percentile_sense - $id");
   $barPercentile->setDefaultYMax(100);
 
   # percentile antisense combined
@@ -1520,21 +1520,15 @@ RADJUST
 
   my $barPercentileAntisense = EbrcWebsiteCommon::View::GraphPackage::GGBarPlot->new(@_);
   $barPercentileAntisense->setProfileSets($profileSetsPercentileAntisense);
-  $barPercentileAntisense->setPartName('percentile_combined_antisense');
+  $barPercentileAntisense->setPartName('percentile_antisense');
   $barPercentileAntisense->setYaxisLabel('Percentile');
   $barPercentileAntisense->setColors([$colors->[0]]);
   $barPercentileAntisense->addAdjustProfile($rAdjustString);
   $barPercentileAntisense->setRPostscript("gp = gp + facet_grid('. ~ FACET', scales='free_x', space='free_x')");
-  $barPercentileAntisense->setPlotTitle("percentile_combined_antisense - $id");
+  $barPercentileAntisense->setPlotTitle("percentile_antisense - $id");
   $barPercentileAntisense->setDefaultYMax(100);  
 
-  my $graphObjects = $self->getGraphObjects();
-
-  unshift (@$graphObjects, $barPercentileAntisense);
-  unshift (@$graphObjects, $barPercentile);
-  unshift (@$graphObjects, $barAntisense);
-  unshift (@$graphObjects, $bar);
-  $self->setGraphObjects(@$graphObjects);
+  $self->setGraphObjects($bar, $barAntisense, $barPercentile, $barPercentileAntisense);
 
   return $self;
 }
