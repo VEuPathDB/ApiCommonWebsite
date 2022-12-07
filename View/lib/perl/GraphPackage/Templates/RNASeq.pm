@@ -11,7 +11,6 @@ use Data::Dumper;
 # @Override
 sub getKeys{
   my ($self, $profileSetName, $profileType) = @_;
-  print STDERR Dumper "Getting keys...\n";
   my ($groupName) = $self->getGroupNameFromProfileSetName($profileSetName);
 
   my ($strand) = $profileSetName =~ /\[.+ \- (.+) \- .+ \- /;
