@@ -24,6 +24,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
 import org.gusdb.wdk.model.WdkModelException;
+import org.gusdb.wdk.model.WdkRuntimeException;
 import org.gusdb.wdk.service.service.AbstractWdkService;
 import org.json.JSONObject;
 
@@ -371,6 +372,9 @@ public class JBrowseService extends AbstractWdkService {
     }
 
     public Response responseFromCommand(List<String> command) throws IOException {
+        for (int i = 0; i < command.size(); i++) {
+          if (command.get(i) == null) throw new WdkRuntimeException("Command part at index " + i + " is null.  Could be due to unchecked user input.");
+        }
         ProcessBuilder pb = new ProcessBuilder(command);
         Map<String, String> env = pb.environment();
         env.put("GUS_HOME", getWdkModel().getGusHome());
