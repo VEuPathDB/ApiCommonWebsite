@@ -11,6 +11,7 @@ use Data::Dumper;
 # @Override
 sub getKeys{
   my ($self, $profileSetName, $profileType) = @_;
+  print STDERR Dumper "Getting keys...\n";
   my ($groupName) = $self->getGroupNameFromProfileSetName($profileSetName);
 
   my ($strand) = $profileSetName =~ /\[.+ \- (.+) \- .+ \- /;
@@ -1432,12 +1433,12 @@ sub init {
   my $colors = ['blue', 'gray'];
 
   #tpm sense combined
-  my @profileArray = (['TEST bld49 - toxo Transcriptomes of enteroepithelial stages [htseq-union - firststrand - nonunique.tpm - nonunique]', 'values'],
-                      ['TEST bld49 - toxo Transcriptomes of enteroepithelial stages [htseq-union - firststrand - nonunique.tpm - nonunique]', 'standard_error'],
+  my @profileArray = (['Transcriptomes of enteroepithelial stages [htseq-union - firststrand - nonunique.tpm - nonunique]', 'values'],
+                      ['Transcriptomes of enteroepithelial stages [htseq-union - firststrand - nonunique.tpm - nonunique]', 'standard_error'],
                       ['Unsporulated and sporulated T. gondii [htseq-union - firststrand - nonunique.tpm - nonunique]', 'values'],
                       ['Unsporulated and sporulated T. gondii [htseq-union - firststrand - nonunique.tpm - nonunique]', 'standard_error'],
-                      ['TEST bld49 - toxo Transcriptomes of enteroepithelial stages [htseq-union - firststrand - tpm - unique]', 'values'],
-                      ['TEST bld49 - toxo Transcriptomes of enteroepithelial stages [htseq-union - firststrand - tpm - unique]', 'standard_error'],
+                      ['Transcriptomes of enteroepithelial stages [htseq-union - firststrand - tpm - unique]', 'values'],
+                      ['Transcriptomes of enteroepithelial stages [htseq-union - firststrand - tpm - unique]', 'standard_error'],
                       ['Unsporulated and sporulated T. gondii [htseq-union - firststrand - tpm - unique]', 'values'],
                       ['Unsporulated and sporulated T. gondii [htseq-union - firststrand - tpm - unique]', 'standard_error'],
                      );
@@ -1472,12 +1473,12 @@ RADJUST
   $bar->setPlotTitle("tpm_sense - $id");
 
   # tpm antisense combined
-  my @profileArrayAntisense = (['TEST bld49 - toxo Transcriptomes of enteroepithelial stages [htseq-union - secondstrand - nonunique.tpm - nonunique]', 'values'],
-                      ['TEST bld49 - toxo Transcriptomes of enteroepithelial stages [htseq-union - secondstrand - nonunique.tpm - nonunique]', 'standard_error'],
+  my @profileArrayAntisense = (['Transcriptomes of enteroepithelial stages [htseq-union - secondstrand - nonunique.tpm - nonunique]', 'values'],
+                      ['Transcriptomes of enteroepithelial stages [htseq-union - secondstrand - nonunique.tpm - nonunique]', 'standard_error'],
                       ['Unsporulated and sporulated T. gondii [htseq-union - secondstrand - nonunique.tpm - nonunique]', 'values'],
                       ['Unsporulated and sporulated T. gondii [htseq-union - secondstrand - nonunique.tpm - nonunique]', 'standard_error'],
-                      ['TEST bld49 - toxo Transcriptomes of enteroepithelial stages [htseq-union - secondstrand - tpm - unique]', 'values'],
-                      ['TEST bld49 - toxo Transcriptomes of enteroepithelial stages [htseq-union - secondstrand - tpm - unique]', 'standard_error'],
+                      ['Transcriptomes of enteroepithelial stages [htseq-union - secondstrand - tpm - unique]', 'values'],
+                      ['Transcriptomes of enteroepithelial stages [htseq-union - secondstrand - tpm - unique]', 'standard_error'],
                       ['Unsporulated and sporulated T. gondii [htseq-union - secondstrand - tpm - unique]', 'values'],
                       ['Unsporulated and sporulated T. gondii [htseq-union - secondstrand - tpm - unique]', 'standard_error'],
                      );
@@ -1495,7 +1496,7 @@ RADJUST
   $barAntisense->setPlotTitle("tpm_antisense - $id");
 
   # percentile sense combined
-  my @profileArrayPercentile = (['TEST bld49 - toxo Transcriptomes of enteroepithelial stages [htseq-union - firststrand - tpm - unique]', 'channel1_percentiles'],
+  my @profileArrayPercentile = (['Transcriptomes of enteroepithelial stages [htseq-union - firststrand - tpm - unique]', 'channel1_percentiles'],
                       ['Unsporulated and sporulated T. gondii [htseq-union - firststrand - tpm - unique]', 'channel1_percentiles'],
                      );
 
@@ -1512,7 +1513,7 @@ RADJUST
   $barPercentile->setDefaultYMax(100);
 
   # percentile antisense combined
-  my @profileArrayPercentileAntisense = (['TEST bld49 - toxo Transcriptomes of enteroepithelial stages [htseq-union - secondstrand - tpm - unique]', 'channel1_percentiles'],
+  my @profileArrayPercentileAntisense = (['Transcriptomes of enteroepithelial stages [htseq-union - secondstrand - tpm - unique]', 'channel1_percentiles'],
                       ['Unsporulated and sporulated T. gondii [htseq-union - secondstrand - tpm - unique]', 'channel1_percentiles'],
                      );
 
