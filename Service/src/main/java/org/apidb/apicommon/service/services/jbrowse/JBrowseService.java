@@ -373,7 +373,9 @@ public class JBrowseService extends AbstractWdkService {
 
     public Response responseFromCommand(List<String> command) throws IOException {
         for (int i = 0; i < command.size(); i++) {
-          if (command.get(i) == null) throw new WdkRuntimeException("Command part at index " + i + " is null.  Could be due to unchecked user input.");
+          if (command.get(i) == null)
+            throw new WdkRuntimeException(
+                "Command part at index " + i + " is null.  Could be due to unchecked user input.");
         }
         ProcessBuilder pb = new ProcessBuilder(command);
         Map<String, String> env = pb.environment();
