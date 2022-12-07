@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.ws.rs.BadRequestException;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
@@ -314,13 +315,17 @@ public class JBrowseService extends AbstractWdkService {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getJbrowseNames(@PathParam("organismAbbrev") String organismAbbrev, @QueryParam("equals") String eq, @QueryParam("startswith") String startsWith)  throws IOException {
 
+        if ((startsWith == null || startsWith.isBlank()) && (eq == null || eq.isBlank())) {
+          throw new BadRequestException("Request must include one of the following query parameters: ['startswith', 'equals']");
+        }
+
         String gusHome = getWdkModel().getGusHome();
         String projectId = getWdkModel().getProjectId();
 
         boolean isPartial = true;
         String sourceId = startsWith;
 
-        if(eq != null && !eq.equals("")) {
+        if (eq != null && !eq.isBlank()) {
             isPartial = false;
             sourceId = eq;
         }
