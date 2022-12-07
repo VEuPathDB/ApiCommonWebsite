@@ -26,7 +26,6 @@ public class SequenceReporter extends AbstractReporter {
   private static Logger LOG = Logger.getLogger(SequenceReporter.class);
 
   private static final String FASTA_MEDIA_TYPE = "text/x-fasta";
-  private static final String PLAIN_MEDIA_TYPE = "text/plain";
   private static final String BED_REPORTER_NAME = "bed";
 
   private enum SequenceType {
@@ -47,7 +46,12 @@ public class SequenceReporter extends AbstractReporter {
 
 
     // extract any sequence retrieval service config from this config
-    int basesPerLine = config.optInt("basesPerLine", 60);
+    int basesPerLine;
+    if("fixed_width".equals(config.getString("sequenceFormat"))){
+      basesPerLine = config.getInt("basesPerLine");
+    } else {
+      basesPerLine = 0;
+    }
 
     // build an answer request to save off and create a temporary result URL for
     AnswerRequest bedReporterRequest = new AnswerRequest(_baseAnswer.getRunnableAnswerSpec(), new AnswerFormatting(BED_REPORTER_NAME, config), false);
@@ -71,7 +75,7 @@ public class SequenceReporter extends AbstractReporter {
 
     // FIXME: starting here with synchronous API for proof of concept; convert to async
     _seqRetSvcRequestUrl = localhost + modelProps.get("SEQUENCE_RETRIEVAL_SERVICE_URL") +
-        "/sequences/" + sequenceType.name() + "/bed?basesPerLine=" + basesPerLine; 
+        "/sequences/" + sequenceType.name() + "/bed?basesPerLine=" + basesPerLine + "&deflineFormat=QUERYONLY&startOffset=ONE"; 
 
     LOG.info("Configured sequence reporter to return FASTA.\n  bedFileUrl = " + _bedFileUrl + "\n  seqRetSvcUrl = " + _seqRetSvcRequestUrl);
     return this;
@@ -100,10 +104,15 @@ public class SequenceReporter extends AbstractReporter {
 
   @Override
   public String getHttpContentType() {
+    return FASTA_MEDIA_TYPE;
+  }
+
+  @Override
+  public ContentDisposition getContentDisposition() {
     if(_showInBrowser){
-      return PLAIN_MEDIA_TYPE;
+        return ContentDisposition.INLINE;
     } else {
-      return FASTA_MEDIA_TYPE;
+        return ContentDisposition.ATTACHMENT;
     }
   }
 
