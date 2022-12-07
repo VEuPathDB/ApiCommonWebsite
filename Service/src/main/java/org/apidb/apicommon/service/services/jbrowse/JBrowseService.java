@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.ws.rs.BadRequestException;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
@@ -23,6 +24,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
 import org.gusdb.wdk.model.WdkModelException;
+import org.gusdb.wdk.model.WdkRuntimeException;
 import org.gusdb.wdk.service.service.AbstractWdkService;
 import org.json.JSONObject;
 
@@ -314,13 +316,17 @@ public class JBrowseService extends AbstractWdkService {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getJbrowseNames(@PathParam("organismAbbrev") String organismAbbrev, @QueryParam("equals") String eq, @QueryParam("startswith") String startsWith)  throws IOException {
 
+        if ((startsWith == null || startsWith.isBlank()) && (eq == null || eq.isBlank())) {
+          throw new BadRequestException("Request must include one of the following query parameters: ['startswith', 'equals']");
+        }
+
         String gusHome = getWdkModel().getGusHome();
         String projectId = getWdkModel().getProjectId();
 
         boolean isPartial = true;
         String sourceId = startsWith;
 
-        if(eq != null && !eq.equals("")) {
+        if (eq != null && !eq.isBlank()) {
             isPartial = false;
             sourceId = eq;
         }
@@ -366,6 +372,11 @@ public class JBrowseService extends AbstractWdkService {
     }
 
     public Response responseFromCommand(List<String> command) throws IOException {
+        for (int i = 0; i < command.size(); i++) {
+          if (command.get(i) == null)
+            throw new WdkRuntimeException(
+                "Command part at index " + i + " is null.  Could be due to unchecked user input.");
+        }
         ProcessBuilder pb = new ProcessBuilder(command);
         Map<String, String> env = pb.environment();
         env.put("GUS_HOME", getWdkModel().getGusHome());
