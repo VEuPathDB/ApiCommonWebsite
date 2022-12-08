@@ -10,7 +10,7 @@ import org.apidb.apicommon.model.report.bed.util.RequestedDeflineFields;
 import org.apidb.apicommon.model.report.bed.util.DeflineBuilder;
 import org.apidb.apicommon.model.report.bed.util.BedLine;
 
-public class GenomicGenomicFeatureProvider implements BedFeatureProvider {
+public class GenomicSequenceFeatureProvider implements BedFeatureProvider {
 
   private static final String ATTR_FORMATTED_LENGTH = "formatted_length";
   private static final String ATTR_ORGANISM = "organism";
@@ -18,9 +18,9 @@ public class GenomicGenomicFeatureProvider implements BedFeatureProvider {
   private final RequestedDeflineFields _requestedDeflineFields;
   private final StrandDirection _strand;
 
-  public GenomicGenomicFeatureProvider(JSONObject config) {
+  public GenomicSequenceFeatureProvider(JSONObject config) {
     _requestedDeflineFields = new RequestedDeflineFields(config);
-    _strand = StrandDirection.valueOf(config.getString("_strand"));
+    _strand = StrandDirection.valueOf(config.getString("strand"));
   }
 
   @Override
@@ -49,7 +49,9 @@ public class GenomicGenomicFeatureProvider implements BedFeatureProvider {
     Integer segmentStart = 1;
     Integer segmentEnd = featureLength;
 
-    DeflineBuilder defline = new DeflineBuilder(featureId);
+    String formattedId = String.format("%s (%s)", chrom, _strand.getSign());
+
+    DeflineBuilder defline = new DeflineBuilder(formattedId);
 
     if(_requestedDeflineFields.contains("organism")){
       defline.appendRecordAttribute(record, ATTR_ORGANISM);
@@ -61,7 +63,7 @@ public class GenomicGenomicFeatureProvider implements BedFeatureProvider {
       defline.appendPosition(chrom, segmentStart, segmentEnd, _strand);
     }
     if(_requestedDeflineFields.contains("ui_choice")){
-      defline.appendValue("genomic sequence");
+      defline.appendGenomicFeatureUiChoice("Whole sequence", _strand);
     }
     if(_requestedDeflineFields.contains("segment_length")){
       defline.appendSegmentLength(segmentStart, segmentEnd);

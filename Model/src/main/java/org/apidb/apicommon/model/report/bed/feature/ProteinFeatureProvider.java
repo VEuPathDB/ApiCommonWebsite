@@ -13,24 +13,29 @@ import org.apidb.apicommon.model.report.bed.util.BedLine;
 
 public class ProteinFeatureProvider implements BedFeatureProvider {
 
+  private enum ProteinAnchor {
+    UpstreamFromStart,
+    DownstreamFromEnd
+  }
+
   private static final String ATTR_PROTEIN_LENGTH = "protein_length";
   private static final String ATTR_ORGANISM = "organism";
   private static final String ATTR_GENE_PRODUCT = "gene_product";
 
   private final RequestedDeflineFields _requestedDeflineFields;
   private final int _startOffset;
-  private final Anchor _startAnchor;
+  private final ProteinAnchor _startAnchor;
   private final int _endOffset;
-  private final Anchor _endAnchor;
+  private final ProteinAnchor _endAnchor;
 
   public ProteinFeatureProvider(JSONObject config) {
     _requestedDeflineFields = new RequestedDeflineFields(config);
 
     _startOffset = config.getInt("startOffset3");
-    _startAnchor = Anchor.valueOf(config.getString("startAnchor3"));
+    _startAnchor = ProteinAnchor.valueOf(config.getString("startAnchor3"));
 
     _endOffset = config.getInt("endOffset3");
-    _endAnchor = Anchor.valueOf(config.getString("endAnchor3"));
+    _endAnchor = ProteinAnchor.valueOf(config.getString("endAnchor3"));
   }
 
   @Override
@@ -71,13 +76,15 @@ public class ProteinFeatureProvider implements BedFeatureProvider {
       defline.appendRecordAttribute(record, ATTR_GENE_PRODUCT);
     }
     if(_requestedDeflineFields.contains("position")){
-      defline.appendPosition(chrom, segmentStart, segmentEnd, strand);
+      defline.appendPositionAa(chrom, segmentStart, segmentEnd);
     }
     if(_requestedDeflineFields.contains("ui_choice")){
-      defline.appendValue(
-        getPositionDescProtein(_startOffset, "+", _startAnchor)
-        + " to "
-        + getPositionDescProtein(_endOffset, "-", _endAnchor)
+      boolean reverseAndComplement = false;
+      defline.appendRangeUiChoice(
+        "Protein Sequence",
+        getPositionDescProtein(_startOffset, _startAnchor),
+        getPositionDescProtein(_endOffset, _endAnchor),
+        reverseAndComplement
       );
     }
     if(_requestedDeflineFields.contains("segment_length")){
@@ -87,17 +94,36 @@ public class ProteinFeatureProvider implements BedFeatureProvider {
     return List.of(BedLine.bed6(chrom, segmentStart, segmentEnd, defline, strand));
   }
 
-  private static Integer getPositionProtein(Integer featureLength, int offset, Anchor anchor) throws WdkModelException {
+  private static Integer getPositionProtein(Integer featureLength, int offset, ProteinAnchor anchor) throws WdkModelException {
     switch(anchor){
-      case Start: return 1 + offset;
-      case End: return featureLength - offset;
+      case UpstreamFromStart: return 1 + offset;
+      case DownstreamFromEnd: return featureLength - offset;
       default: throw new WdkModelException("Unsupported anchor type: " + anchor);
     }
   }
 
-  private static String getPositionDescProtein(int offset, String sign, Anchor anchor){
-    return offset == 0
-        ? anchor.name()
-        : anchor.name() + sign + offset;
+  private static String getPositionDescProtein(int offset, ProteinAnchor anchor) throws WdkModelException {
+    StringBuilder sb = new StringBuilder();
+    switch(anchor){
+      case UpstreamFromStart:
+        sb.append("Start");
+        break;
+      case DownstreamFromEnd:
+        sb.append("End");
+        break;
+      default: throw new WdkModelException("Unsupported anchor type: " + anchor);
+    }
+    if(offset > 0){
+      switch(anchor){
+      case UpstreamFromStart:
+        sb.append(" + " + offset);
+        break;
+      case DownstreamFromEnd:
+        sb.append(" - " + offset);
+        break;
+        default: throw new WdkModelException("Unsupported anchor type: " + anchor);
+      }
+    }
+    return sb.toString();
   }
 }

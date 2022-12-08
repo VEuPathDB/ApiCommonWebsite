@@ -50,8 +50,8 @@ public class DeflineBuilder {
   public DeflineBuilder appendPosition(String chrom, Integer segmentStart, Integer segmentEnd, StrandDirection strand){
     StringBuilder innerBuilder = new StringBuilder();
     innerBuilder.append(chrom);
-    innerBuilder.append(", ");
     if(!strand.equals(StrandDirection.none)){
+      innerBuilder.append(", ");
       innerBuilder.append(strand + " strand");
     }
     innerBuilder.append(", ");
@@ -61,15 +61,44 @@ public class DeflineBuilder {
     return appendValue(innerBuilder.toString());
   }
 
+  public DeflineBuilder appendPositionAa(String chrom, Integer segmentStart, Integer segmentEnd){
+    StringBuilder innerBuilder = new StringBuilder();
+    innerBuilder.append(", ");
+    innerBuilder.append("" + segmentStart + " aa");
+    innerBuilder.append(" to ");
+    innerBuilder.append("" + segmentEnd + " aa");
+    return appendValue(innerBuilder.toString());
+  }
+
   public DeflineBuilder appendSegmentLength(Integer segmentStart, Integer segmentEnd){
     StringBuilder innerBuilder = new StringBuilder("segment_length=");
     innerBuilder.append(""+(segmentEnd - segmentStart + 1));
     return appendValue(innerBuilder.toString());
   }
 
-  public DeflineBuilder appendTotalSegmentLength(List<Integer> lengths){
-    StringBuilder innerBuilder = new StringBuilder("segment_length=");
+  public DeflineBuilder appendTotalSplicedLength(List<Integer> lengths){
+    StringBuilder innerBuilder = new StringBuilder("spliced_length=");
     innerBuilder.append("" + lengths.stream().mapToInt(Integer::intValue).sum());
+    return appendValue(innerBuilder.toString());
+  }
+
+  public DeflineBuilder appendRangeUiChoice(String option, String upstream, String downstream, boolean reverseAndComplement){
+    StringBuilder innerBuilder = new StringBuilder(option);
+    innerBuilder.append(", ");
+    innerBuilder.append(upstream);
+    innerBuilder.append(" to ");
+    innerBuilder.append(downstream);
+    if(reverseAndComplement){
+      innerBuilder.append(", reversed and complemented");
+    }
+    return appendValue(innerBuilder.toString());
+  }
+
+  public DeflineBuilder appendGenomicFeatureUiChoice(String feature, StrandDirection strand){
+    StringBuilder innerBuilder = new StringBuilder(feature);
+    innerBuilder.append(", sequence of ");
+    innerBuilder.append(strand.name());
+    innerBuilder.append(" strand");
     return appendValue(innerBuilder.toString());
   }
 }

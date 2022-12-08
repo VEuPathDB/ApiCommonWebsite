@@ -67,7 +67,7 @@ public class DynSpanFeatureProvider implements BedFeatureProvider {
       defline.appendPosition(chrom, segmentStart, segmentEnd, strand);
     }
     if(_requestedDeflineFields.contains("ui_choice")){
-      defline.appendValue("sequence");
+      defline.appendValue("whole sequence");
     }
     if(_requestedDeflineFields.contains("segment_length")){
       defline.appendSegmentLength(segmentStart, segmentEnd);

@@ -15,10 +15,24 @@ import org.json.JSONObject;
 
 public class GeneGenomicFeatureProvider implements BedFeatureProvider {
 
+  private enum OffsetSign {
+    plus,
+    minus;
+  }
+
+  private enum Anchor {
+    Start,
+    End,
+    CodeStart,
+    CodeEnd
+  }
+
   // "PbANKA_01_v3:438265..440094(-)"
   private static final Pattern LOCATION_TEXT_PATTERN = Pattern.compile("^(.*):(\\d+)..(\\d+)\\((\\+|-)\\)$");
 
   private static final String ATTR_LOCATION_TEXT = "location_text";
+  private static final String ATTR_THREE_PRIME_UTR_LENGTH = "three_prime_utr_length";
+  private static final String ATTR_FIVE_PRIME_UTR_LENGTH = "five_prime_utr_length";
   private static final String ATTR_ORGANISM = "organism";
 
   private final RequestedDeflineFields _requestedDeflineFields;
@@ -50,7 +64,7 @@ public class GeneGenomicFeatureProvider implements BedFeatureProvider {
 
   @Override
   public String[] getRequiredAttributeNames() {
-    return new String[] { ATTR_LOCATION_TEXT , ATTR_ORGANISM};
+    return new String[] { ATTR_LOCATION_TEXT , ATTR_ORGANISM, ATTR_THREE_PRIME_UTR_LENGTH, ATTR_FIVE_PRIME_UTR_LENGTH};
   }
 
   @Override
@@ -72,9 +86,11 @@ public class GeneGenomicFeatureProvider implements BedFeatureProvider {
     if(_reverseAndComplement) {
       strand = strand.opposite();
     }
+    int fivePrimeUtrLength = integerValue(record, ATTR_FIVE_PRIME_UTR_LENGTH);
+    int threePrimeUtrLength = integerValue(record, ATTR_THREE_PRIME_UTR_LENGTH);
 
-    Integer segmentStart = getPositionGenomic(featureStart, featureEnd, _upstreamOffset, _upstreamSign, _upstreamAnchor);
-    Integer segmentEnd = getPositionGenomic(featureStart, featureEnd, _downstreamOffset, _downstreamSign, _downstreamAnchor);
+    Integer segmentStart = getPositionGenomic(featureStart, featureEnd, _upstreamOffset, _upstreamSign, _upstreamAnchor, fivePrimeUtrLength, threePrimeUtrLength);
+    Integer segmentEnd = getPositionGenomic(featureStart, featureEnd, _downstreamOffset, _downstreamSign, _downstreamAnchor, fivePrimeUtrLength, threePrimeUtrLength);
 
     DeflineBuilder defline = new DeflineBuilder(featureId);
 
@@ -88,10 +104,11 @@ public class GeneGenomicFeatureProvider implements BedFeatureProvider {
       defline.appendPosition(chrom, segmentStart, segmentEnd, strand);
     }
     if(_requestedDeflineFields.contains("ui_choice")){
-      defline.appendValue(
-        getPositionDescGenomic(_upstreamOffset, _upstreamSign, _upstreamAnchor)
-        + " to " 
-        + getPositionDescGenomic(_downstreamOffset, _downstreamSign, _downstreamAnchor)
+      defline.appendRangeUiChoice(
+        "Unspliced Genomic Sequence",
+        getPositionDescGenomic(_upstreamOffset, _upstreamSign, _upstreamAnchor),
+        getPositionDescGenomic(_downstreamOffset, _downstreamSign, _downstreamAnchor),
+        _reverseAndComplement
       );
     }
     if(_requestedDeflineFields.contains("segment_length")){
@@ -112,13 +129,17 @@ public class GeneGenomicFeatureProvider implements BedFeatureProvider {
 
   private static int getPositionGenomic(
       Integer featureStart, Integer featureEnd, 
-      int offset, OffsetSign sign, Anchor anchor) throws WdkModelException{
+      int offset, OffsetSign sign, Anchor anchor,
+      int fivePrimeUtrLength, int threePrimeUtrLength
+      ) throws WdkModelException{
     if (sign == OffsetSign.minus) {
       offset = - offset;
     }
     switch(anchor) {
-      case Start: return featureStart + offset;
-      case End: return featureEnd + offset;
+      case Start: return featureStart - fivePrimeUtrLength + offset;
+      case CodeStart: return featureStart + offset;
+      case End: return featureEnd - threePrimeUtrLength + offset;
+      case CodeEnd: return featureEnd + offset;
       default: throw new WdkModelException("Unsupported anchor type: " + anchor);
     }
   }

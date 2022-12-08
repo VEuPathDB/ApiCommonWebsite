@@ -52,8 +52,8 @@ public class ProteinInterproFeatureProvider implements BedFeatureProvider {
       List<List<String>> result = new ArrayList<>();
       TableValue interproRows = record.getTableValue(TABLE_INTERPRO);
       for (Map<String, AttributeValue> interproRow : interproRows) {
-        Integer segmentStart = Integer.valueOf(interproRow.get("interpro_segmentStart_min").toString());
-        Integer segmentEnd = Integer.valueOf(interproRow.get("interpro_segmentEnd_min").toString());
+        Integer segmentStart = Integer.valueOf(interproRow.get("interpro_start_min").toString());
+        Integer segmentEnd = Integer.valueOf(interproRow.get("interpro_end_min").toString());
         StrandDirection strand = StrandDirection.none;
         /*
          * The segmentStart and segmentEnd coordinates are on the protein,
@@ -71,7 +71,7 @@ public class ProteinInterproFeatureProvider implements BedFeatureProvider {
             defline.appendAttributeValue(interproRow.get("interpro_desc"));
           }
           if(_requestedDeflineFields.contains("position")){
-            defline.appendPosition(chrom, segmentStart, segmentEnd, strand);
+            defline.appendPositionAa(chrom, segmentStart, segmentEnd);
           }
           if(_requestedDeflineFields.contains("ui_choice")){
             defline.appendValue("protein features: InterPro");

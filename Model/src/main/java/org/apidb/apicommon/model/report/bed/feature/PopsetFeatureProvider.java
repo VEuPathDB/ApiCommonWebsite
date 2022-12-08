@@ -66,7 +66,7 @@ public class PopsetFeatureProvider implements BedFeatureProvider {
       defline.appendPosition(chrom, segmentStart, segmentEnd, strand);
     }
     if(_requestedDeflineFields.contains("ui_choice")){
-      defline.appendValue("popset");
+      defline.appendValue("whole popset");
     }
     if(_requestedDeflineFields.contains("segment_length")){
       defline.appendSegmentLength(segmentStart, segmentEnd);

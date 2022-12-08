@@ -19,11 +19,13 @@ public class GenomicTableFieldFeatureProvider extends TableFieldFeatureProvider 
   private final StrandDirection _strand;
   private final RequestedDeflineFields _requestedDeflineFields;
   private final String _tableFieldName;
+  private final String _featureNamePretty;
 
   public GenomicTableFieldFeatureProvider(JSONObject config,
-      String tableFieldName, String startTableAttributeName, String endTableAttributeName) {
+      String tableFieldName, String featureNamePretty, String startTableAttributeName, String endTableAttributeName) {
     super(tableFieldName, startTableAttributeName, endTableAttributeName);
     _tableFieldName = tableFieldName;
+    _featureNamePretty = featureNamePretty;
     _requestedDeflineFields = new RequestedDeflineFields(config);
     _strand = StrandDirection.valueOf(config.getString("strand"));
   }
@@ -43,8 +45,8 @@ public class GenomicTableFieldFeatureProvider extends TableFieldFeatureProvider 
       Integer segmentStart, Integer segmentEnd) throws WdkModelException {
     String sourceId = getSourceId(record);
     String chrom = sourceId;
-    String featureId = sourceId + "::" + segmentStart + "-" + segmentEnd;
-    DeflineBuilder defline = new DeflineBuilder(featureId);
+    String formattedId = String.format("%s::%s-%s (%s)", chrom, segmentStart, segmentEnd, _strand.getSign());
+    DeflineBuilder defline = new DeflineBuilder(formattedId);
 
     if(_requestedDeflineFields.contains("organism")){
       defline.appendRecordAttribute(record, ATTR_ORGANISM);
@@ -56,7 +58,7 @@ public class GenomicTableFieldFeatureProvider extends TableFieldFeatureProvider 
       defline.appendPosition(chrom, segmentStart, segmentEnd, _strand);
     }
     if(_requestedDeflineFields.contains("ui_choice")){
-      defline.appendValue("genomic features: " + _tableFieldName);
+      defline.appendGenomicFeatureUiChoice(_featureNamePretty, _strand);
     }
     if(_requestedDeflineFields.contains("segment_length")){
       defline.appendSegmentLength(segmentStart, segmentEnd);

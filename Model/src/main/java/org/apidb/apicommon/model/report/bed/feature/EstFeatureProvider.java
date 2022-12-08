@@ -61,7 +61,7 @@ public class EstFeatureProvider implements BedFeatureProvider {
       defline.appendPosition(chrom, segmentStart, segmentEnd, strand);
     }
     if(_requestedDeflineFields.contains("ui_choice")){
-      defline.appendValue("EST");
+      defline.appendValue("whole EST");
     }
     if(_requestedDeflineFields.contains("segment_length")){
       defline.appendSegmentLength(segmentStart, segmentEnd);
