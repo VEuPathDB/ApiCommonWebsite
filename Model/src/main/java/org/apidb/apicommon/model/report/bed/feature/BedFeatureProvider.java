@@ -10,16 +10,6 @@ import org.gusdb.wdk.model.record.RecordInstance;
 
 public interface BedFeatureProvider {
 
-  enum OffsetSign {
-    plus,
-    minus;
-  }
-
-  enum Anchor {
-    Start,
-    End
-  }
-
   /**
    * @return full name of required record class
    */
@@ -59,6 +49,10 @@ public interface BedFeatureProvider {
     catch (WdkModelException | WdkUserException e){
       throw new WdkRuntimeException(e);
     }
+  }
+
+  default Integer integerValue(RecordInstance record, String key){
+    return Integer.valueOf(stringValue(record, key));
   }
 
 }

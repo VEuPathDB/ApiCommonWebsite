@@ -122,13 +122,13 @@ public class GeneComponentsFeatureProvider implements BedFeatureProvider {
             defline.appendRecordAttribute(record, ATTR_ORGANISM);
           }
           if(_requestedDeflineFields.contains("description")){
-            defline.appendValue(geneComponent.toString() + " sequence");
+            defline.appendValue(prettyString(geneComponent) + " sequence");
           }
           if(_requestedDeflineFields.contains("position")){
             defline.appendPosition(chrom, segmentStart, segmentEnd, strand);
           }
           if(_requestedDeflineFields.contains("ui_choice")){
-            defline.appendValue("Gene components: " + _requestedComponents.stream().map(x -> x.toString()).collect(Collectors.joining(", ")));
+            defline.appendValue("Gene components: " + _requestedComponents.stream().map(x -> prettyString(x)).collect(Collectors.joining(", ")));
           }
           if(_requestedDeflineFields.contains("segment_length")){
             defline.appendSegmentLength(segmentStart, segmentEnd);
@@ -140,6 +140,21 @@ public class GeneComponentsFeatureProvider implements BedFeatureProvider {
     }
     catch (WdkUserException e){
       throw new WdkModelException(e);
+    }
+  }
+
+  private String prettyString(GeneComponentAsRequested geneComponent){
+    switch(geneComponent){
+      case exon:
+        return "Exon";
+      case intron:
+        return "Intron";
+      case five_prime_utr:
+        return "5' UTR";
+      case three_prime_utr:
+        return "3' UTR";
+      default:
+        throw new WdkRuntimeException("Unsupported gene component: " + geneComponent.toString());
     }
   }
   private GeneComponentAsRequested asRequestedComponent(GeneComponentAsStored geneComponentAsStored, StrandDirection strand, boolean startMatchesTranscriptStart, boolean endMatchesTranscriptEnd){

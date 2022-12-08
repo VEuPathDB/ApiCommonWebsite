@@ -24,7 +24,7 @@ import org.json.JSONObject;
 public class TranscriptBlockFeaturesProvider implements BedFeatureProvider {
 
   private static final String ATTR_ORGANISM = "organism";
-  private static final String ATTR_GENE_PRODUCT = "gene_product";
+  private static final String ATTR_PRODUCT = "product";
   private static final String TABLE_GENE_MODEL_DUMP = "GeneModelDump";
 
   private final RequestedDeflineFields _requestedDeflineFields;
@@ -44,7 +44,7 @@ public class TranscriptBlockFeaturesProvider implements BedFeatureProvider {
 
   @Override
   public String[] getRequiredAttributeNames() {
-    return new String[] { ATTR_ORGANISM } ;
+    return new String[] { ATTR_ORGANISM, ATTR_PRODUCT } ;
   }
 
   @Override
@@ -107,7 +107,7 @@ public class TranscriptBlockFeaturesProvider implements BedFeatureProvider {
           defline.appendRecordAttribute(record, ATTR_ORGANISM);
         }
         if(_requestedDeflineFields.contains("description")){
-          defline.appendRecordAttribute(record, ATTR_GENE_PRODUCT);
+          defline.appendRecordAttribute(record, ATTR_PRODUCT);
         }
         if(_requestedDeflineFields.contains("position")){
           defline.appendPosition(chrom, segmentStart, segmentEnd, strand);
@@ -116,10 +116,10 @@ public class TranscriptBlockFeaturesProvider implements BedFeatureProvider {
           defline.appendValue(_blockFeatureType);
         }
         if(_requestedDeflineFields.contains("segment_length")){
-          defline.appendTotalSegmentLength(lengthsByT.get(transcriptId));
+          defline.appendTotalSplicedLength(lengthsByT.get(transcriptId));
         }
 
-        result.add(BedLine.bed12(chrom, segmentStart, segmentEnd, defline, strand, lengthsByT.get(transcriptId), startsByT.get(transcriptId)));
+        result.add(BedLine.bed12(chrom, defline, strand, startsByT.get(transcriptId), endsByT.get(transcriptId)));
       }
       return result;
     }

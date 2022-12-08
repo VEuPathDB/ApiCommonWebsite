@@ -53,7 +53,7 @@ public class ProteinTableFieldFeatureProvider extends TableFieldFeatureProvider 
       defline.appendValue("protein");
     }
     if(_requestedDeflineFields.contains("position")){
-      defline.appendPosition(chrom, segmentStart, segmentEnd, strand);
+      defline.appendPositionAa(chrom, segmentStart, segmentEnd);
     }
     if(_requestedDeflineFields.contains("ui_choice")){
       defline.appendValue("protein features: " + _tableFieldName);
