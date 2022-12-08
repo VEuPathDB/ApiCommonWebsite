@@ -1423,7 +1423,7 @@ sub init {
 1;
 
 package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_173528b522;
-
+use Data::Dumper;
 sub init {
   my $self = shift;
 
@@ -1450,6 +1450,8 @@ sub init {
   $bar->setYaxisLabel('TPM');
   $bar->setColors([$colors->[1], $colors->[0]]);
   $bar->setIsStacked(1);
+  $bar->setHasExtraLegend(1);
+  $bar->setLegendLabels(['nonunique', 'nonunique', 'unique', 'unique']);
   my $rAdjustString = << 'RADJUST';
     profile.df.full$LEGEND <- as.factor(ifelse(grepl('nonunique', profile.df.full$PROFILE_SET, fixed=T), 'nonunique', 'unique'))
     newVals <- aggregate(VALUE ~ NAME, with(profile.df.full, data.frame(NAME=NAME, VALUE=ifelse(LEGEND=="nonunique", 1, -1)*VALUE)), sum);
@@ -1489,10 +1491,38 @@ RADJUST
   $barAntisense->setPartName('tpm_antisense');
   $barAntisense->setYaxisLabel('TPM');
   $barAntisense->setColors([$colors->[1], $colors->[0]]);
+  $barAntisense->setHasExtraLegend(1);
+  $barAntisense->setLegendLabels(['nonunique', 'nonunique', 'unique', 'unique']);
   $barAntisense->setIsStacked(1);
   $barAntisense->addAdjustProfile($rAdjustString);
   $barAntisense->setRPostscript("gp = gp + facet_grid('. ~ FACET', scales='free_x', space='free_x')");
   $barAntisense->setPlotTitle("tpm_antisense - $id");
+
+ #tpm both strands
+  my @profileArrayBothStrands = (['Transcriptomes of enteroepithelial stages [htseq-union - firststrand - tpm - unique]', 'values', 'Transcriptomes of enteroepithelial stages [htseq-union - firststrand - tpm - unique]', 'standard_error'],
+                         ['Unsporulated and sporulated T. gondii [htseq-union - firststrand - tpm - unique]', 'values', 'Unsporulated and sporulated T. gondii [htseq-union - firststrand - tpm - unique]', 'standard_error'],
+                         ['Transcriptomes of enteroepithelial stages [htseq-union - secondstrand - tpm - unique]', 'values', 'Transcriptomes of enteroepithelial stages [htseq-union - secondstrand - tpm - unique]', 'standard_error'],
+                         ['Unsporulated and sporulated T. gondii [htseq-union - secondstrand - tpm - unique]', 'values', 'Unsporulated and sporulated T. gondii [htseq-union - secondstrand - tpm - unique]', 'standard_error'],
+                        );
+
+  my $profileSetsBothStrands = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileArrayBothStrands);
+  my @args = (@_, $profileSetsBothStrands);
+
+  my $barBothStrands = EbrcWebsiteCommon::View::GraphPackage::GGBarPlot::RNASeqSenseAntisense->new(@args);
+  $barBothStrands->setProfileSets($profileSetsBothStrands);
+  $barBothStrands->setPartName('tpm_Both_strands');
+  $barBothStrands->setYaxisLabel('log2(TPM + 1)');
+  $barBothStrands->setColors([$colors->[0], $colors->[1]]);
+  $barBothStrands->setIsStacked(0);
+  my $rAdjustStringSenseAntisense = << 'RADJUST';
+    profile.df.full$FACET <- ifelse(grepl('enteroepithelial', profile.df.full$PROFILE_SET, fixed=T), 'Enteroepithelial', 'Sporulation')
+    profile.df.full$FACET <- factor(profile.df.full$FACET, levels=c('Sporulation','Enteroepithelial'))
+RADJUST
+  $barBothStrands->setWantLogged(1);
+  $barBothStrands->addAdjustProfile($rAdjustStringSenseAntisense);
+  $barBothStrands->setRPostscript("gp = gp + facet_grid('. ~ FACET', scales='free_x', space='free_x')");
+  $barBothStrands->setPlotTitle("tpm_Both_strands - $id");
+
 
   # percentile sense combined
   my @profileArrayPercentile = (['Transcriptomes of enteroepithelial stages [htseq-union - firststrand - tpm - unique]', 'channel1_percentiles'],
@@ -1528,7 +1558,7 @@ RADJUST
   $barPercentileAntisense->setPlotTitle("percentile_antisense - $id");
   $barPercentileAntisense->setDefaultYMax(100);  
 
-  $self->setGraphObjects($bar, $barAntisense, $barPercentile, $barPercentileAntisense);
+  $self->setGraphObjects($bar, $barAntisense, $barBothStrands, $barPercentile, $barPercentileAntisense);
 
   return $self;
 }
