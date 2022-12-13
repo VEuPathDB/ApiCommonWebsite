@@ -62,7 +62,7 @@ public class DeflineBuilder {
   }
 
   public DeflineBuilder appendPositionAa(String chrom, Integer segmentStart, Integer segmentEnd){
-    StringBuilder innerBuilder = new StringBuilder();
+    StringBuilder innerBuilder = new StringBuilder(chrom);
     innerBuilder.append(", ");
     innerBuilder.append("" + segmentStart + " aa");
     innerBuilder.append(" to ");
