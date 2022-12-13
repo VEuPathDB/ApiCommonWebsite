@@ -11,7 +11,7 @@ import org.apidb.apicommon.model.report.bed.util.RequestedDeflineFields;
 import org.apidb.apicommon.model.report.bed.util.DeflineBuilder;
 import org.apidb.apicommon.model.report.bed.util.BedLine;
 
-public class ProteinFeatureProvider implements BedFeatureProvider {
+public class ProteinSequenceFeatureProvider implements BedFeatureProvider {
 
   private enum ProteinAnchor {
     DownstreamFromStart,
@@ -28,7 +28,7 @@ public class ProteinFeatureProvider implements BedFeatureProvider {
   private final int _endOffset;
   private final ProteinAnchor _endAnchor;
 
-  public ProteinFeatureProvider(JSONObject config) {
+  public ProteinSequenceFeatureProvider(JSONObject config) {
     _requestedDeflineFields = new RequestedDeflineFields(config);
 
     _startOffset = config.getInt("startOffset3");
@@ -116,10 +116,10 @@ public class ProteinFeatureProvider implements BedFeatureProvider {
     if(offset > 0){
       switch(anchor){
       case DownstreamFromStart:
-        sb.append(" + " + offset);
+        sb.append("+" + offset);
         break;
       case UpstreamFromEnd:
-        sb.append(" - " + offset);
+        sb.append("-" + offset);
         break;
         default: throw new WdkModelException("Unsupported anchor type: " + anchor);
       }
