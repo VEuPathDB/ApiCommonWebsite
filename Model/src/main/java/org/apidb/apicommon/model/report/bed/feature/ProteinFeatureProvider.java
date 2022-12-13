@@ -14,8 +14,8 @@ import org.apidb.apicommon.model.report.bed.util.BedLine;
 public class ProteinFeatureProvider implements BedFeatureProvider {
 
   private enum ProteinAnchor {
-    UpstreamFromStart,
-    DownstreamFromEnd
+    DownstreamFromStart,
+    UpstreamFromEnd
   }
 
   private static final String ATTR_PROTEIN_LENGTH = "protein_length";
@@ -96,8 +96,8 @@ public class ProteinFeatureProvider implements BedFeatureProvider {
 
   private static Integer getPositionProtein(Integer featureLength, int offset, ProteinAnchor anchor) throws WdkModelException {
     switch(anchor){
-      case UpstreamFromStart: return 1 + offset;
-      case DownstreamFromEnd: return featureLength - offset;
+      case DownstreamFromStart: return 1 + offset;
+      case UpstreamFromEnd: return featureLength - offset;
       default: throw new WdkModelException("Unsupported anchor type: " + anchor);
     }
   }
@@ -105,20 +105,20 @@ public class ProteinFeatureProvider implements BedFeatureProvider {
   private static String getPositionDescProtein(int offset, ProteinAnchor anchor) throws WdkModelException {
     StringBuilder sb = new StringBuilder();
     switch(anchor){
-      case UpstreamFromStart:
+      case DownstreamFromStart:
         sb.append("Start");
         break;
-      case DownstreamFromEnd:
+      case UpstreamFromEnd:
         sb.append("End");
         break;
       default: throw new WdkModelException("Unsupported anchor type: " + anchor);
     }
     if(offset > 0){
       switch(anchor){
-      case UpstreamFromStart:
+      case DownstreamFromStart:
         sb.append(" + " + offset);
         break;
-      case DownstreamFromEnd:
+      case UpstreamFromEnd:
         sb.append(" - " + offset);
         break;
         default: throw new WdkModelException("Unsupported anchor type: " + anchor);
