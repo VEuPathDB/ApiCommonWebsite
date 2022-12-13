@@ -6,7 +6,7 @@ import org.apidb.apicommon.model.TranscriptUtil;
 import org.apidb.apicommon.model.report.bed.feature.BedFeatureProvider;
 import org.apidb.apicommon.model.report.bed.feature.GeneGenomicFeatureProvider;
 import org.apidb.apicommon.model.report.bed.feature.ProteinTableFieldFeatureProvider;
-import org.apidb.apicommon.model.report.bed.feature.ProteinFeatureProvider;
+import org.apidb.apicommon.model.report.bed.feature.ProteinSequenceFeatureProvider;
 import org.apidb.apicommon.model.report.bed.feature.ProteinInterproFeatureProvider;
 import org.apidb.apicommon.model.report.bed.feature.TranscriptBlockFeaturesProvider;
 import org.apidb.apicommon.model.report.bed.feature.GeneComponentsFeatureProvider;
@@ -85,7 +85,7 @@ public class BedGeneReporter extends BedReporter {
       case genomic:
         return new GeneGenomicFeatureProvider(config);
       case protein:
-        return new ProteinFeatureProvider(config);
+        return new ProteinSequenceFeatureProvider(config);
       case protein_features:
         ProteinFeature proteinFeature = ProteinFeature.valueOf(config.getString("proteinFeature"));
         switch (proteinFeature){
