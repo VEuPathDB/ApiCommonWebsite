@@ -3,6 +3,7 @@ package org.apidb.apicommon.model.report.bed;
 import java.util.Set;
 
 import org.apidb.apicommon.model.TranscriptUtil;
+import org.gusdb.wdk.model.record.RecordClass;
 import org.apidb.apicommon.model.report.bed.feature.BedFeatureProvider;
 import org.apidb.apicommon.model.report.bed.feature.GeneGenomicFeatureProvider;
 import org.apidb.apicommon.model.report.bed.feature.ProteinTableFieldFeatureProvider;
@@ -65,9 +66,17 @@ public class BedGeneReporter extends BedReporter {
 
       BedFeatureProvider featureProvider = createFeatureProvider(config);
 
-      // convert to gene answer if feature provider requires genes
-      if (TranscriptUtil.GENE_RECORDCLASS.equals(featureProvider.getRequiredRecordClassFullName())) {
+      /*
+       * The record can be either transcript or gene
+       */
+      RecordClass recordClass = getQuestion().getRecordClass();
+
+      boolean providerNeedsGene = TranscriptUtil.isGeneRecordClass(featureProvider.getRequiredRecordClassFullName());
+      boolean providerNeedsTranscript = TranscriptUtil.isTranscriptRecordClass(featureProvider.getRequiredRecordClassFullName());
+      if (TranscriptUtil.isTranscriptRecordClass(recordClass) && providerNeedsGene) {
         _baseAnswer = TranscriptUtil.transformToGeneAnswer(_baseAnswer);
+      } else if (TranscriptUtil.isGeneRecordClass(recordClass) && providerNeedsTranscript) {
+        _baseAnswer = TranscriptUtil.transformToTranscriptAnswer(_baseAnswer);
       }
 
       // pass the provider to superclass; will use to build and process record stream
