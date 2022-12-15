@@ -47,6 +47,25 @@ public class DeflineBuilder {
     }
   }
 
+  public DeflineBuilder appendTwoRecordAttributesWhereFirstOneMayBeEmpty(RecordInstance record, String firstKey, String secondKey){
+    String v1;
+    String v2;
+    try {
+      v1 = record.getAttributeValue(firstKey).toString();
+      v2 = record.getAttributeValue(secondKey).toString();
+    }
+    catch (WdkModelException | WdkUserException e){
+      throw new WdkRuntimeException(e);
+    }
+    StringBuilder innerBuilder = new StringBuilder();
+    if(!"".equals(v1)){
+      innerBuilder.append(v1);
+      innerBuilder.append(" ");
+    }
+    innerBuilder.append(v2);
+    return appendValue(innerBuilder.toString());
+  }
+
   public DeflineBuilder appendPosition(String chrom, Integer segmentStart, Integer segmentEnd, StrandDirection strand){
     StringBuilder innerBuilder = new StringBuilder();
     innerBuilder.append(chrom);

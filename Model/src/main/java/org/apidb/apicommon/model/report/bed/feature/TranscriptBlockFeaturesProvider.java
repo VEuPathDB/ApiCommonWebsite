@@ -24,6 +24,7 @@ import org.json.JSONObject;
 public class TranscriptBlockFeaturesProvider implements BedFeatureProvider {
 
   private static final String ATTR_ORGANISM = "organism";
+  private static final String ATTR_NAME = "name";
   private static final String ATTR_PRODUCT = "product";
   private static final String TABLE_GENE_MODEL_DUMP = "GeneModelDump";
 
@@ -44,7 +45,10 @@ public class TranscriptBlockFeaturesProvider implements BedFeatureProvider {
 
   @Override
   public String[] getRequiredAttributeNames() {
-    return new String[] { ATTR_ORGANISM, ATTR_PRODUCT } ;
+    return new String[] {
+      ATTR_ORGANISM,
+      ATTR_NAME,
+      ATTR_PRODUCT } ;
   }
 
   @Override
@@ -107,7 +111,7 @@ public class TranscriptBlockFeaturesProvider implements BedFeatureProvider {
           defline.appendRecordAttribute(record, ATTR_ORGANISM);
         }
         if(_requestedDeflineFields.contains("description")){
-          defline.appendRecordAttribute(record, ATTR_PRODUCT);
+          defline.appendTwoRecordAttributesWhereFirstOneMayBeEmpty(record, ATTR_NAME, ATTR_PRODUCT);
         }
         if(_requestedDeflineFields.contains("position")){
           defline.appendPosition(chrom, segmentStart, segmentEnd, strand);

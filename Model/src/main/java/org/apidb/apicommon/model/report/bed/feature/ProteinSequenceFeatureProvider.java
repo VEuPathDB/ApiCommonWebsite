@@ -20,6 +20,7 @@ public class ProteinSequenceFeatureProvider implements BedFeatureProvider {
 
   private static final String ATTR_PROTEIN_LENGTH = "protein_length";
   private static final String ATTR_ORGANISM = "organism";
+  private static final String ATTR_GENE_NAME = "gene_name";
   private static final String ATTR_GENE_PRODUCT = "gene_product";
 
   private final RequestedDeflineFields _requestedDeflineFields;
@@ -48,6 +49,7 @@ public class ProteinSequenceFeatureProvider implements BedFeatureProvider {
     return new String[] {
         ATTR_PROTEIN_LENGTH,
         ATTR_ORGANISM,
+        ATTR_GENE_NAME,
         ATTR_GENE_PRODUCT
     };
   }
@@ -73,7 +75,7 @@ public class ProteinSequenceFeatureProvider implements BedFeatureProvider {
       defline.appendRecordAttribute(record, ATTR_ORGANISM);
     }
     if(_requestedDeflineFields.contains("description")){
-      defline.appendRecordAttribute(record, ATTR_GENE_PRODUCT);
+      defline.appendTwoRecordAttributesWhereFirstOneMayBeEmpty(record, ATTR_GENE_NAME, ATTR_GENE_PRODUCT);
     }
     if(_requestedDeflineFields.contains("position")){
       defline.appendPositionAa(chrom, segmentStart, segmentEnd);
