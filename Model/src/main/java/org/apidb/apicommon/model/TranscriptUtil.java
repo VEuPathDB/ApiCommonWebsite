@@ -15,11 +15,11 @@ public class TranscriptUtil {
   public static final String GENE_RECORDCLASS = "GeneRecordClasses.GeneRecordClass";
   public static final String TRANSCRIPT_RECORDCLASS = "TranscriptRecordClasses.TranscriptRecordClass";
 
-  private static final String XFORM_QUESTION_NAME = "GeneRecordQuestions.GenesFromTranscripts";
-  private static final String XFORM_STEP_ID_PARAM_NAME = "gene_result";
+  private static final String GENE_XFORM_QUESTION_NAME = "GeneRecordQuestions.GenesFromTranscripts";
+  private static final String GENE_XFORM_STEP_ID_PARAM_NAME = "gene_result";
 
-  private static final String YFORM_QUESTION_NAME = "TranscriptRecordQuestions.TranscriptsFromGenes";
-  private static final String YFORM_STEP_ID_PARAM_NAME = "transcript_result";
+  private static final String TRANSCRIPT_XFORM_QUESTION_NAME = "GeneQuestions.TranscriptsFromGenes";
+  private static final String TRANSCRIPT_XFORM_STEP_ID_PARAM_NAME = "transcript_result";
 
   public static final boolean isGeneRecordClass(String name) {
     return GENE_RECORDCLASS.equals(name);
@@ -53,8 +53,8 @@ public class TranscriptUtil {
     return TransformUtil.transformToNewResultTypeAnswer(
         transcriptAnswer,
         TRANSCRIPT_RECORDCLASS,
-        XFORM_QUESTION_NAME,
-        XFORM_STEP_ID_PARAM_NAME,
+        GENE_XFORM_QUESTION_NAME,
+        GENE_XFORM_STEP_ID_PARAM_NAME,
         GENE_RECORDCLASS);
   }
 
@@ -62,8 +62,8 @@ public class TranscriptUtil {
     return TransformUtil.transformToNewResultTypeAnswer(
         geneAnswer,
         GENE_RECORDCLASS,
-        YFORM_QUESTION_NAME,
-        YFORM_STEP_ID_PARAM_NAME,
+        TRANSCRIPT_XFORM_QUESTION_NAME,
+        TRANSCRIPT_XFORM_STEP_ID_PARAM_NAME,
         TRANSCRIPT_RECORDCLASS);
   }
 
