@@ -1,10 +1,7 @@
 package org.apidb.apicommon.model.report.bed;
 
-import java.util.List;
-
 import org.apidb.apicommon.model.report.bed.feature.DynSpanFeatureProvider;
 import org.gusdb.wdk.model.WdkModelException;
-import org.gusdb.wdk.model.record.RecordInstance;
 import org.gusdb.wdk.model.report.Reporter;
 import org.gusdb.wdk.model.report.ReporterConfigException;
 import org.json.JSONObject;
