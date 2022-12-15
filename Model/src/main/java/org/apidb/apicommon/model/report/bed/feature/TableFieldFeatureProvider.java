@@ -8,7 +8,6 @@ import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.record.RecordInstance;
 import org.gusdb.wdk.model.record.attribute.AttributeValue;
-import org.json.JSONObject;
 
 public abstract class TableFieldFeatureProvider implements BedFeatureProvider {
 
@@ -16,7 +15,6 @@ public abstract class TableFieldFeatureProvider implements BedFeatureProvider {
       RecordInstance record, Map<String,AttributeValue> tableRow, Integer start, Integer end) throws WdkModelException;
 
   private final String _tableFieldName;
-
   private final String _startTableAttributeName;
   private final String _endTableAttributeName;
 

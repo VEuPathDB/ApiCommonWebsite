@@ -1,41 +1,29 @@
 package org.apidb.apicommon.model.report.bed.util;
+
 import java.lang.IllegalArgumentException;
 import java.lang.IllegalStateException;
+import java.util.function.Function;
 
 public enum StrandDirection {
 
-  forward("+"),
-  reverse("-"),
-  none(".");
+  forward("+", "f"),
+  reverse("-", "r"),
+  none(".", null);
 
   private final String _sign;
-  private StrandDirection(String sign) {
+  private final String _fOrR;
+
+  private StrandDirection(String sign, String fOrR) {
     _sign = sign;
+    _fOrR = fOrR;
   }
+
   public String getSign() {
     return _sign;
   }
 
-  public static StrandDirection fromSign(String sign) {
-    if("+".equals(sign)){
-      return StrandDirection.forward;
-    } else if ("-".equals(sign)){
-      return StrandDirection.reverse;
-    } else if (".".equals(sign)){
-      return StrandDirection.none;
-    } else {
-      throw new IllegalArgumentException(sign);
-    }
-  }
-
-  public static StrandDirection fromEfOrEr(String efOrEr) {
-    if("f".equals(efOrEr)){
-      return StrandDirection.forward;
-    } else if ("r".equals(efOrEr)){
-      return StrandDirection.reverse;
-    } else {
-      throw new IllegalArgumentException(efOrEr);
-    }
+  private String getFOrR() {
+    return _fOrR;
   }
 
   public StrandDirection opposite(){
@@ -44,8 +32,29 @@ public enum StrandDirection {
         return StrandDirection.reverse;
       case reverse:
         return StrandDirection.forward;
+      default:
+        throw new IllegalStateException("opposite called on value that does not have an opposite: " + name());
     }
-    throw new IllegalStateException(this.toString());
   }
+
+  public static StrandDirection fromSign(String sign) {
+    return getByProperty(sign, StrandDirection::getSign);
+  }
+
+  public static StrandDirection fromEfOrEr(String fOrR) {
+    return getByProperty(fOrR, StrandDirection::getFOrR);
+  }
+
+  private static StrandDirection getByProperty(String propValue, Function<StrandDirection, String> getter) {
+    for (StrandDirection dir : values()) {
+      String value = getter.apply(dir);
+      if (value != null && value.equals(propValue)) {
+        return dir;
+      }
+    }
+    throw new IllegalArgumentException(propValue);
+  }
+
+
 
 }

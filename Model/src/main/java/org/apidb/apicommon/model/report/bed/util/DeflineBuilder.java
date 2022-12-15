@@ -1,7 +1,6 @@
 package org.apidb.apicommon.model.report.bed.util;
 
 import java.util.List;
-import org.apidb.apicommon.model.report.bed.util.StrandDirection;
 import org.gusdb.wdk.model.record.RecordInstance;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkRuntimeException;

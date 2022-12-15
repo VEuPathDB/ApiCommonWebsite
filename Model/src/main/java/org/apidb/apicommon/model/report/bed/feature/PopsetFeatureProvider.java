@@ -1,17 +1,14 @@
 package org.apidb.apicommon.model.report.bed.feature;
 
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-import org.apidb.apicommon.model.TranscriptUtil;
+import org.apidb.apicommon.model.report.bed.util.BedLine;
+import org.apidb.apicommon.model.report.bed.util.DeflineBuilder;
+import org.apidb.apicommon.model.report.bed.util.RequestedDeflineFields;
+import org.apidb.apicommon.model.report.bed.util.StrandDirection;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.record.RecordInstance;
 import org.json.JSONObject;
-import org.apidb.apicommon.model.report.bed.util.StrandDirection;
-import org.apidb.apicommon.model.report.bed.util.RequestedDeflineFields;
-import org.apidb.apicommon.model.report.bed.util.DeflineBuilder;
-import org.apidb.apicommon.model.report.bed.util.BedLine;
 
 public class PopsetFeatureProvider implements BedFeatureProvider {
 

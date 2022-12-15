@@ -1,10 +1,9 @@
 package org.apidb.apicommon.model.report.bed.util;
+
 import java.util.List;
 import java.util.Collections;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import org.apidb.apicommon.model.report.bed.util.StrandDirection;
-import org.apidb.apicommon.model.report.bed.util.DeflineBuilder;
 
 /* 
  * fields documented in:
@@ -35,12 +34,12 @@ public class BedLine {
     
     String blockSizesStr =
       IntStream.range(0, numBlocks)
-      .mapToObj(i -> new Integer(subfeatureEnds.get(i) - subfeatureStarts.get(i)).toString())
+      .mapToObj(i -> Integer.valueOf(subfeatureEnds.get(i) - subfeatureStarts.get(i)).toString())
       .collect(Collectors.joining(","));
 
     String blockStartsStr =
       IntStream.range(0, numBlocks)
-      .mapToObj(i -> new Integer(subfeatureStarts.get(i) - start).toString())
+      .mapToObj(i -> Integer.valueOf(subfeatureStarts.get(i) - start).toString())
       .collect(Collectors.joining(","));
 
 

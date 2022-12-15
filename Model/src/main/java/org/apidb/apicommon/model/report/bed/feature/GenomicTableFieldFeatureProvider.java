@@ -18,13 +18,11 @@ public class GenomicTableFieldFeatureProvider extends TableFieldFeatureProvider 
 
   private final StrandDirection _strand;
   private final RequestedDeflineFields _requestedDeflineFields;
-  private final String _tableFieldName;
   private final String _featureNamePretty;
 
   public GenomicTableFieldFeatureProvider(JSONObject config,
       String tableFieldName, String featureNamePretty, String startTableAttributeName, String endTableAttributeName) {
     super(tableFieldName, startTableAttributeName, endTableAttributeName);
-    _tableFieldName = tableFieldName;
     _featureNamePretty = featureNamePretty;
     _requestedDeflineFields = new RequestedDeflineFields(config);
     _strand = StrandDirection.valueOf(config.getString("strand"));

@@ -170,6 +170,8 @@ public class GeneComponentsFeatureProvider implements BedFeatureProvider {
             return startMatchesTranscriptStart ? GeneComponentAsRequested.five_prime_utr : GeneComponentAsRequested.three_prime_utr;
           case reverse:
             return endMatchesTranscriptEnd ? GeneComponentAsRequested.five_prime_utr: GeneComponentAsRequested.three_prime_utr;
+          case none:
+            return null;
         }
     }
     return null;
