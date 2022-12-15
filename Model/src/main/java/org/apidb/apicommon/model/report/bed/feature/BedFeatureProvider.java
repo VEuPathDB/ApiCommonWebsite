@@ -51,8 +51,17 @@ public interface BedFeatureProvider {
     }
   }
 
-  default Integer integerValue(RecordInstance record, String key){
-    return Integer.valueOf(stringValue(record, key));
+  default Integer integerValueWithZeroForEmpty(RecordInstance record, String key){
+    String value = stringValue(record, key);
+    if("".equals(value)){
+      return 0;
+    } else {
+      try {
+        return Integer.valueOf(value);
+      } catch (NumberFormatException e){
+        throw new WdkRuntimeException(String.format("Record value: %s for key: %s could not be parsed as integer", value, key));
+      }
+    }
   }
 
 }

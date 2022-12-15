@@ -86,8 +86,8 @@ public class GeneGenomicFeatureProvider implements BedFeatureProvider {
     if(_reverseAndComplement) {
       strand = strand.opposite();
     }
-    int fivePrimeUtrLength = integerValue(record, ATTR_FIVE_PRIME_UTR_LENGTH);
-    int threePrimeUtrLength = integerValue(record, ATTR_THREE_PRIME_UTR_LENGTH);
+    int fivePrimeUtrLength = integerValueWithZeroForEmpty(record, ATTR_FIVE_PRIME_UTR_LENGTH);
+    int threePrimeUtrLength = integerValueWithZeroForEmpty(record, ATTR_THREE_PRIME_UTR_LENGTH);
 
     Integer segmentStart = getPositionGenomic(featureStart, featureEnd, _upstreamOffset, _upstreamSign, _upstreamAnchor, fivePrimeUtrLength, threePrimeUtrLength);
     Integer segmentEnd = getPositionGenomic(featureStart, featureEnd, _downstreamOffset, _downstreamSign, _downstreamAnchor, fivePrimeUtrLength, threePrimeUtrLength);
