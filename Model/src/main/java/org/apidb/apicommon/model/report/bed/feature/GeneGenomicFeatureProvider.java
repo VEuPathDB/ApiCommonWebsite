@@ -34,6 +34,8 @@ public class GeneGenomicFeatureProvider implements BedFeatureProvider {
   private static final String ATTR_THREE_PRIME_UTR_LENGTH = "three_prime_utr_length";
   private static final String ATTR_FIVE_PRIME_UTR_LENGTH = "five_prime_utr_length";
   private static final String ATTR_ORGANISM = "organism";
+  private static final String ATTR_GENE_NAME = "gene_name";
+  private static final String ATTR_GENE_PRODUCT = "gene_product";
 
   private final RequestedDeflineFields _requestedDeflineFields;
   private final boolean _reverseAndComplement;
@@ -64,7 +66,7 @@ public class GeneGenomicFeatureProvider implements BedFeatureProvider {
 
   @Override
   public String[] getRequiredAttributeNames() {
-    return new String[] { ATTR_LOCATION_TEXT , ATTR_ORGANISM, ATTR_THREE_PRIME_UTR_LENGTH, ATTR_FIVE_PRIME_UTR_LENGTH};
+    return new String[] { ATTR_LOCATION_TEXT , ATTR_ORGANISM, ATTR_THREE_PRIME_UTR_LENGTH, ATTR_FIVE_PRIME_UTR_LENGTH, ATTR_GENE_NAME, ATTR_GENE_PRODUCT};
   }
 
   @Override
@@ -98,7 +100,7 @@ public class GeneGenomicFeatureProvider implements BedFeatureProvider {
       defline.appendRecordAttribute(record, ATTR_ORGANISM);
     }
     if(_requestedDeflineFields.contains("description")){
-      defline.appendValue("locus sequence");
+      defline.appendTwoRecordAttributesWhereFirstOneMayBeEmpty(record, ATTR_GENE_NAME, ATTR_GENE_PRODUCT);
     }
     if(_requestedDeflineFields.contains("position")){
       defline.appendPosition(chrom, segmentStart, segmentEnd, strand);
