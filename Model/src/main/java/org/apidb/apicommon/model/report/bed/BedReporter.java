@@ -40,7 +40,7 @@ public abstract class BedReporter extends AbstractReporter {
     String recordClassFullName = recordClass.getFullName();
     String requiredRecordClassFullName = featureProvider.getRequiredRecordClassFullName();
     if (!recordClassFullName.equals(requiredRecordClassFullName)){
-      throw new IllegalStateException("This configurations requires a record class " + requiredRecordClassFullName + ", found: " + recordClassFullName);
+      throw new IllegalStateException("This configuration requires a record class " + requiredRecordClassFullName + ", found: " + recordClassFullName);
     }
 
     // fetch and validate requested fields

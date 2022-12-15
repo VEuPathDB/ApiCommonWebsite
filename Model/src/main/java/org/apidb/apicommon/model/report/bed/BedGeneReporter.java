@@ -73,9 +73,11 @@ public class BedGeneReporter extends BedReporter {
 
       boolean providerNeedsGene = TranscriptUtil.isGeneRecordClass(featureProvider.getRequiredRecordClassFullName());
       boolean providerNeedsTranscript = TranscriptUtil.isTranscriptRecordClass(featureProvider.getRequiredRecordClassFullName());
+
       if (TranscriptUtil.isTranscriptRecordClass(recordClass) && providerNeedsGene) {
         _baseAnswer = TranscriptUtil.transformToGeneAnswer(_baseAnswer);
-      } else if (TranscriptUtil.isGeneRecordClass(recordClass) && providerNeedsTranscript) {
+      }
+      else if (TranscriptUtil.isGeneRecordClass(recordClass) && providerNeedsTranscript) {
         _baseAnswer = TranscriptUtil.transformToTranscriptAnswer(_baseAnswer);
       }
 
