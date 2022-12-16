@@ -42,8 +42,7 @@ public class SequenceReporter extends AbstractReporter {
 
   @Override
   public SequenceReporter configure(JSONObject config) throws ReporterConfigException {
-    _showInBrowser = "plain".equals(config.getString("attachmentType"));
-
+    _showInBrowser = "plain".equals(config.optString("attachmentType", "plain"));
 
     // extract any sequence retrieval service config from this config
     int basesPerLine;
