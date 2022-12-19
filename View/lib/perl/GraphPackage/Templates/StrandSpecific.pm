@@ -26,7 +26,7 @@ sub init {
 
   foreach my $graphObject (@{$graphObjects}) {
       if ($graphObject->isa("EbrcWebsiteCommon::View::GraphPackage::GGBarPlot::RNASeqSenseAntisense") || $graphObject->isa("EbrcWebsiteCommon::View::GraphPackage::GGLinePlot::RNASeqSenseAntisense")) {
-	  my @profileSetNames = map{$_->getName()} @{$graphObject->getProfileSets()};
+      my @profileSetNames = map{$_->getName()} @{$graphObject->getProfileSets()};
 	  my $strandHash = $graphObject->getStrandDictionaryHash();
 	  my ($senseId, $antisenseId);
 	  if ($profileSetNames[0] =~ /\s(\w+strand)\s/ && $strandHash->{$1} eq "sense") {
@@ -42,7 +42,7 @@ sub init {
 	 $profileSet->setSqlName("SenseAntisense");
 
 	 push @profileSets, $profileSet;
-      }   
+      }
   }
 
   my $scatter = EbrcWebsiteCommon::View::GraphPackage::GGScatterPlot->new(@_);
@@ -66,6 +66,53 @@ sub init {
 1;
 
 # TEMPLATE_ANCHOR strandSpecificGraph
+
+package ApiCommonWebsite::View::GraphPackage::Templates::StrandSpecific::DS_173528b522;
+use base qw( ApiCommonWebsite::View::GraphPackage::Templates::StrandSpecific );
+use strict;
+sub init {
+    my $self = shift;
+    $self->SUPER::init(@_);
+
+    my $id = $self->getId();
+    my $cgiApp = $self->getCgiApp();
+    my $floor = $cgiApp->param('floor');
+
+    unless ($floor) {$floor=1;}
+    my $antisenseFoldChange = $cgiApp->param('antisenseFC');
+    unless ($antisenseFoldChange) {$antisenseFoldChange=1;}
+    my $senseFoldChange = $cgiApp->param('senseFC');
+    unless ($senseFoldChange) {$senseFoldChange=-1;}
+
+    my @names = ('Unsporulated and sporulated T. gondii', 'Transcriptomes of enteroepithelial stages');
+    my @profileSets;
+
+    my $profileSet = EbrcWebsiteCommon::View::GraphPackage::ProfileSet->new("DUMMY");
+
+    $profileSet->setJsonForService("{\"senseProfileSetId\":\"$names[0] [htseq-union - firststrand - tpm - unique]','$names[1] [htseq-union - firststrand - tpm - unique]\",\"antisenseProfileSetId\":\"$names[0] [htseq-union - secondstrand - tpm - unique]','$names[1] [htseq-union - secondstrand - tpm - unique]\",\"floor\":\"$floor\"}");
+    $profileSet->setSqlName("SenseAntisense");
+    push @profileSets, $profileSet;
+
+
+    my $scatter = EbrcWebsiteCommon::View::GraphPackage::GGScatterPlot->new(@_);
+    $scatter->setProfileSets(\@profileSets);
+    $scatter->setYaxisLabel("log2 (antisense fold-chg)");
+    $scatter->setXaxisLabel("log2 (sense fold-chg)");
+    $scatter->setColors(["black"]);
+    $scatter->setPartName("StrandSpecific");
+    $scatter->setPlotTitle("$id");
+    $scatter->setDefaultXMax(1);
+    $scatter->setDefaultXMin(-1);
+    $scatter->setDefaultYMax(1);
+    $scatter->setDefaultYMin(-1);
+    $scatter->setAntisenseFoldChange($antisenseFoldChange);
+    $scatter->setSenseFoldChange($senseFoldChange);
+    $scatter->setAdjustXYScalesTogether('TRUE');
+    $self->setGraphObjects($scatter);
+    return $self;
+
+}
+1;
 
 # package ApiCommonWebsite::View::GraphPackage::Templates::StrandSpecific::DS_7252b6506e;
 # use base qw( ApiCommonWebsite::View::GraphPackage::Templates::StrandSpecific );
