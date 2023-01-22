@@ -61,9 +61,21 @@ public class ProteinSequenceFeatureProvider implements BedFeatureProvider {
 
   @Override
   public List<List<String>> getRecordAsBedFields(RecordInstance record) throws WdkModelException {
+    /*
+     * Not all genes have a protein sequence - only protein coding genes do
+     * Use emptiness of ATTR_PROTEIN_LENGTH as sentinel value
+     */
+    String featureLengthStringOrEmpty = stringValue(record, ATTR_PROTEIN_LENGTH);
+    if("".equals(featureLengthStringOrEmpty)){
+      return List.of();
+    } else {
+      return List.of(proteinBedLineForProteinCodingGene(record, Integer.valueOf(featureLengthStringOrEmpty)));
+    }
+  }
+
+  public List<String> proteinBedLineForProteinCodingGene(RecordInstance record, Integer featureLength) throws WdkModelException {
     String featureId = getSourceId(record);
     String chrom = featureId;
-    Integer featureLength = Integer.valueOf(stringValue(record, ATTR_PROTEIN_LENGTH));
     StrandDirection strand = StrandDirection.none;
 
     Integer segmentStart = getPositionProtein(featureLength, _startOffset, _startAnchor);
@@ -93,7 +105,7 @@ public class ProteinSequenceFeatureProvider implements BedFeatureProvider {
       defline.appendSegmentLength(segmentStart, segmentEnd);
     }
 
-    return List.of(BedLine.bed6(chrom, segmentStart, segmentEnd, defline, strand));
+    return BedLine.bed6(chrom, segmentStart, segmentEnd, defline, strand);
   }
 
   private static Integer getPositionProtein(Integer featureLength, int offset, ProteinAnchor anchor) throws WdkModelException {
