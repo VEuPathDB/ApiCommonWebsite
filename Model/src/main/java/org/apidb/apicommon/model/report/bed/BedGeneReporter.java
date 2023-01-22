@@ -115,9 +115,9 @@ public class BedGeneReporter extends BedReporter {
         SplicedGenomic splicedGenomic = SplicedGenomic.valueOf(config.getString("splicedGenomic"));
         switch(splicedGenomic){
           case cds:
-            return new TranscriptBlockFeaturesProvider(config, Set.of("CDS"), "cds");
+            return new TranscriptBlockFeaturesProvider(config, "CDS", "cds");
           case transcript:
-            return new TranscriptBlockFeaturesProvider(config, Set.of("CDS", "UTR"), "transcript");
+            return new TranscriptBlockFeaturesProvider(config, "Exon", "transcript");
           default:
             throw new WdkModelException(String.format("Unsupported spliced genomic type: %s", splicedGenomic.name()));
         }

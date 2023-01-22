@@ -29,12 +29,12 @@ public class TranscriptBlockFeaturesProvider implements BedFeatureProvider {
   private static final String TABLE_GENE_MODEL_DUMP = "GeneModelDump";
 
   private final RequestedDeflineFields _requestedDeflineFields;
-  private final Set<String> _allowedFeatureTypes;
+  private final String _geneModelDumpType;
   private final String _blockFeatureType;
 
-  public TranscriptBlockFeaturesProvider(JSONObject config, Set<String> allowedFeatureTypes, String blockFeatureType) {
+  public TranscriptBlockFeaturesProvider(JSONObject config, String geneModelDumpType, String blockFeatureType) {
     _requestedDeflineFields = new RequestedDeflineFields(config);
-    _allowedFeatureTypes = allowedFeatureTypes;
+    _geneModelDumpType = geneModelDumpType;
     _blockFeatureType = blockFeatureType;
   }
 
@@ -69,7 +69,7 @@ public class TranscriptBlockFeaturesProvider implements BedFeatureProvider {
 
       TableValue geneModelDumpRows = record.getTableValue(TABLE_GENE_MODEL_DUMP);
       for (Map<String, AttributeValue> geneModelDumpRow : geneModelDumpRows) {
-        if(!_allowedFeatureTypes.contains(geneModelDumpRow.get("type").toString())){
+        if(!_geneModelDumpType.equals(geneModelDumpRow.get("type").toString())){
           continue;
         }
         //String sourceId = geneModelDumpRow.get("source_id").toString();
