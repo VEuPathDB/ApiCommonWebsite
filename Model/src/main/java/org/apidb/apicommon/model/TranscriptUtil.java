@@ -12,11 +12,14 @@ import org.gusdb.wdk.model.record.RecordClass;
 
 public class TranscriptUtil {
 
-  static final String GENE_RECORDCLASS = "GeneRecordClasses.GeneRecordClass";
-  static final String TRANSCRIPT_RECORDCLASS = "TranscriptRecordClasses.TranscriptRecordClass";
+  public static final String GENE_RECORDCLASS = "GeneRecordClasses.GeneRecordClass";
+  public static final String TRANSCRIPT_RECORDCLASS = "TranscriptRecordClasses.TranscriptRecordClass";
 
-  private static final String XFORM_QUESTION_NAME = "GeneRecordQuestions.GenesFromTranscripts";
-  private static final String XFORM_STEP_ID_PARAM_NAME = "gene_result";
+  private static final String GENE_XFORM_QUESTION_NAME = "GeneRecordQuestions.GenesFromTranscripts";
+  private static final String GENE_XFORM_STEP_ID_PARAM_NAME = "gene_result";
+
+  private static final String TRANSCRIPT_XFORM_QUESTION_NAME = "TranscriptRecordQuestions.TranscriptsFromGenes";
+  private static final String TRANSCRIPT_XFORM_STEP_ID_PARAM_NAME = "transcript_result";
 
   public static final boolean isGeneRecordClass(String name) {
     return GENE_RECORDCLASS.equals(name);
@@ -50,9 +53,18 @@ public class TranscriptUtil {
     return TransformUtil.transformToNewResultTypeAnswer(
         transcriptAnswer,
         TRANSCRIPT_RECORDCLASS,
-        XFORM_QUESTION_NAME,
-        XFORM_STEP_ID_PARAM_NAME,
+        GENE_XFORM_QUESTION_NAME,
+        GENE_XFORM_STEP_ID_PARAM_NAME,
         GENE_RECORDCLASS);
+  }
+
+  public static AnswerValue transformToTranscriptAnswer(AnswerValue geneAnswer) throws WdkModelException {
+    return TransformUtil.transformToNewResultTypeAnswer(
+        geneAnswer,
+        GENE_RECORDCLASS,
+        TRANSCRIPT_XFORM_QUESTION_NAME,
+        TRANSCRIPT_XFORM_STEP_ID_PARAM_NAME,
+        TRANSCRIPT_RECORDCLASS);
   }
 
   public static RecordClass getGeneRecordClass(WdkModel wdkModel) {
