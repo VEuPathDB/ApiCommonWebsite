@@ -138,10 +138,10 @@ public class GeneGenomicFeatureProvider implements BedFeatureProvider {
       offset = - offset;
     }
     switch(anchor) {
-      case Start: return featureStart - fivePrimeUtrLength + offset;
-      case CodeStart: return featureStart + offset;
-      case End: return featureEnd - threePrimeUtrLength + offset;
-      case CodeEnd: return featureEnd + offset;
+      case Start: return featureStart + offset;
+      case CodeStart: return featureStart + fivePrimeUtrLength + offset;
+      case End: return featureEnd + offset;
+      case CodeEnd: return featureEnd - threePrimeUtrLength + offset;
       default: throw new WdkModelException("Unsupported anchor type: " + anchor);
     }
   }
