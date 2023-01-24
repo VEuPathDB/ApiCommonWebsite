@@ -13,14 +13,13 @@ import org.gusdb.wdk.model.answer.spec.AnswerSpec;
 import org.gusdb.wdk.model.answer.spec.FilterOptionList;
 import org.gusdb.wdk.model.question.Question;
 import org.gusdb.wdk.model.record.RecordClass;
-import org.gusdb.wdk.model.report.ReporterConfigException;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class TranscriptUtil {
 
-  public static final String GENE_RECORDCLASS = "GeneRecordClasses.GeneRecordClass";
-  public static final String TRANSCRIPT_RECORDCLASS = "TranscriptRecordClasses.TranscriptRecordClass";
+  private static final String GENE_RECORDCLASS = "GeneRecordClasses.GeneRecordClass";
+  private static final String TRANSCRIPT_RECORDCLASS = "TranscriptRecordClasses.TranscriptRecordClass";
 
   private static final String GENE_XFORM_QUESTION_NAME = "GeneRecordQuestions.GenesFromTranscripts";
   private static final String GENE_XFORM_STEP_ID_PARAM_NAME = "gene_result";
