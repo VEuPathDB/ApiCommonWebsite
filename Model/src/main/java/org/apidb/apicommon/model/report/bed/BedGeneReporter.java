@@ -1,17 +1,15 @@
 package org.apidb.apicommon.model.report.bed;
 
-import java.util.Set;
-
 import org.apidb.apicommon.model.TranscriptUtil;
-import org.gusdb.wdk.model.record.RecordClass;
 import org.apidb.apicommon.model.report.bed.feature.BedFeatureProvider;
-import org.apidb.apicommon.model.report.bed.feature.GeneGenomicFeatureProvider;
-import org.apidb.apicommon.model.report.bed.feature.ProteinTableFieldFeatureProvider;
-import org.apidb.apicommon.model.report.bed.feature.ProteinSequenceFeatureProvider;
-import org.apidb.apicommon.model.report.bed.feature.ProteinInterproFeatureProvider;
-import org.apidb.apicommon.model.report.bed.feature.TranscriptBlockFeaturesProvider;
 import org.apidb.apicommon.model.report.bed.feature.GeneComponentsFeatureProvider;
+import org.apidb.apicommon.model.report.bed.feature.GeneGenomicFeatureProvider;
+import org.apidb.apicommon.model.report.bed.feature.ProteinInterproFeatureProvider;
+import org.apidb.apicommon.model.report.bed.feature.ProteinSequenceFeatureProvider;
+import org.apidb.apicommon.model.report.bed.feature.ProteinTableFieldFeatureProvider;
+import org.apidb.apicommon.model.report.bed.feature.TranscriptBlockFeaturesProvider;
 import org.gusdb.wdk.model.WdkModelException;
+import org.gusdb.wdk.model.record.RecordClass;
 import org.gusdb.wdk.model.report.Reporter;
 import org.gusdb.wdk.model.report.ReporterConfigException;
 import org.json.JSONException;

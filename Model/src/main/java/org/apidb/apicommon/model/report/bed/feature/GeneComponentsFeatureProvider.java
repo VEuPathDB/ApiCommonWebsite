@@ -1,15 +1,16 @@
 package org.apidb.apicommon.model.report.bed.feature;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
 import java.util.Set;
-import java.util.Collections;
 import java.util.stream.Collectors;
 
 import org.apidb.apicommon.model.TranscriptUtil;
+import org.apidb.apicommon.model.report.bed.util.BedLine;
+import org.apidb.apicommon.model.report.bed.util.DeflineBuilder;
+import org.apidb.apicommon.model.report.bed.util.RequestedDeflineFields;
+import org.apidb.apicommon.model.report.bed.util.StrandDirection;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkRuntimeException;
 import org.gusdb.wdk.model.WdkUserException;
@@ -17,10 +18,6 @@ import org.gusdb.wdk.model.record.RecordInstance;
 import org.gusdb.wdk.model.record.TableValue;
 import org.gusdb.wdk.model.record.attribute.AttributeValue;
 import org.json.JSONObject;
-import org.apidb.apicommon.model.report.bed.util.StrandDirection;
-import org.apidb.apicommon.model.report.bed.util.RequestedDeflineFields;
-import org.apidb.apicommon.model.report.bed.util.DeflineBuilder;
-import org.apidb.apicommon.model.report.bed.util.BedLine;
 
 public class GeneComponentsFeatureProvider implements BedFeatureProvider {
 
@@ -62,8 +59,6 @@ public class GeneComponentsFeatureProvider implements BedFeatureProvider {
   public List<List<String>> getRecordAsBedFields(RecordInstance record) throws WdkModelException {
     try {
       List<List<String>> result = new ArrayList<>();
-      Map<String, List<Integer>> startsByT = new HashMap<>();
-      Map<String, List<Integer>> endsByT = new HashMap<>();
       TableValue geneModelDumpRows = record.getTableValue(TABLE_GENE_MODEL_DUMP);
 
       for (Map<String, AttributeValue> geneModelDumpRow : geneModelDumpRows) {
