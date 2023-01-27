@@ -18,7 +18,7 @@ public class TranscriptUtil {
   private static final String GENE_XFORM_QUESTION_NAME = "GeneRecordQuestions.GenesFromTranscripts";
   private static final String GENE_XFORM_STEP_ID_PARAM_NAME = "gene_result";
 
-  private static final String TRANSCRIPT_XFORM_QUESTION_NAME = "TranscriptRecordQuestions.TranscriptsFromGenes";
+  private static final String TRANSCRIPT_XFORM_QUESTION_NAME = "GeneQuestions.TranscriptsFromGenes";
   private static final String TRANSCRIPT_XFORM_STEP_ID_PARAM_NAME = "transcript_result";
 
   public static final boolean isGeneRecordClass(String name) {
