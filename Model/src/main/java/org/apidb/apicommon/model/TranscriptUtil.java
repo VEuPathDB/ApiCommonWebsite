@@ -18,17 +18,17 @@ import org.json.JSONObject;
 
 public class TranscriptUtil {
 
-  private static final String GENE_RECORDCLASS = "GeneRecordClasses.GeneRecordClass";
-  private static final String TRANSCRIPT_RECORDCLASS = "TranscriptRecordClasses.TranscriptRecordClass";
+  // used in config API for reporters that want to apply a one-gene-per-transcript filter
+  public static final String PROP_APPLY_FILTER = "applyFilter";
+
+  public static final String GENE_RECORDCLASS = "GeneRecordClasses.GeneRecordClass";
+  public static final String TRANSCRIPT_RECORDCLASS = "TranscriptRecordClasses.TranscriptRecordClass";
 
   private static final String GENE_XFORM_QUESTION_NAME = "GeneRecordQuestions.GenesFromTranscripts";
   private static final String GENE_XFORM_STEP_ID_PARAM_NAME = "gene_result";
 
-  private static final String TRANSCRIPT_XFORM_QUESTION_NAME = "TranscriptRecordQuestions.TranscriptsFromGenes";
+  private static final String TRANSCRIPT_XFORM_QUESTION_NAME = "GeneQuestions.TranscriptsFromGenes";
   private static final String TRANSCRIPT_XFORM_STEP_ID_PARAM_NAME = "transcript_result";
-  
-  // used in config API for reporters that want to apply a one-gene-per-transcript filter
-  public static final String PROP_APPLY_FILTER = "applyFilter";
 
   public static final boolean isGeneRecordClass(String name) {
     return GENE_RECORDCLASS.equals(name);
