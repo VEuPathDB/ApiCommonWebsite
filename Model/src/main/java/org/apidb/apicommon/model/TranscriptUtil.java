@@ -1,6 +1,7 @@
 package org.apidb.apicommon.model;
 
 import java.util.Arrays;
+
 import org.apidb.apicommon.model.filter.RepresentativeTranscriptFilter;
 import org.gusdb.fgputil.validation.ValidObjectFactory.RunnableObj;
 import org.gusdb.wdk.model.WdkModel;
@@ -106,8 +107,8 @@ public class TranscriptUtil {
     }    
   }
 
-  // apply the one gene per transcript filter.
-  public static AnswerValue getOneGenePerTranscriptAnswerValue(AnswerValue baseAnswer) throws WdkModelException {
+  // apply the one transcript per gene filter
+  public static AnswerValue getOneTranscriptPerGeneAnswerValue(AnswerValue baseAnswer) throws WdkModelException {
     Question question = baseAnswer.getAnswerSpec().getQuestion();
     String filterName = RepresentativeTranscriptFilter.FILTER_NAME;
     if (question.getFilter(filterName) == null) {
