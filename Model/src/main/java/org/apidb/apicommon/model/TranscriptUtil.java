@@ -40,10 +40,10 @@ public class TranscriptUtil {
   public static final boolean isTranscriptQuestion(Question question) {
     return isTranscriptRecordClass(question.getRecordClass());
   }
-
+  
   /**
    * Takes a transcript answer value and returns an answer value of a transform
-   * that will return the genes of the transcripts returned by the input answer.
+   * that will return the distinct genes of the transcripts returned by the input answer.
    *
    * @param transcriptAnswer answer value that returns transcripts
    * @return answer value that will return genes of the transcripts returned by the input answer
@@ -58,6 +58,14 @@ public class TranscriptUtil {
         GENE_RECORDCLASS);
   }
 
+  /**
+   * Takes a gene answer value and returns an answer value of a transform that will
+   * return all the transcripts of the genes returned by the input answer.
+   *
+   * @param geneAnswer answer value that returns genes
+   * @return answer value that will return all transcripts of the genes in the input answer
+   * @throws WdkModelException if error occurs
+   */
   public static AnswerValue transformToTranscriptAnswer(AnswerValue geneAnswer) throws WdkModelException {
     return TransformUtil.transformToNewResultTypeAnswer(
         geneAnswer,
@@ -82,7 +90,7 @@ public class TranscriptUtil {
     boolean genePkHasProjectId = isProjectInPk(getGeneRecordClass(wdkModel));
     if (transcriptPkHasProjectId != genePkHasProjectId) {
       throw new WdkRuntimeException("One of [ gene, transcript ] record class primary key defs has " +
-          "project_id and one does not.  This will break many gene/transcript-specific logic coding.");
+          "project_id and one does not.  This will break some gene/transcript-specific transformation logic.");
     }
     return transcriptPkHasProjectId;
   }
