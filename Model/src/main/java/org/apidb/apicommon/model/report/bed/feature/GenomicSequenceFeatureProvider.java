@@ -12,15 +12,28 @@ import org.apidb.apicommon.model.report.bed.util.BedLine;
 
 public class GenomicSequenceFeatureProvider implements BedFeatureProvider {
 
+  private enum Anchor {
+    DownstreamFromStart,
+    UpstreamFromEnd;
+  }
+
   private static final String ATTR_FORMATTED_LENGTH = "formatted_length";
   private static final String ATTR_ORGANISM = "organism";
 
   private final RequestedDeflineFields _requestedDeflineFields;
   private final StrandDirection _strand;
+  private final int _startOffset;
+  private final Anchor _startAnchor;
+  private final int _endOffset;
+  private final Anchor _endAnchor;
 
   public GenomicSequenceFeatureProvider(JSONObject config) {
     _requestedDeflineFields = new RequestedDeflineFields(config);
     _strand = StrandDirection.valueOf(config.getString("strand"));
+    _startOffset = config.getInt("startOffset");
+    _startAnchor = Anchor.valueOf(config.getString("startAnchor"));
+    _endOffset = config.getInt("endOffset");
+    _endAnchor = Anchor.valueOf(config.getString("endAnchor"));
   }
 
   @Override
@@ -46,10 +59,10 @@ public class GenomicSequenceFeatureProvider implements BedFeatureProvider {
     String featureId = getSourceId(record);
     String chrom = featureId;
     Integer featureLength = Integer.valueOf(stringValue(record, ATTR_FORMATTED_LENGTH).replaceAll(",", ""));
-    Integer segmentStart = 1;
-    Integer segmentEnd = featureLength;
+    Integer segmentStart = getPosition(featureLength, _startOffset, _startAnchor);
+    Integer segmentEnd = getPosition(featureLength, _endOffset, _endAnchor);
 
-    String formattedId = String.format("%s (%s)", chrom, _strand.getSign());
+    String formattedId = String.format("%s:%s..%s(%s)", chrom, segmentStart, segmentEnd, _strand.getSign());
 
     DeflineBuilder defline = new DeflineBuilder(formattedId);
 
@@ -63,7 +76,12 @@ public class GenomicSequenceFeatureProvider implements BedFeatureProvider {
       defline.appendPosition(chrom, segmentStart, segmentEnd, _strand);
     }
     if(_requestedDeflineFields.contains("ui_choice")){
-      defline.appendGenomicFeatureUiChoice("Whole sequence", _strand);
+      defline.appendGenomicSequenceRangeUiChoice(
+        "Sequence Region",
+        getPositionDesc(_startOffset, _startAnchor),
+        getPositionDesc(_endOffset, _endAnchor),
+        _strand
+      );
     }
     if(_requestedDeflineFields.contains("segment_length")){
       defline.appendSegmentLength(segmentStart, segmentEnd);
@@ -71,4 +89,36 @@ public class GenomicSequenceFeatureProvider implements BedFeatureProvider {
     return List.of(BedLine.bed6(chrom, segmentStart, segmentEnd, defline, _strand));
   }
 
+  private static Integer getPosition(Integer featureLength, int offset, Anchor anchor) throws WdkModelException {
+    switch(anchor){
+      case DownstreamFromStart: return 1 + offset;
+      case UpstreamFromEnd: return featureLength - offset;
+      default: throw new WdkModelException("Unsupported anchor type: " + anchor);
+    }
+  }
+
+  private static String getPositionDesc(int offset, Anchor anchor) throws WdkModelException {
+    StringBuilder sb = new StringBuilder();
+    switch(anchor){
+      case DownstreamFromStart:
+        sb.append("Start");
+        break;
+      case UpstreamFromEnd:
+        sb.append("End");
+        break;
+      default: throw new WdkModelException("Unsupported anchor type: " + anchor);
+    }
+    if(offset > 0){
+      switch(anchor){
+      case DownstreamFromStart:
+        sb.append("+" + offset);
+        break;
+      case UpstreamFromEnd:
+        sb.append("-" + offset);
+        break;
+        default: throw new WdkModelException("Unsupported anchor type: " + anchor);
+      }
+    }
+    return sb.toString();
+  }
 }
