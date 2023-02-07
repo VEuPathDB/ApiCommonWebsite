@@ -107,17 +107,9 @@ public class SequenceReporter extends AbstractReporter {
   }
 
   @Override
-  public ContentDisposition getContentDisposition() {
-    if(_showInBrowser){
-        return ContentDisposition.INLINE;
-    } else {
-        return ContentDisposition.ATTACHMENT;
-    }
-  }
-
-  @Override
   public String getDownloadFileName() {
-    return getQuestion().getName() + ".fasta";
+    // null filename will indicate inline contentDisposition
+    return _showInBrowser ? null : getQuestion().getName() + ".fasta";
   }
 
   @Override

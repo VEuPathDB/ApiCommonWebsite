@@ -11,7 +11,7 @@ public class BedEstReporter extends BedReporter {
 
   @Override
   public Reporter configure(JSONObject config) throws ReporterConfigException, WdkModelException {
-    return configure(new EstFeatureProvider(config));
+    return configure(() -> new EstFeatureProvider(config), getContentDisposition(config));
   }
 
 }
