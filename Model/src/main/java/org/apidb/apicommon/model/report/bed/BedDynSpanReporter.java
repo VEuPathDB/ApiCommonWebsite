@@ -10,7 +10,7 @@ public class BedDynSpanReporter extends BedReporter {
 
   @Override
   public Reporter configure(JSONObject config) throws ReporterConfigException, WdkModelException {
-    return configure(new DynSpanFeatureProvider(config));
+    return configure(() -> new DynSpanFeatureProvider(config), getContentDisposition(config));
   }
 
 }
