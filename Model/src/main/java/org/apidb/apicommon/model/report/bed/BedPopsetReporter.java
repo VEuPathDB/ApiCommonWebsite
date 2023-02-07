@@ -10,7 +10,7 @@ public class BedPopsetReporter extends BedReporter {
 
   @Override
   public Reporter configure(JSONObject config) throws ReporterConfigException, WdkModelException {
-    return configure(new PopsetFeatureProvider(config));
+    return configure(() -> new PopsetFeatureProvider(config), getContentDisposition(config));
   }
 
 }

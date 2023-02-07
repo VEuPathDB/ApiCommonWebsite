@@ -80,7 +80,7 @@ public class BedGeneReporter extends BedReporter {
       }
 
       // pass the provider to superclass; will use to build and process record stream
-      return configure(featureProvider);
+      return configure(() -> featureProvider, getContentDisposition(config));
     }
     // catch common configuration parsing runtime exceptions and convert for 400s
     catch (JSONException | IllegalArgumentException e) {
@@ -128,7 +128,8 @@ public class BedGeneReporter extends BedReporter {
 
   @Override
   public String getDownloadFileName() {
-    return _originalQuestionName + ".bed";
+    // null filename will indicate inline contentDisposition
+    return _isDownload ? _originalQuestionName + ".bed" : null;
   }
 
 }

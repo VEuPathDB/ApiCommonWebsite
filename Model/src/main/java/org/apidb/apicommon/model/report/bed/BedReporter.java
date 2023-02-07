@@ -13,6 +13,7 @@ import java.util.function.BiFunction;
 
 import org.apache.log4j.Logger;
 import org.apidb.apicommon.model.report.bed.feature.BedFeatureProvider;
+import org.gusdb.fgputil.functional.FunctionalInterfaces.SupplierWithException;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkRuntimeException;
 import org.gusdb.wdk.model.answer.stream.RecordStream;
@@ -24,6 +25,9 @@ import org.gusdb.wdk.model.record.TableField;
 import org.gusdb.wdk.model.record.attribute.AttributeField;
 import org.gusdb.wdk.model.report.AbstractReporter;
 import org.gusdb.wdk.model.report.Reporter;
+import org.gusdb.wdk.model.report.ReporterConfigException;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public abstract class BedReporter extends AbstractReporter {
 
@@ -32,25 +36,44 @@ public abstract class BedReporter extends AbstractReporter {
   private BedFeatureProvider _featureProvider;
   private Collection<AttributeField> _requiredAttributes = Collections.emptyList();
   private Collection<TableField> _requiredTables = Collections.emptyList();
+  protected boolean _isDownload;
 
-  protected Reporter configure(BedFeatureProvider featureProvider) {
+  protected Reporter configure(SupplierWithException<BedFeatureProvider> featureProvider, ContentDisposition contentDisposition) throws ReporterConfigException {
+    try {
+      // save off feature provider to process records
+      _featureProvider = featureProvider.get();
 
-    // validate required record class matches the one in the answer value
-    RecordClass recordClass = getQuestion().getRecordClass();
-    String recordClassFullName = recordClass.getFullName();
-    String requiredRecordClassFullName = featureProvider.getRequiredRecordClassFullName();
-    if (!recordClassFullName.equals(requiredRecordClassFullName)){
-      throw new IllegalStateException("This configuration requires a record class " + requiredRecordClassFullName + ", found: " + recordClassFullName);
+      // validate required record class matches the one in the answer value
+      RecordClass recordClass = getQuestion().getRecordClass();
+      String recordClassFullName = recordClass.getFullName();
+      String requiredRecordClassFullName = _featureProvider.getRequiredRecordClassFullName();
+      if (!recordClassFullName.equals(requiredRecordClassFullName)){
+        throw new IllegalStateException("This configuration requires a record class " + requiredRecordClassFullName + ", found: " + recordClassFullName);
+      }
+
+      // fetch and validate requested fields
+      _requiredAttributes = getFieldsByName(recordClass, _featureProvider.getRequiredAttributeNames(), (rc,name) -> rc.getAttributeField(name));
+      _requiredTables = getFieldsByName(recordClass, _featureProvider.getRequiredTableNames(), (rc,name) -> Optional.ofNullable(rc.getTableFieldMap().get(name)));
+
+      // determine content disposition
+      _isDownload = contentDisposition == ContentDisposition.ATTACHMENT;
+
+      return this;
     }
+    // catch common configuration parsing runtime exceptions and convert for 400s
+    catch (JSONException | IllegalArgumentException e) {
+      throw new ReporterConfigException(e.getMessage());
+    }
+    catch (Exception e) {
+      throw new WdkRuntimeException(e);
+    }
+  }
 
-    // fetch and validate requested fields
-    _requiredAttributes = getFieldsByName(recordClass, featureProvider.getRequiredAttributeNames(), (rc,name) -> rc.getAttributeField(name));
-    _requiredTables = getFieldsByName(recordClass, featureProvider.getRequiredTableNames(), (rc,name) -> Optional.ofNullable(rc.getTableFieldMap().get(name)));
-
-    // save off feature provider to process records
-    _featureProvider = featureProvider;
-
-    return this;
+  protected ContentDisposition getContentDisposition(JSONObject config) {
+    String attachmentType = config.optString("attachmentType", "plain");
+    return "plain".equals(attachmentType)
+        ? ContentDisposition.INLINE
+        : ContentDisposition.ATTACHMENT;
   }
 
   @Override
@@ -60,7 +83,8 @@ public abstract class BedReporter extends AbstractReporter {
 
   @Override
   public String getDownloadFileName() {
-    return getQuestion().getName() + ".bed";
+    // null filename will indicate inline contentDisposition
+    return _isDownload ? getQuestion().getName() + ".bed" : null;
   }
 
   @Override

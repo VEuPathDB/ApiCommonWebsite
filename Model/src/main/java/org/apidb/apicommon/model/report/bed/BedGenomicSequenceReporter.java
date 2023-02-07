@@ -6,7 +6,6 @@ import org.apidb.apicommon.model.report.bed.feature.GenomicTableFieldFeatureProv
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.report.Reporter;
 import org.gusdb.wdk.model.report.ReporterConfigException;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 public class BedGenomicSequenceReporter extends BedReporter {
@@ -21,13 +20,7 @@ public class BedGenomicSequenceReporter extends BedReporter {
 
   @Override
   public Reporter configure(JSONObject config) throws ReporterConfigException, WdkModelException {
-    try {
-      return configure(createFeatureProvider(config));
-    }
-    // catch common configuration parsing runtime exceptions and convert for 400s
-    catch (JSONException | IllegalArgumentException e) {
-      throw new ReporterConfigException(e.getMessage());
-    }
+    return configure(() -> createFeatureProvider(config), getContentDisposition(config));
   }
 
   private BedFeatureProvider createFeatureProvider(JSONObject config) throws WdkModelException {
