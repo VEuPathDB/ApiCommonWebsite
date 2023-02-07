@@ -1,9 +1,12 @@
 package org.apidb.apicommon.model.report.sequence;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Collections;
 import java.util.Map;
+
+import javax.ws.rs.core.Response.Status.Family;
 
 import org.apache.log4j.Logger;
 import org.apidb.apicommon.model.TranscriptUtil;
@@ -11,13 +14,18 @@ import org.glassfish.jersey.media.multipart.FormDataMultiPart;
 import org.glassfish.jersey.media.multipart.MultiPart;
 import org.gusdb.fgputil.IoUtil;
 import org.gusdb.fgputil.client.ClientUtil;
+import org.gusdb.fgputil.client.RequestFailure;
 import org.gusdb.fgputil.client.ResponseFuture;
+import org.gusdb.fgputil.functional.Either;
+import org.gusdb.fgputil.functional.Functions;
 import org.gusdb.wdk.model.WdkModelException;
+import org.gusdb.wdk.model.WdkRuntimeException;
 import org.gusdb.wdk.model.answer.request.AnswerFormatting;
 import org.gusdb.wdk.model.answer.request.AnswerRequest;
 import org.gusdb.wdk.model.answer.request.TemporaryResultFactory;
 import org.gusdb.wdk.model.report.AbstractReporter;
 import org.apidb.apicommon.model.report.bed.BedGeneReporter;
+import org.eupathdb.common.service.PostValidationUserException;
 import org.gusdb.wdk.model.report.ReporterConfigException;
 import org.json.JSONObject;
 
@@ -127,18 +135,35 @@ public class SequenceReporter extends AbstractReporter {
         .field("url", _bedFileUrl);
 
     // make call to sequence retrieval service
-    ResponseFuture response = ClientUtil.makeAsyncMultiPartPostRequest(
+    ResponseFuture responseFuture = ClientUtil.makeAsyncMultiPartPostRequest(
         _seqRetSvcRequestUrl, seqRetSvcRequestBody, FASTA_MEDIA_TYPE, Collections.emptyMap());
 
-    // wait for response, then read and stream out to client
-    try (InputStream successfulResponseBody = response.getInputStream()) {
-      IoUtil.transferStream(out, successfulResponseBody);
-    }
-    catch (Exception e) {
-      throw new WdkModelException("Unable to stream response", e);
-    }
-    finally {
-      IoUtil.closeQuietly(seqRetSvcRequestBody);
-    }
+    // wait for response, then read into an Either
+    Either<InputStream, RequestFailure> response = Functions.mapException(() -> responseFuture.getEither(),
+        e -> new RuntimeException("Unable to receive response from sequence retrieval (service may be down)", e));
+
+    response
+    // handle success case
+    .ifLeft(successfulResponseBody -> {
+      try {
+        IoUtil.transferStream(out, successfulResponseBody);
+      }
+      catch (IOException e) {
+        throw new WdkRuntimeException("Unable to stream response", e);
+      }
+      finally {
+        IoUtil.closeQuietly(seqRetSvcRequestBody);
+      }
+    })
+    // handle failure case
+    .ifRight(failure -> {
+      if (failure.getStatusType().getFamily().equals(Family.CLIENT_ERROR)) {
+        throw new PostValidationUserException(failure.getResponseBody());
+      }
+      else {
+        LOG.error("Received 5xx response from sequence retrieval service with body: \n" + failure.getResponseBody());
+        throw new RuntimeException(failure.getResponseBody());
+      }
+    });
   }
 }
