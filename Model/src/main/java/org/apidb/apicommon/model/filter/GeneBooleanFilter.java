@@ -86,7 +86,7 @@ public class GeneBooleanFilter extends StepFilter {
   private String getSummarySql(String idSql) {
     String sql = "select " + TranscriptBooleanQuery.LEFT_MATCH_COLUMN + ", " +
         TranscriptBooleanQuery.RIGHT_MATCH_COLUMN + ", count(*) as " + COLUMN_COUNT + " from (" + idSql +
-        ") group by " + TranscriptBooleanQuery.LEFT_MATCH_COLUMN + ", " +
+        ") gbf group by " + TranscriptBooleanQuery.LEFT_MATCH_COLUMN + ", " +
         TranscriptBooleanQuery.RIGHT_MATCH_COLUMN;
 
     return sql;
@@ -113,7 +113,7 @@ public class GeneBooleanFilter extends StepFilter {
     String fullIdSql = getFullSql(answer, idSql);
 
     // add a fake where to make the concatenation easier
-    StringBuilder sql = new StringBuilder("select * from (" + fullIdSql + ") WHERE 1 = 0 ");
+    StringBuilder sql = new StringBuilder("select * from (" + fullIdSql + ") gbf WHERE 1 = 0 ");
 
     try {
       JSONArray jsArray = jsValue.getJSONArray("values");

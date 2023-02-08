@@ -69,7 +69,7 @@ public class OrganismFilter extends StepFilter {
   public String getSql(AnswerValue answer, String idSql, JSONObject jsValue)
       throws WdkModelException {
     String fullIdSql = getFullSql(answer, idSql);
-    StringBuilder sql = new StringBuilder("SELECT * FROM (" + fullIdSql + ") WHERE 1 = 0 ");
+    StringBuilder sql = new StringBuilder("SELECT * FROM (" + fullIdSql + ") of WHERE 1 = 0 ");
     try {
       JSONArray jsArray = jsValue.getJSONArray(ORGANISM);
       for (int i = 0; i < jsArray.length(); i++) {

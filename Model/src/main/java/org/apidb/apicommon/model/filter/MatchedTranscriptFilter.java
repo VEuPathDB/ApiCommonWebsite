@@ -79,7 +79,7 @@ public class MatchedTranscriptFilter extends StepFilter {
 
   private String getSummarySql(String idSql) {
     String sql = "select " + MATCHED_RESULT_COLUMN +  ", count(*) as " + COUNT_COLUMN + " from (" + idSql +
-        ") group by " + MATCHED_RESULT_COLUMN;
+        ") mrt group by " + MATCHED_RESULT_COLUMN;
 
     return sql;
   }
@@ -100,7 +100,7 @@ public class MatchedTranscriptFilter extends StepFilter {
     String fullIdSql = getFullSql(answer, idSql);
 
     // add a fake where to make the concatenation easier
-    StringBuilder sql = new StringBuilder("select * from (" + fullIdSql + ") WHERE 1 = 0 ");
+    StringBuilder sql = new StringBuilder("select * from (" + fullIdSql + ") mrt WHERE 1 = 0 ");
 
     try {
       JSONArray jsArray = jsValue.getJSONArray("values");
