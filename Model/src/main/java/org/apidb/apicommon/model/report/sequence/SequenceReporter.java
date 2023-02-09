@@ -1,8 +1,11 @@
 package org.apidb.apicommon.model.report.sequence;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.net.URL;
 import java.util.Collections;
 import java.util.Map;
 
@@ -25,6 +28,7 @@ import org.gusdb.wdk.model.answer.request.AnswerRequest;
 import org.gusdb.wdk.model.answer.request.TemporaryResultFactory;
 import org.gusdb.wdk.model.report.AbstractReporter;
 import org.apidb.apicommon.model.report.bed.BedGeneReporter;
+import org.apidb.apicommon.model.report.bed.BedReporter;
 import org.eupathdb.common.service.PostValidationUserException;
 import org.gusdb.wdk.model.report.ReporterConfigException;
 import org.json.JSONObject;
@@ -122,6 +126,13 @@ public class SequenceReporter extends AbstractReporter {
 
   @Override
   public void write(OutputStream out) throws WdkModelException {
+
+    // if bed file does not contain any features, skip call to
+    //   seqret service and write standard message instead
+    if (isWriteEmptyBedFileResponse(out)) {
+      return;
+    }
+
     /*
      * TODO: Future async responses will contain a job ID which can be used to query progress until
      * complete.  Then a follow-up call must be made to get the result.  We might want to consider
@@ -165,5 +176,26 @@ public class SequenceReporter extends AbstractReporter {
         throw new RuntimeException(failure.getResponseBody());
       }
     });
+  }
+
+  private boolean isWriteEmptyBedFileResponse(OutputStream out) {
+    try (BufferedReader in = new BufferedReader(new InputStreamReader(new URL(_bedFileUrl).openStream()))){
+      if (in.ready()) {
+        String line = in.readLine();
+        if (line.equals(BedReporter.EMPTY_FEATURE_OUTPUT)) {
+          // no bed features found in this result, write empty result as sequence reporter result as well
+          out.write(BedReporter.EMPTY_FEATURE_OUTPUT.getBytes());
+          out.flush();
+          return true;
+        }
+        return false;
+      }
+      else {
+        throw new RuntimeException("BedReporter returned empty response.");
+      }
+    }
+    catch (IOException e) {
+      throw new RuntimeException("Unable to return empty result", e);
+    }
   }
 }
