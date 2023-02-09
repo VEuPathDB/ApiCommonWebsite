@@ -98,27 +98,13 @@ public class GenomicSequenceFeatureProvider implements BedFeatureProvider {
   }
 
   private static String getPositionDesc(int offset, Anchor anchor) throws WdkModelException {
-    StringBuilder sb = new StringBuilder();
     switch(anchor){
       case DownstreamFromStart:
-        sb.append("Start");
-        break;
+        return "Start" + (offset > 0 ? "+" + offset : "");
       case UpstreamFromEnd:
-        sb.append("End");
-        break;
-      default: throw new WdkModelException("Unsupported anchor type: " + anchor);
+        return "End" + (offset > 0 ? "-" + offset : "");
+      default:
+        throw new WdkModelException("Unsupported anchor type: " + anchor);
     }
-    if(offset > 0){
-      switch(anchor){
-      case DownstreamFromStart:
-        sb.append("+" + offset);
-        break;
-      case UpstreamFromEnd:
-        sb.append("-" + offset);
-        break;
-        default: throw new WdkModelException("Unsupported anchor type: " + anchor);
-      }
-    }
-    return sb.toString();
   }
 }
