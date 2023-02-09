@@ -33,7 +33,7 @@ public abstract class BedReporter extends AbstractReporter {
 
   private static Logger LOG = Logger.getLogger(BedReporter.class);
 
-  public static final String EMPTY_FEATURE_OUTPUT = "### No records in output ###";
+  public static final String EMPTY_FEATURE_OUTPUT = "### The result is empty ###";
 
   private BedFeatureProvider _featureProvider;
   private Collection<AttributeField> _requiredAttributes = Collections.emptyList();
