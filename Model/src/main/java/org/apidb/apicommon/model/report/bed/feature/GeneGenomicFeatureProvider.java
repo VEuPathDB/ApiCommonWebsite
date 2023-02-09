@@ -147,9 +147,7 @@ public class GeneGenomicFeatureProvider implements BedFeatureProvider {
   }
 
   private static String getPositionDescGenomic(int offset, OffsetSign sign, Anchor anchor) throws WdkModelException{
-    return offset == 0
-        ? anchor.name()
-        : anchor + offsetSignShort(sign) + offset;
+    return anchor.name() + (offset > 0 ? offsetSignShort(sign) + offset : "");
   }
 
   private static String offsetSignShort(OffsetSign sign) throws WdkModelException{
