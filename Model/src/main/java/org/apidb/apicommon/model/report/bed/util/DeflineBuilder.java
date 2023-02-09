@@ -112,6 +112,18 @@ public class DeflineBuilder {
     return appendValue(innerBuilder.toString());
   }
 
+  public DeflineBuilder appendGenomicSequenceRangeUiChoice(String option, String upstream, String downstream, StrandDirection strand){
+    StringBuilder innerBuilder = new StringBuilder(option);
+    innerBuilder.append(", ");
+    innerBuilder.append(upstream);
+    innerBuilder.append(" to ");
+    innerBuilder.append(downstream);
+    innerBuilder.append(", sequence of ");
+    innerBuilder.append(strand.name());
+    innerBuilder.append(" strand");
+    return appendValue(innerBuilder.toString());
+  }
+
   public DeflineBuilder appendGenomicFeatureUiChoice(String feature, StrandDirection strand){
     StringBuilder innerBuilder = new StringBuilder(feature);
     innerBuilder.append(", sequence of ");
