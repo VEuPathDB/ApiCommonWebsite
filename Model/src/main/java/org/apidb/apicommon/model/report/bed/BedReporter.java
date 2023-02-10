@@ -108,6 +108,7 @@ public abstract class BedReporter extends AbstractReporter {
       }
       LOG.info("Wrote " + featureCount + " features for " + recordCount + " records");
       if (featureCount == 0) {
+        LOG.info("Writing empty response value: " + EMPTY_FEATURE_OUTPUT);
         writer.write(EMPTY_FEATURE_OUTPUT);
       }
       writer.flush();

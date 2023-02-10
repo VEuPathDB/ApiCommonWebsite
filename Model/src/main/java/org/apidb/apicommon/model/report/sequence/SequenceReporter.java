@@ -1,9 +1,7 @@
 package org.apidb.apicommon.model.report.sequence;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.URL;
 import java.util.Collections;
@@ -13,6 +11,9 @@ import javax.ws.rs.core.Response.Status.Family;
 
 import org.apache.log4j.Logger;
 import org.apidb.apicommon.model.TranscriptUtil;
+import org.apidb.apicommon.model.report.bed.BedGeneReporter;
+import org.apidb.apicommon.model.report.bed.BedReporter;
+import org.eupathdb.common.service.PostValidationUserException;
 import org.glassfish.jersey.media.multipart.FormDataMultiPart;
 import org.glassfish.jersey.media.multipart.MultiPart;
 import org.gusdb.fgputil.IoUtil;
@@ -27,9 +28,6 @@ import org.gusdb.wdk.model.answer.request.AnswerFormatting;
 import org.gusdb.wdk.model.answer.request.AnswerRequest;
 import org.gusdb.wdk.model.answer.request.TemporaryResultFactory;
 import org.gusdb.wdk.model.report.AbstractReporter;
-import org.apidb.apicommon.model.report.bed.BedGeneReporter;
-import org.apidb.apicommon.model.report.bed.BedReporter;
-import org.eupathdb.common.service.PostValidationUserException;
 import org.gusdb.wdk.model.report.ReporterConfigException;
 import org.json.JSONObject;
 
@@ -179,20 +177,20 @@ public class SequenceReporter extends AbstractReporter {
   }
 
   private boolean isWriteEmptyBedFileResponse(OutputStream out) {
-    try (BufferedReader in = new BufferedReader(new InputStreamReader(new URL(_bedFileUrl).openStream()))){
-      if (in.ready()) {
-        String line = in.readLine();
-        if (line.equals(BedReporter.EMPTY_FEATURE_OUTPUT)) {
-          // no bed features found in this result, write empty result as sequence reporter result as well
-          out.write(BedReporter.EMPTY_FEATURE_OUTPUT.getBytes());
-          out.flush();
-          return true;
-        }
-        return false;
-      }
-      else {
+    LOG.info("Will preview result to check for empty bed file at URL: " + _bedFileUrl);
+    try (InputStream in = new URL(_bedFileUrl).openStream()) {
+      int firstChar = in.read();
+      if (firstChar == -1) {
         throw new RuntimeException("BedReporter returned empty response.");
       }
+      LOG.info("First char = " + (char)firstChar);
+      if (firstChar == BedReporter.EMPTY_FEATURE_OUTPUT.charAt(0)) {
+        // no bed features found in this result, write empty result as sequence reporter result as well
+        out.write(BedReporter.EMPTY_FEATURE_OUTPUT.getBytes());
+        out.flush();
+        return true;
+      }
+      return false;
     }
     catch (IOException e) {
       throw new RuntimeException("Unable to return empty result", e);
