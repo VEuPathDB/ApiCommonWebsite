@@ -1,6 +1,7 @@
 package org.apidb.apicommon.model.report.bed;
 
 import org.apidb.apicommon.model.TranscriptUtil;
+import org.apidb.apicommon.model.filter.RepresentativeTranscriptFilter;
 import org.apidb.apicommon.model.report.bed.feature.BedFeatureProvider;
 import org.apidb.apicommon.model.report.bed.feature.GeneModelDumpFeatureProvider;
 import org.apidb.apicommon.model.report.bed.feature.GeneGenomicFeatureProvider;
@@ -85,11 +86,26 @@ public class BedGeneReporter extends BedReporter {
       boolean providerNeedsGene = TranscriptUtil.isGeneRecordClass(featureProvider.getRequiredRecordClassFullName());
       boolean providerNeedsTranscript = TranscriptUtil.isTranscriptRecordClass(featureProvider.getRequiredRecordClassFullName());
 
-      if (TranscriptUtil.isTranscriptRecordClass(recordClass) && providerNeedsGene) {
+      boolean isTranscriptAnswer = TranscriptUtil.isTranscriptRecordClass(recordClass);
+
+      if (isTranscriptAnswer && providerNeedsGene) {
         _baseAnswer = TranscriptUtil.transformToGeneAnswer(_baseAnswer);
+        isTranscriptAnswer = false;
+
       }
       else if (TranscriptUtil.isGeneRecordClass(recordClass) && providerNeedsTranscript) {
         _baseAnswer = TranscriptUtil.transformToTranscriptAnswer(_baseAnswer);
+        isTranscriptAnswer = true;
+      }
+      
+      if (isTranscriptAnswer) {
+        try {
+          if (config.getBoolean(RepresentativeTranscriptFilter.PROP_APPLY_FILTER))
+            _baseAnswer = RepresentativeTranscriptFilter.getOneTranscriptPerGeneAnswerValue(_baseAnswer);
+        }
+        catch (JSONException e) {
+          throw new ReporterConfigException("Missing required reporter property (boolean): " + RepresentativeTranscriptFilter.PROP_APPLY_FILTER); 
+        }
       }
 
       // pass the provider to superclass; will use to build and process record stream
