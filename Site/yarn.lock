@@ -2287,10 +2287,10 @@
     spin.js "^4.0.0"
     uuid "^8.1.0"
 
-"@veupathdb/web-common@^0.7.5":
-  version "0.7.5"
-  resolved "https://registry.yarnpkg.com/@veupathdb/web-common/-/web-common-0.7.5.tgz#3617358b6e3fc796d6ca96cc93f8c432d3648ec5"
-  integrity sha512-dIuaOOLyMegpFelIGEo6tiZoSxYxAVSZ1DXaXAt2bFhXspON4DXg0ml/4b9ItaoamPo4lWJH8J22N+ojOmCFHw==
+"@veupathdb/web-common@0.7.5-patch.0":
+  version "0.7.5-patch.0"
+  resolved "https://registry.yarnpkg.com/@veupathdb/web-common/-/web-common-0.7.5-patch.0.tgz#50ee53ae06837044f269d7cef0d8798bf940bc06"
+  integrity sha512-x4i/Kz+E33uzkEwWkAI5mA0r5UzDKco7AFpkkBYGKGBfIXlQkHKsHp7QOc/8vkW894iSplKrH/pBuyBTPpFp5g==
   dependencies:
     custom-event-polyfill "^1.0.7"
     md5 "^2.3.0"
