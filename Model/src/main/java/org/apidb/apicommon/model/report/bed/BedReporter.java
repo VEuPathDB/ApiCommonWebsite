@@ -33,6 +33,8 @@ public abstract class BedReporter extends AbstractReporter {
 
   private static Logger LOG = Logger.getLogger(BedReporter.class);
 
+  public static final String EMPTY_FEATURE_OUTPUT = "### The result is empty ###";
+
   private BedFeatureProvider _featureProvider;
   private Collection<AttributeField> _requiredAttributes = Collections.emptyList();
   private Collection<TableField> _requiredTables = Collections.emptyList();
@@ -95,15 +97,20 @@ public abstract class BedReporter extends AbstractReporter {
     try (RecordStream records = RecordStreamFactory.getRecordStream(_baseAnswer, _requiredAttributes, _requiredTables);
          BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(out))) {
       int recordCount = 0;
+      int featureCount = 0;
       for (RecordInstance record : records) {
         recordCount++;
         for (List<String> line: _featureProvider.getRecordAsBedFields(record)){
+          featureCount++;
           writer.write(String.join("\t", line));
           writer.newLine();
         }
       }
+      LOG.info("Wrote " + featureCount + " features for " + recordCount + " records");
+      if (featureCount == 0) {
+        writer.write(EMPTY_FEATURE_OUTPUT);
+      }
       writer.flush();
-      LOG.info("Wrote " + recordCount + " records");
     }
     catch (IOException e) {
       throw new WdkModelException("Unable to complete delivery of bed report", e);
