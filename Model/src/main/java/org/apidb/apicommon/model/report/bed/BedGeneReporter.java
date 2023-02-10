@@ -1,10 +1,12 @@
 package org.apidb.apicommon.model.report.bed;
 
+import static org.apidb.apicommon.model.filter.RepresentativeTranscriptFilter.getApplyOneGeneFilterProp;
+import static org.apidb.apicommon.model.filter.RepresentativeTranscriptFilter.getOneTranscriptPerGeneAnswerValue;
+
 import org.apidb.apicommon.model.TranscriptUtil;
-import org.apidb.apicommon.model.filter.RepresentativeTranscriptFilter;
 import org.apidb.apicommon.model.report.bed.feature.BedFeatureProvider;
-import org.apidb.apicommon.model.report.bed.feature.GeneModelDumpFeatureProvider;
 import org.apidb.apicommon.model.report.bed.feature.GeneGenomicFeatureProvider;
+import org.apidb.apicommon.model.report.bed.feature.GeneModelDumpFeatureProvider;
 import org.apidb.apicommon.model.report.bed.feature.ProteinInterproFeatureProvider;
 import org.apidb.apicommon.model.report.bed.feature.ProteinSequenceFeatureProvider;
 import org.apidb.apicommon.model.report.bed.feature.ProteinTableFieldFeatureProvider;
@@ -97,15 +99,10 @@ public class BedGeneReporter extends BedReporter {
         _baseAnswer = TranscriptUtil.transformToTranscriptAnswer(_baseAnswer);
         isTranscriptAnswer = true;
       }
-      
-      if (isTranscriptAnswer) {
-        try {
-          if (config.getBoolean(RepresentativeTranscriptFilter.PROP_APPLY_FILTER))
-            _baseAnswer = RepresentativeTranscriptFilter.getOneTranscriptPerGeneAnswerValue(_baseAnswer);
-        }
-        catch (JSONException e) {
-          throw new ReporterConfigException("Missing required reporter property (boolean): " + RepresentativeTranscriptFilter.PROP_APPLY_FILTER); 
-        }
+
+      // apply one-transcript-per-gene filter if needed
+      if (isTranscriptAnswer && getApplyOneGeneFilterProp(config)) {
+        _baseAnswer = getOneTranscriptPerGeneAnswerValue(_baseAnswer);
       }
 
       // pass the provider to superclass; will use to build and process record stream
