@@ -1,9 +1,9 @@
 package org.apidb.apicommon.model.filter;
 
 import org.apache.log4j.Logger;
+import org.gusdb.fgputil.validation.ValidObjectFactory.RunnableObj;
 import org.gusdb.fgputil.validation.ValidationBundle;
 import org.gusdb.fgputil.validation.ValidationLevel;
-import org.gusdb.fgputil.validation.ValidObjectFactory.RunnableObj;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.answer.AnswerValue;
 import org.gusdb.wdk.model.answer.factory.AnswerValueFactory;
@@ -11,21 +11,21 @@ import org.gusdb.wdk.model.answer.spec.AnswerSpec;
 import org.gusdb.wdk.model.answer.spec.AnswerSpecBuilder;
 import org.gusdb.wdk.model.answer.spec.FilterOption;
 import org.gusdb.wdk.model.answer.spec.FilterOptionList;
-import org.gusdb.wdk.model.answer.spec.SimpleAnswerSpec;
 import org.gusdb.wdk.model.answer.spec.FilterOptionList.FilterOptionListBuilder;
+import org.gusdb.wdk.model.answer.spec.SimpleAnswerSpec;
 import org.gusdb.wdk.model.filter.StepFilter;
 import org.gusdb.wdk.model.question.Question;
-import org.gusdb.wdk.model.user.User;
 import org.gusdb.wdk.service.request.exception.DataValidationException;
 import org.gusdb.wdk.service.service.AnswerService;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class RepresentativeTranscriptFilter extends StepFilter {
 
-  @SuppressWarnings("unused")
   private static final Logger LOG = Logger.getLogger(RepresentativeTranscriptFilter.class);
 
-  private static final boolean REPRESENTATIVE_TRANSCRIPT_FILTER_ON_BY_DEFAULT = false;
+  // standard property used in config API for reporters that want to apply a one-transcript-per-gene filter
+  public static final String PROP_APPLY_FILTER = "applyFilter";
 
   /**
    * The following String value is used in a variety of places.  Do not change
@@ -113,16 +113,25 @@ public class RepresentativeTranscriptFilter extends StepFilter {
     return false;
   }
 
-  public static boolean shouldEngageFilter(User user) {
-    // get user preference
-    String prefValue = user.getPreferences().getProjectPreference(RepresentativeTranscriptFilter.FILTER_NAME);
-    return (prefValue == null ? REPRESENTATIVE_TRANSCRIPT_FILTER_ON_BY_DEFAULT : Boolean.valueOf(prefValue));
-  }
-
   @Override
   public ValidationBundle validate(Question question, JSONObject value, ValidationLevel validationLevel) {
     // No validation needed since this filter has no configuration. Its presence is all that is required.
     return ValidationBundle.builder(validationLevel).build();
+  }
+
+  /**
+   * Returns the state of the "one gene per transcript" property on a reporter config
+   * 
+   * @param config JSON object representing reporter config
+   * @return whether representative transcript filter should be applied
+   */
+  public static boolean getApplyOneGeneFilterProp(JSONObject config) {
+    try {
+      return config.getBoolean(PROP_APPLY_FILTER);
+    }
+    catch (JSONException e) {
+      return false;  // default to false if prop not present
+    }    
   }
 
   /**
@@ -151,4 +160,25 @@ public class RepresentativeTranscriptFilter extends StepFilter {
     }
   }
 
+  /**
+   * Applies the one transcript per gene filter to the answer value using the default filter (longest transcript)
+   *
+   * @param baseAnswer transcript answer
+   * @return transcript answer with only one result row per gene
+   * @throws WdkModelException if something goes wrong
+   */
+  public static AnswerValue getOneTranscriptPerGeneAnswerValue(AnswerValue baseAnswer) throws WdkModelException {
+    Question question = baseAnswer.getAnswerSpec().getQuestion();
+    String filterName = RepresentativeTranscriptFilter.FILTER_NAME;
+    if (question.getFilter(filterName) == null) {
+      throw new WdkModelException("Can't find transcript filter with name " +
+          filterName + " on question " + question.getFullName());
+    }
+    JSONObject jsFilterValue = new JSONObject(); // this filter has no params, so this stays empty
+    RunnableObj<AnswerSpec> modifiedSpec = AnswerSpec
+        .builder(baseAnswer.getAnswerSpec())
+        .setViewFilterOptions(FilterOptionList.builder().addFilterOption(filterName, jsFilterValue))
+        .buildRunnable(baseAnswer.getUser(), baseAnswer.getAnswerSpec().getStepContainer());
+    return AnswerValueFactory.makeAnswer(baseAnswer, modifiedSpec);
+  }
 }
