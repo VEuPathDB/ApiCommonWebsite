@@ -2,7 +2,7 @@ package org.apidb.apicommon.model.report.bed;
 
 import org.apidb.apicommon.model.TranscriptUtil;
 import org.apidb.apicommon.model.report.bed.feature.BedFeatureProvider;
-import org.apidb.apicommon.model.report.bed.feature.GeneComponentsFeatureProvider;
+import org.apidb.apicommon.model.report.bed.feature.GeneModelDumpFeatureProvider;
 import org.apidb.apicommon.model.report.bed.feature.GeneGenomicFeatureProvider;
 import org.apidb.apicommon.model.report.bed.feature.ProteinInterproFeatureProvider;
 import org.apidb.apicommon.model.report.bed.feature.ProteinSequenceFeatureProvider;
@@ -18,12 +18,24 @@ import org.json.JSONObject;
 public class BedGeneReporter extends BedReporter {
 
   private enum SequenceType {
-    gene_components,
+    dna_components,
+    transcript_components,
     genomic,
     spliced_genomic,
     genomic_features,
     protein,
     protein_features;
+  }
+
+  private enum DnaComponent {
+    exon,
+    intron;
+  }
+
+  private enum TranscriptComponent {
+    five_prime_utr,
+    three_prime_utr,
+    cds;
   }
 
   private enum SplicedGenomic {
@@ -34,7 +46,8 @@ public class BedGeneReporter extends BedReporter {
   public static boolean useCoordinatesOnProteinReference(JSONObject config) throws WdkModelException {
     SequenceType type = SequenceType.valueOf(config.getString("type"));
     switch(type){
-      case gene_components:
+      case dna_components:
+      case transcript_components:
       case genomic:
       case spliced_genomic:
       case genomic_features:
@@ -119,8 +132,28 @@ public class BedGeneReporter extends BedReporter {
           default:
             throw new WdkModelException(String.format("Unsupported spliced genomic type: %s", splicedGenomic.name()));
         }
-      case gene_components:
-        return new GeneComponentsFeatureProvider(config);
+      case dna_components:
+        DnaComponent dnaComponent = DnaComponent.valueOf(config.getString("dnaComponent"));
+        switch (dnaComponent){
+          case exon:
+            return new GeneModelDumpFeatureProvider(config, "Exon sequence", "DNA component: Exon", "exon");
+          case intron:
+            return new GeneModelDumpFeatureProvider(config, "Intron sequence", "DNA component: Intron", "intron");
+          default:
+            throw new WdkModelException(String.format("Unsupported dnaComponent type: %s", dnaComponent.name()));
+        }
+      case transcript_components:
+        TranscriptComponent transcriptComponent = TranscriptComponent.valueOf(config.getString("transcriptComponent"));
+        switch(transcriptComponent){
+          case five_prime_utr:
+            return new GeneModelDumpFeatureProvider(config, "5' UTR sequence", "Transcript component: 5' UTR", "five_prime_utr");
+          case three_prime_utr:
+            return new GeneModelDumpFeatureProvider(config, "3' UTR sequence" , "Transcript component: 3' UTR", "three_prime_utr");
+          case cds:
+            return new GeneModelDumpFeatureProvider(config, "CDS sequence", "Transcript component: CDS", "cds");
+          default:
+            throw new WdkModelException(String.format("Unsupported transcriptComponent type: %s", transcriptComponent.name()));
+        }
       default:
         throw new WdkModelException(String.format("Unsupported sequence type: %s", type.name()));
     }
