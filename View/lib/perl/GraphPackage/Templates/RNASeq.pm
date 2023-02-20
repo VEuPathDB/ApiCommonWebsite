@@ -855,6 +855,102 @@ sub init {
 1;
 
 
+# Fungi 
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_eb1f1d3a5c;
+
+# @Override
+sub getKeys{
+  my ($self, $profileSetName, $profileType) = @_;
+
+  $profileType = 'percentile' if ($profileType eq 'channel1_percentiles');
+
+  my $metacycle = 0;
+  if (index($profileSetName, "time course") == 0) {
+    $metacycle = 1;
+  } 
+  my $mainKey =  ["_${profileType}"];
+
+  #trying to ignore dup values, but also pass everything else to same plot part as the main profile to use as annotation
+  if ($metacycle) {
+    if ($profileType eq 'values' || $profileType eq 'percentile') {
+      return([]);
+    } else {
+      $mainKey = ["_values", "_percentile"];
+    }
+  }
+
+  return($mainKey);
+}
+
+sub getProfileColors {
+  my ($self) = @_;
+
+  my @colors =  @{$self->getColors()};
+  return \@colors;
+}
+
+sub finalProfileAdjustments {
+  my ($self, $profile) = @_;
+
+  my $rAdjustString = << 'RADJUST';
+  annotation.df <- profile.df.full[!profile.df.full$PROFILE_TYPE %in% c('values', 'channel1_percentiles'),]
+  profile.df.full <- profile.df.full[profile.df.full$PROFILE_TYPE %in% c('values', 'channel1_percentiles'),] 
+  metadata.df <- as.data.frame(matrix(unlist(strsplit(as.character(profile.df.full$ELEMENT_NAMES), '_', fixed=T)), ncol = 3, byrow=T))
+  profile.df.full$ELEMENT_NAMES_NUMERIC <- as.numeric(metadata.df[[2]])
+  profile.df.full$GROUP <- gsub("TM", "Time series ", metadata.df[[1]])
+  profile.df.full$TOOLTIP <- gsub("CT", "Circadian time: ", metadata.df[[3]])
+  profile.df.full$GROUP <- ifelse(grepl('firststrand', profile.df.full$PROFILE_SET), paste(profile.df.full$GROUP, 'sense'), paste(profile.df.full$GROUP, 'antisense'))
+  profile.df.full$LEGEND <- as.factor(profile.df.full$GROUP)
+  profile.df.full <- profile.df.full[ !grepl('nonunique', profile.df.full$PROFILE_SET) , ]
+
+  if (nrow(annotation.df) > 0) {  
+    annotation.df <- transform(annotation.df, "VALUE"=ifelse(VALUE < .05 & PROFILE_TYPE == "pvalue", "<0.05", VALUE)) 
+    annotation.df$GROUP <- gsub("\\s-(.*)", "", annotation.df$PROFILE_SET)
+    annotation.df$GROUP <- gsub('time course', 'Time series', annotation.df$GROUP)
+    annotation.df$LEGEND <- annotation.df$GROUP
+    annotation.df$LINETEXT <- paste0(substr(annotation.df$ELEMENT_NAMES, 1,3), " ", annotation.df$PROFILE_TYPE, ": ", annotation.df$VALUE)
+    annotation.df <- group_by(annotation.df, LEGEND)
+    annotation.df <- summarize(annotation.df, LINETEXT = paste(LINETEXT, collapse="||"))
+    annotation.df$LINETEXT <- paste0(annotation.df$LEGEND, "||", annotation.df$LINETEXT)
+    profile.df.full <- merge(profile.df.full, annotation.df, by = "LEGEND")
+  }
+
+  profile.is.numeric <- TRUE
+RADJUST
+
+  my $rPostscript = << 'RPOST';
+if ("LINETEXT" %in% colnames(profile.df.full) && useTooltips) {  
+    remove_geom <- function(ggplot2_object, geom_type) {
+      layers <- lapply(ggplot2_object$layers, 
+        function(x) {
+          if (class(x$geom)[1] == geom_type) {
+            NULL
+          } else {
+            x
+          }
+        }
+      )
+      layers <- layers[!sapply(layers, is.null)]
+      ggplot2_object$layers <- layers
+      ggplot2_object
+    }
+  
+    gp <- remove_geom(gp, "GeomLine")
+ 
+    gp = gp + aes(group=GROUP)
+    gp = gp + geom_tooltip(aes(tooltip=LINETEXT), real.geom=geom_line)
+  }
+RPOST
+
+  $profile->setSmoothLines(0);
+  $profile->setXaxisLabel('Hours after light to dark transfer');
+  $profile->addAdjustProfile($rAdjustString);
+  $profile->setRPostscript($rPostscript);
+}
+
+1;
+
+
 # Fungi - ncraOR74A_Bharath_Circadian_Time_Course_ebi_rnaSeq_RSRC
 package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_c05fd37f3c;
 
