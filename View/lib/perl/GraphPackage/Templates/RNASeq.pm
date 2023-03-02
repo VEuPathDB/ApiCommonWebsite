@@ -169,6 +169,17 @@ RADJUST
 1;
 
 #vb - 
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_c0ebe602ad;
+sub init{
+  my $self = shift;
+  $self->SUPER::init(@_);
+
+  $self->setPlotWidth(900);
+
+  return $self;
+}
+1;
+
 package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_1cedd4bd46;
 sub init{
   my $self = shift;
