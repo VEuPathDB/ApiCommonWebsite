@@ -907,7 +907,7 @@ sub finalProfileAdjustments {
   annotation.df <- profile.df.full[!profile.df.full$PROFILE_TYPE %in% c('values', 'channel1_percentiles'),]
   profile.df.full <- profile.df.full[profile.df.full$PROFILE_TYPE %in% c('values', 'channel1_percentiles'),] 
   metadata.df <- as.data.frame(matrix(unlist(strsplit(as.character(profile.df.full$ELEMENT_NAMES), '_', fixed=T)), ncol = 3, byrow=T))
-  profile.df.full$ELEMENT_NAMES_NUMERIC <- as.numeric(metadata.df[[2]])
+  profile.df.full$ELEMENT_NAMES_NUMERIC <- as.numeric(gsub('DD', '', metadata.df[[2]]))
   profile.df.full$GROUP <- gsub("TM", "Time series ", metadata.df[[1]])
   profile.df.full$TOOLTIP <- gsub("CT", "Circadian time: ", metadata.df[[3]])
   profile.df.full$GROUP <- ifelse(grepl('firststrand', profile.df.full$PROFILE_SET), paste(profile.df.full$GROUP, 'sense'), paste(profile.df.full$GROUP, 'antisense'))
