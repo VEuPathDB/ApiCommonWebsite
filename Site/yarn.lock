@@ -2322,10 +2322,10 @@
     lodash "^4.17.21"
     uuid "^9.0.0"
 
-"@veupathdb/multi-blast@^3.0.2":
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/@veupathdb/multi-blast/-/multi-blast-3.0.2.tgz#dd8d66e13af5f89333ab4adb1a3453bf0b1f2f1e"
-  integrity sha512-SJ+zrhUxsi0g+qkrCWTM0z+VUA1VsCNbM7PFMYATfFHNBLyNi//iJVEhOR2zRfEB0cKKj6I50EKolucVOqonSA==
+"@veupathdb/multi-blast@^3.0.2-patch.1":
+  version "3.0.2-patch.1"
+  resolved "https://registry.yarnpkg.com/@veupathdb/multi-blast/-/multi-blast-3.0.2-patch.1.tgz#0be4890b344b75d00127a707b3da2642b33c366e"
+  integrity sha512-ucUGHt4NhO8Ie4E+5Zg+Kp+4jV35Td9uEqept5ktXTW5vOLRc72gwGm9b17jkm8uKgIybXEfLoLgpJlKoaip/w==
   dependencies:
     file-saver "^2.0.5"
     fp-ts "^2.11.5"
