@@ -802,8 +802,6 @@ const useHeaderMenuItems = (
               display: 'Data submission and release policies',
               type: 'reactRoute',
               url: makeStaticPageRoute('/dataSubmissionReleasePolicy.html')
-
-              )
             }
           ]
         },
