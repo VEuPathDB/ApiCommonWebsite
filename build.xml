@@ -112,10 +112,13 @@
 
   <target name="ApiCommonWebsite/Site-WebInstallation">
 
-    <ant target="eupathWebComponentInstall">
+    <ant target="defaultWebComponentInstall">
       <property name="project" value="ApiCommonWebsite" />
       <property name="component" value="Site" />
     </ant>
+    <copy todir="${webappTargetDir}/bundles">
+      <fileset dir="${projectsDir}/ApiCommonWebsite/Site/node_modules/@veupathdb/genomics-site/dist" />
+    </copy>
 
     <!--JBrowse stuff -->
     <delete file="${webappTargetDir}/jbrowse/jbrowse.conf" />
