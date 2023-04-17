@@ -116,6 +116,9 @@
       <property name="project" value="ApiCommonWebsite" />
       <property name="component" value="Site" />
     </ant>
+    <copy todir="${webappTargetDir}">
+      <fileset dir="${projectsDir}/ApiCommonWebsite/Site/node_modules/@veupathdb/genomics-site/webapp" />
+    </copy>
     <copy todir="${webappTargetDir}/bundles">
       <fileset dir="${projectsDir}/ApiCommonWebsite/Site/node_modules/@veupathdb/genomics-site/dist" />
     </copy>
