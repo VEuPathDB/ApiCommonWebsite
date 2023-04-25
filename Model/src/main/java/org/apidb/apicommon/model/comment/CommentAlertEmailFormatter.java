@@ -121,11 +121,12 @@ public class CommentAlertEmailFormatter {
   }
 
   private static String getThanks(String project, String organism) {
-    return "TriTrypDB".equals(project)
+    return "Thanks for your comment!";
+  /*  return "TriTrypDB".equals(project)
       || "Plasmodium falciparum".equals(organism)
       || "Cryptosporidium parvum".equals(organism)
       ? "Thank you! Your comment will be reviewed by a curator shortly."
       : "Thanks for your comment!";
-
+  */
   }
 }
