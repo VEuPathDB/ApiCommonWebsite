@@ -3,6 +3,6 @@
 
 
 "@veupathdb/genomics-site@^1.0.0":
-  version "1.0.10"
-  resolved "https://registry.yarnpkg.com/@veupathdb/genomics-site/-/genomics-site-1.0.10.tgz#0301b839074561c65d671edf269af09db78862cf"
-  integrity sha512-cNPf7aF0zVvpW6dqCnwn2RPpUM0XCWay3UIzMPFBnZIW03cRutXN6ewpcmMGzwVhsYDYqKrCa9aIc+0hGy85yQ==
+  version "1.0.12"
+  resolved "https://registry.yarnpkg.com/@veupathdb/genomics-site/-/genomics-site-1.0.12.tgz#08b42f4e653f87bd79b439ea8176e9f02c2bb250"
+  integrity sha512-jIJhf3UQJEoz9SZzwkd04dlJib7DObdnUrlWk2X9F8LDSUax3PxC+G5dg0EIDVTiy+OA8vw2UyNQqbHn0T1h+A==
