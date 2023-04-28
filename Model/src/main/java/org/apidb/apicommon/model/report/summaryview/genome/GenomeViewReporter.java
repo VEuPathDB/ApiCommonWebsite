@@ -253,7 +253,7 @@ public abstract class GenomeViewReporter extends AbstractReporter {
         + ", chromosome AS " + COLUMN_CHROMOSOME + ", organism AS " + COLUMN_ORGANISM 
         + " FROM ApidbTuning.GenomicSeqAttributes "
         + " WHERE chromosome IS NOT NULL "
-        + "   AND organism IN (SELECT organism FROM (" + sql + "))";
+        + "   AND organism IN (SELECT organism FROM (" + sql + ") t )";
     ResultSet resultSet = null;
     try {
       resultSet = SqlUtils.executeQuery(dataSource, sql, "genome-view-chromosome");

@@ -34,7 +34,7 @@ public class TranscriptSnapshotBasketQueryPlugin extends BasketSnapshotQueryPlug
       // same as regular SQL except for the next line, adding additional column value to query result
       .append(", 'Y' as " + MatchedTranscriptFilter.MATCHED_RESULT_COLUMN)
 
-      .append(" FROM ($$" + datasetParam.getName() + "$$)")
+      .append(" FROM ($$" + datasetParam.getName() + "$$) t")
       .toString();
   }
 }

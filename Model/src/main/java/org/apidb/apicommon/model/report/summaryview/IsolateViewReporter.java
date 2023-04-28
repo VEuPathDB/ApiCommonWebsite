@@ -34,7 +34,7 @@ public class IsolateViewReporter extends AbstractReporter {
     sql.append(" from sres.OntologyTerm ot, ");
     sql.append("     (select count(*) as total, latitude, longitude, curated_geographic_location as country ");
     sql.append("      from ApidbTuning.PopsetAttributes ");
-    sql.append("      where source_id in (select source_id from ( " + idSql + " )) ");
+    sql.append("      where source_id in (select source_id from ( " + idSql + " ) t) ");
     sql.append("      group by latitude, longitude, curated_geographic_location) cnt ");
     sql.append("where ot.name = cnt.country ");
     sql.append("  and ot.source_id like 'GAZ%' ");
