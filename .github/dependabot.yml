@@ -1,0 +1,16 @@
+# Configure dependabot to create a pull request when it finds a new version of
+# @veupathdb npm packages.
+
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/Site"
+    schedule:
+      interval: "daily"
+      time: "23:00"
+      timezone: "America/New_York"
+    allow:
+      - dependency-name: "@veupathdb/*"
+    commit-message:
+      prefix: "npm"
+    versioning-strategy: "lockfile-only"
