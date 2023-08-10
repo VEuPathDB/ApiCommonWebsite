@@ -1766,6 +1766,13 @@ RADJUST
 
 1;
 
+# fungi - mory70-15_Ruiz_Mory_2020_ebi_rnaSeq_RSRC
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_9d559d0fae;
+
+sub getPlotWidth { return 1000; }
+
+1;
+
 #--------------------------------------------------------------------------------
 # TEMPLATE_ANCHOR rnaSeqGraph
 
@@ -1788,3 +1795,4 @@ package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_b1ac1e329c;
 sub getPlotWidth { return 800; }
 
 1;
+
