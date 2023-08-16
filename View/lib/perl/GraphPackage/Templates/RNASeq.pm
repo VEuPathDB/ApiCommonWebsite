@@ -1773,6 +1773,18 @@ sub getPlotWidth { return 1000; }
 
 1;
 
+
+
+# fungi - calbSC5314_Liu_calbSC5314_2015_ebi_rnaSeq_RSRC
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_d133a8e1d9;
+
+sub getPlotWidth { return 1200; }
+
+1;
+
+
+
+
 #--------------------------------------------------------------------------------
 # TEMPLATE_ANCHOR rnaSeqGraph
 
