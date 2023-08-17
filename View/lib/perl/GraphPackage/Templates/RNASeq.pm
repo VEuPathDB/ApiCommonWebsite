@@ -1786,7 +1786,7 @@ sub getPlotWidth { return 1200; }
 # host - hsapREF_Liu_calbSC5314_2015_ebi_rnaSeq_RSRC
 package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_5f2c5bb6f7;
 
-sub getPlotWidth { return 600; }
+sub getPlotWidth { return 550; }
 
 1;
 
