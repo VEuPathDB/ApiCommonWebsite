@@ -1790,6 +1790,13 @@ sub getPlotWidth { return 600; }
 
 1;
 
+# vect - aaegLVP_AGWG_SRP034735_ebi_rnaSeq_RSRC
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_f279b1d0f8;
+
+sub getPlotWidth { return 750; }
+
+1;
+
 
 
 #--------------------------------------------------------------------------------
