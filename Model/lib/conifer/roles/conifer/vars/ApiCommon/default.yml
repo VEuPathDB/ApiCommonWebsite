@@ -42,6 +42,7 @@ modelprop:
   SEQUENCE_RETRIEVAL_SERVICE_URL: /sequence-retrieval
   JBROWSE_WEBPAGE_URL: "/{{ webapp_ctx }}/app/jbrowse"
   JBROWSE_SERVICE_URL: "/{{ webapp_ctx }}/service/jbrowse"
+  VDI_DATA_SCHEMA: apidbuserdatasets # Maybe this should be called "UDSchema" for now since it could point to VDI or legacy schema?
 
 user_datasets_workspace:
   enabled: "true"
