@@ -1798,6 +1798,14 @@ sub getPlotWidth { return 750; }
 1;
 
 
+# vect - agamPEST_ERP113663_ebi_rnaSeq_RSRC
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_df981c3f82;
+
+sub getPlotWidth { return 1000; }
+
+1;
+
+
 
 #--------------------------------------------------------------------------------
 # TEMPLATE_ANCHOR rnaSeqGraph
