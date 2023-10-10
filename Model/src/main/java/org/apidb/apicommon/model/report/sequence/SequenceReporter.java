@@ -35,7 +35,7 @@ public class SequenceReporter extends AbstractReporter {
 
   private static Logger LOG = Logger.getLogger(SequenceReporter.class);
 
-  private static final String FASTA_MEDIA_TYPE = "text/x-fasta";
+  private static final String FASTA_MEDIA_TYPE = "text/plain";
   private static final String BED_REPORTER_NAME = "bed";
 
   private enum SequenceType {
