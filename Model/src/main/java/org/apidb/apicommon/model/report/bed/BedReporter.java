@@ -80,7 +80,7 @@ public abstract class BedReporter extends AbstractReporter {
 
   @Override
   public String getHttpContentType() {
-    return "text/x-bed";
+    return "text/plain";
   }
 
   @Override
