@@ -17,24 +17,30 @@ public class BedLine {
    */
   private static final String SCORE_FIELD = "0";
 
+  private static Integer locationToZeroBased(Integer loc) {
+    return new Integer(loc.intValue() - 1);
+  }
+
   public static List<String> bed6(String featureId, Integer start, Integer end, DeflineBuilder defline, StrandDirection strand){
 
-    return List.of(featureId, start.toString(), end.toString(), defline.toString(), SCORE_FIELD, strand.getSign());
+    Integer zeroBasedStart = locationToZeroBased(start);
+
+    return List.of(featureId, zeroBasedStart.toString(), end.toString(), defline.toString(), SCORE_FIELD, strand.getSign());
   }
+
 
   public static List<String> bed12(String featureId, DeflineBuilder defline, StrandDirection strand, List<Integer> subfeatureStarts, List<Integer> subfeatureEnds){
     Integer start = Collections.min(subfeatureStarts);
     Integer end = Collections.max(subfeatureEnds);
 
-    Integer cdStart = start;
-    Integer cdEnd = end;
     String color = ".";
 
     Integer numBlocks = subfeatureStarts.size();
-    
+
+    // subfeature coords are 1 based closed here (genomic coords).  when getting length need to add 1
     String blockSizesStr =
       IntStream.range(0, numBlocks)
-      .mapToObj(i -> Integer.valueOf(subfeatureEnds.get(i) - subfeatureStarts.get(i)).toString())
+      .mapToObj(i -> Integer.valueOf(subfeatureEnds.get(i) - subfeatureStarts.get(i) + 1).toString())
       .collect(Collectors.joining(","));
 
     String blockStartsStr =
@@ -42,8 +48,12 @@ public class BedLine {
       .mapToObj(i -> Integer.valueOf(subfeatureStarts.get(i) - start).toString())
       .collect(Collectors.joining(","));
 
+    Integer zeroBasedStart = locationToZeroBased(start);
 
-    return List.of(featureId, start.toString(), end.toString(), defline.toString(), SCORE_FIELD, strand.getSign(), cdStart.toString(), cdEnd.toString(), color, numBlocks.toString(), blockSizesStr, blockStartsStr);
+    Integer cdStart = zeroBasedStart;
+    Integer cdEnd = end;
+
+    return List.of(featureId, zeroBasedStart.toString(), end.toString(), defline.toString(), SCORE_FIELD, strand.getSign(), cdStart.toString(), cdEnd.toString(), color, numBlocks.toString(), blockSizesStr, blockStartsStr);
 
   }
 }
