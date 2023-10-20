@@ -85,7 +85,7 @@ public class SequenceReporter extends AbstractReporter {
 
     // FIXME: starting here with synchronous API for proof of concept; convert to async
     _seqRetSvcRequestUrl = localhost + modelProps.get("SEQUENCE_RETRIEVAL_SERVICE_URL") +
-        "/sequences/" + sequenceType.name() + "/bed?basesPerLine=" + basesPerLine + "&deflineFormat=QUERYONLY&startOffset=ZERO"; 
+        "/sequences/" + sequenceType.name() + "/bed?basesPerLine=" + basesPerLine + "&deflineFormat=QUERYONLY&startOffset=ONE"; 
 
     LOG.info("Configured sequence reporter to return FASTA.\n  bedFileUrl = " + _bedFileUrl + "\n  seqRetSvcUrl = " + _seqRetSvcRequestUrl);
     return this;
