@@ -85,16 +85,25 @@ public class GeneGenomicFeatureProvider implements BedFeatureProvider {
     int featureEnd = Integer.valueOf(m.group(3));
 
     StrandDirection strand = StrandDirection.fromSign(m.group(4));
-    if(_reverseAndComplement) {
-      strand = strand.opposite();
-    }
+
     int fivePrimeUtrLength = integerValueWithZeroForEmpty(record, ATTR_FIVE_PRIME_UTR_LENGTH);
     int threePrimeUtrLength = integerValueWithZeroForEmpty(record, ATTR_THREE_PRIME_UTR_LENGTH);
 
-    Integer segmentStart = getPositionGenomic(featureStart, featureEnd, _upstreamOffset, _upstreamSign, _upstreamAnchor, fivePrimeUtrLength, threePrimeUtrLength);
-    Integer segmentEnd = getPositionGenomic(featureStart, featureEnd, _downstreamOffset, _downstreamSign, _downstreamAnchor, fivePrimeUtrLength, threePrimeUtrLength);
+    Integer upstreamPosition = getPositionGenomic(featureStart, featureEnd, _upstreamOffset, _upstreamSign, _upstreamAnchor, fivePrimeUtrLength, threePrimeUtrLength, strand);
+    Integer downstreamPosition = getPositionGenomic(featureStart, featureEnd, _downstreamOffset, _downstreamSign, _downstreamAnchor, fivePrimeUtrLength, threePrimeUtrLength, strand);
+
+    Integer segmentStart = upstreamPosition;
+    Integer segmentEnd = downstreamPosition;
+    if(strand.getSign().equals("-")) {
+        segmentStart = downstreamPosition;
+        segmentEnd = upstreamPosition;
+    }
 
     DeflineBuilder defline = new DeflineBuilder(featureId);
+
+    if(_reverseAndComplement) {
+      strand = strand.opposite();
+    }
 
     if(_requestedDeflineFields.contains("organism")){
       defline.appendRecordAttribute(record, ATTR_ORGANISM);
@@ -132,18 +141,35 @@ public class GeneGenomicFeatureProvider implements BedFeatureProvider {
   private static int getPositionGenomic(
       Integer featureStart, Integer featureEnd, 
       int offset, OffsetSign sign, Anchor anchor,
-      int fivePrimeUtrLength, int threePrimeUtrLength
+      int fivePrimeUtrLength, int threePrimeUtrLength,
+      StrandDirection strand 
       ) throws WdkModelException{
-    if (sign == OffsetSign.minus) {
-      offset = - offset;
-    }
-    switch(anchor) {
-      case Start: return featureStart + offset;
-      case CodeStart: return featureStart + fivePrimeUtrLength + offset;
-      case End: return featureEnd + offset;
-      case CodeEnd: return featureEnd - threePrimeUtrLength + offset;
-      default: throw new WdkModelException("Unsupported anchor type: " + anchor);
-    }
+
+      if(strand.getSign().equals("-")) {
+
+          if (sign == OffsetSign.plus) {
+              offset = - offset;
+          }
+          switch(anchor) {
+          case Start: return featureEnd + offset;
+          case CodeStart: return featureEnd - fivePrimeUtrLength + offset;
+          case End: return featureStart + offset;
+          case CodeEnd: return featureStart + threePrimeUtrLength + offset;
+          default: throw new WdkModelException("Unsupported anchor type: " + anchor);
+          }
+      }
+      else {
+          if (sign == OffsetSign.minus) {
+              offset = - offset;
+          }
+          switch(anchor) {
+          case Start: return featureStart + offset;
+          case CodeStart: return featureStart + fivePrimeUtrLength + offset;
+          case End: return featureEnd + offset;
+          case CodeEnd: return featureEnd - threePrimeUtrLength + offset;
+          default: throw new WdkModelException("Unsupported anchor type: " + anchor);
+          }
+      }
   }
 
   private static String getPositionDescGenomic(int offset, OffsetSign sign, Anchor anchor) throws WdkModelException{
