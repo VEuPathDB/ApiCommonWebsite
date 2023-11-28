@@ -1,6 +1,7 @@
 package org.apidb.apicommon.model.report.bed.util;
 
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -30,6 +31,12 @@ public class BedLine {
 
 
   public static List<String> bed12(String featureId, DeflineBuilder defline, StrandDirection strand, List<Integer> subfeatureStarts, List<Integer> subfeatureEnds){
+
+      if(strand.getSign().equals("-")) {
+          Collections.reverse(subfeatureStarts);
+          Collections.reverse(subfeatureEnds);
+      }
+
     Integer start = Collections.min(subfeatureStarts);
     Integer end = Collections.max(subfeatureEnds);
 
@@ -43,19 +50,11 @@ public class BedLine {
       .mapToObj(i -> Integer.valueOf(subfeatureEnds.get(i) - subfeatureStarts.get(i) + 1).toString())
       .collect(Collectors.joining(","));
 
-    String blockStartsStr;
-      if(strand.getSign().equals("-")) {
-          blockStartsStr =
-              IntStream.range(0, numBlocks)
-              .mapToObj(i -> Integer.valueOf(end - subfeatureEnds.get(i)).toString())
-              .collect(Collectors.joining(","));
-      }
-      else {
-          blockStartsStr =
-              IntStream.range(0, numBlocks)
-              .mapToObj(i -> Integer.valueOf(subfeatureStarts.get(i) - start).toString())
-              .collect(Collectors.joining(","));
-      }
+    String blockStartsStr =
+        IntStream.range(0, numBlocks)
+        .mapToObj(i -> Integer.valueOf(subfeatureStarts.get(i) - start).toString())
+        .collect(Collectors.joining(","));
+
 
     Integer zeroBasedStart = locationToZeroBased(start);
 
