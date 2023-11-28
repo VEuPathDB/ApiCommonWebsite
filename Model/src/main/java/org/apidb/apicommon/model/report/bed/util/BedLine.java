@@ -43,10 +43,19 @@ public class BedLine {
       .mapToObj(i -> Integer.valueOf(subfeatureEnds.get(i) - subfeatureStarts.get(i) + 1).toString())
       .collect(Collectors.joining(","));
 
-    String blockStartsStr =
-      IntStream.range(0, numBlocks)
-      .mapToObj(i -> Integer.valueOf(subfeatureStarts.get(i) - start).toString())
-      .collect(Collectors.joining(","));
+    String blockStartsStr;
+      if(strand.getSign().equals("-")) {
+          blockStartsStr =
+              IntStream.range(0, numBlocks)
+              .mapToObj(i -> Integer.valueOf(end - subfeatureEnds.get(i)).toString())
+              .collect(Collectors.joining(","));
+      }
+      else {
+          blockStartsStr =
+              IntStream.range(0, numBlocks)
+              .mapToObj(i -> Integer.valueOf(subfeatureStarts.get(i) - start).toString())
+              .collect(Collectors.joining(","));
+      }
 
     Integer zeroBasedStart = locationToZeroBased(start);
 
