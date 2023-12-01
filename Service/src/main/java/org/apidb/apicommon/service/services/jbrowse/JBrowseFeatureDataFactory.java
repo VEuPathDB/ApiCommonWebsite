@@ -444,7 +444,7 @@ public class JBrowseFeatureDataFactory {
   private static void appendAttributes(JSONObject json, ResultSet rs) throws SQLException {
     String attrsStr = rs.getString("ATTS");
     if (rs.wasNull()) return;
-    String attrs[] = attrsStr.split(";");
+    String attrs[] = attrsStr.split(";;");
     for (int i = 0; i < attrs.length; i++) {
       String attr[] = attrs[i].split("=");
       if (attr.length > 1) {
@@ -499,7 +499,7 @@ public class JBrowseFeatureDataFactory {
   private static String replaceSqlMacros(String sql, String start, String end, String seqId, Map<String, String> qp) {
     sql = sql.replaceAll("\\$base_start", start);
     sql = sql.replaceAll("\\$rend", end);
-    sql = sql.replaceAll("\\$dlm",";");
+    sql = sql.replaceAll("\\$dlm",";;");
     sql = sql.replaceAll("\\$srcfeature_id", seqId);
 
     // skip query params we know are used for "control" purposes (not SQL macros)
