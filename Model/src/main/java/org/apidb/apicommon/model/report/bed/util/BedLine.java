@@ -18,7 +18,7 @@ public class BedLine {
   private static final String SCORE_FIELD = "0";
 
   private static Integer locationToZeroBased(Integer loc) {
-    return new Integer(loc.intValue() - 1);
+    return Integer.valueOf(loc.intValue() - 1);
   }
 
   public static List<String> bed6(String featureId, Integer start, Integer end, DeflineBuilder defline, StrandDirection strand){
