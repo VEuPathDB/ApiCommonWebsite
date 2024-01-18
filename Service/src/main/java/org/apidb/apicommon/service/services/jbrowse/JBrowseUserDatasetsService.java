@@ -34,6 +34,7 @@ import org.gusdb.wdk.service.service.user.UserService;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.nio.file.Paths;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -43,6 +44,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static org.gusdb.wdk.service.FileRanges.getFileChunkResponse;
@@ -117,7 +119,7 @@ public class JBrowseUserDatasetsService extends UserService {
     final String vdiDatasetsDir = getWdkModel().getProperties().get(VDI_DATASET_DIR_KEY);
     final String buildNumber = getWdkModel().getBuildNumber();
     final java.nio.file.Path datasetDir = Paths.get(vdiDatasetsDir, "build-" + buildNumber, getWdkModel().getProjectId(), vdiDatasetReference.getId());
-    return Arrays.stream(Objects.requireNonNull(datasetDir.toFile().listFiles()))
+    return Arrays.stream(Optional.ofNullable(datasetDir.toFile().listFiles()).orElse(new File[0]))
         .map(bwFile -> {
           final JBrowseTrack jBrowseTrack = new JBrowseTrack();
 
