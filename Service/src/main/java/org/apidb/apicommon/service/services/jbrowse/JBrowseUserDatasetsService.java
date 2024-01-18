@@ -51,6 +51,7 @@ public class JBrowseUserDatasetsService extends UserService {
 
   private static final Logger LOG = Logger.getLogger(JBrowseUserDatasetsService.class);
   private static final String VDI_DATASET_DIR_KEY = "VDI_DATASETS_DIRECTORY";
+  private static final String VDI_CONTROL_SCHEMA_KEY ="VDI_CONTROL_SCHEMA";
 
   public JBrowseUserDatasetsService(@PathParam(USER_ID_PATH_PARAM) String uid) {
     super(uid);
@@ -144,8 +145,13 @@ public class JBrowseUserDatasetsService extends UserService {
   }
 
   private List<VDIDatasetReference> queryVisibleDatasets(long userID) {
+    final String schema = getWdkModel().getProperties().get(VDI_CONTROL_SCHEMA_KEY);
+    String sql = String.format(
+        "SELECT user_dataset_id, (SELECT 'type_name' FROM DUAL) type_name, (SELECT 'name' FROM DUAL) name, (SELECT 'description' FROM DUAL) description FROM %s.dataset_availability WHERE user_id = ?",
+        schema
+    );
     return new SQLRunner(getWdkModel().getAppDb().getDataSource(),
-        "SELECT dataset_id, name, type_name, description FROM dataset_availability WHERE user_id = ?")
+        "SELECT user_dataset_id, (SELECT 'type_name' FROM DUAL) type_name, (SELECT 'name' FROM DUAL) name, (SELECT 'description' FROM DUAL) description FROM %s.dataset_availability WHERE user_id = ?")
         .executeQuery(new Object[] { userID }, rs -> {
           List<VDIDatasetReference> vdiDatasets = new ArrayList<>();
           while (rs.next()) {
