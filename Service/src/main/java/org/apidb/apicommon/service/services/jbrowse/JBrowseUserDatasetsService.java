@@ -63,9 +63,9 @@ public class JBrowseUserDatasetsService extends UserService {
   // Need a /data endpoint here to download user dataset files and expose them.
 
   @GET
-  @Path("user-datasets-jbrowse/data/{data}")
+  @Path("user-datasets-jbrowse/data")
   @Produces(MediaType.APPLICATION_JSON)
-  public Response getAllUserDatasetFileJBrowse(@PathParam("data") String data,
+  public Response getAllUserDatasetFileJBrowse(@QueryParam("data") String data,
                                                @HeaderParam("Range") String fileRange) throws WdkModelException {
     String buildNumber = getWdkModel().getBuildNumber();
     String udDir = getWdkModel().getProperties().get("VDI_DATASETS_DIRECTORY");
@@ -125,7 +125,7 @@ public class JBrowseUserDatasetsService extends UserService {
 
           jBrowseTrack.setKey(vdiDatasetReference.getName() + " " + bwFile.getName());
           jBrowseTrack.setLabel(vdiDatasetReference.getName() + " " + bwFile.getName());
-          jBrowseTrack.setUrlTemplate("/a/service/users/current/user-datasets-jbrowse/data/" + vdiDatasetReference.getId() + "/" + bwFile.getName());
+          jBrowseTrack.setUrlTemplate("/a/service/users/current/user-datasets-jbrowse/data?data=" + vdiDatasetReference.getId() + "/" + bwFile.getName());
 
           if (vdiDatasetReference.getType().equalsIgnoreCase("BigWig")) {
             jBrowseTrack.setSubcategory("Bigwig Files From User");
