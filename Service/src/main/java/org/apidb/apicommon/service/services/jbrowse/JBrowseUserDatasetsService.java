@@ -41,6 +41,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -148,7 +149,7 @@ public class JBrowseUserDatasetsService extends UserService {
     final String schema = getWdkModel().getProperties().get(VDI_CONTROL_SCHEMA_KEY);
     String sql = String.format(
         "SELECT user_dataset_id, (SELECT 'type_name' FROM DUAL) type_name, (SELECT 'name' FROM DUAL) name, (SELECT 'description' FROM DUAL) description FROM %s.dataset_availability da WHERE da.user_id = ?",
-        schema
+        schema.toLowerCase(Locale.ROOT)
     );
     return new SQLRunner(getWdkModel().getAppDb().getDataSource(), sql)
         .executeQuery(new Object[] { userID }, rs -> {
