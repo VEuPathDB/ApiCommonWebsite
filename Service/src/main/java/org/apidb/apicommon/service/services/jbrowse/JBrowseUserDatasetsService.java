@@ -175,6 +175,7 @@ public class JBrowseUserDatasetsService extends UserService {
     row.setId(resultSet.getString("user_dataset_id"));
     row.setType(resultSet.getString("type_name"));
     row.setDescription(resultSet.getString("description"));
+    row.setName(resultSet.getString("name"));
     return row;
   }
 
