@@ -150,8 +150,7 @@ public class JBrowseUserDatasetsService extends UserService {
         "SELECT user_dataset_id, (SELECT 'type_name' FROM DUAL) type_name, (SELECT 'name' FROM DUAL) name, (SELECT 'description' FROM DUAL) description FROM %s.dataset_availability WHERE user_id = ?",
         schema
     );
-    return new SQLRunner(getWdkModel().getAppDb().getDataSource(),
-        "SELECT user_dataset_id, (SELECT 'type_name' FROM DUAL) type_name, (SELECT 'name' FROM DUAL) name, (SELECT 'description' FROM DUAL) description FROM %s.dataset_availability WHERE user_id = ?")
+    return new SQLRunner(getWdkModel().getAppDb().getDataSource(), sql)
         .executeQuery(new Object[] { userID }, rs -> {
           List<VDIDatasetReference> vdiDatasets = new ArrayList<>();
           while (rs.next()) {
