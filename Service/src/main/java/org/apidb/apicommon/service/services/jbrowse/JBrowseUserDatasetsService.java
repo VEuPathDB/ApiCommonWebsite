@@ -125,7 +125,10 @@ public class JBrowseUserDatasetsService extends UserService {
 
           jBrowseTrack.setKey(vdiDatasetReference.getName() + " " + bwFile.getName());
           jBrowseTrack.setLabel(vdiDatasetReference.getName() + " " + bwFile.getName());
-          jBrowseTrack.setUrlTemplate("/a/service/users/current/user-datasets-jbrowse/data?data=" + vdiDatasetReference.getId() + "/" + bwFile.getName());
+          jBrowseTrack.setUrlTemplate("/a/service/users/current/user-datasets-jbrowse/data?data="
+              + getWdkModel().getProjectId()
+              + "/" + vdiDatasetReference.getId()
+              + "/" + bwFile.getName());
 
           if (vdiDatasetReference.getType().equalsIgnoreCase("BigWig")) {
             jBrowseTrack.setSubcategory("Bigwig Files From User");
