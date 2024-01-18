@@ -1,18 +1,28 @@
 package org.apidb.apicommon.service.services.jbrowse;
 
 import javax.ws.rs.GET;
+import javax.ws.rs.HeaderParam;
+import javax.ws.rs.NotFoundException;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import org.apache.log4j.Logger;
+import org.apidb.apicommon.service.services.jbrowse.model.JBrowseDatasetResponse;
+import org.apidb.apicommon.service.services.jbrowse.model.JBrowseTrack;
+import org.apidb.apicommon.service.services.jbrowse.model.VDIDatasetReference;
+import org.gusdb.fgputil.db.runner.SQLRunner;
 import org.gusdb.fgputil.events.Events;
+import org.gusdb.fgputil.json.JsonUtil;
 import org.gusdb.wdk.errors.ErrorContext.ErrorLocation;
 import org.gusdb.wdk.errors.ServerErrorBundle;
 import org.gusdb.wdk.events.ErrorEvent;
 import org.gusdb.wdk.model.WdkModelException;
 import javax.ws.rs.ForbiddenException;
+import javax.ws.rs.core.Response;
+
 import org.gusdb.wdk.model.user.dataset.UserDataset;
 import org.gusdb.wdk.model.user.dataset.UserDatasetDependency;
 import org.gusdb.wdk.model.user.dataset.UserDatasetFile;
@@ -26,41 +36,126 @@ import org.gusdb.wdk.service.service.user.UserService;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.nio.file.Paths;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
+
+import static org.gusdb.wdk.service.FileRanges.getFileChunkResponse;
+import static org.gusdb.wdk.service.FileRanges.parseRangeHeaderValue;
+
 public class JBrowseUserDatasetsService extends UserService {
 
   private static final Logger LOG = Logger.getLogger(JBrowseUserDatasetsService.class);
+  private static final String VDI_DATASET_DIR_KEY = "VDI_DATASETS_DIRECTORY";
 
   public JBrowseUserDatasetsService(@PathParam(USER_ID_PATH_PARAM) String uid) {
     super(uid);
   }
 
+  // Need a /data endpoint here to download user dataset files and expose them.
+
+  @GET
+  @Path("user-datasets-jbrowse/data")
+  @Produces(MediaType.APPLICATION_JSON)
+  public Response getAllUserDatasetFileJBrowse(@QueryParam("data") String data,
+                                               @HeaderParam("Range") String fileRange) throws WdkModelException {
+    String buildNumber = getWdkModel().getBuildNumber();
+    String udDir = getWdkModel().getProperties().get("VDI_DATASETS_DIRECTORY");
+    // New WDK property: UserDatasetFiles. This is located in /var/www/Common/userDatasets
+
+    // TODO: Validate that the user owns the dataset.
+
+    String path = udDir + "/" + "build-" + buildNumber + "/" +data;
+
+    if (path.contains("..") || path.contains("$")) {
+      throw new NotFoundException(formatNotFound("*"));
+    }
+
+    return getFileChunkResponse(Paths.get(path), parseRangeHeaderValue(fileRange));
+  }
+
+
   @GET
   @Path("user-datasets-jbrowse/{organism}")
   @Produces(MediaType.APPLICATION_JSON)
-  public JSONObject getAllUserDatasetsJBrowse(@PathParam("organism") String publicOrganismAbbrev) {
-
+  public Response getAllUserDatasetsJBrowse(@PathParam("organism") String publicOrganismAbbrev) {
     LOG.debug("\nservice user-datasets-jbrowse has been called ---gets all jbrowse configuration for user datasets\n");
+    final JBrowseDatasetResponse jBrowseDatasetResponse = new JBrowseDatasetResponse();
 
-    JSONArray tracks;
     try {
-        tracks = UserDatasetService.getAllUserDatasetsJson(getWdkModel(),
-                                                           getPrivateRegisteredUser(),
-                                                           new JBrowseUserDatasetFormatter(publicOrganismAbbrev));
+      List<VDIDatasetReference> datasets = queryVisibleDatasets(getPrivateRegisteredUser().getUserId());
+
+      List<JBrowseTrack> tracks = datasets.stream()
+          .flatMap(dataset -> fetchTracksFromFilesystem(dataset).stream())
+          .collect(Collectors.toList());
+
+      jBrowseDatasetResponse.setTracks(tracks);
     }
     // if the user isn't logged in, just return an empty array
     catch (ForbiddenException e) {
-        tracks = new JSONArray();
+      jBrowseDatasetResponse.setTracks(Collections.emptyList());
     }
     // if any other exception occurs, log and send email, but return empty array so UI is not hosed
     catch (Exception e) {
-        tracks = new JSONArray();
+      jBrowseDatasetResponse.setTracks(Collections.emptyList());
         Exception e2 = new WdkModelException("Unable to load JBrowse user datasets for user with ID " +
             getSessionUser().getUserId() + ", organism " + publicOrganismAbbrev, e);
         LOG.error("Could not load JBrowse user datasets", e2);
         Events.trigger(new ErrorEvent(new ServerErrorBundle(e2), getErrorContext(ErrorLocation.WDK_SERVICE)));
     }
 
-    return new JSONObject().put("tracks", tracks);
+    return Response.ok(jBrowseDatasetResponse).build();
+  }
+
+  private List<JBrowseTrack> fetchTracksFromFilesystem(VDIDatasetReference vdiDatasetReference) {
+    final String vdiDatasetsDir = getWdkModel().getProperties().get(VDI_DATASET_DIR_KEY);
+    final String buildNumber = getWdkModel().getBuildNumber();
+    final java.nio.file.Path datasetDir = Paths.get(vdiDatasetsDir, "build-" + buildNumber, getWdkModel().getProjectId(), vdiDatasetReference.getId());
+    return Arrays.stream(Objects.requireNonNull(datasetDir.toFile().listFiles()))
+        .map(bwFile -> {
+          final JBrowseTrack jBrowseTrack = new JBrowseTrack();
+
+          jBrowseTrack.setKey(vdiDatasetReference.getName() + " " + bwFile.getName());
+          jBrowseTrack.setLabel(vdiDatasetReference.getName() + " " + bwFile.getName());
+          jBrowseTrack.setUrlTemplate("/a/user-datasets-jbrowse/data/" + vdiDatasetReference.getId() + "/" + bwFile.getName());
+
+          JBrowseTrack.Metadata metadata = new JBrowseTrack.Metadata();
+          metadata.setDataset(vdiDatasetReference.getName());
+          metadata.setMdescription(vdiDatasetReference.getDescription());
+          jBrowseTrack.setMetadata(metadata);
+
+          jBrowseTrack.setStyle(new JBrowseTrack.Style());
+
+          return jBrowseTrack;
+        })
+        .collect(Collectors.toList());
+  }
+
+  private List<VDIDatasetReference> queryVisibleDatasets(long userID) {
+    return new SQLRunner(getWdkModel().getAppDb().getDataSource(),
+        "SELECT dataset_id, name, type_name, description FROM dataset_availability WHERE user_id = ?")
+        .executeQuery(new Object[] { userID }, rs -> {
+          List<VDIDatasetReference> vdiDatasets = new ArrayList<>();
+          while (rs.next()) {
+            vdiDatasets.add(datasetFromResultSet(rs));
+          }
+          return vdiDatasets;
+        });
+  }
+
+  private VDIDatasetReference datasetFromResultSet(ResultSet resultSet) throws SQLException {
+    VDIDatasetReference row = new VDIDatasetReference();
+    row.setDescription(resultSet.getString("description"));
+    row.setId(resultSet.getString("id"));
+    row.setType(resultSet.getString("type_name"));
+    row.setDescription(resultSet.getString("description"));
+    return row;
   }
 
   private static class JBrowseUserDatasetFormatter implements UserDatasetsFormatter {
