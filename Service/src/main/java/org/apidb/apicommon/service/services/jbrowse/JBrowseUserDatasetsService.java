@@ -130,17 +130,20 @@ public class JBrowseUserDatasetsService extends UserService {
               + "/" + vdiDatasetReference.getId()
               + "/" + bwFile.getName());
 
+          JBrowseTrack.Metadata metadata = new JBrowseTrack.Metadata();
           if (vdiDatasetReference.getType().equalsIgnoreCase("BigWig")) {
             jBrowseTrack.setSubcategory("Bigwig Files From User");
+            metadata.setSubcategory("Bigwig Files From User");
           }
 
           if (vdiDatasetReference.getType().equalsIgnoreCase("RNASeq")) {
             jBrowseTrack.setSubcategory("RNASeq");
+            metadata.setSubcategory("RNASeq");
           }
 
-          JBrowseTrack.Metadata metadata = new JBrowseTrack.Metadata();
           metadata.setDataset(vdiDatasetReference.getName());
           metadata.setMdescription(vdiDatasetReference.getDescription());
+
           jBrowseTrack.setMetadata(metadata);
 
           jBrowseTrack.setStyle(new JBrowseTrack.Style());
