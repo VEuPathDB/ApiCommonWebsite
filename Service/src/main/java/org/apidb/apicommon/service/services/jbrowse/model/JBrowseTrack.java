@@ -24,6 +24,7 @@ public class JBrowseTrack {
   private String urlTemplate;
   private Metadata metadata;
   private Style style;
+  private String subcategory;
 
   // No Args constructor for jackson
   public JBrowseTrack() {
@@ -108,6 +109,14 @@ public class JBrowseTrack {
 
   public void setKey(String key) {
     this.key = key;
+  }
+
+  public void setSubcategory(String subcategory) {
+    this.subcategory = subcategory;
+  }
+
+  public String getSubcategory() {
+    return subcategory;
   }
 
   public static class Style {
