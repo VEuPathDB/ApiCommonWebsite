@@ -164,7 +164,7 @@ public class JBrowseUserDatasetsService extends UserService {
   private VDIDatasetReference datasetFromResultSet(ResultSet resultSet) throws SQLException {
     VDIDatasetReference row = new VDIDatasetReference();
     row.setDescription(resultSet.getString("description"));
-    row.setId(resultSet.getString("id"));
+    row.setId(resultSet.getString("user_dataset_id"));
     row.setType(resultSet.getString("type_name"));
     row.setDescription(resultSet.getString("description"));
     return row;
