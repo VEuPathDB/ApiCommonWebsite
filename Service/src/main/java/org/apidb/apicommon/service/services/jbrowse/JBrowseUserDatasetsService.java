@@ -63,9 +63,9 @@ public class JBrowseUserDatasetsService extends UserService {
   // Need a /data endpoint here to download user dataset files and expose them.
 
   @GET
-  @Path("user-datasets-jbrowse/data")
+  @Path("user-datasets-jbrowse/data/{data}")
   @Produces(MediaType.APPLICATION_JSON)
-  public Response getAllUserDatasetFileJBrowse(@QueryParam("data") String data,
+  public Response getAllUserDatasetFileJBrowse(@PathParam("data") String data,
                                                @HeaderParam("Range") String fileRange) throws WdkModelException {
     String buildNumber = getWdkModel().getBuildNumber();
     String udDir = getWdkModel().getProperties().get("VDI_DATASETS_DIRECTORY");
@@ -150,7 +150,7 @@ public class JBrowseUserDatasetsService extends UserService {
   private List<VDIDatasetReference> queryVisibleDatasets(long userID) {
     final String schema = getWdkModel().getProperties().get(VDI_CONTROL_SCHEMA_KEY);
     String sql = String.format(
-        "SELECT user_dataset_id, (SELECT 'type_name' FROM DUAL) type_name, (SELECT 'name' FROM DUAL) name, (SELECT 'description' FROM DUAL) description FROM %s.dataset_availability da WHERE da.user_id = ?",
+        "SELECT user_dataset_id, (SELECT 'BigWig' FROM DUAL) type_name, (SELECT 'name' FROM DUAL) name, (SELECT 'description' FROM DUAL) description FROM %s.dataset_availability da WHERE da.user_id = ?",
         schema.toLowerCase(Locale.ROOT)
     );
     return new SQLRunner(getWdkModel().getAppDb().getDataSource(), sql)
