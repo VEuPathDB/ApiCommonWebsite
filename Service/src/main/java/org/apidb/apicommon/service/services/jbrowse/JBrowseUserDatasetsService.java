@@ -13,6 +13,7 @@ import org.apache.log4j.Logger;
 import org.apidb.apicommon.service.services.jbrowse.model.JBrowseDatasetResponse;
 import org.apidb.apicommon.service.services.jbrowse.model.JBrowseTrack;
 import org.apidb.apicommon.service.services.jbrowse.model.VDIDatasetReference;
+import org.apidb.apicommon.service.services.jbrowse.model.VDIDatasetType;
 import org.gusdb.fgputil.db.runner.SQLRunner;
 import org.gusdb.fgputil.events.Events;
 import org.gusdb.wdk.errors.ErrorContext.ErrorLocation;
@@ -44,25 +45,35 @@ public class JBrowseUserDatasetsService extends UserService {
   private static final Logger LOG = Logger.getLogger(JBrowseUserDatasetsService.class);
   private static final String VDI_DATASET_DIR_KEY = "VDI_DATASETS_DIRECTORY";
   private static final String VDI_CONTROL_SCHEMA_KEY ="VDI_CONTROL_SCHEMA";
+  public static final String BIGWIG_SUBCATEGORY = "Bigwig Files From User";
+  public static final String RNA_SEQ_SUBCATEOGRY = "RNASeq";
 
   public JBrowseUserDatasetsService(@PathParam(USER_ID_PATH_PARAM) String uid) {
     super(uid);
   }
 
-  // Need a /data endpoint here to download user dataset files and expose them.
 
+  /**
+   * This endpoint exposes user dataset track files with the intent of JBrowse using it to retrieve file ranges.
+   * Any installed file for a dataset owned by the user can be fetched by this endpoint.
+   *
+   * URLs to hit this endpoint are constructed by this service when the JBrowse application asks for the user's available
+   * tracks.
+   */
   @GET
   @Path("user-datasets-jbrowse/data")
   @Produces(MediaType.APPLICATION_JSON)
   public Response getAllUserDatasetFileJBrowse(@QueryParam("data") String data,
+                                               @QueryParam("datasetID") String datasetID,
                                                @HeaderParam("Range") String fileRange) throws WdkModelException {
     String buildNumber = getWdkModel().getBuildNumber();
     String udDir = getWdkModel().getProperties().get("VDI_DATASETS_DIRECTORY");
-    // New WDK property: UserDatasetFiles. This is located in /var/www/Common/userDatasets
 
-    // TODO: Validate that the user owns the dataset.
+    // Verify that the dataset belongs to user. Random people should not be able to download anyone's files, even
+    // though they are protected by obscurity.
+    datasetBelongsToUser(getPrivateRegisteredUser().getUserId(), datasetID);
 
-    String path = udDir + "/" + "build-" + buildNumber + "/" +data;
+    String path = String.format("%s/build-%s/%s/%s/%s", udDir, buildNumber, getWdkModel().getProjectId(), datasetID, data);
 
     if (path.contains("..") || path.contains("$")) {
       throw new NotFoundException(formatNotFound("*"));
@@ -82,6 +93,8 @@ public class JBrowseUserDatasetsService extends UserService {
     try {
       List<VDIDatasetReference> datasets = queryVisibleDatasets(getPrivateRegisteredUser().getUserId());
 
+      // Any tracks that are in the installed dataset dir on the filesystem are installed in this project, fetch
+      // them indiscriminately!
       List<JBrowseTrack> tracks = datasets.stream()
           .flatMap(dataset -> fetchTracksFromFilesystem(dataset).stream())
           .collect(Collectors.toList());
@@ -104,6 +117,10 @@ public class JBrowseUserDatasetsService extends UserService {
     return Response.ok(jBrowseDatasetResponse).build();
   }
 
+  /**
+   * Fetch all tracks from the filesystem for a given dataset reference. If the dataset has no installed files in this
+   * project and empty list is returned.
+   */
   private List<JBrowseTrack> fetchTracksFromFilesystem(VDIDatasetReference vdiDatasetReference) {
     final String vdiDatasetsDir = getWdkModel().getProperties().get(VDI_DATASET_DIR_KEY);
     final String buildNumber = getWdkModel().getBuildNumber();
@@ -114,27 +131,23 @@ public class JBrowseUserDatasetsService extends UserService {
 
           jBrowseTrack.setKey(vdiDatasetReference.getName() + " " + bwFile.getName());
           jBrowseTrack.setLabel(vdiDatasetReference.getName() + " " + bwFile.getName());
-          jBrowseTrack.setUrlTemplate("/a/service/users/current/user-datasets-jbrowse/data?data="
-              + getWdkModel().getProjectId()
-              + "/" + vdiDatasetReference.getId()
-              + "/" + bwFile.getName());
+          jBrowseTrack.setUrlTemplate(String.format("/a/service/users/current/user-datasets-jbrowse/data?datasetID=%s?data=%s",
+              vdiDatasetReference.getId(), bwFile.getName()));
 
           JBrowseTrack.Metadata metadata = new JBrowseTrack.Metadata();
-          if (vdiDatasetReference.getType().equalsIgnoreCase("BigWig")) {
-            jBrowseTrack.setSubcategory("Bigwig Files From User");
-            metadata.setSubcategory("Bigwig Files From User");
+          if (vdiDatasetReference.getType().equalsIgnoreCase(VDIDatasetType.BIGWIG.getVdiName())) {
+            jBrowseTrack.setSubcategory(BIGWIG_SUBCATEGORY);
+            metadata.setSubcategory(BIGWIG_SUBCATEGORY);
           }
-
-          if (vdiDatasetReference.getType().equalsIgnoreCase("RNASeq")) {
-            jBrowseTrack.setSubcategory("RNASeq");
-            metadata.setSubcategory("RNASeq");
+          if (vdiDatasetReference.getType().equalsIgnoreCase(VDIDatasetType.RNA_SEQ.getVdiName())) {
+            jBrowseTrack.setSubcategory(RNA_SEQ_SUBCATEOGRY);
+            metadata.setSubcategory(RNA_SEQ_SUBCATEOGRY);
           }
 
           metadata.setDataset(vdiDatasetReference.getName());
           metadata.setMdescription(vdiDatasetReference.getDescription());
 
           jBrowseTrack.setMetadata(metadata);
-
           jBrowseTrack.setStyle(new JBrowseTrack.Style());
 
           return jBrowseTrack;
@@ -142,6 +155,26 @@ public class JBrowseUserDatasetsService extends UserService {
         .collect(Collectors.toList());
   }
 
+  private boolean datasetBelongsToUser(long userID, String datasetID) {
+    final String schema = getWdkModel().getProperties().get(VDI_CONTROL_SCHEMA_KEY);
+    String sql = String.format(
+        "SELECT user_dataset_id FROM %s.dataset_availability da WHERE da.user_id = ? AND da.datasetID = ?",
+        schema.toLowerCase(Locale.ROOT)
+    );
+    return new SQLRunner(getWdkModel().getAppDb().getDataSource(), sql)
+        .executeQuery(new Object[] { userID, datasetID }, ResultSet::next);
+  }
+
+
+  /**
+   * Query the visible datasets according the VDI control schema's visible datasets view.
+   *
+   * Note that this view is specifically designed and intended for use by applications to know which datasets are available
+   * to a particular user.
+   *
+   * @param userID UserID to retrieve visible datasets for.
+   * @return List of visible datasets.
+   */
   private List<VDIDatasetReference> queryVisibleDatasets(long userID) {
     final String schema = getWdkModel().getProperties().get(VDI_CONTROL_SCHEMA_KEY);
     String sql = String.format(
@@ -158,6 +191,9 @@ public class JBrowseUserDatasetsService extends UserService {
         });
   }
 
+  /**
+   * Constructs a {@link VDIDatasetReference} from a ResultSet produced by a query of the visible datasets view.
+   */
   private VDIDatasetReference datasetFromResultSet(ResultSet resultSet) throws SQLException {
     VDIDatasetReference row = new VDIDatasetReference();
     row.setDescription(resultSet.getString("description"));
