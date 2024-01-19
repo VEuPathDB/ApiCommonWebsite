@@ -22,17 +22,7 @@ import org.gusdb.wdk.model.WdkModelException;
 import javax.ws.rs.ForbiddenException;
 import javax.ws.rs.core.Response;
 
-import org.gusdb.wdk.model.user.dataset.UserDataset;
-import org.gusdb.wdk.model.user.dataset.UserDatasetDependency;
-import org.gusdb.wdk.model.user.dataset.UserDatasetFile;
-import org.gusdb.wdk.model.user.dataset.UserDatasetInfo;
-import org.gusdb.wdk.model.user.dataset.UserDatasetMeta;
-import org.gusdb.wdk.model.user.dataset.UserDatasetSession;
-import org.gusdb.wdk.model.user.dataset.UserDatasetType;
-import org.gusdb.wdk.service.formatter.UserDatasetsFormatter;
 import org.gusdb.wdk.service.service.user.UserService;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.io.File;
 import java.nio.file.Paths;
@@ -43,7 +33,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -177,101 +166,5 @@ public class JBrowseUserDatasetsService extends UserService {
     row.setDescription(resultSet.getString("description"));
     row.setName(resultSet.getString("name"));
     return row;
-  }
-
-  private static class JBrowseUserDatasetFormatter implements UserDatasetsFormatter {
-
-    private final String _publicOrganismAbbrev;
-
-    public JBrowseUserDatasetFormatter(String publicOrganismAbbrev) {
-      _publicOrganismAbbrev = publicOrganismAbbrev;
-    }
-
-    @Override
-    public void addUserDatasetInfoToJsonArray(UserDatasetInfo dataset,
-        JSONArray datasetsJson, UserDatasetSession dsSession) throws WdkModelException {
-      JSONArray samples = getSamplesJsonForDataset(dataset);
-      if (dataset.isInstalled() && dataset.getUserDatasetCompatibility().isCompatible())
-	  for (int i = 0 ; i < samples.length(); i++) {
-	      datasetsJson.put(samples.getJSONObject(i));
-	  }
-    }
-
-
-      private JSONArray getBigwigSampleConfiguration(UserDataset dataset, String subcategory) throws WdkModelException {
-          JSONArray samplesJson = new JSONArray();
-
-          int maxScore = 1000;
-          Long datasetId = dataset.getUserDatasetId();
-          UserDatasetMeta datasetMeta = dataset.getMeta();
-          String datasetName = datasetMeta.getName();
-          String datasetSummary = datasetMeta.getSummary();
-
-          for (UserDatasetFile file : dataset.getFiles().values()) {
-              String fileName = file.getFileName();
-              if(!fileName.toUpperCase().endsWith(".BW"))
-                  continue ;
-
-              String urlTemplate = "/a/service/users/current/user-datasets/" + datasetId + "/user-datafiles/" + fileName;
-
-              JSONObject json = new JSONObject();
-              json.put("storeClass", "JBrowse/Store/SeqFeature/BigWig");
-              json.put("urlTemplate", urlTemplate);
-              json.put("yScalePosition",  "left");
-              json.put("key", datasetName + " " + fileName);
-              json.put("label", datasetName + " " + fileName);
-              json.put("type", "JBrowse/View/Track/Wiggle/XYPlot");
-              json.put("category", "My Data from Galaxy");
-              json.put("min_score", 0);
-              json.put("max_score", maxScore);
-
-              JSONObject style = new JSONObject();
-              style.put("pos_color", "#5B2C6F");
-
-              JSONObject metadata = new JSONObject();
-              metadata.put("subcategory", subcategory);
-              metadata.put("dataset", datasetName);
-              metadata.put("trackType", "Coverage");
-              metadata.put("mdescription", datasetSummary);
-
-              json.put("metadata", metadata);
-              json.put("style", style);
-
-              samplesJson.put(json);
-          }
-          return samplesJson;
-      }
-
-
-    private JSONArray getSamplesJsonForDataset(UserDatasetInfo datasetInfo) throws WdkModelException {
-
-      JSONArray samplesJson = new JSONArray();
-
-      String genomeSuffix = "_" + _publicOrganismAbbrev + "_Genome";
-
-      UserDataset dataset = datasetInfo.getDataset();
-
-      boolean matchesOrganismAbbrev = false;
-
-      for (UserDatasetDependency dependency : dataset.getDependencies()) {
-        if(dependency.getResourceIdentifier().endsWith(genomeSuffix))
-          matchesOrganismAbbrev = true;
-      }
-
-      if(!matchesOrganismAbbrev)
-        return samplesJson;
-
-      UserDatasetType type = dataset.getType();
-      String datasetType = type.getName();
-
-      if(datasetType.equals("RnaSeq")) {
-          return getBigwigSampleConfiguration(dataset, "RNASeq");
-      }
-      if(datasetType.equals("BigwigFiles")) {
-          return getBigwigSampleConfiguration(dataset, "Bigwig Files From User");
-      }
-
-      return samplesJson;
-    }
   }
 }
