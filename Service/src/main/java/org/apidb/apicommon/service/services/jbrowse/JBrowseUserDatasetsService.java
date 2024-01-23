@@ -45,8 +45,6 @@ public class JBrowseUserDatasetsService extends UserService {
   private static final Logger LOG = Logger.getLogger(JBrowseUserDatasetsService.class);
   private static final String VDI_DATASET_DIR_KEY = "VDI_DATASETS_DIRECTORY";
   private static final String VDI_CONTROL_SCHEMA_KEY ="VDI_CONTROL_SCHEMA";
-  public static final String BIGWIG_SUBCATEGORY = "Bigwig Files From User";
-  public static final String RNA_SEQ_SUBCATEOGRY = "RNASeq";
 
   public JBrowseUserDatasetsService(@PathParam(USER_ID_PATH_PARAM) String uid) {
     super(uid);
@@ -121,30 +119,26 @@ public class JBrowseUserDatasetsService extends UserService {
 
   /**
    * Fetch all tracks from the filesystem for a given dataset reference. If the dataset has no installed files in this
-   * project and empty list is returned.
+   * project an empty list is returned.
    */
   private List<JBrowseTrack> fetchTracksFromFilesystem(VDIDatasetReference vdiDatasetReference) {
     final String vdiDatasetsDir = getWdkModel().getProperties().get(VDI_DATASET_DIR_KEY);
     final String buildNumber = getWdkModel().getBuildNumber();
     final java.nio.file.Path datasetDir = Paths.get(vdiDatasetsDir, "build-" + buildNumber, getWdkModel().getProjectId(), vdiDatasetReference.getId());
     return Arrays.stream(Optional.ofNullable(datasetDir.toFile().listFiles()).orElse(new File[0]))
-        .map(bwFile -> {
+        .map(jbrowseFile -> {
           final JBrowseTrack jBrowseTrack = new JBrowseTrack();
 
-          jBrowseTrack.setKey(vdiDatasetReference.getName() + " " + bwFile.getName());
-          jBrowseTrack.setLabel(vdiDatasetReference.getName() + " " + bwFile.getName());
+          jBrowseTrack.setKey(vdiDatasetReference.getName() + " " + jbrowseFile.getName());
+          jBrowseTrack.setLabel(vdiDatasetReference.getName() + " " + jbrowseFile.getName());
           jBrowseTrack.setUrlTemplate(String.format("/a/service/users/current/user-datasets-jbrowse/data?datasetID=%s&data=%s",
-              vdiDatasetReference.getId(), bwFile.getName()));
+              vdiDatasetReference.getId(), jbrowseFile.getName()));
 
           JBrowseTrack.Metadata metadata = new JBrowseTrack.Metadata();
-          if (vdiDatasetReference.getType().equalsIgnoreCase(VDIDatasetType.BIGWIG.getVdiName())) {
-            jBrowseTrack.setSubcategory(BIGWIG_SUBCATEGORY);
-            metadata.setSubcategory(BIGWIG_SUBCATEGORY);
-          }
-          if (vdiDatasetReference.getType().equalsIgnoreCase(VDIDatasetType.RNA_SEQ.getVdiName())) {
-            jBrowseTrack.setSubcategory(RNA_SEQ_SUBCATEOGRY);
-            metadata.setSubcategory(RNA_SEQ_SUBCATEOGRY);
-          }
+
+          final String subCategory = VDIDatasetType.fromVDIName(vdiDatasetReference.getType()).getJbrowseSubcategoryName();
+          jBrowseTrack.setSubcategory(subCategory);
+          metadata.setSubcategory(subCategory);
 
           metadata.setDataset(vdiDatasetReference.getName());
           metadata.setMdescription(vdiDatasetReference.getDescription());
