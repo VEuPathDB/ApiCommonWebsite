@@ -133,7 +133,7 @@ public class JBrowseUserDatasetsService extends UserService {
 
           jBrowseTrack.setKey(vdiDatasetReference.getName() + " " + bwFile.getName());
           jBrowseTrack.setLabel(vdiDatasetReference.getName() + " " + bwFile.getName());
-          jBrowseTrack.setUrlTemplate(String.format("/a/service/users/current/user-datasets-jbrowse/data?datasetID=%s?data=%s",
+          jBrowseTrack.setUrlTemplate(String.format("/a/service/users/current/user-datasets-jbrowse/data?datasetID=%s&data=%s",
               vdiDatasetReference.getId(), bwFile.getName()));
 
           JBrowseTrack.Metadata metadata = new JBrowseTrack.Metadata();
