@@ -71,7 +71,9 @@ public class JBrowseUserDatasetsService extends UserService {
 
     // Verify that the dataset belongs to user. Random people should not be able to download anyone's files, even
     // though they are protected by obscurity.
-    datasetBelongsToUser(getPrivateRegisteredUser().getUserId(), datasetID);
+    if (!datasetBelongsToUser(getPrivateRegisteredUser().getUserId(), datasetID)) {
+      throw new NotFoundException("Unable to find dataset with ID " + datasetID);
+    }
 
     String path = String.format("%s/build-%s/%s/%s/%s", udDir, buildNumber, getWdkModel().getProjectId(), datasetID, data);
 
@@ -158,7 +160,7 @@ public class JBrowseUserDatasetsService extends UserService {
   private boolean datasetBelongsToUser(long userID, String datasetID) {
     final String schema = getWdkModel().getProperties().get(VDI_CONTROL_SCHEMA_KEY);
     String sql = String.format(
-        "SELECT user_dataset_id FROM %s.dataset_availability da WHERE da.user_id = ? AND da.datasetID = ?",
+        "SELECT user_dataset_id FROM %s.dataset_availability da WHERE da.user_id = ? AND da.user_dataset_id = ?",
         schema.toLowerCase(Locale.ROOT)
     );
     return new SQLRunner(getWdkModel().getAppDb().getDataSource(), sql)
