@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-"@veupathdb/genomics-site@1.0.100-patch.2":
-  version "1.0.100-patch.2"
-  resolved "https://registry.yarnpkg.com/@veupathdb/genomics-site/-/genomics-site-1.0.100-patch.2.tgz#1b75e3ee4c59eea3cd881a10376d21fccf482aeb"
-  integrity sha512-zrX9ni4Y/WPZOQR+kB/9/fNUnSMKnWj6VhQwB7F8mveqKxqwkhnLCXRS0o/g5NGOTazzt/MATaaIzNBDYSpcIA==
+"@veupathdb/genomics-site@1.0.100-patch.3":
+  version "1.0.100-patch.3"
+  resolved "https://registry.yarnpkg.com/@veupathdb/genomics-site/-/genomics-site-1.0.100-patch.3.tgz#fea420ed3795c861b6010e6c3e3b93db153e8756"
+  integrity sha512-3odjqSVHqvLWilQC6g7DKYG7+XGVtFenixA/nSU8XgxP27owKQeriE8Wdj8+78/jKdvgvWgxHAR0RNl4ffw5BA==
