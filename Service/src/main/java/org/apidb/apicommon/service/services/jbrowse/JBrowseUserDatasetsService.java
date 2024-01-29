@@ -44,7 +44,7 @@ public class JBrowseUserDatasetsService extends UserService {
 
   private static final Logger LOG = Logger.getLogger(JBrowseUserDatasetsService.class);
   private static final String VDI_DATASET_DIR_KEY = "VDI_DATASETS_DIRECTORY";
-  private static final String VDI_DATA_SCHEMA_KEY ="VDI_DATA_SCHEMA";
+  private static final String VDI_DATA_SCHEMA_KEY ="VDI_DATASETS_SCHEMA";
 
   public JBrowseUserDatasetsService(@PathParam(USER_ID_PATH_PARAM) String uid) {
     super(uid);
