@@ -154,7 +154,7 @@ public class JBrowseUserDatasetsService extends UserService {
   private boolean datasetBelongsToUser(long userID, String datasetID) {
     final String schema = getWdkModel().getProperties().get(VDI_DATA_SCHEMA_KEY);
     String sql = String.format(
-        "SELECT user_dataset_id FROM %s.dataset_availability da WHERE da.user_id = ? AND da.user_dataset_id = ?",
+        "SELECT user_dataset_id FROM %s.AvailableUserDatasets da WHERE da.user_id = ? AND da.user_dataset_id = ?",
         schema.toLowerCase(Locale.ROOT)
     );
     return new SQLRunner(getWdkModel().getAppDb().getDataSource(), sql)
@@ -174,7 +174,7 @@ public class JBrowseUserDatasetsService extends UserService {
   private List<VDIDatasetReference> queryVisibleDatasets(long userID) {
     final String schema = getWdkModel().getProperties().get(VDI_DATA_SCHEMA_KEY);
     String sql = String.format(
-        "SELECT user_dataset_id, type, name, description FROM %s.dataset_availability da WHERE da.user_id = ?",
+        "SELECT user_dataset_id, type, name, description FROM %s.AvailableUserDatasets da WHERE da.user_id = ?",
         schema.toLowerCase(Locale.ROOT)
     );
     return new SQLRunner(getWdkModel().getAppDb().getDataSource(), sql)
