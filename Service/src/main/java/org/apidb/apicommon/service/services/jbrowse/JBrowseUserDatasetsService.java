@@ -44,7 +44,7 @@ public class JBrowseUserDatasetsService extends UserService {
 
   private static final Logger LOG = Logger.getLogger(JBrowseUserDatasetsService.class);
   private static final String VDI_DATASET_DIR_KEY = "VDI_DATASETS_DIRECTORY";
-  private static final String VDI_CONTROL_SCHEMA_KEY ="VDI_CONTROL_SCHEMA";
+  private static final String VDI_DATA_SCHEMA_KEY ="VDI_DATA_SCHEMA";
 
   public JBrowseUserDatasetsService(@PathParam(USER_ID_PATH_PARAM) String uid) {
     super(uid);
@@ -152,7 +152,7 @@ public class JBrowseUserDatasetsService extends UserService {
   }
 
   private boolean datasetBelongsToUser(long userID, String datasetID) {
-    final String schema = getWdkModel().getProperties().get(VDI_CONTROL_SCHEMA_KEY);
+    final String schema = getWdkModel().getProperties().get(VDI_DATA_SCHEMA_KEY);
     String sql = String.format(
         "SELECT user_dataset_id FROM %s.dataset_availability da WHERE da.user_id = ? AND da.user_dataset_id = ?",
         schema.toLowerCase(Locale.ROOT)
@@ -172,9 +172,9 @@ public class JBrowseUserDatasetsService extends UserService {
    * @return List of visible datasets.
    */
   private List<VDIDatasetReference> queryVisibleDatasets(long userID) {
-    final String schema = getWdkModel().getProperties().get(VDI_CONTROL_SCHEMA_KEY);
+    final String schema = getWdkModel().getProperties().get(VDI_DATA_SCHEMA_KEY);
     String sql = String.format(
-        "SELECT user_dataset_id, (SELECT 'BigWig' FROM DUAL) type_name, (SELECT 'name' FROM DUAL) name, (SELECT 'description' FROM DUAL) description FROM %s.dataset_availability da WHERE da.user_id = ?",
+        "SELECT user_dataset_id, type, name, description FROM %s.dataset_availability da WHERE da.user_id = ?",
         schema.toLowerCase(Locale.ROOT)
     );
     return new SQLRunner(getWdkModel().getAppDb().getDataSource(), sql)
