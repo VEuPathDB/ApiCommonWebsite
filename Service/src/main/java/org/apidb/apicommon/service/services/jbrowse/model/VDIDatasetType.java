@@ -23,7 +23,7 @@ public enum VDIDatasetType {
   }
 
   public static VDIDatasetType fromVDIName(String vdiName) {
-    Arrays.stream(values())
+    return Arrays.stream(values())
         .filter(val -> val.vdiName.equalsIgnoreCase(vdiName))
         .findFirst()
         .orElseThrow();
