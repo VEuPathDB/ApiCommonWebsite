@@ -43,7 +43,7 @@ public class GenomicTableFieldFeatureProvider extends TableFieldFeatureProvider 
       Integer segmentStart, Integer segmentEnd) throws WdkModelException {
     String sourceId = getSourceId(record);
     String chrom = sourceId;
-    String formattedId = String.format("%s::%s-%s (%s)", chrom, segmentStart, segmentEnd, _strand.getSign());
+    String formattedId = String.format("%s:%s-%s (%s)", chrom, segmentStart, segmentEnd, _strand.getSign());
     DeflineBuilder defline = new DeflineBuilder(formattedId);
 
     if(_requestedDeflineFields.contains("organism")){
