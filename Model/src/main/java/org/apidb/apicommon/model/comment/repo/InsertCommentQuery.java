@@ -1,15 +1,17 @@
 package org.apidb.apicommon.model.comment.repo;
 
+import static java.sql.Types.BIGINT;
+import static java.sql.Types.CLOB;
+import static java.sql.Types.VARCHAR;
+
+import java.io.StringReader;
+
 import org.apidb.apicommon.model.comment.ReviewStatus;
 import org.apidb.apicommon.model.comment.pojo.CommentRequest;
 import org.apidb.apicommon.model.comment.pojo.Project;
 import org.gusdb.fgputil.db.runner.BasicArgumentBatch;
 import org.gusdb.fgputil.db.runner.SQLRunner;
 import org.gusdb.wdk.model.user.User;
-
-import java.io.StringReader;
-
-import static java.sql.Types.*;
 
 /**
  * Insert a new comment record.

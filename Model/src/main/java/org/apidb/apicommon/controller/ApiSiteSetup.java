@@ -1,12 +1,11 @@
 package org.apidb.apicommon.controller;
 
-import java.util.Map;
-
 import org.apidb.apicommon.model.comment.CommentFactory;
 import org.apidb.apicommon.model.comment.pojo.Author;
-import org.gusdb.fgputil.accountdb.UserProfile;
 import org.gusdb.fgputil.events.Event;
 import org.gusdb.fgputil.events.Events;
+import org.gusdb.oauth2.client.veupathdb.User;
+import org.gusdb.oauth2.client.veupathdb.UserProperty;
 import org.gusdb.wdk.events.UserProfileUpdateEvent;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
@@ -36,13 +35,11 @@ public class ApiSiteSetup {
     UserProfileUpdateEvent updateEvent = (UserProfileUpdateEvent) event;
 
     // check to see if any of the property text fields changed
-    Map<String, String> userProps = updateEvent.getNewProfile().getProperties();
-    Map<String, String> oldProfileProps = updateEvent.getOldProfile()
-        .getProperties();
     boolean commentSearchTextUpdateRequired = false;
-
-    for (String key : oldProfileProps.keySet()) {
-      if (!oldProfileProps.get(key).equals(userProps.get(key))) {
+    String[] commentProps = new String[] { "firstName", "lastName", "organization" };
+    for (String key : commentProps) {
+      UserProperty prop = User.USER_PROPERTIES.get(key);
+      if (!prop.getValue(updateEvent.getOldUser()).equals(prop.getValue(updateEvent.getNewUser()))) {
         commentSearchTextUpdateRequired = true;
       }
     }
@@ -54,12 +51,12 @@ public class ApiSiteSetup {
     // need to write updated text to comment search field
     CommentFactory commentFactory = CommentFactoryManager.getCommentFactory(
         updateEvent.getWdkModel().getProjectId());
-    UserProfile profile = updateEvent.getNewProfile();
+    User user = updateEvent.getNewUser();
 
     commentFactory.updateAuthor(new Author()
-        .setFirstName(profile.getProperties().get("firstName"))
-        .setLastName(profile.getProperties().get("lastName"))
-        .setOrganization(profile.getProperties().get("organization"))
-        .setUserId(profile.getUserId()));
+        .setFirstName(user.getFirstName())
+        .setLastName(user.getLastName())
+        .setOrganization(user.getOrganization())
+        .setUserId(user.getUserId()));
   }
 }

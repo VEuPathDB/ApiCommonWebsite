@@ -86,7 +86,7 @@ public class ApiBasketService extends BasketService {
       return new RevisedRequest<>(
           getTranscriptRecordClass(getWdkModel()),
           new BasketActions(actions.getAction(), Collections.emptyList())
-            .setRunnableAnswerSpec(newSpec.buildRunnable(getSessionUser(), step.get().getContainer())));
+            .setRunnableAnswerSpec(newSpec.buildRunnable(getRequestingUser(), step.get().getContainer())));
     }
 
     // translate IDs to gene PKs if necessary

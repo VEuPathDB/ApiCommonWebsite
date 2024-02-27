@@ -55,7 +55,7 @@ public class JBrowseUserDatasetsService extends UserService {
     catch (Exception e) {
         tracks = new JSONArray();
         Exception e2 = new WdkModelException("Unable to load JBrowse user datasets for user with ID " +
-            getSessionUser().getUserId() + ", organism " + publicOrganismAbbrev, e);
+            getRequestingUser().getUserId() + ", organism " + publicOrganismAbbrev, e);
         LOG.error("Could not load JBrowse user datasets", e2);
         Events.trigger(new ErrorEvent(new ServerErrorBundle(e2), getErrorContext(ErrorLocation.WDK_SERVICE)));
     }

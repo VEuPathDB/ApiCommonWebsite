@@ -110,7 +110,7 @@ public class OrganismMetricsService extends AbstractWdkService {
       throw new BadRequestException("Record type with url segment '" + recordClassUrlSegment + "' does not contain an '" + ORGANISM_ATTRIBUTE + "' attribute.");
     }
     PrimaryKeyValue pkValue = getPkValue(recordClass, primaryKeyValues);
-    List<RecordInstance> records = RecordClass.getRecordInstances(getSessionUser(), pkValue);
+    List<RecordInstance> records = RecordClass.getRecordInstances(getRequestingUser(), pkValue);
     if (records.isEmpty()) {
       throw new BadRequestException("Primary Key '" + primaryKeyValues + "' does not map to any records of type '" + recordClassUrlSegment + "'.");
     }
