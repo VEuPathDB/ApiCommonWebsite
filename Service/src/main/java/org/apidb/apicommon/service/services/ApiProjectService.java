@@ -41,7 +41,7 @@ public class ApiProjectService extends ProjectService {
       // get all organisms in vocabulary of org param of taxon question
       Question taxonQuestion = model.getQuestionByName(TAXON_QUESTION_NAME).get();
       DisplayablyValid<AnswerSpec> spec = QuestionService.getDisplayableAnswerSpec(
-          TAXON_QUESTION_NAME, model, getSessionUser(), name -> taxonQuestion);
+          TAXON_QUESTION_NAME, model, getRequestingUser(), name -> taxonQuestion);
       AbstractEnumParam orgParam = (AbstractEnumParam)taxonQuestion.getParamMap().get(ORGANISM_PARAM_NAME);
       List<String> organisms = orgParam.getVocabInstance(AnswerSpec.getValidQueryInstanceSpec(spec)).getVocabTreeLeafTerms();
 
