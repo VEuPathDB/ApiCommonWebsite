@@ -158,9 +158,9 @@ public class GeneGenomicFeatureProvider implements BedFeatureProvider {
           }
           switch(anchor) {
           case Start: return featureEnd + offset;
-          case CodeStart: return codingEnd;
+          case CodeStart: return codingEnd + offset;
           case End: return featureStart + offset;
-	  case CodeEnd: return codingStart;
+	  case CodeEnd: return codingStart + offset;
           default: throw new WdkModelException("Unsupported anchor type: " + anchor);
           }
       }
@@ -170,9 +170,9 @@ public class GeneGenomicFeatureProvider implements BedFeatureProvider {
           }
           switch(anchor) {
 	  case Start: return featureStart + offset;
-          case CodeStart: return codingStart;
+          case CodeStart: return codingStart + offset;
           case End: return featureEnd + offset;
-	  case CodeEnd: return codingEnd;
+	  case CodeEnd: return codingEnd + offset;
           default: throw new WdkModelException("Unsupported anchor type: " + anchor);
           }
       }
