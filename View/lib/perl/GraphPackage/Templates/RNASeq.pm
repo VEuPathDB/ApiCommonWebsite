@@ -1790,6 +1790,14 @@ sub getPlotWidth { return 550; }
 
 1;
 
+# host - hsapREF_Dewi_Roryzae_2021_ebi_rnaSeq_RSRC
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_abeab0974c;
+
+sub getPlotWidth { return 750; }
+
+1;
+
+
 # vect - aaegLVP_AGWG_SRP034735_ebi_rnaSeq_RSRC
 package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_f279b1d0f8;
 
