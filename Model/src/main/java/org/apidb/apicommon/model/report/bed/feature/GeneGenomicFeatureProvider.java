@@ -31,6 +31,8 @@ public class GeneGenomicFeatureProvider implements BedFeatureProvider {
   private static final Pattern LOCATION_TEXT_PATTERN = Pattern.compile("^(.*):(\\d+)..(\\d+)\\((\\+|-)\\)$");
 
   private static final String ATTR_LOCATION_TEXT = "location_text";
+  private static final String ATTR_CODING_START = "coding_start";
+  private static final String ATTR_CODING_END = "coding_end";
   private static final String ATTR_THREE_PRIME_UTR_LENGTH = "three_prime_utr_length";
   private static final String ATTR_FIVE_PRIME_UTR_LENGTH = "five_prime_utr_length";
   private static final String ATTR_ORGANISM = "organism";
@@ -66,7 +68,7 @@ public class GeneGenomicFeatureProvider implements BedFeatureProvider {
 
   @Override
   public String[] getRequiredAttributeNames() {
-    return new String[] { ATTR_LOCATION_TEXT , ATTR_ORGANISM, ATTR_THREE_PRIME_UTR_LENGTH, ATTR_FIVE_PRIME_UTR_LENGTH, ATTR_GENE_NAME, ATTR_GENE_PRODUCT};
+    return new String[] { ATTR_LOCATION_TEXT , ATTR_ORGANISM, ATTR_CODING_START, ATTR_CODING_END, ATTR_THREE_PRIME_UTR_LENGTH, ATTR_FIVE_PRIME_UTR_LENGTH, ATTR_GENE_NAME, ATTR_GENE_PRODUCT};
   }
 
   @Override
@@ -86,11 +88,14 @@ public class GeneGenomicFeatureProvider implements BedFeatureProvider {
 
     StrandDirection strand = StrandDirection.fromSign(m.group(4));
 
+    int codingStart = integerValueWithZeroForEmpty(record, ATTR_CODING_START);
+    int codingEnd = integerValueWithZeroForEmpty(record, ATTR_CODING_END);
+
     int fivePrimeUtrLength = integerValueWithZeroForEmpty(record, ATTR_FIVE_PRIME_UTR_LENGTH);
     int threePrimeUtrLength = integerValueWithZeroForEmpty(record, ATTR_THREE_PRIME_UTR_LENGTH);
 
-    Integer upstreamPosition = getPositionGenomic(featureStart, featureEnd, _upstreamOffset, _upstreamSign, _upstreamAnchor, fivePrimeUtrLength, threePrimeUtrLength, strand);
-    Integer downstreamPosition = getPositionGenomic(featureStart, featureEnd, _downstreamOffset, _downstreamSign, _downstreamAnchor, fivePrimeUtrLength, threePrimeUtrLength, strand);
+    Integer upstreamPosition = getPositionGenomic(featureStart, featureEnd, _upstreamOffset, _upstreamSign, _upstreamAnchor, codingStart, codingEnd, fivePrimeUtrLength, threePrimeUtrLength, strand);
+    Integer downstreamPosition = getPositionGenomic(featureStart, featureEnd, _downstreamOffset, _downstreamSign, _downstreamAnchor, codingStart, codingEnd, fivePrimeUtrLength, threePrimeUtrLength, strand);
 
     Integer segmentStart = upstreamPosition;
     Integer segmentEnd = downstreamPosition;
@@ -141,6 +146,7 @@ public class GeneGenomicFeatureProvider implements BedFeatureProvider {
   private static int getPositionGenomic(
       Integer featureStart, Integer featureEnd, 
       int offset, OffsetSign sign, Anchor anchor,
+      Integer codingStart, Integer codingEnd, 
       int fivePrimeUtrLength, int threePrimeUtrLength,
       StrandDirection strand 
       ) throws WdkModelException{
@@ -152,9 +158,9 @@ public class GeneGenomicFeatureProvider implements BedFeatureProvider {
           }
           switch(anchor) {
           case Start: return featureEnd + offset;
-          case CodeStart: return featureEnd - fivePrimeUtrLength + offset;
+          case CodeStart: return codingEnd + offset;
           case End: return featureStart + offset;
-          case CodeEnd: return featureStart + threePrimeUtrLength + offset;
+	  case CodeEnd: return codingStart + offset;
           default: throw new WdkModelException("Unsupported anchor type: " + anchor);
           }
       }
@@ -163,10 +169,10 @@ public class GeneGenomicFeatureProvider implements BedFeatureProvider {
               offset = - offset;
           }
           switch(anchor) {
-          case Start: return featureStart + offset;
-          case CodeStart: return featureStart + fivePrimeUtrLength + offset;
+	  case Start: return featureStart + offset;
+          case CodeStart: return codingStart + offset;
           case End: return featureEnd + offset;
-          case CodeEnd: return featureEnd - threePrimeUtrLength + offset;
+	  case CodeEnd: return codingEnd + offset;
           default: throw new WdkModelException("Unsupported anchor type: " + anchor);
           }
       }

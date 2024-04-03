@@ -63,7 +63,7 @@ public class ProteinInterproFeatureProvider implements BedFeatureProvider {
          */
         for (String transcriptId : interproRow.get("transcript_ids").toString().split(", ")){
           String chrom = transcriptId;
-          DeflineBuilder defline = new DeflineBuilder(chrom + "::" + segmentStart + "-" + segmentEnd);
+          DeflineBuilder defline = new DeflineBuilder(chrom + ":" + segmentStart + "-" + segmentEnd);
           if(_requestedDeflineFields.contains("organism")){
             defline.appendRecordAttribute(record, ATTR_ORGANISM);
           }

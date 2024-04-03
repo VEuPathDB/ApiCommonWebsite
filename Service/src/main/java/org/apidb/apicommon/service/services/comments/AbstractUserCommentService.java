@@ -1,5 +1,10 @@
 package org.apidb.apicommon.service.services.comments;
 
+import java.util.function.Supplier;
+
+import javax.ws.rs.NotAuthorizedException;
+import javax.ws.rs.NotFoundException;
+
 import org.apidb.apicommon.controller.CommentFactoryManager;
 import org.apidb.apicommon.model.comment.CommentFactory;
 import org.apidb.apicommon.model.comment.pojo.Comment;
@@ -7,17 +12,13 @@ import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.user.User;
 import org.gusdb.wdk.service.service.AbstractWdkService;
 
-import javax.ws.rs.NotAuthorizedException;
-import javax.ws.rs.NotFoundException;
-import java.util.function.Supplier;
-
 public abstract class AbstractUserCommentService extends AbstractWdkService {
   protected CommentFactory getCommentFactory() {
     return CommentFactoryManager.getCommentFactory(getWdkModel().getProjectId());
   }
 
   protected User fetchUser() {
-    final User out = getSessionUser();
+    final User out = getRequestingUser();
     if (out.isGuest())
       throw new NotAuthorizedException("you must login before performing this action");
     return out;

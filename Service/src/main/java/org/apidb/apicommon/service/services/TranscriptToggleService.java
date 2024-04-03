@@ -36,7 +36,7 @@ public class TranscriptToggleService extends AbstractWdkService {
     LOG.info("Action is to turn filter: " + filterTurnedOn);
 
     Step step = getWdkModel().getStepFactory().getStepByIdAndUserId(
-        stepId, getSessionUser().getUserId(), ValidationLevel.SYNTACTIC)
+        stepId, getRequestingUser().getUserId(), ValidationLevel.SYNTACTIC)
         .orElseThrow(() -> new NotFoundException("No step exists with ID " + stepId));
 
     AnswerSpecBuilder newSpec = AnswerSpec.builder(step.getAnswerSpec());
