@@ -175,7 +175,7 @@ public class JBrowseUserDatasetsService extends UserService {
     final String schema = getWdkModel().getProperties().get(VDI_CONTROL_SCHEMA_KEY);
     String sql = String.format(
         "SELECT user_dataset_id, type, name, description FROM %s.AvailableUserDatasets da WHERE da.user_id = ?",
-        schema.toLowerCase(Locale.ROOT)
+        schema
     );
     return new SQLRunner(getWdkModel().getAppDb().getDataSource(), sql)
         .executeQuery(new Object[] { userID }, rs -> {
