@@ -66,7 +66,7 @@ public class JBrowseUserDatasetsService extends UserService {
                                                @HeaderParam("Range") String fileRange) throws WdkModelException {
     String buildNumber = getWdkModel().getBuildNumber();
     String udDir = getWdkModel().getProperties().get(VDI_DATASET_DIR_KEY);
-    String schemaKey = getWdkModel().getProperties().get(VDI_CONTROL_SCHEMA_KEY);
+    String schemaKey = getWdkModel().getProperties().get(VDI_CONTROL_SCHEMA_KEY).toLowerCase(Locale.ROOT);
 
     // Verify that the dataset belongs to user. Random people should not be able to download anyone's files, even
     // though they are protected by obscurity.
@@ -128,7 +128,7 @@ public class JBrowseUserDatasetsService extends UserService {
    */
   private List<JBrowseTrack> fetchTracksFromFilesystem(VDIDatasetReference vdiDatasetReference) {
     final String vdiDatasetsDir = getWdkModel().getProperties().get(VDI_DATASET_DIR_KEY);
-    String schemaKey = getWdkModel().getProperties().get(VDI_CONTROL_SCHEMA_KEY);
+    String schemaKey = getWdkModel().getProperties().get(VDI_CONTROL_SCHEMA_KEY).toLowerCase(Locale.ROOT);
     final String buildNumber = getWdkModel().getBuildNumber();
     final java.nio.file.Path datasetDir = Paths.get(vdiDatasetsDir, schemaKey, "build-" + buildNumber, getWdkModel().getProjectId(), vdiDatasetReference.getId());
     LOG.info("Looking for tracks in " + datasetDir);
