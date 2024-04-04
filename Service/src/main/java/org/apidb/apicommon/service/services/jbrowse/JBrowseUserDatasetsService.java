@@ -66,6 +66,7 @@ public class JBrowseUserDatasetsService extends UserService {
                                                @HeaderParam("Range") String fileRange) throws WdkModelException {
     String buildNumber = getWdkModel().getBuildNumber();
     String udDir = getWdkModel().getProperties().get("VDI_DATASETS_DIRECTORY");
+    String schemaKey = getWdkModel().getProperties().get(VDI_CONTROL_SCHEMA_KEY);
 
     // Verify that the dataset belongs to user. Random people should not be able to download anyone's files, even
     // though they are protected by obscurity.
@@ -73,7 +74,7 @@ public class JBrowseUserDatasetsService extends UserService {
       throw new NotFoundException("Unable to find dataset with ID " + datasetID);
     }
 
-    String path = String.format("%s/build-%s/%s/%s/%s", udDir, buildNumber, getWdkModel().getProjectId(), datasetID, data);
+    String path = String.format("%s/%s/build-%s/%s/%s/%s", udDir, schemaKey, buildNumber, getWdkModel().getProjectId(), datasetID, data);
 
     LOG.info("Looking up jbrowse files for dataset {} in directory " + path);
 
