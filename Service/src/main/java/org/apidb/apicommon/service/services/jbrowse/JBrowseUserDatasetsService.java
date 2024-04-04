@@ -75,6 +75,8 @@ public class JBrowseUserDatasetsService extends UserService {
 
     String path = String.format("%s/build-%s/%s/%s/%s", udDir, buildNumber, getWdkModel().getProjectId(), datasetID, data);
 
+    LOG.info("Looking up jbrowse files for dataset {} in directory " + path)
+
     if (path.contains("..") || path.contains("$")) {
       throw new NotFoundException(formatNotFound("*"));
     }
