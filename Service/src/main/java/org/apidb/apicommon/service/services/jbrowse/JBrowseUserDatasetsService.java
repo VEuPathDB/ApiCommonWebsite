@@ -94,6 +94,7 @@ public class JBrowseUserDatasetsService extends UserService {
 
     try {
       List<VDIDatasetReference> datasets = queryVisibleDatasets(getPrivateRegisteredUser().getUserId());
+      LOG.info("Found " + datasets.size() + " datasets for user " + getPrivateRegisteredUser().getUserId());
 
       // Any tracks that are in the installed dataset dir on the filesystem are installed in this project, fetch
       // them indiscriminately!
@@ -101,6 +102,7 @@ public class JBrowseUserDatasetsService extends UserService {
           .flatMap(dataset -> fetchTracksFromFilesystem(dataset).stream())
           .collect(Collectors.toList());
 
+      LOG.info("Found " + tracks.size() + " tracks for user " + getPrivateRegisteredUser().getUserId());
       jBrowseDatasetResponse.setTracks(tracks);
     }
     // if the user isn't logged in, just return an empty array
@@ -179,6 +181,7 @@ public class JBrowseUserDatasetsService extends UserService {
         "SELECT user_dataset_id, type, name, description FROM %s.AvailableUserDatasets da WHERE da.user_id = ?",
         schema
     );
+    LOG.debug("Querying visible datasets: " + sql);
     return new SQLRunner(getWdkModel().getAppDb().getDataSource(), sql)
         .executeQuery(new Object[] { userID }, rs -> {
           List<VDIDatasetReference> vdiDatasets = new ArrayList<>();
