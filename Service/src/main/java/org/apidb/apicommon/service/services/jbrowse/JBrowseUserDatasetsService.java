@@ -129,6 +129,7 @@ public class JBrowseUserDatasetsService extends UserService {
     final String vdiDatasetsDir = getWdkModel().getProperties().get(VDI_DATASET_DIR_KEY);
     final String buildNumber = getWdkModel().getBuildNumber();
     final java.nio.file.Path datasetDir = Paths.get(vdiDatasetsDir, "build-" + buildNumber, getWdkModel().getProjectId(), vdiDatasetReference.getId());
+    LOG.info("Looking for tracks in " + datasetDir);
     return Arrays.stream(Optional.ofNullable(datasetDir.toFile().listFiles()).orElse(new File[0]))
         .map(jbrowseFile -> {
           final JBrowseTrack jBrowseTrack = new JBrowseTrack();
