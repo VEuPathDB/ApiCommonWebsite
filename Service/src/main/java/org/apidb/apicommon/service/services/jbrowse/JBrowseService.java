@@ -240,15 +240,18 @@ public class JBrowseService extends AbstractWdkService {
     public Response getJBrowseStore(@QueryParam("data") String data,
                                     @HeaderParam("Range") String fileRange) throws WdkModelException {
 
-        String projectId = getWdkModel().getProjectId();
         String buildNumber = getWdkModel().getBuildNumber();
-        String webservicesDir = getWdkModel().getProperties().get("WEBSERVICEMIRROR");
+        String udDir = getWdkModel().getProperties().get("UD_DIR");
+        // New WDK property: UserDatasetFiles. This is located in /var/www/Common/userDatasets
 
         String path = checkPath(
-            webservicesDir + "/" +
-            projectId + "/" +
-            "build-" + buildNumber + "/" +
-            data);
+            udDir + "/" +
+                "build-" + buildNumber + "/" +
+                data);
+
+        if (path.contains("..") || path.contains("$")) {
+            throw new NotFoundException(formatNotFound("*"));
+        }
 
         return getFileChunkResponse(Paths.get(path), parseRangeHeaderValue(fileRange));
     }
