@@ -100,6 +100,24 @@ sub finalProfileAdjustments {
 1;
 
 
+# Host
+package ApiCommonWebsite::View::GraphPackage::Templates::Proteomics::LogRatio::DS_74ac747eab;
+
+sub finalProfileAdjustments {
+  my ($self, $profile) = @_;
+
+  my $legend = ['haha'];
+  my $colors = ['gray'];
+  $profile->setLegendLabels($legend);
+  $profile->setColors($colors);
+}
+
+1;
+
+
+
+
+
 #package ApiCommonWebsite::View::GraphPackage::Templates::Proteomics::LogRatio::DS_8e133ba94b;
 
 #sub finalProfileAdjustments {

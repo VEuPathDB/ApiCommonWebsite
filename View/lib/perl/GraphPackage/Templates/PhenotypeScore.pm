@@ -69,6 +69,7 @@ sub makePhenotypeGraphObject {
 
 1;
 
+# pfal3D7_phenotype_pB_mutagenesis_MIS_MFS_RSRC
 package ApiCommonWebsite::View::GraphPackage::Templates::PhenotypeScore::DS_1cc763e9d0;
 use strict;
 use vars qw( @ISA );
@@ -102,6 +103,32 @@ sub declareParts {
   @{$myPlotParts}[0]->{height} = @{$myPlotParts}[0]->{height} + 300;
 
   return $myPlotParts;
+}
+
+1;
+
+
+# pknoH_phenotype_piggyBac_mutagenesis_HME_MIS_OIS_RSRC
+package ApiCommonWebsite::View::GraphPackage::Templates::PhenotypeScore::DS_6d7ee15b4a;
+use strict;
+use vars qw( @ISA );
+
+@ISA = qw(ApiCommonWebsite::View::GraphPackage::Templates::PhenotypeScore );
+
+sub getPhenotypeSpecs {
+  return [ {abbrev => "HMS",
+            name => "Hybrid model score",
+            query => "select ga.source_id, r.score as value from apidb.phenotypescore r, apidbtuning.geneattributes ga where ga.na_feature_id = r.na_feature_id and r.score_type = 'Hybrid model score'"
+           },
+           {abbrev => "OIS",
+            name => "Occupancy index score",
+            query => "select ga.source_id, r.score as value from apidb.phenotypescore r, apidbtuning.geneattributes ga where ga.na_feature_id = r.na_feature_id and r.score_type = 'Occupancy index score'"
+           },
+           {abbrev => "MIS",
+            name => "Mutagenesis index score",
+            query => "select ga.source_id, r.score as value from apidb.phenotypescore r, apidbtuning.geneattributes ga where ga.na_feature_id = r.na_feature_id and r.score_type = 'Mutagenesis index score'"
+           },
+      ];
 }
 
 1;
