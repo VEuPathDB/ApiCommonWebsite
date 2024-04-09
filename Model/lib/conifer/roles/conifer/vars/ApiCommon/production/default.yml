@@ -33,6 +33,7 @@ vdi_datasets_env_map:
   default: VDI_DATASETS_QA_N
 
 modelprop:
+  HOSTNAME: "{{ hostname }}"
   VDI_CONTROL_SCHEMA: "{{ vdi_control_env_map[prefix_vdi]|default(vdi_control_env_map['default']) }}"
   VDI_DATASETS_SCHEMA: "{{ vdi_datasets_env_map[prefix_vdi]|default(vdi_datasets_env_map['default']) }}"
   GOOGLE_ANALYTICS_ID:  "{{ lookup('euparc',
