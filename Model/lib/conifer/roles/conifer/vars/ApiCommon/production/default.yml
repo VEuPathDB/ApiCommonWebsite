@@ -12,6 +12,7 @@ modelconfig_userDb_maxIdle: 10
 modelconfig_commentdb.maxIdle: 10
 commentconfig_solrUrl: "https://solr-sitesearch-{{ sitesearchsolr_env_map[prefix]|default(sitesearchsolr_env_map['default']) }}.local.apidb.org:8443/solr/site_search/"
 
+prefix_vdi: "{{ hostname | regex_replace('^([a-z][0-9]).*','1_prefix') }}"
 
 vdi_control_env_map:
   w1_prefix: VDI_CONTROL_PROD_S
