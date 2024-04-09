@@ -34,6 +34,7 @@ vdi_datasets_env_map:
 
 modelprop:
   HOSTNAME: "{{ hostname }}"
+  PREFIX_VDI: "{{ prefix_vdi }}"
   VDI_CONTROL_SCHEMA: "{{ vdi_control_env_map[prefix_vdi]|default(vdi_control_env_map['default']) }}"
   VDI_DATASETS_SCHEMA: "{{ vdi_datasets_env_map[prefix_vdi]|default(vdi_datasets_env_map['default']) }}"
   GOOGLE_ANALYTICS_ID:  "{{ lookup('euparc',
