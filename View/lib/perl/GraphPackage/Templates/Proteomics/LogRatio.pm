@@ -106,7 +106,7 @@ package ApiCommonWebsite::View::GraphPackage::Templates::Proteomics::LogRatio::D
 sub finalProfileAdjustments {
   my ($self, $profile) = @_;
 
-  my $legend = ['haha'];
+  my $legend = ['Cpar_infected_over_control'];
   my $colors = ['gray'];
   $profile->setLegendLabels($legend);
   $profile->setColors($colors);
