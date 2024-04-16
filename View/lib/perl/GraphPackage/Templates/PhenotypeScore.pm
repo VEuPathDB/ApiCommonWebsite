@@ -120,10 +120,6 @@ sub getPhenotypeSpecs {
             name => "Hybrid model score",
             query => "select ga.source_id, r.score as value from apidb.phenotypescore r, apidbtuning.geneattributes ga where ga.na_feature_id = r.na_feature_id and r.score_type = 'Hybrid model score'"
            },
-           {abbrev => "MIS",
-            name => "Mutagenesis index score",
-            query => "select ga.source_id, r.score as value from apidb.phenotypescore r, apidbtuning.geneattributes ga where ga.na_feature_id = r.na_feature_id and r.score_type = 'Mutagenesis index score'"
-           },
            {abbrev => "OIS",
             name => "Occupancy index score",
             query => "select ga.source_id, r.score as value from apidb.phenotypescore r, apidbtuning.geneattributes ga where ga.na_feature_id = r.na_feature_id and r.score_type = 'Occupancy index score'"
