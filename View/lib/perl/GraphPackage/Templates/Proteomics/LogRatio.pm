@@ -108,6 +108,7 @@ sub finalProfileAdjustments {
 
   my $legend = ['Cpar_infected_over_control'];
   my $colors = ['gray'];
+  $profile->setYaxisLabel('Relative Abundance');
   $profile->setLegendLabels($legend);
   $profile->setColors($colors);
 }
