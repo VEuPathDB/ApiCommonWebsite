@@ -172,7 +172,11 @@ public class SequenceReporter extends AbstractReporter {
       }
       else {
         LOG.error("Received 5xx response from sequence retrieval service with body: \n" + failure.getResponseBody());
-        throw new RuntimeException(failure.getResponseBody());
+        String failureResponseBody = failure.getResponseBody();
+        if (failureResponseBody.contains("502 Proxy Error")) {
+          throw new PostValidationUserException("This request has timed out.  If this problem persists, please contact us.");
+        }
+        throw new RuntimeException(failureResponseBody);
       }
     });
   }
