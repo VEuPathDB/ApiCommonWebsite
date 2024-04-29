@@ -20,7 +20,7 @@ vdi_control_env_map:
   q1_prefix: VDI_CONTROL_QA_S
   w2_prefix: VDI_CONTROL_PROD_N
   b2_prefix: VDI_CONTROL_BETA_N
-  q2_prefix: VDI_CONTROL_QA_N
+  q2_prefix: VDI_CONTROL_PROD_N
   default: VDI_CONTROL_QA_N
 
 vdi_datasets_env_map:
@@ -29,7 +29,7 @@ vdi_datasets_env_map:
   q1_prefix: VDI_DATASETS_QA_S
   w2_prefix: VDI_DATASETS_PROD_N
   b2_prefix: VDI_DATASETS_BETA_N
-  q2_prefix: VDI_DATASETS_QA_N
+  q2_prefix: VDI_DATASETS_PROD_N
   default: VDI_DATASETS_QA_N
 
 modelprop:
