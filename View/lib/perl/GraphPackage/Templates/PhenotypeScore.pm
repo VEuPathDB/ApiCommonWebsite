@@ -116,13 +116,13 @@ use vars qw( @ISA );
 @ISA = qw(ApiCommonWebsite::View::GraphPackage::Templates::PhenotypeScore );
 
 sub getPhenotypeSpecs {
-  return [ {abbrev => "HMS",
-            name => "Hybrid model score",
-            query => "select ga.source_id, r.score as value from apidb.phenotypescore r, apidbtuning.geneattributes ga where ga.na_feature_id = r.na_feature_id and r.score_type = 'Hybrid model score'"
-           },
-           {abbrev => "OIS",
+  return [ {abbrev => "OIS",
             name => "Occupancy index score",
             query => "select ga.source_id, r.score as value from apidb.phenotypescore r, apidbtuning.geneattributes ga where ga.na_feature_id = r.na_feature_id and r.score_type = 'Occupancy index score'"
+           },
+           {abbrev => "HMS",
+            name => "Hybrid model score",
+            query => "select ga.source_id, r.score as value from apidb.phenotypescore r, apidbtuning.geneattributes ga where ga.na_feature_id = r.na_feature_id and r.score_type = 'Hybrid model score'"
            },
       ];
 }
@@ -139,13 +139,13 @@ use vars qw( @ISA );
 @ISA = qw(ApiCommonWebsite::View::GraphPackage::Templates::PhenotypeScore );
 
 sub getPhenotypeSpecs {
-  return [ {abbrev => "MIS",
-            name => "MIS score",
-            query => "select ga.source_id, r.score as value from apidb.phenotypescore r, apidbtuning.geneattributes ga where ga.na_feature_id = r.na_feature_id and r.score_type = 'MIS'"
-           },
-           {abbrev => "MIS plus",
+  return [ {abbrev => "MIS plus",
             name => "MIS+ score",
             query => "select ga.source_id, r.score as value from apidb.phenotypescore r, apidbtuning.geneattributes ga where ga.na_feature_id = r.na_feature_id and r.score_type = 'MIS plus'"
+           },
+           {abbrev => "MIS",
+            name => "MIS score",
+            query => "select ga.source_id, r.score as value from apidb.phenotypescore r, apidbtuning.geneattributes ga where ga.na_feature_id = r.na_feature_id and r.score_type = 'MIS'"
            },
            {abbrev => "MFS",
             name => "MFS score",
