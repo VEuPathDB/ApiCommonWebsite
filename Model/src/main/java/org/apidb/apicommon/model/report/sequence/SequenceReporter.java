@@ -7,8 +7,8 @@ import java.net.URL;
 import java.util.Collections;
 import java.util.Map;
 
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response.Status.Family;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response.Status.Family;
 
 import org.apache.log4j.Logger;
 import org.apidb.apicommon.model.TranscriptUtil;

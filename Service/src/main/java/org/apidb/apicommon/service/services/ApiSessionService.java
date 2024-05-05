@@ -2,10 +2,10 @@ package org.apidb.apicommon.service.services;
 
 import static org.gusdb.fgputil.FormatUtil.NL;
 
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response.Status.Family;
+import jakarta.ws.rs.client.ClientBuilder;
+import jakarta.ws.rs.client.Entity;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response.Status.Family;
 
 import org.apache.log4j.Logger;
 import org.eupathdb.common.model.MultiBlastServiceUtil;

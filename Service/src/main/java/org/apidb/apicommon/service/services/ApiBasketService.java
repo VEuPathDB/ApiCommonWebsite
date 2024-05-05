@@ -17,7 +17,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import javax.sql.DataSource;
-import javax.ws.rs.PathParam;
+import jakarta.ws.rs.PathParam;
 
 import org.apidb.apicommon.model.TranscriptUtil;
 import org.apidb.apicommon.model.filter.MatchedTranscriptFilter;

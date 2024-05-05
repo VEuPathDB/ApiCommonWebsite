@@ -1,6 +1,3 @@
-/**
- * 
- */
 package org.apidb.apicommon.model;
 
 import static org.junit.Assert.assertTrue;

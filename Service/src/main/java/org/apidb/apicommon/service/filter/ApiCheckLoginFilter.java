@@ -1,6 +1,6 @@
 package org.apidb.apicommon.service.filter;
 
-import javax.annotation.Priority;
+import jakarta.annotation.Priority;
 
 import org.gusdb.wdk.service.filter.CheckLoginFilter;
 

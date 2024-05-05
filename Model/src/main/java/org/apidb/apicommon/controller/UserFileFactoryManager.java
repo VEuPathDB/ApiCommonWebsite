@@ -1,6 +1,6 @@
 package org.apidb.apicommon.controller;
 
-import javax.servlet.ServletContext;
+import jakarta.servlet.ServletContext;
 
 import org.apidb.apicommon.model.userfile.UserFileFactory;
 import org.gusdb.fgputil.runtime.InstanceManager;

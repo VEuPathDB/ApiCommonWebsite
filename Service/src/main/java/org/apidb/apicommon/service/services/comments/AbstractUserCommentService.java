@@ -2,8 +2,8 @@ package org.apidb.apicommon.service.services.comments;
 
 import java.util.function.Supplier;
 
-import javax.ws.rs.NotAuthorizedException;
-import javax.ws.rs.NotFoundException;
+import jakarta.ws.rs.NotAuthorizedException;
+import jakarta.ws.rs.NotFoundException;
 
 import org.apidb.apicommon.controller.CommentFactoryManager;
 import org.apidb.apicommon.model.comment.CommentFactory;
