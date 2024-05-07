@@ -8,6 +8,7 @@ import org.apidb.apicommon.service.services.ApiProjectService;
 import org.apidb.apicommon.service.services.ApiRecordService;
 import org.apidb.apicommon.service.services.ApiSessionService;
 import org.apidb.apicommon.service.services.ApiStepService;
+import org.apidb.apicommon.service.services.ApiSystemService;
 import org.apidb.apicommon.service.services.OrganismMetricsService;
 import org.apidb.apicommon.service.services.TranscriptToggleService;
 import org.apidb.apicommon.service.services.comments.AttachmentsService;
@@ -21,6 +22,7 @@ import org.gusdb.wdk.service.filter.CheckLoginFilter;
 import org.gusdb.wdk.service.service.ProjectService;
 import org.gusdb.wdk.service.service.RecordService;
 import org.gusdb.wdk.service.service.SessionService;
+import org.gusdb.wdk.service.service.SystemService;
 import org.gusdb.wdk.service.service.user.BasketService;
 import org.gusdb.wdk.service.service.user.StepService;
 
@@ -40,6 +42,7 @@ public class ApiWebServiceApplication extends EuPathServiceApplication {
       .replace(CheckLoginFilter.class, ApiCheckLoginFilter.class)
       .replace(SessionService.class, ApiSessionService.class)
       .replace(RecordService.class, ApiRecordService.class)
+      .replace(SystemService.class, ApiSystemService.class)
 
       // add ApiCommon-specific services
       .add(AttachmentsService.class)
