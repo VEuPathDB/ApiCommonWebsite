@@ -2,7 +2,6 @@ package org.apidb.apicommon.service.services;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -11,12 +10,14 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.stream.Collectors;
 
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.apache.log4j.Logger;
 import org.apache.logging.log4j.ThreadContext;
 import org.eupathdb.common.model.ProjectMapper;
 import org.gusdb.fgputil.client.TracePropagatingClientInterceptor;
@@ -29,13 +30,15 @@ import org.json.JSONObject;
 
 public class ApiSystemService extends SystemService {
 
+  private static final Logger LOG = Logger.getLogger(ApiSystemService.class);
+
   private static final String PORTAL_PROJECT_ID = "EuPathDB";
 
   @Override
   protected JSONObject getSeedWdkCachesResponseJson() throws WdkModelException {
+
     WdkModel wdkModel = getWdkModel();
     boolean aggregate = Boolean.valueOf(getUriInfo().getQueryParameters().getFirst("aggregate")); // default false
-
 
     // only return aggregated results if running on the portal AND aggregate parameter is true
     if (!wdkModel.getProjectId().equals(PORTAL_PROJECT_ID) || !aggregate) {
@@ -53,11 +56,13 @@ public class ApiSystemService extends SystemService {
     try {
       // kick off calls to component sites and fill results map with component JSON
       for (String projectId : projectIds) {
-        results.put(projectId, exec.submit(() -> getComponentResults(projectMapper.getWebAppUrl(projectId), authHeaderValue)));
+        String webappUrl = projectMapper.getWebAppUrl(projectId);
+        LOG.info("Kicking off cache see call to " + webappUrl);
+        results.put(projectId, exec.submit(() -> getComponentResults(webappUrl, authHeaderValue)));
       }
 
       // wait for all calls to complete
-      waitForResponses(results.values());
+      waitForResponses(results);
 
       // all component calls are complete (for better or worse); start building response from their results
       for (Entry<String,Future<JSONObject>> entry : results.entrySet()) {
@@ -75,19 +80,33 @@ public class ApiSystemService extends SystemService {
     }
 
     // once all component sites' results have been collected, run portal
+    LOG.info("Seeding portal cache...");
     aggregatedResults.put(PORTAL_PROJECT_ID, super.getSeedWdkCachesResponseJson());
 
     return aggregatedResults;
   }
 
-  private static void waitForResponses(Collection<Future<JSONObject>> futures) throws InterruptedException {
+  private static void waitForResponses(Map<String, Future<JSONObject>> futures) throws InterruptedException {
+    Map<String,Boolean> returned = futures.keySet().stream().collect(Collectors.toMap(s -> s, s -> false));
     while(true) {
       Thread.sleep(5000);
       boolean allDone = true;
-      for (Future<JSONObject> future : futures) {
-        if (!future.isDone()) allDone = false;
+      for (Entry<String,Future<JSONObject>> entry : futures.entrySet()) {
+        String projectId = entry.getKey();
+        if (entry.getValue().isDone()) {
+          if (!returned.get(projectId)) {
+            LOG.info("Update: " + projectId + " has returned.");
+            returned.put(projectId, true);
+          }
+        }
+        else {
+          allDone = false;
+        }
       }
-      if (allDone) break;
+      if (allDone) {
+        LOG.info("Update: All component sites have returned.");
+        break;
+      }
     }
   }
 
