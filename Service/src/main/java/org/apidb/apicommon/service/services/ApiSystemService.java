@@ -20,6 +20,7 @@ import javax.ws.rs.core.Response;
 import org.apache.log4j.Logger;
 import org.apache.logging.log4j.ThreadContext;
 import org.eupathdb.common.model.ProjectMapper;
+import org.gusdb.fgputil.Timer;
 import org.gusdb.fgputil.client.TracePropagatingClientInterceptor;
 import org.gusdb.fgputil.client.TracingConstants;
 import org.gusdb.oauth2.client.OAuthClient;
@@ -47,6 +48,7 @@ public class ApiSystemService extends SystemService {
 
     // collect results from all component sites first, then add portal results
     //    (will pull cached vocabs and public strat results from components)
+    Timer t = new Timer();
     ProjectMapper projectMapper = ProjectMapper.getMapper(wdkModel);
     Set<String> projectIds = projectMapper.getFederatedProjects();
     String authHeaderValue = OAuthClient.getAuthorizationHeaderValue(wdkModel.getSystemUserToken());
@@ -83,6 +85,7 @@ public class ApiSystemService extends SystemService {
     LOG.info("Seeding portal cache...");
     aggregatedResults.put(PORTAL_PROJECT_ID, super.getSeedWdkCachesResponseJson());
 
+    aggregatedResults.put("totalTimeElapsed", t.getElapsedString());
     return aggregatedResults;
   }
 
