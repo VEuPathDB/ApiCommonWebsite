@@ -33,6 +33,7 @@ vdi_datasets_env_map:
   default: VDI_DATASETS_QA_N
 
 modelprop:
+  VDI_DATASETS_DIRECTORY: "/var/www/Common/userDatasets"
   HOSTNAME: "{{ hostname }}"
   PREFIX_VDI: "{{ prefix_vdi }}"
   PREFIX: "{{ prefix }}"
