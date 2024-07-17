@@ -93,8 +93,8 @@ workspace_env_map:
     zone: ebrc
     port: 1247
   default:
-    host: irods.qa.eupathdb.org
-    login: qawrkspuser
+    host: irods.eupathdb.org
+    login: wrkspuser
     password: "{{ lookup('euparc',
       'attr=password xpath=workspaces/irods[@user=\"{}\"]'.format('qawrkspuser')
       )
