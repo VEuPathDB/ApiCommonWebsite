@@ -18,7 +18,6 @@ import org.apidb.apicommon.model.DataPlotterQueries;
 import org.gusdb.fgputil.db.stream.ResultSetToJsonConverter;
 import org.gusdb.fgputil.functional.Functions;
 import org.gusdb.wdk.model.WdkModelException;
-import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.service.service.AbstractWdkService;
 import org.json.JSONArray;
 import org.json.JSONObject;

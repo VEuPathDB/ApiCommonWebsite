@@ -2,15 +2,11 @@ package org.apidb.apicommon.service.services.jbrowse.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/**
- *
- */
 public class JBrowseTrack {
   // Fields with defaults
   private String storeClass = "JBrowse/Store/SeqFeature/BigWig";
   private String yScalePosition = "left";
   private String type = "JBrowse/View/Track/Wiggle/XYPlot";
-  private String category = "My Data from Galaxy";
 
   @JsonProperty("min_score")
   private int minScore = 0;
