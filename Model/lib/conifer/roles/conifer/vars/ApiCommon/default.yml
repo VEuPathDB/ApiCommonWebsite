@@ -21,6 +21,8 @@ modelconfig_userDatasetStoreConfig: >
       implementation="org.apidb.apicommon.model.userdataset.ISASimpleTypeHandler"/>
   </userDatasetStore>
 
+requireLogin: "true"
+
 modelprop:
   CNDSRC_BIN: /opt/cndsrc/bin
   COMMENT_DBLINK: '@{{ modelconfig_appDb_userDbLink }}'
