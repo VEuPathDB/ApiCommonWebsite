@@ -5,7 +5,7 @@ modelprop:
   FACEBOOK_URL: https://facebook.com/pages/VectorBase/189608142260
 eda:
   enabled: "true" # this will enable it for dev sites
-  example_analyses_author: 854899613
+  example_analyses_author: 854899613,1926010
   single_app_mode: pass
 user_datasets_workspace:
   enabled: "true"

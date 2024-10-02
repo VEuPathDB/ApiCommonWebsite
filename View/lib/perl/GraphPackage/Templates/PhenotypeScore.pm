@@ -69,6 +69,7 @@ sub makePhenotypeGraphObject {
 
 1;
 
+# pfal3D7_phenotype_pB_mutagenesis_MIS_MFS_RSRC
 package ApiCommonWebsite::View::GraphPackage::Templates::PhenotypeScore::DS_1cc763e9d0;
 use strict;
 use vars qw( @ISA );
@@ -105,6 +106,57 @@ sub declareParts {
 }
 
 1;
+
+
+# pknoH_phenotype_piggyBac_mutagenesis_HME_MIS_OIS_RSRC
+package ApiCommonWebsite::View::GraphPackage::Templates::PhenotypeScore::DS_6d7ee15b4a;
+use strict;
+use vars qw( @ISA );
+
+@ISA = qw(ApiCommonWebsite::View::GraphPackage::Templates::PhenotypeScore );
+
+sub getPhenotypeSpecs {
+  return [ {abbrev => "OIS",
+            name => "Occupancy index score",
+            query => "select ga.source_id, r.score as value from apidb.phenotypescore r, apidbtuning.geneattributes ga where ga.na_feature_id = r.na_feature_id and r.score_type = 'Occupancy index score'"
+           },
+           {abbrev => "HMS",
+            name => "Hybrid model score",
+            query => "select ga.source_id, r.score as value from apidb.phenotypescore r, apidbtuning.geneattributes ga where ga.na_feature_id = r.na_feature_id and r.score_type = 'Hybrid model score'"
+           },
+      ];
+}
+
+1;
+
+
+
+# pknoA1H1_phenotype_piggyBac_mutagenesis_MIS_MFS_RSRC
+package ApiCommonWebsite::View::GraphPackage::Templates::PhenotypeScore::DS_66b6e821e7;
+use strict;
+use vars qw( @ISA );
+
+@ISA = qw(ApiCommonWebsite::View::GraphPackage::Templates::PhenotypeScore );
+
+sub getPhenotypeSpecs {
+  return [ {abbrev => "MIS plus",
+            name => "MIS+ score",
+            query => "select ga.source_id, r.score as value from apidb.phenotypescore r, apidbtuning.geneattributes ga where ga.na_feature_id = r.na_feature_id and r.score_type = 'MIS plus'"
+           },
+           {abbrev => "MIS",
+            name => "MIS score",
+            query => "select ga.source_id, r.score as value from apidb.phenotypescore r, apidbtuning.geneattributes ga where ga.na_feature_id = r.na_feature_id and r.score_type = 'MIS'"
+           },
+           {abbrev => "MFS",
+            name => "MFS score",
+            query => "select ga.source_id, r.score as value from apidb.phenotypescore r, apidbtuning.geneattributes ga where ga.na_feature_id = r.na_feature_id and r.score_type = 'MFS'"
+           },
+      ];
+}
+
+1;
+
+
 
 
 package ApiCommonWebsite::View::GraphPackage::Templates::PhenotypeScore::DS_90eea17ef6;

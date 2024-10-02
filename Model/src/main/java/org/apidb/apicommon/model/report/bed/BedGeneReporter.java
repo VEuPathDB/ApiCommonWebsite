@@ -21,8 +21,8 @@ import org.json.JSONObject;
 public class BedGeneReporter extends BedReporter {
 
   private enum SequenceType {
-    dna_components,
-    transcript_components,
+    dna_component,
+    transcript_component,
     genomic,
     spliced_genomic,
     genomic_features,
@@ -49,8 +49,8 @@ public class BedGeneReporter extends BedReporter {
   public static boolean useCoordinatesOnProteinReference(JSONObject config) throws WdkModelException {
     SequenceType type = SequenceType.valueOf(config.getString("type"));
     switch(type){
-      case dna_components:
-      case transcript_components:
+      case dna_component:
+      case transcript_component:
       case genomic:
       case spliced_genomic:
       case genomic_features:
@@ -145,7 +145,7 @@ public class BedGeneReporter extends BedReporter {
           default:
             throw new WdkModelException(String.format("Unsupported spliced genomic type: %s", splicedGenomic.name()));
         }
-      case dna_components:
+      case dna_component:
         DnaComponent dnaComponent = DnaComponent.valueOf(config.getString("dnaComponent"));
         switch (dnaComponent){
           case exon:
@@ -155,7 +155,7 @@ public class BedGeneReporter extends BedReporter {
           default:
             throw new WdkModelException(String.format("Unsupported dnaComponent type: %s", dnaComponent.name()));
         }
-      case transcript_components:
+      case transcript_component:
         TranscriptComponent transcriptComponent = TranscriptComponent.valueOf(config.getString("transcriptComponent"));
         switch(transcriptComponent){
           case five_prime_utr:

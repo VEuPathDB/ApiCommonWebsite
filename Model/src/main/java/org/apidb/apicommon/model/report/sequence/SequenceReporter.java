@@ -7,6 +7,7 @@ import java.net.URL;
 import java.util.Collections;
 import java.util.Map;
 
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response.Status.Family;
 
 import org.apache.log4j.Logger;
@@ -35,7 +36,7 @@ public class SequenceReporter extends AbstractReporter {
 
   private static Logger LOG = Logger.getLogger(SequenceReporter.class);
 
-  private static final String FASTA_MEDIA_TYPE = "text/x-fasta";
+  private static final String FASTA_MEDIA_TYPE = "text/plain";
   private static final String BED_REPORTER_NAME = "bed";
 
   private enum SequenceType {
@@ -84,7 +85,7 @@ public class SequenceReporter extends AbstractReporter {
 
     // FIXME: starting here with synchronous API for proof of concept; convert to async
     _seqRetSvcRequestUrl = localhost + modelProps.get("SEQUENCE_RETRIEVAL_SERVICE_URL") +
-        "/sequences/" + sequenceType.name() + "/bed?basesPerLine=" + basesPerLine + "&deflineFormat=QUERYONLY&startOffset=ZERO"; 
+        "/sequences/" + sequenceType.name() + "/bed?basesPerLine=" + basesPerLine + "&deflineFormat=QUERYONLY&startOffset=ONE"; 
 
     LOG.info("Configured sequence reporter to return FASTA.\n  bedFileUrl = " + _bedFileUrl + "\n  seqRetSvcUrl = " + _seqRetSvcRequestUrl);
     return this;
@@ -145,7 +146,7 @@ public class SequenceReporter extends AbstractReporter {
 
     // make call to sequence retrieval service
     ResponseFuture responseFuture = ClientUtil.makeAsyncMultiPartPostRequest(
-        _seqRetSvcRequestUrl, seqRetSvcRequestBody, FASTA_MEDIA_TYPE, Collections.emptyMap());
+        _seqRetSvcRequestUrl, seqRetSvcRequestBody, MediaType.WILDCARD, Collections.emptyMap());
 
     // wait for response, then read into an Either
     Either<InputStream, RequestFailure> response = Functions.mapException(() -> responseFuture.getEither(),
@@ -171,7 +172,11 @@ public class SequenceReporter extends AbstractReporter {
       }
       else {
         LOG.error("Received 5xx response from sequence retrieval service with body: \n" + failure.getResponseBody());
-        throw new RuntimeException(failure.getResponseBody());
+        String failureResponseBody = failure.getResponseBody();
+        if (failureResponseBody.contains("502 Proxy Error")) {
+          throw new PostValidationUserException("This request has timed out.  If this problem persists, please contact us.");
+        }
+        throw new RuntimeException(failureResponseBody);
       }
     });
   }

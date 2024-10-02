@@ -116,9 +116,11 @@
       <property name="project" value="ApiCommonWebsite" />
       <property name="component" value="Site" />
     </ant>
-    <copy todir="${webappTargetDir}">
-      <fileset dir="${projectsDir}/ApiCommonWebsite/Site/node_modules/@veupathdb/genomics-site/dist" />
-    </copy>
+
+    <ant target="installWebAssets">
+      <property name="project" value="ApiCommonWebsite" />
+      <property name="sitePackageName" value="genomics-site"/>
+    </ant>
 
     <!--JBrowse stuff -->
     <delete file="${webappTargetDir}/jbrowse/jbrowse.conf" />

@@ -1766,6 +1766,55 @@ RADJUST
 
 1;
 
+# fungi - mory70-15_Ruiz_Mory_2020_ebi_rnaSeq_RSRC
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_9d559d0fae;
+
+sub getPlotWidth { return 1000; }
+
+1;
+
+
+
+# fungi - calbSC5314_Liu_calbSC5314_2015_ebi_rnaSeq_RSRC
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_d133a8e1d9;
+
+sub getPlotWidth { return 1200; }
+
+1;
+
+
+# host - hsapREF_Liu_calbSC5314_2015_ebi_rnaSeq_RSRC
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_5f2c5bb6f7;
+
+sub getPlotWidth { return 550; }
+
+1;
+
+# host - hsapREF_Dewi_Roryzae_2021_ebi_rnaSeq_RSRC
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_abeab0974c;
+
+sub getPlotWidth { return 750; }
+
+1;
+
+
+# vect - aaegLVP_AGWG_SRP034735_ebi_rnaSeq_RSRC
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_f279b1d0f8;
+
+sub getPlotWidth { return 750; }
+
+1;
+
+
+# vect - agamPEST_ERP113663_ebi_rnaSeq_RSRC
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_df981c3f82;
+
+sub getPlotWidth { return 1000; }
+
+1;
+
+
+
 #--------------------------------------------------------------------------------
 # TEMPLATE_ANCHOR rnaSeqGraph
 
@@ -1788,3 +1837,4 @@ package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_b1ac1e329c;
 sub getPlotWidth { return 800; }
 
 1;
+

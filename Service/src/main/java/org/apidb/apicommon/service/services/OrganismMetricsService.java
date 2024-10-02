@@ -48,7 +48,7 @@ public class OrganismMetricsService extends AbstractWdkService {
   private static final Counter ORGANISM_COUNTER = Counter.build()
       .name("page_access_by_organism")
       .help("Times a page related to each organism is accessed.")
-      .labelNames("organism")
+      .labelNames("project_id", "organism")
       .register();
 
   // lazy loaded constant list of valid org names
@@ -72,7 +72,7 @@ public class OrganismMetricsService extends AbstractWdkService {
     }
 
     // found a valid organism name in this request; increment counter for that org
-    ORGANISM_COUNTER.labels(organism).inc();
+    ORGANISM_COUNTER.labels(getWdkModel().getProjectId(), organism).inc();
 
     return Response.noContent().build();
   }
@@ -110,7 +110,7 @@ public class OrganismMetricsService extends AbstractWdkService {
       throw new BadRequestException("Record type with url segment '" + recordClassUrlSegment + "' does not contain an '" + ORGANISM_ATTRIBUTE + "' attribute.");
     }
     PrimaryKeyValue pkValue = getPkValue(recordClass, primaryKeyValues);
-    List<RecordInstance> records = RecordClass.getRecordInstances(getSessionUser(), pkValue);
+    List<RecordInstance> records = RecordClass.getRecordInstances(getRequestingUser(), pkValue);
     if (records.isEmpty()) {
       throw new BadRequestException("Primary Key '" + primaryKeyValues + "' does not map to any records of type '" + recordClassUrlSegment + "'.");
     }

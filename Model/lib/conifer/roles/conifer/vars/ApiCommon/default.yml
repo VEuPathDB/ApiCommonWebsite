@@ -92,3 +92,20 @@ fisherexacttestconfig_dbLogin: '{{ modelconfig_appDb_login }}'
 fisherexacttestconfig_dbPassword: '{{ modelconfig_appDb_password }}'
 fisherexacttestconfig_perlExec: /usr/bin/perl
 fisherexacttestconfig_connectionUrl: "{{ '' if modelconfig_userDb_connectionUrl.startswith('=c=') else modelconfig_appDb_connectionUrl|jdbc2Dbi }}"
+
+_showUnreleasedDataByHostnamePrefix:
+  a: false
+  b: false
+  w: false
+
+# Construct a prefix from hostname, like "w" or "a".
+#
+# This will only match when a hostname starts with a single letter, followed by a single number, followed by a period:
+#   "a1.plasmodb.org" => "a"
+#   "b2.veupathdb.org" => "b"
+#   "joeuser.plasmodb.org" => "joeuser.plasmodb.org"
+#
+# When a Hostname does not match, the original will be returned. 
+hostname_prefix: "{{ hostname | regex_replace('^([a-z])[0-9][.].*','\\1') }}"
+
+showUnreleasedData: "{{ _showUnreleasedDataByHostnamePrefix[hostname_prefix] | default('true') }}"

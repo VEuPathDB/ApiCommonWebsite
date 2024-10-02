@@ -66,6 +66,8 @@ public class ProfileSetService extends AbstractWdkService {
     String projectId = getWdkModel().getProjectId();
     String sql = DataPlotterQueries.getQueryMap(projectId).get("profile_set_ids");
     sql = sql.replaceAll("\\$datasetId", datasetId);
+    String vdiSchema = getWdkModel().getProperties().get("VDI_DATASETS_SCHEMA");
+    sql = sql.replaceAll("@VDI_DATASETS_SCHEMA@", vdiSchema);
     return getStreamingResponse(sql,
         "getProfileSetIds", "Failed running SQL to fetch user dataset profile set ids.");
   }
@@ -270,7 +272,7 @@ public class ProfileSetService extends AbstractWdkService {
         "plotData", "Failed running SQL to fetch plot data.");
   }
 
-  private static String getProfileSetSql(String projectId, String profileSetName, String profileType, String sourceId, String displayName, int order) {
+  private String getProfileSetSql(String projectId, String profileSetName, String profileType, String sourceId, String displayName, int order) {
 
     String colsToReturn = order + " as profile_order, name, value, samplenames.profile_set_name, samplenames.profile_type, samplenames.element_order";
     if (displayName != null) {
@@ -286,7 +288,7 @@ public class ProfileSetService extends AbstractWdkService {
     return sql;
   }
 
-  private static String getProfileSetByECSql(String projectId, String profileSetName, String profileType, String sourceId, int order) {
+  private String getProfileSetByECSql(String projectId, String profileSetName, String profileType, String sourceId, int order) {
 
     String sql = DataPlotterQueries.getQueryMap(projectId).get("profile_set_by_ec");
     sql = sql.replaceAll("\\$order", Integer.toString(order));
@@ -297,7 +299,7 @@ public class ProfileSetService extends AbstractWdkService {
     return sql;
   }
 
-  private static String getProfileSetWithMetadataSql(String projectId, String profileSetName, String profileType, String facet, String xAxis, String sourceId, int order) {
+  private String getProfileSetWithMetadataSql(String projectId, String profileSetName, String profileType, String facet, String xAxis, String sourceId, int order) {
 
     String sql = DataPlotterQueries.getQueryMap(projectId).get("profile_set_with_metadata");
     sql = sql.replaceAll("\\$order", Integer.toString(order));
@@ -310,7 +312,7 @@ public class ProfileSetService extends AbstractWdkService {
     return sql;
   }
 
-  private static String getProfileSetNamesSql(String projectId, String datasetPresenterId, String sourceId) {
+  private String getProfileSetNamesSql(String projectId, String datasetPresenterId, String sourceId) {
     String sql = sourceId.equals("none")
       ? DataPlotterQueries.getQueryMap(projectId).get("profile_set_names")
       : DataPlotterQueries.getQueryMap(projectId).get("profile_set_names_by_source_id");
@@ -321,7 +323,7 @@ public class ProfileSetService extends AbstractWdkService {
     return sql;
   }
 
-  private static String getRankedValuesSql(String projectId, String sqlName, String sourceIdValueQuery, String sourceId, String N, String name, int order) {
+  private String getRankedValuesSql(String projectId, String sqlName, String sourceIdValueQuery, String sourceId, String N, String name, int order) {
     String columnsToReturn = "";
     String columnsInDat = "source_id, value";
     if (sqlName.equals("RankedNthSourceIdNames")) {
@@ -347,19 +349,21 @@ public class ProfileSetService extends AbstractWdkService {
     return sql; 
   }
 
-  private static String getUserDatasetsSql(String projectId, String profileSetId, String sourceId, String name, int order) {
+  private String getUserDatasetsSql(String projectId, String profileSetId, String sourceId, String name, int order) {
 
     String sql = DataPlotterQueries.getQueryMap(projectId).get("user_datasets");
     sql = sql.replaceAll("\\$order", Integer.toString(order));
     sql = sql.replaceAll("\\$name", name);
     sql = sql.replaceAll("\\$sourceId", sourceId);
     sql = sql.replaceAll("\\$profileSetId", profileSetId);
+    String vdiSchema = getWdkModel().getProperties().get("VDI_DATASETS_SCHEMA");
+    sql = sql.replaceAll("@VDI_DATASETS_SCHEMA@", vdiSchema); 
   
     return sql;
   }
 
   //TODO figure adding antisense result to return plot ready data
-  private static String getSenseAntisenseSql(String projectId, String senseProfileSetId, String antisenseProfileSetId, String sourceId, String floor) {
+  private String getSenseAntisenseSql(String projectId, String senseProfileSetId, String antisenseProfileSetId, String sourceId, String floor) {
 
     String sql = DataPlotterQueries.getQueryMap(projectId).get("sense_antisense");
     sql = sql.replaceAll("\\$floor", floor);
@@ -371,7 +375,7 @@ public class ProfileSetService extends AbstractWdkService {
 
   }
 
-  private static String getPathwayGeneraSql(String projectId, String generaSql, String sourceId) {
+  private String getPathwayGeneraSql(String projectId, String generaSql, String sourceId) {
 
         String sql = DataPlotterQueries.getQueryMap(projectId).get("pathway_genera");
         sql = sql.replaceAll("\\$generaSql", generaSql);
@@ -381,7 +385,7 @@ public class ProfileSetService extends AbstractWdkService {
   }
 
   //some of these nameless params may be null.. consider better ways to do this
-  private static String getSql(String projectId, String sqlName, String param1, String param2, String param3, String param4, String param5, int order) {
+  private String getSql(String projectId, String sqlName, String param1, String param2, String param3, String param4, String param5, int order) {
     switch(sqlName) {
       case "ProfileSetNames":
         return getProfileSetNamesSql(projectId, param1, param2);

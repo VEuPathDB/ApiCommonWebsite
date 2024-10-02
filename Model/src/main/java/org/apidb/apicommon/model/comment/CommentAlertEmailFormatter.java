@@ -1,13 +1,13 @@
 package org.apidb.apicommon.model.comment;
 
+import java.util.Collection;
+import java.util.stream.Collectors;
+
 import org.apidb.apicommon.model.comment.pojo.CommentRequest;
 import org.apidb.apicommon.model.comment.pojo.ExternalDatabase;
 import org.gusdb.fgputil.FormatUtil;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.user.User;
-
-import java.util.Collection;
-import java.util.stream.Collectors;
 
 public class CommentAlertEmailFormatter {
   private static final String

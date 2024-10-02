@@ -1,6 +1,0 @@
-# $SourceFileURL$
----
-eda:
-  # enable for feature and beta sites
-  enabled: "{{ 'true' if hostname.startswith(('feature.', 'b1.', 'b2.', 'q1.', 'q2.')) else 'false' }}"
-

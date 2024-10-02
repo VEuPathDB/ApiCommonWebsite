@@ -68,6 +68,7 @@ sub finalProfileAdjustments {
   my $legend = ['GT1 0 to 16 hr','ME49 0 to 16 hr','ME49 0 to 44 hr', 'RH 0 to 36 hr',
 		'VEG 0 to 16 hr', 'VEG 0 to 44 hr'];
   $profile->setHasExtraLegend(1);
+  $profile->setXaxisLabel("Time Point (hours post infection)");
   $profile->setLegendLabels($legend);
   return $self;
 }

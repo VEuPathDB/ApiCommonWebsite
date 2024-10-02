@@ -2,9 +2,8 @@ package org.apidb.apicommon.model.comment.pojo;
 
 import org.gusdb.wdk.model.user.User;
 
-import java.util.Map;
-
 public class Author {
+
   private String _firstName;
 
   private String _lastName;
@@ -50,11 +49,10 @@ public class Author {
   }
 
   public static Author fromUser(final User user) {
-    final Map<String, String> props = user.getProfileProperties();
     return new Author()
         .setUserId(user.getUserId())
-        .setFirstName(props.get("firstName"))
-        .setLastName(props.get("lastName"))
-        .setOrganization(props.get("organization"));
+        .setFirstName(user.getFirstName())
+        .setLastName(user.getLastName())
+        .setOrganization(user.getOrganization());
   }
 }

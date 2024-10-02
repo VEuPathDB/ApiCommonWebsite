@@ -100,6 +100,50 @@ sub finalProfileAdjustments {
 1;
 
 
+# Host
+package ApiCommonWebsite::View::GraphPackage::Templates::Proteomics::LogRatio::DS_74ac747eab;
+
+sub finalProfileAdjustments {
+  my ($self, $profile) = @_;
+
+  my $legend = ['Cpar_infected_over_control'];
+  my $colors = ['gray'];
+  $profile->setYaxisLabel('Relative Abundance');
+  $profile->setLegendLabels($legend);
+  $profile->setColors($colors);
+}
+
+1;
+
+
+# toxo - tgonME49_quantitativeMassSpec_Hanggeli_SAG1_iTop3_RSRC
+package ApiCommonWebsite::View::GraphPackage::Templates::Proteomics::LogRatio::DS_bf624abaf0;
+
+sub finalProfileAdjustments {
+  my ($self, $profile) = @_;
+
+#  my $legend = ['C18_v_WT_iTop3','C33_v_WT_iTop3','C30_v_WT_iTop3','C6_v_WT_iTop3','C30_v_C18_iTop3','C6_v_C18_iTop3','C30_v_C33_iTop3','C6_v_C33_iTop3','C33_v_C18_iTop3,''C6_v_30_iTop3'];
+  my $colors = ['gray', 'gray', 'gray','gray', 'gray', 'gray','gray', 'gray', 'gray','gray',];
+#  $profile->setLegendLabels($legend);
+  $profile->setColors($colors);
+}
+1;
+
+# toxo - tgonME49_quantitativeMassSpec_Hanggeli_4Clones_iTop3_RSRC
+package ApiCommonWebsite::View::GraphPackage::Templates::Proteomics::LogRatio::DS_9ee5f5fb72;
+
+sub finalProfileAdjustments {
+  my ($self, $profile) = @_;
+
+#  my $legend = ['C18_v_WT_iLFQ','C33_v_WT_iLFQ','C30_v_WT_iLFQ','C6_v_WT_iLFQ','C30_v_C18_iLFQ','C6_v_C18_iLFQ','C30_v_C33_iLFQ','C6_v_C33_iLFQ','C33_v_C18_iLFQ','C6_v_C30_iLFQ'];
+  my $colors = ['gray', 'gray', 'gray','gray', 'gray', 'gray','gray', 'gray', 'gray','gray',];
+#  $profile->setLegendLabels($legend);
+  $profile->setColors($colors);
+}
+1;
+
+
+
 #package ApiCommonWebsite::View::GraphPackage::Templates::Proteomics::LogRatio::DS_8e133ba94b;
 
 #sub finalProfileAdjustments {
