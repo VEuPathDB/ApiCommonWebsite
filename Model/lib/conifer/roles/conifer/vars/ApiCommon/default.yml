@@ -1,5 +1,7 @@
 # $SourceFileURL$
 ---
+webapp_bundle_type_segment: genomics
+
 modelconfig_modelName: apiCommonModel
 modelconfig_authenticationMethod: oauth2
 modelconfig_oauthClientId: apiComponentSite
