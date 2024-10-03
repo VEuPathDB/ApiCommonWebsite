@@ -182,7 +182,7 @@ public class JBrowseService extends AbstractWdkService {
     @Path("organismSpecificPbrowse/{organismAbbrev}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getJbrowseOrganismSpecificPbrowseTracks(@PathParam("organismAbbrev") String organismAbbrev,
-                                                            @DefaultValue("1") @QueryParam("appVersion") String appVersion,)  throws IOException {
+                                                            @DefaultValue("1") @QueryParam("appVersion") String appVersion)  throws IOException {
 
         String gusHome = getWdkModel().getGusHome();
         String projectId = getWdkModel().getProjectId();
