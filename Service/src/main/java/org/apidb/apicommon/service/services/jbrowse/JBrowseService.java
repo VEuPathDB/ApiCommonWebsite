@@ -31,6 +31,8 @@ import org.json.JSONObject;
 @Path("/jbrowse")
 public class JBrowseService extends AbstractWdkService {
 
+    public static String appType = "jbrowse";
+
     @GET
     @Path("stats/global")
     @Produces(MediaType.APPLICATION_JSON)
@@ -65,8 +67,7 @@ public class JBrowseService extends AbstractWdkService {
     @GET
     @Path("dnaseq/{organismAbbrev}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getJbrowseDNASeqTracks(@PathParam("organismAbbrev") String organismAbbrev,
-                                           @DefaultValue("1") @QueryParam("appType") String appType) throws IOException {
+    public Response getJbrowseDNASeqTracks(@PathParam("organismAbbrev") String organismAbbrev) throws IOException {
 
         String gusHome = getWdkModel().getGusHome();
         String projectId = getWdkModel().getProjectId();
@@ -88,8 +89,7 @@ public class JBrowseService extends AbstractWdkService {
     @Path("rnaseqJunctions/{organismAbbrev}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getJbrowseRNASeqJunctionTracks(@PathParam("organismAbbrev") String organismAbbrev, 
-                                                   @DefaultValue("0") @QueryParam("isApollo") String isApollo,
-                                                   @DefaultValue("1") @QueryParam("appType") String appType
+                                                   @DefaultValue("0") @QueryParam("isApollo") String isApollo
                                                    )  throws IOException {
 
         String gusHome = getWdkModel().getGusHome();
@@ -110,7 +110,6 @@ public class JBrowseService extends AbstractWdkService {
     @Path("{tracks}/{publicOrganismAbbrev}/aa/trackList.json")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getJbrowseAaTracks(@PathParam("publicOrganismAbbrev") String publicOrganismAbbrev, 
-                                       @DefaultValue("1") @QueryParam("appType") String appType,
                                        @PathParam("tracks") String tracks)  throws IOException {
 
         //NOTE:  this service call is public facing so we use the publicOrganismAbbrev here
@@ -133,8 +132,7 @@ public class JBrowseService extends AbstractWdkService {
     @GET
     @Path("{tracks}/{publicOrganismAbbrev}/trackList.json")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getJbrowseTracks(@PathParam("publicOrganismAbbrev") String publicOrganismAbbrev, 
-                                     @DefaultValue("1") @QueryParam("appType") String appType,
+    public Response getJbrowseTracks(@PathParam("publicOrganismAbbrev") String publicOrganismAbbrev,
                                      @PathParam("tracks") String tracks)  throws IOException {
 
         //NOTE:  this service call is public facing so we use the publicOrganismAbbrev here
@@ -157,8 +155,7 @@ public class JBrowseService extends AbstractWdkService {
     @GET
     @Path("organismSpecific/{organismAbbrev}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getJbrowseOrganismSpecificTracks(@PathParam("organismAbbrev") String organismAbbrev, 
-                                                     @DefaultValue("1") @QueryParam("appType") String appType,
+    public Response getJbrowseOrganismSpecificTracks(@PathParam("organismAbbrev") String organismAbbrev,
                                                      @DefaultValue("0") @QueryParam("isApollo") String isApollo)  throws IOException {
 
         String gusHome = getWdkModel().getGusHome();
@@ -181,8 +178,7 @@ public class JBrowseService extends AbstractWdkService {
     @GET
     @Path("organismSpecificPbrowse/{organismAbbrev}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getJbrowseOrganismSpecificPbrowseTracks(@PathParam("organismAbbrev") String organismAbbrev,
-                                                            @DefaultValue("1") @QueryParam("appType") String appType)  throws IOException {
+    public Response getJbrowseOrganismSpecificPbrowseTracks(@PathParam("organismAbbrev") String organismAbbrev)  throws IOException {
 
         String gusHome = getWdkModel().getGusHome();
         String projectId = getWdkModel().getProjectId();
@@ -213,8 +209,7 @@ public class JBrowseService extends AbstractWdkService {
     @GET
     @Path("rnaseq/{organismAbbrev}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getJbrowseRNASeqTracks(@PathParam("organismAbbrev") String organismAbbrev,
-                                           @DefaultValue("1") @QueryParam("appType") String appType) throws IOException {
+    public Response getJbrowseRNASeqTracks(@PathParam("organismAbbrev") String organismAbbrev) throws IOException {
 
         String gusHome = getWdkModel().getGusHome();
         String projectId = getWdkModel().getProjectId();
@@ -235,8 +230,7 @@ public class JBrowseService extends AbstractWdkService {
     @GET
     @Path("chipseq/{organismAbbrev}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getJbrowseChIPSeqTracks(@PathParam("organismAbbrev") String organismAbbrev,
-                                            @DefaultValue("1") @QueryParam("appType") String appType) throws IOException {
+    public Response getJbrowseChIPSeqTracks(@PathParam("organismAbbrev") String organismAbbrev) throws IOException {
 
         String gusHome = getWdkModel().getGusHome();
         String projectId = getWdkModel().getProjectId();
@@ -342,7 +336,6 @@ public class JBrowseService extends AbstractWdkService {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getJbrowseNames(@PathParam("organismAbbrev") String organismAbbrev, 
                                     @QueryParam("equals") String eq, 
-                                    @DefaultValue("1") @QueryParam("appType") String appType,
                                     @QueryParam("startswith") String startsWith)  throws IOException {
 
         if ((startsWith == null || startsWith.isBlank()) && (eq == null || eq.isBlank())) {
@@ -377,7 +370,6 @@ public class JBrowseService extends AbstractWdkService {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getJbrowseAaNames(@PathParam("organismAbbrev") String organismAbbrev, 
                                       @QueryParam("equals") String eq, 
-                                      @DefaultValue("1") @QueryParam("appType") String appType,
                                       @QueryParam("startswith") String startsWith)  throws IOException {
 
         String gusHome = getWdkModel().getGusHome();
