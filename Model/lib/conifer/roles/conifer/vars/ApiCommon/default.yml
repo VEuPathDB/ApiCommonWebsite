@@ -1,5 +1,7 @@
 # $SourceFileURL$
 ---
+requireLogin: "true"
+
 modelconfig_modelName: apiCommonModel
 modelconfig_authenticationMethod: oauth2
 modelconfig_oauthClientId: apiComponentSite
