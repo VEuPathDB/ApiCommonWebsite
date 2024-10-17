@@ -13,7 +13,6 @@ import org.gusdb.fgputil.Tuples.TwoTuple;
 import org.gusdb.fgputil.client.ClientUtil;
 import org.gusdb.fgputil.client.CloseableResponse;
 import org.gusdb.fgputil.events.Events;
-import org.gusdb.wdk.errors.ErrorContext.ErrorLocation;
 import org.gusdb.wdk.errors.ServerErrorBundle;
 import org.gusdb.wdk.events.ErrorEvent;
 import org.gusdb.wdk.model.WdkModel;
@@ -91,6 +90,6 @@ public class ApiSessionService extends SessionService {
     LOG.error("Multi-blast merge jobs request failed", e);
     Events.trigger(new ErrorEvent(
         new ServerErrorBundle(e),
-        getErrorContext(ErrorLocation.WDK_SERVICE)));
+        getErrorContext()));
   }
 }

@@ -1,29 +1,7 @@
 package org.apidb.apicommon.service.services.jbrowse;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.HeaderParam;
-import javax.ws.rs.NotFoundException;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.MediaType;
-
-import org.apache.log4j.Logger;
-import org.apidb.apicommon.service.services.jbrowse.model.JBrowseDatasetResponse;
-import org.apidb.apicommon.service.services.jbrowse.model.JBrowseTrack;
-import org.apidb.apicommon.service.services.jbrowse.model.VDIDatasetReference;
-import org.apidb.apicommon.service.services.jbrowse.model.VDIDatasetType;
-import org.gusdb.fgputil.db.runner.SQLRunner;
-import org.gusdb.fgputil.events.Events;
-import org.gusdb.wdk.errors.ErrorContext.ErrorLocation;
-import org.gusdb.wdk.errors.ServerErrorBundle;
-import org.gusdb.wdk.events.ErrorEvent;
-import org.gusdb.wdk.model.WdkModelException;
-import javax.ws.rs.ForbiddenException;
-import javax.ws.rs.core.Response;
-
-import org.gusdb.wdk.service.service.user.UserService;
+import static org.gusdb.wdk.service.FileRanges.getFileChunkResponse;
+import static org.gusdb.wdk.service.FileRanges.parseRangeHeaderValue;
 
 import java.io.File;
 import java.nio.file.Paths;
@@ -37,8 +15,28 @@ import java.util.Locale;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import static org.gusdb.wdk.service.FileRanges.getFileChunkResponse;
-import static org.gusdb.wdk.service.FileRanges.parseRangeHeaderValue;
+import javax.ws.rs.ForbiddenException;
+import javax.ws.rs.GET;
+import javax.ws.rs.HeaderParam;
+import javax.ws.rs.NotFoundException;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
+import org.apache.log4j.Logger;
+import org.apidb.apicommon.service.services.jbrowse.model.JBrowseDatasetResponse;
+import org.apidb.apicommon.service.services.jbrowse.model.JBrowseTrack;
+import org.apidb.apicommon.service.services.jbrowse.model.VDIDatasetReference;
+import org.apidb.apicommon.service.services.jbrowse.model.VDIDatasetType;
+import org.gusdb.fgputil.db.runner.SQLRunner;
+import org.gusdb.fgputil.events.Events;
+import org.gusdb.wdk.errors.ServerErrorBundle;
+import org.gusdb.wdk.events.ErrorEvent;
+import org.gusdb.wdk.model.WdkModelException;
+import org.gusdb.wdk.service.service.user.UserService;
 
 public class JBrowseUserDatasetsService extends UserService {
 
@@ -117,7 +115,7 @@ public class JBrowseUserDatasetsService extends UserService {
         Exception e2 = new WdkModelException("Unable to load JBrowse user datasets for user with ID " +
             getRequestingUser().getUserId() + ", organism " + publicOrganismAbbrev, e);
         LOG.error("Could not load JBrowse user datasets", e2);
-        Events.trigger(new ErrorEvent(new ServerErrorBundle(e2), getErrorContext(ErrorLocation.WDK_SERVICE)));
+        Events.trigger(new ErrorEvent(new ServerErrorBundle(e2), getErrorContext()));
     }
 
     return Response.ok(jBrowseDatasetResponse).build();
