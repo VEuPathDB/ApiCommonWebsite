@@ -39,6 +39,7 @@ modelprop:
   WEBSERVICEMIRROR: /var/www/Common/apiSiteFilesMirror/webServices/
   YOUTUBE_URL: https://youtube.com/user/EuPathDB/playlists
   REDDIT_URL: https://www.reddit.com/r/BRC_users/
+  LINKEDIN_URL: https://www.linkedin.com/company/veupathdb/
   SITE_SEARCH_SERVICE_URL: /site-search
   MULTI_BLAST_SERVICE_URL: /multi-blast
   SEQUENCE_RETRIEVAL_SERVICE_URL: /sequence-retrieval
