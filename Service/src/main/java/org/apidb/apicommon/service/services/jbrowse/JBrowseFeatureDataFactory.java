@@ -51,7 +51,7 @@ public class JBrowseFeatureDataFactory {
     _projectId = wdkModel.getProjectId();
     _appDs = wdkModel.getAppDb().getDataSource();
   }
-  
+
   public Response featuresAndRegionStats(String refseqName, UriInfo uriInfo, String feature, Long start, Long end) {
 
     // use only first instance of each query param
@@ -247,9 +247,12 @@ public class JBrowseFeatureDataFactory {
     return outputStream -> {
       BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream));
       writer.write("{\"features\":[");
-      try (Connection conn = _appDs.getConnection()) {
-              new SQLRunner(conn, sortedFeatureSql, queryName).executeQuery(featureRs -> {
-                      return new SQLRunner(conn, sortedSubfeatureSql, queryName + "_bulk_sub_features").executeQuery(subfeatureRs -> {
+      try (
+        Connection con1 = _appDs.getConnection();
+        Connection con2 = _appDs.getConnection();
+      ) {
+              new SQLRunner(con1, sortedFeatureSql, queryName).executeQuery(featureRs -> {
+                      return new SQLRunner(con2, sortedSubfeatureSql, queryName + "_bulk_sub_features").executeQuery(subfeatureRs -> {
             try {
               boolean featureHasAtts = hasColumn(featureRs, "ATTS");
               boolean subfeatureHasAtts = hasColumn(subfeatureRs, "ATTS");
@@ -422,7 +425,7 @@ public class JBrowseFeatureDataFactory {
       if (!INTERNAL_COLUMN_NAMES.contains(colLabel)) {
         myFeature.put(colLabel, featureRs.getString(i));
       }
-    } 
+    }
   }
 
   private Optional<String> getBulkSubfeatureSql(String feature,
