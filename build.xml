@@ -14,7 +14,6 @@
 
   <target name="ApiCommonWebsite-Installation" depends="EbrcWebSvcCommon-Installation,
                                                         ApiCommonModel-Installation,
-                                                        JBrowse-Installation,
                                                         ApiCommonWebsite/Model-Installation,
                                                         ApiCommonWebsite/View-Installation,
                                                         ApiCommonWebsite/Site-Installation,
