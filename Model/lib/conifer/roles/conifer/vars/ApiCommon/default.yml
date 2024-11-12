@@ -2,6 +2,16 @@
 ---
 requireLogin: "true"
 
+# Construct a prefix from hostname, like "w" or "a".
+#
+# This will only match when a hostname starts with a single letter, followed by a single number, followed by a period:
+#   "a1.plasmodb.org" => "a"
+#   "b2.veupathdb.org" => "b"
+#   "joeuser.plasmodb.org" => "joeuser.plasmodb.org"
+#
+# When a Hostname does not match, the original will be returned. 
+hostname_prefix: "{{ hostname | regex_replace('^([a-z])[0-9][.].*','\\1') }}"
+
 modelconfig_modelName: apiCommonModel
 modelconfig_authenticationMethod: oauth2
 modelconfig_oauthClientId: apiComponentSite
@@ -46,8 +56,13 @@ modelprop:
   JBROWSE_WEBPAGE_URL: "/{{ webapp_ctx }}/app/jbrowse"
   JBROWSE_SERVICE_URL: "/{{ webapp_ctx }}/service/jbrowse"
 
+user_datasets_uploadTypes_env_map:
+  w: "genelist"
+  default: "genelist,bigwigfiles,rnaseq"
+
 user_datasets_workspace:
   enabled: "true"
+  uploadTypes: "{{ user_datasets_uploadTypes_env_map[hostname_prefix] | default(user_datasets_uploadTypes_env_map['default']) }}"
 
 projectsxml:
   EuPathDB: "https://{{ hostname|swap_sld('veupathdb.org')|swap_hostname(_host_frontends) }}/veupathdb/"
@@ -100,15 +115,5 @@ _showUnreleasedDataByHostnamePrefix:
   a: false
   b: false
   w: false
-
-# Construct a prefix from hostname, like "w" or "a".
-#
-# This will only match when a hostname starts with a single letter, followed by a single number, followed by a period:
-#   "a1.plasmodb.org" => "a"
-#   "b2.veupathdb.org" => "b"
-#   "joeuser.plasmodb.org" => "joeuser.plasmodb.org"
-#
-# When a Hostname does not match, the original will be returned. 
-hostname_prefix: "{{ hostname | regex_replace('^([a-z])[0-9][.].*','\\1') }}"
 
 showUnreleasedData: "{{ _showUnreleasedDataByHostnamePrefix[hostname_prefix] | default('true') }}"
