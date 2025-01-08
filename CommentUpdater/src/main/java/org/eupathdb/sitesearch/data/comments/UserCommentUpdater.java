@@ -33,6 +33,7 @@ public class UserCommentUpdater extends CommentUpdater<Integer> {
           + " FROM apidb.textsearchablecomment tsc,"
           + " " + schema + "comments c "
           + " WHERE tsc.comment_id = c.comment_id"
+          + " AND tsc.comment_target_type = 'gene'"  // until comment updater can handle other record classes        
           + " ORDER BY source_id DESC, c.comment_id";
     }
 
