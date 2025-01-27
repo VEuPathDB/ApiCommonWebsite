@@ -1766,6 +1766,18 @@ RADJUST
 
 1;
 
+#plasmo - pfal3D7_Tonkin_Hill_Malaria_ebi_rnaSeq_RSRC
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_aae60e6bf7;
+sub init {
+  my $self = shift;
+  $self->SUPER::init(@_);
+
+  $self->setPlotWidth(1000);
+
+  return $self;
+}
+
+
 # fungi - mory70-15_Ruiz_Mory_2020_ebi_rnaSeq_RSRC
 package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_9d559d0fae;
 
