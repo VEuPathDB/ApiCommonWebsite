@@ -31,6 +31,8 @@ import org.json.JSONObject;
 @Path("/jbrowse")
 public class JBrowseService extends AbstractWdkService {
 
+    public static String appType = "jbrowse";
+
     @GET
     @Path("stats/global")
     @Produces(MediaType.APPLICATION_JSON)
@@ -69,11 +71,16 @@ public class JBrowseService extends AbstractWdkService {
 
         String gusHome = getWdkModel().getGusHome();
         String projectId = getWdkModel().getProjectId();
+        String buildNumber = getWdkModel().getBuildNumber();
+        String webservicesDir = getWdkModel().getProperties().get("WEBSERVICEMIRROR");
 
         List<String> command = new ArrayList<String>();
         command.add(gusHome + "/bin/jbrowseDNASeqTracks");
         command.add(organismAbbrev);
         command.add(projectId);
+        command.add(buildNumber);
+        command.add(webservicesDir);
+        command.add(appType);
 
         return responseFromCommand(command);
     }
@@ -81,7 +88,9 @@ public class JBrowseService extends AbstractWdkService {
     @GET
     @Path("rnaseqJunctions/{organismAbbrev}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getJbrowseRNASeqJunctionTracks(@PathParam("organismAbbrev") String organismAbbrev, @DefaultValue("0") @QueryParam("isApollo") String isApollo)  throws IOException {
+    public Response getJbrowseRNASeqJunctionTracks(@PathParam("organismAbbrev") String organismAbbrev, 
+                                                   @DefaultValue("0") @QueryParam("isApollo") String isApollo
+                                                   )  throws IOException {
 
         String gusHome = getWdkModel().getGusHome();
         String projectId = getWdkModel().getProjectId();
@@ -91,6 +100,7 @@ public class JBrowseService extends AbstractWdkService {
         command.add(organismAbbrev);
         command.add(projectId);
         command.add(isApollo);
+        command.add(appType);
 
         return responseFromCommand(command);
     }
@@ -99,7 +109,8 @@ public class JBrowseService extends AbstractWdkService {
     @GET
     @Path("{tracks}/{publicOrganismAbbrev}/aa/trackList.json")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getJbrowseAaTracks(@PathParam("publicOrganismAbbrev") String publicOrganismAbbrev, @PathParam("tracks") String tracks)  throws IOException {
+    public Response getJbrowseAaTracks(@PathParam("publicOrganismAbbrev") String publicOrganismAbbrev, 
+                                       @PathParam("tracks") String tracks)  throws IOException {
 
         //NOTE:  this service call is public facing so we use the publicOrganismAbbrev here
 
@@ -113,6 +124,7 @@ public class JBrowseService extends AbstractWdkService {
         command.add(projectId);
         command.add(String.valueOf(isPbrowse));
         command.add(tracks);
+        command.add(appType);
 
         return responseFromCommand(command);
     }
@@ -120,7 +132,8 @@ public class JBrowseService extends AbstractWdkService {
     @GET
     @Path("{tracks}/{publicOrganismAbbrev}/trackList.json")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getJbrowseTracks(@PathParam("publicOrganismAbbrev") String publicOrganismAbbrev, @PathParam("tracks") String tracks)  throws IOException {
+    public Response getJbrowseTracks(@PathParam("publicOrganismAbbrev") String publicOrganismAbbrev,
+                                     @PathParam("tracks") String tracks)  throws IOException {
 
         //NOTE:  this service call is public facing so we use the publicOrganismAbbrev here
 
@@ -135,14 +148,15 @@ public class JBrowseService extends AbstractWdkService {
         command.add(projectId);
         command.add(String.valueOf(isPbrowse));
         command.add(tracks);
-
+        command.add(appType);
         return responseFromCommand(command);
     }
 
     @GET
     @Path("organismSpecific/{organismAbbrev}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getJbrowseOrganismSpecificTracks(@PathParam("organismAbbrev") String organismAbbrev, @DefaultValue("0") @QueryParam("isApollo") String isApollo)  throws IOException {
+    public Response getJbrowseOrganismSpecificTracks(@PathParam("organismAbbrev") String organismAbbrev,
+                                                     @DefaultValue("0") @QueryParam("isApollo") String isApollo)  throws IOException {
 
         String gusHome = getWdkModel().getGusHome();
         String projectId = getWdkModel().getProjectId();
@@ -157,7 +171,7 @@ public class JBrowseService extends AbstractWdkService {
         command.add(isApollo);
         command.add(buildNumber);
         command.add(webservicesDir);
-
+        command.add(appType);
         return responseFromCommand(command);
     }
 
@@ -173,7 +187,7 @@ public class JBrowseService extends AbstractWdkService {
         command.add(gusHome + "/bin/jbrowseOrganismSpecificPbrowseTracks");
         command.add(organismAbbrev);
         command.add(projectId);
-
+        command.add(appType);
         return responseFromCommand(command);
     }
 
@@ -209,7 +223,7 @@ public class JBrowseService extends AbstractWdkService {
         command.add(buildNumber);
         command.add(webservicesDir);
         command.add("RNASeq");
-
+        command.add(appType);
         return responseFromCommand(command);
     }
 
@@ -230,7 +244,7 @@ public class JBrowseService extends AbstractWdkService {
         command.add(buildNumber);
         command.add(webservicesDir);
         command.add("ChIPSeq");
-
+        command.add(appType);
         return responseFromCommand(command);
     }
 
@@ -278,46 +292,51 @@ public class JBrowseService extends AbstractWdkService {
       return fileSystemPath;
     }
 
-    @GET
-    @Path("seq/{organismAbbrev}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response getJbrowseRefSeqs(@PathParam("organismAbbrev") String organismAbbrev )  throws IOException {
 
-        String gusHome = getWdkModel().getGusHome();
-        String projectId = getWdkModel().getProjectId();
+    // THIS SHOULD BE REPLACED BY INDEXED FASTA IN WEBSERVICES
+    // @GET
+    // @Path("seq/{organismAbbrev}")
+    // @Produces(MediaType.APPLICATION_JSON)
+    // public Response getJbrowseRefSeqs(@PathParam("organismAbbrev") String organismAbbrev )  throws IOException {
 
-        List<String> command = new ArrayList<String>();
-        command.add(gusHome + "/bin/jbrowseRefSeqs");
-        command.add(gusHome);
-        command.add(projectId);
-        command.add(organismAbbrev);
-        command.add("genomic");
+    //     String gusHome = getWdkModel().getGusHome();
+    //     String projectId = getWdkModel().getProjectId();
 
-        return responseFromCommand(command);
-    }
+    //     List<String> command = new ArrayList<String>();
+    //     command.add(gusHome + "/bin/jbrowseRefSeqs");
+    //     command.add(gusHome);
+    //     command.add(projectId);
+    //     command.add(organismAbbrev);
+    //     command.add("genomic");
 
-    @GET
-    @Path("aaseq/{organismAbbrev}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response getJbrowseAaRefSeqs(@PathParam("organismAbbrev") String organismAbbrev )  throws IOException {
+    //     return responseFromCommand(command);
+    // }
 
-        String gusHome = getWdkModel().getGusHome();
-        String projectId = getWdkModel().getProjectId();
+    // THIS SHOULD BE REPLACED BY INDEXED FASTA IN WEBSERVICES
+    // @GET
+    // @Path("aaseq/{organismAbbrev}")
+    // @Produces(MediaType.APPLICATION_JSON)
+    // public Response getJbrowseAaRefSeqs(@PathParam("organismAbbrev") String organismAbbrev )  throws IOException {
 
-        List<String> command = new ArrayList<String>();
-        command.add(gusHome + "/bin/jbrowseRefSeqs");
-        command.add(gusHome);
-        command.add(projectId);
-        command.add(organismAbbrev);
-        command.add("protein");
+    //     String gusHome = getWdkModel().getGusHome();
+    //     String projectId = getWdkModel().getProjectId();
 
-        return responseFromCommand(command);
-    }
+    //     List<String> command = new ArrayList<String>();
+    //     command.add(gusHome + "/bin/jbrowseRefSeqs");
+    //     command.add(gusHome);
+    //     command.add(projectId);
+    //     command.add(organismAbbrev);
+    //     command.add("protein");
+
+    //     return responseFromCommand(command);
+    // }
 
     @GET
     @Path("names/{organismAbbrev}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getJbrowseNames(@PathParam("organismAbbrev") String organismAbbrev, @QueryParam("equals") String eq, @QueryParam("startswith") String startsWith)  throws IOException {
+    public Response getJbrowseNames(@PathParam("organismAbbrev") String organismAbbrev, 
+                                    @QueryParam("equals") String eq, 
+                                    @QueryParam("startswith") String startsWith)  throws IOException {
 
         if ((startsWith == null || startsWith.isBlank()) && (eq == null || eq.isBlank())) {
           throw new BadRequestException("Request must include one of the following query parameters: ['startswith', 'equals']");
@@ -341,15 +360,17 @@ public class JBrowseService extends AbstractWdkService {
         command.add(organismAbbrev);
         command.add("genomic");
         command.add(String.valueOf(isPartial));
+        command.add(appType);
         command.add(sourceId);
-
         return responseFromCommand(command);
     }
 
     @GET
     @Path("aanames/{organismAbbrev}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getJbrowseAaNames(@PathParam("organismAbbrev") String organismAbbrev, @QueryParam("equals") String eq, @QueryParam("startswith") String startsWith)  throws IOException {
+    public Response getJbrowseAaNames(@PathParam("organismAbbrev") String organismAbbrev, 
+                                      @QueryParam("equals") String eq, 
+                                      @QueryParam("startswith") String startsWith)  throws IOException {
 
         String gusHome = getWdkModel().getGusHome();
         String projectId = getWdkModel().getProjectId();
@@ -369,6 +390,7 @@ public class JBrowseService extends AbstractWdkService {
         command.add(organismAbbrev);
         command.add("protein");
         command.add(String.valueOf(isPartial));
+        command.add(appType);
         command.add(sourceId);
 
         return responseFromCommand(command);

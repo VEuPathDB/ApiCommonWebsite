@@ -48,7 +48,7 @@ public class OrganismMetricsService extends AbstractWdkService {
   private static final Counter ORGANISM_COUNTER = Counter.build()
       .name("page_access_by_organism")
       .help("Times a page related to each organism is accessed.")
-      .labelNames("project_id", "organism")
+      .labelNames("project_id", "organism", "user_registration_status")
       .register();
 
   // lazy loaded constant list of valid org names
@@ -72,7 +72,7 @@ public class OrganismMetricsService extends AbstractWdkService {
     }
 
     // found a valid organism name in this request; increment counter for that org
-    ORGANISM_COUNTER.labels(getWdkModel().getProjectId(), organism).inc();
+    ORGANISM_COUNTER.labels(getWdkModel().getProjectId(), organism, getRequestingUser().getRegistrationStatus()).inc();
 
     return Response.noContent().build();
   }
