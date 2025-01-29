@@ -1776,6 +1776,16 @@ sub init {
 }
 
 
+#plasmo - pfal3D7_ppfal3d7_kucharski_RBC_RNAseq_ebi_rnaSeq_RSRC
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_29940f3f82;
+sub init {
+  my $self = shift;
+  $self->SUPER::init(@_);
+  $self->setPlotWidth(600);
+  return $self;
+}
+
+
 # fungi - mory70-15_Ruiz_Mory_2020_ebi_rnaSeq_RSRC
 package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_9d559d0fae;
 
