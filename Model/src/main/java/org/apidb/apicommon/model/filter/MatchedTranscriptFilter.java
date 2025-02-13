@@ -59,7 +59,7 @@ public class MatchedTranscriptFilter extends StepFilter {
     String sql = getSummarySql(fullIdSql);
 
     ResultSet resultSet = null;
-    DataSource dataSource = answer.getAnswerSpec().getQuestion().getWdkModel().getAppDb().getDataSource();
+    DataSource dataSource = answer.getWdkModel().getAppDb().getDataSource();
     try {
       resultSet = SqlUtils.executeQuery(dataSource, sql, getKey() + "-summary");
       while (resultSet.next()) {

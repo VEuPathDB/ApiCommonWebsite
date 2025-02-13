@@ -53,7 +53,7 @@ public class GenesByPathwayFilter extends StepFilter {
     try {
       Config config = parseConfig(jsValue);
       String rv = FILTER_SQL
-        .replace("@PROJECT_ID@", answer.getUser().getWdkModel().getProjectId())
+        .replace("@PROJECT_ID@", answer.getRequestingUser().getWdkModel().getProjectId())
         .replace("$$id_sql$$", idSql)
         .replace("$$pathway_source$$", config.getPathwaySource())
         .replace("$$exclude_incomplete_ec$$", config.getExcludeIncomplateEc())
