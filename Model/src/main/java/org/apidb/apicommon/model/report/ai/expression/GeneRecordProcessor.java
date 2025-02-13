@@ -58,6 +58,7 @@ public class GeneRecordProcessor {
       List<JSONObject> filteredData = new ArrayList<>();
       String datasetId = experimentRow.getAttributeValue("dataset_id").getValue();
       // add data from `expressionGraphsDataTable` where attribute "dataset_id" equals `datasetId`
+      // (this would be more efficient with a `Map<String, List<TableValueRow>>` made before the `expressionGraphs` loop)
       List<TableValueRow> thisExperimentDataRows = new ArrayList<>();
       for (TableValueRow dataRow : expressionGraphsDataTable) {
         if (dataRow.getAttributeValue("dataset_id").getValue().equals(datasetId)) {
