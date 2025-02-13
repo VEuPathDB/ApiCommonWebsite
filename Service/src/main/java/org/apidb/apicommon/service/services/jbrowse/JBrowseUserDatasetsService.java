@@ -36,9 +36,9 @@ import org.gusdb.fgputil.events.Events;
 import org.gusdb.wdk.errors.ServerErrorBundle;
 import org.gusdb.wdk.events.ErrorEvent;
 import org.gusdb.wdk.model.WdkModelException;
-import org.gusdb.wdk.service.service.user.UserService;
+import org.gusdb.wdk.service.service.user.AbstractUserService;
 
-public class JBrowseUserDatasetsService extends UserService {
+public class JBrowseUserDatasetsService extends AbstractUserService {
 
   private static final Logger LOG = Logger.getLogger(JBrowseUserDatasetsService.class);
   private static final String VDI_DATASET_DIR_KEY = "VDI_DATASETS_DIRECTORY";

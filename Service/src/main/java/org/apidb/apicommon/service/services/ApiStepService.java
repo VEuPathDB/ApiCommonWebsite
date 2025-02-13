@@ -66,7 +66,7 @@ public class ApiStepService extends StepService {
 
     // get a simple answer spec from our replacement builder
     SimpleAnswerSpec answerSpec = replacementBuilder.getAnswerSpec()
-        .build(existingStep.getUser(), StepContainer.emptyContainer(), ValidationLevel.NONE)
+        .build(existingStep.getRequestingUser(), StepContainer.emptyContainer(), ValidationLevel.NONE)
         .toSimpleAnswerSpec();
 
     // only modify the step if filter value is not already set the default

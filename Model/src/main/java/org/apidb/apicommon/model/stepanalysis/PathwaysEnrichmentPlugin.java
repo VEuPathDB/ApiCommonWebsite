@@ -138,7 +138,7 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   @Override
   protected String[] getCommand(AnswerValue answerValue) throws WdkModelException, WdkUserException {
 
-    WdkModel wdkModel = answerValue.getAnswerSpec().getQuestion().getWdkModel();
+    WdkModel wdkModel = answerValue.getWdkModel();
     Map<String,String> params = getFormParams();
 
     LOG.info(params.toString());

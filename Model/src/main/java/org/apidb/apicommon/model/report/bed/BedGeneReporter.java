@@ -76,7 +76,7 @@ public class BedGeneReporter extends BedReporter {
   @Override
   public Reporter configure(JSONObject config) throws ReporterConfigException, WdkModelException {
     try {
-      _originalQuestionName = _baseAnswer.getAnswerSpec().getQuestion().getName();
+      _originalQuestionName = _baseAnswer.getQuestion().getName();
 
       BedFeatureProvider featureProvider = createFeatureProvider(config);
 
