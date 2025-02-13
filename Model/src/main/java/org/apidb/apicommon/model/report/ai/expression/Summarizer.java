@@ -103,16 +103,9 @@ public class Summarizer {
 			       )
 	.build();
    
-    public static JSONObject summariseExpression(String geneId, String projectId, String serviceBaseUrl) {
-        System.out.println("Summarising expression for Gene ID: " + geneId + " with model: " + model.toString());
+    public static JSONObject summariseExpression(ExpressionData expressionData) {
         
-        // Placeholder for the actual implementation
-        System.out.println("Fetching data from: " + serviceBaseUrl);
-
 	try {
-            // Call the API client to fetch expression data
-            ExpressionData expressionData = WdkClient.fetchExpressionData(serviceBaseUrl, geneId, projectId);
-            
             // Print retrieved data (debugging)
             System.out.println("Expression Graphs: " + expressionData.getExpressionGraphs().size());
             System.out.println("Expression Graphs Data Table: " + expressionData.getExpressionGraphsDataTable().size());
@@ -161,27 +154,17 @@ public class Summarizer {
 
 
 	
-	// We don't need to send the dataset_id to the AI but it's useful to have in the response for phase two
+	// We don't need to send the dataset_id to the AI but it's useful to have in the
+	// response for phase two - so we save it for later
 	JSONObject experimentForAI = new JSONObject(experiment.toString()); // clone
 	String datasetId = experimentForAI.has("dataset_id") ? experimentForAI.getString("dataset_id") : null;
 	experimentForAI.remove("dataset_id");
-
-// specific experimental fixes for "DS_2e639b71f6"
-//	experimentForAI.put("display_name", "Transcriptional profiling of male head comparing swarming mosquito with control non-swarming mosquito (Anopheles coluzzii, aligned to A. gambiae PEST strain)");
-//	experimentForAI.put("y_axis", "Expression Values for 2 channel microarray experiments are log ratios.");
-//	experimentForAI.put("description", "Anopheles coluzzii mosquitoes were collected in July in Vallée du Kou, Bobo-Dioulasso, Burkina Faso in 2011. Mosquitoes, mostly males, were collected in swarms using sweeping net during dusk. The indoor resting (nonswarming) males with antennal fibrillae becoming erect were collected in inhabited houses using vacuum aspiration just prior to swarming time. The collected mosquitoes were placed in tubes containing RNAlater to prevent RNA degradation. Mosquito species was molecularly identified by SINE-PCR. Total RNA from 50 male mosquito heads was isolated. Both swarm male heads and indoor resting male heads were used as samples. Laboratory reared 2-6-day old virgin An. gambiae s.s. male heads were used as reference samples (control). Three biological replicates were performed for each group.    \nMicroarray analysis: Cy5- and Cy3-labeled cRNA probes were generated from 200 ng of RNA using Agilent Technologies Low Input Quick Amp Labeling Kit according to the manufacturer's instructions. Probe hybridization to the microarray slides was performed with 2 μg cRNA probes.   ");
 	
-	String message = """
-The JSON below contains expression data for a single gene within a specific experiment, along with relevant experimental and bioinformatics metadata:
-
-```json
-%s
-```
-
-**Task**: In one sentence, summarize how this gene is expressed in the given experiment. Do not describe the experiment itself—focus on whether the gene is, or is not, substantially and/or significantly upregulated or downregulated with respect to the experimental conditions tested. Take extreme care to assert the correct directionality of the response, especially in experiments with only one or two samples. Additionally, estimate the biological importance of this profile relative to other experiments on an integer scale of 0 (lowest, no differential expression) to 5 (highest, marked differential expression), even though specific comparative data has not been included. Also estimate your confidence (also 0 to 5) in making the estimate and add optional notes if there are peculiarities or caveats that may aid interpretation and further analysis. Finally, provide some general experiment-based keywords that provide a bit more context to the gene-based expression summary.
-**Purpose**: The one-sentence summary will be displayed to users in tabular form on our gene-page. Please wrap user-facing species names in `<i>` tags and use clear, scientific language accessible to non-native English speakers. The notes, scores and keywords will not be shown to users, but will be passed along with the summary to a second AI summarisation step that synthesizes insights from multiple experiments.
-**Further guidance**: The `y_axis` field describes the `value` field in the `data` array, which is the primary expression level datum. Note that standard error statistics are only available when biological replicates were performed. However, percentile-normalized values can also guide your assessment of importance. If this is a time-series experiment, consider if it is cyclical and assess periodicity as appropriate. Ignore all discussion of individual or groups of genes in the experiment `description`, as this is irrelevant to the gene you are summarising. For RNA-Seq experiments, be aware that if `paralog_number` is high, interpretation may be tricky (consider both unique and non-unique counts if available). Ensure that each key appears exactly once in the JSON response. Do not include any duplicate fields.
-""".formatted(experimentForAI.toString());
+	String message = "The JSON below contains expression data for a single gene within a specific experiment, along with relevant experimental and bioinformatics metadata:\n\n" +
+	    "```json\n%s\n```\n\n".formatted(experimentForAI.toString()) +
+	    "**Task**: In one sentence, summarize how this gene is expressed in the given experiment. Do not describe the experiment itself—focus on whether the gene is, or is not, substantially and/or significantly upregulated or downregulated with respect to the experimental conditions tested. Take extreme care to assert the correct directionality of the response, especially in experiments with only one or two samples. Additionally, estimate the biological importance of this profile relative to other experiments on an integer scale of 0 (lowest, no differential expression) to 5 (highest, marked differential expression), even though specific comparative data has not been included. Also estimate your confidence (also 0 to 5) in making the estimate and add optional notes if there are peculiarities or caveats that may aid interpretation and further analysis. Finally, provide some general experiment-based keywords that provide a bit more context to the gene-based expression summary.\n" +
+	    "**Purpose**: The one-sentence summary will be displayed to users in tabular form on our gene-page. Please wrap user-facing species names in `<i>` tags and use clear, scientific language accessible to non-native English speakers. The notes, scores and keywords will not be shown to users, but will be passed along with the summary to a second AI summarisation step that synthesizes insights from multiple experiments.\n" +
+	    "**Further guidance**: The `y_axis` field describes the `value` field in the `data` array, which is the primary expression level datum. Note that standard error statistics are only available when biological replicates were performed. However, percentile-normalized values can also guide your assessment of importance. If this is a time-series experiment, consider if it is cyclical and assess periodicity as appropriate. Ignore all discussion of individual or groups of genes in the experiment `description`, as this is irrelevant to the gene you are summarising. For RNA-Seq experiments, be aware that if `paralog_number` is high, interpretation may be tricky (consider both unique and non-unique counts if available). Ensure that each key appears exactly once in the JSON response. Do not include any duplicate fields.";
 
 //   System.out.println(message); /// DEBUG
 
@@ -219,15 +202,9 @@ The JSON below contains expression data for a single gene within a specific expe
 
     private static JSONObject sendExperimentSummariesToOpenAI(List<JSONObject> experiments) {
 	
-	String message = """
-Below are AI-generated summaries of a gene's behaviour in multiple transcriptomics experiments, provided in JSON format:
-
-```json
-%s
-```
-
-Provide a snappy headline and a one-paragraph summary of the gene's expression characteristics that gives the most biological insight into its function. Both are for human consumption on the gene page of our website. Also organise the experimental results (identified by `dataset_id`) into sections, ordered by descending biological importance. Provide a headline and one-sentence summary for each section. These will also be shown to users. Wrap species names in `<i>` tags and use clear, scientific language accessible to non-native English speakers throughout your response.
-""".formatted(new JSONArray(experiments));
+	String message = "Below are AI-generated summaries of a gene's behaviour in multiple transcriptomics experiments, provided in JSON format:\n\n" +
+	    "```json\n%s\n```\n\n".formatted(new JSONArray(experiments)) +
+	    "Provide a snappy headline and a one-paragraph summary of the gene's expression characteristics that gives the most biological insight into its function. Both are for human consumption on the gene page of our website. Also organise the experimental results (identified by `dataset_id`) into sections, ordered by descending biological importance. Provide a headline and one-sentence summary for each section. These will also be shown to users. Wrap species names in `<i>` tags and use clear, scientific language accessible to non-native English speakers throughout your response.";
 
         ChatCompletionCreateParams request = ChatCompletionCreateParams.builder()
                 .model(model)
