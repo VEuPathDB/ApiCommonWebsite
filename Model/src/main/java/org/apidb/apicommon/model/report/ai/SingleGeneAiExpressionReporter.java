@@ -67,6 +67,7 @@ public class SingleGeneAiExpressionReporter extends AbstractReporter {
 
     try (RecordStream recordStream = RecordStreamFactory.getRecordStream(_baseAnswer, List.of(), tables)) {
       RecordInstance singleRecord = recordStream.iterator().next();
+      // we will need to pass `_cacheMode` to `summarizeExpression()`...
       JSONObject expressionSummary = Summarizer.summarizeExpression(singleRecord);
       out.write(expressionSummary.toString().getBytes());
       out.flush();
