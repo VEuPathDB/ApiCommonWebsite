@@ -23,26 +23,6 @@ import java.util.stream.Collectors;
 
 public class SingleGeneAiExpressionReporter extends AbstractReporter {    
 
-  public enum CacheMode {
-    TEST("test"),
-    POPULATE("populate");
-    private final String mode;
-    CacheMode(String mode) {
-      this.mode = mode;
-    }
-    public String getMode() {
-      return mode;
-    }
-    public static CacheMode fromString(String mode) throws IllegalArgumentException {
-      for (CacheMode cm : CacheMode.values()) {
-        if (cm.mode.equalsIgnoreCase(mode)) {
-          return cm;
-        }
-      }
-      throw new IllegalArgumentException("Invalid CacheMode: " + mode);
-    }
-  }
-
   private CacheMode _cacheMode = CacheMode.TEST;
     
   @Override
@@ -68,7 +48,7 @@ public class SingleGeneAiExpressionReporter extends AbstractReporter {
     try (RecordStream recordStream = RecordStreamFactory.getRecordStream(_baseAnswer, List.of(), tables)) {
       RecordInstance singleRecord = recordStream.iterator().next();
       // we will need to pass `_cacheMode` to `summarizeExpression()`...
-      JSONObject expressionSummary = Summarizer.summarizeExpression(singleRecord);
+      JSONObject expressionSummary = Summarizer.summarizeExpression(singleRecord, _cacheMode);
       out.write(expressionSummary.toString().getBytes());
       out.flush();
     }

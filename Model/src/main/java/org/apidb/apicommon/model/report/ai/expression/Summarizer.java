@@ -1,5 +1,7 @@
 package org.apidb.apicommon.model.report.ai.expression;
 
+import org.apidb.apicommon.model.report.ai.CacheMode;
+
 import org.gusdb.wdk.model.record.RecordInstance;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.WdkModelException;
@@ -105,7 +107,7 @@ public class Summarizer {
                            )
     .build();
    
-  public static JSONObject summarizeExpression(RecordInstance geneRecord) throws WdkUserException  {
+    public static JSONObject summarizeExpression(RecordInstance geneRecord, CacheMode cacheMode) throws WdkUserException  {
         
     try {
       // Process expression data further into a list of pruned metadata plus data
