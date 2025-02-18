@@ -1,32 +1,32 @@
 package org.apidb.apicommon.model.report.ai.expression;
 
-import org.apidb.apicommon.model.report.ai.CacheMode;
-
-import org.gusdb.wdk.model.record.RecordInstance;
-import org.gusdb.wdk.model.WdkUserException;
-import org.gusdb.wdk.model.WdkModelException;
-
-import org.json.JSONObject;
-import org.json.JSONArray;
-import org.json.JSONException;
-
-import com.openai.client.OpenAIClientAsync;
-import com.openai.client.okhttp.OpenAIOkHttpClientAsync;
-import com.openai.models.ChatCompletionCreateParams;
-import com.openai.models.ChatModel;
-import com.openai.models.ChatCompletion;
-import com.openai.models.ResponseFormatJsonSchema;
-import com.openai.models.ResponseFormatJsonSchema.JsonSchema;
-import com.openai.core.JsonValue;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
 import java.util.Set;
-import java.util.HashSet;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
+import org.apidb.apicommon.model.report.ai.CacheMode;
+import org.gusdb.wdk.model.WdkModelException;
+import org.gusdb.wdk.model.WdkUserException;
+import org.gusdb.wdk.model.record.RecordInstance;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.openai.client.OpenAIClientAsync;
+import com.openai.client.okhttp.OpenAIOkHttpClientAsync;
+import com.openai.core.JsonValue;
+import com.openai.models.ChatCompletion;
+import com.openai.models.ChatCompletionCreateParams;
+import com.openai.models.ChatModel;
+import com.openai.models.ResponseFormatJsonSchema;
+import com.openai.models.ResponseFormatJsonSchema.JsonSchema;
+
 public class Summarizer {
+
   private static final OpenAIClientAsync openAIClient = OpenAIOkHttpClientAsync.builder()
     .fromEnv()  // Uses OPENAI_API_KEY from env
     .maxRetries(32)  // Handle 429 errors
@@ -106,33 +106,34 @@ public class Summarizer {
                                           )
                            )
     .build();
-   
-    public static JSONObject summarizeExpression(RecordInstance geneRecord, CacheMode cacheMode) throws WdkUserException  {
-        
+
+  public static JSONObject summarizeExpression(RecordInstance geneRecord, CacheMode cacheMode) throws WdkUserException  {
+
     try {
       // Process expression data further into a list of pruned metadata plus data
-	    List<JSONObject> experimentsWithData = GeneRecordProcessor.processExpressionData(geneRecord);
+      List<JSONObject> experimentsWithData = GeneRecordProcessor.processExpressionData(geneRecord);
       System.out.println("Pre-processed Experiments: " + experimentsWithData.size());
-	    
+
       // Send AI requests in parallel
-	    // CACHE OPPORTUNITY ONE - sendExperimentToOpenAI
+      // CACHE OPPORTUNITY ONE - sendExperimentToOpenAI
       List<CompletableFuture<JSONObject>> aiRequests = experimentsWithData.stream()
-        .map(Summarizer::sendExperimentToOpenAI)
-        .collect(Collectors.toList());
+          .map(Summarizer::sendExperimentToOpenAI)
+          .collect(Collectors.toList());
       // Wait for all requests to complete
       List<JSONObject> responses = aiRequests.stream()
-        .map(CompletableFuture::join)  // Blocks until each completes
-        .collect(Collectors.toList());
+          .map(CompletableFuture::join)  // Blocks until each completes
+          .collect(Collectors.toList());
 
       // Debug output
-	    // System.out.println("Individual responses:");
+      // System.out.println("Individual responses:");
       // responses.forEach(response -> System.out.println(response.toString(2)));
-	    // System.exit(0);
-	    
-	    JSONObject finalSummary = sendExperimentSummariesToOpenAI(responses);
-	    return finalSummary;
+      // System.exit(0);
 
-    } catch (WdkModelException e) {
+      JSONObject finalSummary = sendExperimentSummariesToOpenAI(responses);
+      return finalSummary;
+
+    }
+    catch (WdkModelException e) {
       // Handle errors gracefully
       System.err.println("Error fetching expression data: " + e.getMessage());
       throw new WdkUserException(e);
@@ -150,16 +151,14 @@ public class Summarizer {
     //
     // We would then be able to remove the "Ignore all discussion of individual or groups of genes in the experiment `description`, as this is irrelevant to the gene you are summarising." from the prompt below.
 
-
-	
     // We don't need to send the dataset_id to the AI but it's useful to have in the
     // response for phase two - so we save it for later
     JSONObject experimentForAI = new JSONObject(experiment.toString()); // clone
     String datasetId = experimentForAI.has("dataset_id") ? experimentForAI.getString("dataset_id") : null;
     experimentForAI.remove("dataset_id");
 	
-    String message = "The JSON below contains expression data for a single gene within a specific experiment, along with relevant experimental and bioinformatics metadata:\n\n" +
-	    "```json\n%s\n```\n\n".formatted(experimentForAI.toString()) +
+    String message = String.format("The JSON below contains expression data for a single gene within a specific experiment, along with relevant experimental and bioinformatics metadata:\n\n" +
+	    "```json\n%s\n```\n\n", experimentForAI.toString()) +
 	    "**Task**: In one sentence, summarize how this gene is expressed in the given experiment. Do not describe the experiment itself—focus on whether the gene is, or is not, substantially and/or significantly upregulated or downregulated with respect to the experimental conditions tested. Take extreme care to assert the correct directionality of the response, especially in experiments with only one or two samples. Additionally, estimate the biological importance of this profile relative to other experiments on an integer scale of 0 (lowest, no differential expression) to 5 (highest, marked differential expression), even though specific comparative data has not been included. Also estimate your confidence (also 0 to 5) in making the estimate and add optional notes if there are peculiarities or caveats that may aid interpretation and further analysis. Finally, provide some general experiment-based keywords that provide a bit more context to the gene-based expression summary.\n" +
 	    "**Purpose**: The one-sentence summary will be displayed to users in tabular form on our gene-page. Please wrap user-facing species names in `<i>` tags and use clear, scientific language accessible to non-native English speakers. The notes, scores and keywords will not be shown to users, but will be passed along with the summary to a second AI summarisation step that synthesizes insights from multiple experiments.\n" +
 	    "**Further guidance**: The `y_axis` field describes the `value` field in the `data` array, which is the primary expression level datum. Note that standard error statistics are only available when biological replicates were performed. However, percentile-normalized values can also guide your assessment of importance. If this is a time-series experiment, consider if it is cyclical and assess periodicity as appropriate. Ignore all discussion of individual or groups of genes in the experiment `description`, as this is irrelevant to the gene you are summarising. For RNA-Seq experiments, be aware that if `paralog_number` is high, interpretation may be tricky (consider both unique and non-unique counts if available). Ensure that each key appears exactly once in the JSON response. Do not include any duplicate fields.";
@@ -200,8 +199,8 @@ public class Summarizer {
 
   private static JSONObject sendExperimentSummariesToOpenAI(List<JSONObject> experiments) {
 	
-    String message = "Below are AI-generated summaries of a gene's behaviour in multiple transcriptomics experiments, provided in JSON format:\n\n" +
-	    "```json\n%s\n```\n\n".formatted(new JSONArray(experiments)) +
+    String message = String.format("Below are AI-generated summaries of a gene's behaviour in multiple transcriptomics experiments, provided in JSON format:\n\n" +
+	    "```json\n%s\n```\n\n", new JSONArray(experiments).toString()) +
 	    "Provide a snappy headline and a one-paragraph summary of the gene's expression characteristics that gives the most biological insight into its function. Both are for human consumption on the gene page of our website. Also organise the experimental results (identified by `dataset_id`) into sections, ordered by descending biological importance. Provide a headline and one-sentence summary for each section. These will also be shown to users. Wrap species names in `<i>` tags and use clear, scientific language accessible to non-native English speakers throughout your response.";
 
     ChatCompletionCreateParams request = ChatCompletionCreateParams.builder()
