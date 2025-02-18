@@ -1,6 +1,7 @@
 package org.apidb.apicommon.model.report.ai.expression;
 
 import org.apidb.apicommon.model.report.ai.CacheMode;
+import org.apidb.apicommon.model.report.ai.expression.AiExpressionCache;
 
 import org.gusdb.wdk.model.record.RecordInstance;
 import org.gusdb.wdk.model.WdkUserException;
@@ -25,6 +26,7 @@ import java.util.Set;
 import java.util.HashSet;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
+import java.io.IOException;
 
 public class Summarizer {
   private static final OpenAIClientAsync openAIClient = OpenAIOkHttpClientAsync.builder()
@@ -32,9 +34,21 @@ public class Summarizer {
     .maxRetries(32)  // Handle 429 errors
     .build();
 
+  private static final AiExpressionCache cache;
+
+  static {
+    AiExpressionCache tempCache = null;
+    try {
+      tempCache = new AiExpressionCache();
+    } catch (IOException e) {
+      throw new RuntimeException("Failed to initialize AiExpressionCache", e);
+    }
+    cache = tempCache;
+  }
+  
   // provide exact model number for semi-reproducibility
   private static final ChatModel model = ChatModel.GPT_4O_2024_11_20; // GPT_4O_2024_08_06;
-  private static int MAX_RESPONSE_TOKENS = 5000;
+  private static int MAX_RESPONSE_TOKENS = 10000;
     
   private static final String systemMessage = "You are a bioinformatician working for VEuPathDB.org. You are an expert at providing biologist-friendly summaries of transcriptomic data";
 
@@ -107,15 +121,15 @@ public class Summarizer {
                            )
     .build();
    
-    public static JSONObject summarizeExpression(RecordInstance geneRecord, CacheMode cacheMode) throws WdkUserException  {
+  public static JSONObject summarizeExpression(RecordInstance geneRecord, CacheMode cacheMode) throws WdkUserException  {
         
     try {
       // Process expression data further into a list of pruned metadata plus data
-	    List<JSONObject> experimentsWithData = GeneRecordProcessor.processExpressionData(geneRecord);
+      List<JSONObject> experimentsWithData = GeneRecordProcessor.processExpressionData(geneRecord);
       System.out.println("Pre-processed Experiments: " + experimentsWithData.size());
 	    
       // Send AI requests in parallel
-	    // CACHE OPPORTUNITY ONE - sendExperimentToOpenAI
+      // CACHE OPPORTUNITY ONE - sendExperimentToOpenAI
       List<CompletableFuture<JSONObject>> aiRequests = experimentsWithData.stream()
         .map(Summarizer::sendExperimentToOpenAI)
         .collect(Collectors.toList());
@@ -125,12 +139,12 @@ public class Summarizer {
         .collect(Collectors.toList());
 
       // Debug output
-	    // System.out.println("Individual responses:");
+      // System.out.println("Individual responses:");
       // responses.forEach(response -> System.out.println(response.toString(2)));
-	    // System.exit(0);
+      // System.exit(0);
 	    
-	    JSONObject finalSummary = sendExperimentSummariesToOpenAI(responses);
-	    return finalSummary;
+      JSONObject finalSummary = sendExperimentSummariesToOpenAI(responses);
+      return finalSummary;
 
     } catch (WdkModelException e) {
       // Handle errors gracefully
@@ -139,7 +153,12 @@ public class Summarizer {
     }
   }
 
+  
   private static CompletableFuture<JSONObject> sendExperimentToOpenAI(JSONObject experiment) {
+    return sendExperimentToOpenAI(experiment, CacheMode.POPULATE);
+  }
+  
+  private static CompletableFuture<JSONObject> sendExperimentToOpenAI(JSONObject experiment, CacheMode cacheMode) {
 
     // Possible TO DO: AI EDIT DESCRIPTION
     // Before sending the experiment+data to the AI, ask the AI to edit the `description` field
@@ -152,12 +171,15 @@ public class Summarizer {
 
 
 	
-    // We don't need to send the dataset_id to the AI but it's useful to have in the
-    // response for phase two - so we save it for later
+    // We don't need to send the gene_id or dataset_id to the AI but we need the gene ID
+    // for the cache key and it's useful to have dataset_id in the response for phase two
+    // - so we save them for later
     JSONObject experimentForAI = new JSONObject(experiment.toString()); // clone
+    String geneId = experimentForAI.has("gene_id") ? experimentForAI.getString("gene_id") : null;
+    experimentForAI.remove("gene_id");
     String datasetId = experimentForAI.has("dataset_id") ? experimentForAI.getString("dataset_id") : null;
     experimentForAI.remove("dataset_id");
-	
+    
     String message = "The JSON below contains expression data for a single gene within a specific experiment, along with relevant experimental and bioinformatics metadata:\n\n" +
 	    "```json\n%s\n```\n\n".formatted(experimentForAI.toString()) +
 	    "**Task**: In one sentence, summarize how this gene is expressed in the given experiment. Do not describe the experiment itself—focus on whether the gene is, or is not, substantially and/or significantly upregulated or downregulated with respect to the experimental conditions tested. Take extreme care to assert the correct directionality of the response, especially in experiments with only one or two samples. Additionally, estimate the biological importance of this profile relative to other experiments on an integer scale of 0 (lowest, no differential expression) to 5 (highest, marked differential expression), even though specific comparative data has not been included. Also estimate your confidence (also 0 to 5) in making the estimate and add optional notes if there are peculiarities or caveats that may aid interpretation and further analysis. Finally, provide some general experiment-based keywords that provide a bit more context to the gene-based expression summary.\n" +
@@ -166,6 +188,19 @@ public class Summarizer {
 
     //   System.out.println(message); /// DEBUG
 
+    String cacheKey = geneId + ':' + datasetId;
+
+    if (cache.isCacheValid(cacheKey, message)) {
+      try {
+	return CompletableFuture.completedFuture(cache.readCachedData(cacheKey));
+//      } catch (IOException e) {
+//        // maybe log that the cache was unexpectedly invalidated
+//	// and then continue to compute and populate cache entry
+      } catch (Exception e) {
+	// do nothing
+      }
+    }
+    
     ChatCompletionCreateParams request = ChatCompletionCreateParams.builder()
       .model(model)
       .maxCompletionTokens(MAX_RESPONSE_TOKENS)

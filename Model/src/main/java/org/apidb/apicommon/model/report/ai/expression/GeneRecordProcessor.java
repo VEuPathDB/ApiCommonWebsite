@@ -44,12 +44,14 @@ public class GeneRecordProcessor {
     // return value:
     List<JSONObject> experiments = new ArrayList<>();
 
+    String geneId = geneRecord.getAttributeValue("gene_id").getValue();
     TableValue expressionGraphs = geneRecord.getTableValue("ExpressionGraphs");
     TableValue expressionGraphsDataTable = geneRecord.getTableValue("ExpressionGraphsDataTable");
 
     for (TableValueRow experimentRow : expressionGraphs) {
       JSONObject experimentInfo = new JSONObject();
-    
+      experimentInfo.put("gene_id", geneId);
+      
       // Extract all relevant attributes
       for (String key : KEYS_TO_KEEP) {
         experimentInfo.put(key, experimentRow.getAttributeValue(key).getValue());
