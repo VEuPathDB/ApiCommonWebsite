@@ -22,7 +22,7 @@ public class TranscriptTableReporter extends TableTabularReporter {
   @Override
   public TranscriptTableReporter configure(JSONObject config) throws ReporterConfigException {
     try {
-      _originalQuestionName = _baseAnswer.getAnswerSpec().getQuestion().getName();
+      _originalQuestionName = _baseAnswer.getQuestion().getName();
       _baseAnswer = TranscriptUtil.transformToGeneAnswer(_baseAnswer);
       // now that base answer is a Gene answer, check and assign selected table field name
       super.configure(config);
