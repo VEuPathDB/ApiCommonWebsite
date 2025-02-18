@@ -1,9 +1,12 @@
 package org.apidb.apicommon.model.report.ai.expression;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
@@ -32,9 +35,21 @@ public class Summarizer {
     .maxRetries(32)  // Handle 429 errors
     .build();
 
+  private static final AiExpressionCache cache;
+
+  static {
+    AiExpressionCache tempCache = null;
+    try {
+      tempCache = new AiExpressionCache();
+    } catch (IOException e) {
+      throw new RuntimeException("Failed to initialize AiExpressionCache", e);
+    }
+    cache = tempCache;
+  }
+  
   // provide exact model number for semi-reproducibility
   private static final ChatModel model = ChatModel.GPT_4O_2024_11_20; // GPT_4O_2024_08_06;
-  private static int MAX_RESPONSE_TOKENS = 5000;
+  private static int MAX_RESPONSE_TOKENS = 10000;
     
   private static final String systemMessage = "You are a bioinformatician working for VEuPathDB.org. You are an expert at providing biologist-friendly summaries of transcriptomic data";
 
@@ -110,37 +125,69 @@ public class Summarizer {
   public static JSONObject summarizeExpression(RecordInstance geneRecord, CacheMode cacheMode) throws WdkUserException  {
 
     try {
+      String geneId = geneRecord.getAttributeValue("gene_id").getValue();
+
       // Process expression data further into a list of pruned metadata plus data
       List<JSONObject> experimentsWithData = GeneRecordProcessor.processExpressionData(geneRecord);
       System.out.println("Pre-processed Experiments: " + experimentsWithData.size());
 
+	    
+      // TEST Mode: Collect valid cache entries
+      if (cacheMode == CacheMode.TEST) {
+	List<JSONObject> cachedResponses = new ArrayList<>();
+	
+	for (JSONObject experiment : experimentsWithData) {
+	  
+	  Optional<JSONObject> experimentSummary = Summarizer.sendExperimentToOpenAI(geneId, experiment, CacheMode.TEST).join();
+
+	  if (experimentSummary.isPresent()) {
+            cachedResponses.add(experimentSummary.get());
+	  } else {
+            return new JSONObject().put("cacheStatus", "miss"); // If any cache entry is missing, return early
+	  }
+	}
+
+	// All experiment-level caches are valid, now check final summary cache
+	Optional<JSONObject> finalSummary = sendExperimentSummariesToOpenAI(geneId, cachedResponses, CacheMode.TEST);
+	return finalSummary
+	  .map(summary -> new JSONObject().put("cacheStatus", "hit").put("expressionSummary", summary))
+	  .orElseGet(() -> new JSONObject().put("cacheStatus", "miss"));
+      }
+
+
       // Send AI requests in parallel
-      // CACHE OPPORTUNITY ONE - sendExperimentToOpenAI
-      List<CompletableFuture<JSONObject>> aiRequests = experimentsWithData.stream()
-          .map(Summarizer::sendExperimentToOpenAI)
-          .collect(Collectors.toList());
-      // Wait for all requests to complete
+      List<CompletableFuture<Optional<JSONObject>>> aiRequests = experimentsWithData.stream()
+	// TO DO - potentially some optimisation?
+	// .map(exp -> CompletableFuture.supplyAsync(() -> sendExperimentToOpenAI(geneId, exp, CacheMode.POPULATE)))
+        .map(exp -> sendExperimentToOpenAI(geneId, exp, CacheMode.POPULATE))
+        .collect(Collectors.toList());
+      // Wait for all requests to complete with `join`
       List<JSONObject> responses = aiRequests.stream()
-          .map(CompletableFuture::join)  // Blocks until each completes
-          .collect(Collectors.toList());
+	.map(CompletableFuture::join)  // Get Optional<JSONObject>
+	.filter(Optional::isPresent)   // Keep only non-empty results
+	.map(Optional::get)            // Extract JSONObject
+	.collect(Collectors.toList());
 
       // Debug output
       // System.out.println("Individual responses:");
       // responses.forEach(response -> System.out.println(response.toString(2)));
       // System.exit(0);
 
-      JSONObject finalSummary = sendExperimentSummariesToOpenAI(responses);
-      return finalSummary;
+	    
+      Optional<JSONObject> finalSummary = sendExperimentSummariesToOpenAI(geneId, responses, CacheMode.POPULATE);
+      return finalSummary
+	.map(summary -> new JSONObject().put("cacheStatus", "hit").put("expressionSummary", summary))
+	.orElseGet(() -> new JSONObject().put("cacheStatus", "miss"));
+    } catch (WdkModelException e) {
 
-    }
-    catch (WdkModelException e) {
       // Handle errors gracefully
       System.err.println("Error fetching expression data: " + e.getMessage());
       throw new WdkUserException(e);
     }
   }
 
-  private static CompletableFuture<JSONObject> sendExperimentToOpenAI(JSONObject experiment) {
+  
+  private static CompletableFuture<Optional<JSONObject>> sendExperimentToOpenAI(String geneId, JSONObject experiment, CacheMode cacheMode) {
 
     // Possible TO DO: AI EDIT DESCRIPTION
     // Before sending the experiment+data to the AI, ask the AI to edit the `description` field
@@ -151,12 +198,13 @@ public class Summarizer {
     //
     // We would then be able to remove the "Ignore all discussion of individual or groups of genes in the experiment `description`, as this is irrelevant to the gene you are summarising." from the prompt below.
 
-    // We don't need to send the dataset_id to the AI but it's useful to have in the
-    // response for phase two - so we save it for later
+	
+    // We don't need to send dataset_id to the AI but it's useful to have it
+    // in the response for phase two
     JSONObject experimentForAI = new JSONObject(experiment.toString()); // clone
     String datasetId = experimentForAI.has("dataset_id") ? experimentForAI.getString("dataset_id") : null;
     experimentForAI.remove("dataset_id");
-	
+    
     String message = String.format("The JSON below contains expression data for a single gene within a specific experiment, along with relevant experimental and bioinformatics metadata:\n\n" +
 	    "```json\n%s\n```\n\n", experimentForAI.toString()) +
 	    "**Task**: In one sentence, summarize how this gene is expressed in the given experiment. Do not describe the experiment itself—focus on whether the gene is, or is not, substantially and/or significantly upregulated or downregulated with respect to the experimental conditions tested. Take extreme care to assert the correct directionality of the response, especially in experiments with only one or two samples. Additionally, estimate the biological importance of this profile relative to other experiments on an integer scale of 0 (lowest, no differential expression) to 5 (highest, marked differential expression), even though specific comparative data has not been included. Also estimate your confidence (also 0 to 5) in making the estimate and add optional notes if there are peculiarities or caveats that may aid interpretation and further analysis. Finally, provide some general experiment-based keywords that provide a bit more context to the gene-based expression summary.\n" +
@@ -164,6 +212,24 @@ public class Summarizer {
 	    "**Further guidance**: The `y_axis` field describes the `value` field in the `data` array, which is the primary expression level datum. Note that standard error statistics are only available when biological replicates were performed. However, percentile-normalized values can also guide your assessment of importance. If this is a time-series experiment, consider if it is cyclical and assess periodicity as appropriate. Ignore all discussion of individual or groups of genes in the experiment `description`, as this is irrelevant to the gene you are summarising. For RNA-Seq experiments, be aware that if `paralog_number` is high, interpretation may be tricky (consider both unique and non-unique counts if available). Ensure that each key appears exactly once in the JSON response. Do not include any duplicate fields.";
 
     //   System.out.println(message); /// DEBUG
+
+    String cacheKey = geneId + ':' + datasetId;
+
+    if (cache.isCacheValid(cacheKey, message)) {
+      try {
+	JSONObject cachedResponse = cache.readCachedData(cacheKey);
+	return CompletableFuture.completedFuture(Optional.of(cachedResponse));
+      } catch (Exception e) {
+	System.err.println("Cache read failed for key " + cacheKey + ": " + e.getMessage());
+            
+	if (cacheMode == CacheMode.TEST) {
+	  return CompletableFuture.completedFuture(Optional.empty()); // Treat as cache miss
+	}
+	// Else, log and fall through to AI generation
+      }
+    } else if (cacheMode == CacheMode.TEST) {
+      return CompletableFuture.completedFuture(Optional.empty());
+    }
 
     ChatCompletionCreateParams request = ChatCompletionCreateParams.builder()
       .model(model)
@@ -176,7 +242,6 @@ public class Summarizer {
                       .build())
       .addSystemMessage(systemMessage)
       .addUserMessage(message)
-	    // .temperature(1.0)
       .build();
 
     // add dataset_id back to the response
@@ -187,17 +252,27 @@ public class Summarizer {
           try {
             JSONObject jsonObject = new JSONObject(jsonString);
             jsonObject.put("dataset_id", datasetId);
-            return jsonObject;
+
+	    // Cache the response
+	    try {
+	      cache.populateCache(cacheKey, message, jsonObject);
+	    } catch (Exception e) {
+	      System.err.println("Warning: Failed to cache response for gene " + geneId + 
+				 " and dataset " + datasetId + ": " + e.getMessage());
+    	    }
+	    
+            return Optional.of(jsonObject);
           } catch (JSONException e) {
-            System.err.println("Error parsing JSON response for dataset " + datasetId + ": " + e.getMessage());
+            System.err.println("Error parsing JSON response for gene " + geneId + " and dataset " + datasetId + ": " + e.getMessage());
             System.err.println("Raw response: " + jsonString);
-            return new JSONObject().put("error", "Invalid JSON response").put("dataset_id", datasetId);
+            JSONObject errorResponse = new JSONObject().put("error", "Invalid JSON response").put("dataset_id", datasetId);
+	    return Optional.of(errorResponse);
           }
         });
   }
 
 
-  private static JSONObject sendExperimentSummariesToOpenAI(List<JSONObject> experiments) {
+  private static Optional<JSONObject> sendExperimentSummariesToOpenAI(String geneId, List<JSONObject> experiments, CacheMode cacheMode) {
 	
     String message = String.format("Below are AI-generated summaries of a gene's behaviour in multiple transcriptomics experiments, provided in JSON format:\n\n" +
 	    "```json\n%s\n```\n\n", new JSONArray(experiments).toString()) +
@@ -222,10 +297,10 @@ public class Summarizer {
     String jsonString = completion.choices().get(0).message().content().get();
     JSONObject rawResponseObject = new JSONObject(jsonString);
 
-    // TO DO - quality control (remove bad `dataset_id`s) and add 'Others' section for any experiments not listed by AI
+    // quality control (remove bad `dataset_id`s) and add 'Others' section for any experiments not listed by AI
     JSONObject finalResponseObject = consolidateSummary(rawResponseObject, experiments);
 	
-    return finalResponseObject;
+    return Optional.of(finalResponseObject);
   }
 
     

@@ -70,46 +70,29 @@ public class GeneRecordProcessor {
   }
 
   // maxExperiments is for dev/debugging only
-  static List<JSONObject> processExpressionData(RecordInstance geneRecord, int maxExperiments)
-      throws WdkModelException {
+  static List<JSONObject> processExpressionData(RecordInstance geneRecord, int maxExperiments) throws WdkModelException {
     try {
       // return value:
       List<JSONObject> experiments = new ArrayList<>();
-  
-      TableValue expressionGraphs = geneRecord.getTableValue("ExpressionGraphs");
-      TableValue expressionGraphsDataTable = geneRecord.getTableValue("ExpressionGraphsDataTable");
-  
+
+      TableValue expressionGraphs = geneRecord.getTableValue(EXPRESSION_GRAPH_TABLE);
+      TableValue expressionGraphsDataTable = geneRecord.getTableValue(EXPRESSION_GRAPH_DATA_TABLE);
+
       for (TableValueRow experimentRow : expressionGraphs) {
+
         JSONObject experimentInfo = new JSONObject();
-  
+
         // Extract all relevant attributes
         for (String key : KEYS_TO_KEEP) {
           experimentInfo.put(key, experimentRow.getAttributeValue(key).getValue());
         }
-  
-        List<JSONObject> filteredData = new ArrayList<>();
-        String datasetId = experimentRow.getAttributeValue("dataset_id").getValue();
-        // add data from `expressionGraphsDataTable` where attribute "dataset_id" equals `datasetId`
-        // (this would be more efficient with a `Map<String, List<TableValueRow>>` made before the
-        // `expressionGraphs` loop)
-        for (TableValueRow dataRow : expressionGraphsDataTable) {
-          if (dataRow.getAttributeValue("dataset_id").getValue().equals(datasetId)) {
-            JSONObject dataEntry = new JSONObject();
-  
-            // Extract relevant numeric fields
-            List<String> dataKeys = List.of("value", "standard_error", "percentile_channel1",
-                "percentile_channel2", "sample_name");
-            for (String key : dataKeys) {
-              dataEntry.put(key, dataRow.getAttributeValue(key).getValue());
-            }
-  
-            filteredData.add(dataEntry);
-          }
-        }
-  
+
+        List<JSONObject> filteredData = readFilteredData(
+            experimentRow.getAttributeValue("dataset_id").getValue(), expressionGraphsDataTable); 
+
         experimentInfo.put("data", filteredData);
         experiments.add(experimentInfo);
-  
+
         if (maxExperiments > 0 && experiments.size() >= maxExperiments)
           break;
       }
@@ -118,5 +101,25 @@ public class GeneRecordProcessor {
     catch (WdkUserException e) {
       throw new WdkModelException(e.getMessage());
     }
+  }
+
+  private static List<JSONObject> readFilteredData(String datasetId, TableValue expressionGraphsDataTable) throws WdkModelException, WdkUserException {
+    List<JSONObject> filteredData = new ArrayList<>();
+    // add data from `expressionGraphsDataTable` where attribute "dataset_id" equals `datasetId`
+    //   (this would be more efficient with a `Map<String, List<TableValueRow>>` made before the `expressionGraphs` loop)
+    //List<TableValueRow> thisExperimentDataRows = new ArrayList<>();
+    for (TableValueRow dataRow : expressionGraphsDataTable) {
+      if (dataRow.getAttributeValue("dataset_id").getValue().equals(datasetId)) {
+        JSONObject dataEntry = new JSONObject();
+
+        // Extract relevant numeric fields
+        List<String> dataKeys = List.of("value", "standard_error", "percentile_channel1", "percentile_channel2", "sample_name");
+        for (String key : dataKeys) {
+          dataEntry.put(key, dataRow.getAttributeValue(key).getValue());
+        }
+        filteredData.add(dataEntry);
+      }
+    }
+    return filteredData;
   }
 }
