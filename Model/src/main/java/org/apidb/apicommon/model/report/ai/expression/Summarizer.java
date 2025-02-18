@@ -20,10 +20,12 @@ import com.openai.models.ResponseFormatJsonSchema;
 import com.openai.models.ResponseFormatJsonSchema.JsonSchema;
 import com.openai.core.JsonValue;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 import java.io.IOException;
@@ -124,28 +126,57 @@ public class Summarizer {
   public static JSONObject summarizeExpression(RecordInstance geneRecord, CacheMode cacheMode) throws WdkUserException  {
         
     try {
+      String geneId = geneRecord.getAttributeValue("gene_id").getValue();
+
       // Process expression data further into a list of pruned metadata plus data
       List<JSONObject> experimentsWithData = GeneRecordProcessor.processExpressionData(geneRecord);
       System.out.println("Pre-processed Experiments: " + experimentsWithData.size());
 	    
+      // TEST Mode: Collect valid cache entries
+      if (cacheMode == CacheMode.TEST) {
+	List<JSONObject> cachedResponses = new ArrayList<>();
+	
+	for (JSONObject experiment : experimentsWithData) {
+	  
+	  Optional<JSONObject> experimentSummary = Summarizer.sendExperimentToOpenAI(geneId, experiment, CacheMode.TEST).join();
+
+	  if (experimentSummary.isPresent()) {
+            cachedResponses.add(experimentSummary.get());
+	  } else {
+            return new JSONObject().put("cacheStatus", "miss"); // If any cache entry is missing, return early
+	  }
+	}
+
+	// All experiment-level caches are valid, now check final summary cache
+	Optional<JSONObject> finalSummary = sendExperimentSummariesToOpenAI(geneId, cachedResponses, CacheMode.TEST);
+	return finalSummary
+	  .map(summary -> new JSONObject().put("cacheStatus", "hit").put("expressionSummary", summary))
+	  .orElseGet(() -> new JSONObject().put("cacheStatus", "miss"));
+      }
+
+
       // Send AI requests in parallel
-      // CACHE OPPORTUNITY ONE - sendExperimentToOpenAI
-      List<CompletableFuture<JSONObject>> aiRequests = experimentsWithData.stream()
-        .map(Summarizer::sendExperimentToOpenAI)
+      List<CompletableFuture<Optional<JSONObject>>> aiRequests = experimentsWithData.stream()
+	// TO DO - potentially some optimisation?
+	// .map(exp -> CompletableFuture.supplyAsync(() -> sendExperimentToOpenAI(geneId, exp, CacheMode.POPULATE)))
+        .map(exp -> sendExperimentToOpenAI(geneId, exp, CacheMode.POPULATE))
         .collect(Collectors.toList());
-      // Wait for all requests to complete
+      // Wait for all requests to complete with `join`
       List<JSONObject> responses = aiRequests.stream()
-        .map(CompletableFuture::join)  // Blocks until each completes
-        .collect(Collectors.toList());
+	.map(CompletableFuture::join)  // Get Optional<JSONObject>
+	.filter(Optional::isPresent)   // Keep only non-empty results
+	.map(Optional::get)            // Extract JSONObject
+	.collect(Collectors.toList());
 
       // Debug output
       // System.out.println("Individual responses:");
       // responses.forEach(response -> System.out.println(response.toString(2)));
       // System.exit(0);
 	    
-      JSONObject finalSummary = sendExperimentSummariesToOpenAI(responses);
-      return finalSummary;
-
+      Optional<JSONObject> finalSummary = sendExperimentSummariesToOpenAI(geneId, responses, CacheMode.POPULATE);
+      return finalSummary
+	.map(summary -> new JSONObject().put("cacheStatus", "hit").put("expressionSummary", summary))
+	.orElseGet(() -> new JSONObject().put("cacheStatus", "miss"));
     } catch (WdkModelException e) {
       // Handle errors gracefully
       System.err.println("Error fetching expression data: " + e.getMessage());
@@ -154,11 +185,7 @@ public class Summarizer {
   }
 
   
-  private static CompletableFuture<JSONObject> sendExperimentToOpenAI(JSONObject experiment) {
-    return sendExperimentToOpenAI(experiment, CacheMode.POPULATE);
-  }
-  
-  private static CompletableFuture<JSONObject> sendExperimentToOpenAI(JSONObject experiment, CacheMode cacheMode) {
+  private static CompletableFuture<Optional<JSONObject>> sendExperimentToOpenAI(String geneId, JSONObject experiment, CacheMode cacheMode) {
 
     // Possible TO DO: AI EDIT DESCRIPTION
     // Before sending the experiment+data to the AI, ask the AI to edit the `description` field
@@ -171,12 +198,9 @@ public class Summarizer {
 
 
 	
-    // We don't need to send the gene_id or dataset_id to the AI but we need the gene ID
-    // for the cache key and it's useful to have dataset_id in the response for phase two
-    // - so we save them for later
+    // We don't need to send dataset_id to the AI but it's useful to have it
+    // in the response for phase two
     JSONObject experimentForAI = new JSONObject(experiment.toString()); // clone
-    String geneId = experimentForAI.has("gene_id") ? experimentForAI.getString("gene_id") : null;
-    experimentForAI.remove("gene_id");
     String datasetId = experimentForAI.has("dataset_id") ? experimentForAI.getString("dataset_id") : null;
     experimentForAI.remove("dataset_id");
     
@@ -192,15 +216,20 @@ public class Summarizer {
 
     if (cache.isCacheValid(cacheKey, message)) {
       try {
-	return CompletableFuture.completedFuture(cache.readCachedData(cacheKey));
-//      } catch (IOException e) {
-//        // maybe log that the cache was unexpectedly invalidated
-//	// and then continue to compute and populate cache entry
+	JSONObject cachedResponse = cache.readCachedData(cacheKey);
+	return CompletableFuture.completedFuture(Optional.of(cachedResponse));
       } catch (Exception e) {
-	// do nothing
+	System.err.println("Cache read failed for key " + cacheKey + ": " + e.getMessage());
+            
+	if (cacheMode == CacheMode.TEST) {
+	  return CompletableFuture.completedFuture(Optional.empty()); // Treat as cache miss
+	}
+	// Else, log and fall through to AI generation
       }
+    } else if (cacheMode == CacheMode.TEST) {
+      return CompletableFuture.completedFuture(Optional.empty());
     }
-    
+
     ChatCompletionCreateParams request = ChatCompletionCreateParams.builder()
       .model(model)
       .maxCompletionTokens(MAX_RESPONSE_TOKENS)
@@ -212,7 +241,6 @@ public class Summarizer {
                       .build())
       .addSystemMessage(systemMessage)
       .addUserMessage(message)
-	    // .temperature(1.0)
       .build();
 
     // add dataset_id back to the response
@@ -223,17 +251,27 @@ public class Summarizer {
           try {
             JSONObject jsonObject = new JSONObject(jsonString);
             jsonObject.put("dataset_id", datasetId);
-            return jsonObject;
+
+	    // Cache the response
+	    try {
+	      cache.populateCache(cacheKey, message, jsonObject);
+	    } catch (Exception e) {
+	      System.err.println("Warning: Failed to cache response for gene " + geneId + 
+				 " and dataset " + datasetId + ": " + e.getMessage());
+    	    }
+	    
+            return Optional.of(jsonObject);
           } catch (JSONException e) {
-            System.err.println("Error parsing JSON response for dataset " + datasetId + ": " + e.getMessage());
+            System.err.println("Error parsing JSON response for gene " + geneId + " and dataset " + datasetId + ": " + e.getMessage());
             System.err.println("Raw response: " + jsonString);
-            return new JSONObject().put("error", "Invalid JSON response").put("dataset_id", datasetId);
+            JSONObject errorResponse = new JSONObject().put("error", "Invalid JSON response").put("dataset_id", datasetId);
+	    return Optional.of(errorResponse);
           }
         });
   }
 
 
-  private static JSONObject sendExperimentSummariesToOpenAI(List<JSONObject> experiments) {
+  private static Optional<JSONObject> sendExperimentSummariesToOpenAI(String geneId, List<JSONObject> experiments, CacheMode cacheMode) {
 	
     String message = "Below are AI-generated summaries of a gene's behaviour in multiple transcriptomics experiments, provided in JSON format:\n\n" +
 	    "```json\n%s\n```\n\n".formatted(new JSONArray(experiments)) +
@@ -258,10 +296,10 @@ public class Summarizer {
     String jsonString = completion.choices().get(0).message().content().get();
     JSONObject rawResponseObject = new JSONObject(jsonString);
 
-    // TO DO - quality control (remove bad `dataset_id`s) and add 'Others' section for any experiments not listed by AI
+    // quality control (remove bad `dataset_id`s) and add 'Others' section for any experiments not listed by AI
     JSONObject finalResponseObject = consolidateSummary(rawResponseObject, experiments);
 	
-    return finalResponseObject;
+    return Optional.of(finalResponseObject);
   }
 
     
