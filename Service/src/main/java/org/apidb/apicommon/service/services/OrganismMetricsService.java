@@ -80,10 +80,10 @@ public class OrganismMetricsService extends AbstractWdkService {
   private static synchronized List<String> getValidOrganismNames(WdkModel wdkModel) throws WdkModelException {
     if (VALID_ORGANISM_NAMES == null) {
       User user = wdkModel.getSystemUser();
-      AnswerValue answer = AnswerValueFactory.makeAnswer(user, AnswerSpec.builder(wdkModel)
+      AnswerValue answer = AnswerValueFactory.makeAnswer(AnswerSpec.builder(wdkModel)
           .setQuestionFullName(ALL_ORGS_QUESTION)
           .buildRunnable(user, StepContainer.emptyContainer()));
-      AttributeField orgNameAttribute = answer.getAnswerSpec().getQuestion()
+      AttributeField orgNameAttribute = answer.getQuestion()
           .getRecordClass().getAttributeField(ORGANISM_VALIDATION_ATTRIBUTE).orElseThrow();
       try (RecordStream records = RecordStreamFactory.getRecordStream(answer, List.of(orgNameAttribute), Collections.emptyList())) {
         List<String> validOrgNames = new ArrayList<>();

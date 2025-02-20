@@ -65,7 +65,7 @@ public class SequenceReporter extends AbstractReporter {
 
     // build an answer request to save off and create a temporary result URL for
     AnswerRequest bedReporterRequest = new AnswerRequest(_baseAnswer.getRunnableAnswerSpec(), new AnswerFormatting(BED_REPORTER_NAME, config), false);
-    String bedResultId = TemporaryResultFactory.insertTemporaryResult(_baseAnswer.getUser().getUserId(), bedReporterRequest);
+    String bedResultId = TemporaryResultFactory.insertTemporaryResult(_baseAnswer.getRequestingUser(), bedReporterRequest);
 
     // Determine needed URLs from model props
     //   Example prop values:

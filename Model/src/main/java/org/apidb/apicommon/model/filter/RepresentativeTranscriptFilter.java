@@ -151,8 +151,8 @@ public class RepresentativeTranscriptFilter extends StepFilter {
     specBuilder.setViewFilterOptions(viewFiltersBuilder);
 
     try {
-      RunnableObj<AnswerSpec> runnableSpec = specBuilder.buildRunnable(originalAnswer.getUser(),
-          AnswerService.loadContainer(specBuilder, originalAnswer.getWdkModel(), originalAnswer.getUser()));
+      RunnableObj<AnswerSpec> runnableSpec = specBuilder.buildRunnable(originalAnswer.getRequestingUser(),
+          AnswerService.loadContainer(specBuilder, originalAnswer.getWdkModel(), originalAnswer.getRequestingUser()));
       return AnswerValueFactory.makeAnswer(originalAnswer, runnableSpec);
     }
     catch (DataValidationException e) {
@@ -168,7 +168,7 @@ public class RepresentativeTranscriptFilter extends StepFilter {
    * @throws WdkModelException if something goes wrong
    */
   public static AnswerValue getOneTranscriptPerGeneAnswerValue(AnswerValue baseAnswer) throws WdkModelException {
-    Question question = baseAnswer.getAnswerSpec().getQuestion();
+    Question question = baseAnswer.getQuestion();
     String filterName = RepresentativeTranscriptFilter.FILTER_NAME;
     if (question.getFilter(filterName) == null) {
       throw new WdkModelException("Can't find transcript filter with name " +
@@ -178,7 +178,7 @@ public class RepresentativeTranscriptFilter extends StepFilter {
     RunnableObj<AnswerSpec> modifiedSpec = AnswerSpec
         .builder(baseAnswer.getAnswerSpec())
         .setViewFilterOptions(FilterOptionList.builder().addFilterOption(filterName, jsFilterValue))
-        .buildRunnable(baseAnswer.getUser(), baseAnswer.getAnswerSpec().getStepContainer());
+        .buildRunnable(baseAnswer.getRequestingUser(), baseAnswer.getAnswerSpec().getStepContainer());
     return AnswerValueFactory.makeAnswer(baseAnswer, modifiedSpec);
   }
 }
