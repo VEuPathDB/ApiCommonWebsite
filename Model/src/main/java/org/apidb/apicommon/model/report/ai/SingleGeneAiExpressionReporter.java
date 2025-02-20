@@ -9,8 +9,10 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.apidb.apicommon.model.TranscriptUtil;
+import org.apidb.apicommon.model.report.ai.expression.AiExpressionCache;
 import org.apidb.apicommon.model.report.ai.expression.GeneRecordProcessor;
 import org.apidb.apicommon.model.report.ai.expression.Summarizer;
+import org.apidb.apicommon.model.report.ai.expression.GeneRecordProcessor.GeneSummaryInputs;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.answer.stream.RecordStream;
@@ -28,15 +30,15 @@ public class SingleGeneAiExpressionReporter extends AbstractReporter {
 
   private static final int MAX_RESULT_SIZE = 1; // one gene at a time for now
 
-  private CacheMode _cacheMode = CacheMode.TEST;
+  private static final String POPULATION_MODE_PROP_KEY = "populateIfNotPresent";
+
+  private boolean _populateIfNotPresent;
 
   @Override
   public Reporter configure(JSONObject config) throws ReporterConfigException, WdkModelException {
     try {
       // assign cache mode
-      if (config.has("cacheMode")) {
-        _cacheMode = CacheMode.valueOf(config.getString("cacheMode").toUpperCase());
-      }
+      _populateIfNotPresent = config.optBoolean(POPULATION_MODE_PROP_KEY, false);
 
       // check model config; this should only be assigned to genes
       RecordClass geneRecordClass = TranscriptUtil.getGeneRecordClass(_wdkModel);
@@ -59,19 +61,53 @@ public class SingleGeneAiExpressionReporter extends AbstractReporter {
   @Override
   protected void write(OutputStream out) throws IOException, WdkModelException {
 
+    // get table fields needed to produce summary inputs
     Map<String, TableField> tableFields = _baseAnswer.getQuestion().getRecordClass().getTableFieldMap();
     List<TableField> tables = GeneRecordProcessor.REQUIRED_TABLE_NAMES.stream()
         .map(name -> tableFields.get(name)).collect(Collectors.toList());
 
+    // open summary cache (manages persistence of expression data)
+    AiExpressionCache cache = AiExpressionCache.getInstance(_wdkModel);
+
+    // create summarizer (interacts with OpenAI)
+    Summarizer summarizer = new Summarizer(_wdkModel);
+
+    // open record and output streams
     try (RecordStream recordStream = RecordStreamFactory.getRecordStream(_baseAnswer, List.of(), tables);
         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(out))) {
+
+      // write a JSON object with gene ID keys and expression summary values
+      writer.write("{");
+      boolean firstRecord = true;
       for (RecordInstance record : recordStream) {
-        JSONObject expressionSummary = Summarizer.summarizeExpression(record, _cacheMode);
-        writer.write(expressionSummary.toString());
+
+        // create summary inputs
+        GeneSummaryInputs summaryInputs = GeneRecordProcessor.getSummaryInputsFromRecord(record, Summarizer::getExperimentMessage);
+
+        // fetch summary, producing if necessary and requested
+        JSONObject expressionSummary = _populateIfNotPresent
+            ? getSummary(summaryInputs, summarizer, cache)
+            : readSummary(summaryInputs, cache);
+
+        // join entries with commas
+        if (firstRecord) firstRecord = false; else writer.write(",");
+
+        // write JSON object
+        writer.write("\"" + summaryInputs.getGeneId() + "\":" + expressionSummary.toString());
+
       }
     }
-    catch (WdkUserException e) {
-      throw new WdkModelException(e);
+  }
+
+  private JSONObject getSummary(GeneSummaryInputs summaryInputs, Summarizer summarizer, AiExpressionCache cache) {
+    try {
+      
+    }
+  }
+
+  private JSONObject readSummary(GeneSummaryInputs summaryInputs, AiExpressionCache cache) {
+    try {
+      
     }
   }
 

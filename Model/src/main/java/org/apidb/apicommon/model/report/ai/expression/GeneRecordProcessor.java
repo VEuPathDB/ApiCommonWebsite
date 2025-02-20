@@ -1,8 +1,11 @@
 package org.apidb.apicommon.model.report.ai.expression;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import org.gusdb.fgputil.EncryptionUtil;
@@ -30,53 +33,61 @@ public class GeneRecordProcessor {
 
   public static final List<String> REQUIRED_TABLE_NAMES = List.of(EXPRESSION_GRAPH_TABLE, EXPRESSION_GRAPH_DATA_TABLE);
 
+  public interface ExperimentInputs {
+
+    String getCacheKey();
+
+    String getDigest();
+
+    JSONObject getExperimentData();
+  }
+
   public interface GeneSummaryInputs {
 
-    String getGeneId();
+    String getGeneId(); // is the cache key
 
-    List<JSONObject> getExperimentsWithData();
+    Map<String,ExperimentInputs> getExperimentsWithData();
 
     default String getExperimentsDigest() {
-      return EncryptionUtil.md5(getExperimentsWithData().stream()
-          .map(JsonUtil::serialize).collect(Collectors.joining()));
+      // TODO Does it make more sense to md5 the concatenation of the experiment hashes?
+      return EncryptionUtil.md5(getExperimentsWithData().values().stream()
+          .map(ExperimentInputs::getExperimentData)
+          .map(JsonUtil::serialize)
+          .collect(Collectors.joining()));
     }
   }
 
-  public static GeneSummaryInputs getSummaryInputsFromRecord(RecordInstance record) throws WdkModelException {
-    String geneId = record.getPrimaryKey().getValues().get("gene_source_id");
-    List<JSONObject> experimentsWithData = GeneRecordProcessor.processExpressionData(record);
+  private static String getGeneId(RecordInstance record) {
+    return record.getPrimaryKey().getValues().get("gene_source_id");
+  }
+
+  public static GeneSummaryInputs getSummaryInputsFromRecord(RecordInstance record, Function<JSONObject, String> experimentDigester) throws WdkModelException {
+
+    String geneId = getGeneId(record);
+
+    Map<String,ExperimentInputs> experimentsWithData = GeneRecordProcessor.processExpressionData(record, experimentDigester, 0);
+
     return new GeneSummaryInputs() {
       @Override
       public String getGeneId() {
         return geneId;
       }
+
       @Override
-      public List<JSONObject> getExperimentsWithData() {
+      public Map<String,ExperimentInputs> getExperimentsWithData() {
         return experimentsWithData;
       }
     };
   }
 
-  static List<JSONObject> processExpressionData(RecordInstance geneRecord)
-      throws WdkModelException {
-    return processExpressionData(geneRecord, 0);
-  }
-
-  // for debugging only
-  static List<JSONObject> processExpressionData(RecordInstance geneRecord, String datasetId) throws WdkModelException {
-    List<JSONObject> experiments = processExpressionData(geneRecord, 0);
-    return experiments.stream().filter(
-        experiment -> datasetId.equals(experiment.getString("dataset_id"))).collect(Collectors.toList());
-  }
-
-  // maxExperiments is for dev/debugging only
-  static List<JSONObject> processExpressionData(RecordInstance geneRecord, int maxExperiments) throws WdkModelException {
+  private static Map<String, ExperimentInputs> processExpressionData(RecordInstance record, Function<JSONObject, String> getExperimentPrompt, int maxExperiments) throws WdkModelException {
     try {
       // return value:
-      List<JSONObject> experiments = new ArrayList<>();
+      Map<String, ExperimentInputs> experiments = new LinkedHashMap<>();
 
-      TableValue expressionGraphs = geneRecord.getTableValue(EXPRESSION_GRAPH_TABLE);
-      TableValue expressionGraphsDataTable = geneRecord.getTableValue(EXPRESSION_GRAPH_DATA_TABLE);
+      String geneId = getGeneId(record);
+      TableValue expressionGraphs = record.getTableValue(EXPRESSION_GRAPH_TABLE);
+      TableValue expressionGraphsDataTable = record.getTableValue(EXPRESSION_GRAPH_DATA_TABLE);
 
       for (TableValueRow experimentRow : expressionGraphs) {
 
@@ -87,11 +98,28 @@ public class GeneRecordProcessor {
           experimentInfo.put(key, experimentRow.getAttributeValue(key).getValue());
         }
 
-        List<JSONObject> filteredData = readFilteredData(
-            experimentRow.getAttributeValue("dataset_id").getValue(), expressionGraphsDataTable); 
+        String datasetId = experimentRow.getAttributeValue("dataset_id").getValue();
+
+        List<JSONObject> filteredData = readFilteredData(datasetId, expressionGraphsDataTable); 
 
         experimentInfo.put("data", filteredData);
-        experiments.add(experimentInfo);
+
+        experiments.put(datasetId, new ExperimentInputs() {
+          @Override
+          public String getCacheKey() {
+            return geneId + ':' + datasetId;
+          }
+
+          @Override
+          public String getDigest() {
+            return EncryptionUtil.md5(getExperimentPrompt.apply(getExperimentData()));
+          }
+
+          @Override
+          public JSONObject getExperimentData() {
+            return experimentInfo;
+          }
+        });
 
         if (maxExperiments > 0 && experiments.size() >= maxExperiments)
           break;
@@ -122,4 +150,5 @@ public class GeneRecordProcessor {
     }
     return filteredData;
   }
+
 }
