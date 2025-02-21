@@ -11,10 +11,9 @@ import java.util.stream.Collectors;
 import org.apidb.apicommon.model.TranscriptUtil;
 import org.apidb.apicommon.model.report.ai.expression.AiExpressionCache;
 import org.apidb.apicommon.model.report.ai.expression.GeneRecordProcessor;
-import org.apidb.apicommon.model.report.ai.expression.Summarizer;
 import org.apidb.apicommon.model.report.ai.expression.GeneRecordProcessor.GeneSummaryInputs;
+import org.apidb.apicommon.model.report.ai.expression.Summarizer;
 import org.gusdb.wdk.model.WdkModelException;
-import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.answer.stream.RecordStream;
 import org.gusdb.wdk.model.answer.stream.RecordStreamFactory;
 import org.gusdb.wdk.model.record.RecordClass;
@@ -86,8 +85,8 @@ public class SingleGeneAiExpressionReporter extends AbstractReporter {
 
         // fetch summary, producing if necessary and requested
         JSONObject expressionSummary = _populateIfNotPresent
-            ? getSummary(summaryInputs, summarizer, cache)
-            : readSummary(summaryInputs, cache);
+            ? cache.populateSummary(summaryInputs, summarizer::describeExperiment, summarizer::summarizeExperiments)
+            : cache.readSummary(summaryInputs);
 
         // join entries with commas
         if (firstRecord) firstRecord = false; else writer.write(",");
@@ -98,17 +97,4 @@ public class SingleGeneAiExpressionReporter extends AbstractReporter {
       }
     }
   }
-
-  private JSONObject getSummary(GeneSummaryInputs summaryInputs, Summarizer summarizer, AiExpressionCache cache) {
-    try {
-      
-    }
-  }
-
-  private JSONObject readSummary(GeneSummaryInputs summaryInputs, AiExpressionCache cache) {
-    try {
-      
-    }
-  }
-
 }

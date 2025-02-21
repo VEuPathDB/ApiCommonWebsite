@@ -151,8 +151,12 @@ public class Summarizer {
         // All experiment-level caches are valid, now check final summary cache
         Optional<JSONObject> finalSummary = sendExperimentSummariesToOpenAI(geneId, cachedResponses, populateIfNotPresent);
 
-        return finalSummary.map(summary -> new JSONObject().put("cacheStatus", "hit").put("expressionSummary",
-            summary)).orElseGet(() -> new JSONObject().put("cacheStatus", "miss"));
+        return finalSummary
+            .map(summary -> new JSONObject()
+                .put("cacheStatus", "hit")
+                .put("expressionSummary", summary))
+            .orElseGet(() -> new JSONObject()
+                .put("cacheStatus", "miss"));
       }
 
       // Send AI requests in parallel
@@ -174,9 +178,12 @@ public class Summarizer {
       // System.exit(0);
 
       Optional<JSONObject> finalSummary = sendExperimentSummariesToOpenAI(geneId, responses, populateIfNotPresent);
-      return finalSummary.map(
-          summary -> new JSONObject().put("cacheStatus", "hit").put("expressionSummary", summary)).orElseGet(
-              () -> new JSONObject().put("cacheStatus", "miss"));
+      return finalSummary
+          .map(summary -> new JSONObject()
+              .put("cacheStatus", "hit")
+              .put("expressionSummary", summary))
+          .orElseGet(() -> new JSONObject()
+              .put("cacheStatus", "miss"));
     }
     catch (WdkModelException e) {
 
@@ -275,7 +282,7 @@ public class Summarizer {
   }
 
   private Optional<JSONObject> sendExperimentSummariesToOpenAI(String geneId,
-      List<JSONObject> experiments, boolean populateIfNotPresent) {
+      List<JSONObject> experiments) {
 
     String message = String.format(
         "Below are AI-generated summaries of a gene's behaviour in multiple transcriptomics experiments, provided in JSON format:\n\n" +

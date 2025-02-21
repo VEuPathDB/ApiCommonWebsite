@@ -1,9 +1,7 @@
 package org.apidb.apicommon.model.report.ai.expression;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -37,6 +35,8 @@ public class GeneRecordProcessor {
 
     String getCacheKey();
 
+    String getDatasetId();
+
     String getDigest();
 
     JSONObject getExperimentData();
@@ -46,11 +46,11 @@ public class GeneRecordProcessor {
 
     String getGeneId(); // is the cache key
 
-    Map<String,ExperimentInputs> getExperimentsWithData();
+    List<ExperimentInputs> getExperimentsWithData();
 
-    default String getExperimentsDigest() {
+    default String getDigest() {
       // TODO Does it make more sense to md5 the concatenation of the experiment hashes?
-      return EncryptionUtil.md5(getExperimentsWithData().values().stream()
+      return EncryptionUtil.md5(getExperimentsWithData().stream()
           .map(ExperimentInputs::getExperimentData)
           .map(JsonUtil::serialize)
           .collect(Collectors.joining()));
@@ -65,7 +65,7 @@ public class GeneRecordProcessor {
 
     String geneId = getGeneId(record);
 
-    Map<String,ExperimentInputs> experimentsWithData = GeneRecordProcessor.processExpressionData(record, experimentDigester, 0);
+    List<ExperimentInputs> experimentsWithData = GeneRecordProcessor.processExpressionData(record, experimentDigester, 0);
 
     return new GeneSummaryInputs() {
       @Override
@@ -74,16 +74,16 @@ public class GeneRecordProcessor {
       }
 
       @Override
-      public Map<String,ExperimentInputs> getExperimentsWithData() {
+      public List<ExperimentInputs> getExperimentsWithData() {
         return experimentsWithData;
       }
     };
   }
 
-  private static Map<String, ExperimentInputs> processExpressionData(RecordInstance record, Function<JSONObject, String> getExperimentPrompt, int maxExperiments) throws WdkModelException {
+  private static List<ExperimentInputs> processExpressionData(RecordInstance record, Function<JSONObject, String> getExperimentPrompt, int maxExperiments) throws WdkModelException {
     try {
       // return value:
-      Map<String, ExperimentInputs> experiments = new LinkedHashMap<>();
+      List<ExperimentInputs> experiments = new ArrayList<>();
 
       String geneId = getGeneId(record);
       TableValue expressionGraphs = record.getTableValue(EXPRESSION_GRAPH_TABLE);
@@ -104,7 +104,13 @@ public class GeneRecordProcessor {
 
         experimentInfo.put("data", filteredData);
 
-        experiments.put(datasetId, new ExperimentInputs() {
+        experiments.add(new ExperimentInputs() {
+
+          @Override
+          public String getDatasetId() {
+            return datasetId;
+          }
+
           @Override
           public String getCacheKey() {
             return geneId + ':' + datasetId;
