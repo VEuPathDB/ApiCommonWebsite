@@ -91,7 +91,7 @@ public class SingleGeneAiExpressionReporter extends AbstractReporter {
         // join entries with commas
         if (firstRecord) firstRecord = false; else writer.write(",");
 
-        // write JSON object
+        // write JSON object property, keyed by gene ID
         writer.write("\"" + summaryInputs.getGeneId() + "\":" + expressionSummary.toString());
 
       }

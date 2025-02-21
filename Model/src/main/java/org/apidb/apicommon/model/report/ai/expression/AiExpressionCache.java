@@ -206,7 +206,7 @@ public class AiExpressionCache {
    * @return expression summary (will always be a cache hit)
    */
   public JSONObject populateSummary(GeneSummaryInputs summaryInputs,
-      FunctionWithException<JSONObject, CompletableFuture<JSONObject>> experimentDescriber,
+      FunctionWithException<ExperimentInputs, CompletableFuture<JSONObject>> experimentDescriber,
       FunctionWithException<List<JSONObject>, JSONObject> experimentSummarizer) {
     try {
       return _cache.populateAndProcessContent(summaryInputs.getGeneId(),
@@ -245,14 +245,14 @@ public class AiExpressionCache {
    * @throws Exception if unable to generate descriptions or store
    */
   private List<JSONObject> populateExperiments(List<ExperimentInputs> experimentData,
-      FunctionWithException<JSONObject, CompletableFuture<JSONObject>> experimentDescriber) throws Exception {
+      FunctionWithException<ExperimentInputs, CompletableFuture<JSONObject>> experimentDescriber) throws Exception {
     List<JSONObject> experiments = new ArrayList<>();
     // start with serial generation; move back to parallel later
     for (ExperimentInputs input : experimentData) {
       experiments.add(_cache.populateAndProcessContent(input.getCacheKey(),
 
           // populator
-          getPopulator(input.getDigest(), () -> experimentDescriber.apply(input.getExperimentData()).get()),
+          getPopulator(input.getDigest(), () -> experimentDescriber.apply(input).get()),
 
           // visitor
           experimentDir -> getValidStoredData(experimentDir, input.getDigest()),
