@@ -24,32 +24,31 @@ import org.json.JSONObject;
 
 @Path("/jbrowse2")
 public class JBrowse2Service extends AbstractWdkService {
-
-    public static String appType = "jbrowse2";
+    private static final String VDI_DATASET_DIR_KEY = "VDI_DATASETS_DIRECTORY";
+    private static final String VDI_CONTROL_SCHEMA_KEY ="VDI_CONTROL_SCHEMA";
+    private static final String VDI_DATASET_SCHEMA_KEY ="VDI_DATASETS_SCHEMA";
+    private static final String WEB_SVC_DIR_KEY ="WEBSERVICEMIRROR";
 
     @GET
-    @Path("orgview/{publicOrganismAbbrev}/{aaOrNa}/config.json")
+    @Path("orgview/{publicOrganismAbbrev}/config.json")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getJbrowseTracks(@PathParam("publicOrganismAbbrev") String publicOrganismAbbrev,
-                                     @PathParam("aaOrNa") String aaOrNa,
+    public Response getJbrowseNaTracks(@PathParam("publicOrganismAbbrev") String publicOrganismAbbrev,
                                      @QueryParam("trackSets") String trackSets) throws IOException, WdkException {
-
-        boolean isPbrowse = aaOrNa.equals("aa");
-        String staticConfigJsonString = getStaticConfigJsonString(publicOrganismAbbrev, isPbrowse, trackSets);
+        String staticConfigJsonString = getStaticConfigJsonString(publicOrganismAbbrev, trackSets);
         JSONObject staticConfigJson = new JSONObject(staticConfigJsonString);
-        JSONArray udTracks = getUserDatasetTracks(publicOrganismAbbrev, isPbrowse, trackSets);
+        JSONArray udTracks = getUserDatasetTracks(publicOrganismAbbrev, trackSets);
         staticConfigJson.getJSONArray("tracks").putAll(udTracks);
         String jsonString = staticConfigJson.toString();
         return Response.ok(jsonString, MediaType.APPLICATION_JSON).build();
     }
 
-    JSONArray getUserDatasetTracks(String publicOrganismAbbrev, Boolean isPbrowse, String tracksString) throws WdkException {
+    JSONArray getUserDatasetTracks(String publicOrganismAbbrev, String tracksString) throws WdkException {
         String buildNumber = getWdkModel().getBuildNumber();
         String projectId = getWdkModel().getProjectId();
         Long userId = getRequestingUser().getUserId();
-        String vdiDatasetsDir = getWdkModel().getProperties().get("VDI_DATASETS_DIRECTORY");
-        String vdiDatasetsSchema = getWdkModel().getProperties().get("VDI_DATASETS_DIRECTORY");
-        String vdiControlSchema = getWdkModel().getProperties().get("VDI_CONTROL_DIRECTORY");
+        String vdiDatasetsDir = getWdkModel().getProperties().get(VDI_DATASET_DIR_KEY);
+        String vdiDatasetsSchema = getWdkModel().getProperties().get(VDI_DATASET_SCHEMA_KEY);
+        String vdiControlSchema = getWdkModel().getProperties().get(VDI_CONTROL_SCHEMA_KEY);
 
         String udDataPathString = String.join("/", vdiDatasetsDir, vdiDatasetsSchema, "build-" + buildNumber, projectId);
         JSONArray udTracks = new JSONArray();
@@ -61,19 +60,24 @@ public class JBrowse2Service extends AbstractWdkService {
         return udTracks;
     }
 
-    String getStaticConfigJsonString(String publicOrganismAbbrev, boolean isPbrowse, String tracks) throws IOException {
+    String getStaticConfigJsonString(String publicOrganismAbbrev, String trackSets) throws IOException {
 
         String gusHome = getWdkModel().getGusHome();
         String projectId = getWdkModel().getProjectId();
+        String buildNumber = getWdkModel().getBuildNumber();
 
         List<String> command = new ArrayList<>();
-        command.add(gusHome + "/bin/jbrowseTracks");
+        command.add(gusHome + "/bin/jbrowse2config");
+        command.add("--orgAbbrev");
         command.add(publicOrganismAbbrev);
+        command.add("--projectId");
         command.add(projectId);
-        command.add(String.valueOf(isPbrowse));
-        command.add(tracks);
-        command.add(appType);
-        command.add("trackListOnly");
+        command.add("--buildNumber");
+        command.add(buildNumber);
+        command.add("--webSvcDir");
+        command.add(getWdkModel().getProperties().get(WEB_SVC_DIR_KEY));
+        command.add("--trackSets");
+        command.add(trackSets);
 
         return stringFromCommand(command);
     }
