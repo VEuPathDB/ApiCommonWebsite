@@ -1,6 +1,7 @@
 package org.apidb.apicommon.service.services.jbrowse;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -9,15 +10,13 @@ import java.util.List;
 import java.util.Map;
 
 import javax.sql.DataSource;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.gusdb.fgputil.db.runner.SQLRunner;
 import org.gusdb.fgputil.db.runner.SQLRunnerException;
+import org.gusdb.wdk.model.WdkException;
 import org.gusdb.wdk.model.WdkRuntimeException;
 import org.gusdb.wdk.service.service.AbstractWdkService;
 import org.json.JSONArray;
@@ -29,11 +28,11 @@ public class JBrowse2Service extends AbstractWdkService {
     public static String appType = "jbrowse2";
 
     @GET
-    @Path("{tracks}/{publicOrganismAbbrev}/{aaOrNa}/config.json")
+    @Path("orgview/{publicOrganismAbbrev}/{aaOrNa}/config.json")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getJbrowseTracks(@PathParam("publicOrganismAbbrev") String publicOrganismAbbrev,
                                      @PathParam("aaOrNa") String aaOrNa,
-                                     @PathParam("trackSets") String trackSets) throws IOException {
+                                     @QueryParam("trackSets") String trackSets) throws IOException, WdkException {
 
         boolean isPbrowse = aaOrNa.equals("aa");
         String staticConfigJsonString = getStaticConfigJsonString(publicOrganismAbbrev, isPbrowse, trackSets);
@@ -44,7 +43,7 @@ public class JBrowse2Service extends AbstractWdkService {
         return Response.ok(jsonString, MediaType.APPLICATION_JSON).build();
     }
 
-    JSONArray getUserDatasetTracks(String publicOrganismAbbrev, Boolean isPbrowse, String tracksString) {
+    JSONArray getUserDatasetTracks(String publicOrganismAbbrev, Boolean isPbrowse, String tracksString) throws WdkException {
         String buildNumber = getWdkModel().getBuildNumber();
         String projectId = getWdkModel().getProjectId();
         Long userId = getRequestingUser().getUserId();
@@ -52,21 +51,14 @@ public class JBrowse2Service extends AbstractWdkService {
         String vdiDatasetsSchema = getWdkModel().getProperties().get("VDI_DATASETS_DIRECTORY");
         String vdiControlSchema = getWdkModel().getProperties().get("VDI_CONTROL_DIRECTORY");
 
-
-/*
-VDI_CONTROL_SCHEMA=VDI_CONTROL_DEV_N
-VDI_DATASETS_DIRECTORY=/var/www/Common/userDatasets
-VDI_DATASETS_SCHEMA=VDI_DATASETS_DEV_N
-/var/www/Common/userDatasets/vdi_datasets_dev_n/build-68/PlasmoDB/
- */
         String udDataPathString = String.join("/", vdiDatasetsDir, vdiDatasetsSchema, "build-" + buildNumber, projectId);
         JSONArray udTracks = new JSONArray();
         List<String> trackSetList = Arrays.asList(tracksString.split(","));
         if (trackSetList.contains("rnaseq")) {
-            udTracks.put(getRnaSeqUdTracks(publicOrganismAbbrev, projectId, vdiControlSchema, vdiDatasetsSchema,
+            udTracks.put(getRnaSeqUdTracks(publicOrganismAbbrev, projectId, vdiControlSchema,
                     udDataPathString, userId));
         }
-        return null;
+        return udTracks;
     }
 
     String getStaticConfigJsonString(String publicOrganismAbbrev, boolean isPbrowse, String tracks) throws IOException {
@@ -74,7 +66,7 @@ VDI_DATASETS_SCHEMA=VDI_DATASETS_DEV_N
         String gusHome = getWdkModel().getGusHome();
         String projectId = getWdkModel().getProjectId();
 
-        List<String> command = new ArrayList<String>();
+        List<String> command = new ArrayList<>();
         command.add(gusHome + "/bin/jbrowseTracks");
         command.add(publicOrganismAbbrev);
         command.add(projectId);
@@ -86,8 +78,8 @@ VDI_DATASETS_SCHEMA=VDI_DATASETS_DEV_N
         return stringFromCommand(command);
     }
 
-    JSONArray getRnaSeqUdTracks(String publicOrganismAbbrev, String projectId, String vdiControlSchema, String vdiDatasetsSchema,
-                      String udDataPathString, Long userId) {
+    JSONArray getRnaSeqUdTracks(String publicOrganismAbbrev, String projectId, String vdiControlSchema,
+                      String udDataPathString, Long userId) throws WdkException {
 
         DataSource appDs = getWdkModel().getAppDb().getDataSource();
         String sql = "select distinct user_dataset_id, name " +
@@ -96,20 +88,43 @@ VDI_DATASETS_SCHEMA=VDI_DATASETS_DEV_N
                 "and (type = 'RnaSeq' or type = 'BigWig') " +
                 "and ((is_public = 1 and is_owner = 1) or user_id = " + userId + ")";
         try {
-            List<UserDatasetInfo> userDatasetInfos =  new SQLRunner(appDs, sql).executeQuery(rs -> {
-                List<UserDatasetInfo> udi = new ArrayList<>();
+            return new SQLRunner(appDs, sql).executeQuery(rs -> {
+                JSONArray rnaSeqUdTracks = new JSONArray();
                 while (rs.next()) {
                     String datasetId = rs.getString(1);
                     String name = rs.getString(2);
-                    udi.add(new UserDatasetInfo(datasetId, name));
+                    List<String> fileNames = getBigwigFileNames(udDataPathString + "/" +datasetId);
+                    for (String fileName : fileNames) {
+                        rnaSeqUdTracks.put(createBigwigTrackJson(datasetId, name, fileName, publicOrganismAbbrev, udDataPathString));
+                    }
                 }
-                return udi;
+                return rnaSeqUdTracks;
             });
-            
         }
         catch (SQLRunnerException e) {
-            throw new PluginModelException("Unable to generate project ID map for organism doc type", e.getCause());
+            throw new WdkException("Unable to generate project ID map for organism doc type", e.getCause());
         }
+    }
+
+    // method written by copilot
+    public static List<String> getBigwigFileNames(String directoryPath) {
+        List<String> bwFiles = new ArrayList<>();
+        File directory = new File(directoryPath);
+
+        if (directory.isDirectory()) {
+            File[] files = directory.listFiles();
+            if (files != null) {
+                for (File file : files) {
+                    if (file.isFile() && file.getName().endsWith(".bw")) {
+                        bwFiles.add(file.getName());
+                    }
+                }
+            }
+        } else {
+            System.out.println("The provided path is not a directory.");
+        }
+
+        return bwFiles;
     }
 
 /*
@@ -168,26 +183,12 @@ VDI_DATASETS_SCHEMA=VDI_DATASETS_DEV_N
         return track;
     }
 
-    class UserDatasetInfo {
-        UserDatasetInfo(String id, String name) {
-            vdiId = id;
-            vdiName = name;
-        }
-        String vdiId;
-        String vdiName;
-        List<String> fileNames;
-    }
-
-    List<UserDatasetInfo> getUserDatasetInfo() {
-        return new ArrayList<UserDatasetInfo>();
-    }
-
     String stringFromCommand(List<String> command) throws IOException {
         Process p = processFromCommand(command);
         BufferedReader reader =
                 new BufferedReader(new InputStreamReader(p.getInputStream()));
         StringBuilder builder = new StringBuilder();
-        String line = null;
+        String line;
         while ( (line = reader.readLine()) != null) {
             builder.append(line);
             builder.append(System.lineSeparator());
@@ -205,7 +206,6 @@ VDI_DATASETS_SCHEMA=VDI_DATASETS_DEV_N
         Map<String, String> env = pb.environment();
         env.put("GUS_HOME", getWdkModel().getGusHome());
         pb.redirectErrorStream(true);
-        Process p = pb.start();
-        return p;
+        return pb.start();
     }
 }
