@@ -17,6 +17,7 @@ import javax.ws.rs.core.Response;
 import org.gusdb.fgputil.db.runner.SQLRunner;
 import org.gusdb.fgputil.db.runner.SQLRunnerException;
 import org.gusdb.wdk.model.WdkException;
+import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkRuntimeException;
 import org.gusdb.wdk.service.service.AbstractWdkService;
 import org.json.JSONArray;
@@ -111,7 +112,7 @@ public class JBrowse2Service extends AbstractWdkService {
     }
 
     // method written by copilot
-    public static List<String> getBigwigFileNames(String directoryPath) {
+    public static List<String> getBigwigFileNames(String directoryPath) throws WdkModelException {
         List<String> bwFiles = new ArrayList<>();
         File directory = new File(directoryPath);
 
@@ -125,7 +126,7 @@ public class JBrowse2Service extends AbstractWdkService {
                 }
             }
         } else {
-            System.out.println("The provided path is not a directory.");
+            throw new WdkModelException("User Dataset directory not found for path: " + directoryPath);
         }
 
         return bwFiles;
