@@ -81,7 +81,8 @@ public class SingleGeneAiExpressionReporter extends AbstractReporter {
       for (RecordInstance record : recordStream) {
 
         // create summary inputs
-        GeneSummaryInputs summaryInputs = GeneRecordProcessor.getSummaryInputsFromRecord(record, Summarizer::getExperimentMessage);
+        GeneSummaryInputs summaryInputs =
+	  GeneRecordProcessor.getSummaryInputsFromRecord(record, Summarizer::getExperimentMessage, Summarizer::getFinalSummaryMessage);
 
         // fetch summary, producing if necessary and requested
         JSONObject expressionSummary = _populateIfNotPresent

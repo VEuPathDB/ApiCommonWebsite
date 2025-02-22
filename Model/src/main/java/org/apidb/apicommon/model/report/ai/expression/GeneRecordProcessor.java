@@ -48,24 +48,18 @@ public class GeneRecordProcessor {
 
     List<ExperimentInputs> getExperimentsWithData();
 
-    default String getDigest() {
-      // TODO Does it make more sense to md5 the concatenation of the experiment hashes?
-      return EncryptionUtil.md5(getExperimentsWithData().stream()
-          .map(ExperimentInputs::getExperimentData)
-          .map(JsonUtil::serialize)
-          .collect(Collectors.joining()));
-    }
+    String getDigest();
   }
 
   private static String getGeneId(RecordInstance record) {
     return record.getPrimaryKey().getValues().get("gene_source_id");
   }
 
-  public static GeneSummaryInputs getSummaryInputsFromRecord(RecordInstance record, Function<JSONObject, String> experimentDigester) throws WdkModelException {
+  public static GeneSummaryInputs getSummaryInputsFromRecord(RecordInstance record, Function<JSONObject, String> getExperimentPrompt, Function<List<JSONObject>, String> getFinalSummaryPrompt) throws WdkModelException {
 
     String geneId = getGeneId(record);
 
-    List<ExperimentInputs> experimentsWithData = GeneRecordProcessor.processExpressionData(record, experimentDigester, 0);
+    List<ExperimentInputs> experimentsWithData = GeneRecordProcessor.processExpressionData(record, getExperimentPrompt, 0);
 
     return new GeneSummaryInputs() {
       @Override
@@ -77,6 +71,21 @@ public class GeneRecordProcessor {
       public List<ExperimentInputs> getExperimentsWithData() {
         return experimentsWithData;
       }
+
+      @Override
+      public String getDigest() {
+	// Instead of building the final summary prompt using the AI-generated **summary outputs**
+	// (which happens during real processing), we construct it using JSON-encoded MD5
+	// **digests** of the per-experiment **inputs**.
+	//
+	// This avoids fetching per-experiment results from the cache while remaining 
+	// functionally identical for cache validation purposes.
+	List<JSONObject> digests = experimentsWithData.stream()
+	  .map(exp -> new JSONObject().put("digest", exp.getDigest()))
+	  .collect(Collectors.toList());
+	return EncryptionUtil.md5(getFinalSummaryPrompt.apply(digests));
+      }
+
     };
   }
 
