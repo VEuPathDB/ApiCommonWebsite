@@ -34,72 +34,44 @@ public class Summarizer {
   private static final String SYSTEM_MESSAGE = "You are a bioinformatician working for VEuPathDB.org. You are an expert at providing biologist-friendly summaries of transcriptomic data";
 
   // Prepare JSON schemas for structured responses
-  // NOTE: this code is horrible to look at/read. It would be better to just define the schemas as JSON strings
-  // but this is only really nice when we have """ text block """ support, coming soon when we upgrade, perhaps?
-  private static final JsonSchema.Schema experimentResponseSchema =
-    JsonSchema.Schema.builder()
+  private static final JsonSchema.Schema experimentResponseSchema = JsonSchema.Schema.builder()
     .putAdditionalProperty("type", JsonValue.from("object"))
-    .putAdditionalProperty("properties",
-                           JsonValue
-                           .from(Map
-                                 .of(
-                                     "one_sentence_summary", Map.of("type", "string"),
-                                     "biological_importance", Map.of("type", "integer", "minimum", 0, "maximum", 5),
-                                     "confidence", Map.of("type", "integer", "minimum", 0, "maximum", 5),
-                                     "experiment_keywords", Map.of("type", "array", "items", Map.of("type", "string")), 
-                                     "notes", Map.of("type", "string")
-                                     )
-                                 )
-                           )
-    .putAdditionalProperty("required",
-                           JsonValue.from(
-                                          List.of(
-                                                  "one_sentence_summary",
-                                                  "biological_importance",
-                                                  "confidence",
-                                                  "experiment_keywords",
-                                                  "notes")
-                                          )
-                           )
+    .putAdditionalProperty("properties", JsonValue.from(Map.of(
+          "one_sentence_summary", Map.of("type", "string"),
+          "biological_importance", Map.of("type", "integer", "minimum", 0, "maximum", 5),
+          "confidence", Map.of("type", "integer", "minimum", 0, "maximum", 5),
+          "experiment_keywords", Map.of("type", "array", "items", Map.of("type", "string")),
+          "notes", Map.of("type", "string")
+    )))
+    .putAdditionalProperty("required", JsonValue.from(List.of(
+          "one_sentence_summary",
+          "biological_importance",
+          "confidence",
+          "experiment_keywords",
+          "notes"
+    )))
     .build();
 
-  private static final JsonSchema.Schema finalResponseSchema =
-    JsonSchema.Schema.builder()
+  private static final JsonSchema.Schema finalResponseSchema = JsonSchema.Schema.builder()
     .putAdditionalProperty("type", JsonValue.from("object"))
-    .putAdditionalProperty("properties",
-                           JsonValue
-                           .from(Map
-                                 .of(
-                                     "headline", Map.of("type", "string"),
-                                     "one_paragraph_summary", Map.of("type", "string"),
-                                     "sections",
-                                     Map.of("type", "array",
-                                            "minimum", 1,
-                                            "items",
-                                            Map.of(
-                                                   "type", "object",
-                                                   "required", List.of("headline", "one_sentence_summary", "dataset_ids"),
-                                                   "properties",
-                                                   Map.of(
-                                                          "headline", Map.of("type", "string"),
-                                                          "one_sentence_summary", Map.of("type", "string"),
-                                                          "dataset_ids", Map.of("type", "array",
-                                                                                "items", Map.of("type", "string"))
-                                                          )
-                                                   )
-                                            )
-                                     )
-                                 )
-                           )
-    .putAdditionalProperty("required",
-                           JsonValue.from(
-                                          List.of(
-                                                  "headline",
-                                                  "one_paragraph_summary",
-                                                  "dataset_ids"
-                                                  )
-                                          )
-                           )
+    .putAdditionalProperty("properties", JsonValue.from(Map.of(
+          "headline", Map.of("type", "string"),
+          "one_paragraph_summary", Map.of("type", "string"),
+          "sections", Map.of("type", "array", "minimum", 1, "items", Map.of(
+              "type", "object",
+              "required", List.of("headline", "one_sentence_summary", "dataset_ids"),
+              "properties", Map.of(
+                  "headline", Map.of("type", "string"),
+                  "one_sentence_summary", Map.of("type", "string"),
+                  "dataset_ids", Map.of("type", "array", "items", Map.of("type", "string"))
+              )
+          ))
+    )))
+    .putAdditionalProperty("required", JsonValue.from(List.of(
+          "headline",
+          "one_paragraph_summary",
+          "dataset_ids"
+    )))
     .build();
 
   private static final String OPENAI_API_KEY_PROP_NAME = "OPENAI_API_KEY";
