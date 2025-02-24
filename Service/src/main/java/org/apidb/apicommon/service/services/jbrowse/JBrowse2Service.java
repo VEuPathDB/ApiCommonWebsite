@@ -84,14 +84,17 @@ public class JBrowse2Service extends AbstractWdkService {
     }
 
     JSONArray getRnaSeqUdTracks(String publicOrganismAbbrev, String projectId, String vdiControlSchema,
-                      String udDataPathString, Long userId) throws WdkException {
+                      String udDataPathString, Long userId) throws WdkModelException {
 
         DataSource appDs = getWdkModel().getAppDb().getDataSource();
         String sql = "select distinct user_dataset_id, name " +
-                "from " + vdiControlSchema + ".AvailableUserDatasets " +
+                "from " + vdiControlSchema + ".AvailableUserDatasets aud, " +
+                vdiControlSchema + ".dataset_dependency dd " +
                 "where project_id = '" + projectId + "' " +
                 "and (type = 'RnaSeq' or type = 'BigWig') " +
-                "and ((is_public = 1 and is_owner = 1) or user_id = " + userId + ")";
+                "and ((is_public = 1 and is_owner = 1) or user_id = " + userId + ") " +
+                "and dd.dataset_id = aud.dataset_id " +
+                " dd.identifier = '" + publicOrganismAbbrev + "'";
         try {
             return new SQLRunner(appDs, sql).executeQuery(rs -> {
                 JSONArray rnaSeqUdTracks = new JSONArray();
@@ -107,12 +110,12 @@ public class JBrowse2Service extends AbstractWdkService {
             });
         }
         catch (SQLRunnerException e) {
-            throw new WdkException("Unable to generate project ID map for organism doc type", e.getCause());
+            throw new WdkModelException("Unable to query VDI tables for RNA seq datasets", e.getCause());
         }
     }
 
     // method written by copilot
-    public static List<String> getBigwigFileNames(String directoryPath) throws WdkModelException {
+    public static List<String> getBigwigFileNames(String directoryPath) throws SQLRunnerException {
         List<String> bwFiles = new ArrayList<>();
         File directory = new File(directoryPath);
 
@@ -126,7 +129,7 @@ public class JBrowse2Service extends AbstractWdkService {
                 }
             }
         } else {
-            throw new WdkModelException("User Dataset directory not found for path: " + directoryPath);
+            throw new SQLRunnerException("User Dataset directory not found for path: " + directoryPath);
         }
 
         return bwFiles;
