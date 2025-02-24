@@ -51,7 +51,7 @@ public class GeneRecordProcessor {
   }
 
   private static String getGeneId(RecordInstance record) {
-    return record.getPrimaryKey().getValues().get("gene_source_id");
+    return record.getPrimaryKey().getValues().get("source_id");
   }
 
   public static GeneSummaryInputs getSummaryInputsFromRecord(RecordInstance record, String aiChatModel, Function<JSONObject, String> getExperimentPrompt, Function<List<JSONObject>, String> getFinalSummaryPrompt) throws WdkModelException {
