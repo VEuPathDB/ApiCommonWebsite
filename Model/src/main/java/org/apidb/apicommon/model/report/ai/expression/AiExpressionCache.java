@@ -41,7 +41,7 @@ public class AiExpressionCache {
   private static final String DEFAULT_TMP_CACHE_SUBDIR = "expressionCache";
 
   // catch characteristics
-  private static final long DEFAULT_TIMEOUT_MILLIS = 5000;
+  private static final long DEFAULT_TIMEOUT_MILLIS = 5 * 60 * 1000;
   private static final long DEFAULT_POLL_FREQUENCY_MILLIS = 500;
 
   // cache filenames

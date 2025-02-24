@@ -82,7 +82,7 @@ public class SingleGeneAiExpressionReporter extends AbstractReporter {
 
         // create summary inputs
         GeneSummaryInputs summaryInputs =
-            GeneRecordProcessor.getSummaryInputsFromRecord(record, Summarizer.OPENAI_CHAT_MODEL.asString(),
+            GeneRecordProcessor.getSummaryInputsFromRecord(record, Summarizer.OPENAI_CHAT_MODEL.toString(),
                 Summarizer::getExperimentMessage, Summarizer::getFinalSummaryMessage);
 
         // fetch summary, producing if necessary and requested
