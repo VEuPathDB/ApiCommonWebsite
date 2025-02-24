@@ -1,5 +1,8 @@
 package org.apidb.apicommon.model.report.ai.expression;
 
+import static java.util.concurrent.CompletableFuture.supplyAsync;
+import static org.gusdb.fgputil.functional.Functions.wrapException;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -8,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.function.Predicate;
 
 import org.apache.log4j.Logger;
@@ -15,6 +20,7 @@ import org.apidb.apicommon.model.report.ai.expression.GeneRecordProcessor.Experi
 import org.apidb.apicommon.model.report.ai.expression.GeneRecordProcessor.GeneSummaryInputs;
 import org.gusdb.fgputil.cache.disk.OnDiskCache;
 import org.gusdb.fgputil.cache.disk.OnDiskCache.EntryNotCreatedException;
+import org.gusdb.fgputil.functional.Either;
 import org.gusdb.fgputil.functional.FunctionalInterfaces.ConsumerWithException;
 import org.gusdb.fgputil.functional.FunctionalInterfaces.FunctionWithException;
 import org.gusdb.fgputil.functional.FunctionalInterfaces.PredicateWithException;
@@ -26,6 +32,9 @@ import org.json.JSONObject;
 public class AiExpressionCache {
 
   private static Logger LOG = Logger.getLogger(AiExpressionCache.class);
+
+  // parallel processing
+  private static final int MAX_CONCURRENT_EXPERIMENT_LOOKUPS_PER_REQUEST = 5;
 
   // cache location
   private static final String CACHE_DIR_PROP_NAME = "AI_EXPRESSION_CACHE_DIR";
@@ -246,10 +255,17 @@ public class AiExpressionCache {
    */
   private List<JSONObject> populateExperiments(List<ExperimentInputs> experimentData,
       FunctionWithException<ExperimentInputs, CompletableFuture<JSONObject>> experimentDescriber) throws Exception {
-    List<JSONObject> experiments = new ArrayList<>();
-    // start with serial generation; move back to parallel later
-    for (ExperimentInputs input : experimentData) {
-      experiments.add(_cache.populateAndProcessContent(input.getCacheKey(),
+
+    // use a thread for each experiment, up to a reasonable max
+    int threadPoolSize = Math.min(MAX_CONCURRENT_EXPERIMENT_LOOKUPS_PER_REQUEST, experimentData.size());
+
+    ExecutorService exec = Executors.newFixedThreadPool(threadPoolSize);
+    try {
+      // look up experiment results in parallel, wait for completion, and aggregate results
+      List<CompletableFuture<JSONObject>> results = new ArrayList<>();
+      for (ExperimentInputs input : experimentData) {
+
+        results.add(supplyAsync(() -> wrapException(() -> _cache.populateAndProcessContent(input.getCacheKey(),
 
           // populator
           getPopulator(input.getDigest(), () -> experimentDescriber.apply(input).get()),
@@ -259,12 +275,29 @@ public class AiExpressionCache {
 
           // repopulation predicate
           exceptionToTrue(experimentDir -> {
-              getValidStoredData(experimentDir, input.getDigest());
-              return false; // do not repopulate if able to look up valid value
-          })
-      ));
+            getValidStoredData(experimentDir, input.getDigest());
+            return false; // do not repopulate if able to look up valid value
+          }))
+
+        ), exec));
+      }
+
+      // wait for all threads, filling lists along the way
+      List<JSONObject> descriptors = new ArrayList<>();
+      List<Throwable> exceptions = new ArrayList<>();
+      for (CompletableFuture<JSONObject> result : results) {
+        result.handle(Either::new).get().ifLeft(descriptors::add).ifRight(exceptions::add);
+      }
+
+      // if no exceptions occurred, return results; else throw first problem
+      if (exceptions.isEmpty()) {
+        return descriptors;
+      }
+      throw new RuntimeException(exceptions.get(0));
     }
-    return experiments;
+    finally {
+      exec.shutdown();
+    }
   }
 
   /**
