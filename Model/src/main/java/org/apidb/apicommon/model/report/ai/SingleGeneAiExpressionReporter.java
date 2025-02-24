@@ -97,6 +97,7 @@ public class SingleGeneAiExpressionReporter extends AbstractReporter {
         writer.write("\"" + summaryInputs.getGeneId() + "\":" + expressionSummary.toString());
 
       }
+      writer.write("}");
     }
   }
 }
