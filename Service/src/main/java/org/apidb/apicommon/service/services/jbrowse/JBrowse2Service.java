@@ -30,37 +30,31 @@ public class JBrowse2Service extends AbstractWdkService {
     private static final String VDI_DATASET_SCHEMA_KEY ="VDI_DATASETS_SCHEMA";
     private static final String WEB_SVC_DIR_KEY ="WEBSERVICEMIRROR";
 
+    /*
+    Get config for a single organism.  Assumes JSON will easily fit in memory.
+     */
     @GET
     @Path("orgview/{publicOrganismAbbrev}/config.json")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getJbrowseNaTracks(@PathParam("publicOrganismAbbrev") String publicOrganismAbbrev,
+    public Response getJbrowseSingleOrgTracks(@PathParam("publicOrganismAbbrev") String publicOrganismAbbrev,
                                      @QueryParam("trackSets") String trackSets) throws IOException, WdkException {
+
+        // get static json config, for this organism and set of tracks
         String staticConfigJsonString = getStaticConfigJsonString(publicOrganismAbbrev, trackSets);
         JSONObject staticConfigJson = new JSONObject(staticConfigJsonString);
+
+        // get similar from user datasets
         JSONArray udTracks = getUserDatasetTracks(publicOrganismAbbrev, trackSets);
+
+        // merge UD tracks into static
         staticConfigJson.getJSONArray("tracks").putAll(udTracks);
+
+        // send response
         String jsonString = staticConfigJson.toString();
         return Response.ok(jsonString, MediaType.APPLICATION_JSON).build();
     }
 
-    JSONArray getUserDatasetTracks(String publicOrganismAbbrev, String tracksString) throws WdkException {
-        String buildNumber = getWdkModel().getBuildNumber();
-        String projectId = getWdkModel().getProjectId();
-        Long userId = getRequestingUser().getUserId();
-        String vdiDatasetsDir = getWdkModel().getProperties().get(VDI_DATASET_DIR_KEY);
-        String vdiDatasetsSchema = getWdkModel().getProperties().get(VDI_DATASET_SCHEMA_KEY);
-        String vdiControlSchema = getWdkModel().getProperties().get(VDI_CONTROL_SCHEMA_KEY);
-
-        String udDataPathString = String.join("/", vdiDatasetsDir, vdiDatasetsSchema, "build-" + buildNumber, projectId);
-        JSONArray udTracks = new JSONArray();
-        List<String> trackSetList = Arrays.asList(tracksString.split(","));
-        if (trackSetList.contains("rnaseq")) {
-            udTracks.put(getRnaSeqUdTracks(publicOrganismAbbrev, projectId, vdiControlSchema,
-                    udDataPathString, userId));
-        }
-        return udTracks;
-    }
-
+    // call out to perl code to produce static config json
     String getStaticConfigJsonString(String publicOrganismAbbrev, String trackSets) throws IOException {
 
         String gusHome = getWdkModel().getGusHome();
@@ -81,6 +75,26 @@ public class JBrowse2Service extends AbstractWdkService {
         command.add(trackSets);
 
         return stringFromCommand(command);
+    }
+
+    JSONArray getUserDatasetTracks(String publicOrganismAbbrev, String tracksString) throws WdkModelException {
+        String buildNumber = getWdkModel().getBuildNumber();
+        String projectId = getWdkModel().getProjectId();
+        Long userId = getRequestingUser().getUserId();
+        String vdiDatasetsDir = getWdkModel().getProperties().get(VDI_DATASET_DIR_KEY);
+        String vdiDatasetsSchema = getWdkModel().getProperties().get(VDI_DATASET_SCHEMA_KEY);
+        String vdiControlSchema = getWdkModel().getProperties().get(VDI_CONTROL_SCHEMA_KEY);
+
+        String udDataPathString = String.join("/", vdiDatasetsDir, vdiDatasetsSchema, "build-" + buildNumber, projectId);
+        JSONArray udTracks = new JSONArray();
+        List<String> trackSetList = Arrays.asList(tracksString.split(","));
+
+        // for now we only have rnaseq UD tracks
+        if (trackSetList.contains("rnaseq")) {
+            udTracks.put(getRnaSeqUdTracks(publicOrganismAbbrev, projectId, vdiControlSchema,
+                    udDataPathString, userId));
+        }
+        return udTracks;
     }
 
     JSONArray getRnaSeqUdTracks(String publicOrganismAbbrev, String projectId, String vdiControlSchema,
@@ -114,7 +128,7 @@ public class JBrowse2Service extends AbstractWdkService {
         }
     }
 
-    // method written by copilot
+    // boilerplate method written by copilot
     public static List<String> getBigwigFileNames(String directoryPath) throws SQLRunnerException {
         List<String> bwFiles = new ArrayList<>();
         File directory = new File(directoryPath);
