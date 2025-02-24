@@ -26,8 +26,7 @@ import com.openai.models.ResponseFormatJsonSchema.JsonSchema;
 public class Summarizer {
 
   // provide exact model number for semi-reproducibility
-  // TODO: should this be incorporated into the digests, so if we change the chat model, all generated summaries become expired?
-  private static final ChatModel OPENAI_CHAT_MODEL = ChatModel.GPT_4O_2024_11_20; // GPT_4O_2024_08_06;
+  public static final ChatModel OPENAI_CHAT_MODEL = ChatModel.GPT_4O_2024_11_20; // GPT_4O_2024_08_06;
 
   private static final int MAX_RESPONSE_TOKENS = 10000;
     
