@@ -146,10 +146,13 @@ public class Summarizer {
 
   public static String getFinalSummaryMessage(List<JSONObject> experiments) {
 
-    return "Below are AI-generated summaries of a gene's behaviour in multiple transcriptomics experiments, provided in JSON format:\n\n" +
+    return "Below are AI-generated summaries of one gene's behavior in all the transcriptomics experiments available in VEuPathDB, provided in JSON format:\n\n" +
         String.format("```json\n%s\n```\n\n", new JSONArray(experiments).toString()) +
-        "Provide a snappy headline and a one-paragraph summary of the gene's expression characteristics that gives the most biological insight into its function. Both are for human consumption on the gene page of our website. Also organise the experimental results (identified by `dataset_id`) into sections, ordered by descending biological importance. Provide a headline and one-sentence summary for each section. These will also be shown to users. Wrap species names in `<i>` tags and use clear, scientific language accessible to non-native English speakers throughout your response.";
-
+        "Generate a one-paragraph summary (~100 words) describing the gene's expression. If relevant, briefly speculate on the gene's potential function, but only if justified by the data. Also, generate a short, specific headline for the summary. The headline must reflect this gene's expression and **must not** include generic phrases like \"comprehensive insights into\".\n\n" +
+        "Additionally, organize the experimental results (identified by `dataset_id`) into sections, ordered by descending biological importance. For each section, provide:\n" +
+        "- A headline summarizing the section's key findings\n" +
+        "- A concise one-sentence summary of the experimental results\n\n" +
+        "These sections will be displayed to users. Wrap species names in `<i>` tags and use clear, precise scientific language accessible to non-native English speakers.";
   }
   
   public JSONObject summarizeExperiments(List<JSONObject> experiments) {
