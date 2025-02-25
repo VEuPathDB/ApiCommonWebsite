@@ -102,7 +102,7 @@ public abstract class GenomeViewReporter extends AbstractReporter {
       Sequence[] sequences;
       ResultSet resultSet = null;
       try {
-        DataSource dataSource = answerValue.getAnswerSpec().getQuestion().getWdkModel().getAppDb().getDataSource();
+        DataSource dataSource = answerValue.getWdkModel().getAppDb().getDataSource();
 
         // compose an sql to get all sequences from the feature id query.
         String idSql = answerValue.getIdSql();

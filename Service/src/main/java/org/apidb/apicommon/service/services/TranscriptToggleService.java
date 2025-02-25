@@ -15,7 +15,9 @@ import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.answer.spec.AnswerSpec;
 import org.gusdb.wdk.model.answer.spec.AnswerSpecBuilder;
 import org.gusdb.wdk.model.user.Step;
-import org.gusdb.wdk.model.user.UserCache;
+import org.gusdb.wdk.model.user.StepFactory;
+import org.gusdb.wdk.model.user.User;
+import org.gusdb.wdk.model.user.UserInfoCache;
 import org.gusdb.wdk.service.service.AbstractWdkService;
 import org.json.JSONObject;
 
@@ -35,8 +37,11 @@ public class TranscriptToggleService extends AbstractWdkService {
     boolean filterTurnedOn = input.getBoolean(RepresentativeTranscriptFilter.FILTER_NAME);
     LOG.info("Action is to turn filter: " + filterTurnedOn);
 
-    Step step = getWdkModel().getStepFactory().getStepByIdAndUserId(
-        stepId, getRequestingUser().getUserId(), ValidationLevel.SYNTACTIC)
+    StepFactory stepFactory = new StepFactory(getRequestingUser());
+    User user = getRequestingUser();
+
+    Step step = stepFactory
+        .getStepByIdAndUserId(stepId, user.getUserId(), ValidationLevel.SYNTACTIC)
         .orElseThrow(() -> new NotFoundException("No step exists with ID " + stepId));
 
     AnswerSpecBuilder newSpec = AnswerSpec.builder(step.getAnswerSpec());
@@ -48,9 +53,9 @@ public class TranscriptToggleService extends AbstractWdkService {
     }
 
     Step newStep = Step.builder(step).setAnswerSpec(newSpec)
-        .build(new UserCache(step.getUser()), ValidationLevel.NONE, step.getStrategy());
+        .build(new UserInfoCache(getWdkModel(), step), user, ValidationLevel.NONE, step.getStrategy());
 
     // since view filters do not affect downstream steps, we can just save the step here
-    getWdkModel().getStepFactory().updateStep(newStep);
+    stepFactory.updateStep(newStep);
   }
 }

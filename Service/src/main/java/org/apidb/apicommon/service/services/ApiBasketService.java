@@ -70,7 +70,7 @@ public class ApiBasketService extends BasketService {
 
       // get the step and make sure it returns transcripts
       RunnableObj<Step> step = getRunnableStepForCurrentUser(actions.getRequestedStepId());
-      RecordClass stepRecordClass = step.get().getAnswerSpec().getQuestion().getRecordClass();
+      RecordClass stepRecordClass = step.get().getAnswerSpec().getQuestion().get().getRecordClass();
       checkStepType(step.get().getStepId(), recordClass, stepRecordClass);
 
       // All transcript steps cache all transcripts of all genes of the

@@ -30,8 +30,9 @@ import org.gusdb.wdk.model.record.TableField;
 import org.gusdb.wdk.model.record.attribute.AttributeField;
 import org.gusdb.wdk.model.record.attribute.AttributeValue;
 import org.gusdb.wdk.model.user.Step;
+import org.gusdb.wdk.model.user.StepFactory;
 import org.gusdb.wdk.model.user.User;
-import org.gusdb.wdk.model.user.UserCache;
+import org.gusdb.wdk.model.user.UserInfoCache;
 import org.json.JSONObject;
 
 /** Testing "GeneTranscripts" table using the following step:
@@ -84,11 +85,11 @@ public class SingleTableRecordStreamTest {
          PrintStream out = (args.length == 0 ? System.out : new PrintStream(new FileOutputStream(args[0])))) {
       RunnableObj<Step> step = createStep(model);
       AnswerValue answer = 
-          isTranscriptQuestion(step.get().getAnswerSpec().getQuestion()) ?
-          transformToGeneAnswer(AnswerValueFactory.makeAnswer(step)) :
-          AnswerValueFactory.makeAnswer(step);
+          isTranscriptQuestion(step.get().getAnswerSpec().getQuestion().get()) ?
+          transformToGeneAnswer(AnswerValueFactory.makeAnswer(Step.getRunnableAnswerSpec(step))) :
+          AnswerValueFactory.makeAnswer(Step.getRunnableAnswerSpec(step));
       answer = answer.cloneWithNewPaging(0, -1); // want full results
-      TableField tableField = answer.getAnswerSpec().getQuestion().getRecordClass().getTableFieldMap().get(TABLE_NAME);
+      TableField tableField = answer.getQuestion().getRecordClass().getTableFieldMap().get(TABLE_NAME);
 
       try (RecordStream recordStream = new SingleTableRecordStream(answer, tableField)) {
         writeFields(out, tableField, getFieldHeader);
@@ -105,12 +106,12 @@ public class SingleTableRecordStreamTest {
 
   private static RunnableObj<Step> createStep(WdkModel model) throws WdkModelException {
     User user = model.getSystemUser();
-    return Step.builder(model, user.getUserId(), model.getStepFactory().getNewStepId())
+    return Step.builder(model, user.getUserId(), new StepFactory(user).getNewStepId())
         .setAnswerSpec(AnswerSpec.builder(model)
             .setQuestionFullName(QUESTION_NAME)
             .setParamValues(PARAMETERS)
             .setFilterOptions(FILTERS))
-        .buildRunnable(new UserCache(user), Optional.empty());
+        .buildRunnable(new UserInfoCache(user), user, Optional.empty());
   }
 
   private static Function<AttributeField, String> getFieldValue(final Map<String, AttributeValue> row) {
