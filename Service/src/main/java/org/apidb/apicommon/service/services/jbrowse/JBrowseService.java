@@ -94,11 +94,15 @@ public class JBrowseService extends AbstractWdkService {
 
         String gusHome = getWdkModel().getGusHome();
         String projectId = getWdkModel().getProjectId();
+        String buildNumber = getWdkModel().getBuildNumber();
+        String webservicesDir = getWdkModel().getProperties().get("WEBSERVICEMIRROR");
 
         List<String> command = new ArrayList<String>();
         command.add(gusHome + "/bin/jbrowseRNASeqJunctionTracks");
         command.add(organismAbbrev);
         command.add(projectId);
+        command.add(buildNumber);
+        command.add(webservicesDir);
         command.add(isApollo);
         command.add(appType);
 
