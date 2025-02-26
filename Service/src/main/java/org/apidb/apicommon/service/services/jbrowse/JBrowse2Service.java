@@ -1,9 +1,6 @@
 package org.apidb.apicommon.service.services.jbrowse;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -25,11 +22,11 @@ import org.json.JSONObject;
 
 @Path("/jbrowse2")
 public class JBrowse2Service extends AbstractWdkService {
-    private static final String VDI_DATASET_DIR_KEY = "VDI_DATASETS_DIRECTORY";
     private static final String VDI_CONTROL_SCHEMA_KEY ="VDI_CONTROL_SCHEMA";
     private static final String VDI_DATASET_SCHEMA_KEY ="VDI_DATASETS_SCHEMA";
     private static final String WEB_SVC_DIR_KEY ="WEBSERVICEMIRROR";
 
+    private static final String USER_DATASETS_DIR = "./userDatasetsData";  // hard-coded mount point in the jbrowse2 service
     /*
     Get config for a single organism.  Assumes JSON will easily fit in memory.
      */
@@ -81,11 +78,10 @@ public class JBrowse2Service extends AbstractWdkService {
         String buildNumber = getWdkModel().getBuildNumber();
         String projectId = getWdkModel().getProjectId();
         Long userId = getRequestingUser().getUserId();
-        String vdiDatasetsDir = getWdkModel().getProperties().get(VDI_DATASET_DIR_KEY);
         String vdiDatasetsSchema = getWdkModel().getProperties().get(VDI_DATASET_SCHEMA_KEY);
         String vdiControlSchema = getWdkModel().getProperties().get(VDI_CONTROL_SCHEMA_KEY);
 
-        String udDataPathString = String.join("/", vdiDatasetsDir, vdiDatasetsSchema, "build-" + buildNumber, projectId);
+        String udDataPathString = String.join("/", USER_DATASETS_DIR, vdiDatasetsSchema, "build-" + buildNumber, projectId);
         JSONArray udTracks = new JSONArray();
         List<String> trackSetList = Arrays.asList(tracksString.split(","));
 
@@ -115,9 +111,12 @@ public class JBrowse2Service extends AbstractWdkService {
                 while (rs.next()) {
                     String datasetId = rs.getString(1);
                     String name = rs.getString(2);
+                    JSONObject track = createBigwigTrackJson(datasetId, name, publicOrganismAbbrev);
                     List<String> fileNames = getBigwigFileNames(udDataPathString + "/" +datasetId);
                     for (String fileName : fileNames) {
-                        rnaSeqUdTracks.put(createBigwigTrackJson(datasetId, name, fileName, publicOrganismAbbrev, udDataPathString));
+                        track.getJSONObject("adapter")
+                                .getJSONArray("subadapters")
+                                .put(createBigwigSubadapterJson(datasetId, fileName, udDataPathString));
                     }
                 }
                 return rnaSeqUdTracks;
@@ -181,20 +180,27 @@ public class JBrowse2Service extends AbstractWdkService {
         }
       }
  */
-    JSONObject createBigwigTrackJson(String vdiId, String vdiName, String fileName, String organismAbbrev, String userDatasetsFilePath) {
-        JSONObject track = new JSONObject();
-        track.put("assemblyNames", new JSONArray().put(organismAbbrev));
-        track.put("trackId", vdiId);
-        track.put("name", vdiName);
-        JSONObject display = new JSONObject();
-        display.put("displayId", "wiggle_ApiCommonModel::Model::JBrowseTrackConfig::MultiBigWigTrackConfig::XY=HASH(0x2249320)");
-        display.put("maxScore", 1);
-        display.put("maxScore", 1000);
-        display.put("defaultRendering", "multirowxy");
-        display.put("type", "MultiLinearWiggleDisplay");
-        display.put("scaleType", "log");
-        JSONArray displays = new JSONArray().put(display);
-        track.put("displays", displays);
+    JSONObject createBigwigTrackJson(String vdiId, String vdiName, String organismAbbrev) {
+        return new JSONObject()
+            .put("assemblyNames", new JSONArray().put(organismAbbrev))
+            .put("trackId", vdiId)
+            .put("name", vdiName)
+            .put("displays", new JSONArray()
+                .put(new JSONObject()
+                    .put("displayId", "wiggle_ApiCommonModel::Model::JBrowseTrackConfig::MultiBigWigTrackConfig::XY=HASH(0x2249320)")
+                    .put("maxScore", 1)
+                    .put("maxScore", 1000)
+                    .put("defaultRendering", "multirowxy")
+                    .put("type", "MultiLinearWiggleDisplay")
+                    .put("scaleType", "log")
+                    )
+                )
+            .put("adapter", new JSONObject()
+                    .put("subadapters", new JSONArray())
+            );
+    }
+
+    JSONObject createBigwigSubadapterJson(String vdiId, String fileName, String userDatasetsFilePath) {
         JSONObject subAdapter = new JSONObject();
         subAdapter.put("color1", "grey");
         subAdapter.put("name", fileName);
@@ -202,22 +208,30 @@ public class JBrowse2Service extends AbstractWdkService {
         JSONObject location = new JSONObject().put("locationType", "UriLocation");
         location.put("uri", String.join("/", userDatasetsFilePath, vdiId, fileName));
         subAdapter.put("bigWigLocation", location);
-        return track;
+        return subAdapter;
     }
 
     String stringFromCommand(List<String> command) throws IOException {
-        Process p = processFromCommand(command);
-        BufferedReader reader =
-                new BufferedReader(new InputStreamReader(p.getInputStream()));
-        StringBuilder builder = new StringBuilder();
-        String line;
-        while ( (line = reader.readLine()) != null) {
-            builder.append(line);
-            builder.append(System.lineSeparator());
-        }
-        return builder.toString();
-    }
+        try {
+            Process p = processFromCommand(command);
 
+            ByteArrayOutputStream stringBuffer = new ByteArrayOutputStream();
+            p.getErrorStream().transferTo(stringBuffer);
+            String errors = stringBuffer.toString();
+
+            stringBuffer.reset();
+            p.getInputStream().transferTo(stringBuffer);
+
+            if (p.waitFor() != 0) {
+                throw new RuntimeException("Subprocess from [" + String.join(" ", command) + "] returned non-zero.  Errors:\n" + errors);
+            }
+
+            return stringBuffer.toString();
+        }
+        catch (InterruptedException e) {
+            throw new RuntimeException("Subprocess from [" + String.join(" ", command) + "] was interrupted befor it could complete.");
+        }
+    }
     Process processFromCommand (List<String> command) throws IOException {
         for (int i = 0; i < command.size(); i++) {
             if (command.get(i) == null)
