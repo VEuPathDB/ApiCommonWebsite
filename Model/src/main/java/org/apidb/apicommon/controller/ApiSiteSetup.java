@@ -5,6 +5,7 @@ import org.apidb.apicommon.model.comment.pojo.Author;
 import org.gusdb.fgputil.events.Event;
 import org.gusdb.fgputil.events.Events;
 import org.gusdb.oauth2.client.veupathdb.User;
+import org.gusdb.oauth2.client.veupathdb.UserInfo;
 import org.gusdb.oauth2.client.veupathdb.UserProperty;
 import org.gusdb.wdk.events.UserProfileUpdateEvent;
 import org.gusdb.wdk.model.WdkModel;
@@ -51,7 +52,7 @@ public class ApiSiteSetup {
     // need to write updated text to comment search field
     CommentFactory commentFactory = CommentFactoryManager.getCommentFactory(
         updateEvent.getWdkModel().getProjectId());
-    User user = updateEvent.getNewUser();
+    UserInfo user = updateEvent.getNewUser();
 
     commentFactory.updateAuthor(new Author()
         .setFirstName(user.getFirstName())

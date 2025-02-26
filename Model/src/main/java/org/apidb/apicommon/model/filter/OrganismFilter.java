@@ -91,7 +91,7 @@ public class OrganismFilter extends StepFilter {
    * @throws WdkModelException
    */
   protected Map<String, Integer> getCounts(AnswerValue answer, String idSql) throws WdkModelException {
-    WdkModel wdkModel = answer.getAnswerSpec().getQuestion().getWdkModel();
+    WdkModel wdkModel = answer.getWdkModel();
     String sql = ((SqlQuery)getSummaryQuery()).getSql().replace(Utilities.MACRO_ID_SQL, idSql);
     return new SQLRunner(wdkModel.getAppDb().getDataSource(), sql, getSummaryQuery().getName()).executeQuery(rs -> {
       Map<String, Integer> querySizes = new HashMap<>();
