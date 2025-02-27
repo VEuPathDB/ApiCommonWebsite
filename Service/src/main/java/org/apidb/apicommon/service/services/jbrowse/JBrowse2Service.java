@@ -10,6 +10,7 @@ import javax.sql.DataSource;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.BadRequestException;
 
 import org.gusdb.fgputil.db.runner.SQLRunner;
 import org.gusdb.fgputil.db.runner.SQLRunnerException;
@@ -34,14 +35,19 @@ public class JBrowse2Service extends AbstractWdkService {
     @Path("orgview/{publicOrganismAbbrev}/config.json")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getJbrowseSingleOrgTracks(@PathParam("publicOrganismAbbrev") String publicOrganismAbbrev,
-                                     @QueryParam("trackSets") String trackSets) throws IOException, WdkException {
+                                     @QueryParam("trackSets") String trackSetsString) throws IOException, WdkException {
 
+        String errMsg = "Must provide a comma delimited list of tracks in a 'trackSets' query param";
+        if (trackSetsString == null) throw new BadRequestException(errMsg);
+        List<String> trackSetsList = Arrays.asList(trackSetsString.split(","));
+        if (trackSetsList.isEmpty()) throw new BadRequestException(errMsg);
+        
         // get static json config, for this organism and set of tracks
-        String staticConfigJsonString = getStaticConfigJsonString(publicOrganismAbbrev, trackSets);
+        String staticConfigJsonString = getStaticConfigJsonString(publicOrganismAbbrev, trackSetsString);
         JSONObject staticConfigJson = new JSONObject(staticConfigJsonString);
 
         // get similar from user datasets
-        JSONArray udTracks = getUserDatasetTracks(publicOrganismAbbrev, trackSets);
+        JSONArray udTracks = getUserDatasetTracks(publicOrganismAbbrev, trackSetsList);
 
         // merge UD tracks into static
         staticConfigJson.getJSONArray("tracks").putAll(udTracks);
@@ -52,14 +58,14 @@ public class JBrowse2Service extends AbstractWdkService {
     }
 
     // call out to perl code to produce static config json
-    String getStaticConfigJsonString(String publicOrganismAbbrev, String trackSets) throws IOException {
+    String getStaticConfigJsonString(String publicOrganismAbbrev, String trackSetsString) throws IOException {
 
         String gusHome = getWdkModel().getGusHome();
         String projectId = getWdkModel().getProjectId();
         String buildNumber = getWdkModel().getBuildNumber();
 
         List<String> command = new ArrayList<>();
-        command.add(gusHome + "/bin/jbrowse2config");
+        command.add(gusHome + "/bin/jbrowse2Config");
         command.add("--orgAbbrev");
         command.add(publicOrganismAbbrev);
         command.add("--projectId");
@@ -69,12 +75,12 @@ public class JBrowse2Service extends AbstractWdkService {
         command.add("--webSvcDir");
         command.add(getWdkModel().getProperties().get(WEB_SVC_DIR_KEY));
         command.add("--trackSets");
-        command.add(trackSets);
+        command.add(trackSetsString);
 
         return stringFromCommand(command);
     }
 
-    JSONArray getUserDatasetTracks(String publicOrganismAbbrev, String tracksString) throws WdkModelException {
+    JSONArray getUserDatasetTracks(String publicOrganismAbbrev, List<String> trackSetList) throws WdkModelException {
         String buildNumber = getWdkModel().getBuildNumber();
         String projectId = getWdkModel().getProjectId();
         Long userId = getRequestingUser().getUserId();
@@ -83,7 +89,6 @@ public class JBrowse2Service extends AbstractWdkService {
 
         String udDataPathString = String.join("/", USER_DATASETS_DIR, vdiDatasetsSchema, "build-" + buildNumber, projectId);
         JSONArray udTracks = new JSONArray();
-        List<String> trackSetList = Arrays.asList(tracksString.split(","));
 
         // for now we only have rnaseq UD tracks
         if (trackSetList.contains("rnaseq")) {
