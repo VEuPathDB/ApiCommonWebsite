@@ -12,6 +12,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.BadRequestException;
 
+import org.apache.log4j.Logger;
 import org.gusdb.fgputil.db.runner.SQLRunner;
 import org.gusdb.fgputil.db.runner.SQLRunnerException;
 import org.gusdb.wdk.model.WdkException;
@@ -23,6 +24,9 @@ import org.json.JSONObject;
 
 @Path("/jbrowse2")
 public class JBrowse2Service extends AbstractWdkService {
+
+    private static final Logger LOG = Logger.getLogger(JBrowse2Service.class);
+
     private static final String VDI_CONTROL_SCHEMA_KEY ="VDI_CONTROL_SCHEMA";
     private static final String VDI_DATASET_SCHEMA_KEY ="VDI_DATASETS_SCHEMA";
     private static final String WEB_SVC_DIR_KEY ="WEBSERVICEMIRROR";
@@ -106,10 +110,10 @@ public class JBrowse2Service extends AbstractWdkService {
                 "from " + vdiControlSchema + ".AvailableUserDatasets aud, " +
                 vdiControlSchema + ".dataset_dependency dd " +
                 "where project_id = '" + projectId + "' " +
-                "and (type = 'RnaSeq' or type = 'BigWig') " +
+                "and (type = 'rnaseq' or type = 'bigwigfiles') " +
                 "and ((is_public = 1 and is_owner = 1) or user_id = " + userId + ") " +
-                "and dd.dataset_id = aud.dataset_id " +
-                " dd.identifier = '" + publicOrganismAbbrev + "'";
+                "and dd.dataset_id = aud.user_dataset_id " +
+                "and dd.identifier = '" + publicOrganismAbbrev + "'";
         try {
             return new SQLRunner(appDs, sql).executeQuery(rs -> {
                 JSONArray rnaSeqUdTracks = new JSONArray();
@@ -128,7 +132,7 @@ public class JBrowse2Service extends AbstractWdkService {
             });
         }
         catch (SQLRunnerException e) {
-            throw new WdkModelException("Unable to query VDI tables for RNA seq datasets", e.getCause());
+          throw new WdkModelException("Unable to query VDI tables for RNA seq datasets. " + e.getMessage(), e.getCause());
         }
     }
 
@@ -217,6 +221,7 @@ public class JBrowse2Service extends AbstractWdkService {
     }
 
     String stringFromCommand(List<String> command) throws IOException {
+      LOG.debug("Running command: " + String.join(" ", command));
         try {
             Process p = processFromCommand(command);
 
