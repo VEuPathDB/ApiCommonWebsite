@@ -36,6 +36,10 @@ public class GeneRecordProcessor {
 
     String getDatasetId();
 
+    String getAssayType();
+
+    String getExperimentName();
+
     String getDigest();
 
     JSONObject getExperimentData();
@@ -107,6 +111,8 @@ public class GeneRecordProcessor {
         }
 
         String datasetId = experimentRow.getAttributeValue("dataset_id").getValue();
+        String assayType = experimentRow.getAttributeValue("assay_type").getValue();
+        String experimentName = experimentRow.getAttributeValue("display_name").getValue();
 
         List<JSONObject> filteredData = readFilteredData(datasetId, expressionGraphsDataTable); 
 
@@ -117,6 +123,16 @@ public class GeneRecordProcessor {
           @Override
           public String getDatasetId() {
             return datasetId;
+          }
+	    
+          @Override
+          public String getAssayType() {
+            return assayType;
+          }
+	    
+          @Override
+          public String getExperimentName() {
+            return experimentName;
           }
 
           @Override

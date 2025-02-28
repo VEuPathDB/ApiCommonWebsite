@@ -133,7 +133,10 @@ public class Summarizer {
       String jsonString = completion.choices().get(0).message().content().get();
       try {
         JSONObject jsonObject = new JSONObject(jsonString);
+	// add some fields directly to aid the final summarization
         jsonObject.put("dataset_id", experimentInputs.getDatasetId());
+        jsonObject.put("assay_type", experimentInputs.getAssayType());
+        jsonObject.put("experiment_name", experimentInputs.getExperimentName());
         return jsonObject;
       }
       catch (JSONException e) {
