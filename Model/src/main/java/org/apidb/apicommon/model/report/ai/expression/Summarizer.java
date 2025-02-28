@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
-import java.util.Comparator;
 
 import org.apidb.apicommon.model.report.ai.expression.GeneRecordProcessor.ExperimentInputs;
 import org.gusdb.fgputil.json.JsonUtil;
@@ -149,11 +148,6 @@ public class Summarizer {
   }
 
   public static String getFinalSummaryMessage(List<JSONObject> experiments) {
-    
-    experiments.sort(
-		     Comparator.comparing((JSONObject obj) -> obj.optInt("biological_importance"), Comparator.reverseOrder())
-		     .thenComparing(obj -> obj.optInt("confidence"), Comparator.reverseOrder())
-		     );
     
     return "Below are AI-generated summaries of one gene's behavior in all the transcriptomics experiments available in VEuPathDB, provided in JSON format:\n\n" +
         String.format("```json\n%s\n```\n\n", new JSONArray(experiments).toString(2)) +
