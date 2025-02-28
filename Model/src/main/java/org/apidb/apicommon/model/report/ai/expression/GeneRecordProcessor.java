@@ -30,6 +30,10 @@ public class GeneRecordProcessor {
 
   public static final List<String> REQUIRED_TABLE_NAMES = List.of(EXPRESSION_GRAPH_TABLE, EXPRESSION_GRAPH_DATA_TABLE);
 
+  // Increment this to invalidate all previous cache entries:
+  // (for example if changing first level model outputs rather than inputs which are already digestified)
+  private static final String DATA_MODEL_VERSION = "v2";
+  
   public interface ExperimentInputs {
 
     String getCacheKey();
@@ -86,7 +90,7 @@ public class GeneRecordProcessor {
         List<JSONObject> digests = experimentsWithData.stream()
             .map(exp -> new JSONObject().put("digest", exp.getDigest()))
             .collect(Collectors.toList());
-        return EncryptionUtil.md5(aiChatModel + " " + getFinalSummaryPrompt.apply(digests));
+        return EncryptionUtil.md5(aiChatModel + ":" + DATA_MODEL_VERSION + ":" + getFinalSummaryPrompt.apply(digests));
       }
 
     };
@@ -142,7 +146,7 @@ public class GeneRecordProcessor {
 
           @Override
           public String getDigest() {
-            return EncryptionUtil.md5(aiChatModel + " " + getExperimentPrompt.apply(getExperimentData()));
+            return EncryptionUtil.md5(aiChatModel + ":" + DATA_MODEL_VERSION + ":" + getExperimentPrompt.apply(getExperimentData()));
           }
 
           @Override
