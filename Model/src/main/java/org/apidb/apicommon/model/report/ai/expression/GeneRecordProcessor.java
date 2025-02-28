@@ -32,7 +32,7 @@ public class GeneRecordProcessor {
 
   // Increment this to invalidate all previous cache entries:
   // (for example if changing first level model outputs rather than inputs which are already digestified)
-  private static final String DATA_MODEL_VERSION = "v3";
+  private static final String DATA_MODEL_VERSION = "v3b";
   
   public interface ExperimentInputs {
 

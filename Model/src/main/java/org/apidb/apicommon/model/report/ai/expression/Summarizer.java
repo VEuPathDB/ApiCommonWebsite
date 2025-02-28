@@ -1,7 +1,7 @@
 package org.apidb.apicommon.model.report.ai.expression;
 
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -193,13 +193,14 @@ public class Summarizer {
 
   private static JSONObject consolidateSummary(JSONObject summaryResponse,
       List<JSONObject> individualResults) {
-    // Gather all dataset IDs from individualResults and map them to summaries
-    Map<String, JSONObject> datasetSummaries = new HashMap<>();
+    // Gather all dataset IDs from individualResults and map them to summaries.
+    // Preserving the order of individualResults.
+    Map<String, JSONObject> datasetSummaries = new LinkedHashMap<>();
     for (JSONObject result : individualResults) {
       datasetSummaries.put(result.getString("dataset_id"), result);
     }
 
-    Set<String> seenDatasetIds = new HashSet<>();
+    Set<String> seenDatasetIds = new LinkedHashSet<>();
     JSONArray deduplicatedTopics = new JSONArray();
     JSONArray topics = summaryResponse.getJSONArray("topics");
 
@@ -234,8 +235,8 @@ public class Summarizer {
       }
     }
 
-    // Find missing dataset IDs
-    Set<String> missingDatasetIds = new HashSet<>(datasetSummaries.keySet());
+    // Find missing dataset IDs (preserve dataset order)
+    Set<String> missingDatasetIds = new LinkedHashSet<>(datasetSummaries.keySet());
     missingDatasetIds.removeAll(seenDatasetIds);
 
     // If there are missing IDs, add an "Others" topic
