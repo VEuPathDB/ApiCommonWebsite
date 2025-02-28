@@ -226,9 +226,12 @@ public class Summarizer {
       }
 
       // Update topic with mapped summaries and remove dataset_ids key
-      topic.put("summaries", summaries);
-      topic.remove("dataset_ids");
-      deduplicatedTopics.put(topic);
+      // but only if it's a non-empty topic (can happen with bad dataset_ids, see above)
+      if (summaries.length() > 0) {
+	topic.put("summaries", summaries);
+	topic.remove("dataset_ids");
+        deduplicatedTopics.put(topic);
+      }
     }
 
     // Find missing dataset IDs
