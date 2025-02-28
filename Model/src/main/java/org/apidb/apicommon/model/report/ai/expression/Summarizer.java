@@ -101,7 +101,7 @@ public class Summarizer {
 
     // We don't need to send dataset_id to the AI but it's useful to have it
     // in the response for phase two
-    JSONObject experimentForAI = new JSONObject(experiment.toString()); // clone
+    JSONObject experimentForAI = new JSONObject(experiment.toString(2)); // clone
     experimentForAI.remove("dataset_id");
 
     return
@@ -147,7 +147,7 @@ public class Summarizer {
   public static String getFinalSummaryMessage(List<JSONObject> experiments) {
 
     return "Below are AI-generated summaries of one gene's behavior in all the transcriptomics experiments available in VEuPathDB, provided in JSON format:\n\n" +
-        String.format("```json\n%s\n```\n\n", new JSONArray(experiments).toString()) +
+        String.format("```json\n%s\n```\n\n", new JSONArray(experiments).toString(2)) +
         "Generate a one-paragraph summary (~100 words) describing the gene's expression. Structure it using <strong>, <ul>, and <li> tags with no attributes. If relevant, briefly speculate on the gene's potential function, but only if justified by the data. Also, generate a short, specific headline for the summary. The headline must reflect this gene's expression and **must not** include generic phrases like \"comprehensive insights into\" or the word \"gene\".\n\n" +
         "Additionally, organize the experimental results (identified by `dataset_id`) into sections, ordered by descending biological importance. For each section, provide:\n" +
         "- A headline summarizing the section's key findings\n" +
