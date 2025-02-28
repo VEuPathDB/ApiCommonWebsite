@@ -135,11 +135,9 @@
       <artifactId>Jackfish</artifactId>
     </dependency>
 
-    <!-- TO DO - when stable, move version to base-pom/pom.xml -->
     <dependency>
       <groupId>com.openai</groupId>
       <artifactId>openai-java</artifactId>
-      <version>0.22.0</version>
     </dependency>
 
   </dependencies>
