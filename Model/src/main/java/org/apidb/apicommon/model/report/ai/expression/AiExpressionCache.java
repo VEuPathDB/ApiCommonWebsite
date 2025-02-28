@@ -34,7 +34,7 @@ public class AiExpressionCache {
   private static Logger LOG = Logger.getLogger(AiExpressionCache.class);
 
   // parallel processing
-  private static final int MAX_CONCURRENT_EXPERIMENT_LOOKUPS_PER_REQUEST = 5;
+  private static final int MAX_CONCURRENT_EXPERIMENT_LOOKUPS_PER_REQUEST = 10;
 
   // cache location
   private static final String CACHE_DIR_PROP_NAME = "AI_EXPRESSION_CACHE_DIR";
