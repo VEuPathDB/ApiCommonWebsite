@@ -56,7 +56,7 @@ public class Summarizer {
     .putAdditionalProperty("properties", JsonValue.from(Map.of(
           "headline", Map.of("type", "string"),
           "one_paragraph_summary", Map.of("type", "string"),
-          "sections", Map.of("type", "array", "minimum", 1, "items", Map.of(
+          "topics", Map.of("type", "array", "minimum", 1, "items", Map.of(
               "type", "object",
               "required", List.of("headline", "one_sentence_summary", "dataset_ids"),
               "properties", Map.of(
@@ -149,10 +149,10 @@ public class Summarizer {
     return "Below are AI-generated summaries of one gene's behavior in all the transcriptomics experiments available in VEuPathDB, provided in JSON format:\n\n" +
         String.format("```json\n%s\n```\n\n", new JSONArray(experiments).toString(2)) +
         "Generate a one-paragraph summary (~100 words) describing the gene's expression. Structure it using <strong>, <ul>, and <li> tags with no attributes. If relevant, briefly speculate on the gene's potential function, but only if justified by the data. Also, generate a short, specific headline for the summary. The headline must reflect this gene's expression and **must not** include generic phrases like \"comprehensive insights into\" or the word \"gene\".\n\n" +
-        "Additionally, organize the experimental results (identified by `dataset_id`) into sections, ordered by descending biological importance. For each section, provide:\n" +
-        "- A headline summarizing the section's key findings\n" +
-        "- A concise one-sentence summary of the experimental results\n\n" +
-        "These sections will be displayed to users. In all generated text, wrap species names in `<i>` tags and use clear, precise scientific language accessible to non-native English speakers.";
+    "Additionally, group the per-experiment summaries (identified by `dataset_id`) with `biological_importance > 3` and `confidence > 3` into sections by topic. For each topic, provide:\n" +
+    "- A headline summarizing the key experimental results within the topic\n" +
+    "- A concise one-sentence summary of the topic's experimental results\n\n" +
+    "These topics will be displayed to users. In all generated text, wrap species names in `<i>` tags and use clear, precise scientific language accessible to non-native English speakers."
   }
   
   public JSONObject summarizeExperiments(List<JSONObject> experiments) {
@@ -197,12 +197,12 @@ public class Summarizer {
     }
 
     Set<String> seenDatasetIds = new HashSet<>();
-    JSONArray deduplicatedSections = new JSONArray();
-    JSONArray sections = summaryResponse.getJSONArray("sections");
+    JSONArray deduplicatedTopics = new JSONArray();
+    JSONArray topics = summaryResponse.getJSONArray("topics");
 
-    for (int i = 0; i < sections.length(); i++) {
-      JSONObject section = sections.getJSONObject(i);
-      JSONArray datasetIds = section.getJSONArray("dataset_ids");
+    for (int i = 0; i < topics.length(); i++) {
+      JSONObject topic = topics.getJSONObject(i);
+      JSONArray datasetIds = topic.getJSONArray("dataset_ids");
       JSONArray summaries = new JSONArray();
 
       for (int j = 0; j < datasetIds.length(); j++) {
@@ -211,7 +211,7 @@ public class Summarizer {
         // Warn and skip if the id doesn't exist
         if (!datasetSummaries.containsKey(id)) {
           System.out.println(
-              "WARNING: summary section id '" + id + "' does not exist. Excluding from final output.");
+              "WARNING: dataset_id '" + id + "' does not exist. Excluding from final output.");
           continue;
         }
         // Skip if we've seen it
@@ -222,34 +222,34 @@ public class Summarizer {
         summaries.put(datasetSummaries.get(id));
       }
 
-      // Update section with mapped summaries and remove dataset_ids key
-      section.put("summaries", summaries);
-      section.remove("dataset_ids");
-      deduplicatedSections.put(section);
+      // Update topic with mapped summaries and remove dataset_ids key
+      topic.put("summaries", summaries);
+      topic.remove("dataset_ids");
+      deduplicatedTopics.put(topic);
     }
 
     // Find missing dataset IDs
     Set<String> missingDatasetIds = new HashSet<>(datasetSummaries.keySet());
     missingDatasetIds.removeAll(seenDatasetIds);
 
-    // If there are missing IDs, add an "Others" section
+    // If there are missing IDs, add an "Others" topic
     if (!missingDatasetIds.isEmpty()) {
       JSONArray otherSummaries = new JSONArray();
       for (String id : missingDatasetIds) {
         otherSummaries.put(datasetSummaries.get(id));
       }
 
-      JSONObject otherSection = new JSONObject();
-      otherSection.put("headline", "Other");
-      otherSection.put("one_sentence_summary",
-          "These experiments were not grouped into sub-sections by the AI.");
-      otherSection.put("summaries", otherSummaries);
-      deduplicatedSections.put(otherSection);
+      JSONObject otherTopic = new JSONObject();
+      otherTopic.put("headline", "Other");
+      otherTopic.put("one_sentence_summary",
+          "These experiments were not grouped by the AI.");
+      otherTopic.put("summaries", otherSummaries);
+      deduplicatedTopics.put(otherTopic);
     }
 
     // Create final deduplicated summary
     JSONObject finalSummary = new JSONObject(summaryResponse.toString());
-    finalSummary.put("sections", deduplicatedSections);
+    finalSummary.put("topics", deduplicatedTopics);
     return finalSummary;
   }
 
