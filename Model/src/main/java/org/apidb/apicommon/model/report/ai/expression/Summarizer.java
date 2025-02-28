@@ -245,7 +245,7 @@ public class Summarizer {
       JSONObject otherTopic = new JSONObject();
       otherTopic.put("headline", "Other");
       otherTopic.put("one_sentence_summary",
-          "These experiments were not grouped by the AI.");
+          "The AI ordered these experiments by biological importance but did not group them into topics.");
       otherTopic.put("summaries", otherSummaries);
       deduplicatedTopics.put(otherTopic);
     }
