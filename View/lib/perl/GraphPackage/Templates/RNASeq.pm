@@ -1795,6 +1795,14 @@ sub getPlotWidth { return 1200; }
 1;
 
 
+# FungiDB ncraOR74A_Ncrassa_mono_disaccharide_Wu_2021_ebi_rnaSeq_RSRC
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_d5cb6ab9a2;
+
+sub getPlotWidth { return 1200; }
+
+1;
+
+
 # host - hsapREF_Liu_calbSC5314_2015_ebi_rnaSeq_RSRC
 package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_5f2c5bb6f7;
 
