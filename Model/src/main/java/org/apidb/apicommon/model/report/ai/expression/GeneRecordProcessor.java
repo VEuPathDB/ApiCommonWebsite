@@ -30,11 +30,19 @@ public class GeneRecordProcessor {
 
   public static final List<String> REQUIRED_TABLE_NAMES = List.of(EXPRESSION_GRAPH_TABLE, EXPRESSION_GRAPH_DATA_TABLE);
 
+  // Increment this to invalidate all previous cache entries:
+  // (for example if changing first level model outputs rather than inputs which are already digestified)
+  private static final String DATA_MODEL_VERSION = "v3b";
+  
   public interface ExperimentInputs {
 
     String getCacheKey();
 
     String getDatasetId();
+
+    String getAssayType();
+
+    String getExperimentName();
 
     String getDigest();
 
@@ -82,7 +90,7 @@ public class GeneRecordProcessor {
         List<JSONObject> digests = experimentsWithData.stream()
             .map(exp -> new JSONObject().put("digest", exp.getDigest()))
             .collect(Collectors.toList());
-        return EncryptionUtil.md5(aiChatModel + " " + getFinalSummaryPrompt.apply(digests));
+        return EncryptionUtil.md5(aiChatModel + ":" + DATA_MODEL_VERSION + ":" + getFinalSummaryPrompt.apply(digests));
       }
 
     };
@@ -107,6 +115,8 @@ public class GeneRecordProcessor {
         }
 
         String datasetId = experimentRow.getAttributeValue("dataset_id").getValue();
+        String assayType = experimentRow.getAttributeValue("assay_type").getValue();
+        String experimentName = experimentRow.getAttributeValue("display_name").getValue();
 
         List<JSONObject> filteredData = readFilteredData(datasetId, expressionGraphsDataTable); 
 
@@ -118,6 +128,16 @@ public class GeneRecordProcessor {
           public String getDatasetId() {
             return datasetId;
           }
+	    
+          @Override
+          public String getAssayType() {
+            return assayType;
+          }
+	    
+          @Override
+          public String getExperimentName() {
+            return experimentName;
+          }
 
           @Override
           public String getCacheKey() {
@@ -126,7 +146,7 @@ public class GeneRecordProcessor {
 
           @Override
           public String getDigest() {
-            return EncryptionUtil.md5(aiChatModel + " " + getExperimentPrompt.apply(getExperimentData()));
+            return EncryptionUtil.md5(aiChatModel + ":" + DATA_MODEL_VERSION + ":" + getExperimentPrompt.apply(getExperimentData()));
           }
 
           @Override

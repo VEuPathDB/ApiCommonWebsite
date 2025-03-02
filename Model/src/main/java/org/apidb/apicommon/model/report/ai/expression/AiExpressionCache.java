@@ -10,6 +10,8 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Comparator;
+import java.util.stream.Collectors;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -34,7 +36,7 @@ public class AiExpressionCache {
   private static Logger LOG = Logger.getLogger(AiExpressionCache.class);
 
   // parallel processing
-  private static final int MAX_CONCURRENT_EXPERIMENT_LOOKUPS_PER_REQUEST = 5;
+  private static final int MAX_CONCURRENT_EXPERIMENT_LOOKUPS_PER_REQUEST = 10;
 
   // cache location
   private static final String CACHE_DIR_PROP_NAME = "AI_EXPRESSION_CACHE_DIR";
@@ -225,6 +227,13 @@ public class AiExpressionCache {
             // first populate each dataset entry as needed and collect experiment descriptors
             List<JSONObject> experiments = populateExperiments(summaryInputs.getExperimentsWithData(), experimentDescriber);
 
+	    // sort them most-interesting first so that the "Other" section will be filled
+	    // in that order (and also to give the AI the data in a sensible order)
+	    experiments.sort(
+			     Comparator.comparing((JSONObject obj) -> obj.optInt("biological_importance"), Comparator.reverseOrder())
+			     .thenComparing(obj -> obj.optInt("confidence"), Comparator.reverseOrder())
+			     );
+    
             // summarize experiments and store
             getPopulator(summaryInputs.getDigest(), () -> experimentSummarizer.apply(experiments)).accept(entryDir);
           },
