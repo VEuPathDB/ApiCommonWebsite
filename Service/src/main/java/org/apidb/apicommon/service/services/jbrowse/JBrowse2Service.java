@@ -27,11 +27,12 @@ public class JBrowse2Service extends AbstractWdkService {
 
     private static final Logger LOG = Logger.getLogger(JBrowse2Service.class);
 
+    private static final String VDI_DATASETS_DIRECTORY_KEY ="VDI_DATASETS_DIRECTORY";
     private static final String VDI_CONTROL_SCHEMA_KEY ="VDI_CONTROL_SCHEMA";
     private static final String VDI_DATASET_SCHEMA_KEY ="VDI_DATASETS_SCHEMA";
     private static final String WEB_SVC_DIR_KEY ="WEBSERVICEMIRROR";
 
-    private static final String USER_DATASETS_DIR = "./userDatasetsData";  // hard-coded mount point in the jbrowse2 service
+    private static final String SVC_USER_DATASETS_DIR = "./userDatasetsData";  // hard-coded mount point in the jbrowse2 service
     /*
     Get config for a single organism.  Assumes JSON will easily fit in memory.
      */
@@ -90,20 +91,22 @@ public class JBrowse2Service extends AbstractWdkService {
         Long userId = getRequestingUser().getUserId();
         String vdiDatasetsSchema = getWdkModel().getProperties().get(VDI_DATASET_SCHEMA_KEY);
         String vdiControlSchema = getWdkModel().getProperties().get(VDI_CONTROL_SCHEMA_KEY);
+        String vdiDatasetsDir = getWdkModel().getProperties().get(VDI_DATASETS_DIRECTORY_KEY);
 
-        String udDataPathString = String.join("/", USER_DATASETS_DIR, vdiDatasetsSchema, "build-" + buildNumber, projectId);
+        String svcUserDataPathString = String.join("/", SVC_USER_DATASETS_DIR, vdiDatasetsSchema, "build-" + buildNumber, projectId);
+        String wdkUserDatasetsPathString = String.join("/", vdiDatasetsDir, vdiDatasetsSchema, "build-" + buildNumber, projectId);
         JSONArray udTracks = new JSONArray();
 
         // for now we only have rnaseq UD tracks
         if (trackSetList.contains("rnaseq")) {
-            udTracks.put(getRnaSeqUdTracks(publicOrganismAbbrev, projectId, vdiControlSchema,
-                    udDataPathString, userId));
+            udTracks.put(getRnaSeqUdTracks(publicOrganismAbbrev, projectId, vdiControlSchema, wdkUserDatasetsPathString,
+                    svcUserDataPathString, userId));
         }
         return udTracks;
     }
 
     JSONArray getRnaSeqUdTracks(String publicOrganismAbbrev, String projectId, String vdiControlSchema,
-                      String udDataPathString, Long userId) throws WdkModelException {
+                      String svcUserDataPathString, String wdkUserDatasetsPathString, Long userId) throws WdkModelException {
 
         DataSource appDs = getWdkModel().getAppDb().getDataSource();
         String sql = "select distinct user_dataset_id, name " +
@@ -121,11 +124,11 @@ public class JBrowse2Service extends AbstractWdkService {
                     String datasetId = rs.getString(1);
                     String name = rs.getString(2);
                     JSONObject track = createBigwigTrackJson(datasetId, name, publicOrganismAbbrev);
-                    List<String> fileNames = getBigwigFileNames(udDataPathString + "/" +datasetId);
+                    List<String> fileNames = getBigwigFileNames(wdkUserDatasetsPathString + "/" +datasetId);
                     for (String fileName : fileNames) {
                         track.getJSONObject("adapter")
                                 .getJSONArray("subadapters")
-                                .put(createBigwigSubadapterJson(datasetId, fileName, udDataPathString));
+                                .put(createBigwigSubadapterJson(datasetId, fileName, svcUserDataPathString));
                     }
                 }
                 return rnaSeqUdTracks;
