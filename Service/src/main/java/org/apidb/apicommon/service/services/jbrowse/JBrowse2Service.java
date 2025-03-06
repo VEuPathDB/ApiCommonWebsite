@@ -93,8 +93,9 @@ public class JBrowse2Service extends AbstractWdkService {
         String vdiControlSchema = getWdkModel().getProperties().get(VDI_CONTROL_SCHEMA_KEY);
         String vdiDatasetsDir = getWdkModel().getProperties().get(VDI_DATASETS_DIRECTORY_KEY);
 
-        String svcUserDataPathString = String.join("/", SVC_USER_DATASETS_DIR, vdiDatasetsSchema, "build-" + buildNumber, projectId);
-        String wdkUserDatasetsPathString = String.join("/", vdiDatasetsDir, vdiDatasetsSchema, "build-" + buildNumber, projectId);
+        String path = String.join("/", vdiDatasetsSchema.toLowerCase(), "build-" + buildNumber, projectId);
+        String svcUserDataPathString = SVC_USER_DATASETS_DIR + "/" + path;
+        String wdkUserDatasetsPathString = vdiDatasetsDir + "/" + path;
         JSONArray udTracks = new JSONArray();
 
         // for now we only have rnaseq UD tracks
@@ -106,7 +107,7 @@ public class JBrowse2Service extends AbstractWdkService {
     }
 
     JSONArray getRnaSeqUdTracks(String publicOrganismAbbrev, String projectId, String vdiControlSchema,
-                      String svcUserDataPathString, String wdkUserDatasetsPathString, Long userId) throws WdkModelException {
+                      String wdkUserDatasetsPathString, String svcUserDatasetsPathString, Long userId) throws WdkModelException {
 
         DataSource appDs = getWdkModel().getAppDb().getDataSource();
         String sql = "select distinct user_dataset_id, name " +
@@ -117,6 +118,7 @@ public class JBrowse2Service extends AbstractWdkService {
                 "and ((is_public = 1 and is_owner = 1) or user_id = " + userId + ") " +
                 "and dd.dataset_id = aud.user_dataset_id " +
                 "and dd.identifier = '" + publicOrganismAbbrev + "'";
+
         try {
             return new SQLRunner(appDs, sql).executeQuery(rs -> {
                 JSONArray rnaSeqUdTracks = new JSONArray();
@@ -124,11 +126,13 @@ public class JBrowse2Service extends AbstractWdkService {
                     String datasetId = rs.getString(1);
                     String name = rs.getString(2);
                     JSONObject track = createBigwigTrackJson(datasetId, name, publicOrganismAbbrev);
-                    List<String> fileNames = getBigwigFileNames(wdkUserDatasetsPathString + "/" +datasetId);
+                    rnaSeqUdTracks.put(track);
+                    List<String> fileNames = getBigwigFileNames(wdkUserDatasetsPathString + "/" + datasetId);
                     for (String fileName : fileNames) {
-                        track.getJSONObject("adapter")
+
+                      track.getJSONObject("adapter")
                                 .getJSONArray("subadapters")
-                                .put(createBigwigSubadapterJson(datasetId, fileName, svcUserDataPathString));
+                                .put(createBigwigSubadapterJson(datasetId, fileName, svcUserDatasetsPathString));
                     }
                 }
                 return rnaSeqUdTracks;
@@ -141,6 +145,7 @@ public class JBrowse2Service extends AbstractWdkService {
 
     // boilerplate method written by copilot
     public static List<String> getBigwigFileNames(String directoryPath) throws SQLRunnerException {
+
         List<String> bwFiles = new ArrayList<>();
         File directory = new File(directoryPath);
 
@@ -148,6 +153,7 @@ public class JBrowse2Service extends AbstractWdkService {
             File[] files = directory.listFiles();
             if (files != null) {
                 for (File file : files) {
+
                     if (file.isFile() && file.getName().endsWith(".bw")) {
                         bwFiles.add(file.getName());
                     }
