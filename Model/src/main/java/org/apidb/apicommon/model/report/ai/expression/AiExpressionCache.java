@@ -8,10 +8,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 import java.util.Comparator;
-import java.util.stream.Collectors;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -20,6 +21,7 @@ import java.util.function.Predicate;
 import org.apache.log4j.Logger;
 import org.apidb.apicommon.model.report.ai.expression.GeneRecordProcessor.ExperimentInputs;
 import org.apidb.apicommon.model.report.ai.expression.GeneRecordProcessor.GeneSummaryInputs;
+import org.gusdb.fgputil.cache.disk.DirectoryLock.DirectoryLockTimeoutException;
 import org.gusdb.fgputil.cache.disk.OnDiskCache;
 import org.gusdb.fgputil.cache.disk.OnDiskCache.EntryNotCreatedException;
 import org.gusdb.fgputil.functional.Either;
@@ -31,12 +33,45 @@ import org.gusdb.wdk.model.WdkModel;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/**
+ * Provides lookup methods for gene expression summaries, caching by gene ID,
+ * with and without the option of cache population.
+ *
+ * Summary success response will look like:
+ * {
+ *   "resultStatus": "present",
+ *   "expressionSummary": generated_summary_object
+ * }
+ *
+ * Summary failure response will look like:
+ * {
+ *   "resultStatus": StatusString (not "present"),
+ *   "numExperiments": 25,
+ *   "numExperimentsComplete": 10,
+ *   "experimentStatus": {
+ *     [datasetId]: StatusString
+ *   }
+ * }
+ *
+ * Where StatusString is one of:
+ * - "present"
+ * - "missing"
+ * - "failed"
+ * - "expired"
+ * - "corrupted"
+ * - "undetermined"
+ * - "experiments_incomplete" (summary only)
+ *
+ * @param summaryInputs inputs for cache lookup
+ * @return response JSON (indicating cache hit or not with data or miss reason respectively)
+ */
 public class AiExpressionCache {
 
   private static Logger LOG = Logger.getLogger(AiExpressionCache.class);
 
   // parallel processing
   private static final int MAX_CONCURRENT_EXPERIMENT_LOOKUPS_PER_REQUEST = 10;
+  private static final long VISIT_ENTRY_LOCK_MAX_WAIT_MILLIS = 50;
 
   // cache location
   private static final String CACHE_DIR_PROP_NAME = "AI_EXPRESSION_CACHE_DIR";
@@ -50,23 +85,34 @@ public class AiExpressionCache {
   private static final String CACHED_DATA_FILE = "cached_data.txt";
   private static final String CACHE_DIGEST_FILE = "digest.txt";
 
-  // returned JSON props and values
-  private static final String CACHE_STATUS = "cacheStatus"; // hit or miss
-  private static final String CACHE_HIT = "hit";
-  private static final String HIT_RESULT = "expressionSummary"; // if hit, will have result
-  private static final String CACHE_MISS = "miss";
-  private static final String MISS_REASON = "reason";  // if miss, will have reason
+  // returned JSON props
+  private static final String RESULT_STATUS_PROP = "resultStatus";
+  private static final String SUMMARY_RESULT_PROP = "expressionSummary";
+  private static final String NUM_EXPERIMENTS_PROP = "numExperiments";
+  private static final String NUM_EXPERIMENTS_COMPLETE_PROP = "numExperimentsComplete";
+  private static final String EXPERIMENT_STATUS_PROP = "experimentStatus";
 
   // status messages
+  private static enum Status {
+    PRESENT,
+    MISSING,
+    FAILED,
+    EXPIRED,
+    CORRUPTED,
+    UNDETERMINED,
+    EXPERIMENTS_INCOMPLETE;
+
+    String val() {
+      return name().toLowerCase();
+    }
+  }
+
   private static class LookupException extends Exception {
-    public static final LookupException EXPIRED_ENTRY = new LookupException("Expired entry");
-    public static final LookupException CORRUPTED_ENTRY = new LookupException("Corrupted entry");
-    public static final LookupException MISSING_ENTRY = new LookupException("Missing entry");
-    private LookupException(String msg) { super(msg); }
-    public JSONObject toJson() {
-      return new JSONObject()
-          .put(CACHE_STATUS, CACHE_MISS)
-          .put(MISS_REASON, getMessage());
+    public LookupException(Status status) {
+      super(status.name());
+    }
+    public Status getStatus() {
+      return Status.valueOf(getMessage());
     }
   }
 
@@ -100,22 +146,69 @@ public class AiExpressionCache {
     _cache = new OnDiskCache(cacheParentDir, DEFAULT_TIMEOUT_MILLIS, DEFAULT_POLL_FREQUENCY_MILLIS);
   }
 
-  /**
-   * Tries to read a gene summary from the cache without populating if absent.
-   *
-   * @param summaryInputs inputs for cache lookup
-   * @return response JSON (indicating cache hit or not with data or miss reason respectively)
-   */
   public JSONObject readSummary(GeneSummaryInputs summaryInputs) {
-    try {
-      return _cache.visitContent(summaryInputs.getGeneId(),
-          geneDir -> getValidSummary(geneDir, summaryInputs));
+
+    // collect status of each experiment
+    int numComplete = 0;
+    Map<String, String> experiments = new LinkedHashMap<>();
+    for (ExperimentInputs datasetInput : summaryInputs.getExperimentsWithData()) {
+      Status status = getEntryStatus(datasetInput.getCacheKey(), datasetInput.getDigest());
+      if (status == Status.PRESENT) {
+        numComplete++;
+      }
+      experiments.put(datasetInput.getDatasetId(), status.val());
     }
-    catch (LookupException e) {
-      return e.toJson();
+
+    if (numComplete == summaryInputs.getExperimentsWithData().size()) {
+      // all experiments complete; check summary using short wait time
+      Status status = getEntryStatus(summaryInputs.getGeneId(), summaryInputs.getDigest());
+      if (status == Status.PRESENT) {
+        // all done; read result
+        try {
+          JSONObject summary = _cache.visitContent(summaryInputs.getGeneId(), dir -> getValidStoredData(dir, summaryInputs.getDigest()));
+          return new JSONObject()
+              .put(RESULT_STATUS_PROP, Status.PRESENT.val())
+              .put(SUMMARY_RESULT_PROP, summary);
+        }
+        catch (Exception e) {
+          // would not expect this since we already checked and are waiting for lock
+          throw new RuntimeException("Unable to read summary after already checking validity", e);
+        }
+      }
+      else {
+        return new JSONObject()
+            .put(RESULT_STATUS_PROP, status.val())
+            .put(NUM_EXPERIMENTS_PROP, summaryInputs.getExperimentsWithData().size())
+            .put(NUM_EXPERIMENTS_COMPLETE_PROP, numComplete)
+            .put(EXPERIMENT_STATUS_PROP, new JSONObject(experiments));
+      }
+    }
+    else {
+      // experiments incomplete; return appropriate response
+      return new JSONObject()
+          .put(RESULT_STATUS_PROP, Status.EXPERIMENTS_INCOMPLETE.val())
+          .put(NUM_EXPERIMENTS_PROP, summaryInputs.getExperimentsWithData().size())
+          .put(NUM_EXPERIMENTS_COMPLETE_PROP, numComplete)
+          .put(EXPERIMENT_STATUS_PROP, new JSONObject(experiments));
+    }
+  }
+
+  private Status getEntryStatus(String cacheKey, String digest) {
+    try {
+      // visit the summary to see if it is complete
+      _cache.visitContent(cacheKey,
+          dir -> getValidStoredData(dir, digest),
+          VISIT_ENTRY_LOCK_MAX_WAIT_MILLIS);
+      return Status.PRESENT;
     }
     catch (EntryNotCreatedException e) {
-      return LookupException.MISSING_ENTRY.toJson();
+      return Status.MISSING;
+    }
+    catch (DirectoryLockTimeoutException e) {
+      return Status.UNDETERMINED;
+    }
+    catch (LookupException e) {
+      return e.getStatus();
     }
     catch (Exception e) {
       // any other exception is a 500
@@ -136,7 +229,7 @@ public class AiExpressionCache {
   private JSONObject getValidSummary(Path geneDir, GeneSummaryInputs summaryInputs) throws Exception {
 
     // check for existence of valid cache entries for each experiment
-    // if any are missing or expired, exception will be thrown causing a cache miss
+    // if any are missing or expired, exception will be thrown indicating a cache miss
     for (ExperimentInputs datasetInput : summaryInputs.getExperimentsWithData()) {
       _cache.visitContent(datasetInput.getCacheKey(), experimentDir -> {
         return getValidStoredData(experimentDir, datasetInput.getDigest());
@@ -146,8 +239,8 @@ public class AiExpressionCache {
     // once all experiment values are confirmed, check for valid summary entry
     JSONObject summary = getValidStoredData(geneDir, summaryInputs.getDigest());
     return new JSONObject()
-        .put(CACHE_STATUS, CACHE_HIT)
-        .put(HIT_RESULT, summary);
+        .put(RESULT_STATUS_PROP, Status.PRESENT.val())
+        .put(SUMMARY_RESULT_PROP, summary);
   }
 
   /**
@@ -162,14 +255,19 @@ public class AiExpressionCache {
    */
   private static JSONObject getValidStoredData(Path entryDir, String computedDigest) throws IOException, LookupException {
 
-    // 1. check digest against existing value
-    if (!digestsMatch(entryDir, computedDigest)) {
-      throw LookupException.EXPIRED_ENTRY;
+    // 1. check if entry is complete / not failed
+    if (!OnDiskCache.isEntryComplete(entryDir)) {
+      throw new LookupException(Status.FAILED);
     }
 
-    // 2. check for presence of cached data, then read
+    // 2. check digest against existing value
+    if (!digestsMatch(entryDir, computedDigest)) {
+      throw new LookupException(Status.EXPIRED);
+    }
+
+    // 3. check for presence of cached data, then read
     return readCachedData(entryDir)
-        .orElseThrow(() -> LookupException.CORRUPTED_ENTRY);
+        .orElseThrow(() -> new LookupException(Status.CORRUPTED));
   }
 
   /**
@@ -227,13 +325,13 @@ public class AiExpressionCache {
             // first populate each dataset entry as needed and collect experiment descriptors
             List<JSONObject> experiments = populateExperiments(summaryInputs.getExperimentsWithData(), experimentDescriber);
 
-	    // sort them most-interesting first so that the "Other" section will be filled
-	    // in that order (and also to give the AI the data in a sensible order)
-	    experiments.sort(
-			     Comparator.comparing((JSONObject obj) -> obj.optInt("biological_importance"), Comparator.reverseOrder())
-			     .thenComparing(obj -> obj.optInt("confidence"), Comparator.reverseOrder())
-			     );
-    
+            // sort them most-interesting first so that the "Other" section will be filled
+            // in that order (and also to give the AI the data in a sensible order)
+            experiments.sort(Comparator
+                .comparing((JSONObject obj) -> obj.optInt("biological_importance"), Comparator.reverseOrder())
+                .thenComparing(obj -> obj.optInt("confidence"), Comparator.reverseOrder())
+            );
+
             // summarize experiments and store
             getPopulator(summaryInputs.getDigest(), () -> experimentSummarizer.apply(experiments)).accept(entryDir);
           },
@@ -243,8 +341,8 @@ public class AiExpressionCache {
 
           // repopulation predicate
           exceptionToTrue(entryDir ->
-              // try to look up summary json; if cache miss, then repopulate
-              getValidSummary(entryDir, summaryInputs).getString(CACHE_STATUS).equals(CACHE_MISS)));
+              // try to look up summary json; if not present, then try to repopulate
+              !getValidSummary(entryDir, summaryInputs).getString(RESULT_STATUS_PROP).equals(Status.PRESENT.val())));
     }
     catch (Exception e) {
       // any other exception is a 500
