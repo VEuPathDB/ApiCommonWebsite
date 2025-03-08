@@ -387,6 +387,11 @@ public class AiExpressionCache {
           }))
 
         ), exec));
+
+	// Add a delay of 500 ms between job submissions.
+	// We're assuming that blocking the main thread is OK because we're waiting
+	// for the results immediately after the loop is done.
+	Thread.sleep(500);
       }
 
       // wait for all threads, filling lists along the way
