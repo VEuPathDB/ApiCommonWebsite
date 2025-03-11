@@ -16,12 +16,12 @@ import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Predicate;
 
 import org.apache.log4j.Logger;
 import org.apidb.apicommon.model.report.ai.expression.GeneRecordProcessor.ExperimentInputs;
 import org.apidb.apicommon.model.report.ai.expression.GeneRecordProcessor.GeneSummaryInputs;
+import org.gusdb.fgputil.Wrapper;
 import org.gusdb.fgputil.cache.disk.DirectoryLock.DirectoryLockTimeoutException;
 import org.gusdb.fgputil.cache.disk.OnDiskCache;
 import org.gusdb.fgputil.cache.disk.OnDiskCache.EntryNotCreatedException;
@@ -150,12 +150,12 @@ public class AiExpressionCache {
   public JSONObject readSummary(GeneSummaryInputs summaryInputs) {
 
     // collect status of each experiment
-    AtomicInteger numComplete = new AtomicInteger(0);
+    Wrapper<Integer> numComplete = new Wrapper<>(0);
     Map<String, String> experiments = new LinkedHashMap<>();
     for (ExperimentInputs datasetInput : summaryInputs.getExperimentsWithData()) {
       getEntryOrFailureStatus(datasetInput.getCacheKey(),
           datasetInput.getDigest(), VISIT_ENTRY_LOCK_MAX_WAIT_MILLIS)
-        .ifLeft(json -> numComplete.incrementAndGet())
+        .ifLeft(json -> numComplete.set(numComplete.get() + 1))
         .ifRight(status -> experiments.put(datasetInput.getDatasetId(), status.val()));
     }
 
