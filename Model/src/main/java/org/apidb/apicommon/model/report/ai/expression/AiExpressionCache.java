@@ -16,6 +16,7 @@ import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Predicate;
 
 import org.apache.log4j.Logger;
@@ -149,26 +150,25 @@ public class AiExpressionCache {
   public JSONObject readSummary(GeneSummaryInputs summaryInputs) {
 
     // collect status of each experiment
-    int numComplete = 0;
+    AtomicInteger numComplete = new AtomicInteger(0);
     Map<String, String> experiments = new LinkedHashMap<>();
     for (ExperimentInputs datasetInput : summaryInputs.getExperimentsWithData()) {
-      Status status = getEntryStatus(datasetInput.getCacheKey(), datasetInput.getDigest());
-      if (status == Status.PRESENT) {
-        numComplete++;
-      }
-      experiments.put(datasetInput.getDatasetId(), status.val());
+      getEntryOrFailureStatus(datasetInput.getCacheKey(),
+          datasetInput.getDigest(), VISIT_ENTRY_LOCK_MAX_WAIT_MILLIS)
+        .ifLeft(json -> numComplete.incrementAndGet())
+        .ifRight(status -> experiments.put(datasetInput.getDatasetId(), status.val()));
     }
 
-    if (numComplete == summaryInputs.getExperimentsWithData().size()) {
+    if (numComplete.get() == summaryInputs.getExperimentsWithData().size()) {
       // all experiments complete; check summary using short wait time
-      Status status = getEntryStatus(summaryInputs.getGeneId(), summaryInputs.getDigest());
-      if (status == Status.PRESENT) {
+      Either<JSONObject, Status> result = getEntryOrFailureStatus(
+          summaryInputs.getGeneId(), summaryInputs.getDigest(), VISIT_ENTRY_LOCK_MAX_WAIT_MILLIS);
+      if (result.isLeft()) {
         // all done; read result
         try {
-          JSONObject summary = _cache.visitContent(summaryInputs.getGeneId(), dir -> getValidStoredData(dir, summaryInputs.getDigest()));
           return new JSONObject()
               .put(RESULT_STATUS_PROP, Status.PRESENT.val())
-              .put(SUMMARY_RESULT_PROP, summary);
+              .put(SUMMARY_RESULT_PROP, result.getLeft());
         }
         catch (Exception e) {
           // would not expect this since we already checked and are waiting for lock
@@ -177,9 +177,9 @@ public class AiExpressionCache {
       }
       else {
         return new JSONObject()
-            .put(RESULT_STATUS_PROP, status.val())
+            .put(RESULT_STATUS_PROP, result.getRight().val())
             .put(NUM_EXPERIMENTS_PROP, summaryInputs.getExperimentsWithData().size())
-            .put(NUM_EXPERIMENTS_COMPLETE_PROP, numComplete)
+            .put(NUM_EXPERIMENTS_COMPLETE_PROP, numComplete.get())
             .put(EXPERIMENT_STATUS_PROP, new JSONObject(experiments));
       }
     }
@@ -193,22 +193,21 @@ public class AiExpressionCache {
     }
   }
 
-  private Status getEntryStatus(String cacheKey, String digest) {
+  private Either<JSONObject,Status> getEntryOrFailureStatus(String cacheKey, String digest, long lockTimeoutMillis) {
     try {
       // visit the summary to see if it is complete
-      _cache.visitContent(cacheKey,
+      return Either.left(_cache.visitContent(cacheKey,
           dir -> getValidStoredData(dir, digest),
-          VISIT_ENTRY_LOCK_MAX_WAIT_MILLIS);
-      return Status.PRESENT;
+          lockTimeoutMillis));
     }
     catch (EntryNotCreatedException e) {
-      return Status.MISSING;
+      return Either.right(Status.MISSING);
     }
     catch (DirectoryLockTimeoutException e) {
-      return Status.UNDETERMINED;
+      return Either.right(Status.UNDETERMINED);
     }
     catch (LookupException e) {
-      return e.getStatus();
+      return Either.right(e.getStatus());
     }
     catch (Exception e) {
       // any other exception is a 500
@@ -231,9 +230,8 @@ public class AiExpressionCache {
     // check for existence of valid cache entries for each experiment
     // if any are missing or expired, exception will be thrown indicating a cache miss
     for (ExperimentInputs datasetInput : summaryInputs.getExperimentsWithData()) {
-      _cache.visitContent(datasetInput.getCacheKey(), experimentDir -> {
-        return getValidStoredData(experimentDir, datasetInput.getDigest());
-      });
+      _cache.visitContent(datasetInput.getCacheKey(),
+          experimentDir -> getValidStoredData(experimentDir, datasetInput.getDigest()));
     }
 
     // once all experiment values are confirmed, check for valid summary entry
@@ -419,7 +417,7 @@ public class AiExpressionCache {
    * @param predicate predicate that throws an exception
    * @return the value returned by the passed predicate, or true if an exception is thrown
    */
-  private Predicate<Path> exceptionToTrue(PredicateWithException<Path> predicate) {
+  private static Predicate<Path> exceptionToTrue(PredicateWithException<Path> predicate) {
     return path -> {
       try {
         return predicate.test(path);
