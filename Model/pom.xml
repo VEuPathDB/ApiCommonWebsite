@@ -129,6 +129,12 @@
       <groupId>io.vulpine.lib</groupId>
       <artifactId>Jackfish</artifactId>
     </dependency>
+
+    <dependency>
+      <groupId>com.openai</groupId>
+      <artifactId>openai-java</artifactId>
+    </dependency>
+
   </dependencies>
 
 </project>
