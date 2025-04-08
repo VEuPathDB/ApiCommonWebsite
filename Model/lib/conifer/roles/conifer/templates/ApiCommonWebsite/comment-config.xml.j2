@@ -12,11 +12,34 @@ site_vars file: {{ site_vars }}
 <commentConfig
     login="{{ commentconfig_login }}"
     password="{{ commentconfig_password }}"
-    connectionUrl="{{ commentconfig_connectionUrl }}"
-    platform="{{ commentconfig_platform }}"
     commentSchema="{{ commentconfig_commentSchema }}"
     userLoginSchema="{{ commentconfig_userLoginSchema }}"
     userLoginDbLink="{{ commentconfig_userLoginDbLink }}"
+    <!-- optional attributes -->
+    {% if commentconfig_connectionUrl is defined -%}
+    connectionUrl="{{ commentconfig_connectionUrl }}"
+    {% endif -%}
+    {% if commentconfig_platform is defined -%}
+    platform="{{ commentconfig_platform }}"
+    {% endif -%}
+    {% if commentconfig_ldapServer is defined -%}
+    ldapServer="{{ commentconfig_ldapServer }}"
+    {% endif -%}
+    {% if commentconfig_ldapBaseDn is defined -%}
+    ldapBaseDn="{{ commentconfig_ldapBaseDn }}"
+    {% endif -%}
+    {% if commentconfig_ldapCommonNmae is defined -%}
+    ldapCommonName="{{ commentconfig_ldapCommonNmae }}"
+    {% endif -%}
+    {% if commentconfig_dbIdentifier is defined -%}
+    dbIdentifier="{{ commentconfig_dbIdentifier }}"
+    {% endif -%}
+    {% if commentconfig_dbHost is defined -%}
+    dbHost="{{ commentconfig_dbHost }}"
+    {% endif -%}
+    {% if commentconfig_dbPort is defined -%}
+    dbPort="{{ commentconfig_dbPort }}"
+    {% endif -%}
     {% if commentconfig_maxActive is defined -%}
     maxActive="{{ commentconfig_maxActive }}"
     {% endif -%}
