@@ -96,19 +96,19 @@ profilesimilarityconfig_dbLogin: '{{ modelconfig_appDb_login }}'
 profilesimilarityconfig_dbPassword: '{{ modelconfig_appDb_password }}'
 profilesimilarityconfig_perlExec: /usr/bin/perl
 # Note: assuming postgres here when connection URL is missing (cannot determine platform from ldap cn)
-profilesimilarityconfig_connectionUrl: "{{ 'dbi:Pg:' ~ modelconfig_appDb_ldapCommonName if modelconfig_userDb_connectionUrl.startswith('=c=') else modelconfig_appDb_connectionUrl|jdbc2Dbi }}"
+profilesimilarityconfig_connectionUrl: "{{ 'dbi:Pg:' ~ modelconfig_appDb_ldapCommonName if modelconfig_userDb_connectionUrl is not defined or modelconfig_userDb_connectionUrl.startswith('=c=') else modelconfig_appDb_connectionUrl|jdbc2Dbi }}"
 
 genelistcomparisonconfig_dbLogin: '{{ modelconfig_appDb_login }}'
 genelistcomparisonconfig_dbPassword: '{{ modelconfig_appDb_password }}'
 genelistcomparisonconfig_perlExec: /usr/bin/perl
 # Note: assuming postgres here when connection URL is missing (cannot determine platform from ldap cn)
-genelistcomparisonconfig_connectionUrl: "{{ 'dbi:Pg:' ~ modelconfig_appDb_ldapCommonName if modelconfig_userDb_connectionUrl.startswith('=c=') else modelconfig_appDb_connectionUrl|jdbc2Dbi }}"
+genelistcomparisonconfig_connectionUrl: "{{ 'dbi:Pg:' ~ modelconfig_appDb_ldapCommonName if modelconfig_userDb_connectionUrl is not defined or modelconfig_userDb_connectionUrl.startswith('=c=') else modelconfig_appDb_connectionUrl|jdbc2Dbi }}"
 
 fisherexacttestconfig_dbLogin: '{{ modelconfig_appDb_login }}'
 fisherexacttestconfig_dbPassword: '{{ modelconfig_appDb_password }}'
 fisherexacttestconfig_perlExec: /usr/bin/perl
 # Note: assuming postgres here when connection URL is missing (cannot determine platform from ldap cn)
-fisherexacttestconfig_connectionUrl: "{{ 'dbi:Pg:' ~ modelconfig_appDb_ldapCommonName if modelconfig_userDb_connectionUrl.startswith('=c=') else modelconfig_appDb_connectionUrl|jdbc2Dbi }}"
+fisherexacttestconfig_connectionUrl: "{{ 'dbi:Pg:' ~ modelconfig_appDb_ldapCommonName if modelconfig_userDb_connectionUrl is not defined or modelconfig_userDb_connectionUrl.startswith('=c=') else modelconfig_appDb_connectionUrl|jdbc2Dbi }}"
 
 _showUnreleasedDataByHostnamePrefix:
   a: false
