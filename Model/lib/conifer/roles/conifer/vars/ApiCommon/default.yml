@@ -60,7 +60,7 @@ projectsxml:
 commentconfig_login: '{{ modelconfig_userDb_login }}'
 commentconfig_password: '{{ modelconfig_userDb_password }}'
 commentconfig_connectionUrl: '{{ modelconfig_userDb_connectionUrl }}'
-commentconfig_platform: '{{ modelconfig_userDb_platform }}'
+commentconfig_platform: "{{ modelconfig_userDb_platform if modelconfig_userDb_platform is defined else '' }}"
 commentconfig_ldapServer: '{{ modelconfig_userDb_ldapServer }}'
 commentconfig_ldapBaseDn: '{{ modelconfig_userDb_ldapBaseDn }}'
 commentconfig_ldapCommonName: '{{ modelconfig_userDb_ldapCommonName }}'
