@@ -30,6 +30,7 @@ import org.gusdb.fgputil.functional.FunctionalInterfaces.FunctionWithException;
 import org.gusdb.fgputil.functional.FunctionalInterfaces.PredicateWithException;
 import org.gusdb.fgputil.functional.FunctionalInterfaces.SupplierWithException;
 import org.gusdb.wdk.model.WdkModel;
+import org.gusdb.wdk.model.WdkRuntimeException;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -75,7 +76,6 @@ public class AiExpressionCache {
 
   // cache location
   private static final String CACHE_DIR_PROP_NAME = "AI_EXPRESSION_CACHE_DIR";
-  private static final String DEFAULT_TMP_CACHE_SUBDIR = "expressionCache";
 
   // catch characteristics
   private static final long DEFAULT_TIMEOUT_MILLIS = 5 * 60 * 1000;
@@ -137,13 +137,14 @@ public class AiExpressionCache {
   // constructor
   public AiExpressionCache(WdkModel wdkModel) throws IOException {
     _wdkModel = wdkModel;
+    _cache = new OnDiskCache(getAiExpressionCacheParentDir(wdkModel), DEFAULT_TIMEOUT_MILLIS, DEFAULT_POLL_FREQUENCY_MILLIS);
+  }
 
-    Path cacheParentDir = Optional
-        .ofNullable(_wdkModel.getProperties().get(CACHE_DIR_PROP_NAME))
+  public static Path getAiExpressionCacheParentDir(WdkModel wdkModel) {
+    return Optional
+        .ofNullable(wdkModel.getProperties().get(CACHE_DIR_PROP_NAME))
         .map(Paths::get)
-        .orElse(Paths.get(_wdkModel.getModelConfig().getWdkTempDir().toString(), DEFAULT_TMP_CACHE_SUBDIR));
-
-    _cache = new OnDiskCache(cacheParentDir, DEFAULT_TIMEOUT_MILLIS, DEFAULT_POLL_FREQUENCY_MILLIS);
+        .orElseThrow(() -> new WdkRuntimeException("No expression cache dir configured in model.prop.  Expected to find key: " + CACHE_DIR_PROP_NAME));
   }
 
   public JSONObject readSummary(GeneSummaryInputs summaryInputs) {

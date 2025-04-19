@@ -10,10 +10,12 @@ import java.util.stream.Collectors;
 
 import org.apidb.apicommon.model.TranscriptUtil;
 import org.apidb.apicommon.model.report.ai.expression.AiExpressionCache;
+import org.apidb.apicommon.model.report.ai.expression.DailyCostMonitor.CostExceededException;
 import org.apidb.apicommon.model.report.ai.expression.GeneRecordProcessor;
 import org.apidb.apicommon.model.report.ai.expression.GeneRecordProcessor.GeneSummaryInputs;
 import org.apidb.apicommon.model.report.ai.expression.Summarizer;
 import org.gusdb.wdk.model.WdkModelException;
+import org.gusdb.wdk.model.WdkServiceTemporarilyUnavailableException;
 import org.gusdb.wdk.model.answer.stream.RecordStream;
 import org.gusdb.wdk.model.answer.stream.RecordStreamFactory;
 import org.gusdb.wdk.model.record.RecordClass;
@@ -98,6 +100,9 @@ public class SingleGeneAiExpressionReporter extends AbstractReporter {
 
       }
       writer.write("}");
+    }
+    catch (CostExceededException e) {
+      throw new WdkServiceTemporarilyUnavailableException("Daily token allotment for AI expression summarizing has expired.", e);
     }
   }
 }
