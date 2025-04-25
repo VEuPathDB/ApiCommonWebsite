@@ -7,9 +7,11 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
+import org.apidb.apicommon.model.report.ai.expression.DailyCostMonitor.CostExceededException;
 import org.apidb.apicommon.model.report.ai.expression.GeneRecordProcessor.ExperimentInputs;
 import org.gusdb.fgputil.json.JsonUtil;
 import org.gusdb.wdk.model.WdkModel;
+import org.gusdb.wdk.model.WdkModelException;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -76,12 +78,21 @@ public class Summarizer {
   private static final String OPENAI_API_KEY_PROP_NAME = "OPENAI_API_KEY";
 
   private final OpenAIClientAsync _openAIClient;
+  private final DailyCostMonitor _costMonitor;
 
-  public Summarizer(WdkModel wdkModel) {
+  public Summarizer(WdkModel wdkModel) throws WdkModelException {
+
+    String apiKey = wdkModel.getProperties().get(OPENAI_API_KEY_PROP_NAME);
+    if (apiKey == null) {
+      throw new WdkModelException("WDK property '" + OPENAI_API_KEY_PROP_NAME + "' has not been set.");
+    }
+
     _openAIClient = OpenAIOkHttpClientAsync.builder()
-        .apiKey(wdkModel.getProperties().get(OPENAI_API_KEY_PROP_NAME))
+        .apiKey(apiKey)
         .maxRetries(32)  // Handle 429 errors
         .build();
+
+    _costMonitor = new DailyCostMonitor(wdkModel);
   }
 
   public static String getExperimentMessage(JSONObject experiment) {
@@ -114,6 +125,10 @@ public class Summarizer {
 
   public CompletableFuture<JSONObject> describeExperiment(ExperimentInputs experimentInputs) {
 
+    if (_costMonitor.isCostExceeded()) {
+      throw new CostExceededException();
+    }
+
     ChatCompletionCreateParams request = ChatCompletionCreateParams.builder()
         .model(OPENAI_CHAT_MODEL)
         .maxCompletionTokens(MAX_RESPONSE_TOKENS)
@@ -129,8 +144,13 @@ public class Summarizer {
 
     // add dataset_id back to the response
     return _openAIClient.chat().completions().create(request).thenApply(completion -> {
+
+      // update cost accumulator
+      _costMonitor.updateCost(completion.usage());
+
       // response is a JSON string
       String jsonString = completion.choices().get(0).message().content().get();
+
       try {
         JSONObject jsonObject = new JSONObject(jsonString);
 	// add some fields directly to aid the final summarization
@@ -160,6 +180,10 @@ public class Summarizer {
   
   public JSONObject summarizeExperiments(List<JSONObject> experiments) {
 
+    if (_costMonitor.isCostExceeded()) {
+      throw new CostExceededException();
+    }
+
     ChatCompletionCreateParams request = ChatCompletionCreateParams.builder()
         .model(OPENAI_CHAT_MODEL)
         .maxCompletionTokens(MAX_RESPONSE_TOKENS)
@@ -175,6 +199,8 @@ public class Summarizer {
 
     ChatCompletion completion = _openAIClient.chat().completions().create(request)
         .join(); // join() waits for the async response
+
+    _costMonitor.updateCost(completion.usage());
 
     String jsonString = completion.choices().get(0).message().content().get();
     try {
