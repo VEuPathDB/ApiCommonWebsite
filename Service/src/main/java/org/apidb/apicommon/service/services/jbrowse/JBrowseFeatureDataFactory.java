@@ -235,7 +235,7 @@ public class JBrowseFeatureDataFactory {
     String sortedSubfeatureSql =
         " select * from (" +
         "   select a.*," +
-        "     (case when b.parent_id is null then to_char(a.parent_id) else to_char(b.parent_id) end) as top_parent_id" +
+        "     (case when b.parent_id is null then a.parent_id else b.parent_id end) as top_parent_id" +
         "   from " + wrappedSubfeatureSql + " a" +
         "   left join " + wrappedSubfeatureSql + " b on a.parent_id = b.feature_id" +
         " )" +
