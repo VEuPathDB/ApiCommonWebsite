@@ -15,18 +15,21 @@ import org.gusdb.fgputil.cache.disk.DirectoryLock;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkRuntimeException;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.openai.models.CompletionUsage;
 
 public class DailyCostMonitor {
 
+  // daily cost monitoring locations
+  private static final String DAILY_COST_ACCUMULATION_FILE_DIR = "dailyCost";
   private static final String DAILY_COST_ACCUMULATION_FILE = "daily_cost_accumulation.txt";
 
   // model prop keys
   private static final String MAX_DAILY_DOLLAR_COST_PROP_NAME = "MAX_DAILY_AI_EXPRESSION_DOLLAR_COST";
-  private static final String PLAN_COST_PER_1M_INPUT_TOKENS_PROP_NAME = "COST_PER_1M_AI_INPUT_TOKENs";
-  private static final String PLAN_COST_PER_1M_OUTPUT_TOKENS_PROP_NAME = "COST_PER_1M_AI_OUTPUT_TOKENS";
+  private static final String DOLLAR_COST_PER_1M_INPUT_TOKENS_PROP_NAME = "DOLLAR_COST_PER_1M_AI_INPUT_TOKENS";
+  private static final String DOLLAR_COST_PER_1M_OUTPUT_TOKENS_PROP_NAME = "DOLLAR_COST_PER_1M_AI_OUTPUT_TOKENS";
 
   // lock characteristics
   private static final long DEFAULT_TIMEOUT_MILLIS = 1000;
@@ -47,17 +50,23 @@ public class DailyCostMonitor {
   private final Path _costMonitoringDir;
   private final Path _costMonitoringFile;
 
-  private double _maxDailyDollarCost;
-  private double _costPerInputToken;
-  private double _costPerOutputToken;
+  private final double _maxDailyDollarCost;
+  private final double _costPerInputToken;
+  private final double _costPerOutputToken;
 
   public DailyCostMonitor(WdkModel wdkModel) throws WdkModelException {
-    _costMonitoringDir = AiExpressionCache.getAiExpressionCacheParentDir(wdkModel);
-    _costMonitoringFile = _costMonitoringDir.resolve(DAILY_COST_ACCUMULATION_FILE);
+    try {
+      _costMonitoringDir = AiExpressionCache.getAiExpressionCacheParentDir(wdkModel).resolve(DAILY_COST_ACCUMULATION_FILE_DIR);
+      IoUtil.createOpenPermsDirectory(_costMonitoringDir, true);
+      _costMonitoringFile = _costMonitoringDir.resolve(DAILY_COST_ACCUMULATION_FILE);
 
-    _maxDailyDollarCost = getNumberProp(wdkModel, MAX_DAILY_DOLLAR_COST_PROP_NAME);
-    _costPerInputToken = getNumberProp(wdkModel, PLAN_COST_PER_1M_INPUT_TOKENS_PROP_NAME) / 1000000;
-    _costPerOutputToken = getNumberProp(wdkModel, PLAN_COST_PER_1M_OUTPUT_TOKENS_PROP_NAME) / 1000000;
+      _maxDailyDollarCost = getNumberProp(wdkModel, MAX_DAILY_DOLLAR_COST_PROP_NAME);
+      _costPerInputToken = getNumberProp(wdkModel, DOLLAR_COST_PER_1M_INPUT_TOKENS_PROP_NAME) / 1000000;
+      _costPerOutputToken = getNumberProp(wdkModel, DOLLAR_COST_PER_1M_OUTPUT_TOKENS_PROP_NAME) / 1000000;
+    }
+    catch (IOException e) {
+      throw new WdkModelException("Could not create required directory", e);
+    }
   }
 
   private double getNumberProp(WdkModel wdkModel, String propName) throws WdkModelException {
@@ -133,8 +142,8 @@ public class DailyCostMonitor {
     try (Reader in = new FileReader(_costMonitoringFile.toFile())) {
       return new JSONObject(IoUtil.readAllChars(in));
     }
-    catch (IOException e) {
-      throw new WdkRuntimeException("Unable to read AI expression cost file: " + _costMonitoringFile);
+    catch (IOException | JSONException e) {
+      throw new WdkRuntimeException("Unable to read or parse AI expression cost file: " + _costMonitoringFile, e);
     }
   }
 

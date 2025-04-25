@@ -145,11 +145,11 @@ public class Summarizer {
     // add dataset_id back to the response
     return _openAIClient.chat().completions().create(request).thenApply(completion -> {
 
-      // response is a JSON string
-      String jsonString = completion.choices().get(0).message().content().get();
-
       // update cost accumulator
       _costMonitor.updateCost(completion.usage());
+
+      // response is a JSON string
+      String jsonString = completion.choices().get(0).message().content().get();
 
       try {
         JSONObject jsonObject = new JSONObject(jsonString);
