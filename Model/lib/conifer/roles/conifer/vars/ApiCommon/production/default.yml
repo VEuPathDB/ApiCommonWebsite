@@ -32,6 +32,13 @@ vdi_datasets_env_map:
   q2_prefix: VDI_DATASETS_QA_N
   default: VDI_DATASETS_QA_N
 
+user_datasets_workspace:
+  community: "{{ communitydatasets_env_map[prefix]|default(communitydatasets_env_map['default']) }}"
+
+communitydatasets_env_map:
+   w_prefix: false
+   default: true
+
 modelprop:
   VDI_DATASETS_DIRECTORY: "/var/www/Common/userDatasets"
   HOSTNAME: "{{ hostname }}"
