@@ -2,6 +2,6 @@
   "name": "genomics-site-deployer",
   "private": true,
   "dependencies": {
-    "@veupathdb/genomics-site": "1.2.20-patch-10"
+    "@veupathdb/genomics-site": "1.2.20-patch.11"
   }
 }
