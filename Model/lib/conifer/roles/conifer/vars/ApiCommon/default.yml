@@ -47,7 +47,7 @@ modelprop:
   JBROWSE_SERVICE_URL: "/{{ webapp_ctx }}/service/jbrowse"
 
 user_datasets_uploadTypes_env_map:
-  w: "genelist"
+  w: "genelist,bigwigfiles,rnaseq"
   default: "genelist,bigwigfiles,rnaseq,wrangler"
 
 user_datasets_workspace:
