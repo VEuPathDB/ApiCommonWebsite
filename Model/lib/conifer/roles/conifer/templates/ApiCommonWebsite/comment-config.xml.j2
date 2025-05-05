@@ -12,11 +12,33 @@ site_vars file: {{ site_vars }}
 <commentConfig
     login="{{ commentconfig_login }}"
     password="{{ commentconfig_password }}"
-    connectionUrl="{{ commentconfig_connectionUrl }}"
-    platform="{{ commentconfig_platform }}"
     commentSchema="{{ commentconfig_commentSchema }}"
     userLoginSchema="{{ commentconfig_userLoginSchema }}"
     userLoginDbLink="{{ commentconfig_userLoginDbLink }}"
+    {% if commentconfig_connectionUrl is defined and commentconfig_connectionUrl != "" -%}
+    connectionUrl="{{ commentconfig_connectionUrl }}"
+    {% endif -%}
+    {% if commentconfig_ldapServer is defined and commentconfig_ldapServer != "" -%}
+    ldapServer="{{ commentconfig_ldapServer }}"
+    {% endif -%}
+    {% if commentconfig_ldapBaseDn is defined and commentconfig_ldapBaseDn != "" -%}
+    ldapBaseDn="{{ commentconfig_ldapBaseDn }}"
+    {% endif -%}
+    {% if commentconfig_ldapCommonName is defined and commentconfig_ldapCommonName != "" -%}
+    ldapCommonName="{{ commentconfig_ldapCommonName }}"
+    {% endif -%}
+    {% if commentconfig_dbHost is defined and commentconfig_dbHost != "" -%}
+    dbHost="{{ commentconfig_dbHost }}"
+    {% endif -%}
+    {% if commentconfig_dbPort is defined and commentconfig_dbPort != "" -%}
+    dbPort="{{ commentconfig_dbPort }}"
+    {% endif -%}
+    {% if commentconfig_dbIdentifier is defined and commentconfig_dbIdentifier != "" -%}
+    dbIdentifier="{{ commentconfig_dbIdentifier }}"
+    {% endif -%}
+    {% if commentconfig_platform is defined and commentconfig_platform != "" -%}
+    platform="{{ commentconfig_platform }}"
+    {% endif -%}
     {% if commentconfig_maxActive is defined -%}
     maxActive="{{ commentconfig_maxActive }}"
     {% endif -%}
@@ -46,8 +68,8 @@ site_vars file: {{ site_vars }}
     {% endif -%}
     {% if commentconfig_userFileUploadDir is defined -%}
     userFileUploadDir="{{ commentconfig_userFileUploadDir }}"
-    {%- endif %}
+    {% endif -%}
     {% if commentconfig_solrUrl is defined -%}
     solrUrl="{{ commentconfig_solrUrl }}"
-    {% endif %}
+    {% endif -%}
 />
