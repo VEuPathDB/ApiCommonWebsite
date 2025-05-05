@@ -22,6 +22,9 @@
     "url": {
       "description": "URL of PubMed resource",
       "type": "string"
+    },
+    "status": {
+      "type": "string"
     }
   },
   "additionalProperties": false,
