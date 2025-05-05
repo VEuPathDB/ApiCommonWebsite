@@ -1,6 +1,7 @@
 package org.apidb.apicommon.model.comment.pojo;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Objects;
@@ -8,25 +9,30 @@ import java.util.Objects;
 /**
  * PubMed resource details
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class PubMedReference {
   private final String _id;
   private final String _title;
   private final String _journal;
   private final String _author;
   private final String _url;
+  private final String _status;
 
   @JsonCreator
   public PubMedReference(
-      @JsonProperty("id")      String id,
-      @JsonProperty("title")   String title,
-      @JsonProperty("journal") String journal,
-      @JsonProperty("author")  String author,
-      @JsonProperty("url")     String url) {
+    @JsonProperty("id")      String id,
+    @JsonProperty("title")   String title,
+    @JsonProperty("journal") String journal,
+    @JsonProperty("author")  String author,
+    @JsonProperty("url")     String url,
+    @JsonProperty("status")  String status
+  ) {
     _id = id;
     _title = title;
     _journal = journal;
     _author = author;
     _url = url;
+    _status = status;
   }
 
   /**
@@ -62,6 +68,10 @@ public class PubMedReference {
    */
   public String getUrl() {
     return _url;
+  }
+
+  public String getStatus() {
+    return _status;
   }
 
   @Override
