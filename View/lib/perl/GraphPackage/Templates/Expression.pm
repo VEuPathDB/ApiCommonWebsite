@@ -127,7 +127,6 @@ sub init {
   $self->SUPER::init(@_);
 
   my $allProfileSets = $self->getAllProfileSetNames();
-  # print STDERR Dumper($allProfileSets);
 
   my %plotParts;
   my %hasStdError;
@@ -188,8 +187,8 @@ sub getAllProfileSetNames {
     my $content = get($url);
     my $json = from_json($content);
     foreach my $profile (@$json) {
-      my $profileName = $profile->{'profile_set_name'};
-      my $profileType = $profile->{'profile_type'};
+      my $profileName = $profile->{'PROFILE_SET_NAME'};
+      my $profileType = $profile->{'PROFILE_TYPE'};
       next if($self->isExcludedProfileSet($profileName));
       my $p = {profileName=>$profileName, profileType=>$profileType};
       push @rv, $p;
