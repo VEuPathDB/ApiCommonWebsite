@@ -235,9 +235,9 @@ public class JBrowseFeatureDataFactory {
     String sortedSubfeatureSql =
         " select * from (" +
         "   select a.*," +
-        "     (case when b.parent_id is null then to_char(a.parent_id) else to_char(b.parent_id) end) as top_parent_id" +
+        "     (case when b.parent_id is null then a.parent_id else b.parent_id end) as top_parent_id" +
         "   from " + wrappedSubfeatureSql + " a" +
-        "   left join " + wrappedSubfeatureSql + " b on to_char(a.parent_id) = to_char(b.feature_id)" +
+        "   left join " + wrappedSubfeatureSql + " b on a.parent_id = b.feature_id" +
         " )" +
         " order by top_parent_id asc";
 
@@ -458,7 +458,7 @@ public class JBrowseFeatureDataFactory {
 
     private Optional<Range<Integer>> findFeatureRange(String featureSql, String queryName) {
     // find range of selected features
-    String rangeSql = "select min(startm) as min_start, max(end) as max_end from ( " + featureSql + " )";
+    String rangeSql = "select min(startm) as min_start, max(\"end\") as max_end from ( " + featureSql + " )";
     return new SQLRunner(_appDs, rangeSql, queryName).executeQuery(rs -> {
       if (!rs.next()) return Optional.empty();
       int minStart = rs.getInt("min_start");
@@ -478,7 +478,7 @@ public class JBrowseFeatureDataFactory {
       return "select " +
           "substr(sequence, " + start.toString() + ", " + length.toString() + ") as seq, " +
           start.toString() + " as startm, " +
-          end.toString() + " as end, '" +
+          end.toString() + " as \"end\", '" +
           refseqName + "' as feature_id " +
           "from " + sequenceTableName +
           " where source_id = '" + refseqName + "'";
