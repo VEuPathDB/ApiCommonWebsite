@@ -5,10 +5,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.Optional;
 
+import org.apache.log4j.Logger;
 import org.gusdb.fgputil.FormatUtil;
 import org.gusdb.fgputil.IoUtil;
 import org.gusdb.fgputil.cache.disk.DirectoryLock;
@@ -21,6 +23,8 @@ import org.json.JSONObject;
 import com.openai.models.CompletionUsage;
 
 public class DailyCostMonitor {
+
+  private static final Logger LOG = Logger.getLogger(DailyCostMonitor.class);
 
   // daily cost monitoring locations
   private static final String DAILY_COST_ACCUMULATION_FILE_DIR = "dailyCost";
@@ -56,8 +60,13 @@ public class DailyCostMonitor {
 
   public DailyCostMonitor(WdkModel wdkModel) throws WdkModelException {
     try {
-      _costMonitoringDir = AiExpressionCache.getAiExpressionCacheParentDir(wdkModel).resolve(DAILY_COST_ACCUMULATION_FILE_DIR);
+      _costMonitoringDir = AiExpressionCache.getAiExpressionCacheParentDir(wdkModel).resolve(DAILY_COST_ACCUMULATION_FILE_DIR).toAbsolutePath();
+      LOG.info("Attempting creation of open perms cost monitoring dir: " + _costMonitoringDir);
       IoUtil.createOpenPermsDirectories(_costMonitoringDir);
+      if (!Files.exists(_costMonitoringDir) || !Files.isReadable(_costMonitoringDir) || !Files.isWritable(_costMonitoringDir)) {
+        throw new WdkModelException("Directory " + _costMonitoringDir + " does not exist or is not readable/writeable by this user.");
+      }
+
       _costMonitoringFile = _costMonitoringDir.resolve(DAILY_COST_ACCUMULATION_FILE);
 
       _maxDailyDollarCost = getNumberProp(wdkModel, MAX_DAILY_DOLLAR_COST_PROP_NAME);
