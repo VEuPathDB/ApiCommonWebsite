@@ -57,7 +57,7 @@ public class DailyCostMonitor {
   public DailyCostMonitor(WdkModel wdkModel) throws WdkModelException {
     try {
       _costMonitoringDir = AiExpressionCache.getAiExpressionCacheParentDir(wdkModel).resolve(DAILY_COST_ACCUMULATION_FILE_DIR);
-      IoUtil.createOpenPermsDirectory(_costMonitoringDir, true);
+      IoUtil.createOpenPermsDirectories(_costMonitoringDir);
       _costMonitoringFile = _costMonitoringDir.resolve(DAILY_COST_ACCUMULATION_FILE);
 
       _maxDailyDollarCost = getNumberProp(wdkModel, MAX_DAILY_DOLLAR_COST_PROP_NAME);

@@ -146,7 +146,7 @@ public class AiExpressionCache {
         .ofNullable(wdkModel.getProperties().get(CACHE_DIR_PROP_NAME))
         .map(Paths::get)
         .orElseThrow(() -> new WdkRuntimeException("No expression cache dir configured in model.prop.  Expected to find key: " + CACHE_DIR_PROP_NAME));
-    IoUtil.createOpenPermsDirectory(path, true);
+    IoUtil.createOpenPermsDirectories(path);
     return path;
   }
 
