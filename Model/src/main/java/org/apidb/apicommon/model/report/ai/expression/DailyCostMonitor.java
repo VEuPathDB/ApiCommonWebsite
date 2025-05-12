@@ -47,6 +47,7 @@ public class DailyCostMonitor {
   private static final CompletionUsage EMPTY_COST = CompletionUsage.builder()
       .promptTokens(0)
       .completionTokens(0)
+      .totalTokens(0)
       .build();
 
   public static class CostExceededException extends RuntimeException { }
