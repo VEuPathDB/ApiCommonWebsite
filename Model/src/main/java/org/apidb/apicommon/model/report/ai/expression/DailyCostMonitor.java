@@ -62,7 +62,7 @@ public class DailyCostMonitor {
   public DailyCostMonitor(WdkModel wdkModel) throws WdkModelException {
     try {
       _costMonitoringDir = AiExpressionCache.getAiExpressionCacheParentDir(wdkModel).resolve(DAILY_COST_ACCUMULATION_FILE_DIR).toAbsolutePath();
-      LOG.info("Attempting creation of open perms cost monitoring dir: " + _costMonitoringDir);
+      LOG.debug("Attempting creation of open perms cost monitoring dir: " + _costMonitoringDir);
       IoUtil.createOpenPermsDirectories(_costMonitoringDir);
       if (!Files.exists(_costMonitoringDir) || !Files.isReadable(_costMonitoringDir) || !Files.isWritable(_costMonitoringDir)) {
         throw new WdkModelException("Directory " + _costMonitoringDir + " does not exist or is not readable/writeable by this user.");
@@ -123,12 +123,12 @@ public class DailyCostMonitor {
       // only write file if necessary
       if (!newDate.equals(previousDate) || newCost != previousCost) {
 
+        JSONObject json = new JSONObject()
+            .put(JSON_DATE_PROP, newDate)
+            .put(JSON_COST_PROP, newCost);
+        LOG.info("Updating daily cost file: " + json.toString(2));
         try (Writer out = new FileWriter(_costMonitoringFile.toFile())) {
-          out.write(new JSONObject()
-              .put(JSON_DATE_PROP, newDate)
-              .put(JSON_COST_PROP, newCost)
-              .toString()
-          );
+          out.write(json.toString());
         }
       }
 
