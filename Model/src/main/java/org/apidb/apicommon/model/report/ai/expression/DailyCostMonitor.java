@@ -50,8 +50,6 @@ public class DailyCostMonitor {
       .totalTokens(0)
       .build();
 
-  public static class CostExceededException extends RuntimeException { }
-
   private final Path _costMonitoringDir;
   private final Path _costMonitoringFile;
 

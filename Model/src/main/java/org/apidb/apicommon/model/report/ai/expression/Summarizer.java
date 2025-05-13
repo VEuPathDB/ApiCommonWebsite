@@ -7,7 +7,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
-import org.apidb.apicommon.model.report.ai.expression.DailyCostMonitor.CostExceededException;
 import org.apidb.apicommon.model.report.ai.expression.GeneRecordProcessor.ExperimentInputs;
 import org.gusdb.fgputil.json.JsonUtil;
 import org.gusdb.wdk.model.WdkModel;
@@ -80,7 +79,7 @@ public class Summarizer {
   private final OpenAIClientAsync _openAIClient;
   private final DailyCostMonitor _costMonitor;
 
-  public Summarizer(WdkModel wdkModel) throws WdkModelException {
+  public Summarizer(WdkModel wdkModel, DailyCostMonitor costMonitor) throws WdkModelException {
 
     String apiKey = wdkModel.getProperties().get(OPENAI_API_KEY_PROP_NAME);
     if (apiKey == null) {
@@ -92,7 +91,7 @@ public class Summarizer {
         .maxRetries(32)  // Handle 429 errors
         .build();
 
-    _costMonitor = new DailyCostMonitor(wdkModel);
+    _costMonitor = costMonitor;
   }
 
   public static String getExperimentMessage(JSONObject experiment) {
@@ -124,10 +123,6 @@ public class Summarizer {
   }
 
   public CompletableFuture<JSONObject> describeExperiment(ExperimentInputs experimentInputs) {
-
-    if (_costMonitor.isCostExceeded()) {
-      throw new CostExceededException();
-    }
 
     ChatCompletionCreateParams request = ChatCompletionCreateParams.builder()
         .model(OPENAI_CHAT_MODEL)
@@ -179,10 +174,6 @@ public class Summarizer {
   }
   
   public JSONObject summarizeExperiments(List<JSONObject> experiments) {
-
-    if (_costMonitor.isCostExceeded()) {
-      throw new CostExceededException();
-    }
 
     ChatCompletionCreateParams request = ChatCompletionCreateParams.builder()
         .model(OPENAI_CHAT_MODEL)

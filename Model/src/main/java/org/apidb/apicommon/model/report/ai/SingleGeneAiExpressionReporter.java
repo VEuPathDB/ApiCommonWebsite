@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 import org.apidb.apicommon.model.TranscriptUtil;
 import org.apidb.apicommon.model.report.ai.expression.AiExpressionCache;
-import org.apidb.apicommon.model.report.ai.expression.DailyCostMonitor.CostExceededException;
+import org.apidb.apicommon.model.report.ai.expression.DailyCostMonitor;
 import org.apidb.apicommon.model.report.ai.expression.GeneRecordProcessor;
 import org.apidb.apicommon.model.report.ai.expression.GeneRecordProcessor.GeneSummaryInputs;
 import org.apidb.apicommon.model.report.ai.expression.Summarizer;
@@ -34,6 +34,7 @@ public class SingleGeneAiExpressionReporter extends AbstractReporter {
   private static final String POPULATION_MODE_PROP_KEY = "populateIfNotPresent";
 
   private boolean _populateIfNotPresent;
+  private DailyCostMonitor _costMonitor;
 
   @Override
   public Reporter configure(JSONObject config) throws ReporterConfigException, WdkModelException {
@@ -51,6 +52,12 @@ public class SingleGeneAiExpressionReporter extends AbstractReporter {
       // check result size; limit to small results due to OpenAI cost
       if (_baseAnswer.getResultSizeFactory().getResultSize() > MAX_RESULT_SIZE) {
         throw new ReporterConfigException("This reporter cannot be called with results of size greater than " + MAX_RESULT_SIZE);
+      }
+
+      // check daily cost; throw before write() is called so caller gets the proper HTTP response code
+      _costMonitor = new DailyCostMonitor(_wdkModel);
+      if (_costMonitor.isCostExceeded()) {
+        throw new WdkServiceTemporarilyUnavailableException("Daily token allotment for AI expression summarizing has expired.");
       }
     }
     catch (JSONException | IllegalArgumentException e) {
@@ -71,7 +78,7 @@ public class SingleGeneAiExpressionReporter extends AbstractReporter {
     AiExpressionCache cache = AiExpressionCache.getInstance(_wdkModel);
 
     // create summarizer (interacts with OpenAI)
-    Summarizer summarizer = new Summarizer(_wdkModel);
+    Summarizer summarizer = new Summarizer(_wdkModel, _costMonitor);
 
     // open record and output streams
     try (RecordStream recordStream = RecordStreamFactory.getRecordStream(_baseAnswer, List.of(), tables);
@@ -100,9 +107,6 @@ public class SingleGeneAiExpressionReporter extends AbstractReporter {
 
       }
       writer.write("}");
-    }
-    catch (CostExceededException e) {
-      throw new WdkServiceTemporarilyUnavailableException("Daily token allotment for AI expression summarizing has expired.", e);
     }
   }
 }
