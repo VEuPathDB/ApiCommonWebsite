@@ -21,7 +21,6 @@ import java.util.function.Predicate;
 import org.apache.log4j.Logger;
 import org.apidb.apicommon.model.report.ai.expression.GeneRecordProcessor.ExperimentInputs;
 import org.apidb.apicommon.model.report.ai.expression.GeneRecordProcessor.GeneSummaryInputs;
-import org.gusdb.fgputil.IoUtil;
 import org.gusdb.fgputil.cache.disk.DirectoryLock.DirectoryLockTimeoutException;
 import org.gusdb.fgputil.cache.disk.OnDiskCache;
 import org.gusdb.fgputil.cache.disk.OnDiskCache.EntryNotCreatedException;
@@ -30,6 +29,7 @@ import org.gusdb.fgputil.functional.FunctionalInterfaces.ConsumerWithException;
 import org.gusdb.fgputil.functional.FunctionalInterfaces.FunctionWithException;
 import org.gusdb.fgputil.functional.FunctionalInterfaces.PredicateWithException;
 import org.gusdb.fgputil.functional.FunctionalInterfaces.SupplierWithException;
+import org.gusdb.wdk.model.Utilities;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkRuntimeException;
 import org.json.JSONException;
@@ -141,12 +141,12 @@ public class AiExpressionCache {
     _cache = new OnDiskCache(getAiExpressionCacheParentDir(wdkModel), DEFAULT_TIMEOUT_MILLIS, DEFAULT_POLL_FREQUENCY_MILLIS);
   }
 
-  public static Path getAiExpressionCacheParentDir(WdkModel wdkModel) throws IOException {
+  public static Path getAiExpressionCacheParentDir(WdkModel wdkModel) {
     Path path = Optional
         .ofNullable(wdkModel.getProperties().get(CACHE_DIR_PROP_NAME))
         .map(Paths::get)
         .orElseThrow(() -> new WdkRuntimeException("No expression cache dir configured in model.prop.  Expected to find key: " + CACHE_DIR_PROP_NAME));
-    IoUtil.createOpenPermsDirectories(path);
+    Utilities.ensureCreation(Files::createDirectory, path);
     return path;
   }
 

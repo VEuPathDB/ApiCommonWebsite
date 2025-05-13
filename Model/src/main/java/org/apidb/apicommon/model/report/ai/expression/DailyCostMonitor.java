@@ -14,6 +14,7 @@ import org.apache.log4j.Logger;
 import org.gusdb.fgputil.FormatUtil;
 import org.gusdb.fgputil.IoUtil;
 import org.gusdb.fgputil.cache.disk.DirectoryLock;
+import org.gusdb.wdk.model.Utilities;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkRuntimeException;
@@ -58,23 +59,18 @@ public class DailyCostMonitor {
   private final double _costPerOutputToken;
 
   public DailyCostMonitor(WdkModel wdkModel) throws WdkModelException {
-    try {
-      _costMonitoringDir = AiExpressionCache.getAiExpressionCacheParentDir(wdkModel).resolve(DAILY_COST_ACCUMULATION_FILE_DIR).toAbsolutePath();
-      LOG.debug("Attempting creation of open perms cost monitoring dir: " + _costMonitoringDir);
-      IoUtil.createOpenPermsDirectories(_costMonitoringDir);
-      if (!Files.exists(_costMonitoringDir) || !Files.isReadable(_costMonitoringDir) || !Files.isWritable(_costMonitoringDir)) {
-        throw new WdkModelException("Directory " + _costMonitoringDir + " does not exist or is not readable/writeable by this user.");
-      }
-
-      _costMonitoringFile = _costMonitoringDir.resolve(DAILY_COST_ACCUMULATION_FILE);
-
-      _maxDailyDollarCost = getNumberProp(wdkModel, MAX_DAILY_DOLLAR_COST_PROP_NAME);
-      _costPerInputToken = getNumberProp(wdkModel, DOLLAR_COST_PER_1M_INPUT_TOKENS_PROP_NAME) / 1000000;
-      _costPerOutputToken = getNumberProp(wdkModel, DOLLAR_COST_PER_1M_OUTPUT_TOKENS_PROP_NAME) / 1000000;
+    _costMonitoringDir = AiExpressionCache.getAiExpressionCacheParentDir(wdkModel).resolve(DAILY_COST_ACCUMULATION_FILE_DIR).toAbsolutePath();
+    LOG.debug("Attempting creation of open perms cost monitoring dir: " + _costMonitoringDir);
+    Utilities.ensureCreation(Files::createDirectory, _costMonitoringDir);
+    if (!Files.exists(_costMonitoringDir) || !Files.isReadable(_costMonitoringDir) || !Files.isWritable(_costMonitoringDir)) {
+      throw new WdkModelException("Directory " + _costMonitoringDir + " does not exist or is not readable/writeable by this user.");
     }
-    catch (IOException e) {
-      throw new WdkModelException("Could not create required directory", e);
-    }
+
+    _costMonitoringFile = _costMonitoringDir.resolve(DAILY_COST_ACCUMULATION_FILE);
+
+    _maxDailyDollarCost = getNumberProp(wdkModel, MAX_DAILY_DOLLAR_COST_PROP_NAME);
+    _costPerInputToken = getNumberProp(wdkModel, DOLLAR_COST_PER_1M_INPUT_TOKENS_PROP_NAME) / 1000000;
+    _costPerOutputToken = getNumberProp(wdkModel, DOLLAR_COST_PER_1M_OUTPUT_TOKENS_PROP_NAME) / 1000000;
   }
 
   private double getNumberProp(WdkModel wdkModel, String propName) throws WdkModelException {
@@ -125,6 +121,7 @@ public class DailyCostMonitor {
             .put(JSON_DATE_PROP, newDate)
             .put(JSON_COST_PROP, newCost);
         LOG.info("Updating daily cost file: " + json.toString(2));
+        Utilities.ensureCreation(Files::createFile, _costMonitoringFile);
         try (Writer out = new FileWriter(_costMonitoringFile.toFile())) {
           out.write(json.toString());
         }
