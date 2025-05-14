@@ -42,6 +42,9 @@ public class SingleGeneAiExpressionReporter extends AbstractReporter {
       // assign cache mode
       _populateIfNotPresent = config.optBoolean(POPULATION_MODE_PROP_KEY, false);
 
+      // instantiate cost monitor
+      _costMonitor = new DailyCostMonitor(_wdkModel);
+
       // check model config; this should only be assigned to genes
       RecordClass geneRecordClass = TranscriptUtil.getGeneRecordClass(_wdkModel);
       if (_baseAnswer.getQuestion().getRecordClass() != geneRecordClass) {
@@ -54,10 +57,9 @@ public class SingleGeneAiExpressionReporter extends AbstractReporter {
         throw new ReporterConfigException("This reporter cannot be called with results of size greater than " + MAX_RESULT_SIZE);
       }
 
-      // check daily cost; throw before write() is called so caller gets the proper HTTP response code
-      _costMonitor = new DailyCostMonitor(_wdkModel);
-      if (_costMonitor.isCostExceeded()) {
-        throw new WdkServiceTemporarilyUnavailableException("Daily token allotment for AI expression summarizing has expired.");
+      // if we might do some work, check daily cost and throw before write() is called so caller gets the proper HTTP response code
+      if (_populateIfNotPresent && _costMonitor.isCostExceeded()) {
+        throw new WdkServiceTemporarilyUnavailableException("Daily token limit for AI expression summarization reached.");
       }
     }
     catch (JSONException | IllegalArgumentException e) {
