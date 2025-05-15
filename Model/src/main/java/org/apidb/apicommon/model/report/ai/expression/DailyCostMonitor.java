@@ -5,13 +5,16 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.Optional;
 
+import org.apache.log4j.Logger;
 import org.gusdb.fgputil.FormatUtil;
 import org.gusdb.fgputil.IoUtil;
 import org.gusdb.fgputil.cache.disk.DirectoryLock;
+import org.gusdb.wdk.model.Utilities;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkRuntimeException;
@@ -22,14 +25,16 @@ import com.openai.models.CompletionUsage;
 
 public class DailyCostMonitor {
 
+  private static final Logger LOG = Logger.getLogger(DailyCostMonitor.class);
+
   // daily cost monitoring locations
   private static final String DAILY_COST_ACCUMULATION_FILE_DIR = "dailyCost";
   private static final String DAILY_COST_ACCUMULATION_FILE = "daily_cost_accumulation.txt";
 
   // model prop keys
-  private static final String MAX_DAILY_DOLLAR_COST_PROP_NAME = "MAX_DAILY_AI_EXPRESSION_DOLLAR_COST";
-  private static final String DOLLAR_COST_PER_1M_INPUT_TOKENS_PROP_NAME = "DOLLAR_COST_PER_1M_AI_INPUT_TOKENS";
-  private static final String DOLLAR_COST_PER_1M_OUTPUT_TOKENS_PROP_NAME = "DOLLAR_COST_PER_1M_AI_OUTPUT_TOKENS";
+  private static final String MAX_DAILY_DOLLAR_COST_PROP_NAME = "OPENAI_MAX_DAILY_AI_EXPRESSION_DOLLAR_COST";
+  private static final String DOLLAR_COST_PER_1M_INPUT_TOKENS_PROP_NAME = "OPENAI_DOLLAR_COST_PER_1M_AI_INPUT_TOKENS";
+  private static final String DOLLAR_COST_PER_1M_OUTPUT_TOKENS_PROP_NAME = "OPENAI_DOLLAR_COST_PER_1M_AI_OUTPUT_TOKENS";
 
   // lock characteristics
   private static final long DEFAULT_TIMEOUT_MILLIS = 1000;
@@ -43,9 +48,8 @@ public class DailyCostMonitor {
   private static final CompletionUsage EMPTY_COST = CompletionUsage.builder()
       .promptTokens(0)
       .completionTokens(0)
+      .totalTokens(0)
       .build();
-
-  public static class CostExceededException extends RuntimeException { }
 
   private final Path _costMonitoringDir;
   private final Path _costMonitoringFile;
@@ -55,18 +59,18 @@ public class DailyCostMonitor {
   private final double _costPerOutputToken;
 
   public DailyCostMonitor(WdkModel wdkModel) throws WdkModelException {
-    try {
-      _costMonitoringDir = AiExpressionCache.getAiExpressionCacheParentDir(wdkModel).resolve(DAILY_COST_ACCUMULATION_FILE_DIR);
-      IoUtil.createOpenPermsDirectory(_costMonitoringDir, true);
-      _costMonitoringFile = _costMonitoringDir.resolve(DAILY_COST_ACCUMULATION_FILE);
+    _costMonitoringDir = AiExpressionCache.getAiExpressionCacheParentDir(wdkModel).resolve(DAILY_COST_ACCUMULATION_FILE_DIR).toAbsolutePath();
+    LOG.debug("Attempting creation of open perms cost monitoring dir: " + _costMonitoringDir);
+    Utilities.ensureCreation(Files::createDirectory, _costMonitoringDir);
+    if (!Files.exists(_costMonitoringDir) || !Files.isReadable(_costMonitoringDir) || !Files.isWritable(_costMonitoringDir)) {
+      throw new WdkModelException("Directory " + _costMonitoringDir + " does not exist or is not readable/writeable by this user.");
+    }
 
-      _maxDailyDollarCost = getNumberProp(wdkModel, MAX_DAILY_DOLLAR_COST_PROP_NAME);
-      _costPerInputToken = getNumberProp(wdkModel, DOLLAR_COST_PER_1M_INPUT_TOKENS_PROP_NAME) / 1000000;
-      _costPerOutputToken = getNumberProp(wdkModel, DOLLAR_COST_PER_1M_OUTPUT_TOKENS_PROP_NAME) / 1000000;
-    }
-    catch (IOException e) {
-      throw new WdkModelException("Could not create required directory", e);
-    }
+    _costMonitoringFile = _costMonitoringDir.resolve(DAILY_COST_ACCUMULATION_FILE);
+
+    _maxDailyDollarCost = getNumberProp(wdkModel, MAX_DAILY_DOLLAR_COST_PROP_NAME);
+    _costPerInputToken = getNumberProp(wdkModel, DOLLAR_COST_PER_1M_INPUT_TOKENS_PROP_NAME) / 1000000;
+    _costPerOutputToken = getNumberProp(wdkModel, DOLLAR_COST_PER_1M_OUTPUT_TOKENS_PROP_NAME) / 1000000;
   }
 
   private double getNumberProp(WdkModel wdkModel, String propName) throws WdkModelException {
@@ -113,12 +117,13 @@ public class DailyCostMonitor {
       // only write file if necessary
       if (!newDate.equals(previousDate) || newCost != previousCost) {
 
+        JSONObject json = new JSONObject()
+            .put(JSON_DATE_PROP, newDate)
+            .put(JSON_COST_PROP, newCost);
+        LOG.info("Updating daily cost file: " + json.toString(2));
+        Utilities.ensureCreation(Files::createFile, _costMonitoringFile);
         try (Writer out = new FileWriter(_costMonitoringFile.toFile())) {
-          out.write(new JSONObject()
-              .put(JSON_DATE_PROP, newDate)
-              .put(JSON_COST_PROP, newCost)
-              .toString()
-          );
+          out.write(json.toString());
         }
       }
 
