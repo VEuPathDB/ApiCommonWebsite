@@ -3,6 +3,7 @@
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
     <start>
         <element name="commentConfig">
+
             <!-- comment specific properties -->
             <attribute name="commentSchema" />
             <attribute name="userLoginSchema" />
@@ -16,16 +17,55 @@
             </optional>
 
             <!-- common properties, exact copy from DBBaseContent -->
+
+            <!-- Login Credentials -->
+
             <attribute name="login" />
             <attribute name="password" />
-            <attribute name="connectionUrl" />
-            <attribute name="solrUrl" />
-            <attribute name="platform">
-               <choice>
-                  <value>Oracle</value>
-                  <value>PostgreSQL</value>
-               </choice>
-            </attribute>
+
+            <!-- Connection Information -->
+            <!--   May connect via:
+              [
+                LDAP host[:port] + baseDn + database identifier (TNS or PG DB name) (platform is derived)
+                -OR-
+                host + port (optional) + database identifier + platform
+                -OR-
+                DB connection URL (platform is derived)
+              ]
+            -->
+
+            <optional>
+              <attribute name="connectionUrl" />
+            </optional>
+            <optional>
+              <attribute name="platform">
+                <choice>
+                    <value>Oracle</value>
+                    <value>PostgreSQL</value>
+                </choice>
+              </attribute>
+            </optional>
+            <optional>
+              <attribute name="ldapServer" />
+            </optional>
+            <optional>
+              <attribute name="ldapBaseDn" />
+            </optional>
+            <optional>
+              <attribute name="ldapCommonName" />
+            </optional>
+            <optional>
+              <attribute name="dbIdentifier" />
+            </optional>
+            <optional>
+              <attribute name="dbHost" />
+            </optional>
+            <optional>
+              <attribute name="dbPort" />
+            </optional>
+
+            <!-- Connection Pool Settings -->
+
             <optional>
                 <attribute name="maxActive">
                     <data type="unsignedShort" />
@@ -46,9 +86,17 @@
                     <data type="unsignedShort" />
                 </attribute>
             </optional>
+
+            <!-- Other Database Settings -->
+
             <optional>
                 <attribute name="defaultFetchSize">
                     <data type="unsignedShort" />
+                </attribute>
+            </optional>
+            <optional>
+                <attribute name="driverInitClass">
+                    <data type="string" />
                 </attribute>
             </optional>
             <optional>
@@ -63,11 +111,12 @@
                     </optional>
                     <optional>
                         <attribute name="showConnectionsDuration">
-                            <data type="unsignedLong" />
+                            <data type="long" />
                         </attribute>
                     </optional>
                 </group>
             </optional>
+
         </element>
     </start>
 
