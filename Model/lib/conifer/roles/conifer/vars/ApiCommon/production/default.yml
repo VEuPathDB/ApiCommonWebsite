@@ -57,6 +57,7 @@ modelprop:
 }}"
   GOOGLE_MAPS_API_KEY: "{{ lookup('euparc', 'attr=api_key xpath=sites/google_maps default=NOKEY') }}"
   COMMUNITY_SITE: "//{{ community_env_map[prefix]|default(community_env_map['default']) }}"
+  OPENAI_API_KEY: "{{ lookup('euparc', 'attr=api_key xpath=sites/openai default=NOKEY') }}"
 
 
 # the below extends the w_ q_ prefix pattern used for workspace_env_map, which
