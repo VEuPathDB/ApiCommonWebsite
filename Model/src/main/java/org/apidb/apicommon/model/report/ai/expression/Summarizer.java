@@ -72,7 +72,7 @@ public class Summarizer {
     .putAdditionalProperty("required", JsonValue.from(List.of(
           "headline",
           "one_paragraph_summary",
-          "dataset_ids"
+          "topics"
     )))
     .build();
 
