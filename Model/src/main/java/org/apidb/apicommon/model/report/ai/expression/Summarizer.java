@@ -24,6 +24,8 @@ import com.openai.models.ChatModel;
 import com.openai.models.ResponseFormatJsonSchema;
 import com.openai.models.ResponseFormatJsonSchema.JsonSchema;
 
+import org.apache.log4j.Logger;
+
 public class Summarizer {
 
   // provide exact model number for semi-reproducibility
@@ -79,6 +81,8 @@ public class Summarizer {
   private final OpenAIClientAsync _openAIClient;
   private final DailyCostMonitor _costMonitor;
 
+  private static final Logger LOG = Logger.getLogger(Summarizer.class);
+
   public Summarizer(WdkModel wdkModel, DailyCostMonitor costMonitor) throws WdkModelException {
 
     String apiKey = wdkModel.getProperties().get(OPENAI_API_KEY_PROP_NAME);
@@ -123,7 +127,6 @@ public class Summarizer {
   }
 
   public CompletableFuture<JSONObject> describeExperiment(ExperimentInputs experimentInputs) {
-
     ChatCompletionCreateParams request = ChatCompletionCreateParams.builder()
         .model(OPENAI_CHAT_MODEL)
         .maxCompletionTokens(MAX_RESPONSE_TOKENS)
@@ -139,25 +142,35 @@ public class Summarizer {
 
     // add dataset_id back to the response
     return _openAIClient.chat().completions().create(request).thenApply(completion -> {
-
       // update cost accumulator
       _costMonitor.updateCost(completion.usage());
-
       // response is a JSON string
       String jsonString = completion.choices().get(0).message().content().get();
-
-      try {
-        JSONObject jsonObject = new JSONObject(jsonString);
-	// add some fields directly to aid the final summarization
-        jsonObject.put("dataset_id", experimentInputs.getDatasetId());
-        jsonObject.put("assay_type", experimentInputs.getAssayType());
-        jsonObject.put("experiment_name", experimentInputs.getExperimentName());
-        return jsonObject;
-      }
-      catch (JSONException e) {
-        throw new RuntimeException(
-            "Error parsing JSON response for dataset " + experimentInputs.getDatasetId() +
-            ".  Raw response string:\n" + jsonString + "\n", e);
+      int attempts = 0;
+      while (true) {
+        try {
+          JSONObject jsonObject = new JSONObject(jsonString);
+          // add some fields directly to aid the final summarization
+          jsonObject.put("dataset_id", experimentInputs.getDatasetId());
+          jsonObject.put("assay_type", experimentInputs.getAssayType());
+          jsonObject.put("experiment_name", experimentInputs.getExperimentName());
+          return jsonObject;
+        }
+        catch (JSONException e) {
+          attempts++;
+          if (attempts >= 3) {
+            LOG.error("Failed to parse JSON after 3 attempts for dataset " + experimentInputs.getDatasetId() + ". Raw response: " + jsonString, e);
+            throw new RuntimeException(
+                "Error parsing JSON response for dataset " + experimentInputs.getDatasetId() +
+                ".  Raw response string:\n" + jsonString + "\n", e);
+          }
+          LOG.warn("Malformed JSON from OpenAI (attempt " + attempts + ") for dataset " + experimentInputs.getDatasetId() + ". Retrying...");
+          // Optionally, add a small delay here if desired
+          // Re-request from OpenAI
+          completion = _openAIClient.chat().completions().create(request).join();
+          _costMonitor.updateCost(completion.usage());
+          jsonString = completion.choices().get(0).message().content().get();
+        }
       }
     });
   }
@@ -174,7 +187,6 @@ public class Summarizer {
   }
   
   public JSONObject summarizeExperiments(List<JSONObject> experiments) {
-
     ChatCompletionCreateParams request = ChatCompletionCreateParams.builder()
         .model(OPENAI_CHAT_MODEL)
         .maxCompletionTokens(MAX_RESPONSE_TOKENS)
@@ -187,24 +199,27 @@ public class Summarizer {
         .addSystemMessage(SYSTEM_MESSAGE)
         .addUserMessage(getFinalSummaryMessage(experiments))
         .build();
-
-    ChatCompletion completion = _openAIClient.chat().completions().create(request)
-        .join(); // join() waits for the async response
-
-    _costMonitor.updateCost(completion.usage());
-
-    String jsonString = completion.choices().get(0).message().content().get();
-    try {
-      JSONObject rawResponseObject = new JSONObject(jsonString);
-
-      // quality control (remove bad `dataset_id`s) and add 'Others' section for any experiments not listed by AI
-      JSONObject finalResponseObject = consolidateSummary(rawResponseObject, experiments);
-
-      return finalResponseObject;
-    }
-    catch (JSONException e) {
-      throw new RuntimeException("Error parsing JSON response " +
-          "for gene summary.  Raw response string:\n" + jsonString + "\n", e);
+    int attempts = 0;
+    while (true) {
+      ChatCompletion completion = _openAIClient.chat().completions().create(request).join(); // join() waits for the async response
+      _costMonitor.updateCost(completion.usage());
+      String jsonString = completion.choices().get(0).message().content().get();
+      try {
+        JSONObject rawResponseObject = new JSONObject(jsonString);
+        // quality control (remove bad `dataset_id`s) and add 'Others' section for any experiments not listed by AI
+        JSONObject finalResponseObject = consolidateSummary(rawResponseObject, experiments);
+        return finalResponseObject;
+      }
+      catch (JSONException e) {
+        attempts++;
+        if (attempts >= 3) {
+          LOG.error("Failed to parse JSON after 3 attempts for gene summary. Raw response: " + jsonString, e);
+          throw new RuntimeException("Error parsing JSON response " +
+              "for gene summary.  Raw response string:\n" + jsonString + "\n", e);
+        }
+        LOG.warn("Malformed JSON from OpenAI (attempt " + attempts + ") for gene summary. Retrying...");
+        // Optionally, add a small delay here if desired
+      }
     }
   }
 
