@@ -6,7 +6,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
+import java.util.function.Function;
 
+import org.apache.log4j.Logger;
 import org.apidb.apicommon.model.report.ai.expression.GeneRecordProcessor.ExperimentInputs;
 import org.gusdb.fgputil.json.JsonUtil;
 import org.gusdb.wdk.model.WdkModel;
@@ -18,13 +20,11 @@ import org.json.JSONObject;
 import com.openai.client.OpenAIClientAsync;
 import com.openai.client.okhttp.OpenAIOkHttpClientAsync;
 import com.openai.core.JsonValue;
-import com.openai.models.ChatCompletion;
 import com.openai.models.ChatCompletionCreateParams;
 import com.openai.models.ChatModel;
 import com.openai.models.ResponseFormatJsonSchema;
 import com.openai.models.ResponseFormatJsonSchema.JsonSchema;
-
-import org.apache.log4j.Logger;
+import com.openai.models.ResponseFormatJsonSchema.JsonSchema.Schema;
 
 public class Summarizer {
 
@@ -32,7 +32,9 @@ public class Summarizer {
   public static final ChatModel OPENAI_CHAT_MODEL = ChatModel.GPT_4O_2024_11_20; // GPT_4O_2024_08_06;
 
   private static final int MAX_RESPONSE_TOKENS = 10000;
-    
+
+  private static final int MAX_MALFORMED_RESPONSE_RETRIES = 3;
+
   private static final String SYSTEM_MESSAGE = "You are a bioinformatician working for VEuPathDB.org. You are an expert at providing biologist-friendly summaries of transcriptomic data";
 
   // Prepare JSON schemas for structured responses
@@ -127,56 +129,22 @@ public class Summarizer {
   }
 
   public CompletableFuture<JSONObject> describeExperiment(ExperimentInputs experimentInputs) {
-    ChatCompletionCreateParams request = ChatCompletionCreateParams.builder()
-        .model(OPENAI_CHAT_MODEL)
-        .maxCompletionTokens(MAX_RESPONSE_TOKENS)
-        .responseFormat(ResponseFormatJsonSchema.builder()
-            .jsonSchema(JsonSchema.builder()
-                .name("experiment-summary")
-                .schema(experimentResponseSchema)
-                .build())
-            .build())
-        .addSystemMessage(SYSTEM_MESSAGE)
-        .addUserMessage(getExperimentMessage(experimentInputs.getExperimentData()))
-        .build();
 
-    // add dataset_id back to the response
-    return _openAIClient.chat().completions().create(request).thenApply(completion -> {
-      // update cost accumulator
-      _costMonitor.updateCost(completion.usage());
-      // response is a JSON string
-      String jsonString = completion.choices().get(0).message().content().get();
-      int attempts = 0;
-      while (true) {
-        try {
-          JSONObject jsonObject = new JSONObject(jsonString);
-          // add some fields directly to aid the final summarization
-          jsonObject.put("dataset_id", experimentInputs.getDatasetId());
-          jsonObject.put("assay_type", experimentInputs.getAssayType());
-          jsonObject.put("experiment_name", experimentInputs.getExperimentName());
-          return jsonObject;
-        }
-        catch (JSONException e) {
-          attempts++;
-          if (attempts >= 3) {
-            LOG.error("Failed to parse JSON after 3 attempts for dataset " + experimentInputs.getDatasetId() + ". Raw response: " + jsonString, e);
-            throw new RuntimeException(
-                "Error parsing JSON response for dataset " + experimentInputs.getDatasetId() +
-                ".  Raw response string:\n" + jsonString + "\n", e);
-          }
-          LOG.warn("Malformed JSON from OpenAI (attempt " + attempts + ") for dataset " + experimentInputs.getDatasetId() + ". Retrying...");
-          // Optionally, add a small delay here if desired
-          // Re-request from OpenAI
-          completion = _openAIClient.chat().completions().create(request).join();
-          _costMonitor.updateCost(completion.usage());
-          jsonString = completion.choices().get(0).message().content().get();
-        }
-      }
+    ChatCompletionCreateParams request = buildAiRequest(
+        "experiment-summary",
+        experimentResponseSchema,
+        getExperimentMessage(experimentInputs.getExperimentData()));
+
+    return getValidatedAiResponse("dataset " + experimentInputs.getDatasetId(), request, json -> {
+      // add some fields to the result to aid the final summarization
+      return json
+        .put("dataset_id", experimentInputs.getDatasetId())
+        .put("assay_type", experimentInputs.getAssayType())
+        .put("experiment_name", experimentInputs.getExperimentName());
     });
   }
 
   public static String getFinalSummaryMessage(List<JSONObject> experiments) {
-    
     return "Below are AI-generated summaries of one gene's behavior in all the transcriptomics experiments available in VEuPathDB, provided in JSON format:\n\n" +
         String.format("```json\n%s\n```\n\n", new JSONArray(experiments).toString(2)) +
         "Generate a one-paragraph summary (~100 words) describing the gene's expression. Structure it using <strong>, <ul>, and <li> tags with no attributes. If relevant, briefly speculate on the gene's potential function, but only if justified by the data. Also, generate a short, specific headline for the summary. The headline must reflect this gene's expression and **must not** include generic phrases like \"comprehensive insights into\" or the word \"gene\".\n\n" +
@@ -186,41 +154,16 @@ public class Summarizer {
     "These topics will be displayed to users. In all generated text, wrap species names in `<i>` tags and use clear, precise scientific language accessible to non-native English speakers.";
   }
   
-  public JSONObject summarizeExperiments(List<JSONObject> experiments) {
-    ChatCompletionCreateParams request = ChatCompletionCreateParams.builder()
-        .model(OPENAI_CHAT_MODEL)
-        .maxCompletionTokens(MAX_RESPONSE_TOKENS)
-        .responseFormat(ResponseFormatJsonSchema.builder()
-            .jsonSchema(JsonSchema.builder()
-                .name("expression-summary")
-                .schema(finalResponseSchema)
-                .build())
-            .build())
-        .addSystemMessage(SYSTEM_MESSAGE)
-        .addUserMessage(getFinalSummaryMessage(experiments))
-        .build();
-    int attempts = 0;
-    while (true) {
-      ChatCompletion completion = _openAIClient.chat().completions().create(request).join(); // join() waits for the async response
-      _costMonitor.updateCost(completion.usage());
-      String jsonString = completion.choices().get(0).message().content().get();
-      try {
-        JSONObject rawResponseObject = new JSONObject(jsonString);
-        // quality control (remove bad `dataset_id`s) and add 'Others' section for any experiments not listed by AI
-        JSONObject finalResponseObject = consolidateSummary(rawResponseObject, experiments);
-        return finalResponseObject;
-      }
-      catch (JSONException e) {
-        attempts++;
-        if (attempts >= 3) {
-          LOG.error("Failed to parse JSON after 3 attempts for gene summary. Raw response: " + jsonString, e);
-          throw new RuntimeException("Error parsing JSON response " +
-              "for gene summary.  Raw response string:\n" + jsonString + "\n", e);
-        }
-        LOG.warn("Malformed JSON from OpenAI (attempt " + attempts + ") for gene summary. Retrying...");
-        // Optionally, add a small delay here if desired
-      }
-    }
+  public JSONObject summarizeExperiments(String geneId, List<JSONObject> experiments) {
+    ChatCompletionCreateParams request = buildAiRequest(
+        "expression-summary",
+        finalResponseSchema,
+        getFinalSummaryMessage(experiments));
+
+    return getValidatedAiResponse("summary for gene " + geneId, request, json ->
+      // quality control (remove bad `dataset_id`s) and add 'Others' section for any experiments not listed by AI
+      consolidateSummary(json, experiments)
+    ).join();
   }
 
   private static JSONObject consolidateSummary(JSONObject summaryResponse,
@@ -292,5 +235,64 @@ public class Summarizer {
     return finalSummary;
   }
 
-}
 
+  private static ChatCompletionCreateParams buildAiRequest(String name, Schema schema, String userMessage) {
+    return ChatCompletionCreateParams.builder()
+        .model(OPENAI_CHAT_MODEL)
+        .maxCompletionTokens(MAX_RESPONSE_TOKENS)
+        .responseFormat(ResponseFormatJsonSchema.builder()
+            .jsonSchema(JsonSchema.builder()
+                .name(name)
+                .schema(schema)
+                .strict(true)
+                .build())
+            .build())
+        .addSystemMessage(SYSTEM_MESSAGE)
+        .addUserMessage(userMessage)
+        .build();
+  }
+
+  private CompletableFuture<JSONObject> getValidatedAiResponse(
+      String operationDescription,
+      ChatCompletionCreateParams request,
+      Function<JSONObject,JSONObject> createFinalJson
+  ) {
+    return _openAIClient.chat().completions().create(request).thenApply(completion -> {
+
+      // update cost accumulator
+      _costMonitor.updateCost(completion.usage());
+
+      // expect response to be a JSON string
+      String jsonString = completion.choices().get(0).message().content().get();
+      int attempts = 1;
+      Exception mostRecentError;
+
+      do {
+        try {
+          // convert to JSON object
+          JSONObject jsonObject = new JSONObject(jsonString);
+
+          // convert AI response JSON into final JSON we want to store
+          return createFinalJson.apply(jsonObject);
+        }
+        catch (JSONException e) {
+          mostRecentError = e;
+          LOG.warn("Malformed JSON from OpenAI (attempt " + attempts + ") for " + operationDescription + ". Retrying...");
+
+          // Re-request from OpenAI
+          completion = _openAIClient.chat().completions().create(request).join();
+          _costMonitor.updateCost(completion.usage());
+          jsonString = completion.choices().get(0).message().content().get();
+          attempts++;
+        }
+      }
+      while (attempts <= MAX_MALFORMED_RESPONSE_RETRIES);
+
+      // attempts have expired
+      String message = "Failed to parse JSON after " + MAX_MALFORMED_RESPONSE_RETRIES + " attempts for " +
+          operationDescription + ". Raw response: " + jsonString;
+      LOG.error(message, mostRecentError);
+      throw new RuntimeException(message, mostRecentError);
+    });
+  }
+}
