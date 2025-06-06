@@ -54,6 +54,7 @@ public class Summarizer {
           "experiment_keywords",
           "notes"
     )))
+    .putAdditionalProperty("additionalProperties", JsonValue.from(false))
     .build();
 
   private static final JsonSchema.Schema finalResponseSchema = JsonSchema.Schema.builder()
@@ -68,7 +69,8 @@ public class Summarizer {
                   "headline", Map.of("type", "string"),
                   "one_sentence_summary", Map.of("type", "string"),
                   "dataset_ids", Map.of("type", "array", "items", Map.of("type", "string"))
-              )
+              ),
+              "additionalProperties", JsonValue.from(false)
           ))
     )))
     .putAdditionalProperty("required", JsonValue.from(List.of(
@@ -76,6 +78,7 @@ public class Summarizer {
           "one_paragraph_summary",
           "topics"
     )))
+    .putAdditionalProperty("additionalProperties", JsonValue.from(false))
     .build();
 
   private static final String OPENAI_API_KEY_PROP_NAME = "OPENAI_API_KEY";
@@ -204,8 +207,8 @@ public class Summarizer {
       // Update topic with mapped summaries and remove dataset_ids key
       // but only if it's a non-empty topic (can happen with bad dataset_ids, see above)
       if (summaries.length() > 0) {
-	topic.put("summaries", summaries);
-	topic.remove("dataset_ids");
+        topic.put("summaries", summaries);
+        topic.remove("dataset_ids");
         deduplicatedTopics.put(topic);
       }
     }
