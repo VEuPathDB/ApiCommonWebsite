@@ -25,6 +25,7 @@ import org.gusdb.fgputil.cache.disk.DirectoryLock.DirectoryLockTimeoutException;
 import org.gusdb.fgputil.cache.disk.OnDiskCache;
 import org.gusdb.fgputil.cache.disk.OnDiskCache.EntryNotCreatedException;
 import org.gusdb.fgputil.functional.Either;
+import org.gusdb.fgputil.functional.FunctionalInterfaces.BiFunctionWithException;
 import org.gusdb.fgputil.functional.FunctionalInterfaces.ConsumerWithException;
 import org.gusdb.fgputil.functional.FunctionalInterfaces.FunctionWithException;
 import org.gusdb.fgputil.functional.FunctionalInterfaces.PredicateWithException;
@@ -320,7 +321,7 @@ public class AiExpressionCache {
    */
   public JSONObject populateSummary(GeneSummaryInputs summaryInputs,
       FunctionWithException<ExperimentInputs, CompletableFuture<JSONObject>> experimentDescriber,
-      FunctionWithException<List<JSONObject>, JSONObject> experimentSummarizer) {
+      BiFunctionWithException<String, List<JSONObject>, JSONObject> experimentSummarizer) {
     try {
       return _cache.populateAndProcessContent(summaryInputs.getGeneId(),
 
@@ -337,7 +338,7 @@ public class AiExpressionCache {
             );
 
             // summarize experiments and store
-            getPopulator(summaryInputs.getDigest(), () -> experimentSummarizer.apply(experiments)).accept(entryDir);
+            getPopulator(summaryInputs.getDigest(), () -> experimentSummarizer.apply(summaryInputs.getGeneId(), experiments)).accept(entryDir);
           },
 
           // visitor
