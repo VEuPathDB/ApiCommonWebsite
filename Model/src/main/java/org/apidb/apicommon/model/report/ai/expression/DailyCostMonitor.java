@@ -117,13 +117,14 @@ public class DailyCostMonitor {
       // only write file if necessary
       if (!newDate.equals(previousDate) || newCost != previousCost) {
 
-        JSONObject json = new JSONObject()
+        String fileJson = new JSONObject()
             .put(JSON_DATE_PROP, newDate)
-            .put(JSON_COST_PROP, newCost);
-        LOG.info("Updating daily cost file: " + json.toString(2));
+            .put(JSON_COST_PROP, newCost)
+            .toString();
+        LOG.info("Updating daily cost file: " + fileJson);
         Utilities.ensureCreation(Files::createFile, _costMonitoringFile);
         try (Writer out = new FileWriter(_costMonitoringFile.toFile())) {
-          out.write(json.toString());
+          out.write(fileJson);
         }
       }
 
