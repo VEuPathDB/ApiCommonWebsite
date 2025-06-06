@@ -158,6 +158,7 @@ public class Summarizer {
   }
   
   public JSONObject summarizeExperiments(String geneId, List<JSONObject> experiments) {
+
     ChatCompletionCreateParams request = buildAiRequest(
         "expression-summary",
         finalResponseSchema,
