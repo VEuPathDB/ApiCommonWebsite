@@ -11,11 +11,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import javax.sql.DataSource;
 
@@ -59,7 +56,6 @@ import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.config.ModelConfigUserDB;
 import org.gusdb.wdk.model.user.User;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
@@ -406,8 +402,11 @@ public class CommentFactory implements Manageable<CommentFactory> {
       throws IOException {
     final URL url = new URL(_host + "/cgi-bin/pmid2json?pmids=" + String.join(
         ",", com.getPubMedIds()));
-    return JSON.readerFor(new TypeReference<Collection<PubMedReference>>() {})
-        .readValue(url);
+    return JSON.readerForListOf(PubMedReference.class)
+      .<Collection<PubMedReference>>readValue(url)
+      .stream()
+      .filter(ref -> Objects.equals(ref.getStatus(), "FOUND"))
+      .collect(Collectors.toList());
   }
 
   /**
