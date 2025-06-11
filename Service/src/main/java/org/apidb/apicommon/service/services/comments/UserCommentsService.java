@@ -74,11 +74,18 @@ public class UserCommentsService extends AbstractUserCommentService {
     if (body.getPreviousCommentId() != null)
       checkCommentOwnership(fetchComment(body.getPreviousCommentId()), user);
 
-    final JSONArray validationErrors = validateRelatedStableIds(
+    final JSONArray rsiValidationErrors = validateRelatedStableIds(
       body.getRelatedStableIds());
 
-    if (validationErrors.length() > 0) {
-      throw new BadRequestException(validationErrors.toString());
+    if (rsiValidationErrors.length() > 0) {
+      throw new BadRequestException(rsiValidationErrors.toString());
+    }
+
+    final JSONArray pmValidationErrors = validatePubmedIds(
+            body.getPubMedIds());
+
+    if (pmValidationErrors.length() > 0) {
+      throw new BadRequestException(pmValidationErrors.toString());
     }
 
     final long id = getCommentFactory().createComment(body, user);
@@ -169,6 +176,15 @@ public class UserCommentsService extends AbstractUserCommentService {
       .map(id -> "In Part III, the identifier \"" + id + "\" is not a valid id.")
       .collect(JSONArray::new, JSONArray::put, (x, y) -> y.forEach(x::put));
   }
+
+  private JSONArray validatePubmedIds(Set<String> pubmedIds)
+          throws WdkModelException {
+    return pubmedIds.stream().filter(a-> !a.matches("\\d+"))
+            .map(id -> id + "\" is not a valid pubmed id.")
+            .collect(JSONArray::new, JSONArray::put, (x, y) -> y.forEach(x::put));
+  }
+
+
 
   private URI buildURL(long comId) {
     return _uriInfo.getAbsolutePathBuilder()
