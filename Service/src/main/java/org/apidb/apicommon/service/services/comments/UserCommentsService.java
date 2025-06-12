@@ -31,7 +31,6 @@ import org.gusdb.wdk.service.annotation.InSchema;
 import org.gusdb.wdk.service.annotation.OutSchema;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.apache.log4j.Logger;
 
 @Path(UserCommentsService.BASE_PATH)
 public class UserCommentsService extends AbstractUserCommentService {
@@ -43,8 +42,6 @@ public class UserCommentsService extends AbstractUserCommentService {
   public static final String SOURCE_EMAIL     = "annotator@apidb.org";
   public static final String ANNOTATORS_EMAIL = "EUPATHDB_ANNOTATORS@lists.upenn.edu";
   public static final String REDMINE_EMAIL    = "redmine@apidb.org";
-
-  private static final Logger LOG = Logger.getLogger(UserCommentsService.class);
 
   @Context
   protected UriInfo _uriInfo;
