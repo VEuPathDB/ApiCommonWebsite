@@ -45,10 +45,15 @@ modelprop:
   SEQUENCE_RETRIEVAL_SERVICE_URL: /sequence-retrieval
   JBROWSE_WEBPAGE_URL: "/{{ webapp_ctx }}/app/jbrowse"
   JBROWSE_SERVICE_URL: "/{{ webapp_ctx }}/service/jbrowse"
+  AI_EXPRESSION_CACHE_DIR: "/eupath/ai-expr-cache"
+  AI_EXPRESSION_QUALTRICS_ID: SV_38C4ZX1JxLi2SEe
+  OPENAI_MAX_DAILY_AI_EXPRESSION_DOLLAR_COST: 33
+  OPENAI_DOLLAR_COST_PER_1M_AI_INPUT_TOKENS: 2.5
+  OPENAI_DOLLAR_COST_PER_1M_AI_OUTPUT_TOKENS: 10
 
 user_datasets_uploadTypes_env_map:
   w: "genelist"
-  default: "genelist,bigwigfiles,rnaseq"
+  default: "genelist,bigwigfiles,rnaseq,wrangler"
 
 user_datasets_workspace:
   enabled: "true"
@@ -60,7 +65,13 @@ projectsxml:
 commentconfig_login: '{{ modelconfig_userDb_login }}'
 commentconfig_password: '{{ modelconfig_userDb_password }}'
 commentconfig_connectionUrl: '{{ modelconfig_userDb_connectionUrl }}'
-commentconfig_platform: Oracle
+commentconfig_platform: "{{ modelconfig_userDb_platform | default(None) }}"
+commentconfig_ldapServer: '{{ modelconfig_userDb_ldapServer }}'
+commentconfig_ldapBaseDn: '{{ modelconfig_userDb_ldapBaseDn }}'
+commentconfig_ldapCommonName: '{{ modelconfig_userDb_ldapCommonName }}'
+commentconfig_dbIdentifier: "{{ modelconfig_userDb_dbIdentifier if modelconfig_userDb_dbIdentifier is defined else '' }}"
+commentconfig_dbHost: "{{ modelconfig_userDb_dbHost if modelconfig_userDb_dbHost is defined else '' }}"
+commentconfig_dbPort: "{{ modelconfig_userDb_dbPort if modelconfig_userDb_dbPort is defined else '' }}"
 commentconfig_maxActive: 20
 commentconfig_maxIdle: 1
 commentconfig_minIdle: 1
@@ -86,20 +97,25 @@ highspeedsnpsearchconfig_idPrefix: NGS_SNP.
 highspeedchipsnpsearchconfig_jobsDir: /var/www/Common/tmp/highSpeedChipSnpSearch
 highspeedchipsnpsearchconfig_idPrefix: 'NULL'
 
+appDbPgDbi: "{{ 'dbi:Pg:host=ares9.penn.apidb.org;dbname=' ~ appDb_ldapCommonName if appDb_ldapCommonName is defined else appDb_connectionUrl|jdbc2Dbi }}"
+
 profilesimilarityconfig_dbLogin: '{{ modelconfig_appDb_login }}'
 profilesimilarityconfig_dbPassword: '{{ modelconfig_appDb_password }}'
 profilesimilarityconfig_perlExec: /usr/bin/perl
-profilesimilarityconfig_connectionUrl: "{{ '' if modelconfig_userDb_connectionUrl.startswith('=c=') else modelconfig_appDb_connectionUrl|jdbc2Dbi }}"
+# Note: assuming postgres here when connection URL is missing (cannot determine platform from ldap cn)
+profilesimilarityconfig_connectionUrl: "{{ appDbPgDbi }}"
 
 genelistcomparisonconfig_dbLogin: '{{ modelconfig_appDb_login }}'
 genelistcomparisonconfig_dbPassword: '{{ modelconfig_appDb_password }}'
 genelistcomparisonconfig_perlExec: /usr/bin/perl
-genelistcomparisonconfig_connectionUrl: "{{ '' if modelconfig_userDb_connectionUrl.startswith('=c=') else modelconfig_appDb_connectionUrl|jdbc2Dbi }}"
+# Note: assuming postgres here when connection URL is missing (cannot determine platform from ldap cn)
+genelistcomparisonconfig_connectionUrl: "{{ appDbPgDbi }}"
 
 fisherexacttestconfig_dbLogin: '{{ modelconfig_appDb_login }}'
 fisherexacttestconfig_dbPassword: '{{ modelconfig_appDb_password }}'
 fisherexacttestconfig_perlExec: /usr/bin/perl
-fisherexacttestconfig_connectionUrl: "{{ '' if modelconfig_userDb_connectionUrl.startswith('=c=') else modelconfig_appDb_connectionUrl|jdbc2Dbi }}"
+# Note: assuming postgres here when connection URL is missing (cannot determine platform from ldap cn)
+fisherexacttestconfig_connectionUrl: "{{ appDbPgDbi }}"
 
 _showUnreleasedDataByHostnamePrefix:
   a: false

@@ -9,19 +9,22 @@
     },
     "title": {
       "description": "Title of PubMed publication",
-      "type": "string"
+      "type": ["string", "null"]
     },
     "journal": {
       "description": "Publication journal",
-      "type": "string"
+      "type": ["string", "null"]
     },
     "author": {
       "description": "Publication author(s)",
-      "type": "string"
+      "type": ["string", "null"]
     },
     "url": {
       "description": "URL of PubMed resource",
-      "type": "string"
+      "type": ["string", "null"]
+    },
+    "status": {
+      "type": ["string", "null"]
     }
   },
   "additionalProperties": false,
