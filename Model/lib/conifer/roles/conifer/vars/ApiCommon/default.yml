@@ -25,8 +25,8 @@ modelconfig_changePasswordUrl: "{{ modelconfig_oauthUrl }}/assets/eupathdb-chang
 
 modelprop:
   CNDSRC_BIN: /opt/cndsrc/bin
-  COMMENT_DBLINK: '@{{ modelconfig_appDb_userDbLink }}'
   COMMENT_SCHEMA: '{{ commentconfig_commentSchema }}.'
+  REMOTE_COMMENT_SCHEMA: '{{ commentconfig_remoteCommentSchema }}.'
   FACEBOOK_URL: https://facebook.com/pages/EuPathDB/133123003429972
   LEGACY_WEBAPP_BASE_URL: "/{{ webapp_ctx }}"
   PROJECT_ID: '{{ project }}'
@@ -78,8 +78,6 @@ commentconfig_minIdle: 1
 commentconfig_maxWait: 50
 commentconfig_defaultFetchSize: 200
 commentconfig_commentSchema: userlogins5
-commentconfig_userLoginSchema: userlogins5
-commentconfig_userLoginDbLink: '{{ modelconfig_appDb_userDbLink }}'
 commentconfig_userFileSchema: uploads
 commentconfig_userFileUploadDir: /var/www/Common/communityFilesMirror
 commentconfig_solrUrl: https://solr-sitesearch-dev.local.apidb.org:8443/solr/site_search/
