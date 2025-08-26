@@ -11,7 +11,6 @@ public class CommentConfig extends ModelConfigDB {
 
   private String commentSchema = "";
   private String commentTextFileDir;
-  private String userLoginDbLink = "";
   private String userFileSchema = "";
   private String userFileUploadDir = "";
   private String solrUrl = "";
@@ -41,23 +40,6 @@ public class CommentConfig extends ModelConfigDB {
     this.commentTextFileDir = commentTextFile;
   }
 
-  /**
-   * @return the userLoginDbLink
-   */
-  public String getUserLoginDbLink() {
-    return userLoginDbLink;
-  }
-
-  /**
-   * @param userLoginDbLink the userLoginDbLink to set
-   */
-  public void setUserLoginDbLink(String userLoginDbLink) {
-    if (userLoginDbLink != null && userLoginDbLink.length() > 0) {
-      this.userLoginDbLink =
-          (userLoginDbLink.startsWith("@")) ? userLoginDbLink :
-              "@" + userLoginDbLink;
-    }
-  }
 
   public String getUserFileSchema() {
     return userFileSchema;

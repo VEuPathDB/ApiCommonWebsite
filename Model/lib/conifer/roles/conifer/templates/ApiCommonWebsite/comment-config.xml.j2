@@ -13,8 +13,6 @@ site_vars file: {{ site_vars }}
     login="{{ commentconfig_login }}"
     password="{{ commentconfig_password }}"
     commentSchema="{{ commentconfig_commentSchema }}"
-    userLoginSchema="{{ commentconfig_userLoginSchema }}"
-    userLoginDbLink="{{ commentconfig_userLoginDbLink }}"
     {% if commentconfig_connectionUrl is defined and commentconfig_connectionUrl != "" -%}
     connectionUrl="{{ commentconfig_connectionUrl }}"
     {% endif -%}

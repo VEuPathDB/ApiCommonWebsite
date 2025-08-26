@@ -6,8 +6,6 @@
 
             <!-- comment specific properties -->
             <attribute name="commentSchema" />
-            <attribute name="userLoginSchema" />
-            <attribute name="userLoginDbLink" />
 
             <optional>
               <attribute name="userFileSchema" />
