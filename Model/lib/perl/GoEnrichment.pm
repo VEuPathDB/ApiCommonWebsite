@@ -32,7 +32,7 @@ sub getAnnotatedGenesCountBgd {
 
   my $sql = "
 select count(distinct gts.gene_source_id)
-from apidbTuning.GoTermSummary gts
+from webready.GoTermSummary gts
 where gts.taxon_id = $taxonId
   and gts.is_not is null
   and gts.evidence_category in ($self->{evidCodes})
@@ -51,7 +51,7 @@ sub getAnnotatedGenesCountResult {
 
   my $sql = "
 select count(distinct gts.gene_source_id)
-from apidbTuning.GoTermSummary gts,
+from webready.GoTermSummary gts,
      ($geneResultSql) r
 where gts.gene_source_id = r.source_id
   and gts.is_not is null
@@ -70,7 +70,7 @@ sub getAnnotatedGenesListResult {
 
   my $sql = "
 select distinct gts.gene_source_id
-from apidbTuning.GoTermSummary gts,
+from webready.GoTermSummary gts,
      ($geneResultSql) r
 where gts.gene_source_id = r.source_id
   and gts.is_not is null
@@ -94,7 +94,7 @@ return "
 select bgd.go_id, bgdcnt, resultcnt, resultlist, round(100*resultcnt/bgdcnt, 1) as pct_of_bgd, bgd.name
 from (select gts.go_id, count(distinct gts.gene_source_id) as bgdcnt,
              max(gts.go_term_name) as name
-      from apidbTuning.GoTermSummary gts
+      from webready.GoTermSummary gts
       where gts.taxon_id = $taxonId
         and gts.ontology = '$self->{subOntology}'
         and gts.evidence_category in ($self->{evidCodes})
@@ -103,7 +103,7 @@ from (select gts.go_id, count(distinct gts.gene_source_id) as bgdcnt,
       group by gts.go_id
      ) bgd,
      (select gts.go_id, count(distinct gts.gene_source_id) as resultcnt
-      from apidbTuning.GoTermSummary gts,
+      from webready.GoTermSummary gts,
            ($geneResultSql) r
       where gts.gene_source_id = r.source_id
         and gts.ontology = '$self->{subOntology}'
@@ -113,7 +113,7 @@ from (select gts.go_id, count(distinct gts.gene_source_id) as bgdcnt,
       group by gts.go_id
      ) rslt,
      (select gts.go_id, rtrim(xmlagg(xmlelement(e,gts.gene_source_id,',').extract('//text()') order by gts.gene_source_id).GetClobVal(),',') AS resultlist
-      from apidbTuning.GoTermSummary gts,
+      from webready.GoTermSummary gts,
            ($geneResultSql) r
       where gts.gene_source_id = r.source_id
         and gts.ontology = '$self->{subOntology}'

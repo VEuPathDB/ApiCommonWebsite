@@ -104,7 +104,7 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
       String idSql = EnrichmentPluginUtil.getOrgSpecificIdSql(getAnswerValue(), formParams);
       String sql =
 	  "SELECT count (distinct tp.pathway_source_id) as " + countColumn + NL +
-	  "FROM   apidbtuning.transcriptPathway tp, " + NL +
+	  "FROM   webready.TranscriptPathway tp, " + NL +
 	  "(" + idSql + ") r" + NL +
 	  "WHERE  tp.gene_source_id = r.source_id" + NL +
 	  "AND tp.complete_ec >= ?" + NL +
@@ -193,7 +193,7 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
     // check for non-zero count of genes with Pathways
     String sql = "SELECT count (distinct gp.gene_source_id) as " + countColumn + NL +
-      "from  apidbtuning.transcriptPathway gp, (" + idSql + ") r" + NL +
+      "from  webready.TranscriptPathway gp, (" + idSql + ") r" + NL +
 	"WHERE  gp.gene_source_id = r.gene_source_id";
     // do not make the complete_ec and exact_match checks here
     // because we don't know yet what the user will choose for those parameters
