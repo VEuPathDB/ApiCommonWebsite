@@ -2,10 +2,6 @@
   "name": "genomics-site-deployer",
   "private": true,
   "dependencies": {
-<<<<<<< HEAD
-    "@veupathdb/genomics-site": "1.3.3"
-=======
     "@veupathdb/genomics-site": "1.3.7"
->>>>>>> 08e093426 (update to latest tag from main)
   }
 }
