@@ -370,7 +370,6 @@ sub getProfileColors {
   my ($self) = @_;
 
   my @colors =  @{$self->getColors()};
-  unshift ( @colors);
   return \@colors;
 }
 1;
