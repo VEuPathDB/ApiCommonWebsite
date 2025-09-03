@@ -5,7 +5,6 @@ package ApiCommonWebsite::View::CgiApp::HtsSNPAlignment;
 use strict;
 use EbrcWebsiteCommon::View::CgiApp;
 
-use CGI::Session;
 use Bio::SeqIO;
 use Bio::Seq;
 
