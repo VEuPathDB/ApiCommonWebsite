@@ -139,7 +139,7 @@ sub finalProfileAdjustments {
     profile.df.full$STDERR[profile.df.full$LEGEND == 'nonunique'] <- NA
     profile.df.full$MAX_ERR[profile.df.full$LEGEND == 'nonunique'] <- NA
     profile.df.full$MIN_ERR[profile.df.full$LEGEND == 'nonunique'] <- NA
-    if (c('unique', 'nonunique') %in% profile.df.full$LEGEND) {
+    if (any(c('unique', 'nonunique') %in% profile.df.full$LEGEND)) {
       profile.df.full$LEGEND <- factor(profile.df.full$LEGEND, levels=c('nonunique', 'unique'))
     }
   }
@@ -1230,7 +1230,7 @@ sub finalProfileAdjustments {
     profile.df.full$MAX_ERR[profile.df.full$LEGEND == 'nonunique'] <- NA
     profile.df.full$MIN_ERR[profile.df.full$LEGEND == 'nonunique'] <- NA
 
-    if (c('unique', 'nonunique') %in% profile.df.full$LEGEND) {
+    if (any(c('unique', 'nonunique') %in% profile.df.full$LEGEND)) {
       profile.df.full$LEGEND <- factor(profile.df.full$LEGEND, levels=c('nonunique', 'unique'))
     }
   }
@@ -1568,7 +1568,7 @@ sub init {
     profile.df.full$STDERR[profile.df.full$LEGEND == 'nonunique'] <- NA
     profile.df.full$MAX_ERR[profile.df.full$LEGEND == 'nonunique'] <- NA
     profile.df.full$MIN_ERR[profile.df.full$LEGEND == 'nonunique'] <- NA
-    if (c('unique', 'nonunique') %in% profile.df.full$LEGEND) {
+    if (any(c('unique', 'nonunique') %in% profile.df.full$LEGEND)) {
       profile.df.full$LEGEND <- factor(profile.df.full$LEGEND, levels=c('nonunique', 'unique'))
     }
     profile.df.full$FACET <- ifelse(grepl('enteroepithelial', profile.df.full$PROFILE_SET, fixed=T), 'Enteroepithelial', 'Sporulation')
