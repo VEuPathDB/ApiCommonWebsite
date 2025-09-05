@@ -123,3 +123,4 @@ _showUnreleasedDataByHostnamePrefix:
   w: false
 
 showUnreleasedData: "{{ _showUnreleasedDataByHostnamePrefix[hostname_prefix] | default('true') }}"
+showSubscriptionProds: "true"
