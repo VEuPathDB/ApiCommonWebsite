@@ -13,6 +13,7 @@ import org.apidb.apicommon.model.report.ai.expression.AiExpressionCache;
 import org.apidb.apicommon.model.report.ai.expression.DailyCostMonitor;
 import org.apidb.apicommon.model.report.ai.expression.GeneRecordProcessor;
 import org.apidb.apicommon.model.report.ai.expression.GeneRecordProcessor.GeneSummaryInputs;
+import org.apidb.apicommon.model.report.ai.expression.OpenAISummarizer;
 import org.apidb.apicommon.model.report.ai.expression.Summarizer;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkServiceTemporarilyUnavailableException;
@@ -80,7 +81,7 @@ public class SingleGeneAiExpressionReporter extends AbstractReporter {
     AiExpressionCache cache = AiExpressionCache.getInstance(_wdkModel);
 
     // create summarizer (interacts with OpenAI)
-    Summarizer summarizer = new Summarizer(_wdkModel, _costMonitor);
+    OpenAISummarizer summarizer = new OpenAISummarizer(_wdkModel, _costMonitor);
 
     // open record and output streams
     try (RecordStream recordStream = RecordStreamFactory.getRecordStream(_baseAnswer, List.of(), tables);
@@ -93,7 +94,7 @@ public class SingleGeneAiExpressionReporter extends AbstractReporter {
 
         // create summary inputs
         GeneSummaryInputs summaryInputs =
-            GeneRecordProcessor.getSummaryInputsFromRecord(record, Summarizer.OPENAI_CHAT_MODEL.toString(),
+            GeneRecordProcessor.getSummaryInputsFromRecord(record, OpenAISummarizer.OPENAI_CHAT_MODEL.toString(),
                 Summarizer::getExperimentMessage, Summarizer::getFinalSummaryMessage);
 
         // fetch summary, producing if necessary and requested
