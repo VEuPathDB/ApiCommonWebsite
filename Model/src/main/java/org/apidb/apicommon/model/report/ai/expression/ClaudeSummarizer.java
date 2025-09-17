@@ -14,7 +14,7 @@ import com.openai.models.ResponseFormatJsonSchema.JsonSchema.Schema;
 
 public class ClaudeSummarizer extends Summarizer {
 
-  private static final Model CLAUDE_MODEL = Model.CLAUDE_SONNET_4_20250514;
+  public static final Model CLAUDE_MODEL = Model.CLAUDE_SONNET_4_20250514;
 
   private static final String CLAUDE_API_KEY_PROP_NAME = "CLAUDE_API_KEY";
 
@@ -30,6 +30,7 @@ public class ClaudeSummarizer extends Summarizer {
 
     _claudeClient = AnthropicOkHttpClientAsync.builder()
         .apiKey(apiKey)
+        .checkJacksonVersionCompatibility(false)
         .build();
   }
 
@@ -59,17 +60,37 @@ public class ClaudeSummarizer extends Summarizer {
       _costMonitor.updateCost(java.util.Optional.of(openAiUsage));
       
       // Extract text from content blocks using stream API
-      return response.content().stream()
+      String rawText = response.content().stream()
           .flatMap(contentBlock -> contentBlock.text().stream())
           .map(textBlock -> textBlock.text())
           .findFirst()
           .orElseThrow(() -> new RuntimeException("No text content found in Claude response"));
+      
+      // Strip JSON markdown formatting if present
+      return stripJsonMarkdown(rawText);
     });
   }
 
   @Override
   protected void updateCostMonitor(Object apiResponse) {
     // Claude response handling is done in callApiForJson
+  }
+
+  private String stripJsonMarkdown(String text) {
+    String trimmed = text.trim();
+    
+    // Remove ```json and ``` markdown formatting
+    if (trimmed.startsWith("```json")) {
+      trimmed = trimmed.substring(7); // Remove "```json"
+    } else if (trimmed.startsWith("```")) {
+      trimmed = trimmed.substring(3); // Remove "```"
+    }
+    
+    if (trimmed.endsWith("```")) {
+      trimmed = trimmed.substring(0, trimmed.length() - 3); // Remove trailing "```"
+    }
+    
+    return trimmed.trim();
   }
 
   private String convertSchemaToPromptInstructions(Schema schema) {
