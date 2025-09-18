@@ -17,28 +17,20 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.openai.client.OpenAIClientAsync;
-import com.openai.client.okhttp.OpenAIOkHttpClientAsync;
 import com.openai.core.JsonValue;
-import com.openai.models.ChatCompletionCreateParams;
-import com.openai.models.ChatModel;
-import com.openai.models.ResponseFormatJsonSchema;
 import com.openai.models.ResponseFormatJsonSchema.JsonSchema;
 import com.openai.models.ResponseFormatJsonSchema.JsonSchema.Schema;
 
-public class Summarizer {
+public abstract class Summarizer {
 
-  // provide exact model number for semi-reproducibility
-  public static final ChatModel OPENAI_CHAT_MODEL = ChatModel.GPT_4O_2024_11_20; // GPT_4O_2024_08_06;
-
-  private static final int MAX_RESPONSE_TOKENS = 10000;
+  protected static final int MAX_RESPONSE_TOKENS = 10000;
 
   private static final int MAX_MALFORMED_RESPONSE_RETRIES = 3;
 
-  private static final String SYSTEM_MESSAGE = "You are a bioinformatician working for VEuPathDB.org. You are an expert at providing biologist-friendly summaries of transcriptomic data";
+  protected static final String SYSTEM_MESSAGE = "You are a bioinformatician working for VEuPathDB.org. You are an expert at providing biologist-friendly summaries of transcriptomic data";
 
   // Prepare JSON schemas for structured responses
-  private static final JsonSchema.Schema experimentResponseSchema = JsonSchema.Schema.builder()
+  protected static final JsonSchema.Schema experimentResponseSchema = JsonSchema.Schema.builder()
     .putAdditionalProperty("type", JsonValue.from("object"))
     .putAdditionalProperty("properties", JsonValue.from(Map.of(
           "one_sentence_summary", Map.of("type", "string"),
@@ -57,7 +49,7 @@ public class Summarizer {
     .putAdditionalProperty("additionalProperties", JsonValue.from(false))
     .build();
 
-  private static final JsonSchema.Schema finalResponseSchema = JsonSchema.Schema.builder()
+  protected static final JsonSchema.Schema finalResponseSchema = JsonSchema.Schema.builder()
     .putAdditionalProperty("type", JsonValue.from("object"))
     .putAdditionalProperty("properties", JsonValue.from(Map.of(
           "headline", Map.of("type", "string"),
@@ -81,25 +73,11 @@ public class Summarizer {
     .putAdditionalProperty("additionalProperties", JsonValue.from(false))
     .build();
 
-  private static final String OPENAI_API_KEY_PROP_NAME = "OPENAI_API_KEY";
-
-  private final OpenAIClientAsync _openAIClient;
-  private final DailyCostMonitor _costMonitor;
+  protected final DailyCostMonitor _costMonitor;
 
   private static final Logger LOG = Logger.getLogger(Summarizer.class);
 
-  public Summarizer(WdkModel wdkModel, DailyCostMonitor costMonitor) throws WdkModelException {
-
-    String apiKey = wdkModel.getProperties().get(OPENAI_API_KEY_PROP_NAME);
-    if (apiKey == null) {
-      throw new WdkModelException("WDK property '" + OPENAI_API_KEY_PROP_NAME + "' has not been set.");
-    }
-
-    _openAIClient = OpenAIOkHttpClientAsync.builder()
-        .apiKey(apiKey)
-        .maxRetries(32)  // Handle 429 errors
-        .build();
-
+  public Summarizer(DailyCostMonitor costMonitor) {
     _costMonitor = costMonitor;
   }
 
@@ -133,12 +111,9 @@ public class Summarizer {
 
   public CompletableFuture<JSONObject> describeExperiment(ExperimentInputs experimentInputs) {
 
-    ChatCompletionCreateParams request = buildAiRequest(
-        "experiment-summary",
-        experimentResponseSchema,
-        getExperimentMessage(experimentInputs.getExperimentData()));
+    String prompt = getExperimentMessage(experimentInputs.getExperimentData());
 
-    return getValidatedAiResponse("dataset " + experimentInputs.getDatasetId(), request, json -> {
+    return getValidatedAiResponse("dataset " + experimentInputs.getDatasetId(), prompt, experimentResponseSchema, json -> {
       // add some fields to the result to aid the final summarization
       return json
         .put("dataset_id", experimentInputs.getDatasetId())
@@ -159,12 +134,9 @@ public class Summarizer {
   
   public JSONObject summarizeExperiments(String geneId, List<JSONObject> experiments) {
 
-    ChatCompletionCreateParams request = buildAiRequest(
-        "expression-summary",
-        finalResponseSchema,
-        getFinalSummaryMessage(experiments));
+    String prompt = getFinalSummaryMessage(experiments);
 
-    return getValidatedAiResponse("summary for gene " + geneId, request, json ->
+    return getValidatedAiResponse("summary for gene " + geneId, prompt, finalResponseSchema, json ->
       // quality control (remove bad `dataset_id`s) and add 'Others' section for any experiments not listed by AI
       consolidateSummary(json, experiments)
     ).join();
@@ -240,34 +212,17 @@ public class Summarizer {
   }
 
 
-  private static ChatCompletionCreateParams buildAiRequest(String name, Schema schema, String userMessage) {
-    return ChatCompletionCreateParams.builder()
-        .model(OPENAI_CHAT_MODEL)
-        .maxCompletionTokens(MAX_RESPONSE_TOKENS)
-        .responseFormat(ResponseFormatJsonSchema.builder()
-            .jsonSchema(JsonSchema.builder()
-                .name(name)
-                .schema(schema)
-                .strict(true)
-                .build())
-            .build())
-        .addSystemMessage(SYSTEM_MESSAGE)
-        .addUserMessage(userMessage)
-        .build();
-  }
+  protected abstract CompletableFuture<String> callApiForJson(String prompt, Schema schema);
+  
+  protected abstract void updateCostMonitor(Object apiResponse);
 
   private CompletableFuture<JSONObject> getValidatedAiResponse(
       String operationDescription,
-      ChatCompletionCreateParams request,
+      String prompt,
+      Schema schema,
       Function<JSONObject,JSONObject> createFinalJson
   ) {
-    return _openAIClient.chat().completions().create(request).thenApply(completion -> {
-
-      // update cost accumulator
-      _costMonitor.updateCost(completion.usage());
-
-      // expect response to be a JSON string
-      String jsonString = completion.choices().get(0).message().content().get();
+    return callApiForJson(prompt, schema).thenApply(jsonString -> {
       int attempts = 1;
       Exception mostRecentError;
 
@@ -281,12 +236,10 @@ public class Summarizer {
         }
         catch (JSONException e) {
           mostRecentError = e;
-          LOG.warn("Malformed JSON from OpenAI (attempt " + attempts + ") for " + operationDescription + ". Retrying...");
+          LOG.warn("Malformed JSON from AI (attempt " + attempts + ") for " + operationDescription + ". Retrying...");
 
-          // Re-request from OpenAI
-          completion = _openAIClient.chat().completions().create(request).join();
-          _costMonitor.updateCost(completion.usage());
-          jsonString = completion.choices().get(0).message().content().get();
+          // Re-request from AI
+          jsonString = callApiForJson(prompt, schema).join();
           attempts++;
         }
       }
