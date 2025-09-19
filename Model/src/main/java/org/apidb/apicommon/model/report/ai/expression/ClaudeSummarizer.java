@@ -30,6 +30,7 @@ public class ClaudeSummarizer extends Summarizer {
 
     _claudeClient = AnthropicOkHttpClientAsync.builder()
         .apiKey(apiKey)
+        .maxRetries(32)  // Handle 429 errors
         .checkJacksonVersionCompatibility(false)
         .build();
   }
