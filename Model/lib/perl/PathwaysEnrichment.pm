@@ -173,7 +173,7 @@ from
         group by tp.pathway_source_id, tp.pathway_source
  ) rslt,
  (SELECT  tp.pathway_source_id || '__PK__' || tp.pathway_source as pathway_source_id
-        ,  rtrim(xmlagg(xmlelement(e,tp.gene_source_id,',').extract('//text()') order by tp.gene_source_id).GetClobVal(),',') as resultlist
+        ,  string_agg(tp.gene_source_id, ',' ORDER BY tp.gene_source_id) AS resultlist
         from   webready.TranscriptPathway tp
         , ($geneResultSql) r
         , webready.PathwayCompounds pc

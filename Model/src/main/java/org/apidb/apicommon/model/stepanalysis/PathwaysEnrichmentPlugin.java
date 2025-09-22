@@ -203,9 +203,9 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     if (handler.getNumRows() == 0) throw new WdkModelException("No result found in count query: " + sql);
 
     Map<String, Object> result = handler.getResults().get(0);
-    BigDecimal count = (BigDecimal)result.get(countColumn);
+    Long count = (Long)result.get(countColumn.toLowerCase());
 
-    if (count.intValue() == 0 ) {
+    if (count == 0 ) {
       throw new IllegalAnswerValueException(
           "Your result has no genes that are in pathways, " +
           "so you can't use this tool on this result. " +
