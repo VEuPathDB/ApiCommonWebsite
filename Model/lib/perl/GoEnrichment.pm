@@ -34,7 +34,7 @@ sub getAnnotatedGenesCountBgd {
 select count(distinct gts.gene_source_id)
 from webready.GoTermSummary gts
 where gts.taxon_id = $taxonId
-  and gts.is_not is null
+  and gts.is_not != 'not'
   and gts.evidence_category in ($self->{evidCodes})
   -- include a row only if either it's a GO Slim term or we aren't restricting to GO Slim terms
   and ($self->{goSubset} = 'No' or gts.is_go_slim = '1')
@@ -54,7 +54,7 @@ select count(distinct gts.gene_source_id)
 from webready.GoTermSummary gts,
      ($geneResultSql) r
 where gts.gene_source_id = r.source_id
-  and gts.is_not is null
+  and gts.is_not != 'not'
   and gts.evidence_category in ($self->{evidCodes})
   -- include a row only if either it's a GO Slim term or we aren't restricting to GO Slim terms
   and ($self->{goSubset} = 'No' or gts.is_go_slim = '1')
@@ -73,7 +73,7 @@ select distinct gts.gene_source_id
 from webready.GoTermSummary gts,
      ($geneResultSql) r
 where gts.gene_source_id = r.source_id
-  and gts.is_not is null
+  and gts.is_not != 'not'
   and gts.evidence_category in ($self->{evidCodes})
   -- include a row only if either it's a GO Slim term or we aren't restricting to GO Slim terms
   and ($self->{goSubset} = 'No' or gts.is_go_slim = '1')
@@ -99,7 +99,7 @@ from (select gts.go_id, count(distinct gts.gene_source_id) as bgdcnt,
         and gts.ontology = '$self->{subOntology}'
         and gts.evidence_category in ($self->{evidCodes})
         and ($self->{goSubset} = 'No' or gts.is_go_slim = '1')
-        and gts.is_not is null
+        and gts.is_not != 'not'
       group by gts.go_id
      ) bgd,
      (select gts.go_id, count(distinct gts.gene_source_id) as resultcnt
@@ -109,17 +109,17 @@ from (select gts.go_id, count(distinct gts.gene_source_id) as bgdcnt,
         and gts.ontology = '$self->{subOntology}'
         and gts.evidence_category in ($self->{evidCodes})
         and ($self->{goSubset} = 'No' or gts.is_go_slim = '1')
-        and gts.is_not is null
+        and gts.is_not != 'not'
       group by gts.go_id
      ) rslt,
-     (select gts.go_id, rtrim(xmlagg(xmlelement(e,gts.gene_source_id,',').extract('//text()') order by gts.gene_source_id).GetClobVal(),',') AS resultlist
+     (select gts.go_id, string_agg(gts.gene_source_id, ',' ORDER BY gts.gene_source_id) AS resultlist
       from webready.GoTermSummary gts,
            ($geneResultSql) r
       where gts.gene_source_id = r.source_id
         and gts.ontology = '$self->{subOntology}'
         and gts.evidence_category in ($self->{evidCodes})
         and ($self->{goSubset} = 'No' or gts.is_go_slim = '1')
-        and gts.is_not is null
+        and gts.is_not != 'not'
       group by gts.go_id
      ) rsltl
 where bgd.go_id = rslt.go_id
