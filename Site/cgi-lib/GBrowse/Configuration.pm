@@ -466,7 +466,7 @@ sub getOntologyCategoryFromTrackName {
 sub getSyntenySubtracks {
     my ($self) = @_;
     my $dbh = $self->dbh();
-    my $sh = $dbh->prepare("select organism, public_abbrev,  phylum, kingdom, genus, species, class  from apidbtuning.OrganismSelectTaxonRank order by kingdom, class, phylum, genus, species, organism");
+    my $sh = $dbh->prepare("select organism, public_abbrev,  phylum, kingdom, genus, species, class  from webready.OrganismSelectTaxonRank order by kingdom, class, phylum, genus, species, organism");
     $sh->execute();
     my @rv;
     my @synTypes = ('span','gene');

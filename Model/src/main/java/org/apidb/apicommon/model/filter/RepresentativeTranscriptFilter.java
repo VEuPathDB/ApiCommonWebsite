@@ -39,7 +39,7 @@ public class RepresentativeTranscriptFilter extends StepFilter {
    */
   public static final String FILTER_NAME = "representativeTranscriptOnly";
 
-  public static final String ATTR_TABLE_NAME = "ApiDBTuning.TranscriptAttributes";
+  public static final String ATTR_TABLE_NAME = "webready.TranscriptAttributes";
 
   private static final String ORIG_SQL_PARAM = "%%originalSql%%";
 
@@ -57,15 +57,19 @@ public class RepresentativeTranscriptFilter extends StepFilter {
   // select the longest transcript;  
   // return only one of them (MAX source_id) if several have the same length
   private static final String SELECT_LONGEST_TRANSCRIPT_SQL =
-      "WITH inputSql as (" + ORIG_SQL_PARAM + ") " +
+     "WITH inputSql as (" + ORIG_SQL_PARAM + ") " +
       "SELECT * FROM inputSql " +
       "WHERE SOURCE_ID IN ( " +
-      "  SELECT MAX(ta.SOURCE_ID) " +
-      "    KEEP (DENSE_RANK FIRST ORDER BY ta.length DESC) AS SOURCE_ID " +
-      "    FROM inputSql subq_, " + ATTR_TABLE_NAME + " ta " + 
-      "    WHERE ta.source_id =  subq_.source_id " +
-      "  GROUP BY subq_.GENE_SOURCE_ID " +
-      ")";
+      "  SELECT SOURCE_ID " +
+      "  FROM ( " +
+      "    SELECT subq_.GENE_SOURCE_ID, ta.SOURCE_ID, ROW_NUMBER() OVER (" +
+      "          PARTITION BY subq_.GENE_SOURCE_ID " +
+      "          ORDER BY ta.length DESC " +
+      "    ) AS rn " +
+      "    FROM inputSql subq_ " +
+      "    JOIN " + ATTR_TABLE_NAME + " ta ON ta.source_id = subq_.source_id" +
+      "  ) ranked " +
+      "  WHERE rn = 1 )";
 
 
   /*

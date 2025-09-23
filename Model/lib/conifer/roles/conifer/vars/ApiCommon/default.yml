@@ -79,7 +79,9 @@ commentconfig_maxIdle: 1
 commentconfig_minIdle: 1
 commentconfig_maxWait: 50
 commentconfig_defaultFetchSize: 200
-commentconfig_commentSchema: userlogins5
+commentconfig_commentSchema: usercomments
+commentconfig_userLoginSchema: wdkuser
+commentconfig_userLoginDbLink: '{{ modelconfig_appDb_userDbLink }}'
 commentconfig_userFileSchema: uploads
 commentconfig_userFileUploadDir: /var/www/Common/communityFilesMirror
 commentconfig_solrUrl: https://solr-sitesearch-dev.local.apidb.org:8443/solr/site_search/
@@ -123,3 +125,4 @@ _showUnreleasedDataByHostnamePrefix:
   w: false
 
 showUnreleasedData: "{{ _showUnreleasedDataByHostnamePrefix[hostname_prefix] | default('true') }}"
+showSubscriptionProds: "true"

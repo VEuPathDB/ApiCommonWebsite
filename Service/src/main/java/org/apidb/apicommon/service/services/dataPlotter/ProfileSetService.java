@@ -169,7 +169,7 @@ public class ProfileSetService extends AbstractWdkService {
           throws WdkModelException {
      String sql = " SELECT nfe.categorical_value AS cat_val" +
                   " FROM results.nafeatureexpression nfe" +
-                  "    , apidbtuning.transcriptattributes ga" +
+                  "    , webready.TranscriptAttributes ga" +
                   "    , study.protocolappnode pan" +
                   "    , study.studylink sl" +
                   "    , study.study ps" +
