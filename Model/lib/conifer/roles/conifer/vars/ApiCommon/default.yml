@@ -25,7 +25,7 @@ modelconfig_changePasswordUrl: "{{ modelconfig_oauthUrl }}/assets/eupathdb-chang
 
 modelprop:
   CNDSRC_BIN: /opt/cndsrc/bin
-  REMOTE_COMMENT_SCHEMA: '{{ commentconfig_remoteCommentSchema }}.'
+  REMOTE_COMMENT_SCHEMA: '{{ remoteCommentSchema }}.'
   REMOTE_METRICS_SCHEMA: '{{ remoteMetricsSchema }}.'
   REMOTE_USERACCOUNTS_SCHEMA: '{{ remoteUserAccountsSchema }}.'
   REMOTE_UPLOADS_SCHEMA: '{{ remoteUploadsSchema }}.'
