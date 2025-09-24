@@ -107,7 +107,7 @@ public class UserCommentUpdater extends CommentUpdater<Integer> {
   private String getGeneIdWithCommentIdSql(String schema) {
     return "SELECT stable_id "
         + "FROM " + schema + "comments "
-        + "WHERE comment_id = ?"
+        + "WHERE comment_id = ? "
         + "UNION "
         + "SELECT stable_id "
         + "FROM " + schema + "commentstableid "
