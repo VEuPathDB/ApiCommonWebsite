@@ -29,11 +29,10 @@ public class UserCommentUpdater extends CommentUpdater<Integer> {
 
      @Override
     public String getSortedCommentsSql(String schema) {
-      return "SELECT source_id, comment_target_type as record_type, c.comment_id"
-          + " FROM apidb.textsearchablecomment tsc,"
-          + " " + schema + "comments c "
-          + " WHERE tsc.comment_id = c.comment_id"
-          + " AND tsc.comment_target_type = 'gene'"  // until comment updater can handle other record classes
+      return "SELECT stable_id, comment_target_id as record_type, comment_id"
+          + " FROM " + schema + "comments c "
+          + " AND comment_target_id = 'gene'"  // until comment updater can handle other record classes
+          + " AND is_visible = true"
           + " ORDER BY source_id DESC, c.comment_id";
     }
 
@@ -60,12 +59,21 @@ public class UserCommentUpdater extends CommentUpdater<Integer> {
   @Override
   DocumentCommentsInfo<Integer> getCorrectCommentsForOneSourceId(
     final String sourceId,
-    final DataSource commentDbDataSource
+    final DataSource commentDbDataSource,
+    final String commentSchema
   ) {
 
-    var sqlSelect = " SELECT comment_id, content"
-      + " FROM apidb.textsearchablecomment"
-      + " WHERE source_id = '" + sourceId + "'";
+    var sqlSelect = "select c.comment_id," 
+      + " c.headline || '|' || c.content || '|' || u.first_name || ' ' || u.last_name || '(' || u.organization || ')'  || '|' || a.authors as content"
+      + " from " + commentSchema + "comments c,"
+      + " " + commentSchema + "comment_users u,"
+      + " (select comment_id, string_agg(source_id , ', ' order by source_id) authors"
+      + "  from " + commentSchema + "CommentReference"
+      + "  where database_name = 'author'"
+      + "  group by comment_id) a"
+      + " where u.user_id = c.user_id"
+      + " and c.comment_id = a.comment_id"
+      + " and c.stable_id = '" + sourceId + "'";
 
     return new SQLRunner(commentDbDataSource, sqlSelect)
       .executeQuery(rs -> {
