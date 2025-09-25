@@ -272,7 +272,7 @@ public abstract class CommentUpdater<IDTYPE> {
    * comments, and so would not provide those IDs.
    */
   void updateDocumentComment(SolrDocument doc) {
-    var comments = getCorrectCommentsForOneSourceId(doc.getSourceId(), _commentDb.getDataSource());
+    var comments = getCorrectCommentsForOneSourceId(doc.getSourceId(), _commentDb.getDataSource(), _commentSchema);
 
     LOG.info("Updating source ID '" + doc.getSourceId() + "' to have comments with IDs: " + 
         comments.commentIds.stream().map(IDTYPE::toString).collect(Collectors.joining(",")));
@@ -298,7 +298,8 @@ public abstract class CommentUpdater<IDTYPE> {
    */
   abstract DocumentCommentsInfo<IDTYPE> getCorrectCommentsForOneSourceId(
     final String sourceId,
-    final DataSource commentDbDataSource
+    final DataSource commentDbDataSource,
+    final String commentSchema
   );
 
   /***

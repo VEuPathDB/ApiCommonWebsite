@@ -25,8 +25,11 @@ modelconfig_changePasswordUrl: "{{ modelconfig_oauthUrl }}/assets/eupathdb-chang
 
 modelprop:
   CNDSRC_BIN: /opt/cndsrc/bin
-  COMMENT_DBLINK: '@{{ modelconfig_appDb_userDbLink }}'
-  COMMENT_SCHEMA: '{{ commentconfig_commentSchema }}.'
+  REMOTE_COMMENT_SCHEMA: '{{ remoteCommentSchema }}.'
+  REMOTE_METRICS_SCHEMA: '{{ remoteMetricsSchema }}.'
+  REMOTE_USERACCOUNTS_SCHEMA: '{{ remoteUserAccountsSchema }}.'
+  REMOTE_STUDYACCESS_SCHEMA: '{{ remoteStudyAccessSchema }}.'
+  REMOTE_UPLOADS_SCHEMA: '{{ remoteUploadsSchema }}.'
   FACEBOOK_URL: https://facebook.com/pages/EuPathDB/133123003429972
   LEGACY_WEBAPP_BASE_URL: "/{{ webapp_ctx }}"
   PROJECT_ID: '{{ project }}'

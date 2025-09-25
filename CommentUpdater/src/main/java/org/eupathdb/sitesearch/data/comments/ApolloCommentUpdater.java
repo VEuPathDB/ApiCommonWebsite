@@ -58,7 +58,8 @@ public class ApolloCommentUpdater extends CommentUpdater<String>{
   @Override
   DocumentCommentsInfo<String> getCorrectCommentsForOneSourceId(
     final String sourceId,
-    final DataSource commentDbDataSource
+    final DataSource commentDbDataSource,
+    final String commentSchema
   ) {
 
     var sqlSelect = 
