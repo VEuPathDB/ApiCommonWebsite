@@ -45,7 +45,7 @@ modelprop:
   SEQUENCE_RETRIEVAL_SERVICE_URL: /sequence-retrieval
   JBROWSE_WEBPAGE_URL: "/{{ webapp_ctx }}/app/jbrowse"
   JBROWSE_SERVICE_URL: "/{{ webapp_ctx }}/service/jbrowse"
-  AI_EXPRESSION_CACHE_DIR: "/eupath/ai-expr-cache"
+  AI_EXPRESSION_CACHE_DIR: "/var/www/Common/ai-expr-cache"
   AI_EXPRESSION_QUALTRICS_ID: SV_38C4ZX1JxLi2SEe
   OPENAI_API_KEY: "{{ lookup('euparc', 'attr=api_key xpath=sites/openai default=NOKEY') }}"
   OPENAI_MAX_DAILY_AI_EXPRESSION_DOLLAR_COST: 33
