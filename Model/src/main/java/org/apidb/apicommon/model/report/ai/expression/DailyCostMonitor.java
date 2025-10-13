@@ -31,10 +31,15 @@ public class DailyCostMonitor {
   private static final String DAILY_COST_ACCUMULATION_FILE_DIR = "dailyCost";
   private static final String DAILY_COST_ACCUMULATION_FILE = "daily_cost_accumulation.txt";
 
-  // model prop keys
-  private static final String MAX_DAILY_DOLLAR_COST_PROP_NAME = "OPENAI_MAX_DAILY_AI_EXPRESSION_DOLLAR_COST";
-  private static final String DOLLAR_COST_PER_1M_INPUT_TOKENS_PROP_NAME = "OPENAI_DOLLAR_COST_PER_1M_AI_INPUT_TOKENS";
-  private static final String DOLLAR_COST_PER_1M_OUTPUT_TOKENS_PROP_NAME = "OPENAI_DOLLAR_COST_PER_1M_AI_OUTPUT_TOKENS";
+  // model prop keys (new names without OPENAI_ prefix)
+  private static final String MAX_DAILY_DOLLAR_COST_PROP_NAME = "MAX_DAILY_AI_EXPRESSION_DOLLAR_COST";
+  private static final String DOLLAR_COST_PER_1M_INPUT_TOKENS_PROP_NAME = "DOLLAR_COST_PER_1M_AI_INPUT_TOKENS";
+  private static final String DOLLAR_COST_PER_1M_OUTPUT_TOKENS_PROP_NAME = "DOLLAR_COST_PER_1M_AI_OUTPUT_TOKENS";
+  
+  // deprecated model prop keys (with OPENAI_ prefix)
+  private static final String DEPRECATED_MAX_DAILY_DOLLAR_COST_PROP_NAME = "OPENAI_MAX_DAILY_AI_EXPRESSION_DOLLAR_COST";
+  private static final String DEPRECATED_DOLLAR_COST_PER_1M_INPUT_TOKENS_PROP_NAME = "OPENAI_DOLLAR_COST_PER_1M_AI_INPUT_TOKENS";
+  private static final String DEPRECATED_DOLLAR_COST_PER_1M_OUTPUT_TOKENS_PROP_NAME = "OPENAI_DOLLAR_COST_PER_1M_AI_OUTPUT_TOKENS";
 
   // lock characteristics
   private static final long DEFAULT_TIMEOUT_MILLIS = 1000;
@@ -68,9 +73,25 @@ public class DailyCostMonitor {
 
     _costMonitoringFile = _costMonitoringDir.resolve(DAILY_COST_ACCUMULATION_FILE);
 
-    _maxDailyDollarCost = getNumberProp(wdkModel, MAX_DAILY_DOLLAR_COST_PROP_NAME);
-    _costPerInputToken = getNumberProp(wdkModel, DOLLAR_COST_PER_1M_INPUT_TOKENS_PROP_NAME) / 1000000;
-    _costPerOutputToken = getNumberProp(wdkModel, DOLLAR_COST_PER_1M_OUTPUT_TOKENS_PROP_NAME) / 1000000;
+    _maxDailyDollarCost = getNumberProp(wdkModel, MAX_DAILY_DOLLAR_COST_PROP_NAME, DEPRECATED_MAX_DAILY_DOLLAR_COST_PROP_NAME);
+    _costPerInputToken = getNumberProp(wdkModel, DOLLAR_COST_PER_1M_INPUT_TOKENS_PROP_NAME, DEPRECATED_DOLLAR_COST_PER_1M_INPUT_TOKENS_PROP_NAME) / 1000000;
+    _costPerOutputToken = getNumberProp(wdkModel, DOLLAR_COST_PER_1M_OUTPUT_TOKENS_PROP_NAME, DEPRECATED_DOLLAR_COST_PER_1M_OUTPUT_TOKENS_PROP_NAME) / 1000000;
+  }
+
+  private double getNumberProp(WdkModel wdkModel, String propName, String deprecatedPropName) throws WdkModelException {
+    // First try the new property name
+    if (wdkModel.getProperties().get(propName) != null) {
+      return getNumberProp(wdkModel, propName);
+    }
+    
+    // Fall back to deprecated property name with warning
+    if (wdkModel.getProperties().get(deprecatedPropName) != null) {
+      LOG.warn("WDK property '" + deprecatedPropName + "' is deprecated. Please use '" + propName + "' instead.");
+      return getNumberProp(wdkModel, deprecatedPropName);
+    }
+    
+    // Neither property is set
+    throw new WdkModelException("WDK property '" + propName + "' (or deprecated '" + deprecatedPropName + "') has not been set.");
   }
 
   private double getNumberProp(WdkModel wdkModel, String propName) throws WdkModelException {
