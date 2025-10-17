@@ -177,8 +177,7 @@ public class UserCommentsService extends AbstractUserCommentService {
       .collect(JSONArray::new, JSONArray::put, (x, y) -> y.forEach(x::put));
   }
 
-  private JSONArray validatePubmedIds(Set<String> pubmedIds)
-          throws WdkModelException {
+  private JSONArray validatePubmedIds(Set<String> pubmedIds) {
     return pubmedIds.stream().filter(a-> !a.matches("\\d+"))
             .map(id -> "\"" + id + "\" is not a valid pubmed id.")
             .collect(JSONArray::new, JSONArray::put, (x, y) -> y.forEach(x::put));
