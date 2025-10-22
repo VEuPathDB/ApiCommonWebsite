@@ -31,7 +31,7 @@ sub getAnnotatedGenesCountBgd {
 
   my $sql = "
 SELECT count (distinct tp.gene_source_id)
-         from    webready.TranscriptPathway tp, webready.GeneAttributes ga
+         from    webready.TranscriptPathway_p tp, webready.GeneAttributes_p ga
         where  ga.taxon_id = $taxonId
         AND    tp.gene_source_id = ga.source_id
         AND tp.complete_ec >= $self->{excludeIncomplete}
@@ -49,7 +49,7 @@ sub getAnnotatedGenesCountResult {
 
   my $sql = "
 SELECT count (distinct tp.gene_source_id)
-         from  webready.TranscriptPathway tp,
+         from  webready.TranscriptPathway_p tp,
                ($geneResultSql) r
         where  tp.gene_source_id = r.source_id
         AND tp.complete_ec >= $self->{excludeIncomplete}
@@ -69,7 +69,7 @@ sub getAnnotatedGenesListResult {
   # THIS HAS BEEN REPLACED WITH `tp.exact_match >= $self->{exactMatchOnly}`
   my $sql = "
 SELECT distinct tp.gene_source_id
-         from  webready.TranscriptPathway tp,
+         from  webready.TranscriptPathway_p tp,
                ($geneResultSql) r
         where  tp.gene_source_id = r.source_id
           AND tp.complete_ec >= $self->{excludeIncomplete}
@@ -96,8 +96,8 @@ SELECT distinct tp.gene_source_id
 #    (SELECT  tp.pathway_source_id || '__PK__' || tp.pathway_source as pathway_source_id
 #        , count (distinct tp.gene_source_id) as bgdcnt
 #        , tp.pathway_name
-#        from   webready.TranscriptPathway tp 
-#        , webready.GeneAttributes ga
+#        from   webready.TranscriptPathway_p tp 
+#        , webready.GeneAttributes_p ga
 #        , webready.PathwayCompounds pc
 #        , webready.PathwayReactions pr
 #        where  ga.taxon_id = $taxonId
@@ -111,7 +111,7 @@ SELECT distinct tp.gene_source_id
 #   ) bgd,
 #   (SELECT  tp.pathway_source_id || '__PK__' || tp.pathway_source as pathway_source_id
 #        ,  count (distinct tp.gene_source_id) as resultcnt
-#        from   webready.TranscriptPathway tp
+#        from   webready.TranscriptPathway_p tp
 #        , ($geneResultSql) r
 #        , webready.PathwayCompounds pc
 #        , webready.PathwayReactions pr
@@ -141,8 +141,8 @@ from
     (SELECT  tp.pathway_source_id || '__PK__' || tp.pathway_source as pathway_source_id
         , count (distinct tp.gene_source_id) as bgdcnt
         , tp.pathway_name
-        from   webready.TranscriptPathway tp 
-        , webready.GeneAttributes ga
+        from   webready.TranscriptPathway_p tp 
+        , webready.GeneAttributes_p ga
         , webready.PathwayCompounds pc
         , webready.PathwayReactions pr
         where  ga.taxon_id = $taxonId
@@ -158,7 +158,7 @@ from
    ) bgd,
    (SELECT  tp.pathway_source_id || '__PK__' || tp.pathway_source as pathway_source_id
         ,  count (distinct tp.gene_source_id) as resultcnt
-        from   webready.TranscriptPathway tp
+        from   webready.TranscriptPathway_p tp
         , ($geneResultSql) r
         , webready.PathwayCompounds pc
         , webready.PathwayReactions pr
@@ -174,7 +174,7 @@ from
  ) rslt,
  (SELECT  tp.pathway_source_id || '__PK__' || tp.pathway_source as pathway_source_id
         ,  string_agg(tp.gene_source_id, ',' ORDER BY tp.gene_source_id) AS resultlist
-        from   webready.TranscriptPathway tp
+        from   webready.TranscriptPathway_p tp
         , ($geneResultSql) r
         , webready.PathwayCompounds pc
         , webready.PathwayReactions pr

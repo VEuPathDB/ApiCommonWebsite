@@ -35,7 +35,7 @@ public class GenesByPathwayFilter extends StepFilter {
 
   private static final String FILTER_SQL = 
       "SELECT DISTINCT idq.*" +
-      " FROM webready.TranscriptPathway tp, ($$id_sql$$) idq" +
+      " FROM webready.TranscriptPathway_p tp, ($$id_sql$$) idq" +
       " WHERE idq.gene_source_id = tp.gene_source_id" +
       "   AND tp.pathway_source = '$$pathway_source$$'" +
       "   AND tp.pathway_source_id = '$$pathway_source_id$$'" +

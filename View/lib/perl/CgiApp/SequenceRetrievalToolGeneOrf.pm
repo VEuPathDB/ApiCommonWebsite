@@ -170,7 +170,7 @@ sub setSqls {
 
   $self->{sqlQueries}->{geneProteinSql} = <<EOSQL;
 SELECT $sourceId, seq.sequence, bfmv.gene_product AS product, bfmv.organism AS name
-FROM   webready.TranscriptAttributes bfmv, webready.ProteinSequence seq
+FROM   webready.TranscriptAttributes_p bfmv, webready.ProteinSequence_p seq
 WHERE  bfmv.protein_source_id = seq.source_id
 AND    $sourceIdAndClause
 ORDER BY bfmv.source_id
@@ -190,7 +190,7 @@ EOSQL
 
   $self->{sqlQueries}->{transcriptSql} = <<EOSQL;
 SELECT $sourceId, seq.sequence, bfmv.gene_product AS product, bfmv.organism AS name
-FROM   webready.TranscriptAttributes bfmv, webready.TranscriptSequence seq
+FROM   webready.TranscriptAttributes_p bfmv, webready.TranscriptSequence_p seq
 WHERE  bfmv.source_id = seq.source_id
 AND    $sourceIdAndClause
 ORDER BY bfmv.source_id
@@ -198,7 +198,7 @@ EOSQL
 
   $self->{sqlQueries}->{cdsSql} = <<EOSQL;
 SELECT $sourceId, seq.sequence, bfmv.gene_product AS product, bfmv.organism AS name
-FROM   webready.TranscriptAttributes bfmv, webready.CodingSequence seq
+FROM   webready.TranscriptAttributes_p bfmv, webready.CodingSequence_p seq
 WHERE  bfmv.source_id = seq.source_id
 AND    $sourceIdAndClause
 ORDER BY bfmv.source_id
@@ -257,7 +257,7 @@ sub handleNonGenomic {
     $self->{sqlQueries}->{geneProteinSql} = <<EOSQL;
 SELECT $sourceId, substr(seq.sequence,  $start_position, ($seq_length)),
         bfmv.gene_product AS product, bfmv.organism AS name
-FROM   webready.TranscriptAttributes bfmv, webready.ProteinSequence seq
+FROM   webready.TranscriptAttributes_p bfmv, webready.ProteinSequence_p seq
 WHERE  bfmv.protein_source_id = seq.source_id
 AND    $sourceIdAndClause
 ORDER BY bfmv.source_id
@@ -318,13 +318,13 @@ sub mapGeneFeatureSourceIds {
                        then 1
                      else 0
                    end as matchiness
-            from webready.GeneId
+            from webready.GeneId_p
             where lower(id) = lower(?)
             order by matchiness desc)
       where rownum=1
     UNION
       select source_id as id
-      from webready.TranscriptAttributes
+      from webready.TranscriptAttributes_p
       where lower(source_id) = lower(?)
 SQL
 
@@ -397,12 +397,12 @@ select bfmv.gene_source_id, s.source_id, bfmv.organism, bfmv.gene_product as pro
        ELSE substr(s.sequence, $start, greatest(0, ($end - $start + 1)))
        END
      END as sequence
-FROM webready.TranscriptAttributes bfmv, webready.GenomicSequenceSequence s
+FROM webready.TranscriptAttributes_p bfmv, webready.GenomicSequenceSequence_p s
 WHERE s.source_id = bfmv.sequence_id
 AND bfmv.gene_source_id IN (
     SELECT gene FROM (
         SELECT gene, CASE WHEN id = gene THEN 2 WHEN id = LOWER(gene) THEN 1 ELSE 0 END AS matchiness
-        FROM webready.GeneId WHERE LOWER(id) = LOWER( ?)
+        FROM webready.GeneId_p WHERE LOWER(id) = LOWER( ?)
         ORDER BY matchiness desc )
     WHERE rownum=1 )
 ORDER BY bfmv.gene_source_id
@@ -434,7 +434,7 @@ select bfmv.source_id, s.source_id, bfmv.organism,
        ELSE substr(s.sequence, $start, greatest(0, ($end - $start + 1)))
        END
      END as sequence
-FROM ApidbTuning.OrfAttributes bfmv, webready.GenomicSequenceSequence s
+FROM ApidbTuning.OrfAttributes bfmv, webready.GenomicSequenceSequence_p s
 WHERE bfmv.source_id = ?
 AND s.source_id = bfmv.nas_id
 ORDER BY bfmv.source_id

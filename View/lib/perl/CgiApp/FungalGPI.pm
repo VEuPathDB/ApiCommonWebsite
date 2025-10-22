@@ -25,7 +25,7 @@ sub run {
     my $sql;
 
     if($id_type eq  'protein'){
-        $sql = "SELECT sequence FROM webready.ProteinSequence WHERE source_id = '" . $source_ID . "' AND project_id = '" . $project_id . "'";
+        $sql = "SELECT sequence FROM webready.ProteinSequence_p WHERE source_id = '" . $source_ID . "' AND project_id = '" . $project_id . "'";
     }else{
 	die "cannot find the protein sequence from database based on entered source_ID and project_id" ;
     }

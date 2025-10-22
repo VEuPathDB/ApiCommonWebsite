@@ -116,7 +116,7 @@ public class OrganismFilter extends StepFilter {
     PrimaryKeyDefinition transcriptPk = TranscriptUtil.getTranscriptRecordClass(wdkModel).getPrimaryKeyDefinition();
     return  "SELECT idsql.*, ga.organism AS " + ORGANISM +
         " FROM (" + originalIdSql + ") idsql, (" + idSql + ") filteredIdSql, " +
-        "  (SELECT * FROM webready.GeneAttributes) ga " +
+        "  (SELECT * FROM webready.GeneAttributes_p) ga " +
         // join ID sql to filtered ID sql on transcript PK columns
         "   WHERE " + transcriptPk.createJoinClause("idsql", "filteredIdSql") +
         // join ID sql to gene attributes table on gene ID

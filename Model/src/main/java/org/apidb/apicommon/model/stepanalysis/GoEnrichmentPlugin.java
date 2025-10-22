@@ -102,7 +102,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     String idSql =  EnrichmentPluginUtil.getOrgSpecificIdSql(getAnswerValue(), getFormParams());
     String sql =
         "SELECT count(distinct gts.go_term_id) as " + NL +
-        "  FROM webready.GoTermSummary gts,"  + NL +
+        "  FROM webready.GoTermSummary_p gts,"  + NL +
         "  (" + idSql + ") r"  + NL +
         "  where gts.gene_source_id = r.source_id" + NL +
         "    and gts.ontology = '" + ontology + "'" + NL +
@@ -188,7 +188,7 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
     // check for non-zero count of genes with GO associations (ontology must be non-null)
     String sql = "select count(distinct gts.gene_source_id)" + NL +
-      " from webready.GoTermSummary gts, (" + idSql + ") r" + NL +
+      " from webready.GoTermSummary_p gts, (" + idSql + ") r" + NL +
       " where gts.gene_source_id = r.gene_source_id" + NL +
       " and gts.ontology is not null";
 
