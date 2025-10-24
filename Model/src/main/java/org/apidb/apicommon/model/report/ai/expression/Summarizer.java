@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import org.apache.log4j.Logger;
 import org.apidb.apicommon.model.report.ai.expression.GeneRecordProcessor.ExperimentInputs;
@@ -17,7 +18,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.openai.client.OpenAIClientAsync;
+import com.openai.client.okhttp.OpenAIOkHttpClientAsync;
 import com.openai.core.JsonValue;
+import com.openai.models.EmbeddingCreateParams;
+import com.openai.models.EmbeddingModel;
 import com.openai.models.ResponseFormatJsonSchema.JsonSchema;
 import com.openai.models.ResponseFormatJsonSchema.JsonSchema.Schema;
 
@@ -25,7 +30,12 @@ public abstract class Summarizer {
 
   protected static final int MAX_RESPONSE_TOKENS = 10000;
 
+  public static final EmbeddingModel EMBEDDING_MODEL = EmbeddingModel.TEXT_EMBEDDING_3_SMALL;
+  private static final int EMBEDDING_DIMENSIONS = 512;
+  private static final int EMBEDDING_DECIMAL_PLACES = 4;
+
   private static final int MAX_MALFORMED_RESPONSE_RETRIES = 3;
+  private static final String OPENAI_API_KEY_PROP_NAME = "OPENAI_API_KEY";
 
   protected static final String SYSTEM_MESSAGE = "You are a bioinformatician working for VEuPathDB.org. You are an expert at providing biologist-friendly summaries of transcriptomic data";
 
@@ -74,11 +84,44 @@ public abstract class Summarizer {
     .build();
 
   protected final DailyCostMonitor _costMonitor;
+  private final OpenAIClientAsync _embeddingClient;
 
   private static final Logger LOG = Logger.getLogger(Summarizer.class);
 
-  public Summarizer(DailyCostMonitor costMonitor) {
+  public Summarizer(WdkModel wdkModel, DailyCostMonitor costMonitor) throws WdkModelException {
     _costMonitor = costMonitor;
+
+    String apiKey = wdkModel.getProperties().get(OPENAI_API_KEY_PROP_NAME);
+    if (apiKey == null) {
+      throw new WdkModelException("WDK property '" + OPENAI_API_KEY_PROP_NAME + "' has not been set.");
+    }
+
+    _embeddingClient = OpenAIOkHttpClientAsync.builder()
+        .apiKey(apiKey)
+        .maxRetries(32)  // Handle 429 errors
+        .build();
+  }
+
+  private CompletableFuture<List<Double>> getEmbedding(String text) {
+    EmbeddingCreateParams request = EmbeddingCreateParams.builder()
+        .model(EMBEDDING_MODEL)
+        .input(text)
+        .dimensions(EMBEDDING_DIMENSIONS)
+        .build();
+
+    return _embeddingClient.embeddings().create(request).thenApply(response -> {
+      // Extract embedding vector from first result
+      List<Double> embedding = response.data().get(0).embedding();
+
+      // Round to specified decimal places
+      double scale = Math.pow(10, EMBEDDING_DECIMAL_PLACES);
+      return embedding.stream()
+          .map(val -> Math.round(val * scale) / scale)
+          .collect(Collectors.toList());
+    }).exceptionally(e -> {
+      LOG.error("Failed to generate embedding: " + e.getMessage(), e);
+      return List.of(); // Return empty list on error
+    });
   }
 
   public static String getExperimentMessage(JSONObject experiment) {
@@ -138,12 +181,14 @@ public abstract class Summarizer {
     String prompt = getFinalSummaryMessage(experiments);
 
     return getValidatedAiResponse("summary for gene " + geneId, prompt, finalResponseSchema, json ->
+      json  // Return json as-is; consolidateSummary will be called separately
+    ).thenCompose(json ->
       // quality control (remove bad `dataset_id`s) and add 'Others' section for any experiments not listed by AI
       consolidateSummary(json, experiments)
     ).join();
   }
 
-  private static JSONObject consolidateSummary(JSONObject summaryResponse,
+  private CompletableFuture<JSONObject> consolidateSummary(JSONObject summaryResponse,
       List<JSONObject> individualResults) {
     // Gather all dataset IDs from individualResults and map them to summaries.
     // Preserving the order of individualResults.
@@ -153,7 +198,8 @@ public abstract class Summarizer {
     }
 
     Set<String> seenDatasetIds = new LinkedHashSet<>();
-    JSONArray deduplicatedTopics = new JSONArray();
+    List<JSONObject> deduplicatedTopicsList = new java.util.ArrayList<>();
+    List<CompletableFuture<Void>> embeddingFutures = new java.util.ArrayList<>();
     JSONArray topics = summaryResponse.getJSONArray("topics");
 
     for (int i = 0; i < topics.length(); i++) {
@@ -183,7 +229,19 @@ public abstract class Summarizer {
       if (summaries.length() > 0) {
         topic.put("summaries", summaries);
         topic.remove("dataset_ids");
-        deduplicatedTopics.put(topic);
+        deduplicatedTopicsList.add(topic);
+
+        // Generate embedding for non-"Other" topics
+        String headline = topic.optString("headline", "");
+        if (!headline.equals("Other")) {
+          String embeddingText = headline + "\n\n" + topic.optString("one_sentence_summary", "");
+          CompletableFuture<Void> embeddingFuture = getEmbedding(embeddingText).thenAccept(embedding -> {
+            if (!embedding.isEmpty()) {
+              topic.put("embedding_vector", embedding);
+            }
+          });
+          embeddingFutures.add(embeddingFuture);
+        }
       }
     }
 
@@ -203,13 +261,24 @@ public abstract class Summarizer {
       otherTopic.put("one_sentence_summary",
           "The AI ordered these experiments by biological importance but did not group them into topics.");
       otherTopic.put("summaries", otherSummaries);
-      deduplicatedTopics.put(otherTopic);
+      deduplicatedTopicsList.add(otherTopic);
+      // Note: no embedding for "Other" topic
     }
 
-    // Create final deduplicated summary
-    JSONObject finalSummary = new JSONObject(summaryResponse.toString());
-    finalSummary.put("topics", deduplicatedTopics);
-    return finalSummary;
+    // Wait for all embeddings to complete, then create final summary
+    return CompletableFuture.allOf(embeddingFutures.toArray(new CompletableFuture[0]))
+        .thenApply(v -> {
+          // Convert deduplicated topics list back to JSONArray
+          JSONArray deduplicatedTopics = new JSONArray();
+          for (JSONObject topic : deduplicatedTopicsList) {
+            deduplicatedTopics.put(topic);
+          }
+
+          // Create final deduplicated summary
+          JSONObject finalSummary = new JSONObject(summaryResponse.toString());
+          finalSummary.put("topics", deduplicatedTopics);
+          return finalSummary;
+        });
   }
 
 

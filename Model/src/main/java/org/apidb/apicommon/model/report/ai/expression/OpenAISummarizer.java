@@ -22,7 +22,7 @@ public class OpenAISummarizer extends Summarizer {
   private final OpenAIClientAsync _openAIClient;
 
   public OpenAISummarizer(WdkModel wdkModel, DailyCostMonitor costMonitor) throws WdkModelException {
-    super(costMonitor);
+    super(wdkModel, costMonitor);
 
     String apiKey = wdkModel.getProperties().get(OPENAI_API_KEY_PROP_NAME);
     if (apiKey == null) {
