@@ -50,15 +50,14 @@ public class ClaudeSummarizer extends Summarizer {
         .build();
 
     return _claudeClient.messages().create(request).thenApply(response -> {
-      // Convert Claude usage to OpenAI format for cost monitoring
+      // Convert Claude usage to TokenUsage for cost monitoring
       com.anthropic.models.messages.Usage claudeUsage = response.usage();
-      com.openai.models.CompletionUsage openAiUsage = com.openai.models.CompletionUsage.builder()
+      TokenUsage tokenUsage = TokenUsage.builder()
           .promptTokens(claudeUsage.inputTokens())
           .completionTokens(claudeUsage.outputTokens())
-          .totalTokens(claudeUsage.inputTokens() + claudeUsage.outputTokens())
           .build();
-      
-      _costMonitor.updateCost(java.util.Optional.of(openAiUsage));
+
+      _costMonitor.updateCost(tokenUsage);
       
       // Extract text from content blocks using stream API
       String rawText = response.content().stream()

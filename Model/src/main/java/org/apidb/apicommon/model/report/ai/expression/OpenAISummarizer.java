@@ -52,9 +52,15 @@ public class OpenAISummarizer extends Summarizer {
         .build();
 
     return _openAIClient.chat().completions().create(request).thenApply(completion -> {
-      // update cost accumulator
-      _costMonitor.updateCost(completion.usage());
-      
+      // update cost accumulator - convert to TokenUsage
+      completion.usage().ifPresent(usage -> {
+        TokenUsage tokenUsage = TokenUsage.builder()
+            .promptTokens(usage.promptTokens())
+            .completionTokens(usage.completionTokens())
+            .build();
+        _costMonitor.updateCost(tokenUsage);
+      });
+
       // return JSON string
       return completion.choices().get(0).message().content().get();
     });

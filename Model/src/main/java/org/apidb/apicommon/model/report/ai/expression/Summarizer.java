@@ -110,6 +110,13 @@ public abstract class Summarizer {
         .build();
 
     return _embeddingClient.embeddings().create(request).thenApply(response -> {
+      // Update cost monitor - convert embedding usage to TokenUsage
+      com.openai.models.CreateEmbeddingResponse.Usage embeddingUsage = response.usage();
+      TokenUsage tokenUsage = TokenUsage.builder()
+          .embeddingTokens(embeddingUsage.totalTokens())
+          .build();
+      _costMonitor.updateCost(tokenUsage);
+
       // Extract embedding vector from first result
       List<Double> embedding = response.data().get(0).embedding();
 
