@@ -13,7 +13,7 @@ sub run {
   my $sql = "select ga.project_id, 
        ga.source_id, 
        gi.id as uniprot
-from apidbtuning.geneid gi, apidbtuning.geneattributes ga
+from webready.GeneId gi, webready.GeneAttributes ga
 where ga.source_id = gi.gene
 and (gi.database_name like '%uniprot_dbxref_RSRC'
 or gi.database_name like '%dbxref_gene2Uniprot_RSRC'

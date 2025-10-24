@@ -39,7 +39,7 @@ public class RepresentativeTranscriptFilter extends StepFilter {
    */
   public static final String FILTER_NAME = "representativeTranscriptOnly";
 
-  public static final String ATTR_TABLE_NAME = "ApiDBTuning.TranscriptAttributes";
+  public static final String ATTR_TABLE_NAME = "webready.TranscriptAttributes";
 
   private static final String ORIG_SQL_PARAM = "%%originalSql%%";
 

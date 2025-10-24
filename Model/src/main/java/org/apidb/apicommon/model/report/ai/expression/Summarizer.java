@@ -21,8 +21,11 @@ import org.json.JSONObject;
 import com.openai.client.OpenAIClientAsync;
 import com.openai.client.okhttp.OpenAIOkHttpClientAsync;
 import com.openai.core.JsonValue;
-import com.openai.models.EmbeddingCreateParams;
-import com.openai.models.EmbeddingModel;
+import com.openai.models.embeddings.EmbeddingCreateParams;
+import com.openai.models.embeddings.EmbeddingModel;
+import com.openai.models.chat.completions.ChatCompletionCreateParams;
+import com.openai.models.ChatModel;
+import com.openai.models.ResponseFormatJsonSchema;
 import com.openai.models.ResponseFormatJsonSchema.JsonSchema;
 import com.openai.models.ResponseFormatJsonSchema.JsonSchema.Schema;
 
@@ -111,19 +114,19 @@ public abstract class Summarizer {
 
     return _embeddingClient.embeddings().create(request).thenApply(response -> {
       // Update cost monitor - convert embedding usage to TokenUsage
-      com.openai.models.CreateEmbeddingResponse.Usage embeddingUsage = response.usage();
+      com.openai.models.embeddings.CreateEmbeddingResponse.Usage embeddingUsage = response.usage();
       TokenUsage tokenUsage = TokenUsage.builder()
           .embeddingTokens(embeddingUsage.totalTokens())
           .build();
       _costMonitor.updateCost(tokenUsage);
 
-      // Extract embedding vector from first result
-      List<Double> embedding = response.data().get(0).embedding();
+      // Extract embedding vector from first result (convert Float to Double)
+      List<Float> rawEmbedding = response.data().get(0).embedding();
 
       // Round to specified decimal places
       double scale = Math.pow(10, EMBEDDING_DECIMAL_PLACES);
-      return embedding.stream()
-          .map(val -> Math.round(val * scale) / scale)
+      return rawEmbedding.stream()
+          .map(val -> Math.round(val.doubleValue() * scale) / scale)
           .collect(Collectors.toList());
     }).exceptionally(e -> {
       LOG.error("Failed to generate embedding: " + e.getMessage(), e);

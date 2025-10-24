@@ -31,7 +31,7 @@ sub getAnnotatedGenesCountBgd {
 
   my $sql = "
 SELECT count (distinct tp.gene_source_id)
-         from    apidbtuning.transcriptPathway tp, ApidbTuning.GeneAttributes ga
+         from    webready.TranscriptPathway tp, webready.GeneAttributes ga
         where  ga.taxon_id = $taxonId
         AND    tp.gene_source_id = ga.source_id
         AND tp.complete_ec >= $self->{excludeIncomplete}
@@ -49,7 +49,7 @@ sub getAnnotatedGenesCountResult {
 
   my $sql = "
 SELECT count (distinct tp.gene_source_id)
-         from  apidbtuning.transcriptPathway tp,
+         from  webready.TranscriptPathway tp,
                ($geneResultSql) r
         where  tp.gene_source_id = r.source_id
         AND tp.complete_ec >= $self->{excludeIncomplete}
@@ -69,7 +69,7 @@ sub getAnnotatedGenesListResult {
   # THIS HAS BEEN REPLACED WITH `tp.exact_match >= $self->{exactMatchOnly}`
   my $sql = "
 SELECT distinct tp.gene_source_id
-         from  apidbtuning.transcriptPathway tp,
+         from  webready.TranscriptPathway tp,
                ($geneResultSql) r
         where  tp.gene_source_id = r.source_id
           AND tp.complete_ec >= $self->{excludeIncomplete}
@@ -96,10 +96,10 @@ SELECT distinct tp.gene_source_id
 #    (SELECT  tp.pathway_source_id || '__PK__' || tp.pathway_source as pathway_source_id
 #        , count (distinct tp.gene_source_id) as bgdcnt
 #        , tp.pathway_name
-#        from   apidbtuning.transcriptPathway tp 
-#        , ApidbTuning.GeneAttributes ga
-#        , apidbtuning.pathwaycompounds pc
-#        , apidbtuning.pathwayreactions pr
+#        from   webready.TranscriptPathway tp 
+#        , webready.GeneAttributes ga
+#        , webready.PathwayCompounds pc
+#        , webready.PathwayReactions pr
 #        where  ga.taxon_id = $taxonId
 #        and   tp.gene_source_id = ga.source_id
 #        and pc.pathway_id = tp.pathway_id
@@ -111,10 +111,10 @@ SELECT distinct tp.gene_source_id
 #   ) bgd,
 #   (SELECT  tp.pathway_source_id || '__PK__' || tp.pathway_source as pathway_source_id
 #        ,  count (distinct tp.gene_source_id) as resultcnt
-#        from   ApidbTuning.TranscriptPathway tp
+#        from   webready.TranscriptPathway tp
 #        , ($geneResultSql) r
-#        , apidbtuning.pathwaycompounds pc
-#        , apidbtuning.pathwayreactions pr
+#        , webready.PathwayCompounds pc
+#        , webready.PathwayReactions pr
 #        where  tp.gene_source_id = r.source_id
 #        and tp.pathway_source in ($self->{source})
 #        and pc.pathway_id = tp.pathway_id
@@ -141,10 +141,10 @@ from
     (SELECT  tp.pathway_source_id || '__PK__' || tp.pathway_source as pathway_source_id
         , count (distinct tp.gene_source_id) as bgdcnt
         , tp.pathway_name
-        from   apidbtuning.transcriptPathway tp 
-        , ApidbTuning.GeneAttributes ga
-        , apidbtuning.pathwaycompounds pc
-        , apidbtuning.pathwayreactions pr
+        from   webready.TranscriptPathway tp 
+        , webready.GeneAttributes ga
+        , webready.PathwayCompounds pc
+        , webready.PathwayReactions pr
         where  ga.taxon_id = $taxonId
         and   tp.gene_source_id = ga.source_id
         AND tp.complete_ec >= $self->{excludeIncomplete}
@@ -158,10 +158,10 @@ from
    ) bgd,
    (SELECT  tp.pathway_source_id || '__PK__' || tp.pathway_source as pathway_source_id
         ,  count (distinct tp.gene_source_id) as resultcnt
-        from   ApidbTuning.TranscriptPathway tp
+        from   webready.TranscriptPathway tp
         , ($geneResultSql) r
-        , apidbtuning.pathwaycompounds pc
-        , apidbtuning.pathwayreactions pr
+        , webready.PathwayCompounds pc
+        , webready.PathwayReactions pr
         where  tp.gene_source_id = r.source_id
         AND tp.complete_ec >= $self->{excludeIncomplete}
         AND tp.exact_match >= $self->{exactMatchOnly}
@@ -173,11 +173,11 @@ from
         group by tp.pathway_source_id, tp.pathway_source
  ) rslt,
  (SELECT  tp.pathway_source_id || '__PK__' || tp.pathway_source as pathway_source_id
-        ,  rtrim(xmlagg(xmlelement(e,tp.gene_source_id,',').extract('//text()') order by tp.gene_source_id).GetClobVal(),',') as resultlist
-        from   ApidbTuning.TranscriptPathway tp
+        ,  string_agg(tp.gene_source_id, ',' ORDER BY tp.gene_source_id) AS resultlist
+        from   webready.TranscriptPathway tp
         , ($geneResultSql) r
-        , apidbtuning.pathwaycompounds pc
-        , apidbtuning.pathwayreactions pr
+        , webready.PathwayCompounds pc
+        , webready.PathwayReactions pr
         where  tp.gene_source_id = r.source_id
         AND tp.complete_ec >= $self->{excludeIncomplete}
         AND tp.exact_match >= $self->{exactMatchOnly}

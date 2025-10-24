@@ -79,14 +79,14 @@ use vars qw( @ISA );
 sub getPhenotypeSpecs {
   return [ {abbrev => "MIS",
             name => "Mutagenesis Index Score",
-            query => "select ga.source_id, r.score as value from apidb.phenotypescore r, apidbtuning.geneattributes ga where ga.na_feature_id = r.na_feature_id and r.score_type = 'mutagenesis index score'",
+            query => "select ga.source_id, r.score as value from apidb.phenotypescore r, webready.GeneAttributes ga where ga.na_feature_id = r.na_feature_id and r.score_type = 'mutagenesis index score'",
             postscript => "gp = gp + annotate(\"text\", x = 500, y = 0.05, label = \"Essential\", colour = 'red');
 gp = gp + annotate(\"text\", x = 5000, y = 0.9, label = \"Dispensable\", colour = '#d3883f');"
 
            },
            {abbrev => "MFS",
             name => "Mutant Fitness Score",
-            query => "select ga.source_id, r.score as value from apidb.phenotypescore r, apidbtuning.geneattributes ga where ga.na_feature_id = r.na_feature_id and r.score_type = 'mutant fitness score'"
+            query => "select ga.source_id, r.score as value from apidb.phenotypescore r, webready.GeneAttributes ga where ga.na_feature_id = r.na_feature_id and r.score_type = 'mutant fitness score'"
            },
       ];
 }
@@ -118,11 +118,11 @@ use vars qw( @ISA );
 sub getPhenotypeSpecs {
   return [ {abbrev => "OIS",
             name => "Occupancy index score",
-            query => "select ga.source_id, r.score as value from apidb.phenotypescore r, apidbtuning.geneattributes ga where ga.na_feature_id = r.na_feature_id and r.score_type = 'Occupancy index score'"
+            query => "select ga.source_id, r.score as value from apidb.phenotypescore r, webready.GeneAttributes ga where ga.na_feature_id = r.na_feature_id and r.score_type = 'Occupancy index score'"
            },
            {abbrev => "HMS",
             name => "Hybrid model score",
-            query => "select ga.source_id, r.score as value from apidb.phenotypescore r, apidbtuning.geneattributes ga where ga.na_feature_id = r.na_feature_id and r.score_type = 'Hybrid model score'"
+            query => "select ga.source_id, r.score as value from apidb.phenotypescore r, webready.GeneAttributes ga where ga.na_feature_id = r.na_feature_id and r.score_type = 'Hybrid model score'"
            },
       ];
 }
@@ -141,15 +141,15 @@ use vars qw( @ISA );
 sub getPhenotypeSpecs {
   return [ {abbrev => "MIS plus",
             name => "MIS+ score",
-            query => "select ga.source_id, r.score as value from apidb.phenotypescore r, apidbtuning.geneattributes ga where ga.na_feature_id = r.na_feature_id and r.score_type = 'MIS plus'"
+            query => "select ga.source_id, r.score as value from apidb.phenotypescore r, webready.GeneAttributes ga where ga.na_feature_id = r.na_feature_id and r.score_type = 'MIS plus'"
            },
            {abbrev => "MIS",
             name => "MIS score",
-            query => "select ga.source_id, r.score as value from apidb.phenotypescore r, apidbtuning.geneattributes ga where ga.na_feature_id = r.na_feature_id and r.score_type = 'MIS'"
+            query => "select ga.source_id, r.score as value from apidb.phenotypescore r, webready.GeneAttributes ga where ga.na_feature_id = r.na_feature_id and r.score_type = 'MIS'"
            },
            {abbrev => "MFS",
             name => "MFS score",
-            query => "select ga.source_id, r.score as value from apidb.phenotypescore r, apidbtuning.geneattributes ga where ga.na_feature_id = r.na_feature_id and r.score_type = 'MFS'"
+            query => "select ga.source_id, r.score as value from apidb.phenotypescore r, webready.GeneAttributes ga where ga.na_feature_id = r.na_feature_id and r.score_type = 'MFS'"
            },
       ];
 }
@@ -168,7 +168,7 @@ use vars qw( @ISA );
 sub getPhenotypeSpecs {
   return [ {abbrev => "rel_growth_rate",
             name => "Relative Growth Rate",
-            query => "select ga.source_id, r.relative_growth_rate as value from APIDB.PHENOTYPEGROWTHRATE r, apidbtuning.geneattributes ga where r.na_feature_id = ga.na_feature_id"
+            query => "select ga.source_id, r.relative_growth_rate as value from APIDB.PHENOTYPEGROWTHRATE r, webready.GeneAttributes ga where r.na_feature_id = ga.na_feature_id"
            },
       ];
 }
@@ -185,7 +185,7 @@ use vars qw( @ISA );
 sub getPhenotypeSpecs {
   return [ {abbrev => "phenotype_score",
             name => "Phenotype Score",
-            query => "select ga.source_id, r.mean_phenotype as value from APIDB.CRISPRPHENOTYPE r, apidbtuning.geneattributes ga where ga.na_feature_id = r.na_feature_id", 
+            query => "select ga.source_id, r.mean_phenotype as value from APIDB.CRISPRPHENOTYPE r, webready.GeneAttributes ga where ga.na_feature_id = r.na_feature_id", 
             postscript => "gp = gp + annotate(\"text\", x = 1500, y = -6, label = \"Fitness Conferring\", colour = 'red');
 gp = gp + annotate(\"text\", x = 7000, y = 2.5, label = \"Dispensable\", colour = '#d3883f');"
            },
