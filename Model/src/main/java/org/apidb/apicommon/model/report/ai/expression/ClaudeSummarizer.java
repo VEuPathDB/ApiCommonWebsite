@@ -14,7 +14,7 @@ import com.openai.models.ResponseFormatJsonSchema.JsonSchema.Schema;
 
 public class ClaudeSummarizer extends Summarizer {
 
-  public static final Model CLAUDE_MODEL = Model.CLAUDE_SONNET_4_20250514;
+  public static final Model CLAUDE_MODEL = Model.CLAUDE_SONNET_4_5_20250929;
 
   private static final String CLAUDE_API_KEY_PROP_NAME = "CLAUDE_API_KEY";
 
@@ -114,7 +114,7 @@ public class ClaudeSummarizer extends Summarizer {
           "    {\n" +
           "      \"headline\": \"string summarizing topic\",\n" +
           "      \"one_sentence_summary\": \"string describing topic results\",\n" +
-          "      \"dataset_ids\": [\"array\", \"of\", \"dataset\", \"strings\"]\n" +
+          "      \"dataset_ids\": [\"array\", \"of\", \"dataset_id\", \"strings\"]\n" +
           "    }\n" +
           "  ]\n" +
           "}";

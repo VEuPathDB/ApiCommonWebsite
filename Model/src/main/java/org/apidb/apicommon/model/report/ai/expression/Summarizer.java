@@ -126,6 +126,7 @@ public abstract class Summarizer {
     return "Below are AI-generated summaries of one gene's behavior in all the transcriptomics experiments available in VEuPathDB, provided in JSON format:\n\n" +
         String.format("```json\n%s\n```\n\n", new JSONArray(experiments).toString(2)) +
         "Generate a one-paragraph summary (~100 words) describing the gene's expression. Structure it using <strong>, <ul>, and <li> tags with no attributes. If relevant, briefly speculate on the gene's potential function, but only if justified by the data. Also, generate a short, specific headline for the summary. The headline must reflect this gene's expression and **must not** include generic phrases like \"comprehensive insights into\" or the word \"gene\".\n\n" +
+        "Use sentence case for all headlines: capitalize only the first word and proper nouns, not every word.\n\n" +
     "Additionally, group the per-experiment summaries (identified by `dataset_id`) with `biological_importance > 3` and `confidence > 3` into sections by topic. For each topic, provide:\n" +
     "- A headline summarizing the key experimental results within the topic\n" +
     "- A concise one-sentence summary of the topic's experimental results\n\n" +
