@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import org.apache.log4j.Logger;
 import org.apidb.apicommon.model.report.ai.expression.GeneRecordProcessor.ExperimentInputs;
@@ -20,25 +21,29 @@ import org.json.JSONObject;
 import com.openai.client.OpenAIClientAsync;
 import com.openai.client.okhttp.OpenAIOkHttpClientAsync;
 import com.openai.core.JsonValue;
+import com.openai.models.embeddings.EmbeddingCreateParams;
+import com.openai.models.embeddings.EmbeddingModel;
 import com.openai.models.chat.completions.ChatCompletionCreateParams;
 import com.openai.models.ChatModel;
 import com.openai.models.ResponseFormatJsonSchema;
 import com.openai.models.ResponseFormatJsonSchema.JsonSchema;
 import com.openai.models.ResponseFormatJsonSchema.JsonSchema.Schema;
 
-public class Summarizer {
+public abstract class Summarizer {
 
-  // provide exact model number for semi-reproducibility
-  public static final ChatModel OPENAI_CHAT_MODEL = ChatModel.GPT_4O_2024_11_20; // GPT_4O_2024_08_06;
+  protected static final int MAX_RESPONSE_TOKENS = 10000;
 
-  private static final int MAX_RESPONSE_TOKENS = 10000;
+  public static final EmbeddingModel EMBEDDING_MODEL = EmbeddingModel.TEXT_EMBEDDING_3_SMALL;
+  private static final int EMBEDDING_DIMENSIONS = 512;
+  private static final int EMBEDDING_DECIMAL_PLACES = 4;
 
   private static final int MAX_MALFORMED_RESPONSE_RETRIES = 3;
+  private static final String OPENAI_API_KEY_PROP_NAME = "OPENAI_API_KEY";
 
-  private static final String SYSTEM_MESSAGE = "You are a bioinformatician working for VEuPathDB.org. You are an expert at providing biologist-friendly summaries of transcriptomic data";
+  protected static final String SYSTEM_MESSAGE = "You are a bioinformatician working for VEuPathDB.org. You are an expert at providing biologist-friendly summaries of transcriptomic data";
 
   // Prepare JSON schemas for structured responses
-  private static final JsonSchema.Schema experimentResponseSchema = JsonSchema.Schema.builder()
+  protected static final JsonSchema.Schema experimentResponseSchema = JsonSchema.Schema.builder()
     .putAdditionalProperty("type", JsonValue.from("object"))
     .putAdditionalProperty("properties", JsonValue.from(Map.of(
           "one_sentence_summary", Map.of("type", "string"),
@@ -57,7 +62,7 @@ public class Summarizer {
     .putAdditionalProperty("additionalProperties", JsonValue.from(false))
     .build();
 
-  private static final JsonSchema.Schema finalResponseSchema = JsonSchema.Schema.builder()
+  protected static final JsonSchema.Schema finalResponseSchema = JsonSchema.Schema.builder()
     .putAdditionalProperty("type", JsonValue.from("object"))
     .putAdditionalProperty("properties", JsonValue.from(Map.of(
           "headline", Map.of("type", "string"),
@@ -81,26 +86,52 @@ public class Summarizer {
     .putAdditionalProperty("additionalProperties", JsonValue.from(false))
     .build();
 
-  private static final String OPENAI_API_KEY_PROP_NAME = "OPENAI_API_KEY";
-
-  private final OpenAIClientAsync _openAIClient;
-  private final DailyCostMonitor _costMonitor;
+  protected final DailyCostMonitor _costMonitor;
+  private final OpenAIClientAsync _embeddingClient;
 
   private static final Logger LOG = Logger.getLogger(Summarizer.class);
 
   public Summarizer(WdkModel wdkModel, DailyCostMonitor costMonitor) throws WdkModelException {
+    _costMonitor = costMonitor;
 
     String apiKey = wdkModel.getProperties().get(OPENAI_API_KEY_PROP_NAME);
     if (apiKey == null) {
       throw new WdkModelException("WDK property '" + OPENAI_API_KEY_PROP_NAME + "' has not been set.");
     }
 
-    _openAIClient = OpenAIOkHttpClientAsync.builder()
+    _embeddingClient = OpenAIOkHttpClientAsync.builder()
         .apiKey(apiKey)
         .maxRetries(32)  // Handle 429 errors
         .build();
+  }
 
-    _costMonitor = costMonitor;
+  private CompletableFuture<List<Double>> getEmbedding(String text) {
+    EmbeddingCreateParams request = EmbeddingCreateParams.builder()
+        .model(EMBEDDING_MODEL)
+        .input(text)
+        .dimensions(EMBEDDING_DIMENSIONS)
+        .build();
+
+    return _embeddingClient.embeddings().create(request).thenApply(response -> {
+      // Update cost monitor - convert embedding usage to TokenUsage
+      com.openai.models.embeddings.CreateEmbeddingResponse.Usage embeddingUsage = response.usage();
+      TokenUsage tokenUsage = TokenUsage.builder()
+          .embeddingTokens(embeddingUsage.totalTokens())
+          .build();
+      _costMonitor.updateCost(tokenUsage);
+
+      // Extract embedding vector from first result (convert Float to Double)
+      List<Float> rawEmbedding = response.data().get(0).embedding();
+
+      // Round to specified decimal places
+      double scale = Math.pow(10, EMBEDDING_DECIMAL_PLACES);
+      return rawEmbedding.stream()
+          .map(val -> Math.round(val.doubleValue() * scale) / scale)
+          .collect(Collectors.toList());
+    }).exceptionally(e -> {
+      LOG.error("Failed to generate embedding: " + e.getMessage(), e);
+      return List.of(); // Return empty list on error
+    });
   }
 
   public static String getExperimentMessage(JSONObject experiment) {
@@ -133,12 +164,9 @@ public class Summarizer {
 
   public CompletableFuture<JSONObject> describeExperiment(ExperimentInputs experimentInputs) {
 
-    ChatCompletionCreateParams request = buildAiRequest(
-        "experiment-summary",
-        experimentResponseSchema,
-        getExperimentMessage(experimentInputs.getExperimentData()));
+    String prompt = getExperimentMessage(experimentInputs.getExperimentData());
 
-    return getValidatedAiResponse("dataset " + experimentInputs.getDatasetId(), request, json -> {
+    return getValidatedAiResponse("dataset " + experimentInputs.getDatasetId(), prompt, experimentResponseSchema, json -> {
       // add some fields to the result to aid the final summarization
       return json
         .put("dataset_id", experimentInputs.getDatasetId())
@@ -151,6 +179,7 @@ public class Summarizer {
     return "Below are AI-generated summaries of one gene's behavior in all the transcriptomics experiments available in VEuPathDB, provided in JSON format:\n\n" +
         String.format("```json\n%s\n```\n\n", new JSONArray(experiments).toString(2)) +
         "Generate a one-paragraph summary (~100 words) describing the gene's expression. Structure it using <strong>, <ul>, and <li> tags with no attributes. If relevant, briefly speculate on the gene's potential function, but only if justified by the data. Also, generate a short, specific headline for the summary. The headline must reflect this gene's expression and **must not** include generic phrases like \"comprehensive insights into\" or the word \"gene\".\n\n" +
+        "Use sentence case for all headlines: capitalize only the first word and proper nouns, not every word.\n\n" +
     "Additionally, group the per-experiment summaries (identified by `dataset_id`) with `biological_importance > 3` and `confidence > 3` into sections by topic. For each topic, provide:\n" +
     "- A headline summarizing the key experimental results within the topic\n" +
     "- A concise one-sentence summary of the topic's experimental results\n\n" +
@@ -159,18 +188,17 @@ public class Summarizer {
   
   public JSONObject summarizeExperiments(String geneId, List<JSONObject> experiments) {
 
-    ChatCompletionCreateParams request = buildAiRequest(
-        "expression-summary",
-        finalResponseSchema,
-        getFinalSummaryMessage(experiments));
+    String prompt = getFinalSummaryMessage(experiments);
 
-    return getValidatedAiResponse("summary for gene " + geneId, request, json ->
+    return getValidatedAiResponse("summary for gene " + geneId, prompt, finalResponseSchema, json ->
+      json  // Return json as-is; consolidateSummary will be called separately
+    ).thenCompose(json ->
       // quality control (remove bad `dataset_id`s) and add 'Others' section for any experiments not listed by AI
       consolidateSummary(json, experiments)
     ).join();
   }
 
-  private static JSONObject consolidateSummary(JSONObject summaryResponse,
+  private CompletableFuture<JSONObject> consolidateSummary(JSONObject summaryResponse,
       List<JSONObject> individualResults) {
     // Gather all dataset IDs from individualResults and map them to summaries.
     // Preserving the order of individualResults.
@@ -180,7 +208,8 @@ public class Summarizer {
     }
 
     Set<String> seenDatasetIds = new LinkedHashSet<>();
-    JSONArray deduplicatedTopics = new JSONArray();
+    List<JSONObject> deduplicatedTopicsList = new java.util.ArrayList<>();
+    List<CompletableFuture<Void>> embeddingFutures = new java.util.ArrayList<>();
     JSONArray topics = summaryResponse.getJSONArray("topics");
 
     for (int i = 0; i < topics.length(); i++) {
@@ -210,7 +239,19 @@ public class Summarizer {
       if (summaries.length() > 0) {
         topic.put("summaries", summaries);
         topic.remove("dataset_ids");
-        deduplicatedTopics.put(topic);
+        deduplicatedTopicsList.add(topic);
+
+        // Generate embedding for non-"Other" topics
+        String headline = topic.optString("headline", "");
+        if (!headline.equals("Other")) {
+          String embeddingText = headline + "\n\n" + topic.optString("one_sentence_summary", "");
+          CompletableFuture<Void> embeddingFuture = getEmbedding(embeddingText).thenAccept(embedding -> {
+            if (!embedding.isEmpty()) {
+              topic.put("embedding_vector", embedding);
+            }
+          });
+          embeddingFutures.add(embeddingFuture);
+        }
       }
     }
 
@@ -230,44 +271,38 @@ public class Summarizer {
       otherTopic.put("one_sentence_summary",
           "The AI ordered these experiments by biological importance but did not group them into topics.");
       otherTopic.put("summaries", otherSummaries);
-      deduplicatedTopics.put(otherTopic);
+      deduplicatedTopicsList.add(otherTopic);
+      // Note: no embedding for "Other" topic
     }
 
-    // Create final deduplicated summary
-    JSONObject finalSummary = new JSONObject(summaryResponse.toString());
-    finalSummary.put("topics", deduplicatedTopics);
-    return finalSummary;
+    // Wait for all embeddings to complete, then create final summary
+    return CompletableFuture.allOf(embeddingFutures.toArray(new CompletableFuture[0]))
+        .thenApply(v -> {
+          // Convert deduplicated topics list back to JSONArray
+          JSONArray deduplicatedTopics = new JSONArray();
+          for (JSONObject topic : deduplicatedTopicsList) {
+            deduplicatedTopics.put(topic);
+          }
+
+          // Create final deduplicated summary
+          JSONObject finalSummary = new JSONObject(summaryResponse.toString());
+          finalSummary.put("topics", deduplicatedTopics);
+          return finalSummary;
+        });
   }
 
 
-  private static ChatCompletionCreateParams buildAiRequest(String name, Schema schema, String userMessage) {
-    return ChatCompletionCreateParams.builder()
-        .model(OPENAI_CHAT_MODEL)
-        .maxCompletionTokens(MAX_RESPONSE_TOKENS)
-        .responseFormat(ResponseFormatJsonSchema.builder()
-            .jsonSchema(JsonSchema.builder()
-                .name(name)
-                .schema(schema)
-                .strict(true)
-                .build())
-            .build())
-        .addSystemMessage(SYSTEM_MESSAGE)
-        .addUserMessage(userMessage)
-        .build();
-  }
+  protected abstract CompletableFuture<String> callApiForJson(String prompt, Schema schema);
+  
+  protected abstract void updateCostMonitor(Object apiResponse);
 
   private CompletableFuture<JSONObject> getValidatedAiResponse(
       String operationDescription,
-      ChatCompletionCreateParams request,
+      String prompt,
+      Schema schema,
       Function<JSONObject,JSONObject> createFinalJson
   ) {
-    return _openAIClient.chat().completions().create(request).thenApply(completion -> {
-
-      // update cost accumulator
-      _costMonitor.updateCost(completion.usage());
-
-      // expect response to be a JSON string
-      String jsonString = completion.choices().get(0).message().content().get();
+    return callApiForJson(prompt, schema).thenApply(jsonString -> {
       int attempts = 1;
       Exception mostRecentError;
 
@@ -281,12 +316,10 @@ public class Summarizer {
         }
         catch (JSONException e) {
           mostRecentError = e;
-          LOG.warn("Malformed JSON from OpenAI (attempt " + attempts + ") for " + operationDescription + ". Retrying...");
+          LOG.warn("Malformed JSON from AI (attempt " + attempts + ") for " + operationDescription + ". Retrying...");
 
-          // Re-request from OpenAI
-          completion = _openAIClient.chat().completions().create(request).join();
-          _costMonitor.updateCost(completion.usage());
-          jsonString = completion.choices().get(0).message().content().get();
+          // Re-request from AI
+          jsonString = callApiForJson(prompt, schema).join();
           attempts++;
         }
       }
