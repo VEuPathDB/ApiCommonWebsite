@@ -20,7 +20,7 @@ import org.json.JSONObject;
 import com.openai.client.OpenAIClientAsync;
 import com.openai.client.okhttp.OpenAIOkHttpClientAsync;
 import com.openai.core.JsonValue;
-import com.openai.models.ChatCompletionCreateParams;
+import com.openai.models.chat.completions.ChatCompletionCreateParams;
 import com.openai.models.ChatModel;
 import com.openai.models.ResponseFormatJsonSchema;
 import com.openai.models.ResponseFormatJsonSchema.JsonSchema;

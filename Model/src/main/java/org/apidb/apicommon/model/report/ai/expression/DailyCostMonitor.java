@@ -21,7 +21,7 @@ import org.gusdb.wdk.model.WdkRuntimeException;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.openai.models.CompletionUsage;
+import com.openai.models.completions.CompletionUsage;
 
 public class DailyCostMonitor {
 
