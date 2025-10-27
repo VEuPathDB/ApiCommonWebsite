@@ -109,44 +109,50 @@ public abstract class Summarizer {
       int maxRetries,
       long[] backoffDelaysMs) {
 
-    return operation.get().exceptionallyCompose(throwable -> {
-      // Unwrap CompletionException to get the actual cause
-      Throwable actualCause = throwable instanceof java.util.concurrent.CompletionException && throwable.getCause() != null
-          ? throwable.getCause()
-          : throwable;
+    CompletableFuture<T> result = new CompletableFuture<>();
 
-      // Check if we should retry this exception and haven't exceeded max retries
-      if (shouldRetry.test(actualCause) && attemptNumber < maxRetries) {
-        long delayMs = backoffDelaysMs[attemptNumber];
-        LOG.warn(String.format(
-            "Retrying %s after error (attempt %d/%d, waiting %dms): %s",
-            operationDescription, attemptNumber + 1, maxRetries, delayMs, actualCause.getMessage()));
-
-        // Schedule retry after delay
-        CompletableFuture<T> delayed = new CompletableFuture<>();
-        new java.util.Timer().schedule(new java.util.TimerTask() {
-          @Override
-          public void run() {
-            retryWithBackoff(operation, shouldRetry, operationDescription, attemptNumber + 1, maxRetries, backoffDelaysMs)
-                .whenComplete((result, error) -> {
-                  if (error != null) {
-                    delayed.completeExceptionally(error);
-                  } else {
-                    delayed.complete(result);
-                  }
-                });
-          }
-        }, delayMs);
-
-        return delayed;
+    operation.get().whenComplete((value, throwable) -> {
+      if (throwable == null) {
+        // Success case
+        result.complete(value);
       } else {
-        // No more retries or non-retriable exception
-        if (attemptNumber >= maxRetries) {
-          LOG.error(String.format("Failed %s after %d retries: %s", operationDescription, maxRetries, actualCause.getMessage()));
+        // Error case - unwrap CompletionException to get the actual cause
+        Throwable actualCause = throwable instanceof java.util.concurrent.CompletionException && throwable.getCause() != null
+            ? throwable.getCause()
+            : throwable;
+
+        // Check if we should retry this exception and haven't exceeded max retries
+        if (shouldRetry.test(actualCause) && attemptNumber < maxRetries) {
+          long delayMs = backoffDelaysMs[attemptNumber];
+          LOG.warn(String.format(
+              "Retrying %s after error (attempt %d/%d, waiting %dms): %s",
+              operationDescription, attemptNumber + 1, maxRetries, delayMs, actualCause.getMessage()));
+
+          // Schedule retry after delay
+          new java.util.Timer().schedule(new java.util.TimerTask() {
+            @Override
+            public void run() {
+              retryWithBackoff(operation, shouldRetry, operationDescription, attemptNumber + 1, maxRetries, backoffDelaysMs)
+                  .whenComplete((retryValue, retryError) -> {
+                    if (retryError != null) {
+                      result.completeExceptionally(retryError);
+                    } else {
+                      result.complete(retryValue);
+                    }
+                  });
+            }
+          }, delayMs);
+        } else {
+          // No more retries or non-retriable exception
+          if (attemptNumber >= maxRetries) {
+            LOG.error(String.format("Failed %s after %d retries: %s", operationDescription, maxRetries, actualCause.getMessage()));
+          }
+          result.completeExceptionally(throwable);
         }
-        return CompletableFuture.failedFuture(throwable);
       }
     });
+
+    return result;
   }
 
   public static String getExperimentMessage(JSONObject experiment) {
