@@ -49,10 +49,14 @@ public class ClaudeSummarizer extends Summarizer {
         .addUserMessage(enhancedPrompt)
         .build();
 
-    return _claudeClient.messages().create(request).thenApply(response -> {
+    return retryOnOverload(
+        () -> _claudeClient.messages().create(request),
+        e -> e instanceof com.anthropic.errors.InternalServerException,
+        "Claude API call"
+    ).thenApply(response -> {
       // Convert Claude usage to OpenAI format for cost monitoring
       com.anthropic.models.messages.Usage claudeUsage = response.usage();
-      com.openai.models.CompletionUsage openAiUsage = com.openai.models.CompletionUsage.builder()
+      com.openai.models.completions.CompletionUsage openAiUsage = com.openai.models.completions.CompletionUsage.builder()
           .promptTokens(claudeUsage.inputTokens())
           .completionTokens(claudeUsage.outputTokens())
           .totalTokens(claudeUsage.inputTokens() + claudeUsage.outputTokens())

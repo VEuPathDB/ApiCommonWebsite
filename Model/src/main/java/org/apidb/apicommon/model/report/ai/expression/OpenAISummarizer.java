@@ -7,7 +7,7 @@ import org.gusdb.wdk.model.WdkModelException;
 
 import com.openai.client.OpenAIClientAsync;
 import com.openai.client.okhttp.OpenAIOkHttpClientAsync;
-import com.openai.models.ChatCompletionCreateParams;
+import com.openai.models.chat.completions.ChatCompletionCreateParams;
 import com.openai.models.ChatModel;
 import com.openai.models.ResponseFormatJsonSchema;
 import com.openai.models.ResponseFormatJsonSchema.JsonSchema;
@@ -51,7 +51,11 @@ public class OpenAISummarizer extends Summarizer {
         .addUserMessage(prompt)
         .build();
 
-    return _openAIClient.chat().completions().create(request).thenApply(completion -> {
+    return retryOnOverload(
+        () -> _openAIClient.chat().completions().create(request),
+        e -> e instanceof com.openai.errors.InternalServerException,
+        "OpenAI API call"
+    ).thenApply(completion -> {
       // update cost accumulator
       _costMonitor.updateCost(completion.usage());
       
