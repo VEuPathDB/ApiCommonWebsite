@@ -51,7 +51,11 @@ public class OpenAISummarizer extends Summarizer {
         .addUserMessage(prompt)
         .build();
 
-    return _openAIClient.chat().completions().create(request).thenApply(completion -> {
+    return retryOnOverload(
+        () -> _openAIClient.chat().completions().create(request),
+        e -> e instanceof com.openai.errors.InternalServerException,
+        "OpenAI API call"
+    ).thenApply(completion -> {
       // update cost accumulator - convert to TokenUsage
       completion.usage().ifPresent(usage -> {
         TokenUsage tokenUsage = TokenUsage.builder()

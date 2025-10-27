@@ -33,8 +33,11 @@ public class SingleGeneAiExpressionReporter extends AbstractReporter {
   private static final int MAX_RESULT_SIZE = 1; // one gene at a time for now
 
   private static final String POPULATION_MODE_PROP_KEY = "populateIfNotPresent";
+  private static final String AI_MAX_CONCURRENT_REQUESTS_PROP_KEY = "AI_MAX_CONCURRENT_REQUESTS";
+  private static final int DEFAULT_MAX_CONCURRENT_REQUESTS = 10;
 
   private boolean _populateIfNotPresent;
+  private int _maxConcurrentRequests;
   private DailyCostMonitor _costMonitor;
 
   @Override
@@ -42,6 +45,12 @@ public class SingleGeneAiExpressionReporter extends AbstractReporter {
     try {
       // assign cache mode
       _populateIfNotPresent = config.optBoolean(POPULATION_MODE_PROP_KEY, false);
+
+      // read max concurrent requests from model properties or use default
+      String maxConcurrentRequestsStr = _wdkModel.getProperties().get(AI_MAX_CONCURRENT_REQUESTS_PROP_KEY);
+      _maxConcurrentRequests = maxConcurrentRequestsStr != null
+          ? Integer.parseInt(maxConcurrentRequestsStr)
+          : DEFAULT_MAX_CONCURRENT_REQUESTS;
 
       // instantiate cost monitor
       _costMonitor = new DailyCostMonitor(_wdkModel);
@@ -100,7 +109,7 @@ public class SingleGeneAiExpressionReporter extends AbstractReporter {
 
         // fetch summary, producing if necessary and requested
         JSONObject expressionSummary = _populateIfNotPresent
-            ? cache.populateSummary(summaryInputs, summarizer::describeExperiment, summarizer::summarizeExperiments)
+            ? cache.populateSummary(summaryInputs, summarizer::describeExperiment, summarizer::summarizeExperiments, _maxConcurrentRequests)
             : cache.readSummary(summaryInputs);
 
         // join entries with commas

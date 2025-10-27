@@ -49,7 +49,11 @@ public class ClaudeSummarizer extends Summarizer {
         .addUserMessage(enhancedPrompt)
         .build();
 
-    return _claudeClient.messages().create(request).thenApply(response -> {
+    return retryOnOverload(
+        () -> _claudeClient.messages().create(request),
+        e -> e instanceof com.anthropic.errors.InternalServerException,
+        "Claude API call"
+    ).thenApply(response -> {
       // Convert Claude usage to TokenUsage for cost monitoring
       com.anthropic.models.messages.Usage claudeUsage = response.usage();
       TokenUsage tokenUsage = TokenUsage.builder()
