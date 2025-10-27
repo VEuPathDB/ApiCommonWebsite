@@ -22,7 +22,7 @@ public class OpenAISummarizer extends Summarizer {
   private final OpenAIClientAsync _openAIClient;
 
   public OpenAISummarizer(WdkModel wdkModel, DailyCostMonitor costMonitor) throws WdkModelException {
-    super(costMonitor);
+    super(wdkModel, costMonitor);
 
     String apiKey = wdkModel.getProperties().get(OPENAI_API_KEY_PROP_NAME);
     if (apiKey == null) {
@@ -56,9 +56,15 @@ public class OpenAISummarizer extends Summarizer {
         e -> e instanceof com.openai.errors.InternalServerException,
         "OpenAI API call"
     ).thenApply(completion -> {
-      // update cost accumulator
-      _costMonitor.updateCost(completion.usage());
-      
+      // update cost accumulator - convert to TokenUsage
+      completion.usage().ifPresent(usage -> {
+        TokenUsage tokenUsage = TokenUsage.builder()
+            .promptTokens(usage.promptTokens())
+            .completionTokens(usage.completionTokens())
+            .build();
+        _costMonitor.updateCost(tokenUsage);
+      });
+
       // return JSON string
       return completion.choices().get(0).message().content().get();
     });

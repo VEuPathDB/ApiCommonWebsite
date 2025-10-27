@@ -88,7 +88,7 @@ public class GenePrimaryKeyAliasPlugin implements PrimaryKeyAliasPlugin {
   @SuppressWarnings("unused")
   private SortedMap<String,String> findCurrentIds(String inputGeneId, DataSource appDbDataSource) throws WdkModelException {
     String sql = "SELECT ta.source_id, ta.gene_source_id "
-        + "FROM ApidbTuning.GeneId a, ApidbTuning.TranscriptAttributes ta "
+        + "FROM webready.GeneId a, webready.TranscriptAttributes ta "
         + "WHERE a.id = '" + inputGeneId + "' "
         + "AND ta.gene_source_id = a.gene";
         

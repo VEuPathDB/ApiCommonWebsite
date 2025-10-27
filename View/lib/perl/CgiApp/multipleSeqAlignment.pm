@@ -463,9 +463,9 @@ sub getTaxonToDirMap {
     
     my $sql="
  	SELECT distinct ga.organism, taxon.grp, org.abbrev
- 	    FROM   ApiDBTuning.TranscriptAttributes ga, ApiDB.Organism org,
+ 	    FROM   webready.TranscriptAttributes ga, ApiDB.Organism org,
  	    (SELECT organism, row_number() over (order by organism) as grp
- 	     FROM (SELECT distinct organism FROM ApiDBTuning.TranscriptAttributes)
+ 	     FROM (SELECT distinct organism FROM webready.TranscriptAttributes)
  	    ) taxon
  	    WHERE  ga.taxon_id = org.taxon_id
  	    AND    ga.gene_type = 'protein coding'
@@ -597,7 +597,7 @@ sub getOrganismFromContig {
     
     my $sql="
     SELECT source_id, organism
-	FROM ApidbTuning.GenomicSeqAttributes 
+	FROM webready.GenomicSeqAttributes 
 	WHERE  upper(source_id) = ?";
     
     my $sth = $dbh->prepare($sql);

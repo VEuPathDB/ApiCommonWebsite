@@ -27,7 +27,7 @@ sub run {
     my $sql;
     
     if($id_type eq 'protein'){
-	$sql = "select SEQUENCE from APIDBTUNING.PROTEINSEQUENCE where SOURCE_ID = '" . $source_ID . "' and PROJECT_ID= '" . $project_id . "'";
+	$sql = "select SEQUENCE from webready.ProteinSequence where SOURCE_ID = '" . $source_ID . "' and PROJECT_ID= '" . $project_id . "'";
     }else{
 	die "cannot find the protein sequence from database based on entered source_ID and PROJECT_ID" ;
     }

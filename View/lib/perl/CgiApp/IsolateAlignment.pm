@@ -268,7 +268,7 @@ sub proteinTest {
     my ($dbh,$ids) = @_;
     
     my $areProteins = 0;
-    my $sql = "SELECT gene_type FROM apidbTuning.TranscriptAttributes
+    my $sql = "SELECT gene_type FROM webready.TranscriptAttributes
                WHERE gene_source_id in ($ids)";
     my $sth = $dbh->prepare($sql);
     $sth->execute();
@@ -296,7 +296,7 @@ sub getOrthoProteinSql {
     my ($ids) = @_;
     my $sql = <<EOSQL;
 select ps.source_id, ps.source_id, ps.sequence
-from apidbtuning.proteinsequence ps, apidbtuning.transcriptattributes ta
+from webready.ProteinSequence ps, webready.TranscriptAttributes ta
 where ta.protein_source_id = ps.source_id
       and ta.project_id = ps.project_id
       and ta.gene_source_id in ($ids)
@@ -316,7 +316,7 @@ sub getOrthoCdsSql {
 	      , ta.source_id
 	      , ta.gene_source_id
 	      , ta.cds_length
-	      from APIDBTUNING.transcriptattributes ta
+	      from webready.TranscriptAttributes ta
 	      where ta.gene_source_id in ($ids)
 	      )
 	      select ts.source_id, gd.strand,
@@ -324,7 +324,7 @@ sub getOrthoCdsSql {
 	      WHEN gd.strand = 'forward' then SUBSTR(ts.sequence, (gd.coding_start - gd.min+1) , gd.cds_length)
 	      WHEN gd.strand = 'reverse' then SUBSTR(ts.sequence, (gd.max - gd.coding_end+1) , (gd.cds_length))
 	      END
-	      from apidbtuning.transcriptsequence ts
+	      from webready.TranscriptSequence ts
 	      , geneDetails gd
 	      where gd.source_id = ts.source_id
 EOSQL
@@ -342,14 +342,14 @@ sub getOrthoGenomicIsProteinSql {
 	, ta.gene_source_id
 	, ta.cds_length
 	, ta.sequence_id as chsmid
-	from APIDBTUNING.transcriptattributes ta
+	from webready.TranscriptAttributes ta
 	where ta.gene_source_id in ($ids)
 	)
 	SELECT gd.gene_source_id, gd.strand,
 	CASE WHEN gd.strand = 'forward' THEN substr(gs.sequence, gd.coding_start - $upstreamOffset, (gd.coding_end - gd.coding_start) +1 + $upstreamOffset + $downstreamOffset) 
 	WHEN gd.strand = 'reverse' THEN substr(gs.sequence, gd.coding_start - $downstreamOffset, (gd.coding_end - gd.coding_start ) +1 + $upstreamOffset + $downstreamOffset)
 	END
-	FROM ApidbTuning.GenomicSequenceSequence gs,
+	FROM webready.GenomicSequenceSequence gs,
 	geneDetails gd
 	where gs.source_id = gd.chsmid
 EOSQL
@@ -366,14 +366,14 @@ sub getOrthoGenomicNotProteinSql {
 	, ta.source_id
 	, ta.gene_source_id
 	, ta.sequence_id as chsmid
-	from APIDBTUNING.transcriptattributes ta
+	from webready.TranscriptAttributes ta
 	where ta.gene_source_id in ($ids)
 	)
 	SELECT gd.gene_source_id, gd.strand,
 	CASE WHEN gd.strand = 'forward' THEN substr(gs.sequence, gd.gene_start_min - $upstreamOffset, gd.gene_end_max - gd.gene_start_min + 1 + $upstreamOffset + $downstreamOffset)
 	WHEN gd.strand = 'reverse' THEN substr(gs.sequence, gd.gene_start_min - $downstreamOffset, gd.gene_end_max - gd.gene_start_min + 1 + $upstreamOffset + $downstreamOffset)
 	END
-	FROM ApidbTuning.GenomicSequenceSequence gs,
+	FROM webready.GenomicSequenceSequence gs,
 	geneDetails gd
 	WHERE gs.source_id = gd.chsmid
 EOSQL

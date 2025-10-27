@@ -153,7 +153,7 @@ public class ApiBasketService extends BasketService {
     // for each batch, run the query to expand the transcripts
     StringBuilder geneIdsString = null;
     String pkString = Arrays.stream(transcriptPkDef.getColumnRefs()).collect(Collectors.joining(", "));
-    String sql1 = "select " + pkString + " from ApiDBTuning.TranscriptAttributes where gene_source_id in (";
+    String sql1 = "select " + pkString + " from webready.TranscriptAttributes where gene_source_id in (";
     String sql2 = ")";
     int count = 0;
     for (PrimaryKeyValue genePkValue : genePkValues) {

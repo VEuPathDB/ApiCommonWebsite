@@ -251,7 +251,7 @@ public abstract class GenomeViewReporter extends AbstractReporter {
     Map<String, Sequence> chromosomes = new HashMap<>();
     sql = "SELECT source_id AS " + COLUMN_SEQUENCE_ID + ", length AS " + COLUMN_SEQUENCE_LENGTH 
         + ", chromosome AS " + COLUMN_CHROMOSOME + ", organism AS " + COLUMN_ORGANISM 
-        + " FROM ApidbTuning.GenomicSeqAttributes "
+        + " FROM webready.GenomicSeqAttributes "
         + " WHERE chromosome IS NOT NULL "
         + "   AND organism IN (SELECT organism FROM (" + sql + ") t )";
     ResultSet resultSet = null;

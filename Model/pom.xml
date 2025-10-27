@@ -138,7 +138,6 @@
     <dependency>
       <groupId>com.anthropic</groupId>
       <artifactId>anthropic-java</artifactId>
-      <version>2.9.0</version>
     </dependency>
 
   </dependencies>

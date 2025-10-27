@@ -151,7 +151,7 @@ sub getTaxonId {
 
   my $sql = "
 SELECT distinct ga.taxon_id
-FROM  ApidbTuning.GeneAttributes ga,
+FROM  webready.GeneAttributes ga,
      ($geneResultSql) r
 where ga.source_id = r.source_id
 ";

@@ -32,7 +32,7 @@ public class GeneRecordProcessor {
 
   // Increment this to invalidate all previous cache entries:
   // (for example if changing first level model outputs rather than inputs which are already digestified)
-  private static final String DATA_MODEL_VERSION = "v3b";
+  private static final String DATA_MODEL_VERSION = "v4";
   
   public interface ExperimentInputs {
 
@@ -62,7 +62,7 @@ public class GeneRecordProcessor {
     return record.getPrimaryKey().getValues().get("source_id");
   }
 
-  public static GeneSummaryInputs getSummaryInputsFromRecord(RecordInstance record, String aiChatModel, Function<JSONObject, String> getExperimentPrompt, Function<List<JSONObject>, String> getFinalSummaryPrompt) throws WdkModelException {
+  public static GeneSummaryInputs getSummaryInputsFromRecord(RecordInstance record, String aiChatModel, String embeddingModel, Function<JSONObject, String> getExperimentPrompt, Function<List<JSONObject>, String> getFinalSummaryPrompt) throws WdkModelException {
 
     String geneId = getGeneId(record);
 
@@ -90,7 +90,7 @@ public class GeneRecordProcessor {
         List<JSONObject> digests = experimentsWithData.stream()
             .map(exp -> new JSONObject().put("digest", exp.getDigest()))
             .collect(Collectors.toList());
-        return EncryptionUtil.md5(aiChatModel + ":" + DATA_MODEL_VERSION + ":" + getFinalSummaryPrompt.apply(digests));
+        return EncryptionUtil.md5(aiChatModel + ":" + embeddingModel + ":" + DATA_MODEL_VERSION + ":" + getFinalSummaryPrompt.apply(digests));
       }
 
     };

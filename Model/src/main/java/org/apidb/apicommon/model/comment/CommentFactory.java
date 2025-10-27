@@ -284,7 +284,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
 
   public Collection<String> getInvalidStableIds(Collection<String> stableIds)
   throws WdkModelException {
-    final String sql = "SELECT source_id FROM ApidbTuning.GeneAttributes\n" +
+    final String sql = "SELECT source_id FROM webready.GeneAttributes\n" +
       "WHERE source_id = ?\n" +
       "UNION\n" +
       "SELECT name FROM apidbtuning.samples\n" +
@@ -293,7 +293,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
       "SELECT source_id FROM DoTS.ExternalNASequence\n" +
       "WHERE source_id = ?\n" +
       "UNION\n" +
-      "SELECT id FROM ApidbTuning.Geneid\n" +
+      "SELECT id FROM webready.GeneId\n" +
       "WHERE id = ? ";
 
     final Collection<String> errs = new ArrayList<>();
