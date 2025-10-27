@@ -95,7 +95,7 @@ public class EnrichmentPluginUtil {
     // must wrap idSql with code that filters by the passed organism param
     String singleOrg = AbstractEnumParam.convertToTerms(params.get(ORGANISM_PARAM_KEY)).get(0);
     return "SELECT ga.source_id " +
-        "FROM webready.GeneAttributes ga, " +
+        "FROM webready.GeneAttributes_p ga, " +
         "(" + answerValue.getIdSql() + ") r " +
         "where ga.source_id = r.gene_source_id " +
         "and  ga.organism = '" + singleOrg + "'";
@@ -116,7 +116,7 @@ public class EnrichmentPluginUtil {
   public static List<String> getDistinctOrgsInAnswer(AnswerValue answerValue,
       WdkModel wdkModel) throws WdkModelException {
     String sql = "SELECT distinct ga.organism " +
-        "FROM webready.GeneAttributes ga, " +
+        "FROM webready.GeneAttributes_p ga, " +
         "(" + answerValue.getIdSql() + ") r " +
         "where ga.source_id = r.gene_source_id " +
         "order by ga.organism asc";
