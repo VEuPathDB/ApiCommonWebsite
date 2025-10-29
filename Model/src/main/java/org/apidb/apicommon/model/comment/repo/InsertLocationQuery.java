@@ -8,7 +8,6 @@ import org.gusdb.fgputil.db.runner.SQLRunner;
 import java.sql.SQLException;
 
 import static java.sql.Types.BIGINT;
-import static java.sql.Types.INTEGER;
 import static java.sql.Types.VARCHAR;
 import static java.sql.Types.BOOLEAN;
 
