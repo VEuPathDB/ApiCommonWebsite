@@ -125,7 +125,7 @@ public class MatchedTranscriptFilter extends StepFilter {
    * @throws WdkModelException
    */
   private String getFullSql(AnswerValue answer, String idSql) throws WdkModelException {
-    String originalIdSql = answer.getIdsQueryInstance().getSql();
+    String originalIdSql = answer.getIdsQueryInstance().getSqlUnsorted();
 
     if (idSql.equals(originalIdSql)) return idSql;
 
