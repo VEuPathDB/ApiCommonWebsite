@@ -127,6 +127,8 @@ public class MatchedTranscriptFilter extends StepFilter {
   private String getFullSql(AnswerValue answer, String idSql) throws WdkModelException {
     String originalIdSql = answer.getIdsQueryInstance().getSql();
 
+    if (idSql.equals(originalIdSql)) return idSql;
+
     return "select idsql.* from (" + originalIdSql + ") idsql, (" + idSql + ") filteredIdSql where " +
       TranscriptUtil.getTranscriptRecordClass(answer.getWdkModel())
           .getPrimaryKeyDefinition().createJoinClause("idsql", "filteredIdSql");
