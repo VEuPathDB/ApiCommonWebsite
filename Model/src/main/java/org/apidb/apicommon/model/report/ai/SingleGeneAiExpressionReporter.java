@@ -29,6 +29,32 @@ import org.gusdb.wdk.model.report.ReporterConfigException;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/**
+ * Reporter that generates AI-powered gene expression summaries using LLM models.
+ *
+ * <p>This reporter analyzes expression data across multiple experiments for a single gene
+ * and generates natural language summaries of expression patterns and biological significance.
+ * Results are cached to minimize API costs and response times.</p>
+ *
+ * <h3>Configuration (JSON request payload)</h3>
+ * <pre>
+ * {
+ *   "populateIfNotPresent": true|false,  // If true, generate summary if not cached (default: false)
+ *   "makeTopicEmbeddings": true|false    // If true, generate embedding vectors for topics (default: false)
+ * }
+ * </pre>
+ *
+ * <h3>Cache Invalidation Warning</h3>
+ * <p><strong>IMPORTANT:</strong> Changing the {@code makeTopicEmbeddings} setting will invalidate
+ * the entire cache for all genes, as this value is included in the cache digest. To avoid costly
+ * cache regeneration, choose a setting and stick with it across requests. Only change this value
+ * when you intentionally want to regenerate all summaries with or without embeddings.</p>
+ *
+ * <h3>Model Configuration</h3>
+ * <p>The AI model and embedding model are hardcoded in the summarizer implementations
+ * ({@link ClaudeSummarizer}, {@link org.apidb.apicommon.model.report.ai.expression.OpenAISummarizer}).
+ * Changing models will also invalidate the cache.</p>
+ */
 public class SingleGeneAiExpressionReporter extends AbstractReporter {
 
   private static final int MAX_RESULT_SIZE = 1; // one gene at a time for now
@@ -36,10 +62,11 @@ public class SingleGeneAiExpressionReporter extends AbstractReporter {
   private static final String POPULATION_MODE_PROP_KEY = "populateIfNotPresent";
   private static final String AI_MAX_CONCURRENT_REQUESTS_PROP_KEY = "AI_MAX_CONCURRENT_REQUESTS";
   private static final int DEFAULT_MAX_CONCURRENT_REQUESTS = 10;
-  private static final boolean MAKE_TOPIC_EMBEDDINGS = false;
+  private static final String MAKE_TOPIC_EMBEDDINGS_PROP_KEY = "makeTopicEmbeddings";
 
   private boolean _populateIfNotPresent;
   private int _maxConcurrentRequests;
+  private boolean _makeTopicEmbeddings;
   private DailyCostMonitor _costMonitor;
 
   @Override
@@ -47,6 +74,9 @@ public class SingleGeneAiExpressionReporter extends AbstractReporter {
     try {
       // assign cache mode
       _populateIfNotPresent = config.optBoolean(POPULATION_MODE_PROP_KEY, false);
+
+      // assign topic embeddings flag
+      _makeTopicEmbeddings = config.optBoolean(MAKE_TOPIC_EMBEDDINGS_PROP_KEY, false);
 
       // read max concurrent requests from model properties or use default
       String maxConcurrentRequestsStr = _wdkModel.getProperties().get(AI_MAX_CONCURRENT_REQUESTS_PROP_KEY);
@@ -92,9 +122,9 @@ public class SingleGeneAiExpressionReporter extends AbstractReporter {
     AiExpressionCache cache = AiExpressionCache.getInstance(_wdkModel);
 
     // create summarizer (interacts with Claude)
-    ClaudeSummarizer summarizer = new ClaudeSummarizer(_wdkModel, _costMonitor, MAKE_TOPIC_EMBEDDINGS);
+    ClaudeSummarizer summarizer = new ClaudeSummarizer(_wdkModel, _costMonitor, _makeTopicEmbeddings);
     // or alternatively use OpenAI (with the appropriate import)
-    // OpenAISummarizer summarizer = new OpenAISummarizer(_wdkModel, _costMonitor, MAKE_TOPIC_EMBEDDINGS);
+    // OpenAISummarizer summarizer = new OpenAISummarizer(_wdkModel, _costMonitor, _makeTopicEmbeddings);
     
     // open record and output streams
     try (RecordStream recordStream = RecordStreamFactory.getRecordStream(_baseAnswer, List.of(), tables);
@@ -108,7 +138,7 @@ public class SingleGeneAiExpressionReporter extends AbstractReporter {
         // create summary inputs
         GeneSummaryInputs summaryInputs =
             GeneRecordProcessor.getSummaryInputsFromRecord(record, ClaudeSummarizer.CLAUDE_MODEL.toString(),
-                Summarizer.EMBEDDING_MODEL.asString(), MAKE_TOPIC_EMBEDDINGS,
+                Summarizer.EMBEDDING_MODEL.asString(), _makeTopicEmbeddings,
                 Summarizer::getExperimentMessage, Summarizer::getFinalSummaryMessage);
 
         // fetch summary, producing if necessary and requested
