@@ -21,8 +21,8 @@ public class OpenAISummarizer extends Summarizer {
 
   private final OpenAIClientAsync _openAIClient;
 
-  public OpenAISummarizer(WdkModel wdkModel, DailyCostMonitor costMonitor) throws WdkModelException {
-    super(wdkModel, costMonitor);
+  public OpenAISummarizer(WdkModel wdkModel, DailyCostMonitor costMonitor, boolean makeTopicEmbeddings) throws WdkModelException {
+    super(wdkModel, costMonitor, makeTopicEmbeddings);
 
     String apiKey = wdkModel.getProperties().get(OPENAI_API_KEY_PROP_NAME);
     if (apiKey == null) {

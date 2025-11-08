@@ -14,6 +14,7 @@ import org.apidb.apicommon.model.report.ai.expression.DailyCostMonitor;
 import org.apidb.apicommon.model.report.ai.expression.GeneRecordProcessor;
 import org.apidb.apicommon.model.report.ai.expression.GeneRecordProcessor.GeneSummaryInputs;
 import org.apidb.apicommon.model.report.ai.expression.ClaudeSummarizer;
+//import org.apidb.apicommon.model.report.ai.expression.OpenAISummarizer;
 import org.apidb.apicommon.model.report.ai.expression.Summarizer;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkServiceTemporarilyUnavailableException;
@@ -35,6 +36,7 @@ public class SingleGeneAiExpressionReporter extends AbstractReporter {
   private static final String POPULATION_MODE_PROP_KEY = "populateIfNotPresent";
   private static final String AI_MAX_CONCURRENT_REQUESTS_PROP_KEY = "AI_MAX_CONCURRENT_REQUESTS";
   private static final int DEFAULT_MAX_CONCURRENT_REQUESTS = 10;
+  private static final boolean MAKE_TOPIC_EMBEDDINGS = false;
 
   private boolean _populateIfNotPresent;
   private int _maxConcurrentRequests;
@@ -90,8 +92,10 @@ public class SingleGeneAiExpressionReporter extends AbstractReporter {
     AiExpressionCache cache = AiExpressionCache.getInstance(_wdkModel);
 
     // create summarizer (interacts with Claude)
-    ClaudeSummarizer summarizer = new ClaudeSummarizer(_wdkModel, _costMonitor);
-
+    ClaudeSummarizer summarizer = new ClaudeSummarizer(_wdkModel, _costMonitor, MAKE_TOPIC_EMBEDDINGS);
+    // or alternatively use OpenAI (with the appropriate import)
+    // OpenAISummarizer summarizer = new OpenAISummarizer(_wdkModel, _costMonitor, MAKE_TOPIC_EMBEDDINGS);
+    
     // open record and output streams
     try (RecordStream recordStream = RecordStreamFactory.getRecordStream(_baseAnswer, List.of(), tables);
         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(out))) {
@@ -104,7 +108,7 @@ public class SingleGeneAiExpressionReporter extends AbstractReporter {
         // create summary inputs
         GeneSummaryInputs summaryInputs =
             GeneRecordProcessor.getSummaryInputsFromRecord(record, ClaudeSummarizer.CLAUDE_MODEL.toString(),
-                Summarizer.EMBEDDING_MODEL.asString(),
+                Summarizer.EMBEDDING_MODEL.asString(), MAKE_TOPIC_EMBEDDINGS,
                 Summarizer::getExperimentMessage, Summarizer::getFinalSummaryMessage);
 
         // fetch summary, producing if necessary and requested

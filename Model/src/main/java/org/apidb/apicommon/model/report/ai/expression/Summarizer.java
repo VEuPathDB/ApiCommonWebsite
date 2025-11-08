@@ -88,11 +88,13 @@ public abstract class Summarizer {
 
   protected final DailyCostMonitor _costMonitor;
   private final OpenAIClientAsync _embeddingClient;
+  protected final boolean _makeTopicEmbeddings;
 
   private static final Logger LOG = Logger.getLogger(Summarizer.class);
 
-  public Summarizer(WdkModel wdkModel, DailyCostMonitor costMonitor) throws WdkModelException {
+  public Summarizer(WdkModel wdkModel, DailyCostMonitor costMonitor, boolean makeTopicEmbeddings) throws WdkModelException {
     _costMonitor = costMonitor;
+    _makeTopicEmbeddings = makeTopicEmbeddings;
 
     String apiKey = wdkModel.getProperties().get(OPENAI_API_KEY_PROP_NAME);
     if (apiKey == null) {
@@ -315,16 +317,18 @@ public abstract class Summarizer {
         topic.remove("dataset_ids");
         deduplicatedTopicsList.add(topic);
 
-        // Generate embedding for non-"Other" topics
-        String headline = topic.optString("headline", "");
-        if (!headline.equals("Other")) {
-          String embeddingText = headline + "\n\n" + topic.optString("one_sentence_summary", "");
-          CompletableFuture<Void> embeddingFuture = getEmbedding(embeddingText).thenAccept(embedding -> {
-            if (!embedding.isEmpty()) {
-              topic.put("embedding_vector", embedding);
-            }
-          });
-          embeddingFutures.add(embeddingFuture);
+        // Generate embedding for non-"Other" topics (if enabled)
+        if (_makeTopicEmbeddings) {
+          String headline = topic.optString("headline", "");
+          if (!headline.equals("Other")) {
+            String embeddingText = headline + "\n\n" + topic.optString("one_sentence_summary", "");
+            CompletableFuture<Void> embeddingFuture = getEmbedding(embeddingText).thenAccept(embedding -> {
+              if (!embedding.isEmpty()) {
+                topic.put("embedding_vector", embedding);
+              }
+            });
+            embeddingFutures.add(embeddingFuture);
+          }
         }
       }
     }

@@ -20,8 +20,8 @@ public class ClaudeSummarizer extends Summarizer {
 
   private final AnthropicClientAsync _claudeClient;
 
-  public ClaudeSummarizer(WdkModel wdkModel, DailyCostMonitor costMonitor) throws WdkModelException {
-    super(wdkModel, costMonitor);
+  public ClaudeSummarizer(WdkModel wdkModel, DailyCostMonitor costMonitor, boolean makeTopicEmbeddings) throws WdkModelException {
+    super(wdkModel, costMonitor, makeTopicEmbeddings);
 
     String apiKey = wdkModel.getProperties().get(CLAUDE_API_KEY_PROP_NAME);
     if (apiKey == null) {
