@@ -25,7 +25,7 @@ public class GeneIdValidator {
         ResultSet rs = null;
 
         StringBuffer sql = new StringBuffer();
-        sql.append("SELECT source_id FROM webready.GeneAttributes ");
+        sql.append("SELECT source_id FROM webready.GeneAttributes_p ");
         sql.append("WHERE source_id = ? ");
         sql.append("UNION ");
         sql.append("SELECT name FROM apidbtuning.samples ");
@@ -34,7 +34,7 @@ public class GeneIdValidator {
         sql.append("SELECT source_id FROM DoTS.ExternalNASequence ");
         sql.append("WHERE source_id = ? ");
         sql.append("UNION ");
-	sql.append("SELECT id FROM webready.GeneId ");
+	sql.append("SELECT id FROM webready.GeneId_p ");
         sql.append("WHERE id = ? ");
 
         PreparedStatement ps = null;

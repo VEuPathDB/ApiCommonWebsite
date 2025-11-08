@@ -67,15 +67,15 @@ public class JBrowseFeatureDataFactory {
         (!isProtein && "ReferenceSequence".equals(feature));
 
     String seqId = (isProtein ?
-                    getSequenceId("aa_sequence_id", "webready.ProteinAttributes", refseqName, "aaseq_id_from_source_id") :
-                    getSequenceId("na_sequence_id", "webready.GenomicSeqAttributes", refseqName, "naseq_id_from_source_id"))
+                    getSequenceId("aa_sequence_id", "webready.ProteinAttributes_p", refseqName, "aaseq_id_from_source_id") :
+                    getSequenceId("na_sequence_id", "webready.GenomicSeqAttributes_p", refseqName, "naseq_id_from_source_id"))
         .orElseThrow(() -> new NotFoundException("Unable to look up sequence with ref name " + refseqName + " (isProtein=" + isProtein + ")."));
 
     String featureSql = isProtein ?
         getFeatureSql(refseqName, feature, start, end, qp, isReferenceFeature,
-            "webready.ProteinSequence", Category.PROTEIN, seqId) :
+            "webready.ProteinSequence_p", Category.PROTEIN, seqId) :
         getFeatureSql(refseqName, feature, start, end, qp, isReferenceFeature,
-            "webready.GenomicSequenceSequence", Category.GENOME, seqId);
+            "webready.GenomicSequenceSequence_p", Category.GENOME, seqId);
 
     // determine if stats vs feature data request (basesPerBin present = stats request)
     boolean isStatsRequest = qp.containsKey("basesPerBin");

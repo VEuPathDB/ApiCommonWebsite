@@ -43,7 +43,7 @@ public class TranscriptBooleanQueryInstance extends BooleanQueryInstance {
         "  where right_t.gene_source_id = genes.gene_source_id" + NL +
         "  UNION" + NL +
         "  select ta.gene_source_id, ta.source_id, " + p(pid,"genes.project_id, ") + "genes.wdk_weight, 0 as left_match, 0 as right_match" + NL +
-        "  from genes, webready.TranscriptAttributes ta" + NL +
+        "  from genes, webready.TranscriptAttributes_p ta" + NL +
         "  where genes.gene_source_id = ta.gene_source_id) big" + NL +
         "group by (gene_source_id, source_id, " + p(pid,"project_id, ") + "wdk_weight)" +
         ") t group by (gene_source_id, source_id" + p(pid,", project_id") + ")";
