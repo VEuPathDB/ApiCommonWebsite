@@ -5,7 +5,6 @@
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
 
   <import file="${projectsDir}/EbrcWebSvcCommon/build.xml" />
-  <import file="${projectsDir}/JBrowse/build.xml" />
   <import file="${projectsDir}/ApiCommonModel/build.xml" />
 
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
@@ -14,7 +13,6 @@
 
   <target name="ApiCommonWebsite-Installation" depends="EbrcWebSvcCommon-Installation,
                                                         ApiCommonModel-Installation,
-                                                        JBrowse-Installation,
                                                         ApiCommonWebsite/Model-Installation,
                                                         ApiCommonWebsite/View-Installation,
                                                         ApiCommonWebsite/Site-Installation,
@@ -88,7 +86,6 @@
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
 
   <target name="ApiCommonWebsite-WebInstallation" depends="EbrcWebSvcCommon-WebInstallation,
-                                                           JBrowse-WebInstallation,
                                                            ApiCommonWebsite-Installation,
                                                            ApiCommonWebsite/View-WebInstallation,
                                                            ApiCommonWebsite/Site-WebInstallation">
