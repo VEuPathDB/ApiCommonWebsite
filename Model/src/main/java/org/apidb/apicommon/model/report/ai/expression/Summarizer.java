@@ -96,18 +96,29 @@ public abstract class Summarizer {
     _costMonitor = costMonitor;
     _makeTopicEmbeddings = makeTopicEmbeddings;
 
-    String apiKey = wdkModel.getProperties().get(OPENAI_API_KEY_PROP_NAME);
-    if (apiKey == null) {
-      throw new WdkModelException("WDK property '" + OPENAI_API_KEY_PROP_NAME + "' has not been set.");
-    }
+    // Only create embedding client if we need to make topic embeddings
+    if (makeTopicEmbeddings) {
+      String apiKey = wdkModel.getProperties().get(OPENAI_API_KEY_PROP_NAME);
+      if (apiKey == null) {
+        throw new WdkModelException("WDK property '" + OPENAI_API_KEY_PROP_NAME + "' has not been set.");
+      }
 
-    _embeddingClient = OpenAIOkHttpClientAsync.builder()
-        .apiKey(apiKey)
-        .maxRetries(32)  // Handle 429 errors
-        .build();
+      _embeddingClient = OpenAIOkHttpClientAsync.builder()
+          .apiKey(apiKey)
+          .maxRetries(32)  // Handle 429 errors
+          .build();
+    } else {
+      _embeddingClient = null;
+    }
   }
 
   private CompletableFuture<List<Double>> getEmbedding(String text) {
+    // Safety check: ensure embedding client was initialized
+    if (_embeddingClient == null) {
+      LOG.error("Attempted to generate embedding but embedding client was not initialized (makeTopicEmbeddings=false)");
+      return CompletableFuture.completedFuture(List.of());
+    }
+
     EmbeddingCreateParams request = EmbeddingCreateParams.builder()
         .model(EMBEDDING_MODEL)
         .input(text)

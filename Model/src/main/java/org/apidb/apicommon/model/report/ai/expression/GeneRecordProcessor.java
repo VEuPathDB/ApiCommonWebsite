@@ -62,7 +62,7 @@ public class GeneRecordProcessor {
     return record.getPrimaryKey().getValues().get("source_id");
   }
 
-  public static GeneSummaryInputs getSummaryInputsFromRecord(RecordInstance record, String aiChatModel, String embeddingModel, boolean makeTopicEmbeddings, Function<JSONObject, String> getExperimentPrompt, Function<List<JSONObject>, String> getFinalSummaryPrompt) throws WdkModelException {
+  public static GeneSummaryInputs getSummaryInputsFromRecord(RecordInstance record, String aiChatModel, String embeddingModel, boolean makeTopicEmbeddings, boolean useExtendedThinking, Function<JSONObject, String> getExperimentPrompt, Function<List<JSONObject>, String> getFinalSummaryPrompt) throws WdkModelException {
 
     String geneId = getGeneId(record);
 
@@ -90,7 +90,7 @@ public class GeneRecordProcessor {
         List<JSONObject> digests = experimentsWithData.stream()
             .map(exp -> new JSONObject().put("digest", exp.getDigest()))
             .collect(Collectors.toList());
-        return EncryptionUtil.md5(aiChatModel + ":" + embeddingModel + ":" + makeTopicEmbeddings + ":" + DATA_MODEL_VERSION + ":" + getFinalSummaryPrompt.apply(digests));
+        return EncryptionUtil.md5(aiChatModel + ":" + embeddingModel + ":" + makeTopicEmbeddings + ":" + useExtendedThinking + ":" + DATA_MODEL_VERSION + ":" + getFinalSummaryPrompt.apply(digests));
       }
 
     };

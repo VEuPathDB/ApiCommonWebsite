@@ -15,6 +15,7 @@ import com.openai.models.ResponseFormatJsonSchema.JsonSchema.Schema;
 public class ClaudeSummarizer extends Summarizer {
 
   public static final Model CLAUDE_MODEL = Model.CLAUDE_SONNET_4_5_20250929;
+  public static final boolean USE_EXTENDED_THINKING = false;
 
   private static final String CLAUDE_API_KEY_PROP_NAME = "CLAUDE_API_KEY";
 
@@ -42,12 +43,17 @@ public class ClaudeSummarizer extends Summarizer {
     
     String enhancedPrompt = prompt + "\n\n" + jsonFormatInstructions;
 
-    MessageCreateParams request = MessageCreateParams.builder()
+    MessageCreateParams.Builder requestBuilder = MessageCreateParams.builder()
         .model(CLAUDE_MODEL)
         .maxTokens((long) MAX_RESPONSE_TOKENS)
         .system(SYSTEM_MESSAGE)
-        .addUserMessage(enhancedPrompt)
-        .build();
+        .addUserMessage(enhancedPrompt);
+
+    if (USE_EXTENDED_THINKING) {
+      requestBuilder.enabledThinking(1024);
+    }
+
+    MessageCreateParams request = requestBuilder.build();
 
     return retryOnOverload(
         () -> _claudeClient.messages().create(request),

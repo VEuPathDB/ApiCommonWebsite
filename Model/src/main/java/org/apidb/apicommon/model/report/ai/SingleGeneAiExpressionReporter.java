@@ -138,7 +138,7 @@ public class SingleGeneAiExpressionReporter extends AbstractReporter {
         // create summary inputs
         GeneSummaryInputs summaryInputs =
             GeneRecordProcessor.getSummaryInputsFromRecord(record, ClaudeSummarizer.CLAUDE_MODEL.toString(),
-                Summarizer.EMBEDDING_MODEL.asString(), _makeTopicEmbeddings,
+                Summarizer.EMBEDDING_MODEL.asString(), _makeTopicEmbeddings, ClaudeSummarizer.USE_EXTENDED_THINKING,
                 Summarizer::getExperimentMessage, Summarizer::getFinalSummaryMessage);
 
         // fetch summary, producing if necessary and requested
