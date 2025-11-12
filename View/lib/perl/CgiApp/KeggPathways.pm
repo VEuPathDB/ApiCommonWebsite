@@ -113,7 +113,7 @@ sub getDbEcNumbers {
   my ($self, $cgi) = @_;
 
   my $dbh = $self->getQueryHandle($cgi);
-  my $sql = "select ec_numbers from webready.GeneAttributes where ec_numbers is not null";
+  my $sql = "select ec_numbers from webready.GeneAttributes_p where ec_numbers is not null";
   my $sh = $dbh->prepare($sql);
   $sh->execute();
 

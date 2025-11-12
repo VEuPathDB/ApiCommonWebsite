@@ -395,7 +395,7 @@ sub wdk_reference {
 sub seq_ids_length {
   my $self = shift;
   my $dbh = $self->dbh;
-  my $query = "SELECT distinct source_id, length FROM webready.GenomicSeqAttributes";
+  my $query = "SELECT distinct source_id, length FROM webready.GenomicSeqAttributes_p";
   my $sth = $dbh->prepare($query);
   my ($status, $startTime, $endTime) = $self->{queryLogger}->execute($sth);
   $status or $self->throw($sth->errstr);

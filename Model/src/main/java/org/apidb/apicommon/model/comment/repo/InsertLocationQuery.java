@@ -8,8 +8,8 @@ import org.gusdb.fgputil.db.runner.SQLRunner;
 import java.sql.SQLException;
 
 import static java.sql.Types.BIGINT;
-import static java.sql.Types.INTEGER;
 import static java.sql.Types.VARCHAR;
+import static java.sql.Types.BOOLEAN;
 
 /**
  * Insert new location entries for a comment.
@@ -26,7 +26,7 @@ public class InsertLocationQuery extends InsertQuery {
       BIGINT,  // LOCATION_START
       BIGINT,  // LOCATION_END
       VARCHAR, // COORDINATE_TYPE
-      INTEGER  // IS_REVERSE
+      BOOLEAN  // IS_REVERSE
   };
 
   private final long _comId;
@@ -52,7 +52,7 @@ public class InsertLocationQuery extends InsertQuery {
     for (LocationRange range : _locs.getRanges()) {
       batch.add(
           new Object[] { _comId, nextId(), range.getStart(), range.getEnd(),
-              _locs.getCoordinateType(), _locs.isReverse() ? 1 : 0 });
+              _locs.getCoordinateType(), _locs.isReverse()});
     }
 
     batch.setParameterTypes(TYPES);

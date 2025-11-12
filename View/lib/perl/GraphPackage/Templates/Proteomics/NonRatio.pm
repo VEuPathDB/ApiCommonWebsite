@@ -162,11 +162,11 @@ gp = gp + scale_x_log10() +
 sub getSpecs {
   return [ {abbrev => "Apico",
             name => "Apicoplast Abundance",
-            query => "SELECT ga.source_id, CASE WHEN (nafe.value = 0 ) THEN 1e-9 ELSE nafe.value END as value FROM webready.GeneAttributes ga, results.nafeatureexpression nafe, study.protocolappnode pan, study.studylink sl, study.study s WHERE nafe.na_feature_id = ga.na_feature_id AND pan.protocol_app_node_id = sl.protocol_app_node_id AND nafe.protocol_app_node_id = sl.protocol_app_node_id AND sl.study_id = s.study_id AND s.NAME = 'Apicoplast and ER Proteomes' AND pan.NAME LIKE 'Apicoplast%'",
+            query => "SELECT ga.source_id, CASE WHEN (nafe.value = 0 ) THEN 1e-9 ELSE nafe.value END as value FROM webready.GeneAttributes_p ga, results.nafeatureexpression nafe, study.protocolappnode pan, study.studylink sl, study.study s WHERE nafe.na_feature_id = ga.na_feature_id AND pan.protocol_app_node_id = sl.protocol_app_node_id AND nafe.protocol_app_node_id = sl.protocol_app_node_id AND sl.study_id = s.study_id AND s.NAME = 'Apicoplast and ER Proteomes' AND pan.NAME LIKE 'Apicoplast%'",
            },
            {abbrev => "ER",
             name => "ER Abundance",
-            query => "SELECT ga.source_id, CASE WHEN (nafe.value = 0 ) THEN 1e-9 ELSE nafe.value END as value FROM webready.GeneAttributes ga, results.nafeatureexpression nafe, study.protocolappnode pan, study.studylink sl, study.study s WHERE nafe.na_feature_id = ga.na_feature_id AND pan.protocol_app_node_id = sl.protocol_app_node_id AND nafe.protocol_app_node_id = sl.protocol_app_node_id AND sl.study_id = s.study_id AND s.NAME = 'Apicoplast and ER Proteomes' AND pan.NAME LIKE 'ER%'",
+            query => "SELECT ga.source_id, CASE WHEN (nafe.value = 0 ) THEN 1e-9 ELSE nafe.value END as value FROM webready.GeneAttributes_p ga, results.nafeatureexpression nafe, study.protocolappnode pan, study.studylink sl, study.study s WHERE nafe.na_feature_id = ga.na_feature_id AND pan.protocol_app_node_id = sl.protocol_app_node_id AND nafe.protocol_app_node_id = sl.protocol_app_node_id AND sl.study_id = s.study_id AND s.NAME = 'Apicoplast and ER Proteomes' AND pan.NAME LIKE 'ER%'",
 
            },
       ];

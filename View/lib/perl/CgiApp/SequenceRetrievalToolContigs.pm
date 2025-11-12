@@ -33,7 +33,7 @@ sub run {
   if ($self->{type} eq 'contig') {
     $sql = <<EOSQL;
 SELECT s.source_id, substr(s.sequence, ?, ?), ' | ' || sa.sequence_description as description
-FROM webready.GenomicSequenceSequence s, webready.GenomicSequenceId si, webready.GenomicSeqAttributes sa
+FROM webready.GenomicSequenceSequence_p s, webready.GenomicSequenceId_p si, webready.GenomicSeqAttributes_p sa
 WHERE  lower(si.id) = lower(?)
 AND s.source_id = si.sequence
 AND sa.source_id = s.source_id
@@ -41,7 +41,7 @@ EOSQL
   } elsif ($self->{type} eq 'EST') {
     $sql = <<EOSQL;
 SELECT ea.source_id, substr(s.sequence, ?, ?), ' | ' || ea.dbest_name as description
-FROM webready.EstAttributes ea,  webready.EstSequence s
+FROM webready.EstAttributes_p ea,  webready.EstSequence_p s
 WHERE ea.source_id = s.source_id
 and lower(ea.source_id) = lower (?)
 EOSQL
@@ -158,14 +158,14 @@ sub validateIds {
   if ($type eq 'contig') {
   $sql = <<EOSQL;
 SELECT s.sequence, sa.length
-FROM webready.GenomicSequenceId s, webready.GenomicSeqAttributes sa
+FROM webready.GenomicSequenceId_p s, webready.GenomicSeqAttributes_p sa
 WHERE lower(s.id) = lower(?)
 AND sa.source_id = s.sequence
 EOSQL
 } elsif ($type eq 'EST') {
   $sql = <<EOSQL;
 SELECT s.sequence, ea.length
-FROM webready.EstSequence s, webready.EstAttributes ea
+FROM webready.EstSequence_p s, webready.EstAttributes_p ea
 WHERE lower(s.source_id) = lower(?)
 AND ea.source_id = s.source_id
 EOSQL
