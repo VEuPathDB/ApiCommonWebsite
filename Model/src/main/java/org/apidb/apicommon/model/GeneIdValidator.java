@@ -40,7 +40,7 @@ public class GeneIdValidator {
         PreparedStatement ps = null;
         try {
             ps = SqlUtils.getPreparedStatement(
-                    dataSource, sql.toString());
+                    dataSource, sql.toString(), SqlUtils.Autocommit.OFF);
             ps.setString(1, sourceId);
             ps.setString(2, sourceId);
             ps.setString(3, sourceId);
