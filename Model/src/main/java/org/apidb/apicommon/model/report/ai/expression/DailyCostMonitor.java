@@ -21,8 +21,6 @@ import org.gusdb.wdk.model.WdkRuntimeException;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.openai.models.completions.CompletionUsage;
-
 public class DailyCostMonitor {
 
   private static final Logger LOG = Logger.getLogger(DailyCostMonitor.class);
@@ -31,10 +29,18 @@ public class DailyCostMonitor {
   private static final String DAILY_COST_ACCUMULATION_FILE_DIR = "dailyCost";
   private static final String DAILY_COST_ACCUMULATION_FILE = "daily_cost_accumulation.txt";
 
-  // model prop keys
-  private static final String MAX_DAILY_DOLLAR_COST_PROP_NAME = "OPENAI_MAX_DAILY_AI_EXPRESSION_DOLLAR_COST";
-  private static final String DOLLAR_COST_PER_1M_INPUT_TOKENS_PROP_NAME = "OPENAI_DOLLAR_COST_PER_1M_AI_INPUT_TOKENS";
-  private static final String DOLLAR_COST_PER_1M_OUTPUT_TOKENS_PROP_NAME = "OPENAI_DOLLAR_COST_PER_1M_AI_OUTPUT_TOKENS";
+  // model prop keys (new names without OPENAI_ prefix)
+  private static final String MAX_DAILY_DOLLAR_COST_PROP_NAME = "MAX_DAILY_AI_EXPRESSION_DOLLAR_COST";
+  private static final String DOLLAR_COST_PER_1M_INPUT_TOKENS_PROP_NAME = "DOLLAR_COST_PER_1M_AI_INPUT_TOKENS";
+  private static final String DOLLAR_COST_PER_1M_OUTPUT_TOKENS_PROP_NAME = "DOLLAR_COST_PER_1M_AI_OUTPUT_TOKENS";
+
+  // hardcoded embedding token cost
+  private static final double DOLLAR_COST_PER_1M_EMBEDDING_TOKENS = 0.02;
+  
+  // deprecated model prop keys (with OPENAI_ prefix)
+  private static final String DEPRECATED_MAX_DAILY_DOLLAR_COST_PROP_NAME = "OPENAI_MAX_DAILY_AI_EXPRESSION_DOLLAR_COST";
+  private static final String DEPRECATED_DOLLAR_COST_PER_1M_INPUT_TOKENS_PROP_NAME = "OPENAI_DOLLAR_COST_PER_1M_AI_INPUT_TOKENS";
+  private static final String DEPRECATED_DOLLAR_COST_PER_1M_OUTPUT_TOKENS_PROP_NAME = "OPENAI_DOLLAR_COST_PER_1M_AI_OUTPUT_TOKENS";
 
   // lock characteristics
   private static final long DEFAULT_TIMEOUT_MILLIS = 1000;
@@ -44,11 +50,11 @@ public class DailyCostMonitor {
   private static final String JSON_DATE_PROP = "currentDate";
   private static final String JSON_COST_PROP = "accumulatedCost";
 
-  // completion usage object representing 0 cost
-  private static final CompletionUsage EMPTY_COST = CompletionUsage.builder()
+  // token usage object representing 0 cost
+  private static final TokenUsage EMPTY_COST = TokenUsage.builder()
       .promptTokens(0)
       .completionTokens(0)
-      .totalTokens(0)
+      .embeddingTokens(0)
       .build();
 
   private final Path _costMonitoringDir;
@@ -57,6 +63,7 @@ public class DailyCostMonitor {
   private final double _maxDailyDollarCost;
   private final double _costPerInputToken;
   private final double _costPerOutputToken;
+  private final double _costPerEmbeddingToken;
 
   public DailyCostMonitor(WdkModel wdkModel) throws WdkModelException {
     _costMonitoringDir = AiExpressionCache.getAiExpressionCacheParentDir(wdkModel).resolve(DAILY_COST_ACCUMULATION_FILE_DIR).toAbsolutePath();
@@ -68,9 +75,26 @@ public class DailyCostMonitor {
 
     _costMonitoringFile = _costMonitoringDir.resolve(DAILY_COST_ACCUMULATION_FILE);
 
-    _maxDailyDollarCost = getNumberProp(wdkModel, MAX_DAILY_DOLLAR_COST_PROP_NAME);
-    _costPerInputToken = getNumberProp(wdkModel, DOLLAR_COST_PER_1M_INPUT_TOKENS_PROP_NAME) / 1000000;
-    _costPerOutputToken = getNumberProp(wdkModel, DOLLAR_COST_PER_1M_OUTPUT_TOKENS_PROP_NAME) / 1000000;
+    _maxDailyDollarCost = getNumberProp(wdkModel, MAX_DAILY_DOLLAR_COST_PROP_NAME, DEPRECATED_MAX_DAILY_DOLLAR_COST_PROP_NAME);
+    _costPerInputToken = getNumberProp(wdkModel, DOLLAR_COST_PER_1M_INPUT_TOKENS_PROP_NAME, DEPRECATED_DOLLAR_COST_PER_1M_INPUT_TOKENS_PROP_NAME) / 1000000;
+    _costPerOutputToken = getNumberProp(wdkModel, DOLLAR_COST_PER_1M_OUTPUT_TOKENS_PROP_NAME, DEPRECATED_DOLLAR_COST_PER_1M_OUTPUT_TOKENS_PROP_NAME) / 1000000;
+    _costPerEmbeddingToken = DOLLAR_COST_PER_1M_EMBEDDING_TOKENS / 1000000;
+  }
+
+  private double getNumberProp(WdkModel wdkModel, String propName, String deprecatedPropName) throws WdkModelException {
+    // First try the new property name
+    if (wdkModel.getProperties().get(propName) != null) {
+      return getNumberProp(wdkModel, propName);
+    }
+    
+    // Fall back to deprecated property name with warning
+    if (wdkModel.getProperties().get(deprecatedPropName) != null) {
+      LOG.warn("WDK property '" + deprecatedPropName + "' is deprecated. Please use '" + propName + "' instead.");
+      return getNumberProp(wdkModel, deprecatedPropName);
+    }
+    
+    // Neither property is set
+    throw new WdkModelException("WDK property '" + propName + "' (or deprecated '" + deprecatedPropName + "') has not been set.");
   }
 
   private double getNumberProp(WdkModel wdkModel, String propName) throws WdkModelException {
@@ -88,11 +112,11 @@ public class DailyCostMonitor {
     return updateAndGetCost(EMPTY_COST) > _maxDailyDollarCost;
   }
 
-  public void updateCost(Optional<CompletionUsage> usage) {
-    updateAndGetCost(usage.orElse(EMPTY_COST));
+  public void updateCost(TokenUsage usage) {
+    updateAndGetCost(usage);
   }
 
-  public double updateAndGetCost(CompletionUsage usageCost) {
+  public double updateAndGetCost(TokenUsage usageCost) {
     try (DirectoryLock lock = new DirectoryLock(_costMonitoringDir, DEFAULT_TIMEOUT_MILLIS, DEFAULT_POLL_FREQUENCY_MILLIS)) {
 
       // read current values from file
@@ -103,7 +127,8 @@ public class DailyCostMonitor {
       // calculate cost of the current usage
       double additionalCost =
           (usageCost.promptTokens() * _costPerInputToken) +
-          (usageCost.completionTokens() * _costPerOutputToken);
+          (usageCost.completionTokens() * _costPerOutputToken) +
+          (usageCost.embeddingTokens() * _costPerEmbeddingToken);
 
       // reset cost to zero if date has rolled over to the next day
       String newDate = getCurrentDateString();
