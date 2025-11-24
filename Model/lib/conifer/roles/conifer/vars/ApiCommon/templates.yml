@@ -29,9 +29,6 @@ highSpeedChipSnpSearch-config.xml:
 motifSearch-config.xml:
   src: 'ApiCommonWebService/motifSearch-config.xml.j2'
   dest: '{{ gus_home }}/config/motifSearch-config.xml'
-container_env:
-  src: 'EbrcWebsiteCommon/container_env.j2'
-  dest: '{{ gus_home }}/config/{{ project }}/container_env'
 projects.xml:
   src: 'EbrcWebsiteCommon/projects.xml.j2'
   dest: '{{ gus_home }}/config/projects.xml'
