@@ -98,7 +98,7 @@ public class EnrichmentPluginUtil {
         "FROM webready.GeneAttributes_p ga, " +
         "(" + answerValue.getIdSql() + ") r " +
         "where ga.source_id = r.gene_source_id " +
-        "and  ga.organism = '" + singleOrg + "'";
+        "and  ga.org_abbrev = '" + singleOrg + "'";
   }
 
   public static String getPvalueCutoff(Map<String, String> params) {
@@ -116,7 +116,7 @@ public class EnrichmentPluginUtil {
   public static List<String> getDistinctOrgsInAnswer(AnswerValue answerValue,
       WdkModel wdkModel) throws WdkModelException {
     String sql = "SELECT distinct ga.organism " +
-        "FROM webready.GeneAttributes_p ga, " +
+        "FROM apidbtuning.GeneAttributes ga, " +
         "(" + answerValue.getIdSql() + ") r " +
         "where ga.source_id = r.gene_source_id " +
         "order by ga.organism asc";

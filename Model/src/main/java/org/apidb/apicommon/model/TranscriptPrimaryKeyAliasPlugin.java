@@ -87,7 +87,7 @@ public class TranscriptPrimaryKeyAliasPlugin implements PrimaryKeyAliasPlugin {
    */
   private SortedMap<String,String> findCurrentIds(String inputGeneId, DataSource appDbDataSource) throws WdkModelException {
     String sql = "SELECT ta.source_id, ta.gene_source_id "
-        + "FROM webready.GeneId_p a, webready.TranscriptAttributes_p ta "
+        + "FROM webready.GeneId_p a, apidbtuning.TranscriptAttributes ta "
         + "WHERE a.id = '" + inputGeneId + "' "
         + "AND ta.gene_source_id = a.gene";
         

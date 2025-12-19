@@ -22,8 +22,8 @@ public class GeneGenomeViewReporter extends GenomeViewReporter {
         sql.append("    ga.gene_product AS " + COLUMN_DESCRIPTION + ", ");
         sql.append("    ga.gene_context_start || '..' || ga.gene_context_end AS " + COLUMN_CONTEXT + ", ");
         sql.append("    CASE ga.strand WHEN 'forward' THEN 1 ELSE 0 END AS " + COLUMN_STRAND);
-        sql.append(" FROM webready.TranscriptAttributes_p ga, ");
-        sql.append("      webready.GenomicSeqAttributes_p sa, ");
+        sql.append(" FROM apidbtuning.TranscriptAttributes ga, ");
+        sql.append("      apidbtuning.GenomicSeqAttributes sa, ");
         sql.append("      (" + idSql + ") idq ");
         sql.append(" WHERE ga.sequence_id = sa.source_id ");
         sql.append("  AND ga.gene_source_id = idq.gene_source_id ");
