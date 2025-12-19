@@ -39,15 +39,18 @@ public class RepresentativeTranscriptFilter extends StepFilter {
    */
   public static final String FILTER_NAME = "representativeTranscriptOnly";
 
-  public static final String ATTR_TABLE_NAME = "webready.TranscriptAttributes_p";
+  private static final int MAX_EFFECTIVE_PARTITIONS = 10;
+  private static final String ATTR_TABLE_NAME_MACRO = "%%selected_attributes_table_macro%%";
+  private static final String ATTR_TABLE_NAME_PARTITIONED = "webready.TranscriptAttributes_p";
+  private static final String ATTR_TABLE_NAME_UNPARTITIONED = "apidbtuning.TranscriptAttributes";
 
-  private static final String ORIG_SQL_PARAM = "%%originalSql%%";
+  private static final String ORIG_SQL_MACRO = "%%originalSql%%";
 
   private static final String LONGEST_TRANSCRIPT_REQUIRED_OPTION = "longestTranscriptRequired";
 
   // select first transcript when ordered by source_id 
   private static final String SELECT_FIRST_TRANSCRIPT_SQL =
-      "WITH inputSql as (" + ORIG_SQL_PARAM + ") " +
+      "WITH inputSql as (" + ORIG_SQL_MACRO + ") " +
       "SELECT * FROM inputSql " +
       "WHERE SOURCE_ID IN ( " +
       "  SELECT MIN(subq_.SOURCE_ID) FROM inputSql subq_ " +
@@ -57,7 +60,7 @@ public class RepresentativeTranscriptFilter extends StepFilter {
   // select the longest transcript;  
   // return only one of them (MAX source_id) if several have the same length
   private static final String SELECT_LONGEST_TRANSCRIPT_SQL =
-     "WITH inputSql as (" + ORIG_SQL_PARAM + ") " +
+     "WITH inputSql as (" + ORIG_SQL_MACRO + ") " +
       "SELECT * FROM inputSql " +
       "WHERE SOURCE_ID IN ( " +
       "  SELECT SOURCE_ID " +
@@ -67,7 +70,7 @@ public class RepresentativeTranscriptFilter extends StepFilter {
       "          ORDER BY ta.length DESC " +
       "    ) AS rn " +
       "    FROM inputSql subq_ " +
-      "    JOIN " + ATTR_TABLE_NAME + " ta ON ta.source_id = subq_.source_id" +
+      "    JOIN " + ATTR_TABLE_NAME_MACRO + " ta ON ta.source_id = subq_.source_id" +
       "  ) ranked " +
       "  WHERE rn = 1 )";
 
@@ -108,8 +111,19 @@ public class RepresentativeTranscriptFilter extends StepFilter {
   public String getSql(AnswerValue answer, String idSql, JSONObject jsValue) throws WdkModelException {
     boolean findLongestTranscript = jsValue.optBoolean(LONGEST_TRANSCRIPT_REQUIRED_OPTION, true);
     LOG.info("Using longest transcript in representative transcript filter? " + findLongestTranscript);
-    String filterSql = findLongestTranscript ? SELECT_LONGEST_TRANSCRIPT_SQL : SELECT_FIRST_TRANSCRIPT_SQL;
-    return filterSql.replace(ORIG_SQL_PARAM, idSql);
+    String filterSql =  getFilterSql(answer, findLongestTranscript);
+    return filterSql.replace(ORIG_SQL_MACRO, idSql);
+  }
+
+  private String getFilterSql(AnswerValue answer, boolean findLongestTranscript) throws WdkModelException {
+    if (!findLongestTranscript)
+      return SELECT_FIRST_TRANSCRIPT_SQL;
+    int numPartitions = answer.getPartitionKeys("RepresentativeTranscriptFilter").size();
+    String transcriptTable =
+      numPartitions > MAX_EFFECTIVE_PARTITIONS
+      ? ATTR_TABLE_NAME_UNPARTITIONED
+      : ATTR_TABLE_NAME_PARTITIONED;
+    return SELECT_LONGEST_TRANSCRIPT_SQL.replace(ATTR_TABLE_NAME_MACRO, transcriptTable);
   }
 
   @Override
