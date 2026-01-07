@@ -160,7 +160,7 @@ where ga.source_id = r.source_id
   my $count = 0;
   my $taxonId;
   while (my ($taxId) = $stmt->fetchrow_array()) { $taxonId = $taxId; $count++; }
-  die "Result has genes from more than one taxon\n" if $count != 1;
+  die "Result has genes from more than one taxon. SQL: $sql\n" if $count != 1;
   return $taxonId;
 }
 
