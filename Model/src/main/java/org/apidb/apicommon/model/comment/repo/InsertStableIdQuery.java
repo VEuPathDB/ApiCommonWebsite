@@ -1,13 +1,13 @@
 package org.apidb.apicommon.model.comment.repo;
 
-import org.gusdb.fgputil.db.runner.BasicArgumentBatch;
-import org.gusdb.fgputil.db.runner.SQLRunner;
+import static java.sql.Types.BIGINT;
+import static java.sql.Types.VARCHAR;
 
 import java.sql.SQLException;
 import java.util.Collection;
 
-import static java.sql.Types.BIGINT;
-import static java.sql.Types.VARCHAR;
+import org.gusdb.fgputil.db.runner.ArgumentBatch;
+import org.gusdb.fgputil.db.runner.ListArgumentBatch;
 
 /**
  * Insert link between a comment and one or more secondary
@@ -32,8 +32,8 @@ public class InsertStableIdQuery extends InsertQuery {
   }
 
   @Override
-  protected SQLRunner.ArgumentBatch getArguments() throws SQLException {
-    final BasicArgumentBatch out = new BasicArgumentBatch();
+  protected ArgumentBatch getArguments() throws SQLException {
+    final ListArgumentBatch out = new ListArgumentBatch();
     for (String id : _stableId)
       out.add(new Object[] { nextId(), id, _commentId });
     out.setParameterTypes(TYPES);
