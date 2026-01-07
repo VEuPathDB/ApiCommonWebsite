@@ -1,13 +1,13 @@
 package org.apidb.apicommon.model.comment.repo;
 
-import org.gusdb.fgputil.db.runner.BasicArgumentBatch;
-import org.gusdb.fgputil.db.runner.SQLRunner;
+import static java.sql.Types.BIGINT;
+import static java.sql.Types.INTEGER;
 
 import java.sql.SQLException;
 import java.util.Collection;
 
-import static java.sql.Types.BIGINT;
-import static java.sql.Types.INTEGER;
+import org.gusdb.fgputil.db.runner.ArgumentBatch;
+import org.gusdb.fgputil.db.runner.ListArgumentBatch;
 
 /**
  * Insert a link between a comment and selected categories.
@@ -32,8 +32,8 @@ public class InsertCategoryQuery extends InsertQuery {
   }
 
   @Override
-  protected SQLRunner.ArgumentBatch getArguments() throws SQLException {
-    final BasicArgumentBatch batch = new BasicArgumentBatch();
+  protected ArgumentBatch getArguments() throws SQLException {
+    final ListArgumentBatch batch = new ListArgumentBatch();
 
     for (Integer id : _ids)
       batch.add(new Object[] { nextId(), _comId, id });
