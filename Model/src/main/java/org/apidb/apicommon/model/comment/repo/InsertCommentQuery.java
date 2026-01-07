@@ -9,8 +9,8 @@ import java.io.StringReader;
 import org.apidb.apicommon.model.comment.ReviewStatus;
 import org.apidb.apicommon.model.comment.pojo.CommentRequest;
 import org.apidb.apicommon.model.comment.pojo.Project;
-import org.gusdb.fgputil.db.runner.BasicArgumentBatch;
-import org.gusdb.fgputil.db.runner.SQLRunner;
+import org.gusdb.fgputil.db.runner.ArgumentBatch;
+import org.gusdb.fgputil.db.runner.ListArgumentBatch;
 import org.gusdb.wdk.model.user.User;
 
 /**
@@ -72,8 +72,8 @@ public class InsertCommentQuery extends InsertQuery {
   }
 
   @Override
-  protected SQLRunner.ArgumentBatch getArguments() {
-    final BasicArgumentBatch out = new BasicArgumentBatch();
+  protected ArgumentBatch getArguments() {
+    final ListArgumentBatch out = new ListArgumentBatch();
 
     out.add(new Object[] {
         _id,                                 // COMMENT_ID

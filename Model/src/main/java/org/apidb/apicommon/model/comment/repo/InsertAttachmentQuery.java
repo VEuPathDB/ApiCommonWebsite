@@ -1,8 +1,8 @@
 package org.apidb.apicommon.model.comment.repo;
 
 import org.apidb.apicommon.model.comment.pojo.Attachment;
-import org.gusdb.fgputil.db.runner.BasicArgumentBatch;
-import org.gusdb.fgputil.db.runner.SQLRunner;
+import org.gusdb.fgputil.db.runner.ArgumentBatch;
+import org.gusdb.fgputil.db.runner.ListArgumentBatch;
 
 import static java.sql.Types.BIGINT;
 import static java.sql.Types.VARCHAR;
@@ -28,8 +28,8 @@ public class InsertAttachmentQuery extends InsertQuery {
   }
 
   @Override
-  protected SQLRunner.ArgumentBatch getArguments() {
-    final BasicArgumentBatch batch = new BasicArgumentBatch();
+  protected ArgumentBatch getArguments() {
+    final ListArgumentBatch batch = new ListArgumentBatch();
 
     batch.add(new Object[]{_attachment.getId(), _attachment.getName(),
         _attachment.getDescription(), _comId });
