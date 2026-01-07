@@ -10,7 +10,8 @@ import org.gusdb.fgputil.FormatUtil;
 import org.gusdb.fgputil.db.platform.SupportedPlatform;
 import org.gusdb.fgputil.db.pool.DatabaseInstance;
 import org.gusdb.fgputil.db.pool.SimpleDbConfig;
-import org.gusdb.fgputil.db.runner.BasicArgumentBatch;
+import org.gusdb.fgputil.db.runner.ListArgumentBatch;
+import org.gusdb.fgputil.db.runner.ParamBuilder;
 import org.gusdb.fgputil.db.runner.SQLRunner;
 
 public class B19_To_B20_Migration {
@@ -72,9 +73,9 @@ public class B19_To_B20_Migration {
 
   private static void migrateGBrowseIds(DataSource ds) {
 
-    final BasicArgumentBatch updateParams = new BasicArgumentBatch();
-    final BasicArgumentBatch userIdsToRemove = new BasicArgumentBatch();
-    final BasicArgumentBatch sessionIdsToRemove = new BasicArgumentBatch();
+    final ListArgumentBatch updateParams = new ListArgumentBatch();
+    final ListArgumentBatch userIdsToRemove = new ListArgumentBatch();
+    final ListArgumentBatch sessionIdsToRemove = new ListArgumentBatch();
 
     // get current list of usernames from GBrowse sessions table
 
@@ -95,7 +96,7 @@ public class B19_To_B20_Migration {
       String email = username.substring(0, username.lastIndexOf("-"));
       if (FormatUtil.isInteger(email))
         continue; // already been converted
-      querier.executeQuery(new String[] { email }, rs -> {
+      querier.executeQuery(new ParamBuilder().addString(email), rs -> {
         if (rs.next()) {
           updateParams.add(
               new Object[] { username.replace(email, String.valueOf(rs.getInt(1))), username });

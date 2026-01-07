@@ -1,14 +1,14 @@
 package org.apidb.apicommon.model.comment.repo;
 
-import org.apidb.apicommon.model.comment.ReferenceType;
-import org.gusdb.fgputil.db.runner.BasicArgumentBatch;
-import org.gusdb.fgputil.db.runner.SQLRunner;
+import static java.sql.Types.BIGINT;
+import static java.sql.Types.VARCHAR;
 
 import java.sql.SQLException;
 import java.util.Collection;
 
-import static java.sql.Types.BIGINT;
-import static java.sql.Types.VARCHAR;
+import org.apidb.apicommon.model.comment.ReferenceType;
+import org.gusdb.fgputil.db.runner.ArgumentBatch;
+import org.gusdb.fgputil.db.runner.ListArgumentBatch;
 
 /**
  * Insert a link between a comment and records in a generic
@@ -47,8 +47,8 @@ public class InsertReferencesQuery extends InsertQuery {
   }
 
   @Override
-  protected SQLRunner.ArgumentBatch getArguments() throws SQLException {
-    final BasicArgumentBatch batch = new BasicArgumentBatch();
+  protected ArgumentBatch getArguments() throws SQLException {
+    final ListArgumentBatch batch = new ListArgumentBatch();
 
     for (String id : _ids)
       batch.add(new Object[] { nextId(), id, _type.dbName, _commentId });

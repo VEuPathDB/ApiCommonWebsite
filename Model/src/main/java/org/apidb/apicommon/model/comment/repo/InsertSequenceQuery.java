@@ -1,13 +1,13 @@
 package org.apidb.apicommon.model.comment.repo;
 
-import org.gusdb.fgputil.db.runner.BasicArgumentBatch;
-import org.gusdb.fgputil.db.runner.SQLRunner;
+import static java.sql.Types.BIGINT;
+import static java.sql.Types.CLOB;
 
 import java.io.StringReader;
 import java.sql.SQLException;
 
-import static java.sql.Types.BIGINT;
-import static java.sql.Types.CLOB;
+import org.gusdb.fgputil.db.runner.ArgumentBatch;
+import org.gusdb.fgputil.db.runner.ListArgumentBatch;
 
 /**
  * Insert sequence for a comment.
@@ -28,8 +28,8 @@ public class InsertSequenceQuery extends InsertQuery {
   }
 
   @Override
-  protected SQLRunner.ArgumentBatch getArguments() throws SQLException {
-    final BasicArgumentBatch out = new BasicArgumentBatch();
+  protected ArgumentBatch getArguments() throws SQLException {
+    final ListArgumentBatch out = new ListArgumentBatch();
     out.add(new Object[]{ nextId(), new StringReader(_sequence), _comId });
     out.setParameterTypes(TYPES);
     return out;
