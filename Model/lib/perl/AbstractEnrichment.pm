@@ -50,10 +50,12 @@ sub getAnnotatedGenesListResult {
 
 sub runSql {
   my ($self, $dbh, $sql) = @_;
-  # print STDERR "\n$sql\n\n";
-
+  my $start = time;
   my $stmt = $dbh->prepare("$sql") or die(DBI::errstr);
   $stmt->execute() or die(DBI::errstr);
+  my $t = time - $start;
+  print STDERR "Ran following SQL in $t seconds\n";
+  print STDERR "\n$sql\n\n";
   return $stmt;
 }
 
