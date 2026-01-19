@@ -95,10 +95,10 @@ public class EnrichmentPluginUtil {
     // must wrap idSql with code that filters by the passed organism param
     String singleOrg = AbstractEnumParam.convertToTerms(params.get(ORGANISM_PARAM_KEY)).get(0);
     return "SELECT ga.source_id " +
-        "FROM webready.GeneAttributes_p ga, " +
+        "FROM apidbtuning.GeneAttributes ga, " +
         "(" + answerValue.getIdSql() + ") r " +
         "where ga.source_id = r.gene_source_id " +
-        "and  ga.org_abbrev = '" + singleOrg + "'";
+        "and  ga.organism = '" + singleOrg + "'";
   }
 
   public static String getPvalueCutoff(Map<String, String> params) {
