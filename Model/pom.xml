@@ -135,6 +135,11 @@
       <artifactId>openai-java</artifactId>
     </dependency>
 
+    <dependency>
+      <groupId>com.anthropic</groupId>
+      <artifactId>anthropic-java</artifactId>
+    </dependency>
+
   </dependencies>
 
 </project>
