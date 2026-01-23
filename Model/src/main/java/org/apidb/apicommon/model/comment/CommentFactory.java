@@ -14,6 +14,7 @@ import org.gusdb.wdk.model.user.User;
 
 import javax.sql.DataSource;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -381,20 +382,22 @@ public class CommentFactory implements Manageable<CommentFactory> {
 
     final var url = new URL(_host + "/cgi-bin/pmid2json?pmids=" + String.join(",", numericIds));
 
-    return Stream.concat(
-      JSON.readerForListOf(PubMedReference.class)
-        .<Collection<PubMedReference>>readValue(url)
-        .stream()
-        .filter(ref -> {
-          if (Objects.equals(ref.getStatus(), "FOUND")) {
-            return true;
-          } else {
-            invalidIds.add(ref.getId());
-            return false;
-          }
-        }),
-      invalidIds.stream().map(id -> new PubMedReference(id, null, null, null, null, null))
-    ).collect(Collectors.toList());
+    try (InputStream in = url.openStream()) {
+      return Stream.concat(
+        JSON.readerForListOf(PubMedReference.class)
+          .<Collection<PubMedReference>>readValue(in)
+          .stream()
+          .filter(ref -> {
+            if (Objects.equals(ref.getStatus(), "FOUND")) {
+              return true;
+            } else {
+              invalidIds.add(ref.getId());
+              return false;
+            }
+          }),
+        invalidIds.stream().map(id -> new PubMedReference(id, null, null, null, null, null))
+      ).collect(Collectors.toList());
+    }
   }
 
   /**
