@@ -37,7 +37,7 @@ user_datasets_workspace:
 
 communitydatasets_env_map:
    w_prefix: false
-   default: true
+   default: false
 
 modelprop:
   VDI_DATASETS_DIRECTORY: "/var/www/Common/userDatasets"
