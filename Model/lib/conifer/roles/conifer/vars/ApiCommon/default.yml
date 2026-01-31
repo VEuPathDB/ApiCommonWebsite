@@ -56,9 +56,9 @@ user_datasets_uploadTypes_env_map:
   default: "genelist,bigwigfiles,rnaseq,wrangler"
 
 user_datasets_workspace:
-  enabled: "true"
+  enabled: "false"
   uploadTypes: "{{ user_datasets_uploadTypes_env_map[hostname_prefix] | default(user_datasets_uploadTypes_env_map['default']) }}"
-  community: "true"
+  community: "false"
 
 projectsxml:
   EuPathDB: "https://{{ hostname|swap_sld('veupathdb.org')|swap_hostname(_host_frontends) }}/veupathdb/"

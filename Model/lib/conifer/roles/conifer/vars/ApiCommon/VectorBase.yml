@@ -8,4 +8,4 @@ eda:
   example_analyses_author: 854899613,1926010
   single_app_mode: pass
 user_datasets_workspace:
-  enabled: "true"
+  enabled: "false"
