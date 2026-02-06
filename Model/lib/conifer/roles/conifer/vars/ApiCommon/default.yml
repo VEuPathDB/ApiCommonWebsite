@@ -48,7 +48,7 @@ modelprop:
   SEQUENCE_RETRIEVAL_SERVICE_URL: /sequence-retrieval
   JBROWSE_WEBPAGE_URL: "/{{ webapp_ctx }}/app/jbrowse"
   JBROWSE_SERVICE_URL: "/{{ webapp_ctx }}/service/jbrowse"
-  AI_EXPRESSION_CACHE_DIR: "/eupath/ai-expr-cache"
+  AI_EXPRESSION_CACHE_DIR: "/var/www/Common/ai-expr-cache"
   AI_EXPRESSION_QUALTRICS_ID: SV_38C4ZX1JxLi2SEe
   OPENAI_MAX_DAILY_AI_EXPRESSION_DOLLAR_COST: 33
   OPENAI_DOLLAR_COST_PER_1M_AI_INPUT_TOKENS: 2.5
@@ -100,7 +100,7 @@ highspeedsnpsearchconfig_idPrefix: NGS_SNP.
 highspeedchipsnpsearchconfig_jobsDir: /var/www/Common/tmp/highSpeedChipSnpSearch
 highspeedchipsnpsearchconfig_idPrefix: 'NULL'
 
-appDbPgDbi: "{{ 'dbi:Pg:host=ares13.penn.apidb.org;dbname=' ~ appDb_ldapCommonName if appDb_ldapCommonName is defined else appDb_connectionUrl|jdbc2Dbi }}"
+appDbPgDbi: "{{ 'dbi:Pg:service=' ~ appDb_ldapCommonName if appDb_ldapCommonName is defined else appDb_connectionUrl|jdbc2Dbi }}"
 
 profilesimilarityconfig_dbLogin: '{{ modelconfig_appDb_login }}'
 profilesimilarityconfig_dbPassword: '{{ modelconfig_appDb_password }}'

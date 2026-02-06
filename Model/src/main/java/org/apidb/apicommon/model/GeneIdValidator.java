@@ -25,7 +25,7 @@ public class GeneIdValidator {
         ResultSet rs = null;
 
         StringBuffer sql = new StringBuffer();
-        sql.append("SELECT source_id FROM webready.GeneAttributes_p ");
+        sql.append("SELECT source_id FROM apidbtuning.GeneAttributes ");
         sql.append("WHERE source_id = ? ");
         sql.append("UNION ");
         sql.append("SELECT name FROM apidbtuning.samples ");

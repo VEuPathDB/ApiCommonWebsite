@@ -16,7 +16,7 @@ import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
 import org.gusdb.fgputil.db.runner.SQLRunner;
-import org.gusdb.fgputil.db.runner.SingleLongResultSetHandler;
+import org.gusdb.fgputil.db.runner.handler.SingleLongResultSetHandler;
 import org.gusdb.fgputil.runtime.GusHome;
 import org.gusdb.fgputil.validation.ValidationBundle;
 import org.gusdb.fgputil.validation.ValidationBundle.ValidationBundleBuilder;
@@ -26,6 +26,7 @@ import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
 import org.gusdb.wdk.model.analysis.AbstractSimpleProcessAnalyzer;
 import org.gusdb.wdk.model.answer.AnswerValue;
+import org.gusdb.wdk.model.query.SqlQuery;
 import org.gusdb.wdk.model.user.analysis.IllegalAnswerValueException;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -99,7 +100,8 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   private void validateFilteredGoTerms(/*String sourcesStr,*/ String evidCodesStr, String ontology, String goSubset, ValidationBundleBuilder errors)
       throws WdkModelException {
 
-    String idSql =  EnrichmentPluginUtil.getOrgSpecificIdSql(getAnswerValue(), getFormParams());
+    AnswerValue answerValue = getAnswerValue();
+    String idSql =  EnrichmentPluginUtil.getOrgSpecificIdSql(answerValue, getFormParams());
     String sql =
         "SELECT count(distinct gts.go_term_id) as " + NL +
         "  FROM webready.GoTermSummary_p gts,"  + NL +
@@ -107,12 +109,16 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
         "  where gts.gene_source_id = r.source_id" + NL +
         "    and gts.ontology = '" + ontology + "'" + NL +
         "    AND gts.evidence_category in (" + evidCodesStr + ")" + NL +
+        "    and gts.org_abbrev in (%%PARTITION_KEYS%%)" + NL +
         "  and ("+ goSubset +" = 'No' or gts.is_go_slim = '1')" + NL ;
 
+    String partKeys = answerValue.getPartitionKeysString("GO-Enrich-Filtered");
+    final String newsql = sql.replaceAll(SqlQuery.PARTITION_KEYS_MACRO, partKeys);
+
     DataSource ds = getWdkModel().getAppDb().getDataSource();
-    long result = new SQLRunner(ds, sql, "count-filtered-go-terms")
+    long result = new SQLRunner(ds, newsql, "count-filtered-go-terms")
         .executeQuery(new SingleLongResultSetHandler())
-        .orElseThrow(() -> new WdkModelException("No result found in count query: " + sql));
+        .orElseThrow(() -> new WdkModelException("No result found in count query: " + newsql));
 
     if (result < 1) {
       errors.addError("Your result has no genes with GO Terms that satisfy the parameter choices you have made.  Please try adjusting the parameters.");
@@ -190,12 +196,16 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     String sql = "select count(distinct gts.gene_source_id)" + NL +
       " from webready.GoTermSummary_p gts, (" + idSql + ") r" + NL +
       " where gts.gene_source_id = r.gene_source_id" + NL +
+      " and gts.org_abbrev in (%%PARTITION_KEYS%%)" + NL +
       " and gts.ontology is not null";
 
-    LOG.info("Executing the following SQL: " + sql);
+    String partKeys = answerValue.getPartitionKeysString("GO-Enrich-Filtered");
+    final String newsql = sql.replaceAll(SqlQuery.PARTITION_KEYS_MACRO, partKeys);
 
-    long count = new SQLRunner(ds, sql, "count-go-genes").executeQuery(new SingleLongResultSetHandler())
-        .orElseThrow(() -> new WdkModelException("No result found in count query: " + sql));
+    LOG.info("Executing the following SQL: " + newsql);
+
+    long count = new SQLRunner(ds, newsql, "count-go-genes").executeQuery(new SingleLongResultSetHandler())
+        .orElseThrow(() -> new WdkModelException("No result found in count query: " + newsql));
 
     LOG.info("Returned " + count);
 

@@ -27,7 +27,7 @@ public class DynamicSpanGenomeViewReporter extends GenomeViewReporter {
     sql.append("            regexp_substr(regexp_substr(source_id, '[^:]+', 1, 2), '[^\\-]+', 1,2) as end_max, ");
     sql.append("            CASE regexp_substr(source_id, '[^:]+', 1, 3) WHEN 'f' THEN 1 ELSE 0 END AS strand ");
     sql.append("       FROM (" + idSql + ") ");
-    sql.append("      ) ids, webready.GenomicSeqAttributes_p sa");
+    sql.append("      ) ids, apidbtuning.GenomicSeqAttributes sa");
     sql.append(" WHERE ids.sequence_id = sa.source_id");
 
     return sql.toString();
