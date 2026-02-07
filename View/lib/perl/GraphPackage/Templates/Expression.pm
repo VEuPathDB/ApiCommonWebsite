@@ -127,7 +127,7 @@ sub init {
   $self->SUPER::init(@_);
 
   my $allProfileSets = $self->getAllProfileSetNames();
-  # print STDERR Dumper($allProfileSets);
+#  print STDERR Dumper($allProfileSets);
 
   my %plotParts;
   my %hasStdError;
@@ -221,7 +221,7 @@ sub orderPlotProfiles {
 sub makeAndSetPlots {
   my ($self, $plotParts, $hasStdError) = @_;
   my @rv;
-  
+
   my $bottomMarginSize = $self->getBottomMarginSize();
   my $colors= $self->getProfileColors();
   my $pctColors= $self->getPercentileColors();
@@ -651,9 +651,9 @@ use Data::Dumper;
 sub getAllProfileSetNames {
   my ($self) = @_;
   my @profileArray = (
-                      'Llinas RT transcription and decay labeled Profiles',
-                      'Llinas RT transcription and decay unlabeled Profiles',
-                      'Llinas RT transcription and decay total Profiles',
+                      'Llinas RT transcription and decay labeled Profiles [microarray]',
+                      'Llinas RT transcription and decay unlabeled Profiles [microarray]',
+                      'Llinas RT transcription and decay total Profiles [microarray]',
       );
 
   my @rv;
@@ -1064,7 +1064,7 @@ sub init {
   hideLegend = FALSE
 RADJUST
 
-  my $profileName ="three Tgondii strains under both normal-tachyzoite and induced-bradyzoite conditions";
+  my $profileName ="three Tgondii strains under both normal-tachyzoite and induced-bradyzoite conditions [microarray]";
 
   my @profileArray = (["$profileName", "values", "$profileName", "standard_error"]);
 
