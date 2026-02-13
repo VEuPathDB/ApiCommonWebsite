@@ -53,6 +53,7 @@ modelprop:
 # generalized way to do this in the future... 
 sitesearchsolr_env_map:
   w_prefix: prod
+  b_prefix: beta
   default: dev
 
 # the below extends the w_ q_ prefix pattern used for workspace_env_map, which
