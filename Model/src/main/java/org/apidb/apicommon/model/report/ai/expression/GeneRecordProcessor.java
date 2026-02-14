@@ -6,6 +6,7 @@ import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import org.apache.log4j.Logger;
 import org.gusdb.fgputil.EncryptionUtil;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
@@ -21,9 +22,12 @@ import org.json.JSONObject;
  */
 public class GeneRecordProcessor {
 
+  private static final Logger LOG = Logger.getLogger(GeneRecordProcessor.class);
+
   private static final Set<String> KEYS_TO_KEEP = Set.of("y_axis", "description", "genus_species",
       "project_id", "summary", "dataset_id", "assay_type", "x_axis", "module", "dataset_name", "display_name",
-      "short_attribution", "paralog_number");
+      "short_attribution");
+      // TODO: restore "paralog_number" to KEYS_TO_KEEP once it is reliably present in gene records again
 
   private static final String EXPRESSION_GRAPH_TABLE = "ExpressionGraphs";
   private static final String EXPRESSION_GRAPH_DATA_TABLE = "ExpressionGraphsDataTable";
@@ -32,7 +36,7 @@ public class GeneRecordProcessor {
 
   // Increment this to invalidate all previous cache entries:
   // (for example if changing first level model outputs rather than inputs which are already digestified)
-  private static final String DATA_MODEL_VERSION = "v3b";
+  private static final String DATA_MODEL_VERSION = "v4";
   
   public interface ExperimentInputs {
 
@@ -62,7 +66,7 @@ public class GeneRecordProcessor {
     return record.getPrimaryKey().getValues().get("source_id");
   }
 
-  public static GeneSummaryInputs getSummaryInputsFromRecord(RecordInstance record, String aiChatModel, Function<JSONObject, String> getExperimentPrompt, Function<List<JSONObject>, String> getFinalSummaryPrompt) throws WdkModelException {
+  public static GeneSummaryInputs getSummaryInputsFromRecord(RecordInstance record, String aiChatModel, String embeddingModel, boolean makeTopicEmbeddings, boolean useExtendedThinking, Function<JSONObject, String> getExperimentPrompt, Function<List<JSONObject>, String> getFinalSummaryPrompt) throws WdkModelException {
 
     String geneId = getGeneId(record);
 
@@ -90,7 +94,7 @@ public class GeneRecordProcessor {
         List<JSONObject> digests = experimentsWithData.stream()
             .map(exp -> new JSONObject().put("digest", exp.getDigest()))
             .collect(Collectors.toList());
-        return EncryptionUtil.md5(aiChatModel + ":" + DATA_MODEL_VERSION + ":" + getFinalSummaryPrompt.apply(digests));
+        return EncryptionUtil.md5(aiChatModel + ":" + embeddingModel + ":" + makeTopicEmbeddings + ":" + useExtendedThinking + ":" + DATA_MODEL_VERSION + ":" + getFinalSummaryPrompt.apply(digests));
       }
 
     };
@@ -112,6 +116,16 @@ public class GeneRecordProcessor {
         // Extract all relevant attributes
         for (String key : KEYS_TO_KEEP) {
           experimentInfo.put(key, experimentRow.getAttributeValue(key).getValue());
+        }
+
+        // TODO: remove this fallback once paralog_number is reliably present in gene records again;
+        //       restore "paralog_number" to KEYS_TO_KEEP above and delete this block.
+        try {
+          experimentInfo.put("paralog_number", experimentRow.getAttributeValue("paralog_number").getValue());
+        } catch (WdkModelException e) {
+          LOG.warn("paralog_number attribute is missing from gene record; defaulting to 0. " +
+              "This is a temporary workaround - restore it to KEYS_TO_KEEP once the field is available again.");
+          experimentInfo.put("paralog_number", "0");
         }
 
         String datasetId = experimentRow.getAttributeValue("dataset_id").getValue();

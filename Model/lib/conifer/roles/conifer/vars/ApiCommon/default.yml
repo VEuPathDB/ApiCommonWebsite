@@ -50,9 +50,10 @@ modelprop:
   JBROWSE_SERVICE_URL: "/{{ webapp_ctx }}/service/jbrowse"
   AI_EXPRESSION_CACHE_DIR: "/var/www/Common/ai-expr-cache"
   AI_EXPRESSION_QUALTRICS_ID: SV_38C4ZX1JxLi2SEe
-  OPENAI_MAX_DAILY_AI_EXPRESSION_DOLLAR_COST: 33
-  OPENAI_DOLLAR_COST_PER_1M_AI_INPUT_TOKENS: 2.5
-  OPENAI_DOLLAR_COST_PER_1M_AI_OUTPUT_TOKENS: 10
+  MAX_DAILY_AI_EXPRESSION_DOLLAR_COST: 33
+  # Claude Sonnet 4.5 costs from here: https://platform.claude.com/docs/en/about-claude/pricing
+  DOLLAR_COST_PER_1M_AI_INPUT_TOKENS: 3
+  DOLLAR_COST_PER_1M_AI_OUTPUT_TOKENS: 15
 
 user_datasets_uploadTypes_env_map:
   w: "genelist"
