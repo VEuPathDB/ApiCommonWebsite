@@ -121,9 +121,9 @@ fisherexacttestconfig_perlExec: /usr/bin/perl
 fisherexacttestconfig_connectionUrl: "{{ appDbPgDbi }}"
 
 _showUnreleasedDataByHostnamePrefix:
-  a: false
-  b: false
-  w: false
+  a: "false"
+  b: "false"
+  w: "false"
 
 showUnreleasedData: "{{ _showUnreleasedDataByHostnamePrefix[hostname_prefix] | default('true') }}"
 showSubscriptionProds: "true"
