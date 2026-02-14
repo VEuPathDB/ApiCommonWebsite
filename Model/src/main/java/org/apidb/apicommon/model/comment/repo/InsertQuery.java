@@ -1,6 +1,8 @@
 package org.apidb.apicommon.model.comment.repo;
 
 import io.vulpine.lib.jcfie.ExtensibleCheckedFunction;
+
+import org.gusdb.fgputil.db.runner.ArgumentBatch;
 import org.gusdb.fgputil.db.runner.SQLRunner;
 
 import java.sql.SQLException;
@@ -19,7 +21,7 @@ public abstract class InsertQuery extends Query {
     _idProvider = idProvider;
   }
 
-  protected abstract SQLRunner.ArgumentBatch getArguments() throws SQLException;
+  protected abstract ArgumentBatch getArguments() throws SQLException;
 
   @Override
   protected void execute(SQLRunner runner) throws SQLException {

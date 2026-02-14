@@ -31,6 +31,7 @@ import org.apidb.apicommon.service.services.jbrowse.model.JBrowseDatasetResponse
 import org.apidb.apicommon.service.services.jbrowse.model.JBrowseTrack;
 import org.apidb.apicommon.service.services.jbrowse.model.VDIDatasetReference;
 import org.apidb.apicommon.service.services.jbrowse.model.VDIDatasetType;
+import org.gusdb.fgputil.db.runner.ParamBuilder;
 import org.gusdb.fgputil.db.runner.SQLRunner;
 import org.gusdb.fgputil.events.Events;
 import org.gusdb.wdk.errors.ServerErrorBundle;
@@ -164,7 +165,7 @@ public class JBrowseUserDatasetsService extends AbstractUserService {
         schema.toLowerCase(Locale.ROOT)
     );
     return new SQLRunner(getWdkModel().getAppDb().getDataSource(), sql)
-        .executeQuery(new Object[] { userID, datasetID }, ResultSet::next);
+        .executeQuery(new ParamBuilder().addLong(userID).addString(datasetID), ResultSet::next);
   }
 
 
@@ -185,7 +186,7 @@ public class JBrowseUserDatasetsService extends AbstractUserService {
     );
     LOG.debug("Querying visible datasets: " + sql);
     return new SQLRunner(getWdkModel().getAppDb().getDataSource(), sql)
-        .executeQuery(new Object[] { userID }, rs -> {
+        .executeQuery(new ParamBuilder().addLong(userID), rs -> {
           List<VDIDatasetReference> vdiDatasets = new ArrayList<>();
           while (rs.next()) {
             vdiDatasets.add(datasetFromResultSet(rs));

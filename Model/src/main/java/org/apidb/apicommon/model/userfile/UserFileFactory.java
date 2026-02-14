@@ -82,7 +82,7 @@ public class UserFileFactory implements Manageable<UserFileFactory> {
 
     try {
       ps = SqlUtils.getPreparedStatement(_database.getDataSource(),
-          "DELETE FROM " + schema + "USERFILE WHERE USERFILEID = ?");
+          "DELETE FROM " + schema + "USERFILE WHERE USERFILEID = ?", SqlUtils.Autocommit.ON);
       ps.setLong(1, fileId);
       ps.execute();
     } catch (SQLException e) {
@@ -101,7 +101,7 @@ public class UserFileFactory implements Manageable<UserFileFactory> {
 
     try {
       ps = SqlUtils.getPreparedStatement(_database.getDataSource(),
-          "SELECT FILENAME FROM " + schema + "USERFILE WHERE USERFILEID = ?");
+          "SELECT FILENAME FROM " + schema + "USERFILE WHERE USERFILEID = ?", SqlUtils.Autocommit.OFF);
       ps.setLong(1, fileId);
       try(ResultSet rs = ps.executeQuery()) {
         if (rs.next())
@@ -204,7 +204,7 @@ public class UserFileFactory implements Manageable<UserFileFactory> {
 
       ps = SqlUtils.getPreparedStatement(dataSource, "INSERT INTO " + userFileSchema + "userfile (" +
           "userFileId, filename, " + "checksum, uploadTime, " + "ownerUserId, title, notes, " +
-          "projectName, projectVersion, " + "email, format, filesize)" + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
+          "projectName, projectVersion, " + "email, format, filesize)" + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?)", SqlUtils.Autocommit.ON);
       long currentMillis = System.currentTimeMillis();
 
       ps.setLong(1, userFileId);
@@ -298,7 +298,7 @@ public class UserFileFactory implements Manageable<UserFileFactory> {
     ResultSet rs = null;
     PreparedStatement ps = null;
     try {
-      ps = SqlUtils.getPreparedStatement(_database.getDataSource(), query);
+      ps = SqlUtils.getPreparedStatement(_database.getDataSource(), query, SqlUtils.Autocommit.OFF);
       ps.setString(1, filename);
       rs = ps.executeQuery();
       if (!rs.next()) {

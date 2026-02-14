@@ -8,10 +8,10 @@ import org.gusdb.wdk.service.filter.CheckLoginFilter;
 public class ApiCheckLoginFilter extends CheckLoginFilter {
 
   @Override
-  protected boolean isPathToSkip(String path) {
-    return super.isPathToSkip(path)
-        || (path.startsWith("jbrowse") && !path.startsWith("jbrowse2"))
-        || path.startsWith("profileSet");
+  protected boolean isGuestUserAllowed(String path) {
+    if ((path.startsWith("jbrowse") && !path.startsWith("jbrowse2")) || path.startsWith("profileSet")) {
+      return false;
+    }
+    return super.isGuestUserAllowed(path);
   }
-
 }
