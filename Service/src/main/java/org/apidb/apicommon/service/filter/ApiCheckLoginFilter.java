@@ -52,10 +52,18 @@ public class ApiCheckLoginFilter extends CheckLoginFilter {
   }
 
   private boolean isOpenPath(String path) {
+    // get rid of trailing slashes
+    if (path.endsWith("/")) path = path.substring(0, path.length() - 1);
+
+    // check if path matches any open full paths
     if (OPEN_FULL_PATHS.contains(path)) return true;
+
+    // check if path prefix matches any open prefixes
     for(String openPrefix : OPEN_PATH_PREFIXES) {
       if (path.startsWith(openPrefix)) return true;
     }
+
+    // deny access to any other path
     return false;
   }
 
