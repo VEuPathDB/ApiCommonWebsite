@@ -45,14 +45,16 @@ public class ProfileSetService extends AbstractWdkService {
   }
 
   @GET
-  @Path("TranscriptionSummaryProfiles/{sourceId}")
+  @Path("TranscriptionSummaryProfiles/{orgAbbrev}/{sourceId}")
   @Produces(MediaType.APPLICATION_JSON)
   public Response getTranscriptionSummaryProfiles(
+      @PathParam("orgAbbrev") String orgAbbrev,
       @PathParam("sourceId") String sourceId)
           throws WdkModelException {
     String projectId = getWdkModel().getProjectId();
     String sql = DataPlotterQueries.getQueryMap(projectId).get("transcription_summary_profiles");
     sql = sql.replaceAll("\\$id", sourceId);
+    sql = sql.replaceAll("\\$orgAbbrev", orgAbbrev);
     return getStreamingResponse(sql,
         "getTranscriptionSummaryProfiles", "Failed running SQL to fetch transcription summary profile set names.");
   }
@@ -160,11 +162,11 @@ public class ProfileSetService extends AbstractWdkService {
 
 
 
-
   @GET
-  @Path("GutherCategory/{sourceId}")
+  @Path("GutherCategory/{orgAbbrev}/{sourceId}")
   @Produces(MediaType.APPLICATION_JSON)
   public Response getGutherCategory(
+      @PathParam("orgAbbrev") String orgAbbrev,
       @PathParam("sourceId") String sourceId)
           throws WdkModelException {
      String sql = " SELECT nfe.categorical_value AS cat_val" +
@@ -184,6 +186,7 @@ public class ProfileSetService extends AbstractWdkService {
                   " AND i.external_database_release_id = r.external_database_release_id" +
                   " AND r.external_database_id = d.external_database_id" +
                   " AND d.NAME ='tbruTREU927_quantitative_massSpec_Guther_glycosomal_proteome_RSRC'" +
+                  " AND ga.orgAbbrev = '" + orgAbbrev + "'" +
                   " AND ga.gene_source_id = '" + sourceId + "'";
      return getStreamingResponse(sql,
         "getGutherCategory", "Failed running SQL to fetch Guther dataset category.");
@@ -205,6 +208,8 @@ public class ProfileSetService extends AbstractWdkService {
     for (int i = 0; i < profileSets.length(); i++) {
       JSONObject profileSet = profileSets.getJSONObject(i);
       String id = new String();
+      String orgAbbrev = profileSet.has("orgAbbrev")?
+	  profileSet.getString("orgAbbrev") : "no_org_abbrev";
       if (profileSet.has("idOverride")) {
         id = profileSet.getString("idOverride");
       } else {
@@ -268,10 +273,10 @@ public class ProfileSetService extends AbstractWdkService {
       plotDataSql = plotDataSql + " order by profile_order, element_order";
     }
 
+    plotDataSql = plotDataSql.replaceAll("\\$orgAbbrev", orgAbbrev);
     return getStreamingResponse(plotDataSql,
         "plotData", "Failed running SQL to fetch plot data.");
   }
-
   private String getProfileSetSql(String projectId, String profileSetName, String profileType, String sourceId, String displayName, int order) {
 
     String colsToReturn = order + " as profile_order, name, value, samplenames.profile_set_name, samplenames.profile_type, samplenames.element_order";
@@ -299,18 +304,6 @@ public class ProfileSetService extends AbstractWdkService {
     return sql;
   }
 
-  private String getProfileSetWithMetadataSql(String projectId, String profileSetName, String profileType, String facet, String xAxis, String sourceId, int order) {
-
-    String sql = DataPlotterQueries.getQueryMap(projectId).get("profile_set_with_metadata");
-    sql = sql.replaceAll("\\$order", Integer.toString(order));
-    sql = sql.replaceAll("\\$profileSetName", profileSetName);
-    sql = sql.replaceAll("\\$profileType", profileType);
-    sql = sql.replaceAll("\\$sourceId", sourceId);
-    sql = sql.replaceAll("\\$facet", facet);
-    sql = sql.replaceAll("\\$xAxis", xAxis);
-
-    return sql;
-  }
 
   private String getProfileSetNamesSql(String projectId, String datasetPresenterId, String sourceId) {
     String sql = sourceId.equals("none")
@@ -391,8 +384,6 @@ public class ProfileSetService extends AbstractWdkService {
         return getProfileSetNamesSql(projectId, param1, param2);
       case "Profile":
         return getProfileSetSql(projectId, param1, param2, param3, param4, order);
-      case "ProfileWithMetadata":
-        return getProfileSetWithMetadataSql(projectId, param1, param2, param3, param4, param5, order);
       case "RankedNthSourceIdNames":
         return getRankedValuesSql(projectId, sqlName, param1, param2, param3, param4, order);
       case "RankedNthValues":
