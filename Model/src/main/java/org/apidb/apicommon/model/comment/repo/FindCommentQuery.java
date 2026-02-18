@@ -29,7 +29,7 @@ public class FindCommentQuery extends BaseCommentQuery<Collection<Comment>> {
     "      ON a." + Column.Comment.ID + " = b." + CommentStableId.COMMENT_ID + "\n" +
     "  WHERE\n" +
     "    %2$s\n" +
-    "    AND a." + Column.Comment.VISIBLE + " = 1\n" +
+    "    AND a." + Column.Comment.VISIBLE + " = 't'\n" +
     ")\n" +
     "SELECT\n" +
     "  co." + Column.Comment.ID               + ",\n" +
