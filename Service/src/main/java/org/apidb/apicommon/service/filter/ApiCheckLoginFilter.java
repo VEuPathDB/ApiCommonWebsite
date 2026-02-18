@@ -1,6 +1,7 @@
 package org.apidb.apicommon.service.filter;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Priority;
 
@@ -21,8 +22,11 @@ public class ApiCheckLoginFilter extends CheckLoginFilter {
       "user-password-reset",
       "users/current",
       "users/current/preferences",
+      "users/current/favorites/query",
       "client-errors",
+      "system/metrics/organism",
       "record-types",
+      "record-types/dataset/records",
       "record-types/dataset/searches/AllDatasets/reports/standard",
       "record-types/organism/searches/GenomeDataTypes/reports/standard",
       "record-types/genomic-sequence/searches/SequencesByTaxon",
@@ -35,6 +39,17 @@ public class ApiCheckLoginFilter extends CheckLoginFilter {
       "temporary-files",
       "temporary-results"
   );
+
+  private static final String ADDITIONAL_MESSAGE_TEMPLATE =
+      "\n\nRegistered users can obtain their API key here: %s/user/profile#serviceAccess" +
+      "\n\nFor instructions on how to include the API key in your request, see: %s/static-content/content/PlasmoDB/webServices.html";
+
+  @Override
+  protected String getAdditionalUnauthorizedMessage() {
+    Map<String,String> props = _wdkModel.getProperties();
+    String clientBaseUrl = props.get("LOCALHOST") + props.get("WEBAPP_BASE_URL");
+    return ADDITIONAL_MESSAGE_TEMPLATE.formatted(clientBaseUrl, clientBaseUrl);
+  }
 
   private boolean isOpenPath(String path) {
     if (OPEN_FULL_PATHS.contains(path)) return true;
@@ -53,4 +68,10 @@ public class ApiCheckLoginFilter extends CheckLoginFilter {
   protected boolean isGuestUserAllowed(String path) {
     return isOpenPath(path);
   }
+
+  @Override
+  protected boolean isPathToSkip(String path) {
+    return path.startsWith("profileSet") || super.isPathToSkip(path);
+  }
+
 }
