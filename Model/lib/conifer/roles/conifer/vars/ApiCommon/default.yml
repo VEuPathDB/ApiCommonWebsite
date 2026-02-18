@@ -89,7 +89,7 @@ commentconfig_userFileUploadDir: /var/www/Common/communityFilesMirror
 commentconfig_solrUrl: https://solr-sitesearch-dev.local.apidb.org:8443/solr/site_search/
 
 
-blastconfig_blastPath: '/opt/ncbi-blast+/bin/'
+blastconfig_blastPath: '/opt/ncbi-blast+/'
 blastconfig_idBlastRegex: '<![CDATA[^*(?:>)*(?:\s)*(?:[^\|]*\|)?(\S+)]]>'
 blastconfig_tempBlastPath: /var/www/Common/tmp/blast
 
