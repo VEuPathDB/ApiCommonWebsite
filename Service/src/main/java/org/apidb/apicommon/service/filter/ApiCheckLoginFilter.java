@@ -2,15 +2,18 @@ package org.apidb.apicommon.service.filter;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.annotation.Priority;
 
+import org.gusdb.fgputil.ListBuilder;
 import org.gusdb.wdk.service.filter.CheckLoginFilter;
 
 @Priority(30)
 public class ApiCheckLoginFilter extends CheckLoginFilter {
 
-  private static final List<String> OPEN_FULL_PATHS = List.of(
+  private static final List<String> OPEN_FULL_PATHS = new ListBuilder<String>()
+    .addAll(List.of(
       "",
       "login",
       "ontologies/Categories",
@@ -32,7 +35,14 @@ public class ApiCheckLoginFilter extends CheckLoginFilter {
       "record-types/genomic-sequence/searches/SequencesByTaxon",
       "record-types/transcript/searches/GeneByLocusTag",
       "record-types/transcript/searches/GenesByText"
-  );
+    ))
+    .addAll(List.of(
+      "transcript","gene","organism","genomic-sequence","genomic-segment","est",
+      "pathway","compound","blast-est-ontology","blast-orf-ontology","file","build",
+      "dfile","metrics","jbrowse-gene","dataset-release-notes","legacy-dataset",
+      "dataset","datasource","userdataset"
+    ).stream().map(s -> "record-types/" + s).collect(Collectors.toList()))
+    .toList();
 
   private static final List<String> OPEN_PATH_PREFIXES = List.of(
       "system/metrics/count-page-view",
