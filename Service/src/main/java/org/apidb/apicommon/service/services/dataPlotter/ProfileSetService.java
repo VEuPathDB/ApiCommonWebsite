@@ -171,17 +171,15 @@ public class ProfileSetService extends AbstractWdkService {
                   " FROM results.nafeatureexpression nfe" +
                   "    , webready.TranscriptAttributes_p ga" +
                   "    , study.protocolappnode pan" +
-                  "    , study.studylink sl" +
-                  "    , study.study ps" +
-                  "    , study.study i" +
+                  "    , apidbtuning.nodesetoutputnode nsn" +
+                  "    , study.nodeset ns" +
                   "    , sres.externaldatabaserelease r" +
                   "    , sres.externaldatabase d" +
                   " WHERE ga.gene_na_feature_id = nfe.na_feature_id" +
                   " AND nfe.protocol_app_node_id = pan.protocol_app_node_id" +
-                  " AND pan.protocol_app_node_id = sl.protocol_app_node_id" +
-                  " AND sl.study_id = ps.study_id" +
-                  " AND ps.investigation_id = i.study_id" +
-                  " AND i.external_database_release_id = r.external_database_release_id" +
+                  " AND pan.protocol_app_node_id = nsn.protocol_app_node_id" +
+                  " AND nsn.node_set_id = ns.node_set_id" +
+                  " AND ns.external_database_release_id = r.external_database_release_id" +
                   " AND r.external_database_id = d.external_database_id" +
                   " AND d.NAME ='tbruTREU927_quantitative_massSpec_Guther_glycosomal_proteome_RSRC'" +
                   " AND ga.gene_source_id = '" + sourceId + "'";
