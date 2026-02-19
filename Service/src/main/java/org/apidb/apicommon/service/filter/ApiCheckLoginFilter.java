@@ -52,7 +52,7 @@ public class ApiCheckLoginFilter extends CheckLoginFilter {
 
   private static final String ADDITIONAL_MESSAGE_TEMPLATE =
       "\n\nRegistered users can obtain their API key here: %s/user/profile#serviceAccess" +
-      "\n\nFor instructions on how to include the API key in your request, see: %s/static-content/content/PlasmoDB/webServices.html";
+      "\n\nFor instructions on how to include the API key in your request, see: %s/static-content/content/VEuPathDB/webServices.html";
 
   @Override
   protected String getAdditionalUnauthorizedMessage() {
