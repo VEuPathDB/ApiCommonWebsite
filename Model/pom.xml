@@ -86,7 +86,7 @@
 
     <dependency>
       <groupId>javax.servlet</groupId>
-      <artifactId>servlet-api</artifactId>
+      <artifactId>javax.servlet-api</artifactId>
     </dependency>
 
     <dependency>
@@ -133,6 +133,11 @@
     <dependency>
       <groupId>com.openai</groupId>
       <artifactId>openai-java</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>com.anthropic</groupId>
+      <artifactId>anthropic-java</artifactId>
     </dependency>
 
   </dependencies>

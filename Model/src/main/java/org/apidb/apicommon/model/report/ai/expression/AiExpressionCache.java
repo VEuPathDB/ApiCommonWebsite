@@ -73,7 +73,6 @@ public class AiExpressionCache {
   private static Logger LOG = Logger.getLogger(AiExpressionCache.class);
 
   // parallel processing
-  private static final int MAX_CONCURRENT_EXPERIMENT_LOOKUPS_PER_REQUEST = 10;
   private static final long VISIT_ENTRY_LOCK_MAX_WAIT_MILLIS = 50;
 
   // cache location
@@ -147,7 +146,9 @@ public class AiExpressionCache {
         .ofNullable(wdkModel.getProperties().get(CACHE_DIR_PROP_NAME))
         .map(Paths::get)
         .orElseThrow(() -> new WdkRuntimeException("No expression cache dir configured in model.prop.  Expected to find key: " + CACHE_DIR_PROP_NAME));
-    Utilities.ensureCreation(Files::createDirectory, path);
+    if (!Files.exists(path) || !Files.isWritable(path)) {
+      Utilities.ensureCreation(Files::createDirectory, path);
+    }
     return path;
   }
 
@@ -317,18 +318,20 @@ public class AiExpressionCache {
    * @param summaryInputs gene summary inputs
    * @param experimentDescriber function to describe an experiment
    * @param experimentSummarizer function to summarize experiments into an expression summary
+   * @param maxConcurrentRequests maximum number of concurrent experiment lookups
    * @return expression summary (will always be a cache hit)
    */
   public JSONObject populateSummary(GeneSummaryInputs summaryInputs,
       FunctionWithException<ExperimentInputs, CompletableFuture<JSONObject>> experimentDescriber,
-      BiFunctionWithException<String, List<JSONObject>, JSONObject> experimentSummarizer) {
+      BiFunctionWithException<String, List<JSONObject>, JSONObject> experimentSummarizer,
+      int maxConcurrentRequests) {
     try {
       return _cache.populateAndProcessContent(summaryInputs.getGeneId(),
 
           // populator
           entryDir -> {
             // first populate each dataset entry as needed and collect experiment descriptors
-            List<JSONObject> experiments = populateExperiments(summaryInputs.getExperimentsWithData(), experimentDescriber);
+            List<JSONObject> experiments = populateExperiments(summaryInputs.getExperimentsWithData(), experimentDescriber, maxConcurrentRequests);
 
             // sort them most-interesting first so that the "Other" section will be filled
             // in that order (and also to give the AI the data in a sensible order)
@@ -362,14 +365,16 @@ public class AiExpressionCache {
    *
    * @param experimentData experiment inputs
    * @param experimentDescriber function to describe an experiment
+   * @param maxConcurrentRequests maximum number of concurrent experiment lookups
    * @return list of cached experiment descriptions
    * @throws Exception if unable to generate descriptions or store
    */
   private List<JSONObject> populateExperiments(List<ExperimentInputs> experimentData,
-      FunctionWithException<ExperimentInputs, CompletableFuture<JSONObject>> experimentDescriber) throws Exception {
+      FunctionWithException<ExperimentInputs, CompletableFuture<JSONObject>> experimentDescriber,
+      int maxConcurrentRequests) throws Exception {
 
     // use a thread for each experiment, up to a reasonable max
-    int threadPoolSize = Math.min(MAX_CONCURRENT_EXPERIMENT_LOOKUPS_PER_REQUEST, experimentData.size());
+    int threadPoolSize = Math.min(maxConcurrentRequests, experimentData.size());
 
     ExecutorService exec = Executors.newFixedThreadPool(threadPoolSize);
     try {

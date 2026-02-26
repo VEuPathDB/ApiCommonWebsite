@@ -50,10 +50,12 @@ sub getAnnotatedGenesListResult {
 
 sub runSql {
   my ($self, $dbh, $sql) = @_;
-  # print STDERR "\n$sql\n\n";
-
+  my $start = time;
   my $stmt = $dbh->prepare("$sql") or die(DBI::errstr);
   $stmt->execute() or die(DBI::errstr);
+  my $t = time - $start;
+  print STDERR "Ran following SQL in $t seconds\n";
+  print STDERR "\n$sql\n\n";
   return $stmt;
 }
 
@@ -160,7 +162,7 @@ where ga.source_id = r.source_id
   my $count = 0;
   my $taxonId;
   while (my ($taxId) = $stmt->fetchrow_array()) { $taxonId = $taxId; $count++; }
-  die "Result has genes from more than one taxon\n" if $count != 1;
+  die "Result has genes from more than one taxon. SQL: $sql\n" if $count != 1;
   return $taxonId;
 }
 

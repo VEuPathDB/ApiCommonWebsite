@@ -46,6 +46,7 @@ modelprop:
   GOOGLE_MAPS_API_KEY: "{{ lookup('euparc', 'attr=api_key xpath=sites/google_maps default=NOKEY') }}"
   COMMUNITY_SITE: "//{{ community_env_map[prefix]|default(community_env_map['default']) }}"
   OPENAI_API_KEY: "{{ lookup('euparc', 'attr=api_key xpath=sites/openai default=NOKEY') }}"
+  CLAUDE_API_KEY: "{{ lookup('euparc', 'attr=api_key xpath=sites/claude default=NOKEY') }}"
 
 
 # the below extends the w_ q_ prefix pattern used for workspace_env_map, which
@@ -53,6 +54,7 @@ modelprop:
 # generalized way to do this in the future... 
 sitesearchsolr_env_map:
   w_prefix: prod
+  b_prefix: beta
   default: dev
 
 # the below extends the w_ q_ prefix pattern used for workspace_env_map, which
@@ -60,7 +62,7 @@ sitesearchsolr_env_map:
 # # generalized way to do this in the future... 
 community_env_map:
    w_prefix: static-content.veupathdb.org/
-   b_prefix: qa.static-content.veupathdb.org/
+   b_prefix: static-content.veupathdb.org/
    default: qa.static-content.veupathdb.org/
 
 # this mapping allow different configs based on hostname.  Mainly used to give

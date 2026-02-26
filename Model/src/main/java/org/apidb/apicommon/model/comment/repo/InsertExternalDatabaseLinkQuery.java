@@ -1,9 +1,9 @@
 package org.apidb.apicommon.model.comment.repo;
 
-import org.gusdb.fgputil.db.runner.BasicArgumentBatch;
-import org.gusdb.fgputil.db.runner.SQLRunner;
-
 import static java.sql.Types.BIGINT;
+
+import org.gusdb.fgputil.db.runner.ArgumentBatch;
+import org.gusdb.fgputil.db.runner.ListArgumentBatch;
 
 /**
  * Insert a link between a comment and an external database.
@@ -25,8 +25,8 @@ public class InsertExternalDatabaseLinkQuery extends InsertQuery {
   }
 
   @Override
-  protected SQLRunner.ArgumentBatch getArguments() {
-    final BasicArgumentBatch out = new BasicArgumentBatch();
+  protected ArgumentBatch getArguments() {
+    final ListArgumentBatch out = new ListArgumentBatch();
     out.add(new Object[]{ _extDbId, _commentId });
     out.setParameterTypes(TYPES);
     return out;
