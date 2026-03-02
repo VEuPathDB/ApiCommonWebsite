@@ -294,7 +294,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
       "SELECT source_id FROM DoTS.ExternalNASequence\n" +
       "WHERE source_id = ?\n" +
       "UNION\n" +
-      "SELECT id FROM webready.GeneId_p\n" +
+      "SELECT id FROM apidbtuning.GeneId\n" +
       "WHERE id = ? ";
 
     final Collection<String> errs = new ArrayList<>();
