@@ -4,7 +4,7 @@ modelconfig_adminEmail:
   - "{{ 'aurreco$uga.edu'|replace('$', '@') }}"
   - "{{ 'sfischer$pcbi.upenn.edu'|replace('$', '@') }}"
 
-modelconfig_appDb_maxIdle: 1
+modelconfig_appDb_maxIdle: 2
 modelconfig_appDb_maxActive: 20
 modelconfig_userDb_maxIdle: 10
 modelconfig_commentdb.maxIdle: 10

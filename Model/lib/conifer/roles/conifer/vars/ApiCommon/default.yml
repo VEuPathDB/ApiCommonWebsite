@@ -77,7 +77,7 @@ commentconfig_dbIdentifier: "{{ modelconfig_userDb_dbIdentifier if modelconfig_u
 commentconfig_dbHost: "{{ modelconfig_userDb_dbHost if modelconfig_userDb_dbHost is defined else '' }}"
 commentconfig_dbPort: "{{ modelconfig_userDb_dbPort if modelconfig_userDb_dbPort is defined else '' }}"
 commentconfig_maxActive: 20
-commentconfig_maxIdle: 1
+commentconfig_maxIdle: 2
 commentconfig_minIdle: 1
 commentconfig_maxWait: 50
 commentconfig_defaultFetchSize: 200
