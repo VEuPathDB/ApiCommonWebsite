@@ -64,7 +64,7 @@ user_datasets_workspace:
   uploadTypes: "{{ user_datasets_uploadTypes_env_map[hostname_prefix] | default(user_datasets_uploadTypes_env_map['default']) }}"
 
 projectsxml:
-  EuPathDB: "https://{{ hostname|swap_sld('veupathdb.org')|swap_hostname(_host_frontends) }}/veupathdb/"
+  UniDB: "https://{{ hostname|swap_sld('veupathdb.org')|swap_hostname(_host_frontends) }}/veupathdb/"
 
 commentconfig_login: '{{ modelconfig_userDb_login }}'
 commentconfig_password: '{{ modelconfig_userDb_password }}'
