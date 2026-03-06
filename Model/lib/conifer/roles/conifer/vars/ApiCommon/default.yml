@@ -56,15 +56,15 @@ modelprop:
   DOLLAR_COST_PER_1M_AI_OUTPUT_TOKENS: 15
 
 user_datasets_uploadTypes_env_map:
-  w: "genelist"
-  default: "genelist,bigwigfiles,rnaseq,wrangler"
+  w: "genelist,bigwigfiles,rnaseq,phenotype,wrangler"
+  default: "genelist,bigwigfiles,rnaseq,phenotype,wrangler"
 
 user_datasets_workspace:
   enabled: "true"
   uploadTypes: "{{ user_datasets_uploadTypes_env_map[hostname_prefix] | default(user_datasets_uploadTypes_env_map['default']) }}"
 
 projectsxml:
-  EuPathDB: "https://{{ hostname|swap_sld('veupathdb.org')|swap_hostname(_host_frontends) }}/veupathdb/"
+  UniDB: "https://{{ hostname|swap_sld('veupathdb.org')|swap_hostname(_host_frontends) }}/veupathdb/"
 
 commentconfig_login: '{{ modelconfig_userDb_login }}'
 commentconfig_password: '{{ modelconfig_userDb_password }}'
@@ -77,7 +77,7 @@ commentconfig_dbIdentifier: "{{ modelconfig_userDb_dbIdentifier if modelconfig_u
 commentconfig_dbHost: "{{ modelconfig_userDb_dbHost if modelconfig_userDb_dbHost is defined else '' }}"
 commentconfig_dbPort: "{{ modelconfig_userDb_dbPort if modelconfig_userDb_dbPort is defined else '' }}"
 commentconfig_maxActive: 20
-commentconfig_maxIdle: 1
+commentconfig_maxIdle: 2
 commentconfig_minIdle: 1
 commentconfig_maxWait: 50
 commentconfig_defaultFetchSize: 200

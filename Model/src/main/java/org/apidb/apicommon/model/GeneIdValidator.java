@@ -34,7 +34,7 @@ public class GeneIdValidator {
         sql.append("SELECT source_id FROM DoTS.ExternalNASequence ");
         sql.append("WHERE source_id = ? ");
         sql.append("UNION ");
-	sql.append("SELECT id FROM webready.GeneId_p ");
+	sql.append("SELECT id FROM apidbtuning.GeneId ");
         sql.append("WHERE id = ? ");
 
         PreparedStatement ps = null;

@@ -21,13 +21,10 @@ import org.json.JSONObject;
 import com.openai.client.OpenAIClientAsync;
 import com.openai.client.okhttp.OpenAIOkHttpClientAsync;
 import com.openai.core.JsonValue;
-import com.openai.models.embeddings.EmbeddingCreateParams;
-import com.openai.models.embeddings.EmbeddingModel;
-import com.openai.models.chat.completions.ChatCompletionCreateParams;
-import com.openai.models.ChatModel;
-import com.openai.models.ResponseFormatJsonSchema;
 import com.openai.models.ResponseFormatJsonSchema.JsonSchema;
 import com.openai.models.ResponseFormatJsonSchema.JsonSchema.Schema;
+import com.openai.models.embeddings.EmbeddingCreateParams;
+import com.openai.models.embeddings.EmbeddingModel;
 
 public abstract class Summarizer {
 

@@ -1,6 +1,5 @@
 package org.apidb.apicommon.model.report.ai.expression;
 
-import java.time.Duration;
 import java.util.concurrent.CompletableFuture;
 
 import org.gusdb.wdk.model.WdkModel;
@@ -45,7 +44,7 @@ public class ClaudeSummarizer extends Summarizer {
 
     MessageCreateParams.Builder requestBuilder = MessageCreateParams.builder()
         .model(CLAUDE_MODEL)
-        .maxTokens((long) MAX_RESPONSE_TOKENS)
+        .maxTokens(MAX_RESPONSE_TOKENS)
         .system(SYSTEM_MESSAGE)
         .addUserMessage(enhancedPrompt);
 

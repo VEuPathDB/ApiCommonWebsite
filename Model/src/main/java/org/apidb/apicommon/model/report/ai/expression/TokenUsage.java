@@ -6,26 +6,26 @@ package org.apidb.apicommon.model.report.ai.expression;
  */
 public class TokenUsage {
 
-  private final long promptTokens;
-  private final long completionTokens;
-  private final long embeddingTokens;
+  private final long _promptTokens;
+  private final long _completionTokens;
+  private final long _embeddingTokens;
 
   private TokenUsage(Builder builder) {
-    this.promptTokens = builder.promptTokens;
-    this.completionTokens = builder.completionTokens;
-    this.embeddingTokens = builder.embeddingTokens;
+    _promptTokens = builder._promptTokens;
+    _completionTokens = builder._completionTokens;
+    _embeddingTokens = builder._embeddingTokens;
   }
 
   public long promptTokens() {
-    return promptTokens;
+    return _promptTokens;
   }
 
   public long completionTokens() {
-    return completionTokens;
+    return _completionTokens;
   }
 
   public long embeddingTokens() {
-    return embeddingTokens;
+    return _embeddingTokens;
   }
 
   public static Builder builder() {
@@ -33,22 +33,22 @@ public class TokenUsage {
   }
 
   public static class Builder {
-    private long promptTokens = 0;
-    private long completionTokens = 0;
-    private long embeddingTokens = 0;
+    private long _promptTokens = 0;
+    private long _completionTokens = 0;
+    private long _embeddingTokens = 0;
 
     public Builder promptTokens(long promptTokens) {
-      this.promptTokens = promptTokens;
+      _promptTokens = promptTokens;
       return this;
     }
 
     public Builder completionTokens(long completionTokens) {
-      this.completionTokens = completionTokens;
+      _completionTokens = completionTokens;
       return this;
     }
 
     public Builder embeddingTokens(long embeddingTokens) {
-      this.embeddingTokens = embeddingTokens;
+      _embeddingTokens = embeddingTokens;
       return this;
     }
 
