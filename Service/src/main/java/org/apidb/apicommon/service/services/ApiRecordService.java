@@ -64,7 +64,7 @@ public class ApiRecordService extends RecordService {
       LOG.info("Caching expanded record classes JSON (subprocess=" + useSubprocess + ")...");
       if (useSubprocess) {
         executeAndLogOutput(
-            List.of("perl", GusHome.getGusHome() + "/bin/fgpJava", ApiRecordService.class.getName(), wdkModel.getProjectId()),
+            List.of("perl", GusHome.getGusHome() + "bin/fgpJava", "-printCommand", ApiRecordService.class.getName(), wdkModel.getProjectId()),
             Map.of("GUS_HOME", GusHome.getGusHome()),
             LOG, Level.INFO, Optional.of(Duration.ofMinutes(2)));
       }
@@ -109,7 +109,7 @@ public class ApiRecordService extends RecordService {
           try {
             String line;
             while ((line = reader.readLine()) != null) {
-              logger.log(logLevel, line);
+              logger.log(logLevel, ">> " + line);
             }
           }
           catch (IOException e) {
