@@ -10,6 +10,7 @@ import java.io.InputStreamReader;
 import java.time.Duration;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
@@ -64,6 +65,7 @@ public class ApiRecordService extends RecordService {
       if (useSubprocess) {
         executeAndLogOutput(
             List.of("perl", GusHome.getGusHome() + "/bin/fgpJava", ApiRecordService.class.getName(), wdkModel.getProjectId()),
+            Map.of("GUS_HOME", GusHome.getGusHome()),
             LOG, Level.INFO, Optional.of(Duration.ofMinutes(2)));
       }
       else {
@@ -88,15 +90,17 @@ public class ApiRecordService extends RecordService {
   }
 
   // FIXME: This method also exists in FgpUtil's RuntimeUtil class; use as soon as it is available via upgrade
-  public static void executeAndLogOutput(List<String> command, Logger logger, Level logLevel, Optional<Duration> processTimeout) {
+  public static void executeAndLogOutput(List<String> command, Map<String,String> environment,
+      Logger logger, Level logLevel, Optional<Duration> processTimeout) {
     Thread logMonitorThread = null;
     try {
       LOG.info("Starting subprocess with command: " + String.join(" ", command));
       // start the process
-      Process process = new ProcessBuilder()
+      ProcessBuilder processBuilder = new ProcessBuilder()
           .command(command)
-          .redirectErrorStream(true)
-          .start();
+          .redirectErrorStream(true);
+      processBuilder.environment().putAll(environment);
+      Process process = processBuilder.start();
 
       // start a thread to stream output to the passed Logger (if level allows)
       if (logger.isEnabledFor(logLevel)) {
