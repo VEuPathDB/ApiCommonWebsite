@@ -13,6 +13,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.function.Supplier;
 
+import org.apache.log4j.Logger;
 import org.gusdb.fgputil.IoUtil;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
@@ -25,32 +26,34 @@ import org.gusdb.wdk.model.WdkRuntimeException;
  * create but frequently needed and too large to fit in memory.  It can be
  * generated either on startup or lazily, but does not change over the course of
  * the webapp load.  A hook should be placed on startup to remove the previous
- * iteration of the file; otherwise, the old one (from the prervious deployment)
+ * iteration of the file; otherwise, the old one (from the previous deployment)
  * will be used.
  * 
  * @author rdoherty
- *
  */
 public class SiteSpecificTmpFileCache {
+
+  private static final Logger LOG = Logger.getLogger(SiteSpecificTmpFileCache.class);
 
   /**
    * Contains all the known uses of this class; used by the site initializer to
    * purge caches on startup.
    */
-  public enum CacheNames {
+  public enum CacheName {
     ALL_RECORDS_EXPANDED("_all-records-expanded.json");
 
-    public final String SUFFIX;
+    private final String _suffix;
 
-    private CacheNames(String suffix) {
-      SUFFIX = suffix;
+    private CacheName(String suffix) {
+      _suffix = suffix;
     }
   }
 
   private static final String SITE_VALUE_MODEL_PROP_KEY = "LEGACY_WEBAPP_BASE_URL";
 
-  public static InputStream get(WdkModel wdkModel, String fileNameSuffix, Supplier<InputStream> dataSupplier) throws WdkModelException {
-    return getCachedData(getFileLocation(wdkModel, fileNameSuffix), dataSupplier);
+  public static InputStream get(WdkModel wdkModel, CacheName cacheName, Supplier<InputStream> dataSupplier) throws WdkModelException {
+    Path path = getFileLocation(wdkModel, cacheName._suffix);
+    return getCachedData(path, dataSupplier);
   }
 
   private static Path getFileLocation(WdkModel wdkModel, String fileNameSuffix) throws WdkModelException {
@@ -74,23 +77,28 @@ public class SiteSpecificTmpFileCache {
         if (!file.isFile() || !file.canRead()) {
           throw new WdkModelException("Unable to use site-specific tmp file cache. " +  file.getAbsolutePath() + " exists but is not a readable file");
         }
+        LOG.info("Returning InputStream to existing cache file: " + fileLocation);
         return new BufferedInputStream(new FileInputStream(file));
       }
       // file not present; write out
+      LOG.info("Could not find cache file " + fileLocation + ". Generating...");
       try (OutputStream out = new BufferedOutputStream(new FileOutputStream(file))) {
         IoUtil.transferStream(out , dataSupplier.get());
-        return new BufferedInputStream(new FileInputStream(file));
       }
+
+      LOG.info("Returning InputStream to newly generated cache file: " + fileLocation);
+      return new BufferedInputStream(new FileInputStream(file));
     }
     catch (IOException e) {
       throw new WdkModelException("Could not write to site-specific tmp file cache " + fileLocation.toAbsolutePath(), e);
     }
   }
 
-  public static void clear(WdkModel wdkModel, String fileNameSuffix) {
+  public static void clear(WdkModel wdkModel, CacheName cacheName) {
     Path file = null;
     try {
-      file = getFileLocation(wdkModel, fileNameSuffix);
+      file = getFileLocation(wdkModel, cacheName._suffix);
+      LOG.info("Deleting if exists: " + file);
       Files.deleteIfExists(file);
     }
     catch (IOException | WdkModelException e) {

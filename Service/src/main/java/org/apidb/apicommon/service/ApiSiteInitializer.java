@@ -3,7 +3,7 @@ package org.apidb.apicommon.service;
 import org.apidb.apicommon.controller.ApiSiteEventHandlers;
 import org.apidb.apicommon.controller.CommentFactoryManager;
 import org.apidb.apicommon.controller.SiteSpecificTmpFileCache;
-import org.apidb.apicommon.controller.SiteSpecificTmpFileCache.CacheNames;
+import org.apidb.apicommon.controller.SiteSpecificTmpFileCache.CacheName;
 import org.apidb.apicommon.model.DataPlotterQueries;
 import org.apidb.apicommon.model.JBrowseQueries;
 import org.apidb.apicommon.service.services.ApiRecordService;
@@ -22,10 +22,12 @@ public class ApiSiteInitializer {
     ApiSiteEventHandlers.initialize(wdkModel);
     JBrowseQueries.preload();
     DataPlotterQueries.preload();
-    ApiRecordService.cacheExpandedRecordClassesJson(wdkModel);
 
     // site specific cache clears
-    SiteSpecificTmpFileCache.clear(wdkModel, CacheNames.ALL_RECORDS_EXPANDED.SUFFIX);
+    SiteSpecificTmpFileCache.clear(wdkModel, CacheName.ALL_RECORDS_EXPANDED);
+
+    // preload expanded recordclasses json cache
+    ApiRecordService.cacheExpandedRecordClassesJson(wdkModel, true);
   }
 
   public static void shutDown(ApplicationContext context) {
