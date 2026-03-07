@@ -6,6 +6,7 @@ import org.apidb.apicommon.controller.SiteSpecificTmpFileCache;
 import org.apidb.apicommon.controller.SiteSpecificTmpFileCache.CacheNames;
 import org.apidb.apicommon.model.DataPlotterQueries;
 import org.apidb.apicommon.model.JBrowseQueries;
+import org.apidb.apicommon.service.services.ApiRecordService;
 import org.eupathdb.common.controller.EuPathSiteSetup;
 import org.gusdb.fgputil.web.ApplicationContext;
 import org.gusdb.wdk.controller.WdkInitializer;
@@ -21,6 +22,7 @@ public class ApiSiteInitializer {
     ApiSiteEventHandlers.initialize(wdkModel);
     JBrowseQueries.preload();
     DataPlotterQueries.preload();
+    ApiRecordService.cacheExpandedRecordClassesJson(wdkModel);
 
     // site specific cache clears
     SiteSpecificTmpFileCache.clear(wdkModel, CacheNames.ALL_RECORDS_EXPANDED.SUFFIX);
