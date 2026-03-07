@@ -1,4 +1,4 @@
-package org.apidb.apicommon.controller;
+package org.apidb.apicommon.service;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;

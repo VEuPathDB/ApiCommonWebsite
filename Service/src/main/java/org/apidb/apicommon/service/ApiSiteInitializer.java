@@ -1,5 +1,8 @@
-package org.apidb.apicommon.controller;
+package org.apidb.apicommon.service;
 
+import org.apidb.apicommon.controller.ApiSiteEventHandlers;
+import org.apidb.apicommon.controller.CommentFactoryManager;
+import org.apidb.apicommon.controller.SiteSpecificTmpFileCache;
 import org.apidb.apicommon.controller.SiteSpecificTmpFileCache.CacheNames;
 import org.apidb.apicommon.model.DataPlotterQueries;
 import org.apidb.apicommon.model.JBrowseQueries;
@@ -15,7 +18,7 @@ public class ApiSiteInitializer {
     CommentFactoryManager.initializeCommentFactory(context);
     WdkModel wdkModel = WdkInitializer.getWdkModel(context);
     EuPathSiteSetup.initialize(wdkModel);
-    ApiSiteSetup.initialize(wdkModel);
+    ApiSiteEventHandlers.initialize(wdkModel);
     JBrowseQueries.preload();
     DataPlotterQueries.preload();
 
