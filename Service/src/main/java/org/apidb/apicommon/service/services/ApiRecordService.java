@@ -1,13 +1,19 @@
 package org.apidb.apicommon.service.services;
 
 import static org.gusdb.fgputil.functional.Functions.f0Swallow;
+import static org.gusdb.fgputil.functional.Functions.swallowAndGet;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.time.Duration;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.apidb.apicommon.controller.SiteSpecificTmpFileCache;
 import org.apidb.apicommon.controller.SiteSpecificTmpFileCache.CacheName;
@@ -54,20 +60,11 @@ public class ApiRecordService extends RecordService {
   public static void cacheExpandedRecordClassesJson(WdkModel wdkModel, boolean useSubprocess) {
     try {
       Timer t = new Timer();
-      LOG.info("Caching expanded record classes JSON (subprocess=" + useSubprocess + "...");
+      LOG.info("Caching expanded record classes JSON (subprocess=" + useSubprocess + ")...");
       if (useSubprocess) {
-        Process process = new ProcessBuilder()
-            .command(List.of("fgpJava", ApiRecordService.class.getName(), wdkModel.getProjectId()))
-            .inheritIO()
-            .start();
-        if (process.waitFor(2, TimeUnit.MINUTES)) {
-          if (process.exitValue() != 0) {
-            throw new WdkModelException("Subprocess exited with error code " + process.exitValue());
-          }
-        }
-        else {
-          throw new WdkModelException("Subprocess timed out before completion");
-        }
+        executeAndLogOutput(
+            List.of("perl", GusHome.getGusHome() + "/bin/fgpJava", ApiRecordService.class.getName(), wdkModel.getProjectId()),
+            LOG, Level.INFO, Optional.of(Duration.ofMinutes(2)));
       }
       else {
         ApiRecordService obj = new ApiRecordService();
@@ -77,7 +74,7 @@ public class ApiRecordService extends RecordService {
       }
       LOG.info("Caching complete; took " + t.getElapsedString());
     }
-    catch (IOException | WdkModelException | InterruptedException e) {
+    catch (IOException | WdkModelException e) {
       LOG.error("Could not cache expanded record classes JSON for file streaming.  This error is being ignored.", e);
     }
   }
@@ -87,6 +84,62 @@ public class ApiRecordService extends RecordService {
       throw new IllegalArgumentException("This tool requires a single argument, project_id");
     try (WdkModel wdkModel = WdkModel.construct(args[0], GusHome.getGusHome())) {
       cacheExpandedRecordClassesJson(wdkModel, false);
+    }
+  }
+
+  // FIXME: This method also exists in FgpUtil's RuntimeUtil class; use as soon as it is available via upgrade
+  public static void executeAndLogOutput(List<String> command, Logger logger, Level logLevel, Optional<Duration> processTimeout) {
+    Thread logMonitorThread = null;
+    try {
+      LOG.info("Starting subprocess with command: " + String.join(" ", command));
+      // start the process
+      Process process = new ProcessBuilder()
+          .command(command)
+          .redirectErrorStream(true)
+          .start();
+
+      // start a thread to stream output to the passed Logger (if level allows)
+      if (logger.isEnabledFor(logLevel)) {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+        logMonitorThread = new Thread(() -> {
+          try {
+            String line;
+            while ((line = reader.readLine()) != null) {
+              logger.log(logLevel, line);
+            }
+          }
+          catch (IOException e) {
+            logger.log(logLevel, "Parent process warning: could not read subprocess output", e);
+          }
+        });
+        logMonitorThread.start();
+      }
+
+      // wait for process to finish in this thread
+      boolean exitWithoutTimeout = processTimeout
+          .map(duration -> swallowAndGet(() -> process.waitFor(duration.toMillis(), TimeUnit.MILLISECONDS)))
+          .orElse(process.waitFor() - process.exitValue() == 0); // always true
+
+      if (exitWithoutTimeout) {
+        if (process.exitValue() != 0) {
+          throw new RuntimeException("Subprocess exited with error code " + process.exitValue());
+        }
+      }
+      else {
+        throw new RuntimeException("Subprocess timed out before completion");
+      }
+    }
+    catch (InterruptedException e) {
+      throw new RuntimeException("Subprocess was interrupted before completion", e);
+    }
+    catch (IOException e) {
+      throw new RuntimeException("Error occurred while executing subprocess", e);
+    }
+    finally {
+      // kill log monitor thread if still active
+      if (logMonitorThread != null && logMonitorThread.isAlive()) {
+        logMonitorThread.interrupt();
+      }
     }
   }
 }
