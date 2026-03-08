@@ -19,8 +19,6 @@ import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.apidb.apicommon.controller.SiteSpecificTmpFileCache;
 import org.apidb.apicommon.controller.SiteSpecificTmpFileCache.CacheName;
-import org.eupathdb.common.controller.WebsiteReleaseConstants;
-import org.gusdb.fgputil.FormatUtil;
 import org.gusdb.fgputil.Timer;
 import org.gusdb.fgputil.runtime.GusHome;
 import org.gusdb.wdk.model.WdkModel;
@@ -35,9 +33,9 @@ public class ApiRecordService extends RecordService {
   protected InputStream getExpandedRecordClassesJsonStream(WdkModel wdkModel) {
     try {
       if (_servletRequest == null
-          || _servletRequest.getAttribute("WEBSITE_RELEASE_STAGE") == null
+         /* || _servletRequest.getAttribute("WEBSITE_RELEASE_STAGE") == null
           || !FormatUtil.isInteger((String)_servletRequest.getAttribute("WEBSITE_RELEASE_STAGE"))
-          || Integer.parseInt((String)_servletRequest.getAttribute("WEBSITE_RELEASE_STAGE")) <= WebsiteReleaseConstants.DEVELOPMENT
+          || Integer.parseInt((String)_servletRequest.getAttribute("WEBSITE_RELEASE_STAGE")) <= WebsiteReleaseConstants.DEVELOPMENT*/
       ) {
         // if Grizzly, or stage not forwarded, or stage not an int, or stage == development, do not cache
         LOG.warn("Skipping cache for expanded recordclass JSON because " +
