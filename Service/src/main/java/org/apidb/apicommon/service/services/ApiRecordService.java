@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.file.Paths;
 import java.time.Duration;
 import java.util.Collections;
 import java.util.List;
@@ -63,9 +64,15 @@ public class ApiRecordService extends RecordService {
       Timer t = new Timer();
       LOG.info("Caching expanded record classes JSON (subprocess=" + useSubprocess + ")...");
       if (useSubprocess) {
+        // In webapps, gus_home is of the form: /var/www/PlasmoDB/plasmo.rdoherty/webapp/WEB-INF/wdk-model/
+        // But there is no java soft link under lib there; instead, use the "real" gus_home directory under
+        // the webapps dir.
+        String gusHome = Paths.get(GusHome.getGusHome())
+            .getParent().getParent().getParent().resolve("gus_home").toString();
+        LOG.info("Using GUS_HOME = " + gusHome);
         executeAndLogOutput(
-            List.of("perl", GusHome.getGusHome() + "bin/fgpJava", "-printCommand", ApiRecordService.class.getName(), wdkModel.getProjectId()),
-            Map.of("GUS_HOME", GusHome.getGusHome()),
+            List.of("perl", gusHome + "bin/fgpJava", "-printCommand", ApiRecordService.class.getName(), wdkModel.getProjectId()),
+            Map.of("GUS_HOME", gusHome),
             LOG, Level.INFO, Optional.of(Duration.ofMinutes(2)));
       }
       else {
