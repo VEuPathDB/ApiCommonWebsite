@@ -33,7 +33,10 @@ public class ApiRecordService extends RecordService {
   protected InputStream getExpandedRecordClassesJsonStream(WdkModel wdkModel) {
     try {
       if (_servletRequest == null
-         /* || _servletRequest.getAttribute("WEBSITE_RELEASE_STAGE") == null
+          // Uncommenting the following code will turn off caching for development sites,
+          //   which proved to be problematic, causing an increase in OOMs as storing the JSON
+          //   in memory, even if only briefly, is expensive
+          /*|| _servletRequest.getAttribute("WEBSITE_RELEASE_STAGE") == null
           || !FormatUtil.isInteger((String)_servletRequest.getAttribute("WEBSITE_RELEASE_STAGE"))
           || Integer.parseInt((String)_servletRequest.getAttribute("WEBSITE_RELEASE_STAGE")) <= WebsiteReleaseConstants.DEVELOPMENT*/
       ) {
@@ -73,7 +76,7 @@ public class ApiRecordService extends RecordService {
         executeAndLogOutput(
             List.of("perl", gusHome + "/bin/fgpJava", "-printCommand", ApiRecordService.class.getName(), wdkModel.getProjectId()),
             Map.of("GUS_HOME", gusHome),
-            LOG, Level.INFO, Optional.of(Duration.ofMinutes(2)));
+            LOG, Level.DEBUG, Optional.of(Duration.ofMinutes(2)));
       }
       else {
         ApiRecordService obj = new ApiRecordService();
