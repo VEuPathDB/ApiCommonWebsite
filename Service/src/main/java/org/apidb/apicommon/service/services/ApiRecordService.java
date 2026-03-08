@@ -40,6 +40,8 @@ public class ApiRecordService extends RecordService {
           || Integer.parseInt((String)_servletRequest.getAttribute("WEBSITE_RELEASE_STAGE")) <= WebsiteReleaseConstants.DEVELOPMENT
       ) {
         // if Grizzly, or stage not forwarded, or stage not an int, or stage == development, do not cache
+        LOG.warn("Skipping cache for expanded recordclass JSON because " +
+            (_servletRequest == null ? "servlet request is null" : "release stage is " + _servletRequest.getAttribute("WEBSITE_RELEASE_STAGE")));
         return super.getExpandedRecordClassesJsonStream(wdkModel);
       }
   
