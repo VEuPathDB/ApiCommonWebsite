@@ -21,8 +21,10 @@ import org.apidb.apicommon.controller.SiteSpecificTmpFileCache;
 import org.apidb.apicommon.controller.SiteSpecificTmpFileCache.CacheName;
 import org.gusdb.fgputil.Timer;
 import org.gusdb.fgputil.runtime.GusHome;
+import org.gusdb.fgputil.runtime.ThreadUtil;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
+import org.gusdb.wdk.model.WdkRuntimeException;
 import org.gusdb.wdk.service.service.RecordService;
 
 public class ApiRecordService extends RecordService {
@@ -76,7 +78,7 @@ public class ApiRecordService extends RecordService {
         executeAndLogOutput(
             List.of("perl", gusHome + "/bin/fgpJava", "-printCommand", ApiRecordService.class.getName(), wdkModel.getProjectId()),
             Map.of("GUS_HOME", gusHome),
-            LOG, Level.DEBUG, Optional.of(Duration.ofMinutes(2)));
+            LOG, Level.DEBUG, Optional.of(Duration.ofMinutes(1)), true);
       }
       else {
         ApiRecordService obj = new ApiRecordService();
@@ -87,7 +89,9 @@ public class ApiRecordService extends RecordService {
       LOG.info("Caching complete; took " + t.getElapsedString());
     }
     catch (IOException | WdkModelException e) {
-      LOG.error("Could not cache expanded record classes JSON for file streaming.  This error is being ignored.", e);
+      String message = "Could not cache expanded record classes JSON for file streaming.";
+      LOG.error(message, e);
+      throw new WdkRuntimeException(message, e);
     }
   }
 
@@ -101,7 +105,7 @@ public class ApiRecordService extends RecordService {
 
   // FIXME: This method also exists in FgpUtil's RuntimeUtil class; use as soon as it is available via upgrade
   public static void executeAndLogOutput(List<String> command, Map<String,String> environment,
-      Logger logger, Level logLevel, Optional<Duration> processTimeout) {
+      Logger logger, Level logLevel, Optional<Duration> processTimeout, boolean killOnTimeout) {
     Thread logMonitorThread = null;
     try {
       LOG.info("Starting subprocess with command: " + String.join(" ", command));
@@ -135,11 +139,23 @@ public class ApiRecordService extends RecordService {
           .orElse(process.waitFor() - process.exitValue() == 0); // always true
 
       if (exitWithoutTimeout) {
+        LOG.info("Subprocess exited with exit code: " + process.exitValue());
         if (process.exitValue() != 0) {
           throw new RuntimeException("Subprocess exited with error code " + process.exitValue());
         }
       }
       else {
+        // subprocess timed out before completion; kill if requested
+        if (killOnTimeout) {
+          int gracefulShutdownWindow = 500;
+          LOG.info("Subprocess timed out before completion.  Attempting to shut down gracefully...");
+          process.destroy();
+          ThreadUtil.sleep(gracefulShutdownWindow);
+          if (process.isAlive()) {
+            LOG.info("Subprocess did not shut down gracefully after " + gracefulShutdownWindow + "ms.  Forcibly terminating.");
+            process.destroyForcibly();
+          }
+        }
         throw new RuntimeException("Subprocess timed out before completion");
       }
     }
