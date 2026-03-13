@@ -27,7 +27,7 @@ public class ApiSiteInitializer {
     SiteSpecificTmpFileCache.clear(wdkModel, CacheName.ALL_RECORDS_EXPANDED);
 
     // preload expanded recordclasses json cache
-    ApiRecordService.cacheExpandedRecordClassesJson(wdkModel, true);
+    ApiRecordService.cacheExpandedRecordClassesJson(wdkModel, false);
   }
 
   public static void shutDown(ApplicationContext context) {
