@@ -24,6 +24,7 @@ import org.gusdb.fgputil.runtime.GusHome;
 import org.gusdb.fgputil.runtime.ThreadUtil;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
+import org.gusdb.wdk.model.WdkRuntimeException;
 import org.gusdb.wdk.service.service.RecordService;
 
 public class ApiRecordService extends RecordService {
@@ -88,7 +89,9 @@ public class ApiRecordService extends RecordService {
       LOG.info("Caching complete; took " + t.getElapsedString());
     }
     catch (IOException | WdkModelException e) {
-      LOG.error("Could not cache expanded record classes JSON for file streaming.  This error is being ignored.", e);
+      String message = "Could not cache expanded record classes JSON for file streaming.";
+      LOG.error(message, e);
+      throw new WdkRuntimeException(message, e);
     }
   }
 
