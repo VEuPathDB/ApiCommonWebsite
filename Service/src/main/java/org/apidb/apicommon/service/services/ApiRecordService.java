@@ -117,26 +117,27 @@ public class ApiRecordService extends RecordService {
       Process process = processBuilder.start();
 
       // start a thread to stream output to the passed Logger (if level allows)
-      if (logger.isEnabledFor(logLevel)) {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-        logMonitorThread = new Thread(() -> {
-          try {
-            String line;
-            while ((line = reader.readLine()) != null) {
-              logger.log(logLevel, ">> " + line);
-            }
+      BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+      logMonitorThread = new Thread(() -> {
+        try {
+          String line;
+          while ((line = reader.readLine()) != null) {
+            logger.log(logLevel, ">> " + line);
           }
-          catch (IOException e) {
-            logger.log(logLevel, "Parent process warning: could not read subprocess output", e);
-          }
-        });
-        logMonitorThread.start();
-      }
+        }
+        catch (IOException e) {
+          logger.log(logLevel, "Parent process warning: could not read subprocess output", e);
+        }
+      });
+      logMonitorThread.start();
 
       // wait for process to finish in this thread
       boolean exitWithoutTimeout = processTimeout
           .map(duration -> swallowAndGet(() -> process.waitFor(duration.toMillis(), TimeUnit.MILLISECONDS)))
           .orElse(process.waitFor() - process.exitValue() == 0); // always true
+
+      // wait for the thread to finish processing the subprocess's output
+      logMonitorThread.join();
 
       if (exitWithoutTimeout) {
         LOG.info("Subprocess exited with exit code: " + process.exitValue());
