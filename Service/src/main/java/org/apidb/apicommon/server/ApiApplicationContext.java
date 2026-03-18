@@ -3,7 +3,7 @@ package org.apidb.apicommon.server;
 import java.io.IOException;
 import java.net.URI;
 
-import org.apidb.apicommon.controller.ApiSiteInitializer;
+import org.apidb.apicommon.service.ApiSiteInitializer;
 import org.gusdb.wdk.controller.WdkApplicationContext;
 import org.json.JSONObject;
 

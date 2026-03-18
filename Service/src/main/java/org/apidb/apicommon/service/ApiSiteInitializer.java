@@ -1,8 +1,12 @@
-package org.apidb.apicommon.controller;
+package org.apidb.apicommon.service;
 
-import org.apidb.apicommon.controller.SiteSpecificTmpFileCache.CacheNames;
+import org.apidb.apicommon.controller.ApiSiteEventHandlers;
+import org.apidb.apicommon.controller.CommentFactoryManager;
+import org.apidb.apicommon.controller.SiteSpecificTmpFileCache;
+import org.apidb.apicommon.controller.SiteSpecificTmpFileCache.CacheName;
 import org.apidb.apicommon.model.DataPlotterQueries;
 import org.apidb.apicommon.model.JBrowseQueries;
+import org.apidb.apicommon.service.services.ApiRecordService;
 import org.eupathdb.common.controller.EuPathSiteSetup;
 import org.gusdb.fgputil.web.ApplicationContext;
 import org.gusdb.wdk.controller.WdkInitializer;
@@ -15,12 +19,15 @@ public class ApiSiteInitializer {
     CommentFactoryManager.initializeCommentFactory(context);
     WdkModel wdkModel = WdkInitializer.getWdkModel(context);
     EuPathSiteSetup.initialize(wdkModel);
-    ApiSiteSetup.initialize(wdkModel);
+    ApiSiteEventHandlers.initialize(wdkModel);
     JBrowseQueries.preload();
     DataPlotterQueries.preload();
 
     // site specific cache clears
-    SiteSpecificTmpFileCache.clear(wdkModel, CacheNames.ALL_RECORDS_EXPANDED.SUFFIX);
+    SiteSpecificTmpFileCache.clear(wdkModel, CacheName.ALL_RECORDS_EXPANDED);
+
+    // preload expanded recordclasses json cache
+    ApiRecordService.cacheExpandedRecordClassesJson(wdkModel, true);
   }
 
   public static void shutDown(ApplicationContext context) {

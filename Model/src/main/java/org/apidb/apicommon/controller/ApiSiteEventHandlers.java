@@ -11,7 +11,7 @@ import org.gusdb.wdk.events.UserProfileUpdateEvent;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 
-public class ApiSiteSetup {
+public class ApiSiteEventHandlers {
 
   /**
    * Initialize any parts of the ApiCommon web application not handled by normal
@@ -21,7 +21,7 @@ public class ApiSiteSetup {
    */
   public static void initialize(WdkModel wdkModel) {
     // add user profile update event listener
-    Events.subscribe(ApiSiteSetup::userProfileUpdateListener,
+    Events.subscribe(ApiSiteEventHandlers::userProfileUpdateListener,
         UserProfileUpdateEvent.class);
   }
 

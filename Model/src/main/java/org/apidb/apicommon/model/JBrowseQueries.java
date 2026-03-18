@@ -20,8 +20,7 @@ public class JBrowseQueries {
   private static final String XML_FILE_LOCATION = "/lib/xml/jbrowse/";
 
   public enum Category implements SourceFileProvider {
-    GENOME("genomeQueries.xml"),
-    PROTEIN("proteinQueries.xml");
+    GENOME("genomeQueries.xml");
 
     private String _sourceFile;
 

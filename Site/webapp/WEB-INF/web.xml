@@ -16,7 +16,7 @@
   </context-param>
 
   <listener>
-    <listener-class>org.apidb.apicommon.controller.ApplicationInitListener</listener-class>
+    <listener-class>org.apidb.apicommon.service.ApplicationInitListener</listener-class>
   </listener>
 
   <listener>
