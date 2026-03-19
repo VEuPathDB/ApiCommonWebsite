@@ -76,7 +76,7 @@ public class ApiRecordService extends RecordService {
             .getParent().getParent().getParent().resolve("gus_home").toString();
         LOG.info("Using GUS_HOME = " + gusHome);
         executeAndLogOutput(
-            List.of("perl", gusHome + "/bin/fgpJava", "-printCommand", ApiRecordService.class.getName(), wdkModel.getProjectId()),
+            List.of("perl", gusHome + "/bin/fgpJava", ApiRecordService.class.getName(), wdkModel.getProjectId()),
             Map.of("GUS_HOME", gusHome),
             LOG, Level.INFO, Optional.of(Duration.ofMinutes(1)), true);
       }
