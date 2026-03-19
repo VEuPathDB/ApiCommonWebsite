@@ -78,7 +78,7 @@ public class ApiRecordService extends RecordService {
         executeAndLogOutput(
             List.of("perl", gusHome + "/bin/fgpJava", "-printCommand", ApiRecordService.class.getName(), wdkModel.getProjectId()),
             Map.of("GUS_HOME", gusHome),
-            LOG, Level.DEBUG, Optional.of(Duration.ofMinutes(1)), true);
+            LOG, Level.INFO, Optional.of(Duration.ofMinutes(1)), true);
       }
       else {
         ApiRecordService obj = new ApiRecordService();
@@ -126,7 +126,7 @@ public class ApiRecordService extends RecordService {
           }
         }
         catch (IOException e) {
-          logger.log(logLevel, "Parent process warning: could not read subprocess output", e);
+          LOG.error("Parent process warning: could not read subprocess output", e);
         }
       });
       logMonitorThread.start();
