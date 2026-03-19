@@ -23,9 +23,9 @@ sub init {
   my $url = $self->getBaseUrl() . '/a/service/profileSet/GutherCategory/' . $geneId;
   my $content = get($url);
   my $json = from_json($content);
-  my $colorNum = @$json[0]->{'CAT_VAL'};
+  my $colorNum = @$json[0]->{'cat_val'};
 
-  my @profileSetsArray = (['Procyclic stage glycosome proteome', 'values', ]);
+  my @profileSetsArray = (['Procyclic stage glycosome proteome [quantitative_massSpec]', 'values', ]);
   my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileSetsArray);
 
   my $quant = EbrcWebsiteCommon::View::GraphPackage::GGBarPlot::QuantMassSpec->new(@_);
