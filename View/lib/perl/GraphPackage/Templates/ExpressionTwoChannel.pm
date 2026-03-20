@@ -534,6 +534,16 @@ RADJUST
 }
 1;
 
+# plasmo - pyoeyoelii17X_microarrayExpression_Kappe_LiverStage_RSRC
+package ApiCommonWebsite::View::GraphPackage::Templates::ExpressionTwoChannel::DS_3021e25a77;
+
+sub finalProfileAdjustments {
+  my ($self, $profile) = @_;
+  $self->setPlotWidth(1200);
+
+  return $self;
+}
+1;
 
 #--------------------------------------------------------------------------------
 # TEMPLATE_ANCHOR microarraySimpleTwoChannelGraph

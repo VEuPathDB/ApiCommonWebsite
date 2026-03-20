@@ -1840,6 +1840,12 @@ sub getPlotWidth { return 1000; }
 
 1;
 
+# plasmo - pvivP01_Pvivax_3_patient_IDC_2020_ebi_rnaSeq_RSRC
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_1715c6542a;
+use base qw( ApiCommonWebsite::View::GraphPackage::Templates::RNASeq );
+sub getPlotWidth { return 1000; }
+
+1;
 
 
 #--------------------------------------------------------------------------------
