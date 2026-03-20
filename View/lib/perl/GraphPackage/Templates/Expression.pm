@@ -186,7 +186,7 @@ sub getAllProfileSetNames {
     my $url = $self->getBaseUrl() . '/a/service/profileSet/ProfileSetNames/' . $datasetId;
     $url = $restrictProfileSetsBySourceId ? $url . '?sourceId=' . $id : $url;
     my $content = get($url);
-    my $json = from_json($content);
+    my $json = decode_json($content);
     foreach my $profile (@$json) {
       my $profileName = $profile->{'profile_set_name'};
       my $profileType = $profile->{'profile_type'};
