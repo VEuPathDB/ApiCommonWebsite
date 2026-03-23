@@ -863,12 +863,12 @@ sub init {
   my $colors = ['#F08080', '#7CFCB0' ];
   my $legend = ['untreated', 'chloroquine'];
 
-  my @profileArray = (['E-GEOD-10022 array from Su','values'],
-                      ['E-GEOD-10022 array from Su', 'values']
+  my @profileArray = (['E-GEOD-10022 array from Su [microarray]','values'],
+                      ['E-GEOD-10022 array from Su [microarray]', 'values']
                      );
 
-  my @percentileArray = (['E-GEOD-10022 array from Su', 'channel1_percentiles'],
-                         ['E-GEOD-10022 array from Su', 'channel1_percentiles'],
+  my @percentileArray = (['E-GEOD-10022 array from Su [microarray]', 'channel1_percentiles'],
+                         ['E-GEOD-10022 array from Su [microarray]', 'channel1_percentiles'],
                         );
 
   my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileArray);
