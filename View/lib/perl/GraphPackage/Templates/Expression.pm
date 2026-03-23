@@ -918,10 +918,10 @@ sub init {
   my $colors = ['#6495ED', '#E9967A', '#2F4F4F' ];
   my $legend = ['Wild Type', 'sir2A', 'sir2B'];
 
-  my @profileArray = (['Profiles of E-TABM-438 from Cowman', 'values'],
+  my @profileArray = (['Profiles of E-TABM-438 from Cowman [microarray]', 'values'],
                      );
 
-  my @percentileArray = (['Profiles of E-TABM-438 from Cowman', 'channel1_percentiles'],
+  my @percentileArray = (['Profiles of E-TABM-438 from Cowman [microarray]', 'channel1_percentiles'],
                         );
 
   my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileArray);
