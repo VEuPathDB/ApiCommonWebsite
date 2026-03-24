@@ -749,9 +749,9 @@ sub init {
   my $self = shift;
   $self->SUPER::init(@_);
 
-  my @winzelerProfileArray = (['winzeler_cc_sorbExp','values'],
-                              ['winzeler_cc_tempExp', 'values'],
-                              ['winzeler_cc_sexExp', 'values']
+  my @winzelerProfileArray = (['winzeler_cc_sorbExp [microarray]','values'],
+                              ['winzeler_cc_tempExp [microarray]', 'values'],
+                              ['winzeler_cc_sexExp [microarray]', 'values']
                              );
 
   my @colors = ('brown', 'cyan', 'purple' );
