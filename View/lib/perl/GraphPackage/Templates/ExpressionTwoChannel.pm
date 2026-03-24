@@ -300,14 +300,14 @@ sub init {
   # TODO: Why isn't the scaling working??
   my $_3D7Scaling = 52/48;
 
-  my @hb3Graphs = $self->defineGraphs('HB3', $colors[0], 'DeRisi HB3 Smoothed', 'DeRisi HB3 non-smoothed', 'Timepoint Mapping And Life Stage Fractions - HB3', undef);
-  my @_3D7Graphs = $self->defineGraphs('3D7', $colors[1], 'DeRisi 3D7 Smoothed', 'DeRisi 3D7 non-smoothed', 'Timepoint Mapping And Life Stage Fractions - 3D7', $_3D7Scaling);
-  my @dd2Graphs = $self->defineGraphs('Dd2', $colors[2], 'DeRisi Dd2 Smoothed', 'DeRisi Dd2 non-smoothed', 'Timepoint Mapping And Life Stage Fractions - Dd2', undef);
+  my @hb3Graphs = $self->defineGraphs('HB3', $colors[0], 'DeRisi HB3 Smoothed [microarray]', 'DeRisi HB3 non-smoothed [microarray]', 'Timepoint Mapping And Life Stage Fractions - HB3 [microarray]', undef);
+  my @_3D7Graphs = $self->defineGraphs('3D7', $colors[1], 'DeRisi 3D7 Smoothed [microarray]', 'DeRisi 3D7 non-smoothed [microarray]', 'Timepoint Mapping And Life Stage Fractions - 3D7 [microarray]', $_3D7Scaling);
+  my @dd2Graphs = $self->defineGraphs('Dd2', $colors[2], 'DeRisi Dd2 Smoothed [microarray]', 'DeRisi Dd2 non-smoothed [microarray]', 'Timepoint Mapping And Life Stage Fractions - Dd2 [microarray]', undef);
 
 
   my $combined = $self->makeCombinedGraph();
 
-  my @pieProfileSetNames = (['DeRisi HB3 Smoothed', 'values']);
+  my @pieProfileSetNames = (['DeRisi HB3 Smoothed [microarray]', 'values']);
 
   my $pieProfileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@pieProfileSetNames);
 
@@ -341,7 +341,7 @@ sub getTimePointMapping {
   my $url = $self->getBaseUrl() . '/a/service/profileSet/TimePointMapping/' . $timePointProfileSetName;
   my $content = get($url);
   my $json = from_json($content);
-  my $profileAsString = @$json[0]->{'PROFILE_AS_STRING'};
+  my $profileAsString = @$json[0]->{'profile_as_string'};
 
   my @rv = split(/\t/, $profileAsString);
 
@@ -353,9 +353,9 @@ sub getTimePointMapping {
 sub makeCombinedGraph {
   my ($self) = @_;
 
-  my $_3d7ProfileSet = 'DeRisi 3D7 Smoothed';
-  my $hb3ProfileSet = 'DeRisi HB3 Smoothed';
-  my $dd2ProfileSet = 'DeRisi Dd2 Smoothed';
+  my $_3d7ProfileSet = 'DeRisi 3D7 Smoothed [microarray]';
+  my $hb3ProfileSet = 'DeRisi HB3 Smoothed [microarray]';
+  my $dd2ProfileSet = 'DeRisi Dd2 Smoothed [microarray]';
 
   my $times_3d7 = $self->getTimePointMapping('Timepoint Mapping And Life Stage Fractions - 3D7');
   my $times_hb3 = $self->getTimePointMapping('Timepoint Mapping And Life Stage Fractions - HB3');
