@@ -685,36 +685,8 @@ sub init {
   my $self = shift;
   $self->SUPER::init(@_);
 
-  my $pch = ['15','NA'];
-  my $colors = ['black'];
-  my $legend = ['Total Expression', 'Total Expression - smoothed'];
-  
-  my @profileArray = (
-                      ['Llinas RT transcription and decay total Profiles - loess', 'values'],
-#                      ['Llinas RT transcription and decay total Profiles - smoothed', 'values']
-      );
-
-  my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileArray);
- 
-  my $line = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot->new(@_);
-  $line->setProfileSets($profileSets);
-  $line->setPartName('exprn_val_log_ratio');
-  $line->setYaxisLabel('Expression Values (log2 ratio)');
-  $line->setPointsPch($pch);
-  $line->setColors([$colors->[0]]);
-  $line->setArePointsLast(1);
-  $line->setElementNameMarginSize(6);
-  $line->setXaxisLabel('Hours post infection');
-  $line->setHasExtraLegend(1);
-  $line->setSmoothLines(1);
-  $line->setSmoothWithLoess(1);
-  $line->setLegendLabels(['total']);
-  $line->setXaxisLabel('Hours post infection');
-  my $id = $self->getId();
-  $line->setPlotTitle("Expression Values - $id - Total mRNA Abundance");
-
   my $graphObjects = $self->getGraphObjects();
-  
+
   my $dynamics = $graphObjects->[0];
   my $baseTitle = $dynamics->getPlotTitle();
   $dynamics->setPointsPch([ 'NA', 'NA', 'NA']);
@@ -722,10 +694,6 @@ sub init {
   $dynamics->setHasExtraLegend(1);
   $dynamics->setPlotTitle($baseTitle. " - mRNA Dynamics");
   $dynamics->setYaxisLabel('Modeled Expression Values');
-
-  push @$graphObjects, $line;
-
-  $self->setGraphObjects(@$graphObjects);
 }
 
 1;
