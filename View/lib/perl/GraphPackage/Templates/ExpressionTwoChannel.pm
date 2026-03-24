@@ -142,7 +142,7 @@ sub init {
   $self->SUPER::init(@_);
 
   my $bar = EbrcWebsiteCommon::View::GraphPackage::GGBarPlot::LogRatio->new(@_);
-  my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets([['T. brucei TbDRBD3-Depleted','values']]);
+  my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets([['T. brucei TbDRBD3-Depleted [microarray]','values']]);
 
   $bar->setProfileSets($profileSets);
 
