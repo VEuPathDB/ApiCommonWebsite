@@ -1095,24 +1095,24 @@ sub init {
   my $colorsFlo  = ['#CD853F','#8FBC8F'];
   my $graphs;
 
-  my @profileArrayRoos = (['expression profiles of Pru dHXGPRT strain Alkaline bradyzoite-inducing conditions (media pH 8.2)', 'values', '', ''],
- 			  ['expression profiles of Pru dHXGPRT strain CO2-starvation bradyzoite-inducing conditions', 'values', '', ''],
- 			  ['expression profiles of Pru dHXGPRT strain sodium nitroprusside bradyzoite-inducing conditions', 'values', '', ''],
- 			  ['expression profiles of RH delta-HXGPRT delta-UPRT strain Alkaline bradyzoite-inducing conditions', 'values', '', '']
+  my @profileArrayRoos = (['expression profiles of Pru dHXGPRT strain Alkaline bradyzoite-inducing conditions (media pH 8.2) [microarray]', 'values', '', ''],
+ 			  ['expression profiles of Pru dHXGPRT strain CO2-starvation bradyzoite-inducing conditions [microarray]', 'values', '', ''],
+ 			  ['expression profiles of Pru dHXGPRT strain sodium nitroprusside bradyzoite-inducing conditions [microarray]', 'values', '', ''],
+ 			  ['expression profiles of RH delta-HXGPRT delta-UPRT strain Alkaline bradyzoite-inducing conditions [microarray]', 'values', '', '']
 			  );
 
-   my @profileArrayFlo = (['expression profiles of Pru dHXGPRT strain CO2-starvation bradyzoite inducing conditions : 2-14 days (by Florence Dzierszinski)', 'values', '', ''],
-                          ['expression profiles of VEG strain CO2-starvation bradyzoite inducing conditions : 2-6 days (by Florence Dzierszinski)', 'values', '', '']
+   my @profileArrayFlo = (['expression profiles of Pru dHXGPRT strain CO2-starvation bradyzoite inducing conditions : 2-14 days (by Florence Dzierszinski) [microarray]', 'values', '', ''],
+                          ['expression profiles of VEG strain CO2-starvation bradyzoite inducing conditions : 2-6 days (by Florence Dzierszinski) [microarray]', 'values', '', '']
                          );
 
-   my @percentileArrayRoos = (['expression profiles of Pru dHXGPRT strain Alkaline bradyzoite-inducing conditions (media pH 8.2)', 'channel1_percentiles', '', ''],
- 			     ['expression profiles of Pru dHXGPRT strain CO2-starvation bradyzoite-inducing conditions', 'channel1_percentiles', '', ''],
- 			     ['expression profiles of Pru dHXGPRT strain sodium nitroprusside bradyzoite-inducing conditions', 'channel1_percentiles', '', ''],
- 			     ['expression profiles of RH delta-HXGPRT delta-UPRT strain Alkaline bradyzoite-inducing conditions', 'channel1_percentiles', '', '']
+   my @percentileArrayRoos = (['expression profiles of Pru dHXGPRT strain Alkaline bradyzoite-inducing conditions (media pH 8.2) [microarray]', 'channel1_percentiles', '', ''],
+ 			     ['expression profiles of Pru dHXGPRT strain CO2-starvation bradyzoite-inducing conditions [microarray]', 'channel1_percentiles', '', ''],
+ 			     ['expression profiles of Pru dHXGPRT strain sodium nitroprusside bradyzoite-inducing conditions [microarray]', 'channel1_percentiles', '', ''],
+ 			     ['expression profiles of RH delta-HXGPRT delta-UPRT strain Alkaline bradyzoite-inducing conditions [microarray]', 'channel1_percentiles', '', '']
  			    );
 
-   my @percentileArrayFlo = (['expression profiles of Pru dHXGPRT strain CO2-starvation bradyzoite inducing conditions : 2-14 days (by Florence Dzierszinski)', 'channel1_percentiles', '', ''],
- 			    ['expression profiles of VEG strain CO2-starvation bradyzoite inducing conditions : 2-6 days (by Florence Dzierszinski)', 'channel1_percentiles', '', '']
+   my @percentileArrayFlo = (['expression profiles of Pru dHXGPRT strain CO2-starvation bradyzoite inducing conditions : 2-14 days (by Florence Dzierszinski) [microarray]', 'channel1_percentiles', '', ''],
+ 			    ['expression profiles of VEG strain CO2-starvation bradyzoite inducing conditions : 2-6 days (by Florence Dzierszinski) [microarray]', 'channel1_percentiles', '', '']
  			   );
 
   my $id = $self->getId();
@@ -1223,8 +1223,8 @@ package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_c1a3dbb0
 sub init {
   my $self = shift;
   $self->SUPER::init(@_);
-  my @profileSet=(['M.White Cell Cycle Microarray', 'values', '', ''],);
-  my @percentileSet=(['M.White Cell Cycle Microarray', 'channel1_percentiles', '', ''],);
+  my @profileSet=(['M.White Cell Cycle Microarray [microarray]', 'values', '', ''],);
+  my @percentileSet=(['M.White Cell Cycle Microarray [microarray]', 'channel1_percentiles', '', ''],);
 
   my $colors = ['#CD853F'];
   my $graphs;
