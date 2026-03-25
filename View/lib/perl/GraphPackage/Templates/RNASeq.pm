@@ -634,111 +634,12 @@ sub declareParts {
 #plasmo
 package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_a2967e5664;
 
-sub init {
-  my $self = shift;
-  use Data::Dumper; 
-
-  $self->SUPER::init(@_);
-
-  my $profileSet = EbrcWebsiteCommon::View::GraphPackage::ProfileSet->new("DUMMY");
-  $profileSet->setJsonForService("{\"profileSetName\":\"Parasitemia over 100 days in five monkeys\",\"profileType\":\"values\",\"idOverride\":\"RMe14\",\"name\":\"RMe14\"},{\"profileSetName\":\"Parasitemia over 100 days in five monkeys\",\"profileType\":\"values\",\"idOverride\":\"RFv13\",\"name\":\"RFv13\"},{\"profileSetName\":\"Parasitemia over 100 days in five monkeys\",\"profileType\":\"values\",\"idOverride\":\"RIc14\",\"name\":\"RIc14\"},{\"profileSetName\":\"Parasitemia over 100 days in five monkeys\",\"profileType\":\"values\",\"idOverride\":\"RSb14\",\"name\":\"RSb14\"},{\"profileSetName\":\"Parasitemia over 100 days in five monkeys\",\"profileType\":\"values\",\"idOverride\":\"RFa14\",\"name\":\"RFa14\"}");
-   $profileSet->setSqlName("Profile");
-
-  my $line = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot->new(@_);
-  #print STDERR Dumper($line);
-  $line->setPartName('parasitemia');
-  $line->setProfileSets([$profileSet]);
-  $line->setYaxisLabel("Log 10 Parasites / uL");
-  $line->setXaxisLabel("Day");
-  $line->setPlotTitle("Parasitemia Summary - 100 Days");
-  
-  my $rAdjustString = << 'RADJUST';
-
-  profile.df.full$VALUE <- log10(profile.df.full$VALUE)
-  profile.df.full$VALUE[is.infinite(profile.df.full$VALUE)] <- 0
-  profile.df.full$FACET <- as.factor(profile.df.full$DISPLAY_NAME) 
-  profile.df.full$PROFILE_SET <- profile.df.full$FACET
-  profile.df.full$LEGEND <- "Sample\nResults\nNot Loaded"
-  profile.df.full$LEGEND[profile.df.full$FACET == 'RIc14' & profile.df.full$ELEMENT_NAMES == 'Day 21'] <- "Sample\nResults\nLoaded"
-  profile.df.full$LEGEND[profile.df.full$FACET == 'RSb14' & profile.df.full$ELEMENT_NAMES == 'Day 21'] <- "Sample\nResults\nLoaded"
-  profile.df.full$LEGEND[profile.df.full$FACET == 'RMe14' & profile.df.full$ELEMENT_NAMES == 'Day 20'] <- "Sample\nResults\nLoaded"
-  profile.df.full$LEGEND[profile.df.full$FACET == 'RFa14' & profile.df.full$ELEMENT_NAMES == 'Day 18'] <- "Sample\nResults\nLoaded"
-  profile.df.full$LEGEND[profile.df.full$FACET == 'RFv13' & profile.df.full$ELEMENT_NAMES == 'Day 18'] <- "Sample\nResults\nLoaded"
-  profile.df.full$LEGEND[profile.df.full$FACET == 'RIc14' & profile.df.full$ELEMENT_NAMES == 'Day 26'] <- "Sample\nResults\nLoaded"
-  profile.df.full$LEGEND[profile.df.full$FACET == 'RSb14' & profile.df.full$ELEMENT_NAMES == 'Day 26'] <- "Sample\nResults\nLoaded"
-  profile.df.full$LEGEND[profile.df.full$FACET == 'RFa14' & profile.df.full$ELEMENT_NAMES == 'Day 26'] <- "Sample\nResults\nLoaded"
-  profile.df.full$LEGEND[profile.df.full$FACET == 'RSb14' & profile.df.full$ELEMENT_NAMES == 'Day 63'] <- "Sample\nResults\nLoaded"
-  profile.df.full$LEGEND[profile.df.full$FACET == 'RFa14' & profile.df.full$ELEMENT_NAMES == 'Day 63'] <- "Sample\nResults\nLoaded"
-  profile.df.full$LEGEND[profile.df.full$FACET == 'RSb14' & profile.df.full$ELEMENT_NAMES == 'Day 91'] <- "Sample\nResults\nLoaded"
-  profile.df.full$LEGEND[profile.df.full$FACET == 'RFa14' & profile.df.full$ELEMENT_NAMES == 'Day 97'] <- "Sample\nResults\nLoaded"
-  profile.df.full$LEGEND[profile.df.full$FACET == 'RMe14' & profile.df.full$ELEMENT_NAMES == 'Day 26'] <- "Sample\nResults\nLoaded"
-  profile.df.full$LEGEND <- as.factor(profile.df.full$LEGEND)
-  profile.df.full$TOOLTIP <- NA
-  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RIc14' & profile.df.full$ELEMENT_NAMES == 'Day 1'] <- "TP1"
-  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RSb14' & profile.df.full$ELEMENT_NAMES == 'Day 1'] <- "TP1"
-  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RMe14' & profile.df.full$ELEMENT_NAMES == 'Day 1'] <- "TP1"
-  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RFa14' & profile.df.full$ELEMENT_NAMES == 'Day 1'] <- "TP1"
-  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RFv13' & profile.df.full$ELEMENT_NAMES == 'Day 1'] <- "TP1"
-  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RIc14' & profile.df.full$ELEMENT_NAMES == 'Day 21'] <- "TP2"
-  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RSb14' & profile.df.full$ELEMENT_NAMES == 'Day 21'] <- "TP2"
-  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RMe14' & profile.df.full$ELEMENT_NAMES == 'Day 20'] <- "TP2"
-  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RFa14' & profile.df.full$ELEMENT_NAMES == 'Day 18'] <- "TP2"
-  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RFv13' & profile.df.full$ELEMENT_NAMES == 'Day 18'] <- "TP2"
-  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RIc14' & profile.df.full$ELEMENT_NAMES == 'Day 26'] <- "TP3"
-  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RSb14' & profile.df.full$ELEMENT_NAMES == 'Day 26'] <- "TP3"
-  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RMe14' & profile.df.full$ELEMENT_NAMES == 'Day 26'] <- "TP3"
-  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RFa14' & profile.df.full$ELEMENT_NAMES == 'Day 26'] <- "TP3"
-  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RFv13' & profile.df.full$ELEMENT_NAMES == 'Day 22'] <- "TP3 - Euathanasia"
-  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RIc14' & profile.df.full$ELEMENT_NAMES == 'Day 63'] <- "TP4"
-  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RSb14' & profile.df.full$ELEMENT_NAMES == 'Day 63'] <- "TP4"
-  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RMe14' & profile.df.full$ELEMENT_NAMES == 'Day 63'] <- "TP4"
-  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RFa14' & profile.df.full$ELEMENT_NAMES == 'Day 63'] <- "TP4"
-  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RIc14' & profile.df.full$ELEMENT_NAMES == 'Day 76'] <- "TP5"
-  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RSb14' & profile.df.full$ELEMENT_NAMES == 'Day 76'] <- "TP5"
-  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RMe14' & profile.df.full$ELEMENT_NAMES == 'Day 76'] <- "TP5"
-  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RFa14' & profile.df.full$ELEMENT_NAMES == 'Day 76'] <- "TP5"
-  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RIc14' & profile.df.full$ELEMENT_NAMES == 'Day 89'] <- "TP6"
-  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RSb14' & profile.df.full$ELEMENT_NAMES == 'Day 91'] <- "TP6"
-  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RMe14' & profile.df.full$ELEMENT_NAMES == 'Day 89'] <- "TP6"
-  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RFa14' & profile.df.full$ELEMENT_NAMES == 'Day 91'] <- "TP6"
-  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RIc14' & profile.df.full$ELEMENT_NAMES == 'Day 97'] <- "TP7"
-  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RSb14' & profile.df.full$ELEMENT_NAMES == 'Day 97'] <- "TP7"
-  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RMe14' & profile.df.full$ELEMENT_NAMES == 'Day 97'] <- "TP7"
-  profile.df.full$TOOLTIP[profile.df.full$FACET == 'RFa14' & profile.df.full$ELEMENT_NAMES == 'Day 97'] <- "TP7"
-  profile.df.full$hold <- profile.df.full$TOOLTIP
-  profile.df.full$TOOLTIP <- paste0("x: " , profile.df.full$ELEMENT_NAMES_NUMERIC, ", y: ", profile.df.full$VALUE, "|Time point: ", profile.df.full$TOOLTIP)
-  profile.df.full$TOOLTIP[is.na(profile.df.full$hold)] <- NA
-  profile.df.full$hold <- NULL
-
-RADJUST
-
-my $post = "
-gp = gp + theme(legend.key = element_rect(fill = \"white\"),
-                legend.key.height = unit(3, \"cm\"))
-";
-
-  $line->addAdjustProfile($rAdjustString);
-  $line->setFacetNumCols(1);
-  $line->setDefaultXMin(0);
-  $line->setDefaultXMax(100);
-  $line->setColors(["red", "black"]);
-  $line->setRPostscript($post);
-  $line->setColorPointsOnly(1);
-  $line->setScreenSize(500);
-  #$line->setLineColors(["black"]);
-
-  my $graphObjects = $self->getGraphObjects();
-  push @$graphObjects, $line;
-  $self->setGraphObjects(@$graphObjects);
-
-}
-
 sub finalProfileAdjustments {
   my ($self, $profile) = @_;
 
   my $rAdjustString = << 'RADJUST';
 
-  profile.df.full <- separate(profile.df.full, ELEMENT_NAMES, c("GROUP", "ELEMENT_NAMES", "TP"), " ")   
+  profile.df.full <- separate(profile.df.full, ELEMENT_NAMES, c("GROUP", "ELEMENT_NAMES", "TP"), " ")
   profile.df.full <- separate(profile.df.full, GROUP, c("GROUP", "trash2", "FACET"), "_")
   profile.df.full$trash2 <- NULL
   profile.df.full$ELEMENT_NAMES <- gsub("Day", "", profile.df.full$ELEMENT_NAMES)
@@ -789,13 +690,12 @@ sub declareParts {
       $plotPart->{height} = $plotPart->{height} + 500;
     }
   }
-  print STDERR Dumper($arrayRef);
   return $arrayRef;
 }
 
 1;
 
-#fungi 
+#fungi
 package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_a2d28b5866;
 sub init {
   my $self = shift;

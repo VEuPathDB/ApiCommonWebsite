@@ -186,7 +186,7 @@ sub getAllProfileSetNames {
     my $url = $self->getBaseUrl() . '/a/service/profileSet/ProfileSetNames/' . $datasetId;
     $url = $restrictProfileSetsBySourceId ? $url . '?sourceId=' . $id : $url;
     my $content = get($url);
-    my $json = from_json($content);
+    my $json = decode_json($content);
     foreach my $profile (@$json) {
       my $profileName = $profile->{'profile_set_name'};
       my $profileType = $profile->{'profile_type'};
@@ -685,36 +685,8 @@ sub init {
   my $self = shift;
   $self->SUPER::init(@_);
 
-  my $pch = ['15','NA'];
-  my $colors = ['black'];
-  my $legend = ['Total Expression', 'Total Expression - smoothed'];
-  
-  my @profileArray = (
-                      ['Llinas RT transcription and decay total Profiles - loess', 'values'],
-#                      ['Llinas RT transcription and decay total Profiles - smoothed', 'values']
-      );
-
-  my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileArray);
- 
-  my $line = EbrcWebsiteCommon::View::GraphPackage::GGLinePlot->new(@_);
-  $line->setProfileSets($profileSets);
-  $line->setPartName('exprn_val_log_ratio');
-  $line->setYaxisLabel('Expression Values (log2 ratio)');
-  $line->setPointsPch($pch);
-  $line->setColors([$colors->[0]]);
-  $line->setArePointsLast(1);
-  $line->setElementNameMarginSize(6);
-  $line->setXaxisLabel('Hours post infection');
-  $line->setHasExtraLegend(1);
-  $line->setSmoothLines(1);
-  $line->setSmoothWithLoess(1);
-  $line->setLegendLabels(['total']);
-  $line->setXaxisLabel('Hours post infection');
-  my $id = $self->getId();
-  $line->setPlotTitle("Expression Values - $id - Total mRNA Abundance");
-
   my $graphObjects = $self->getGraphObjects();
-  
+
   my $dynamics = $graphObjects->[0];
   my $baseTitle = $dynamics->getPlotTitle();
   $dynamics->setPointsPch([ 'NA', 'NA', 'NA']);
@@ -722,10 +694,6 @@ sub init {
   $dynamics->setHasExtraLegend(1);
   $dynamics->setPlotTitle($baseTitle. " - mRNA Dynamics");
   $dynamics->setYaxisLabel('Modeled Expression Values');
-
-  push @$graphObjects, $line;
-
-  $self->setGraphObjects(@$graphObjects);
 }
 
 1;
@@ -781,9 +749,9 @@ sub init {
   my $self = shift;
   $self->SUPER::init(@_);
 
-  my @winzelerProfileArray = (['winzeler_cc_sorbExp','values'],
-                              ['winzeler_cc_tempExp', 'values'],
-                              ['winzeler_cc_sexExp', 'values']
+  my @winzelerProfileArray = (['winzeler_cc_sorbExp [microarray]','values'],
+                              ['winzeler_cc_tempExp [microarray]', 'values'],
+                              ['winzeler_cc_sexExp [microarray]', 'values']
                              );
 
   my @colors = ('brown', 'cyan', 'purple' );
@@ -863,12 +831,12 @@ sub init {
   my $colors = ['#F08080', '#7CFCB0' ];
   my $legend = ['untreated', 'chloroquine'];
 
-  my @profileArray = (['E-GEOD-10022 array from Su','values'],
-                      ['E-GEOD-10022 array from Su', 'values']
+  my @profileArray = (['E-GEOD-10022 array from Su [microarray]','values'],
+                      ['E-GEOD-10022 array from Su [microarray]', 'values']
                      );
 
-  my @percentileArray = (['E-GEOD-10022 array from Su', 'channel1_percentiles'],
-                         ['E-GEOD-10022 array from Su', 'channel1_percentiles'],
+  my @percentileArray = (['E-GEOD-10022 array from Su [microarray]', 'channel1_percentiles'],
+                         ['E-GEOD-10022 array from Su [microarray]', 'channel1_percentiles'],
                         );
 
   my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileArray);
@@ -918,10 +886,10 @@ sub init {
   my $colors = ['#6495ED', '#E9967A', '#2F4F4F' ];
   my $legend = ['Wild Type', 'sir2A', 'sir2B'];
 
-  my @profileArray = (['Profiles of E-TABM-438 from Cowman', 'values'],
+  my @profileArray = (['Profiles of E-TABM-438 from Cowman [microarray]', 'values'],
                      );
 
-  my @percentileArray = (['Profiles of E-TABM-438 from Cowman', 'channel1_percentiles'],
+  my @percentileArray = (['Profiles of E-TABM-438 from Cowman [microarray]', 'channel1_percentiles'],
                         );
 
   my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileArray);
@@ -1127,24 +1095,24 @@ sub init {
   my $colorsFlo  = ['#CD853F','#8FBC8F'];
   my $graphs;
 
-  my @profileArrayRoos = (['expression profiles of Pru dHXGPRT strain Alkaline bradyzoite-inducing conditions (media pH 8.2)', 'values', '', ''],
- 			  ['expression profiles of Pru dHXGPRT strain CO2-starvation bradyzoite-inducing conditions', 'values', '', ''],
- 			  ['expression profiles of Pru dHXGPRT strain sodium nitroprusside bradyzoite-inducing conditions', 'values', '', ''],
- 			  ['expression profiles of RH delta-HXGPRT delta-UPRT strain Alkaline bradyzoite-inducing conditions', 'values', '', '']
+  my @profileArrayRoos = (['expression profiles of Pru dHXGPRT strain Alkaline bradyzoite-inducing conditions (media pH 8.2) [microarray]', 'values', '', ''],
+ 			  ['expression profiles of Pru dHXGPRT strain CO2-starvation bradyzoite-inducing conditions [microarray]', 'values', '', ''],
+ 			  ['expression profiles of Pru dHXGPRT strain sodium nitroprusside bradyzoite-inducing conditions [microarray]', 'values', '', ''],
+ 			  ['expression profiles of RH delta-HXGPRT delta-UPRT strain Alkaline bradyzoite-inducing conditions [microarray]', 'values', '', '']
 			  );
 
-   my @profileArrayFlo = (['expression profiles of Pru dHXGPRT strain CO2-starvation bradyzoite inducing conditions : 2-14 days (by Florence Dzierszinski)', 'values', '', ''],
-                          ['expression profiles of VEG strain CO2-starvation bradyzoite inducing conditions : 2-6 days (by Florence Dzierszinski)', 'values', '', '']
+   my @profileArrayFlo = (['expression profiles of Pru dHXGPRT strain CO2-starvation bradyzoite inducing conditions : 2-14 days (by Florence Dzierszinski) [microarray]', 'values', '', ''],
+                          ['expression profiles of VEG strain CO2-starvation bradyzoite inducing conditions : 2-6 days (by Florence Dzierszinski) [microarray]', 'values', '', '']
                          );
 
-   my @percentileArrayRoos = (['expression profiles of Pru dHXGPRT strain Alkaline bradyzoite-inducing conditions (media pH 8.2)', 'channel1_percentiles', '', ''],
- 			     ['expression profiles of Pru dHXGPRT strain CO2-starvation bradyzoite-inducing conditions', 'channel1_percentiles', '', ''],
- 			     ['expression profiles of Pru dHXGPRT strain sodium nitroprusside bradyzoite-inducing conditions', 'channel1_percentiles', '', ''],
- 			     ['expression profiles of RH delta-HXGPRT delta-UPRT strain Alkaline bradyzoite-inducing conditions', 'channel1_percentiles', '', '']
+   my @percentileArrayRoos = (['expression profiles of Pru dHXGPRT strain Alkaline bradyzoite-inducing conditions (media pH 8.2) [microarray]', 'channel1_percentiles', '', ''],
+ 			     ['expression profiles of Pru dHXGPRT strain CO2-starvation bradyzoite-inducing conditions [microarray]', 'channel1_percentiles', '', ''],
+ 			     ['expression profiles of Pru dHXGPRT strain sodium nitroprusside bradyzoite-inducing conditions [microarray]', 'channel1_percentiles', '', ''],
+ 			     ['expression profiles of RH delta-HXGPRT delta-UPRT strain Alkaline bradyzoite-inducing conditions [microarray]', 'channel1_percentiles', '', '']
  			    );
 
-   my @percentileArrayFlo = (['expression profiles of Pru dHXGPRT strain CO2-starvation bradyzoite inducing conditions : 2-14 days (by Florence Dzierszinski)', 'channel1_percentiles', '', ''],
- 			    ['expression profiles of VEG strain CO2-starvation bradyzoite inducing conditions : 2-6 days (by Florence Dzierszinski)', 'channel1_percentiles', '', '']
+   my @percentileArrayFlo = (['expression profiles of Pru dHXGPRT strain CO2-starvation bradyzoite inducing conditions : 2-14 days (by Florence Dzierszinski) [microarray]', 'channel1_percentiles', '', ''],
+ 			    ['expression profiles of VEG strain CO2-starvation bradyzoite inducing conditions : 2-6 days (by Florence Dzierszinski) [microarray]', 'channel1_percentiles', '', '']
  			   );
 
   my $id = $self->getId();
@@ -1255,8 +1223,8 @@ package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_c1a3dbb0
 sub init {
   my $self = shift;
   $self->SUPER::init(@_);
-  my @profileSet=(['M.White Cell Cycle Microarray', 'values', '', ''],);
-  my @percentileSet=(['M.White Cell Cycle Microarray', 'channel1_percentiles', '', ''],);
+  my @profileSet=(['M.White Cell Cycle Microarray [microarray]', 'values', '', ''],);
+  my @percentileSet=(['M.White Cell Cycle Microarray [microarray]', 'channel1_percentiles', '', ''],);
 
   my $colors = ['#CD853F'];
   my $graphs;
@@ -1397,7 +1365,7 @@ sub init {
 
   my $xAxisLabels = ['2 Hrs', '6 Hrs','12 Hrs', '24 Hrs','36 Hrs','48 Hrs','72 Hrs'];
 
-  my @profileArray = (['Cparvum_RT_PCR_Kissinger', 'values', '', '', $xAxisLabels ]);
+  my @profileArray = (['Cparvum_RT_PCR_Kissinger [rtpcr]', 'values', '', '', $xAxisLabels ]);
 
   my $profileSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets(\@profileArray);
 
