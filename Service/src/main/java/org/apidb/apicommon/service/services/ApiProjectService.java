@@ -22,7 +22,7 @@ public class ApiProjectService extends ProjectService {
   private static final String TAXON_QUESTION_NAME = "SequencesByTaxon"; //"GenesByTaxon";
   private static final String ORGANISM_PARAM_NAME = "organism";
 
-  private static final String[] PORTAL_PROJECT_IDS = new String[] { "EuPathDB", "VEuPathDB" };
+  private static final String[] PORTAL_PROJECT_IDS = new String[] { "UniDB", "VEuPathDB" };
 
   @Override
   protected JSONObject addSupplementalProjectInfo(JSONObject projectJson) throws WdkModelException {
