@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.apache.log4j.Logger;
 import org.apidb.apicommon.model.TranscriptUtil;
 import org.gusdb.fgputil.json.JsonUtil;
 import org.gusdb.wdk.model.WdkModelException;
@@ -21,6 +22,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class TranscriptTableReporter extends TableTabularReporter {
+
+  private static final Logger LOG = Logger.getLogger(TranscriptTableReporter.class);
 
   private String _originalQuestionName;
   private String _customTableSql;
@@ -41,6 +44,7 @@ public class TranscriptTableReporter extends TableTabularReporter {
 
       // need special processing for orthologs table
       if (_tableField.getName().equals("OrthologsLite")) {
+        LOG.info("Entering special processing for OrthologsLite table download");
 
         // look up ortholog organism option on config and convert to abbrevs
         List<String> orgAbbrevs = findOrgAbbrevs(config);
