@@ -58,22 +58,14 @@ public class JBrowseFeatureDataFactory {
     MultivaluedMap<String,String> rawQp = uriInfo.getQueryParameters();
     Map<String, String> qp = getMapFromKeys(rawQp.keySet(), key -> rawQp.getFirst(key));
 
-    // determine if protein vs genome request
-    boolean isProtein = qp.containsKey("seqType") && qp.get("seqType").equals("protein");
-
     // determine if reference feature is requested
     boolean isReferenceFeature =
-        (isProtein && "ReferenceSequenceAa".equals(feature)) ||
-        (!isProtein && "ReferenceSequence".equals(feature));
+        ("ReferenceSequence".equals(feature));
 
-    String seqId = (isProtein ?
-                    getSequenceId("aa_sequence_id", "webready.ProteinAttributes_p", refseqName, "aaseq_id_from_source_id") :
-                    getSequenceId("na_sequence_id", "webready.GenomicSeqAttributes_p", refseqName, "naseq_id_from_source_id"))
-        .orElseThrow(() -> new NotFoundException("Unable to look up sequence with ref name " + refseqName + " (isProtein=" + isProtein + ")."));
+    String seqId = getSequenceId("na_sequence_id", "webready.GenomicSeqAttributes_p", refseqName, "naseq_id_from_source_id")
+        .orElseThrow(() -> new NotFoundException("Unable to look up sequence with ref name " + refseqName ));
 
-    String featureSql = isProtein ?
-        getFeatureSql(refseqName, feature, start, end, qp, isReferenceFeature,
-            "webready.ProteinSequence_p", Category.PROTEIN, seqId) :
+    String featureSql = 
         getFeatureSql(refseqName, feature, start, end, qp, isReferenceFeature,
             "webready.GenomicSequenceSequence_p", Category.GENOME, seqId);
 
@@ -97,7 +89,7 @@ public class JBrowseFeatureDataFactory {
           return Response.ok(getFeaturesOutput(featureSql, queryName)).build();
       }
       else {
-        Optional<String> bulkSubfeatureSql = getBulkSubfeatureSql(feature, seqId, featureSql, qp, isProtein ? Category.PROTEIN : Category.GENOME);
+        Optional<String> bulkSubfeatureSql = getBulkSubfeatureSql(feature, seqId, featureSql, qp, Category.GENOME);
         return Response.ok(
           bulkSubfeatureSql.isPresent() ?
           getFeaturesOutput(featureSql, bulkSubfeatureSql.get(), queryName) :
@@ -526,7 +518,7 @@ public class JBrowseFeatureDataFactory {
     ResultSetMetaData rsmd = rs.getMetaData();
     int columns = rsmd.getColumnCount();
     for (int x = 1; x <= columns; x++) {
-      if (columnName.equals(rsmd.getColumnLabel(x))) {
+      if (columnName.equalsIgnoreCase(rsmd.getColumnLabel(x))) {
         return true;
       }
     }

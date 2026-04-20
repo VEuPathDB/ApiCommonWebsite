@@ -18,7 +18,7 @@ sub init {
   my $pch = [19,24,15,17];
   my $colors =['#996622','#0049A8',];
 
-  my $halfLifeSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets([['mRNA decay in bloodstream and procyclic form - half_life','values', 'mRNA decay in bloodstream and procyclic form - half_life_error','values', undef,undef,undef,undef,undef]]);
+  my $halfLifeSets = EbrcWebsiteCommon::View::GraphPackage::Util::makeProfileSets([['mRNA decay in bloodstream and procyclic form - half_life [RNASeq]','values', 'mRNA decay in bloodstream and procyclic form - half_life_error [RNASeq]','values', undef,undef,undef,undef,undef]]);
 
   my $id = $self->getId();
 
@@ -31,8 +31,8 @@ sub init {
   $halfLife->setPlotTitle("Halflife - $id");
 
   my $rAdjustString = <<'RADJUST';
-  profile.values <- profile.df.full[profile.df.full$PROFILE_SET != 'mRNA decay in bloodstream and procyclic form - half_life_error - values',]
-  profile.se <- profile.df.full[profile.df.full$PROFILE_SET == 'mRNA decay in bloodstream and procyclic form - half_life_error - values',]
+  profile.values <- profile.df.full[profile.df.full$PROFILE_SET != 'mRNA decay in bloodstream and procyclic form - half_life_error [RNASeq] - values',]
+  profile.se <- profile.df.full[profile.df.full$PROFILE_SET == 'mRNA decay in bloodstream and procyclic form - half_life_error [RNASeq] - values',]
   names(profile.se)[names(profile.se) == 'VALUE'] <- 'STDERR'
   profile.se <- profile.se[, c('STDERR', 'NAME')]
   profile.values$STDERR <- NULL

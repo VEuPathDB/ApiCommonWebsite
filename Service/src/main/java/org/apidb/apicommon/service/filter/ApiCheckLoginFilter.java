@@ -40,7 +40,7 @@ public class ApiCheckLoginFilter extends CheckLoginFilter {
       "transcript","gene","organism","genomic-sequence","genomic-segment","est",
       "pathway","compound","blast-est-ontology","blast-orf-ontology","file","build",
       "dfile","metrics","jbrowse-gene","dataset-release-notes","legacy-dataset",
-      "dataset","datasource","userdataset"
+      "dataset","datasource","userdataset","junction"
     ).stream().map(s -> "record-types/" + s).collect(Collectors.toList()))
     .toList();
 

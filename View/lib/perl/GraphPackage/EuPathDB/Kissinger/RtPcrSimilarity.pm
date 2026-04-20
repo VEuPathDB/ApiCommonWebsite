@@ -19,7 +19,7 @@ sub init {
   $self->setPlotWidth(450);
 
   my $secId = $self->getSecondaryId();
-  my $jsonForService = "{\"profileSetName\":\"Cparvum_RT_PCR_Kissinger\",\"profileType\":\"values\"},{\"profileSetName\":\"Cparvum_RT_PCR_Kissinger\",\"profileType\":\"values\",\"idOverride\":\"$secId\"}";
+  my $jsonForService = "{\"profileSetName\":\"Cparvum_RT_PCR_Kissinger [rtpcr]\",\"profileType\":\"values\"},{\"profileSetName\":\"Cparvum_RT_PCR_Kissinger [rtpcr]\",\"profileType\":\"values\",\"idOverride\":\"$secId\"}";
 
   my $profileSets = EbrcWebsiteCommon::View::GraphPackage::ProfileSet->new("DUMMY");
   $profileSets->setJsonForService($jsonForService);
