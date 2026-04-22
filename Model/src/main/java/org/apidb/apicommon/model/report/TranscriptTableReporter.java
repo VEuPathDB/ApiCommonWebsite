@@ -49,9 +49,6 @@ public class TranscriptTableReporter extends TableTabularReporter {
         // look up ortholog organism option on config and convert to abbrevs
         List<String> orgAbbrevs = findOrgAbbrevs(config);
 
-        // use ortholog table with organism filtering based on reporter config
-        _tableField = _baseAnswer.getQuestion().getRecordClass().getTableFieldMap().get("OrthologsLiteForDownload");
-
         // build custom table SQL
         String rawSql = _baseAnswer.getTableFieldResultSql(_tableField);
         _customTableSql = rawSql.replace("$$orthologPartitionKeys$$", orgAbbrevs.stream().collect(Collectors.joining("','","'","'")));
