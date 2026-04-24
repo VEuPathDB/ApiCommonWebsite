@@ -77,7 +77,7 @@ public class ApiRecordService extends RecordService {
             Optional.empty(),                          // don't override stdin
             LOG, Level.INFO,                           // logger and level
             Optional.empty(),                          // combine stdout/stderr and log
-            Optional.of(Duration.ofMinutes(1)), true); // use timeout
+            Optional.of(Duration.ofMinutes(1)));       // use timeout
       }
       else {
         ApiRecordService obj = new ApiRecordService();
