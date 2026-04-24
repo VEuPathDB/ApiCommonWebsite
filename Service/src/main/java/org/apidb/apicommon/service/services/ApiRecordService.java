@@ -4,6 +4,7 @@ import static org.gusdb.fgputil.functional.Functions.f0Swallow;
 import static org.gusdb.fgputil.functional.Functions.swallowAndGet;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -77,8 +78,8 @@ public class ApiRecordService extends RecordService {
         LOG.info("Using GUS_HOME = " + gusHome);
         executeAndLogOutput(
             List.of("perl", gusHome + "/bin/fgpJava", ApiRecordService.class.getName(), wdkModel.getProjectId()),
-            Map.of("GUS_HOME", gusHome),
-            LOG, Level.INFO, Optional.of(Duration.ofMinutes(1)), true);
+            Map.of("GUS_HOME", gusHome), Optional.empty(),
+            LOG, Level.INFO, Optional.empty(), Optional.of(Duration.ofMinutes(1)), true);
       }
       else {
         ApiRecordService obj = new ApiRecordService();
@@ -104,22 +105,42 @@ public class ApiRecordService extends RecordService {
   }
 
   // FIXME: This method also exists in FgpUtil's RuntimeUtil class; use as soon as it is available via upgrade
-  public static void executeAndLogOutput(List<String> command, Map<String,String> environment,
-      Logger logger, Level logLevel, Optional<Duration> processTimeout, boolean killOnTimeout) {
+  public static Optional<Integer> executeAndLogOutput(
+      List<String> command,
+      Map<String,String> environment,
+      Optional<File> stdinFile,
+      Logger logger,
+      Level logLevel,
+      Optional<File> stdoutFile,
+      Optional<Duration> processTimeout,
+      boolean killOnTimeout) {
     Thread logMonitorThread = null;
     try {
       LOG.info("Starting subprocess with command: " + String.join(" ", command));
-      // start the process
-      ProcessBuilder processBuilder = new ProcessBuilder()
-          .command(command)
-          .redirectErrorStream(true);
+
+      // configure the process
+      ProcessBuilder processBuilder = new ProcessBuilder().command(command);
+
+      // if stdin file is passed, redirect stdin to it
+      if (stdinFile.isPresent())
+        processBuilder.redirectInput(stdinFile.get());
+
+      // if stdout file is passed, write stdout to the file; otherwise merge with stderr
+      if (stdoutFile.isPresent())
+        processBuilder.redirectInput(stdoutFile.get());
+      else
+        processBuilder.redirectErrorStream(true);
+
+      // set passed environment
       processBuilder.environment().putAll(environment);
+
+      // start the process
       Process process = processBuilder.start();
 
       // start a thread to stream output to the passed Logger (if level allows)
-      BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+      InputStream streamToLog = stdoutFile.isPresent() ? process.getErrorStream() : process.getInputStream();
       logMonitorThread = new Thread(() -> {
-        try {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(streamToLog))) {
           String line;
           while ((line = reader.readLine()) != null) {
             logger.log(logLevel, ">> " + line);
@@ -139,11 +160,10 @@ public class ApiRecordService extends RecordService {
       // wait for the thread to finish processing the subprocess's output
       logMonitorThread.join();
 
+      int exitValue = process.exitValue();
       if (exitWithoutTimeout) {
-        LOG.info("Subprocess exited with exit code: " + process.exitValue());
-        if (process.exitValue() != 0) {
-          throw new RuntimeException("Subprocess exited with error code " + process.exitValue());
-        }
+        LOG.info("Subprocess exited with exit code: " + exitValue);
+        return Optional.of(exitValue);
       }
       else {
         // subprocess timed out before completion; kill if requested
@@ -157,11 +177,18 @@ public class ApiRecordService extends RecordService {
             process.destroyForcibly();
           }
         }
-        throw new RuntimeException("Subprocess timed out before completion");
+        LOG.warn("Subprocess timed out before completion");
+        return Optional.empty();
       }
     }
+    catch (RuntimeException e) {
+      if (e.getCause() != null && e.getCause() instanceof InterruptedException) {
+        throw new RuntimeException("This thread or logger thread was interrupted before subprocess handling could complete", e.getCause());
+      }
+      throw e;
+    }
     catch (InterruptedException e) {
-      throw new RuntimeException("Subprocess was interrupted before completion", e);
+      throw new RuntimeException("This thread or logger thread was interrupted before subprocess handling could complete", e);
     }
     catch (IOException e) {
       throw new RuntimeException("Error occurred while executing subprocess", e);
