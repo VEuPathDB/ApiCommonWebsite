@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.apidb.apicommon.controller.SiteSpecificTmpFileCache;
 import org.apidb.apicommon.controller.SiteSpecificTmpFileCache.CacheName;
@@ -71,11 +70,11 @@ public class ApiRecordService extends RecordService {
         String gusHome = Paths.get(GusHome.getGusHome())
             .getParent().getParent().getParent().resolve("gus_home").toString();
         LOG.info("Using GUS_HOME = " + gusHome);
-        RuntimeUtil.executeSubprocessAndLogOutput(
+        RuntimeUtil.executeSubprocess(
             List.of("perl", gusHome + "/bin/fgpJava", ApiRecordService.class.getName(), wdkModel.getProjectId()),
             Map.of("GUS_HOME", gusHome),               // subprocess environment 
             Optional.empty(),                          // don't override stdin
-            LOG, Level.INFO,                           // logger and level
+            s -> LOG.info(">> " + s),                  // logger and level
             Optional.empty(),                          // combine stdout/stderr and log
             Optional.of(Duration.ofMinutes(1)));       // use timeout
       }
