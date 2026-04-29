@@ -101,7 +101,7 @@ public class TranscriptPrimaryKeyAliasPlugin implements PrimaryKeyAliasPlugin {
     } catch (SQLException e) {
       throw new WdkModelException(e);
     } finally {
-      if (resultSet != null) SqlUtils.closeResultSetAndStatement(resultSet, null);
+      SqlUtils.closeResultSetAndStatement(resultSet);
     }
     return map;
   }

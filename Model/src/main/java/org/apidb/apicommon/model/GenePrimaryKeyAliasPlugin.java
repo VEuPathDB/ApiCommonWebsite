@@ -99,10 +99,12 @@ public class GenePrimaryKeyAliasPlugin implements PrimaryKeyAliasPlugin {
       while (resultSet.next()) {
         map.put(resultSet.getString("SOURCE_ID"), resultSet.getString("GENE_SOURCE_ID"));
       }
-    } catch (SQLException e) {
+    }
+    catch (SQLException e) {
       throw new WdkModelException(e);
-    } finally {
-      if (resultSet != null) SqlUtils.closeResultSetAndStatement(resultSet, null);
+    }
+    finally {
+      SqlUtils.closeResultSetAndStatement(resultSet);
     }
     return map;
   }

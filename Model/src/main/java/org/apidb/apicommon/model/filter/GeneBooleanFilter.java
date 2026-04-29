@@ -78,7 +78,7 @@ public class GeneBooleanFilter extends StepFilter {
       throw new WdkModelException(ex);
     }
     finally {
-      SqlUtils.closeResultSetAndStatement(resultSet, null);
+      SqlUtils.closeResultSetAndStatement(resultSet);
     }
     return new ListColumnFilterSummary(counts).toJson();
   }

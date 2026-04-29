@@ -193,9 +193,7 @@ public class ApiBasketService extends BasketService {
       throw new WdkModelException("failed running SQL to expand basket: " + sql + e);
     }
     finally {
-      if (resultSet != null) {
-        SqlUtils.closeResultSetAndStatement(resultSet, null);
-      }
+      SqlUtils.closeResultSetAndStatement(resultSet);
     }
   }
 
