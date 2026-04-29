@@ -117,7 +117,7 @@ public abstract class GenomeViewReporter extends AbstractReporter {
         throw new WdkModelException(ex);
       }
       finally {
-        SqlUtils.closeResultSetAndStatement(resultSet, null);
+        SqlUtils.closeResultSetAndStatement(resultSet);
       }
 
       // check if want to display the detail view, or density view
@@ -262,8 +262,9 @@ public abstract class GenomeViewReporter extends AbstractReporter {
         Sequence chromosome = createSequence(sequenceId, resultSet);
         chromosomes.put(sequenceId, chromosome);
       }
-    } finally {
-      SqlUtils.closeResultSetAndStatement(resultSet, null);
+    }
+    finally {
+      SqlUtils.closeResultSetAndStatement(resultSet);
     }
     return chromosomes;
   }

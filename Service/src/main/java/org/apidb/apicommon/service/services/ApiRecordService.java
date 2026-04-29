@@ -65,7 +65,7 @@ public class ApiRecordService extends RecordService {
       LOG.info("Caching expanded record classes JSON (subprocess=" + useSubprocess + ")...");
       if (useSubprocess) {
         // In webapps, gus_home is of the form: /var/www/PlasmoDB/plasmo.rdoherty/webapp/WEB-INF/wdk-model/
-        // But there is no java soft link under lib there; instead, use the "real" gus_home directory under
+        // But there is no /java soft link under lib there; instead, use the "real" gus_home directory under
         // the webapps dir.
         String gusHome = Paths.get(GusHome.getGusHome())
             .getParent().getParent().getParent().resolve("gus_home").toString();
@@ -74,14 +74,14 @@ public class ApiRecordService extends RecordService {
             List.of("perl", gusHome + "/bin/fgpJava", ApiRecordService.class.getName(), wdkModel.getProjectId()),
             Map.of("GUS_HOME", gusHome),               // subprocess environment 
             Optional.empty(),                          // don't override stdin
-            s -> LOG.info(">> " + s),                  // logger and level
-            Optional.empty(),                          // combine stdout/stderr and log
+            s -> LOG.info(">> " + s),                  // log both stdout/stderr
+            Optional.empty(),                          // don't send stdout to a file
             Optional.of(Duration.ofMinutes(1)));       // use timeout
       }
       else {
         ApiRecordService obj = new ApiRecordService();
         try (InputStream in = obj.getCachedExpandedRecordClassesJson(wdkModel)) {
-          // nothing to do; just close the stream
+          // nothing to do but close the stream
         }
       }
       LOG.info("Caching complete; took " + t.getElapsedString());
