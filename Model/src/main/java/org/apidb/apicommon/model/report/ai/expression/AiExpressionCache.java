@@ -21,7 +21,6 @@ import java.util.function.Predicate;
 import org.apache.log4j.Logger;
 import org.apidb.apicommon.model.report.ai.expression.GeneRecordProcessor.ExperimentInputs;
 import org.apidb.apicommon.model.report.ai.expression.GeneRecordProcessor.GeneSummaryInputs;
-import org.gusdb.fgputil.IoUtil;
 import org.gusdb.fgputil.cache.disk.DirectoryLock.DirectoryLockTimeoutException;
 import org.gusdb.fgputil.cache.disk.OnDiskCache;
 import org.gusdb.fgputil.cache.disk.OnDiskCache.EntryNotCreatedException;
@@ -458,7 +457,7 @@ public class AiExpressionCache {
   private void writeFileToCache(Path entryDir, String fileName, String fileContent) throws IOException {
     Path file = entryDir.resolve(fileName);
     Files.writeString(file, fileContent);
-    IoUtil.openPosixPermissions(file);
+    Utilities.tryToOpenGroupPerms(file);
   }
 
 }
