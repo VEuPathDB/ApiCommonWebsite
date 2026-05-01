@@ -86,8 +86,9 @@ commentconfig_userLoginSchema: wdkuser
 commentconfig_userLoginDbLink: '{{ modelconfig_appDb_userDbLink }}'
 commentconfig_userFileSchema: uploads
 commentconfig_userFileUploadDir: /var/www/Common/communityFilesMirror
-commentconfig_solrUrl: https://solr-sitesearch-dev.local.apidb.org:8443/solr/site_search/
-commentconfig_solrDomain: solr-sitesearch-dev.local.apidb.org
+
+solrDomain: solr-sitesearch-dev.local.apidb.org
+solrUrl: https://{{ solrDomain }}:8443/solr/site_search/
 
 
 blastconfig_blastPath: '/opt/ncbi-blast+/'
