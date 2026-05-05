@@ -10,7 +10,8 @@ modelconfig_userDb_maxIdle: 10
 modelconfig_commentdb.maxIdle: 10
 
 solrDomain: "solr-sitesearch-{{ sitesearchsolr_env_map[prefix]|default(sitesearchsolr_env_map['default']) }}.local.apidb.org"
-solrUrl: "https://{{ solrDomain }}:8443/solr/site_search/"
+solrBaseUrl: "https://{{ solrDomain }}:8443/solr"
+solrUrl: "{{ solrBaseUrl }}/site_search/"
 
 requireLogin: "true"
 
