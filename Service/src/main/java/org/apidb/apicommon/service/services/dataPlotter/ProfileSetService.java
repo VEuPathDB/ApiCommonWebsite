@@ -113,7 +113,7 @@ public class ProfileSetService extends AbstractWdkService {
                   " AND cms.protocol_app_node_id = pan.protocol_app_node_id)" + 
 	          " SELECT DISTINCT" +
 	          " CASE WHEN 'C12' in (SELECT * from iso)" +
-                  "  THEN nvl(isotopomer, 'C12')" +
+                  "  THEN coalesce(isotopomer, 'C12')" +
                   "  ELSE isotopomer" +
                   "  END AS isotopomer" +
 	          " FROM (SELECT * FROM iso)";
