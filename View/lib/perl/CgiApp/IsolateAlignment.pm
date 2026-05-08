@@ -285,7 +285,7 @@ sub getHtsSnpSql {
       $ids .= ",'$sid'";   # always compare with reference isolate
     my $sql = <<EOSQL;
 SELECT source_id, source_id,
-       substr(nas.sequence, $start,$end-$start+1) as sequence
+       substr(nas.sequence, $start::integer, ($end-$start+1)::integer) as sequence
 FROM   dots.nasequence nas
 WHERE  nas.source_id in ($ids)
 EOSQL
@@ -295,7 +295,7 @@ EOSQL
 sub getOrthoProteinSql {
     my ($ids) = @_;
     my $sql = <<EOSQL;
-select ps.source_id, ps.source_id, ps.sequence
+select ta.source_id, ta.source_id, ps.sequence
 from webready.ProteinSequence_p ps, webready.TranscriptAttributes_p ta
 where ta.protein_source_id = ps.source_id
       and ta.project_id = ps.project_id
@@ -321,8 +321,8 @@ sub getOrthoCdsSql {
 	      )
 	      select ts.source_id, gd.strand,
 	      CASE
-	      WHEN gd.strand = 'forward' then SUBSTR(ts.sequence, (gd.coding_start - gd.min+1) , gd.cds_length)
-	      WHEN gd.strand = 'reverse' then SUBSTR(ts.sequence, (gd.max - gd.coding_end+1) , (gd.cds_length))
+	      WHEN gd.strand = 'forward' then SUBSTR(ts.sequence, (gd.coding_start - gd.min+1)::integer , gd.cds_length::integer)
+	      WHEN gd.strand = 'reverse' then SUBSTR(ts.sequence, (gd.max - gd.coding_end+1)::integer , (gd.cds_length)::integer)
 	      END
 	      from webready.TranscriptSequence_p ts
 	      , geneDetails gd
@@ -346,8 +346,8 @@ sub getOrthoGenomicIsProteinSql {
 	where ta.gene_source_id in ($ids)
 	)
 	SELECT gd.gene_source_id, gd.strand,
-	CASE WHEN gd.strand = 'forward' THEN substr(gs.sequence, gd.coding_start - $upstreamOffset, (gd.coding_end - gd.coding_start) +1 + $upstreamOffset + $downstreamOffset) 
-	WHEN gd.strand = 'reverse' THEN substr(gs.sequence, gd.coding_start - $downstreamOffset, (gd.coding_end - gd.coding_start ) +1 + $upstreamOffset + $downstreamOffset)
+	CASE WHEN gd.strand = 'forward' THEN substr(gs.sequence, (gd.coding_start - $upstreamOffset)::integer, ((gd.coding_end - gd.coding_start) +1 + $upstreamOffset + $downstreamOffset)::integer) 
+	WHEN gd.strand = 'reverse' THEN substr(gs.sequence, (gd.coding_start - $downstreamOffset)::integer, ((gd.coding_end - gd.coding_start ) +1 + $upstreamOffset + $downstreamOffset)::integer)
 	END
 	FROM webready.GenomicSequenceSequence_p gs,
 	geneDetails gd
@@ -370,8 +370,8 @@ sub getOrthoGenomicNotProteinSql {
 	where ta.gene_source_id in ($ids)
 	)
 	SELECT gd.gene_source_id, gd.strand,
-	CASE WHEN gd.strand = 'forward' THEN substr(gs.sequence, gd.gene_start_min - $upstreamOffset, gd.gene_end_max - gd.gene_start_min + 1 + $upstreamOffset + $downstreamOffset)
-	WHEN gd.strand = 'reverse' THEN substr(gs.sequence, gd.gene_start_min - $downstreamOffset, gd.gene_end_max - gd.gene_start_min + 1 + $upstreamOffset + $downstreamOffset)
+	CASE WHEN gd.strand = 'forward' THEN substr(gs.sequence, (gd.gene_start_min - $upstreamOffset)::integer, (gd.gene_end_max - gd.gene_start_min + 1 + $upstreamOffset + $downstreamOffset)::integer)
+	WHEN gd.strand = 'reverse' THEN substr(gs.sequence, (gd.gene_start_min - $downstreamOffset)::integer, (gd.gene_end_max - gd.gene_start_min + 1 + $upstreamOffset + $downstreamOffset)::integer)
 	END
 	FROM webready.GenomicSequenceSequence_p gs,
 	geneDetails gd
