@@ -14,7 +14,6 @@ import org.apache.log4j.Logger;
 import org.gusdb.fgputil.FormatUtil;
 import org.gusdb.fgputil.IoUtil;
 import org.gusdb.fgputil.cache.disk.DirectoryLock;
-import org.gusdb.wdk.model.Utilities;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkRuntimeException;
@@ -61,7 +60,7 @@ public class DailyCostMonitor {
   public DailyCostMonitor(WdkModel wdkModel) throws WdkModelException {
     _costMonitoringDir = AiExpressionCache.getAiExpressionCacheParentDir(wdkModel).resolve(DAILY_COST_ACCUMULATION_FILE_DIR).toAbsolutePath();
     LOG.debug("Attempting creation of open perms cost monitoring dir: " + _costMonitoringDir);
-    Utilities.ensureCreation(Files::createDirectory, _costMonitoringDir);
+    IoUtil.ensureCreation(Files::createDirectory, _costMonitoringDir);
     if (!Files.exists(_costMonitoringDir) || !Files.isReadable(_costMonitoringDir) || !Files.isWritable(_costMonitoringDir)) {
       throw new WdkModelException("Directory " + _costMonitoringDir + " does not exist or is not readable/writeable by this user.");
     }
@@ -122,7 +121,7 @@ public class DailyCostMonitor {
             .put(JSON_COST_PROP, newCost)
             .toString();
         LOG.info("Updating daily cost file: " + fileJson);
-        Utilities.ensureCreation(Files::createFile, _costMonitoringFile);
+        IoUtil.ensureCreation(Files::createFile, _costMonitoringFile);
         try (Writer out = new FileWriter(_costMonitoringFile.toFile())) {
           out.write(fileJson);
         }

@@ -21,6 +21,7 @@ import java.util.function.Predicate;
 import org.apache.log4j.Logger;
 import org.apidb.apicommon.model.report.ai.expression.GeneRecordProcessor.ExperimentInputs;
 import org.apidb.apicommon.model.report.ai.expression.GeneRecordProcessor.GeneSummaryInputs;
+import org.gusdb.fgputil.IoUtil;
 import org.gusdb.fgputil.cache.disk.DirectoryLock.DirectoryLockTimeoutException;
 import org.gusdb.fgputil.cache.disk.OnDiskCache;
 import org.gusdb.fgputil.cache.disk.OnDiskCache.EntryNotCreatedException;
@@ -30,7 +31,6 @@ import org.gusdb.fgputil.functional.FunctionalInterfaces.ConsumerWithException;
 import org.gusdb.fgputil.functional.FunctionalInterfaces.FunctionWithException;
 import org.gusdb.fgputil.functional.FunctionalInterfaces.PredicateWithException;
 import org.gusdb.fgputil.functional.FunctionalInterfaces.SupplierWithException;
-import org.gusdb.wdk.model.Utilities;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkRuntimeException;
 import org.json.JSONException;
@@ -147,7 +147,10 @@ public class AiExpressionCache {
         .ofNullable(wdkModel.getProperties().get(CACHE_DIR_PROP_NAME))
         .map(Paths::get)
         .orElseThrow(() -> new WdkRuntimeException("No expression cache dir configured in model.prop.  Expected to find key: " + CACHE_DIR_PROP_NAME));
-    Utilities.ensureCreation(Files::createDirectory, path);
+
+    if (!Files.exists(path) || !Files.isWritable(path)) {
+      IoUtil.ensureCreation(Files::createDirectory, path);
+    }
     return path;
   }
 
@@ -449,4 +452,13 @@ public class AiExpressionCache {
     };
   }
 
+<<<<<<< HEAD
+=======
+  private void writeFileToCache(Path entryDir, String fileName, String fileContent) throws IOException {
+    Path file = entryDir.resolve(fileName);
+    Files.writeString(file, fileContent);
+    IoUtil.tryToOpenGroupPerms(file);
+  }
+
+>>>>>>> fdec78ee0... Use utilities as moved from WDK to FgpUtil
 }
