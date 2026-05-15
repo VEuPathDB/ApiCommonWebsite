@@ -93,24 +93,37 @@ In-memory `JobRegistry`:
 
 ## Database schema — sidecar table
 
-Match the existing convention (Categories, References, Attachments all use sidecars off `user_comment`).
+Match the existing convention (Categories, References, Attachments all use sidecars off `comments`).
+
+**Dev database**: PostgreSQL — `userdb_devn` on `ares13.penn.apidb.org:5432` (confirmed via LDAP lookup of `userDb_ldapCommonName: userdb_devn` on `ds.apidb.org`).
+
+**Action**: Ask Mustafa to create the table in `userdb_devn`.
+
+**Schema persistence**: `VEuPathDB/ApiCommonData` -> `Load/lib/sql/comments/psql/createCommentTables.sql`
+
+**Oracle back-port**: probably not needed (all active sites appear to be on PostgreSQL) — confirm before closing.
 
 ```sql
-CREATE TABLE userlogins5.user_comment_ai_provenance (
-  comment_id         NUMBER(10)      NOT NULL PRIMARY KEY,
-  review_level       VARCHAR2(16)    NOT NULL,    -- 'unreviewed' | 'reviewed' | 'edited'
-  source_kind        VARCHAR2(16)    NOT NULL,    -- 'pubmed' | 'upload'
-  pubmed_id          VARCHAR2(32),                -- iff source_kind='pubmed'
-  external_url       VARCHAR2(4000),              -- iff source_kind='upload', optional
-  external_title     VARCHAR2(4000),              -- iff source_kind='upload', optional
-  original_headline  VARCHAR2(4000)  NOT NULL,
-  original_content   CLOB            NOT NULL,
-  CONSTRAINT fk_ucap_comment FOREIGN KEY (comment_id)
-    REFERENCES userlogins5.user_comment (user_comment_id)
+CREATE TABLE usercomments.comment_ai_provenance
+(
+  comment_id        BIGINT        NOT NULL,
+  review_level      VARCHAR(16)   NOT NULL,   -- 'unreviewed' | 'reviewed' | 'edited'
+  source_kind       VARCHAR(16)   NOT NULL,   -- 'pubmed' | 'upload'
+  pubmed_id         VARCHAR(32),              -- iff source_kind='pubmed'
+  external_url      TEXT,                     -- iff source_kind='upload', optional
+  external_title    VARCHAR(4000),            -- iff source_kind='upload', optional
+  original_headline VARCHAR(2000) NOT NULL,
+  original_content  TEXT          NOT NULL,
+  CONSTRAINT comment_ai_provenance_pkey PRIMARY KEY (comment_id),
+  CONSTRAINT comment_ai_prov_comment_id_fkey FOREIGN KEY (comment_id)
+      REFERENCES usercomments.comments (comment_id)
 );
+
+GRANT insert, update, delete on usercomments.comment_ai_provenance to COMM_WDK_W;
+GRANT select on usercomments.comment_ai_provenance to GUS_R;
 ```
 
-The exact schema/owner (`userlogins5` vs `apidb` vs other) must be confirmed against the existing user-comment tables — TBC at implementation time.
+Style follows `createCommentTables.sql`: `BIGINT` for IDs, `VARCHAR`, `TEXT` for unbounded strings, grants to `COMM_WDK_W`/`GUS_R`. Table name follows the `comment_*` convention. `original_headline` sized to match `comments.headline VARCHAR(2000)`. FK references `usercomments.comments (comment_id)`.
 
 ## Java implementation: file layout
 
