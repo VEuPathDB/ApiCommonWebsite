@@ -31,9 +31,9 @@ sub init {
   my @profileSets;
   my %units;
   foreach my $profile (@$json) {
-    my $psId = $profile->{'PROFILE_SET_ID'};
-    my $psName = $profile->{'NAME'};
-    my $psUnit = $profile->{'UNIT'};
+    my $psId = $profile->{'profile_set_id'};
+    my $psName = $profile->{'name'};
+    my $psUnit = $profile->{'unit'};
     $units{$psUnit}=1;
     my $profileSet = EbrcWebsiteCommon::View::GraphPackage::ProfileSet->new("DUMMY");
     $profileSet->setJsonForService("{\"profileSetId\":\"$psId\",\"name\":\"$psName\"}");
@@ -50,6 +50,7 @@ sub init {
   $bar->setProfileSets(\@profileSets);
   $bar->setYaxisLabel($yAxisUnit);
   $bar->setPartName($yAxisUnit);
+die "part name: $yAxisUnit\n";
   $bar->setPlotTitle("$id - UserDataset $datasetId");
   $bar->addAdjustProfile('
 profile.df.full$NAME <- abbreviate(profile.df.full$NAME, 10)
