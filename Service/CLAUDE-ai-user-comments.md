@@ -101,6 +101,8 @@ Match the existing convention (Categories, References, Attachments all use sidec
 
 **Schema persistence**: `VEuPathDB/ApiCommonData` -> `Load/lib/sql/comments/psql/createCommentTables.sql`
 
+**Production roll-out**: Bob needs to understand how this works.
+
 **Oracle back-port**: probably not needed (all active sites appear to be on PostgreSQL) — confirm before closing.
 
 ```sql
