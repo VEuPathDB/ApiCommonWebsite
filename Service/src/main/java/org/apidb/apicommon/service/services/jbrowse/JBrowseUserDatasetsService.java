@@ -180,9 +180,14 @@ public class JBrowseUserDatasetsService extends AbstractUserService {
    */
   private List<VDIDatasetReference> queryVisibleDatasets(long userID) {
     final String schema = getWdkModel().getProperties().get(VDI_CONTROL_SCHEMA_KEY);
+
+    String typesString = Arrays.stream(VDIDatasetType.values())
+        .map(val -> "'" + val.getVdiName() + "'")
+        .collect(Collectors.joining(","));
+
     String sql = String.format(
-        "SELECT user_dataset_id, type, name, description FROM %s.AvailableUserDatasets da WHERE da.user_id = ?",
-        schema
+        "SELECT user_dataset_id, type, name, description FROM %s.AvailableUserDatasets da WHERE da.user_id = ? and type in (%s) and project_id = '%s'",
+        schema, typesString, getWdkModel().getProjectId()
     );
     LOG.debug("Querying visible datasets: " + sql);
     return new SQLRunner(getWdkModel().getAppDb().getDataSource(), sql)
