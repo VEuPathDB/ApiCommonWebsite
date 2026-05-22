@@ -3,7 +3,6 @@ package org.apidb.apicommon.model.report.sequence;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.URL;
 import java.util.Collections;
 import java.util.Map;
 
@@ -23,6 +22,7 @@ import org.gusdb.fgputil.client.RequestFailure;
 import org.gusdb.fgputil.client.ResponseFuture;
 import org.gusdb.fgputil.functional.Either;
 import org.gusdb.fgputil.functional.Functions;
+import org.gusdb.wdk.model.Utilities;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkRuntimeException;
 import org.gusdb.wdk.model.answer.request.AnswerFormatting;
@@ -183,7 +183,7 @@ public class SequenceReporter extends AbstractReporter {
 
   private boolean isWriteEmptyBedFileResponse(OutputStream out) {
     LOG.info("Will preview result to check for empty bed file at URL: " + _bedFileUrl);
-    try (InputStream in = new URL(_bedFileUrl).openStream()) {
+    try (InputStream in = Utilities.newURL(_bedFileUrl).openStream()) {
       int firstChar = in.read();
       if (firstChar == -1) {
         throw new RuntimeException("BedReporter returned empty response.");
