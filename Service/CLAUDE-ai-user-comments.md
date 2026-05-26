@@ -77,6 +77,27 @@ No `generating-product-description` in v1 (product descriptions deferred — see
 
 ## Pipeline stage details
 
+TO DO: for PDF uploads look into using the Temporary File Service (first call to this, get an ID, use in subsequent POST) - TTL should be fine (find out)
+TO DO: initial job POST payload
+{
+  // no user_id needed, WDK knows who it is
+  gene_id: string,
+  document_type: string, // discriminated union 'pubmed' | 'upload'
+  pubmed_id: string, // or...
+  temp_file_id: string,
+}
+(No JSON schema specification or publication doable)
+
+RESPONSE:
+{
+  job_id,
+  status,
+  synonyms?,
+  whatever_responses_we_have?,
+}
+
+
+
 | # | Stage | Implementation |
 |---|-------|---------------|
 | ① | `fetching-article` | If `source=pubmed`: GET `https://www.ncbi.nlm.nih.gov/research/bionlp/RESTful/pmcoa.cgi/BioC_json/{pmid}` via Java `HttpClient`, parse with Jackson, keep passages where `infons.section_type ∈ {FIG, TABLE, RESULTS, CONCL, DISCUSSION, SUPPL}`, concatenate `text` fields. Non-JSON / 404 / non-OA paper → `text-unavailable`. If `source=upload`: stream the multipart `pdf` part into Apache PDFBox (`PDDocument.load` + `PDFTextStripper`) for text extraction. **PDF is held in memory/tempdir only — never persisted.** |
@@ -103,14 +124,13 @@ Match the existing convention (Categories, References, Attachments all use sidec
 
 **Dev database**: PostgreSQL — `userdb_devn` on `ares13.penn.apidb.org:5432` (confirmed via LDAP lookup of `userDb_ldapCommonName: userdb_devn` on `ds.apidb.org`).
 
-**Action**: Ask Mustafa to create the table in `userdb_devn`.
+**Action**: Ask Mustafa or Steve to create the table in `userdb_devn`.
 
 **Schema persistence**: `VEuPathDB/ApiCommonData` -> `Load/lib/sql/comments/psql/createCommentTables.sql`
 
 **Production roll-out**: Bob needs to understand how this works.
 
 **Oracle back-port**: probably not needed (all active sites appear to be on PostgreSQL) — confirm before closing.
-
 
 ```sql
 CREATE TABLE usercomments.comment_ai_provenance
@@ -175,7 +195,7 @@ Style follows `createCommentTables.sql`: `BIGINT` for IDs, `VARCHAR`, `TEXT` for
 
 ## Prompts: porting strategy
 
-Source: `VPDB_AI_gene_paper_summary/pipeline/prompts.py` (`global_prompts_and_schema` dict, 1436 lines covering five stages — we port only `getGeneSummary` and `verifyGeneSummary`).
+Source: `VPDB_AI_gene_paper_summary/pipeline/prompts.py` at https://github.com/PubLLicanProject/VPDB_AI_gene_paper_summary/tree/main (`global_prompts_and_schema` dict, 1436 lines covering five stages — we port only `getGeneSummary` and `verifyGeneSummary`). 
 
 Approach:
 - One directory per stage under `src/main/resources/ai/prompts/<stage>/`.
