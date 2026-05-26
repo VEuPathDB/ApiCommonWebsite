@@ -15,11 +15,11 @@ The pipeline already exists in Python (`VPDB_AI_gene_paper_summary/`). For this 
 
 A new JAX-RS resource `AiGenePublicationCommentService` lives in `ApiCommonWebsite/Service`, registered in `ApiWebServiceApplication.getClasses()` alongside `UserCommentsService`. It exposes three endpoints (matching the FE contract), runs jobs asynchronously on a bounded thread pool, tracks job state in an in-memory map with TTL eviction, and on success calls the existing `getCommentFactory().createComment(...)` to persist the result.
 
-TO DO: response if threads exhausted.
-TO DO: job ID can be a digest of the query gene+synonyms and pubmedID and/or PDF contents - AFTER confirming gene IDs/synonyms; double-tap submissions will hit the same key/job ID after the initial check.
-TO DO: include model config in digest
-TO DO: as soon as we have a jobIdDigest check database sidecar (only written on completion) AND memory map - respond to client appropriately (sam
-TO DO: how much to remember about jobs that went wrong? runnin
+- TO DO: response if threads exhausted.
+- TO DO: job ID can be a digest of the query gene+synonyms and pubmedID and/or PDF contents - AFTER confirming gene IDs/synonyms; double-tap submissions will hit the same key/job ID after the initial check.
+- TO DO: include model config in digest
+- TO DO: as soon as we have a jobIdDigest check database sidecar (only written on completion) AND memory map - respond to client appropriately
+- TO DO: how much to remember about jobs that went wrong? Don't write to sidecar table (except for "only_in_passing") - let users try again for all other runtime errors
 
 The Anthropic client setup mirrors `ClaudeSummarizer` (`AnthropicOkHttpClientAsync.builder().apiKey(...)`), but we do not reuse `Summarizer` itself or its disk cache. Prompts and JSON schemas are ported from Python `pipeline/prompts.py` into `.txt` and `.json` resource files; placeholder substitution uses simple `String.replace("[GENE]", ...)` matching the Python convention.
 
@@ -77,7 +77,7 @@ No `generating-product-description` in v1 (product descriptions deferred — see
 
 ## Pipeline stage details
 
-TO DO: for PDF uploads look into using the Temporary File Service (first call to this, get an ID, use in subsequent POST) - TTL should be fine (find out)
+TO DO: for PDF uploads look into using the Temporary File Service (@../WDK) (first call to this, get an ID, use in subsequent POST) - TTL should be fine (find out)
 TO DO: initial job POST payload
 {
   // no user_id needed, WDK knows who it is
@@ -159,6 +159,10 @@ GRANT select on usercomments.comment_ai_provenance to GUS_R;
 Style follows `createCommentTables.sql`: `BIGINT` for IDs, `VARCHAR`, `TEXT` for unbounded strings, grants to `COMM_WDK_W`/`GUS_R`. Table name follows the `comment_*` convention. `original_headline` sized to match `comments.headline VARCHAR(2000)`. FK references `usercomments.comments (comment_id)`.
 
 ## Java implementation: file layout
+
+
+TO DO: first deliverable is stub out all new classes and interfaces and JAX-RS annotations - see comments service for design pattern - pause for user review
+
 
 ### New code (this plan)
 
