@@ -15,12 +15,18 @@ The pipeline already exists in Python (`VPDB_AI_gene_paper_summary/`). For this 
 
 A new JAX-RS resource `AiGenePublicationCommentService` lives in `ApiCommonWebsite/Service`, registered in `ApiWebServiceApplication.getClasses()` alongside `UserCommentsService`. It exposes three endpoints (matching the FE contract), runs jobs asynchronously on a bounded thread pool, tracks job state in an in-memory map with TTL eviction, and on success calls the existing `getCommentFactory().createComment(...)` to persist the result.
 
+TO DO: response if threads exhausted.
+TO DO: job ID can be a digest of the query gene+synonyms and pubmedID and/or PDF contents - AFTER confirming gene IDs/synonyms; double-tap submissions will hit the same key/job ID after the initial check.
+TO DO: include model config in digest
+TO DO: as soon as we have a jobIdDigest check database sidecar (only written on completion) AND memory map - respond to client appropriately (sam
+TO DO: how much to remember about jobs that went wrong? runnin
+
 The Anthropic client setup mirrors `ClaudeSummarizer` (`AnthropicOkHttpClientAsync.builder().apiKey(...)`), but we do not reuse `Summarizer` itself or its disk cache. Prompts and JSON schemas are ported from Python `pipeline/prompts.py` into `.txt` and `.json` resource files; placeholder substitution uses simple `String.replace("[GENE]", ...)` matching the Python convention.
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │ AiGenePublicationCommentService (JAX-RS)                        │
-│  POST  /user-comments/ai-gene-publication       → 202 {jobId}    │
+│  POST  /user-comments/ai-gene-publication       → {jobIdDigest} │
 │  GET   /user-comments/ai-gene-publication/{id}  → status         │
 │  DELETE /user-comments/ai-gene-publication/{id} → cancel         │
 └─────────┬───────────────────────────────────────────────────────┘
@@ -105,17 +111,22 @@ Match the existing convention (Categories, References, Attachments all use sidec
 
 **Oracle back-port**: probably not needed (all active sites appear to be on PostgreSQL) — confirm before closing.
 
+
 ```sql
 CREATE TABLE usercomments.comment_ai_provenance
 (
   comment_id        BIGINT        NOT NULL,
+  -- TO DO: add jobIdDigest
+  -- TO DO: model info (for display, it's also in the digest)
+  -- TO DO: synonyms used?
   review_level      VARCHAR(16)   NOT NULL,   -- 'unreviewed' | 'reviewed' | 'edited'
   source_kind       VARCHAR(16)   NOT NULL,   -- 'pubmed' | 'upload'
   pubmed_id         VARCHAR(32),              -- iff source_kind='pubmed'
   external_url      TEXT,                     -- iff source_kind='upload', optional
   external_title    VARCHAR(4000),            -- iff source_kind='upload', optional
-  original_headline VARCHAR(2000) NOT NULL,
-  original_content  TEXT          NOT NULL,
+  is_only_mentioned_in_passing BOOLEAN,       -- if TRUE then original_headline and original_content may be NULL
+  original_headline VARCHAR(2000),            -- unedited/original AI headline
+  original_content  TEXT,                     -- unedited/original AI content
   CONSTRAINT comment_ai_provenance_pkey PRIMARY KEY (comment_id),
   CONSTRAINT comment_ai_prov_comment_id_fkey FOREIGN KEY (comment_id)
       REFERENCES usercomments.comments (comment_id)
