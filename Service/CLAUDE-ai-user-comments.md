@@ -17,7 +17,7 @@ A new JAX-RS resource `AiGenePublicationCommentService` lives in `ApiCommonWebsi
 
 **Submit lifecycle.** From the FE's perspective the whole flow is **two HTTP interactions for PubMed** (our POST, then polled GETs) and **three for upload** (FE first POSTs the PDF to WDK `/temporary-files`, then our POST with `temp_file_id`, then polled GETs). Inside our POST handler there are **two phases**: (a) a *synchronous prelude* (target <2s) that resolves gene synonyms in-process, hashes the PDF if applicable, computes a content-digest `jobId`, looks up `comment_ai_run` and the in-memory registry, and either returns a cache-hit response or attaches the caller to an in-flight job, then (b) the *asynchronous pipeline* that runs only on a true miss.
 
-**Identifiers.** The `jobId` is a hex SHA-256 over `(geneId, sorted-resolved-synonyms, source-key, modelFingerprint)`, where the source-key is the PubMed id or the SHA-256 of the PDF content and `modelFingerprint = sha256(modelName ‖ systemPromptText ‖ userPromptTemplateText ‖ temperature)`. The same identifier keys the in-memory registry and the `comment_ai_run` cache row, so double-tap submits and cross-user resubmissions naturally dedupe.
+**Identifiers.** The `jobId` is a hex SHA-256 over `(geneId, sorted-resolved-synonyms, source-key, modelName, promptVersion)`, where the source-key is the PubMed id or the SHA-256 of the PDF content. `promptVersion` is a manually-bumped constant per prompt stage (one per `getGeneSummary` / `verifyGeneSummary`) — devs bump it when they edit the prompt files, the same way they'd bump a schema version. The same `jobId` keys the in-memory registry and the `comment_ai_run` cache row, so double-tap submits and cross-user resubmissions naturally dedupe.
 
 **Pool exhaustion** returns `503 Service Unavailable` with a `Retry-After` header (no queueing). The FE renders a friendly toast and offers retry.
 
@@ -134,7 +134,7 @@ Runs entirely on the request thread, target <2 s end-to-end. Performs no LLM cal
 | 0a | Validate request shape. |
 | 0b | Resolve `gene_id` + aliases via `wdkModel.getRecordClass("GeneRecordClasses.GeneRecordClass")`. 404 if the stableId is unknown. |
 | 0c | If `document_type=upload`: resolve `temp_file_id` to a `java.nio.file.Path` via `TemporaryFileService.getTempFileFactory(wdkModel, tmpUserData).apply(tempFileId)`. 404 if missing/expired. Stream the file through `MessageDigest.getInstance("SHA-256")` for the source-key. |
-| 0d | Compute `job_id = sha256(geneId ‖ sortedSynonyms ‖ sourceKey ‖ modelFingerprint)`. |
+| 0d | Compute `job_id = sha256(geneId ‖ sortedSynonyms ‖ sourceKey ‖ modelName ‖ promptVersion)`. |
 | 0e | `SELECT * FROM comment_ai_run WHERE job_id = ?`. **Hit** → aggregate `sibling_summary` from `comment_ai_provenance`, create the submitter's `comments` + `comment_ai_provenance` rows inline (per `options.create_user_comment`), return the terminal cache-hit response with `comment_id` and `sibling_summary`. |
 | 0f | Registry lookup by `job_id`. **Hit** → register the caller as a follower of the in-flight job and return its current `running` state. |
 | 0g | Miss → spawn the async pipeline on the bounded executor and return `running { job_id, stage: "queued" }`. **Pool full → 503 + `Retry-After`**. |
@@ -180,8 +180,8 @@ Match the existing convention (Categories, References, Attachments all use sidec
 CREATE TABLE usercomments.comment_ai_run
 (
   job_id                       VARCHAR(64)  NOT NULL,   -- hex SHA-256
-  model_name                   VARCHAR(64)  NOT NULL,
-  model_fingerprint            VARCHAR(64),             -- sha256 of model + prompt template + temperature
+  model_name                   VARCHAR(64)  NOT NULL,   -- e.g. 'claude-sonnet-4-6'
+  prompt_version               VARCHAR(32)  NOT NULL,   -- manually-bumped constant per prompt stage
   source_kind                  VARCHAR(16)  NOT NULL,   -- 'pubmed' | 'upload'
   pubmed_id                    VARCHAR(32),             -- iff source_kind='pubmed'
   external_url                 TEXT,                    -- iff source_kind='upload', optional
@@ -298,7 +298,7 @@ These are flagged for the user to decide or coordinate, not implemented in this 
 2. **EbrcWebsiteCommon coordination**: extending `CommentRequest`/`Comment`/`CommentFactory` to carry `aiProvenance` and read/write the two new sidecar tables. May span repos.
 3. **DB migration script placement / review**: scripts live in `ApiCommonModel/Model/lib/sql/` (corrected location) — DBA review and migration scripting follows existing project conventions.
 4. **Product descriptions** (Python stages 3–5): explicitly deferred. When added, they get `options.generate_product_description=true`, a new `generating-product-description` stage, and a separate persistence target (TBD).
-5. **Prompt drift**: the Python pipeline is still being iterated (test sets, model comparison runs ongoing). Ported Java prompts will drift unless re-synced. A v2 option is to read prompts from a shared file/repo, or to revisit the integration choice. Note that prompt text is part of the `modelFingerprint` baked into `job_id` — changes invalidate the cache automatically.
+5. **Prompt drift**: the Python pipeline is still being iterated (test sets, model comparison runs ongoing). Ported Java prompts will drift unless re-synced. A v2 option is to read prompts from a shared file/repo, or to revisit the integration choice. Cache invalidation on prompt edits is **manual** — devs bump `promptVersion` (the per-stage constant baked into `job_id`) when they touch the prompt files. Convention enforced by code review.
 6. **No daily cost cap in v1**: unlike `AiExpressionSummary`'s `DailyCostMonitor`, this service does not currently rate-limit by daily spend. If volume warrants, plug into the existing `DailyCostMonitor` pattern as a follow-up.
 7. **`/user-comments/show` modernisation, gene-page provenance column, de-duplication** — all deferred per the FE plan.
 8. **Optional `comment_ai_text_unavailable_log` table** (append-only, no read path) — would let us measure how often `text-unavailable` outcomes occur and decide later whether short-lived caching is worth it. Not added in this plan — decision pending.
