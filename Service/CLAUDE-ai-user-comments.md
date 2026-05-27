@@ -4,7 +4,7 @@
 
 VEuPathDB is adding a new kind of user comment: an **AI-assisted gene-publication summary**. A user supplies a gene (via URL `stableId`) and a publication (a PubMed ID or an uploaded PDF). A new back-end service:
 
-1. Resolves the publication text (PMC BioC API for PubMed, local PDF extraction for uploads).
+1. Resolves the publication text (PMC BioC API for PubMed; for uploads, the FE has already extracted text client-side with MuPDF.js and sends it in the POST body — the PDF itself never reaches the server).
 2. Looks up gene synonyms from VEuPathDB and verifies the gene is mentioned in the text.
 3. Runs an LLM to generate a gene-function summary, with an optional validation pass.
 4. Persists a `user_comment` row carrying an `aiProvenance` record so the FE can show a review-and-publish form.
@@ -15,9 +15,9 @@ The pipeline already exists in Python (`VPDB_AI_gene_paper_summary/`). For this 
 
 A new JAX-RS resource `AiGenePublicationCommentService` lives in `ApiCommonWebsite/Service`, registered in `ApiWebServiceApplication.getClasses()` alongside `UserCommentsService`. It exposes three endpoints (matching the FE contract), runs jobs asynchronously on a bounded thread pool, tracks job state in an in-memory map with TTL eviction, and on success calls the existing `getCommentFactory().createComment(...)` to persist the result.
 
-**Submit lifecycle.** From the FE's perspective the whole flow is **two HTTP interactions for PubMed** (our POST, then polled GETs) and **three for upload** (FE first POSTs the PDF to WDK `/temporary-files`, then our POST with `temp_file_id`, then polled GETs). Inside our POST handler there are **two phases**: (a) a *synchronous prelude* (target <2s) that resolves gene synonyms in-process, hashes the PDF if applicable, computes a content-digest `jobId`, looks up `comment_ai_run` and the in-memory registry, and either returns a cache-hit response or attaches the caller to an in-flight job, then (b) the *asynchronous pipeline* that runs only on a true miss.
+**Submit lifecycle.** From the FE's perspective the whole flow is **two HTTP interactions** in both cases (our POST, then polled GETs). For the upload path, the FE does the PDF heavy lifting locally: it extracts text using **MuPDF.js** (WASM, lazy-loaded only when the user picks the upload tab) and computes a SHA-256 of the PDF bytes, then sends `{ paper_text, pdf_content_sha256, ... }` in the POST body — the PDF itself never leaves the user's machine. Inside our POST handler there are **two phases**: (a) a *synchronous prelude* (target <2s) that resolves gene synonyms in-process, computes a content-digest `jobId`, looks up `comment_ai_run` and the in-memory registry, and either returns a cache-hit response or attaches the caller to an in-flight job, then (b) the *asynchronous pipeline* that runs only on a true miss.
 
-**Identifiers.** The `jobId` is a hex SHA-256 over `(geneId, sorted-resolved-synonyms, source-key, modelName, promptVersion)`, where the source-key is the PubMed id or the SHA-256 of the PDF content. `promptVersion` is a manually-bumped constant per prompt stage (one per `getGeneSummary` / `verifyGeneSummary`) — devs bump it when they edit the prompt files, the same way they'd bump a schema version. The same `jobId` keys the in-memory registry and the `comment_ai_run` cache row, so double-tap submits and cross-user resubmissions naturally dedupe.
+**Identifiers.** The `jobId` is a hex SHA-256 over `(geneId, sorted-resolved-synonyms, source-key, modelName, promptVersion)`, where the source-key is the PubMed id (PubMed path) or the FE-supplied `pdf_content_sha256` (upload path). `promptVersion` is a manually-bumped constant per prompt stage (one per `getGeneSummary` / `verifyGeneSummary`) — devs bump it when they edit the prompt files, the same way they'd bump a schema version. The same `jobId` keys the in-memory registry and the `comment_ai_run` cache row, so double-tap submits and cross-user resubmissions naturally dedupe.
 
 **Pool exhaustion** returns `503 Service Unavailable` with a `Retry-After` header (no queueing). The FE renders a friendly toast and offers retry.
 
@@ -26,10 +26,12 @@ The Anthropic client setup mirrors `ClaudeSummarizer` (`AnthropicOkHttpClientAsy
 ```
                                           (upload path only)
                                 ┌──────────────────────────────┐
-                                │ WDK /temporary-files         │
-                                │   POST PDF → temp_file_id    │
+                                │ Front-end / browser          │
+                                │  MuPDF.js (WASM, lazy-loaded)│
+                                │   PDF → paper_text           │
+                                │       + pdf_content_sha256   │
                                 └──────────────┬───────────────┘
-                                               │ temp_file_id
+                                               │ JSON in POST body
                                                ▼
 ┌─────────────────────────────────────────────────────────────────┐
 │ AiGenePublicationCommentService (JAX-RS, JSON-only)             │
@@ -43,11 +45,11 @@ The Anthropic client setup mirrors `ClaudeSummarizer` (`AnthropicOkHttpClientAsy
 │ Sync prelude                                                    │
 │  0a validate request                                            │
 │  0b resolve gene synonyms (WDK RecordClass, in-process)         │
-│  0c if upload: read temp_file → SHA-256 of PDF content          │
-│  0d compute jobId = sha256(gene, synonyms, source-key, model)   │
-│  0e SELECT comment_ai_run by jobId  ──hit──► cache-hit response │
-│  0f registry lookup by jobId        ──hit──► attach as follower │
-│  0g miss → spawn pipeline on bounded executor (503 if full)     │
+│  0c compute jobId = sha256(gene, synonyms, source-key, model)   │
+│       source-key = pubmed_id | pdf_content_sha256               │
+│  0d SELECT comment_ai_run by jobId  ──hit──► cache-hit response │
+│  0e registry lookup by jobId        ──hit──► attach as follower │
+│  0f miss → spawn pipeline on bounded executor (503 if full)     │
 └─────────┬───────────────────────────────────────────────────────┘
           │
           ▼
@@ -61,7 +63,8 @@ The Anthropic client setup mirrors `ClaudeSummarizer` (`AnthropicOkHttpClientAsy
           ▼
 ┌─────────────────────────────────────────────────────────────────┐
 │ AiGenePublicationPipeline (async)                               │
-│  ① fetchArticleText  (PMC BioC fetcher  | iText 5 extractor)     │
+│  ① resolveArticleText (PMC BioC fetch for pubmed; pass-through  │
+│                        for upload — text is in the POST body)   │
 │  ② scanGeneMentions  (regex matcher ported from helpers.py)      │
 │  ③ generateSummary   (Anthropic call — getGeneSummary prompt)    │
 │  ④ validateSummary   (Anthropic call — verifyGeneSummary prompt) │
@@ -76,14 +79,15 @@ The Anthropic client setup mirrors `ClaudeSummarizer` (`AnthropicOkHttpClientAsy
 
 Matches `CLAUDE-plan-ai-user-comments-front-end.md` §"Backend contract" with the additions noted in **Out of scope / coordination items** below.
 
-**POST body** (JSON-only — PDF uploads use WDK TempFileService first, then submit `temp_file_id`):
+**POST body** (JSON-only — for the upload path the FE has already extracted the text client-side with MuPDF.js and computed the PDF content hash; the PDF itself is never uploaded):
 
 ```json
 {
   "gene_id": "string",
   "document_type": "pubmed | upload",
   "pubmed_id": "string (iff document_type=pubmed)",
-  "temp_file_id": "string (iff document_type=upload)",
+  "paper_text": "string (iff document_type=upload) — extracted by MuPDF.js",
+  "pdf_content_sha256": "string (iff document_type=upload) — hex SHA-256 of the PDF bytes, computed via Web Crypto",
   "external_url": "string (optional, upload provenance)",
   "external_title": "string (optional, upload provenance)",
   "options": {
@@ -93,7 +97,7 @@ Matches `CLAUDE-plan-ai-user-comments-front-end.md` §"Backend contract" with th
 }
 ```
 
-Snake-case keys match the existing comments-service JSON convention. No `user_id` — WDK identifies the caller.
+Snake-case keys match the existing comments-service JSON convention. No `user_id` — WDK identifies the caller. Typical `paper_text` size: 30–200 KB; well under standard servlet POST limits.
 
 **POST response** uses the same union as the GET status response (i.e. POST may return a terminal state directly on a cache hit):
 
@@ -131,19 +135,18 @@ Runs entirely on the request thread, target <2 s end-to-end. Performs no LLM cal
 
 | Step | Action |
 |------|--------|
-| 0a | Validate request shape. |
+| 0a | Validate request shape. For uploads, require both `paper_text` (non-empty) and `pdf_content_sha256` (64-char hex). |
 | 0b | Resolve `gene_id` + aliases via `wdkModel.getRecordClass("GeneRecordClasses.GeneRecordClass")`. 404 if the stableId is unknown. |
-| 0c | If `document_type=upload`: resolve `temp_file_id` to a `java.nio.file.Path` via `TemporaryFileService.getTempFileFactory(wdkModel, tmpUserData).apply(tempFileId)`. 404 if missing/expired. Stream the file through `MessageDigest.getInstance("SHA-256")` for the source-key. |
-| 0d | Compute `job_id = sha256(geneId ‖ sortedSynonyms ‖ sourceKey ‖ modelName ‖ promptVersion)`. |
-| 0e | `SELECT * FROM comment_ai_run WHERE job_id = ?`. **Hit** → aggregate `sibling_summary` from `comment_ai_provenance`, create the submitter's `comments` + `comment_ai_provenance` rows inline (per `options.create_user_comment`), return the terminal cache-hit response with `comment_id` and `sibling_summary`. |
-| 0f | Registry lookup by `job_id`. **Hit** → register the caller as a follower of the in-flight job and return its current `running` state. |
-| 0g | Miss → spawn the async pipeline on the bounded executor and return `running { job_id, stage: "queued" }`. **Pool full → 503 + `Retry-After`**. |
+| 0c | Compute `job_id = sha256(geneId ‖ sortedSynonyms ‖ sourceKey ‖ modelName ‖ promptVersion)` where `sourceKey = pubmed_id` (PubMed path) or `pdf_content_sha256` (upload path, supplied by the FE). |
+| 0d | `SELECT * FROM comment_ai_run WHERE job_id = ?`. **Hit** → aggregate `sibling_summary` from `comment_ai_provenance`, create the submitter's `comments` + `comment_ai_provenance` rows inline (per `options.create_user_comment`), return the terminal cache-hit response with `comment_id` and `sibling_summary`. |
+| 0e | Registry lookup by `job_id`. **Hit** → register the caller as a follower of the in-flight job and return its current `running` state. |
+| 0f | Miss → spawn the async pipeline on the bounded executor and return `running { job_id, stage: "queued" }`. **Pool full → 503 + `Retry-After`**. |
 
 ### Stages 1–6: async pipeline
 
 | # | Stage | Implementation |
 |---|-------|---------------|
-| ① | `fetching-article` | If `document_type=pubmed`: GET `https://www.ncbi.nlm.nih.gov/research/bionlp/RESTful/pmcoa.cgi/BioC_json/{pmid}` via Java `HttpClient`, parse with Jackson, keep passages where `infons.section_type ∈ {FIG, TABLE, RESULTS, CONCL, DISCUSSION, SUPPL}`, concatenate `text` fields. Non-JSON / 404 / non-OA paper → terminal `text-unavailable` (not persisted to the cache). If `document_type=upload`: pass the `Path` resolved in stage 0c into iText 5's `PdfTextExtractor.getTextFromPage(reader, pageNum)`, iterated over `reader.getNumberOfPages()`. iText 5 (`com.itextpdf:itextpdf`) is already pinned in `gus-project-pom` and pulled in transitively via `WDK/Model`; we declare it explicitly in the Service pom. **PDF is held in memory/tempdir only — never persisted.** |
+| ① | `fetching-article` | If `document_type=pubmed`: GET `https://www.ncbi.nlm.nih.gov/research/bionlp/RESTful/pmcoa.cgi/BioC_json/{pmid}` via Java `HttpClient`, parse with Jackson, keep passages where `infons.section_type ∈ {FIG, TABLE, RESULTS, CONCL, DISCUSSION, SUPPL}`, concatenate `text` fields. Non-JSON / 404 / non-OA paper → terminal `text-unavailable` (not persisted to the cache). If `document_type=upload`: nothing to fetch — the FE-supplied `paper_text` is used directly. The stage still emits a `fetching-article` progress event for symmetry, but completes immediately. |
 | ② | `scanning-gene-mentions` | Port `_count_substrings` from `PubGene_back_end/helpers.py` (regex matcher: handles `Nd6` ↔ `Nd-6`, `PF3D7_1133400` ↔ `PF3D7-1133400`, case-insensitive, non-alphanumeric boundaries). If the gene id and *all* aliases score 0 hits → terminal `gene-not-mentioned` with `synonyms_checked` populated (this outcome **is** persisted to `comment_ai_run`). Otherwise pass the top-3-by-frequency aliases into the prompt. |
 | ③ | `generating-summary` | Anthropic API call. System prompt + user prompts loaded from `resources/ai/prompts/getGeneSummary/{system.txt,user.txt,schema.json}`. Placeholder substitution: `[PAPER_TEXT]`, `[GENE]`, `[N_QUOTES]`, `[JSON_SCHEMA]`. Prefill assistant turn with `{` (matches Python). Strip markdown fences from response, parse JSON. On the response's `only_in_passing=true` → short-circuit to terminal `mentioned-in-passing` (persisted to `comment_ai_run`). Up to `max_retry=3` retries via formatter LLM on malformed JSON (port `extract_json` retry loop). |
 | ④ | `validating` (iff `options.validate`) | Anthropic call using `verifyGeneSummary` prompt. Input: original summary JSON + paper text. Output: verified/corrected summary in the same shape. If validation finds blocking issues we can't recover from, terminal `validation-error` with the validator's notes (not persisted to the cache). |
@@ -234,7 +237,6 @@ Style follows the existing comment-sidecar conventions: `BIGINT` for the comment
 | create | `ApiCommonWebsite/Service/src/main/java/org/apidb/apicommon/service/services/ai/AiGenePublicationPipeline.java` — orchestrator: runs stages ①–⑥, emits progress callbacks |
 | create | `ApiCommonWebsite/Service/src/main/java/org/apidb/apicommon/service/services/ai/SyncPrelude.java` — gene-synonym resolution, PDF content hash, digest, cache/registry lookup, follower attach |
 | create | `ApiCommonWebsite/Service/src/main/java/org/apidb/apicommon/service/services/ai/article/PmcBiocFetcher.java` |
-| create | `ApiCommonWebsite/Service/src/main/java/org/apidb/apicommon/service/services/ai/article/PaperPdfExtractor.java` (iText 5 wrapper around a `Path` resolved via `TemporaryFileService`; **dual-entry-point**: a `static String extract(Path)` method for the JAX-RS pipeline plus a thin `main(String[])` wrapper printing extracted text to stdout, so the Python team can shell out and benchmark against MuPDF using exactly the same code path that runs in production). Class is named to avoid a collision with `com.itextpdf.text.pdf.parser.PdfTextExtractor`. |
 | create | `ApiCommonWebsite/Service/src/main/java/org/apidb/apicommon/service/services/ai/gene/GeneSynonymService.java` (WDK `RecordClass` lookup) |
 | create | `ApiCommonWebsite/Service/src/main/java/org/apidb/apicommon/service/services/ai/gene/GeneMentionScanner.java` (regex matcher port) |
 | create | `ApiCommonWebsite/Service/src/main/java/org/apidb/apicommon/service/services/ai/llm/AnthropicJsonClient.java` (thin wrapper: load prompt files, substitute placeholders, parse JSON with retry) |
@@ -250,7 +252,7 @@ Style follows the existing comment-sidecar conventions: `BIGINT` for the comment
 | create | DB migration script under `ApiCommonModel/Model/lib/sql/` (follow the `migration_comment_b*.sql` pattern) for both new tables |
 | modify | `ApiCommonWebsite/Service/src/main/java/org/apidb/apicommon/service/ApiWebServiceApplication.java` — `.add(AiGenePublicationCommentService.class)` |
 | modify | `ApiCommonWebsite/Service/doc/raml/apicommonwebsite.raml` — document the three new endpoints |
-| modify | `ApiCommonWebsite/Service/pom.xml` — declare `com.itextpdf:itextpdf` explicitly (version is already pinned in `gus-project-pom` at 5.5.13.5; the jar is `itextpdf-x.y.z.jar` core only — `itext-xtra` / `itext-pdfa` / `xmlworker` are not needed). Also add `maven-shade-plugin` config to produce a `paper-pdf-extractor.jar` with `Main-Class` set to `PaperPdfExtractor`, for the off-site benchmark. `anthropic-java` is already present in the Model pom; no SDK addition needed there. |
+| modify | `ApiCommonWebsite/Service/pom.xml` — no new PDF dependency needed (text extraction happens client-side in MuPDF.js, the server never touches a PDF). `anthropic-java` is already present in the Model pom; no SDK addition needed there. |
 | modify | `ApiCommonWebsite/Model/src/main/java/org/apidb/apicommon/model/comment/CommentFactory.java` (or its EbrcWebsiteCommon parent) — extend the `createComment` transaction (currently `con.setAutoCommit(false)` → `con.commit()` at `CommentFactory.java:196,234`) to also insert `comment_ai_provenance` when an `AiProvenance` is supplied on the request. Extend `GetCommentQuery` to LEFT JOIN the provenance + run rows. **Coordination item with EbrcWebsiteCommon.** |
 | modify | `ApiCommonWebsite/Model/src/main/java/org/apidb/apicommon/model/comment/pojo/CommentRequest.java` and `Comment.java` — add `aiProvenance` field (optional). |
 
@@ -260,8 +262,8 @@ Style follows the existing comment-sidecar conventions: `BIGINT` for the comment
 
 Subsequent deliverables, in order:
 
-1. Sync prelude (gene/synonym resolution, PDF hash, digest, `comment_ai_run` lookup, registry attach).
-2. PMC BioC + PDFBox article fetchers.
+1. Sync prelude (gene/synonym resolution, digest, `comment_ai_run` lookup, registry attach).
+2. PMC BioC article fetcher (pubmed path); upload path just reads `paper_text` from the request.
 3. Gene-mention regex scanner.
 4. Anthropic call + JSON retry loop for `generating-summary`.
 5. Validation pass (`verifyGeneSummary`).
@@ -271,7 +273,6 @@ Subsequent deliverables, in order:
 
 ### Reused without modification
 
-- **WDK Temporary File Service** — `TemporaryFileService.getTempFileFactory(wdkModel, tmpUserData).apply(tempFileId)` from `WDK/Service/src/main/java/org/gusdb/wdk/service/service/TemporaryFileService.java`. Returns `Optional<Path>`; consumption pattern lifted from `DatasetRequestProcessor.java:246–249`. 60-min session TTL (Caffeine-cached), refreshed on access — fine for an upload-then-submit flow that takes seconds.
 - **Anthropic client setup pattern** — `AnthropicOkHttpClientAsync.builder().apiKey(wdkModel.getProperties().get("CLAUDE_API_KEY")).maxRetries(32)...` (lifted verbatim from `ClaudeSummarizer` at `ApiCommonWebsite/Model/src/main/java/org/apidb/apicommon/model/report/ai/expression/ClaudeSummarizer.java`).
 - **`fetchUser()` / `getRequestingUser()`** from `AbstractWdkService` / `AbstractUserCommentService` — authenticates the caller; throws 401 for guests, which is the FE-required `requiresLogin: true` behaviour.
 - **`getCommentFactory().createComment(commentRequest, user)`** from the existing `UserCommentsService` flow (line 91 of that file) — does the bulk of the persistence; its transaction scope (`CommentFactory.java:196,234`) is what we extend with the provenance insert.
@@ -303,8 +304,7 @@ These are flagged for the user to decide or coordinate, not implemented in this 
 7. **`/user-comments/show` modernisation, gene-page provenance column, de-duplication** — all deferred per the FE plan.
 8. **Optional `comment_ai_text_unavailable_log` table** (append-only, no read path) — would let us measure how often `text-unavailable` outcomes occur and decide later whether short-lived caching is worth it. Not added in this plan — decision pending.
 9. **Per-follower DELETE semantics**: today a DELETE cancels the underlying job for *all* attached followers. A future addition could let one follower detach without killing the job for others; not in v1.
-10. **PDF extraction quality**: iText 5's extractor is good for ordinary academic PDFs but can scramble reading order on multi-column layouts. The Python pipeline currently uses **PyMuPDF** (`pymupdf4llm.to_markdown`) which is generally higher quality on the same inputs. Risk: prompts tuned against PyMuPDF output may underperform when fed iText-extracted text. **Mitigation**: the Python team can run an off-site benchmark of iText vs. their existing MuPDF by shelling out to the shaded `paper-pdf-extractor.jar` (same code path as production), against the test corpus they already use for prompt iteration.
-11. **MuPDF Java bindings as a fallback**: if the benchmark above shows iText loses meaningfully, consider building MuPDF's Java bindings from source per <https://mupdf.readthedocs.io/en/1.27.2/guide/using-with-java.html> and vendoring the resulting native library (`.so`/`.dll`/`.dylib`). Worth doing **only if** compile/vendoring turns out to be straightforward on the deployment platforms (Linux servers, dev macs); the native-lib deployment story is otherwise more complex than reusing a pure-Java dep. Treat as a v1.1 escape hatch, not a planned v1 feature.
+10. **FE coordination — client-side PDF extraction**: the FE plan needs (a) MuPDF.js (WASM, lazy-loaded only on the upload tab — see <https://mupdf.readthedocs.io/en/1.27.2/guide/using-with-javascript.html>), (b) Web Crypto SHA-256 of the PDF bytes, (c) POST body shape carrying `paper_text` + `pdf_content_sha256`, (d) a graceful client-side error UI for the case where MuPDF.js fails to parse a particular PDF (since that no longer surfaces as a server-side `text-unavailable`). The text-extraction quality matches the Python pipeline (MuPDF.js and PyMuPDF share the MuPDF engine), so prompts that have been tuned against the Python output should transfer cleanly.
 
 ## Verification
 
@@ -312,7 +312,7 @@ These are flagged for the user to decide or coordinate, not implemented in this 
 2. **Service registers**: `GET /user-comments/ai-gene-publication/<bogus-digest>` returns 404 (not a JAX-RS 405/wrong-route error).
 3. **Auth gate**: same call from a guest session returns 401.
 4. **PubMed happy path**: POST with a known OA PMID + gene that's clearly discussed → POST returns `running { job_id, stage }` within ~2s, polling shows stages advance, terminal `success` returns `ai_output` + `comment_id`. `comment_ai_run` row exists keyed by the digest; `comment_ai_provenance` row exists for the submitter with `review_level='unreviewed'`; `GET /user-comments/{comment_id}` returns the full comment with `aiProvenance` populated.
-5. **PDF happy path**: FE first POSTs the PDF to WDK `/temporary-files`, captures the `ID` response header, then POSTs `{ document_type: "upload", temp_file_id, gene_id, external_url?, external_title? }` to our service. `comment_ai_run.pdf_content_sha256` matches the file content; otherwise as #4.
+5. **PDF (upload) happy path**: FE extracts text and computes the PDF SHA-256 client-side with MuPDF.js + Web Crypto, then POSTs `{ document_type: "upload", paper_text, pdf_content_sha256, gene_id, external_url?, external_title? }` to our service. `comment_ai_run.pdf_content_sha256` matches the value the FE supplied; otherwise as #4.
 6. **Gene not in paper**: POST a PMID that doesn't mention the gene → terminal `gene-not-mentioned` with `synonyms_checked` populated. `comment_ai_run` row written (terminal_status='gene-not-mentioned'); `comment` + `comment_ai_provenance` row created for the submitter (per D5).
 7. **Mentioned only in passing**: POST a PMID where the gene appears trivially → terminal `mentioned-in-passing`. `comment_ai_run` row written; submitter's `comment` + `comment_ai_provenance` created.
 8. **Text unavailable**: POST a non-OA / restricted PMID → terminal `text-unavailable` with `reason` populated, **no rows** in `comment_ai_run`, `comments`, or `comment_ai_provenance`. Retrying re-runs the fetch.
