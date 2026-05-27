@@ -17,7 +17,7 @@ A new JAX-RS resource `AiGenePublicationCommentService` lives in `ApiCommonWebsi
 
 **Submit lifecycle.** From the FE's perspective the whole flow is **two HTTP interactions** in both cases (our POST, then polled GETs). For the upload path, the FE does the PDF heavy lifting locally: it extracts text using **MuPDF.js** (WASM, lazy-loaded only when the user picks the upload tab) and computes a SHA-256 of the PDF bytes, then sends `{ paper_text, pdf_content_sha256, ... }` in the POST body — the PDF itself never leaves the user's machine. Inside our POST handler there are **two phases**: (a) a *synchronous prelude* (target <2s) that resolves gene synonyms in-process, computes a content-digest `jobId`, looks up `comment_ai_run` and the in-memory registry, and either returns a cache-hit response or attaches the caller to an in-flight job, then (b) the *asynchronous pipeline* that runs only on a true miss.
 
-**Identifiers.** The `jobId` is a hex SHA-256 over `(geneId, sorted-resolved-synonyms, source-key, modelName, promptVersion)`, where the source-key is the PubMed id (PubMed path) or the FE-supplied `pdf_content_sha256` (upload path). `promptVersion` is a manually-bumped constant per prompt stage (one per `getGeneSummary` / `verifyGeneSummary`) — devs bump it when they edit the prompt files, the same way they'd bump a schema version. The same `jobId` keys the in-memory registry and the `comment_ai_run` cache row, so double-tap submits and cross-user resubmissions naturally dedupe.
+**Identifiers.** The `jobId` is a hex SHA-256 over `(geneId, sorted-resolved-synonyms, source-key, modelName, promptVersion, optionsCanonicalJson)`, where the source-key is the PubMed id (PubMed path) or the FE-supplied `pdf_content_sha256` (upload path) and `optionsCanonicalJson` is the request's `options` object rendered as canonical JSON (Jackson with `MapperFeature.SORT_PROPERTIES_ALPHABETICALLY`, no whitespace, missing/null fields normalised to defaults). `promptVersion` is a manually-bumped constant per prompt stage (one per `getGeneSummary` / `verifyGeneSummary`) — devs bump it when they edit the prompt files, the same way they'd bump a schema version. Hashing the whole `options` blob means a future option that changes LLM output (e.g. `generate_product_descriptions`) is automatically covered without anyone having to remember to update the digest formula. The minor cost is wasted cache misses when two submits differ only on per-submitter options like `create_user_comment` — negligible in practice since that one is `true` almost always. The same `jobId` keys the in-memory registry and the `comment_ai_run` cache row, so double-tap submits and cross-user resubmissions naturally dedupe.
 
 **Pool exhaustion** returns `503 Service Unavailable` with a `Retry-After` header (no queueing). The FE renders a friendly toast and offers retry.
 
@@ -45,7 +45,8 @@ The Anthropic client setup mirrors `ClaudeSummarizer` (`AnthropicOkHttpClientAsy
 │ Sync prelude                                                    │
 │  0a validate request                                            │
 │  0b resolve gene synonyms (WDK RecordClass, in-process)         │
-│  0c compute jobId = sha256(gene, synonyms, source-key, model)   │
+│  0c compute jobId = sha256(gene, synonyms, source-key,          │
+│                            model, promptVersion, options)       │
 │       source-key = pubmed_id | pdf_content_sha256               │
 │  0d SELECT comment_ai_run by jobId  ──hit──► cache-hit response │
 │  0e registry lookup by jobId        ──hit──► attach as follower │
@@ -137,7 +138,7 @@ Runs entirely on the request thread, target <2 s end-to-end. Performs no LLM cal
 |------|--------|
 | 0a | Validate request shape. For uploads, require both `paper_text` (non-empty) and `pdf_content_sha256` (64-char hex). |
 | 0b | Resolve `gene_id` + aliases via `wdkModel.getRecordClass("GeneRecordClasses.GeneRecordClass")`. 404 if the stableId is unknown. |
-| 0c | Compute `job_id = sha256(geneId ‖ sortedSynonyms ‖ sourceKey ‖ modelName ‖ promptVersion)` where `sourceKey = pubmed_id` (PubMed path) or `pdf_content_sha256` (upload path, supplied by the FE). |
+| 0c | Compute `job_id = sha256(geneId ‖ sortedSynonyms ‖ sourceKey ‖ modelName ‖ promptVersion ‖ optionsCanonicalJson)` where `sourceKey = pubmed_id` (PubMed path) or `pdf_content_sha256` (upload path, supplied by the FE), and `optionsCanonicalJson` is the `options` object serialised with Jackson `MapperFeature.SORT_PROPERTIES_ALPHABETICALLY` and default-normalisation. |
 | 0d | `SELECT * FROM comment_ai_run WHERE job_id = ?`. **Hit** → aggregate `sibling_summary` from `comment_ai_provenance`, create the submitter's `comments` + `comment_ai_provenance` rows inline (per `options.create_user_comment`), return the terminal cache-hit response with `comment_id` and `sibling_summary`. |
 | 0e | Registry lookup by `job_id`. **Hit** → register the caller as a follower of the in-flight job and return its current `running` state. |
 | 0f | Miss → spawn the async pipeline on the bounded executor and return `running { job_id, stage: "queued" }`. **Pool full → 503 + `Retry-After`**. |
@@ -192,6 +193,7 @@ CREATE TABLE usercomments.comment_ai_run
   pdf_content_sha256           VARCHAR(64),             -- iff source_kind='upload'
   gene_id                      VARCHAR(128) NOT NULL,
   synonyms_used                TEXT[]       NOT NULL,   -- canonicalised, sorted, also baked into job_id
+  options_json                 TEXT         NOT NULL,   -- canonical JSON of the request's `options` object, also baked into job_id
   terminal_status              VARCHAR(32)  NOT NULL,   -- 'success' | 'mentioned-in-passing' | 'gene-not-mentioned'
   is_only_mentioned_in_passing BOOLEAN      NOT NULL,
   ai_headline                  VARCHAR(2000),           -- null iff terminal_status != 'success'
