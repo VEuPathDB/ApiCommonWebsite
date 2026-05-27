@@ -93,6 +93,7 @@ Matches `CLAUDE-plan-ai-user-comments-front-end.md` §"Backend contract" with th
   "external_title": "string (optional, upload provenance)",
   "options": {
     "validate": true,
+    "generate_product_description": false,
     "create_user_comment": true
   }
 }
