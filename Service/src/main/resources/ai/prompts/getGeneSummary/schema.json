@@ -1,0 +1,5 @@
+{
+  "_comment": "PLACEHOLDER JSON schema for the getGeneSummary response. Ported in deliverable 4 from prompts.py. Used as prompt guidance only (substituted into [JSON_SCHEMA]); not enforced server-side, matching the Python pipeline.",
+  "type": "object",
+  "properties": {}
+}

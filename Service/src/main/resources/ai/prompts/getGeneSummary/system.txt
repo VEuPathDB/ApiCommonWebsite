@@ -1,0 +1,9 @@
+PLACEHOLDER — system prompt for the getGeneSummary stage.
+
+Ported in deliverable 4 from VPDB_AI_gene_paper_summary/pipeline/prompts.py
+(global_prompts_and_schema['getGeneSummary']) at
+https://github.com/PubLLicanProject/VPDB_AI_gene_paper_summary/tree/main
+
+Keep the diff against prompts.py legible so manual re-sync stays feasible when
+the Python team iterates. Bump the per-stage promptVersion constant whenever
+this file changes (it is baked into the jobId digest).

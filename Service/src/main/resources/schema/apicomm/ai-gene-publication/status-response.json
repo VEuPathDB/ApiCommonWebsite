@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "type": "object",
+  "description": "Status/terminal union returned by POST (may be terminal on a cache hit) and by GET on a polled job. Discriminated by `type`. See CLAUDE-ai-user-comments.md.",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "running",
+        "success",
+        "mentioned-in-passing",
+        "gene-not-mentioned",
+        "text-unavailable",
+        "validation-error",
+        "internal-error",
+        "cancelled"
+      ]
+    },
+    "job_id": { "type": "string" },
+    "stage": {
+      "type": "string",
+      "description": "Present iff type=running.",
+      "enum": [
+        "queued",
+        "fetching-article",
+        "scanning-gene-mentions",
+        "generating-summary",
+        "validating",
+        "persisting"
+      ]
+    },
+    "ai_output": {
+      "type": "object",
+      "description": "Present iff type=success.",
+      "properties": {
+        "headline": { "type": "string" },
+        "content": { "type": "string" }
+      }
+    },
+    "comment_id": { "type": "integer" },
+    "synonyms_checked": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "sibling_summary": {
+      "type": "object",
+      "description": "Anonymous aggregate over comment_ai_provenance rows for the same run_job_id.",
+      "properties": {
+        "unreviewed": { "type": "integer" },
+        "reviewed": { "type": "integer" },
+        "edited": { "type": "integer" },
+        "latest_reviewed_at": { "type": ["string", "null"] }
+      }
+    },
+    "reason": { "type": "string", "description": "Present iff type=text-unavailable." },
+    "errors": { "type": "array", "items": { "type": "string" }, "description": "Present iff type=validation-error." },
+    "error": { "type": "string", "description": "Present iff type=internal-error." }
+  },
+  "required": ["type"]
+}

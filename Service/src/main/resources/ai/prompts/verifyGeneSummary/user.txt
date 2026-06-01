@@ -1,0 +1,12 @@
+PLACEHOLDER — user-message turns for the verifyGeneSummary (validation) stage.
+
+Input: the original getGeneSummary JSON plus the paper text. Output: a
+verified/corrected summary in the same shape. Placeholder markers substituted at
+render time:
+
+[PAPER_TEXT]
+[GENE]
+[SUMMARY_JSON]
+[JSON_SCHEMA]
+
+Real content ported in deliverable 5.
