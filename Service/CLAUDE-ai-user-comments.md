@@ -340,8 +340,8 @@ _Last updated: 2026-06-02. We are executing this plan via the `superpowers:execu
 |---|-------------|--------|
 | 0 | Scaffolding (all classes, 501/no-op, builds clean) | ✅ **Done & committed** |
 | 1 | Sync prelude (validate, synonyms, digest, cache lookup, registry attach, spawn/503, POST+GET wiring) | ✅ **Done** — full Service build green, **21 unit tests pass** |
-| 2 | PMC BioC article fetcher (`fetching-article`) | ⬜ Next |
-| 3 | Gene-mention regex scanner (`scanning-gene-mentions`) | ⬜ Pending |
+| 2 | PMC BioC article fetcher (`fetching-article`) | ✅ **Done** — full Service build green, **31 unit tests pass** (+10 new); live HTTP path smoke-tested then throwaway IT removed |
+| 3 | Gene-mention regex scanner (`scanning-gene-mentions`) | ⬜ Next |
 | 4 | Anthropic call + JSON retry (`generating-summary`) | ⬜ Pending |
 | 5 | Validation pass (`verifyGeneSummary`) | ⬜ Pending |
 | 6 | Persist (`comment_ai_run` + `comment` + `comment_ai_provenance`, loop followers) | ⬜ Pending — **blocked on DB tables** for live test |
@@ -364,18 +364,20 @@ _Last updated: 2026-06-02. We are executing this plan via the `superpowers:execu
 - `services/ai/AiSummaryConfig.java` — `MODEL_NAME`, `PROMPT_VERSION` constants.
 - `services/ai/JobSubmission.java` — immutable resolved-inputs carrier built by the prelude, read by the pipeline.
 - `SyncPrelude.PreludeResult` (nested) — `CACHE_HIT | RUNNING` outcome the resource maps to a response.
+- `services/ai/TerminalResult.java` (D2) — value type for the terminal payload published on `JobState` (rendered by the resource's `jobStateJson`). D2 covers `textUnavailable(reason)` + `internalError(error)`; success / gene-not-mentioned / sibling_summary factories land in D4–6.
 
 **`JobState` was refactored** from a per-follower `Submitter`-with-full-request to: one shared `JobSubmission` + `List<Long> followerUserIds` + a `userId→commentId` map (filled at persist). `JobState.getJobId()` delegates to the submission. Three state tiers: immutable submission (shared) · follower ids (per-user) · volatile stage/result (published; transient stage outputs live as pipeline instance fields).
 
 ## Implemented this far (what's real vs stub)
 
-**Implemented + unit-tested (pure):** `SyncPrelude.validate` (7 tests), `JobDigest` (8 tests), `JobRegistry.submit/attach/get` (6 tests).
-**Implemented, compiles, NOT live-tested** (need running WdkModel / DB tables): `GeneSynonymService.resolve` (reads gene `Alias` table), `GetCommentAiRunQuery.parseResults` + `CommentFactory.findAiRun`, `SyncPrelude.handleSubmit/resolveSynonyms/computeJobId`, `AiGenePublicationCommentService` POST (auth, spawn/attach/cache, 503) + GET (registry→cache→404).
-**Still stubs (throw `UnsupportedOperationException` / 501):** `AiGenePublicationPipeline.run` + all stage methods, `PmcBiocFetcher.fetch`, `GeneMentionScanner`, `AnthropicJsonClient.complete`, `InsertCommentAiRunQuery`/`InsertCommentAiProvenanceQuery` `getArguments`, DELETE endpoint.
+**Implemented + unit-tested (pure):** `SyncPrelude.validate` (7 tests), `JobDigest` (8 tests), `JobRegistry.submit/attach/get` (6 tests), `PmcBiocFetcher.parseBiocJson` (7 tests, D2), `AiGenePublicationPipeline.fetchArticle` upload/pubmed/text-unavailable (3 tests, D2).
+**Implemented, compiles, live-smoke-tested:** `PmcBiocFetcher.fetch` (D2 — real BioC HTTP path verified against PMID 17299597 (27 KB) and a bogus PMID → `text-unavailable`; throwaway IT then removed).
+**Implemented, compiles, NOT live-tested** (need running WdkModel / DB tables): `GeneSynonymService.resolve` (reads gene `Alias` table), `GetCommentAiRunQuery.parseResults` + `CommentFactory.findAiRun`, `SyncPrelude.handleSubmit/resolveSynonyms/computeJobId`, `AiGenePublicationCommentService` POST (auth, spawn/attach/cache, 503) + GET (registry→cache→404), `AiGenePublicationPipeline.run()` orchestration (terminal short-circuit after each stage; top-level `Throwable` → `internal-error`).
+**Still stubs (throw `UnsupportedOperationException` / 501):** pipeline stages `scanGeneMentions` (D3) / `generateSummary` (D4) / `validateSummary` (D5) / `flattenToComment` (D5) / `persist` (D6), `GeneMentionScanner`, `AnthropicJsonClient.complete`, `InsertCommentAiRunQuery`/`InsertCommentAiProvenanceQuery` `getArguments`, DELETE endpoint.
 
 ## Interim caveats (by design, not bugs)
 
-- **A freshly-spawned job stays `running` forever right now** — `AiGenePublicationPipeline.run()` throws until stages land (D2–6); the executor task fails silently.
+- **`run()` is now wired (D2).** It calls stages in order, returns early once a stage marks the job terminal, and catches any `Throwable` → terminal `internal-error`. A live job therefore now reaches `fetching-article` and then **terminates as `internal-error`** because the next stage (`scanGeneMentions`, D3) still throws `UnsupportedOperationException` — caught by `run()`. (A non-OA pubmed id terminates earlier as `text-unavailable`; an upload passes the FE text through and likewise lands at the D3 stub → `internal-error`.) This replaces the old "stays running forever" behaviour and is the expected interim state until D3+ land.
 - **Cache-hit response is minimal** (`type`/`job_id`/`ai_output`) — submitter comment creation + `sibling_summary` aggregate are D6 (TODOs in `AiGenePublicationCommentService.cacheHitJson`).
 
 ## Build / test notes (important for next session)
@@ -390,7 +392,7 @@ _Last updated: 2026-06-02. We are executing this plan via the `superpowers:execu
 
 Source of truth = Python `VPDB_AI_gene_paper_summary/` (at `../VPDB_AI_gene_paper_summary`), esp. `PubGene_back_end/helpers.py` and `pipeline/prompts.py`.
 
-- **D2 (BioC fetch):** `GET https://www.ncbi.nlm.nih.gov/research/bionlp/RESTful/pmcoa.cgi/BioC_json/{pmid}`; keep passages where `infons.section_type ∈ {FIG, TABLE, RESULTS, CONCL, DISCUSSION, SUPPL}`; concat `text`. Non-JSON/404/non-OA → terminal `text-unavailable` (not cached). Python ref: `get_pubmed_json` / `parse_pubmed_json` (helpers.py). Use Java `HttpClient`. Upload path: use `submission.getUploadedPaperText()` directly. `PmcBiocFetcher.TextUnavailableException` already defined.
+- **D2 (BioC fetch): ✅ DONE.** `GET https://www.ncbi.nlm.nih.gov/research/bionlp/RESTful/pmcoa.cgi/BioC_json/{pmid}` via Java `HttpClient` (180 s read timeout, `Accept: application/json`); keep passages where `infons.section_type ∈ {FIG, TABLE, RESULTS, CONCL, DISCUSS, SUPPL}`; concat non-empty `text` with `\n` (`PmcBiocFetcher.parseBiocJson`, pure + unit-tested). Non-2xx / non-`application/json` content-type / malformed JSON / **empty parse result** → `TextUnavailableException` → terminal `text-unavailable` (not cached). Upload path: `fetchArticle()` uses `submission.getUploadedPaperText()` directly. **⚠ Deviation from Python (user-approved):** Python `PUBMED_SECTIONS` uses `DISCUSSION`, but the live PMC BioC vocabulary emits `DISCUSS` — so Python silently dropped *all* discussion sections. The Java port uses `DISCUSS` (verified empirically against PMID 17299597). **Report this bug to the Python team** (prompts were tuned on output that excluded discussion text, so re-tuning may be warranted). Also: treating an empty parse as `text-unavailable` (rather than Python's empty-string pass-through) avoids caching a false `gene-not-mentioned` for a paper we couldn't extract.
 - **D3 (`_count_substrings`, helpers.py:264):** if alias matches `^[A-Za-z]+[0-9]+$` → inner regex `letters + "-?" + digits` (so `Nd6`↔`Nd-6`); else replace each run of `_`/`-`/space with `[-_\s]+` and escape the rest; wrap as `(?<![A-Za-z0-9]) inner (?![A-Za-z0-9])`, `CASE_INSENSITIVE`; count matches. `get_gene_synonyms_in_paper`: count each alias, keep `>0`, return **top-3 by count desc**. `gene-not-mentioned` iff gene_id AND all aliases score 0 (gene_id also tries `_`→`-` variant). This outcome **is** persisted.
 - **D4 (LLM):** prompts in `resources/ai/prompts/getGeneSummary/{system,user,schema}` (currently placeholders — port real text from `pipeline/prompts.py` `global_prompts_and_schema['getGeneSummary']`). Placeholders: `[PAPER_TEXT] [GENE] [N_QUOTES] [JSON_SCHEMA]`. Prefill assistant turn with `{`. Response field `only_in_passing=true` → terminal `mentioned-in-passing` (persisted). `N_QUOTES=2`, temperature `0`, `max_tokens=20000`, `extract_json` retry max 3 via a formatter LLM call. Anthropic client (mirror `ClaudeSummarizer`): `AnthropicOkHttpClientAsync.builder().apiKey(wdkModel.getProperties().get("CLAUDE_API_KEY")).maxRetries(32).checkJacksonVersionCompatibility(false).build()`. `gene_for_prompt(geneId, names)` → `"<geneId> (also known as X or Y)"`.
 - **Gene aliases (D1, done):** gene record `Alias` table — `queryRef="GeneTables.Alias"`, column `alias` (also `id_type`, `db_name`), `displayName="Names, Previous Identifiers, and Aliases"`. Read via `RecordInstance.getTableValue("Alias")`, exclude the queried id, sort/dedupe. Parity with Python `get_vpdb_alias`.

@@ -124,8 +124,13 @@ public class AiGenePublicationCommentService extends AbstractUserCommentService 
           .put("job_id", job.getJobId())
           .put("stage", job.getStage().getWireValue());
     }
-    // Terminal payloads (ai_output, comment_id, sibling_summary, reason, errors)
-    // are populated once the pipeline + persist stages land (deliverables 2-6).
+    // Terminal: the pipeline publishes a TerminalResult carrying the status-
+    // specific fields (deliverable 2: text-unavailable `reason`, internal-error
+    // `error`). Success / gene-not-mentioned / sibling_summary payloads land in
+    // deliverables 4-6.
+    if (job.getResult() instanceof TerminalResult) {
+      return ((TerminalResult) job.getResult()).toJson(job.getJobId());
+    }
     return new JSONObject()
         .put("type", job.getStatus().getWireValue())
         .put("job_id", job.getJobId());
