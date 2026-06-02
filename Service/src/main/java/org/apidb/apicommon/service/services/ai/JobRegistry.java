@@ -7,6 +7,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.RejectedExecutionException;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Function;
 
 /**
  * In-memory store of in-flight and recently-terminal jobs, keyed by the hex
@@ -47,18 +48,21 @@ public class JobRegistry {
   }
 
   /**
-   * Register a fresh job for the given digest and submit its pipeline to the
-   * bounded executor.
+   * Register a fresh job for the given submission and submit its pipeline to the
+   * bounded executor. The {@code pipelineFactory} builds the {@link Runnable}
+   * from the freshly-created {@link JobState} (the pipeline needs the state the
+   * registry owns), resolving the construction order.
    *
    * @throws RejectedExecutionException if the pool is saturated; the caller
    *         translates this to {@code 503 Service Unavailable} + {@code Retry-After}.
    */
-  public JobState submit(String jobId, JobState.Submitter submitter, Runnable pipeline) {
+  public JobState submit(JobSubmission submission, long userId,
+      Function<JobState, Runnable> pipelineFactory) {
     throw new UnsupportedOperationException("JobRegistry.submit — deliverable 1");
   }
 
   /** Attach a caller as a follower of an already-in-flight job. */
-  public JobState attach(String jobId, JobState.Submitter submitter) {
+  public JobState attach(String jobId, long userId) {
     throw new UnsupportedOperationException("JobRegistry.attach — deliverable 1");
   }
 
