@@ -327,3 +327,76 @@ These are flagged for the user to decide or coordinate, not implemented in this 
 14. **Cancel**: submit a job, immediately DELETE → polling returns `type: 'cancelled'`, the executor thread terminates promptly, no `comment_ai_run` or `comment` row is created.
 15. **Registry TTL eviction**: submit, let it complete, wait >10 min, GET → live registry returns 404 but a fresh POST with the same digest still cache-hits via `comment_ai_run`.
 16. **Regression**: existing `/user-comments` endpoints (POST/GET/DELETE/attachments) still work unchanged.
+
+---
+
+# Implementation progress & session handoff
+
+_Last updated: 2026-06-02. We are executing this plan via the `superpowers:executing-plans` workflow (one reviewable deliverable at a time, TDD for pure logic). Branch: `feature-ai-user-comments`._
+
+## Deliverable status
+
+| # | Deliverable | Status |
+|---|-------------|--------|
+| 0 | Scaffolding (all classes, 501/no-op, builds clean) | ✅ **Done & committed** |
+| 1 | Sync prelude (validate, synonyms, digest, cache lookup, registry attach, spawn/503, POST+GET wiring) | ✅ **Done** — full Service build green, **21 unit tests pass** |
+| 2 | PMC BioC article fetcher (`fetching-article`) | ⬜ Next |
+| 3 | Gene-mention regex scanner (`scanning-gene-mentions`) | ⬜ Pending |
+| 4 | Anthropic call + JSON retry (`generating-summary`) | ⬜ Pending |
+| 5 | Validation pass (`verifyGeneSummary`) | ⬜ Pending |
+| 6 | Persist (`comment_ai_run` + `comment` + `comment_ai_provenance`, loop followers) | ⬜ Pending — **blocked on DB tables** for live test |
+| 7 | DELETE / cancel wiring | ⬜ Pending (endpoint still returns 501) |
+| 8 | Registry eviction scheduler | ⬜ Pending (`_evictor` field present, unused) |
+
+## Decisions locked (with rationale)
+
+- **LLM model = `claude-sonnet-4-20250514`** — matches the Python pipeline the prompts were tuned against. Held in `AiSummaryConfig.MODEL_NAME`. Baked into the `jobId` digest.
+- **`PROMPT_VERSION = "1"`** (`AiSummaryConfig`) — manually bumped when prompt files change; baked into digest. When the verify prompt lands (D5), keep it a single combined version covering both stages.
+- **Comment schema = `usercomments`** — confirmed via conifer `commentconfig_commentSchema: usercomments` (→ `CommentConfig.commentSchema`, what `CommentFactory.getCommentSchema()` returns). The plan's original DDL was right; an earlier `userlogins5` worry came from the stale `migration_comment_b21.sql`. **Migration file is now `ApiCommonModel/Model/lib/sql/migration_comment_b70.sql`** (renamed by user). Tables requested from Steve for `userdb_devn` — **no ETA**.
+- **Test harness = JUnit 4 added to the Service module** (it had none; `ApiCommonWebsite` had zero unit tests). Tests live in `Service/src/test/java/...ai/`.
+- **`GeneSynonymService` uses `wdkModel.getSystemUser()`** — gene aliases are public, non-user-owned data.
+- **`JobRegistry` = process-wide singleton** (`JobRegistry.instance()`); package-private `(ExecutorService, ScheduledExecutorService)` constructor for tests; 8-thread pool; `putIfAbsent` dedupe; on `RejectedExecutionException` it removes the entry and rethrows (caller → 503).
+
+## Classes added beyond the original file-layout table
+
+- `services/ai/AiGenePublicationRequest.java` — POST-body DTO (Jackson, snake_case).
+- `services/ai/JobDigest.java` — pure: `canonicalOptionsJson(Options)` + `compute(...)` SHA-256. **8 tests.**
+- `services/ai/AiSummaryConfig.java` — `MODEL_NAME`, `PROMPT_VERSION` constants.
+- `services/ai/JobSubmission.java` — immutable resolved-inputs carrier built by the prelude, read by the pipeline.
+- `SyncPrelude.PreludeResult` (nested) — `CACHE_HIT | RUNNING` outcome the resource maps to a response.
+
+**`JobState` was refactored** from a per-follower `Submitter`-with-full-request to: one shared `JobSubmission` + `List<Long> followerUserIds` + a `userId→commentId` map (filled at persist). `JobState.getJobId()` delegates to the submission. Three state tiers: immutable submission (shared) · follower ids (per-user) · volatile stage/result (published; transient stage outputs live as pipeline instance fields).
+
+## Implemented this far (what's real vs stub)
+
+**Implemented + unit-tested (pure):** `SyncPrelude.validate` (7 tests), `JobDigest` (8 tests), `JobRegistry.submit/attach/get` (6 tests).
+**Implemented, compiles, NOT live-tested** (need running WdkModel / DB tables): `GeneSynonymService.resolve` (reads gene `Alias` table), `GetCommentAiRunQuery.parseResults` + `CommentFactory.findAiRun`, `SyncPrelude.handleSubmit/resolveSynonyms/computeJobId`, `AiGenePublicationCommentService` POST (auth, spawn/attach/cache, 503) + GET (registry→cache→404).
+**Still stubs (throw `UnsupportedOperationException` / 501):** `AiGenePublicationPipeline.run` + all stage methods, `PmcBiocFetcher.fetch`, `GeneMentionScanner`, `AnthropicJsonClient.complete`, `InsertCommentAiRunQuery`/`InsertCommentAiProvenanceQuery` `getArguments`, DELETE endpoint.
+
+## Interim caveats (by design, not bugs)
+
+- **A freshly-spawned job stays `running` forever right now** — `AiGenePublicationPipeline.run()` throws until stages land (D2–6); the executor task fails silently.
+- **Cache-hit response is minimal** (`type`/`job_id`/`ai_output`) — submitter comment creation + `sibling_summary` aggregate are D6 (TODOs in `AiGenePublicationCommentService.cacheHitJson`).
+
+## Build / test notes (important for next session)
+
+- Build chain order: `install/` → `WDK/` → `ApiCommonWebsite/Model` → `ApiCommonWebsite/Service`. **`ai-wdk` IS `project_home`** (CLAUDE.md paths say `project_home/…`).
+- **Service resolves Model from `.m2`**, so after changing Model run `cd ApiCommonWebsite/Model && mvn install -DskipTests` before building/testing Service, or Service won't see new Model methods (e.g. `findAiRun`).
+- Run one test class: `cd ApiCommonWebsite/Service && mvn -Dtest=JobDigestTest test`. All AI tests: `-Dtest=JobDigestTest,SyncPreludeTest,JobRegistryTest`.
+- Non-fatal POM warnings (`version is missing` for `javax.servlet:servlet-api`, `classloader-leak-prevention-servlet`) appear but the build SUCCEEDS — ignore.
+- `mvn test`/`mvn compile` from `ApiCommonWebsite/Service` is the quick loop.
+
+## Reference facts already gathered for upcoming deliverables
+
+Source of truth = Python `VPDB_AI_gene_paper_summary/` (at `../VPDB_AI_gene_paper_summary`), esp. `PubGene_back_end/helpers.py` and `pipeline/prompts.py`.
+
+- **D2 (BioC fetch):** `GET https://www.ncbi.nlm.nih.gov/research/bionlp/RESTful/pmcoa.cgi/BioC_json/{pmid}`; keep passages where `infons.section_type ∈ {FIG, TABLE, RESULTS, CONCL, DISCUSSION, SUPPL}`; concat `text`. Non-JSON/404/non-OA → terminal `text-unavailable` (not cached). Python ref: `get_pubmed_json` / `parse_pubmed_json` (helpers.py). Use Java `HttpClient`. Upload path: use `submission.getUploadedPaperText()` directly. `PmcBiocFetcher.TextUnavailableException` already defined.
+- **D3 (`_count_substrings`, helpers.py:264):** if alias matches `^[A-Za-z]+[0-9]+$` → inner regex `letters + "-?" + digits` (so `Nd6`↔`Nd-6`); else replace each run of `_`/`-`/space with `[-_\s]+` and escape the rest; wrap as `(?<![A-Za-z0-9]) inner (?![A-Za-z0-9])`, `CASE_INSENSITIVE`; count matches. `get_gene_synonyms_in_paper`: count each alias, keep `>0`, return **top-3 by count desc**. `gene-not-mentioned` iff gene_id AND all aliases score 0 (gene_id also tries `_`→`-` variant). This outcome **is** persisted.
+- **D4 (LLM):** prompts in `resources/ai/prompts/getGeneSummary/{system,user,schema}` (currently placeholders — port real text from `pipeline/prompts.py` `global_prompts_and_schema['getGeneSummary']`). Placeholders: `[PAPER_TEXT] [GENE] [N_QUOTES] [JSON_SCHEMA]`. Prefill assistant turn with `{`. Response field `only_in_passing=true` → terminal `mentioned-in-passing` (persisted). `N_QUOTES=2`, temperature `0`, `max_tokens=20000`, `extract_json` retry max 3 via a formatter LLM call. Anthropic client (mirror `ClaudeSummarizer`): `AnthropicOkHttpClientAsync.builder().apiKey(wdkModel.getProperties().get("CLAUDE_API_KEY")).maxRetries(32).checkJacksonVersionCompatibility(false).build()`. `gene_for_prompt(geneId, names)` → `"<geneId> (also known as X or Y)"`.
+- **Gene aliases (D1, done):** gene record `Alias` table — `queryRef="GeneTables.Alias"`, column `alias` (also `id_type`, `db_name`), `displayName="Names, Previous Identifiers, and Aliases"`. Read via `RecordInstance.getTableValue("Alias")`, exclude the queried id, sort/dedupe. Parity with Python `get_vpdb_alias`.
+
+## Open coordination items (unchanged from "Out of scope")
+
+- DB tables in `userdb_devn` (Steve) — blocks D6 live test + all cache-hit/persist live verification.
+- EbrcWebsiteCommon: `CommentFactory.createComment` transaction extension for `comment_ai_provenance` + `CommentRequest`/`Comment` `aiProvenance` field (D6). Note: `CommentFactory` is local to `ApiCommonWebsite/Model` (not Ebrc) — confirmed.
+- RAML doc (`Service/doc/raml/apicommonwebsite.raml`) for the 3 endpoints — not yet written.
