@@ -2,8 +2,6 @@ package org.apidb.apicommon.service.services.ai;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.Future;
 
@@ -15,9 +13,10 @@ import java.util.concurrent.Future;
  * <ul>
  *   <li><b>Shared, immutable inputs</b> — the {@link JobSubmission} (gene,
  *       synonyms, source, model, options, …), identical across all followers.</li>
- *   <li><b>Per-follower identity</b> — the list of follower user ids and the
- *       {@code comment_id} each receives once the persist stage runs. (All
- *       other per-request values are shared, so only the user id varies.)</li>
+ *   <li><b>Per-follower identity</b> — the list of follower user ids (used for
+ *       dedupe/observability only; followers no longer receive a per-user
+ *       comment, since comments are created by the publish endpoint on user
+ *       approval rather than by the pipeline).</li>
  *   <li><b>Published progress / terminal</b> — the volatile {@code stage} that
  *       polling GETs observe and, once terminal, the {@code result}. Transient
  *       per-stage outputs (article text, scan counts, summary JSON) live on the
@@ -53,8 +52,7 @@ public class JobState {
   private volatile Date _terminalAt;          // when status became terminal (drives TTL eviction)
   private volatile Future<?> _future;
   private final List<Long> _followerUserIds = new CopyOnWriteArrayList<>();
-  private final Map<Long, Long> _commentIdsByUser = new ConcurrentHashMap<>();  // userId -> comment_id (set at persist)
-  private volatile Object _result;            // terminal payload; concrete type added with the pipeline
+  private volatile Object _result;            // terminal payload (TerminalResult)
 
   public JobState(JobSubmission submission, long firstFollowerUserId) {
     _submission = submission;
@@ -79,16 +77,6 @@ public class JobState {
   public void addFollower(long userId) {
     if (!_followerUserIds.contains(userId))
       _followerUserIds.add(userId);
-  }
-
-  /** Record the comment created for a follower during the persist stage. */
-  public void recordComment(long userId, long commentId) {
-    _commentIdsByUser.put(userId, commentId);
-  }
-
-  /** @return the comment id created for the given follower, or null if not yet persisted. */
-  public Long getCommentId(long userId) {
-    return _commentIdsByUser.get(userId);
   }
 
   /** Advance the running stage and stamp the update time. */

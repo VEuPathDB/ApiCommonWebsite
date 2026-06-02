@@ -11,7 +11,7 @@ import org.junit.Test;
 
 public class JobDigestTest {
 
-  private static final String OPTS = "{\"create_user_comment\":true,\"generate_product_description\":false,\"validate\":true}";
+  private static final String OPTS = "{\"generate_product_description\":false,\"validate\":true}";
 
   @Test
   public void compute_returns64CharLowercaseHex() {
@@ -50,7 +50,7 @@ public class JobDigestTest {
 
   @Test
   public void compute_differsWhenOptionsDiffer() {
-    String optsB = "{\"create_user_comment\":true,\"generate_product_description\":true,\"validate\":true}";
+    String optsB = "{\"generate_product_description\":true,\"validate\":true}";
     assertNotEquals(
         JobDigest.compute("g1", Collections.emptyList(), "src", "m", "p", OPTS),
         JobDigest.compute("g1", Collections.emptyList(), "src", "m", "p", optsB));
@@ -59,9 +59,9 @@ public class JobDigestTest {
   @Test
   public void canonicalOptionsJson_defaults_sortedKeysNoWhitespace() {
     AiGenePublicationRequest.Options options = new AiGenePublicationRequest.Options();
-    // defaults: validate=true, generate_product_description=false, create_user_comment=true
+    // defaults: validate=true, generate_product_description=false
     assertEquals(
-        "{\"create_user_comment\":true,\"generate_product_description\":false,\"validate\":true}",
+        "{\"generate_product_description\":false,\"validate\":true}",
         JobDigest.canonicalOptionsJson(options));
   }
 
@@ -70,9 +70,8 @@ public class JobDigestTest {
     AiGenePublicationRequest.Options options = new AiGenePublicationRequest.Options();
     options.validate = false;
     options.generateProductDescription = true;
-    options.createUserComment = false;
     assertEquals(
-        "{\"create_user_comment\":false,\"generate_product_description\":true,\"validate\":false}",
+        "{\"generate_product_description\":true,\"validate\":false}",
         JobDigest.canonicalOptionsJson(options));
   }
 }

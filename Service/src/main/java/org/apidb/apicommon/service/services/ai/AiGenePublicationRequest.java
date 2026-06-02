@@ -25,8 +25,9 @@ public class AiGenePublicationRequest {
     @JsonProperty("generate_product_description")
     public boolean generateProductDescription = false;
 
-    @JsonProperty("create_user_comment")
-    public boolean createUserComment = true;
+    // NOTE: create_user_comment removed in the review-on-approval pivot — the
+    // generate POST never creates a comment, so the flag gated nothing. The
+    // comment is created by the separate publish endpoint on user approval.
   }
 
   @JsonProperty("gene_id")

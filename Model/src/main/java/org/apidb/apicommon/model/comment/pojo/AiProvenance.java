@@ -3,40 +3,26 @@ package org.apidb.apicommon.model.comment.pojo;
 import java.util.Date;
 
 /**
- * POJO for a row in the {@code comment_ai_provenance} sidecar table — the
- * per-user review state for an AI-assisted comment, keyed by {@code comment_id}
- * with a FK to the shared {@link CommentAiRun} row via {@code run_job_id}.
+ * POJO for a row in the {@code comment_ai_provenance} sidecar table, keyed by
+ * {@code comment_id} with a FK to the shared {@link CommentAiRun} row via
+ * {@code run_job_id}.
+ *
+ * <p>A provenance row exists <b>only for a published comment</b> (created by the
+ * publish endpoint on user approval, never by the pipeline), so there is no
+ * multi-valued review level — every such row is already reviewed-and-approved.
+ * The single {@code is_edited} flag records whether the user changed the AI's
+ * original text before publishing, and {@code created_at} is the approval time.
  *
  * <p>When attached to a {@code CommentRequest}, signals that the comment being
  * created originated from an AI run and that a provenance row should be inserted
- * inside the same transaction (see deliverable 6).
+ * inside the same transaction.
  */
 public class AiProvenance {
 
-  /** {@code review_level} states the FE drives a comment through. */
-  public enum ReviewLevel {
-    UNREVIEWED("unreviewed"),
-    REVIEWED("reviewed"),
-    EDITED("edited");
-
-    private final String _wire;
-
-    ReviewLevel(String wire) { _wire = wire; }
-
-    public String getWireValue() { return _wire; }
-
-    public static ReviewLevel fromWire(String wire) {
-      for (ReviewLevel level : values())
-        if (level._wire.equals(wire))
-          return level;
-      throw new IllegalArgumentException("unknown review_level: " + wire);
-    }
-  }
-
   private long _commentId;
   private String _runJobId;
-  private ReviewLevel _reviewLevel = ReviewLevel.UNREVIEWED;
-  private Date _reviewedAt;             // null until review_level leaves UNREVIEWED
+  private boolean _edited;              // true iff the published text differs from the AI original
+  private Date _createdAt;              // when the user approved/published
 
   public long getCommentId() { return _commentId; }
   public AiProvenance setCommentId(long commentId) { _commentId = commentId; return this; }
@@ -44,9 +30,9 @@ public class AiProvenance {
   public String getRunJobId() { return _runJobId; }
   public AiProvenance setRunJobId(String runJobId) { _runJobId = runJobId; return this; }
 
-  public ReviewLevel getReviewLevel() { return _reviewLevel; }
-  public AiProvenance setReviewLevel(ReviewLevel reviewLevel) { _reviewLevel = reviewLevel; return this; }
+  public boolean isEdited() { return _edited; }
+  public AiProvenance setEdited(boolean edited) { _edited = edited; return this; }
 
-  public Date getReviewedAt() { return _reviewedAt; }
-  public AiProvenance setReviewedAt(Date reviewedAt) { _reviewedAt = reviewedAt; return this; }
+  public Date getCreatedAt() { return _createdAt; }
+  public AiProvenance setCreatedAt(Date createdAt) { _createdAt = createdAt; return this; }
 }

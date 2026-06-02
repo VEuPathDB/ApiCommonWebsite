@@ -23,7 +23,8 @@ import com.fasterxml.jackson.databind.JsonNode;
  *
  * <p>Stages: ① fetching-article, ② scanning-gene-mentions, ③ generating-summary,
  * ④ validating (iff {@code options.validate}), ⑤ flatten-to-comment,
- * ⑥ persisting (iff {@code options.create_user_comment}).
+ * ⑥ persisting (writes the {@code comment_ai_run} cache row only — no comment is
+ * created here; that happens later on user approval via the publish endpoint).
  */
 public class AiGenePublicationPipeline implements Runnable {
 
@@ -74,9 +75,9 @@ public class AiGenePublicationPipeline implements Runnable {
 
       flattenToComment();
 
-      if (_job.getSubmission().getOptions().createUserComment) {
-        persist();
-      }
+      // Always write the comment_ai_run cache row for a cacheable success; the
+      // user-comment row is created later by the publish endpoint, not here.
+      persist();
     }
     catch (Throwable t) {
       // Any unhandled stage failure terminates the job as internal-error rather
