@@ -125,6 +125,19 @@ public class CommentFactory implements Manageable<CommentFactory> {
     }
   }
 
+  /**
+   * Look up the shared AI-run cache row by its content-digest job id. A hit
+   * lets the sync prelude short-circuit a submit straight to a terminal
+   * cache-hit response (see the AI gene-publication service).
+   */
+  public Optional<CommentAiRun> findAiRun(String jobId) throws WdkModelException {
+    try (Connection con = _commentDs.getConnection()) {
+      return new GetCommentAiRunQuery(_config.getCommentSchema(), jobId).run(con).value();
+    } catch (SQLException ex) {
+      throw new WdkModelException(ex);
+    }
+  }
+
   public boolean commentExists(long commentId) throws WdkModelException {
     try(Connection con = _commentDs.getConnection()) {
       return new GetCommentExistsQuery(_config.getCommentSchema(), commentId)

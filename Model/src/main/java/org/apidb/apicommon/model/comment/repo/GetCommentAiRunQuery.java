@@ -2,8 +2,12 @@ package org.apidb.apicommon.model.comment.repo;
 
 import static java.sql.Types.VARCHAR;
 
+import java.sql.Array;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 import org.apidb.apicommon.model.comment.pojo.CommentAiRun;
@@ -46,8 +50,41 @@ public class GetCommentAiRunQuery extends ValueQuery<Optional<CommentAiRun>> {
 
   @Override
   protected Optional<CommentAiRun> parseResults(ResultSet rs) throws SQLException {
-    throw new UnsupportedOperationException(
-        "GetCommentAiRunQuery row mapping — deliverable 1");
+    if (!rs.next())
+      return Optional.empty();
+
+    CommentAiRun run = new CommentAiRun()
+        .setJobId(rs.getString("job_id"))
+        .setModelName(rs.getString("model_name"))
+        .setPromptVersion(rs.getString("prompt_version"))
+        .setSourceKind(rs.getString("source_kind"))
+        .setPubmedId(rs.getString("pubmed_id"))
+        .setExternalUrl(rs.getString("external_url"))
+        .setExternalTitle(rs.getString("external_title"))
+        .setPdfContentSha256(rs.getString("pdf_content_sha256"))
+        .setGeneId(rs.getString("gene_id"))
+        .setSynonymsUsed(toStringList(rs.getArray("synonyms_used")))
+        .setOptionsJson(rs.getString("options_json"))
+        .setTerminalStatus(rs.getString("terminal_status"))
+        .setOnlyMentionedInPassing(rs.getBoolean("is_only_mentioned_in_passing"))
+        .setAiHeadline(rs.getString("ai_headline"))
+        .setAiContent(rs.getString("ai_content"))
+        .setCompletedAt(rs.getTimestamp("completed_at"));
+
+    return Optional.of(run);
+  }
+
+  private static List<String> toStringList(Array sqlArray) throws SQLException {
+    if (sqlArray == null)
+      return Collections.emptyList();
+    Object raw = sqlArray.getArray();
+    if (!(raw instanceof Object[]))
+      return Collections.emptyList();
+    Object[] elements = (Object[]) raw;
+    List<String> out = new ArrayList<>(elements.length);
+    for (Object e : elements)
+      if (e != null) out.add(e.toString());
+    return out;
   }
 
   @Override

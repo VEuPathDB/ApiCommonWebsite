@@ -4,6 +4,7 @@ import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.concurrent.RejectedExecutionException;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -35,10 +36,17 @@ public class JobRegistry {
   public static JobRegistry instance() { return INSTANCE; }
 
   private final ConcurrentHashMap<String, JobState> _jobs = new ConcurrentHashMap<>();
-  private final ExecutorService _executor = Executors.newFixedThreadPool(POOL_SIZE);
-  private final ScheduledExecutorService _evictor = Executors.newSingleThreadScheduledExecutor();
+  private final ExecutorService _executor;
+  private final ScheduledExecutorService _evictor;
 
   private JobRegistry() {
+    this(Executors.newFixedThreadPool(POOL_SIZE), Executors.newSingleThreadScheduledExecutor());
+  }
+
+  /** Visible for testing: inject the bounded executor and eviction scheduler. */
+  JobRegistry(ExecutorService executor, ScheduledExecutorService evictor) {
+    _executor = executor;
+    _evictor = evictor;
     // Eviction sweep is scheduled in deliverable 8.
   }
 
@@ -58,12 +66,37 @@ public class JobRegistry {
    */
   public JobState submit(JobSubmission submission, long userId,
       Function<JobState, Runnable> pipelineFactory) {
-    throw new UnsupportedOperationException("JobRegistry.submit — deliverable 1");
+    String jobId = submission.getJobId();
+    JobState created = new JobState(submission, userId);
+
+    // Atomically claim the digest. If another caller already started this exact
+    // job (race between the prelude's miss-check and here), attach instead.
+    JobState existing = _jobs.putIfAbsent(jobId, created);
+    if (existing != null) {
+      existing.addFollower(userId);
+      return existing;
+    }
+
+    try {
+      Future<?> future = _executor.submit(pipelineFactory.apply(created));
+      created.setFuture(future);
+    }
+    catch (RejectedExecutionException e) {
+      // Pool saturated: back the job out so a later retry can re-submit cleanly.
+      // The caller translates this to 503 + Retry-After.
+      _jobs.remove(jobId, created);
+      throw e;
+    }
+    return created;
   }
 
-  /** Attach a caller as a follower of an already-in-flight job. */
+  /** Attach a caller as a follower of an already-in-flight job (null if absent). */
   public JobState attach(String jobId, long userId) {
-    throw new UnsupportedOperationException("JobRegistry.attach — deliverable 1");
+    JobState job = _jobs.get(jobId);
+    if (job != null) {
+      job.addFollower(userId);
+    }
+    return job;
   }
 
   /** Cancel an in-flight job: cancel the future and any in-flight LLM HTTP call. */
