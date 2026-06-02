@@ -1,6 +1,9 @@
 package org.apidb.apicommon.service.services.ai;
 
 import java.util.List;
+import java.util.regex.Pattern;
+
+import javax.ws.rs.BadRequestException;
 
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
@@ -23,9 +26,41 @@ public class SyncPrelude {
     _registry = registry;
   }
 
-  /** 0a — validate request shape (upload requires paper_text + 64-char hex sha). */
-  public void validate(AiGenePublicationRequest request) {
-    throw new UnsupportedOperationException("SyncPrelude.validate — deliverable 1");
+  private static final Pattern SHA256_HEX = Pattern.compile("[0-9a-fA-F]{64}");
+
+  /**
+   * 0a — validate request shape. PubMed requests need a {@code pubmed_id};
+   * upload requests need non-empty {@code paper_text} and a 64-char hex
+   * {@code pdf_content_sha256}. Throws {@link BadRequestException} (400) on any
+   * violation. Static + dependency-free so it is unit-testable in isolation.
+   */
+  public static void validate(AiGenePublicationRequest request) {
+    if (request == null)
+      throw new BadRequestException("request body is required");
+    if (isBlank(request.geneId))
+      throw new BadRequestException("gene_id is required");
+
+    String type = request.documentType == null ? "" : request.documentType.trim();
+    switch (type) {
+      case "pubmed":
+        if (isBlank(request.pubmedId))
+          throw new BadRequestException("pubmed_id is required when document_type=pubmed");
+        break;
+      case "upload":
+        if (isBlank(request.paperText))
+          throw new BadRequestException("paper_text is required when document_type=upload");
+        if (request.pdfContentSha256 == null
+            || !SHA256_HEX.matcher(request.pdfContentSha256).matches())
+          throw new BadRequestException(
+              "pdf_content_sha256 must be a 64-character hex string when document_type=upload");
+        break;
+      default:
+        throw new BadRequestException("document_type must be 'pubmed' or 'upload'");
+    }
+  }
+
+  private static boolean isBlank(String s) {
+    return s == null || s.trim().isEmpty();
   }
 
   /** 0b — resolve gene id + aliases (404 if the stable id is unknown). */
