@@ -7,17 +7,19 @@ VEuPathDB is adding a new kind of user comment: an **AI-assisted gene-publicatio
 1. Resolves the publication text (PMC BioC API for PubMed; for uploads, the FE has already extracted text client-side with MuPDF.js and sends it in the POST body — the PDF itself never reaches the server).
 2. Looks up gene synonyms from VEuPathDB and verifies the gene is mentioned in the text.
 3. Runs an LLM to generate a gene-function summary, with an optional validation pass.
-4. Persists a `user_comment` row carrying an `aiProvenance` record so the FE can show a review-and-publish form.
+4. Persists the LLM output to a **`comment_ai_run` cache row** (keyed by the content-digest `job_id`). A `user_comment` row + `comment_ai_provenance` record are created **only when the user reviews and publishes** the result via a dedicated publish endpoint — the pipeline itself never creates a comment.
+
+> **Design pivot (2026-06-02): review-on-approval.** Earlier drafts created a `comments` row (in `review_level='unreviewed'` state) the moment a run completed, forcing every consumer of the `comments` table to LEFT JOIN the sidecar and exclude unreviewed AI rows. We have **dropped that**: a completed run produces only the `comment_ai_run` cache row, and a `comments` row springs into existence **only on user approval**. Abandoned reviews simply leave a `comment_ai_run` row behind (still useful for analysis); nothing records "user X ran Y but didn't publish" in either the database or client storage. The FE uses an "are you sure you want to leave?" navigation guard to minimise abandonment. This removes the need to touch any consumer SQL, and lets `review_level` collapse to a single `is_edited` boolean.
 
 The pipeline already exists in Python (`VPDB_AI_gene_paper_summary/`). For this v1 we are **porting it to Java** rather than wrapping it — the user has chosen this trade-off explicitly. The companion front-end plan (`CLAUDE-plan-ai-user-comments-front-end.md`) defines the REST contract and is the source of truth for the wire shape; this plan implements the back-end side of that contract.
 
 ## Architecture overview
 
-A new JAX-RS resource `AiGenePublicationCommentService` lives in `ApiCommonWebsite/Service`, registered in `ApiWebServiceApplication.getClasses()` alongside `UserCommentsService`. It exposes three endpoints (matching the FE contract), runs jobs asynchronously on a bounded thread pool, tracks job state in an in-memory map with TTL eviction, and on success calls the existing `getCommentFactory().createComment(...)` to persist the result.
+A new JAX-RS resource `AiGenePublicationCommentService` lives in `ApiCommonWebsite/Service`, registered in `ApiWebServiceApplication.getClasses()` alongside `UserCommentsService`. It exposes **four endpoints** (matching the FE contract), runs jobs asynchronously on a bounded thread pool, tracks job state in an in-memory map with TTL eviction, and on success writes a `comment_ai_run` cache row. A separate **publish endpoint** is what calls `getCommentFactory().createComment(...)` (plus a `comment_ai_provenance` insert) — and only when the user approves the result.
 
-**Submit lifecycle.** From the FE's perspective the whole flow is **two HTTP interactions** in both cases (our POST, then polled GETs). For the upload path, the FE does the PDF heavy lifting locally: it extracts text using **MuPDF.js** (WASM, lazy-loaded only when the user picks the upload tab) and computes a SHA-256 of the PDF bytes, then sends `{ paper_text, pdf_content_sha256, ... }` in the POST body — the PDF itself never leaves the user's machine. Inside our POST handler there are **two phases**: (a) a *synchronous prelude* (target <2s) that resolves gene synonyms in-process, computes a content-digest `jobId`, looks up `comment_ai_run` and the in-memory registry, and either returns a cache-hit response or attaches the caller to an in-flight job, then (b) the *asynchronous pipeline* that runs only on a true miss.
+**Submit lifecycle.** From the FE's perspective the generate phase is **two HTTP interactions** (our POST, then polled GETs), followed by a third (the publish POST) once the user approves. For the upload path, the FE does the PDF heavy lifting locally: it extracts text using **MuPDF.js** (WASM, lazy-loaded only when the user picks the upload tab) and computes a SHA-256 of the PDF bytes, then sends `{ paper_text, pdf_content_sha256, ... }` in the POST body — the PDF itself never leaves the user's machine. Inside our POST handler there are **two phases**: (a) a *synchronous prelude* (target <2s) that resolves gene synonyms in-process, computes a content-digest `jobId`, looks up `comment_ai_run` and the in-memory registry, and either returns a cache-hit response (the cached `ai_output` + `sibling_summary` — **no comment is created here**) or attaches the caller to an in-flight job, then (b) the *asynchronous pipeline* that runs only on a true miss. The terminal result carries the AI output keyed by `job_id`; the comment row is materialised later by the publish endpoint.
 
-**Identifiers.** The `jobId` is a hex SHA-256 over `(geneId, sorted-resolved-synonyms, source-key, modelName, promptVersion, optionsCanonicalJson)`, where the source-key is the PubMed id (PubMed path) or the FE-supplied `pdf_content_sha256` (upload path) and `optionsCanonicalJson` is the request's `options` object rendered as canonical JSON (Jackson with `MapperFeature.SORT_PROPERTIES_ALPHABETICALLY`, no whitespace, missing/null fields normalised to defaults). `promptVersion` is a manually-bumped constant per prompt stage (one per `getGeneSummary` / `verifyGeneSummary`) — devs bump it when they edit the prompt files, the same way they'd bump a schema version. Hashing the whole `options` blob means a future option that changes LLM output (e.g. `generate_product_descriptions`) is automatically covered without anyone having to remember to update the digest formula. The minor cost is wasted cache misses when two submits differ only on per-submitter options like `create_user_comment` — negligible in practice since that one is `true` almost always. The same `jobId` keys the in-memory registry and the `comment_ai_run` cache row, so double-tap submits and cross-user resubmissions naturally dedupe.
+**Identifiers.** The `jobId` is a hex SHA-256 over `(geneId, sorted-resolved-synonyms, source-key, modelName, promptVersion, optionsCanonicalJson)`, where the source-key is the PubMed id (PubMed path) or the FE-supplied `pdf_content_sha256` (upload path) and `optionsCanonicalJson` is the request's `options` object rendered as canonical JSON (Jackson with `MapperFeature.SORT_PROPERTIES_ALPHABETICALLY`, no whitespace, missing/null fields normalised to defaults). `promptVersion` is a manually-bumped constant per prompt stage (one per `getGeneSummary` / `verifyGeneSummary`) — devs bump it when they edit the prompt files, the same way they'd bump a schema version. Hashing the whole `options` blob means a future option that changes LLM output (e.g. `generate_product_descriptions`) is automatically covered without anyone having to remember to update the digest formula. (With the review-on-approval pivot, `options` no longer contains any per-submitter flags — `create_user_comment` has been removed, since the pipeline never creates a comment — so every option left in the blob genuinely affects the LLM output, and there are no longer "wasted" cache misses on submitter-specific options.) The same `jobId` keys the in-memory registry and the `comment_ai_run` cache row, so double-tap submits and cross-user resubmissions naturally dedupe.
 
 **Pool exhaustion** returns `503 Service Unavailable` with a `Retry-After` header (no queueing). The FE renders a friendly toast and offers retry.
 
@@ -35,9 +37,11 @@ The Anthropic client setup mirrors `ClaudeSummarizer` (`AnthropicOkHttpClientAsy
                                                ▼
 ┌─────────────────────────────────────────────────────────────────┐
 │ AiGenePublicationCommentService (JAX-RS, JSON-only)             │
-│  POST  /user-comments/ai-gene-publication       → status/job_id │
-│  GET   /user-comments/ai-gene-publication/{id}  → status        │
-│  DELETE /user-comments/ai-gene-publication/{id} → cancel        │
+│  POST   /user-comments/ai-gene-publication          → status    │
+│  GET    /user-comments/ai-gene-publication/{id}     → status    │
+│  DELETE /user-comments/ai-gene-publication/{id}     → cancel    │
+│  POST   /user-comments/ai-gene-publication/{id}/publish         │
+│              → create comment + provenance (user approval)      │
 └─────────┬───────────────────────────────────────────────────────┘
           │ POST → sync prelude (target <2s)
           ▼
@@ -70,9 +74,18 @@ The Anthropic client setup mirrors `ClaudeSummarizer` (`AnthropicOkHttpClientAsy
 │  ③ generateSummary   (Anthropic call — getGeneSummary prompt)    │
 │  ④ validateSummary   (Anthropic call — verifyGeneSummary prompt) │
 │  ⑤ flattenToComment  (structured JSON → headline + content)     │
-│  ⑥ persist 6a: INSERT INTO comment_ai_run                       │
-│            6b: per follower → CommentFactory.createComment      │
-│                + INSERT INTO comment_ai_provenance              │
+│  ⑥ persist: INSERT INTO comment_ai_run  (cache row only —       │
+│             NO comment is created by the pipeline)              │
+└─────────────────────────────────────────────────────────────────┘
+
+   ── later, on user approval (separate request thread) ──
+┌─────────────────────────────────────────────────────────────────┐
+│ POST …/{job_id}/publish  (PublishHandler)                       │
+│  • SELECT comment_ai_run by job_id (404 if absent/uncacheable)  │
+│  • CommentFactory.createComment(headline, content, provenance)  │
+│      within one tx also INSERT comment_ai_provenance            │
+│      (run_job_id, is_edited = submitted ≠ cached AI original)   │
+│  • return { comment_id }                                        │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
@@ -93,39 +106,48 @@ Matches `CLAUDE-plan-ai-user-comments-front-end.md` §"Backend contract" with th
   "external_title": "string (optional, upload provenance)",
   "options": {
     "validate": true,
-    "generate_product_description": false,
-    "create_user_comment": true
+    "generate_product_description": false
   }
 }
 ```
 
-Snake-case keys match the existing comments-service JSON convention. No `user_id` — WDK identifies the caller. Typical `paper_text` size: 30–200 KB; well under standard servlet POST limits.
+Snake-case keys match the existing comments-service JSON convention. No `user_id` — WDK identifies the caller. Typical `paper_text` size: 30–200 KB; well under standard servlet POST limits. (`create_user_comment` was removed in the review-on-approval pivot: the generate POST never creates a comment, so the flag gated nothing.)
 
-**POST response** uses the same union as the GET status response (i.e. POST may return a terminal state directly on a cache hit):
+**POST response** uses the same union as the GET status response (i.e. POST may return a terminal state directly on a cache hit). **No terminal carries a `comment_id`** — a comment only exists after the publish step:
 
 - `running { job_id, stage }` — fresh job spawned, or attached to an in-flight job with the same `job_id`.
-- `success { job_id, ai_output, sibling_summary, comment_id }` — cache hit on `comment_ai_run`; submitter's own comment is created in-line and `comment_id` is returned.
-- `mentioned-in-passing { job_id, synonyms_checked, sibling_summary, comment_id }` — cache hit; submitter's comment created.
-- `gene-not-mentioned { job_id, synonyms_checked, sibling_summary, comment_id }` — cache hit; submitter's comment created.
+- `success { job_id, ai_output, sibling_summary }` — cache hit on `comment_ai_run`; the cached AI output is returned for the FE to render its review form.
+- `mentioned-in-passing { job_id, synonyms_checked, sibling_summary }` — cache hit.
+- `gene-not-mentioned { job_id, synonyms_checked, sibling_summary }` — cache hit.
 - `text-unavailable { reason }` — never cached; the fetch will run on every retry.
 
-`sibling_summary { unreviewed: N, reviewed: N, edited: N, latest_reviewed_at: ISO-8601 | null }` is anonymous aggregate data over `comment_ai_provenance` rows pointing at the same `run_job_id`. It exists so the FE can render a banner ("this combo was processed before by N others; you can still review and publish under your name") without revealing the other users.
+`sibling_summary { reviewed: N, edited: N, latest_at: ISO-8601 | null }` is anonymous aggregate data over `comment_ai_provenance` rows pointing at the same `run_job_id`. Because provenance rows now exist **only for published comments**, the counts are: `reviewed` = published-without-edits (`is_edited=false`), `edited` = published-with-edits (`is_edited=true`); there is no longer an `unreviewed` count (unreviewed runs leave no provenance row). It exists so the FE can render a banner ("this combo has been published by N others; you can still review and publish under your name") without revealing the other users. `latest_at` is the most recent provenance `created_at`.
 
-**Terminal status union returned from GET on a completed job** (FE-contract additions in bold):
-- `success { ai_output, comment_id, sibling_summary }`
-- `gene-not-mentioned { synonyms_checked, sibling_summary }`
-- **`mentioned-in-passing { synonyms_checked, sibling_summary }`** — new for v1
+**Terminal status union returned from GET on a completed job:**
+- `success { job_id, ai_output, sibling_summary }`
+- `gene-not-mentioned { job_id, synonyms_checked, sibling_summary }`
+- `mentioned-in-passing { job_id, synonyms_checked, sibling_summary }`
 - `text-unavailable { reason }`
 - `validation-error { errors }`
 - `internal-error { error }`
 - `cancelled`
 
-`gene-not-mentioned` comes from the deterministic regex scan; `mentioned-in-passing` comes from the LLM.
+`gene-not-mentioned` comes from the deterministic regex scan; `mentioned-in-passing` comes from the LLM. None of these create a comment — the FE renders a review form (empty body for the two "not really about this gene" outcomes) and the comment is created on publish.
+
+**The publish endpoint** — `POST /user-comments/ai-gene-publication/{job_id}/publish`:
+
+```json
+{ "headline": "string", "content": "string" }
+```
+
+- Looks up `comment_ai_run` by `{job_id}` (the path id). **404** if absent — only a *cacheable* terminal run (`success` / `mentioned-in-passing` / `gene-not-mentioned`) can be published; `text-unavailable` / `validation-error` / `internal-error` never wrote a run row. **400** if `headline`/`content` are empty.
+- In one transaction: `createComment(...)` for the authenticated user (provenance — pubmed id / external url+title / gene — read from the run row, not the body), then `INSERT comment_ai_provenance(comment_id, run_job_id, is_edited, created_at)` where `is_edited = (headline ≠ run.ai_headline OR content ≠ run.ai_content)`. For `mentioned-in-passing` / `gene-not-mentioned` the run's `ai_headline`/`ai_content` are null, so any user-written body is `is_edited = true`.
+- Returns `{ comment_id }` (201). The FE then leaves the AI flow (the comment is now a normal published comment).
 
 **Stage names emitted in `running` state** (subset of FE-defined stages, only those v1 ships):
-- `queued` → `fetching-article` → `scanning-gene-mentions` → `generating-summary` → `validating` (iff `options.validate`) → `persisting` (iff `options.create_user_comment`)
+- `queued` → `fetching-article` → `scanning-gene-mentions` → `generating-summary` → `validating` (iff `options.validate`) → `persisting`
 
-Gene-synonym resolution happens in the sync prelude before any `running` state is published, so it isn't an emitted stage. No `generating-product-description` in v1 (product descriptions deferred — see "Out of scope" below).
+`persisting` (writing the `comment_ai_run` cache row) now always runs for a cacheable outcome — it is no longer gated on `create_user_comment`. Gene-synonym resolution happens in the sync prelude before any `running` state is published, so it isn't an emitted stage. No `generating-product-description` in v1 (product descriptions deferred — see "Out of scope" below).
 
 **Polling cadence**: server tolerates ~1/s polls; no rate limiting beyond standard `AbstractWdkService` behaviour. **Registry TTL: 10 min** after terminal state (≥5 min recommended by FE; we round up). `comment_ai_run` rows are permanent — they are the source of truth for cache hits after the registry entry has been evicted.
 
@@ -140,7 +162,7 @@ Runs entirely on the request thread, target <2 s end-to-end. Performs no LLM cal
 | 0a | Validate request shape. For uploads, require both `paper_text` (non-empty) and `pdf_content_sha256` (64-char hex). |
 | 0b | Resolve `gene_id` + aliases via `wdkModel.getRecordClass("GeneRecordClasses.GeneRecordClass")`. 404 if the stableId is unknown. |
 | 0c | Compute `job_id = sha256(geneId ‖ sortedSynonyms ‖ sourceKey ‖ modelName ‖ promptVersion ‖ optionsCanonicalJson)` where `sourceKey = pubmed_id` (PubMed path) or `pdf_content_sha256` (upload path, supplied by the FE), and `optionsCanonicalJson` is the `options` object serialised with Jackson `MapperFeature.SORT_PROPERTIES_ALPHABETICALLY` and default-normalisation. |
-| 0d | `SELECT * FROM comment_ai_run WHERE job_id = ?`. **Hit** → aggregate `sibling_summary` from `comment_ai_provenance`, create the submitter's `comments` + `comment_ai_provenance` rows inline (per `options.create_user_comment`), return the terminal cache-hit response with `comment_id` and `sibling_summary`. |
+| 0d | `SELECT * FROM comment_ai_run WHERE job_id = ?`. **Hit** → aggregate `sibling_summary` from `comment_ai_provenance` and return the terminal cache-hit response (cached `ai_output` + `sibling_summary`). **No comment is created here** — the FE renders its review form from the cached output and the comment is materialised only by the publish endpoint. |
 | 0e | Registry lookup by `job_id`. **Hit** → register the caller as a follower of the in-flight job and return its current `running` state. |
 | 0f | Miss → spawn the async pipeline on the bounded executor and return `running { job_id, stage: "queued" }`. **Pool full → 503 + `Retry-After`**. |
 
@@ -153,15 +175,19 @@ Runs entirely on the request thread, target <2 s end-to-end. Performs no LLM cal
 | ③ | `generating-summary` | Anthropic API call. System prompt + user prompts loaded from `resources/ai/prompts/getGeneSummary/{system.txt,user.txt,schema.json}`. Placeholder substitution: `[PAPER_TEXT]`, `[GENE]`, `[N_QUOTES]`, `[JSON_SCHEMA]`. Prefill assistant turn with `{` (matches Python). Strip markdown fences from response, parse JSON. On the response's `only_in_passing=true` → short-circuit to terminal `mentioned-in-passing` (persisted to `comment_ai_run`). Up to `max_retry=3` retries via formatter LLM on malformed JSON (port `extract_json` retry loop). |
 | ④ | `validating` (iff `options.validate`) | Anthropic call using `verifyGeneSummary` prompt. Input: original summary JSON + paper text. Output: verified/corrected summary in the same shape. If validation finds blocking issues we can't recover from, terminal `validation-error` with the validator's notes (not persisted to the cache). |
 | ⑤ | flatten | Compute `ai_output.headline = ShortSummary` (plain text). `ai_output.content` = bullet-flattened plain text that is also valid markdown — `- ` bullets with indented `Evidence:` / `>` quote lines and an "Aliases mentioned in paper:" header. No HTML; no markdown editor library is in the FE monorepo, so we stay plain-text-compatible while future-proofing for a markdown renderer on the show page (deferred). |
-| ⑥ | `persisting` | **6a.** `INSERT INTO usercomments.comment_ai_run` (one row keyed by `job_id`; idempotent — survives retries cleanly). **6b.** For each follower in the registry (per the attach behaviour above), call `getCommentFactory().createComment(commentRequest, user)` and within its transaction also `INSERT INTO usercomments.comment_ai_provenance(comment_id, run_job_id, review_level='unreviewed')`. Both writes per-follower are atomic; the loop runs sequentially. Return each follower's `comment_id` in the terminal `success` they receive on their next GET. |
+| ⑥ | `persisting` | `INSERT INTO usercomments.comment_ai_run` — one row keyed by `job_id` (idempotent; survives retries cleanly). **That is the pipeline's only write.** No `comments` or `comment_ai_provenance` rows are created here — there are no per-follower comments. Every follower polling this `job_id` simply receives the same terminal `ai_output` on their next GET; each then independently reviews and (optionally) publishes via the publish endpoint. |
 
-**Terminal outcomes that are persisted to `comment_ai_run`** (and therefore short-circuit future submits): `success`, `mentioned-in-passing`, `gene-not-mentioned`. **Not persisted** (retries are free): `text-unavailable`, `validation-error`, `internal-error`, `cancelled`. See "Out of scope / coordination items" for an optional `text-unavailable` observability log.
+### Publish step (separate from the pipeline)
+
+Triggered by the FE's `POST /user-comments/ai-gene-publication/{job_id}/publish` when the user approves. Runs on the request thread (no executor). `SELECT comment_ai_run by job_id` (404 if absent) → `getCommentFactory().createComment(commentRequest, user)` building the request's provenance from the run row, and within the **same transaction** `INSERT INTO usercomments.comment_ai_provenance(comment_id, run_job_id, is_edited, created_at)` with `is_edited = submitted text ≠ cached AI original`. Returns `{ comment_id }`. This is the *only* place a `comments` row is created in the whole flow.
+
+**Terminal outcomes that are persisted to `comment_ai_run`** (and therefore short-circuit future submits, and are publishable): `success`, `mentioned-in-passing`, `gene-not-mentioned`. **Not persisted** (retries are free; not publishable): `text-unavailable`, `validation-error`, `internal-error`, `cancelled`. See "Out of scope / coordination items" for an optional `text-unavailable` observability log.
 
 ## Job state mechanism
 
 In-memory `JobRegistry`:
-- `ConcurrentHashMap<String, JobState>` keyed by the hex SHA-256 `job_id` (not a UUID). `JobState` carries the current `{stage, message, updated_at}`, the immutable submission summary, the running `Future`, a **follower list** `List<Submitter>` (each entry holds the userId plus the `CommentRequest` fields needed at persist time), and (when terminal) the result.
-- Submit handler runs the sync prelude (stage 0); on a registry hit it appends to the follower list and returns the existing job's state, on a miss it spawns the pipeline on a fixed-size `ExecutorService` (cap: **8 threads**, sized for slow LLM calls). If the pool rejects the submission → `503 Service Unavailable` with `Retry-After`.
+- `ConcurrentHashMap<String, JobState>` keyed by the hex SHA-256 `job_id` (not a UUID). `JobState` carries the current `{stage, message, updated_at}`, the immutable submission summary, the running `Future`, a **follower list** `List<Long>` (user ids — used only for dedupe/observability, since followers no longer get per-user comments), and (when terminal) the result. *(The earlier per-follower `comment_id` map / `recordComment` on `JobState` is now vestigial — comments are created by the publish endpoint, not the pipeline — and should be removed when D6 is revisited.)*
+- Submit handler runs the sync prelude (stage 0); on a registry hit it appends the caller's user id to the follower list and returns the existing job's state, on a miss it spawns the pipeline on a fixed-size `ExecutorService` (cap: **8 threads**, sized for slow LLM calls). If the pool rejects the submission → `503 Service Unavailable` with `Retry-After`.
 - Each pipeline stage calls back into the registry to update `JobState.progress` with `{ stage, message, updated_at }`.
 - `ScheduledExecutorService` runs every 60 s and evicts entries whose terminal-state age exceeds 10 min. `comment_ai_run` rows are permanent and still satisfy late cache hits.
 - DELETE: marks the job cancelled, calls `.cancel(true)` on the `Future`, and cancels any in-flight Anthropic HTTP call via the OkHttp client. Next poll from any follower returns `type: 'cancelled'`. Per-follower opt-out (one follower wants to detach without killing the job for others) is deferred — see "Out of scope".
@@ -169,7 +195,7 @@ In-memory `JobRegistry`:
 
 ## Database schema — two sidecar tables
 
-Match the existing convention (Categories, References, Attachments all use sidecars off `comments`). The shared LLM output cache lives in `comment_ai_run`, keyed by the content-digest `job_id`. The per-user review state lives in `comment_ai_provenance`, keyed by `comment_id` with a FK to the run row. The current (possibly edited) headline/content live in `usercomments.comments` itself; the immutable AI original lives on the run row.
+Match the existing convention (Categories, References, Attachments all use sidecars off `comments`). The shared LLM output cache lives in `comment_ai_run`, keyed by the content-digest `job_id`. A `comment_ai_provenance` row exists **only for a published comment** (created by the publish endpoint, never by the pipeline), keyed by `comment_id` with a FK to the run row; it records `is_edited` rather than a multi-valued review level, because by construction every such row is already reviewed-and-approved. The current (possibly edited) headline/content live in `usercomments.comments` itself; the immutable AI original lives on the run row.
 
 **Dev database**: PostgreSQL — `userdb_devn` on `ares13.penn.apidb.org:5432` (confirmed via LDAP lookup of `userDb_ldapCommonName: userdb_devn` on `ds.apidb.org`).
 
@@ -207,8 +233,8 @@ CREATE TABLE usercomments.comment_ai_provenance
 (
   comment_id    BIGINT       NOT NULL,
   run_job_id    VARCHAR(64)  NOT NULL,
-  review_level  VARCHAR(16)  NOT NULL,   -- 'unreviewed' | 'reviewed' | 'edited'
-  reviewed_at   TIMESTAMP,               -- set when review_level transitions away from 'unreviewed'
+  is_edited     BOOLEAN      NOT NULL,   -- true iff the published text differs from the AI original
+  created_at    TIMESTAMP    NOT NULL,   -- when the user approved/published (row only exists post-approval)
   CONSTRAINT comment_ai_provenance_pkey PRIMARY KEY (comment_id),
   CONSTRAINT comment_ai_prov_comment_id_fkey FOREIGN KEY (comment_id)
       REFERENCES usercomments.comments (comment_id),
@@ -224,7 +250,7 @@ GRANT select                  on usercomments.comment_ai_run        to GUS_R;
 GRANT select                  on usercomments.comment_ai_provenance to GUS_R;
 ```
 
-The current (possibly edited) headline/content live in `usercomments.comments`. The immutable AI original lives in `comment_ai_run.ai_headline` / `ai_content`. A diff between them reconstructs what the user edited; the FE doesn't need separate `edited_*` columns on the provenance row.
+The current (possibly edited) headline/content live in `usercomments.comments`. The immutable AI original lives in `comment_ai_run.ai_headline` / `ai_content`. `is_edited` is a convenience flag the publish endpoint sets by comparing the user's submitted text to that original — cheaper for the FE/consumers than re-deriving the diff across two tables on every read. (A full diff is still reconstructable from the two tables if ever needed.)
 
 Style follows the existing comment-sidecar conventions: `BIGINT` for the comment id, `VARCHAR`/`TEXT` for strings, grants to `COMM_WDK_W`/`GUS_R`, table names under `usercomments.comment_*`. `ai_headline` sized to match `comments.headline VARCHAR(2000)`.
 
@@ -234,17 +260,18 @@ Style follows the existing comment-sidecar conventions: `BIGINT` for the comment
 
 | Action | Path |
 | ------ | ---- |
-| create | `ApiCommonWebsite/Service/src/main/java/org/apidb/apicommon/service/services/ai/AiGenePublicationCommentService.java` — JAX-RS resource (POST/GET/DELETE), `@Consumes(APPLICATION_JSON)` end-to-end |
+| create | `ApiCommonWebsite/Service/src/main/java/org/apidb/apicommon/service/services/ai/AiGenePublicationCommentService.java` — JAX-RS resource (POST / GET / DELETE / **POST {id}/publish**), `@Consumes(APPLICATION_JSON)` end-to-end |
 | create | `ApiCommonWebsite/Service/src/main/java/org/apidb/apicommon/service/services/ai/JobRegistry.java` — in-memory job store, follower list, bounded executor, scheduled eviction |
 | create | `ApiCommonWebsite/Service/src/main/java/org/apidb/apicommon/service/services/ai/JobState.java` + `JobStatus.java` — value types matching FE contract |
-| create | `ApiCommonWebsite/Service/src/main/java/org/apidb/apicommon/service/services/ai/AiGenePublicationPipeline.java` — orchestrator: runs stages ①–⑥, emits progress callbacks |
+| create | `ApiCommonWebsite/Service/src/main/java/org/apidb/apicommon/service/services/ai/AiGenePublicationPipeline.java` — orchestrator: runs stages ①–⑥, emits progress callbacks (⑥ writes only `comment_ai_run`) |
+| create | `ApiCommonWebsite/Service/src/main/java/org/apidb/apicommon/service/services/ai/PublishHandler.java` — backs `POST {id}/publish`: load run row, `createComment` + `comment_ai_provenance` insert in one tx, compute `is_edited` |
 | create | `ApiCommonWebsite/Service/src/main/java/org/apidb/apicommon/service/services/ai/SyncPrelude.java` — gene-synonym resolution, PDF content hash, digest, cache/registry lookup, follower attach |
 | create | `ApiCommonWebsite/Service/src/main/java/org/apidb/apicommon/service/services/ai/article/PmcBiocFetcher.java` |
 | create | `ApiCommonWebsite/Service/src/main/java/org/apidb/apicommon/service/services/ai/gene/GeneSynonymService.java` (WDK `RecordClass` lookup) |
 | create | `ApiCommonWebsite/Service/src/main/java/org/apidb/apicommon/service/services/ai/gene/GeneMentionScanner.java` (regex matcher port) |
 | create | `ApiCommonWebsite/Service/src/main/java/org/apidb/apicommon/service/services/ai/llm/AnthropicJsonClient.java` (thin wrapper: load prompt files, substitute placeholders, parse JSON with retry) |
 | create | `ApiCommonWebsite/Model/src/main/java/org/apidb/apicommon/model/comment/pojo/CommentAiRun.java` — POJO for the cache row |
-| create | `ApiCommonWebsite/Model/src/main/java/org/apidb/apicommon/model/comment/pojo/AiProvenance.java` — POJO for the per-comment provenance row |
+| create | `ApiCommonWebsite/Model/src/main/java/org/apidb/apicommon/model/comment/pojo/AiProvenance.java` — POJO for the per-comment provenance row (`run_job_id`, `is_edited`, `created_at`) |
 | create | `ApiCommonWebsite/Model/src/main/java/org/apidb/apicommon/model/comment/repo/InsertCommentAiRunQuery.java` — follows the `InsertCategoryQuery` / `InsertAttachmentQuery` pattern |
 | create | `ApiCommonWebsite/Model/src/main/java/org/apidb/apicommon/model/comment/repo/InsertCommentAiProvenanceQuery.java` |
 | create | `ApiCommonWebsite/Model/src/main/java/org/apidb/apicommon/model/comment/repo/GetCommentAiRunQuery.java` — cache lookup by `job_id` plus sibling-summary aggregate |
@@ -254,32 +281,35 @@ Style follows the existing comment-sidecar conventions: `BIGINT` for the comment
 | create | `ApiCommonWebsite/Service/src/main/resources/schema/apicomm/ai-gene-publication/status-response.json` |
 | create | DB migration script under `ApiCommonModel/Model/lib/sql/` (follow the `migration_comment_b*.sql` pattern) for both new tables |
 | modify | `ApiCommonWebsite/Service/src/main/java/org/apidb/apicommon/service/ApiWebServiceApplication.java` — `.add(AiGenePublicationCommentService.class)` |
-| modify | `ApiCommonWebsite/Service/doc/raml/apicommonwebsite.raml` — document the three new endpoints |
+| modify | `ApiCommonWebsite/Service/doc/raml/apicommonwebsite.raml` — document the four new endpoints (incl. `{id}/publish`) |
 | modify | `ApiCommonWebsite/Service/pom.xml` — no new PDF dependency needed (text extraction happens client-side in MuPDF.js, the server never touches a PDF). `anthropic-java` is already present in the Model pom; no SDK addition needed there. |
-| modify | `ApiCommonWebsite/Model/src/main/java/org/apidb/apicommon/model/comment/CommentFactory.java` (or its EbrcWebsiteCommon parent) — extend the `createComment` transaction (currently `con.setAutoCommit(false)` → `con.commit()` at `CommentFactory.java:196,234`) to also insert `comment_ai_provenance` when an `AiProvenance` is supplied on the request. Extend `GetCommentQuery` to LEFT JOIN the provenance + run rows. **Coordination item with EbrcWebsiteCommon.** |
+| modify | `ApiCommonWebsite/Model/src/main/java/org/apidb/apicommon/model/comment/CommentFactory.java` (or its EbrcWebsiteCommon parent) — extend the `createComment` transaction (currently `con.setAutoCommit(false)` → `con.commit()` at `CommentFactory.java:196,234`) to also insert `comment_ai_provenance` when an `AiProvenance` is supplied on the request. This is now driven by the **publish endpoint** (user approval), not the pipeline. Extend `GetCommentQuery` to LEFT JOIN the provenance + run rows so a published AI comment exposes its `aiProvenance` (source, `is_edited`, and the AI originals from the run row). **No consumer-SQL exclusion needed** — unreviewed runs never create `comments` rows. **Coordination item with EbrcWebsiteCommon.** |
 | modify | `ApiCommonWebsite/Model/src/main/java/org/apidb/apicommon/model/comment/pojo/CommentRequest.java` and `Comment.java` — add `aiProvenance` field (optional). |
 
 ### Implementation order
 
-**First deliverable — scaffolding only.** All new classes (resource, registry, pipeline, sync prelude, fetchers, scanners, LLM client, POJOs, queries) created with JAX-RS annotations, method signatures, and no-op bodies that throw `UnsupportedOperationException` (or return `501 Not Implemented` for the endpoints). Service registered in `ApiWebServiceApplication`. SQL migration script committed. Module builds clean; the three endpoints return 501. **Pause here for user review of the shape before any pipeline logic lands.**
+**First deliverable — scaffolding only.** All new classes (resource, registry, pipeline, sync prelude, fetchers, scanners, LLM client, POJOs, queries) created with JAX-RS annotations, method signatures, and no-op bodies that throw `UnsupportedOperationException` (or return `501 Not Implemented` for the endpoints). Service registered in `ApiWebServiceApplication`. SQL migration script committed. Module builds clean; the endpoints return 501. **Pause here for user review of the shape before any pipeline logic lands.**
 
 Subsequent deliverables, in order:
 
-1. Sync prelude (gene/synonym resolution, digest, `comment_ai_run` lookup, registry attach).
+1. Sync prelude (gene/synonym resolution, digest, `comment_ai_run` lookup, registry attach). Cache-hit returns cached `ai_output` + `sibling_summary` (no comment created).
 2. PMC BioC article fetcher (pubmed path); upload path just reads `paper_text` from the request.
 3. Gene-mention regex scanner.
 4. Anthropic call + JSON retry loop for `generating-summary`.
 5. Validation pass (`verifyGeneSummary`).
-6. Persist stage 6a (`comment_ai_run`) + 6b (`comment` + `comment_ai_provenance`, looping over followers).
-7. DELETE / cancel wiring.
-8. Registry eviction scheduler.
+6. Persist stage ⑥ — `INSERT comment_ai_run` only (the pipeline creates no comment).
+7. **Publish endpoint** (`POST {id}/publish`) — `createComment` + `comment_ai_provenance` insert in one tx, `is_edited` computed vs the run's AI original. Depends on the `CommentFactory`/`CommentRequest` `aiProvenance` extension. **Blocked on DB tables for live test.**
+8. DELETE / cancel wiring.
+9. Registry eviction scheduler.
+
+*(Deliverable numbering shifted: the old D6 "6b loop over followers" is gone; comment creation moved to the new publish deliverable. `create_user_comment` is removed from `AiGenePublicationRequest.Options`, the canonical-options JSON, and `JobDigest`. The vestigial per-follower `comment_id` map on `JobState` is removed.)*
 
 ### Reused without modification
 
 - **Anthropic client setup pattern** — `AnthropicOkHttpClientAsync.builder().apiKey(wdkModel.getProperties().get("CLAUDE_API_KEY")).maxRetries(32)...` (lifted verbatim from `ClaudeSummarizer` at `ApiCommonWebsite/Model/src/main/java/org/apidb/apicommon/model/report/ai/expression/ClaudeSummarizer.java`).
 - **`fetchUser()` / `getRequestingUser()`** from `AbstractWdkService` / `AbstractUserCommentService` — authenticates the caller; throws 401 for guests, which is the FE-required `requiresLogin: true` behaviour.
 - **`getCommentFactory().createComment(commentRequest, user)`** from the existing `UserCommentsService` flow (line 91 of that file) — does the bulk of the persistence; its transaction scope (`CommentFactory.java:196,234`) is what we extend with the provenance insert.
-- **DELETE-user-comment endpoint** at `DELETE /user-comments/{id}` (`UserCommentsService.deleteComment`, line 164) is already implemented and used by the FE's "Delete draft" button.
+- **DELETE-user-comment endpoint** at `DELETE /user-comments/{id}` (`UserCommentsService.deleteComment`, line 164) is already implemented. (No longer used for an AI "delete draft" — there is no draft comment now; abandoning a review creates nothing to delete. It remains available for deleting a *published* AI comment like any other.)
 
 ## Prompts: porting strategy
 
@@ -298,8 +328,8 @@ This keeps the diff against `prompts.py` legible — when the Python team iterat
 
 These are flagged for the user to decide or coordinate, not implemented in this plan:
 
-1. **FE contract amendments** (cross-reference): the FE plan (`CLAUDE-plan-ai-user-comments-front-end.md`) needs (a) `mentioned-in-passing` terminal status, (b) the anonymous `sibling_summary` field on terminal responses and the banner that consumes it, (c) the upload-via-TempFileService prerequisite step before submitting to our service.
-2. **EbrcWebsiteCommon coordination**: extending `CommentRequest`/`Comment`/`CommentFactory` to carry `aiProvenance` and read/write the two new sidecar tables. May span repos.
+1. **FE contract amendments** (cross-reference): the FE plan (`CLAUDE-plan-ai-user-comments-front-end.md`) is kept in sync with this one — both were revised together for the review-on-approval pivot (no inline comment / no `comment_id` on terminals; review keyed by `job_id`; the publish endpoint; `sibling_summary { reviewed, edited, latest_at }`).
+2. **EbrcWebsiteCommon coordination**: extending `CommentRequest`/`Comment`/`CommentFactory` to carry `aiProvenance` and read/write the two new sidecar tables — now invoked from the **publish endpoint** rather than the pipeline. May span repos.
 3. **DB migration script placement / review**: scripts live in `ApiCommonModel/Model/lib/sql/` (corrected location) — DBA review and migration scripting follows existing project conventions.
 4. **Product descriptions** (Python stages 3–5): explicitly deferred. When added, they get `options.generate_product_description=true`, a new `generating-product-description` stage, and a separate persistence target (TBD).
 5. **Prompt drift**: the Python pipeline is still being iterated (test sets, model comparison runs ongoing). Ported Java prompts will drift unless re-synced. A v2 option is to read prompts from a shared file/repo, or to revisit the integration choice. Cache invalidation on prompt edits is **manual** — devs bump `promptVersion` (the per-stage constant baked into `job_id`) when they touch the prompt files. Convention enforced by code review.
@@ -314,19 +344,20 @@ These are flagged for the user to decide or coordinate, not implemented in this 
 1. **Module builds clean** in order: `install/`, `WDK/`, `ApiCommonWebsite/Model`, `ApiCommonWebsite/Service` (`mvn clean install -DskipTests`).
 2. **Service registers**: `GET /user-comments/ai-gene-publication/<bogus-digest>` returns 404 (not a JAX-RS 405/wrong-route error).
 3. **Auth gate**: same call from a guest session returns 401.
-4. **PubMed happy path**: POST with a known OA PMID + gene that's clearly discussed → POST returns `running { job_id, stage }` within ~2s, polling shows stages advance, terminal `success` returns `ai_output` + `comment_id`. `comment_ai_run` row exists keyed by the digest; `comment_ai_provenance` row exists for the submitter with `review_level='unreviewed'`; `GET /user-comments/{comment_id}` returns the full comment with `aiProvenance` populated.
-5. **PDF (upload) happy path**: FE extracts text and computes the PDF SHA-256 client-side with MuPDF.js + Web Crypto, then POSTs `{ document_type: "upload", paper_text, pdf_content_sha256, gene_id, external_url?, external_title? }` to our service. `comment_ai_run.pdf_content_sha256` matches the value the FE supplied; otherwise as #4.
-6. **Gene not in paper**: POST a PMID that doesn't mention the gene → terminal `gene-not-mentioned` with `synonyms_checked` populated. `comment_ai_run` row written (terminal_status='gene-not-mentioned'); `comment` + `comment_ai_provenance` row created for the submitter (per D5).
-7. **Mentioned only in passing**: POST a PMID where the gene appears trivially → terminal `mentioned-in-passing`. `comment_ai_run` row written; submitter's `comment` + `comment_ai_provenance` created.
-8. **Text unavailable**: POST a non-OA / restricted PMID → terminal `text-unavailable` with `reason` populated, **no rows** in `comment_ai_run`, `comments`, or `comment_ai_provenance`. Retrying re-runs the fetch.
-9. **Validation off**: POST with `options.validate=false` → the `validating` stage is never emitted; success still works.
-10. **Cache hit across users**: user A's job completes; user B POSTs the same `gene_id` + `pubmed_id` → POST returns within ~2s with `success { ai_output, sibling_summary: { unreviewed: 1, … }, comment_id }`; a fresh `comments` + `comment_ai_provenance` row exists for B, both rows reference the same `run_job_id` as A's.
-11. **In-flight attach**: user A submits a job; before it completes, user B POSTs the same digest → both poll the same `job_id`. On terminal success, two `comments` + two `comment_ai_provenance` rows exist, both pointing to the single `comment_ai_run` row.
-12. **Pool exhaustion**: saturate the 8-thread executor; ninth submit returns `503 Service Unavailable` with `Retry-After`.
-13. **Resume**: submit a job, then `GET` with the same `job_id` after restart-of-the-tab simulating a refresh → returns the live state without resubmitting. (Server restart between submit and resume returns 404 — FE handles this.)
-14. **Cancel**: submit a job, immediately DELETE → polling returns `type: 'cancelled'`, the executor thread terminates promptly, no `comment_ai_run` or `comment` row is created.
-15. **Registry TTL eviction**: submit, let it complete, wait >10 min, GET → live registry returns 404 but a fresh POST with the same digest still cache-hits via `comment_ai_run`.
-16. **Regression**: existing `/user-comments` endpoints (POST/GET/DELETE/attachments) still work unchanged.
+4. **PubMed happy path**: POST with a known OA PMID + gene that's clearly discussed → POST returns `running { job_id, stage }` within ~2s, polling shows stages advance, terminal `success` returns `ai_output` (no `comment_id`). `comment_ai_run` row exists keyed by the digest; **no `comments` / `comment_ai_provenance` row yet**.
+5. **Publish (review-on-approval)**: after #4, `POST …/{job_id}/publish { headline, content }` → 201 `{ comment_id }`. `comments` row + `comment_ai_provenance` row now exist; `is_edited=false` when the body matches `comment_ai_run.ai_headline`/`ai_content`, `true` when edited. `GET /user-comments/{comment_id}` returns the full comment with `aiProvenance` populated.
+6. **PDF (upload) happy path**: FE extracts text and computes the PDF SHA-256 client-side with MuPDF.js + Web Crypto, then POSTs `{ document_type: "upload", paper_text, pdf_content_sha256, gene_id, external_url?, external_title? }`. `comment_ai_run.pdf_content_sha256` matches the value the FE supplied; otherwise as #4 (+ publish as #5).
+7. **Gene not in paper**: POST a PMID that doesn't mention the gene → terminal `gene-not-mentioned` with `synonyms_checked` populated. `comment_ai_run` row written (terminal_status='gene-not-mentioned'); **no comment row** until the user publishes (the publish body is then entirely user-written → `is_edited=true`).
+8. **Mentioned only in passing**: POST a PMID where the gene appears trivially → terminal `mentioned-in-passing`. `comment_ai_run` row written; no comment row until publish.
+9. **Text unavailable**: POST a non-OA / restricted PMID → terminal `text-unavailable` with `reason` populated, **no rows** in `comment_ai_run`, `comments`, or `comment_ai_provenance`. Retrying re-runs the fetch. A publish attempt against this `job_id` returns **404**.
+10. **Validation off**: POST with `options.validate=false` → the `validating` stage is never emitted; success still works.
+11. **Cache hit across users**: user A completes a run and publishes; user B POSTs the same `gene_id` + `pubmed_id` → POST returns within ~2s with `success { ai_output, sibling_summary: { reviewed: 1, edited: 0, … } }` (reflecting A's published comment), **no `comment_id`**. When B publishes, a fresh `comments` + `comment_ai_provenance` row exists for B, referencing the same `run_job_id` as A's.
+12. **In-flight attach**: user A submits a job; before it completes, user B POSTs the same digest → both poll the same `job_id` and both receive the terminal `ai_output`. No comment rows are created by attaching; each user publishes independently.
+13. **Pool exhaustion**: saturate the 8-thread executor; ninth submit returns `503 Service Unavailable` with `Retry-After`.
+14. **Resume**: submit a job, then `GET` with the same `job_id` after a tab refresh → returns the live state (or the terminal `ai_output`) without resubmitting. (Server restart between submit and resume returns 404 — FE handles this.)
+15. **Cancel**: submit a job, immediately DELETE → polling returns `type: 'cancelled'`, the executor thread terminates promptly, no `comment_ai_run` or `comment` row is created.
+16. **Registry TTL eviction**: submit, let it complete, wait >10 min, GET → live registry returns 404 but a fresh POST (or a publish) with the same digest still resolves via the permanent `comment_ai_run` row.
+17. **Regression**: existing `/user-comments` endpoints (POST/GET/DELETE/attachments) still work unchanged; **no consumer of the `comments` table needs an unreviewed-AI exclusion**, since unreviewed runs never create `comments` rows.
 
 ---
 
@@ -344,9 +375,15 @@ _Last updated: 2026-06-02. We are executing this plan via the `superpowers:execu
 | 3 | Gene-mention regex scanner (`scanning-gene-mentions`) | ⬜ Next |
 | 4 | Anthropic call + JSON retry (`generating-summary`) | ⬜ Pending |
 | 5 | Validation pass (`verifyGeneSummary`) | ⬜ Pending |
-| 6 | Persist (`comment_ai_run` + `comment` + `comment_ai_provenance`, loop followers) | ⬜ Pending — **blocked on DB tables** for live test |
-| 7 | DELETE / cancel wiring | ⬜ Pending (endpoint still returns 501) |
-| 8 | Registry eviction scheduler | ⬜ Pending (`_evictor` field present, unused) |
+| 6 | Persist (`comment_ai_run` **only** — pipeline creates no comment) | ⬜ Pending — **blocked on DB tables** for live test |
+| 7 | **Publish endpoint** (`POST {id}/publish` → `comment` + `comment_ai_provenance`, `is_edited`) | ⬜ Pending — **blocked on DB tables**; needs `CommentFactory`/`CommentRequest` aiProvenance extension |
+| 8 | DELETE / cancel wiring | ⬜ Pending (endpoint still returns 501) |
+| 9 | Registry eviction scheduler | ⬜ Pending (`_evictor` field present, unused) |
+
+> **⚠ Plan pivot (2026-06-02) — review-on-approval.** After D2, the team simplified the model: a completed run now writes **only** the `comment_ai_run` cache row; the `comments` + `comment_ai_provenance` rows are created **only when the user approves & publishes**, via a new `POST …/{job_id}/publish` endpoint. Consequences already folded into the plan above and the items below:
+> - Terminals no longer carry `comment_id`; cache-hit returns cached `ai_output` + `sibling_summary` only.
+> - `comment_ai_provenance.review_level`/`reviewed_at` → **`is_edited` BOOLEAN + `created_at`**; `sibling_summary` is now `{ reviewed, edited, latest_at }` (no `unreviewed`).
+> - **Code changes still owed** (touch already-written D0/D1 code): remove `create_user_comment` from `AiGenePublicationRequest.Options`, from `JobDigest.canonicalOptionsJson`, and its `JobDigestTest` assertions; delete the vestigial `JobState._commentIdsByUser` / `recordComment` / `getCommentId`; the `CommentAiRun`/`AiProvenance` POJOs + provenance insert query must use `is_edited`/`created_at`; update the `migration_comment_b70.sql` DDL. D1's `cacheHitJson` already returns just `ai_output` (its `comment_id` TODO is dropped; add the `sibling_summary` aggregate instead).
 
 ## Decisions locked (with rationale)
 
@@ -366,7 +403,7 @@ _Last updated: 2026-06-02. We are executing this plan via the `superpowers:execu
 - `SyncPrelude.PreludeResult` (nested) — `CACHE_HIT | RUNNING` outcome the resource maps to a response.
 - `services/ai/TerminalResult.java` (D2) — value type for the terminal payload published on `JobState` (rendered by the resource's `jobStateJson`). D2 covers `textUnavailable(reason)` + `internalError(error)`; success / gene-not-mentioned / sibling_summary factories land in D4–6.
 
-**`JobState` was refactored** from a per-follower `Submitter`-with-full-request to: one shared `JobSubmission` + `List<Long> followerUserIds` + a `userId→commentId` map (filled at persist). `JobState.getJobId()` delegates to the submission. Three state tiers: immutable submission (shared) · follower ids (per-user) · volatile stage/result (published; transient stage outputs live as pipeline instance fields).
+**`JobState` was refactored** from a per-follower `Submitter`-with-full-request to: one shared `JobSubmission` + `List<Long> followerUserIds` + a `userId→commentId` map (filled at persist). `JobState.getJobId()` delegates to the submission. Three state tiers: immutable submission (shared) · follower ids (per-user) · volatile stage/result (published; transient stage outputs live as pipeline instance fields). **⚠ Post-pivot:** the `userId→commentId` map / `recordComment` / `getCommentId` are now **vestigial** (the pipeline no longer creates comments) and should be deleted; `followerUserIds` stays for dedupe/observability only.
 
 ## Implemented this far (what's real vs stub)
 
@@ -378,7 +415,7 @@ _Last updated: 2026-06-02. We are executing this plan via the `superpowers:execu
 ## Interim caveats (by design, not bugs)
 
 - **`run()` is now wired (D2).** It calls stages in order, returns early once a stage marks the job terminal, and catches any `Throwable` → terminal `internal-error`. A live job therefore now reaches `fetching-article` and then **terminates as `internal-error`** because the next stage (`scanGeneMentions`, D3) still throws `UnsupportedOperationException` — caught by `run()`. (A non-OA pubmed id terminates earlier as `text-unavailable`; an upload passes the FE text through and likewise lands at the D3 stub → `internal-error`.) This replaces the old "stays running forever" behaviour and is the expected interim state until D3+ land.
-- **Cache-hit response is minimal** (`type`/`job_id`/`ai_output`) — submitter comment creation + `sibling_summary` aggregate are D6 (TODOs in `AiGenePublicationCommentService.cacheHitJson`).
+- **Cache-hit response is minimal** (`type`/`job_id`/`ai_output`) — the `sibling_summary` aggregate is still TODO (now D6/D7). Post-pivot the cache-hit no longer creates a comment, so the old "create submitter comment inline" TODO is gone; `cacheHitJson` is otherwise correct.
 
 ## Build / test notes (important for next session)
 
