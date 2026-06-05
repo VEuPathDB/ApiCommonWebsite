@@ -47,7 +47,7 @@ modelprop:
   )
 }}"
   GOOGLE_MAPS_API_KEY: "{{ lookup('euparc', 'attr=api_key xpath=sites/google_maps default=NOKEY') }}"
-  COMMUNITY_SITE: "//{{ community_env_map[prefix]|default(community_env_map['default']) }}"
+  COMMUNITY_SITE: "//{{ community_env_map[prefix_vdi]|default(community_env_map['default']) }}"
   OPENAI_API_KEY: "{{ lookup('euparc', 'attr=api_key xpath=sites/openai default=NOKEY') }}"
   CLAUDE_API_KEY: "{{ lookup('euparc', 'attr=api_key xpath=sites/claude default=NOKEY') }}"
 
@@ -64,8 +64,12 @@ sitesearchsolr_env_map:
 # # really feels like a bad idea.  please don't let this cancer spread.  Find a
 # # generalized way to do this in the future... 
 community_env_map:
-   w_prefix: static-content.veupathdb.org/
-   b_prefix: beta.static-content.veupathdb.org/
+#   w_prefix: static-content.veupathdb.org/
+#   b_prefix: beta.static-content.veupathdb.org/
+   w1_prefix: static-content.veupathdb.org/
+   b1_prefix: b1.static-content.veupathdb.org/
+   w2_prefix: static-content.veupathdb.org/
+   b2_prefix: b2.static-content.veupathdb.org/
    default: qa.static-content.veupathdb.org/
 
 # this mapping allow different configs based on hostname.  Mainly used to give
