@@ -1,8 +1,11 @@
 package org.apidb.apicommon.service.services.ai;
 
+import java.util.Date;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.RejectedExecutionException;
 
+import javax.ws.rs.BadRequestException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -14,8 +17,12 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.apidb.apicommon.model.comment.pojo.AiProvenance;
 import org.apidb.apicommon.model.comment.pojo.CommentAiRun;
+import org.apidb.apicommon.model.comment.pojo.CommentRequest;
+import org.apidb.apicommon.model.comment.pojo.Target;
 import org.apidb.apicommon.service.services.ai.SyncPrelude.PreludeResult;
+import org.apidb.apicommon.service.services.ai.gene.GeneSynonymService;
 import org.apidb.apicommon.service.services.comments.AbstractUserCommentService;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.user.User;
@@ -97,12 +104,88 @@ public class AiGenePublicationCommentService extends AbstractUserCommentService 
   @Path(ID_PATH)
   @Produces(MediaType.APPLICATION_JSON)
   public Response cancel(@PathParam(JOB_ID_PARAM) String jobId) throws WdkModelException {
-    // Cancellation wiring lands in deliverable 7.
+    // Cancellation wiring lands in a later deliverable.
     return Response.status(Response.Status.NOT_IMPLEMENTED)
         .type(MediaType.APPLICATION_JSON)
         .entity(new JSONObject().put("type", "internal-error")
             .put("error", "cancellation not implemented yet").toString())
         .build();
+  }
+
+  /**
+   * Create the user comment on approval. Body carries only the (possibly edited)
+   * reviewed {@code headline} / {@code content}; the gene target and AI
+   * provenance come from the cached {@code comment_ai_run} row keyed by the
+   * path's {@code job_id}, and {@code is_edited} is derived server-side. This is
+   * the only call that creates a {@code comments} row in the AI flow.
+   *
+   * <p>404 if the {@code job_id} has no cached run (the non-publishable
+   * {@code text-unavailable} / {@code internal-error} outcomes are never
+   * persisted); 400 if {@code headline} / {@code content} are blank; 201 with
+   * {@code { comment_id }} on success (comment + provenance written in one tx).
+   */
+  @POST
+  @Path(ID_PATH + "/publish")
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  public Response publish(@PathParam(JOB_ID_PARAM) String jobId, PublishRequest body)
+      throws WdkModelException {
+    User user = fetchUser(); // 401 for guests
+
+    String headline = body == null ? null : body.headline;
+    String content  = body == null ? null : body.content;
+    if (isBlank(headline) || isBlank(content))
+      throw new BadRequestException("headline and content are required");
+
+    // Only persisted (publishable) terminals have a run row; an absent row is a
+    // clean 404 (e.g. a text-unavailable / internal-error outcome).
+    CommentAiRun run = getCommentFactory().findAiRun(jobId)
+        .orElseThrow(() -> new NotFoundException(
+            "No publishable AI gene-publication run for id '" + jobId + "'"));
+
+    CommentRequest request = buildPublishComment(run, headline, content, new Date());
+    long commentId = getCommentFactory().createComment(request, user);
+
+    return Response.status(Response.Status.CREATED)
+        .type(MediaType.APPLICATION_JSON)
+        .entity(new JSONObject().put("comment_id", commentId).toString())
+        .build();
+  }
+
+  /**
+   * Build the comment to create on publish from the cached run row plus the
+   * user-submitted (possibly edited) text. The comment targets the gene; AI
+   * provenance carries the run id and {@code is_edited} — true whenever the
+   * submitted text differs from the run's AI original, which includes the case
+   * where there was no AI original at all ({@code gene-not-mentioned} /
+   * {@code mentioned-in-passing}, whose run rows carry null ai_headline/ai_content).
+   *
+   * <p>TODO(post-impl): resolve and set the comment ORGANISM from the gene record
+   * (GeneRecordClasses.GeneRecordClass) rather than leaving it null. Organism is
+   * optional for comment creation, so v1 omits it; see the plan's follow-ups.
+   */
+  static CommentRequest buildPublishComment(CommentAiRun run, String headline,
+      String content, Date now) {
+    boolean edited = !Objects.equals(headline, run.getAiHeadline())
+                  || !Objects.equals(content, run.getAiContent());
+
+    AiProvenance provenance = new AiProvenance()
+        .setRunJobId(run.getJobId())
+        .setEdited(edited)
+        .setCreatedAt(now);
+
+    CommentRequest request = new CommentRequest();
+    request.setHeadline(headline);
+    request.setContent(content);
+    request.setTarget(new Target()
+        .setType(GeneSynonymService.GENE_URL_SEGMENT)
+        .setId(run.getGeneId()));
+    request.setAiProvenance(provenance);
+    return request;
+  }
+
+  private static boolean isBlank(String s) {
+    return s == null || s.trim().isEmpty();
   }
 
   // --- response shaping -------------------------------------------------------
@@ -146,8 +229,9 @@ public class AiGenePublicationCommentService extends AbstractUserCommentService 
           .put("headline", run.getAiHeadline())
           .put("content", run.getAiContent()));
     }
-    // TODO(deliverable 6): create the submitter's own comment inline and add
-    // comment_id, plus the anonymous sibling_summary aggregate.
+    // TODO(D7b): add the anonymous sibling_summary aggregate (counts over
+    // comment_ai_provenance rows for this run_job_id). No comment_id here — the
+    // comment is created only by the publish endpoint on user approval.
     return out;
   }
 }

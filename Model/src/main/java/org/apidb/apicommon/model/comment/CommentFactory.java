@@ -253,6 +253,10 @@ public class CommentFactory implements Manageable<CommentFactory> {
           new UpdateAttachmentQuery(schema, com.getPreviousCommentId(), commentId).run(con);
         if (com.getExternalDatabase() != null)
           saveExternalDb(con, commentId, com.getExternalDatabase());
+        if (com.getAiProvenance() != null) {
+          com.getAiProvenance().setCommentId(commentId);
+          new InsertCommentAiProvenanceQuery(schema, com.getAiProvenance()).run(con);
+        }
       } catch (Throwable e) {
         con.rollback();
         throw e;
