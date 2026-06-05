@@ -20,6 +20,7 @@ import javax.ws.rs.core.Response;
 import org.apidb.apicommon.model.comment.pojo.AiProvenance;
 import org.apidb.apicommon.model.comment.pojo.CommentAiRun;
 import org.apidb.apicommon.model.comment.pojo.CommentRequest;
+import org.apidb.apicommon.model.comment.pojo.SiblingSummary;
 import org.apidb.apicommon.model.comment.pojo.Target;
 import org.apidb.apicommon.service.services.ai.SyncPrelude.PreludeResult;
 import org.apidb.apicommon.service.services.ai.gene.GeneSynonymService;
@@ -190,7 +191,7 @@ public class AiGenePublicationCommentService extends AbstractUserCommentService 
 
   // --- response shaping -------------------------------------------------------
 
-  private static JSONObject preludeJson(PreludeResult result) {
+  private JSONObject preludeJson(PreludeResult result) throws WdkModelException {
     switch (result.getKind()) {
       case CACHE_HIT:
         return cacheHitJson(result.getJobId(), result.getCacheRow());
@@ -200,7 +201,7 @@ public class AiGenePublicationCommentService extends AbstractUserCommentService 
     }
   }
 
-  private static JSONObject jobStateJson(JobState job) {
+  private JSONObject jobStateJson(JobState job) throws WdkModelException {
     if (job.getStatus() == JobStatus.RUNNING) {
       return new JSONObject()
           .put("type", JobStatus.RUNNING.getWireValue())
@@ -208,19 +209,27 @@ public class AiGenePublicationCommentService extends AbstractUserCommentService 
           .put("stage", job.getStage().getWireValue());
     }
     // Terminal: the pipeline publishes a TerminalResult carrying the status-
-    // specific fields (deliverable 2: text-unavailable `reason`, internal-error
-    // `error`). Success / gene-not-mentioned / sibling_summary payloads land in
-    // deliverables 4-6.
+    // specific fields (text-unavailable `reason`, internal-error `error`,
+    // success `ai_output`, gene-not-mentioned / mentioned-in-passing
+    // `synonyms_checked`). The publishable terminals additionally carry the
+    // anonymous sibling_summary aggregate, attached here at the service layer
+    // (it needs a DB read, so it can't live on the pure TerminalResult).
     if (job.getResult() instanceof TerminalResult) {
-      return ((TerminalResult) job.getResult()).toJson(job.getJobId());
+      JSONObject out = ((TerminalResult) job.getResult()).toJson(job.getJobId());
+      if (job.getStatus().isPublishable())
+        out.put("sibling_summary",
+            siblingSummaryJson(getCommentFactory().getSiblingSummary(job.getJobId())));
+      return out;
     }
     return new JSONObject()
         .put("type", job.getStatus().getWireValue())
         .put("job_id", job.getJobId());
   }
 
-  private static JSONObject cacheHitJson(String jobId, CommentAiRun run) {
-    // terminal_status is one of: success | mentioned-in-passing | gene-not-mentioned.
+  private JSONObject cacheHitJson(String jobId, CommentAiRun run) throws WdkModelException {
+    // terminal_status is one of: success | mentioned-in-passing | gene-not-mentioned
+    // (only publishable terminals are persisted), so a cache hit always carries
+    // a sibling_summary. No comment_id — the comment is created only on publish.
     JSONObject out = new JSONObject()
         .put("type", run.getTerminalStatus())
         .put("job_id", jobId);
@@ -229,9 +238,21 @@ public class AiGenePublicationCommentService extends AbstractUserCommentService 
           .put("headline", run.getAiHeadline())
           .put("content", run.getAiContent()));
     }
-    // TODO(D7b): add the anonymous sibling_summary aggregate (counts over
-    // comment_ai_provenance rows for this run_job_id). No comment_id here — the
-    // comment is created only by the publish endpoint on user approval.
+    out.put("sibling_summary", siblingSummaryJson(getCommentFactory().getSiblingSummary(jobId)));
     return out;
+  }
+
+  /**
+   * Render the anonymous {@link SiblingSummary} to its wire shape
+   * {@code { reviewed, edited, latest_at }}; {@code latest_at} is ISO-8601 UTC or
+   * {@code null}. Pure — the counts are fetched by the caller.
+   */
+  static JSONObject siblingSummaryJson(SiblingSummary summary) {
+    return new JSONObject()
+        .put("reviewed", summary.getReviewed())
+        .put("edited", summary.getEdited())
+        .put("latest_at", summary.getLatestAt() == null
+            ? JSONObject.NULL
+            : summary.getLatestAt().toInstant().toString());
   }
 }

@@ -10,7 +10,9 @@ import java.util.Date;
 import org.apidb.apicommon.model.comment.pojo.AiProvenance;
 import org.apidb.apicommon.model.comment.pojo.CommentAiRun;
 import org.apidb.apicommon.model.comment.pojo.CommentRequest;
+import org.apidb.apicommon.model.comment.pojo.SiblingSummary;
 import org.apidb.apicommon.service.services.ai.gene.GeneSynonymService;
+import org.json.JSONObject;
 import org.junit.Test;
 
 /**
@@ -81,5 +83,27 @@ public class AiGenePublicationPublishTest {
         run, "My own headline", "My own observations.", new Date());
     assertTrue("user-written body over a null AI original → edited",
         req.getAiProvenance().isEdited());
+  }
+
+  // --- sibling_summary rendering (deliverable 7b) ---------------------------
+
+  @Test
+  public void siblingSummaryJsonMapsCountsAndIsoTimestamp() {
+    SiblingSummary summary = new SiblingSummary(3, 2, new Date(0L));
+    JSONObject json = AiGenePublicationCommentService.siblingSummaryJson(summary);
+
+    assertEquals(3, json.getInt("reviewed"));
+    assertEquals(2, json.getInt("edited"));
+    assertEquals("1970-01-01T00:00:00Z", json.getString("latest_at"));
+  }
+
+  @Test
+  public void siblingSummaryJsonRendersNullTimestampAsJsonNull() {
+    SiblingSummary empty = new SiblingSummary(0, 0, null);
+    JSONObject json = AiGenePublicationCommentService.siblingSummaryJson(empty);
+
+    assertEquals(0, json.getInt("reviewed"));
+    assertEquals(0, json.getInt("edited"));
+    assertTrue("no siblings → latest_at is JSON null", json.isNull("latest_at"));
   }
 }
