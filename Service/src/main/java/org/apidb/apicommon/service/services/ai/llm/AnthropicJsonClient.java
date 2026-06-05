@@ -18,8 +18,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * Thin wrapper around the Anthropic API for the JSON-producing prompt stages
- * ({@code getGeneSummary}, {@code verifyGeneSummary}). Responsibilities:
+ * Thin wrapper around the Anthropic API for the JSON-producing prompt stage
+ * ({@code getGeneSummary}). Responsibilities:
  * load the stage's prompt resource files, substitute {@code [PLACEHOLDER]}
  * markers, call the API (prefilling the assistant turn with {@code "{"}),
  * strip any markdown fences, and parse the JSON — retrying via a formatter LLM

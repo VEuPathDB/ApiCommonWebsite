@@ -238,4 +238,24 @@ public class AiGenePublicationPipelineTest {
     assertEquals("PF3D7_1133400 (also known as Pfs25)", repl.get("GENE"));
     assertEquals("Studies of PF3D7_1133400 (Pfs25) in detail.", repl.get("PAPER_TEXT"));
   }
+
+  // --- flatten-to-comment stage wiring (deliverable 5) ----------------------
+
+  @Test
+  public void flattenToCommentSetsHeadlineAndContentFromSummary() throws Exception {
+    JsonNode summary = json("{"
+        + "\"ShortSummary\": \"Pfs25 matters.\","
+        + "\"GeneSummary\": [{\"bullet_point\": \"A finding.\","
+        + "  \"evidence_location\": \"Fig 1\", \"supporting_quotes\": [\"q\"]}]}");
+    JsonPromptClient client = (stage, repl) -> summary;
+    AiGenePublicationPipeline pipeline = summarised(
+        "The gene PF3D7_1133400 is studied.", Collections.<String>emptyList(), client);
+
+    pipeline.generateSummary();
+    pipeline.flattenToComment();
+
+    assertEquals("Pfs25 matters.", pipeline.aiHeadline());
+    assertEquals(String.join("\n", "- A finding.", "  Evidence: Fig 1", "  > q"),
+        pipeline.aiContent());
+  }
 }

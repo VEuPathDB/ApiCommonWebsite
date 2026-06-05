@@ -29,9 +29,11 @@ import com.fasterxml.jackson.databind.JsonNode;
  * as the relevant deliverables land.
  *
  * <p>Stages: ① fetching-article, ② scanning-gene-mentions, ③ generating-summary,
- * ④ validating (iff {@code options.validate}), ⑤ flatten-to-comment,
- * ⑥ persisting (writes the {@code comment_ai_run} cache row only — no comment is
- * created here; that happens later on user approval via the publish endpoint).
+ * ④ flatten-to-comment, ⑤ persisting (writes the {@code comment_ai_run} cache
+ * row only — no comment is created here; that happens later on user approval via
+ * the publish endpoint). (A verifyGeneSummary validation stage was dropped on
+ * 2026-06-05 — the Python authors found it didn't improve results enough to
+ * justify the tokens.)
  */
 public class AiGenePublicationPipeline implements Runnable {
 
@@ -48,9 +50,8 @@ public class AiGenePublicationPipeline implements Runnable {
   private String _articleText;                 // ① resolved text (fetched for pubmed; uploaded text for upload)
   private List<String> _namesMentioned;        // ② gene + top-3 aliases actually mentioned (prompt input)
   private JsonNode _summaryJson;               // ③ getGeneSummary response
-  private JsonNode _validatedJson;             // ④ verifyGeneSummary response (iff validate)
-  private String _aiHeadline;                  // ⑤ flattened headline
-  private String _aiContent;                   // ⑤ flattened content
+  private String _aiHeadline;                  // ④ flattened headline
+  private String _aiContent;                   // ④ flattened content
 
   public AiGenePublicationPipeline(JobState job, WdkModel wdkModel) {
     this(job, wdkModel, new PmcBiocFetcher(), new GeneMentionScanner());
@@ -95,6 +96,15 @@ public class AiGenePublicationPipeline implements Runnable {
     return _summaryJson;
   }
 
+  /** Test accessors for the stage-④ flattened comment fields. */
+  String aiHeadline() {
+    return _aiHeadline;
+  }
+
+  String aiContent() {
+    return _aiContent;
+  }
+
   @Override
   public void run() {
     try {
@@ -107,11 +117,6 @@ public class AiGenePublicationPipeline implements Runnable {
       generateSummary();
       if (_job.getStatus().isTerminal()) return;
 
-      if (_job.getSubmission().getOptions().validate) {
-        validateSummary();
-        if (_job.getStatus().isTerminal()) return;
-      }
-
       flattenToComment();
 
       // Always write the comment_ai_run cache row for a cacheable success; the
@@ -120,8 +125,8 @@ public class AiGenePublicationPipeline implements Runnable {
     }
     catch (Throwable t) {
       // Any unhandled stage failure terminates the job as internal-error rather
-      // than leaving it stuck in `running`. (During deliverables 3-6 the not-yet-
-      // implemented stages throw UnsupportedOperationException and land here.)
+      // than leaving it stuck in `running`. (Until persist (D6) lands, the not-
+      // yet-implemented stage throws UnsupportedOperationException and lands here.)
       _job.markTerminal(JobStatus.INTERNAL_ERROR,
           TerminalResult.internalError(t.getMessage()));
     }
@@ -226,16 +231,71 @@ public class AiGenePublicationPipeline implements Runnable {
   }
 
   // ④ -------------------------------------------------------------------------
-  void validateSummary() {
-    throw new UnsupportedOperationException("validateSummary — deliverable 5");
+  void flattenToComment() {
+    _aiHeadline = flattenHeadline(_summaryJson);
+    _aiContent = flattenContent(_summaryJson);
+  }
+
+  /** Headline = the plain-text {@code ShortSummary} (empty if absent). */
+  static String flattenHeadline(JsonNode summary) {
+    return text(summary, "ShortSummary");
+  }
+
+  /**
+   * Body = {@code - } bullets with indented {@code Evidence:}/{@code >} quote
+   * lines, an optional "Additional inferences" section, and an "Aliases mentioned
+   * in paper:" line — sections separated by a blank line. Ports the structure of
+   * Python {@code build_extended_summary_html} to plain-text markdown (no HTML).
+   */
+  static String flattenContent(JsonNode summary) {
+    List<String> sections = new ArrayList<>();
+
+    // 1. evidence-based gene-summary bullets
+    StringBuilder bullets = new StringBuilder();
+    for (JsonNode row : array(summary, "GeneSummary")) {
+      if (bullets.length() > 0) bullets.append("\n");
+      bullets.append("- ").append(text(row, "bullet_point"));
+      String loc = text(row, "evidence_location");
+      if (!loc.isEmpty()) bullets.append("\n  Evidence: ").append(loc);
+      for (JsonNode quote : array(row, "supporting_quotes")) {
+        bullets.append("\n  > ").append(quote.asText());
+      }
+    }
+    if (bullets.length() > 0) sections.add(bullets.toString());
+
+    // 2. additional inferences
+    StringBuilder inferences = new StringBuilder();
+    for (JsonNode inf : array(summary, "AdditionalInferences")) {
+      inferences.append(inferences.length() == 0 ? "Additional inferences:\n" : "\n");
+      inferences.append("- ").append(inf.asText());
+    }
+    if (inferences.length() > 0) sections.add(inferences.toString());
+
+    // 3. aliases mentioned in the paper
+    List<String> aliases = new ArrayList<>();
+    for (JsonNode a : array(summary, "Aliases_in_paper")) {
+      aliases.add(a.asText());
+    }
+    if (!aliases.isEmpty()) {
+      sections.add("Aliases mentioned in paper: " + String.join(", ", aliases));
+    }
+
+    return String.join("\n\n", sections);
+  }
+
+  /** A text field on a node, or {@code ""} when absent/null. */
+  private static String text(JsonNode node, String field) {
+    JsonNode v = node == null ? null : node.get(field);
+    return v == null || v.isNull() ? "" : v.asText();
+  }
+
+  /** An array field on a node, or an empty iterable when absent/not an array. */
+  private static Iterable<JsonNode> array(JsonNode node, String field) {
+    JsonNode v = node == null ? null : node.get(field);
+    return v != null && v.isArray() ? v : java.util.Collections.<JsonNode>emptyList();
   }
 
   // ⑤ -------------------------------------------------------------------------
-  void flattenToComment() {
-    throw new UnsupportedOperationException("flattenToComment — deliverable 5");
-  }
-
-  // ⑥ -------------------------------------------------------------------------
   void persist() {
     throw new UnsupportedOperationException("persist — deliverable 6");
   }

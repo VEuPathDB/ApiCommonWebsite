@@ -11,7 +11,6 @@
         "mentioned-in-passing",
         "gene-not-mentioned",
         "text-unavailable",
-        "validation-error",
         "internal-error",
         "cancelled"
       ]
@@ -25,7 +24,6 @@
         "fetching-article",
         "scanning-gene-mentions",
         "generating-summary",
-        "validating",
         "persisting"
       ]
     },
@@ -53,7 +51,6 @@
       }
     },
     "reason": { "type": "string", "description": "Present iff type=text-unavailable." },
-    "errors": { "type": "array", "items": { "type": "string" }, "description": "Present iff type=validation-error." },
     "error": { "type": "string", "description": "Present iff type=internal-error." }
   },
   "required": ["type"]

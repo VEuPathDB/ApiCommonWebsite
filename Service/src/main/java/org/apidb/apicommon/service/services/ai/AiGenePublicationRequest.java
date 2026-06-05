@@ -19,15 +19,15 @@ public class AiGenePublicationRequest {
 
   @JsonIgnoreProperties(ignoreUnknown = true)
   public static class Options {
-    @JsonProperty("validate")
-    public boolean validate = true;
-
     @JsonProperty("generate_product_description")
     public boolean generateProductDescription = false;
 
     // NOTE: create_user_comment removed in the review-on-approval pivot — the
     // generate POST never creates a comment, so the flag gated nothing. The
     // comment is created by the separate publish endpoint on user approval.
+    // NOTE: validate removed (2026-06-05) — the Python authors found the
+    // verifyGeneSummary pass didn't materially improve results and wasn't worth
+    // the tokens, so the back-end no longer runs a validation stage.
   }
 
   @JsonProperty("gene_id")

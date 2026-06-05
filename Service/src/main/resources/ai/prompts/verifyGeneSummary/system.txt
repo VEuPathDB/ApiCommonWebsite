@@ -1,7 +1,0 @@
-PLACEHOLDER — system prompt for the verifyGeneSummary (validation) stage.
-
-Ported in deliverable 5 from VPDB_AI_gene_paper_summary/pipeline/prompts.py
-(global_prompts_and_schema['verifyGeneSummary']).
-
-Bump the per-stage promptVersion constant whenever this file changes (baked into
-the jobId digest).

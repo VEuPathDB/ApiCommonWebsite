@@ -36,7 +36,6 @@
     "options": {
       "type": "object",
       "properties": {
-        "validate": { "type": "boolean", "default": true },
         "generate_product_description": { "type": "boolean", "default": false }
       },
       "additionalProperties": false

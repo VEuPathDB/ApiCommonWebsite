@@ -15,10 +15,10 @@ public final class AiSummaryConfig {
 
   /**
    * Manually-bumped prompt version folded into the digest. Bump this whenever
-   * the {@code getGeneSummary} or {@code verifyGeneSummary} prompt files change,
-   * so edited prompts produce fresh cache entries rather than serving stale
-   * output. (When the validation prompt lands in deliverable 5, keep this a
-   * single combined version covering both stages.)
+   * the {@code getGeneSummary} prompt files change, so edited prompts produce
+   * fresh cache entries rather than serving stale output. (The pipeline runs a
+   * single LLM prompt stage; the verifyGeneSummary validation pass was dropped
+   * on 2026-06-05.)
    */
   public static final String PROMPT_VERSION = "1";
 

@@ -11,8 +11,8 @@ import org.json.JSONObject;
  * The terminal payload published on a {@link JobState} once the pipeline reaches
  * an end state. Rendered to the status-response JSON by the resource. Each
  * terminal {@link JobStatus} carries different fields; this carrier grows as the
- * pipeline deliverables land (success {@code ai_output}/{@code comment_id},
- * gene-not-mentioned {@code synonyms_checked}, validation-error {@code errors} …).
+ * pipeline deliverables land (success {@code ai_output},
+ * gene-not-mentioned / mentioned-in-passing {@code synonyms_checked} …).
  *
  * <p>Deliverable 2 introduces the two outcomes the {@code fetching-article} stage
  * and the pipeline's top-level error handler can produce: {@code text-unavailable}

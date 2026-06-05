@@ -1,5 +1,0 @@
-{
-  "_comment": "PLACEHOLDER JSON schema for the verifyGeneSummary response. Ported in deliverable 5 from prompts.py. Prompt guidance only; not enforced server-side.",
-  "type": "object",
-  "properties": {}
-}
