@@ -24,23 +24,37 @@ public final class TerminalResult {
   private final JobStatus _status;
   private final String _detail;   // text-unavailable: reason; internal-error: error message
   private final List<String> _synonymsChecked;  // gene-not-mentioned: gene id + aliases searched
+  private final String _headline;  // success: ai_output headline
+  private final String _content;   // success: ai_output content
 
-  private TerminalResult(JobStatus status, String detail, List<String> synonymsChecked) {
+  private TerminalResult(JobStatus status, String detail, List<String> synonymsChecked,
+      String headline, String content) {
     if (!status.isTerminal())
       throw new IllegalArgumentException("not a terminal status: " + status);
     _status = status;
     _detail = detail;
     _synonymsChecked = synonymsChecked;
+    _headline = headline;
+    _content = content;
+  }
+
+  /**
+   * The pipeline produced a publishable summary (persisted to {@code comment_ai_run}).
+   * Carries the flattened {@code ai_output} the front end renders for review — the
+   * same shape a late cache hit returns from the run row.
+   */
+  public static TerminalResult success(String headline, String content) {
+    return new TerminalResult(JobStatus.SUCCESS, null, null, headline, content);
   }
 
   /** Article text could not be resolved (never persisted to the cache). */
   public static TerminalResult textUnavailable(String reason) {
-    return new TerminalResult(JobStatus.TEXT_UNAVAILABLE, reason, null);
+    return new TerminalResult(JobStatus.TEXT_UNAVAILABLE, reason, null, null, null);
   }
 
   /** An unexpected pipeline failure (never persisted to the cache). */
   public static TerminalResult internalError(String error) {
-    return new TerminalResult(JobStatus.INTERNAL_ERROR, error, null);
+    return new TerminalResult(JobStatus.INTERNAL_ERROR, error, null, null, null);
   }
 
   /**
@@ -50,7 +64,7 @@ public final class TerminalResult {
    */
   public static TerminalResult geneNotMentioned(List<String> synonymsChecked) {
     return new TerminalResult(JobStatus.GENE_NOT_MENTIONED, null,
-        Collections.unmodifiableList(new ArrayList<>(synonymsChecked)));
+        Collections.unmodifiableList(new ArrayList<>(synonymsChecked)), null, null);
   }
 
   /**
@@ -60,7 +74,7 @@ public final class TerminalResult {
    */
   public static TerminalResult mentionedInPassing(List<String> synonymsChecked) {
     return new TerminalResult(JobStatus.MENTIONED_IN_PASSING, null,
-        Collections.unmodifiableList(new ArrayList<>(synonymsChecked)));
+        Collections.unmodifiableList(new ArrayList<>(synonymsChecked)), null, null);
   }
 
   public JobStatus getStatus() { return _status; }
@@ -74,6 +88,11 @@ public final class TerminalResult {
         .put("type", _status.getWireValue())
         .put("job_id", jobId);
     switch (_status) {
+      case SUCCESS:
+        out.put("ai_output", new JSONObject()
+            .put("headline", _headline)
+            .put("content", _content));
+        break;
       case TEXT_UNAVAILABLE:
         out.put("reason", _detail);
         break;
@@ -86,7 +105,6 @@ public final class TerminalResult {
         // sibling_summary aggregate is added once the DB tables land (D6/D7).
         break;
       default:
-        // success payload lands in a later deliverable.
         break;
     }
     return out;

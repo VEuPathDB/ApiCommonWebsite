@@ -1,6 +1,7 @@
 package org.apidb.apicommon.service.services.ai;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
@@ -11,10 +12,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
 
+import org.apidb.apicommon.model.comment.pojo.CommentAiRun;
 import org.apidb.apicommon.service.services.ai.article.PmcBiocFetcher;
 import org.apidb.apicommon.service.services.ai.article.PmcBiocFetcher.TextUnavailableException;
 import org.apidb.apicommon.service.services.ai.gene.GeneMentionScanner;
 import org.apidb.apicommon.service.services.ai.llm.JsonPromptClient;
+import org.gusdb.wdk.model.WdkModelException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.Test;
@@ -257,5 +260,126 @@ public class AiGenePublicationPipelineTest {
     assertEquals("Pfs25 matters.", pipeline.aiHeadline());
     assertEquals(String.join("\n", "- A finding.", "  Evidence: Fig 1", "  > q"),
         pipeline.aiContent());
+  }
+
+  // --- persisting stage (deliverable 6) -------------------------------------
+
+  /** Capture-only store: records the row handed to persist, never touches a DB. */
+  private static final class CapturingStore implements AiGenePublicationPipeline.AiRunStore {
+    CommentAiRun captured;
+    int calls;
+    @Override public void persist(CommentAiRun run) { captured = run; calls++; }
+  }
+
+  /** Build a fully runnable pipeline with injected collaborators (no network, no DB). */
+  private static AiGenePublicationPipeline runnable(String documentType, String pubmedId,
+      String paperText, List<String> synonyms, PmcBiocFetcher fetcher,
+      JsonPromptClient client, AiGenePublicationPipeline.AiRunStore store) {
+    JobState job = jobState(documentType, pubmedId, paperText, synonyms);
+    return new AiGenePublicationPipeline(
+        job, null, fetcher, new GeneMentionScanner(), client, store);
+  }
+
+  @Test
+  public void runSuccessPersistsRunRowAndPublishesAiOutput() throws Exception {
+    JsonPromptClient client = (stage, repl) -> json("{"
+        + "\"only_in_passing\": false,"
+        + "\"ShortSummary\": \"Pfs25 matters.\","
+        + "\"GeneSummary\": [{\"bullet_point\": \"A finding.\","
+        + "  \"evidence_location\": \"Fig 1\", \"supporting_quotes\": [\"q\"]}]}");
+    CapturingStore store = new CapturingStore();
+    AiGenePublicationPipeline pipeline = runnable("upload", null,
+        "The gene PF3D7_1133400 is characterised here.", Arrays.asList("Pfs25"),
+        new PmcBiocFetcher(), client, store);
+
+    pipeline.run();
+
+    JobState job = pipeline.job();
+    assertEquals(JobStatus.SUCCESS, job.getStatus());
+
+    assertEquals("the success path writes exactly one cache row", 1, store.calls);
+    CommentAiRun row = store.captured;
+    assertNotNull(row);
+    assertEquals("deadbeef", row.getJobId());
+    assertEquals("success", row.getTerminalStatus());
+    assertEquals("upload", row.getSourceKind());
+    assertEquals("claude-sonnet-4", row.getModelName());
+    assertEquals("1", row.getPromptVersion());
+    assertEquals("{}", row.getOptionsJson());
+    assertEquals(Arrays.asList("Pfs25"), row.getSynonymsUsed());
+    assertEquals("Pfs25 matters.", row.getAiHeadline());
+    assertNotNull(row.getAiContent());
+    assertFalse(row.isOnlyMentionedInPassing());
+    assertNotNull(row.getCompletedAt());
+
+    TerminalResult result = (TerminalResult) job.getResult();
+    JSONObject rendered = result.toJson("deadbeef");
+    assertEquals("success", rendered.getString("type"));
+    assertEquals("Pfs25 matters.", rendered.getJSONObject("ai_output").getString("headline"));
+    assertEquals(row.getAiContent(), rendered.getJSONObject("ai_output").getString("content"));
+  }
+
+  @Test
+  public void runGeneNotMentionedPersistsRunRow() throws Exception {
+    JsonPromptClient client = (stage, repl) -> { throw new AssertionError("LLM must not run"); };
+    CapturingStore store = new CapturingStore();
+    AiGenePublicationPipeline pipeline = runnable("upload", null,
+        "This paper never names the gene.", Collections.<String>emptyList(),
+        new PmcBiocFetcher(), client, store);
+
+    pipeline.run();
+
+    assertEquals(JobStatus.GENE_NOT_MENTIONED, pipeline.job().getStatus());
+    assertEquals("gene-not-mentioned is persisted to the cache", 1, store.calls);
+    CommentAiRun row = store.captured;
+    assertEquals("gene-not-mentioned", row.getTerminalStatus());
+    assertNull(row.getAiHeadline());
+    assertNull(row.getAiContent());
+    assertFalse(row.isOnlyMentionedInPassing());
+  }
+
+  @Test
+  public void runMentionedInPassingPersistsRunRow() throws Exception {
+    JsonPromptClient client = (stage, repl) -> json("{\"only_in_passing\": true}");
+    CapturingStore store = new CapturingStore();
+    AiGenePublicationPipeline pipeline = runnable("upload", null,
+        "PF3D7_1133400 appears once in passing.", Collections.<String>emptyList(),
+        new PmcBiocFetcher(), client, store);
+
+    pipeline.run();
+
+    assertEquals(JobStatus.MENTIONED_IN_PASSING, pipeline.job().getStatus());
+    assertEquals("mentioned-in-passing is persisted to the cache", 1, store.calls);
+    CommentAiRun row = store.captured;
+    assertEquals("mentioned-in-passing", row.getTerminalStatus());
+    assertTrue(row.isOnlyMentionedInPassing());
+    assertNull(row.getAiHeadline());
+  }
+
+  @Test
+  public void runTextUnavailableIsNeverPersisted() {
+    CapturingStore store = new CapturingStore();
+    AiGenePublicationPipeline pipeline = runnable("pubmed", "999", null,
+        Collections.<String>emptyList(), unavailableFetcher("not open-access"),
+        (stage, repl) -> null, store);
+
+    pipeline.run();
+
+    assertEquals(JobStatus.TEXT_UNAVAILABLE, pipeline.job().getStatus());
+    assertEquals("non-cacheable terminals write nothing", 0, store.calls);
+  }
+
+  @Test
+  public void runPersistFailureBecomesInternalError() throws Exception {
+    JsonPromptClient client = (stage, repl) ->
+        json("{\"only_in_passing\": false, \"ShortSummary\": \"x\"}");
+    AiGenePublicationPipeline.AiRunStore boom = run -> { throw new WdkModelException("db down"); };
+    AiGenePublicationPipeline pipeline = runnable("upload", null,
+        "PF3D7_1133400 is studied.", Collections.<String>emptyList(),
+        new PmcBiocFetcher(), client, boom);
+
+    pipeline.run();
+
+    assertEquals(JobStatus.INTERNAL_ERROR, pipeline.job().getStatus());
   }
 }

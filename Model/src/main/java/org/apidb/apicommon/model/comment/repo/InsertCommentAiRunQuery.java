@@ -1,9 +1,18 @@
 package org.apidb.apicommon.model.comment.repo;
 
+import static java.sql.Types.ARRAY;
+import static java.sql.Types.BOOLEAN;
+import static java.sql.Types.TIMESTAMP;
+import static java.sql.Types.VARCHAR;
+
+import java.sql.Array;
+import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 
 import org.apidb.apicommon.model.comment.pojo.CommentAiRun;
 import org.gusdb.fgputil.db.runner.ArgumentBatch;
+import org.gusdb.fgputil.db.runner.ListArgumentBatch;
 
 /**
  * Insert one row into {@code comment_ai_run} — the shared LLM-output cache,
@@ -15,8 +24,9 @@ import org.gusdb.fgputil.db.runner.ArgumentBatch;
  * pattern. {@code job_id} is the supplied primary key (no sequence), so the
  * {@link IdSupplier} is {@code null}.
  *
- * <p>SCAFFOLDING: SQL shape is final; argument binding (notably the
- * {@code synonyms_used TEXT[]} PostgreSQL array) is wired in deliverable 6.
+ * <p>The {@code synonyms_used TEXT[]} column is bound as a real PostgreSQL array
+ * built via {@link Connection#createArrayOf}, which is why {@link #run(Connection)}
+ * is overridden to capture the connection before {@link #getArguments()} runs.
  */
 public class InsertCommentAiRunQuery extends InsertQuery {
 
@@ -27,7 +37,27 @@ public class InsertCommentAiRunQuery extends InsertQuery {
       "ai_headline, ai_content, completed_at" +
       ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
+  private static final Integer[] TYPES = {
+      VARCHAR,    // job_id
+      VARCHAR,    // model_name
+      VARCHAR,    // prompt_version
+      VARCHAR,    // source_kind
+      VARCHAR,    // pubmed_id
+      VARCHAR,    // external_url
+      VARCHAR,    // external_title
+      VARCHAR,    // pdf_content_sha256
+      VARCHAR,    // gene_id
+      ARRAY,      // synonyms_used
+      VARCHAR,    // options_json
+      VARCHAR,    // terminal_status
+      BOOLEAN,    // is_only_mentioned_in_passing
+      VARCHAR,    // ai_headline
+      VARCHAR,    // ai_content
+      TIMESTAMP   // completed_at
+  };
+
   private final CommentAiRun _run;
+  private Connection _con;
 
   public InsertCommentAiRunQuery(String schema, CommentAiRun run) {
     super(schema, Table.COMMENT_AI_RUN, null);
@@ -35,9 +65,28 @@ public class InsertCommentAiRunQuery extends InsertQuery {
   }
 
   @Override
+  public Query run(Connection con) throws SQLException {
+    _con = con;  // captured so getArguments() can build the TEXT[] array
+    return super.run(con);
+  }
+
+  @Override
   protected ArgumentBatch getArguments() throws SQLException {
-    throw new UnsupportedOperationException(
-        "InsertCommentAiRunQuery argument binding — deliverable 6");
+    Array synonyms = _con.createArrayOf("text", _run.getSynonymsUsed().toArray());
+    Timestamp completedAt = _run.getCompletedAt() == null ? null
+        : new Timestamp(_run.getCompletedAt().getTime());
+
+    ListArgumentBatch batch = new ListArgumentBatch();
+    batch.add(new Object[] {
+        _run.getJobId(), _run.getModelName(), _run.getPromptVersion(),
+        _run.getSourceKind(), _run.getPubmedId(), _run.getExternalUrl(),
+        _run.getExternalTitle(), _run.getPdfContentSha256(), _run.getGeneId(),
+        synonyms, _run.getOptionsJson(), _run.getTerminalStatus(),
+        _run.isOnlyMentionedInPassing(), _run.getAiHeadline(),
+        _run.getAiContent(), completedAt
+    });
+    batch.setParameterTypes(TYPES);
+    return batch;
   }
 
   @Override

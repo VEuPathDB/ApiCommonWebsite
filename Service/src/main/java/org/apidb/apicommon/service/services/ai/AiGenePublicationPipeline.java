@@ -1,10 +1,13 @@
 package org.apidb.apicommon.service.services.ai;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apidb.apicommon.controller.CommentFactoryManager;
+import org.apidb.apicommon.model.comment.pojo.CommentAiRun;
 import org.apidb.apicommon.service.services.ai.article.PmcBiocFetcher;
 import org.apidb.apicommon.service.services.ai.article.PmcBiocFetcher.TextUnavailableException;
 import org.apidb.apicommon.service.services.ai.gene.GeneMentionScanner;
@@ -40,11 +43,21 @@ public class AiGenePublicationPipeline implements Runnable {
   /** Verbatim quotes per bullet point requested in the prompt (Python {@code N_QUOTES}). */
   private static final String N_QUOTES = "2";
 
+  /**
+   * Narrow seam over {@link org.apidb.apicommon.model.comment.CommentFactory#persistAiRun}
+   * so tests can capture the persisted row without a live database.
+   */
+  @FunctionalInterface
+  public interface AiRunStore {
+    void persist(CommentAiRun run) throws WdkModelException;
+  }
+
   private final JobState _job;
   private final WdkModel _wdkModel;
   private final PmcBiocFetcher _fetcher;
   private final GeneMentionScanner _scanner;
   private JsonPromptClient _summaryClient;     // built lazily from WdkModel, or injected for tests
+  private AiRunStore _aiRunStore;              // built lazily from WdkModel, or injected for tests
 
   // --- transient per-stage outputs, threaded ① → ⑥ -------------------------
   private String _articleText;                 // ① resolved text (fetched for pubmed; uploaded text for upload)
@@ -69,11 +82,17 @@ public class AiGenePublicationPipeline implements Runnable {
 
   AiGenePublicationPipeline(JobState job, WdkModel wdkModel, PmcBiocFetcher fetcher,
       GeneMentionScanner scanner, JsonPromptClient summaryClient) {
+    this(job, wdkModel, fetcher, scanner, summaryClient, null);
+  }
+
+  AiGenePublicationPipeline(JobState job, WdkModel wdkModel, PmcBiocFetcher fetcher,
+      GeneMentionScanner scanner, JsonPromptClient summaryClient, AiRunStore aiRunStore) {
     _job = job;
     _wdkModel = wdkModel;
     _fetcher = fetcher;
     _scanner = scanner;
     _summaryClient = summaryClient;
+    _aiRunStore = aiRunStore;
   }
 
   /** Test accessor for the owning job state. */
@@ -109,24 +128,19 @@ public class AiGenePublicationPipeline implements Runnable {
   public void run() {
     try {
       fetchArticle();
-      if (_job.getStatus().isTerminal()) return;
+      if (!_job.getStatus().isTerminal()) scanGeneMentions();
+      if (!_job.getStatus().isTerminal()) generateSummary();
+      if (!_job.getStatus().isTerminal()) flattenToComment();
 
-      scanGeneMentions();
-      if (_job.getStatus().isTerminal()) return;
-
-      generateSummary();
-      if (_job.getStatus().isTerminal()) return;
-
-      flattenToComment();
-
-      // Always write the comment_ai_run cache row for a cacheable success; the
-      // user-comment row is created later by the publish endpoint, not here.
+      // Persist runs for every cacheable terminal — the success path plus the
+      // deterministic gene-not-mentioned / mentioned-in-passing short-circuits —
+      // and is a no-op for the non-cacheable ones. It is the pipeline's only
+      // write; the user-comment row is created later by the publish endpoint.
       persist();
     }
     catch (Throwable t) {
-      // Any unhandled stage failure terminates the job as internal-error rather
-      // than leaving it stuck in `running`. (Until persist (D6) lands, the not-
-      // yet-implemented stage throws UnsupportedOperationException and lands here.)
+      // Any unhandled stage (or persist) failure terminates the job as
+      // internal-error rather than leaving it stuck in `running`.
       _job.markTerminal(JobStatus.INTERNAL_ERROR,
           TerminalResult.internalError(t.getMessage()));
     }
@@ -296,7 +310,62 @@ public class AiGenePublicationPipeline implements Runnable {
   }
 
   // ⑤ -------------------------------------------------------------------------
-  void persist() {
-    throw new UnsupportedOperationException("persist — deliverable 6");
+  /**
+   * Write the shared {@code comment_ai_run} cache row for a cacheable terminal
+   * (success / gene-not-mentioned / mentioned-in-passing) and, on the success
+   * path, publish the terminal {@code ai_output}. Non-cacheable terminals
+   * (text-unavailable / internal-error / cancelled) write nothing — retries are
+   * free, so they are never cached. This is the pipeline's only write; the
+   * user-comment row is created later by the publish endpoint on user approval.
+   */
+  void persist() throws WdkModelException {
+    // A still-RUNNING job here means the staged section completed without any
+    // early terminal — i.e. the success path. Otherwise a stage already marked
+    // the deterministic terminal outcome we are about to cache.
+    boolean successPath = !_job.getStatus().isTerminal();
+    JobStatus terminal = successPath ? JobStatus.SUCCESS : _job.getStatus();
+
+    if (terminal != JobStatus.SUCCESS
+        && terminal != JobStatus.GENE_NOT_MENTIONED
+        && terminal != JobStatus.MENTIONED_IN_PASSING)
+      return;  // text-unavailable / internal-error / cancelled: never cached
+
+    if (successPath)
+      _job.updateStage(JobState.Stage.PERSISTING, "Saving result");
+
+    aiRunStore().persist(buildRun(terminal));
+
+    if (successPath)
+      _job.markTerminal(JobStatus.SUCCESS, TerminalResult.success(_aiHeadline, _aiContent));
+  }
+
+  /** Map the immutable submission plus the flattened outputs onto a cache row. */
+  private CommentAiRun buildRun(JobStatus terminal) {
+    JobSubmission s = _job.getSubmission();
+    boolean success = terminal == JobStatus.SUCCESS;
+    return new CommentAiRun()
+        .setJobId(s.getJobId())
+        .setModelName(s.getModelName())
+        .setPromptVersion(s.getPromptVersion())
+        .setSourceKind(s.getSourceKind())
+        .setPubmedId(s.getPubmedId())
+        .setExternalUrl(s.getExternalUrl())
+        .setExternalTitle(s.getExternalTitle())
+        .setPdfContentSha256(s.getPdfContentSha256())
+        .setGeneId(s.getGeneId())
+        .setSynonymsUsed(s.getSynonyms())
+        .setOptionsJson(s.getOptionsJson())
+        .setTerminalStatus(terminal.getWireValue())
+        .setOnlyMentionedInPassing(terminal == JobStatus.MENTIONED_IN_PASSING)
+        .setAiHeadline(success ? _aiHeadline : null)
+        .setAiContent(success ? _aiContent : null)
+        .setCompletedAt(new Date());
+  }
+
+  private AiRunStore aiRunStore() {
+    if (_aiRunStore == null)
+      _aiRunStore = CommentFactoryManager
+          .getCommentFactory(_wdkModel.getProjectId())::persistAiRun;
+    return _aiRunStore;
   }
 }

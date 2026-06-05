@@ -138,6 +138,20 @@ public class CommentFactory implements Manageable<CommentFactory> {
     }
   }
 
+  /**
+   * Persist the shared AI-run cache row produced by the pipeline's persisting
+   * stage, keyed by the content-digest job id. Written at most once per distinct
+   * job (the digest dedupes resubmissions). This is the pipeline's only write —
+   * the user-comment row is created later by the publish endpoint on approval.
+   */
+  public void persistAiRun(CommentAiRun run) throws WdkModelException {
+    try (Connection con = _commentDs.getConnection()) {
+      new InsertCommentAiRunQuery(_config.getCommentSchema(), run).run(con);
+    } catch (SQLException ex) {
+      throw new WdkModelException(ex);
+    }
+  }
+
   public boolean commentExists(long commentId) throws WdkModelException {
     try(Connection con = _commentDs.getConnection()) {
       return new GetCommentExistsQuery(_config.getCommentSchema(), commentId)
