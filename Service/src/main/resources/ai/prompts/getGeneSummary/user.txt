@@ -1,13 +1,4 @@
-PLACEHOLDER — user-message turns for the getGeneSummary stage.
+Do not respond to this message. Here is the paper text:
+ [PAPER_TEXT]
 
-One paragraph per user-message turn; a blank line separates turns (the Anthropic
-Java SDK adds one addUserMessage per turn). Placeholder markers substituted at
-render time via PromptLoader (simple String.replace, matching the Python
-convention):
-
-[PAPER_TEXT]
-[GENE]
-[N_QUOTES]
-[JSON_SCHEMA]
-
-Real content ported in deliverable 4. The assistant turn is prefilled with "{".
+Please generate a summary for [GENE] based on the supplied paper text.

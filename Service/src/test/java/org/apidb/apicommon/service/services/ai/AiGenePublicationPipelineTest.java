@@ -1,17 +1,26 @@
 package org.apidb.apicommon.service.services.ai;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicReference;
 
 import org.apidb.apicommon.service.services.ai.article.PmcBiocFetcher;
 import org.apidb.apicommon.service.services.ai.article.PmcBiocFetcher.TextUnavailableException;
+import org.apidb.apicommon.service.services.ai.gene.GeneMentionScanner;
+import org.apidb.apicommon.service.services.ai.llm.JsonPromptClient;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.Test;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * Tests for the {@code fetching-article} stage (deliverable 2): the upload path
@@ -134,5 +143,99 @@ public class AiGenePublicationPipelineTest {
     assertEquals("deadbeef", json.getString("job_id"));
     JSONArray checked = json.getJSONArray("synonyms_checked");
     assertEquals(Arrays.asList("PF3D7_1133400", "Pfs25", "P25"), checked.toList());
+  }
+
+  // --- geneForPrompt (port of gene_for_prompt) ------------------------------
+
+  @Test
+  public void geneForPromptReturnsTheSoleNameUnchanged() {
+    assertEquals("Nd6", AiGenePublicationPipeline.geneForPrompt("Nd6", Collections.singletonList("Nd6")));
+  }
+
+  @Test
+  public void geneForPromptListsGeneFirstWhenGeneIsAmongNames() {
+    assertEquals("Nd6 (also known as a or b)",
+        AiGenePublicationPipeline.geneForPrompt("Nd6", Arrays.asList("Nd6", "a", "b")));
+  }
+
+  @Test
+  public void geneForPromptUsesFirstMentionWhenGeneIdNotAmongNames() {
+    assertEquals("a (also known as b or c)",
+        AiGenePublicationPipeline.geneForPrompt("GENE", Arrays.asList("a", "b", "c")));
+  }
+
+  // --- generating-summary stage (deliverable 4) -----------------------------
+
+  private static final ObjectMapper MAPPER = new ObjectMapper();
+
+  private static JsonNode json(String s) {
+    try {
+      return MAPPER.readTree(s);
+    }
+    catch (Exception e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  /** Build a pipeline through the scan stage (gene found) with an injected summary client. */
+  private static AiGenePublicationPipeline summarised(String paperText, List<String> synonyms,
+      JsonPromptClient client) {
+    JobState job = jobState("upload", null, paperText, synonyms);
+    AiGenePublicationPipeline pipeline = new AiGenePublicationPipeline(
+        job, null, new PmcBiocFetcher(), new GeneMentionScanner(), client);
+    pipeline.fetchArticle();
+    pipeline.scanGeneMentions();
+    return pipeline;
+  }
+
+  @Test
+  public void generateSummaryStoresParsedSummaryAndStaysRunning() throws Exception {
+    JsonPromptClient client = (stage, repl) -> json("{\"only_in_passing\": false, \"ShortSummary\": \"Key finding\"}");
+    AiGenePublicationPipeline pipeline = summarised(
+        "The gene PF3D7_1133400 is characterised here.", Collections.<String>emptyList(), client);
+
+    pipeline.generateSummary();
+
+    assertEquals(JobStatus.RUNNING, pipeline.job().getStatus());
+    assertEquals(JobState.Stage.GENERATING_SUMMARY, pipeline.job().getStage());
+    assertNotNull(pipeline.summaryJson());
+    assertEquals("Key finding", pipeline.summaryJson().get("ShortSummary").asText());
+  }
+
+  @Test
+  public void generateSummaryShortCircuitsToMentionedInPassing() throws Exception {
+    JsonPromptClient client = (stage, repl) -> json("{\"only_in_passing\": true}");
+    AiGenePublicationPipeline pipeline = summarised(
+        "PF3D7_1133400 is named once.", Arrays.asList("Pfs25"), client);
+
+    pipeline.generateSummary();
+
+    JobState job = pipeline.job();
+    assertEquals(JobStatus.MENTIONED_IN_PASSING, job.getStatus());
+    TerminalResult result = (TerminalResult) job.getResult();
+    JSONObject rendered = result.toJson("deadbeef");
+    assertEquals("mentioned-in-passing", rendered.getString("type"));
+    assertTrue("mentioned-in-passing carries synonyms_checked", rendered.has("synonyms_checked"));
+  }
+
+  @Test
+  public void generateSummaryRendersGenePromptAndPaperTextIntoTheRequest() throws Exception {
+    AtomicReference<String> stageRef = new AtomicReference<>();
+    AtomicReference<Map<String, String>> replRef = new AtomicReference<>();
+    JsonPromptClient client = (stage, repl) -> {
+      stageRef.set(stage);
+      replRef.set(repl);
+      return json("{\"only_in_passing\": false}");
+    };
+    AiGenePublicationPipeline pipeline = summarised(
+        "Studies of PF3D7_1133400 (Pfs25) in detail.", Arrays.asList("Pfs25"), client);
+
+    pipeline.generateSummary();
+
+    assertEquals("getGeneSummary", stageRef.get());
+    Map<String, String> repl = replRef.get();
+    assertEquals("2", repl.get("N_QUOTES"));
+    assertEquals("PF3D7_1133400 (also known as Pfs25)", repl.get("GENE"));
+    assertEquals("Studies of PF3D7_1133400 (Pfs25) in detail.", repl.get("PAPER_TEXT"));
   }
 }

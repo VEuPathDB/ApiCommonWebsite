@@ -53,6 +53,16 @@ public final class TerminalResult {
         Collections.unmodifiableList(new ArrayList<>(synonymsChecked)));
   }
 
+  /**
+   * The LLM judged the gene only mentioned in passing ({@code only_in_passing=true}).
+   * Carries {@code synonyms_checked} like {@code gene-not-mentioned} and is likewise
+   * persisted to {@code comment_ai_run}.
+   */
+  public static TerminalResult mentionedInPassing(List<String> synonymsChecked) {
+    return new TerminalResult(JobStatus.MENTIONED_IN_PASSING, null,
+        Collections.unmodifiableList(new ArrayList<>(synonymsChecked)));
+  }
+
   public JobStatus getStatus() { return _status; }
 
   /** The human-readable reason / error string, or null if none applies. */
@@ -71,11 +81,12 @@ public final class TerminalResult {
         out.put("error", _detail);
         break;
       case GENE_NOT_MENTIONED:
+      case MENTIONED_IN_PASSING:
         out.put("synonyms_checked", new JSONArray(_synonymsChecked));
         // sibling_summary aggregate is added once the DB tables land (D6/D7).
         break;
       default:
-        // success / mentioned-in-passing payloads land in later deliverables.
+        // success payload lands in a later deliverable.
         break;
     }
     return out;

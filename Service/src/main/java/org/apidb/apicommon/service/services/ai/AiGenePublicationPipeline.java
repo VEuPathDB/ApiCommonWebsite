@@ -1,12 +1,17 @@
 package org.apidb.apicommon.service.services.ai;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apidb.apicommon.service.services.ai.article.PmcBiocFetcher;
 import org.apidb.apicommon.service.services.ai.article.PmcBiocFetcher.TextUnavailableException;
 import org.apidb.apicommon.service.services.ai.gene.GeneMentionScanner;
+import org.apidb.apicommon.service.services.ai.llm.AnthropicJsonClient;
+import org.apidb.apicommon.service.services.ai.llm.JsonPromptClient;
 import org.gusdb.wdk.model.WdkModel;
+import org.gusdb.wdk.model.WdkModelException;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
@@ -30,10 +35,14 @@ import com.fasterxml.jackson.databind.JsonNode;
  */
 public class AiGenePublicationPipeline implements Runnable {
 
+  /** Verbatim quotes per bullet point requested in the prompt (Python {@code N_QUOTES}). */
+  private static final String N_QUOTES = "2";
+
   private final JobState _job;
   private final WdkModel _wdkModel;
   private final PmcBiocFetcher _fetcher;
   private final GeneMentionScanner _scanner;
+  private JsonPromptClient _summaryClient;     // built lazily from WdkModel, or injected for tests
 
   // --- transient per-stage outputs, threaded ① → ⑥ -------------------------
   private String _articleText;                 // ① resolved text (fetched for pubmed; uploaded text for upload)
@@ -54,10 +63,16 @@ public class AiGenePublicationPipeline implements Runnable {
 
   AiGenePublicationPipeline(JobState job, WdkModel wdkModel, PmcBiocFetcher fetcher,
       GeneMentionScanner scanner) {
+    this(job, wdkModel, fetcher, scanner, null);
+  }
+
+  AiGenePublicationPipeline(JobState job, WdkModel wdkModel, PmcBiocFetcher fetcher,
+      GeneMentionScanner scanner, JsonPromptClient summaryClient) {
     _job = job;
     _wdkModel = wdkModel;
     _fetcher = fetcher;
     _scanner = scanner;
+    _summaryClient = summaryClient;
   }
 
   /** Test accessor for the owning job state. */
@@ -73,6 +88,11 @@ public class AiGenePublicationPipeline implements Runnable {
   /** Test accessor for the stage-② resolved names mentioned (prompt input). */
   List<String> namesMentioned() {
     return _namesMentioned;
+  }
+
+  /** Test accessor for the stage-③ parsed getGeneSummary response. */
+  JsonNode summaryJson() {
+    return _summaryJson;
   }
 
   @Override
@@ -149,8 +169,60 @@ public class AiGenePublicationPipeline implements Runnable {
   }
 
   // ③ -------------------------------------------------------------------------
-  void generateSummary() {
-    throw new UnsupportedOperationException("generateSummary — deliverable 4");
+  void generateSummary() throws WdkModelException {
+    _job.updateStage(JobState.Stage.GENERATING_SUMMARY, "Generating gene summary");
+    JobSubmission submission = _job.getSubmission();
+
+    Map<String, String> replacements = new HashMap<>();
+    replacements.put("N_QUOTES", N_QUOTES);
+    replacements.put("GENE", geneForPrompt(submission.getGeneId(), _namesMentioned));
+    replacements.put("PAPER_TEXT", _articleText);
+
+    _summaryJson = summaryClient().complete("getGeneSummary", replacements);
+
+    // only_in_passing=true → deterministic short-circuit to mentioned-in-passing
+    // (persisted to comment_ai_run, like gene-not-mentioned).
+    JsonNode flag = _summaryJson.get("only_in_passing");
+    if (flag != null && flag.asBoolean()) {
+      List<String> synonymsChecked = new ArrayList<>();
+      synonymsChecked.add(submission.getGeneId());
+      synonymsChecked.addAll(submission.getSynonyms());
+      _job.markTerminal(JobStatus.MENTIONED_IN_PASSING,
+          TerminalResult.mentionedInPassing(synonymsChecked));
+    }
+  }
+
+  private JsonPromptClient summaryClient() throws WdkModelException {
+    if (_summaryClient == null)
+      _summaryClient = new AnthropicJsonClient(_wdkModel);
+    return _summaryClient;
+  }
+
+  /**
+   * Build the gene name fed into the prompt (port of {@code gene_for_prompt}):
+   * the sole name when there is only one; otherwise {@code "<geneId> (also known
+   * as X or Y)"} with the gene id first when it is among the mentioned names, or
+   * the first mention followed by the rest when it is not.
+   */
+  static String geneForPrompt(String geneId, List<String> names) {
+    if (names == null || names.isEmpty()) return geneId;
+    if (names.size() == 1) return names.get(0);
+
+    String gidLower = geneId.toLowerCase();
+    boolean geneAmongNames = names.stream().anyMatch(n -> n.toLowerCase().equals(gidLower));
+
+    String head;
+    List<String> rest = new ArrayList<>();
+    if (geneAmongNames) {
+      head = geneId;
+      for (String n : names)
+        if (!n.toLowerCase().equals(gidLower)) rest.add(n);
+    }
+    else {
+      head = names.get(0);
+      rest.addAll(names.subList(1, names.size()));
+    }
+    return head + " (also known as " + String.join(" or ", rest) + ")";
   }
 
   // ④ -------------------------------------------------------------------------
