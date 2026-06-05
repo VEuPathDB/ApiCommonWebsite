@@ -1,5 +1,10 @@
 package org.apidb.apicommon.service.services.ai;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
@@ -18,22 +23,34 @@ public final class TerminalResult {
 
   private final JobStatus _status;
   private final String _detail;   // text-unavailable: reason; internal-error: error message
+  private final List<String> _synonymsChecked;  // gene-not-mentioned: gene id + aliases searched
 
-  private TerminalResult(JobStatus status, String detail) {
+  private TerminalResult(JobStatus status, String detail, List<String> synonymsChecked) {
     if (!status.isTerminal())
       throw new IllegalArgumentException("not a terminal status: " + status);
     _status = status;
     _detail = detail;
+    _synonymsChecked = synonymsChecked;
   }
 
   /** Article text could not be resolved (never persisted to the cache). */
   public static TerminalResult textUnavailable(String reason) {
-    return new TerminalResult(JobStatus.TEXT_UNAVAILABLE, reason);
+    return new TerminalResult(JobStatus.TEXT_UNAVAILABLE, reason, null);
   }
 
   /** An unexpected pipeline failure (never persisted to the cache). */
   public static TerminalResult internalError(String error) {
-    return new TerminalResult(JobStatus.INTERNAL_ERROR, error);
+    return new TerminalResult(JobStatus.INTERNAL_ERROR, error, null);
+  }
+
+  /**
+   * The deterministic gene-mention scan found neither the gene id nor any alias.
+   * {@code synonymsChecked} records everything searched for (gene id first); this
+   * outcome <em>is</em> persisted to {@code comment_ai_run}.
+   */
+  public static TerminalResult geneNotMentioned(List<String> synonymsChecked) {
+    return new TerminalResult(JobStatus.GENE_NOT_MENTIONED, null,
+        Collections.unmodifiableList(new ArrayList<>(synonymsChecked)));
   }
 
   public JobStatus getStatus() { return _status; }
@@ -53,9 +70,12 @@ public final class TerminalResult {
       case INTERNAL_ERROR:
         out.put("error", _detail);
         break;
+      case GENE_NOT_MENTIONED:
+        out.put("synonyms_checked", new JSONArray(_synonymsChecked));
+        // sibling_summary aggregate is added once the DB tables land (D6/D7).
+        break;
       default:
-        // success / gene-not-mentioned / mentioned-in-passing payloads land in
-        // later deliverables.
+        // success / mentioned-in-passing payloads land in later deliverables.
         break;
     }
     return out;

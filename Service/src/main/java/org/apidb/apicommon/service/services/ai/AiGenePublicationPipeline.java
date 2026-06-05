@@ -1,9 +1,11 @@
 package org.apidb.apicommon.service.services.ai;
 
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apidb.apicommon.service.services.ai.article.PmcBiocFetcher;
 import org.apidb.apicommon.service.services.ai.article.PmcBiocFetcher.TextUnavailableException;
+import org.apidb.apicommon.service.services.ai.gene.GeneMentionScanner;
 import org.gusdb.wdk.model.WdkModel;
 
 import com.fasterxml.jackson.databind.JsonNode;
@@ -31,29 +33,46 @@ public class AiGenePublicationPipeline implements Runnable {
   private final JobState _job;
   private final WdkModel _wdkModel;
   private final PmcBiocFetcher _fetcher;
+  private final GeneMentionScanner _scanner;
 
   // --- transient per-stage outputs, threaded ① → ⑥ -------------------------
   private String _articleText;                 // ① resolved text (fetched for pubmed; uploaded text for upload)
-  private Map<String, Integer> _mentionCounts; // ② per-synonym hit counts
+  private List<String> _namesMentioned;        // ② gene + top-3 aliases actually mentioned (prompt input)
   private JsonNode _summaryJson;               // ③ getGeneSummary response
   private JsonNode _validatedJson;             // ④ verifyGeneSummary response (iff validate)
   private String _aiHeadline;                  // ⑤ flattened headline
   private String _aiContent;                   // ⑤ flattened content
 
   public AiGenePublicationPipeline(JobState job, WdkModel wdkModel) {
-    this(job, wdkModel, new PmcBiocFetcher());
+    this(job, wdkModel, new PmcBiocFetcher(), new GeneMentionScanner());
   }
 
-  /** Package-private seam: inject a {@link PmcBiocFetcher} to avoid network in tests. */
+  /** Package-private seam: inject collaborators to avoid network in tests. */
   AiGenePublicationPipeline(JobState job, WdkModel wdkModel, PmcBiocFetcher fetcher) {
+    this(job, wdkModel, fetcher, new GeneMentionScanner());
+  }
+
+  AiGenePublicationPipeline(JobState job, WdkModel wdkModel, PmcBiocFetcher fetcher,
+      GeneMentionScanner scanner) {
     _job = job;
     _wdkModel = wdkModel;
     _fetcher = fetcher;
+    _scanner = scanner;
+  }
+
+  /** Test accessor for the owning job state. */
+  JobState job() {
+    return _job;
   }
 
   /** Test accessor for the stage-① resolved article text. */
   String articleText() {
     return _articleText;
+  }
+
+  /** Test accessor for the stage-② resolved names mentioned (prompt input). */
+  List<String> namesMentioned() {
+    return _namesMentioned;
   }
 
   @Override
@@ -112,7 +131,21 @@ public class AiGenePublicationPipeline implements Runnable {
 
   // ② -------------------------------------------------------------------------
   void scanGeneMentions() {
-    throw new UnsupportedOperationException("scanGeneMentions — deliverable 3");
+    _job.updateStage(JobState.Stage.SCANNING_GENE_MENTIONS, "Scanning for gene mentions");
+    JobSubmission submission = _job.getSubmission();
+
+    _namesMentioned = _scanner.namesMentioned(
+        _articleText, submission.getGeneId(), submission.getSynonyms());
+
+    // Neither the gene id nor any alias appears → deterministic terminal. The
+    // synonyms_checked list records everything we searched for (gene id first).
+    if (_namesMentioned.isEmpty()) {
+      List<String> synonymsChecked = new ArrayList<>();
+      synonymsChecked.add(submission.getGeneId());
+      synonymsChecked.addAll(submission.getSynonyms());
+      _job.markTerminal(JobStatus.GENE_NOT_MENTIONED,
+          TerminalResult.geneNotMentioned(synonymsChecked));
+    }
   }
 
   // ③ -------------------------------------------------------------------------
