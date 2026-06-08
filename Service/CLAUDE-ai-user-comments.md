@@ -378,7 +378,7 @@ _Last updated: 2026-06-05. We are executing this plan via the `superpowers:execu
 | 7 | **Publish endpoint** (`POST {id}/publish` → `comment` + `comment_ai_provenance`, `is_edited`) | ✅ **Done (code)** — full Service build green, **91 ai-package tests pass** (+5 new); SQL `INSERT`/tx **NOT live-tested** (deferred to dev-server deploy). **Remaining sub-piece → D7b:** the anonymous `sibling_summary` aggregate (counts over `comment_ai_provenance`) in the cache-hit/terminal responses. |
 | 7b | **`sibling_summary` aggregate** — counts over `comment_ai_provenance` (`reviewed`/`edited`/`latest_at`) wired into the cache-hit + live terminal responses | ✅ **Done (code)** — full Service build green, **93 ai-package tests pass** (+2 new); aggregate SQL **NOT live-tested** (dev-server deploy) |
 | 8 | DELETE / cancel wiring | ✅ **Done** — full Service build green, **96 ai-package tests pass** (+3 new) |
-| 9 | Registry eviction scheduler | ⬜ Pending (`_evictor` field present, unused) |
+| 9 | Registry eviction scheduler | ✅ **Done** — full Service build green, **100 ai-package tests pass** (+4 new) |
 
 > **⚠ Plan pivot (2026-06-02) — review-on-approval.** After D2, the team simplified the model: a completed run now writes **only** the `comment_ai_run` cache row; the `comments` + `comment_ai_provenance` rows are created **only when the user approves & publishes**, via a new `POST …/{job_id}/publish` endpoint. Consequences already folded into the plan above and the items below:
 > - Terminals no longer carry `comment_id`; cache-hit returns cached `ai_output` + `sibling_summary` only.
@@ -414,7 +414,7 @@ _Last updated: 2026-06-05. We are executing this plan via the `superpowers:execu
 **Implemented, compiles, NOT live-tested** (need running WdkModel / DB tables): `GeneSynonymService.resolve` (reads gene `Alias` table), `GetCommentAiRunQuery.parseResults` + `CommentFactory.findAiRun`, `SyncPrelude.handleSubmit/resolveSynonyms/computeJobId`, `AiGenePublicationCommentService` POST (auth, spawn/attach/cache, 503) + GET (registry→cache→404), `AiGenePublicationPipeline.run()` orchestration (terminal short-circuit after each stage; top-level `Throwable` → `internal-error`).
 **Implemented, compiles, NOT live-tested (need `CLAUDE_API_KEY` + network):** `AnthropicJsonClient` real `LlmCompleter` (the actual Anthropic call) — only the parse/retry orchestration is unit-tested via an injected completer.
 **Implemented + unit-tested (pure, D5):** `AiGenePublicationPipeline.flattenHeadline`/`flattenContent` (6 tests) + `flattenToComment` wiring (1 test).
-**Still stubs:** none of the AI flow's endpoints — POST/GET/DELETE/publish are all wired. _(`validateSummary` was removed, not stubbed — see the 2026-06-05 plan change. D6: `persist`/`InsertCommentAiRunQuery`; D7: publish + `InsertCommentAiProvenanceQuery`; D7b: `sibling_summary`; D8: `JobRegistry.cancel` + DELETE.)_ Remaining work is D9 (registry eviction scheduler — `_evictor` injected but no sweep scheduled yet).
+**Still stubs:** none of the AI flow's endpoints — POST/GET/DELETE/publish are all wired. _(`validateSummary` was removed, not stubbed — see the 2026-06-05 plan change. D6: `persist`/`InsertCommentAiRunQuery`; D7: publish + `InsertCommentAiProvenanceQuery`; D7b: `sibling_summary`; D8: `JobRegistry.cancel` + DELETE; D9: registry eviction sweep.)_ **All nine deliverables are now code-complete** — no remaining implementation work in the plan (the open items below are coordination/live-test/doc tasks, not code).
 
 ## Interim caveats (by design, not bugs)
 

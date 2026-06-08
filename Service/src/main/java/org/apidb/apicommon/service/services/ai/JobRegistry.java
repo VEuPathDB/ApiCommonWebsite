@@ -8,7 +8,10 @@ import java.util.concurrent.Future;
 import java.util.concurrent.RejectedExecutionException;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Function;
+
+import org.apache.log4j.Logger;
 
 /**
  * In-memory store of in-flight and recently-terminal jobs, keyed by the hex
@@ -31,6 +34,8 @@ public class JobRegistry {
   /** How often the eviction sweep runs. */
   public static final long EVICTION_PERIOD_SECONDS = 60;
 
+  private static final Logger LOG = Logger.getLogger(JobRegistry.class);
+
   private static final JobRegistry INSTANCE = new JobRegistry();
 
   public static JobRegistry instance() { return INSTANCE; }
@@ -47,7 +52,11 @@ public class JobRegistry {
   JobRegistry(ExecutorService executor, ScheduledExecutorService evictor) {
     _executor = executor;
     _evictor = evictor;
-    // Eviction sweep is scheduled in deliverable 8.
+    // Periodically reap terminal jobs whose TTL has elapsed. The durable
+    // comment_ai_run rows still satisfy late cache hits, so eviction only frees
+    // memory — it never loses a publishable result.
+    _evictor.scheduleAtFixedRate(this::sweepQuietly,
+        EVICTION_PERIOD_SECONDS, EVICTION_PERIOD_SECONDS, TimeUnit.SECONDS);
   }
 
   /** Look up an existing job by its digest. */
@@ -117,5 +126,40 @@ public class JobRegistry {
     Future<?> future = job.getFuture();
     if (future != null)
       future.cancel(true);  // interrupt any in-flight blocking work (LLM/HTTP call)
+  }
+
+  /**
+   * Remove every terminal job whose terminal age has exceeded {@link #TTL_MILLIS}
+   * at {@code now}. Running jobs are never evicted. Pure given {@code now}
+   * (visible for testing); the scheduled sweep passes the current wall clock.
+   *
+   * @return the number of entries evicted
+   */
+  int sweep(long now) {
+    AtomicInteger evicted = new AtomicInteger();
+    // ConcurrentHashMap's removeIf is weakly-consistent and per-entry atomic, so
+    // a concurrent submit() of a fresh job is never clobbered by the sweep.
+    _jobs.values().removeIf(job -> {
+      if (job.isExpiredAt(now, TTL_MILLIS)) {
+        evicted.incrementAndGet();
+        return true;
+      }
+      return false;
+    });
+    return evicted.get();
+  }
+
+  /** Scheduler entry point: sweep at the current time, swallowing any error so the recurring task survives. */
+  private void sweepQuietly() {
+    try {
+      int evicted = sweep(System.currentTimeMillis());
+      if (evicted > 0 && LOG.isDebugEnabled())
+        LOG.debug("Evicted " + evicted + " terminal AI job(s) past TTL; " + _jobs.size() + " remain");
+    }
+    catch (RuntimeException e) {
+      // Never let a sweep failure kill the recurring schedule (scheduleAtFixedRate
+      // suppresses all future runs if the task throws).
+      LOG.error("AI job-registry eviction sweep failed; will retry next period", e);
+    }
   }
 }

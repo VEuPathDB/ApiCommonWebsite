@@ -106,4 +106,15 @@ public class JobState {
     _terminalAt = _updatedAt;
     return true;
   }
+
+  /**
+   * Whether this job is eligible for registry eviction at the given wall-clock
+   * time: it must be terminal (a running job is never evicted, however old) and
+   * its terminal age must <em>exceed</em> {@code ttlMillis}. Pure — drives the
+   * {@link JobRegistry} eviction sweep and is unit-tested directly.
+   */
+  public boolean isExpiredAt(long now, long ttlMillis) {
+    Date terminalAt = _terminalAt;  // volatile read once
+    return terminalAt != null && (now - terminalAt.getTime()) > ttlMillis;
+  }
 }

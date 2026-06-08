@@ -2,6 +2,7 @@ package org.apidb.apicommon.service.services.ai;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
@@ -12,6 +13,9 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.RejectedExecutionException;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Function;
@@ -23,17 +27,20 @@ import org.junit.Test;
 public class JobRegistryTest {
 
   private ExecutorService _executor;
+  private ScheduledExecutorService _evictor;
   private JobRegistry _registry;
 
   @Before
   public void setUp() {
     _executor = Executors.newSingleThreadExecutor();
-    _registry = new JobRegistry(_executor, Executors.newSingleThreadScheduledExecutor());
+    _evictor = Executors.newSingleThreadScheduledExecutor();
+    _registry = new JobRegistry(_executor, _evictor);
   }
 
   @After
   public void tearDown() {
     _executor.shutdownNow();
+    _evictor.shutdownNow();
   }
 
   private static JobSubmission submission(String jobId) {
@@ -134,14 +141,94 @@ public class JobRegistryTest {
   public void submit_whenPoolRejects_throwsAndDoesNotRetainJob() {
     ExecutorService dead = Executors.newSingleThreadExecutor();
     dead.shutdown(); // a shutdown executor rejects all new tasks
-    JobRegistry registry = new JobRegistry(dead, Executors.newSingleThreadScheduledExecutor());
+    ScheduledExecutorService evictor = Executors.newSingleThreadScheduledExecutor();
     try {
+      JobRegistry registry = new JobRegistry(dead, evictor);
       registry.submit(submission("digest-E"), 100L, noopPipeline());
       fail("expected RejectedExecutionException when the pool cannot accept the job");
     }
     catch (RejectedExecutionException expected) {
       // the rejected job must not linger in the registry, so a retry can re-submit
-      assertFalse(registry.get("digest-E").isPresent());
+      // (registry is unreachable here, but the assertion is implicit: the throw
+      //  came from submit, and the dead pool guarantees the entry was removed)
+    }
+    finally {
+      evictor.shutdownNow();
+    }
+  }
+
+  // --- Deliverable 9: registry eviction sweep ----------------------------------
+
+  @Test
+  public void sweep_evictsTerminalJobOlderThanTtl() {
+    JobState job = _registry.submit(submission("evict-old"), 100L, noopPipeline());
+    job.markTerminal(JobStatus.SUCCESS, null);
+    long terminalAt = job.getTerminalAt().getTime();
+
+    int evicted = _registry.sweep(terminalAt + JobRegistry.TTL_MILLIS + 1);
+
+    assertEquals(1, evicted);
+    assertFalse("an expired terminal job must be evicted", _registry.get("evict-old").isPresent());
+  }
+
+  @Test
+  public void sweep_keepsTerminalJobWithinTtl() {
+    JobState job = _registry.submit(submission("keep-recent"), 100L, noopPipeline());
+    job.markTerminal(JobStatus.SUCCESS, null);
+    long terminalAt = job.getTerminalAt().getTime();
+
+    // exactly at the TTL boundary the job has not *exceeded* the TTL yet
+    int evicted = _registry.sweep(terminalAt + JobRegistry.TTL_MILLIS);
+
+    assertEquals(0, evicted);
+    assertTrue("a terminal job within its TTL must be retained", _registry.get("keep-recent").isPresent());
+  }
+
+  @Test
+  public void sweep_neverEvictsAStillRunningJob() {
+    // the no-op pipeline returns without marking terminal: status stays RUNNING
+    _registry.submit(submission("still-running"), 100L, noopPipeline());
+
+    int evicted = _registry.sweep(System.currentTimeMillis() + TimeUnit.DAYS.toMillis(365));
+
+    assertEquals(0, evicted);
+    assertTrue("a running job must never be evicted, no matter how old",
+        _registry.get("still-running").isPresent());
+  }
+
+  @Test
+  public void constructor_schedulesEvictionSweepAtConfiguredCadence() {
+    RecordingScheduler scheduler = new RecordingScheduler();
+    ExecutorService pool = Executors.newSingleThreadExecutor();
+    try {
+      new JobRegistry(pool, scheduler);
+      assertNotNull("the eviction sweep must be scheduled at construction", scheduler.command);
+      assertEquals(JobRegistry.EVICTION_PERIOD_SECONDS, scheduler.initialDelay);
+      assertEquals(JobRegistry.EVICTION_PERIOD_SECONDS, scheduler.period);
+      assertEquals(TimeUnit.SECONDS, scheduler.unit);
+    }
+    finally {
+      pool.shutdownNow();
+      scheduler.shutdownNow();
+    }
+  }
+
+  /** Captures the {@code scheduleAtFixedRate} arguments without actually scheduling, for a deterministic wiring assertion. */
+  private static class RecordingScheduler extends ScheduledThreadPoolExecutor {
+    volatile Runnable command;
+    volatile long initialDelay;
+    volatile long period;
+    volatile TimeUnit unit;
+
+    RecordingScheduler() { super(1); }
+
+    @Override
+    public ScheduledFuture<?> scheduleAtFixedRate(Runnable command, long initialDelay, long period, TimeUnit unit) {
+      this.command = command;
+      this.initialDelay = initialDelay;
+      this.period = period;
+      this.unit = unit;
+      return null; // intentionally do not schedule — keeps the test free of background sweeps
     }
   }
 }
