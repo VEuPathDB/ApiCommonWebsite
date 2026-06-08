@@ -85,13 +85,25 @@ public class JobState {
     _updatedAt = new Date();
   }
 
-  /** Move the job to a terminal status, recording the result and terminal time. */
-  public void markTerminal(JobStatus status, Object result) {
+  /**
+   * Move the job to a terminal status, recording the result and terminal time.
+   * <b>First terminal wins:</b> once the job is terminal this is a no-op and
+   * returns {@code false}. This makes cancellation stick — a DELETE marks the
+   * job {@code cancelled} and then interrupts the pipeline thread, whose
+   * unwinding stage would otherwise re-mark it {@code internal-error}.
+   *
+   * @return {@code true} if this call set the terminal status, {@code false} if
+   *         the job was already terminal
+   */
+  public synchronized boolean markTerminal(JobStatus status, Object result) {
     if (!status.isTerminal())
       throw new IllegalArgumentException("not a terminal status: " + status);
+    if (_status.isTerminal())
+      return false;
     _status = status;
     _result = result;
     _updatedAt = new Date();
     _terminalAt = _updatedAt;
+    return true;
   }
 }

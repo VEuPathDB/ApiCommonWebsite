@@ -101,16 +101,20 @@ public class AiGenePublicationCommentService extends AbstractUserCommentService 
     throw new NotFoundException("No AI gene-publication job for id '" + jobId + "'");
   }
 
+  /**
+   * Cancel an in-flight job. v1 cancels the underlying run for <em>all</em>
+   * attached followers (no per-follower detach). Idempotent: cancelling an
+   * unknown / already-evicted / already-terminal job is a no-op. Returns 204;
+   * the FE's next poll observes the {@code cancelled} terminal (or
+   * {@code not-found} once evicted).
+   */
   @DELETE
   @Path(ID_PATH)
   @Produces(MediaType.APPLICATION_JSON)
   public Response cancel(@PathParam(JOB_ID_PARAM) String jobId) throws WdkModelException {
-    // Cancellation wiring lands in a later deliverable.
-    return Response.status(Response.Status.NOT_IMPLEMENTED)
-        .type(MediaType.APPLICATION_JSON)
-        .entity(new JSONObject().put("type", "internal-error")
-            .put("error", "cancellation not implemented yet").toString())
-        .build();
+    fetchUser(); // 401 for guests
+    JobRegistry.instance().cancel(jobId);
+    return Response.noContent().build();
   }
 
   /**

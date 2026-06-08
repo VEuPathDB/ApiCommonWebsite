@@ -99,8 +99,23 @@ public class JobRegistry {
     return job;
   }
 
-  /** Cancel an in-flight job: cancel the future and any in-flight LLM HTTP call. */
+  /**
+   * Cancel a job for all attached followers (v1 has no per-follower detach).
+   * No-op if the job is unknown / already evicted, or already terminal. Marks
+   * the job {@code cancelled} <em>before</em> interrupting the pipeline thread so
+   * the cancellation wins the race against the interrupted stage's
+   * {@code internal-error} unwinding (see {@link JobState#markTerminal}). The
+   * cancelled job stays in the registry so the next poll observes it (TTL
+   * eviction reaps it later).
+   */
   public void cancel(String jobId) {
-    throw new UnsupportedOperationException("JobRegistry.cancel — deliverable 7");
+    JobState job = _jobs.get(jobId);
+    if (job == null) return;  // unknown or already evicted — nothing to cancel
+
+    job.markTerminal(JobStatus.CANCELLED, null);  // first-wins; no-op if already terminal
+
+    Future<?> future = job.getFuture();
+    if (future != null)
+      future.cancel(true);  // interrupt any in-flight blocking work (LLM/HTTP call)
   }
 }

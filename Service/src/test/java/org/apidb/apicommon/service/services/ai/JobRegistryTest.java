@@ -93,6 +93,44 @@ public class JobRegistryTest {
   }
 
   @Test
+  public void cancel_marksRunningJobCancelledAndCancelsFuture() throws InterruptedException {
+    CountDownLatch started = new CountDownLatch(1);
+    _registry.submit(submission("cancel-1"), 100L, js -> () -> {
+      started.countDown();
+      try { Thread.sleep(10_000); }
+      catch (InterruptedException e) { Thread.currentThread().interrupt(); }
+    });
+    assertTrue("pipeline did not start", started.await(2, TimeUnit.SECONDS));
+
+    _registry.cancel("cancel-1");
+
+    JobState job = _registry.get("cancel-1").orElseThrow(AssertionError::new);
+    assertEquals(JobStatus.CANCELLED, job.getStatus());
+    assertTrue("the pipeline future should be cancelled", job.getFuture().isCancelled());
+  }
+
+  @Test
+  public void cancel_unknownJobIsNoop() {
+    _registry.cancel("never-submitted"); // must not throw
+    assertFalse(_registry.get("never-submitted").isPresent());
+  }
+
+  @Test
+  public void cancel_doesNotOverrideAFinishedJob() throws InterruptedException {
+    CountDownLatch done = new CountDownLatch(1);
+    _registry.submit(submission("cancel-2"), 100L, js -> () -> {
+      js.markTerminal(JobStatus.SUCCESS, null);
+      done.countDown();
+    });
+    assertTrue("pipeline did not finish", done.await(2, TimeUnit.SECONDS));
+
+    _registry.cancel("cancel-2");
+
+    assertEquals("a finished job must not be overwritten by a late cancel",
+        JobStatus.SUCCESS, _registry.get("cancel-2").orElseThrow(AssertionError::new).getStatus());
+  }
+
+  @Test
   public void submit_whenPoolRejects_throwsAndDoesNotRetainJob() {
     ExecutorService dead = Executors.newSingleThreadExecutor();
     dead.shutdown(); // a shutdown executor rejects all new tasks
