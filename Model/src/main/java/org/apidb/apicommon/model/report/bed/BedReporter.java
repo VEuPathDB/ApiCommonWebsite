@@ -18,7 +18,6 @@ import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkRuntimeException;
 import org.gusdb.wdk.model.answer.stream.RecordStream;
 import org.gusdb.wdk.model.answer.stream.RecordStreamFactory;
-import org.gusdb.wdk.model.question.Question;
 import org.gusdb.wdk.model.record.Field;
 import org.gusdb.wdk.model.record.RecordClass;
 import org.gusdb.wdk.model.record.RecordInstance;
@@ -47,8 +46,7 @@ public abstract class BedReporter extends AbstractReporter {
       _featureProvider = featureProvider.get();
 
       // validate required record class matches the one in the answer value
-      Question question = getQuestion();
-      RecordClass recordClass = question.getRecordClass();
+      RecordClass recordClass = getQuestion().getRecordClass();
       String recordClassFullName = recordClass.getFullName();
       String requiredRecordClassFullName = _featureProvider.getRequiredRecordClassFullName();
       if (!recordClassFullName.equals(requiredRecordClassFullName)){
@@ -57,7 +55,7 @@ public abstract class BedReporter extends AbstractReporter {
 
       // fetch and validate requested fields
       _requiredAttributes = getFieldsByName(recordClass, _featureProvider.getRequiredAttributeNames(), (rc,name) -> rc.getAttributeField(name));
-      _requiredTables = getFieldsByName(recordClass, _featureProvider.getRequiredTableNames(), (rc,name) -> Optional.ofNullable(question.getTableFieldMap().get(name)));
+      _requiredTables = getFieldsByName(recordClass, _featureProvider.getRequiredTableNames(), (rc,name) -> Optional.ofNullable(rc.getTableFieldMap().get(name)));
 
       // determine content disposition
       _isDownload = contentDisposition == ContentDisposition.ATTACHMENT;

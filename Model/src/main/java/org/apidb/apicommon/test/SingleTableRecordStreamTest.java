@@ -89,7 +89,7 @@ public class SingleTableRecordStreamTest {
           transformToGeneAnswer(AnswerValueFactory.makeAnswer(Step.getRunnableAnswerSpec(step))) :
           AnswerValueFactory.makeAnswer(Step.getRunnableAnswerSpec(step));
       answer = answer.cloneWithNewPaging(0, -1); // want full results
-      TableField tableField = answer.getQuestion().getTableFieldMap().get(TABLE_NAME);
+      TableField tableField = answer.getQuestion().getRecordClass().getTableFieldMap().get(TABLE_NAME);
 
       try (RecordStream recordStream = new SingleTableRecordStream(answer, tableField)) {
         writeFields(out, tableField, getFieldHeader);

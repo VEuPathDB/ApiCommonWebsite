@@ -63,7 +63,7 @@ public class SingleGeneReporter extends AbstractReporter {
   protected void write(OutputStream out) throws IOException, WdkModelException {
     RecordClass geneRecordClass = TranscriptUtil.getGeneRecordClass(_wdkModel);
     Map<String, AttributeField> attributeFields = geneRecordClass.getAttributeFieldMap();
-    Map<String, TableField> tableFields = geneRecordClass.getTableFieldMap(true);
+    Map<String, TableField> tableFields = geneRecordClass.getTableFieldMap();
     List<AttributeField> attributes = _format.getRequiredAttributeNames().stream()
         .map(name -> attributeFields.get(name)).collect(Collectors.toList());
     List<TableField> tables = _format.getRequiredTableNames().stream()
