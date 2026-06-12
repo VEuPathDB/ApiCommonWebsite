@@ -180,7 +180,6 @@ public class JBrowseUserDatasetsService extends AbstractUserService {
    */
   private List<VDIDatasetReference> queryVisibleDatasets(long userID) {
     final String schema = getWdkModel().getProperties().get(VDI_CONTROL_SCHEMA_KEY);
-
     String typesString = Arrays.stream(VDIDatasetType.values())
         .map(val -> "'" + val.getVdiName() + "'")
         .collect(Collectors.joining(","));
