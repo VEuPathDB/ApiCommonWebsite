@@ -169,7 +169,11 @@ public class AnthropicJsonClient implements JsonPromptClient {
 
   private static final ObjectMapper JSON = new ObjectMapper();
 
-  /** Assistant prefill, forcing the model to start a JSON object (Python {@code prefill_text}). */
+  /**
+   * Assistant prefill, forcing the model to start a JSON object (Python {@code prefill_text}).
+   * Prefill is not supported on Sonnet 4.6+ / Opus 4.6+ / Fable 5 — see
+   * {@link AiSummaryConfig#MODEL_NAME} before upgrading the model.
+   */
   private static final String PREFILL = "{";
 
   /** Formatter-LLM system prompt, verbatim from the Python STEP_1 retry loop. */
