@@ -50,7 +50,6 @@ sub init {
   $bar->setProfileSets(\@profileSets);
   $bar->setYaxisLabel($yAxisUnit);
   $bar->setPartName($yAxisUnit);
-die "part name: $yAxisUnit\n";
   $bar->setPlotTitle("$id - UserDataset $datasetId");
   $bar->addAdjustProfile('
 profile.df.full$NAME <- abbreviate(profile.df.full$NAME, 10)
