@@ -13,4 +13,10 @@ public interface Table {
   String COMMENTS      = "COMMENTS";
   String EXTERNAL_DBS  = "EXTERNAL_DATABASES";
   String CATEGORIES    = "TARGETCATEGORY";
+
+  // AI-assisted gene-publication summary sidecar tables (see
+  // Service/CLAUDE-ai-user-comments.md). Live in the same comment schema as
+  // COMMENTS so comment_ai_provenance.comment_id can FK to comments.comment_id.
+  String COMMENT_AI_RUN        = "COMMENT_AI_RUN";
+  String COMMENT_AI_PROVENANCE = "COMMENT_AI_PROVENANCE";
 }

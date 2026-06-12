@@ -1,0 +1,65 @@
+{
+  "type": "object",
+  "required": [
+    "Aliases_in_paper",
+    "GeneSummary",
+    "AdditionalInferences",
+    "ShortSummary",
+    "only_in_passing"
+  ],
+  "properties": {
+    "Aliases_in_paper": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of known aliases or synonyms associated with the gene found in the paper."
+    },
+    "GeneSummary": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "bullet_point",
+          "evidence_location",
+          "supporting_quotes"
+        ],
+        "properties": {
+          "bullet_point": {
+            "type": "string",
+            "description": "A concise bullet-point summary describing the direct evidence about the gene."
+          },
+          "evidence_location": {
+            "type": "string",
+            "description": "Where in the paper the evidence can be found (e.g., Figure 1, Table 2, Results paragraph 3, Supplementary, or Discussion paragraph 5)."
+          },
+          "supporting_quotes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 2,
+            "description": "Up to 2 direct quotes from the paper that support the summary bullet point."
+          }
+        }
+      },
+      "description": "Bullet points from the <Gene Summary> section, each with its own paired evidence location and supporting quotes."
+    },
+    "AdditionalInferences": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Bullet points from the <Additional Inferences> section, capturing inferred conclusions not directly evidenced."
+    },
+    "ShortSummary": {
+      "type": "string",
+      "description": "The one sentence <Short Summary> that captures key findings."
+    },
+    "only_in_passing": {
+      "type": "boolean",
+      "description": "Flags if gene is only mentioned in passing without substantial findings - TRUE if so, FALSE if not."
+    }
+  },
+  "additionalProperties": false
+}

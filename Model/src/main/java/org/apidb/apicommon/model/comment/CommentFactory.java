@@ -165,6 +165,47 @@ public class CommentFactory implements Manageable<CommentFactory> {
     }
   }
 
+  /**
+   * Look up the shared AI-run cache row by its content-digest job id. A hit
+   * lets the sync prelude short-circuit a submit straight to a terminal
+   * cache-hit response (see the AI gene-publication service).
+   */
+  public Optional<CommentAiRun> findAiRun(String jobId) throws WdkModelException {
+    try (Connection con = _commentDs.getConnection()) {
+      return new GetCommentAiRunQuery(_config.getCommentSchema(), jobId).run(con).value();
+    } catch (SQLException ex) {
+      throw new WdkModelException(ex);
+    }
+  }
+
+  /**
+   * Persist the shared AI-run cache row produced by the pipeline's persisting
+   * stage, keyed by the content-digest job id. Written at most once per distinct
+   * job (the digest dedupes resubmissions). This is the pipeline's only write —
+   * the user-comment row is created later by the publish endpoint on approval.
+   */
+  public void persistAiRun(CommentAiRun run) throws WdkModelException {
+    try (Connection con = _commentDs.getConnection()) {
+      new InsertCommentAiRunQuery(_config.getCommentSchema(), run).run(con);
+    } catch (SQLException ex) {
+      throw new WdkModelException(ex);
+    }
+  }
+
+  /**
+   * The anonymous {@link SiblingSummary} aggregate over {@code comment_ai_provenance}
+   * rows for one run job id — how many other users have already published a
+   * comment from the same AI run. Always returns an object (zero counts /
+   * null timestamp when there are no published siblings yet).
+   */
+  public SiblingSummary getSiblingSummary(String runJobId) throws WdkModelException {
+    try (Connection con = _commentDs.getConnection()) {
+      return new GetSiblingSummaryQuery(_config.getCommentSchema(), runJobId).run(con).value();
+    } catch (SQLException ex) {
+      throw new WdkModelException(ex);
+    }
+  }
+
   public boolean commentExists(long commentId) throws WdkModelException {
     try(Connection con = _commentDs.getConnection()) {
       return new GetCommentExistsQuery(_config.getCommentSchema(), commentId)
@@ -266,6 +307,10 @@ public class CommentFactory implements Manageable<CommentFactory> {
           new UpdateAttachmentQuery(schema, com.getPreviousCommentId(), commentId).run(con);
         if (com.getExternalDatabase() != null)
           saveExternalDb(con, commentId, com.getExternalDatabase());
+        if (com.getAiProvenance() != null) {
+          com.getAiProvenance().setCommentId(commentId);
+          new InsertCommentAiProvenanceQuery(schema, com.getAiProvenance()).run(con);
+        }
       } catch (Throwable e) {
         con.rollback();
         throw e;

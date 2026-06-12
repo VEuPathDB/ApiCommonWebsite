@@ -10,6 +10,7 @@ import org.apidb.apicommon.service.services.ApiSessionService;
 import org.apidb.apicommon.service.services.ApiStepService;
 import org.apidb.apicommon.service.services.OrganismMetricsService;
 import org.apidb.apicommon.service.services.TranscriptToggleService;
+import org.apidb.apicommon.service.services.ai.AiGenePublicationCommentService;
 import org.apidb.apicommon.service.services.comments.AttachmentsService;
 import org.apidb.apicommon.service.services.comments.UserCommentsService;
 import org.apidb.apicommon.service.services.dataPlotter.ProfileSetService;
@@ -44,6 +45,7 @@ public class ApiWebServiceApplication extends EuPathServiceApplication {
       // add ApiCommon-specific services
       .add(AttachmentsService.class)
       .add(UserCommentsService.class)
+      .add(AiGenePublicationCommentService.class)
       .add(TranscriptToggleService.class)
       .add(JBrowseService.class)
       .add(JBrowseUserDatasetsService.class)
