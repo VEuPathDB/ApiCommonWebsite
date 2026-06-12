@@ -7,6 +7,8 @@ import java.util.TreeSet;
 
 import javax.ws.rs.NotFoundException;
 
+import org.apache.log4j.Logger;
+
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.WdkUserException;
@@ -31,6 +33,8 @@ import org.gusdb.wdk.model.record.attribute.AttributeValue;
  * digest and scanned against the paper text.
  */
 public class GeneSynonymService {
+
+  private static final Logger LOG = Logger.getLogger(GeneSynonymService.class);
 
   public static final String GENE_URL_SEGMENT = "gene";
   public static final String ALIAS_TABLE = "Alias";
@@ -60,6 +64,11 @@ public class GeneSynonymService {
     List<RecordInstance> records = RecordClass.getRecordInstances(_wdkModel.getSystemUser(), pkValue);
     if (records.isEmpty()) {
       throw new NotFoundException("No gene found for stable id '" + geneId + "'");
+    }
+
+    // TODO: propagate ambiguous-id options to caller as a 300 Multiple Choices (see RecordService)
+    if (records.size() > 1) {
+      LOG.warn("Gene id '" + geneId + "' resolved to " + records.size() + " records; using first");
     }
 
     return readAliases(records.get(0), geneId);
