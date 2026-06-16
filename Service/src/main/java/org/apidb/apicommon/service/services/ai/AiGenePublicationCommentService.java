@@ -27,6 +27,7 @@ import org.apidb.apicommon.service.services.ai.gene.GeneSynonymService;
 import org.apidb.apicommon.service.services.comments.AbstractUserCommentService;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.user.User;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
@@ -241,6 +242,8 @@ public class AiGenePublicationCommentService extends AbstractUserCommentService 
       out.put("ai_output", new JSONObject()
           .put("headline", run.getAiHeadline())
           .put("content", run.getAiContent()));
+    } else {
+      out.put("synonyms_checked", new JSONArray(run.getSynonymsUsed()));
     }
     out.put("sibling_summary", siblingSummaryJson(getCommentFactory().getSiblingSummary(jobId)));
     return out;
