@@ -38,10 +38,10 @@
             "items": {
               "type": "string"
             },
-            "maxItems": 2,
             "description": "Up to 2 direct quotes from the paper that support the summary bullet point."
           }
-        }
+        },
+        "additionalProperties": false
       },
       "description": "Bullet points from the <Gene Summary> section, each with its own paired evidence location and supporting quotes."
     },

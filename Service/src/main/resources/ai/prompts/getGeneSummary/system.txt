@@ -36,6 +36,6 @@ INSTRUCTIONS: Follow this step-by-step workflow:
    - Single bullet point: "Mentioned in passing"
    - Include context and direct quotes showing where/how it's referenced
    - Flag in the JSON schema only_in_passing: TRUE
-7. FORMAT COMPLIANCEStructure your response according to the provided JSON schema:
-[JSON_SCHEMA]
+7. FORMAT COMPLIANCE
+   Your response must conform to the required JSON schema; its structure and field descriptions are enforced automatically.
 Remember: Focus exclusively on the specified gene. Be precise about distinguishing direct evidence from analytical inferences.

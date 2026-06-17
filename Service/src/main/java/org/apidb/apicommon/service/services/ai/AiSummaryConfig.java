@@ -8,15 +8,14 @@ package org.apidb.apicommon.service.services.ai;
 public final class AiSummaryConfig {
 
   /**
-   * Claude model used for the summary stages. Matches the Python reference
-   * pipeline ({@code VPDB_AI_gene_paper_summary}) the prompts were tuned against.
+   * Claude model used for the summary stages. The prompts were originally tuned
+   * against the Python reference pipeline ({@code VPDB_AI_gene_paper_summary}).
    *
-   * <p><b>Upgrade note:</b> {@link AnthropicJsonClient} prefills the assistant
-   * turn with {@code "{"} to force JSON output. Prefill is not supported on
-   * Sonnet 4.6+ / Opus 4.6+ / Fable 5 — upgrading past this model requires
-   * switching to structured outputs ({@code output_config.format}) first.
+   * <p>{@link AnthropicJsonClient} constrains JSON output via structured outputs
+   * ({@code output_config.format}) rather than an assistant prefill, since
+   * prefill is unsupported on Sonnet 4.6+ / Opus 4.6+ / Fable 5.
    */
-  public static final String MODEL_NAME = "claude-sonnet-4-20250514";
+  public static final String MODEL_NAME = "claude-sonnet-4-6";
 
   /**
    * Manually-bumped prompt version folded into the digest. Bump this whenever
