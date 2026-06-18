@@ -117,6 +117,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
       if (out.isPresent()) {
         final Comment tmp = out.get();
         tmp.setPubMedRefs(getPubMedRefs(tmp));
+        attachAiProvenance(con, Collections.singletonList(tmp));
       }
 
       return out;
@@ -166,6 +167,30 @@ public class CommentFactory implements Manageable<CommentFactory> {
     }
   }
 
+  /**
+   * Hydrate the optional {@code aiProvenance} field on each comment that has a
+   * published AI provenance row, in a single batched join over
+   * {@code comment_ai_provenance} + {@code comment_ai_run}. A no-op for an empty
+   * batch; comments without provenance are left with a null (omitted) field.
+   */
+  private void attachAiProvenance(Connection con, Collection<Comment> comments)
+      throws SQLException {
+    if (comments.isEmpty())
+      return;
+
+    final List<Long> ids = new ArrayList<>(comments.size());
+    for (Comment comment : comments)
+      ids.add(comment.getId());
+
+    final Map<Long, AiProvenanceView> byId =
+        new GetCommentAiProvenanceQuery(_config.getCommentSchema(), ids).run(con).value();
+    if (byId.isEmpty())
+      return;
+
+    for (Comment comment : comments)
+      comment.setAiProvenance(byId.get(comment.getId()));
+  }
+
   public boolean commentExists(long commentId) throws WdkModelException {
     try(Connection con = _commentDs.getConnection()) {
       return new GetCommentExistsQuery(_config.getCommentSchema(), commentId)
@@ -204,6 +229,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
       for (Comment comment : out) {
         comment.setPubMedRefs(getPubMedRefs(comment));
       }
+      attachAiProvenance(con, out);
     } catch (SQLException | IOException e) {
       throw new WdkModelException(e);
     }

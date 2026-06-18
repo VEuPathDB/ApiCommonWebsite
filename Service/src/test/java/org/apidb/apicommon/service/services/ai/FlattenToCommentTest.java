@@ -78,6 +78,7 @@ public class FlattenToCommentTest {
         "[2] Results",
         "",
         "Additional inferences:",
+        "",
         "- May be a vaccine target.",
         "",
         "Aliases mentioned in paper: Pfs25, P25");
