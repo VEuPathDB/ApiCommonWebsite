@@ -247,6 +247,7 @@ public class AiGenePublicationPipelineTest {
   @Test
   public void flattenToCommentSetsHeadlineAndContentFromSummary() throws Exception {
     JsonNode summary = json("{"
+        + "\"Headline\": \"A druggable surface antigen.\","
         + "\"ShortSummary\": \"Pfs25 matters.\","
         + "\"GeneSummary\": [{\"bullet_point\": \"A finding.\","
         + "  \"evidence_location\": \"Fig 1\", \"supporting_quotes\": [\"q\"]}]}");
@@ -257,8 +258,11 @@ public class AiGenePublicationPipelineTest {
     pipeline.generateSummary();
     pipeline.flattenToComment();
 
-    assertEquals("Pfs25 matters.", pipeline.aiHeadline());
-    assertEquals(String.join("\n", "- A finding.", "  Evidence: Fig 1", "  > q"),
+    assertEquals("A druggable surface antigen.", pipeline.aiHeadline());
+    assertEquals(String.join("\n",
+        "Executive summary:", "", "Pfs25 matters.", "",
+        "Details:", "", "- A finding. [1]", "",
+        "Evidence:", "", "[1] Fig 1", "- q"),
         pipeline.aiContent());
   }
 
@@ -284,6 +288,7 @@ public class AiGenePublicationPipelineTest {
   public void runSuccessPersistsRunRowAndPublishesAiOutput() throws Exception {
     JsonPromptClient client = (stage, repl) -> json("{"
         + "\"only_in_passing\": false,"
+        + "\"Headline\": \"A druggable surface antigen.\","
         + "\"ShortSummary\": \"Pfs25 matters.\","
         + "\"GeneSummary\": [{\"bullet_point\": \"A finding.\","
         + "  \"evidence_location\": \"Fig 1\", \"supporting_quotes\": [\"q\"]}]}");
@@ -307,7 +312,7 @@ public class AiGenePublicationPipelineTest {
     assertEquals("1", row.getPromptVersion());
     assertEquals("{}", row.getOptionsJson());
     assertEquals(Arrays.asList("Pfs25"), row.getSynonymsUsed());
-    assertEquals("Pfs25 matters.", row.getAiHeadline());
+    assertEquals("A druggable surface antigen.", row.getAiHeadline());
     assertNotNull(row.getAiContent());
     assertFalse(row.isOnlyMentionedInPassing());
     assertNotNull(row.getCompletedAt());
@@ -315,7 +320,7 @@ public class AiGenePublicationPipelineTest {
     TerminalResult result = (TerminalResult) job.getResult();
     JSONObject rendered = result.toJson("deadbeef");
     assertEquals("success", rendered.getString("type"));
-    assertEquals("Pfs25 matters.", rendered.getJSONObject("ai_output").getString("headline"));
+    assertEquals("A druggable surface antigen.", rendered.getJSONObject("ai_output").getString("headline"));
     assertEquals(row.getAiContent(), rendered.getJSONObject("ai_output").getString("content"));
   }
 

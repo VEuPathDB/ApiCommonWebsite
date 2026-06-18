@@ -250,42 +250,62 @@ public class AiGenePublicationPipeline implements Runnable {
     _aiContent = flattenContent(_summaryJson);
   }
 
-  /** Headline = the plain-text {@code ShortSummary} (empty if absent). */
+  /** Headline = the plain-text {@code Headline} (empty if absent). */
   static String flattenHeadline(JsonNode summary) {
-    return text(summary, "ShortSummary");
+    return text(summary, "Headline");
   }
 
   /**
-   * Body = {@code - } bullets with indented {@code Evidence:}/{@code >} quote
-   * lines, an optional "Additional inferences" section, and an "Aliases mentioned
-   * in paper:" line — sections separated by a blank line. Ports the structure of
-   * Python {@code build_extended_summary_html} to plain-text markdown (no HTML).
+   * Body = an "Executive summary:" section ({@code ShortSummary}), a "Details:"
+   * section of {@code - } bullets each tagged with a {@code [n]} reference, an
+   * "Evidence:" section pairing each {@code [n]} with its location and {@code - }
+   * quote lines, then the existing "Additional inferences" and "Aliases mentioned
+   * in paper" sections appended unchanged — sections separated by a blank line.
+   * Plain-text markdown only (no HTML); client renders newlines as {@code <br />}.
    */
   static String flattenContent(JsonNode summary) {
     List<String> sections = new ArrayList<>();
 
-    // 1. evidence-based gene-summary bullets
-    StringBuilder bullets = new StringBuilder();
+    // 1. executive summary (the one-sentence ShortSummary)
+    String shortSummary = text(summary, "ShortSummary");
+    if (!shortSummary.isEmpty()) {
+      sections.add("Executive summary:\n\n" + shortSummary);
+    }
+
+    // 2. gene-summary bullets ("Details:") cross-referenced to their evidence
+    //    ("Evidence:") by a shared [n] tag. Every bullet is numbered; an evidence
+    //    stanza is emitted only when the bullet carries a location and/or quotes.
+    StringBuilder details = new StringBuilder();
+    StringBuilder evidence = new StringBuilder();
+    int n = 0;
     for (JsonNode row : array(summary, "GeneSummary")) {
-      if (bullets.length() > 0) bullets.append("\n");
-      bullets.append("- ").append(text(row, "bullet_point"));
+      n++;
+      if (details.length() > 0) details.append("\n");
+      details.append("- ").append(text(row, "bullet_point")).append(" [").append(n).append("]");
+
       String loc = text(row, "evidence_location");
-      if (!loc.isEmpty()) bullets.append("\n  Evidence: ").append(loc);
-      for (JsonNode quote : array(row, "supporting_quotes")) {
-        bullets.append("\n  > ").append(quote.asText());
+      List<JsonNode> quotes = new ArrayList<>();
+      for (JsonNode quote : array(row, "supporting_quotes")) quotes.add(quote);
+      if (loc.isEmpty() && quotes.isEmpty()) continue;
+
+      if (evidence.length() > 0) evidence.append("\n\n");
+      evidence.append("[").append(n).append("] ").append(loc);
+      for (JsonNode quote : quotes) {
+        evidence.append("\n- ").append(quote.asText());
       }
     }
-    if (bullets.length() > 0) sections.add(bullets.toString());
+    if (details.length() > 0) sections.add("Details:\n\n" + details);
+    if (evidence.length() > 0) sections.add("Evidence:\n\n" + evidence);
 
-    // 2. additional inferences
+    // 3. additional inferences
     StringBuilder inferences = new StringBuilder();
     for (JsonNode inf : array(summary, "AdditionalInferences")) {
-      inferences.append(inferences.length() == 0 ? "Additional inferences:\n" : "\n");
+      inferences.append(inferences.length() == 0 ? "Additional inferences:\n\n" : "\n");
       inferences.append("- ").append(inf.asText());
     }
     if (inferences.length() > 0) sections.add(inferences.toString());
 
-    // 3. aliases mentioned in the paper
+    // 4. aliases mentioned in the paper
     List<String> aliases = new ArrayList<>();
     for (JsonNode a : array(summary, "Aliases_in_paper")) {
       aliases.add(a.asText());

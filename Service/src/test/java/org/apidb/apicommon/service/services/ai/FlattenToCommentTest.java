@@ -9,11 +9,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * Tests for the stage-④ flatten of a {@code getGeneSummary} JSON object into a
- * plain-text-markdown comment: {@code headline = ShortSummary} and a
- * {@code content} body of {@code - } bullets (with indented {@code Evidence:}
- * and {@code >} quote lines), an optional "Additional inferences" section, and
- * an "Aliases mentioned in paper:" line. Plain text only — no HTML (ports the
- * structure of Python {@code build_extended_summary_html}).
+ * plain-text-markdown comment: {@code headline = Headline} and a {@code content}
+ * body of an "Executive summary:" section ({@code ShortSummary}), a "Details:"
+ * section of {@code - } bullets each tagged with a {@code [n]} reference, an
+ * "Evidence:" section pairing each {@code [n]} with its location and {@code - }
+ * quote lines, then "Additional inferences" and "Aliases mentioned in paper"
+ * sections. Plain text only — no HTML; the client renders newlines as
+ * {@code <br />}.
  */
 public class FlattenToCommentTest {
 
@@ -29,21 +31,22 @@ public class FlattenToCommentTest {
   }
 
   @Test
-  public void headlineIsTheShortSummary() {
-    JsonNode summary = json("{\"ShortSummary\": \"Pfs25 is essential for transmission.\"}");
-    assertEquals("Pfs25 is essential for transmission.",
+  public void headlineIsTheHeadlineField() {
+    JsonNode summary = json("{\"Headline\": \"Surface antigen essential for mosquito-stage transmission.\","
+        + "\"ShortSummary\": \"Pfs25 is essential for transmission.\"}");
+    assertEquals("Surface antigen essential for mosquito-stage transmission.",
         AiGenePublicationPipeline.flattenHeadline(summary));
   }
 
   @Test
-  public void headlineIsEmptyWhenShortSummaryMissing() {
+  public void headlineIsEmptyWhenHeadlineMissing() {
     assertEquals("", AiGenePublicationPipeline.flattenHeadline(json("{}")));
   }
 
   @Test
-  public void contentRendersBulletsEvidenceQuotesInferencesAndAliases() {
+  public void contentRendersExecutiveSummaryDetailsEvidenceInferencesAndAliases() {
     JsonNode summary = json("{"
-        + "\"ShortSummary\": \"x\","
+        + "\"ShortSummary\": \"Pfs25 is a transmission-blocking vaccine target.\","
         + "\"Aliases_in_paper\": [\"Pfs25\", \"P25\"],"
         + "\"GeneSummary\": ["
         + "  {\"bullet_point\": \"Pfs25 is on the ookinete surface.\","
@@ -57,12 +60,22 @@ public class FlattenToCommentTest {
         + "}");
 
     String expected = String.join("\n",
-        "- Pfs25 is on the ookinete surface.",
-        "  Evidence: Figure 2",
-        "  > detected on ookinetes",
-        "  > strong signal",
-        "- Knockouts block transmission.",
-        "  Evidence: Results",
+        "Executive summary:",
+        "",
+        "Pfs25 is a transmission-blocking vaccine target.",
+        "",
+        "Details:",
+        "",
+        "- Pfs25 is on the ookinete surface. [1]",
+        "- Knockouts block transmission. [2]",
+        "",
+        "Evidence:",
+        "",
+        "[1] Figure 2",
+        "- detected on ookinetes",
+        "- strong signal",
+        "",
+        "[2] Results",
         "",
         "Additional inferences:",
         "- May be a vaccine target.",
@@ -73,10 +86,11 @@ public class FlattenToCommentTest {
   }
 
   @Test
-  public void contentOmitsEvidenceLineWhenLocationBlank() {
+  public void bulletIsNumberedButEvidenceStanzaOmittedWhenLocationAndQuotesBlank() {
     JsonNode summary = json("{\"GeneSummary\": ["
         + "{\"bullet_point\": \"A claim.\", \"evidence_location\": \"\", \"supporting_quotes\": []}]}");
-    assertEquals("- A claim.", AiGenePublicationPipeline.flattenContent(summary));
+    assertEquals(String.join("\n", "Details:", "", "- A claim. [1]"),
+        AiGenePublicationPipeline.flattenContent(summary));
   }
 
   @Test
@@ -84,7 +98,7 @@ public class FlattenToCommentTest {
     JsonNode summary = json("{\"GeneSummary\": ["
         + "{\"bullet_point\": \"A claim.\", \"evidence_location\": \"Fig 1\", \"supporting_quotes\": []}],"
         + "\"AdditionalInferences\": []}");
-    assertEquals(String.join("\n", "- A claim.", "  Evidence: Fig 1"),
+    assertEquals(String.join("\n", "Details:", "", "- A claim. [1]", "", "Evidence:", "", "[1] Fig 1"),
         AiGenePublicationPipeline.flattenContent(summary));
   }
 
@@ -93,7 +107,15 @@ public class FlattenToCommentTest {
     JsonNode summary = json("{\"GeneSummary\": ["
         + "{\"bullet_point\": \"A claim.\", \"evidence_location\": \"Fig 1\", \"supporting_quotes\": []}],"
         + "\"Aliases_in_paper\": []}");
-    assertEquals(String.join("\n", "- A claim.", "  Evidence: Fig 1"),
+    assertEquals(String.join("\n", "Details:", "", "- A claim. [1]", "", "Evidence:", "", "[1] Fig 1"),
+        AiGenePublicationPipeline.flattenContent(summary));
+  }
+
+  @Test
+  public void contentOmitsExecutiveSummaryWhenShortSummaryMissing() {
+    JsonNode summary = json("{\"GeneSummary\": ["
+        + "{\"bullet_point\": \"A claim.\", \"evidence_location\": \"Fig 1\", \"supporting_quotes\": []}]}");
+    assertEquals(String.join("\n", "Details:", "", "- A claim. [1]", "", "Evidence:", "", "[1] Fig 1"),
         AiGenePublicationPipeline.flattenContent(summary));
   }
 }
