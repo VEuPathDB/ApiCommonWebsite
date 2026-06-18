@@ -19,10 +19,6 @@ import org.apidb.apicommon.model.comment.pojo.CommentAiRun;
  *
  * <p>Follows the {@link ValueQuery} read pattern ({@code parseResults} /
  * {@code getParams} / {@code getTypes}).
- *
- * <p>SCAFFOLDING: SELECT shape is final; row mapping is wired in deliverable 1.
- * The anonymous {@code sibling_summary} aggregate over
- * {@code comment_ai_provenance} is a separate query, added alongside.
  */
 public class GetCommentAiRunQuery extends ValueQuery<Optional<CommentAiRun>> {
 

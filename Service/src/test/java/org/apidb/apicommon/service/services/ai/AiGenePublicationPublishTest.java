@@ -10,7 +10,6 @@ import java.util.Date;
 import org.apidb.apicommon.model.comment.pojo.AiProvenance;
 import org.apidb.apicommon.model.comment.pojo.CommentAiRun;
 import org.apidb.apicommon.model.comment.pojo.CommentRequest;
-import org.apidb.apicommon.model.comment.pojo.SiblingSummary;
 import org.apidb.apicommon.service.services.ai.gene.GeneSynonymService;
 import org.json.JSONObject;
 import org.junit.Test;
@@ -85,25 +84,44 @@ public class AiGenePublicationPublishTest {
         req.getAiProvenance().isEdited());
   }
 
-  // --- sibling_summary rendering (deliverable 7b) ---------------------------
+  // --- source rendering -----------------------------------------------------
 
   @Test
-  public void siblingSummaryJsonMapsCountsAndIsoTimestamp() {
-    SiblingSummary summary = new SiblingSummary(3, 2, new Date(0L));
-    JSONObject json = AiGenePublicationCommentService.siblingSummaryJson(summary);
+  public void sourceJsonPubmedRunHasKindAndPmidOnly() {
+    CommentAiRun run = new CommentAiRun().setSourceKind("pubmed").setPubmedId("39324028");
+    JSONObject json = AiGenePublicationCommentService.sourceJson(run);
 
-    assertEquals(3, json.getInt("reviewed"));
-    assertEquals(2, json.getInt("edited"));
-    assertEquals("1970-01-01T00:00:00Z", json.getString("latest_at"));
+    assertEquals("pubmed", json.getString("kind"));
+    assertEquals("39324028", json.getString("pubmed_id"));
+    assertFalse("no upload fields on a pubmed source", json.has("pdf_content_sha256"));
+    assertEquals("source carries only kind + pubmed_id", 2, json.length());
   }
 
   @Test
-  public void siblingSummaryJsonRendersNullTimestampAsJsonNull() {
-    SiblingSummary empty = new SiblingSummary(0, 0, null);
-    JSONObject json = AiGenePublicationCommentService.siblingSummaryJson(empty);
+  public void sourceJsonUploadRunHasDigestAndOptionalProvenance() {
+    CommentAiRun run = new CommentAiRun()
+        .setSourceKind("upload")
+        .setPdfContentSha256("abcd1234")
+        .setExternalUrl("http://x/paper.pdf")
+        .setExternalTitle("A Paper");
+    JSONObject json = AiGenePublicationCommentService.sourceJson(run);
 
-    assertEquals(0, json.getInt("reviewed"));
-    assertEquals(0, json.getInt("edited"));
-    assertTrue("no siblings → latest_at is JSON null", json.isNull("latest_at"));
+    assertEquals("upload", json.getString("kind"));
+    assertEquals("abcd1234", json.getString("pdf_content_sha256"));
+    assertEquals("http://x/paper.pdf", json.getString("external_url"));
+    assertEquals("A Paper", json.getString("external_title"));
+    assertFalse("no pubmed_id on an upload source", json.has("pubmed_id"));
+  }
+
+  @Test
+  public void sourceJsonUploadOmitsNullUrlAndTitle() {
+    CommentAiRun run = new CommentAiRun().setSourceKind("upload").setPdfContentSha256("abcd1234");
+    JSONObject json = AiGenePublicationCommentService.sourceJson(run);
+
+    assertEquals("upload", json.getString("kind"));
+    assertEquals("abcd1234", json.getString("pdf_content_sha256"));
+    assertFalse(json.has("external_url"));
+    assertFalse(json.has("external_title"));
+    assertEquals("source carries only kind + pdf_content_sha256", 2, json.length());
   }
 }

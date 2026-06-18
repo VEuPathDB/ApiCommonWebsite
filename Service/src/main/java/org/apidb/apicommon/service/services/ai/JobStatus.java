@@ -36,7 +36,7 @@ public enum JobStatus {
   /**
    * The three terminal outcomes that are persisted to {@code comment_ai_run} and
    * from which a user may publish a comment. These are exactly the terminals
-   * whose responses carry a {@code sibling_summary} aggregate.
+   * whose responses carry a {@code source} object.
    */
   public boolean isPublishable() {
     return this == SUCCESS || this == MENTIONED_IN_PASSING || this == GENE_NOT_MENTIONED;

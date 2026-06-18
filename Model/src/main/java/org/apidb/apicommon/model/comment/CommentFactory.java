@@ -154,20 +154,6 @@ public class CommentFactory implements Manageable<CommentFactory> {
   }
 
   /**
-   * The anonymous {@link SiblingSummary} aggregate over {@code comment_ai_provenance}
-   * rows for one run job id — how many other users have already published a
-   * comment from the same AI run. Always returns an object (zero counts /
-   * null timestamp when there are no published siblings yet).
-   */
-  public SiblingSummary getSiblingSummary(String runJobId) throws WdkModelException {
-    try (Connection con = _commentDs.getConnection()) {
-      return new GetSiblingSummaryQuery(_config.getCommentSchema(), runJobId).run(con).value();
-    } catch (SQLException ex) {
-      throw new WdkModelException(ex);
-    }
-  }
-
-  /**
    * Hydrate the optional {@code aiProvenance} field on each comment that has a
    * published AI provenance row, in a single batched join over
    * {@code comment_ai_provenance} + {@code comment_ai_run}. A no-op for an empty

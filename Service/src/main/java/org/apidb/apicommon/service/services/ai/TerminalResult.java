@@ -102,7 +102,8 @@ public final class TerminalResult {
       case GENE_NOT_MENTIONED:
       case MENTIONED_IN_PASSING:
         out.put("synonyms_checked", new JSONArray(_synonymsChecked));
-        // sibling_summary aggregate is added once the DB tables land (D6/D7).
+        // the `source` object is attached at the service layer (it reads the
+        // submission / cache row, which this pure carrier doesn't hold).
         break;
       default:
         break;

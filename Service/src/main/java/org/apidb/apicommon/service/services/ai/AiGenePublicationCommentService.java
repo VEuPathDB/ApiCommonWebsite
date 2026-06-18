@@ -20,7 +20,6 @@ import javax.ws.rs.core.Response;
 import org.apidb.apicommon.model.comment.pojo.AiProvenance;
 import org.apidb.apicommon.model.comment.pojo.CommentAiRun;
 import org.apidb.apicommon.model.comment.pojo.CommentRequest;
-import org.apidb.apicommon.model.comment.pojo.SiblingSummary;
 import org.apidb.apicommon.model.comment.pojo.Target;
 import org.apidb.apicommon.service.services.ai.SyncPrelude.PreludeResult;
 import org.apidb.apicommon.service.services.ai.gene.GeneSynonymService;
@@ -42,11 +41,10 @@ import org.json.JSONObject;
  * synchronous prelude then spawns an async pipeline; GET polls job status;
  * DELETE cancels.
  *
- * <p>NOTE (deliverable 1): the prelude (validate → resolve synonyms → digest →
- * cache/registry/spawn) is wired here. The terminal cache-hit response does not
- * yet create the submitter's own comment or aggregate {@code sibling_summary}
- * (deliverable 6), and the async pipeline body (stages ①–⑥) lands in
- * deliverables 2–6, so a freshly-spawned job stays in {@code running}.
+ * <p>Every status that carries a {@code job_id} (running plus the publishable
+ * terminals) also carries a {@code source} object describing the source
+ * publication, so the FE can restore the source — and re-fetch the PubMed
+ * preview — when the review/publish page is reloaded from just a {@code job_id}.
  */
 @Path(AiGenePublicationCommentService.BASE_PATH)
 public class AiGenePublicationCommentService extends AbstractUserCommentService {
@@ -196,7 +194,7 @@ public class AiGenePublicationCommentService extends AbstractUserCommentService 
 
   // --- response shaping -------------------------------------------------------
 
-  private JSONObject preludeJson(PreludeResult result) throws WdkModelException {
+  private JSONObject preludeJson(PreludeResult result) {
     switch (result.getKind()) {
       case CACHE_HIT:
         return cacheHitJson(result.getJobId(), result.getCacheRow());
@@ -206,24 +204,23 @@ public class AiGenePublicationCommentService extends AbstractUserCommentService 
     }
   }
 
-  private JSONObject jobStateJson(JobState job) throws WdkModelException {
+  private JSONObject jobStateJson(JobState job) {
     if (job.getStatus() == JobStatus.RUNNING) {
       return new JSONObject()
           .put("type", JobStatus.RUNNING.getWireValue())
           .put("job_id", job.getJobId())
-          .put("stage", job.getStage().getWireValue());
+          .put("stage", job.getStage().getWireValue())
+          .put("source", sourceJson(job.getSubmission()));
     }
     // Terminal: the pipeline publishes a TerminalResult carrying the status-
     // specific fields (text-unavailable `reason`, internal-error `error`,
     // success `ai_output`, gene-not-mentioned / mentioned-in-passing
     // `synonyms_checked`). The publishable terminals additionally carry the
-    // anonymous sibling_summary aggregate, attached here at the service layer
-    // (it needs a DB read, so it can't live on the pure TerminalResult).
+    // source-publication provenance, attached here from the in-memory submission.
     if (job.getResult() instanceof TerminalResult) {
       JSONObject out = ((TerminalResult) job.getResult()).toJson(job.getJobId());
       if (job.getStatus().isPublishable())
-        out.put("sibling_summary",
-            siblingSummaryJson(getCommentFactory().getSiblingSummary(job.getJobId())));
+        out.put("source", sourceJson(job.getSubmission()));
       return out;
     }
     return new JSONObject()
@@ -231,10 +228,10 @@ public class AiGenePublicationCommentService extends AbstractUserCommentService 
         .put("job_id", job.getJobId());
   }
 
-  private JSONObject cacheHitJson(String jobId, CommentAiRun run) throws WdkModelException {
+  private JSONObject cacheHitJson(String jobId, CommentAiRun run) {
     // terminal_status is one of: success | mentioned-in-passing | gene-not-mentioned
-    // (only publishable terminals are persisted), so a cache hit always carries
-    // a sibling_summary. No comment_id — the comment is created only on publish.
+    // (only publishable terminals are persisted), so a cache hit always carries a
+    // source. No comment_id — the comment is created only on publish.
     JSONObject out = new JSONObject()
         .put("type", run.getTerminalStatus())
         .put("job_id", jobId);
@@ -245,21 +242,45 @@ public class AiGenePublicationCommentService extends AbstractUserCommentService 
     } else {
       out.put("synonyms_checked", new JSONArray(run.getSynonymsUsed()));
     }
-    out.put("sibling_summary", siblingSummaryJson(getCommentFactory().getSiblingSummary(jobId)));
+    out.put("source", sourceJson(run));
     return out;
   }
 
   /**
-   * Render the anonymous {@link SiblingSummary} to its wire shape
-   * {@code { reviewed, edited, latest_at }}; {@code latest_at} is ISO-8601 UTC or
-   * {@code null}. Pure — the counts are fetched by the caller.
+   * The source-publication provenance for a job, in the same snake_case shape as
+   * the {@code aiProvenance.source} on GET /user-comments: pubmed →
+   * {@code {kind, pubmed_id}}; upload →
+   * {@code {kind, pdf_content_sha256, external_url?, external_title?}}. Present on
+   * every status that carries a {@code job_id}, letting the FE restore the source
+   * (and re-fetch the PubMed preview) when reloaded from just a {@code job_id}.
+   *
+   * <p>Read from the in-memory {@link JobSubmission} for live jobs, or from the
+   * cached {@link CommentAiRun} row on a late cache hit — both carry the same
+   * source fields by construction.
    */
-  static JSONObject siblingSummaryJson(SiblingSummary summary) {
-    return new JSONObject()
-        .put("reviewed", summary.getReviewed())
-        .put("edited", summary.getEdited())
-        .put("latest_at", summary.getLatestAt() == null
-            ? JSONObject.NULL
-            : summary.getLatestAt().toInstant().toString());
+  static JSONObject sourceJson(JobSubmission s) {
+    return sourceJson(s.getSourceKind(), s.getPubmedId(), s.getPdfContentSha256(),
+        s.getExternalUrl(), s.getExternalTitle());
+  }
+
+  static JSONObject sourceJson(CommentAiRun run) {
+    return sourceJson(run.getSourceKind(), run.getPubmedId(), run.getPdfContentSha256(),
+        run.getExternalUrl(), run.getExternalTitle());
+  }
+
+  private static JSONObject sourceJson(String kind, String pubmedId, String pdfContentSha256,
+      String externalUrl, String externalTitle) {
+    JSONObject source = new JSONObject().put("kind", kind);
+    if ("pubmed".equals(kind)) {
+      source.put("pubmed_id", pubmedId);
+    }
+    else {
+      source.put("pdf_content_sha256", pdfContentSha256);
+      // url/title are optional upload provenance — omit when absent, mirroring
+      // the NON_NULL behaviour of aiProvenance.source.
+      if (externalUrl != null) source.put("external_url", externalUrl);
+      if (externalTitle != null) source.put("external_title", externalTitle);
+    }
+    return source;
   }
 }

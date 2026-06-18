@@ -40,15 +40,27 @@
       "type": "array",
       "items": { "type": "string" }
     },
-    "sibling_summary": {
+    "source": {
       "type": "object",
-      "description": "Anonymous aggregate over comment_ai_provenance rows for the same run_job_id.",
-      "properties": {
-        "unreviewed": { "type": "integer" },
-        "reviewed": { "type": "integer" },
-        "edited": { "type": "integer" },
-        "latest_reviewed_at": { "type": ["string", "null"] }
-      }
+      "description": "Source publication of the AI run. Present on every status that carries a job_id (running + the publishable terminals: success, mentioned-in-passing, gene-not-mentioned). Discriminated by `kind`; snake_case mirrors aiProvenance.source on GET /user-comments.",
+      "oneOf": [
+        {
+          "properties": {
+            "kind": { "type": "string", "enum": ["pubmed"] },
+            "pubmed_id": { "type": "string" }
+          },
+          "required": ["kind", "pubmed_id"]
+        },
+        {
+          "properties": {
+            "kind": { "type": "string", "enum": ["upload"] },
+            "pdf_content_sha256": { "type": "string" },
+            "external_url": { "type": "string" },
+            "external_title": { "type": "string" }
+          },
+          "required": ["kind", "pdf_content_sha256"]
+        }
+      ]
     },
     "reason": { "type": "string", "description": "Present iff type=text-unavailable." },
     "error": { "type": "string", "description": "Present iff type=internal-error." }
