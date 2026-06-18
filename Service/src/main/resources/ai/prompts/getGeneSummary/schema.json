@@ -5,6 +5,7 @@
     "GeneSummary",
     "AdditionalInferences",
     "ShortSummary",
+    "Headline",
     "only_in_passing"
   ],
   "properties": {
@@ -55,6 +56,10 @@
     "ShortSummary": {
       "type": "string",
       "description": "The one sentence <Short Summary> that captures key findings."
+    },
+    "Headline": {
+      "type": "string",
+      "description": "A 10-15 word headline conveying the paper's key finding about the gene. It will be displayed on a 'gene page', so do not waste words describing the gene or protein - focus only on the novel finding or significance."
     },
     "only_in_passing": {
       "type": "boolean",

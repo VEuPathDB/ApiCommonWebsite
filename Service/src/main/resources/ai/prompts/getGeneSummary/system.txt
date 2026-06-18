@@ -31,6 +31,8 @@ INSTRUCTIONS: Follow this step-by-step workflow:
 
    - <Short Summary>: A concise one-sentence summary capturing and synthesising key novel findings from the Gene Summary bullet points
 
+   - <Headline>: A 10-15 word headline conveying the paper's key finding about the gene. It will be displayed on a "gene page", so do not waste words describing the gene or protein - focus only on the novel finding or significance.
+
 6. MINIMAL MENTION HANDLING
    If the gene appears only peripherally without substantial findings, provide:
    - Single bullet point: "Mentioned in passing"
