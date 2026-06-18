@@ -1200,18 +1200,22 @@ gp = gp + geom_hline(yintercept=1, color=\"darkgray\", size=0.5)
 }
 
 sub getSpecs {
-  return[ {abbrev => "BFD3",
-	   name => "BFD3",
-	   query => "select bfd3.source_id,  bfd3.value/notet.value as value, bfd3.value as num, notet.value as denom from (SELECT ga.source_id, CASE WHEN (nafe.value = 0) THEN 0.019 ELSE nafe.value END as value FROM webready.GeneAttributes_p ga, results.nafeatureexpression nafe, study.protocolappnode pan, study.studylink sl, study.study s WHERE nafe.na_feature_id = ga.na_feature_id AND pan.protocol_app_node_id = sl.protocol_app_node_id AND nafe.protocol_app_node_id = sl.protocol_app_node_id AND sl.study_id = s.study_id AND s.NAME = 'T.brucei paired end RNA Seq data from Horn aligned with cds coordinates [htseq-union - unstranded - tpm - unique]' AND pan.NAME LIKE '%BFD3%') bfd3 left join (SELECT ga.source_id, CASE WHEN (nafe.value = 0) THEN 0.019 ELSE nafe.value END as value FROM webready.GeneAttributes_p ga, results.nafeatureexpression nafe, study.protocolappnode pan, study.studylink sl, study.study s WHERE nafe.na_feature_id = ga.na_feature_id AND pan.protocol_app_node_id = sl.protocol_app_node_id AND nafe.protocol_app_node_id = sl.protocol_app_node_id AND sl.study_id = s.study_id AND s.NAME = 'T.brucei paired end RNA Seq data from Horn aligned with cds coordinates [htseq-union - unstranded - tpm - unique]' AND pan.NAME LIKE '%Tet%') notet on bfd3.source_id = notet.source_id"},
-	  {abbrev => "BFD6",
-	   name => "BFD6",
-	   query => "select bfd3.source_id,  bfd3.value/notet.value as value, bfd3.value as num, notet.value as denom from (SELECT ga.source_id, CASE WHEN (nafe.value = 0) THEN 0.019 ELSE nafe.value END as value FROM webready.GeneAttributes_p ga, results.nafeatureexpression nafe, study.protocolappnode pan, study.studylink sl, study.study s WHERE nafe.na_feature_id = ga.na_feature_id AND pan.protocol_app_node_id = sl.protocol_app_node_id AND nafe.protocol_app_node_id = sl.protocol_app_node_id AND sl.study_id = s.study_id AND s.NAME = 'T.brucei paired end RNA Seq data from Horn aligned with cds coordinates [htseq-union - unstranded - tpm - unique]' AND pan.NAME LIKE '%BFD6%') bfd3 left join (SELECT ga.source_id, CASE WHEN (nafe.value = 0) THEN 0.019 ELSE nafe.value END as value FROM webready.GeneAttributes_p ga, results.nafeatureexpression nafe, study.protocolappnode pan, study.studylink sl, study.study s WHERE nafe.na_feature_id = ga.na_feature_id AND pan.protocol_app_node_id = sl.protocol_app_node_id AND nafe.protocol_app_node_id = sl.protocol_app_node_id AND sl.study_id = s.study_id AND s.NAME = 'T.brucei paired end RNA Seq data from Horn aligned with cds coordinates [htseq-union - unstranded - tpm - unique]' AND pan.NAME LIKE '%Tet%') notet on bfd3.source_id = notet.source_id"},
-	  {abbrev => "PF",
-	   name => "PF",
-	   query => "select bfd3.source_id,  bfd3.value/notet.value as value, bfd3.value as num, notet.value as denom from (SELECT ga.source_id, CASE WHEN (nafe.value = 0) THEN 0.019 ELSE nafe.value END as value FROM webready.GeneAttributes_p ga, results.nafeatureexpression nafe, study.protocolappnode pan, study.studylink sl, study.study s WHERE nafe.na_feature_id = ga.na_feature_id AND pan.protocol_app_node_id = sl.protocol_app_node_id AND nafe.protocol_app_node_id = sl.protocol_app_node_id AND sl.study_id = s.study_id AND s.NAME = 'T.brucei paired end RNA Seq data from Horn aligned with cds coordinates [htseq-union - unstranded - tpm - unique]' AND pan.NAME LIKE '%PF%') bfd3 left join (SELECT ga.source_id, CASE WHEN (nafe.value = 0) THEN 0.019 ELSE nafe.value END as value FROM webready.GeneAttributes_p ga, results.nafeatureexpression nafe, study.protocolappnode pan, study.studylink sl, study.study s WHERE nafe.na_feature_id = ga.na_feature_id AND pan.protocol_app_node_id = sl.protocol_app_node_id AND nafe.protocol_app_node_id = sl.protocol_app_node_id AND sl.study_id = s.study_id AND s.NAME = 'T.brucei paired end RNA Seq data from Horn aligned with cds coordinates [htseq-union - unstranded - tpm - unique]' AND pan.NAME LIKE '%Tet%') notet on bfd3.source_id = notet.source_id"},
-	  {abbrev => "DIF",
-	   name => "DIF",
-	   query => "select bfd3.source_id,  bfd3.value/notet.value as value, bfd3.value as num, notet.value as denom from (SELECT ga.source_id, CASE WHEN (nafe.value = 0) THEN 0.019 ELSE nafe.value END as value FROM webready.GeneAttributes_p ga, results.nafeatureexpression nafe, study.protocolappnode pan, study.studylink sl, study.study s WHERE nafe.na_feature_id = ga.na_feature_id AND pan.protocol_app_node_id = sl.protocol_app_node_id AND nafe.protocol_app_node_id = sl.protocol_app_node_id AND sl.study_id = s.study_id AND s.NAME = 'T.brucei paired end RNA Seq data from Horn aligned with cds coordinates [htseq-union - unstranded - tpm - unique]' AND pan.NAME LIKE '%DIF%') bfd3 left join (SELECT ga.source_id, CASE WHEN (nafe.value = 0) THEN 0.019 ELSE nafe.value END as value FROM webready.GeneAttributes_p ga, results.nafeatureexpression nafe, study.protocolappnode pan, study.studylink sl, study.study s WHERE nafe.na_feature_id = ga.na_feature_id AND pan.protocol_app_node_id = sl.protocol_app_node_id AND nafe.protocol_app_node_id = sl.protocol_app_node_id AND sl.study_id = s.study_id AND s.NAME = 'T.brucei paired end RNA Seq data from Horn aligned with cds coordinates [htseq-union - unstranded - tpm - unique]' AND pan.NAME LIKE '%Tet%') notet on bfd3.source_id = notet.source_id"} ];
+  my $lookup_q = sub {
+    my ($prefix) = @_;
+    return "SELECT pan.protocol_app_node_id FROM study.protocolappnode pan, study.nodeset s, apidbtuning.nodesetoutputnode sl WHERE sl.node_set_id = s.node_set_id AND pan.protocol_app_node_id = sl.protocol_app_node_id AND s.name = 'T.brucei paired end RNA Seq data from Horn aligned with cds coordinates' AND s.node_type = 'htseq-union - unstranded - tpm - unique' AND pan.name LIKE '$prefix [%'";
+  };
+  my $expr_q = sub {
+    my ($prefix) = @_;
+    return "SELECT ga.source_id, CASE WHEN (nafe.value = 0) THEN 0.019 ELSE nafe.value END as value FROM webready.geneattributes_p ga, results.nafeatureexpression nafe WHERE nafe.na_feature_id = ga.na_feature_id AND ga.org_abbrev = 'tbruTREU927' AND nafe.protocol_app_node_id IN (" . $lookup_q->($prefix) . ")";
+  };
+  my $notet_q = $expr_q->('No_Tet');
+  return [ map {
+    my $abbrev = $_;
+    my $spec_q = $expr_q->($abbrev);
+    { abbrev => $abbrev,
+      name  => $abbrev,
+      query => "select bfd3.source_id, bfd3.value/notet.value as value, bfd3.value as num, notet.value as denom from ($spec_q) bfd3 left join ($notet_q) notet on bfd3.source_id = notet.source_id" }
+  } qw(BFD3 BFD6 PF DIF) ];
 }
 
 sub makeProfileSets {
