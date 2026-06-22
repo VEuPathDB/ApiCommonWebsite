@@ -295,11 +295,17 @@ EOSQL
 sub getOrthoProteinSql {
     my ($ids) = @_;
     my $sql = <<EOSQL;
-select ta.source_id, ta.source_id, ps.sequence
-from webready.ProteinSequence_p ps, webready.TranscriptAttributes_p ta
-where ta.protein_source_id = ps.source_id
-      and ta.project_id = ps.project_id
-      and ta.gene_source_id in ($ids)
+SELECT DISTINCT ON (ta.gene_source_id)
+    ta.gene_source_id,
+    ta.gene_source_id,
+    ps.sequence
+FROM webready.ProteinSequence_p ps,
+     apidbtuning.TranscriptAttributes ta,
+     apidbtuning.proteinAttributes pa
+WHERE ta.protein_source_id = ps.source_id
+  AND ta.project_id = ps.project_id
+  AND ta.protein_source_id = pa.source_id
+  AND ta.gene_source_id IN ($ids)
 EOSQL
     return $sql;
 }
