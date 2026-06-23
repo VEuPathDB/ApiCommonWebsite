@@ -57,7 +57,7 @@ modelprop:
 
 user_datasets_uploadTypes_env_map:
   w: "genelist,bigwigfiles,rnaseq,phenotype,wrangler"
-  default: "genelist,bigwigfiles,rnaseq,phenotype,wrangler"
+  default: "isasimple,genelist,bigwigfiles,rnaseq,phenotype,wrangler"
 
 user_datasets_workspace:
   enabled: "true"
