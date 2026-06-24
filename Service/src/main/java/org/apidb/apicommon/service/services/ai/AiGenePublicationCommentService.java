@@ -147,7 +147,8 @@ public class AiGenePublicationCommentService extends AbstractUserCommentService 
         .orElseThrow(() -> new NotFoundException(
             "No publishable AI gene-publication run for id '" + jobId + "'"));
 
-    CommentRequest request = buildPublishComment(run, headline, content, new Date());
+    Optional<String> organism = new GeneSynonymService(getWdkModel()).resolveOrganism(run.getGeneId());
+    CommentRequest request = buildPublishComment(run, headline, content, new Date(), organism.orElse(null));
     long commentId = getCommentFactory().createComment(request, user);
 
     return Response.status(Response.Status.CREATED)
@@ -164,12 +165,11 @@ public class AiGenePublicationCommentService extends AbstractUserCommentService 
    * where there was no AI original at all ({@code gene-not-mentioned} /
    * {@code mentioned-in-passing}, whose run rows carry null ai_headline/ai_content).
    *
-   * <p>TODO(post-impl): resolve and set the comment ORGANISM from the gene record
-   * (GeneRecordClasses.GeneRecordClass) rather than leaving it null. Organism is
-   * optional for comment creation, so v1 omits it; see the plan's follow-ups.
+   * @param organism the gene's organism name (may be null — organism is optional
+   *                 for comment creation; the caller resolves it from the gene record)
    */
   static CommentRequest buildPublishComment(CommentAiRun run, String headline,
-      String content, Date now) {
+      String content, Date now, String organism) {
     boolean edited = !Objects.equals(headline, run.getAiHeadline())
                   || !Objects.equals(content, run.getAiContent());
 
@@ -185,6 +185,7 @@ public class AiGenePublicationCommentService extends AbstractUserCommentService 
         .setType(GeneSynonymService.GENE_URL_SEGMENT)
         .setId(run.getGeneId()));
     request.setAiProvenance(provenance);
+    request.setOrganism(organism);
     return request;
   }
 
