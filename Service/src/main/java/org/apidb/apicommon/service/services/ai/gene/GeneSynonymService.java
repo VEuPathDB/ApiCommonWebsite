@@ -3,6 +3,7 @@ package org.apidb.apicommon.service.services.ai.gene;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.TreeSet;
 
 import javax.ws.rs.NotFoundException;
@@ -41,6 +42,7 @@ public class GeneSynonymService {
   public static final String ALIAS_COLUMN = "alias";
   public static final String SOURCE_ID_COLUMN = "source_id";
   public static final String PROJECT_ID_COLUMN = "project_id";
+  public static final String ORGANISM_ATTR = "organism";
 
   private final WdkModel _wdkModel;
 
@@ -72,6 +74,37 @@ public class GeneSynonymService {
     }
 
     return readAliases(records.get(0), geneId);
+  }
+
+  /**
+   * Looks up the organism for a gene from its record's {@code organism} attribute.
+   * Returns {@link Optional#empty()} if the gene has no such attribute, the attribute
+   * value is blank, or any lookup error occurs — organism is optional for comment
+   * creation and must never prevent publishing.
+   */
+  public Optional<String> resolveOrganism(String geneId) throws WdkModelException {
+    RecordClass geneClass = _wdkModel.getRecordClassByUrlSegment(GENE_URL_SEGMENT)
+        .orElseThrow(() -> new WdkModelException(
+            "Gene record class '" + GENE_URL_SEGMENT + "' is not present in the model"));
+
+    PrimaryKeyValue pkValue = buildPrimaryKey(geneClass.getPrimaryKeyDefinition(), geneId);
+
+    List<RecordInstance> records = RecordClass.getRecordInstances(_wdkModel.getSystemUser(), pkValue);
+    if (records.isEmpty()) {
+      LOG.warn("No gene record found for '" + geneId + "' while resolving organism; organism will be null");
+      return Optional.empty();
+    }
+
+    try {
+      AttributeValue attrVal = records.get(0).getAttributeValue(ORGANISM_ATTR);
+      if (attrVal == null) return Optional.empty();
+      String value = attrVal.getValue();
+      return (value == null || value.trim().isEmpty()) ? Optional.empty() : Optional.of(value);
+    }
+    catch (Exception e) {
+      LOG.warn("Could not read organism attribute for gene '" + geneId + "': " + e.getMessage());
+      return Optional.empty();
+    }
   }
 
   private PrimaryKeyValue buildPrimaryKey(PrimaryKeyDefinition pkDef, String geneId)

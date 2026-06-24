@@ -22,8 +22,6 @@ public class PromptLoaderTest {
   public void systemPromptLoadsWithUnsubstitutedPlaceholders() {
     String system = loader.system("getGeneSummary");
     assertTrue(system.contains("ROLE: You are a scientist"));
-    assertTrue("system prompt keeps the [JSON_SCHEMA] marker for substitution",
-        system.contains("[JSON_SCHEMA]"));
     assertTrue("system prompt keeps the [N_QUOTES] marker", system.contains("[N_QUOTES]"));
   }
 

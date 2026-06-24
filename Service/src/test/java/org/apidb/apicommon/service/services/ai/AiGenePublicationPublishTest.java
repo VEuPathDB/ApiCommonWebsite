@@ -36,7 +36,7 @@ public class AiGenePublicationPublishTest {
   public void buildsGeneTargetAndProvenanceFromRunRow() {
     Date now = new Date(1_700_000_000_000L);
     CommentRequest req = AiGenePublicationCommentService.buildPublishComment(
-        successRun(), "Pfs25 matters.", "- A finding.", now);
+        successRun(), "Pfs25 matters.", "- A finding.", now, null);
 
     assertEquals(GeneSynonymService.GENE_URL_SEGMENT, req.getTarget().getType());
     assertEquals("PF3D7_1133400", req.getTarget().getId());
@@ -52,21 +52,21 @@ public class AiGenePublicationPublishTest {
   @Test
   public void isEditedFalseWhenTextMatchesAiOriginal() {
     CommentRequest req = AiGenePublicationCommentService.buildPublishComment(
-        successRun(), "Pfs25 matters.", "- A finding.", new Date());
+        successRun(), "Pfs25 matters.", "- A finding.", new Date(), null);
     assertFalse("unchanged text → not edited", req.getAiProvenance().isEdited());
   }
 
   @Test
   public void isEditedTrueWhenContentDiffers() {
     CommentRequest req = AiGenePublicationCommentService.buildPublishComment(
-        successRun(), "Pfs25 matters.", "- An edited finding.", new Date());
+        successRun(), "Pfs25 matters.", "- An edited finding.", new Date(), null);
     assertTrue("changed content → edited", req.getAiProvenance().isEdited());
   }
 
   @Test
   public void isEditedTrueWhenHeadlineDiffers() {
     CommentRequest req = AiGenePublicationCommentService.buildPublishComment(
-        successRun(), "A new headline.", "- A finding.", new Date());
+        successRun(), "A new headline.", "- A finding.", new Date(), null);
     assertTrue("changed headline → edited", req.getAiProvenance().isEdited());
   }
 
@@ -79,9 +79,24 @@ public class AiGenePublicationPublishTest {
         .setGeneId("PF3D7_0100100")
         .setTerminalStatus("gene-not-mentioned");
     CommentRequest req = AiGenePublicationCommentService.buildPublishComment(
-        run, "My own headline", "My own observations.", new Date());
+        run, "My own headline", "My own observations.", new Date(), null);
     assertTrue("user-written body over a null AI original → edited",
         req.getAiProvenance().isEdited());
+  }
+
+  @Test
+  public void organismIsSetWhenProvided() {
+    CommentRequest req = AiGenePublicationCommentService.buildPublishComment(
+        successRun(), "Pfs25 matters.", "- A finding.", new Date(),
+        "Plasmodium falciparum 3D7");
+    assertEquals("Plasmodium falciparum 3D7", req.getOrganism());
+  }
+
+  @Test
+  public void organismIsNullWhenNotProvided() {
+    CommentRequest req = AiGenePublicationCommentService.buildPublishComment(
+        successRun(), "Pfs25 matters.", "- A finding.", new Date(), null);
+    assertEquals(null, req.getOrganism());
   }
 
   // --- source rendering -----------------------------------------------------
