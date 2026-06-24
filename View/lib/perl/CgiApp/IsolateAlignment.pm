@@ -292,6 +292,7 @@ EOSQL
     return $sql;
 }
 
+# get single protein seq per gene, the longest one
 sub getOrthoProteinSql {
     my ($ids) = @_;
     my $sql = <<EOSQL;
