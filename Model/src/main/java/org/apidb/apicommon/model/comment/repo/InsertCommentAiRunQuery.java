@@ -34,8 +34,8 @@ public class InsertCommentAiRunQuery extends InsertQuery {
       "job_id, model_name, prompt_version, source_kind, pubmed_id, " +
       "external_url, external_title, pdf_content_sha256, gene_id, synonyms_used, " +
       "options_json, terminal_status, is_only_mentioned_in_passing, " +
-      "ai_headline, ai_content, completed_at" +
-      ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+      "ai_headline, ai_content, completed_at, external_ref, external_ref_kind" +
+      ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
   private static final Integer[] TYPES = {
       VARCHAR,    // job_id
@@ -53,7 +53,9 @@ public class InsertCommentAiRunQuery extends InsertQuery {
       BOOLEAN,    // is_only_mentioned_in_passing
       VARCHAR,    // ai_headline
       VARCHAR,    // ai_content
-      TIMESTAMP   // completed_at
+      TIMESTAMP,  // completed_at
+      VARCHAR,    // external_ref
+      VARCHAR     // external_ref_kind
   };
 
   private final CommentAiRun _run;
@@ -83,7 +85,8 @@ public class InsertCommentAiRunQuery extends InsertQuery {
         _run.getExternalTitle(), _run.getPdfContentSha256(), _run.getGeneId(),
         synonyms, _run.getOptionsJson(), _run.getTerminalStatus(),
         _run.isOnlyMentionedInPassing(), _run.getAiHeadline(),
-        _run.getAiContent(), completedAt
+        _run.getAiContent(), completedAt,
+        _run.getExternalRef(), _run.getExternalRefKind()
     });
     batch.setParameterTypes(TYPES);
     return batch;

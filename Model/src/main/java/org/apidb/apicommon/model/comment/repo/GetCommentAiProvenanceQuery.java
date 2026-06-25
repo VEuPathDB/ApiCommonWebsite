@@ -41,6 +41,7 @@ public class GetCommentAiProvenanceQuery extends ValueQuery<Map<Long, AiProvenan
     return "SELECT" +
         " p.comment_id, p.is_edited," +
         " r.source_kind, r.pubmed_id, r.external_url, r.external_title, r.pdf_content_sha256," +
+        " r.external_ref, r.external_ref_kind," +
         " r.ai_headline, r.ai_content" +
         " FROM %1$s." + Table.COMMENT_AI_PROVENANCE + " p" +
         " JOIN %1$s." + Table.COMMENT_AI_RUN + " r ON p.run_job_id = r.job_id" +
@@ -58,7 +59,9 @@ public class GetCommentAiProvenanceQuery extends ValueQuery<Map<Long, AiProvenan
           : AiProvenanceView.Source.upload(
               rs.getString("external_url"),
               rs.getString("external_title"),
-              rs.getString("pdf_content_sha256"));
+              rs.getString("pdf_content_sha256"),
+              rs.getString("external_ref"),
+              rs.getString("external_ref_kind"));
 
       out.put(commentId, new AiProvenanceView(
           rs.getBoolean("is_edited"),

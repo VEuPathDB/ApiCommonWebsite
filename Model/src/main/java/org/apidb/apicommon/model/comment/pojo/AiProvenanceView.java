@@ -34,24 +34,31 @@ public class AiProvenanceView {
     private final String _externalUrl;
     private final String _externalTitle;
     private final String _pdfContentSha256;
+    private final String _externalRef;
+    private final String _externalRefKind;
 
     private Source(String kind, String pubmedId, String externalUrl,
-        String externalTitle, String pdfContentSha256) {
+        String externalTitle, String pdfContentSha256,
+        String externalRef, String externalRefKind) {
       _kind = kind;
       _pubmedId = pubmedId;
       _externalUrl = externalUrl;
       _externalTitle = externalTitle;
       _pdfContentSha256 = pdfContentSha256;
+      _externalRef = externalRef;
+      _externalRefKind = externalRefKind;
     }
 
     /** A PubMed-sourced run, identified by its PMID alone. */
     public static Source pubmed(String pubmedId) {
-      return new Source("pubmed", pubmedId, null, null, null);
+      return new Source("pubmed", pubmedId, null, null, null, null, null);
     }
 
-    /** An upload-sourced run, identified by the PDF content digest; url/title optional. */
-    public static Source upload(String externalUrl, String externalTitle, String pdfContentSha256) {
-      return new Source("upload", null, externalUrl, externalTitle, pdfContentSha256);
+    /** An upload-sourced run; url/title and an asserted PMID/DOI ref all optional. */
+    public static Source upload(String externalUrl, String externalTitle,
+        String pdfContentSha256, String externalRef, String externalRefKind) {
+      return new Source("upload", null, externalUrl, externalTitle, pdfContentSha256,
+          externalRef, externalRefKind);
     }
 
     public String getKind() { return _kind; }
@@ -59,6 +66,8 @@ public class AiProvenanceView {
     public String getExternalUrl() { return _externalUrl; }
     public String getExternalTitle() { return _externalTitle; }
     public String getPdfContentSha256() { return _pdfContentSha256; }
+    public String getExternalRef() { return _externalRef; }
+    public String getExternalRefKind() { return _externalRefKind; }
   }
 
   private final boolean _edited;

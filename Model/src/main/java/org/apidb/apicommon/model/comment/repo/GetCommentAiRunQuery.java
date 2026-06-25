@@ -26,7 +26,7 @@ public class GetCommentAiRunQuery extends ValueQuery<Optional<CommentAiRun>> {
       " job_id, model_name, prompt_version, source_kind, pubmed_id," +
       " external_url, external_title, pdf_content_sha256, gene_id, synonyms_used," +
       " options_json, terminal_status, is_only_mentioned_in_passing," +
-      " ai_headline, ai_content, completed_at" +
+      " ai_headline, ai_content, completed_at, external_ref, external_ref_kind" +
       " FROM %s." + Table.COMMENT_AI_RUN +
       " WHERE job_id = ?";
 
@@ -65,7 +65,9 @@ public class GetCommentAiRunQuery extends ValueQuery<Optional<CommentAiRun>> {
         .setOnlyMentionedInPassing(rs.getBoolean("is_only_mentioned_in_passing"))
         .setAiHeadline(rs.getString("ai_headline"))
         .setAiContent(rs.getString("ai_content"))
-        .setCompletedAt(rs.getTimestamp("completed_at"));
+        .setCompletedAt(rs.getTimestamp("completed_at"))
+        .setExternalRef(rs.getString("external_ref"))
+        .setExternalRefKind(rs.getString("external_ref_kind"));
 
     return Optional.of(run);
   }

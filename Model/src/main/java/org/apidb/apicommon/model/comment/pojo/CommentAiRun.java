@@ -26,6 +26,8 @@ public class CommentAiRun {
   private String _externalUrl;           // iff sourceKind == 'upload', optional
   private String _externalTitle;         // iff sourceKind == 'upload', optional
   private String _pdfContentSha256;      // iff sourceKind == 'upload'
+  private String _externalRef;           // iff sourceKind == 'upload', optional (PMID/DOI)
+  private String _externalRefKind;       // 'pubmed' | 'doi' | null
   private String _geneId;
   private final List<String> _synonymsUsed = new ArrayList<>();
   private String _optionsJson;           // canonical JSON of request `options`
@@ -55,6 +57,12 @@ public class CommentAiRun {
 
   public String getExternalTitle() { return _externalTitle; }
   public CommentAiRun setExternalTitle(String externalTitle) { _externalTitle = externalTitle; return this; }
+
+  public String getExternalRef() { return _externalRef; }
+  public CommentAiRun setExternalRef(String externalRef) { _externalRef = externalRef; return this; }
+
+  public String getExternalRefKind() { return _externalRefKind; }
+  public CommentAiRun setExternalRefKind(String externalRefKind) { _externalRefKind = externalRefKind; return this; }
 
   public String getPdfContentSha256() { return _pdfContentSha256; }
   public CommentAiRun setPdfContentSha256(String pdfContentSha256) { _pdfContentSha256 = pdfContentSha256; return this; }
