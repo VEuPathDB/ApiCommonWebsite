@@ -56,6 +56,13 @@ public class ExternalRefTest {
     assertEquals("doi", r.kind);
   }
 
+  @Test
+  public void doi_stripsDxUrlPrefix() {
+    ExternalRef.Result r = ExternalRef.normalise("https://dx.doi.org/10.1234/abc.def", "doi");
+    assertEquals("10.1234/abc.def", r.ref);
+    assertEquals("doi", r.kind);
+  }
+
   @Test(expected = BadRequestException.class)
   public void doi_rejectsNonDoi() {
     ExternalRef.normalise("not-a-doi", "doi");
