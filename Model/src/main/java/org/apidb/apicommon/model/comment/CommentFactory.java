@@ -140,6 +140,22 @@ public class CommentFactory implements Manageable<CommentFactory> {
   }
 
   /**
+   * Read the raw {@code comment_ai_provenance} row (including the
+   * {@code run_job_id} FK) for a comment, or empty if it has none. Distinct from
+   * the batched, display-oriented {@link GetCommentAiProvenanceQuery} used by
+   * {@link #attachAiProvenance}, which yields an {@code AiProvenanceView} without
+   * the FK. Used by the edit flow to carry provenance forward onto a replacement
+   * comment so it re-links to the same shared run.
+   */
+  public Optional<AiProvenance> getAiProvenanceRow(long commentId) throws WdkModelException {
+    try (Connection con = _commentDs.getConnection()) {
+      return new GetAiProvenanceRowQuery(_config.getCommentSchema(), commentId).run(con).value();
+    } catch (SQLException ex) {
+      throw new WdkModelException(ex);
+    }
+  }
+
+  /**
    * Persist the shared AI-run cache row produced by the pipeline's persisting
    * stage, keyed by the content-digest job id. Written at most once per distinct
    * job (the digest dedupes resubmissions). This is the pipeline's only write —

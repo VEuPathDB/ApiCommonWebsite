@@ -1,6 +1,7 @@
 package org.apidb.apicommon.model.comment.pojo;
 
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * POJO for a row in the {@code comment_ai_provenance} sidecar table, keyed by
@@ -35,4 +36,23 @@ public class AiProvenance {
 
   public Date getCreatedAt() { return _createdAt; }
   public AiProvenance setCreatedAt(Date createdAt) { _createdAt = createdAt; return this; }
+
+  /**
+   * Build the per-comment provenance row for a comment being created from an AI
+   * run: carries the run's {@code job_id} as the FK and derives {@code is_edited}
+   * by comparing the submitted {@code headline}/{@code content} to the run's AI
+   * original. Shared by the publish endpoint (initial approval) and the
+   * carry-forward when a published AI comment is edited. {@code commentId} is set
+   * later by {@code createComment} once the new id is known.
+   *
+   * @param now the approval/edit time recorded as {@code created_at}
+   */
+  public static AiProvenance fromRun(CommentAiRun run, String headline, String content, Date now) {
+    boolean edited = !Objects.equals(headline, run.getAiHeadline())
+                  || !Objects.equals(content, run.getAiContent());
+    return new AiProvenance()
+        .setRunJobId(run.getJobId())
+        .setEdited(edited)
+        .setCreatedAt(now);
+  }
 }

@@ -1,7 +1,6 @@
 package org.apidb.apicommon.service.services.ai;
 
 import java.util.Date;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.RejectedExecutionException;
 
@@ -170,21 +169,13 @@ public class AiGenePublicationCommentService extends AbstractUserCommentService 
    */
   static CommentRequest buildPublishComment(CommentAiRun run, String headline,
       String content, Date now, String organism) {
-    boolean edited = !Objects.equals(headline, run.getAiHeadline())
-                  || !Objects.equals(content, run.getAiContent());
-
-    AiProvenance provenance = new AiProvenance()
-        .setRunJobId(run.getJobId())
-        .setEdited(edited)
-        .setCreatedAt(now);
-
     CommentRequest request = new CommentRequest();
     request.setHeadline(headline);
     request.setContent(content);
     request.setTarget(new Target()
         .setType(GeneSynonymService.GENE_URL_SEGMENT)
         .setId(run.getGeneId()));
-    request.setAiProvenance(provenance);
+    request.setAiProvenance(AiProvenance.fromRun(run, headline, content, now));
     request.setOrganism(organism);
     return request;
   }
