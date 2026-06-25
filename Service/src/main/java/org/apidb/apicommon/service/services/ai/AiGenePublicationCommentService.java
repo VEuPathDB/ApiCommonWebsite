@@ -242,7 +242,8 @@ public class AiGenePublicationCommentService extends AbstractUserCommentService 
    * The source-publication provenance for a job, in the same snake_case shape as
    * the {@code aiProvenance.source} on GET /user-comments: pubmed →
    * {@code {kind, pubmed_id}}; upload →
-   * {@code {kind, pdf_content_sha256, external_url?, external_title?}}. Present on
+   * {@code {kind, pdf_content_sha256, external_url?, external_title?, external_ref?,
+   * external_ref_kind?}}. Present on
    * every status that carries a {@code job_id}, letting the FE restore the source
    * (and re-fetch the PubMed preview) when reloaded from just a {@code job_id}.
    *
