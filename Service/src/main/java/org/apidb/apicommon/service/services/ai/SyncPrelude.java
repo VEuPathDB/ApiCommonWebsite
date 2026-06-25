@@ -53,6 +53,9 @@ public class SyncPrelude {
       case "pubmed":
         if (isBlank(request.pubmedId))
           throw new BadRequestException("pubmed_id is required when document_type=pubmed");
+        // external_ref is an upload-only field; never carry it on the pubmed path.
+        request.externalRef = null;
+        request.externalRefKind = null;
         break;
       case "upload":
         if (isBlank(request.paperText))
@@ -61,6 +64,9 @@ public class SyncPrelude {
             || !SHA256_HEX.matcher(request.pdfContentSha256).matches())
           throw new BadRequestException(
               "pdf_content_sha256 must be a 64-character hex string when document_type=upload");
+        ExternalRef.Result ref = ExternalRef.normalise(request.externalRef, request.externalRefKind);
+        request.externalRef = ref.ref;
+        request.externalRefKind = ref.kind;
         break;
       default:
         throw new BadRequestException("document_type must be 'pubmed' or 'upload'");

@@ -57,6 +57,14 @@ public class AiGenePublicationRequest {
   @JsonProperty("external_title")
   public String externalTitle;
 
+  /** optional upload provenance — a PubMed id or DOI the user asserts for the PDF. */
+  @JsonProperty("external_ref")
+  public String externalRef;
+
+  /** {@code pubmed} | {@code doi} — kind of {@link #externalRef}; upload path only. */
+  @JsonProperty("external_ref_kind")
+  public String externalRefKind;
+
   @JsonProperty("options")
   public Options options = new Options();
 }

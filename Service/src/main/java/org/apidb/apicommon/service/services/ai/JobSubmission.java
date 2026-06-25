@@ -30,6 +30,8 @@ public final class JobSubmission {
   private final String _uploadedPaperText;     // iff sourceKind == 'upload' (FE-extracted)
   private final String _externalUrl;           // optional upload provenance
   private final String _externalTitle;         // optional upload provenance
+  private final String _externalRef;           // optional upload provenance (PMID/DOI)
+  private final String _externalRefKind;       // 'pubmed' | 'doi' | null
   private final AiGenePublicationRequest.Options _options;
   private final String _optionsJson;           // canonical JSON of _options (baked into jobId)
   private final String _modelName;
@@ -55,6 +57,8 @@ public final class JobSubmission {
     _uploadedPaperText = request.paperText;
     _externalUrl = request.externalUrl;
     _externalTitle = request.externalTitle;
+    _externalRef = request.externalRef;
+    _externalRefKind = request.externalRefKind;
     _options = request.options;
     _optionsJson = optionsJson;
     _modelName = modelName;
@@ -70,6 +74,8 @@ public final class JobSubmission {
   public String getUploadedPaperText() { return _uploadedPaperText; }
   public String getExternalUrl() { return _externalUrl; }
   public String getExternalTitle() { return _externalTitle; }
+  public String getExternalRef() { return _externalRef; }
+  public String getExternalRefKind() { return _externalRefKind; }
   public AiGenePublicationRequest.Options getOptions() { return _options; }
   public String getOptionsJson() { return _optionsJson; }
   public String getModelName() { return _modelName; }
