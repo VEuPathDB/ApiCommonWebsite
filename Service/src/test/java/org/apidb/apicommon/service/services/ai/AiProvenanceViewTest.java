@@ -44,7 +44,7 @@ public class AiProvenanceViewTest {
   public void uploadSourceSerializesAllPresentFields() {
     JsonNode json = tree(new AiProvenanceView(
         true,
-        AiProvenanceView.Source.upload("http://x/paper.pdf", "A Paper", "abcd1234"),
+        AiProvenanceView.Source.upload("http://x/paper.pdf", "A Paper", "abcd1234", null, null),
         "H", "C"));
 
     assertTrue(json.get("isEdited").asBoolean());
@@ -60,7 +60,7 @@ public class AiProvenanceViewTest {
   @Test
   public void uploadSourceOmitsNullUrlAndTitleButKeepsDigest() {
     JsonNode json = tree(new AiProvenanceView(
-        false, AiProvenanceView.Source.upload(null, null, "abcd1234"), "H", "C"));
+        false, AiProvenanceView.Source.upload(null, null, "abcd1234", null, null), "H", "C"));
 
     JsonNode source = json.get("source");
     assertEquals("upload", source.get("kind").asText());

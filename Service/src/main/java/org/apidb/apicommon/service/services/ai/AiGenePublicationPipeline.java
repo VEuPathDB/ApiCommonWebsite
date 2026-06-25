@@ -372,6 +372,8 @@ public class AiGenePublicationPipeline implements Runnable {
         .setExternalUrl(s.getExternalUrl())
         .setExternalTitle(s.getExternalTitle())
         .setPdfContentSha256(s.getPdfContentSha256())
+        .setExternalRef(s.getExternalRef())
+        .setExternalRefKind(s.getExternalRefKind())
         .setGeneId(s.getGeneId())
         .setSynonymsUsed(s.getSynonyms())
         .setOptionsJson(s.getOptionsJson())

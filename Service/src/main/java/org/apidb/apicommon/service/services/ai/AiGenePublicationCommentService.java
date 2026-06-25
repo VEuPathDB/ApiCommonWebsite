@@ -252,26 +252,30 @@ public class AiGenePublicationCommentService extends AbstractUserCommentService 
    */
   static JSONObject sourceJson(JobSubmission s) {
     return sourceJson(s.getSourceKind(), s.getPubmedId(), s.getPdfContentSha256(),
-        s.getExternalUrl(), s.getExternalTitle());
+        s.getExternalUrl(), s.getExternalTitle(), s.getExternalRef(), s.getExternalRefKind());
   }
 
   static JSONObject sourceJson(CommentAiRun run) {
     return sourceJson(run.getSourceKind(), run.getPubmedId(), run.getPdfContentSha256(),
-        run.getExternalUrl(), run.getExternalTitle());
+        run.getExternalUrl(), run.getExternalTitle(), run.getExternalRef(), run.getExternalRefKind());
   }
 
   private static JSONObject sourceJson(String kind, String pubmedId, String pdfContentSha256,
-      String externalUrl, String externalTitle) {
+      String externalUrl, String externalTitle, String externalRef, String externalRefKind) {
     JSONObject source = new JSONObject().put("kind", kind);
     if ("pubmed".equals(kind)) {
       source.put("pubmed_id", pubmedId);
     }
     else {
       source.put("pdf_content_sha256", pdfContentSha256);
-      // url/title are optional upload provenance — omit when absent, mirroring
+      // url/title/ref are optional upload provenance — omit when absent, mirroring
       // the NON_NULL behaviour of aiProvenance.source.
       if (externalUrl != null) source.put("external_url", externalUrl);
       if (externalTitle != null) source.put("external_title", externalTitle);
+      if (externalRef != null) {
+        source.put("external_ref", externalRef);
+        source.put("external_ref_kind", externalRefKind);
+      }
     }
     return source;
   }
