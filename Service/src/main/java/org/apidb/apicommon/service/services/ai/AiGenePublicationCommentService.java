@@ -7,6 +7,7 @@ import java.util.concurrent.RejectedExecutionException;
 import javax.ws.rs.BadRequestException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
+import javax.ws.rs.ForbiddenException;
 import javax.ws.rs.GET;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.POST;
@@ -59,6 +60,7 @@ public class AiGenePublicationCommentService extends AbstractUserCommentService 
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   public Response submit(AiGenePublicationRequest body) throws WdkModelException {
+    requireAiCommentCreationEnabled(); // 403 when feature disabled
     User user = fetchUser(); // 401 for guests
     SyncPrelude prelude = new SyncPrelude(getWdkModel(), JobRegistry.instance(), getCommentFactory());
     try {
@@ -133,6 +135,7 @@ public class AiGenePublicationCommentService extends AbstractUserCommentService 
   @Produces(MediaType.APPLICATION_JSON)
   public Response publish(@PathParam(JOB_ID_PARAM) String jobId, PublishRequest body)
       throws WdkModelException {
+    requireAiCommentCreationEnabled(); // 403 when feature disabled
     User user = fetchUser(); // 401 for guests
 
     String headline = body == null ? null : body.headline;
@@ -178,6 +181,18 @@ public class AiGenePublicationCommentService extends AbstractUserCommentService 
     request.setAiProvenance(AiProvenance.fromRun(run, headline, content, now));
     request.setOrganism(organism);
     return request;
+  }
+
+  /**
+   * Feature gate for AI-assisted comment <em>creation</em>. Backed by the
+   * {@code ALLOW_AI_ASSISTED_COMMENT_CREATION} modelprop (a string; see conifer
+   * default.yml). Enabled only when explicitly {@code "true"}; any other value
+   * (including absent) disables. Guards the two creation endpoints (submit,
+   * publish); status/cancel remain open so in-flight/cached jobs resolve.
+   */
+  private void requireAiCommentCreationEnabled() {
+    if (!"true".equals(getWdkModel().getProperties().get("ALLOW_AI_ASSISTED_COMMENT_CREATION")))
+      throw new ForbiddenException("AI-assisted comment creation is not enabled on this site");
   }
 
   private static boolean isBlank(String s) {
