@@ -25,6 +25,8 @@
             "kind": { "type": "string", "enum": ["upload"] },
             "externalUrl": { "type": "string" },
             "externalTitle": { "type": "string" },
+            "externalRef": { "type": "string" },
+            "externalRefKind": { "type": "string" },
             "pdfContentSha256": { "type": "string" }
           },
           "additionalProperties": false,
