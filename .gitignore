@@ -11,6 +11,13 @@
 .vscode
 
 
+# Eclipse JDT Language Server data dir
+# Auto-created by the JDT LS that editor Java tooling embeds (Emacs eglot/lsp-mode,
+# VS Code Java, nvim, etc.) when it indexes this project. Local index/metadata only
+# (.metadata/, jdt.ls-java-project) — not part of the build.
+/workspace/
+
+
 # Build directories
 /build/
 /out/

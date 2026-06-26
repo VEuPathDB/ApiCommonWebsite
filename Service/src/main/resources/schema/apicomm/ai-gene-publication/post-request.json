@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "type": "object",
+  "description": "POST body for /user-comments/ai-gene-publication. For the upload path the front-end has already extracted paper_text (MuPDF.js) and computed pdf_content_sha256 (Web Crypto); the PDF is never uploaded.",
+  "properties": {
+    "gene_id": {
+      "type": "string",
+      "description": "Gene stable id (resolved via GeneRecordClasses.GeneRecordClass)."
+    },
+    "document_type": {
+      "type": "string",
+      "enum": ["pubmed", "upload"]
+    },
+    "pubmed_id": {
+      "type": "string",
+      "description": "Required iff document_type=pubmed."
+    },
+    "paper_text": {
+      "type": "string",
+      "description": "Required iff document_type=upload; extracted client-side by MuPDF.js."
+    },
+    "pdf_content_sha256": {
+      "type": "string",
+      "description": "Required iff document_type=upload; hex SHA-256 of the PDF bytes.",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "external_url": {
+      "type": "string",
+      "description": "Optional upload provenance."
+    },
+    "external_title": {
+      "type": "string",
+      "description": "Optional upload provenance.",
+      "maxLength": 4000
+    },
+    "options": {
+      "type": "object",
+      "properties": {
+        "generate_product_description": { "type": "boolean", "default": false }
+      },
+      "additionalProperties": false
+    }
+  },
+  "required": ["gene_id", "document_type"],
+  "additionalProperties": false
+}

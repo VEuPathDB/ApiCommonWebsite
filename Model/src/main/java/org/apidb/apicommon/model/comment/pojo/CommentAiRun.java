@@ -1,0 +1,97 @@
+package org.apidb.apicommon.model.comment.pojo;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+
+/**
+ * POJO for a row in the {@code comment_ai_run} sidecar table — the shared,
+ * immutable LLM-output cache keyed by the content-digest {@code job_id}.
+ *
+ * <p>See {@code Service/CLAUDE-ai-user-comments.md} (DB schema). One row exists
+ * per distinct (gene, synonyms, source, model, promptVersion, options) digest;
+ * it is the durable source of truth that satisfies cache hits after the
+ * in-memory job registry entry has been evicted. {@code terminalStatus} is one
+ * of {@code success | mentioned-in-passing | gene-not-mentioned}.
+ */
+public class CommentAiRun {
+
+  private String _jobId;                 // hex SHA-256, primary key
+  private String _modelName;
+  private String _promptVersion;
+  private String _sourceKind;            // 'pubmed' | 'upload'
+  private String _pubmedId;              // iff sourceKind == 'pubmed'
+  private String _externalUrl;           // iff sourceKind == 'upload', optional
+  private String _externalTitle;         // iff sourceKind == 'upload', optional
+  private String _pdfContentSha256;      // iff sourceKind == 'upload'
+  private String _externalRef;           // iff sourceKind == 'upload', optional (PMID/DOI)
+  private String _externalRefKind;       // 'pubmed' | 'doi' | null
+  private String _geneId;
+  private final List<String> _synonymsUsed = new ArrayList<>();
+  private String _optionsJson;           // canonical JSON of request `options`
+  private String _terminalStatus;
+  private boolean _onlyMentionedInPassing;
+  private String _aiHeadline;            // null unless terminalStatus == 'success'
+  private String _aiContent;             // null unless terminalStatus == 'success'
+  private Date _completedAt;
+
+  public String getJobId() { return _jobId; }
+  public CommentAiRun setJobId(String jobId) { _jobId = jobId; return this; }
+
+  public String getModelName() { return _modelName; }
+  public CommentAiRun setModelName(String modelName) { _modelName = modelName; return this; }
+
+  public String getPromptVersion() { return _promptVersion; }
+  public CommentAiRun setPromptVersion(String promptVersion) { _promptVersion = promptVersion; return this; }
+
+  public String getSourceKind() { return _sourceKind; }
+  public CommentAiRun setSourceKind(String sourceKind) { _sourceKind = sourceKind; return this; }
+
+  public String getPubmedId() { return _pubmedId; }
+  public CommentAiRun setPubmedId(String pubmedId) { _pubmedId = pubmedId; return this; }
+
+  public String getExternalUrl() { return _externalUrl; }
+  public CommentAiRun setExternalUrl(String externalUrl) { _externalUrl = externalUrl; return this; }
+
+  public String getExternalTitle() { return _externalTitle; }
+  public CommentAiRun setExternalTitle(String externalTitle) { _externalTitle = externalTitle; return this; }
+
+  public String getExternalRef() { return _externalRef; }
+  public CommentAiRun setExternalRef(String externalRef) { _externalRef = externalRef; return this; }
+
+  public String getExternalRefKind() { return _externalRefKind; }
+  public CommentAiRun setExternalRefKind(String externalRefKind) { _externalRefKind = externalRefKind; return this; }
+
+  public String getPdfContentSha256() { return _pdfContentSha256; }
+  public CommentAiRun setPdfContentSha256(String pdfContentSha256) { _pdfContentSha256 = pdfContentSha256; return this; }
+
+  public String getGeneId() { return _geneId; }
+  public CommentAiRun setGeneId(String geneId) { _geneId = geneId; return this; }
+
+  public List<String> getSynonymsUsed() { return Collections.unmodifiableList(_synonymsUsed); }
+  public CommentAiRun setSynonymsUsed(Collection<String> synonyms) {
+    _synonymsUsed.clear();
+    _synonymsUsed.addAll(synonyms);
+    return this;
+  }
+
+  public String getOptionsJson() { return _optionsJson; }
+  public CommentAiRun setOptionsJson(String optionsJson) { _optionsJson = optionsJson; return this; }
+
+  public String getTerminalStatus() { return _terminalStatus; }
+  public CommentAiRun setTerminalStatus(String terminalStatus) { _terminalStatus = terminalStatus; return this; }
+
+  public boolean isOnlyMentionedInPassing() { return _onlyMentionedInPassing; }
+  public CommentAiRun setOnlyMentionedInPassing(boolean v) { _onlyMentionedInPassing = v; return this; }
+
+  public String getAiHeadline() { return _aiHeadline; }
+  public CommentAiRun setAiHeadline(String aiHeadline) { _aiHeadline = aiHeadline; return this; }
+
+  public String getAiContent() { return _aiContent; }
+  public CommentAiRun setAiContent(String aiContent) { _aiContent = aiContent; return this; }
+
+  public Date getCompletedAt() { return _completedAt; }
+  public CommentAiRun setCompletedAt(Date completedAt) { _completedAt = completedAt; return this; }
+}
