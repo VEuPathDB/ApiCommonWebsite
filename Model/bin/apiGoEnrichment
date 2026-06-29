@@ -8,26 +8,16 @@ use strict;
 
 my $goEnrich = ApiCommonWebsite::Model::GoEnrichment->new();
 
-#my @input = @ARGV; 
-#my @wc;
-#my @enrich = ($input[0],$input[1],$input[3],$input[4],$input[5],$input[6]);
-#my $length = scalar(@input)-1;
-#for (my $i=7; $i <= $length; $i++) {
-#    push @wc, $input[$i];
-#} 
-
-
 $goEnrich->usage() unless scalar(@ARGV) == 9;
 
 $goEnrich->run(@ARGV);
 
 my $goWC = ApiCommonWebsite::Model::GoWordCloud->new();
-#need to work out what the input is. so its coming from the plugin i was looking at 
-#my $input = @ARGV;
+
 my $inputFile = $ARGV[8];
 my $outputFile = $ARGV[7];
-print " input file is $inputFile or is it empty\n JUST CHECKING";
-$goWC->usage() unless (-e $inputFile);
+
+die "Input file $inputFile for word cloud does not exist\n" unless (-e $inputFile);
 
 $goWC->run($inputFile,$outputFile);
 

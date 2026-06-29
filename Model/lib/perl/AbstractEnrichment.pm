@@ -5,6 +5,9 @@ use DBI;
 use File::Basename;
 use WDK::Model::ModelConfig;
 use IPC::Open2;
+use POSIX qw(strftime);
+
+$| = 1;  # flush output
 
 sub run {
   my ($self, $outputFile, $geneResultSql, $modelName, $pValueCutoff, $secondOutputFile) = @_;
@@ -21,9 +24,8 @@ sub run {
 
   # get query to get back table to feed to python.
   # the columns are:  goId, bgdGeneCount, resultSetGeneCount
-#  my $dataSql = $self->getDataSql($taxonId, $geneResultSql);
   my $dataListSql =$self->getDataListSql($taxonId, $geneResultSql, $dbh);
- # $self->getEnrichment($dbh, $outputFile, $annotatedGenesBgd, $annotatedGenesResult, $dataSql, $pValueCutoff);
+  logMsg("done get datalistsql");
   $self->getEnrichmentList($dbh, $secondOutputFile, $annotatedGenesBgd, $annotatedGenesResult, $dataListSql, $pValueCutoff, $annotatedGenesListResult, $outputFile);
 
   $dbh->disconnect or warn "Disconnection failed: $DBI::errstr\n";
@@ -54,8 +56,7 @@ sub runSql {
   my $stmt = $dbh->prepare("$sql") or die(DBI::errstr);
   $stmt->execute() or die(DBI::errstr);
   my $t = time - $start;
-  print STDERR "Ran following SQL in $t seconds\n";
-  print STDERR "\n$sql\n\n";
+  logMsg("Ran the following SQL in $t seconds:\n$sql\n");
   return $stmt;
 }
 
@@ -153,7 +154,7 @@ sub getTaxonId {
 
   my $sql = "
 SELECT distinct ga.taxon_id
-FROM  webready.GeneAttributes_p ga,
+FROM  apidbtuning.GeneAttributes ga,
      ($geneResultSql) r
 where ga.source_id = r.source_id
 ";
@@ -166,4 +167,10 @@ where ga.source_id = r.source_id
   return $taxonId;
 }
 
+sub logMsg {
+  my ($msg) = @_;
+
+  my $t = strftime "%Y-%m-%d %H:%M:%S", localtime;
+  print STDERR "$t $msg\n";
+}
 1;
