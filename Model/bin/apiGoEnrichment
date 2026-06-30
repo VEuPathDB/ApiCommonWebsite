@@ -13,7 +13,7 @@ $goEnrich->usage() unless scalar(@ARGV) == 9;
 
 my $inputFile = $ARGV[0];
 my $outputFile = $ARGV[7];
-print STDERR join(", ", @ARGV) . "\n";
+
 ApiCommonWebsite::Model::AbstractEnrichment::logMsg("Starting GO enrichment run");
 $goEnrich->run(@ARGV);
 
