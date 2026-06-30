@@ -10,27 +10,31 @@ if (length(args) != 2) {
 }
 
 data <- args[1]
-#inputDir <- args[2]
-#outputDir <-args[3]
 outputFile <-args[2]
 
 library(GOsummaries);
 up <-read.table(data, header =TRUE, sep ="\t", quote="");
-wcd1 = data.frame(Term = up$Name, Score = up$Pvalue);
-gs = gosummaries(wc_data = list(wcd1));
-#DO I NEED TO GIVE IT AN OUTPUT DIR?
-#fullOutFile = paste(outputDir, outputFile, sep="/");
-#plot(gs, filename ="fullOutFile");
+up <- head(up, 40);  # Limit to top 40 (library default)
 
+# update 6/30/2026
+# limit to top 40.  previously including all, which produced garbage
+# no longer use GOsummaries.plot().  it offers no particular value, and hard-codes poor config settings
+# instead, use the low-level method it calls.  Luckily GOsummmaries exposes it.  No need to install a different R package
 
-#IF NOT THEN:
+# Remove NAs
+up <- up[!is.na(up$Pvalue), ]
 
-plot(gs, filename =outputFile);
+# Handle zero p-values (replace with minimum non-zero)
+min_pval <- min(up$Pvalue[up$Pvalue > 0])
+up$Pvalue[up$Pvalue == 0] <- min_pval
 
+png(outputFile, width=3000, height=1000)
+plotWordcloud(words=up$Name,
+              freq=-log10(up$Pvalue), 
+              scale=3.0,          # BIGGER fill
+              rot.per=0,              # DISABLE VERTICAL TEXT (default is 0.3)
+              algorithm="leftside", 
+              min.freq=-Inf,
+              random.order=FALSE)
 
-
-#library(ggplot2);
-#up <-read.table(data, header =TRUE, sep ="\t");
-#png(outputFile);
-#hist(up$Result.count);
 dev.off();

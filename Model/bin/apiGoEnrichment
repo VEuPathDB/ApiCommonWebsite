@@ -3,6 +3,7 @@
 use lib "$ENV{GUS_HOME}/lib/perl";
 
 use ApiCommonWebsite::Model::GoEnrichment;
+use ApiCommonWebsite::Model::AbstractEnrichment;
 use ApiCommonWebsite::Model::GoWordCloud;
 use strict;
 
@@ -10,15 +11,19 @@ my $goEnrich = ApiCommonWebsite::Model::GoEnrichment->new();
 
 $goEnrich->usage() unless scalar(@ARGV) == 9;
 
+my $inputFile = $ARGV[0];
+my $outputFile = $ARGV[7];
+print STDERR join(", ", @ARGV) . "\n";
+ApiCommonWebsite::Model::AbstractEnrichment::logMsg("Starting GO enrichment run");
 $goEnrich->run(@ARGV);
 
 my $goWC = ApiCommonWebsite::Model::GoWordCloud->new();
 
-my $inputFile = $ARGV[8];
-my $outputFile = $ARGV[7];
-
 die "Input file $inputFile for word cloud does not exist\n" unless (-e $inputFile);
 
+ApiCommonWebsite::Model::AbstractEnrichment::logMsg("Starting word cloud run");
 $goWC->run($inputFile,$outputFile);
+
+ApiCommonWebsite::Model::AbstractEnrichment::logMsg("Done");
 
 1;
