@@ -452,13 +452,4 @@ public class AiExpressionCache {
     };
   }
 
-<<<<<<< HEAD
-=======
-  private void writeFileToCache(Path entryDir, String fileName, String fileContent) throws IOException {
-    Path file = entryDir.resolve(fileName);
-    Files.writeString(file, fileContent);
-    IoUtil.tryToOpenGroupPerms(file);
-  }
-
->>>>>>> fdec78ee0... Use utilities as moved from WDK to FgpUtil
 }
