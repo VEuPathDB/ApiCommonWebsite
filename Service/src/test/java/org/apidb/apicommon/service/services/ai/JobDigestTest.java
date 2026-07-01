@@ -11,7 +11,9 @@ import org.junit.Test;
 
 public class JobDigestTest {
 
-  private static final String OPTS = "{\"generate_product_description\":false}";
+  // Product descriptions are now compulsory, so the options object carries no
+  // per-request flags — the canonical form is an empty object.
+  private static final String OPTS = "{}";
 
   @Test
   public void compute_returns64CharLowercaseHex() {
@@ -50,27 +52,19 @@ public class JobDigestTest {
 
   @Test
   public void compute_differsWhenOptionsDiffer() {
-    String optsB = "{\"generate_product_description\":true}";
+    // The options JSON still participates in the digest even though no request
+    // flags remain today, so a future flag automatically invalidates the cache.
     assertNotEquals(
-        JobDigest.compute("g1", Collections.emptyList(), "src", "m", "p", OPTS),
-        JobDigest.compute("g1", Collections.emptyList(), "src", "m", "p", optsB));
+        JobDigest.compute("g1", Collections.emptyList(), "src", "m", "p", "{}"),
+        JobDigest.compute("g1", Collections.emptyList(), "src", "m", "p", "{\"future_flag\":true}"));
   }
 
   @Test
-  public void canonicalOptionsJson_defaults_sortedKeysNoWhitespace() {
+  public void canonicalOptionsJson_defaults_emptyObject() {
     AiGenePublicationRequest.Options options = new AiGenePublicationRequest.Options();
-    // default: generate_product_description=false (validate was removed 2026-06-05)
-    assertEquals(
-        "{\"generate_product_description\":false}",
-        JobDigest.canonicalOptionsJson(options));
-  }
-
-  @Test
-  public void canonicalOptionsJson_reflectsNonDefaultValues() {
-    AiGenePublicationRequest.Options options = new AiGenePublicationRequest.Options();
-    options.generateProductDescription = true;
-    assertEquals(
-        "{\"generate_product_description\":true}",
-        JobDigest.canonicalOptionsJson(options));
+    // Product descriptions are compulsory (generate_product_description was
+    // removed); validate was removed 2026-06-05; create_user_comment on the
+    // review-on-approval pivot. No per-request options remain.
+    assertEquals("{}", JobDigest.canonicalOptionsJson(options));
   }
 }

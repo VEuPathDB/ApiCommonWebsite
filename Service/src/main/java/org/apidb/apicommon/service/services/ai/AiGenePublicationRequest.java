@@ -19,9 +19,14 @@ public class AiGenePublicationRequest {
 
   @JsonIgnoreProperties(ignoreUnknown = true)
   public static class Options {
-    @JsonProperty("generate_product_description")
-    public boolean generateProductDescription = false;
-
+    // No per-request options remain — the object is kept (and still folded into
+    // the jobId digest) so a future output-affecting flag automatically
+    // invalidates the cache without changing the digest formula.
+    //
+    // NOTE: generate_product_description removed — product descriptions are now
+    // compulsory (a dedicated generatePDs stage runs on every success), so the
+    // flag gated nothing. Its removal, plus the PROMPT_VERSION bump, invalidates
+    // every cached run from testing.
     // NOTE: create_user_comment removed in the review-on-approval pivot — the
     // generate POST never creates a comment, so the flag gated nothing. The
     // comment is created by the separate publish endpoint on user approval.

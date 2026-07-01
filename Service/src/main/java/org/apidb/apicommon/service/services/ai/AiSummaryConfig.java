@@ -19,12 +19,15 @@ public final class AiSummaryConfig {
 
   /**
    * Manually-bumped prompt version folded into the digest. Bump this whenever
-   * the {@code getGeneSummary} prompt files change, so edited prompts produce
-   * fresh cache entries rather than serving stale output. (The pipeline runs a
-   * single LLM prompt stage; the verifyGeneSummary validation pass was dropped
-   * on 2026-06-05.)
+   * any prompt file changes, so edited prompts produce fresh cache entries rather
+   * than serving stale output. Now covers both LLM stages — {@code getGeneSummary}
+   * and the compulsory {@code generatePDs} product-description stage.
+   *
+   * <p>Bumped {@code "1" → "2"} when product descriptions became compulsory (a new
+   * {@code generatePDs} stage plus cosmetic typo fixes across the prompt files) —
+   * this invalidates every run cached during testing.
    */
-  public static final String PROMPT_VERSION = "1";
+  public static final String PROMPT_VERSION = "2";
 
   private AiSummaryConfig() {}
 }

@@ -35,10 +35,8 @@
     },
     "options": {
       "type": "object",
-      "properties": {
-        "generate_product_description": { "type": "boolean", "default": false }
-      },
-      "additionalProperties": false
+      "description": "Reserved for future output-affecting flags. No options are honoured today — product descriptions are compulsory (generate_product_description was removed). Unknown keys are ignored, so a client mid-transition may still send it harmlessly.",
+      "additionalProperties": true
     }
   },
   "required": ["gene_id", "document_type"],

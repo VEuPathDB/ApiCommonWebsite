@@ -199,5 +199,5 @@ public class AnthropicJsonClient implements JsonPromptClient {
 
   /** Formatter-LLM system prompt, verbatim from the Python STEP_1 retry loop. */
   private static final String FORMATTER_SYSTEM_PROMPT =
-      "Convert the supplied string to parsable JSON. respong with the corrected JSON ONLY and nothing else.";
+      "Convert the supplied string to parsable JSON. Respond with the corrected JSON ONLY and nothing else.";
 }

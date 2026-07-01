@@ -21,6 +21,9 @@ public class FlattenToCommentTest {
 
   private static final ObjectMapper MAPPER = new ObjectMapper();
 
+  /** No product descriptions — the PD section is omitted, leaving the rest unchanged. */
+  private static final JsonNode EMPTY_PDS = MAPPER.createObjectNode();
+
   private static JsonNode json(String s) {
     try {
       return MAPPER.readTree(s);
@@ -83,7 +86,7 @@ public class FlattenToCommentTest {
         "",
         "Aliases mentioned in paper: Pfs25, P25");
 
-    assertEquals(expected, AiGenePublicationPipeline.flattenContent(summary));
+    assertEquals(expected, AiGenePublicationPipeline.flattenContent(summary, EMPTY_PDS));
   }
 
   @Test
@@ -91,7 +94,7 @@ public class FlattenToCommentTest {
     JsonNode summary = json("{\"GeneSummary\": ["
         + "{\"bullet_point\": \"A claim.\", \"evidence_location\": \"\", \"supporting_quotes\": []}]}");
     assertEquals(String.join("\n", "Details:", "", "- A claim. [1]"),
-        AiGenePublicationPipeline.flattenContent(summary));
+        AiGenePublicationPipeline.flattenContent(summary, EMPTY_PDS));
   }
 
   @Test
@@ -100,7 +103,7 @@ public class FlattenToCommentTest {
         + "{\"bullet_point\": \"A claim.\", \"evidence_location\": \"Fig 1\", \"supporting_quotes\": []}],"
         + "\"AdditionalInferences\": []}");
     assertEquals(String.join("\n", "Details:", "", "- A claim. [1]", "", "Evidence:", "", "[1] Fig 1"),
-        AiGenePublicationPipeline.flattenContent(summary));
+        AiGenePublicationPipeline.flattenContent(summary, EMPTY_PDS));
   }
 
   @Test
@@ -109,7 +112,7 @@ public class FlattenToCommentTest {
         + "{\"bullet_point\": \"A claim.\", \"evidence_location\": \"Fig 1\", \"supporting_quotes\": []}],"
         + "\"Aliases_in_paper\": []}");
     assertEquals(String.join("\n", "Details:", "", "- A claim. [1]", "", "Evidence:", "", "[1] Fig 1"),
-        AiGenePublicationPipeline.flattenContent(summary));
+        AiGenePublicationPipeline.flattenContent(summary, EMPTY_PDS));
   }
 
   @Test
@@ -117,6 +120,6 @@ public class FlattenToCommentTest {
     JsonNode summary = json("{\"GeneSummary\": ["
         + "{\"bullet_point\": \"A claim.\", \"evidence_location\": \"Fig 1\", \"supporting_quotes\": []}]}");
     assertEquals(String.join("\n", "Details:", "", "- A claim. [1]", "", "Evidence:", "", "[1] Fig 1"),
-        AiGenePublicationPipeline.flattenContent(summary));
+        AiGenePublicationPipeline.flattenContent(summary, EMPTY_PDS));
   }
 }

@@ -34,6 +34,7 @@ public class JobState {
     FETCHING_ARTICLE("fetching-article"),
     SCANNING_GENE_MENTIONS("scanning-gene-mentions"),
     GENERATING_SUMMARY("generating-summary"),
+    GENERATING_PDS("generating-pds"),
     PERSISTING("persisting");
 
     private final String _wire;

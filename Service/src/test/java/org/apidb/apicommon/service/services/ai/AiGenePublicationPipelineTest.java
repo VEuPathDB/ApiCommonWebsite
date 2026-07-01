@@ -242,6 +242,53 @@ public class AiGenePublicationPipelineTest {
     assertEquals("Studies of PF3D7_1133400 (Pfs25) in detail.", repl.get("PAPER_TEXT"));
   }
 
+  // --- generate-product-descriptions stage (compulsory) ---------------------
+
+  @Test
+  public void generateProductDescriptionsStoresPdsAndStaysRunning() throws Exception {
+    JsonPromptClient client = (stage, repl) -> stage.equals("generatePDs")
+        ? json("{\"PDs\": [{\"description\": \"phosphatase PfPP1\","
+            + " \"evidence_code\": \"IMP\", \"code_reason\": \"Knockout phenotype.\"}]}")
+        : json("{\"only_in_passing\": false, \"GeneSummary\": [{\"bullet_point\": \"PfPP1 is a phosphatase.\"}]}");
+    AiGenePublicationPipeline pipeline = summarised(
+        "PfPP1 characterised in PF3D7_1133400.", Collections.<String>emptyList(), client);
+
+    pipeline.generateSummary();
+    pipeline.generateProductDescriptions();
+
+    assertEquals(JobStatus.RUNNING, pipeline.job().getStatus());
+    assertEquals(JobState.Stage.GENERATING_PDS, pipeline.job().getStage());
+    assertNotNull(pipeline.pdsJson());
+    assertEquals("phosphatase PfPP1",
+        pipeline.pdsJson().get("PDs").get(0).get("description").asText());
+  }
+
+  @Test
+  public void generateProductDescriptionsRendersBulletsGeneAndCountIntoTheRequest() throws Exception {
+    AtomicReference<String> stageRef = new AtomicReference<>();
+    AtomicReference<Map<String, String>> replRef = new AtomicReference<>();
+    JsonPromptClient client = (stage, repl) -> {
+      if (stage.equals("generatePDs")) {
+        stageRef.set(stage);
+        replRef.set(repl);
+        return json("{\"PDs\": []}");
+      }
+      return json("{\"only_in_passing\": false, \"GeneSummary\": ["
+          + "{\"bullet_point\": \"First finding.\"}, {\"bullet_point\": \"Second finding.\"}]}");
+    };
+    AiGenePublicationPipeline pipeline = summarised(
+        "Studies of PF3D7_1133400 (Pfs25).", Arrays.asList("Pfs25"), client);
+
+    pipeline.generateSummary();
+    pipeline.generateProductDescriptions();
+
+    assertEquals("generatePDs", stageRef.get());
+    Map<String, String> repl = replRef.get();
+    assertEquals("3", repl.get("N_PDs"));
+    assertEquals("PF3D7_1133400 (also known as Pfs25)", repl.get("GENE"));
+    assertEquals("First finding.\nSecond finding.", repl.get("SUMMARY"));
+  }
+
   // --- flatten-to-comment stage wiring (deliverable 5) ----------------------
 
   @Test
@@ -322,6 +369,54 @@ public class AiGenePublicationPipelineTest {
     assertEquals("success", rendered.getString("type"));
     assertEquals("A druggable surface antigen.", rendered.getJSONObject("ai_output").getString("headline"));
     assertEquals(row.getAiContent(), rendered.getJSONObject("ai_output").getString("content"));
+  }
+
+  @Test
+  public void runSuccessRendersPdSectionIntoPersistedContent() throws Exception {
+    JsonPromptClient client = (stage, repl) -> stage.equals("generatePDs")
+        ? json("{\"PDs\": [{\"description\": \"Fructose 1,6-bisphosphatase FBP1\","
+            + " \"evidence_code\": \"IDA\", \"code_reason\": \"Direct enzyme assay.\"}]}")
+        : json("{\"only_in_passing\": false,"
+            + "\"Headline\": \"A gluconeogenic enzyme.\","
+            + "\"ShortSummary\": \"FBP1 matters.\","
+            + "\"GeneSummary\": [{\"bullet_point\": \"FBP1 is a phosphatase.\","
+            + "  \"evidence_location\": \"Fig 3\", \"supporting_quotes\": [\"assayed activity\"]}]}");
+    CapturingStore store = new CapturingStore();
+    AiGenePublicationPipeline pipeline = runnable("upload", null,
+        "The gene PF3D7_1133400 (FBP1) is characterised here.", Arrays.asList("FBP1"),
+        new PmcBiocFetcher(), client, store);
+
+    pipeline.run();
+
+    assertEquals(JobStatus.SUCCESS, pipeline.job().getStatus());
+    String content = store.captured.getAiContent();
+    // The PD section is rendered and sits between the Details and Evidence sections.
+    int details = content.indexOf("Details:");
+    int pds = content.indexOf("AI-suggested product description:");
+    int evidence = content.indexOf("Evidence:");
+    assertTrue("PD section present", pds >= 0);
+    assertTrue("PD section after Details and before Evidence", details < pds && pds < evidence);
+    assertTrue("PD line rendered",
+        content.contains("- Fructose 1,6-bisphosphatase FBP1 [IDA]"));
+  }
+
+  @Test
+  public void runPdFailureTerminatesInternalErrorAndPersistsNothing() throws Exception {
+    JsonPromptClient client = (stage, repl) -> {
+      if (stage.equals("generatePDs"))
+        throw new WdkModelException("Max retries exceeded: could not parse valid JSON");
+      return json("{\"only_in_passing\": false, \"Headline\": \"H\","
+          + "\"GeneSummary\": [{\"bullet_point\": \"A finding.\"}]}");
+    };
+    CapturingStore store = new CapturingStore();
+    AiGenePublicationPipeline pipeline = runnable("upload", null,
+        "The gene PF3D7_1133400 is characterised here.", Collections.<String>emptyList(),
+        new PmcBiocFetcher(), client, store);
+
+    pipeline.run();
+
+    assertEquals(JobStatus.INTERNAL_ERROR, pipeline.job().getStatus());
+    assertEquals("a PD-less success must never be cached", 0, store.calls);
   }
 
   @Test

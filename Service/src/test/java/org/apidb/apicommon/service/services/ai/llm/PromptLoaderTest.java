@@ -45,6 +45,43 @@ public class PromptLoaderTest {
   }
 
   @Test
+  public void getGeneSummarySystemPromptHasCosmeticTyposFixed() {
+    String system = loader.system("getGeneSummary");
+    // fixed for the Sonnet 4.6 port (previously reproduced verbatim from Python)
+    assertTrue("'The geneor' fixed to 'The gene or'", system.contains("The gene or one of"));
+    assertTrue(!system.contains("geneor"));
+    assertTrue("missing newline before 'Be especially' fixed",
+        !system.contains("measurements   - Be"));
+  }
+
+  @Test
+  public void generatePdsSystemPromptLoadsWithPlaceholderAndFixedTypos() {
+    String system = loader.system("generatePDs");
+    assertTrue(system.contains("expert gene curation assistant"));
+    assertTrue("keeps the [N_PDs] marker", system.contains("[N_PDs]"));
+    // cosmetic typos fixed for the new-model port (report as fixes upstream)
+    assertTrue(!system.contains("experimetns"));
+    assertTrue(!system.contains("ortologue"));
+    assertTrue(!system.contains("except when your know"));
+  }
+
+  @Test
+  public void generatePdsUserPromptIsOneTurnWithGeneAndSummary() {
+    List<String> turns = loader.userTurns("generatePDs");
+    assertEquals(1, turns.size());
+    assertTrue(turns.get(0).contains("[GENE]"));
+    assertTrue(turns.get(0).contains("[SUMMARY]"));
+  }
+
+  @Test
+  public void generatePdsSchemaLoadsAsRawJsonText() {
+    String schema = loader.schema("generatePDs");
+    assertTrue(schema.contains("evidence_code"));
+    assertTrue(schema.contains("\"PDs\""));
+    assertTrue(schema.contains("\"additionalProperties\": false"));
+  }
+
+  @Test
   public void renderSubstitutesEveryOccurrenceOfAMarker() {
     assertEquals("X then X again",
         PromptLoader.render("[GENE] then [GENE] again", one("GENE", "X")));

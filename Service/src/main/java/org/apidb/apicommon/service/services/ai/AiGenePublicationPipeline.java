@@ -43,6 +43,9 @@ public class AiGenePublicationPipeline implements Runnable {
   /** Verbatim quotes per bullet point requested in the prompt (Python {@code N_QUOTES}). */
   private static final String N_QUOTES = "2";
 
+  /** Maximum product descriptions the {@code generatePDs} prompt may suggest (Python {@code N_PDs}). */
+  private static final String N_PDS = "3";
+
   /**
    * Narrow seam over {@link org.apidb.apicommon.model.comment.CommentFactory#persistAiRun}
    * so tests can capture the persisted row without a live database.
@@ -63,6 +66,7 @@ public class AiGenePublicationPipeline implements Runnable {
   private String _articleText;                 // ① resolved text (fetched for pubmed; uploaded text for upload)
   private List<String> _namesMentioned;        // ② gene + top-3 aliases actually mentioned (prompt input)
   private JsonNode _summaryJson;               // ③ getGeneSummary response
+  private JsonNode _pdsJson;                    // ③.5 generatePDs response
   private String _aiHeadline;                  // ④ flattened headline
   private String _aiContent;                   // ④ flattened content
 
@@ -115,6 +119,11 @@ public class AiGenePublicationPipeline implements Runnable {
     return _summaryJson;
   }
 
+  /** Test accessor for the stage-③.5 parsed generatePDs response. */
+  JsonNode pdsJson() {
+    return _pdsJson;
+  }
+
   /** Test accessors for the stage-④ flattened comment fields. */
   String aiHeadline() {
     return _aiHeadline;
@@ -130,6 +139,7 @@ public class AiGenePublicationPipeline implements Runnable {
       fetchArticle();
       if (!_job.getStatus().isTerminal()) scanGeneMentions();
       if (!_job.getStatus().isTerminal()) generateSummary();
+      if (!_job.getStatus().isTerminal()) generateProductDescriptions();
       if (!_job.getStatus().isTerminal()) flattenToComment();
 
       // Persist runs for every cacheable terminal — the success path plus the
@@ -244,10 +254,32 @@ public class AiGenePublicationPipeline implements Runnable {
     return head + " (also known as " + String.join(" or ", rest) + ")";
   }
 
+  // ③.5 -----------------------------------------------------------------------
+  /**
+   * Compulsory {@code generatePDs} stage: brainstorm up to {@link #N_PDS}
+   * suggested product descriptions from the first-pass summary's evidence bullets
+   * (port of Python {@code generatePDs}). Runs only on the success path — the
+   * deterministic gene-not-mentioned / mentioned-in-passing terminals short-circuit
+   * before here, so there is no summary to derive from. A parse failure propagates
+   * (after the client's formatter retries) and terminates the job as internal-error;
+   * we never cache a PD-less success.
+   */
+  void generateProductDescriptions() throws WdkModelException {
+    _job.updateStage(JobState.Stage.GENERATING_PDS, "Suggesting product descriptions");
+    JobSubmission submission = _job.getSubmission();
+
+    Map<String, String> replacements = new HashMap<>();
+    replacements.put("N_PDs", N_PDS);
+    replacements.put("GENE", geneForPrompt(submission.getGeneId(), _namesMentioned));
+    replacements.put("SUMMARY", String.join("\n", collectBullets(_summaryJson)));
+
+    _pdsJson = summaryClient().complete("generatePDs", replacements);
+  }
+
   // ④ -------------------------------------------------------------------------
   void flattenToComment() {
     _aiHeadline = flattenHeadline(_summaryJson);
-    _aiContent = flattenContent(_summaryJson);
+    _aiContent = flattenContent(_summaryJson, _pdsJson);
   }
 
   /** Headline = the plain-text {@code Headline} (empty if absent). */
@@ -257,13 +289,14 @@ public class AiGenePublicationPipeline implements Runnable {
 
   /**
    * Body = an "Executive summary:" section ({@code ShortSummary}), a "Details:"
-   * section of {@code - } bullets each tagged with a {@code [n]} reference, an
+   * section of {@code - } bullets each tagged with a {@code [n]} reference, the
+   * "AI-suggested product description(s):" section derived from {@code pds}, an
    * "Evidence:" section pairing each {@code [n]} with its location and {@code - }
-   * quote lines, then the existing "Additional inferences" and "Aliases mentioned
-   * in paper" sections appended unchanged — sections separated by a blank line.
-   * Plain-text markdown only (no HTML); client renders newlines as {@code <br />}.
+   * quote lines, then the "Additional inferences" and "Aliases mentioned in
+   * paper" sections — sections separated by a blank line. Plain-text markdown
+   * only (no HTML); client renders newlines as {@code <br />}.
    */
-  static String flattenContent(JsonNode summary) {
+  static String flattenContent(JsonNode summary, JsonNode pds) {
     List<String> sections = new ArrayList<>();
 
     // 1. executive summary (the one-sentence ShortSummary)
@@ -295,6 +328,12 @@ public class AiGenePublicationPipeline implements Runnable {
       }
     }
     if (details.length() > 0) sections.add("Details:\n\n" + details);
+
+    // 2b. AI-suggested product descriptions (compulsory generatePDs stage),
+    //     placed between the summary bullets and their supporting evidence.
+    String productDescriptions = flattenProductDescriptions(pds);
+    if (!productDescriptions.isEmpty()) sections.add(productDescriptions);
+
     if (evidence.length() > 0) sections.add("Evidence:\n\n" + evidence);
 
     // 3. additional inferences
@@ -315,6 +354,46 @@ public class AiGenePublicationPipeline implements Runnable {
     }
 
     return String.join("\n\n", sections);
+  }
+
+  /**
+   * Render the "AI-suggested product description(s):" section from a
+   * {@code generatePDs} response — the heading pluralised by PD count, then one
+   * {@code - <description> [<evidence_code>]} line per PD, each followed by an
+   * indented {@code code_reason} line (omitted when the reason is blank). Returns
+   * {@code ""} when there are no PDs, so the caller can omit the section.
+   */
+  static String flattenProductDescriptions(JsonNode pds) {
+    List<JsonNode> rows = new ArrayList<>();
+    for (JsonNode pd : array(pds, "PDs")) rows.add(pd);
+    if (rows.isEmpty()) return "";
+
+    StringBuilder out = new StringBuilder();
+    out.append(rows.size() == 1
+        ? "AI-suggested product description:\n"
+        : "AI-suggested product descriptions:\n");
+    for (JsonNode pd : rows) {
+      out.append("\n- ").append(text(pd, "description"))
+          .append(" [").append(text(pd, "evidence_code")).append("]");
+      String reason = text(pd, "code_reason");
+      if (!reason.isEmpty()) out.append("\n  ").append(reason);
+    }
+    return out.toString();
+  }
+
+  /**
+   * Collect the {@code GeneSummary[].bullet_point} strings in order (port of the
+   * Python {@code collect_bullets}), skipping items that carry no bullet. This is
+   * the summary distilled down to the evidence bullets the {@code generatePDs}
+   * prompt consumes as its {@code [SUMMARY]}.
+   */
+  static List<String> collectBullets(JsonNode summary) {
+    List<String> bullets = new ArrayList<>();
+    for (JsonNode row : array(summary, "GeneSummary")) {
+      JsonNode bp = row.get("bullet_point");
+      if (bp != null && !bp.isNull()) bullets.add(bp.asText());
+    }
+    return bullets;
   }
 
   /** A text field on a node, or {@code ""} when absent/null. */
