@@ -28,6 +28,12 @@ public class Comment extends BaseComment {
    */
   private Author _author;
 
+  /**
+   * AI provenance, hydrated only for published AI-assisted comments; null (and
+   * so omitted from JSON) for human-written ones.
+   */
+  private AiProvenanceView _aiProvenance;
+
   @JsonCreator
   public Comment(
     @JsonProperty("id")     long comId,
@@ -129,6 +135,16 @@ public class Comment extends BaseComment {
 
   public Comment setAuthor(final Author author) {
     _author = author;
+    return this;
+  }
+
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  public AiProvenanceView getAiProvenance() {
+    return _aiProvenance;
+  }
+
+  public Comment setAiProvenance(AiProvenanceView aiProvenance) {
+    _aiProvenance = aiProvenance;
     return this;
   }
 

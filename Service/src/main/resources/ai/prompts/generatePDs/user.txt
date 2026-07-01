@@ -1,0 +1,2 @@
+Please generate a one sentence summary and product descriptions based on the following summary for [GENE]:
+[SUMMARY]

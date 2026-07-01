@@ -2,6 +2,8 @@ package org.apidb.apicommon.service.services.comments;
 
 import java.net.URI;
 import java.util.Collection;
+import java.util.Date;
+import java.util.Optional;
 import java.util.Set;
 
 import javax.ws.rs.BadRequestException;
@@ -19,8 +21,10 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
 import org.apidb.apicommon.model.comment.CommentAlertEmailFormatter;
+import org.apidb.apicommon.model.comment.pojo.AiProvenance;
 import org.apidb.apicommon.model.comment.pojo.Category;
 import org.apidb.apicommon.model.comment.pojo.Comment;
+import org.apidb.apicommon.model.comment.pojo.CommentAiRun;
 import org.apidb.apicommon.model.comment.pojo.CommentRequest;
 import org.gusdb.wdk.core.api.JsonKeys;
 import org.gusdb.wdk.model.Utilities;
@@ -86,6 +90,23 @@ public class UserCommentsService extends AbstractUserCommentService {
 
     if (pmValidationErrors.length() > 0) {
       throw new BadRequestException(pmValidationErrors.toString());
+    }
+
+    // If editing a published AI comment, carry its AI provenance onto the new
+    // copy so the replacement stays linked to the same comment_ai_run. The
+    // client cannot supply provenance (it is server-managed, and the read view
+    // omits the run_job_id FK), so we look it up here and recompute is_edited
+    // against the run's AI original for the (possibly re-edited) text.
+    if (body.getPreviousCommentId() != null) {
+      Optional<AiProvenance> prevProvenance =
+          getCommentFactory().getAiProvenanceRow(body.getPreviousCommentId());
+      if (prevProvenance.isPresent()) {
+        Optional<CommentAiRun> run =
+            getCommentFactory().findAiRun(prevProvenance.get().getRunJobId());
+        if (run.isPresent())
+          body.setAiProvenance(AiProvenance.fromRun(
+              run.get(), body.getHeadline(), body.getContent(), new Date()));
+      }
     }
 
     final long id = getCommentFactory().createComment(body, user);
