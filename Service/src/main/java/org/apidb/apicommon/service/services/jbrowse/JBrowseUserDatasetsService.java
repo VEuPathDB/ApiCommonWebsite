@@ -89,12 +89,12 @@ public class JBrowseUserDatasetsService extends AbstractUserService {
   @GET
   @Path("user-datasets-jbrowse/{organism}")
   @Produces(MediaType.APPLICATION_JSON)
-  public Response getAllUserDatasetsJBrowse(@PathParam("organism") String publicOrganismAbbrev) {
+  public Response getAllUserDatasetsJBrowse(@PathParam("organism") String orgNameForFiles) {
     LOG.debug("\nservice user-datasets-jbrowse has been called ---gets all jbrowse configuration for user datasets\n");
     final JBrowseDatasetResponse jBrowseDatasetResponse = new JBrowseDatasetResponse();
 
     try {
-      List<VDIDatasetReference> datasets = queryVisibleDatasets(getPrivateRegisteredUser().getUserId());
+      List<VDIDatasetReference> datasets = queryVisibleDatasets(getPrivateRegisteredUser().getUserId(), orgNameForFiles);
       LOG.info("Found " + datasets.size() + " datasets for user " + getPrivateRegisteredUser().getUserId());
 
       // Any tracks that are in the installed dataset dir on the filesystem are installed in this project, fetch
@@ -114,7 +114,7 @@ public class JBrowseUserDatasetsService extends AbstractUserService {
     catch (Exception e) {
       jBrowseDatasetResponse.setTracks(Collections.emptyList());
         Exception e2 = new WdkModelException("Unable to load JBrowse user datasets for user with ID " +
-            getRequestingUser().getUserId() + ", organism " + publicOrganismAbbrev, e);
+            getRequestingUser().getUserId() + ", organism " + orgNameForFiles, e);
         LOG.error("Could not load JBrowse user datasets", e2);
         Events.trigger(new ErrorEvent(new ServerErrorBundle(e2), getErrorContext()));
     }
@@ -161,7 +161,7 @@ public class JBrowseUserDatasetsService extends AbstractUserService {
   private boolean datasetBelongsToUser(long userID, String datasetID) {
     final String schema = getWdkModel().getProperties().get(VDI_CONTROL_SCHEMA_KEY);
     String sql = String.format(
-        "SELECT user_dataset_id FROM %s.AvailableUserDatasets da WHERE da.user_id = ? AND da.user_dataset_id = ?",
+        "SELECT user_dataset_id FROM %s.AvailableUserDatasets da WHERE (da.user_id = ? or da.is_public = true) AND da.user_dataset_id = ?",
         schema.toLowerCase(Locale.ROOT)
     );
     return new SQLRunner(getWdkModel().getAppDb().getDataSource(), sql)
@@ -178,19 +178,28 @@ public class JBrowseUserDatasetsService extends AbstractUserService {
    * @param userID UserID to retrieve visible datasets for.
    * @return List of visible datasets.
    */
-  private List<VDIDatasetReference> queryVisibleDatasets(long userID) {
+  private List<VDIDatasetReference> queryVisibleDatasets(long userID, String orgAbbrev) {
     final String schema = getWdkModel().getProperties().get(VDI_CONTROL_SCHEMA_KEY);
     String typesString = Arrays.stream(VDIDatasetType.values())
         .map(val -> "'" + val.getVdiName() + "'")
         .collect(Collectors.joining(","));
 
-    String sql = String.format(
-        "SELECT user_dataset_id, type, name, description FROM %s.AvailableUserDatasets da WHERE da.user_id = ? and type in (%s) and project_id = '%s'",
-        schema, typesString, getWdkModel().getProjectId()
-    );
-    LOG.debug("Querying visible datasets: " + sql);
+    String sql = """
+        SELECT user_dataset_id, da.type, da.name, da.description, dd.identifier
+        FROM %s.AvailableUserDatasets da,
+             %s.dataset_dependency dd,
+        	 apidbtuning.organismattributes o
+        WHERE (da.user_id = ? or da.is_public = true)
+        and da.type in (%s) and da.project_id = ?
+        and da.user_dataset_id = dd.dataset_id
+        and substring(dd.identifier FROM '[A-Za-z]+-\\d+_(.+)_Genome') = o.name_for_filenames
+        and o.name_for_filenames = ?
+        """;
+    sql = String.format(sql, schema, schema, typesString);
+
+    LOG.info("Querying visible datasets for " + orgAbbrev + ": " + sql);
     return new SQLRunner(getWdkModel().getAppDb().getDataSource(), sql)
-        .executeQuery(new ParamBuilder().addLong(userID), rs -> {
+        .executeQuery(new ParamBuilder().addLong(userID).addString(getWdkModel().getProjectId()).addString(orgAbbrev), rs -> {
           List<VDIDatasetReference> vdiDatasets = new ArrayList<>();
           while (rs.next()) {
             vdiDatasets.add(datasetFromResultSet(rs));

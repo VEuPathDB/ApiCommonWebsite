@@ -27,6 +27,8 @@ public class JBrowseTrack {
 
   }
 
+  public String getCategory() { return "User Datasets";}
+
   public String getStoreClass() {
     return storeClass;
   }
