@@ -178,7 +178,7 @@ public class JBrowseUserDatasetsService extends AbstractUserService {
    * @param userID UserID to retrieve visible datasets for.
    * @return List of visible datasets.
    */
-  private List<VDIDatasetReference> queryVisibleDatasets(long userID, String orgAbbrev) {
+  private List<VDIDatasetReference> queryVisibleDatasets(long userID, String orgNameForFiles) {
     final String schema = getWdkModel().getProperties().get(VDI_CONTROL_SCHEMA_KEY);
     String typesString = Arrays.stream(VDIDatasetType.values())
         .map(val -> "'" + val.getVdiName() + "'")
@@ -197,9 +197,9 @@ public class JBrowseUserDatasetsService extends AbstractUserService {
         """;
     sql = String.format(sql, schema, schema, typesString);
 
-    LOG.info("Querying visible datasets for " + orgAbbrev + ": " + sql);
+    LOG.debug("Querying visible datasets for " + orgNameForFiles + ": " + sql);
     return new SQLRunner(getWdkModel().getAppDb().getDataSource(), sql)
-        .executeQuery(new ParamBuilder().addLong(userID).addString(getWdkModel().getProjectId()).addString(orgAbbrev), rs -> {
+        .executeQuery(new ParamBuilder().addLong(userID).addString(getWdkModel().getProjectId()).addString(orgNameForFiles), rs -> {
           List<VDIDatasetReference> vdiDatasets = new ArrayList<>();
           while (rs.next()) {
             vdiDatasets.add(datasetFromResultSet(rs));
