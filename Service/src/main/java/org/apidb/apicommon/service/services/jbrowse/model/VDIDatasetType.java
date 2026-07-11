@@ -3,8 +3,8 @@ package org.apidb.apicommon.service.services.jbrowse.model;
 import java.util.Arrays;
 
 public enum VDIDatasetType {
-  RNA_SEQ("rnaseq", "RNASeq"),
-  BIGWIG("bigwigfiles", "Bigwig Files From User");
+  RNA_SEQ("rnaseq", "RNA-Seq (User Datasets)"),
+  BIGWIG("bigwigfiles", "RNA-Seq (User Datasets)");
 
   private String vdiName;
   private String jbrowseSubcategoryName;
