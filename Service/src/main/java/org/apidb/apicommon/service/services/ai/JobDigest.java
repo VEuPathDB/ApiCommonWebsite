@@ -11,6 +11,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import org.gusdb.fgputil.EncryptionUtil;
+
 /**
  * Pure helpers for the content-digest {@code jobId} that keys both the
  * in-memory registry and the {@code comment_ai_run} cache row.
@@ -66,12 +68,9 @@ public final class JobDigest {
     try {
       byte[] hash = MessageDigest.getInstance("SHA-256")
           .digest(input.getBytes(StandardCharsets.UTF_8));
-      StringBuilder sb = new StringBuilder(64);
-      for (byte b : hash) {
-        sb.append(Character.forDigit((b >> 4) & 0xf, 16));
-        sb.append(Character.forDigit(b & 0xf, 16));
-      }
-      return sb.toString();
+      // padZeroes=true keeps every byte two hex chars (leading zeros preserved),
+      // matching the fixed-width lowercase hex the cache key depends on.
+      return EncryptionUtil.convertToHex(hash, true);
     } catch (NoSuchAlgorithmException e) {
       throw new RuntimeException("SHA-256 unavailable", e);
     }
