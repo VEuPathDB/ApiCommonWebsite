@@ -17,8 +17,10 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.apidb.apicommon.model.comment.pojo.AiProvenance;
+import org.apidb.apicommon.model.comment.pojo.AiRunSource;
 import org.apidb.apicommon.model.comment.pojo.CommentAiRun;
 import org.apidb.apicommon.model.comment.pojo.CommentRequest;
+import org.apidb.apicommon.model.comment.pojo.JobStatus;
 import org.apidb.apicommon.model.comment.pojo.Target;
 import org.apidb.apicommon.service.services.ai.SyncPrelude.PreludeResult;
 import org.apidb.apicommon.service.services.ai.gene.GeneSynonymService;
@@ -71,7 +73,7 @@ public class AiGenePublicationCommentService extends AbstractUserCommentService 
           .header("Retry-After", RETRY_AFTER_SECONDS)
           .type(MediaType.APPLICATION_JSON)
           .entity(new JSONObject()
-              .put("type", "internal-error")
+              .put("type", JobStatus.INTERNAL_ERROR.getWireValue())
               .put("error", "summary workers are busy; please retry shortly")
               .toString())
           .build();
@@ -217,7 +219,7 @@ public class AiGenePublicationCommentService extends AbstractUserCommentService 
           .put("type", JobStatus.RUNNING.getWireValue())
           .put("job_id", job.getJobId())
           .put("stage", job.getStage().getWireValue())
-          .put("source", sourceJson(job.getSubmission()));
+          .put("source", sourceJson(job.getSubmission().getSource()));
     }
     // Terminal: the pipeline publishes a TerminalResult carrying the status-
     // specific fields (text-unavailable `reason`, internal-error `error`,
@@ -227,7 +229,7 @@ public class AiGenePublicationCommentService extends AbstractUserCommentService 
     if (job.getResult() instanceof TerminalResult) {
       JSONObject out = ((TerminalResult) job.getResult()).toJson(job.getJobId());
       if (job.getStatus().isPublishable())
-        out.put("source", sourceJson(job.getSubmission()));
+        out.put("source", sourceJson(job.getSubmission().getSource()));
       return out;
     }
     return new JSONObject()
@@ -240,16 +242,16 @@ public class AiGenePublicationCommentService extends AbstractUserCommentService 
     // (only publishable terminals are persisted), so a cache hit always carries a
     // source. No comment_id — the comment is created only on publish.
     JSONObject out = new JSONObject()
-        .put("type", run.getTerminalStatus())
+        .put("type", run.getTerminalStatus().getWireValue())
         .put("job_id", jobId);
-    if ("success".equals(run.getTerminalStatus())) {
+    if (run.getTerminalStatus() == JobStatus.SUCCESS) {
       out.put("ai_output", new JSONObject()
           .put("headline", run.getAiHeadline())
           .put("content", run.getAiContent()));
     } else {
       out.put("synonyms_checked", new JSONArray(run.getSynonymsUsed()));
     }
-    out.put("source", sourceJson(run));
+    out.put("source", sourceJson(run.getSource()));
     return out;
   }
 
@@ -266,33 +268,23 @@ public class AiGenePublicationCommentService extends AbstractUserCommentService 
    * cached {@link CommentAiRun} row on a late cache hit — both carry the same
    * source fields by construction.
    */
-  static JSONObject sourceJson(JobSubmission s) {
-    return sourceJson(s.getSourceKind(), s.getPubmedId(), s.getPdfContentSha256(),
-        s.getExternalUrl(), s.getExternalTitle(), s.getExternalRef(), s.getExternalRefKind());
-  }
-
-  static JSONObject sourceJson(CommentAiRun run) {
-    return sourceJson(run.getSourceKind(), run.getPubmedId(), run.getPdfContentSha256(),
-        run.getExternalUrl(), run.getExternalTitle(), run.getExternalRef(), run.getExternalRefKind());
-  }
-
-  private static JSONObject sourceJson(String kind, String pubmedId, String pdfContentSha256,
-      String externalUrl, String externalTitle, String externalRef, String externalRefKind) {
-    JSONObject source = new JSONObject().put("kind", kind);
-    if ("pubmed".equals(kind)) {
-      source.put("pubmed_id", pubmedId);
-    }
-    else {
-      source.put("pdf_content_sha256", pdfContentSha256);
-      // url/title/ref are optional upload provenance — omit when absent, mirroring
-      // the NON_NULL behaviour of aiProvenance.source.
-      if (externalUrl != null) source.put("external_url", externalUrl);
-      if (externalTitle != null) source.put("external_title", externalTitle);
-      if (externalRef != null) {
-        source.put("external_ref", externalRef);
-        source.put("external_ref_kind", externalRefKind);
+  static JSONObject sourceJson(AiRunSource source) {
+    JSONObject json = new JSONObject().put("kind", source.kind().getWireValue());
+    switch (source) {
+      case AiRunSource.Pubmed p -> json.put("pubmed_id", p.pubmedId());
+      case AiRunSource.Upload u -> {
+        json.put("pdf_content_sha256", u.pdfContentSha256());
+        // url/title/ref are optional upload provenance — omit when absent, mirroring
+        // the NON_NULL behaviour of aiProvenance.source.
+        if (u.externalUrl() != null) json.put("external_url", u.externalUrl());
+        if (u.externalTitle() != null) json.put("external_title", u.externalTitle());
+        if (u.externalRef() != null) {
+          json.put("external_ref", u.externalRef());
+          if (u.externalRefKind() != null)
+            json.put("external_ref_kind", u.externalRefKind().getWireValue());
+        }
       }
     }
-    return source;
+    return json;
   }
 }

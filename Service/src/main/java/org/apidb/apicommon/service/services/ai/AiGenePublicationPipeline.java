@@ -7,7 +7,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.apidb.apicommon.controller.CommentFactoryManager;
+import org.apidb.apicommon.model.comment.pojo.AiRunSource;
 import org.apidb.apicommon.model.comment.pojo.CommentAiRun;
+import org.apidb.apicommon.model.comment.pojo.JobStatus;
 import org.apidb.apicommon.service.services.ai.article.PmcBiocFetcher;
 import org.apidb.apicommon.service.services.ai.article.PmcBiocFetcher.TextUnavailableException;
 import org.apidb.apicommon.service.services.ai.gene.GeneMentionScanner;
@@ -161,20 +163,21 @@ public class AiGenePublicationPipeline implements Runnable {
     _job.updateStage(JobState.Stage.FETCHING_ARTICLE, "Resolving article text");
     JobSubmission submission = _job.getSubmission();
 
-    // Upload path: the front-end already extracted the text (MuPDF.js); nothing
-    // to fetch. The stage is still emitted for symmetry but completes at once.
-    if ("upload".equals(submission.getSourceKind())) {
-      _articleText = submission.getUploadedPaperText();
-      return;
-    }
+    switch (submission.getSource()) {
+      // Upload path: the front-end already extracted the text (MuPDF.js); nothing
+      // to fetch. The stage is still emitted for symmetry but completes at once.
+      case AiRunSource.Upload u -> _articleText = submission.getUploadedPaperText();
 
-    // PubMed path: fetch and parse the PMC BioC document.
-    try {
-      _articleText = _fetcher.fetch(submission.getPubmedId());
-    }
-    catch (TextUnavailableException e) {
-      _job.markTerminal(JobStatus.TEXT_UNAVAILABLE,
-          TerminalResult.textUnavailable(e.getMessage()));
+      // PubMed path: fetch and parse the PMC BioC document.
+      case AiRunSource.Pubmed p -> {
+        try {
+          _articleText = _fetcher.fetch(p.pubmedId());
+        }
+        catch (TextUnavailableException e) {
+          _job.markTerminal(JobStatus.TEXT_UNAVAILABLE,
+              TerminalResult.textUnavailable(e.getMessage()));
+        }
+      }
     }
   }
 
@@ -446,17 +449,11 @@ public class AiGenePublicationPipeline implements Runnable {
         .setJobId(s.getJobId())
         .setModelName(s.getModelName())
         .setPromptVersion(s.getPromptVersion())
-        .setSourceKind(s.getSourceKind())
-        .setPubmedId(s.getPubmedId())
-        .setExternalUrl(s.getExternalUrl())
-        .setExternalTitle(s.getExternalTitle())
-        .setPdfContentSha256(s.getPdfContentSha256())
-        .setExternalRef(s.getExternalRef())
-        .setExternalRefKind(s.getExternalRefKind())
+        .setSource(s.getSource())
         .setGeneId(s.getGeneId())
         .setSynonymsUsed(s.getSynonyms())
         .setOptionsJson(s.getOptionsJson())
-        .setTerminalStatus(terminal.getWireValue())
+        .setTerminalStatus(terminal)
         .setOnlyMentionedInPassing(terminal == JobStatus.MENTIONED_IN_PASSING)
         .setAiHeadline(success ? _aiHeadline : null)
         .setAiContent(success ? _aiContent : null)

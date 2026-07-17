@@ -8,6 +8,7 @@ import java.util.Date;
 
 import org.apidb.apicommon.model.comment.pojo.AiProvenance;
 import org.apidb.apicommon.model.comment.pojo.CommentAiRun;
+import org.apidb.apicommon.model.comment.pojo.JobStatus;
 import org.junit.Test;
 
 /**
@@ -24,7 +25,7 @@ public class AiProvenanceFromRunTest {
     return new CommentAiRun()
         .setJobId("deadbeef")
         .setGeneId("PF3D7_1133400")
-        .setTerminalStatus("success")
+        .setTerminalStatus(JobStatus.SUCCESS)
         .setAiHeadline("Pfs25 matters.")
         .setAiContent("- A finding.");
   }

@@ -2,6 +2,8 @@ package org.apidb.apicommon.service.services.ai;
 
 import javax.ws.rs.BadRequestException;
 
+import org.apidb.apicommon.model.comment.pojo.ExternalRefKind;
+import org.apidb.apicommon.model.comment.pojo.SourceKind;
 import org.junit.Test;
 
 public class SyncPreludeTest {
@@ -9,7 +11,7 @@ public class SyncPreludeTest {
   private static AiGenePublicationRequest pubmedRequest() {
     AiGenePublicationRequest r = new AiGenePublicationRequest();
     r.geneId = "PF3D7_1133400";
-    r.documentType = "pubmed";
+    r.documentType = SourceKind.PUBMED;
     r.pubmedId = "12345678";
     return r;
   }
@@ -17,7 +19,7 @@ public class SyncPreludeTest {
   private static AiGenePublicationRequest uploadRequest() {
     AiGenePublicationRequest r = new AiGenePublicationRequest();
     r.geneId = "PF3D7_1133400";
-    r.documentType = "upload";
+    r.documentType = SourceKind.UPLOAD;
     r.paperText = "The gene PF3D7_1133400 is discussed at length.";
     r.pdfContentSha256 = "abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789"; // 64 hex
     return r;
@@ -43,7 +45,7 @@ public class SyncPreludeTest {
   @Test(expected = BadRequestException.class)
   public void validate_rejectsUnknownDocumentType() {
     AiGenePublicationRequest r = pubmedRequest();
-    r.documentType = "carrier-pigeon";
+    r.documentType = SourceKind.fromWire("carrier-pigeon"); // unrecognised → null
     SyncPrelude.validate(r);
   }
 
@@ -72,27 +74,27 @@ public class SyncPreludeTest {
   public void validate_normalisesUploadPubmedRef() {
     AiGenePublicationRequest r = uploadRequest();
     r.externalRef = "  PMID: 12345678 ";
-    r.externalRefKind = "pubmed";
+    r.externalRefKind = ExternalRefKind.PUBMED;
     SyncPrelude.validate(r);
     org.junit.Assert.assertEquals("12345678", r.externalRef);
-    org.junit.Assert.assertEquals("pubmed", r.externalRefKind);
+    org.junit.Assert.assertEquals(ExternalRefKind.PUBMED, r.externalRefKind);
   }
 
   @Test
   public void validate_normalisesUploadDoiRef() {
     AiGenePublicationRequest r = uploadRequest();
     r.externalRef = "https://doi.org/10.1234/abc.def";
-    r.externalRefKind = "doi";
+    r.externalRefKind = ExternalRefKind.DOI;
     SyncPrelude.validate(r);
     org.junit.Assert.assertEquals("10.1234/abc.def", r.externalRef);
-    org.junit.Assert.assertEquals("doi", r.externalRefKind);
+    org.junit.Assert.assertEquals(ExternalRefKind.DOI, r.externalRefKind);
   }
 
   @Test(expected = javax.ws.rs.BadRequestException.class)
   public void validate_rejectsMalformedExternalRef() {
     AiGenePublicationRequest r = uploadRequest();
     r.externalRef = "not-a-pmid";
-    r.externalRefKind = "pubmed";
+    r.externalRefKind = ExternalRefKind.PUBMED;
     SyncPrelude.validate(r);
   }
 
@@ -100,7 +102,7 @@ public class SyncPreludeTest {
   public void validate_clearsExternalRefOnPubmedPath() {
     AiGenePublicationRequest r = pubmedRequest();
     r.externalRef = "12345678";
-    r.externalRefKind = "pubmed";
+    r.externalRefKind = ExternalRefKind.PUBMED;
     SyncPrelude.validate(r);
     org.junit.Assert.assertNull(r.externalRef);
     org.junit.Assert.assertNull(r.externalRefKind);

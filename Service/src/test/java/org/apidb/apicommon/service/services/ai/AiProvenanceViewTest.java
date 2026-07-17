@@ -5,6 +5,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.apidb.apicommon.model.comment.pojo.AiProvenanceView;
+import org.apidb.apicommon.model.comment.pojo.AiRunSource;
 import org.junit.Test;
 
 import com.fasterxml.jackson.databind.JsonNode;
@@ -27,7 +28,7 @@ public class AiProvenanceViewTest {
   @Test
   public void pubmedSourceSerializesPmidOnly() {
     JsonNode json = tree(new AiProvenanceView(
-        false, AiProvenanceView.Source.pubmed("12345"), "Headline", "Content"));
+        false, new AiRunSource.Pubmed("12345"), "Headline", "Content"));
 
     assertFalse(json.get("isEdited").asBoolean());
     assertEquals("Headline", json.get("originalHeadline").asText());
@@ -44,7 +45,7 @@ public class AiProvenanceViewTest {
   public void uploadSourceSerializesAllPresentFields() {
     JsonNode json = tree(new AiProvenanceView(
         true,
-        AiProvenanceView.Source.upload("http://x/paper.pdf", "A Paper", "abcd1234", null, null),
+        new AiRunSource.Upload("abcd1234", "http://x/paper.pdf", "A Paper", null, null),
         "H", "C"));
 
     assertTrue(json.get("isEdited").asBoolean());
@@ -60,7 +61,7 @@ public class AiProvenanceViewTest {
   @Test
   public void uploadSourceOmitsNullUrlAndTitleButKeepsDigest() {
     JsonNode json = tree(new AiProvenanceView(
-        false, AiProvenanceView.Source.upload(null, null, "abcd1234", null, null), "H", "C"));
+        false, new AiRunSource.Upload("abcd1234", null, null, null, null), "H", "C"));
 
     JsonNode source = json.get("source");
     assertEquals("upload", source.get("kind").asText());

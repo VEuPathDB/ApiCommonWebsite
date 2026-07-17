@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 
+import org.apidb.apicommon.model.comment.pojo.AiRunSource;
 import org.apidb.apicommon.model.comment.pojo.CommentAiRun;
 import org.gusdb.fgputil.db.runner.ArgumentBatch;
 import org.gusdb.fgputil.db.runner.ListArgumentBatch;
@@ -78,15 +79,31 @@ public class InsertCommentAiRunQuery extends InsertQuery {
     Timestamp completedAt = _run.getCompletedAt() == null ? null
         : new Timestamp(_run.getCompletedAt().getTime());
 
+    // Flatten the sealed source union onto the flat column set: each kind fills
+    // its own columns and leaves the others null.
+    String sourceKind = _run.getSource().kind().getWireValue();
+    String pubmedId = null, externalUrl = null, externalTitle = null,
+        pdfContentSha256 = null, externalRef = null, externalRefKind = null;
+    switch (_run.getSource()) {
+      case AiRunSource.Pubmed p -> pubmedId = p.pubmedId();
+      case AiRunSource.Upload u -> {
+        pdfContentSha256 = u.pdfContentSha256();
+        externalUrl = u.externalUrl();
+        externalTitle = u.externalTitle();
+        externalRef = u.externalRef();
+        externalRefKind = u.externalRefKind() == null ? null : u.externalRefKind().getWireValue();
+      }
+    }
+
     ListArgumentBatch batch = new ListArgumentBatch();
     batch.add(new Object[] {
         _run.getJobId(), _run.getModelName(), _run.getPromptVersion(),
-        _run.getSourceKind(), _run.getPubmedId(), _run.getExternalUrl(),
-        _run.getExternalTitle(), _run.getPdfContentSha256(), _run.getGeneId(),
-        synonyms, _run.getOptionsJson(), _run.getTerminalStatus(),
+        sourceKind, pubmedId, externalUrl,
+        externalTitle, pdfContentSha256, _run.getGeneId(),
+        synonyms, _run.getOptionsJson(), _run.getTerminalStatus().getWireValue(),
         _run.isOnlyMentionedInPassing(), _run.getAiHeadline(),
         _run.getAiContent(), completedAt,
-        _run.getExternalRef(), _run.getExternalRefKind()
+        externalRef, externalRefKind
     });
     batch.setParameterTypes(TYPES);
     return batch;

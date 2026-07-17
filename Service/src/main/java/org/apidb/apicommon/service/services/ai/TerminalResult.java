@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.apidb.apicommon.model.comment.pojo.JobStatus;
 import org.json.JSONArray;
 import org.json.JSONObject;
 

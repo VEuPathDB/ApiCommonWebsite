@@ -18,64 +18,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AiProvenanceView {
 
-  /**
-   * The article source of the AI run, mirroring the client's discriminated
-   * union: {@code {kind:'pubmed', pubmedId}} or {@code {kind:'upload',
-   * externalUrl?, externalTitle?, pdfContentSha256?}}. NON_NULL inclusion drops
-   * the fields that don't apply to the active {@code kind}; {@code pdfContentSha256}
-   * lets the client match an uploaded PDF to an existing published comment, the
-   * upload-path analogue of matching a PubMed comment by its PMID.
-   */
-  @JsonInclude(JsonInclude.Include.NON_NULL)
-  public static class Source {
-
-    private final String _kind;
-    private final String _pubmedId;
-    private final String _externalUrl;
-    private final String _externalTitle;
-    private final String _pdfContentSha256;
-    private final String _externalRef;
-    private final String _externalRefKind;
-
-    private Source(String kind, String pubmedId, String externalUrl,
-        String externalTitle, String pdfContentSha256,
-        String externalRef, String externalRefKind) {
-      _kind = kind;
-      _pubmedId = pubmedId;
-      _externalUrl = externalUrl;
-      _externalTitle = externalTitle;
-      _pdfContentSha256 = pdfContentSha256;
-      _externalRef = externalRef;
-      _externalRefKind = externalRefKind;
-    }
-
-    /** A PubMed-sourced run, identified by its PMID alone. */
-    public static Source pubmed(String pubmedId) {
-      return new Source("pubmed", pubmedId, null, null, null, null, null);
-    }
-
-    /** An upload-sourced run; url/title and an asserted PMID/DOI ref all optional. */
-    public static Source upload(String externalUrl, String externalTitle,
-        String pdfContentSha256, String externalRef, String externalRefKind) {
-      return new Source("upload", null, externalUrl, externalTitle, pdfContentSha256,
-          externalRef, externalRefKind);
-    }
-
-    public String getKind() { return _kind; }
-    public String getPubmedId() { return _pubmedId; }
-    public String getExternalUrl() { return _externalUrl; }
-    public String getExternalTitle() { return _externalTitle; }
-    public String getPdfContentSha256() { return _pdfContentSha256; }
-    public String getExternalRef() { return _externalRef; }
-    public String getExternalRefKind() { return _externalRefKind; }
-  }
-
   private final boolean _edited;
-  private final Source _source;
+  private final AiRunSource _source;
   private final String _originalHeadline;
   private final String _originalContent;
 
-  public AiProvenanceView(boolean edited, Source source,
+  public AiProvenanceView(boolean edited, AiRunSource source,
       String originalHeadline, String originalContent) {
     _edited = edited;
     _source = source;
@@ -86,7 +34,17 @@ public class AiProvenanceView {
   @JsonProperty("isEdited")
   public boolean isEdited() { return _edited; }
 
-  public Source getSource() { return _source; }
+  /**
+   * The article source of the AI run, the shared {@link AiRunSource} union
+   * serialized as the client's discriminated union: {@code {kind:'pubmed',
+   * pubmedId}} or {@code {kind:'upload', pdfContentSha256, externalUrl?,
+   * externalTitle?, externalRef?, externalRefKind?}}. The record shape plus its
+   * NON_NULL inclusion drop the fields that don't apply to the active
+   * {@code kind}; {@code pdfContentSha256} lets the client match an uploaded PDF
+   * to an existing published comment, the upload-path analogue of matching a
+   * PubMed comment by its PMID.
+   */
+  public AiRunSource getSource() { return _source; }
 
   public String getOriginalHeadline() { return _originalHeadline; }
 

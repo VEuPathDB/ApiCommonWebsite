@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.apidb.apicommon.model.comment.pojo.CommentAiRun;
+import org.apidb.apicommon.model.comment.pojo.JobStatus;
 
 /**
  * Look up a single {@code comment_ai_run} row by its content-digest
@@ -53,21 +54,15 @@ public class GetCommentAiRunQuery extends ValueQuery<Optional<CommentAiRun>> {
         .setJobId(rs.getString("job_id"))
         .setModelName(rs.getString("model_name"))
         .setPromptVersion(rs.getString("prompt_version"))
-        .setSourceKind(rs.getString("source_kind"))
-        .setPubmedId(rs.getString("pubmed_id"))
-        .setExternalUrl(rs.getString("external_url"))
-        .setExternalTitle(rs.getString("external_title"))
-        .setPdfContentSha256(rs.getString("pdf_content_sha256"))
+        .setSource(AiRunSourceRows.fromResultSet(rs))
         .setGeneId(rs.getString("gene_id"))
         .setSynonymsUsed(toStringList(rs.getArray("synonyms_used")))
         .setOptionsJson(rs.getString("options_json"))
-        .setTerminalStatus(rs.getString("terminal_status"))
+        .setTerminalStatus(JobStatus.fromWireValue(rs.getString("terminal_status")))
         .setOnlyMentionedInPassing(rs.getBoolean("is_only_mentioned_in_passing"))
         .setAiHeadline(rs.getString("ai_headline"))
         .setAiContent(rs.getString("ai_content"))
-        .setCompletedAt(rs.getTimestamp("completed_at"))
-        .setExternalRef(rs.getString("external_ref"))
-        .setExternalRefKind(rs.getString("external_ref_kind"));
+        .setCompletedAt(rs.getTimestamp("completed_at"));
 
     return Optional.of(run);
   }

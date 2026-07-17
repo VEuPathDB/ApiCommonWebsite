@@ -8,6 +8,7 @@ import javax.ws.rs.BadRequestException;
 
 import org.apidb.apicommon.model.comment.CommentFactory;
 import org.apidb.apicommon.model.comment.pojo.CommentAiRun;
+import org.apidb.apicommon.model.comment.pojo.SourceKind;
 import org.apidb.apicommon.service.services.ai.gene.GeneSynonymService;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
@@ -48,16 +49,17 @@ public class SyncPrelude {
     if (isBlank(request.geneId))
       throw new BadRequestException("gene_id is required");
 
-    String type = request.documentType == null ? "" : request.documentType.trim();
-    switch (type) {
-      case "pubmed":
+    if (request.documentType == null)
+      throw new BadRequestException("document_type must be 'pubmed' or 'upload'");
+    switch (request.documentType) {
+      case PUBMED -> {
         if (isBlank(request.pubmedId))
           throw new BadRequestException("pubmed_id is required when document_type=pubmed");
         // external_ref is an upload-only field; never carry it on the pubmed path.
         request.externalRef = null;
         request.externalRefKind = null;
-        break;
-      case "upload":
+      }
+      case UPLOAD -> {
         if (isBlank(request.paperText))
           throw new BadRequestException("paper_text is required when document_type=upload");
         if (request.pdfContentSha256 == null
@@ -67,9 +69,7 @@ public class SyncPrelude {
         ExternalRef.Result ref = ExternalRef.normalise(request.externalRef, request.externalRefKind);
         request.externalRef = ref.ref;
         request.externalRefKind = ref.kind;
-        break;
-      default:
-        throw new BadRequestException("document_type must be 'pubmed' or 'upload'");
+      }
     }
   }
 
@@ -98,7 +98,7 @@ public class SyncPrelude {
   }
 
   private static String sourceKey(AiGenePublicationRequest request) {
-    return "upload".equals(request.documentType)
+    return request.documentType == SourceKind.UPLOAD
         ? request.pdfContentSha256
         : request.pubmedId;
   }

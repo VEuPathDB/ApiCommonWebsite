@@ -21,17 +21,11 @@ public class CommentAiRun {
   private String _jobId;                 // hex SHA-256, primary key
   private String _modelName;
   private String _promptVersion;
-  private String _sourceKind;            // 'pubmed' | 'upload'
-  private String _pubmedId;              // iff sourceKind == 'pubmed'
-  private String _externalUrl;           // iff sourceKind == 'upload', optional
-  private String _externalTitle;         // iff sourceKind == 'upload', optional
-  private String _pdfContentSha256;      // iff sourceKind == 'upload'
-  private String _externalRef;           // iff sourceKind == 'upload', optional (PMID/DOI)
-  private String _externalRefKind;       // 'pubmed' | 'doi' | null
+  private AiRunSource _source;           // pubmed or upload, a sealed union
   private String _geneId;
   private final List<String> _synonymsUsed = new ArrayList<>();
   private String _optionsJson;           // canonical JSON of request `options`
-  private String _terminalStatus;
+  private JobStatus _terminalStatus;     // one of the three publishable terminals
   private boolean _onlyMentionedInPassing;
   private String _aiHeadline;            // null unless terminalStatus == 'success'
   private String _aiContent;             // null unless terminalStatus == 'success'
@@ -46,26 +40,8 @@ public class CommentAiRun {
   public String getPromptVersion() { return _promptVersion; }
   public CommentAiRun setPromptVersion(String promptVersion) { _promptVersion = promptVersion; return this; }
 
-  public String getSourceKind() { return _sourceKind; }
-  public CommentAiRun setSourceKind(String sourceKind) { _sourceKind = sourceKind; return this; }
-
-  public String getPubmedId() { return _pubmedId; }
-  public CommentAiRun setPubmedId(String pubmedId) { _pubmedId = pubmedId; return this; }
-
-  public String getExternalUrl() { return _externalUrl; }
-  public CommentAiRun setExternalUrl(String externalUrl) { _externalUrl = externalUrl; return this; }
-
-  public String getExternalTitle() { return _externalTitle; }
-  public CommentAiRun setExternalTitle(String externalTitle) { _externalTitle = externalTitle; return this; }
-
-  public String getExternalRef() { return _externalRef; }
-  public CommentAiRun setExternalRef(String externalRef) { _externalRef = externalRef; return this; }
-
-  public String getExternalRefKind() { return _externalRefKind; }
-  public CommentAiRun setExternalRefKind(String externalRefKind) { _externalRefKind = externalRefKind; return this; }
-
-  public String getPdfContentSha256() { return _pdfContentSha256; }
-  public CommentAiRun setPdfContentSha256(String pdfContentSha256) { _pdfContentSha256 = pdfContentSha256; return this; }
+  public AiRunSource getSource() { return _source; }
+  public CommentAiRun setSource(AiRunSource source) { _source = source; return this; }
 
   public String getGeneId() { return _geneId; }
   public CommentAiRun setGeneId(String geneId) { _geneId = geneId; return this; }
@@ -80,8 +56,8 @@ public class CommentAiRun {
   public String getOptionsJson() { return _optionsJson; }
   public CommentAiRun setOptionsJson(String optionsJson) { _optionsJson = optionsJson; return this; }
 
-  public String getTerminalStatus() { return _terminalStatus; }
-  public CommentAiRun setTerminalStatus(String terminalStatus) { _terminalStatus = terminalStatus; return this; }
+  public JobStatus getTerminalStatus() { return _terminalStatus; }
+  public CommentAiRun setTerminalStatus(JobStatus terminalStatus) { _terminalStatus = terminalStatus; return this; }
 
   public boolean isOnlyMentionedInPassing() { return _onlyMentionedInPassing; }
   public CommentAiRun setOnlyMentionedInPassing(boolean v) { _onlyMentionedInPassing = v; return this; }
