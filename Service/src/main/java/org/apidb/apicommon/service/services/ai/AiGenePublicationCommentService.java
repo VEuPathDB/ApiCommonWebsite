@@ -7,7 +7,6 @@ import java.util.concurrent.RejectedExecutionException;
 import javax.ws.rs.BadRequestException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
-import javax.ws.rs.ForbiddenException;
 import javax.ws.rs.GET;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.POST;
@@ -60,7 +59,7 @@ public class AiGenePublicationCommentService extends AbstractUserCommentService 
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   public Response submit(AiGenePublicationRequest body) throws WdkModelException {
-    requireAiCommentCreationEnabled(); // 403 when feature disabled
+    requireAiCommentCreationEnabled(); // 404 when feature disabled
     User user = fetchUser(); // 401 for guests
     SyncPrelude prelude = new SyncPrelude(getWdkModel(), JobRegistry.instance(), getCommentFactory());
     try {
@@ -135,7 +134,7 @@ public class AiGenePublicationCommentService extends AbstractUserCommentService 
   @Produces(MediaType.APPLICATION_JSON)
   public Response publish(@PathParam(JOB_ID_PARAM) String jobId, PublishRequest body)
       throws WdkModelException {
-    requireAiCommentCreationEnabled(); // 403 when feature disabled
+    requireAiCommentCreationEnabled(); // 404 when feature disabled
     User user = fetchUser(); // 401 for guests
 
     String headline = body == null ? null : body.headline;
@@ -192,7 +191,8 @@ public class AiGenePublicationCommentService extends AbstractUserCommentService 
    */
   private void requireAiCommentCreationEnabled() {
     if (!"true".equals(getWdkModel().getProperties().get("ALLOW_AI_ASSISTED_COMMENT_CREATION")))
-      throw new ForbiddenException("AI-assisted comment creation is not enabled on this site");
+      // 404 (not 403): the capability is absent on this deployment, not permission-gated.
+      throw new NotFoundException("AI-assisted comment creation is not enabled on this site");
   }
 
   private static boolean isBlank(String s) {
