@@ -1,5 +1,8 @@
 package org.apidb.apicommon.service.services.ai;
 
+import org.apidb.apicommon.model.comment.pojo.ExternalRefKind;
+import org.apidb.apicommon.model.comment.pojo.SourceKind;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -38,9 +41,9 @@ public class AiGenePublicationRequest {
   @JsonProperty("gene_id")
   public String geneId;
 
-  /** {@code pubmed} | {@code upload}. */
+  /** {@code pubmed} | {@code upload}. Null when absent or unrecognised (→ 400 in validation). */
   @JsonProperty("document_type")
-  public String documentType;
+  public SourceKind documentType;
 
   /** iff document_type == pubmed. */
   @JsonProperty("pubmed_id")
@@ -68,7 +71,7 @@ public class AiGenePublicationRequest {
 
   /** {@code pubmed} | {@code doi} — kind of {@link #externalRef}; upload path only. */
   @JsonProperty("external_ref_kind")
-  public String externalRefKind;
+  public ExternalRefKind externalRefKind;
 
   @JsonProperty("options")
   public Options options = new Options();

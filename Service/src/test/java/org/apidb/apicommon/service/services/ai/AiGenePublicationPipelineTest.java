@@ -13,6 +13,8 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
 
 import org.apidb.apicommon.model.comment.pojo.CommentAiRun;
+import org.apidb.apicommon.model.comment.pojo.JobStatus;
+import org.apidb.apicommon.model.comment.pojo.SourceKind;
 import org.apidb.apicommon.service.services.ai.article.PmcBiocFetcher;
 import org.apidb.apicommon.service.services.ai.article.PmcBiocFetcher.TextUnavailableException;
 import org.apidb.apicommon.service.services.ai.gene.GeneMentionScanner;
@@ -41,7 +43,7 @@ public class AiGenePublicationPipelineTest {
       List<String> synonyms) {
     AiGenePublicationRequest r = new AiGenePublicationRequest();
     r.geneId = "PF3D7_1133400";
-    r.documentType = documentType;
+    r.documentType = SourceKind.fromWire(documentType);
     r.pubmedId = pubmedId;
     r.paperText = paperText;
     JobSubmission submission = new JobSubmission(
@@ -353,8 +355,8 @@ public class AiGenePublicationPipelineTest {
     CommentAiRun row = store.captured;
     assertNotNull(row);
     assertEquals("deadbeef", row.getJobId());
-    assertEquals("success", row.getTerminalStatus());
-    assertEquals("upload", row.getSourceKind());
+    assertEquals(JobStatus.SUCCESS, row.getTerminalStatus());
+    assertEquals(SourceKind.UPLOAD, row.getSource().kind());
     assertEquals("claude-sonnet-4", row.getModelName());
     assertEquals("1", row.getPromptVersion());
     assertEquals("{}", row.getOptionsJson());
@@ -432,7 +434,7 @@ public class AiGenePublicationPipelineTest {
     assertEquals(JobStatus.GENE_NOT_MENTIONED, pipeline.job().getStatus());
     assertEquals("gene-not-mentioned is persisted to the cache", 1, store.calls);
     CommentAiRun row = store.captured;
-    assertEquals("gene-not-mentioned", row.getTerminalStatus());
+    assertEquals(JobStatus.GENE_NOT_MENTIONED, row.getTerminalStatus());
     assertNull(row.getAiHeadline());
     assertNull(row.getAiContent());
     assertFalse(row.isOnlyMentionedInPassing());
@@ -451,7 +453,7 @@ public class AiGenePublicationPipelineTest {
     assertEquals(JobStatus.MENTIONED_IN_PASSING, pipeline.job().getStatus());
     assertEquals("mentioned-in-passing is persisted to the cache", 1, store.calls);
     CommentAiRun row = store.captured;
-    assertEquals("mentioned-in-passing", row.getTerminalStatus());
+    assertEquals(JobStatus.MENTIONED_IN_PASSING, row.getTerminalStatus());
     assertTrue(row.isOnlyMentionedInPassing());
     assertNull(row.getAiHeadline());
   }

@@ -20,6 +20,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Function;
 
+import org.apidb.apicommon.model.comment.pojo.JobStatus;
+import org.apidb.apicommon.model.comment.pojo.SourceKind;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -46,7 +48,7 @@ public class JobRegistryTest {
   private static JobSubmission submission(String jobId) {
     AiGenePublicationRequest r = new AiGenePublicationRequest();
     r.geneId = "PF3D7_1133400";
-    r.documentType = "pubmed";
+    r.documentType = SourceKind.PUBMED;
     r.pubmedId = "12345678";
     return new JobSubmission(r, jobId, Collections.emptyList(),
         "claude-sonnet-4-20250514", "getGeneSummary/v1", "{}");

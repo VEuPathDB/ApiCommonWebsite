@@ -54,18 +54,9 @@ public class GetCommentAiProvenanceQuery extends ValueQuery<Map<Long, AiProvenan
     while (rs.next()) {
       long commentId = rs.getLong("comment_id");
 
-      AiProvenanceView.Source source = "pubmed".equals(rs.getString("source_kind"))
-          ? AiProvenanceView.Source.pubmed(rs.getString("pubmed_id"))
-          : AiProvenanceView.Source.upload(
-              rs.getString("external_url"),
-              rs.getString("external_title"),
-              rs.getString("pdf_content_sha256"),
-              rs.getString("external_ref"),
-              rs.getString("external_ref_kind"));
-
       out.put(commentId, new AiProvenanceView(
           rs.getBoolean("is_edited"),
-          source,
+          AiRunSourceRows.fromResultSet(rs),
           nullToEmpty(rs.getString("ai_headline")),
           nullToEmpty(rs.getString("ai_content"))));
     }

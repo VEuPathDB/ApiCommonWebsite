@@ -1,10 +1,14 @@
-package org.apidb.apicommon.service.services.ai;
+package org.apidb.apicommon.model.comment.pojo;
 
 /**
  * The {@code type} discriminator on a status response, matching the front-end
  * contract union (see {@code CLAUDE-ai-user-comments.md}). {@link #RUNNING} is
- * the only non-terminal value; while running, the {@link JobState.Stage} carries
- * the finer-grained progress.
+ * the only non-terminal value; while running, the finer-grained progress stage
+ * is carried separately.
+ *
+ * <p>Lives in the Model layer because the three publishable terminals are
+ * persisted to {@code comment_ai_run.terminal_status} and typed onto
+ * {@link CommentAiRun}; the Service layer shares this same enum.
  */
 public enum JobStatus {
 
@@ -28,8 +32,15 @@ public enum JobStatus {
     _terminal = terminal;
   }
 
-  /** The snake/kebab-case value sent on the wire. */
+  /** The snake/kebab-case value sent on the wire and stored in {@code terminal_status}. */
   public String getWireValue() { return _wire; }
+
+  /** Reverse of {@link #getWireValue()}, for reading a persisted {@code terminal_status}. */
+  public static JobStatus fromWireValue(String wire) {
+    for (JobStatus s : values())
+      if (s._wire.equals(wire)) return s;
+    throw new IllegalArgumentException("unknown JobStatus wire value: " + wire);
+  }
 
   public boolean isTerminal() { return _terminal; }
 

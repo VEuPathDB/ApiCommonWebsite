@@ -8,8 +8,10 @@ import static org.junit.Assert.assertTrue;
 import java.util.Date;
 
 import org.apidb.apicommon.model.comment.pojo.AiProvenance;
+import org.apidb.apicommon.model.comment.pojo.AiRunSource;
 import org.apidb.apicommon.model.comment.pojo.CommentAiRun;
 import org.apidb.apicommon.model.comment.pojo.CommentRequest;
+import org.apidb.apicommon.model.comment.pojo.JobStatus;
 import org.apidb.apicommon.service.services.ai.gene.GeneSynonymService;
 import org.json.JSONObject;
 import org.junit.Test;
@@ -27,7 +29,7 @@ public class AiGenePublicationPublishTest {
     return new CommentAiRun()
         .setJobId("deadbeef")
         .setGeneId("PF3D7_1133400")
-        .setTerminalStatus("success")
+        .setTerminalStatus(JobStatus.SUCCESS)
         .setAiHeadline("Pfs25 matters.")
         .setAiContent("- A finding.");
   }
@@ -77,7 +79,7 @@ public class AiGenePublicationPublishTest {
     CommentAiRun run = new CommentAiRun()
         .setJobId("cafe")
         .setGeneId("PF3D7_0100100")
-        .setTerminalStatus("gene-not-mentioned");
+        .setTerminalStatus(JobStatus.GENE_NOT_MENTIONED);
     CommentRequest req = AiGenePublicationCommentService.buildPublishComment(
         run, "My own headline", "My own observations.", new Date(), null);
     assertTrue("user-written body over a null AI original → edited",
@@ -103,8 +105,8 @@ public class AiGenePublicationPublishTest {
 
   @Test
   public void sourceJsonPubmedRunHasKindAndPmidOnly() {
-    CommentAiRun run = new CommentAiRun().setSourceKind("pubmed").setPubmedId("39324028");
-    JSONObject json = AiGenePublicationCommentService.sourceJson(run);
+    CommentAiRun run = new CommentAiRun().setSource(new AiRunSource.Pubmed("39324028"));
+    JSONObject json = AiGenePublicationCommentService.sourceJson(run.getSource());
 
     assertEquals("pubmed", json.getString("kind"));
     assertEquals("39324028", json.getString("pubmed_id"));
@@ -114,12 +116,9 @@ public class AiGenePublicationPublishTest {
 
   @Test
   public void sourceJsonUploadRunHasDigestAndOptionalProvenance() {
-    CommentAiRun run = new CommentAiRun()
-        .setSourceKind("upload")
-        .setPdfContentSha256("abcd1234")
-        .setExternalUrl("http://x/paper.pdf")
-        .setExternalTitle("A Paper");
-    JSONObject json = AiGenePublicationCommentService.sourceJson(run);
+    CommentAiRun run = new CommentAiRun().setSource(
+        new AiRunSource.Upload("abcd1234", "http://x/paper.pdf", "A Paper", null, null));
+    JSONObject json = AiGenePublicationCommentService.sourceJson(run.getSource());
 
     assertEquals("upload", json.getString("kind"));
     assertEquals("abcd1234", json.getString("pdf_content_sha256"));
@@ -130,8 +129,9 @@ public class AiGenePublicationPublishTest {
 
   @Test
   public void sourceJsonUploadOmitsNullUrlAndTitle() {
-    CommentAiRun run = new CommentAiRun().setSourceKind("upload").setPdfContentSha256("abcd1234");
-    JSONObject json = AiGenePublicationCommentService.sourceJson(run);
+    CommentAiRun run = new CommentAiRun().setSource(
+        new AiRunSource.Upload("abcd1234", null, null, null, null));
+    JSONObject json = AiGenePublicationCommentService.sourceJson(run.getSource());
 
     assertEquals("upload", json.getString("kind"));
     assertEquals("abcd1234", json.getString("pdf_content_sha256"));

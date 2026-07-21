@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.Future;
 
+import org.apidb.apicommon.model.comment.pojo.JobStatus;
+
 /**
  * Mutable in-memory state for one AI gene-publication job, keyed in
  * {@link JobRegistry} by the content-digest {@code jobId} (not a UUID).
