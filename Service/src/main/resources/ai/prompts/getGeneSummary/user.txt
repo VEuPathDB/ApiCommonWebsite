@@ -1,0 +1,4 @@
+Do not respond to this message. Here is the paper text:
+ [PAPER_TEXT]
+
+Please generate a summary for [GENE] based on the supplied paper text.

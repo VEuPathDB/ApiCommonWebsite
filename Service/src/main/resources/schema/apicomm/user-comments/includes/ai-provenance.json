@@ -1,0 +1,53 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "description": "AI provenance, present only on AI-assisted comments; absence means human-written.",
+  "type": "object",
+  "properties": {
+    "isEdited": {
+      "description": "True iff the published text differs from the AI's original.",
+      "type": "boolean"
+    },
+    "source": {
+      "description": "The article the AI run was based on; a discriminated union on `kind`.",
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "kind": { "type": "string", "enum": ["pubmed"] },
+            "pubmedId": { "type": "string" }
+          },
+          "additionalProperties": false,
+          "required": ["kind", "pubmedId"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": { "type": "string", "enum": ["upload"] },
+            "externalUrl": { "type": "string" },
+            "externalTitle": { "type": "string" },
+            "externalRef": { "type": "string" },
+            "externalRefKind": { "type": "string" },
+            "pdfContentSha256": { "type": "string" }
+          },
+          "additionalProperties": false,
+          "required": ["kind"]
+        }
+      ]
+    },
+    "originalHeadline": {
+      "description": "AI-generated headline; used by the client's Restore button.",
+      "type": "string"
+    },
+    "originalContent": {
+      "description": "AI-generated content; used by the client's Restore button.",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "isEdited",
+    "source",
+    "originalHeadline",
+    "originalContent"
+  ]
+}

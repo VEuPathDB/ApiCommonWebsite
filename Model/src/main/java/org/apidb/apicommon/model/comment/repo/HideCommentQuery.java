@@ -11,7 +11,7 @@ import static java.sql.Types.BIGINT;
 public class HideCommentQuery extends Query {
 
   private static final String SQL = "UPDATE %s.COMMENTS\n" +
-      "SET IS_VISIBLE = 0\n" +
+      "SET IS_VISIBLE = FALSE\n" +
       "WHERE comment_id = ?";
 
   private static final Integer[] TYPES = { BIGINT };

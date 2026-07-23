@@ -9,6 +9,10 @@
     }
   },
   "properties": {
+    "aiProvenance": {
+      "description": "AI provenance; present only on published AI-assisted comments.",
+      "$ref": "/schema/apicomm/user-comments/includes/ai-provenance.json"
+    },
     "additionalAuthors": {
       "type": "array",
       "items": {

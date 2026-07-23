@@ -1,0 +1,33 @@
+{
+  "type": "object",
+  "required": ["gene_id", "short_summary", "PDs"],
+  "properties": {
+    "gene_id": {
+      "type": "string",
+      "description": "Locus tag or accession for the gene."
+    },
+    "short_summary": {
+      "type": "string",
+      "description": "One sentence synthesised summary of the gene's MF, BP, and CC."
+    },
+    "PDs": {
+      "type": "array",
+      "description": "Up to 3 product descriptions",
+      "items": {
+        "type": "object",
+        "required": ["description", "evidence_code", "code_reason"],
+        "properties": {
+          "description": { "type": "string" },
+          "evidence_code": {
+            "type": "string",
+            "pattern": "^(EXP|IDA|IPI|IMP|IGI|IEP|HTP|HDA|HMP|HGI|HEP|ISS|ISO|ISA|ISM|IGC|RCA|TAS|NAS|IC|IEA)(; ?(EXP|IDA|IPI|IMP|IGI|IEP|HTP|HDA|HMP|HGI|HEP|ISS|ISO|ISA|ISM|IGC|RCA|TAS|NAS|IC|IEA))*$",
+            "description": "GO evidence code supporting the PD."
+          },
+          "code_reason": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
