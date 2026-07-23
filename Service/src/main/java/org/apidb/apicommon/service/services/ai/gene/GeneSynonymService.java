@@ -43,6 +43,7 @@ public class GeneSynonymService {
   public static final String SOURCE_ID_COLUMN = "source_id";
   public static final String PROJECT_ID_COLUMN = "project_id";
   public static final String ORGANISM_ATTR = "organism";
+  public static final String GENE_NAME_ATTR = "name";
 
   private final WdkModel _wdkModel;
 
@@ -127,7 +128,18 @@ public class GeneSynonymService {
 
   private List<String> readAliases(RecordInstance gene, String geneId) throws WdkModelException {
     TreeSet<String> aliases = new TreeSet<>();
+
     try {
+      // gene name
+      AttributeValue nameAttr = gene.getAttributeValue(GENE_NAME_ATTR);
+      if (nameAttr != null) {
+        String name = nameAttr.getValue();
+        if (name != null && !name.isEmpty() && !name.equals(geneId)) {
+          aliases.add(name);
+        }
+      }
+
+      // aliases
       TableValue table = gene.getTableValue(ALIAS_TABLE);
       for (Map<String, AttributeValue> row : table) {
         AttributeValue cell = row.get(ALIAS_COLUMN);
@@ -140,7 +152,7 @@ public class GeneSynonymService {
     }
     catch (WdkUserException e) {
       throw new WdkModelException(
-          "Failed to read the '" + ALIAS_TABLE + "' table for gene '" + geneId + "'", e);
+          "Failed to read gene attributes/aliases for gene '" + geneId + "'", e);
     }
     return new ArrayList<>(aliases);
   }
