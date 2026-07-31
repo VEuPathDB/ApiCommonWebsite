@@ -85,6 +85,18 @@ public class StrainSegmentIdTest {
     assertRejected(null);
   }
 
+  @Test
+  public void acceptsSingleBaseSegment() {
+    StrainSegmentId id = StrainSegmentId.parse("A0003:AACB03000001:100-100:f");
+    assertEquals(100, id.getRefStart());
+    assertEquals(100, id.getRefEnd());
+  }
+
+  @Test
+  public void rejectsCoordinateBelowOne() {
+    assertRejected("A0003:AACB03000001:0-200:f");
+  }
+
   private static void assertRejected(String sourceId) {
     try {
       StrainSegmentId.parse(sourceId);

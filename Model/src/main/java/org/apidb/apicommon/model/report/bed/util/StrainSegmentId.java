@@ -19,7 +19,7 @@ import java.util.regex.Pattern;
 public class StrainSegmentId {
 
   private static final Pattern PATTERN =
-      Pattern.compile("^([^:]+):([^:]+):(\\d+)-(\\d+):(f|r)$");
+      Pattern.compile("^([^:_]+):([^:]+):(\\d+)-(\\d+):(f|r)$");
 
   private final String _strain;
   private final String _refSeq;
@@ -27,8 +27,22 @@ public class StrainSegmentId {
   private final int _refEnd;
   private final StrandDirection _strand;
 
-  private StrainSegmentId(String strain, String refSeq, int refStart, int refEnd,
+  private StrainSegmentId(String sourceId, String strain, String refSeq, int refStart, int refEnd,
       StrandDirection strand) {
+    if (refStart < 1) {
+      throw new IllegalArgumentException(String.format(
+          "Strain segment ID '%s' has refStart %d, which is less than the minimum of 1",
+          sourceId, refStart));
+    }
+    if (refEnd < refStart) {
+      throw new IllegalArgumentException(String.format(
+          "Strain segment ID '%s' has end %d less than start %d", sourceId, refEnd, refStart));
+    }
+    if (!StrandDirection.forward.equals(strand) && !StrandDirection.reverse.equals(strand)) {
+      throw new IllegalArgumentException(String.format(
+          "Strain segment ID '%s' has strand %s, which must be forward or reverse",
+          sourceId, strand));
+    }
     _strain = strain;
     _refSeq = refSeq;
     _refStart = refStart;
@@ -46,16 +60,27 @@ public class StrainSegmentId {
           "Strain segment ID '%s' does not match required pattern %s",
           sourceId, PATTERN.pattern()));
     }
-    int start = Integer.parseInt(m.group(3));
-    int end = Integer.parseInt(m.group(4));
-    if (start > end) {
-      throw new IllegalArgumentException(String.format(
-          "Strain segment ID '%s' has start %d greater than end %d", sourceId, start, end));
-    }
-    return new StrainSegmentId(m.group(1), m.group(2), start, end,
+    int start = parseCoordinate(sourceId, m.group(3));
+    int end = parseCoordinate(sourceId, m.group(4));
+    return new StrainSegmentId(sourceId, m.group(1), m.group(2), start, end,
         StrandDirection.fromEfOrEr(m.group(5)));
   }
 
+  private static int parseCoordinate(String sourceId, String coordinate) {
+    try {
+      return Integer.parseInt(coordinate);
+    }
+    catch (NumberFormatException e) {
+      throw new IllegalArgumentException(String.format(
+          "Strain segment ID '%s' has non-numeric or out-of-range coordinate '%s'",
+          sourceId, coordinate), e);
+    }
+  }
+
+  /**
+   * Returns the canonical form of this ID, equal to the input for canonical input
+   * (e.g. an input with leading zeros in its coordinates re-formats without them).
+   */
   public String format() {
     return String.format("%s:%s:%d-%d:%s", _strain, _refSeq, _refStart, _refEnd,
         StrandDirection.reverse.equals(_strand) ? "r" : "f");
@@ -64,6 +89,11 @@ public class StrainSegmentId {
   /**
    * The key into the strain consensus FASTA, and therefore the BED chrom column.
    * Written by dnaseq-nextflow as {@code <sample>_<chrom>}.
+   *
+   * The strain field is constrained to contain no underscore (see PATTERN) because
+   * reference sequence IDs legitimately do (e.g. {@code Pf3D7_01_v3}); without that
+   * constraint, two different (strain, refSeq) pairs could concatenate to the same
+   * ambiguous key.
    */
   public String getStrainSeqId() {
     return _strain + "_" + _refSeq;
