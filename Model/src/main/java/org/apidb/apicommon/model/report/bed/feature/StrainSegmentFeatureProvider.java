@@ -20,11 +20,20 @@ import org.json.JSONObject;
  * - chrom is HARD: it must equal the strain consensus FASTA key ({@code <strain>_<refSeq>},
  *   written by dnaseq-nextflow as {@code <sample>_<chrom>}), or the FASTA index lookup
  *   fails.  It is taken from the {@code strain_seq_id} ATTRIBUTE rather than recomputed
- *   here, so the model stays the single source of truth for the key that was looked up.
+ *   here, so the model stays the single source of truth for the key that was looked up --
+ *   but it is then cross-checked against {@link StrainSegmentId#getStrainSeqId()}, see
+ *   {@link #validateStrainSeqIdMatchesId}.
  * - name is FREE: under {@code deflineFormat=QUERYONLY} seqret emits {@code '>' + name}
  *   verbatim, so it becomes the eventual FASTA defline.  It carries provenance, i.e. both
  *   coordinate systems.  RequestedDeflineFields is populated only when the caller passes
  *   {@code deflineType=full}, so by default the name column is the bare primary key.
+ *
+ * The accepted {@code deflineFields} vocabulary (there is no record page, so nothing else
+ * enumerates it) is exactly: {@code organism}, {@code strain}, {@code description},
+ * {@code reference_position}, {@code position}, {@code segment_length}.  {@code strain} and
+ * {@code reference_position} have no precedent in the other providers; they exist because a
+ * strain segment has two coordinate systems and the defline must record both.  Unrecognised
+ * names are silently ignored by {@link RequestedDeflineFields}.
  *
  * Reference coordinates are parsed from the primary key by {@link StrainSegmentId}, which
  * already validates {@code refStart >= 1}, {@code refEnd >= refStart} and forward/reverse
@@ -86,12 +95,17 @@ public class StrainSegmentFeatureProvider implements BedFeatureProvider {
     int strainStart = requiredIntegerAttribute(record, ATTR_STRAIN_START, featureId);
     int strainEnd = requiredIntegerAttribute(record, ATTR_STRAIN_END, featureId);
 
+    // LOAD-BEARING ORDER: both validations must run BEFORE the DeflineBuilder and
+    // BedLine.bed6 calls below.  Neither of those inspects its arguments, so moving a check
+    // after them -- or swapping the strainStart/strainEnd arguments -- emits a malformed
+    // feature with no error anywhere and nothing here would fail.
+    validateStrainSeqIdMatchesId(featureId, id, strainSeqId);
     validateStrainInterval(featureId, strainSeqId, strainStart, strainEnd);
 
     DeflineBuilder defline = new DeflineBuilder(featureId);
 
     if (_requestedDeflineFields.contains("organism")) {
-      defline.appendRecordAttribute(record, ATTR_ORGANISM);
+      defline.appendValue(requiredStringAttribute(record, ATTR_ORGANISM, featureId));
     }
     if (_requestedDeflineFields.contains("strain")) {
       defline.appendValue(id.getStrain());
@@ -111,6 +125,33 @@ public class StrainSegmentFeatureProvider implements BedFeatureProvider {
 
     // bed6 converts start to 0-based itself, so pass 1-based coordinates
     return List.of(BedLine.bed6(strainSeqId, strainStart, strainEnd, defline, id.getStrand()));
+  }
+
+  /**
+   * Cross-checks the chrom column against the primary key it must agree with.
+   *
+   * {@code chrom} is read from the {@code strain_seq_id} attribute (the model stays the
+   * source of truth), while {@link StrainSegmentId#getStrainSeqId()} computes the identical
+   * key from the primary key, and the SQL builds it the same way
+   * ({@code ids.strain || '_' || ids.ref_seq}).  Today they cannot disagree.  This exists
+   * for the day someone rewrites that column -- sourcing strain from
+   * {@code study.protocolappnode.name} instead of {@code split_part}, say -- because a
+   * mismatch there is a BED line pointing at the WRONG CONTIG with no error at all, which is
+   * precisely the failure this record class exists to prevent.  It is also the only
+   * production consumer of {@code getStrainSeqId()}, whose javadoc already promises it is the
+   * chrom column; without this the promise is tested but never exercised.
+   */
+  static void validateStrainSeqIdMatchesId(String featureId, StrainSegmentId id,
+      String strainSeqId) throws WdkModelException {
+    String expected = id.getStrainSeqId();
+    if (!expected.equals(strainSeqId)) {
+      throw new WdkModelException(String.format(
+          "Strain segment '%s' has strain_seq_id attribute '%s', which does not equal '%s'," +
+          " the key computed from its primary key.  These must be identical: strain_seq_id" +
+          " is the BED chrom column and therefore the key into the strain consensus FASTA," +
+          " so a mismatch would emit a feature on the wrong contig without any error.",
+          featureId, strainSeqId, expected));
+    }
   }
 
   /**
