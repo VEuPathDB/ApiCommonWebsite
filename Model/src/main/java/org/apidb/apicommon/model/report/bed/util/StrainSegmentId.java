@@ -15,11 +15,16 @@ import java.util.regex.Pattern;
  * Note the field patterns are {@code [^:]+} rather than DynSpan's greedy {@code (.*)}.
  * DynSpan's SQL and Java parsers disagree on IDs containing extra colons; this one
  * rejects them instead of guessing.
+ *
+ * ':' is the only delimiter, and the only character excluded from the strain and
+ * refSeq fields. In particular both may contain underscores: of 6,119 strain names
+ * carrying indel data, 1,494 (24%) contain an underscore and 0 contain a colon.
+ * This matches the SQL side, which also splits on ':' alone.
  */
 public class StrainSegmentId {
 
   private static final Pattern PATTERN =
-      Pattern.compile("^([^:_]+):([^:]+):(\\d+)-(\\d+):(f|r)$");
+      Pattern.compile("^([^:]+):([^:]+):(\\d+)-(\\d+):(f|r)$");
 
   private final String _strain;
   private final String _refSeq;
@@ -90,10 +95,16 @@ public class StrainSegmentId {
    * The key into the strain consensus FASTA, and therefore the BED chrom column.
    * Written by dnaseq-nextflow as {@code <sample>_<chrom>}.
    *
-   * The strain field is constrained to contain no underscore (see PATTERN) because
-   * reference sequence IDs legitimately do (e.g. {@code Pf3D7_01_v3}); without that
-   * constraint, two different (strain, refSeq) pairs could concatenate to the same
-   * ambiguous key.
+   * OPAQUE AND ONE-WAY: this is a lookup key only. It must never be split back into
+   * strain and refSeq. Both fields legitimately contain underscores -- 24% of strain
+   * names carrying indel data do (e.g. {@code Af293_resequence2}, {@code USGS_28834_1_NV}),
+   * as do reference sequence IDs (e.g. {@code Chr1_A_fumigatus_Af293}) -- so
+   * {@code A_B} + {@code C} is indistinguishable from {@code A} + {@code B_C}. No
+   * narrowing of the grammar can make it reversible, and narrowing it enough to try
+   * would reject a quarter of all real primary keys.
+   *
+   * A consumer that needs the strain or the reference sequence parses the primary key
+   * instead, where ':' delimits unambiguously (no strain name contains a colon).
    */
   public String getStrainSeqId() {
     return _strain + "_" + _refSeq;
