@@ -10,6 +10,7 @@ import java.util.List;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.json.JsonMapper;
 
 import org.gusdb.fgputil.EncryptionUtil;
 
@@ -21,7 +22,7 @@ public final class JobDigest {
 
   /** Canonical-JSON mapper: keys sorted alphabetically, compact (no whitespace). */
   private static final ObjectMapper CANONICAL_MAPPER =
-      new ObjectMapper().configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true);
+      JsonMapper.builder().configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true).build();
 
   // Control-char field/list separators keep the joined string unambiguous (no
   // value contains these ASCII separators), so distinct inputs cannot collide.

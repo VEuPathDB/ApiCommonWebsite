@@ -133,6 +133,7 @@ public class AnthropicJsonClient implements JsonPromptClient {
    * @param stage        prompt-stage directory name, e.g. {@code getGeneSummary}
    * @param replacements placeholder → value, e.g. {@code [GENE] → "PF3D7_1133400"}
    */
+  @Override
   public JsonNode complete(String stage, Map<String, String> replacements) throws WdkModelException {
     // The schema is sent to the model via structured outputs (output_config.format),
     // so it is no longer embedded in the prompt text.
