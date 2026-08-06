@@ -13,8 +13,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
@@ -23,20 +25,26 @@ import java.util.stream.Stream;
 
 import javax.sql.DataSource;
 
+import org.apidb.apicommon.model.comment.pojo.AiProvenance;
+import org.apidb.apicommon.model.comment.pojo.AiProvenanceView;
 import org.apidb.apicommon.model.comment.pojo.Attachment;
 import org.apidb.apicommon.model.comment.pojo.Author;
 import org.apidb.apicommon.model.comment.pojo.Category;
 import org.apidb.apicommon.model.comment.pojo.Comment;
+import org.apidb.apicommon.model.comment.pojo.CommentAiRun;
 import org.apidb.apicommon.model.comment.pojo.CommentRequest;
 import org.apidb.apicommon.model.comment.pojo.ExternalDatabase;
 import org.apidb.apicommon.model.comment.pojo.Project;
 import org.apidb.apicommon.model.comment.pojo.PubMedReference;
 import org.apidb.apicommon.model.comment.repo.DeleteAttachmentQuery;
 import org.apidb.apicommon.model.comment.repo.FindCommentQuery;
+import org.apidb.apicommon.model.comment.repo.GetAiProvenanceRowQuery;
 import org.apidb.apicommon.model.comment.repo.GetAllAttachmentsQuery;
 import org.apidb.apicommon.model.comment.repo.GetAttachmentQuery;
 import org.apidb.apicommon.model.comment.repo.GetAuthorQuery;
 import org.apidb.apicommon.model.comment.repo.GetCategoriesQuery;
+import org.apidb.apicommon.model.comment.repo.GetCommentAiProvenanceQuery;
+import org.apidb.apicommon.model.comment.repo.GetCommentAiRunQuery;
 import org.apidb.apicommon.model.comment.repo.GetCommentExistsQuery;
 import org.apidb.apicommon.model.comment.repo.GetCommentQuery;
 import org.apidb.apicommon.model.comment.repo.GetExternalDatabaseQuery;
@@ -44,6 +52,8 @@ import org.apidb.apicommon.model.comment.repo.HideCommentQuery;
 import org.apidb.apicommon.model.comment.repo.InsertAttachmentQuery;
 import org.apidb.apicommon.model.comment.repo.InsertAuthorQuery;
 import org.apidb.apicommon.model.comment.repo.InsertCategoryQuery;
+import org.apidb.apicommon.model.comment.repo.InsertCommentAiProvenanceQuery;
+import org.apidb.apicommon.model.comment.repo.InsertCommentAiRunQuery;
 import org.apidb.apicommon.model.comment.repo.InsertCommentQuery;
 import org.apidb.apicommon.model.comment.repo.InsertExternalDatabaseLinkQuery;
 import org.apidb.apicommon.model.comment.repo.InsertExternalDatabaseQuery;
@@ -157,12 +167,80 @@ public class CommentFactory implements Manageable<CommentFactory> {
       if (out.isPresent()) {
         final Comment tmp = out.get();
         tmp.setPubMedRefs(getPubMedRefs(tmp));
+        attachAiProvenance(con, Collections.singletonList(tmp));
       }
 
       return out;
     } catch (IOException | SQLException ex) {
       throw new WdkModelException(ex);
     }
+  }
+
+  /**
+   * Look up the shared AI-run cache row by its content-digest job id. A hit
+   * lets the sync prelude short-circuit a submit straight to a terminal
+   * cache-hit response (see the AI gene-publication service).
+   */
+  public Optional<CommentAiRun> findAiRun(String jobId) throws WdkModelException {
+    try (Connection con = _commentDs.getConnection()) {
+      return new GetCommentAiRunQuery(_config.getCommentSchema(), jobId).run(con).value();
+    } catch (SQLException ex) {
+      throw new WdkModelException(ex);
+    }
+  }
+
+  /**
+   * Read the raw {@code comment_ai_provenance} row (including the
+   * {@code run_job_id} FK) for a comment, or empty if it has none. Distinct from
+   * the batched, display-oriented {@link GetCommentAiProvenanceQuery} used by
+   * {@link #attachAiProvenance}, which yields an {@code AiProvenanceView} without
+   * the FK. Used by the edit flow to carry provenance forward onto a replacement
+   * comment so it re-links to the same shared run.
+   */
+  public Optional<AiProvenance> getAiProvenanceRow(long commentId) throws WdkModelException {
+    try (Connection con = _commentDs.getConnection()) {
+      return new GetAiProvenanceRowQuery(_config.getCommentSchema(), commentId).run(con).value();
+    } catch (SQLException ex) {
+      throw new WdkModelException(ex);
+    }
+  }
+
+  /**
+   * Persist the shared AI-run cache row produced by the pipeline's persisting
+   * stage, keyed by the content-digest job id. Written at most once per distinct
+   * job (the digest dedupes resubmissions). This is the pipeline's only write —
+   * the user-comment row is created later by the publish endpoint on approval.
+   */
+  public void persistAiRun(CommentAiRun run) throws WdkModelException {
+    try (Connection con = _commentDs.getConnection()) {
+      new InsertCommentAiRunQuery(_config.getCommentSchema(), run).run(con);
+    } catch (SQLException ex) {
+      throw new WdkModelException(ex);
+    }
+  }
+
+  /**
+   * Hydrate the optional {@code aiProvenance} field on each comment that has a
+   * published AI provenance row, in a single batched join over
+   * {@code comment_ai_provenance} + {@code comment_ai_run}. A no-op for an empty
+   * batch; comments without provenance are left with a null (omitted) field.
+   */
+  private void attachAiProvenance(Connection con, Collection<Comment> comments)
+      throws SQLException {
+    if (comments.isEmpty())
+      return;
+
+    final List<Long> ids = new ArrayList<>(comments.size());
+    for (Comment comment : comments)
+      ids.add(comment.getId());
+
+    final Map<Long, AiProvenanceView> byId =
+        new GetCommentAiProvenanceQuery(_config.getCommentSchema(), ids).run(con).value();
+    if (byId.isEmpty())
+      return;
+
+    for (Comment comment : comments)
+      comment.setAiProvenance(byId.get(comment.getId()));
   }
 
   public boolean commentExists(long commentId) throws WdkModelException {
@@ -203,6 +281,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
       for (Comment comment : out) {
         comment.setPubMedRefs(getPubMedRefs(comment));
       }
+      attachAiProvenance(con, out);
     } catch (SQLException | IOException e) {
       throw new WdkModelException(e);
     }
@@ -266,6 +345,10 @@ public class CommentFactory implements Manageable<CommentFactory> {
           new UpdateAttachmentQuery(schema, com.getPreviousCommentId(), commentId).run(con);
         if (com.getExternalDatabase() != null)
           saveExternalDb(con, commentId, com.getExternalDatabase());
+        if (com.getAiProvenance() != null) {
+          com.getAiProvenance().setCommentId(commentId);
+          new InsertCommentAiProvenanceQuery(schema, com.getAiProvenance()).run(con);
+        }
       } catch (Throwable e) {
         con.rollback();
         throw e;

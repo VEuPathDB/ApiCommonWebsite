@@ -114,7 +114,7 @@ public class SingleGeneAiExpressionReporter extends AbstractReporter {
   protected void write(OutputStream out) throws IOException, WdkModelException {
 
     // get table fields needed to produce summary inputs
-    Map<String, TableField> tableFields = _baseAnswer.getQuestion().getRecordClass().getTableFieldMap();
+    Map<String, TableField> tableFields = _baseAnswer.getQuestion().getTableFieldMap();
     List<TableField> tables = GeneRecordProcessor.REQUIRED_TABLE_NAMES.stream()
         .map(name -> tableFields.get(name)).collect(Collectors.toList());
 

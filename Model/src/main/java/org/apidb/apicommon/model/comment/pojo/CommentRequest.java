@@ -25,8 +25,25 @@ public class CommentRequest extends BaseComment {
    */
   private Set<Integer> _categoryIds;
 
+  /**
+   * AI provenance, present only when this comment originates from an approved
+   * AI gene-publication run (set by the publish endpoint). When non-null,
+   * {@code createComment} inserts a {@code comment_ai_provenance} row inside the
+   * same transaction as the comment.
+   */
+  private AiProvenance _aiProvenance;
+
   public CommentRequest() {
     _categoryIds = new HashSet<>();
+  }
+
+  public AiProvenance getAiProvenance() {
+    return _aiProvenance;
+  }
+
+  public CommentRequest setAiProvenance(AiProvenance aiProvenance) {
+    _aiProvenance = aiProvenance;
+    return this;
   }
 
   public Set<Integer> getCategoryIds() {

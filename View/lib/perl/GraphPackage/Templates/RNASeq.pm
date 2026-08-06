@@ -1751,7 +1751,21 @@ sub getPlotWidth { return 1000; }
 
 1;
 
+# fungi - pinfT30-4_Tzelepis_pinfT30-4_2018_rnaSeq_RSRC
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_c788cd2be6;
+sub getPlotWidth { return 700; }
 
+1;
+
+# fungi - calbSC5314_Temperature_Dependent_Fitness_rnaSeq_RSRC
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_1d23743516;
+sub getPlotWidth { return 700; }
+
+# fungi - cneoKN99_H99_caps_Doerring_2011_rnaSeq_RSRC
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_53d4ab3c1e;
+sub getPlotWidth { return 1500; }
+
+    
 #--------------------------------------------------------------------------------
 # TEMPLATE_ANCHOR rnaSeqGraph
 
