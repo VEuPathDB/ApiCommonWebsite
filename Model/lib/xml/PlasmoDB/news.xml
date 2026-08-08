@@ -32,6 +32,43 @@
 
 
 <record>
+  <attribute name="headline">Corrected statistics in the sample-set SNV search</attribute>
+  <attribute name="date">TBD - set to the release date</attribute>
+  <attribute name="tag"></attribute>
+  <attribute name="category">release</attribute>
+  <attribute name="item">
+    <![CDATA[
+    <div style="margin-left: 3em;">
+      <ul>
+        <li>The <b>SNV Characteristics Within a Group of Samples</b> search (formerly
+        "SNP Characteristics") now reports SNVs per kb of <b>coding</b> sequence. It
+        previously reported all variants per kb of genomic span while labelling the
+        column as CDS. The previous value is still available, in a new
+        "SNVs per kb (gene span)" column.</li>
+
+        <li>Its nonsynonymous/synonymous ratio is now normalized by the number of
+        synonymous and nonsynonymous sites in the gene, derived from the genetic code,
+        and is reported as <b>dN/dS (site-normalized)</b>. The previous raw count ratio
+        carried the genome's codon bias: in <i>P. falciparum</i> the pooled
+        synonymous-site fraction is 17.49% rather than the textbook ~25%. Median dN/dS
+        across the genome moves from about 2.0 to 0.47, which is the expected
+        purifying-selection signature.</li>
+
+        <li><b>Both values change for every gene</b>, and saved strategies that filter on
+        either will return different results than they did before.</li>
+
+        <li>Several result columns were also relabelled to match what they contain:
+        "Nonsynonymous SNPs" is now <b>Missense SNVs</b> (it never included stop-gained
+        variants, which are counted separately), and "Non-coding SNPs" is now
+        <b>Unclassified SNVs</b> (it covers positions where no protein product could be
+        assigned, not only positions outside coding sequence).</li>
+      </ul>
+    </div>
+    ]]>
+  </attribute>
+</record>
+
+<record>
   <attribute name="headline">PlasmoDB 46 Released</attribute>
   <attribute name="date">6 Nov 2019 13:00</attribute>
   <attribute name="tag">PlasmoDB11_19_release</attribute>
