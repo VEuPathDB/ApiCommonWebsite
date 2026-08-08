@@ -99,7 +99,7 @@ blastconfig_tempBlastPath: /var/www/Common/tmp/blast
 motifsearchconfig_motifCntxtLen: 20
 
 highspeedsnpsearchconfig_jobsDir: /var/www/Common/tmp/highSpeedSnpSearch
-highspeedsnpsearchconfig_idPrefix: NGS_SNP.
+highspeedsnpsearchconfig_idPrefix: Variant_
 
 highspeedchipsnpsearchconfig_jobsDir: /var/www/Common/tmp/highSpeedChipSnpSearch
 highspeedchipsnpsearchconfig_idPrefix: 'NULL'
