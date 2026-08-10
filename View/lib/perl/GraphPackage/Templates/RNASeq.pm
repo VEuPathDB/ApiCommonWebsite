@@ -298,6 +298,28 @@ sub getKeys{
 }
 1;
 
+# pfal3D7 / Lee_Gambian dual transcriptome (PlasmoDB side): DS_a966e260dd above already
+# excludes this dataset's own profile sets from its graph (they represent the same
+# Gambian-children cohort under a related study). The reverse exclusion was missing
+# here, so a gene's RNASeq graph for this dataset pulled in that other study's profile
+# sets too; after merging, the two studies collapsed to fewer distinct PROFILE_SET
+# groups than legend.label expected, crashing R with "invalid 'labels'; length 4
+# should be 1 or 2".
+package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_eeca6a5476;
+
+sub isExcludedProfileSet {
+  my ($self, $psName) = @_;
+
+  my $val = $self->SUPER::isExcludedProfileSet($self, $psName);
+  if ($val) {
+    return 1;
+  } elsif ($psName =~ /Transcriptome analysis of blood from Gambian children with malaria/) {
+    return 1;
+  }
+  return 0;
+}
+1;
+
 #vectorbase
 package ApiCommonWebsite::View::GraphPackage::Templates::RNASeq::DS_9800ad244a;
 
