@@ -21,6 +21,7 @@ public enum JobStatus {
 
   // terminal — NOT persisted (retries are free):
   TEXT_UNAVAILABLE("text-unavailable", true),
+  UPSTREAM_UNAVAILABLE("upstream-unavailable", true),
   INTERNAL_ERROR("internal-error", true),
   CANCELLED("cancelled", true);
 

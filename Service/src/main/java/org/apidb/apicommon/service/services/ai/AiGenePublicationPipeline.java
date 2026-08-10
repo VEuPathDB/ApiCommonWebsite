@@ -12,6 +12,7 @@ import org.apidb.apicommon.model.comment.pojo.CommentAiRun;
 import org.apidb.apicommon.model.comment.pojo.JobStatus;
 import org.apidb.apicommon.service.services.ai.article.PmcBiocFetcher;
 import org.apidb.apicommon.service.services.ai.article.PmcBiocFetcher.TextUnavailableException;
+import org.apidb.apicommon.service.services.ai.article.PmcBiocFetcher.UpstreamUnavailableException;
 import org.apidb.apicommon.service.services.ai.gene.GeneMentionScanner;
 import org.apidb.apicommon.service.services.ai.llm.AnthropicJsonClient;
 import org.apidb.apicommon.service.services.ai.llm.JsonPromptClient;
@@ -176,6 +177,13 @@ public class AiGenePublicationPipeline implements Runnable {
         catch (TextUnavailableException e) {
           _job.markTerminal(JobStatus.TEXT_UNAVAILABLE,
               TerminalResult.textUnavailable(e.getMessage()));
+        }
+        // NCBI was down or unreachable, so we never learned anything about this
+        // paper. Kept distinct from text-unavailable so the FE can say "try again
+        // later" instead of "this article has no full text".
+        catch (UpstreamUnavailableException e) {
+          _job.markTerminal(JobStatus.UPSTREAM_UNAVAILABLE,
+              TerminalResult.upstreamUnavailable(e.getMessage()));
         }
       }
     }
