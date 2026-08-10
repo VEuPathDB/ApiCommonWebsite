@@ -318,6 +318,9 @@ sub isExcludedProfileSet {
   }
   return 0;
 }
+
+# default plot width (500) is too narrow for this dataset's 46-subject x-axis
+sub getPlotWidth { return 900; }
 1;
 
 #vectorbase
