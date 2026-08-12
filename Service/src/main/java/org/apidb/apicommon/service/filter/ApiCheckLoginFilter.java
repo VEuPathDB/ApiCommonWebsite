@@ -37,7 +37,7 @@ public class ApiCheckLoginFilter extends CheckLoginFilter {
       "record-types/transcript/searches/GenesByText"
     ))
     .addAll(List.of(
-      "transcript","gene","organism","genomic-sequence","genomic-segment","est",
+		    "transcript","gene","organism","genomic-sequence","genomic-segment","strain-genomic-segment","est",
       "pathway","compound","blast-est-ontology","blast-orf-ontology","file","build",
       "dfile","metrics","jbrowse-gene","dataset-release-notes","legacy-dataset",
       "dataset","datasource","userdataset","junction"
