@@ -1,7 +1,9 @@
 package org.apidb.apicommon.model.report.ai.expression;
 
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
+import org.apache.log4j.Logger;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 
@@ -12,6 +14,8 @@ import com.anthropic.models.messages.Model;
 import com.openai.models.ResponseFormatJsonSchema.JsonSchema.Schema;
 
 public class ClaudeSummarizer extends Summarizer {
+
+  private static final Logger LOG = Logger.getLogger(ClaudeSummarizer.class);
 
   public static final Model CLAUDE_MODEL = Model.CLAUDE_SONNET_4_5_20250929;
   public static final boolean USE_EXTENDED_THINKING = false;
@@ -69,14 +73,23 @@ public class ClaudeSummarizer extends Summarizer {
       _costMonitor.updateCost(tokenUsage);
       
       // Extract text from content blocks using stream API
-      String rawText = response.content().stream()
+      Optional<String> rawText = response.content().stream()
           .flatMap(contentBlock -> contentBlock.text().stream())
           .map(textBlock -> textBlock.text())
-          .findFirst()
-          .orElseThrow(() -> new RuntimeException("No text content found in Claude response"));
-      
+          .findFirst();
+
+      if (rawText.isEmpty()) {
+        LOG.error("No text content found in Claude response. id=" + response.id() +
+            ", model=" + response.model() +
+            ", stopReason=" + response.stopReason().map(Object::toString).orElse("<none>") +
+            ", stopDetails=" + response.stopDetails().map(Object::toString).orElse("<none>") +
+            ", usage=" + response.usage() +
+            ", full response=" + response);
+      }
+
       // Strip JSON markdown formatting if present
-      return stripJsonMarkdown(rawText);
+      return stripJsonMarkdown(rawText
+          .orElseThrow(() -> new RuntimeException("No text content found in Claude response")));
     });
   }
 
