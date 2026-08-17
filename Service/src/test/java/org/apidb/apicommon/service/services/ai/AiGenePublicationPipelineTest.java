@@ -17,6 +17,7 @@ import org.apidb.apicommon.model.comment.pojo.JobStatus;
 import org.apidb.apicommon.model.comment.pojo.SourceKind;
 import org.apidb.apicommon.service.services.ai.article.PmcBiocFetcher;
 import org.apidb.apicommon.service.services.ai.article.PmcBiocFetcher.TextUnavailableException;
+import org.apidb.apicommon.service.services.ai.article.PmcBiocFetcher.UpstreamUnavailableException;
 import org.apidb.apicommon.service.services.ai.gene.GeneMentionScanner;
 import org.apidb.apicommon.service.services.ai.llm.JsonPromptClient;
 import org.gusdb.wdk.model.WdkModelException;
@@ -67,6 +68,15 @@ public class AiGenePublicationPipelineTest {
     };
   }
 
+  /** A fetcher that always signals NCBI itself was unavailable. */
+  private static PmcBiocFetcher outageFetcher(final String reason) {
+    return new PmcBiocFetcher() {
+      @Override public String fetch(String pubmedId) throws UpstreamUnavailableException {
+        throw new UpstreamUnavailableException(reason);
+      }
+    };
+  }
+
   @Test
   public void uploadPathUsesFrontEndSuppliedText() {
     JobState job = jobState("upload", null, "Gene PF3D7_1133400 is characterised here.");
@@ -105,6 +115,36 @@ public class AiGenePublicationPipelineTest {
     TerminalResult result = (TerminalResult) job.getResult();
     assertEquals(JobStatus.TEXT_UNAVAILABLE, result.getStatus());
     assertEquals("PMID not open-access", result.getDetail());
+  }
+
+  /**
+   * An NCBI outage must reach the front end as its own terminal, not as
+   * text-unavailable — the two prompt opposite user actions.
+   */
+  @Test
+  public void pubmedUpstreamOutageMarksItsOwnTerminal() {
+    JobState job = jobState("pubmed", "12345678", null);
+    AiGenePublicationPipeline pipeline =
+        new AiGenePublicationPipeline(job, null, outageFetcher("PMC BioC returned HTTP 503"));
+
+    pipeline.fetchArticle();
+
+    assertEquals(JobStatus.UPSTREAM_UNAVAILABLE, job.getStatus());
+    assertNull("upstream-unavailable must not set article text", pipeline.articleText());
+    TerminalResult result = (TerminalResult) job.getResult();
+    assertEquals(JobStatus.UPSTREAM_UNAVAILABLE, result.getStatus());
+    assertEquals("PMC BioC returned HTTP 503", result.getDetail());
+    assertFalse("an outage tells us nothing about the paper, so nothing may be cached",
+        JobStatus.UPSTREAM_UNAVAILABLE.isPublishable());
+  }
+
+  /** The wire payload the FE decodes: type plus a reason. */
+  @Test
+  public void upstreamOutageRendersReasonOnTheWire() {
+    JSONObject json = TerminalResult.upstreamUnavailable("NCBI returned HTTP 503").toJson("job-1");
+
+    assertEquals("upstream-unavailable", json.getString("type"));
+    assertEquals("NCBI returned HTTP 503", json.getString("reason"));
   }
 
   // --- scanning-gene-mentions stage (deliverable 3) -------------------------
