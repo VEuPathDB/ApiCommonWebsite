@@ -65,7 +65,7 @@ sitesearchsolr_env_map:
 # # really feels like a bad idea.  please don't let this cancer spread.  Find a
 # # generalized way to do this in the future... 
 community_env_map:
-   w_prefix: static-content.veupathdb.org/
+   w_prefix: legacy.static-content.veupathdb.org/
    b_prefix: qa.static-content.veupathdb.org/
    default: qa.static-content.veupathdb.org/
 
