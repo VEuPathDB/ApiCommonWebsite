@@ -17,7 +17,6 @@ import org.apidb.apicommon.model.comment.pojo.JobStatus;
 import org.apidb.apicommon.model.comment.pojo.SourceKind;
 import org.apidb.apicommon.service.services.ai.article.PmcBiocFetcher;
 import org.apidb.apicommon.service.services.ai.article.PmcBiocFetcher.TextUnavailableException;
-import org.apidb.apicommon.service.services.ai.article.PmcBiocFetcher.UpstreamUnavailableException;
 import org.apidb.apicommon.service.services.ai.gene.GeneMentionScanner;
 import org.apidb.apicommon.service.services.ai.llm.JsonPromptClient;
 import org.gusdb.wdk.model.WdkModelException;
