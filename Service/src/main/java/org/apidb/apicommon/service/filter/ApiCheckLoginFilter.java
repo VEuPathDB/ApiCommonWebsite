@@ -58,7 +58,7 @@ public class ApiCheckLoginFilter extends CheckLoginFilter {
   protected String getAdditionalUnauthorizedMessage() {
     Map<String,String> props = _wdkModel.getProperties();
     String clientBaseUrl = props.get("LOCALHOST") + props.get("WEBAPP_BASE_URL");
-    return ADDITIONAL_MESSAGE_TEMPLATE.formatted(clientBaseUrl, clientBaseUrl);
+    return String.format(ADDITIONAL_MESSAGE_TEMPLATE, clientBaseUrl, clientBaseUrl);
   }
 
   private boolean isOpenPath(String path) {
