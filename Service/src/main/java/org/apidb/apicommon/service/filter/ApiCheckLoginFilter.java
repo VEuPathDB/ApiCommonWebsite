@@ -31,6 +31,7 @@ public class ApiCheckLoginFilter extends CheckLoginFilter {
       "record-types",
       "record-types/dataset/records",
       "record-types/dataset/searches/AllDatasets/reports/standard",
+      "record-types/dataset/searches/MapStudiesForToolbar/reports/standard",
       "record-types/organism/searches/GenomeDataTypes/reports/standard",
       "record-types/genomic-sequence/searches/SequencesByTaxon",
       "record-types/transcript/searches/GeneByLocusTag",
