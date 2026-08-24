@@ -25,10 +25,10 @@ sub run {
     my $line = <IN>;
     my @header = split "\t", $line;
 
-    if ($header[8]=~/Benjamini/) {
-      $scoreCol=8;
+    if ($header[9]=~/Benjamini/) {
+      $scoreCol=9;
     } else {
-      die "Can't find score column 'Benjamini' in header 9th column: "  . join(", ", @header) . "\n";
+      die "Can't find score column 'Benjamini' in header 10th column: "  . join(", ", @header) . "\n";
     }
 
     print $rfh $header[1] . "\tPvalue\n";
