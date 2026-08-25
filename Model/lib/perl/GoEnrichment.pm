@@ -28,12 +28,12 @@ sub run {
 }
 
 sub getAnnotatedGenesCountBgd {
-  my ($self, $dbh, $taxonId) = @_;
+  my ($self, $dbh, $orgAbbrev) = @_;
 
   my $sql = "
 select count(distinct gts.gene_source_id)
-from apidbtuning.GoTermSummary gts
-where gts.taxon_id = $taxonId
+from webready.GoTermSummary_p gts
+where gts.org_abbrev = '$orgAbbrev'
   and gts.is_not != 'not'
   and gts.evidence_category in ($self->{evidCodes})
   -- include a row only if either it's a GO Slim term or we aren't restricting to GO Slim terms
@@ -87,15 +87,15 @@ where gts.gene_source_id = r.source_id
 
 
 sub getDataListSql {
-  my ($self, $taxonId, $geneResultSql, $dbh) = @_;
+  my ($self, $orgAbbrev, $geneResultSql, $dbh) = @_;
   $dbh->{LongReadLen} = 66000;
   $dbh->{LongTruncOk} = 1;
 return "
 select bgd.go_id, bgdcnt, resultcnt, resultlist, round(100*resultcnt/bgdcnt, 1) as pct_of_bgd, bgd.name
 from (select gts.go_id, count(distinct gts.gene_source_id) as bgdcnt,
              max(gts.go_term_name) as name
-      from apidbtuning.GoTermSummary gts
-      where gts.taxon_id = $taxonId
+      from webready.GoTermSummary_p gts
+      where gts.org_abbrev = '$orgAbbrev'
         and gts.ontology = '$self->{subOntology}'
         and gts.evidence_category in ($self->{evidCodes})
         and ($self->{goSubset} = 'No' or gts.is_go_slim = '1')

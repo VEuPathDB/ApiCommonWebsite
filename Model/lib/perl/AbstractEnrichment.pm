@@ -16,15 +16,15 @@ sub run {
 
   my $dbh = DBI->connect($c->getAppDb->getDbiDsn, $c->getAppDb->getLogin, $c->getAppDb->getPassword) or die DBI::errstr;
 
-  my $taxonId = $self->getTaxonId($dbh, $geneResultSql);
+  my $orgAbbrev = $self->getOrgAbbrev($dbh, $geneResultSql);
 
-  my $annotatedGenesBgd = $self->getAnnotatedGenesCountBgd($dbh, $taxonId);
+  my $annotatedGenesBgd = $self->getAnnotatedGenesCountBgd($dbh, $orgAbbrev);
   my $annotatedGenesResult = $self->getAnnotatedGenesCountResult($dbh, $geneResultSql);
  my $annotatedGenesListResult = $self->getAnnotatedGenesListResult($dbh, $geneResultSql);
 
   # get query to get back table to feed to python.
   # the columns are:  goId, bgdGeneCount, resultSetGeneCount
-  my $dataListSql =$self->getDataListSql($taxonId, $geneResultSql, $dbh);
+  my $dataListSql =$self->getDataListSql($orgAbbrev, $geneResultSql, $dbh);
   logMsg("done get datalistsql");
   $self->getEnrichmentList($dbh, $secondOutputFile, $annotatedGenesBgd, $annotatedGenesResult, $dataListSql, $pValueCutoff, $annotatedGenesListResult, $outputFile);
 
@@ -32,7 +32,7 @@ sub run {
 }
 
 sub getAnnotatedGenesCountBgd {
-  my ($self, $dbh, $taxonId) = @_;
+  my ($self, $dbh, $orgAbbrev) = @_;
   die "subclass must override getAnnotatedGenesCountBgd method";
 }
 
@@ -149,11 +149,11 @@ sub getEnrichmentList {
   close OUT2;
 }
 
-sub getTaxonId {
+sub getOrgAbbrev {
   my ($self, $dbh, $geneResultSql) = @_;
 
   my $sql = "
-SELECT distinct ga.taxon_id
+SELECT distinct ga.org_abbrev
 FROM  apidbtuning.GeneAttributes ga,
      ($geneResultSql) r
 where ga.source_id = r.source_id
@@ -161,10 +161,10 @@ where ga.source_id = r.source_id
 
   my $stmt = $self->runSql($dbh, $sql);
   my $count = 0;
-  my $taxonId;
-  while (my ($taxId) = $stmt->fetchrow_array()) { $taxonId = $taxId; $count++; }
+  my $orgAbbrev;
+  while (my ($abbrev) = $stmt->fetchrow_array()) { $orgAbbrev = $abbrev; $count++; }
   die "Result has genes from more than one taxon. SQL: $sql\n" if $count != 1;
-  return $taxonId;
+  return $orgAbbrev;
 }
 
 sub logMsg {

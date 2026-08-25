@@ -27,12 +27,13 @@ sub run {
 }
 
 sub getAnnotatedGenesCountBgd {
-  my ($self, $dbh, $taxonId) = @_;
+  my ($self, $dbh, $orgAbbrev) = @_;
 
   my $sql = "
 SELECT count (distinct tp.gene_source_id)
          from    webready.TranscriptPathway_p tp, webready.GeneAttributes_p ga
-        where  ga.taxon_id = $taxonId
+        where  ga.org_abbrev = '$orgAbbrev'
+        AND  tp.org_abbrev = '$orgAbbrev'
         AND    tp.gene_source_id = ga.source_id
         AND tp.complete_ec >= $self->{excludeIncomplete}
         AND tp.exact_match >= $self->{exactMatchOnly}
@@ -127,7 +128,7 @@ SELECT distinct tp.gene_source_id
 #";
 #}
 sub getDataListSql {
-  my ($self, $taxonId, $geneResultSql, $dbh) = @_;
+  my ($self, $orgAbbrev, $geneResultSql, $dbh) = @_;
   $dbh->{LongReadLen} = 66000;
   $dbh->{LongTruncOk} = 1;
 return "
@@ -145,7 +146,8 @@ from
         , webready.GeneAttributes_p ga
         , webready.PathwayCompounds pc
         , webready.PathwayReactions pr
-        where  ga.taxon_id = $taxonId
+        where  ga.org_abbrev = '$orgAbbrev'
+        and  tp.org_abbrev = '$orgAbbrev'
         and   tp.gene_source_id = ga.source_id
         AND tp.complete_ec >= $self->{excludeIncomplete}
         AND tp.exact_match >= $self->{exactMatchOnly}
