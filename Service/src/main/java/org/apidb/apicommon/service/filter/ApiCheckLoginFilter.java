@@ -22,6 +22,8 @@ public class ApiCheckLoginFilter extends CheckLoginFilter {
       "subscription-groups",
       "oauth/state-token",
       "payment-form-content",
+      "payment-form-context",
+      "payment-process",
       "users",
       "user-password-reset",
       "users/current",
