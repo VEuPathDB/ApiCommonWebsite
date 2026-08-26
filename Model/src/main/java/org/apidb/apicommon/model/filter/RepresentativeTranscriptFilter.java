@@ -48,11 +48,8 @@ public class RepresentativeTranscriptFilter extends StepFilter {
   // select first transcript when ordered by source_id 
   private static final String SELECT_FIRST_TRANSCRIPT_SQL =
       "WITH inputSql as (" + ORIG_SQL_PARAM + ") " +
-      "SELECT * FROM inputSql " +
-      "WHERE SOURCE_ID IN ( " +
-      "  SELECT MIN(subq_.SOURCE_ID) FROM inputSql subq_ " +
-      "  GROUP BY subq_.GENE_SOURCE_ID " +
-      ")";
+      "SELECT DISTINCT ON (GENE_SOURCE_ID) * FROM inputSql " +
+      "ORDER BY GENE_SOURCE_ID, SOURCE_ID";
 
   // select the longest transcript;  
   // return only one of them (MAX source_id) if several have the same length
