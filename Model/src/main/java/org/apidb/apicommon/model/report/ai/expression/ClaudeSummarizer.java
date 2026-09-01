@@ -4,9 +4,11 @@ import java.util.concurrent.CompletableFuture;
 
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
+import org.gusdb.wdk.model.WdkServiceTemporarilyUnavailableException;
 
 import com.anthropic.client.AnthropicClientAsync;
 import com.anthropic.client.okhttp.AnthropicOkHttpClientAsync;
+import com.anthropic.errors.BadRequestException;
 import com.anthropic.models.messages.MessageCreateParams;
 import com.anthropic.models.messages.Model;
 import com.openai.models.ResponseFormatJsonSchema.JsonSchema.Schema;
@@ -17,6 +19,11 @@ public class ClaudeSummarizer extends Summarizer {
   public static final boolean USE_EXTENDED_THINKING = false;
 
   private static final String CLAUDE_API_KEY_PROP_NAME = "CLAUDE_API_KEY";
+
+  // Substring of the message Claude sends in a 400 BadRequestException when the
+  // configured API usage limit (e.g. spend cap) has been reached; not a distinct
+  // error type in the SDK, so we have to detect it by message content.
+  private static final String USAGE_LIMIT_MESSAGE_MARKER = "usage limit";
 
   private final AnthropicClientAsync _claudeClient;
 
@@ -58,7 +65,23 @@ public class ClaudeSummarizer extends Summarizer {
         () -> _claudeClient.messages().create(request),
         e -> e instanceof com.anthropic.errors.InternalServerException,
         "Claude API call"
-    ).thenApply(response -> {
+    ).exceptionally(throwable -> {
+      // async completion may wrap the real cause in a CompletionException
+      Throwable cause = throwable instanceof java.util.concurrent.CompletionException && throwable.getCause() != null
+          ? throwable.getCause()
+          : throwable;
+
+      if (cause instanceof BadRequestException &&
+          cause.getMessage() != null &&
+          cause.getMessage().toLowerCase().contains(USAGE_LIMIT_MESSAGE_MARKER)) {
+        throw new WdkServiceTemporarilyUnavailableException(
+            "Claude API usage limit reached: " + cause.getMessage(), (BadRequestException) cause);
+      }
+
+      if (cause instanceof RuntimeException) throw (RuntimeException) cause;
+      throw new RuntimeException(cause);
+    }).thenApply(response -> {
+
       // Convert Claude usage to TokenUsage for cost monitoring
       com.anthropic.models.messages.Usage claudeUsage = response.usage();
       TokenUsage tokenUsage = TokenUsage.builder()
