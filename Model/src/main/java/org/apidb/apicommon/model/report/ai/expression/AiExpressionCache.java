@@ -1,7 +1,7 @@
 package org.apidb.apicommon.model.report.ai.expression;
 
 import static java.util.concurrent.CompletableFuture.supplyAsync;
-import static org.gusdb.fgputil.functional.Functions.wrapException;
+import static org.gusdb.fgputil.functional.Functions.mapException;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -33,6 +33,7 @@ import org.gusdb.fgputil.functional.FunctionalInterfaces.PredicateWithException;
 import org.gusdb.fgputil.functional.FunctionalInterfaces.SupplierWithException;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkRuntimeException;
+import org.gusdb.wdk.model.WdkServiceTemporarilyUnavailableException;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -358,6 +359,10 @@ public class AiExpressionCache {
     }
   }
 
+  private RuntimeException customExceptionWrapper(Exception e) {
+    return e instanceof RuntimeException ? (RuntimeException)e : new RuntimeException(e);
+  }
+
   /**
    * Returns a set of cached experiment descriptions, generating and storing new values for any
    * experiments not present or that are out of date (mismatched digests).  In this way, any new
@@ -382,7 +387,7 @@ public class AiExpressionCache {
       List<CompletableFuture<JSONObject>> results = new ArrayList<>();
       for (ExperimentInputs input : experimentData) {
 
-        results.add(supplyAsync(() -> wrapException(() -> _cache.populateAndProcessContent(input.getCacheKey(),
+        results.add(supplyAsync(() -> mapException(() -> _cache.populateAndProcessContent(input.getCacheKey(),
 
           // populator
           getPopulator(input.getDigest(), () -> experimentDescriber.apply(input).get()),
@@ -396,7 +401,7 @@ public class AiExpressionCache {
             return false; // do not repopulate if able to look up valid value
           }))
 
-        ), exec));
+        , this::customExceptionWrapper), exec));
       }
 
       // wait for all threads, filling lists along the way
@@ -410,7 +415,21 @@ public class AiExpressionCache {
       if (exceptions.isEmpty()) {
         return descriptors;
       }
-      throw new RuntimeException(exceptions.get(0));
+
+      // detect and handle special case of usage limits reached
+      Throwable t = exceptions.get(0);
+      if (t instanceof WdkServiceTemporarilyUnavailableException) {
+        throw (WdkServiceTemporarilyUnavailableException)t;
+      }
+      if (t instanceof java.util.concurrent.CompletionException &&
+          t.getCause() != null &&
+          t.getCause() instanceof WdkServiceTemporarilyUnavailableException) {
+        throw (WdkServiceTemporarilyUnavailableException)t.getCause();
+      }
+      if (t instanceof RuntimeException) {
+        throw (RuntimeException)t;
+      }
+      throw new RuntimeException(t);
     }
     finally {
       exec.shutdown();
