@@ -20,9 +20,6 @@ import org.json.JSONObject;
 
 import com.openai.client.OpenAIClientAsync;
 import com.openai.client.okhttp.OpenAIOkHttpClientAsync;
-import com.openai.core.JsonValue;
-import com.openai.models.ResponseFormatJsonSchema.JsonSchema;
-import com.openai.models.ResponseFormatJsonSchema.JsonSchema.Schema;
 import com.openai.models.embeddings.EmbeddingCreateParams;
 import com.openai.models.embeddings.EmbeddingModel;
 
@@ -39,32 +36,36 @@ public abstract class Summarizer {
 
   protected static final String SYSTEM_MESSAGE = "You are a bioinformatician working for VEuPathDB.org. You are an expert at providing biologist-friendly summaries of transcriptomic data";
 
-  // Prepare JSON schemas for structured responses
-  protected static final JsonSchema.Schema experimentResponseSchema = JsonSchema.Schema.builder()
-    .putAdditionalProperty("type", JsonValue.from("object"))
-    .putAdditionalProperty("properties", JsonValue.from(Map.of(
+  // Platform-agnostic JSON Schema documents for structured responses. Plain
+  // Map/List literals rather than either provider's SDK types: both
+  // com.openai.core.JsonValue.from(Object) and com.anthropic.core.JsonValue.from(Object)
+  // recursively serialize arbitrary Map/List/primitive graphs, so each Summarizer
+  // subclass wraps this same literal in its own SDK's schema type at request time.
+  protected static final Map<String, Object> experimentResponseSchema = Map.of(
+      "type", "object",
+      "properties", Map.of(
           "one_sentence_summary", Map.of("type", "string"),
           "biological_importance", Map.of("type", "integer", "minimum", 0, "maximum", 5),
           "confidence", Map.of("type", "integer", "minimum", 0, "maximum", 5),
           "experiment_keywords", Map.of("type", "array", "items", Map.of("type", "string")),
           "notes", Map.of("type", "string")
-    )))
-    .putAdditionalProperty("required", JsonValue.from(List.of(
+      ),
+      "required", List.of(
           "one_sentence_summary",
           "biological_importance",
           "confidence",
           "experiment_keywords",
           "notes"
-    )))
-    .putAdditionalProperty("additionalProperties", JsonValue.from(false))
-    .build();
+      ),
+      "additionalProperties", false
+  );
 
-  protected static final JsonSchema.Schema finalResponseSchema = JsonSchema.Schema.builder()
-    .putAdditionalProperty("type", JsonValue.from("object"))
-    .putAdditionalProperty("properties", JsonValue.from(Map.of(
+  protected static final Map<String, Object> finalResponseSchema = Map.of(
+      "type", "object",
+      "properties", Map.of(
           "headline", Map.of("type", "string"),
           "one_paragraph_summary", Map.of("type", "string"),
-          "topics", Map.of("type", "array", "minimum", 1, "items", Map.of(
+          "topics", Map.of("type", "array", "minItems", 1, "items", Map.of(
               "type", "object",
               "required", List.of("headline", "one_sentence_summary", "dataset_ids"),
               "properties", Map.of(
@@ -72,16 +73,16 @@ public abstract class Summarizer {
                   "one_sentence_summary", Map.of("type", "string"),
                   "dataset_ids", Map.of("type", "array", "items", Map.of("type", "string"))
               ),
-              "additionalProperties", JsonValue.from(false)
+              "additionalProperties", false
           ))
-    )))
-    .putAdditionalProperty("required", JsonValue.from(List.of(
+      ),
+      "required", List.of(
           "headline",
           "one_paragraph_summary",
           "topics"
-    )))
-    .putAdditionalProperty("additionalProperties", JsonValue.from(false))
-    .build();
+      ),
+      "additionalProperties", false
+  );
 
   protected final DailyCostMonitor _costMonitor;
   private final OpenAIClientAsync _embeddingClient;
@@ -378,14 +379,14 @@ public abstract class Summarizer {
   }
 
 
-  protected abstract CompletableFuture<String> callApiForJson(String prompt, Schema schema);
-  
+  protected abstract CompletableFuture<String> callApiForJson(String prompt, Map<String, Object> schema);
+
   protected abstract void updateCostMonitor(Object apiResponse);
 
   private CompletableFuture<JSONObject> getValidatedAiResponse(
       String operationDescription,
       String prompt,
-      Schema schema,
+      Map<String, Object> schema,
       Function<JSONObject,JSONObject> createFinalJson
   ) {
     return callApiForJson(prompt, schema).thenApply(jsonString -> {

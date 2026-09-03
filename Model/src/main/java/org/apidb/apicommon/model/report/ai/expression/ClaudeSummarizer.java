@@ -1,7 +1,12 @@
 package org.apidb.apicommon.model.report.ai.expression;
 
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.concurrent.CompletableFuture;
+import java.util.stream.Collectors;
 
 import org.apache.log4j.Logger;
 import org.gusdb.wdk.model.WdkModel;
@@ -9,11 +14,13 @@ import org.gusdb.wdk.model.WdkModelException;
 
 import com.anthropic.client.AnthropicClientAsync;
 import com.anthropic.client.okhttp.AnthropicOkHttpClientAsync;
+import com.anthropic.core.JsonValue;
+import com.anthropic.models.messages.JsonOutputFormat;
 import com.anthropic.models.messages.Message;
 import com.anthropic.models.messages.MessageCreateParams;
+import com.anthropic.models.messages.OutputConfig;
 import com.anthropic.models.messages.StopReason;
 import com.anthropic.models.messages.Usage;
-import com.openai.models.ResponseFormatJsonSchema.JsonSchema.Schema;
 
 public class ClaudeSummarizer extends Summarizer {
 
@@ -72,13 +79,8 @@ public class ClaudeSummarizer extends Summarizer {
   }
 
   @Override
-  protected CompletableFuture<String> callApiForJson(String prompt, Schema schema) {
-    // Convert JSON schema to natural language description for Claude
-    String jsonFormatInstructions = convertSchemaToPromptInstructions(schema);
-
-    String enhancedPrompt = prompt + "\n\n" + jsonFormatInstructions;
-
-    return sendMessage(CLAUDE_MODEL, enhancedPrompt)
+  protected CompletableFuture<String> callApiForJson(String prompt, Map<String, Object> schema) {
+    return sendMessage(CLAUDE_MODEL, prompt, schema)
         .thenCompose(response -> {
           // A safety-classifier refusal arrives as a normal HTTP 200 with
           // stop_reason=refusal and no content blocks. Re-send the identical
@@ -88,7 +90,7 @@ public class ClaudeSummarizer extends Summarizer {
             return CompletableFuture.completedFuture(response);
           }
           logRefusal(response, "re-sending on fallback model " + _fallbackModel);
-          return sendMessage(_fallbackModel, enhancedPrompt);
+          return sendMessage(_fallbackModel, prompt, schema);
         })
         .thenApply(this::extractJsonText);
   }
@@ -97,12 +99,17 @@ public class ClaudeSummarizer extends Summarizer {
    * One Messages API call for the given model id, wrapped in the shared
    * exponential-backoff retry for transient 5xx / overload errors.
    */
-  private CompletableFuture<Message> sendMessage(String modelId, String enhancedPrompt) {
+  private CompletableFuture<Message> sendMessage(String modelId, String prompt, Map<String, Object> schema) {
     MessageCreateParams.Builder requestBuilder = MessageCreateParams.builder()
         .model(modelId)
         .maxTokens(MAX_RESPONSE_TOKENS)
         .system(SYSTEM_MESSAGE)
-        .addUserMessage(enhancedPrompt);
+        .outputConfig(OutputConfig.builder()
+            .format(JsonOutputFormat.builder()
+                .schema(toClaudeSchema(schema))
+                .build())
+            .build())
+        .addUserMessage(prompt);
 
     if (USE_EXTENDED_THINKING) {
       requestBuilder.enabledThinking(1024);
@@ -115,6 +122,54 @@ public class ClaudeSummarizer extends Summarizer {
         e -> e instanceof com.anthropic.errors.InternalServerException,
         "Claude API call (" + modelId + ")"
     );
+  }
+
+  // Keywords the platform-agnostic schemas use (for OpenAI's benefit) that Claude's
+  // output_config.format rejects outright: "output_config.format.schema: For 'integer'
+  // type, properties maximum, minimum are not supported" (400 invalid_request_error).
+  // Per the JSON Schema Limitations in Anthropic's structured-outputs docs, numerical/
+  // string/array bound constraints aren't supported at all - the Python/TS SDKs strip
+  // these client-side automatically; the Java SDK does not, so we do it here.
+  private static final Set<String> CLAUDE_UNSUPPORTED_SCHEMA_KEYWORDS = Set.of(
+      "minimum", "maximum", "exclusiveMinimum", "exclusiveMaximum", "multipleOf",
+      "minLength", "maxLength", "pattern",
+      "minItems", "maxItems", "uniqueItems"
+  );
+
+  private static JsonOutputFormat.Schema toClaudeSchema(Map<String, Object> schema) {
+    Map<String, Object> sanitized = stripUnsupportedKeywords(schema);
+    JsonOutputFormat.Schema.Builder builder = JsonOutputFormat.Schema.builder();
+    // Looks like a shallow copy, but JsonValue.from() recursively serializes nested
+    // Map/List values, so this is effectively a deep copy.
+    sanitized.forEach((key, value) -> builder.putAdditionalProperty(key, JsonValue.from(value)));
+    return builder.build();
+  }
+
+  private static Map<String, Object> stripUnsupportedKeywords(Map<String, Object> map) {
+    Map<String, Object> result = new LinkedHashMap<>();
+    for (Map.Entry<String, Object> entry : map.entrySet()) {
+      if (!CLAUDE_UNSUPPORTED_SCHEMA_KEYWORDS.contains(entry.getKey())) {
+        result.put(entry.getKey(), stripUnsupportedKeywords(entry.getValue()));
+      }
+    }
+    return result;
+  }
+  
+  private static Object stripUnsupportedKeywords(Object node) {
+    if (node instanceof Map<?, ?> map) {
+      Map<String, Object> result = new LinkedHashMap<>();
+      for (Map.Entry<?, ?> entry : map.entrySet()) {
+        String key = (String) entry.getKey();
+        if (!CLAUDE_UNSUPPORTED_SCHEMA_KEYWORDS.contains(key)) {
+          result.put(key, stripUnsupportedKeywords(entry.getValue()));
+        }
+      }
+      return result;
+    }
+    if (node instanceof List<?> list) {
+      return list.stream().map(ClaudeSummarizer::stripUnsupportedKeywords).collect(Collectors.toList());
+    }
+    return node;
   }
 
   private static boolean isRefusal(Message response) {
@@ -155,59 +210,13 @@ public class ClaudeSummarizer extends Summarizer {
           ", full response=" + response);
     }
 
-    // Strip JSON markdown formatting if present
-    return stripJsonMarkdown(rawText
-        .orElseThrow(() -> new RuntimeException("No text content found in Claude response")));
+    return rawText
+        .orElseThrow(() -> new RuntimeException("No text content found in Claude response"))
+        .trim();
   }
 
   @Override
   protected void updateCostMonitor(Object apiResponse) {
     // Claude response handling is done in callApiForJson
-  }
-
-  private String stripJsonMarkdown(String text) {
-    String trimmed = text.trim();
-    
-    // Remove ```json and ``` markdown formatting
-    if (trimmed.startsWith("```json")) {
-      trimmed = trimmed.substring(7); // Remove "```json"
-    } else if (trimmed.startsWith("```")) {
-      trimmed = trimmed.substring(3); // Remove "```"
-    }
-    
-    if (trimmed.endsWith("```")) {
-      trimmed = trimmed.substring(0, trimmed.length() - 3); // Remove trailing "```"
-    }
-    
-    return trimmed.trim();
-  }
-
-  private String convertSchemaToPromptInstructions(Schema schema) {
-    // Convert OpenAI JSON schema to Claude-friendly format instructions
-    if (schema == experimentResponseSchema) {
-      return "Respond in valid JSON format matching this exact structure:\n" +
-          "{\n" +
-          "  \"one_sentence_summary\": \"string describing gene expression\",\n" +
-          "  \"biological_importance\": \"integer 0-5\",\n" +
-          "  \"confidence\": \"integer 0-5\",\n" +
-          "  \"experiment_keywords\": [\"array\", \"of\", \"strings\"],\n" +
-          "  \"notes\": \"string with additional context\"\n" +
-          "}";
-    } else if (schema == finalResponseSchema) {
-      return "Respond in valid JSON format matching this exact structure:\n" +
-          "{\n" +
-          "  \"headline\": \"string summarizing key results\",\n" +
-          "  \"one_paragraph_summary\": \"string with ~100 words\",\n" +
-          "  \"topics\": [\n" +
-          "    {\n" +
-          "      \"headline\": \"string summarizing topic\",\n" +
-          "      \"one_sentence_summary\": \"string describing topic results\",\n" +
-          "      \"dataset_ids\": [\"array\", \"of\", \"dataset_id\", \"strings\"]\n" +
-          "    }\n" +
-          "  ]\n" +
-          "}";
-    } else {
-      return "Respond in valid JSON format.";
-    }
   }
 }
