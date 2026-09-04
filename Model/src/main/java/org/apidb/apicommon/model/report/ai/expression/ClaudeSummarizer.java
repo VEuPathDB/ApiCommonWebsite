@@ -76,6 +76,11 @@ public class ClaudeSummarizer extends Summarizer {
         .maxRetries(32)  // Handle 429 errors
         .checkJacksonVersionCompatibility(false)
         .build();
+
+    // TEMPORARY DEBUG: confirm whether the refusal fallback is actually active on this
+    // instance, while we investigate schema-valid-but-empty ("placeholder") responses.
+    LOG.info("ClaudeSummarizer configured with fallback model: " +
+        (_fallbackModel == null ? "<disabled>" : _fallbackModel));
   }
 
   @Override
@@ -178,6 +183,20 @@ public class ClaudeSummarizer extends Summarizer {
         .orElse(false);
   }
 
+  private static boolean isMaxTokens(Message response) {
+    return response.stopReason()
+        .map(stopReason -> StopReason.MAX_TOKENS.asString().equals(stopReason.asString()))
+        .orElse(false);
+  }
+
+  // Truncates to the last `keepChars` characters, so a runaway/repetition-loop generation
+  // that fills the entire max_tokens budget (observed: thousands of repeated characters)
+  // doesn't blow up the log with tens of KB per line - only the tail matters for spotting
+  // what it got stuck repeating.
+  private static String lastChars(String text, int keepChars) {
+    return text.length() <= keepChars ? text : "..." + text.substring(text.length() - keepChars);
+  }
+
   private void logRefusal(Message response, String action) {
     LOG.warn("Claude model " + response.model() + " refused the request; " + action + ". id=" + response.id() +
         ", category=" + response.stopDetails().flatMap(details -> details.category()).map(Object::toString).orElse("<none>") +
@@ -200,6 +219,19 @@ public class ClaudeSummarizer extends Summarizer {
         .flatMap(contentBlock -> contentBlock.text().stream())
         .map(textBlock -> textBlock.text())
         .findFirst();
+
+    // TEMPORARY DEBUG: log every response's stop_reason/id/raw text so we can tell a
+    // real refusal apart from a schema-valid-but-content-empty ("placeholder") reply -
+    // neither of the existing log lines (logRefusal, the isEmpty() branch below) fire
+    // for the latter, since the response is a normal 200 with well-formed JSON content.
+    // max_tokens responses are logged with just the last 100 chars: a runaway repetition
+    // loop that fills the whole token budget produces tens of KB of near-identical text,
+    // and only the tail (what it got stuck repeating) is useful for diagnosis.
+    LOG.info("Claude response received. id=" + response.id() +
+        ", model=" + response.model() +
+        ", stopReason=" + response.stopReason().map(Object::toString).orElse("<none>") +
+        ", stopDetails=" + response.stopDetails().map(Object::toString).orElse("<none>") +
+        ", rawText=" + (isMaxTokens(response) ? lastChars(rawText.orElse("<empty>"), 100) : rawText.orElse("<empty>")));
 
     if (rawText.isEmpty()) {
       LOG.error("No text content found in Claude response. id=" + response.id() +

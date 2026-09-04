@@ -251,7 +251,8 @@ public abstract class Summarizer {
 
     String prompt = getExperimentMessage(experimentInputs.getExperimentData());
 
-    return getValidatedAiResponse("dataset " + experimentInputs.getDatasetId(), prompt, experimentResponseSchema, json -> {
+    return getValidatedAiResponse("dataset " + experimentInputs.getDatasetId(), prompt, experimentResponseSchema,
+        Set.of("one_sentence_summary"), json -> {
       // add some fields to the result to aid the final summarization
       return json
         .put("dataset_id", experimentInputs.getDatasetId())
@@ -275,7 +276,8 @@ public abstract class Summarizer {
 
     String prompt = getFinalSummaryMessage(experiments);
 
-    return getValidatedAiResponse("summary for gene " + geneId, prompt, finalResponseSchema, json ->
+    return getValidatedAiResponse("summary for gene " + geneId, prompt, finalResponseSchema,
+      Set.of("headline", "one_paragraph_summary"), json ->
       json  // Return json as-is; consolidateSummary will be called separately
     ).thenCompose(json ->
       // quality control (remove bad `dataset_id`s) and add 'Others' section for any experiments not listed by AI
@@ -379,6 +381,36 @@ public abstract class Summarizer {
   }
 
 
+  // Sentinel value(s) Claude has been observed writing INTO a primary content field
+  // itself when it has nothing real to say - not just leaving the field blank. Seen in
+  // both "notes":"placeholder" (a secondary field, already excluded by only checking
+  // primaryContentFields) and "one_sentence_summary":"placeholder" (a primary field,
+  // where a blank-only check misses it entirely). Case-insensitive, exact match on the
+  // trimmed field - "placeholder" isn't a real biology term, so this can't collide with
+  // genuine content unless a real summary is literally just that one word.
+  private static final Set<String> DEGENERATE_FIELD_VALUES = Set.of("placeholder");
+
+  // Checks only the caller-designated user-facing field(s), not every field in the
+  // response: a degenerate reply can still have non-blank junk in a secondary field
+  // (observed: {"one_sentence_summary":"","notes":"placeholder",...} - "notes" alone
+  // would make an "are all fields blank" check miss this), so the real signal is
+  // specifically whether the field(s) actually shown to users are empty or sentinel junk.
+  private static boolean looksEmpty(JSONObject json, Set<String> primaryContentFields) {
+    for (String field : primaryContentFields) {
+      Object value = json.opt(field);
+      if (value instanceof String str) {
+        String trimmed = str.trim();
+        if (!trimmed.isEmpty() && !DEGENERATE_FIELD_VALUES.contains(trimmed.toLowerCase())) {
+          return false;
+        }
+      }
+      if (value instanceof JSONArray arr && arr.length() > 0) {
+        return false;
+      }
+    }
+    return true;
+  }
+
   protected abstract CompletableFuture<String> callApiForJson(String prompt, Map<String, Object> schema);
 
   protected abstract void updateCostMonitor(Object apiResponse);
@@ -387,6 +419,7 @@ public abstract class Summarizer {
       String operationDescription,
       String prompt,
       Map<String, Object> schema,
+      Set<String> primaryContentFields,
       Function<JSONObject,JSONObject> createFinalJson
   ) {
     return callApiForJson(prompt, schema).thenApply(jsonString -> {
@@ -398,12 +431,24 @@ public abstract class Summarizer {
           // convert to JSON object
           JSONObject jsonObject = new JSONObject(jsonString);
 
+          // Some AI responses are syntactically valid JSON matching the schema, but have
+          // nothing to say in the field(s) actually shown to users (e.g.
+          // {"one_sentence_summary":"","biological_importance":0,"confidence":0,
+          // "experiment_keywords":[],"notes":"placeholder"}) - observed from Claude with
+          // stop_reason=end_turn, so nothing else catches it. Treat the same as a parse
+          // failure so it gets logged and retried rather than silently cached.
+          if (looksEmpty(jsonObject, primaryContentFields)) {
+            throw new JSONException("AI response is syntactically valid but " + primaryContentFields +
+                " is blank/empty: " + jsonString);
+          }
+
           // convert AI response JSON into final JSON we want to store
           return createFinalJson.apply(jsonObject);
         }
         catch (JSONException e) {
           mostRecentError = e;
-          LOG.warn("Malformed JSON from AI (attempt " + attempts + ") for " + operationDescription + ". Retrying...");
+          LOG.warn("Malformed or empty JSON from AI (attempt " + attempts + ") for " + operationDescription +
+              ": " + e.getMessage() + ". Retrying...");
 
           // Re-request from AI
           jsonString = callApiForJson(prompt, schema).join();
