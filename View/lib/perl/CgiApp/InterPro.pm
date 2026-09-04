@@ -69,20 +69,21 @@ sub run {
     my $Interapro_Result  =  `$command`;
 
 ###### We regex $jobID from the outputs that returned from the above command line.
+###### Scan every line (not just the first) so stray STDERR warnings ahead of the
+###### real "JobId: ..." line can't be mistaken for the job ID.
 
-    my $jobID;
+    open($fh,"<$file" ) or die "Couldn't open file $file for reading, $!";
 
-    open($fh,"<$file" ) or die "Couldn't open file $file for reading, $!"; 
+    my @outputLines = <$fh>;
 
-    my $jobID = <$fh>;
-    
     close($fh);
 
-    
-    if($jobID =~ /^JobId:\S*\s+(\S+)/){
-	$jobID = $1;
-    }
+    my ($jobID) = map { /^JobId:\S*\s+(\S+)/ ? $1 : () } @outputLines;
 
+    unless (defined $jobID) {
+        print "<p>InterProScan submission failed. EBI returned:</p><pre>" . join('', @outputLines) . "</pre>\n";
+        return;
+    }
 
     print "<META HTTP-EQUIV=refresh CONTENT=\"1;URL=https://www.ebi.ac.uk/interpro/result/InterProScan/$jobID\">\n";
     #print "Location: https://www.ebi.ac.uk/interpro/result/InterProScan/$jobID</body></html>\n";;         

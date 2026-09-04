@@ -660,8 +660,8 @@ sub print_result_types {
             }
         }
         if ($status eq 'FINISHED' && $outputLevel > 0) {
-           # print STDERR "\n", 'To get results:', "\n",
-	    "  perl $scriptName --polljob --jobid " . $params{'jobid'} . "\n",
+            print STDERR "\n", 'To get results:', "\n",
+                "  perl $scriptName --polljob --jobid " . $params{'jobid'} . "\n",
                 "  perl $scriptName --polljob --outformat <type> --jobid "
                     . $params{'jobid'} . "\n";
         }
