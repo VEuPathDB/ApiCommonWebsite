@@ -93,6 +93,12 @@ public class AiExpressionCache {
   private static final String NUM_EXPERIMENTS_COMPLETE_PROP = "numExperimentsComplete";
   private static final String EXPERIMENT_STATUS_PROP = "experimentStatus";
 
+  // returned JSON prop: true when this summary was built with an "unavailable" placeholder
+  // (see buildUnavailablePlaceholder) standing in for at least one experiment whose AI
+  // response exhausted retries. Computed by hasFailedExperiments, shared with the
+  // repopulation predicate in populateSummary so both agree on the same definition.
+  private static final String BASED_ON_INCOMPLETE_DATA_PROP = "basedOnIncompleteData";
+
   // status messages
   private static enum Status {
     PRESENT,
@@ -174,7 +180,8 @@ public class AiExpressionCache {
           JSONObject summary = _cache.visitContent(summaryInputs.getGeneId(), dir -> getValidStoredData(dir, summaryInputs.getDigest()));
           return new JSONObject()
               .put(RESULT_STATUS_PROP, Status.PRESENT.val())
-              .put(SUMMARY_RESULT_PROP, summary);
+              .put(SUMMARY_RESULT_PROP, summary)
+              .put(BASED_ON_INCOMPLETE_DATA_PROP, hasFailedExperiments(summaryInputs));
         }
         catch (Exception e) {
           // would not expect this since we already checked and are waiting for lock
@@ -259,7 +266,18 @@ public class AiExpressionCache {
     JSONObject summary = getValidStoredData(geneDir, summaryInputs.getDigest());
     return new JSONObject()
         .put(RESULT_STATUS_PROP, Status.PRESENT.val())
-        .put(SUMMARY_RESULT_PROP, summary);
+        .put(SUMMARY_RESULT_PROP, summary)
+        .put(BASED_ON_INCOMPLETE_DATA_PROP, hasFailedExperiments(summaryInputs));
+  }
+
+  /**
+   * True if at least one of this gene's experiments has exhausted its AI-response retries
+   * (Status.FAILED) and is therefore standing in as an "unavailable" placeholder wherever it
+   * was used - see buildUnavailablePlaceholder and getValidSummary's per-experiment tolerance.
+   */
+  private boolean hasFailedExperiments(GeneSummaryInputs summaryInputs) {
+    return summaryInputs.getExperimentsWithData().stream()
+        .anyMatch(input -> getEntryStatus(input.getCacheKey(), input.getDigest()) == Status.FAILED);
   }
 
   /**
@@ -374,8 +392,7 @@ public class AiExpressionCache {
               // is still FAILED and due a retry, so the summary gets properly resynthesized with
               // real content once it becomes available, instead of staying stuck with the
               // placeholder indefinitely.
-              return summaryInputs.getExperimentsWithData().stream()
-                  .anyMatch(input -> getEntryStatus(input.getCacheKey(), input.getDigest()) == Status.FAILED);
+              return hasFailedExperiments(summaryInputs);
           }));
     }
     catch (Exception e) {
