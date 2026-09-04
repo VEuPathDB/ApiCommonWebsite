@@ -21,6 +21,9 @@ public class ApiCheckLoginFilter extends CheckLoginFilter {
       "user-profile-vocabularies",
       "subscription-groups",
       "oauth/state-token",
+      "payment-form-content",
+      "payment-form-context",
+      "payment-process",
       "users",
       "user-password-reset",
       "users/current",
@@ -31,13 +34,14 @@ public class ApiCheckLoginFilter extends CheckLoginFilter {
       "record-types",
       "record-types/dataset/records",
       "record-types/dataset/searches/AllDatasets/reports/standard",
+      "record-types/dataset/searches/MapStudiesForToolbar/reports/standard",
       "record-types/organism/searches/GenomeDataTypes/reports/standard",
       "record-types/genomic-sequence/searches/SequencesByTaxon",
       "record-types/transcript/searches/GeneByLocusTag",
       "record-types/transcript/searches/GenesByText"
     ))
     .addAll(List.of(
-		    "transcript","gene","organism","genomic-sequence","genomic-segment","strain-genomic-segment","est",
+      "transcript","gene","organism","genomic-sequence","genomic-segment","strain-genomic-segment","est",
       "pathway","compound","blast-est-ontology","blast-orf-ontology","file","build",
       "dfile","metrics","jbrowse-gene","dataset-release-notes","legacy-dataset",
       "dataset","datasource","userdataset","junction", "variation"
@@ -89,7 +93,7 @@ public class ApiCheckLoginFilter extends CheckLoginFilter {
 
   @Override
   protected boolean isPathToSkip(String path) {
-    return path.startsWith("profileSet") || super.isPathToSkip(path);
+    return path.startsWith("jbrowse") || path.startsWith("profileSet") || super.isPathToSkip(path);
   }
 
 }

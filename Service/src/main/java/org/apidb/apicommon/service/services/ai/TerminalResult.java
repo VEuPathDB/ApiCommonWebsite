@@ -18,7 +18,8 @@ import org.json.JSONObject;
  * <p>Deliverable 2 introduces the two outcomes the {@code fetching-article} stage
  * and the pipeline's top-level error handler can produce: {@code text-unavailable}
  * (carrying a {@code reason}) and {@code internal-error} (carrying an
- * {@code error} message).
+ * {@code error} message). {@code upstream-unavailable} was added later to split
+ * "NCBI is down" out of {@code text-unavailable}; it carries a {@code reason} too.
  */
 public final class TerminalResult {
 
@@ -51,6 +52,16 @@ public final class TerminalResult {
   /** Article text could not be resolved (never persisted to the cache). */
   public static TerminalResult textUnavailable(String reason) {
     return new TerminalResult(JobStatus.TEXT_UNAVAILABLE, reason, null, null, null);
+  }
+
+  /**
+   * The article-text source (NCBI) was itself unavailable, so we never learned
+   * whether this paper has full text. Distinct from {@link #textUnavailable} so
+   * the front end can tell the user to try again later rather than to give up on
+   * the article. Never persisted — the same submission may succeed later.
+   */
+  public static TerminalResult upstreamUnavailable(String reason) {
+    return new TerminalResult(JobStatus.UPSTREAM_UNAVAILABLE, reason, null, null, null);
   }
 
   /** An unexpected pipeline failure (never persisted to the cache). */
@@ -95,6 +106,7 @@ public final class TerminalResult {
             .put("content", _content));
         break;
       case TEXT_UNAVAILABLE:
+      case UPSTREAM_UNAVAILABLE:
         out.put("reason", _detail);
         break;
       case INTERNAL_ERROR:

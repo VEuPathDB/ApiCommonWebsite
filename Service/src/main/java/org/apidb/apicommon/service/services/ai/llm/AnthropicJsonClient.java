@@ -57,9 +57,6 @@ public class AnthropicJsonClient implements JsonPromptClient {
   /** Max output tokens for the summary stages (Python {@code max_tokens}). */
   private static final long MAX_TOKENS = 20000L;
 
-  /** Deterministic sampling, matching the Python pipeline ({@code model_temp = 0}). */
-  private static final double TEMPERATURE = 0.0;
-
   /**
    * Build the production completer: an {@link AnthropicClientAsync} configured
    * like {@code ClaudeSummarizer}, wrapped to issue one blocking message call
@@ -82,8 +79,7 @@ public class AnthropicJsonClient implements JsonPromptClient {
     return (system, userPrompts, jsonSchema) -> {
       MessageCreateParams.Builder request = MessageCreateParams.builder()
           .model(AiSummaryConfig.MODEL_NAME)
-          .maxTokens(MAX_TOKENS)
-          .temperature(TEMPERATURE);
+          .maxTokens(MAX_TOKENS);
       if (system != null && !system.isEmpty()) {
         request.system(system);
       }

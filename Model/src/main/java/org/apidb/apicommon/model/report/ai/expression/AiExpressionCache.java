@@ -1,7 +1,7 @@
 package org.apidb.apicommon.model.report.ai.expression;
 
 import static java.util.concurrent.CompletableFuture.supplyAsync;
-import static org.gusdb.fgputil.functional.Functions.wrapException;
+import static org.gusdb.fgputil.functional.Functions.mapException;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -9,10 +9,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -32,6 +34,7 @@ import org.gusdb.fgputil.functional.FunctionalInterfaces.PredicateWithException;
 import org.gusdb.fgputil.functional.FunctionalInterfaces.SupplierWithException;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkRuntimeException;
+import org.gusdb.wdk.model.WdkServiceTemporarilyUnavailableException;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -401,6 +404,36 @@ public class AiExpressionCache {
     }
   }
 
+  private RuntimeException customExceptionWrapper(Exception e) {
+    return e instanceof RuntimeException ? (RuntimeException)e : new RuntimeException(e);
+  }
+
+  /**
+   * Searches a throwable's cause chain for the API usage (spend) limit having been reached,
+   * i.e. the WdkServiceTemporarilyUnavailableException that ClaudeSummarizer raises on a 400
+   * whose message names a usage limit.
+   *
+   * A full chain walk rather than checking one or two levels, because by the time such a
+   * failure surfaces in populateExperiments it has been wrapped a variable number of times:
+   * an ExecutionException per CompletableFuture.get() (both the inner describeExperiment
+   * future and the outer per-experiment future), a CompletionException from the async stages
+   * and/or customExceptionWrapper's RuntimeException, in a nesting order that depends on
+   * exactly where the call failed.
+   *
+   * @param throwable throwable to inspect
+   * @return the usage-limit exception if one appears anywhere in the chain, else empty
+   */
+  private static Optional<WdkServiceTemporarilyUnavailableException> findUsageLimitCause(Throwable throwable) {
+    // guards against a self-referential or cyclic cause chain, which would otherwise spin here
+    Set<Throwable> seen = new HashSet<>();
+    for (Throwable cause = throwable; cause != null && seen.add(cause); cause = cause.getCause()) {
+      if (cause instanceof WdkServiceTemporarilyUnavailableException usageLimit) {
+        return Optional.of(usageLimit);
+      }
+    }
+    return Optional.empty();
+  }
+
   /**
    * Returns a set of cached experiment descriptions, generating and storing new values for any
    * experiments not present or that are out of date (mismatched digests).  In this way, any new
@@ -425,7 +458,7 @@ public class AiExpressionCache {
       List<CompletableFuture<JSONObject>> results = new ArrayList<>();
       for (ExperimentInputs input : experimentData) {
 
-        results.add(supplyAsync(() -> wrapException(() -> _cache.populateAndProcessContent(input.getCacheKey(),
+        results.add(supplyAsync(() -> mapException(() -> _cache.populateAndProcessContent(input.getCacheKey(),
 
           // populator
           getPopulator(input.getDigest(), () -> experimentDescriber.apply(input).get()),
@@ -439,7 +472,7 @@ public class AiExpressionCache {
             return false; // do not repopulate if able to look up valid value
           }))
 
-        ), exec));
+        , this::customExceptionWrapper), exec));
       }
 
       // Wait for all threads, filling descriptors along the way. A single experiment
@@ -458,6 +491,16 @@ public class AiExpressionCache {
           descriptors.add(results.get(i).get());
         }
         catch (Exception e) {
+          // Special case of the API usage (spend) limit having been reached, as detected by
+          // ClaudeSummarizer: propagate it instead of substituting a placeholder. It is not a
+          // per-experiment data problem - it will hit every remaining experiment for this gene
+          // and every gene after it - so placeholdering it would cache a summary reading
+          // "unavailable" for everything and mask the real cause behind a normal-looking
+          // response. Propagating keeps the 503 that tells the caller to come back later.
+          Optional<WdkServiceTemporarilyUnavailableException> usageLimitReached = findUsageLimitCause(e);
+          if (usageLimitReached.isPresent()) {
+            throw usageLimitReached.get();
+          }
           LOG.warn("Unable to generate AI summary for dataset " + input.getDatasetId() +
               " after retries; substituting an 'unavailable' placeholder so the rest of the " +
               "gene summary can still be generated. Will retry this dataset on next access.", e);

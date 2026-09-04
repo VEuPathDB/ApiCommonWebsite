@@ -11,10 +11,12 @@ import java.util.stream.Collectors;
 import org.apache.log4j.Logger;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
+import org.gusdb.wdk.model.WdkServiceTemporarilyUnavailableException;
 
 import com.anthropic.client.AnthropicClientAsync;
 import com.anthropic.client.okhttp.AnthropicOkHttpClientAsync;
 import com.anthropic.core.JsonValue;
+import com.anthropic.errors.BadRequestException;
 import com.anthropic.models.messages.JsonOutputFormat;
 import com.anthropic.models.messages.Message;
 import com.anthropic.models.messages.MessageCreateParams;
@@ -48,6 +50,11 @@ public class ClaudeSummarizer extends Summarizer {
   private static final String CLAUDE_API_KEY_PROP_NAME = "CLAUDE_API_KEY";
   private static final String CLAUDE_FALLBACK_MODEL_PROP_NAME = "CLAUDE_FALLBACK_MODEL";
   private static final String FALLBACK_DISABLED = "none";
+
+  // Substring of the message Claude sends in a 400 BadRequestException when the
+  // configured API usage limit (e.g. spend cap) has been reached; not a distinct
+  // error type in the SDK, so we have to detect it by message content.
+  private static final String USAGE_LIMIT_MESSAGE_MARKER = "usage limit";
 
   private final AnthropicClientAsync _claudeClient;
   private final String _fallbackModel;  // null when disabled
@@ -121,7 +128,22 @@ public class ClaudeSummarizer extends Summarizer {
         () -> _claudeClient.messages().create(request),
         e -> e instanceof com.anthropic.errors.InternalServerException,
         "Claude API call (" + modelId + ")"
-    );
+    ).exceptionally(throwable -> {
+      // async completion may wrap the real cause in a CompletionException
+      Throwable cause = throwable instanceof java.util.concurrent.CompletionException && throwable.getCause() != null
+          ? throwable.getCause()
+          : throwable;
+
+      if (cause instanceof BadRequestException &&
+          cause.getMessage() != null &&
+          cause.getMessage().toLowerCase().contains(USAGE_LIMIT_MESSAGE_MARKER)) {
+        throw new WdkServiceTemporarilyUnavailableException(
+            "Claude API usage limit reached (" + modelId + "): " + cause.getMessage(), (BadRequestException) cause);
+      }
+
+      if (cause instanceof RuntimeException) throw (RuntimeException) cause;
+      throw new RuntimeException(cause);
+    });
   }
 
   // Keywords the platform-agnostic schemas use (for OpenAI's benefit) that Claude's
