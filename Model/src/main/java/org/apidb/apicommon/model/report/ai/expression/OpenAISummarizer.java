@@ -1,5 +1,6 @@
 package org.apidb.apicommon.model.report.ai.expression;
 
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 import org.gusdb.wdk.model.WdkModel;
@@ -7,10 +8,12 @@ import org.gusdb.wdk.model.WdkModelException;
 
 import com.openai.client.OpenAIClientAsync;
 import com.openai.client.okhttp.OpenAIOkHttpClientAsync;
+import com.openai.core.JsonValue;
 import com.openai.models.chat.completions.ChatCompletionCreateParams;
 import com.openai.models.ChatModel;
 import com.openai.models.ResponseFormatJsonSchema;
 import com.openai.models.ResponseFormatJsonSchema.JsonSchema;
+import com.openai.models.ResponseFormatJsonSchema.JsonSchema.Schema;
 
 public class OpenAISummarizer extends Summarizer {
 
@@ -36,14 +39,14 @@ public class OpenAISummarizer extends Summarizer {
   }
 
   @Override
-  protected CompletableFuture<String> callApiForJson(String prompt, com.openai.models.ResponseFormatJsonSchema.JsonSchema.Schema schema) {
+  protected CompletableFuture<String> callApiForJson(String prompt, Map<String, Object> schema) {
     ChatCompletionCreateParams request = ChatCompletionCreateParams.builder()
         .model(OPENAI_CHAT_MODEL)
         .maxCompletionTokens(MAX_RESPONSE_TOKENS)
         .responseFormat(ResponseFormatJsonSchema.builder()
             .jsonSchema(JsonSchema.builder()
                 .name("structured-response")
-                .schema(schema)
+                .schema(toOpenAiSchema(schema))
                 .strict(true)
                 .build())
             .build())
@@ -73,5 +76,13 @@ public class OpenAISummarizer extends Summarizer {
   @Override
   protected void updateCostMonitor(Object apiResponse) {
     // OpenAI response handling is done in callApiForJson
+  }
+
+  private static Schema toOpenAiSchema(Map<String, Object> schema) {
+    Schema.Builder builder = Schema.builder();
+    // Looks like a shallow copy, but JsonValue.from() recursively serializes nested
+    // Map/List values, so this is effectively a deep copy.
+    schema.forEach((key, value) -> builder.putAdditionalProperty(key, JsonValue.from(value)));
+    return builder.build();
   }
 }
