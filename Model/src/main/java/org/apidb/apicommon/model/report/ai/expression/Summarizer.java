@@ -44,11 +44,26 @@ public abstract class Summarizer {
   protected static final Map<String, Object> experimentResponseSchema = Map.of(
       "type", "object",
       "properties", Map.of(
-          "one_sentence_summary", Map.of("type", "string"),
-          "biological_importance", Map.of("type", "integer", "minimum", 0, "maximum", 5),
-          "confidence", Map.of("type", "integer", "minimum", 0, "maximum", 5),
-          "experiment_keywords", Map.of("type", "array", "items", Map.of("type", "string")),
-          "notes", Map.of("type", "string")
+          "one_sentence_summary", Map.of("type", "string", "description",
+              "One-sentence, user-facing summary of how this gene is expressed in this experiment. " +
+              "State whether expression is up- or down-regulated (and by how much) relative to the " +
+              "experimental conditions tested; do not describe the experiment itself. Wrap species " +
+              "names in <i> tags."),
+          "biological_importance", Map.of("type", "integer", "minimum", 0, "maximum", 5, "description",
+              "Estimated biological importance of this expression profile relative to other " +
+              "experiments, on an integer scale from 0 (lowest, no differential expression) to 5 " +
+              "(highest, marked differential expression)."),
+          "confidence", Map.of("type", "integer", "minimum", 0, "maximum", 5, "description",
+              "Confidence in the biological_importance estimate, on the same 0 (lowest) to 5 " +
+              "(highest) integer scale."),
+          "experiment_keywords", Map.of("type", "array", "items", Map.of("type", "string"), "description",
+              "General experiment-based keywords giving additional context to the gene-based " +
+              "expression summary, e.g. \"tachyzoite\", \"RNA-Seq\", \"oocyst sporulation\", " +
+              "\"host cell infection\". Not shown to users directly."),
+          "notes", Map.of("type", "string", "description",
+              "Optional caveats, peculiarities, or additional context that may aid interpretation " +
+              "and further analysis. Not shown to users directly; passed to a second AI " +
+              "summarization step.")
       ),
       "required", List.of(
           "one_sentence_summary",
@@ -63,15 +78,28 @@ public abstract class Summarizer {
   protected static final Map<String, Object> finalResponseSchema = Map.of(
       "type", "object",
       "properties", Map.of(
-          "headline", Map.of("type", "string"),
-          "one_paragraph_summary", Map.of("type", "string"),
-          "topics", Map.of("type", "array", "minItems", 1, "items", Map.of(
+          "headline", Map.of("type", "string", "description",
+              "Short, specific headline reflecting this gene's expression pattern, in sentence " +
+              "case (capitalize only the first word and proper nouns). Must NOT include generic " +
+              "phrases like \"comprehensive insights into\" or the word \"gene\"."),
+          "one_paragraph_summary", Map.of("type", "string", "description",
+              "~100-word summary of the gene's expression, structured using <strong>, <ul>, and " +
+              "<li> tags with no attributes. May briefly speculate on the gene's potential " +
+              "function, but only if justified by the data. Wrap species names in <i> tags."),
+          "topics", Map.of("type", "array", "minItems", 1, "description",
+              "Groups the per-experiment summaries (identified by dataset_id, from the input) " +
+              "with biological_importance > 3 and confidence > 3 into sections by topic. These " +
+              "are displayed to users.", "items", Map.of(
               "type", "object",
               "required", List.of("headline", "one_sentence_summary", "dataset_ids"),
               "properties", Map.of(
-                  "headline", Map.of("type", "string"),
-                  "one_sentence_summary", Map.of("type", "string"),
-                  "dataset_ids", Map.of("type", "array", "items", Map.of("type", "string"))
+                  "headline", Map.of("type", "string", "description",
+                      "Headline summarizing the key experimental results within this topic."),
+                  "one_sentence_summary", Map.of("type", "string", "description",
+                      "Concise one-sentence summary of this topic's experimental results. Wrap " +
+                      "species names in <i> tags."),
+                  "dataset_ids", Map.of("type", "array", "items", Map.of("type", "string"), "description",
+                      "dataset_id values (from the input) of the experiments grouped into this topic.")
               ),
               "additionalProperties", false
           ))
@@ -242,9 +270,9 @@ public abstract class Summarizer {
     return
         "The JSON below contains expression data for a single gene within a specific experiment, along with relevant experimental and bioinformatics metadata:\n\n" +
         String.format("```json\n%s\n```\n\n", JsonUtil.serialize(experimentForAI)) +
-        "**Task**: In one sentence, summarize how this gene is expressed in the given experiment. Do not describe the experiment itself—focus on whether the gene is, or is not, substantially and/or significantly upregulated or downregulated with respect to the experimental conditions tested. Take extreme care to assert the correct directionality of the response, especially in experiments with only one or two samples. Additionally, estimate the biological importance of this profile relative to other experiments on an integer scale of 0 (lowest, no differential expression) to 5 (highest, marked differential expression), even though specific comparative data has not been included. Also estimate your confidence (also 0 to 5) in making the estimate and add optional notes if there are peculiarities or caveats that may aid interpretation and further analysis. Finally, provide some general experiment-based keywords that provide a bit more context to the gene-based expression summary.\n" +
+        "**Task**: In one sentence, summarize how this gene is expressed in the given experiment. Do not describe the experiment itself—focus on whether the gene is, or is not, substantially and/or significantly upregulated or downregulated with respect to the experimental conditions tested. Take extreme care to assert the correct directionality of the response, especially in experiments with only one or two samples. Additionally, estimate the biological importance of this profile relative to other experiments, your confidence in that estimate, and provide some general experiment-based keywords (see the response schema's field descriptions for details on each).\n" +
         "**Purpose**: The one-sentence summary will be displayed to users in tabular form on our gene-page. Please wrap user-facing species names in `<i>` tags and use clear, scientific language accessible to non-native English speakers. The notes, scores and keywords will not be shown to users, but will be passed along with the summary to a second AI summarisation step that synthesizes insights from multiple experiments.\n" +
-        "**Further guidance**: The `y_axis` field describes the `value` field in the `data` array, which is the primary expression level datum. Note that standard error statistics are only available when biological replicates were performed. However, percentile-normalized values can also guide your assessment of importance. If this is a time-series experiment, consider if it is cyclical and assess periodicity as appropriate. Ignore all discussion of individual or groups of genes in the experiment `description`, as this is irrelevant to the gene you are summarising. For RNA-Seq experiments, be aware that if `paralog_number` is high, interpretation may be tricky (consider both unique and non-unique counts if available). Ensure that each key appears exactly once in the JSON response. Do not include any duplicate fields.";
+        "**Further guidance**: The `y_axis` field describes the `value` field in the `data` array, which is the primary expression level datum. Note that standard error statistics are only available when biological replicates were performed. However, percentile-normalized values can also guide your assessment of importance. If this is a time-series experiment, consider if it is cyclical and assess periodicity as appropriate. Ignore all discussion of individual or groups of genes in the experiment `description`, as this is irrelevant to the gene you are summarising. For RNA-Seq experiments, be aware that if `paralog_number` is high, interpretation may be tricky (consider both unique and non-unique counts if available).";
   }
 
   public CompletableFuture<JSONObject> describeExperiment(ExperimentInputs experimentInputs) {
@@ -264,12 +292,7 @@ public abstract class Summarizer {
   public static String getFinalSummaryMessage(List<JSONObject> experiments) {
     return "Below are AI-generated summaries of one gene's behavior in all the transcriptomics experiments available in VEuPathDB, provided in JSON format:\n\n" +
         String.format("```json\n%s\n```\n\n", new JSONArray(experiments).toString(2)) +
-        "Generate a one-paragraph summary (~100 words) describing the gene's expression. Structure it using <strong>, <ul>, and <li> tags with no attributes. If relevant, briefly speculate on the gene's potential function, but only if justified by the data. Also, generate a short, specific headline for the summary. The headline must reflect this gene's expression and **must not** include generic phrases like \"comprehensive insights into\" or the word \"gene\".\n\n" +
-        "Use sentence case for all headlines: capitalize only the first word and proper nouns, not every word.\n\n" +
-    "Additionally, group the per-experiment summaries (identified by `dataset_id`) with `biological_importance > 3` and `confidence > 3` into sections by topic. For each topic, provide:\n" +
-    "- A headline summarizing the key experimental results within the topic\n" +
-    "- A concise one-sentence summary of the topic's experimental results\n\n" +
-    "These topics will be displayed to users. In all generated text, wrap species names in `<i>` tags and use clear, precise scientific language accessible to non-native English speakers.";
+        "Generate a one-paragraph summary and headline describing the gene's expression overall, and group the per-experiment summaries into topics (see the response schema's field descriptions for formatting requirements and the topic-grouping threshold). In all generated text, use clear, precise scientific language accessible to non-native English speakers.";
   }
   
   public JSONObject summarizeExperiments(String geneId, List<JSONObject> experiments) {
@@ -381,14 +404,23 @@ public abstract class Summarizer {
   }
 
 
-  // Sentinel value(s) Claude has been observed writing INTO a primary content field
-  // itself when it has nothing real to say - not just leaving the field blank. Seen in
-  // both "notes":"placeholder" (a secondary field, already excluded by only checking
-  // primaryContentFields) and "one_sentence_summary":"placeholder" (a primary field,
-  // where a blank-only check misses it entirely). Case-insensitive, exact match on the
-  // trimmed field - "placeholder" isn't a real biology term, so this can't collide with
-  // genuine content unless a real summary is literally just that one word.
+  // Sentinel word(s) Claude has been observed writing INTO a primary content field itself
+  // when it has nothing real to say - not just leaving the field blank. Seen in
+  // "notes":"placeholder" (a secondary field, already excluded by only checking
+  // primaryContentFields), "one_sentence_summary":"placeholder" (a primary field, where a
+  // blank-only check misses it entirely), and - the reason this is a substring check, not
+  // an exact match - "empty_response_reason":"Malformed JSON keys placeholder" (a longer,
+  // still-garbled phrase that merely contains the word). We tried offering an explicit
+  // empty_response_reason field for the model to explain itself; it just wrote the same
+  // filler word into that field too, so it was removed rather than kept as a channel that
+  // never carried a real explanation. "placeholder" isn't a real biology term, so a
+  // substring match is very unlikely to collide with genuine content.
   private static final Set<String> DEGENERATE_FIELD_VALUES = Set.of("placeholder");
+
+  private static boolean containsDegenerateValue(String text) {
+    String lower = text.toLowerCase();
+    return DEGENERATE_FIELD_VALUES.stream().anyMatch(lower::contains);
+  }
 
   // Checks only the caller-designated user-facing field(s), not every field in the
   // response: a degenerate reply can still have non-blank junk in a secondary field
@@ -400,7 +432,7 @@ public abstract class Summarizer {
       Object value = json.opt(field);
       if (value instanceof String str) {
         String trimmed = str.trim();
-        if (!trimmed.isEmpty() && !DEGENERATE_FIELD_VALUES.contains(trimmed.toLowerCase())) {
+        if (!trimmed.isEmpty() && !containsDegenerateValue(trimmed)) {
           return false;
         }
       }
@@ -424,9 +456,8 @@ public abstract class Summarizer {
   ) {
     return callApiForJson(prompt, schema).thenApply(jsonString -> {
       int attempts = 1;
-      Exception mostRecentError;
 
-      do {
+      while (true) {
         try {
           // convert to JSON object
           JSONObject jsonObject = new JSONObject(jsonString);
@@ -436,7 +467,9 @@ public abstract class Summarizer {
           // {"one_sentence_summary":"","biological_importance":0,"confidence":0,
           // "experiment_keywords":[],"notes":"placeholder"}) - observed from Claude with
           // stop_reason=end_turn, so nothing else catches it. Treat the same as a parse
-          // failure so it gets logged and retried rather than silently cached.
+          // failure so it gets logged and retried rather than silently cached. (We tried an
+          // empty_response_reason field so the model could explain itself instead of going
+          // blank; it just wrote the same filler word into that field too, so it was removed.)
           if (looksEmpty(jsonObject, primaryContentFields)) {
             throw new JSONException("AI response is syntactically valid but " + primaryContentFields +
                 " is blank/empty: " + jsonString);
@@ -446,22 +479,27 @@ public abstract class Summarizer {
           return createFinalJson.apply(jsonObject);
         }
         catch (JSONException e) {
-          mostRecentError = e;
           LOG.warn("Malformed or empty JSON from AI (attempt " + attempts + ") for " + operationDescription +
               ": " + e.getMessage() + ". Retrying...");
+
+          // Give up only once we've validated MAX_MALFORMED_RESPONSE_RETRIES responses and all
+          // failed - don't fetch one more that would then go unchecked. (Previously the retry
+          // was requested unconditionally here, before the loop condition was checked, so on
+          // the last iteration a 4th response was fetched - and paid for - but the loop exited
+          // before ever validating it, silently discarding it (even when, as observed, it was
+          // a perfectly good answer) and reporting failure using its unvalidated content.)
+          if (attempts >= MAX_MALFORMED_RESPONSE_RETRIES) {
+            String message = "Failed to parse JSON after " + MAX_MALFORMED_RESPONSE_RETRIES + " attempts for " +
+                operationDescription + ". Raw response: " + jsonString;
+            LOG.error(message, e);
+            throw new RuntimeException(message, e);
+          }
 
           // Re-request from AI
           jsonString = callApiForJson(prompt, schema).join();
           attempts++;
         }
       }
-      while (attempts <= MAX_MALFORMED_RESPONSE_RETRIES);
-
-      // attempts have expired
-      String message = "Failed to parse JSON after " + MAX_MALFORMED_RESPONSE_RETRIES + " attempts for " +
-          operationDescription + ". Raw response: " + jsonString;
-      LOG.error(message, mostRecentError);
-      throw new RuntimeException(message, mostRecentError);
     });
   }
 }

@@ -25,7 +25,6 @@ import org.gusdb.fgputil.IoUtil;
 import org.gusdb.fgputil.cache.disk.DirectoryLock.DirectoryLockTimeoutException;
 import org.gusdb.fgputil.cache.disk.OnDiskCache;
 import org.gusdb.fgputil.cache.disk.OnDiskCache.EntryNotCreatedException;
-import org.gusdb.fgputil.functional.Either;
 import org.gusdb.fgputil.functional.FunctionalInterfaces.BiFunctionWithException;
 import org.gusdb.fgputil.functional.FunctionalInterfaces.ConsumerWithException;
 import org.gusdb.fgputil.functional.FunctionalInterfaces.FunctionWithException;
@@ -33,6 +32,7 @@ import org.gusdb.fgputil.functional.FunctionalInterfaces.PredicateWithException;
 import org.gusdb.fgputil.functional.FunctionalInterfaces.SupplierWithException;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkRuntimeException;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -235,11 +235,24 @@ public class AiExpressionCache {
   private JSONObject getValidSummary(Path geneDir, GeneSummaryInputs summaryInputs) throws Exception {
 
     // check for existence of valid cache entries for each experiment
-    // if any are missing or expired, exception will be thrown indicating a cache miss
+    // if any are missing or expired, exception will be thrown indicating a cache miss.
+    // A FAILED experiment (AI-response retries exhausted) is tolerated here rather than
+    // treated as a cache miss: populateExperiments already substitutes an "unavailable"
+    // placeholder for it when building the gene-level summary, so that summary is still valid
+    // to read back even though this one experiment's own entry never completed. EXPIRED
+    // (digest mismatch) and CORRUPTED still indicate genuinely stale/broken data and must
+    // propagate as a cache miss.
     for (ExperimentInputs datasetInput : summaryInputs.getExperimentsWithData()) {
-      _cache.visitContent(datasetInput.getCacheKey(), experimentDir -> {
-        return getValidStoredData(experimentDir, datasetInput.getDigest());
-      });
+      try {
+        _cache.visitContent(datasetInput.getCacheKey(), experimentDir -> {
+          return getValidStoredData(experimentDir, datasetInput.getDigest());
+        });
+      }
+      catch (LookupException e) {
+        if (e.getStatus() != Status.FAILED) {
+          throw e;
+        }
+      }
     }
 
     // once all experiment values are confirmed, check for valid summary entry
@@ -348,9 +361,22 @@ public class AiExpressionCache {
           entryDir -> getValidSummary(entryDir, summaryInputs),
 
           // repopulation predicate
-          exceptionToTrue(entryDir ->
+          exceptionToTrue(entryDir -> {
               // try to look up summary json; if not present, then try to repopulate
-              !getValidSummary(entryDir, summaryInputs).getString(RESULT_STATUS_PROP).equals(Status.PRESENT.val())));
+              if (!getValidSummary(entryDir, summaryInputs).getString(RESULT_STATUS_PROP).equals(Status.PRESENT.val())) {
+                return true;
+              }
+              // The gene-level digest is a function of experiment INPUT data, not of whether
+              // an AI call previously succeeded - so once a summary is cached (possibly built
+              // with an "unavailable" placeholder for a FAILED experiment - see getValidSummary),
+              // the digest alone would never prompt regeneration just because that experiment
+              // later succeeds on its own. Force repopulation while any contributing experiment
+              // is still FAILED and due a retry, so the summary gets properly resynthesized with
+              // real content once it becomes available, instead of staying stuck with the
+              // placeholder indefinitely.
+              return summaryInputs.getExperimentsWithData().stream()
+                  .anyMatch(input -> getEntryStatus(input.getCacheKey(), input.getDigest()) == Status.FAILED);
+          }));
     }
     catch (Exception e) {
       // any other exception is a 500
@@ -399,22 +425,52 @@ public class AiExpressionCache {
         ), exec));
       }
 
-      // wait for all threads, filling lists along the way
+      // Wait for all threads, filling descriptors along the way. A single experiment
+      // exhausting its AI-response retries used to fail this whole method - discarding every
+      // other experiment's already-successful result in the same batch and 500ing the entire
+      // gene page. Substitute an in-memory "unavailable" placeholder for just that experiment
+      // instead, so the rest of the batch (and the gene-level summary built from it) can still
+      // proceed. Nothing changes about the failed experiment's own on-disk cache entry - it's
+      // still marked .failed by OnDiskCache, so the existing repopulation predicate above
+      // naturally retries it (from scratch) on the next page load, same as any other cache
+      // miss - no new "retry later" mechanism needed for that part.
       List<JSONObject> descriptors = new ArrayList<>();
-      List<Throwable> exceptions = new ArrayList<>();
-      for (CompletableFuture<JSONObject> result : results) {
-        result.handle(Either::new).get().ifLeft(descriptors::add).ifRight(exceptions::add);
+      for (int i = 0; i < results.size(); i++) {
+        ExperimentInputs input = experimentData.get(i);
+        try {
+          descriptors.add(results.get(i).get());
+        }
+        catch (Exception e) {
+          LOG.warn("Unable to generate AI summary for dataset " + input.getDatasetId() +
+              " after retries; substituting an 'unavailable' placeholder so the rest of the " +
+              "gene summary can still be generated. Will retry this dataset on next access.", e);
+          descriptors.add(buildUnavailablePlaceholder(input));
+        }
       }
-
-      // if no exceptions occurred, return results; else throw first problem
-      if (exceptions.isEmpty()) {
-        return descriptors;
-      }
-      throw new RuntimeException(exceptions.get(0));
+      return descriptors;
     }
     finally {
       exec.shutdown();
     }
+  }
+
+  /**
+   * Placeholder experiment descriptor substituted when an experiment's AI summary could not be
+   * generated after retries. Shaped like a real descriptor (dataset_id is required by
+   * consolidateSummary's dataset_id -> summary map) with biological_importance/confidence at 0
+   * so it naturally sorts into the "Other" section rather than being mistaken for a real
+   * no-differential-expression result or pulled into a topic (topics require > 3 on both).
+   */
+  private static JSONObject buildUnavailablePlaceholder(ExperimentInputs input) {
+    return new JSONObject()
+        .put("dataset_id", input.getDatasetId())
+        .put("assay_type", input.getAssayType())
+        .put("experiment_name", input.getExperimentName())
+        .put("one_sentence_summary", "AI summary temporarily unavailable for this experiment.")
+        .put("biological_importance", 0)
+        .put("confidence", 0)
+        .put("experiment_keywords", new JSONArray())
+        .put("notes", "");
   }
 
   /**
