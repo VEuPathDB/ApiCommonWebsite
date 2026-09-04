@@ -76,11 +76,6 @@ public class ClaudeSummarizer extends Summarizer {
         .maxRetries(32)  // Handle 429 errors
         .checkJacksonVersionCompatibility(false)
         .build();
-
-    // TEMPORARY DEBUG: confirm whether the refusal fallback is actually active on this
-    // instance, while we investigate schema-valid-but-empty ("placeholder") responses.
-    LOG.info("ClaudeSummarizer configured with fallback model: " +
-        (_fallbackModel == null ? "<disabled>" : _fallbackModel));
   }
 
   @Override
@@ -227,11 +222,11 @@ public class ClaudeSummarizer extends Summarizer {
     // max_tokens responses are logged with just the last 100 chars: a runaway repetition
     // loop that fills the whole token budget produces tens of KB of near-identical text,
     // and only the tail (what it got stuck repeating) is useful for diagnosis.
-    LOG.info("Claude response received. id=" + response.id() +
-        ", model=" + response.model() +
-        ", stopReason=" + response.stopReason().map(Object::toString).orElse("<none>") +
-        ", stopDetails=" + response.stopDetails().map(Object::toString).orElse("<none>") +
-        ", rawText=" + (isMaxTokens(response) ? lastChars(rawText.orElse("<empty>"), 100) : rawText.orElse("<empty>")));
+    // LOG.info("Claude response received. id=" + response.id() +
+    //     ", model=" + response.model() +
+    //     ", stopReason=" + response.stopReason().map(Object::toString).orElse("<none>") +
+    //     ", stopDetails=" + response.stopDetails().map(Object::toString).orElse("<none>") +
+    //     ", rawText=" + (isMaxTokens(response) ? lastChars(rawText.orElse("<empty>"), 100) : rawText.orElse("<empty>")));
 
     if (rawText.isEmpty()) {
       LOG.error("No text content found in Claude response. id=" + response.id() +
