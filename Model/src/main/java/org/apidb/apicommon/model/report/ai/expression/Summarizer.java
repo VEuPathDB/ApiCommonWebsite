@@ -36,31 +36,49 @@ public abstract class Summarizer {
 
   protected static final String SYSTEM_MESSAGE = "You are a bioinformatician working for VEuPathDB.org. You are an expert at providing biologist-friendly summaries of transcriptomic data";
 
+  // Map.of()'s key iteration order is deliberately unspecified (randomized per JVM instance
+  // via internal salting) - fine for a normal map, but under structured outputs the
+  // "properties" field order is also the order the model is guided to generate fields in, so
+  // an unstable schema literal means unstable (and unreviewable) generation order across JVM
+  // restarts - e.g. "topics" could land before the narrative fields it should be derived from.
+  // orderedMap() is a drop-in Map.of() replacement backed by LinkedHashMap, so the order below
+  // is exactly the order sent to both providers, deterministically, every time.
+  private static Map<String, Object> orderedMap(Object... keysAndValues) {
+    if (keysAndValues.length % 2 != 0) {
+      throw new IllegalArgumentException("orderedMap requires an even number of arguments");
+    }
+    Map<String, Object> map = new LinkedHashMap<>();
+    for (int i = 0; i < keysAndValues.length; i += 2) {
+      map.put((String) keysAndValues[i], keysAndValues[i + 1]);
+    }
+    return map;
+  }
+
   // Platform-agnostic JSON Schema documents for structured responses. Plain
   // Map/List literals rather than either provider's SDK types: both
   // com.openai.core.JsonValue.from(Object) and com.anthropic.core.JsonValue.from(Object)
   // recursively serialize arbitrary Map/List/primitive graphs, so each Summarizer
   // subclass wraps this same literal in its own SDK's schema type at request time.
-  protected static final Map<String, Object> experimentResponseSchema = Map.of(
+  protected static final Map<String, Object> experimentResponseSchema = orderedMap(
       "type", "object",
-      "properties", Map.of(
-          "one_sentence_summary", Map.of("type", "string", "description",
+      "properties", orderedMap(
+          "one_sentence_summary", orderedMap("type", "string", "description",
               "One-sentence, user-facing summary of how this gene is expressed in this experiment. " +
               "State whether expression is up- or down-regulated (and by how much) relative to the " +
               "experimental conditions tested; do not describe the experiment itself. Wrap species " +
               "names in <i> tags."),
-          "biological_importance", Map.of("type", "integer", "minimum", 0, "maximum", 5, "description",
+          "biological_importance", orderedMap("type", "integer", "minimum", 0, "maximum", 5, "description",
               "Estimated biological importance of this expression profile relative to other " +
               "experiments, on an integer scale from 0 (lowest, no differential expression) to 5 " +
               "(highest, marked differential expression)."),
-          "confidence", Map.of("type", "integer", "minimum", 0, "maximum", 5, "description",
+          "confidence", orderedMap("type", "integer", "minimum", 0, "maximum", 5, "description",
               "Confidence in the biological_importance estimate, on the same 0 (lowest) to 5 " +
               "(highest) integer scale."),
-          "experiment_keywords", Map.of("type", "array", "items", Map.of("type", "string"), "description",
+          "experiment_keywords", orderedMap("type", "array", "items", orderedMap("type", "string"), "description",
               "General experiment-based keywords giving additional context to the gene-based " +
               "expression summary, e.g. \"tachyzoite\", \"RNA-Seq\", \"oocyst sporulation\", " +
               "\"host cell infection\". Not shown to users directly."),
-          "notes", Map.of("type", "string", "description",
+          "notes", orderedMap("type", "string", "description",
               "Optional caveats, peculiarities, or additional context that may aid interpretation " +
               "and further analysis. Not shown to users directly; passed to a second AI " +
               "summarization step.")
@@ -75,38 +93,40 @@ public abstract class Summarizer {
       "additionalProperties", false
   );
 
-  protected static final Map<String, Object> finalResponseSchema = Map.of(
+  // Field order deliberately guides the model to draft the narrative (one_paragraph_summary,
+  // headline) before deciding topic groupings - see the completeness-order comment above.
+  protected static final Map<String, Object> finalResponseSchema = orderedMap(
       "type", "object",
-      "properties", Map.of(
-          "headline", Map.of("type", "string", "description",
-              "Short, specific headline reflecting this gene's expression pattern, in sentence " +
-              "case (capitalize only the first word and proper nouns). Must NOT include generic " +
-              "phrases like \"comprehensive insights into\" or the word \"gene\"."),
-          "one_paragraph_summary", Map.of("type", "string", "description",
+      "properties", orderedMap(
+          "one_paragraph_summary", orderedMap("type", "string", "description",
               "~100-word summary of the gene's expression, structured using <strong>, <ul>, and " +
               "<li> tags with no attributes. May briefly speculate on the gene's potential " +
               "function, but only if justified by the data. Wrap species names in <i> tags."),
-          "topics", Map.of("type", "array", "minItems", 1, "description",
+          "headline", orderedMap("type", "string", "description",
+              "Short, specific headline reflecting this gene's expression pattern, in sentence " +
+              "case (capitalize only the first word and proper nouns). Must NOT include generic " +
+              "phrases like \"comprehensive insights into\" or the word \"gene\"."),
+          "topics", orderedMap("type", "array", "minItems", 1, "description",
               "Groups the per-experiment summaries (identified by dataset_id, from the input) " +
               "with biological_importance > 3 and confidence > 3 into sections by topic. These " +
-              "are displayed to users.", "items", Map.of(
+              "are displayed to users.", "items", orderedMap(
               "type", "object",
               "required", List.of("headline", "one_sentence_summary", "dataset_ids"),
-              "properties", Map.of(
-                  "headline", Map.of("type", "string", "description",
+              "properties", orderedMap(
+                  "headline", orderedMap("type", "string", "description",
                       "Headline summarizing the key experimental results within this topic."),
-                  "one_sentence_summary", Map.of("type", "string", "description",
+                  "one_sentence_summary", orderedMap("type", "string", "description",
                       "Concise one-sentence summary of this topic's experimental results. Wrap " +
                       "species names in <i> tags."),
-                  "dataset_ids", Map.of("type", "array", "items", Map.of("type", "string"), "description",
+                  "dataset_ids", orderedMap("type", "array", "items", orderedMap("type", "string"), "description",
                       "dataset_id values (from the input) of the experiments grouped into this topic.")
               ),
               "additionalProperties", false
           ))
       ),
       "required", List.of(
-          "headline",
           "one_paragraph_summary",
+          "headline",
           "topics"
       ),
       "additionalProperties", false
@@ -299,8 +319,25 @@ public abstract class Summarizer {
 
     String prompt = getFinalSummaryMessage(experiments);
 
+    // looksEmpty (checked via primaryContentFields) can't catch an empty `topics` array, since
+    // it's an OR across those fields and headline/one_paragraph_summary are essentially always
+    // non-blank. Observed live: a response with a real, on-topic paragraph and headline but
+    // topics:[] even though several input experiments cleared the grouping threshold below -
+    // schema-valid, so nothing else retries it. Gated on qualifyingExperiments being non-empty:
+    // an empty topics array is the CORRECT answer when no experiment actually qualifies, and
+    // retrying that case would just burn 3 attempts on a gene that will never produce topics.
+    boolean qualifyingExperimentsExist = experiments.stream()
+        .anyMatch(exp -> exp.optInt("biological_importance") > 3 && exp.optInt("confidence") > 3);
+
     return getValidatedAiResponse("summary for gene " + geneId, prompt, finalResponseSchema,
-      Set.of("headline", "one_paragraph_summary"), json ->
+      Set.of("headline", "one_paragraph_summary"),
+      json -> {
+        JSONArray topics = json.optJSONArray("topics");
+        return qualifyingExperimentsExist && (topics == null || topics.length() == 0)
+            ? "AI returned an empty topics array despite qualifying experiments (biological_importance > 3 and confidence > 3) being present"
+            : null;
+      },
+      json ->
       json  // Return json as-is; consolidateSummary will be called separately
     ).thenCompose(json ->
       // quality control (remove bad `dataset_id`s) and add 'Others' section for any experiments not listed by AI
@@ -454,6 +491,24 @@ public abstract class Summarizer {
       Set<String> primaryContentFields,
       Function<JSONObject,JSONObject> createFinalJson
   ) {
+    return getValidatedAiResponse(operationDescription, prompt, schema, primaryContentFields,
+        json -> null, createFinalJson);
+  }
+
+  /**
+   * @param additionalValidation given the parsed response, returns null if acceptable, or a
+   *   description of the problem (used in the retry log/final error message) if not - checked
+   *   in addition to looksEmpty, for validation that can't be expressed as "is this field
+   *   blank" (e.g. summarizeExperiments' empty-topics-despite-qualifying-experiments check).
+   */
+  private CompletableFuture<JSONObject> getValidatedAiResponse(
+      String operationDescription,
+      String prompt,
+      Map<String, Object> schema,
+      Set<String> primaryContentFields,
+      Function<JSONObject,String> additionalValidation,
+      Function<JSONObject,JSONObject> createFinalJson
+  ) {
     return callApiForJson(prompt, schema).thenApply(jsonString -> {
       int attempts = 1;
 
@@ -473,6 +528,11 @@ public abstract class Summarizer {
           if (looksEmpty(jsonObject, primaryContentFields)) {
             throw new JSONException("AI response is syntactically valid but " + primaryContentFields +
                 " is blank/empty: " + jsonString);
+          }
+
+          String additionalProblem = additionalValidation.apply(jsonObject);
+          if (additionalProblem != null) {
+            throw new JSONException(additionalProblem + ": " + jsonString);
           }
 
           // convert AI response JSON into final JSON we want to store
