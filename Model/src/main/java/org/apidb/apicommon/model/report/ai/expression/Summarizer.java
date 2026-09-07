@@ -20,9 +20,6 @@ import org.json.JSONObject;
 
 import com.openai.client.OpenAIClientAsync;
 import com.openai.client.okhttp.OpenAIOkHttpClientAsync;
-import com.openai.core.JsonValue;
-import com.openai.models.ResponseFormatJsonSchema.JsonSchema;
-import com.openai.models.ResponseFormatJsonSchema.JsonSchema.Schema;
 import com.openai.models.embeddings.EmbeddingCreateParams;
 import com.openai.models.embeddings.EmbeddingModel;
 
@@ -39,49 +36,101 @@ public abstract class Summarizer {
 
   protected static final String SYSTEM_MESSAGE = "You are a bioinformatician working for VEuPathDB.org. You are an expert at providing biologist-friendly summaries of transcriptomic data";
 
-  // Prepare JSON schemas for structured responses
-  protected static final JsonSchema.Schema experimentResponseSchema = JsonSchema.Schema.builder()
-    .putAdditionalProperty("type", JsonValue.from("object"))
-    .putAdditionalProperty("properties", JsonValue.from(Map.of(
-          "one_sentence_summary", Map.of("type", "string"),
-          "biological_importance", Map.of("type", "integer", "minimum", 0, "maximum", 5),
-          "confidence", Map.of("type", "integer", "minimum", 0, "maximum", 5),
-          "experiment_keywords", Map.of("type", "array", "items", Map.of("type", "string")),
-          "notes", Map.of("type", "string")
-    )))
-    .putAdditionalProperty("required", JsonValue.from(List.of(
+  // Map.of()'s key iteration order is deliberately unspecified (randomized per JVM instance
+  // via internal salting) - fine for a normal map, but under structured outputs the
+  // "properties" field order is also the order the model is guided to generate fields in, so
+  // an unstable schema literal means unstable (and unreviewable) generation order across JVM
+  // restarts - e.g. "topics" could land before the narrative fields it should be derived from.
+  // orderedMap() is a drop-in Map.of() replacement backed by LinkedHashMap, so the order below
+  // is exactly the order sent to both providers, deterministically, every time.
+  private static Map<String, Object> orderedMap(Object... keysAndValues) {
+    if (keysAndValues.length % 2 != 0) {
+      throw new IllegalArgumentException("orderedMap requires an even number of arguments");
+    }
+    Map<String, Object> map = new LinkedHashMap<>();
+    for (int i = 0; i < keysAndValues.length; i += 2) {
+      map.put((String) keysAndValues[i], keysAndValues[i + 1]);
+    }
+    return map;
+  }
+
+  // Platform-agnostic JSON Schema documents for structured responses. Plain
+  // Map/List literals rather than either provider's SDK types: both
+  // com.openai.core.JsonValue.from(Object) and com.anthropic.core.JsonValue.from(Object)
+  // recursively serialize arbitrary Map/List/primitive graphs, so each Summarizer
+  // subclass wraps this same literal in its own SDK's schema type at request time.
+  protected static final Map<String, Object> experimentResponseSchema = orderedMap(
+      "type", "object",
+      "properties", orderedMap(
+          "one_sentence_summary", orderedMap("type", "string", "description",
+              "One-sentence, user-facing summary of how this gene is expressed in this experiment. " +
+              "State whether expression is up- or down-regulated (and by how much) relative to the " +
+              "experimental conditions tested; do not describe the experiment itself. Wrap species " +
+              "names in <i> tags."),
+          "biological_importance", orderedMap("type", "integer", "minimum", 0, "maximum", 5, "description",
+              "Estimated biological importance of this expression profile relative to other " +
+              "experiments, on an integer scale from 0 (lowest, no differential expression) to 5 " +
+              "(highest, marked differential expression)."),
+          "confidence", orderedMap("type", "integer", "minimum", 0, "maximum", 5, "description",
+              "Confidence in the biological_importance estimate, on the same 0 (lowest) to 5 " +
+              "(highest) integer scale."),
+          "experiment_keywords", orderedMap("type", "array", "items", orderedMap("type", "string"), "description",
+              "General experiment-based keywords giving additional context to the gene-based " +
+              "expression summary, e.g. \"tachyzoite\", \"RNA-Seq\", \"oocyst sporulation\", " +
+              "\"host cell infection\". Not shown to users directly."),
+          "notes", orderedMap("type", "string", "description",
+              "Optional caveats, peculiarities, or additional context that may aid interpretation " +
+              "and further analysis. Not shown to users directly; passed to a second AI " +
+              "summarization step.")
+      ),
+      "required", List.of(
           "one_sentence_summary",
           "biological_importance",
           "confidence",
           "experiment_keywords",
           "notes"
-    )))
-    .putAdditionalProperty("additionalProperties", JsonValue.from(false))
-    .build();
+      ),
+      "additionalProperties", false
+  );
 
-  protected static final JsonSchema.Schema finalResponseSchema = JsonSchema.Schema.builder()
-    .putAdditionalProperty("type", JsonValue.from("object"))
-    .putAdditionalProperty("properties", JsonValue.from(Map.of(
-          "headline", Map.of("type", "string"),
-          "one_paragraph_summary", Map.of("type", "string"),
-          "topics", Map.of("type", "array", "minimum", 1, "items", Map.of(
+  // Field order deliberately guides the model to draft the narrative (one_paragraph_summary,
+  // headline) before deciding topic groupings - see the completeness-order comment above.
+  protected static final Map<String, Object> finalResponseSchema = orderedMap(
+      "type", "object",
+      "properties", orderedMap(
+          "one_paragraph_summary", orderedMap("type", "string", "description",
+              "~100-word summary of the gene's expression, structured using <strong>, <ul>, and " +
+              "<li> tags with no attributes. May briefly speculate on the gene's potential " +
+              "function, but only if justified by the data. Wrap species names in <i> tags."),
+          "headline", orderedMap("type", "string", "description",
+              "Short, specific headline reflecting this gene's expression pattern, in sentence " +
+              "case (capitalize only the first word and proper nouns). Must NOT include generic " +
+              "phrases like \"comprehensive insights into\" or the word \"gene\"."),
+          "topics", orderedMap("type", "array", "minItems", 1, "description",
+              "Groups the per-experiment summaries (identified by dataset_id, from the input) " +
+              "with biological_importance > 3 and confidence > 3 into sections by topic. These " +
+              "are displayed to users.", "items", orderedMap(
               "type", "object",
               "required", List.of("headline", "one_sentence_summary", "dataset_ids"),
-              "properties", Map.of(
-                  "headline", Map.of("type", "string"),
-                  "one_sentence_summary", Map.of("type", "string"),
-                  "dataset_ids", Map.of("type", "array", "items", Map.of("type", "string"))
+              "properties", orderedMap(
+                  "headline", orderedMap("type", "string", "description",
+                      "Headline summarizing the key experimental results within this topic."),
+                  "one_sentence_summary", orderedMap("type", "string", "description",
+                      "Concise one-sentence summary of this topic's experimental results. Wrap " +
+                      "species names in <i> tags."),
+                  "dataset_ids", orderedMap("type", "array", "items", orderedMap("type", "string"), "description",
+                      "dataset_id values (from the input) of the experiments grouped into this topic.")
               ),
-              "additionalProperties", JsonValue.from(false)
+              "additionalProperties", false
           ))
-    )))
-    .putAdditionalProperty("required", JsonValue.from(List.of(
-          "headline",
+      ),
+      "required", List.of(
           "one_paragraph_summary",
+          "headline",
           "topics"
-    )))
-    .putAdditionalProperty("additionalProperties", JsonValue.from(false))
-    .build();
+      ),
+      "additionalProperties", false
+  );
 
   protected final DailyCostMonitor _costMonitor;
   private final OpenAIClientAsync _embeddingClient;
@@ -241,16 +290,17 @@ public abstract class Summarizer {
     return
         "The JSON below contains expression data for a single gene within a specific experiment, along with relevant experimental and bioinformatics metadata:\n\n" +
         String.format("```json\n%s\n```\n\n", JsonUtil.serialize(experimentForAI)) +
-        "**Task**: In one sentence, summarize how this gene is expressed in the given experiment. Do not describe the experiment itself—focus on whether the gene is, or is not, substantially and/or significantly upregulated or downregulated with respect to the experimental conditions tested. Take extreme care to assert the correct directionality of the response, especially in experiments with only one or two samples. Additionally, estimate the biological importance of this profile relative to other experiments on an integer scale of 0 (lowest, no differential expression) to 5 (highest, marked differential expression), even though specific comparative data has not been included. Also estimate your confidence (also 0 to 5) in making the estimate and add optional notes if there are peculiarities or caveats that may aid interpretation and further analysis. Finally, provide some general experiment-based keywords that provide a bit more context to the gene-based expression summary.\n" +
+        "**Task**: In one sentence, summarize how this gene is expressed in the given experiment. Do not describe the experiment itself—focus on whether the gene is, or is not, substantially and/or significantly upregulated or downregulated with respect to the experimental conditions tested. Take extreme care to assert the correct directionality of the response, especially in experiments with only one or two samples. Additionally, estimate the biological importance of this profile relative to other experiments, your confidence in that estimate, and provide some general experiment-based keywords (see the response schema's field descriptions for details on each).\n" +
         "**Purpose**: The one-sentence summary will be displayed to users in tabular form on our gene-page. Please wrap user-facing species names in `<i>` tags and use clear, scientific language accessible to non-native English speakers. The notes, scores and keywords will not be shown to users, but will be passed along with the summary to a second AI summarisation step that synthesizes insights from multiple experiments.\n" +
-        "**Further guidance**: The `y_axis` field describes the `value` field in the `data` array, which is the primary expression level datum. Note that standard error statistics are only available when biological replicates were performed. However, percentile-normalized values can also guide your assessment of importance. If this is a time-series experiment, consider if it is cyclical and assess periodicity as appropriate. Ignore all discussion of individual or groups of genes in the experiment `description`, as this is irrelevant to the gene you are summarising. For RNA-Seq experiments, be aware that if `paralog_number` is high, interpretation may be tricky (consider both unique and non-unique counts if available). Ensure that each key appears exactly once in the JSON response. Do not include any duplicate fields.";
+        "**Further guidance**: The `y_axis` field describes the `value` field in the `data` array, which is the primary expression level datum. Note that standard error statistics are only available when biological replicates were performed. However, percentile-normalized values can also guide your assessment of importance. If this is a time-series experiment, consider if it is cyclical and assess periodicity as appropriate. Ignore all discussion of individual or groups of genes in the experiment `description`, as this is irrelevant to the gene you are summarising. For RNA-Seq experiments, be aware that if `paralog_number` is high, interpretation may be tricky (consider both unique and non-unique counts if available).";
   }
 
   public CompletableFuture<JSONObject> describeExperiment(ExperimentInputs experimentInputs) {
 
     String prompt = getExperimentMessage(experimentInputs.getExperimentData());
 
-    return getValidatedAiResponse("dataset " + experimentInputs.getDatasetId(), prompt, experimentResponseSchema, json -> {
+    return getValidatedAiResponse("dataset " + experimentInputs.getDatasetId(), prompt, experimentResponseSchema,
+        Set.of("one_sentence_summary"), json -> {
       // add some fields to the result to aid the final summarization
       return json
         .put("dataset_id", experimentInputs.getDatasetId())
@@ -262,19 +312,32 @@ public abstract class Summarizer {
   public static String getFinalSummaryMessage(List<JSONObject> experiments) {
     return "Below are AI-generated summaries of one gene's behavior in all the transcriptomics experiments available in VEuPathDB, provided in JSON format:\n\n" +
         String.format("```json\n%s\n```\n\n", new JSONArray(experiments).toString(2)) +
-        "Generate a one-paragraph summary (~100 words) describing the gene's expression. Structure it using <strong>, <ul>, and <li> tags with no attributes. If relevant, briefly speculate on the gene's potential function, but only if justified by the data. Also, generate a short, specific headline for the summary. The headline must reflect this gene's expression and **must not** include generic phrases like \"comprehensive insights into\" or the word \"gene\".\n\n" +
-        "Use sentence case for all headlines: capitalize only the first word and proper nouns, not every word.\n\n" +
-    "Additionally, group the per-experiment summaries (identified by `dataset_id`) with `biological_importance > 3` and `confidence > 3` into sections by topic. For each topic, provide:\n" +
-    "- A headline summarizing the key experimental results within the topic\n" +
-    "- A concise one-sentence summary of the topic's experimental results\n\n" +
-    "These topics will be displayed to users. In all generated text, wrap species names in `<i>` tags and use clear, precise scientific language accessible to non-native English speakers.";
+        "Generate a one-paragraph summary and headline describing the gene's expression overall, and group the per-experiment summaries into topics (see the response schema's field descriptions for formatting requirements and the topic-grouping threshold). In all generated text, use clear, precise scientific language accessible to non-native English speakers.";
   }
   
   public JSONObject summarizeExperiments(String geneId, List<JSONObject> experiments) {
 
     String prompt = getFinalSummaryMessage(experiments);
 
-    return getValidatedAiResponse("summary for gene " + geneId, prompt, finalResponseSchema, json ->
+    // looksEmpty (checked via primaryContentFields) can't catch an empty `topics` array, since
+    // it's an OR across those fields and headline/one_paragraph_summary are essentially always
+    // non-blank. Observed live: a response with a real, on-topic paragraph and headline but
+    // topics:[] even though several input experiments cleared the grouping threshold below -
+    // schema-valid, so nothing else retries it. Gated on qualifyingExperiments being non-empty:
+    // an empty topics array is the CORRECT answer when no experiment actually qualifies, and
+    // retrying that case would just burn 3 attempts on a gene that will never produce topics.
+    boolean qualifyingExperimentsExist = experiments.stream()
+        .anyMatch(exp -> exp.optInt("biological_importance") > 3 && exp.optInt("confidence") > 3);
+
+    return getValidatedAiResponse("summary for gene " + geneId, prompt, finalResponseSchema,
+      Set.of("headline", "one_paragraph_summary"),
+      json -> {
+        JSONArray topics = json.optJSONArray("topics");
+        return qualifyingExperimentsExist && (topics == null || topics.length() == 0)
+            ? "AI returned an empty topics array despite qualifying experiments (biological_importance > 3 and confidence > 3) being present"
+            : null;
+      },
+      json ->
       json  // Return json as-is; consolidateSummary will be called separately
     ).thenCompose(json ->
       // quality control (remove bad `dataset_id`s) and add 'Others' section for any experiments not listed by AI
@@ -378,44 +441,125 @@ public abstract class Summarizer {
   }
 
 
-  protected abstract CompletableFuture<String> callApiForJson(String prompt, Schema schema);
-  
+  // Sentinel word(s) Claude has been observed writing INTO a primary content field itself
+  // when it has nothing real to say - not just leaving the field blank. Seen in
+  // "notes":"placeholder" (a secondary field, already excluded by only checking
+  // primaryContentFields), "one_sentence_summary":"placeholder" (a primary field, where a
+  // blank-only check misses it entirely), and - the reason this is a substring check, not
+  // an exact match - "empty_response_reason":"Malformed JSON keys placeholder" (a longer,
+  // still-garbled phrase that merely contains the word). We tried offering an explicit
+  // empty_response_reason field for the model to explain itself; it just wrote the same
+  // filler word into that field too, so it was removed rather than kept as a channel that
+  // never carried a real explanation. "placeholder" isn't a real biology term, so a
+  // substring match is very unlikely to collide with genuine content.
+  private static final Set<String> DEGENERATE_FIELD_VALUES = Set.of("placeholder");
+
+  private static boolean containsDegenerateValue(String text) {
+    String lower = text.toLowerCase();
+    return DEGENERATE_FIELD_VALUES.stream().anyMatch(lower::contains);
+  }
+
+  // Checks only the caller-designated user-facing field(s), not every field in the
+  // response: a degenerate reply can still have non-blank junk in a secondary field
+  // (observed: {"one_sentence_summary":"","notes":"placeholder",...} - "notes" alone
+  // would make an "are all fields blank" check miss this), so the real signal is
+  // specifically whether the field(s) actually shown to users are empty or sentinel junk.
+  private static boolean looksEmpty(JSONObject json, Set<String> primaryContentFields) {
+    for (String field : primaryContentFields) {
+      Object value = json.opt(field);
+      if (value instanceof String str) {
+        String trimmed = str.trim();
+        if (!trimmed.isEmpty() && !containsDegenerateValue(trimmed)) {
+          return false;
+        }
+      }
+      if (value instanceof JSONArray arr && arr.length() > 0) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  protected abstract CompletableFuture<String> callApiForJson(String prompt, Map<String, Object> schema);
+
   protected abstract void updateCostMonitor(Object apiResponse);
 
   private CompletableFuture<JSONObject> getValidatedAiResponse(
       String operationDescription,
       String prompt,
-      Schema schema,
+      Map<String, Object> schema,
+      Set<String> primaryContentFields,
+      Function<JSONObject,JSONObject> createFinalJson
+  ) {
+    return getValidatedAiResponse(operationDescription, prompt, schema, primaryContentFields,
+        json -> null, createFinalJson);
+  }
+
+  /**
+   * @param additionalValidation given the parsed response, returns null if acceptable, or a
+   *   description of the problem (used in the retry log/final error message) if not - checked
+   *   in addition to looksEmpty, for validation that can't be expressed as "is this field
+   *   blank" (e.g. summarizeExperiments' empty-topics-despite-qualifying-experiments check).
+   */
+  private CompletableFuture<JSONObject> getValidatedAiResponse(
+      String operationDescription,
+      String prompt,
+      Map<String, Object> schema,
+      Set<String> primaryContentFields,
+      Function<JSONObject,String> additionalValidation,
       Function<JSONObject,JSONObject> createFinalJson
   ) {
     return callApiForJson(prompt, schema).thenApply(jsonString -> {
       int attempts = 1;
-      Exception mostRecentError;
 
-      do {
+      while (true) {
         try {
           // convert to JSON object
           JSONObject jsonObject = new JSONObject(jsonString);
+
+          // Some AI responses are syntactically valid JSON matching the schema, but have
+          // nothing to say in the field(s) actually shown to users (e.g.
+          // {"one_sentence_summary":"","biological_importance":0,"confidence":0,
+          // "experiment_keywords":[],"notes":"placeholder"}) - observed from Claude with
+          // stop_reason=end_turn, so nothing else catches it. Treat the same as a parse
+          // failure so it gets logged and retried rather than silently cached. (We tried an
+          // empty_response_reason field so the model could explain itself instead of going
+          // blank; it just wrote the same filler word into that field too, so it was removed.)
+          if (looksEmpty(jsonObject, primaryContentFields)) {
+            throw new JSONException("AI response is syntactically valid but " + primaryContentFields +
+                " is blank/empty: " + jsonString);
+          }
+
+          String additionalProblem = additionalValidation.apply(jsonObject);
+          if (additionalProblem != null) {
+            throw new JSONException(additionalProblem + ": " + jsonString);
+          }
 
           // convert AI response JSON into final JSON we want to store
           return createFinalJson.apply(jsonObject);
         }
         catch (JSONException e) {
-          mostRecentError = e;
-          LOG.warn("Malformed JSON from AI (attempt " + attempts + ") for " + operationDescription + ". Retrying...");
+          LOG.warn("Malformed or empty JSON from AI (attempt " + attempts + ") for " + operationDescription +
+              ": " + e.getMessage() + ". Retrying...");
+
+          // Give up only once we've validated MAX_MALFORMED_RESPONSE_RETRIES responses and all
+          // failed - don't fetch one more that would then go unchecked. (Previously the retry
+          // was requested unconditionally here, before the loop condition was checked, so on
+          // the last iteration a 4th response was fetched - and paid for - but the loop exited
+          // before ever validating it, silently discarding it (even when, as observed, it was
+          // a perfectly good answer) and reporting failure using its unvalidated content.)
+          if (attempts >= MAX_MALFORMED_RESPONSE_RETRIES) {
+            String message = "Failed to parse JSON after " + MAX_MALFORMED_RESPONSE_RETRIES + " attempts for " +
+                operationDescription + ". Raw response: " + jsonString;
+            LOG.error(message, e);
+            throw new RuntimeException(message, e);
+          }
 
           // Re-request from AI
           jsonString = callApiForJson(prompt, schema).join();
           attempts++;
         }
       }
-      while (attempts <= MAX_MALFORMED_RESPONSE_RETRIES);
-
-      // attempts have expired
-      String message = "Failed to parse JSON after " + MAX_MALFORMED_RESPONSE_RETRIES + " attempts for " +
-          operationDescription + ". Raw response: " + jsonString;
-      LOG.error(message, mostRecentError);
-      throw new RuntimeException(message, mostRecentError);
     });
   }
 }

@@ -9,10 +9,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -25,7 +27,6 @@ import org.gusdb.fgputil.IoUtil;
 import org.gusdb.fgputil.cache.disk.DirectoryLock.DirectoryLockTimeoutException;
 import org.gusdb.fgputil.cache.disk.OnDiskCache;
 import org.gusdb.fgputil.cache.disk.OnDiskCache.EntryNotCreatedException;
-import org.gusdb.fgputil.functional.Either;
 import org.gusdb.fgputil.functional.FunctionalInterfaces.BiFunctionWithException;
 import org.gusdb.fgputil.functional.FunctionalInterfaces.ConsumerWithException;
 import org.gusdb.fgputil.functional.FunctionalInterfaces.FunctionWithException;
@@ -34,6 +35,7 @@ import org.gusdb.fgputil.functional.FunctionalInterfaces.SupplierWithException;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkRuntimeException;
 import org.gusdb.wdk.model.WdkServiceTemporarilyUnavailableException;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -93,6 +95,12 @@ public class AiExpressionCache {
   private static final String NUM_EXPERIMENTS_PROP = "numExperiments";
   private static final String NUM_EXPERIMENTS_COMPLETE_PROP = "numExperimentsComplete";
   private static final String EXPERIMENT_STATUS_PROP = "experimentStatus";
+
+  // returned JSON prop: true when this summary was built with an "unavailable" placeholder
+  // (see buildUnavailablePlaceholder) standing in for at least one experiment whose AI
+  // response exhausted retries. Computed by hasFailedExperiments, shared with the
+  // repopulation predicate in populateSummary so both agree on the same definition.
+  private static final String BASED_ON_INCOMPLETE_DATA_PROP = "basedOnIncompleteData";
 
   // status messages
   private static enum Status {
@@ -175,7 +183,8 @@ public class AiExpressionCache {
           JSONObject summary = _cache.visitContent(summaryInputs.getGeneId(), dir -> getValidStoredData(dir, summaryInputs.getDigest()));
           return new JSONObject()
               .put(RESULT_STATUS_PROP, Status.PRESENT.val())
-              .put(SUMMARY_RESULT_PROP, summary);
+              .put(SUMMARY_RESULT_PROP, summary)
+              .put(BASED_ON_INCOMPLETE_DATA_PROP, hasFailedExperiments(summaryInputs));
         }
         catch (Exception e) {
           // would not expect this since we already checked and are waiting for lock
@@ -236,18 +245,42 @@ public class AiExpressionCache {
   private JSONObject getValidSummary(Path geneDir, GeneSummaryInputs summaryInputs) throws Exception {
 
     // check for existence of valid cache entries for each experiment
-    // if any are missing or expired, exception will be thrown indicating a cache miss
+    // if any are missing or expired, exception will be thrown indicating a cache miss.
+    // A FAILED experiment (AI-response retries exhausted) is tolerated here rather than
+    // treated as a cache miss: populateExperiments already substitutes an "unavailable"
+    // placeholder for it when building the gene-level summary, so that summary is still valid
+    // to read back even though this one experiment's own entry never completed. EXPIRED
+    // (digest mismatch) and CORRUPTED still indicate genuinely stale/broken data and must
+    // propagate as a cache miss.
     for (ExperimentInputs datasetInput : summaryInputs.getExperimentsWithData()) {
-      _cache.visitContent(datasetInput.getCacheKey(), experimentDir -> {
-        return getValidStoredData(experimentDir, datasetInput.getDigest());
-      });
+      try {
+        _cache.visitContent(datasetInput.getCacheKey(), experimentDir -> {
+          return getValidStoredData(experimentDir, datasetInput.getDigest());
+        });
+      }
+      catch (LookupException e) {
+        if (e.getStatus() != Status.FAILED) {
+          throw e;
+        }
+      }
     }
 
     // once all experiment values are confirmed, check for valid summary entry
     JSONObject summary = getValidStoredData(geneDir, summaryInputs.getDigest());
     return new JSONObject()
         .put(RESULT_STATUS_PROP, Status.PRESENT.val())
-        .put(SUMMARY_RESULT_PROP, summary);
+        .put(SUMMARY_RESULT_PROP, summary)
+        .put(BASED_ON_INCOMPLETE_DATA_PROP, hasFailedExperiments(summaryInputs));
+  }
+
+  /**
+   * True if at least one of this gene's experiments has exhausted its AI-response retries
+   * (Status.FAILED) and is therefore standing in as an "unavailable" placeholder wherever it
+   * was used - see buildUnavailablePlaceholder and getValidSummary's per-experiment tolerance.
+   */
+  private boolean hasFailedExperiments(GeneSummaryInputs summaryInputs) {
+    return summaryInputs.getExperimentsWithData().stream()
+        .anyMatch(input -> getEntryStatus(input.getCacheKey(), input.getDigest()) == Status.FAILED);
   }
 
   /**
@@ -349,9 +382,21 @@ public class AiExpressionCache {
           entryDir -> getValidSummary(entryDir, summaryInputs),
 
           // repopulation predicate
-          exceptionToTrue(entryDir ->
+          exceptionToTrue(entryDir -> {
               // try to look up summary json; if not present, then try to repopulate
-              !getValidSummary(entryDir, summaryInputs).getString(RESULT_STATUS_PROP).equals(Status.PRESENT.val())));
+              if (!getValidSummary(entryDir, summaryInputs).getString(RESULT_STATUS_PROP).equals(Status.PRESENT.val())) {
+                return true;
+              }
+              // The gene-level digest is a function of experiment INPUT data, not of whether
+              // an AI call previously succeeded - so once a summary is cached (possibly built
+              // with an "unavailable" placeholder for a FAILED experiment - see getValidSummary),
+              // the digest alone would never prompt regeneration just because that experiment
+              // later succeeds on its own. Force repopulation while any contributing experiment
+              // is still FAILED and due a retry, so the summary gets properly resynthesized with
+              // real content once it becomes available, instead of staying stuck with the
+              // placeholder indefinitely.
+              return hasFailedExperiments(summaryInputs);
+          }));
     }
     catch (Exception e) {
       // any other exception is a 500
@@ -361,6 +406,32 @@ public class AiExpressionCache {
 
   private RuntimeException customExceptionWrapper(Exception e) {
     return e instanceof RuntimeException ? (RuntimeException)e : new RuntimeException(e);
+  }
+
+  /**
+   * Searches a throwable's cause chain for the API usage (spend) limit having been reached,
+   * i.e. the WdkServiceTemporarilyUnavailableException that ClaudeSummarizer raises on a 400
+   * whose message names a usage limit.
+   *
+   * A full chain walk rather than checking one or two levels, because by the time such a
+   * failure surfaces in populateExperiments it has been wrapped a variable number of times:
+   * an ExecutionException per CompletableFuture.get() (both the inner describeExperiment
+   * future and the outer per-experiment future), a CompletionException from the async stages
+   * and/or customExceptionWrapper's RuntimeException, in a nesting order that depends on
+   * exactly where the call failed.
+   *
+   * @param throwable throwable to inspect
+   * @return the usage-limit exception if one appears anywhere in the chain, else empty
+   */
+  private static Optional<WdkServiceTemporarilyUnavailableException> findUsageLimitCause(Throwable throwable) {
+    // guards against a self-referential or cyclic cause chain, which would otherwise spin here
+    Set<Throwable> seen = new HashSet<>();
+    for (Throwable cause = throwable; cause != null && seen.add(cause); cause = cause.getCause()) {
+      if (cause instanceof WdkServiceTemporarilyUnavailableException usageLimit) {
+        return Optional.of(usageLimit);
+      }
+    }
+    return Optional.empty();
   }
 
   /**
@@ -404,36 +475,62 @@ public class AiExpressionCache {
         , this::customExceptionWrapper), exec));
       }
 
-      // wait for all threads, filling lists along the way
+      // Wait for all threads, filling descriptors along the way. A single experiment
+      // exhausting its AI-response retries used to fail this whole method - discarding every
+      // other experiment's already-successful result in the same batch and 500ing the entire
+      // gene page. Substitute an in-memory "unavailable" placeholder for just that experiment
+      // instead, so the rest of the batch (and the gene-level summary built from it) can still
+      // proceed. Nothing changes about the failed experiment's own on-disk cache entry - it's
+      // still marked .failed by OnDiskCache, so the existing repopulation predicate above
+      // naturally retries it (from scratch) on the next page load, same as any other cache
+      // miss - no new "retry later" mechanism needed for that part.
       List<JSONObject> descriptors = new ArrayList<>();
-      List<Throwable> exceptions = new ArrayList<>();
-      for (CompletableFuture<JSONObject> result : results) {
-        result.handle(Either::new).get().ifLeft(descriptors::add).ifRight(exceptions::add);
+      for (int i = 0; i < results.size(); i++) {
+        ExperimentInputs input = experimentData.get(i);
+        try {
+          descriptors.add(results.get(i).get());
+        }
+        catch (Exception e) {
+          // Special case of the API usage (spend) limit having been reached, as detected by
+          // ClaudeSummarizer: propagate it instead of substituting a placeholder. It is not a
+          // per-experiment data problem - it will hit every remaining experiment for this gene
+          // and every gene after it - so placeholdering it would cache a summary reading
+          // "unavailable" for everything and mask the real cause behind a normal-looking
+          // response. Propagating keeps the 503 that tells the caller to come back later.
+          Optional<WdkServiceTemporarilyUnavailableException> usageLimitReached = findUsageLimitCause(e);
+          if (usageLimitReached.isPresent()) {
+            throw usageLimitReached.get();
+          }
+          LOG.warn("Unable to generate AI summary for dataset " + input.getDatasetId() +
+              " after retries; substituting an 'unavailable' placeholder so the rest of the " +
+              "gene summary can still be generated. Will retry this dataset on next access.", e);
+          descriptors.add(buildUnavailablePlaceholder(input));
+        }
       }
-
-      // if no exceptions occurred, return results; else throw first problem
-      if (exceptions.isEmpty()) {
-        return descriptors;
-      }
-
-      // detect and handle special case of usage limits reached
-      Throwable t = exceptions.get(0);
-      if (t instanceof WdkServiceTemporarilyUnavailableException) {
-        throw (WdkServiceTemporarilyUnavailableException)t;
-      }
-      if (t instanceof java.util.concurrent.CompletionException &&
-          t.getCause() != null &&
-          t.getCause() instanceof WdkServiceTemporarilyUnavailableException) {
-        throw (WdkServiceTemporarilyUnavailableException)t.getCause();
-      }
-      if (t instanceof RuntimeException) {
-        throw (RuntimeException)t;
-      }
-      throw new RuntimeException(t);
+      return descriptors;
     }
     finally {
       exec.shutdown();
     }
+  }
+
+  /**
+   * Placeholder experiment descriptor substituted when an experiment's AI summary could not be
+   * generated after retries. Shaped like a real descriptor (dataset_id is required by
+   * consolidateSummary's dataset_id -> summary map) with biological_importance/confidence at 0
+   * so it naturally sorts into the "Other" section rather than being mistaken for a real
+   * no-differential-expression result or pulled into a topic (topics require > 3 on both).
+   */
+  private static JSONObject buildUnavailablePlaceholder(ExperimentInputs input) {
+    return new JSONObject()
+        .put("dataset_id", input.getDatasetId())
+        .put("assay_type", input.getAssayType())
+        .put("experiment_name", input.getExperimentName())
+        .put("one_sentence_summary", "AI summary temporarily unavailable for this experiment.")
+        .put("biological_importance", 0)
+        .put("confidence", 0)
+        .put("experiment_keywords", new JSONArray())
+        .put("notes", "");
   }
 
   /**
