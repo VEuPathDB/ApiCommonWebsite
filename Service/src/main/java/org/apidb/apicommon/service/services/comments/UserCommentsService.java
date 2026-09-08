@@ -20,15 +20,12 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
-import org.apidb.apicommon.model.comment.CommentAlertEmailFormatter;
 import org.apidb.apicommon.model.comment.pojo.AiProvenance;
 import org.apidb.apicommon.model.comment.pojo.Category;
 import org.apidb.apicommon.model.comment.pojo.Comment;
 import org.apidb.apicommon.model.comment.pojo.CommentAiRun;
 import org.apidb.apicommon.model.comment.pojo.CommentRequest;
 import org.gusdb.wdk.core.api.JsonKeys;
-import org.gusdb.wdk.model.Utilities;
-import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
 import org.gusdb.wdk.model.user.User;
 import org.gusdb.wdk.service.annotation.InSchema;
@@ -42,10 +39,6 @@ public class UserCommentsService extends AbstractUserCommentService {
   public static final String BASE_PATH          = "/user-comments";
   public static final String CATEGORY_LIST_PATH = "/category-list";
   public static final String ID_PATH            = "/{" + URI_PARAM + "}";
-
-  public static final String SOURCE_EMAIL     = "annotator@apidb.org";
-  public static final String ANNOTATORS_EMAIL = "EUPATHDB_ANNOTATORS@lists.upenn.edu";
-  public static final String REDMINE_EMAIL    = "redmine@apidb.org";
 
   @Context
   protected UriInfo _uriInfo;
@@ -210,28 +203,5 @@ public class UserCommentsService extends AbstractUserCommentService {
     return _uriInfo.getAbsolutePathBuilder()
       .path(String.valueOf(comId))
       .build();
-  }
-
-  private String getClientURL(long comId, String targetId, String targetType) {
-    return getContextUri() +
-      "/app/user-comments/show" +
-      "?stableId="              + targetId +
-      "&commentTargetId="       + targetType +
-      "#"                       + comId;
-  }
-
-  private void notificationEmail(WdkModel wdk, User user, CommentRequest com,
-      long comId) throws WdkModelException {
-
-    final CommentAlertEmailFormatter form = new CommentAlertEmailFormatter();
-
-    final String subject = form.makeSubject(wdk.getProjectId(), com);
-    final String url = getClientURL(comId, com.getTarget().getId(), com.getTarget().getType());
-    final String smtp = wdk.getModelConfig().getSmtpServer();
-
-    Utilities.sendEmail(smtp, ANNOTATORS_EMAIL + ", " + user.getEmail(),
-        SOURCE_EMAIL, subject, form.makeSelfAlertBody(wdk, user, com, comId, url));
-    Utilities.sendEmail(smtp, REDMINE_EMAIL, SOURCE_EMAIL, subject,
-        form.makeRedmineAlertBody(wdk, user, com, comId, url));
   }
 }
