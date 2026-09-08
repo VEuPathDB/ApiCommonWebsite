@@ -154,6 +154,8 @@ public class AiGenePublicationCommentService extends AbstractUserCommentService 
     CommentRequest request = buildPublishComment(run, headline, content, new Date(), organism.orElse(null));
     long commentId = getCommentFactory().createComment(request, user);
 
+    notificationEmail(getWdkModel(), user, request, commentId);
+
     return Response.status(Response.Status.CREATED)
         .type(MediaType.APPLICATION_JSON)
         .entity(new JSONObject().put("comment_id", commentId).toString())
