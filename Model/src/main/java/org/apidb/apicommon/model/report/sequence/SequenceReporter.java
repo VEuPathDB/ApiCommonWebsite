@@ -107,6 +107,8 @@ public class SequenceReporter extends AbstractReporter {
       case "DynSpanRecordClasses.DynSpanRecordClass":
       case "SequenceRecordClasses.SequenceRecordClass":
         return SequenceType.genomic;
+      case "StrainSegmentRecordClasses.StrainSegmentRecordClass":
+        return SequenceType.dnaseq;
       default:
         throw new WdkModelException(String.format("Unsupported record type: %s", recordClassFullName));
     }
