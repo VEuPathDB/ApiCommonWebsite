@@ -21,9 +21,6 @@ public class ApiCheckLoginFilter extends CheckLoginFilter {
       "user-profile-vocabularies",
       "subscription-groups",
       "oauth/state-token",
-      "payment-form-content",
-      "payment-form-context",
-      "payment-process",
       "users",
       "user-password-reset",
       "users/current",
@@ -48,7 +45,8 @@ public class ApiCheckLoginFilter extends CheckLoginFilter {
   private static final List<String> OPEN_PATH_PREFIXES = List.of(
       "system/metrics/count-page-view",
       "temporary-files",
-      "temporary-results"
+      "temporary-results",
+      "payment"
   );
 
   private static final String ADDITIONAL_MESSAGE_TEMPLATE =
