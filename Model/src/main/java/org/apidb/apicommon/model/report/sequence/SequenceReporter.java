@@ -43,6 +43,7 @@ public class SequenceReporter extends AbstractReporter {
     genomic,
     protein,
     est,
+    dnaseq,
     popset;
   }
 
