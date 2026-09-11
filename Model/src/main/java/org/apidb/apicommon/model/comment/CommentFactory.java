@@ -411,9 +411,9 @@ public class CommentFactory implements Manageable<CommentFactory> {
     final String sql = "SELECT source_id FROM apidbtuning.GeneAttributes\n" +
       "WHERE source_id = ?\n" +
       "UNION\n" +
-      "SELECT name FROM apidbtuning.samples\n" +
-      "WHERE name = ?\n" +
-      "UNION\n" +
+      // "SELECT name FROM apidbtuning.samples\n" +
+      // "WHERE name = ?\n" +
+      // "UNION\n" +
       "SELECT source_id FROM DoTS.ExternalNASequence\n" +
       "WHERE source_id = ?\n" +
       "UNION\n" +
@@ -429,7 +429,7 @@ public class CommentFactory implements Manageable<CommentFactory> {
         ps.setString(1, sourceId);
         ps.setString(2, sourceId);
         ps.setString(3, sourceId);
-        ps.setString(4, sourceId);
+        // ps.setString(4, sourceId);
         try (ResultSet rs = ps.executeQuery()) {
           if (!rs.next())
             errs.add(sourceId);
