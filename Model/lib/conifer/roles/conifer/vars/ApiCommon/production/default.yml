@@ -2,6 +2,8 @@
 ---
 modelconfig_adminEmail:
   - "{{ 'aurreco$uga.edu'|replace('$', '@') }}"
+  - "{{ 'epharper$upenn.edu'|replace('$', '@') }}"
+  - "{{ 'rdoherty$pcbi.upenn.edu'|replace('$', '@') }}"
   - "{{ 'sfischer$pcbi.upenn.edu'|replace('$', '@') }}"
 
 modelconfig_appDb_maxIdle: 2
