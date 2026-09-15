@@ -4,6 +4,7 @@ import java.util.Set;
 
 import org.apidb.apicommon.service.filter.ApiCheckLoginFilter;
 import org.apidb.apicommon.service.services.ApiBasketService;
+import org.apidb.apicommon.service.services.ApiOntologyService;
 import org.apidb.apicommon.service.services.ApiProjectService;
 import org.apidb.apicommon.service.services.ApiRecordService;
 import org.apidb.apicommon.service.services.ApiSessionService;
@@ -19,6 +20,7 @@ import org.apidb.apicommon.service.services.jbrowse.JBrowseUserDatasetsService;
 import org.eupathdb.common.service.EuPathServiceApplication;
 import org.gusdb.fgputil.SetBuilder;
 import org.gusdb.wdk.service.filter.CheckLoginFilter;
+import org.gusdb.wdk.service.service.OntologyService;
 import org.gusdb.wdk.service.service.ProjectService;
 import org.gusdb.wdk.service.service.RecordService;
 import org.gusdb.wdk.service.service.SessionService;
@@ -41,6 +43,7 @@ public class ApiWebServiceApplication extends EuPathServiceApplication {
       .replace(CheckLoginFilter.class, ApiCheckLoginFilter.class)
       .replace(SessionService.class, ApiSessionService.class)
       .replace(RecordService.class, ApiRecordService.class)
+      .replace(OntologyService.class, ApiOntologyService.class)
 
       // add ApiCommon-specific services
       .add(AttachmentsService.class)
