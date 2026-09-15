@@ -66,11 +66,6 @@ public class SiteSpecificTmpFileCache {
 
   private static final String SITE_VALUE_MODEL_PROP_KEY = "LEGACY_WEBAPP_BASE_URL";
 
-  public static ConsumerWithException<OutputStream> get(WdkModel wdkModel, CacheName cacheName, SupplierWithException<InputStream> dataSupplier) throws WdkModelException {
-    Path path = getFileLocation(wdkModel, cacheName._suffix);
-    return getCachedDataStreamer(path, dataSupplier);
-  }
-
   private static Path getFileLocation(WdkModel wdkModel, String fileNameSuffix) throws WdkModelException {
     String siteSpecificPrefix = wdkModel.getProperties().get(SITE_VALUE_MODEL_PROP_KEY);
     if (siteSpecificPrefix == null) {
@@ -85,7 +80,8 @@ public class SiteSpecificTmpFileCache {
     );
   }
 
-  private static ConsumerWithException<OutputStream> getCachedDataStreamer(Path fileLocation, SupplierWithException<InputStream> dataSupplier) throws WdkModelException {
+  public static ConsumerWithException<OutputStream> get(WdkModel wdkModel, CacheName cacheName, SupplierWithException<InputStream> dataSupplier) throws WdkModelException {
+    Path fileLocation = getFileLocation(wdkModel, cacheName._suffix);
     return out -> {
       try {
 

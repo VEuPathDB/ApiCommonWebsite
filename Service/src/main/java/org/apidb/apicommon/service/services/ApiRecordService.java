@@ -1,7 +1,6 @@
 package org.apidb.apicommon.service.services;
 
 import java.io.OutputStream;
-import java.util.Collections;
 
 import org.apache.log4j.Logger;
 import org.apidb.apicommon.controller.SiteSpecificTmpFileCache;
@@ -17,32 +16,23 @@ public class ApiRecordService extends RecordService {
   private static final Logger LOG = Logger.getLogger(ApiRecordService.class);
 
   @Override
-  protected ConsumerWithException<OutputStream> getExpandedRecordClassesJsonStreamer(WdkModel wdkModel) {
-    try {
-      if (_servletRequest == null
-          // Uncommenting the following code will turn off caching for development sites,
-          //   which proved to be problematic, causing an increase in OOMs as storing the JSON
-          //   in memory, even if only briefly, is expensive
-          /*|| _servletRequest.getAttribute("WEBSITE_RELEASE_STAGE") == null
-          || !FormatUtil.isInteger((String)_servletRequest.getAttribute("WEBSITE_RELEASE_STAGE"))
-          || Integer.parseInt((String)_servletRequest.getAttribute("WEBSITE_RELEASE_STAGE")) <= WebsiteReleaseConstants.DEVELOPMENT*/
-      ) {
-        // if Grizzly, or stage not forwarded, or stage not an int, or stage == development, do not cache
-        LOG.warn("Skipping cache for expanded recordclass JSON because " +
-            (_servletRequest == null ? "servlet request is null" : "release stage is " + _servletRequest.getAttribute("WEBSITE_RELEASE_STAGE")));
-        return super.getExpandedRecordClassesJsonStreamer(wdkModel);
-      }
-  
-      // otherwise try to use cache mechanism for efficient delivery of expanded records json
-      return SiteSpecificTmpFileCache.get(wdkModel, CacheName.ALL_RECORDS_EXPANDED, () -> getExpandedRecordClassesJson(wdkModel));
-
-    }
-    catch (Exception e) {
-      // don't let an exception prevent delivery of data to the client; log and trigger email
-      LOG.error("Unable to read cache for expanded record class JSON data", e);
-      triggerErrorEvents(Collections.singletonList(e));
+  protected ConsumerWithException<OutputStream> getExpandedRecordClassesJsonStreamer(WdkModel wdkModel) throws WdkModelException {
+    if (_servletRequest == null
+        // Uncommenting the following code will turn off caching for development sites,
+        //   which proved to be problematic, causing an increase in OOMs as storing the JSON
+        //   in memory, even if only briefly, is expensive
+        /*|| _servletRequest.getAttribute("WEBSITE_RELEASE_STAGE") == null
+        || !FormatUtil.isInteger((String)_servletRequest.getAttribute("WEBSITE_RELEASE_STAGE"))
+        || Integer.parseInt((String)_servletRequest.getAttribute("WEBSITE_RELEASE_STAGE")) <= WebsiteReleaseConstants.DEVELOPMENT*/
+    ) {
+      // if Grizzly, or stage not forwarded, or stage not an int, or stage == development, do not cache
+      LOG.warn("Skipping cache for expanded recordclass JSON because " +
+          (_servletRequest == null ? "servlet request is null" : "release stage is " + _servletRequest.getAttribute("WEBSITE_RELEASE_STAGE")));
       return super.getExpandedRecordClassesJsonStreamer(wdkModel);
     }
+
+    // otherwise use cache mechanism for efficient delivery of expanded records json
+    return SiteSpecificTmpFileCache.get(wdkModel, CacheName.ALL_RECORDS_EXPANDED, () -> getExpandedRecordClassesJson(wdkModel));
   }
 
   public static void cacheExpandedRecordClassesJson(WdkModel wdkModel, boolean useSubprocess) {
