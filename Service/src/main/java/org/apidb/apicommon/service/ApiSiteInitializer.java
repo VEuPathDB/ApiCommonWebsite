@@ -3,9 +3,9 @@ package org.apidb.apicommon.service;
 import org.apidb.apicommon.controller.ApiSiteEventHandlers;
 import org.apidb.apicommon.controller.CommentFactoryManager;
 import org.apidb.apicommon.controller.SiteSpecificTmpFileCache;
-import org.apidb.apicommon.controller.SiteSpecificTmpFileCache.CacheName;
 import org.apidb.apicommon.model.DataPlotterQueries;
 import org.apidb.apicommon.model.JBrowseQueries;
+import org.apidb.apicommon.service.services.ApiOntologyService;
 import org.apidb.apicommon.service.services.ApiRecordService;
 import org.eupathdb.common.controller.EuPathSiteSetup;
 import org.gusdb.fgputil.web.ApplicationContext;
@@ -24,10 +24,11 @@ public class ApiSiteInitializer {
     DataPlotterQueries.preload();
 
     // site specific cache clears
-    SiteSpecificTmpFileCache.clear(wdkModel, CacheName.ALL_RECORDS_EXPANDED);
+    SiteSpecificTmpFileCache.clearAll(wdkModel);
 
     // preload expanded recordclasses json cache
     ApiRecordService.cacheExpandedRecordClassesJson(wdkModel, true);
+    ApiOntologyService.cacheCategoriesOntologyJson(wdkModel, true);
   }
 
   public static void shutDown(ApplicationContext context) {
