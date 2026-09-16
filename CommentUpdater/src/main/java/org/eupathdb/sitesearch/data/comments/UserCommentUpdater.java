@@ -63,17 +63,28 @@ public class UserCommentUpdater extends CommentUpdater<Integer> {
     final String commentSchema
   ) {
 
-    var sqlSelect = "select c.comment_id," 
-      + " c.headline || '|' || c.content || '|' || u.first_name || ' ' || u.last_name || '(' || u.organization || ')'  || '|' || a.authors as content"
-      + " from " + commentSchema + "comments c,"
-      + " " + commentSchema + "comment_users u,"
-      + " (select comment_id, string_agg(source_id , ', ' order by source_id) authors"
-      + "  from " + commentSchema + "CommentReference"
-      + "  where database_name = 'author'"
-      + "  group by comment_id) a"
-      + " where u.user_id = c.user_id"
-      + " and c.comment_id = a.comment_id"
-      + " and c.stable_id = '" + sourceId + "'";
+    String sanitizedId = sourceId.replaceAll("[^a-zA-Z0-9_\\-.]", "");
+
+    String sqlSelect = """
+    SELECT c.comment_id,
+      COALESCE(c.headline, '') || '|' || COALESCE(c.content, '') || '|' ||
+      COALESCE(u.first_name, '') || ' ' || COALESCE(u.last_name, '') ||
+      '(' || COALESCE(u.organization, '') || ')' || '|' ||
+      COALESCE(a.authors, '') AS content
+    FROM %scomments c
+    JOIN %scomment_users u
+      ON u.user_id = c.user_id
+    LEFT JOIN (
+        SELECT comment_id, string_agg(source_id, ', ' ORDER BY source_id) authors
+        FROM %sCommentReference
+        WHERE database_name = 'author'
+        GROUP BY comment_id
+    ) a
+      ON c.comment_id = a.comment_id
+    LEFT JOIN %scomment_ai_run ai
+      ON c.comment_id = a.comment_id
+    WHERE c.stable_id = '%s'
+    """.formatted(commentSchema, commentSchema, commentSchema, commentSchema, sanitizedId);
 
     return new SQLRunner(commentDbDataSource, sqlSelect)
       .executeQuery(rs -> {
