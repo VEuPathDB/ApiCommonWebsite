@@ -1,0 +1,17 @@
+[16/Sep/2026|13:05:33] rid:   34     366ms   87.114.136.21 - INFO  - org.gusdb.wdk.model.query.SqlQueryInstance:68 - Performing the following SQL: (use debug to see SQL) 
+[16/Sep/2026|13:05:33] rid:   34     372ms   87.114.136.21 - INFO  - org.gusdb.wdk.model.query.SqlQueryInstance:68 - Performing the following SQL: (use debug to see SQL) 
+[16/Sep/2026|13:05:33] rid:   34     376ms   87.114.136.21 - INFO  - org.gusdb.wdk.model.query.SqlQueryInstance:68 - Performing the following SQL: (use debug to see SQL) 
+[16/Sep/2026|13:05:33] rid:   34     428ms   87.114.136.21 - INFO  - org.gusdb.wdk.model.query.SqlQueryInstance:68 - Performing the following SQL: (use debug to see SQL) 
+[16/Sep/2026|13:05:33] rid:   35      11ms   87.114.136.21 - INFO  - org.gusdb.wdk.service.filter.CheckLoginFilter:157 - Validated successfully.  Request will be processed for registered user 578013513
+[16/Sep/2026|13:05:33] rid:   36      13ms   87.114.136.21 - INFO  - org.gusdb.wdk.service.filter.CheckLoginFilter:157 - Validated successfully.  Request will be processed for registered user 578013513
+[16/Sep/2026|13:05:33] rid:   34     596ms   87.114.136.21 - INFO  - org.gusdb.wdk.model.query.SqlQueryInstance:68 - Performing the following SQL: (use debug to see SQL) 
+[16/Sep/2026|13:05:34] rid:   37      15ms   87.114.136.21 - INFO  - org.gusdb.wdk.service.filter.CheckLoginFilter:157 - Validated successfully.  Request will be processed for registered user 578013513
+[16/Sep/2026|13:05:34] rid:   38      11ms   87.114.136.21 - INFO  - org.gusdb.wdk.service.filter.CheckLoginFilter:157 - Validated successfully.  Request will be processed for registered user 578013513
+[16/Sep/2026|13:05:34] rid:   39      10ms   87.114.136.21 - INFO  - org.gusdb.wdk.service.filter.CheckLoginFilter:157 - Validated successfully.  Request will be processed for registered user 578013513
+[16/Sep/2026|13:05:45] rid:   40      44ms   96.245.177.36 - INFO  - org.gusdb.wdk.service.filter.CheckLoginFilter:157 - Validated successfully.  Request will be processed for registered user 119782143
+[16/Sep/2026|13:05:45] rid:   40     410ms   96.245.177.36 - INFO  - org.eupathdb.sitesearch.data.comments.CommentUpdater:223 - Attempting to fetch 1 solr documents by (putative) ID.  (Will not be found if ID is an alias)
+[16/Sep/2026|13:05:45] rid:   40     416ms   96.245.177.36 - INFO  - org.eupathdb.sitesearch.data.comments.CommentUpdater:377 - Making POST request to Solr at https://solr-sitesearch-dev.local.apidb.org:8443/solr/site_search/select
+[16/Sep/2026|13:05:45] rid:   40     432ms   96.245.177.36 - INFO  - org.eupathdb.sitesearch.data.comments.CommentUpdater:351 - Read 1 documents from solr
+[16/Sep/2026|13:05:45] rid:   40     437ms   96.245.177.36 - INFO  - org.eupathdb.sitesearch.data.comments.CommentUpdater:277 - Updating source ID 'Py17XNL_000801618' to have comments with IDs: 
+[16/Sep/2026|13:05:45] rid:   40     443ms   96.245.177.36 - INFO  - org.eupathdb.sitesearch.data.comments.CommentUpdater:377 - Making POST request to Solr at https://solr-sitesearch-dev.local.apidb.org:8443/solr/site_search/update
+[16/Sep/2026|13:05:45] rid:   40     463ms   96.245.177.36 - INFO  - org.eupathdb.sitesearch.data.comments.CommentUpdater:377 - Making GET request to Solr at https://solr-sitesearch-dev.local.apidb.org:8443/solr/site_search/update?commit=true
