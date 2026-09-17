@@ -15,6 +15,7 @@ import org.apidb.apicommon.service.services.ai.AiGenePublicationCommentService;
 import org.apidb.apicommon.service.services.comments.AttachmentsService;
 import org.apidb.apicommon.service.services.comments.UserCommentsService;
 import org.apidb.apicommon.service.services.dataPlotter.ProfileSetService;
+import org.apidb.apicommon.service.services.jbrowse.JBrowseApolloService;
 import org.apidb.apicommon.service.services.jbrowse.JBrowseService;
 import org.apidb.apicommon.service.services.jbrowse.JBrowseUserDatasetsService;
 import org.eupathdb.common.service.EuPathServiceApplication;
@@ -52,6 +53,7 @@ public class ApiWebServiceApplication extends EuPathServiceApplication {
       .add(TranscriptToggleService.class)
       .add(JBrowseService.class)
       .add(JBrowseUserDatasetsService.class)
+      .add(JBrowseApolloService.class)
       .add(ProfileSetService.class)
       .add(OrganismMetricsService.class)
 
