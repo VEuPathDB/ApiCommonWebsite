@@ -19,7 +19,7 @@ public class InsertStableIdQuery extends InsertQuery {
       "    COMMENT_STABLE_ID, STABLE_ID, COMMENT_ID)\n" +
       "VALUES (?, ?, ?)";
 
-  private static final Integer[] TYPES = { BIGINT, VARCHAR, VARCHAR };
+  private static final Integer[] TYPES = { BIGINT, VARCHAR, BIGINT };
   private final long _commentId;
   private final Collection<String> _stableId;
 
