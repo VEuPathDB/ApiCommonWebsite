@@ -28,14 +28,14 @@ sub run {
 
   my $dbh = DBI->connect($c->getAppDb->getDbiDsn, $c->getAppDb->getLogin, $c->getAppDb->getPassword) or die DBI::errstr;
 
-  my $taxonId = $self->SUPER::getTaxonId($dbh, $geneResultSql);
+  my $orgAbbrev = $self->SUPER::getOrgAbbrev($dbh, $geneResultSql);
 
-  my $annotatedGenesBgd = $self->getAnnotatedGenesCountBgd($dbh, $taxonId);
+  my $annotatedGenesBgd = $self->getAnnotatedGenesCountBgd($dbh, $orgAbbrev);
   my $annotatedGenesResult = $self->getAnnotatedGenesCountResult($dbh, $geneResultSql);
 
   # get query to get back table to feed to python.
   # the columns are:  goId, bgdGeneCount, resultSetGeneCount
-  my $dataSql = $self->getDataSql($taxonId, $geneResultSql);
+  my $dataSql = $self->getDataSql($orgAbbrev, $geneResultSql);
 
   $self->getEnrichment($dbh, $outputFile, $annotatedGenesBgd, $annotatedGenesResult, $dataSql, $pValueCutoff);
 
@@ -45,12 +45,12 @@ sub run {
 }
 
 sub getAnnotatedGenesCountBgd {
-  my ($self, $dbh, $taxonId) = @_;
+  my ($self, $dbh, $orgAbbrev) = @_;
 
   my $sql = "
 SELECT count (distinct gw.source_id)
          from  apidbtuning.GeneWord gw
-        where  gw.taxon_id = $taxonId
+        where  gw.org_abbrev = '$orgAbbrev'
 ";
 
   my $stmt = $self->runSql($dbh, $sql);
@@ -76,14 +76,14 @@ SELECT count (distinct gw.source_id)
 }
 
 sub getDataSql {
-  my ($self, $taxonId, $geneResultSql) = @_;
+  my ($self, $orgAbbrev, $geneResultSql) = @_;
 
 return "
 select distinct bgd.word, bgdcnt, resultcnt, round(100*resultcnt/bgdcnt, 1) as pct_of_bgd, bgd.descrip
 from
  (SELECT  gw.word ,  count (distinct gw.source_id) as bgdcnt, '' as descrip
         from  apidbtuning.GeneWord gw
-        where  gw.taxon_id = $taxonId
+        where  gw.org_abbrev = '$orgAbbrev'
         group by gw.word
    ) bgd,
    (SELECT  gw.word,  count (distinct gw.source_id) as resultcnt
