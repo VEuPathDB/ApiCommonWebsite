@@ -433,7 +433,7 @@ sub doClustalWalignment {
 #    if(-e $outfile) {
 #	print Dumper "it exists\n";
 #	}
-   my $cmd = "/usr/bin/clustalo --infile=$multifasta --outfile=$outfile --outfmt clustal --output-order tree-order --seqtype dna  --force 2> $tempfile";
+   my $cmd = "/usr/bin/clustalo --infile=$multifasta --outfile=$outfile --outfmt clustal --output-order tree-order --seqtype dna  --force --threads 4 2> $tempfile";
     system($cmd);
 
     if(!(stat($outfile))[7]){
