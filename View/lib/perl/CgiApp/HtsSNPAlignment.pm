@@ -245,7 +245,7 @@ sub createAndDisplayAlignment {
 
     close $infh; close $dndfh; close $outfh; close $tmpfh;
 
-    my $cmd = "clustalo -v --residuenumber --infile=$infile --outfile=$outfile --outfmt=$userOutFormat --output-order=tree-order --guidetree-out=$dndfile --force > $tmpfile";
+    my $cmd = "clustalo -v --residuenumber --infile=$infile --outfile=$outfile --outfmt=$userOutFormat --output-order=tree-order --guidetree-out=$dndfile --force --threads 4 > $tmpfile";
     my $exitCode = system($cmd);
     clustalError($exitCode,$tmpfile,$newline) if ($exitCode != 0);
     

@@ -184,7 +184,7 @@ sub runClustalO {
     my ($outFh, $outFile) = tempfile();
     my ($dndFh, $dndFile) = tempfile();
     my ($tmpFh, $tmpFile) = tempfile();
-    my $cmd = "clustalo --residuenumber --infile=$inFile --outfile=$outFile --outfmt=$userOutFormat --output-order=tree-order --guidetree-out=$dndFile --force > $tmpFile";
+    my $cmd = "clustalo --residuenumber --infile=$inFile --outfile=$outFile --outfmt=$userOutFormat --output-order=tree-order --guidetree-out=$dndFile --force --threads 4 > $tmpFile";
 
     system($cmd);
     close $outFh; close $dndFh; close $tmpFh;
