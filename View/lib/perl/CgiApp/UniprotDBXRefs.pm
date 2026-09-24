@@ -15,14 +15,7 @@ sub run {
        gi.id as uniprot
 from apidbtuning.GeneId gi, apidbtuning.GeneAttributes ga
 where ga.source_id = gi.gene
-and (gi.database_name like '%uniprot_dbxref_RSRC'
-or gi.database_name like '%dbxref_gene2Uniprot_RSRC'
-or gi.database_name like '%dbxref_uniprot_linkout_RSRC'
-or gi.database_name like '%dbxref_uniprotkb_from_annotation_RSRC'
-or gi.database_name like '%dbxref_simple_gene2Uniprot_RSRC'
-or gi.database_name = 'Links to Uniprot Genes'
-or gi.database_name like 'Uniprot%'
-)";
+and gi.database_name ilike '%uniprot%'";
   
   my $sth = $dbh->prepare($sql);
   $sth->execute();
