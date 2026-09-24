@@ -15,13 +15,14 @@ use File::Temp qw/ tempfile /;
 sub run {
   my ($self, $cgi) = @_;
 
-  my ($ids,$sid,$type,$start,$end,$clustalQueryType,$userOutFormat) = $self->getParams($cgi);
+  my ($ids,$sid,$type,$start,$end,$clustalQueryType,$userOutFormat,$numSeqs) = $self->getParams($cgi);
 
-  my $sequences = $self->getSequencesFromDatabase($cgi,$type,$clustalQueryType,$ids,$sid,$start,$end);
+  my ($sequences, $longestSeqLength) = $self->getSequencesFromDatabase($cgi,$type,$clustalQueryType,$ids,$sid,$start,$end);
 
   my $inFile = writeSequencesToFile($sequences);
 
-  my ($outFile,$dndFile) = runClustalO($inFile,$userOutFormat);
+  my $info = "isolateAlignment type=$type seqType=$clustalQueryType numSeqs=$numSeqs longestSeqLength=$longestSeqLength format=$userOutFormat"; 
+  my ($outFile,$dndFile) = runClustalO($inFile,$userOutFormat, $info);
 
   # if Clustal alignment times out
   if (-z $outFile) {
@@ -47,12 +48,14 @@ sub getParams {
     my ($self, $cgi) = @_;
 
     my $type  = $cgi->param('type');
-    my $ids = $self->getIds($cgi,$type);
+    my @idArray = $self->getIds($cgi,$type);
+    my $ids = join(',', map { "'$_'" } @idArray);
     my ($start,$end) = $self->getStartAndEnd($cgi);
     my $clustalQueryType = $self->getClustalQueryType($cgi);
     my $sid   = $cgi->param('sid');
     my $userOutFormat = $self->getUserOutFormat($cgi);
-    return ($ids,$sid,$type,$start,$end,$clustalQueryType,$userOutFormat);
+    my $length = $end - $start;
+    return ($ids,$sid,$type,$start,$end,$clustalQueryType,$userOutFormat,scalar(@idArray));
 }
 
 sub getUserOutFormat {
@@ -91,13 +94,13 @@ sub getIds {
     my ($self,$cgi,$type) = @_;
     my @idArray;
     if ($type eq 'geneOrthologs') {
-	@idArray = $cgi->param('gene_ids');
+	@idArray = $cgi->multi_param('gene_ids');
     } else {
-	my $ids = $cgi->param('isolate_ids');
+	my $ids = $cgi->multi_param('isolate_ids');
 	$ids =~ s/,$//;
 	@idArray = split(',', $ids);
     }
-    return join(',', map { "'$_'" } @idArray);
+    return @idArray
 }
 
 sub getSql {
@@ -152,15 +155,17 @@ sub getSequencesFromDatabase {
               # Beware the order of values [id, strand, seq]. Strand is only used for the genomic query, so a dummy value is used elsewhere.
 
     my $sequences = "";
+    my $longestSeqLength = 0;
     my $sth = $dbh->prepare($sql);
     $sth->execute();
     while(my ($id, $strand, $seq) = $sth->fetchrow_array()) {
 	next if ($seq !~ /[ACGT]/);   # there are no nucleotides
 	$seq = reverseComplement($seq) if ($strand eq 'reverse' && $clustalQueryType eq "genomic");
 	$id =~ s/^$sid\.// unless ($id eq $sid);    # remove reference gene name for other isolates
+	$longestSeqLength = length($seq) if length($seq) > $longestSeqLength;
 	$sequences .= ">$id\n$seq\n";
     }
-    return $sequences;
+    return ($sequences, $longestSeqLength);
 }
 
 sub reverseComplement {
@@ -180,14 +185,18 @@ sub writeSequencesToFile {
 }
 
 sub runClustalO {
-    my ($inFile,$userOutFormat) = @_;
+    my ($inFile,$userOutFormat, $info) = @_;
     my ($outFh, $outFile) = tempfile();
     my ($dndFh, $dndFile) = tempfile();
-    my ($tmpFh, $tmpFile) = tempfile();
-    my $cmd = "clustalo --residuenumber --infile=$inFile --outfile=$outFile --outfmt=$userOutFormat --output-order=tree-order --guidetree-out=$dndFile --force --threads 4 > $tmpFile";
 
-    system($cmd);
-    close $outFh; close $dndFh; close $tmpFh;
+    # use tr to split on carriage returns in clustal's verbose output    
+    my $cmd = "clustalo -v --residuenumber --infile=$inFile --outfile=$outFile --outfmt=$userOutFormat --output-order=tree-order --guidetree-out=$dndFile --force --threads 4 | tr '\\r' '\\n' | grep 'Progressive alignment progress done'";
+
+    # print cpu usage
+    my $cpuInfo = `$cmd`;
+    print STDERR "$info $cpuInfo";
+
+    close $outFh; close $dndFh;
     return ($outFile,$dndFile);
 }
 
