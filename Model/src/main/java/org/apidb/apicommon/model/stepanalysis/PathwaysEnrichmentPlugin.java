@@ -193,7 +193,7 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
 
     // check for non-zero count of genes with Pathways
     String sql = "SELECT count (distinct gp.gene_source_id) as " + countColumn + NL +
-      "from  webready.TranscriptPathway_p gp, (" + idSql + ") r" + NL +
+      "from  apidbtuning.TranscriptPathway gp, (" + idSql + ") r" + NL +
 	"WHERE  gp.gene_source_id = r.gene_source_id";
     // do not make the complete_ec and exact_match checks here
     // because we don't know yet what the user will choose for those parameters
