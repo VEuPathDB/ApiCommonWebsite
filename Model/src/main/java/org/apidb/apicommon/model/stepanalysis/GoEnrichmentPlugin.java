@@ -192,12 +192,19 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     String idSql = answerValue.getIdSql();
     DataSource ds = getWdkModel().getAppDb().getDataSource();
 
-    // check for non-zero count of genes with GO associations (ontology must be non-null)
-    String sql = "select count(distinct gts.gene_source_id)" + NL +
-      " from webready.GoTermSummary_p gts, (" + idSql + ") r" + NL +
-      " where gts.gene_source_id = r.gene_source_id" + NL +
-      " and gts.org_abbrev in (%%PARTITION_KEYS%%)" + NL +
-      " and gts.ontology is not null";
+    // check for existence of at least one gene with GO associations (ontology must be non-null)
+    // returns 1 if found, 0 otherwise
+    String sql = "SELECT (EXISTS (" + NL +
+      "  SELECT 1" + NL +
+      "  FROM (" + idSql + ") r" + NL +
+      "  WHERE EXISTS (" + NL +
+      "    SELECT 1" + NL +
+      "    FROM webready.GoTermSummary_p gts" + NL +
+      "    WHERE gts.gene_source_id = r.gene_source_id" + NL +
+      "    AND gts.org_abbrev IN (%%PARTITION_KEYS%%)" + NL +
+      "    AND gts.ontology IS NOT NULL" + NL +
+      "  )" + NL +
+      "))::INT";
 
     String partKeys = answerValue.getPartitionKeysString("GO-Enrich-Filtered");
     final String newsql = sql.replaceAll(SqlQuery.PARTITION_KEYS_MACRO, partKeys);
