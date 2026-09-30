@@ -51,23 +51,13 @@ public class RepresentativeTranscriptFilter extends StepFilter {
       "SELECT DISTINCT ON (GENE_SOURCE_ID) * FROM inputSql " +
       "ORDER BY GENE_SOURCE_ID, SOURCE_ID";
 
-  // select the longest transcript;  
-  // return only one of them (MAX source_id) if several have the same length
+  // select longest transcript per gene (ties broken by source_id)
   private static final String SELECT_LONGEST_TRANSCRIPT_SQL =
-     "WITH inputSql as (" + ORIG_SQL_PARAM + ") " +
-      "SELECT * FROM inputSql " +
-      "WHERE SOURCE_ID IN ( " +
-      "  SELECT SOURCE_ID " +
-      "  FROM ( " +
-      "    SELECT subq_.GENE_SOURCE_ID, ta.SOURCE_ID, ROW_NUMBER() OVER (" +
-      "          PARTITION BY subq_.GENE_SOURCE_ID " +
-      "          ORDER BY ta.length DESC " +
-      "    ) AS rn " +
-      "    FROM inputSql subq_ " +
-      "    JOIN " + ATTR_TABLE_NAME + " ta ON ta.source_id = subq_.source_id" +
-      "  ) ranked " +
-      "  WHERE rn = 1 )";
-
+      "WITH inputSql as (" + ORIG_SQL_PARAM + ") " +
+      "SELECT DISTINCT ON (subq_.GENE_SOURCE_ID) subq_.* " +
+      "FROM inputSql subq_ " +
+      "  JOIN " + ATTR_TABLE_NAME + " ta ON ta.source_id = subq_.source_id " +
+      "ORDER BY subq_.GENE_SOURCE_ID, ta.length DESC, subq_.SOURCE_ID";
 
   /*
   // select the longest transcript:  returns multiple if same length
