@@ -50,7 +50,7 @@ sub getAnnotatedGenesCountResult {
 
   my $sql = "
 SELECT count (distinct tp.gene_source_id)
-         from  webready.TranscriptPathway_p tp,
+`         from  apidbtuning.TranscriptPathway tp,
                ($geneResultSql) r
         where  tp.gene_source_id = r.source_id
         AND tp.complete_ec >= $self->{excludeIncomplete}
@@ -70,7 +70,7 @@ sub getAnnotatedGenesListResult {
   # THIS HAS BEEN REPLACED WITH `tp.exact_match >= $self->{exactMatchOnly}`
   my $sql = "
 SELECT distinct tp.gene_source_id
-         from  webready.TranscriptPathway_p tp,
+         from  apidbtuning.TranscriptPathway tp,
                ($geneResultSql) r
         where  tp.gene_source_id = r.source_id
           AND tp.complete_ec >= $self->{excludeIncomplete}
