@@ -165,6 +165,7 @@ from
         , webready.PathwayCompounds pc
         , webready.PathwayReactions pr
         where  tp.gene_source_id = r.source_id
+        AND tp.org_abbrev = '$orgAbbrev'
         AND tp.complete_ec >= $self->{excludeIncomplete}
         AND tp.exact_match >= $self->{exactMatchOnly}
         and tp.pathway_source in ($self->{source})
@@ -181,6 +182,7 @@ from
         , webready.PathwayCompounds pc
         , webready.PathwayReactions pr
         where  tp.gene_source_id = r.source_id
+        AND tp.org_abbrev = '$orgAbbrev'
         AND tp.complete_ec >= $self->{excludeIncomplete}
         AND tp.exact_match >= $self->{exactMatchOnly}
         and tp.pathway_source in ($self->{source})
