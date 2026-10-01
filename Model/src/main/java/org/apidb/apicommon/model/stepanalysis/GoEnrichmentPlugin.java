@@ -192,22 +192,27 @@ public class GoEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
     String idSql = answerValue.getIdSql();
     DataSource ds = getWdkModel().getAppDb().getDataSource();
 
-    // check for existence of at least one gene with GO associations (ontology must be non-null)
-    // returns 1 if found, 0 otherwise
-    String sql = "SELECT (EXISTS (" + NL +
-      "  SELECT 1" + NL +
-      "  FROM (" + idSql + ") r" + NL +
-      "  WHERE EXISTS (" + NL +
-      "    SELECT 1" + NL +
-      "    FROM webready.GoTermSummary_p gts" + NL +
-      "    WHERE gts.gene_source_id = r.gene_source_id" + NL +
-      "    AND gts.org_abbrev IN (%%PARTITION_KEYS%%)" + NL +
-      "    AND gts.ontology IS NOT NULL" + NL +
-      "  )" + NL +
-      "))::INT";
-
     String partKeys = answerValue.getPartitionKeysString("GO-Enrich-Filtered");
-    final String newsql = sql.replaceAll(SqlQuery.PARTITION_KEYS_MACRO, partKeys);
+
+    // Check for existence of at least one gene with GO associations (ontology must be non-null)
+    // The inner EXISTS converts the costly merge-join to a semi-join as we only care about distinct count.
+    // The outer EXISTS is basically acts like a short-ciruit and returns 1 immediately after the first match since
+    // we only care if we have a non-zero match.
+    final String newsql = """
+        SELECT (EXISTS (
+          SELECT 1
+          FROM ($$ID_SQL$$) r
+          WHERE EXISTS (
+            SELECT 1
+            FROM webready.GoTermSummary_p gts
+            WHERE gts.gene_source_id = r.gene_source_id
+            AND gts.org_abbrev IN (%%PARTITION_KEYS%%)
+            AND gts.ontology IS NOT NULL
+          )
+        ))::INT
+        """
+            .replace("$$ID_SQL$$", idSql)
+            .replace(SqlQuery.PARTITION_KEYS_MACRO, partKeys);
 
     LOG.info("Executing the following SQL: " + newsql);
 
