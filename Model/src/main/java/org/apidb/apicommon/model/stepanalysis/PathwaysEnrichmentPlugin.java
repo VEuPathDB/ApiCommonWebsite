@@ -19,6 +19,7 @@ import javax.sql.DataSource;
 import org.apache.log4j.Logger;
 import org.gusdb.fgputil.db.runner.SQLRunner;
 import org.gusdb.fgputil.db.runner.handler.BasicResultSetHandler;
+import org.gusdb.fgputil.db.runner.handler.SingleLongResultSetHandler;
 import org.gusdb.fgputil.runtime.GusHome;
 import org.gusdb.fgputil.validation.ValidationBundle;
 import org.gusdb.fgputil.validation.ValidationBundle.ValidationBundleBuilder;
@@ -186,26 +187,32 @@ public class PathwaysEnrichmentPlugin extends AbstractSimpleProcessAnalyzer {
   public void validateAnswerValue(AnswerValue answerValue)
       throws IllegalAnswerValueException, WdkModelException {
 
-    String countColumn = "CNT";
     String idSql = answerValue.getIdSql();
     DataSource ds = getWdkModel().getAppDb().getDataSource();
-    BasicResultSetHandler handler = new BasicResultSetHandler();
 
-    // check for non-zero count of genes with Pathways
-    String sql = "SELECT count (distinct gp.gene_source_id) as " + countColumn + NL +
-      "from  apidbtuning.TranscriptPathway gp, (" + idSql + ") r" + NL +
-	"WHERE  gp.gene_source_id = r.gene_source_id";
+    // Check for existence of at least one gene with Pathways
+    // The inner EXISTS converts the costly join to a semi-join as we only care about distinct count.
+    // The outer EXISTS acts like a short-circuit and returns 1 immediately after the first match since
+    // we only care if we have a non-zero match.
     // do not make the complete_ec and exact_match checks here
     // because we don't know yet what the user will choose for those parameters
+    final String sql = """
+        SELECT (EXISTS (
+          SELECT 1
+          FROM ($$ID_SQL$$) r
+          WHERE EXISTS (
+            SELECT 1
+            FROM apidbtuning.TranscriptPathway tp
+            WHERE tp.gene_source_id = r.gene_source_id
+          )
+        ))::INT
+        """
+            .replace("$$ID_SQL$$", idSql);
 
-    new SQLRunner(ds, sql, "count-pathway-genes").executeQuery(handler);
+    long count = new SQLRunner(ds, sql, "count-pathway-genes").executeQuery(new SingleLongResultSetHandler())
+        .orElseThrow(() -> new WdkModelException("No result found in count query: " + sql));
 
-    if (handler.getNumRows() == 0) throw new WdkModelException("No result found in count query: " + sql);
-
-    Map<String, Object> result = handler.getResults().get(0);
-    Long count = (Long)result.get(countColumn.toLowerCase());
-
-    if (count == 0 ) {
+    if (count == 0) {
       throw new IllegalAnswerValueException(
           "Your result has no genes that are in pathways, " +
           "so you can't use this tool on this result. " +
