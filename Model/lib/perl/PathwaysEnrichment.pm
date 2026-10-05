@@ -50,7 +50,7 @@ sub getAnnotatedGenesCountResult {
 
   my $sql = "
 SELECT count (distinct tp.gene_source_id)
-`         from  apidbtuning.TranscriptPathway tp,
+        from  apidbtuning.TranscriptPathway tp,
                ($geneResultSql) r
         where  tp.gene_source_id = r.source_id
         AND tp.complete_ec >= $self->{excludeIncomplete}
