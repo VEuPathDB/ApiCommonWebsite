@@ -28,6 +28,13 @@ import org.json.JSONObject;
  *   coordinate systems.  RequestedDeflineFields is populated only when the caller passes
  *   {@code deflineType=full}, so by default the name column is the bare primary key.
  *
+ * Optional config {@code strainNamesUnique} (default false): when true, the name column
+ * starts with the bare strain name instead of the full primary key, dropping the
+ * reference location, which the requester knows is the same for every segment.  The
+ * requester is responsible for ensuring each strain appears in at most one segment of the
+ * answer.  This is NOT validated here: if a strain repeats, the output will contain
+ * duplicate deflines that cannot be told apart, and no error will be raised.
+ *
  * The accepted {@code deflineFields} vocabulary (there is no record page, so nothing else
  * enumerates it) is exactly: {@code organism}, {@code strain}, {@code description},
  * {@code reference_position}, {@code position}, {@code segment_length}.  {@code strain} and
@@ -51,9 +58,11 @@ public class StrainSegmentFeatureProvider implements BedFeatureProvider {
   private static final String ATTR_ORGANISM = "organism";
 
   private final RequestedDeflineFields _requestedDeflineFields;
+  private final boolean _strainNamesUnique;  // the request states that strain name segments of the featureId are unique. skip invariant location info
 
   public StrainSegmentFeatureProvider(JSONObject config) {
     _requestedDeflineFields = new RequestedDeflineFields(config);
+    _strainNamesUnique = config.optBoolean("strainNamesUnique", false);
   }
 
   @Override
@@ -102,7 +111,7 @@ public class StrainSegmentFeatureProvider implements BedFeatureProvider {
     validateStrainSeqIdMatchesId(featureId, id, strainSeqId);
     validateStrainInterval(featureId, strainSeqId, strainStart, strainEnd);
 
-    DeflineBuilder defline = new DeflineBuilder(featureId);
+    DeflineBuilder defline = new DeflineBuilder(_strainNamesUnique? id.getStrain() : featureId);
 
     if (_requestedDeflineFields.contains("organism")) {
       defline.appendValue(requiredStringAttribute(record, ATTR_ORGANISM, featureId));
