@@ -64,7 +64,7 @@ import org.apidb.apicommon.model.comment.repo.InsertStableIdQuery;
 import org.apidb.apicommon.model.comment.repo.Table;
 import org.apidb.apicommon.model.comment.repo.UpdateAttachmentQuery;
 import org.apidb.apicommon.model.comment.repo.UpdateAuthorQuery;
-import org.eupathdb.sitesearch.data.comments.UserCommentUpdater;
+import org.veupathdb.sitesearch.usercomments.UserCommentUpdater;
 import org.gusdb.fgputil.db.pool.DatabaseInstance;
 import org.gusdb.fgputil.runtime.InstanceManager;
 import org.gusdb.fgputil.runtime.Manageable;
