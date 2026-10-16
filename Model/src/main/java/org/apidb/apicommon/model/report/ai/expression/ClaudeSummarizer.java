@@ -200,6 +200,7 @@ public class ClaudeSummarizer extends Summarizer {
         .orElse(false);
   }
 
+  @SuppressWarnings("unused")
   private static boolean isMaxTokens(Message response) {
     return response.stopReason()
         .map(stopReason -> StopReason.MAX_TOKENS.asString().equals(stopReason.asString()))
@@ -210,6 +211,7 @@ public class ClaudeSummarizer extends Summarizer {
   // that fills the entire max_tokens budget (observed: thousands of repeated characters)
   // doesn't blow up the log with tens of KB per line - only the tail matters for spotting
   // what it got stuck repeating.
+  @SuppressWarnings("unused")
   private static String lastChars(String text, int keepChars) {
     return text.length() <= keepChars ? text : "..." + text.substring(text.length() - keepChars);
   }
