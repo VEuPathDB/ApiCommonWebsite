@@ -55,6 +55,11 @@
     </dependency>
 
     <dependency>
+      <groupId>org.veupathdb</groupId>
+      <artifactId>sitesearch-usercomments</artifactId>
+    </dependency>
+
+    <dependency>
       <groupId>org.gusdb</groupId>
       <artifactId>wdk-model</artifactId>
     </dependency>
