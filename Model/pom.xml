@@ -55,6 +55,11 @@
     </dependency>
 
     <dependency>
+      <groupId>org.veupathdb</groupId>
+      <artifactId>sitesearch-usercomments</artifactId>
+    </dependency>
+
+    <dependency>
       <groupId>org.gusdb</groupId>
       <artifactId>wdk-model</artifactId>
     </dependency>
@@ -67,11 +72,6 @@
     <dependency>
       <groupId>org.eupathdb</groupId>
       <artifactId>ebrc-website-common-model</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.eupathdb</groupId>
-      <artifactId>api-common-website-commentupdater</artifactId>
     </dependency>
 
     <dependency>

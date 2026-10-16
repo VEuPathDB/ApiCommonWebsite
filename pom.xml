@@ -11,7 +11,6 @@
   <modules>
     <module>Model</module>
     <module>Service</module>
-    <module>CommentUpdater</module>
     <module>Test</module>
   </modules>
 
@@ -45,11 +44,6 @@
       <dependency>
         <groupId>org.eupathdb</groupId>
         <artifactId>api-common-website-model</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.eupathdb</groupId>
-        <artifactId>api-common-website-commentupdater</artifactId>
         <version>${project.version}</version>
       </dependency>
     </dependencies>
