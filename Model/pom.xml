@@ -75,11 +75,6 @@
     </dependency>
 
     <dependency>
-      <groupId>org.eupathdb</groupId>
-      <artifactId>api-common-website-commentupdater</artifactId>
-    </dependency>
-
-    <dependency>
       <groupId>com.thaiopensource</groupId>
       <artifactId>jing</artifactId>
     </dependency>
