@@ -41,6 +41,7 @@ SELECT count (distinct tp.gene_source_id)
 
   my $stmt = $self->runSql($dbh, $sql);
   my ($geneCount) = $stmt->fetchrow_array();
+  # Ok to throw a 500 here; this should already have been checked
   die "Got null gene count for bgd annotated genes count\n" unless $geneCount;
   return $geneCount;
 }
@@ -80,7 +81,6 @@ SELECT distinct tp.gene_source_id
 
   my $stmt = $self->runSql($dbh, $sql);
   my ($geneList) = $stmt->fetchrow_array();
-  die "Got null gene count for result annotated genes count\n" unless $geneList;
   return $geneList;
 }
 
