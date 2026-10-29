@@ -21,6 +21,8 @@ sub getAllProfileSetNames {
   my $url = $self->getBaseUrl() . '/a/service/profileSet/TranscriptionSummaryProfiles/' . $id;
   my $content = get($url);
   my $json = from_json(Encode::decode('UTF-8', $content));
+  my %nameCount;
+  $nameCount{$_->{'display_name'} // ''}++ foreach @$json;
   foreach my $profile (@$json) {
     my $profileName = $profile->{'profile_set_name'};
     my $nodeType    = $profile->{'node_type'};
@@ -29,6 +31,10 @@ sub getAllProfileSetNames {
     next if defined $displayName && $displayName =~ /[^\x00-\x7F]/;
     next if($self->isExcludedProfileSet($profileName));
     my $fullProfileName = defined $nodeType ? "$profileName [$nodeType]" : $profileName;
+    # R needs one legend per profile; disambiguate profile sets sharing a display name
+    if (defined $displayName && $nameCount{$displayName} > 1) {
+      $displayName .= ' (' . join(', ', grep { defined } (split(' ', $profileName))[0], (split(/ - /, $nodeType // ''))[1]) . ')';
+    }
     my $p = {profileName=>$fullProfileName, profileType=>'values', displayName=>$displayName};
     push @rv, $p;
   }
