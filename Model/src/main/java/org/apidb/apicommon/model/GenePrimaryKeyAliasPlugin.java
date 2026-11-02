@@ -15,8 +15,8 @@ import org.gusdb.fgputil.MapBuilder;
 import org.gusdb.fgputil.db.SqlUtils;
 import org.gusdb.wdk.model.WdkModel;
 import org.gusdb.wdk.model.WdkModelException;
-import org.gusdb.wdk.model.record.PrimaryKeyAliasPlugin;
 import org.gusdb.wdk.model.record.RecordNotFoundException;
+import org.gusdb.wdk.model.record.alias.PrimaryKeyAliasPlugin;
 import org.gusdb.wdk.model.user.User;
 
 /**
