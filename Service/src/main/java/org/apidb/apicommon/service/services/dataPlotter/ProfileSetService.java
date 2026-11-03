@@ -2,6 +2,10 @@ package org.apidb.apicommon.service.services.dataPlotter;
 
 import static org.gusdb.fgputil.db.stream.ResultSetInputStream.getResultSetStream;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
@@ -242,11 +246,11 @@ public class ProfileSetService extends AbstractWdkService {
           } else {
             plotDataSql = plotDataSql + " UNION " + getSql(projectId, sqlName, profileSetId, id, name, null, null, i);
           }
-      } else if (profileSet.has("senseProfileSetId")) {
-        String senseProfileSetId = profileSet.getString("senseProfileSetId");
-        String antisenseProfileSetId = profileSet.getString("antisenseProfileSetId");
+      } else if (profileSet.has("senseProfileSets")) {
+        String senseStudyNodeTypes = toStudyNodeTypeList(profileSet.getJSONArray("senseProfileSets"));
+        String antisenseStudyNodeTypes = toStudyNodeTypeList(profileSet.getJSONArray("antisenseProfileSets"));
         String floor = profileSet.getString("floor");
-        plotDataSql = getSql(projectId, sqlName, senseProfileSetId, antisenseProfileSetId, id, floor, null, i);
+        plotDataSql = getSql(projectId, sqlName, senseStudyNodeTypes, antisenseStudyNodeTypes, id, floor, null, i);
       } else if (profileSet.has("generaSql")) {
         String generaSql = profileSet.getString("generaSql");
         plotDataSql = getSql(projectId, sqlName, generaSql, id, null, null, null, i);
@@ -361,16 +365,27 @@ public class ProfileSetService extends AbstractWdkService {
   }
 
   //TODO figure adding antisense result to return plot ready data
-  private String getSenseAntisenseSql(String projectId, String senseProfileSetId, String antisenseProfileSetId, String sourceId, String floor) {
+  private String getSenseAntisenseSql(String projectId, String senseStudyNodeTypes, String antisenseStudyNodeTypes, String sourceId, String floor) {
 
     String sql = DataPlotterQueries.getQueryMap(projectId).get("sense_antisense");
     sql = sql.replaceAll("\\$floor", floor);
-    sql = sql.replaceAll("\\$antisenseProfileSetId", antisenseProfileSetId);
+    sql = sql.replaceAll("\\$antisenseStudyNodeTypes", Matcher.quoteReplacement(antisenseStudyNodeTypes));
     sql = sql.replaceAll("\\$sourceId", sourceId);
-    sql = sql.replaceAll("\\$senseProfileSetId", senseProfileSetId);
- 
+    sql = sql.replaceAll("\\$senseStudyNodeTypes", Matcher.quoteReplacement(senseStudyNodeTypes));
+
     return sql;
 
+  }
+
+  // [{"studyName":..,"nodeType":..},..] -> ('study','node type'),.. for a (study_name, node_type) IN list
+  private static String toStudyNodeTypeList(JSONArray profileSets) {
+    List<String> pairs = new ArrayList<>();
+    for (int i = 0; i < profileSets.length(); i++) {
+      JSONObject profileSet = profileSets.getJSONObject(i);
+      pairs.add("('" + profileSet.getString("studyName").replace("'", "''") + "', '"
+          + profileSet.getString("nodeType").replace("'", "''") + "')");
+    }
+    return String.join(", ", pairs);
   }
 
   private String getPathwayGeneraSql(String projectId, String generaSql, String sourceId) {
