@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE urlrewrite PUBLIC "-//tuckey.org//DTD UrlRewrite 4.0//EN"
+"http://www.tuckey.org/res/dtds/urlrewrite4.0.dtd">
+
+<!-- JBrowse 5 entry points must revalidate so a release bump reaches clients;
+     its hashed static/ bundles keep whatever /WEB-INF/urlrewrite.xml sets. -->
+<urlrewrite>
+
+  <rule>
+    <name>JBrowse 5 entry points</name>
+    <from>^/jbrowse5/(index\.html|config\.json)?$</from>
+    <set type="response-header" name="Cache-Control">no-cache</set>
+    <to>-</to>
+  </rule>
+
+</urlrewrite>
