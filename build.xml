@@ -81,7 +81,7 @@
 
   <target name="ApiCommonWebsite-WebInstallation" depends="EbrcWebSvcCommon-WebInstallation,
                                                            JBrowse-WebInstallation,
-                                                           ApiCommonWebsite-JBrowse5-WebInstallation,
+                                                           ApiCommonWebsite-JBrowse2-WebInstallation,
                                                            ApiCommonWebsite-Installation,
                                                            ApiCommonWebsite/View-WebInstallation,
                                                            ApiCommonWebsite/Site-WebInstallation">
@@ -103,29 +103,33 @@
 
   </target>
 
-  <target name="ApiCommonWebsite-JBrowse5-WebInstallation">
+  <target name="ApiCommonWebsite-JBrowse2-WebInstallation">
     <!-- A bump changes both: release tag and tarball sha256. -->
-    <property name="jbrowse5.version" value="0.1.1" />
-    <property name="jbrowse5.sha256" value="9e8ef9aa34a148d2c8d35aab7295be21241e0a94d6f574988a1381c06b50e7b7" />
+    <property name="jbrowse2.version" value="0.1.1" />
+    <property name="jbrowse2.sha256" value="9e8ef9aa34a148d2c8d35aab7295be21241e0a94d6f574988a1381c06b50e7b7" />
 
-    <property name="jbrowse5.downloadDir" value="${projectsDir}/ApiCommonWebsite/target/jbrowse5" />
-    <property name="jbrowse5.tarball" value="${jbrowse5.downloadDir}/jbrowse5-${jbrowse5.version}.tar.gz" />
+    <property name="jbrowse2.downloadDir" value="${projectsDir}/ApiCommonWebsite/target/jbrowse2" />
+    <property name="jbrowse2.tarball" value="${jbrowse2.downloadDir}/jbrowse5-${jbrowse2.version}.tar.gz" />
 
-    <mkdir dir="${jbrowse5.downloadDir}" />
-    <get src="https://github.com/VEuPathDB/jbrowse2/releases/download/v${jbrowse5.version}/jbrowse5-${jbrowse5.version}.tar.gz"
-         dest="${jbrowse5.tarball}" />
+    <mkdir dir="${jbrowse2.downloadDir}" />
+    <get src="https://github.com/VEuPathDB/jbrowse2/releases/download/v${jbrowse2.version}/jbrowse5-${jbrowse2.version}.tar.gz"
+         dest="${jbrowse2.tarball}" />
 
-    <checksum file="${jbrowse5.tarball}" algorithm="SHA-256" property="jbrowse5.actualSha256" />
-    <fail message="JBrowse 5 ${jbrowse5.version} checksum mismatch for ${jbrowse5.tarball}: expected ${jbrowse5.sha256}, actual ${jbrowse5.actualSha256}">
+    <checksum file="${jbrowse2.tarball}" algorithm="SHA-256" property="jbrowse2.actualSha256" />
+    <fail message="JBrowse2 ${jbrowse2.version} checksum mismatch for ${jbrowse2.tarball}: expected ${jbrowse2.sha256}, actual ${jbrowse2.actualSha256}">
       <condition>
         <not>
-          <equals arg1="${jbrowse5.sha256}" arg2="${jbrowse5.actualSha256}" casesensitive="false" />
+          <equals arg1="${jbrowse2.sha256}" arg2="${jbrowse2.actualSha256}" casesensitive="false" />
         </not>
       </condition>
     </fail>
 
+    <!-- The tarball's top-level dir is the release's own name; strip it so the URL is ours. -->
     <delete dir="${webappTargetDir}/jbrowse5" />
-    <untar src="${jbrowse5.tarball}" dest="${webappTargetDir}" compression="gzip" />
+    <delete dir="${webappTargetDir}/jbrowse2" />
+    <untar src="${jbrowse2.tarball}" dest="${webappTargetDir}/jbrowse2" compression="gzip">
+      <cutdirsmapper dirs="1" />
+    </untar>
   </target>
 
   <target name="ApiCommonWebsite/Site-WebInstallation">
