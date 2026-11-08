@@ -104,33 +104,16 @@
   </target>
 
   <target name="ApiCommonWebsite-JBrowse5-WebInstallation">
-    <!-- A bump changes all three: release tag, tarball sha256, and that tarball's
-         GitHub asset id (gh api repos/VEuPathDB/jbrowse2/releases/tags/v<version>). -->
+    <!-- A bump changes both: release tag and tarball sha256. -->
     <property name="jbrowse5.version" value="0.1.1" />
     <property name="jbrowse5.sha256" value="9e8ef9aa34a148d2c8d35aab7295be21241e0a94d6f574988a1381c06b50e7b7" />
-    <property name="jbrowse5.assetId" value="718246189" />
 
     <property name="jbrowse5.downloadDir" value="${projectsDir}/ApiCommonWebsite/target/jbrowse5" />
     <property name="jbrowse5.tarball" value="${jbrowse5.downloadDir}/jbrowse5-${jbrowse5.version}.tar.gz" />
 
-    <property environment="env" />
-    <fail message="JBrowse 5 is a private GitHub release: set GITHUB_USERNAME and GITHUB_TOKEN (a token with read access to VEuPathDB/jbrowse2)">
-      <condition>
-        <not>
-          <and>
-            <isset property="env.GITHUB_USERNAME" />
-            <isset property="env.GITHUB_TOKEN" />
-          </and>
-        </not>
-      </condition>
-    </fail>
-
     <mkdir dir="${jbrowse5.downloadDir}" />
-    <get src="https://api.github.com/repos/VEuPathDB/jbrowse2/releases/assets/${jbrowse5.assetId}"
-         dest="${jbrowse5.tarball}"
-         username="${env.GITHUB_USERNAME}" password="${env.GITHUB_TOKEN}">
-      <header name="Accept" value="application/octet-stream" />
-    </get>
+    <get src="https://github.com/VEuPathDB/jbrowse2/releases/download/v${jbrowse5.version}/jbrowse5-${jbrowse5.version}.tar.gz"
+         dest="${jbrowse5.tarball}" />
 
     <checksum file="${jbrowse5.tarball}" algorithm="SHA-256" property="jbrowse5.actualSha256" />
     <fail message="JBrowse 5 ${jbrowse5.version} checksum mismatch for ${jbrowse5.tarball}: expected ${jbrowse5.sha256}, actual ${jbrowse5.actualSha256}">
