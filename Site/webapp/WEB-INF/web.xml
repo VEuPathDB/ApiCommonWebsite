@@ -97,18 +97,18 @@
   </filter-mapping>
   <!-- End UrlRewrite filter -->
 
-  <!-- Mapped after UrlRewriteFilter so its Cache-Control wins for JBrowse 5 -->
+  <!-- Mapped after UrlRewriteFilter so its Cache-Control wins for JBrowse -->
   <filter>
-    <filter-name>JBrowse5UrlRewriteFilter</filter-name>
+    <filter-name>JBrowse2UrlRewriteFilter</filter-name>
     <filter-class>org.tuckey.web.filters.urlrewrite.UrlRewriteFilter</filter-class>
     <init-param>
       <param-name>confPath</param-name>
-      <param-value>/WEB-INF/urlrewrite-jbrowse5.xml</param-value>
+      <param-value>/WEB-INF/urlrewrite-jbrowse2.xml</param-value>
     </init-param>
   </filter>
   <filter-mapping>
-    <filter-name>JBrowse5UrlRewriteFilter</filter-name>
-    <url-pattern>/jbrowse5/*</url-pattern>
+    <filter-name>JBrowse2UrlRewriteFilter</filter-name>
+    <url-pattern>/jbrowse2/*</url-pattern>
     <dispatcher>REQUEST</dispatcher>
   </filter-mapping>
 
