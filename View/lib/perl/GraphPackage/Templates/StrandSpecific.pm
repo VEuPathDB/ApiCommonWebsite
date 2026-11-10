@@ -5,7 +5,15 @@ use EbrcWebsiteCommon::View::GraphPackage::ProfileSet;
 use EbrcWebsiteCommon::Model::CannedQuery::SenseAntisenseX;
 use EbrcWebsiteCommon::Model::CannedQuery::SenseAntisenseY;
 use Data::Dumper;
+use JSON;
 use strict;
+
+# graph profile set names are "<study_name> [<node_type>]"; the service filters on both columns
+sub studyNodeType {
+  my ($profileSetName) = @_;
+  my ($studyName, $nodeType) = $profileSetName =~ /^(.+) \[(.+)\]$/;
+  return {studyName => $studyName, nodeType => $nodeType};
+}
 
 sub init {
   my $self = shift;
@@ -38,7 +46,9 @@ sub init {
 	  }
  
 	 my $profileSet = EbrcWebsiteCommon::View::GraphPackage::ProfileSet->new("DUMMY");
-	 $profileSet->setJsonForService("{\"senseProfileSetId\":\"$senseId\",\"antisenseProfileSetId\":\"$antisenseId\",\"floor\":\"$floor\"}"); 
+	 $profileSet->setJsonForService(encode_json({senseProfileSets => [studyNodeType($senseId)],
+	                                             antisenseProfileSets => [studyNodeType($antisenseId)],
+	                                             floor => "$floor"}));
 	 $profileSet->setSqlName("SenseAntisense");
 
 	 push @profileSets, $profileSet;
@@ -69,6 +79,7 @@ sub init {
 
 package ApiCommonWebsite::View::GraphPackage::Templates::StrandSpecific::DS_173528b522;
 use base qw( ApiCommonWebsite::View::GraphPackage::Templates::StrandSpecific );
+use JSON;
 use strict;
 sub init {
     my $self = shift;
@@ -84,12 +95,21 @@ sub init {
     my $senseFoldChange = $cgiApp->param('senseFC');
     unless ($senseFoldChange) {$senseFoldChange=-1;}
 
-    my @names = ('Unsporulated and sporulated T. gondii', 'Transcriptomes of enteroepithelial stages');
+    # sense is firststrand for sporulation and secondstrand for enteroepithelial
+    # (switchStrandsProfiles false / true)
+    my $spor = 'Unsporulated and sporulated T. gondii';
+    my $entero = 'Transcriptomes of enteroepithelial stages';
+    my $first = 'htseq-union - firststrand - tpm - unique';
+    my $second = 'htseq-union - secondstrand - tpm - unique';
     my @profileSets;
 
     my $profileSet = EbrcWebsiteCommon::View::GraphPackage::ProfileSet->new("DUMMY");
 
-    $profileSet->setJsonForService("{\"senseProfileSetId\":\"$names[0] [htseq-union - firststrand - tpm - unique]','$names[1] [htseq-union - firststrand - tpm - unique]\",\"antisenseProfileSetId\":\"$names[0] [htseq-union - secondstrand - tpm - unique]','$names[1] [htseq-union - secondstrand - tpm - unique]\",\"floor\":\"$floor\"}");
+    $profileSet->setJsonForService(encode_json({senseProfileSets => [{studyName => $spor, nodeType => $first},
+                                                                     {studyName => $entero, nodeType => $second}],
+                                                antisenseProfileSets => [{studyName => $spor, nodeType => $second},
+                                                                         {studyName => $entero, nodeType => $first}],
+                                                floor => "$floor"}));
     $profileSet->setSqlName("SenseAntisense");
     push @profileSets, $profileSet;
 

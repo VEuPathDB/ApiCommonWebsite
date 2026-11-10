@@ -433,10 +433,15 @@ package ApiCommonWebsite::View::GraphPackage::Templates::Expression::DS_1b7a4b62
 sub getKeys{
   my ($self, $profileSetName, $profileType) = @_;
 
+  # Profile set names carry a " [microarray]" suffix and the expression type is
+  # "values"; declareParts below names the parts "<name>_rma" / "<name>_percentile".
+  (my $bareName = $profileSetName) =~ s{ \[microarray\]$}{};
+  $profileType = 'rma' if ($profileType eq 'values');
+
   $profileType = 'percentile' if ($profileType eq 'channel1_percentiles');
   $profileType = 'percentile' if ($profileType eq 'channel2_percentiles');
 
-  return ["${profileSetName}_${profileType}"]; 
+  return ["${bareName}_${profileType}"];
 }
 
 sub declareParts {
