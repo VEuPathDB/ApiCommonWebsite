@@ -112,7 +112,7 @@ public class AiGenePublicationCommentService extends AbstractUserCommentService 
   @DELETE
   @Path(ID_PATH)
   @Produces(MediaType.APPLICATION_JSON)
-  public Response cancel(@PathParam(JOB_ID_PARAM) String jobId) throws WdkModelException {
+  public Response cancel(@PathParam(JOB_ID_PARAM) String jobId) {
     fetchUser(); // 401 for guests
     JobRegistry.instance().cancel(jobId);
     return Response.noContent().build();

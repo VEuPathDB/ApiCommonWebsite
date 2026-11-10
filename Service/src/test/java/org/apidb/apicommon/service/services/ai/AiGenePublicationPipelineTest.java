@@ -413,7 +413,7 @@ public class AiGenePublicationPipelineTest {
   }
 
   @Test
-  public void runSuccessRendersPdSectionIntoPersistedContent() throws Exception {
+  public void runSuccessRendersPdSectionIntoPersistedContent() {
     JsonPromptClient client = (stage, repl) -> stage.equals("generatePDs")
         ? json("{\"PDs\": [{\"description\": \"Fructose 1,6-bisphosphatase FBP1\","
             + " \"evidence_code\": \"IDA\", \"code_reason\": \"Direct enzyme assay.\"}]}")
@@ -442,7 +442,7 @@ public class AiGenePublicationPipelineTest {
   }
 
   @Test
-  public void runPdFailureTerminatesInternalErrorAndPersistsNothing() throws Exception {
+  public void runPdFailureTerminatesInternalErrorAndPersistsNothing() {
     JsonPromptClient client = (stage, repl) -> {
       if (stage.equals("generatePDs"))
         throw new WdkModelException("Max retries exceeded: could not parse valid JSON");
@@ -461,7 +461,7 @@ public class AiGenePublicationPipelineTest {
   }
 
   @Test
-  public void runGeneNotMentionedPersistsRunRow() throws Exception {
+  public void runGeneNotMentionedPersistsRunRow() {
     JsonPromptClient client = (stage, repl) -> { throw new AssertionError("LLM must not run"); };
     CapturingStore store = new CapturingStore();
     AiGenePublicationPipeline pipeline = runnable("upload", null,
@@ -480,7 +480,7 @@ public class AiGenePublicationPipelineTest {
   }
 
   @Test
-  public void runMentionedInPassingPersistsRunRow() throws Exception {
+  public void runMentionedInPassingPersistsRunRow() {
     JsonPromptClient client = (stage, repl) -> json("{\"only_in_passing\": true}");
     CapturingStore store = new CapturingStore();
     AiGenePublicationPipeline pipeline = runnable("upload", null,
@@ -511,7 +511,7 @@ public class AiGenePublicationPipelineTest {
   }
 
   @Test
-  public void runPersistFailureBecomesInternalError() throws Exception {
+  public void runPersistFailureBecomesInternalError() {
     JsonPromptClient client = (stage, repl) ->
         json("{\"only_in_passing\": false, \"ShortSummary\": \"x\"}");
     AiGenePublicationPipeline.AiRunStore boom = run -> { throw new WdkModelException("db down"); };

@@ -203,11 +203,12 @@ public class JobRegistryTest {
     RecordingScheduler scheduler = new RecordingScheduler();
     ExecutorService pool = Executors.newSingleThreadExecutor();
     try {
-      new JobRegistry(pool, scheduler);
-      assertNotNull("the eviction sweep must be scheduled at construction", scheduler.command);
-      assertEquals(JobRegistry.EVICTION_PERIOD_SECONDS, scheduler.initialDelay);
-      assertEquals(JobRegistry.EVICTION_PERIOD_SECONDS, scheduler.period);
-      assertEquals(TimeUnit.SECONDS, scheduler.unit);
+      @SuppressWarnings("unused")
+      JobRegistry reg = new JobRegistry(pool, scheduler);
+      assertNotNull("the eviction sweep must be scheduled at construction", scheduler._command);
+      assertEquals(JobRegistry.EVICTION_PERIOD_SECONDS, scheduler._initialDelay);
+      assertEquals(JobRegistry.EVICTION_PERIOD_SECONDS, scheduler._period);
+      assertEquals(TimeUnit.SECONDS, scheduler._unit);
     }
     finally {
       pool.shutdownNow();
@@ -217,19 +218,19 @@ public class JobRegistryTest {
 
   /** Captures the {@code scheduleAtFixedRate} arguments without actually scheduling, for a deterministic wiring assertion. */
   private static class RecordingScheduler extends ScheduledThreadPoolExecutor {
-    volatile Runnable command;
-    volatile long initialDelay;
-    volatile long period;
-    volatile TimeUnit unit;
+    volatile Runnable _command;
+    volatile long _initialDelay;
+    volatile long _period;
+    volatile TimeUnit _unit;
 
     RecordingScheduler() { super(1); }
 
     @Override
     public ScheduledFuture<?> scheduleAtFixedRate(Runnable command, long initialDelay, long period, TimeUnit unit) {
-      this.command = command;
-      this.initialDelay = initialDelay;
-      this.period = period;
-      this.unit = unit;
+      _command = command;
+      _initialDelay = initialDelay;
+      _period = period;
+      _unit = unit;
       return null; // intentionally do not schedule — keeps the test free of background sweeps
     }
   }
