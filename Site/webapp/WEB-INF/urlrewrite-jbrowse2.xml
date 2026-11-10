@@ -13,4 +13,12 @@
     <to>-</to>
   </rule>
 
+  <!-- The default config is the project root plus the artifact's plugins.
+       The service reads the installed config.json from disk, so no loop. -->
+  <rule>
+    <name>JBrowse default config</name>
+    <from>^/jbrowse2/config\.json$</from>
+    <to type="forward" last="true">/service/jbrowse/jbrowse2/config.json</to>
+  </rule>
+
 </urlrewrite>
