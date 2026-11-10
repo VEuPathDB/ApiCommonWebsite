@@ -105,8 +105,8 @@
 
   <target name="ApiCommonWebsite-JBrowse2-WebInstallation">
     <!-- A bump changes both: release tag and tarball sha256. -->
-    <property name="jbrowse2.version" value="0.1.1" />
-    <property name="jbrowse2.sha256" value="9e8ef9aa34a148d2c8d35aab7295be21241e0a94d6f574988a1381c06b50e7b7" />
+    <property name="jbrowse2.version" value="0.2.0" />
+    <property name="jbrowse2.sha256" value="fa5f37fe209fd889f4ff2f03a4ff87061974951e313327888843f1b2e09fad23" />
 
     <property name="jbrowse2.downloadDir" value="${projectsDir}/ApiCommonWebsite/target/jbrowse2" />
     <property name="jbrowse2.tarball" value="${jbrowse2.downloadDir}/jbrowse5-${jbrowse2.version}.tar.gz" />
