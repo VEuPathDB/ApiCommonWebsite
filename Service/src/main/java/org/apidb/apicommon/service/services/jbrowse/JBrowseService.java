@@ -4,10 +4,14 @@ import static org.gusdb.wdk.service.FileRanges.getFileChunkResponse;
 import static org.gusdb.wdk.service.FileRanges.parseRangeHeaderValue;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Paths;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.ws.rs.BadRequestException;
 import javax.ws.rs.DefaultValue;
@@ -18,9 +22,13 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.CacheControl;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.EntityTag;
+import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.ResponseBuilder;
 import javax.ws.rs.core.UriInfo;
 
 import org.gusdb.wdk.model.WdkModelException;
@@ -28,10 +36,15 @@ import org.gusdb.wdk.model.WdkRuntimeException;
 import org.gusdb.wdk.service.service.AbstractWdkService;
 import org.json.JSONObject;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
+
 @Path("/jbrowse")
 public class JBrowseService extends AbstractWdkService {
 
     public static String appType = "jbrowse";
+
+    // Model property: a directory holding a trial JBrowse 2 root config.json, in place of the mirror's
+    public static final String JBROWSE2_ROOT_DIR_PROP = "JBROWSE2_ROOT_DIR";
 
     @GET
     @Path("stats/global")
@@ -290,6 +303,84 @@ public class JBrowseService extends AbstractWdkService {
             data);
 
         return getFileChunkResponse(Paths.get(path), parseRangeHeaderValue(fileRange));
+    }
+
+    @GET
+    @Path("jbrowse2/config.json")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getJBrowse2Config(@HeaderParam(HttpHeaders.IF_NONE_MATCH) String ifNoneMatch) throws WdkModelException {
+        java.nio.file.Path rootFile = getJBrowse2RootDir().resolve("config.json");
+        java.nio.file.Path artifactFile = getJBrowse2ArtifactConfig();
+
+        Optional<ObjectNode> root;
+        try {
+            root = JBrowse2RootConfig.readOptional(rootFile);
+        }
+        catch (IOException e) {
+            throw new WdkModelException("Cannot read JBrowse 2 root config " + rootFile, e);
+        }
+
+        ObjectNode artifact;
+        try {
+            artifact = JBrowse2RootConfig.readObject(artifactFile);
+        }
+        catch (IOException e) {
+            throw new WdkModelException("Cannot read installed JBrowse 2 config " + artifactFile, e);
+        }
+
+        String body;
+        try {
+            body = JBrowse2RootConfig.serialize(JBrowse2RootConfig.merge(
+                root, rootFile.toString(), artifact, _servletRequest.getContextPath()));
+        }
+        catch (IllegalArgumentException | IOException e) {
+            throw new WdkModelException(e.getMessage(), e);
+        }
+
+        String hash = sha256Hex(body);
+        EntityTag etag = new EntityTag(hash);
+        CacheControl noCache = new CacheControl();
+        noCache.setNoCache(true);
+        noCache.setNoTransform(false);
+
+        ResponseBuilder response = JBrowse2RootConfig.etagMatches(ifNoneMatch, hash)
+            ? Response.notModified()
+            : Response.ok(body);
+        return response.tag(etag).cacheControl(noCache).build();
+    }
+
+    private java.nio.file.Path getJBrowse2RootDir() {
+        Map<String, String> props = getWdkModel().getProperties();
+        String override = props.get(JBROWSE2_ROOT_DIR_PROP);
+        if (override != null && !override.isBlank()) {
+            return Paths.get(override);
+        }
+        return Paths.get(props.get("WEBSERVICEMIRROR"),
+            getWdkModel().getProjectId(),
+            "build-" + getWdkModel().getBuildNumber(),
+            "jbrowse2");
+    }
+
+    private java.nio.file.Path getJBrowse2ArtifactConfig() throws WdkModelException {
+        String realPath = _servletRequest.getServletContext().getRealPath("/jbrowse2/config.json");
+        if (realPath == null) {
+            throw new WdkModelException("Installed JBrowse 2 config.json has no file system path");
+        }
+        return Paths.get(realPath);
+    }
+
+    private static String sha256Hex(String content) {
+        try {
+            byte[] digest = MessageDigest.getInstance("SHA-256").digest(content.getBytes(StandardCharsets.UTF_8));
+            StringBuilder hex = new StringBuilder(digest.length * 2);
+            for (byte b : digest) {
+                hex.append(String.format("%02x", b));
+            }
+            return hex.toString();
+        }
+        catch (NoSuchAlgorithmException e) {
+            throw new WdkRuntimeException(e);
+        }
     }
 
     private static String checkPath(String fileSystemPath) {
