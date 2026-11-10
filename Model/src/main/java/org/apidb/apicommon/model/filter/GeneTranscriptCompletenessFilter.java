@@ -128,6 +128,8 @@ public class GeneTranscriptCompletenessFilter extends StepFilter {
   }
 
   private static String getGenesWithAllTranscriptsSql(AnswerValue answer, String idSql) {
+    // group by gene_source_id to find number of transcripts in result
+    // join to transcript count on gene ID and transcript count match
     return idSql;
   }
 
