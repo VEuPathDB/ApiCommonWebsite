@@ -24,7 +24,7 @@ sub init {
   my @colorList = map { $_->[2] } @$listOfLists;
 
   my $i = 1;
-  my $generaSql = join (" union ", map { "select '$_' as genus, " . $i++ . " as o from dual"  } @generaList);
+  my $generaSql = join (" union ", map { "select '$_' as genus, " . $i++ . " as o"  } @generaList);
   print STDERR Dumper("genera sql: " . $generaSql);
 
   my $profileSet = EbrcWebsiteCommon::View::GraphPackage::ProfileSet->new("DUMMY");
