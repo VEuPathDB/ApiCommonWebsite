@@ -21,6 +21,7 @@ public class ApiCheckLoginFilter extends CheckLoginFilter {
       "user-profile-vocabularies",
       "subscription-groups",
       "oauth/state-token",
+      "sleep",
       "users",
       "user-password-reset",
       "users/current",
