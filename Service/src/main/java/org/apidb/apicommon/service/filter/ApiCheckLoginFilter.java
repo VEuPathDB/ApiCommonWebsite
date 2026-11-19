@@ -21,7 +21,6 @@ public class ApiCheckLoginFilter extends CheckLoginFilter {
       "user-profile-vocabularies",
       "subscription-groups",
       "oauth/state-token",
-      "sleep",
       "users",
       "user-password-reset",
       "users/current",
@@ -47,7 +46,8 @@ public class ApiCheckLoginFilter extends CheckLoginFilter {
       "system/metrics/count-page-view",
       "temporary-files",
       "temporary-results",
-      "payment"
+      "payment",
+      "sleep"
   );
 
   private static final String ADDITIONAL_MESSAGE_TEMPLATE =
