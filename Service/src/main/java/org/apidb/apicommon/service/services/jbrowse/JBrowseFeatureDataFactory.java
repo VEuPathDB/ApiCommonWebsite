@@ -62,7 +62,7 @@ public class JBrowseFeatureDataFactory {
     boolean isReferenceFeature =
         ("ReferenceSequence".equals(feature));
 
-    String seqId = getSequenceId("na_sequence_id", "webready.GenomicSeqAttributes_p", refseqName, "naseq_id_from_source_id")
+    String seqId = getSequenceId("na_sequence_id", "apidbtuning.GenomicSeqAttributes", refseqName, "naseq_id_from_source_id")
         .orElseThrow(() -> new NotFoundException("Unable to look up sequence with ref name " + refseqName ));
 
     String featureSql = 
