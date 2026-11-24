@@ -37,6 +37,9 @@ public class GBrowseConnectionConfig implements ConnectionPoolConfig {
   @Override public int getMaxIdle() { return 5; }
   @Override public int getMinIdle() { return 0; }
   @Override public long getMaxWait() { return 100; }
+  @Override public long getTimeBetweenEvictionRunsMillis() { return -1; }
+  @Override public long getMinEvictableIdleTimeMillis() { return 1800000; }
+  @Override public long getSoftMinEvictableIdleTimeMillis() { return 300000; }
   @Override public int getDefaultFetchSize() { return 100; }
   @Override public boolean isShowConnections() { return false; }
   @Override public long getShowConnectionsInterval() { return 0; }
